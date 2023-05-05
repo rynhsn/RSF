@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="VB" Debug="true" Service="BIMASAKTI_SERVICES.R_PivotService" CodeBehind="R_PivotService.svc.vb"  Factory="R_BackEnd.R_RegularServiceHostFactory"%>

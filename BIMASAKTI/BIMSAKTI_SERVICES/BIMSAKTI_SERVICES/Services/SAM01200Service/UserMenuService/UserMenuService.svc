@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="VB" Debug="true" Service="BIMASAKTI_SERVICES.UserMenuService" CodeBehind="UserMenuService.svc.vb" Factory="R_BackEnd.R_RegularServiceHostFactory"%>

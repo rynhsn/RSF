@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="VB" Debug="true" Service="BIMASAKTI_SERVICES.SAM01000PlatformService" CodeBehind="SAM01000PlatformService.svc.vb" Factory="R_BackEnd.R_RegularServiceHostFactory"%>

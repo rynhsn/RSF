@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="VB" Debug="true" Service="BIMASAKTI_SERVICES.R_ProcessAndUploadService" CodeBehind="R_ProcessAndUploadService.svc.vb" Factory="R_BackEnd.R_RegularServiceHostFactory" %>
