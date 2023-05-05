@@ -5,6 +5,6 @@ namespace GSM02000Common
 {
     public interface IGSM02000 : R_IServiceCRUDBase<GSM02000DTO>
     {
-        GSM02000ListDTO GetAllSalesTax();
+        GSM02000ListDTO GetAllSalesTax(ContextConstant poContextConstant);
     }
 }
