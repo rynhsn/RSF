@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="VB" Debug="true" Service="BIMASAKTI_SERVICES.R_MailMergeService" CodeBehind="R_MailMergeService.svc.vb" Factory="R_BackEnd.R_RegularServiceHostFactory"%>

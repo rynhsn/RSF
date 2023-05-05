@@ -45,6 +45,8 @@ namespace BlazorMenu.Pages.Authentication
                 var loPolicyParameter = await loClientWrapper.R_GetSecurityPolicyParameterAsync();
 
                 _loginModel.CompanyId = "rcd";
+                //_loginModel.UserId = "fmc";
+                //_loginModel.Password = "kcGefWZO";
                 _loginModel.UserId = "cp";
                 _loginModel.Password = "cp";
             }

@@ -50,14 +50,14 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.23.1" />
+    <PackageReference Include="Telerik.UI.for.Blazor" Version="3.7.0" />
     <PackageReference Include="Toolbelt.Blazor.HttpClientInterceptor" Version="10.1.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\FRONT\GS\GSM03000Front\GSM03000Front.csproj" />
     <ProjectReference Include="..\BlazorClientHelper\BlazorClientHelper.csproj" />
-    <ProjectReference Include="..\Library\R_BlazorFrontEnd.Controls\R_BlazorFrontEnd.Controls.csproj" />
-    <ProjectReference Include="..\Library\R_BlazorFrontEnd\R_BlazorFrontEnd.csproj" />
-    <ProjectReference Include="..\R_SecurityPolicy\R_SecurityPolicyFront\R_SecurityPolicyFront.csproj" />
+    <ProjectReference Include="..\BlazorMenuCommon\BlazorMenuCommon.vbproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -73,6 +73,12 @@
     <Reference Include="R_AuthenticationFront">
       <HintPath>..\..\Library\Front\R_AuthenticationFront.dll</HintPath>
     </Reference>
+    <Reference Include="R_BlazorFrontEnd">
+      <HintPath>..\..\Library\Front\R_BlazorFrontEnd.dll</HintPath>
+    </Reference>
+    <Reference Include="R_BlazorFrontEnd.Controls">
+      <HintPath>..\..\Library\Front\R_BlazorFrontEnd.Controls.dll</HintPath>
+    </Reference>
     <Reference Include="R_CommonFrontBackAPI">
       <HintPath>..\..\Library\Front\R_CommonFrontBackAPI.dll</HintPath>
     </Reference>
@@ -84,6 +90,12 @@
     </Reference>
     <Reference Include="R_CrossPlatformSecurity">
       <HintPath>..\..\Library\Front\R_CrossPlatformSecurity.dll</HintPath>
+    </Reference>
+    <Reference Include="R_SecurityPolicyCommon">
+      <HintPath>..\DLL\R_SecurityPolicyCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="R_SecurityPolicyFront">
+      <HintPath>..\DLL\R_SecurityPolicyFront.dll</HintPath>
     </Reference>
   </ItemGroup>
 

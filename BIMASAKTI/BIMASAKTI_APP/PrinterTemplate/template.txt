@@ -1,0 +1,6 @@
+Code		|Type		|X1	|Y1	|X2	|Y2	|FontName		|FontSize	|FontAttr
+_HD		|LM		|0	|	|	|	|			|		|
+_HD		|GH		|3,5	|	|	|	|			|		|
+_HD		|LW		|33	|	|	|	|			|		|
+01		|T		|5	|65	|	|	|			|7		|B
+02		|Q		|5	|20	|12	|12	|			|		|

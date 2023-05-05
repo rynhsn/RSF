@@ -5,4 +5,10 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="R_APICommonDTO">
+      <HintPath>..\..\Library\Back\R_APICommonDTO.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
