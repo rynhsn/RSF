@@ -1,5 +1,6 @@
-**STRUKTUR FOLDER
-
+# REALTA SOFTWARE FACTORY
+## BIMASAKTI : STRUKTUR FOLDER 
+```
 └───BIMASAKTI_11
     └───1.00
         └───PROGRAM
@@ -29,3 +30,4 @@
             └───SYSTEM
                 └───SOURCE
                     └───LIBRARY
+```
