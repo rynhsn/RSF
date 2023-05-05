@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM00110Front\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\GSM00110Front.bundle.scp.css",
+      "PackagePath": "staticwebassets\\GSM00110Front.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM00110Front\\wwwroot\\background.png",
+      "PackagePath": "staticwebassets\\background.png"
+    },
+    {
+      "Id": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM00110Front\\wwwroot\\exampleJsInterop.js",
+      "PackagePath": "staticwebassets\\exampleJsInterop.js"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.GSM00110Front.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.GSM00110Front.props",
+      "PackagePath": "build\\GSM00110Front.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.GSM00110Front.props",
+      "PackagePath": "buildMultiTargeting\\GSM00110Front.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.GSM00110Front.props",
+      "PackagePath": "buildTransitive\\GSM00110Front.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

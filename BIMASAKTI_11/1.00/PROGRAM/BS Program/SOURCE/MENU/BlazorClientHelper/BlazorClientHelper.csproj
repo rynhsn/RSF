@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<TargetFramework>net6.0</TargetFramework>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="R_BlazorFrontEnd">
+      <HintPath>..\..\Library\Front\R_BlazorFrontEnd.dll</HintPath>
+    </Reference>
+    <Reference Include="R_ContextFrontEnd">
+      <HintPath>..\..\Library\Front\R_ContextFrontEnd.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "mmGzpbgACJAYRJa2tCAGMYkbUt9LfVS03BK7KJt2lTy/fyTfSD67LLdmPy5CS3RHLrrp7wmnzEb0U4q5ez5KXw==",
+  "success": true,
+  "projectFilePath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

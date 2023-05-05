@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\GSM00110Front.props" />
+</Project>

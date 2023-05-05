@@ -1,0 +1,7 @@
+/* _content/GSM00110Front/Component1.razor.rz.scp.css */
+.my-component[b-20ru03tg9e] {
+    border: 2px dashed red;
+    padding: 1em;
+    margin: 1em 0;
+    background-image: url('background.png');
+}

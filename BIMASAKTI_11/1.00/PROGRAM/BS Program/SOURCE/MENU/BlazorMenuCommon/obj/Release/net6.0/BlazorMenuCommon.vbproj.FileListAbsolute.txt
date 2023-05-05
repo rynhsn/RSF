@@ -1,0 +1,14 @@
+D:\Realta NetCore Library\Common\BlazorMenuCommon\bin\Release\net6.0\BlazorMenuCommon.deps.json
+D:\Realta NetCore Library\Common\BlazorMenuCommon\bin\Release\net6.0\BlazorMenuCommon.dll
+D:\Realta NetCore Library\Common\BlazorMenuCommon\bin\Release\net6.0\BlazorMenuCommon.pdb
+D:\Realta NetCore Library\Common\BlazorMenuCommon\bin\Release\net6.0\R_APICommonDTO.dll
+D:\Realta NetCore Library\Common\BlazorMenuCommon\obj\Release\net6.0\BlazorMenuCommon.vbproj.AssemblyReference.cache
+D:\Realta NetCore Library\Common\BlazorMenuCommon\obj\Release\net6.0\BlazorMenuCommon.GeneratedMSBuildEditorConfig.editorconfig
+D:\Realta NetCore Library\Common\BlazorMenuCommon\obj\Release\net6.0\BlazorMenuCommon.AssemblyInfoInputs.cache
+D:\Realta NetCore Library\Common\BlazorMenuCommon\obj\Release\net6.0\BlazorMenuCommon.AssemblyInfo.vb
+D:\Realta NetCore Library\Common\BlazorMenuCommon\obj\Release\net6.0\BlazorMenuCommon.vbproj.CoreCompileInputs.cache
+D:\Realta NetCore Library\Common\BlazorMenuCommon\obj\Release\net6.0\BlazorMenuCommon.vbproj.CopyComplete
+D:\Realta NetCore Library\Common\BlazorMenuCommon\obj\Release\net6.0\BlazorMenuCommon.dll
+D:\Realta NetCore Library\Common\BlazorMenuCommon\obj\Release\net6.0\refint\BlazorMenuCommon.dll
+D:\Realta NetCore Library\Common\BlazorMenuCommon\obj\Release\net6.0\BlazorMenuCommon.pdb
+D:\Realta NetCore Library\Common\BlazorMenuCommon\obj\Release\net6.0\ref\BlazorMenuCommon.dll
