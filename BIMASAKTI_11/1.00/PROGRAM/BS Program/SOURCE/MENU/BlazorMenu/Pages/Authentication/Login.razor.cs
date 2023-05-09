@@ -47,8 +47,8 @@ namespace BlazorMenu.Pages.Authentication
                 _loginModel.CompanyId = "rcd";
                 //_loginModel.UserId = "fmc";
                 //_loginModel.Password = "kcGefWZO";
-                _loginModel.UserId = "cp";
-                _loginModel.Password = "cp";
+                _loginModel.UserId = "rhc";
+                _loginModel.Password = "2023003CD@Realta";
             }
             catch (R_Exception rex)
             {

@@ -55,6 +55,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\FRONT\GS\GSM02000Front\GSM02000Front.csproj" />
     <ProjectReference Include="..\..\FRONT\GS\GSM03000Front\GSM03000Front.csproj" />
     <ProjectReference Include="..\BlazorClientHelper\BlazorClientHelper.csproj" />
     <ProjectReference Include="..\BlazorMenuCommon\BlazorMenuCommon.vbproj" />

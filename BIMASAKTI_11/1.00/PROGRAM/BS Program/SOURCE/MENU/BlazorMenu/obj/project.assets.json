@@ -576,6 +576,19 @@
           }
         }
       },
+      "System.ComponentModel.Annotations/6.0.0-preview.4.21253.7": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/System.ComponentModel.Annotations.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.Data.Common/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1172,6 +1185,46 @@
         },
         "runtime": {
           "bin/placeholder/BlazorMenuCommon.dll": {}
+        }
+      },
+      "GSM02000Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "System.ComponentModel.Annotations": "6.0.0-preview.4.21253.7"
+        },
+        "compile": {
+          "bin/placeholder/GSM02000Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02000Common.dll": {}
+        }
+      },
+      "GSM02000Front/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GSM02000Model": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+        },
+        "compile": {
+          "bin/placeholder/GSM02000Front.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02000Front.dll": {}
+        }
+      },
+      "GSM02000Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "GSM02000Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GSM02000Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02000Model.dll": {}
         }
       },
       "GSM03000Front/1.0.0": {
@@ -1860,6 +1913,19 @@
           }
         }
       },
+      "System.ComponentModel.Annotations/6.0.0-preview.4.21253.7": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/System.ComponentModel.Annotations.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.Data.Common/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -2463,6 +2529,46 @@
         },
         "runtime": {
           "bin/placeholder/BlazorMenuCommon.dll": {}
+        }
+      },
+      "GSM02000Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "System.ComponentModel.Annotations": "6.0.0-preview.4.21253.7"
+        },
+        "compile": {
+          "bin/placeholder/GSM02000Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02000Common.dll": {}
+        }
+      },
+      "GSM02000Front/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GSM02000Model": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+        },
+        "compile": {
+          "bin/placeholder/GSM02000Front.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02000Front.dll": {}
+        }
+      },
+      "GSM02000Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "GSM02000Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GSM02000Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02000Model.dll": {}
         }
       },
       "GSM03000Front/1.0.0": {
@@ -3730,6 +3836,94 @@
         "ref/xamarinwatchos10/_._",
         "system.collections.4.3.0.nupkg.sha512",
         "system.collections.nuspec"
+      ]
+    },
+    "System.ComponentModel.Annotations/6.0.0-preview.4.21253.7": {
+      "sha512": "h0eWBYUk1rLI31AAmLMgmVzy6UBMUBvRfAqB9VH+O8pMT5GBFpBJoTEIdhBfzcn7VS+aPPDzpLlASHXdjt2qXQ==",
+      "type": "package",
+      "path": "system.componentmodel.annotations/6.0.0-preview.4.21253.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/net461/System.ComponentModel.Annotations.dll",
+        "lib/netcore50/System.ComponentModel.Annotations.dll",
+        "lib/netstandard1.4/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.0/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.1/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.1/System.ComponentModel.Annotations.xml",
+        "lib/portable-net45+win8/_._",
+        "lib/win8/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/net461/System.ComponentModel.Annotations.dll",
+        "ref/net461/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/System.ComponentModel.Annotations.dll",
+        "ref/netcore50/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/de/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/es/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/fr/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/it/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ja/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ko/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ru/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.1/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.3/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.4/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard2.0/System.ComponentModel.Annotations.dll",
+        "ref/netstandard2.0/System.ComponentModel.Annotations.xml",
+        "ref/netstandard2.1/System.ComponentModel.Annotations.dll",
+        "ref/netstandard2.1/System.ComponentModel.Annotations.xml",
+        "ref/portable-net45+win8/_._",
+        "ref/win8/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.componentmodel.annotations.6.0.0-preview.4.21253.7.nupkg.sha512",
+        "system.componentmodel.annotations.nuspec"
       ]
     },
     "System.Data.Common/4.3.0": {
@@ -5552,6 +5746,21 @@
       "path": "../BlazorMenuCommon/BlazorMenuCommon.vbproj",
       "msbuildProject": "../BlazorMenuCommon/BlazorMenuCommon.vbproj"
     },
+    "GSM02000Common/1.0.0": {
+      "type": "project",
+      "path": "../../COMMON/GS/GSM02000Common/GSM02000Common.csproj",
+      "msbuildProject": "../../COMMON/GS/GSM02000Common/GSM02000Common.csproj"
+    },
+    "GSM02000Front/1.0.0": {
+      "type": "project",
+      "path": "../../FRONT/GS/GSM02000Front/GSM02000Front.csproj",
+      "msbuildProject": "../../FRONT/GS/GSM02000Front/GSM02000Front.csproj"
+    },
+    "GSM02000Model/1.0.0": {
+      "type": "project",
+      "path": "../../FRONT/GS/GSM02000Model/GSM02000Model.csproj",
+      "msbuildProject": "../../FRONT/GS/GSM02000Model/GSM02000Model.csproj"
+    },
     "GSM03000Front/1.0.0": {
       "type": "project",
       "path": "../../FRONT/GS/GSM03000Front/GSM03000Front.csproj",
@@ -5563,6 +5772,7 @@
       "BlazorClientHelper >= 1.0.0",
       "BlazorMenuCommon >= 1.0.0",
       "Blazored.LocalStorage >= 4.2.0",
+      "GSM02000Front >= 1.0.0",
       "GSM03000Front >= 1.0.0",
       "Microsoft.AspNetCore.Components.Authorization >= 6.0.14",
       "Microsoft.AspNetCore.Components.WebAssembly >= 6.0.14",
@@ -5608,6 +5818,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM02000Front\\GSM02000Front.csproj": {
+              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM02000Front\\GSM02000Front.csproj"
+            },
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000Front\\GSM03000Front.csproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000Front\\GSM03000Front.csproj"
             },

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ANaCEBH31YGfKeUKy4Y7n7Kfw4HGHzEv2pBUuQwC55t5XdFwYi79Csji072WgW0MLAIM9rPVuyXaaSsSFFExPA==",
+  "dgSpecHash": "aQYKBXhWtuA1vF8Ycejbu82s7OnMMHF29z/V67/ThOcamAso89Ar27pSuLzJPdsLXg0Qqjb39FiuohilkurBzw==",
   "success": true,
   "projectFilePath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj",
   "expectedPackageFiles": [
@@ -50,6 +50,7 @@
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\runtime.any.system.text.encoding\\4.3.0\\runtime.any.system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\runtime.any.system.threading.tasks\\4.3.0\\runtime.any.system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\system.componentmodel.annotations\\6.0.0-preview.4.21253.7\\system.componentmodel.annotations.6.0.0-preview.4.21253.7.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\system.data.common\\4.3.0\\system.data.common.4.3.0.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",

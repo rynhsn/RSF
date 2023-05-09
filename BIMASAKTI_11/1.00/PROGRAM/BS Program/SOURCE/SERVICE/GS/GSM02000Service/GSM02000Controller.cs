@@ -17,12 +17,12 @@ public class GSM02000Controller : ControllerBase, IGSM02000
     public R_ServiceGetRecordResultDTO<GSM02000DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GSM02000DTO> poParameter)
     {
         R_Exception loEx = new R_Exception();
-        R_ServiceGetRecordResultDTO<GSM02000DTO> loRtn = null;        
-        GSM02000Cls loCls;
+        R_ServiceGetRecordResultDTO<GSM02000DTO> loRtn = new R_ServiceGetRecordResultDTO<GSM02000DTO>();        
+        // GSM02000Cls loCls;
         
         try
         {
-            loCls = new GSM02000Cls();
+            var loCls = new GSM02000Cls();
             loRtn = new R_ServiceGetRecordResultDTO<GSM02000DTO>();
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
@@ -103,8 +103,8 @@ public class GSM02000Controller : ControllerBase, IGSM02000
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbPar.CUSER_ID = R_BackGlobalVar.USER_ID;
 
-            loDbPar.CCOMPANY_ID = "RCD";
-            loDbPar.CUSER_ID = "Admin";
+            // loDbPar.CCOMPANY_ID = "RCD";
+            // loDbPar.CUSER_ID = "Admin";
 
             loCls = new GSM02000Cls();
             loResult = loCls.SalesTaxListDb(loDbPar);
