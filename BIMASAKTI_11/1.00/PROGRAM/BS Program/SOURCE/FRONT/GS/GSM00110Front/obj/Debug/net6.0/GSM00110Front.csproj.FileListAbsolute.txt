@@ -21,3 +21,26 @@ D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\
 D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\refint\GSM00110Front.dll
 D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\GSM00110Front.pdb
 D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\ref\GSM00110Front.dll
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\bin\Debug\net6.0\GSM00110Front.staticwebassets.runtime.json
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\bin\Debug\net6.0\GSM00110Front.deps.json
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\bin\Debug\net6.0\GSM00110Front.dll
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\bin\Debug\net6.0\GSM00110Front.pdb
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\GSM00110Front.csproj.AssemblyReference.cache
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\GSM00110Front.GeneratedMSBuildEditorConfig.editorconfig
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\GSM00110Front.AssemblyInfoInputs.cache
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\GSM00110Front.AssemblyInfo.cs
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\GSM00110Front.csproj.CoreCompileInputs.cache
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\staticwebassets\msbuild.GSM00110Front.Microsoft.AspNetCore.StaticWebAssets.props
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\staticwebassets\msbuild.build.GSM00110Front.props
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.GSM00110Front.props
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.GSM00110Front.props
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\staticwebassets.pack.json
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\staticwebassets.build.json
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\staticwebassets.development.json
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\scopedcss\Component1.razor.rz.scp.css
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\scopedcss\bundle\GSM00110Front.styles.css
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\scopedcss\projectbundle\GSM00110Front.bundle.scp.css
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\GSM00110Front.dll
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\refint\GSM00110Front.dll
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\GSM00110Front.pdb
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GS\GSM00110Front\obj\Debug\net6.0\ref\GSM00110Front.dll

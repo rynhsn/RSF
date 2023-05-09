@@ -53,7 +53,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         R_Exception loEx = new R_Exception();
         string lcQuery = null;
         R_Db loDb;
-        DbCommand loComm;
+        DbCommand loCmd;
         DbConnection loConn = null;
         string lcAction = "";
         
@@ -61,7 +61,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         {
             loDb = new R_Db();
             loConn = loDb.GetConnection("BimasaktiConnectionString");
-            loComm = loDb.GetCommand();
+            loCmd = loDb.GetCommand();
 
             if (poCRUDMode == eCRUDMode.AddMode)
             {
@@ -73,22 +73,22 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             }
             
             lcQuery = "RSP_GS_MAINTAIN_SALES_TAX";
-            loComm.CommandType = CommandType.StoredProcedure;
-            loComm.CommandText = lcQuery;
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
 
-            loDb.R_AddCommandParameter(loComm, "@CCOMPANY_ID", DbType.String, 10, poNewEntity.CCOMPANY_ID);
-            loDb.R_AddCommandParameter(loComm, "@CTAX_ID", DbType.String, 10, poNewEntity.CTAX_ID);
-            loDb.R_AddCommandParameter(loComm, "@CTAX_NAME", DbType.String, 10, poNewEntity.CTAX_NAME);
-            loDb.R_AddCommandParameter(loComm, "@LACTIVE", DbType.Boolean, 1, poNewEntity.LACTIVE);
-            loDb.R_AddCommandParameter(loComm, "@CDESCRIPTION", DbType.String, 50, poNewEntity.CDESCRIPTION);
-            loDb.R_AddCommandParameter(loComm, "@NTAX_PERCENTAGE", DbType.Decimal, 18, poNewEntity.NTAX_PERCENTAGE);
-            loDb.R_AddCommandParameter(loComm, "@CROUNDING_MODE", DbType.String, 10, poNewEntity.CROUNDING_MODE);
-            loDb.R_AddCommandParameter(loComm, "@IROUNDING", DbType.Int32, 10, poNewEntity.IROUNDING);
-            loDb.R_AddCommandParameter(loComm, "@CACTION", DbType.String, 10, lcAction);
-            loDb.R_AddCommandParameter(loComm, "@CGLACCOUNT_NO", DbType.String, 20, poNewEntity.CGLACCOUNT_NO);
-            loDb.R_AddCommandParameter(loComm, "@CUSER_ID", DbType.String, 10, poNewEntity.CUSER_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 10, poNewEntity.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CTAX_ID", DbType.String, 10, poNewEntity.CTAX_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CTAX_NAME", DbType.String, 10, poNewEntity.CTAX_NAME);
+            loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, 1, poNewEntity.LACTIVE);
+            loDb.R_AddCommandParameter(loCmd, "@CDESCRIPTION", DbType.String, 50, poNewEntity.CDESCRIPTION);
+            loDb.R_AddCommandParameter(loCmd, "@NTAX_PERCENTAGE", DbType.Decimal, 18, poNewEntity.NTAX_PERCENTAGE);
+            loDb.R_AddCommandParameter(loCmd, "@CROUNDING_MODE", DbType.String, 10, poNewEntity.CROUNDING_MODE);
+            loDb.R_AddCommandParameter(loCmd, "@IROUNDING", DbType.Int32, 10, poNewEntity.IROUNDING);
+            loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, lcAction);
+            loDb.R_AddCommandParameter(loCmd, "@CGLACCOUNT_NO", DbType.String, 20, poNewEntity.CGLACCOUNT_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 10, poNewEntity.CUSER_ID);
 
-            loDb.SqlExecNonQuery(loConn, loComm, true);
+            loDb.SqlExecNonQuery(loConn, loCmd, true);
         }
         catch (Exception ex)
         {
@@ -117,7 +117,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         R_Exception loEx = new R_Exception();
         string lcQuery = null;
         R_Db loDb;
-        DbCommand loComm;
+        DbCommand loCmd;
         DbConnection loConn = null;
         string lcAction = "";
         
@@ -125,26 +125,26 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         {
             loDb = new R_Db();
             loConn = loDb.GetConnection("BimasaktiConnectionString");
-            loComm = loDb.GetCommand();
+            loCmd = loDb.GetCommand();
 
             lcQuery = "RSP_GS_MAINTAIN_SALES_TAX";
-            loComm.CommandType = CommandType.StoredProcedure;
-            loComm.CommandText = lcQuery;
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
 
-            loDb.R_AddCommandParameter(loComm, "@CACTION", DbType.String, 10, "DELETE");
-            loDb.R_AddCommandParameter(loComm, "@CCOMPANY_ID", DbType.String, 10, poEntity.CCOMPANY_ID);
-            loDb.R_AddCommandParameter(loComm, "@CTAX_ID", DbType.String, 10, poEntity.CTAX_ID);
-            loDb.R_AddCommandParameter(loComm, "@CTAX_NAME", DbType.String, 10, poEntity.CTAX_NAME);
-            loDb.R_AddCommandParameter(loComm, "@LACTIVE", DbType.Boolean, 1, poEntity.LACTIVE);
-            loDb.R_AddCommandParameter(loComm, "@CDESCRIPTION", DbType.String, 50, poEntity.CDESCRIPTION);
-            loDb.R_AddCommandParameter(loComm, "@NTAX_PERCENTAGE", DbType.Decimal, 18, poEntity.NTAX_PERCENTAGE);
-            loDb.R_AddCommandParameter(loComm, "@CROUNDING_MODE", DbType.String, 10, poEntity.CROUNDING_MODE);
-            loDb.R_AddCommandParameter(loComm, "@IROUNDING", DbType.Int32, 10, poEntity.IROUNDING);
-            loDb.R_AddCommandParameter(loComm, "@CGLACCOUNT_NO", DbType.String, 20, poEntity.CGLACCOUNT_NO);
-            loDb.R_AddCommandParameter(loComm, "@CUSER_ID", DbType.String, 10, poEntity.CUSER_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, "DELETE");
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 10, poEntity.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CTAX_ID", DbType.String, 10, poEntity.CTAX_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CTAX_NAME", DbType.String, 10, poEntity.CTAX_NAME);
+            loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, 1, poEntity.LACTIVE);
+            loDb.R_AddCommandParameter(loCmd, "@CDESCRIPTION", DbType.String, 50, poEntity.CDESCRIPTION);
+            loDb.R_AddCommandParameter(loCmd, "@NTAX_PERCENTAGE", DbType.Decimal, 18, poEntity.NTAX_PERCENTAGE);
+            loDb.R_AddCommandParameter(loCmd, "@CROUNDING_MODE", DbType.String, 10, poEntity.CROUNDING_MODE);
+            loDb.R_AddCommandParameter(loCmd, "@IROUNDING", DbType.Int32, 10, poEntity.IROUNDING);
+            loDb.R_AddCommandParameter(loCmd, "@CGLACCOUNT_NO", DbType.String, 20, poEntity.CGLACCOUNT_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 10, poEntity.CUSER_ID);
 
-            loDb.SqlExecNonQuery(loConn, loComm, true);
-            loDb.SqlExecNonQuery(lcQuery, loConn, true);
+            loDb.SqlExecNonQuery(loConn, loCmd, true);
+            // loDb.SqlExecNonQuery(lcQuery, loConn, true);
         }
         catch (Exception ex)
         {
@@ -159,9 +159,9 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         R_Exception loEx = new R_Exception();
         List<GSM02000GridDTO> loRtn = null;
         R_Db loDb;
-        DbConnection loConn;
+        DbConnection loConn = null;
         DbCommand loCmd;
-        string lcQuery;
+        string lcQuery = null;
 
         try
         {

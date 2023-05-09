@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "4j1Obqp2k5s7fD58qnywMVkkYM+nRgdF2LtB58STNdz68TI7zqFy23dJ1lmScsOS1MXoIBBMHVROtAmcgDhbMg==",
+  "dgSpecHash": "KjF3bd3TCih2n2nnu8fbehnxnbTPZ6UTeQ/xEmPljneCNN8L7dm5V8Zpelb139oGIA71Ev2JvPLbVg8URDTv/Q==",
   "success": true,
   "projectFilePath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM02000Common\\GSM02000Common.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\system.componentmodel.annotations\\6.0.0-preview.4.21253.7\\system.componentmodel.annotations.6.0.0-preview.4.21253.7.nupkg.sha512"
+  ],
   "logs": []
 }

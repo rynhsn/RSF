@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj": {}
+    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj": {}
   },
   "projects": {
-    "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000Front\\GSM03000Front.csproj": {
+    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000Front\\GSM03000Front.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000Front\\GSM03000Front.csproj",
+        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000Front\\GSM03000Front.csproj",
         "projectName": "GSM03000Front",
-        "projectPath": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000Front\\GSM03000Front.csproj",
-        "packagesPath": "C:\\Users\\sihol\\.nuget\\packages\\",
-        "outputPath": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000Front\\obj\\",
+        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000Front\\GSM03000Front.csproj",
+        "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000Front\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sihol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -70,20 +71,21 @@
         }
       }
     },
-    "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj": {
+    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj",
+        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj",
         "projectName": "BlazorClientHelper",
-        "projectPath": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj",
-        "packagesPath": "C:\\Users\\sihol\\.nuget\\packages\\",
-        "outputPath": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\obj\\",
+        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj",
+        "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sihol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -130,20 +132,21 @@
         }
       }
     },
-    "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
+    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj",
+        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj",
         "projectName": "BlazorMenuCommon",
-        "projectPath": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj",
-        "packagesPath": "C:\\Users\\sihol\\.nuget\\packages\\",
-        "outputPath": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\obj\\",
+        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj",
+        "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sihol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -190,20 +193,21 @@
         }
       }
     },
-    "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj": {
+    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj",
+        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj",
         "projectName": "BlazorMenu",
-        "projectPath": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj",
-        "packagesPath": "C:\\Users\\sihol\\.nuget\\packages\\",
-        "outputPath": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\obj\\",
+        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj",
+        "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sihol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -219,14 +223,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000Front\\GSM03000Front.csproj": {
-                "projectPath": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000Front\\GSM03000Front.csproj"
+              "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000Front\\GSM03000Front.csproj": {
+                "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000Front\\GSM03000Front.csproj"
               },
-              "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj": {
-                "projectPath": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj"
+              "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj": {
+                "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj"
               },
-              "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
-                "projectPath": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj"
+              "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
+                "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj"
               }
             }
           }
@@ -290,12 +294,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-              "version": "[6.0.16, 6.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"

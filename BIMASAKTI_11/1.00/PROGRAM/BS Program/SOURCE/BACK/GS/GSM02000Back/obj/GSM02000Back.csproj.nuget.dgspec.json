@@ -110,6 +110,12 @@
       "frameworks": {
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "System.ComponentModel.Annotations": {
+              "target": "Package",
+              "version": "[6.0.0-preview.4.21253.7, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
