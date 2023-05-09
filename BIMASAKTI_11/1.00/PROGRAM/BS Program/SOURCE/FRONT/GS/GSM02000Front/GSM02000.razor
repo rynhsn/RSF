@@ -48,6 +48,16 @@
                        R_EnableAdd="true"
                        R_EnableEdit="false"/>
         </R_ItemLayout>
+        <R_ItemLayout xs="4">
+            <R_CheckBox @bind-Value="@_GSM02000ViewModel.Data.LACTIVE"
+                        R_ConductorSource="@_conductorRef"
+                        R_EnableAdd="true"
+                        R_EnableEdit="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout xs="4">
+            <R_Label>Active</R_Label>
+        </R_ItemLayout>
+        
     </R_StackLayout>
 
     <R_StackLayout Row="true">
@@ -72,7 +82,9 @@
             <R_NumericTextBox @bind-Value="@_GSM02000ViewModel.Data.NTAX_PERCENTAGE"
                               R_ConductorSource="@_conductorRef"
                               R_EnableAdd="true"
-                              R_EnableEdit="false"/>
+                              R_EnableEdit="false"
+                              Min="0"
+                              Max="100"/>
         </R_ItemLayout>
     
         <R_ItemLayout xs="2">
@@ -94,7 +106,9 @@
             <R_NumericTextBox @bind-Value="@_GSM02000ViewModel.Data.IROUNDING"
                               R_ConductorSource="@_conductorRef"
                               R_EnableAdd="true"
-                              R_EnableEdit="false"/>
+                              R_EnableEdit="false"
+                              Min="-1"
+                              Max="2"/>
         </R_ItemLayout>
         <R_ItemLayout>
             <R_Label Style="font-style: italic">(-2, -1, 0, 1, 2)</R_Label>
@@ -112,55 +126,40 @@
                        R_EnableAdd="true"
                        R_EnableEdit="false"/>
         </R_ItemLayout>
-        <R_Button Width="2">Pick</R_Button>
+        <R_ItemLayout xs="1">
+            <R_Button>Pick</R_Button>
+        </R_ItemLayout>
         <R_ItemLayout xs="4">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NAME"
-                              R_ConductorSource="@_conductorRef"
-                              R_EnableAdd="true"
-                              R_EnableEdit="false"/>
+                       R_ConductorSource="@_conductorRef"
+                       R_EnableAdd="true"
+                       R_EnableEdit="false"/>
         </R_ItemLayout>
-    
     </R_StackLayout>
-    @* *@
-    @* <R_StackLayout Row="true"> *@
-    @*     <R_ItemLayout xs="2"> *@
-    @*         <R_Label>GL Account No</R_Label> *@
-    @*     </R_ItemLayout> *@
-    @* *@
-    @*     <R_ItemLayout xs="4"> *@
-    @*         <R_NumericTextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NO" *@
-    @*                           R_ConductorSource="@_conductorRef" *@
-    @*                           R_EnableAdd="true" *@
-    @*                           R_EnableEdit="false"/> *@
-    @*     </R_ItemLayout> *@
-    @* *@
-    @*     <R_ItemLayout xs="4"> *@
-    @*         <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NAME" *@
-    @*                    R_ConductorSource="@_conductorRef" *@
-    @*                    R_EnableAdd="true" *@
-    @*                    R_EnableEdit="false"/> *@
-    @*     </R_ItemLayout> *@
-    @* </R_StackLayout> *@
-
+    
     <R_StackLayout Row="true" Spacing="3">
         <R_ItemLayout xs="1">
-            <R_AddButton R_Conductor="@_conductorRef"></R_AddButton>
+            <R_AddButton R_Conductor="@_conductorRef"/>
         </R_ItemLayout>
     
         <R_ItemLayout xs="1">
-            <R_EditButton R_Conductor="@_conductorRef"></R_EditButton>
+            <R_EditButton R_Conductor="@_conductorRef"/>
         </R_ItemLayout>
     
         <R_ItemLayout xs="1">
-            <R_DeleteButton R_Conductor="@_conductorRef"></R_DeleteButton>
+            <R_DeleteButton R_Conductor="@_conductorRef"/>
+        </R_ItemLayout>
+        
+        <R_ItemLayout xs="1">
+            <R_Button>Active / Inactive</R_Button>
         </R_ItemLayout>
     
         <R_ItemLayout xs="1">
-            <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
+            <R_SaveButton R_Conductor="@_conductorRef"/>
         </R_ItemLayout>
     
         <R_ItemLayout xs="1">
-            <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+            <R_CancelButton R_Conductor="@_conductorRef"/>
         </R_ItemLayout>
     </R_StackLayout>
 </R_StackLayout>
