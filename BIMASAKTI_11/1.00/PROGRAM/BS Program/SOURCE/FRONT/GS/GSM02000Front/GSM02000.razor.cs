@@ -22,6 +22,7 @@ public partial class GSM02000
         try
         {
             await _gridRef.R_RefreshGrid(null);
+            await _GSM02000ViewModel.GetRoundingMode();
         }
         catch (Exception ex)
         {

@@ -1,4 +1,6 @@
 ﻿@page "/GSM02000"
+@using GSM02000Model.ViewModel
+@using GSM02000Common.DTOs
 @inherits R_Page
 
 <R_StackLayout Spacing="3" Class="mb-4">
@@ -90,12 +92,16 @@
         <R_ItemLayout xs="2">
             <R_Label>Rounding Mode*</R_Label>
         </R_ItemLayout>
-    
+        
         <R_ItemLayout xs="4">
-            <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CROUNDING_MODE"
-                       R_ConductorSource="@_conductorRef"
-                       R_EnableAdd="true"
-                       R_EnableEdit="false"/>
+            <R_ComboBox Data="@_GSM02000ViewModel.loRoundingModeList"
+                        @bind-Value="@_GSM02000ViewModel.Data.CROUNDING_MODE"
+                        ValueField="@nameof(RoundingDTO.CCODE)"
+                        TextField="@nameof(RoundingDTO.CDESCRIPTION)"
+                        
+                        R_ConductorSource="@_conductorRef"
+                        R_EnableAdd="true"
+                        R_EnableEdit="false"/>
         </R_ItemLayout>
     
         <R_ItemLayout xs="2">

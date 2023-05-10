@@ -13,7 +13,7 @@ namespace GSM02000Model
     {
         private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrl";
         private const string DEFAULT_SERVICEPOINT_NAME = "api/GSM02000";
-        
+
         public GSM02000Model(
             string pcHttpClientName = DEFAULT_HTTP_NAME,
             string pcRequestServiceEndPoint = DEFAULT_SERVICEPOINT_NAME,
@@ -22,7 +22,7 @@ namespace GSM02000Model
             base(pcHttpClientName, pcRequestServiceEndPoint, plSendWithContext, plSendWithToken)
         {
         }
-        
+
         public GSM02000ListDTO GetAllSalesTax()
         {
             throw new NotImplementedException();
@@ -32,7 +32,40 @@ namespace GSM02000Model
         {
             throw new NotImplementedException();
         }
-        
+
+        public RoundingListDTO GetAllRounding()
+        {
+            throw new NotImplementedException();
+        }
+
+        #region GetRoundingMode
+
+        public async Task<RoundingListDTO> GetRoundingModeAsync()
+        {
+            var loEx = new R_Exception();
+            RoundingListDTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<RoundingListDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGSM02000.GetAllRounding),
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        #endregion
+
         #region GetAllAsync
 
         public async Task<GSM02000ListDTO> GetAllAsync()
@@ -58,8 +91,9 @@ namespace GSM02000Model
 
             return loResult;
         }
+
         #endregion
-        
+
         #region GetAllStreamAsync
 
         public async Task<List<GSM02000GridDTO>> GetAllStreamAsync()
@@ -86,8 +120,7 @@ namespace GSM02000Model
 
             return loResult;
         }
-        
-        #endregion
 
+        #endregion
     }
 }

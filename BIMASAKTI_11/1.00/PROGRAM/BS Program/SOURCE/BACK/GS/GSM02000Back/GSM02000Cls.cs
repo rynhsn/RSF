@@ -189,4 +189,37 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
 
         return loRtn;
     }
+
+    public List<RoundingDTO> RoundingListDb(RoundingParameterDb poParameter)
+    {
+        R_Exception loEx = new R_Exception();
+        List<RoundingDTO> loRtn = null;
+        R_Db loDb;
+        DbConnection loConn = null;
+        DbCommand loCmd;
+        string lcQuery = null;
+
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection("BimasaktiConnectionString");
+            loCmd = loDb.GetCommand();
+
+            lcQuery =
+                $"SELECT * FROM RFT_GET_GSB_CODE_INFO ('BIMASAKTI', '{poParameter.CCOMPANY_ID}' , '_ROUNDING_MODE', '', '{poParameter.CCULTURE}')";
+            loCmd.CommandType = CommandType.Text;
+            loCmd.CommandText = lcQuery;
+
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+            loRtn = R_Utility.R_ConvertTo<RoundingDTO>(loDataTable).ToList();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return loRtn;
+    }
 }

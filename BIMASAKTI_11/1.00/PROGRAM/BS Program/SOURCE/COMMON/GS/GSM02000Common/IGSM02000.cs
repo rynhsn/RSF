@@ -8,5 +8,7 @@ namespace GSM02000Common
     {
         GSM02000ListDTO GetAllSalesTax();
         IAsyncEnumerable<GSM02000GridDTO> GetAllSalesTaxStream();
+        
+        RoundingListDTO GetAllRounding();
     }
 }

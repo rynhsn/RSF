@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GSM02000Common.DTOs;
@@ -15,6 +16,8 @@ namespace GSM02000Model.ViewModel
         public ObservableCollection<GSM02000GridDTO> loGridList = new ObservableCollection<GSM02000GridDTO>();
         
         public GSM02000DTO loEntity = new GSM02000DTO();
+        public ObservableCollection<RoundingDTO> loRoundingList = new ObservableCollection<RoundingDTO>();
+        public List<RoundingDTO> loRoundingModeList = new List<RoundingDTO>();
         
         public async Task GetGridList()
         {
@@ -78,6 +81,25 @@ namespace GSM02000Model.ViewModel
                 // var loParam = new GSM02000DTO { CTAX_ID = poNewEntity.CTAX_ID };
                 // await _GSM02000Model.R_ServiceDeleteAsync(loParam);
                 await _GSM02000Model.R_ServiceDeleteAsync(poEntity);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        public async Task GetRoundingMode()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loReturn = await _GSM02000Model.GetRoundingModeAsync();
+                loRoundingModeList = loReturn.Data;
+                // var loReturn = await _GSM02000Model.GetRoundingModeAsync();
+                // loRoundingList = new ObservableCollection<RoundingDTO>(loReturn.Data);
             }
             catch (Exception ex)
             {

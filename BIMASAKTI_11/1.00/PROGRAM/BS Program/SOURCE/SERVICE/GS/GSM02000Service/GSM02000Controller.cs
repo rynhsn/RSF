@@ -153,6 +153,35 @@ public class GSM02000Controller : ControllerBase, IGSM02000
 
         return loRtn;
     }
+    
+    [HttpPost]
+    public RoundingListDTO GetAllRounding()
+    {
+        R_Exception loEx = new R_Exception();
+        RoundingListDTO loRtn = null;
+        List<RoundingDTO> loResult;
+        RoundingParameterDb loDbPar;
+        GSM02000Cls loCls;
+
+        try
+        {
+            loDbPar = new RoundingParameterDb();
+            loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbPar.CCULTURE = R_BackGlobalVar.CULTURE;
+
+            loCls = new GSM02000Cls();
+            loResult = loCls.RoundingListDb(loDbPar);
+            loRtn = new RoundingListDTO { Data = loResult };
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return loRtn;    
+    }
 
     #region "Helper GetSalesTaxStream Functions"
     private async IAsyncEnumerable<GSM02000GridDTO> GetSalesTaxStream(List<GSM02000GridDTO> poParameter)
