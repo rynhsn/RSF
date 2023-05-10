@@ -33,22 +33,22 @@ namespace GSM02000Model
             throw new NotImplementedException();
         }
 
-        public RoundingListDTO GetAllRounding()
+        public GSM02000RoundingListDTO GetAllRounding()
         {
             throw new NotImplementedException();
         }
 
         #region GetRoundingMode
 
-        public async Task<RoundingListDTO> GetRoundingModeAsync()
+        public async Task<GSM02000RoundingListDTO> GetRoundingModeAsync()
         {
             var loEx = new R_Exception();
-            RoundingListDTO loResult = null;
+            GSM02000RoundingListDTO loResult = null;
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-                loResult = await R_HTTPClientWrapper.R_APIRequestObject<RoundingListDTO>(
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM02000RoundingListDTO>(
                     _RequestServiceEndPoint,
                     nameof(IGSM02000.GetAllRounding),
                     _SendWithContext,

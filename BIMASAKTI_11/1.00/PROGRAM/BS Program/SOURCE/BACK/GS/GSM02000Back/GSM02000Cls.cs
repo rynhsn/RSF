@@ -190,10 +190,10 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         return loRtn;
     }
 
-    public List<RoundingDTO> RoundingListDb(RoundingParameterDb poParameter)
+    public List<GSM02000RoundingDTO> RoundingListDb(GSM02000ParameterDb poParameter)
     {
         R_Exception loEx = new R_Exception();
-        List<RoundingDTO> loRtn = null;
+        List<GSM02000RoundingDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn = null;
         DbCommand loCmd;
@@ -211,7 +211,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             loCmd.CommandText = lcQuery;
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
-            loRtn = R_Utility.R_ConvertTo<RoundingDTO>(loDataTable).ToList();
+            loRtn = R_Utility.R_ConvertTo<GSM02000RoundingDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {

@@ -155,23 +155,23 @@ public class GSM02000Controller : ControllerBase, IGSM02000
     }
     
     [HttpPost]
-    public RoundingListDTO GetAllRounding()
+    public GSM02000RoundingListDTO GetAllRounding()
     {
         R_Exception loEx = new R_Exception();
-        RoundingListDTO loRtn = null;
-        List<RoundingDTO> loResult;
-        RoundingParameterDb loDbPar;
+        GSM02000RoundingListDTO loRtn = null;
+        List<GSM02000RoundingDTO> loResult;
+        GSM02000ParameterDb loDbPar;
         GSM02000Cls loCls;
 
         try
         {
-            loDbPar = new RoundingParameterDb();
+            loDbPar = new GSM02000ParameterDb();
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbPar.CCULTURE = R_BackGlobalVar.CULTURE;
 
             loCls = new GSM02000Cls();
             loResult = loCls.RoundingListDb(loDbPar);
-            loRtn = new RoundingListDTO { Data = loResult };
+            loRtn = new GSM02000RoundingListDTO { Data = loResult };
         }
         catch (Exception ex)
         {
