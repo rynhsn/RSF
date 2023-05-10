@@ -13,11 +13,10 @@ namespace GSM02000Model.ViewModel
     {
         private GSM02000Model _GSM02000Model = new GSM02000Model();
 
-        public ObservableCollection<GSM02000GridDTO> loGridList = new ObservableCollection<GSM02000GridDTO>();
+        public ObservableCollection<GSM02000GridDTO> GridList = new ObservableCollection<GSM02000GridDTO>();
         
-        public GSM02000DTO loEntity = new GSM02000DTO();
-        public ObservableCollection<GSM02000RoundingDTO> loRoundingList = new ObservableCollection<GSM02000RoundingDTO>();
-        public List<GSM02000RoundingDTO> loRoundingModeList = new List<GSM02000RoundingDTO>();
+        public GSM02000DTO Entity = new GSM02000DTO();
+        public List<GSM02000RoundingDTO> RoundingModeList = new List<GSM02000RoundingDTO>();
         
         public async Task GetGridList()
         {
@@ -26,7 +25,7 @@ namespace GSM02000Model.ViewModel
             try
             {
                 var loReturn = await _GSM02000Model.GetAllAsync();
-                loGridList = new ObservableCollection<GSM02000GridDTO>(loReturn.Data);
+                GridList = new ObservableCollection<GSM02000GridDTO>(loReturn.Data);
             }
             catch (Exception ex)
             {
@@ -44,8 +43,8 @@ namespace GSM02000Model.ViewModel
             {
                 // var loParam = new GSM02000DTO { CTAX_ID = piEntityId };
                 // var loResult = await _GSM02000Model.R_ServiceGetRecordAsync(poEntity);
-                // loEntity = loResult;
-                loEntity = await _GSM02000Model.R_ServiceGetRecordAsync(poEntity);
+                // Entity = loResult;
+                Entity = await _GSM02000Model.R_ServiceGetRecordAsync(poEntity);
             }
             catch (Exception ex)
             {
@@ -62,7 +61,7 @@ namespace GSM02000Model.ViewModel
             try
             {
                 // var loResult = await _GSM02000Model.R_ServiceSaveAsync(poNewEntity, peCRUDMode);
-                loEntity = await _GSM02000Model.R_ServiceSaveAsync(poNewEntity, peCRUDMode);
+                Entity = await _GSM02000Model.R_ServiceSaveAsync(poNewEntity, peCRUDMode);
             }
             catch (Exception ex)
             {
@@ -97,9 +96,7 @@ namespace GSM02000Model.ViewModel
             try
             {
                 var loReturn = await _GSM02000Model.GetRoundingModeAsync();
-                loRoundingModeList = loReturn.Data;
-                // var loReturn = await _GSM02000Model.GetRoundingModeAsync();
-                // loRoundingList = new ObservableCollection<RoundingDTO>(loReturn.Data);
+                RoundingModeList = loReturn.Data;
             }
             catch (Exception ex)
             {

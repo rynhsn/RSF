@@ -23,7 +23,7 @@ namespace GSM02000Model
         {
         }
 
-        public GSM02000ListDTO GetAllSalesTax()
+        public GSM02000ListDTO<GSM02000GridDTO> GetAllSalesTax()
         {
             throw new NotImplementedException();
         }
@@ -33,50 +33,22 @@ namespace GSM02000Model
             throw new NotImplementedException();
         }
 
-        public GSM02000RoundingListDTO GetAllRounding()
+        public GSM02000ListDTO<GSM02000RoundingDTO> GetAllRounding()
         {
             throw new NotImplementedException();
         }
-
-        #region GetRoundingMode
-
-        public async Task<GSM02000RoundingListDTO> GetRoundingModeAsync()
-        {
-            var loEx = new R_Exception();
-            GSM02000RoundingListDTO loResult = null;
-
-            try
-            {
-                R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM02000RoundingListDTO>(
-                    _RequestServiceEndPoint,
-                    nameof(IGSM02000.GetAllRounding),
-                    _SendWithContext,
-                    _SendWithToken);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-
-            return loResult;
-        }
-
-        #endregion
-
+        
         #region GetAllAsync
 
-        public async Task<GSM02000ListDTO> GetAllAsync()
+        public async Task<GSM02000ListDTO<GSM02000GridDTO>> GetAllAsync()
         {
             var loEx = new R_Exception();
-            GSM02000ListDTO loResult = null;
+            GSM02000ListDTO<GSM02000GridDTO> loResult = null;
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM02000ListDTO>(
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM02000ListDTO<GSM02000GridDTO>>(
                     _RequestServiceEndPoint,
                     nameof(IGSM02000.GetAllSalesTax),
                     _SendWithContext,
@@ -110,6 +82,34 @@ namespace GSM02000Model
                     _SendWithContext,
                     _SendWithToken,
                     null);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        #endregion
+
+        #region GetRoundingMode
+
+        public async Task<GSM02000ListDTO<GSM02000RoundingDTO>> GetRoundingModeAsync()
+        {
+            var loEx = new R_Exception();
+            GSM02000ListDTO<GSM02000RoundingDTO> loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM02000ListDTO<GSM02000RoundingDTO>>(
+                    _RequestServiceEndPoint,
+                    nameof(IGSM02000.GetAllRounding),
+                    _SendWithContext,
+                    _SendWithToken);
             }
             catch (Exception ex)
             {

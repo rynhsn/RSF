@@ -4,9 +4,9 @@ using R_APICommonDTO;
 
 namespace GSM02000Common.DTOs
 {
-    public class GSM02000ListDTO : R_APIResultBaseDTO
+    public class GSM02000ListDTO<T> : R_APIResultBaseDTO
     {
-        public List<GSM02000GridDTO> Data { get; set; }
+        public List<T> Data { get; set; }
     }
     
     public class GSM02000GridDTO
@@ -24,4 +24,12 @@ namespace GSM02000Common.DTOs
         public string CCREATE_BY { get; set; }
         public DateTime DCREATE_DATE { get; set; }
     }
+    
+    public class GSM02000RoundingDTO
+    {
+        public string CCODE { get; set; }
+        public string CDESCRIPTION { get; set; }
+    }
+    
+    // public class 
 }

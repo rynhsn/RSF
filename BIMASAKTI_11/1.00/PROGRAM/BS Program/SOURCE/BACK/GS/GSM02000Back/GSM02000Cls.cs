@@ -23,7 +23,6 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             loConn = loDb.GetConnection("BimasaktiConnectionString");
             loCmd = loDb.GetCommand();
 
-            // lcQuery = "EXEC RSP_GS_GET_SALES_TAX_DETAIL @CCOMPANY_ID, @CUSER_ID, @CTAX_ID";
             lcQuery = "RSP_GS_GET_SALES_TAX_DETAIL";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
@@ -32,7 +31,6 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
             loDb.R_AddCommandParameter(loCmd, "@CTAX_ID", DbType.String, 50, poEntity.CTAX_ID);
 
-            // loRtn = loDb.SqlExecObjectQuery<GSM02000DTO>(lcQuery, loConn, true, poEntity).FirstOrDefault();
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
             loRtn = R_Utility.R_ConvertTo<GSM02000DTO>(loDataTable).FirstOrDefault();
@@ -144,7 +142,6 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 10, poEntity.CUSER_ID);
 
             loDb.SqlExecNonQuery(loConn, loCmd, true);
-            // loDb.SqlExecNonQuery(lcQuery, loConn, true);
         }
         catch (Exception ex)
         {

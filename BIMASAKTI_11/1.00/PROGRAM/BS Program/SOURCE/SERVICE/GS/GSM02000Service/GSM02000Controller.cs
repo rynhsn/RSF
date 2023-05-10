@@ -26,11 +26,7 @@ public class GSM02000Controller : ControllerBase, IGSM02000
             loRtn = new R_ServiceGetRecordResultDTO<GSM02000DTO>();
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
-            // poParameter.Entity.CTAX_ID = R_Utility.R_GetContext<GSM02000ContextDTO>(ContextConstant.CTAX_ID);
-            
-            poParameter.Entity.CCOMPANY_ID = "RCD";
-            poParameter.Entity.CUSER_ID = "Admin";
-            
+
             loRtn.data = loCls.R_GetRecord(poParameter.Entity);
         }
         catch (Exception ex)
@@ -55,6 +51,10 @@ public class GSM02000Controller : ControllerBase, IGSM02000
         {
             loCls = new GSM02000Cls();
             loRtn = new R_ServiceSaveResultDTO<GSM02000DTO>();
+            
+            poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
+            
             loRtn.data = loCls.R_Save(poParameter.Entity, poParameter.CRUDMode);
         }
         catch (Exception ex)
@@ -76,6 +76,7 @@ public class GSM02000Controller : ControllerBase, IGSM02000
         try
         {
             loCls = new GSM02000Cls();
+            poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
             loCls.R_Delete(poParameter.Entity);
         }
         catch (Exception ex)
@@ -89,10 +90,10 @@ public class GSM02000Controller : ControllerBase, IGSM02000
     }
 
     [HttpPost]
-    public GSM02000ListDTO GetAllSalesTax()
+    public GSM02000ListDTO<GSM02000GridDTO> GetAllSalesTax()
     {
         R_Exception loEx = new R_Exception();
-        GSM02000ListDTO loRtn = null;
+        GSM02000ListDTO<GSM02000GridDTO> loRtn = null;
         List<GSM02000GridDTO> loResult;
         GSM02000ParameterDb loDbPar;
         GSM02000Cls loCls;
@@ -103,12 +104,9 @@ public class GSM02000Controller : ControllerBase, IGSM02000
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbPar.CUSER_ID = R_BackGlobalVar.USER_ID;
 
-            // loDbPar.CCOMPANY_ID = "RCD";
-            // loDbPar.CUSER_ID = "Admin";
-
             loCls = new GSM02000Cls();
             loResult = loCls.SalesTaxListDb(loDbPar);
-            loRtn = new GSM02000ListDTO { Data = loResult };
+            loRtn = new GSM02000ListDTO<GSM02000GridDTO> { Data = loResult };
         }
         catch (Exception ex)
         {
@@ -155,10 +153,10 @@ public class GSM02000Controller : ControllerBase, IGSM02000
     }
     
     [HttpPost]
-    public GSM02000RoundingListDTO GetAllRounding()
+    public GSM02000ListDTO<GSM02000RoundingDTO> GetAllRounding()
     {
         R_Exception loEx = new R_Exception();
-        GSM02000RoundingListDTO loRtn = null;
+        GSM02000ListDTO<GSM02000RoundingDTO> loRtn = null;
         List<GSM02000RoundingDTO> loResult;
         GSM02000ParameterDb loDbPar;
         GSM02000Cls loCls;
@@ -171,7 +169,7 @@ public class GSM02000Controller : ControllerBase, IGSM02000
 
             loCls = new GSM02000Cls();
             loResult = loCls.RoundingListDb(loDbPar);
-            loRtn = new GSM02000RoundingListDTO { Data = loResult };
+            loRtn = new GSM02000ListDTO<GSM02000RoundingDTO> { Data = loResult };
         }
         catch (Exception ex)
         {
