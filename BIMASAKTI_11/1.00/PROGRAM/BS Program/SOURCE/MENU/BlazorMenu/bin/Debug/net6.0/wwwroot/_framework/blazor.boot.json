@@ -216,7 +216,7 @@
       "BlazorClientHelper.dll": "sha256-ROSdAUnwfATjxDXdRcTevs\/X+LKqNy9Cr\/8IN+UBp50=",
       "BlazorMenuCommon.dll": "sha256-C7pGrAekwefgovZ8AgDDNFc1J7gHIQ9Nc0QeGQ6Aok8=",
       "GSM02000Common.dll": "sha256-zN7HZzbrC60yKTIkKO5DrKYkpEo+JOsFO6zKnlf9Qtk=",
-      "GSM02000Front.dll": "sha256-wBkij54mrrQAf5bGTUteIX6weEBlwtMVjJHgDDc3+ZQ=",
+      "GSM02000Front.dll": "sha256-WyDqEM+LOt6fyTENm8zJFlA7d2NNSpysfnE\/tS\/21vk=",
       "GSM02000FrontResources.dll": "sha256-eHMxtquYAVdOxyn4oN4jtdHf2J6Pfo0CQKkvlpgK21c=",
       "GSM02000Model.dll": "sha256-fcMruupHpVS7B6vPObuuG4IYh1BEFxaCKn0zOYdc7e0=",
       "GSM03000Front.dll": "sha256-UGBkJ9o+RolfggRtVyT3VT7goLNOgS9Yt+P0Y0KDNpw=",
@@ -239,7 +239,7 @@
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "GSM02000Front.pdb": "sha256-c4f6u4\/K9xc4MpkxsXkwQpYTihksFoXsWpH6BEWwSok=",
+      "GSM02000Front.pdb": "sha256-QxYB4hmd+d1iLVKRffDf58cFMK3irZybwCQCVO4Rz0A=",
       "GSM03000Front.pdb": "sha256-zCwweKjETZLlmVIUijcvN1zz\/wdNSslDgyp5WkA1Esc=",
       "BlazorClientHelper.pdb": "sha256-8H9HQpocq+CvpvMihAq05BAeTPDvOQpho\/hsGZNm6IU=",
       "BlazorMenuCommon.pdb": "sha256-GFuaeQDbZwW5mFfAFOz2FouMR1yUoe4lr8yjqYZ6Www=",
