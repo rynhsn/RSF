@@ -28,6 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\COMMON\GS\GSM02000Common\GSM02000Common.csproj" />
+    <ProjectReference Include="..\GSM02000FrontResources\GSM02000FrontResources.csproj" />
   </ItemGroup>
 
 </Project>

@@ -76,37 +76,18 @@ public partial class GSM02000 : R_Page
 
     private async Task Conductor_Validation(R_ValidationEventArgs arg)
     {
-        // var loEx = new R_Exception();
-        //
-        // try
-        // {
-        //     var loData = (GSM02000DTO)arg.Data;
-        //
-        //     //cek apakah data  CTAX_ID yang dimasukkan dengan id yang sama ketika saving
-        //     if (arg.ConductorMode == R_eConductorMode.Add)
-        //     {
-        //         var loParam = new GSM02000DTO();
-        //         loParam.CTAX_ID = loData.CTAX_ID;
-        //         await _GSM02000ViewModel.GetEntity(loParam);
-        //
-        //         if (_GSM02000ViewModel.Entity != null)
-        //         {
-        //             loEx.Add("2001", );
-        //         }
-        //     }
-        //     
-        // }
-        // catch (Exception ex)
-        // {
-        //     loEx.Add(ex);
-        // }
-        //
-        // if (loEx.HasError)
-        //     arg.Cancel = true;
-        //
-        // loEx.ThrowExceptionIfErrors();
-        
-        throw new NotImplementedException();
+        var loEx = new R_Exception();
+        try
+        {
+            await _GSM02000ViewModel.R_SaveValidation((GSM02000DTO)arg.Data, (eCRUDMode)arg.ConductorMode);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        arg.Cancel = loEx.HasError;
+        loEx.ThrowExceptionIfErrors();
     }
 
     private async Task Conductor_ServiceSave(R_ServiceSaveEventArgs arg)
@@ -148,10 +129,5 @@ public partial class GSM02000 : R_Page
     private async Task R_ConvertToGridEntity(R_ConvertToGridEntityEventArgs arg)
     {
         arg.GridData = R_FrontUtility.ConvertObjectToObject<GSM02000GridDTO>(arg.Data);
-    }
-
-    private Task Conductor_AfterAdd(R_AfterAddEventArgs arg)
-    {
-        throw new NotImplementedException();
     }
 }

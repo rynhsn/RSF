@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GSM02000Common.DTOs;
+using GSM02000FrontResources;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
+using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
 
 namespace GSM02000Model.ViewModel
@@ -34,16 +36,12 @@ namespace GSM02000Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        
         public async Task GetEntity(GSM02000DTO poEntity)
         {
             var loEx = new R_Exception();
 
             try
             {
-                // var loParam = new GSM02000DTO { CTAX_ID = piEntityId };
-                // var loResult = await _GSM02000Model.R_ServiceGetRecordAsync(poEntity);
-                // Entity = loResult;
                 Entity = await _GSM02000Model.R_ServiceGetRecordAsync(poEntity);
             }
             catch (Exception ex)
@@ -53,14 +51,35 @@ namespace GSM02000Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        
+        public async Task R_SaveValidation(GSM02000DTO argData, eCRUDMode peCRUDMode)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                if (eCRUDMode.AddMode == peCRUDMode)
+                {
+                    var loParam = new GSM02000DTO { CTAX_ID = argData.CTAX_ID };
+                    var loResult = GetEntity(loParam);
+                    if (loResult != null)
+                    {
+                        var loErr = R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "2002");
+                        loEx.Add(loErr);
+                    }
+                }
+                    
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+        }
         public async Task SaveEntity(GSM02000DTO poNewEntity, eCRUDMode peCRUDMode)
         {
             var loEx = new R_Exception();
 
             try
             {
-                // var loResult = await _GSM02000Model.R_ServiceSaveAsync(poNewEntity, peCRUDMode);
                 Entity = await _GSM02000Model.R_ServiceSaveAsync(poNewEntity, peCRUDMode);
             }
             catch (Exception ex)
@@ -70,15 +89,12 @@ namespace GSM02000Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        
         public async Task DeleteEntity(GSM02000DTO poEntity)
         {
             var loEx = new R_Exception();
 
             try
             {
-                // var loParam = new GSM02000DTO { CTAX_ID = poNewEntity.CTAX_ID };
-                // await _GSM02000Model.R_ServiceDeleteAsync(loParam);
                 await _GSM02000Model.R_ServiceDeleteAsync(poEntity);
             }
             catch (Exception ex)
@@ -88,7 +104,6 @@ namespace GSM02000Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-
         public async Task GetRoundingMode()
         {
             var loEx = new R_Exception();
@@ -105,5 +120,6 @@ namespace GSM02000Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
+
     }
 }

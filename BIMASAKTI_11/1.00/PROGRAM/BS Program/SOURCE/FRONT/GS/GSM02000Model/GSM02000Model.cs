@@ -27,12 +27,10 @@ namespace GSM02000Model
         {
             throw new NotImplementedException();
         }
-
         public IAsyncEnumerable<GSM02000GridDTO> GetAllSalesTaxStream()
         {
             throw new NotImplementedException();
         }
-
         public GSM02000ListDTO<GSM02000RoundingDTO> GetAllRounding()
         {
             throw new NotImplementedException();

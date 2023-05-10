@@ -34,16 +34,16 @@
     </R_StackLayout>
 
     <R_StackLayout Row="true">
-        <R_ItemLayout xs="2">
+        <R_ItemLayout xs="2" Class="col-lg-1">
             <R_Label>Tax Id*</R_Label>
         </R_ItemLayout>
-        <R_ItemLayout xs="4">
+        <R_ItemLayout xs="4" Class="col-lg-2">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAX_ID"
                        R_ConductorSource="@_conductorRef"
                        R_EnableAdd="true"
                        R_EnableEdit="false"/>
         </R_ItemLayout>
-        <R_ItemLayout xs="4">
+        <R_ItemLayout xs="4" Class="col-lg-4">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAX_NAME"
                        R_ConductorSource="@_conductorRef"
                        R_EnableAdd="true"
@@ -62,11 +62,11 @@
     </R_StackLayout>
 
     <R_StackLayout Row="true">
-        <R_ItemLayout xs="2">
+        <R_ItemLayout xs="2" Class="col-lg-1">
             <R_Label>Description</R_Label>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="4">
+        <R_ItemLayout xs="4" Class="col-lg-6">
             <R_TextArea @bind-Value="@_GSM02000ViewModel.Data.CDESCRIPTION"
                         R_ConductorSource="@_conductorRef"
                         R_EnableAdd="true"
@@ -75,11 +75,11 @@
     </R_StackLayout>
 
     <R_StackLayout Row="true">
-        <R_ItemLayout xs="2">
+        <R_ItemLayout xs="2" Class="col-lg-1">
             <R_Label>Tax %</R_Label>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="4">
+        <R_ItemLayout xs="4" Class="col-lg-1 me-5">
             <R_NumericTextBox @bind-Value="@_GSM02000ViewModel.Data.NTAX_PERCENTAGE"
                               R_ConductorSource="@_conductorRef"
                               R_EnableAdd="true"
@@ -88,26 +88,25 @@
                               Max="100"/>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="2">
+        <R_ItemLayout xs="2" Class="col-lg-1">
             <R_Label>Rounding Mode*</R_Label>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="4">
+        <R_ItemLayout xs="4" Class="col-lg-1 me-5">
             <R_ComboBox Data="@_GSM02000ViewModel.RoundingModeList"
                         @bind-Value="@_GSM02000ViewModel.Data.CROUNDING_MODE"
                         ValueField="@nameof(GSM02000RoundingDTO.CCODE)"
                         TextField="@nameof(GSM02000RoundingDTO.CDESCRIPTION)"
-
                         R_ConductorSource="@_conductorRef"
                         R_EnableAdd="true"
                         R_EnableEdit="true"/>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="2">
+        <R_ItemLayout xs="2" Class="col-lg-1">
             <R_Label>Rounding Unit*</R_Label>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="4">
+        <R_ItemLayout xs="4" Class="col-lg-1">
             <R_NumericTextBox @bind-Value="@_GSM02000ViewModel.Data.IROUNDING"
                               R_ConductorSource="@_conductorRef"
                               R_EnableAdd="true"
@@ -121,20 +120,20 @@
 
     </R_StackLayout>
     <R_StackLayout Row="true">
-        <R_ItemLayout xs="2">
+        <R_ItemLayout xs="2" Class="col-lg-1">
             <R_Label>GL Account No.</R_Label>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="4">
+        <R_ItemLayout xs="4" Class="col-lg-2">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NO"
                        R_ConductorSource="@_conductorRef"
                        R_EnableAdd="true"
                        R_EnableEdit="false"/>
         </R_ItemLayout>
-        <R_ItemLayout xs="1">
+        <R_ItemLayout xs="1" Class="col-lg-1">
             <R_Button>Pick</R_Button>
         </R_ItemLayout>
-        <R_ItemLayout xs="4">
+        <R_ItemLayout xs="4" Class="col-lg-3">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NO"
                        R_ConductorSource="@_conductorRef"
                        R_EnableAdd="true"
@@ -174,7 +173,7 @@
              R_IsHeader="true"
              R_Display="@Conductor_Display"
              R_ServiceGetRecord="@Conductor_ServiceGetRecord"
-             @* R_AfterAdd="@Conductor_AfterAdd" *@
+             R_Validation="@Conductor_Validation"
              R_ServiceSave="@Conductor_ServiceSave"
              R_ServiceDelete="@Conductor_ServiceDelete"
              R_ConvertToGridEntity="@R_ConvertToGridEntity"/>

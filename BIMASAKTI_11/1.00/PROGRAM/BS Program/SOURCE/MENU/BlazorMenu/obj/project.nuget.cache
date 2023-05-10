@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "K/fg4bw/nEWhfhHZE19qeXJdn4b0NpIo9vsAF5SuC0ZgXFkGECZb9PG93LPduAh+7YKksusQAeu38VfLC1yYBA==",
+  "dgSpecHash": "zdKQ3xUvXBytDQM3JAI26X8YnvXlbenzHtEpXDNiWniDN0okhnBAhyyg3geGqNTM8jtYQqoaMT3LsLoBHhFoJw==",
   "success": true,
-  "projectFilePath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorMenu\\BlazorMenu.csproj",
+  "projectFilePath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\blazored.localstorage\\4.2.0\\blazored.localstorage.4.2.0.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.16\\microsoft.aspnetcore.authorization.6.0.16.nupkg.sha512",
