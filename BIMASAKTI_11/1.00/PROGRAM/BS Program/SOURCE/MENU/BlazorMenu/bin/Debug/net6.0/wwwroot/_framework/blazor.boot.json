@@ -216,9 +216,9 @@
       "BlazorClientHelper.dll": "sha256-ROSdAUnwfATjxDXdRcTevs\/X+LKqNy9Cr\/8IN+UBp50=",
       "BlazorMenuCommon.dll": "sha256-C7pGrAekwefgovZ8AgDDNFc1J7gHIQ9Nc0QeGQ6Aok8=",
       "GSM02000Common.dll": "sha256-zN7HZzbrC60yKTIkKO5DrKYkpEo+JOsFO6zKnlf9Qtk=",
-      "GSM02000Front.dll": "sha256-WyDqEM+LOt6fyTENm8zJFlA7d2NNSpysfnE\/tS\/21vk=",
+      "GSM02000Front.dll": "sha256-h2z1NZq0tjrLrlXXi1QdiGKmpBhoOcuV6MAKBbf7jlc=",
       "GSM02000FrontResources.dll": "sha256-eHMxtquYAVdOxyn4oN4jtdHf2J6Pfo0CQKkvlpgK21c=",
-      "GSM02000Model.dll": "sha256-fcMruupHpVS7B6vPObuuG4IYh1BEFxaCKn0zOYdc7e0=",
+      "GSM02000Model.dll": "sha256-r2o42ZgIJeTnpgMLvfJVRIiCMxqwTFbLkpTnXElS1QQ=",
       "GSM03000Front.dll": "sha256-UGBkJ9o+RolfggRtVyT3VT7goLNOgS9Yt+P0Y0KDNpw=",
       "R_APIClient.dll": "sha256-b65Eal9dIhq42WZZlL6Zw8VEUcasKr31aZPYsNZsHPU=",
       "R_APICommonDTO.dll": "sha256-zXKR22ekr9T4BEy7A3e+JG1cNUxlXi53uxvUv1DUyvk=",
@@ -233,20 +233,20 @@
       "R_SecurityPolicyCommon.dll": "sha256-\/XlQOJuVXED2XiVAJFqdtz1TN2RNVaI0hbA2Z+yq\/JI=",
       "R_SecurityPolicyFront.dll": "sha256-NMntC0GDncDMjNgA5DBRvdCOaSa07tl4T\/CuEcF7YCk=",
       "R_BusinessObjectFront.dll": "sha256-Ev9ZQr6bXJYlXYzKc3LJ3rbU5xzr8ASNa01x9EVrI18=",
-      "BlazorMenu.dll": "sha256-jK4qNER+UBN1et1Mz6E+mYcy3UOr\/0TJdm39W7RHBLc="
+      "BlazorMenu.dll": "sha256-aRjMYoEVwdwVir2q8EZJuI5rKrvZjl7f8cRrL1cuL0A="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "GSM02000Front.pdb": "sha256-QxYB4hmd+d1iLVKRffDf58cFMK3irZybwCQCVO4Rz0A=",
+      "GSM02000Front.pdb": "sha256-HDfFHisqSFBaJGkO+jUZ0E2ZgJVjskLmKmPZYcWZhwE=",
       "GSM03000Front.pdb": "sha256-zCwweKjETZLlmVIUijcvN1zz\/wdNSslDgyp5WkA1Esc=",
       "BlazorClientHelper.pdb": "sha256-8H9HQpocq+CvpvMihAq05BAeTPDvOQpho\/hsGZNm6IU=",
       "BlazorMenuCommon.pdb": "sha256-GFuaeQDbZwW5mFfAFOz2FouMR1yUoe4lr8yjqYZ6Www=",
       "GSM02000Common.pdb": "sha256-lU\/yIGSossrbmnFKblXokg7F8GVZcu4j5AYipy8AG5g=",
       "GSM02000FrontResources.pdb": "sha256-+REwqMTcErAk4ud\/pubeppNnH4xsk7xVX2BIA6tEM3A=",
-      "GSM02000Model.pdb": "sha256-1suzPDtS9rD\/vfl6gt618Q+VHV8vpuRZTu2HM34d70I=",
-      "BlazorMenu.pdb": "sha256-xNC7hQIC2ArPiCDcEh\/E2RJzNDz5lCRZ9rRyjqiHH1I="
+      "GSM02000Model.pdb": "sha256-iFLtTwsBcDPQzUIAg2cev2reakqq5Ca4Wz6Aaa9Ni6Y=",
+      "BlazorMenu.pdb": "sha256-rbvDnSpwq1Ta4cVtlMro0k8u8iCm4+c0TWEjwpehWns="
     },
     "runtime": {
       "dotnet.6.0.16.fy2kjeycku.js": "sha256-GT2gK+GjOisRXJY+9yh6H8s6K\/KDIsaFMFIgWvAnttY=",

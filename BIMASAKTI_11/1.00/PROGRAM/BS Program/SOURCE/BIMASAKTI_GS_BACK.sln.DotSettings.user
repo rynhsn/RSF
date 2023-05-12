@@ -8,4 +8,10 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CBack_005CR_005FAPIBackEnd_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CBack_005CR_005FAPICommonDTO_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CBack_005CR_005FAPICommon_002Edll/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CBack_005CR_005FCommonFrontBackAPI_002Edll/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CBack_005CR_005FCommonFrontBackAPI_002Edll/@EntryIndexedValue">True</s:Boolean>
+	
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGS_005FMAINTAIN_005FSALES_005FTAXResources_002FRSP_005FGS_005FMAINTAIN_005FSALES_005FTAXResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/OrderByFullPath/@EntryValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/ShowComments/@EntryValue">False</s:Boolean></wpf:ResourceDictionary>

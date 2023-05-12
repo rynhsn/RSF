@@ -13,7 +13,6 @@ public partial class GSM02000 : R_Page
 {
     private GSM02000ViewModel _GSM02000ViewModel = new();
     private R_Conductor _conductorRef;
-
     private R_Grid<GSM02000GridDTO> _gridRef;
 
     protected override async Task R_Init_From_Master(object poParam)
@@ -74,21 +73,10 @@ public partial class GSM02000 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private async Task Conductor_Validation(R_ValidationEventArgs arg)
-    {
-        var loEx = new R_Exception();
-        try
-        {
-            await _GSM02000ViewModel.R_SaveValidation((GSM02000DTO)arg.Data, (eCRUDMode)arg.ConductorMode);
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-
-        arg.Cancel = loEx.HasError;
-        loEx.ThrowExceptionIfErrors();
-    }
+    // private async Task Conductor_Validation(R_ValidationEventArgs arg)
+    // {
+    //     throw new NotImplementedException();
+    // }
 
     private async Task Conductor_ServiceSave(R_ServiceSaveEventArgs arg)
     {
@@ -129,5 +117,10 @@ public partial class GSM02000 : R_Page
     private async Task R_ConvertToGridEntity(R_ConvertToGridEntityEventArgs arg)
     {
         arg.GridData = R_FrontUtility.ConvertObjectToObject<GSM02000GridDTO>(arg.Data);
+    }
+
+    private async Task Conductor_AfterSave(R_AfterSaveEventArgs arg)
+    {
+        await _gridRef.R_RefreshGrid((GSM02000DTO)arg.Data);
     }
 }

@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GSM02000Common.DTOs;
-using GSM02000FrontResources;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
-using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
 
 namespace GSM02000Model.ViewModel
@@ -19,6 +17,7 @@ namespace GSM02000Model.ViewModel
         
         public GSM02000DTO Entity = new GSM02000DTO();
         public List<GSM02000RoundingDTO> RoundingModeList = new List<GSM02000RoundingDTO>();
+        public string RoundingMode = "";
         
         public async Task GetGridList()
         {
@@ -51,29 +50,6 @@ namespace GSM02000Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        public async Task R_SaveValidation(GSM02000DTO argData, eCRUDMode peCRUDMode)
-        {
-            var loEx = new R_Exception();
-            try
-            {
-                if (eCRUDMode.AddMode == peCRUDMode)
-                {
-                    var loParam = new GSM02000DTO { CTAX_ID = argData.CTAX_ID };
-                    var loResult = GetEntity(loParam);
-                    if (loResult != null)
-                    {
-                        var loErr = R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "2002");
-                        loEx.Add(loErr);
-                    }
-                }
-                    
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-            loEx.ThrowExceptionIfErrors();
-        }
         public async Task SaveEntity(GSM02000DTO poNewEntity, eCRUDMode peCRUDMode)
         {
             var loEx = new R_Exception();
@@ -84,6 +60,7 @@ namespace GSM02000Model.ViewModel
             }
             catch (Exception ex)
             {
+                // loEx.Add();
                 loEx.Add(ex);
             }
 

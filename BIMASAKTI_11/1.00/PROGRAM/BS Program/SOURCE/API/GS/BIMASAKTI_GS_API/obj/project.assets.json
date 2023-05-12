@@ -2804,7 +2804,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "GSM02000Common": "1.0.0"
+          "GSM02000Common": "1.0.0",
+          "RSP_GS_MAINTAIN_SALES_TAXResources": "1.0.0"
         },
         "compile": {
           "bin/placeholder/GSM02000Back.dll": {}
@@ -2839,6 +2840,16 @@
         },
         "runtime": {
           "bin/placeholder/GSM02000Service.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_SALES_TAXResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_SALES_TAXResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_SALES_TAXResources.dll": {}
         }
       },
       "R_SecurityPolicyBack/1.0.0": {
@@ -8398,6 +8409,11 @@
       "type": "project",
       "path": "../../../SERVICE/GS/GSM02000Service/GSM02000Service.csproj",
       "msbuildProject": "../../../SERVICE/GS/GSM02000Service/GSM02000Service.csproj"
+    },
+    "RSP_GS_MAINTAIN_SALES_TAXResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_SALES_TAXResources/RSP_GS_MAINTAIN_SALES_TAXResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_SALES_TAXResources/RSP_GS_MAINTAIN_SALES_TAXResources.csproj"
     },
     "R_SecurityPolicyBack/1.0.0": {
       "type": "project",

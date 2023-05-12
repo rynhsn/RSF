@@ -27,6 +27,16 @@
         "runtime": {
           "bin/placeholder/GSM02000Common.dll": {}
         }
+      },
+      "RSP_GS_MAINTAIN_SALES_TAXResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_SALES_TAXResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_SALES_TAXResources.dll": {}
+        }
       }
     }
   },
@@ -123,11 +133,17 @@
       "type": "project",
       "path": "../../../COMMON/GS/GSM02000Common/GSM02000Common.csproj",
       "msbuildProject": "../../../COMMON/GS/GSM02000Common/GSM02000Common.csproj"
+    },
+    "RSP_GS_MAINTAIN_SALES_TAXResources/1.0.0": {
+      "type": "project",
+      "path": "../GS_SPR/RSP_GS_MAINTAIN_SALES_TAXResources/RSP_GS_MAINTAIN_SALES_TAXResources.csproj",
+      "msbuildProject": "../GS_SPR/RSP_GS_MAINTAIN_SALES_TAXResources/RSP_GS_MAINTAIN_SALES_TAXResources.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "GSM02000Common >= 1.0.0"
+      "GSM02000Common >= 1.0.0",
+      "RSP_GS_MAINTAIN_SALES_TAXResources >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -164,6 +180,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_SALES_TAXResources\\RSP_GS_MAINTAIN_SALES_TAXResources.csproj": {
+              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_SALES_TAXResources\\RSP_GS_MAINTAIN_SALES_TAXResources.csproj"
+            },
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM02000Common\\GSM02000Common.csproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM02000Common\\GSM02000Common.csproj"
             }

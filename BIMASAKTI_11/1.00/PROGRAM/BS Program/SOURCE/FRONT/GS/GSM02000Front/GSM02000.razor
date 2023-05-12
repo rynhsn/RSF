@@ -88,7 +88,7 @@
                               Max="100"/>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="2" Class="col-lg-1">
+        <R_ItemLayout xs="2" Class="col-lg-1 text-md-end">
             <R_Label>Rounding Mode*</R_Label>
         </R_ItemLayout>
 
@@ -102,7 +102,7 @@
                         R_EnableEdit="true"/>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="2" Class="col-lg-1">
+        <R_ItemLayout xs="2" Class="col-lg-1 text-md-end">
             <R_Label>Rounding Unit*</R_Label>
         </R_ItemLayout>
 
@@ -111,7 +111,7 @@
                               R_ConductorSource="@_conductorRef"
                               R_EnableAdd="true"
                               R_EnableEdit="true"
-                              Min="-1"
+                              Min="-2"
                               Max="2"/>
         </R_ItemLayout>
         <R_ItemLayout>
@@ -120,7 +120,7 @@
 
     </R_StackLayout>
     <R_StackLayout Row="true">
-        <R_ItemLayout xs="2" Class="col-lg-1">
+        <R_ItemLayout xs="5" Class="col-lg-1">
             <R_Label>GL Account No.</R_Label>
         </R_ItemLayout>
 
@@ -132,38 +132,63 @@
         </R_ItemLayout>
         <R_ItemLayout xs="1" Class="col-lg-1">
             <R_Button>Pick</R_Button>
+            @* <R_Button R_ConductorSource="_conductorRef"  *@
+            @*           OnClick="" *@
+            @* >Pick</R_Button> *@
+            @* <R_ItemLayout xs="1"> *@
+            @*   <R_Find R_ConductorSource="@_conductorRef" *@
+            @*           R_Before_Open_Find="@R_Before_Open_Find" *@
+            @*           R_After_Open_Find="@R_After_Open_Find" *@
+            @*           R_EnableOther *@
+            @*           R_FindModel="@FindModel"> *@
+            @*     @_localizer["_FindProduct"] *@
+            @*   </R_Find> *@
+            @* </R_ItemLayout> *@
         </R_ItemLayout>
         <R_ItemLayout xs="4" Class="col-lg-3">
-            <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NO"
+            <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NAME"
                        R_ConductorSource="@_conductorRef"
                        R_EnableAdd="true"
                        R_EnableEdit="false"/>
         </R_ItemLayout>
     </R_StackLayout>
 
-    <R_StackLayout Row="true" Spacing="3">
-        <R_ItemLayout xs="1">
-            <R_AddButton R_Conductor="@_conductorRef"/>
+    <R_StackLayout Row="true" Spacing="5">
+        <R_ItemLayout Class="col-lg-2">
+            <R_StackLayout Row="true">
+                <R_ItemLayout xs="1" Class="col-lg">
+                    <R_AddButton R_Conductor="@_conductorRef"/>
+                </R_ItemLayout>
+
+                <R_ItemLayout xs="1" Class="col-lg">
+                    <R_EditButton R_Conductor="@_conductorRef"/>
+                </R_ItemLayout>
+
+                <R_ItemLayout xs="1" Class="col-lg">
+                    <R_DeleteButton R_Conductor="@_conductorRef"/>
+                </R_ItemLayout>
+            </R_StackLayout>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="1">
-            <R_EditButton R_Conductor="@_conductorRef"/>
+        <R_ItemLayout Class="col-lg-2">
+            <R_StackLayout Row="true">
+                <R_ItemLayout Class="col-lg">
+                    <R_ItemLayout xs="3">
+                        <R_Button>Active/InActive</R_Button>
+                    </R_ItemLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="1">
-            <R_DeleteButton R_Conductor="@_conductorRef"/>
-        </R_ItemLayout>
-
-        <R_ItemLayout xs="1">
-            <R_Button>Active/InActive</R_Button>
-        </R_ItemLayout>
-
-        <R_ItemLayout xs="1">
-            <R_CancelButton R_Conductor="@_conductorRef"/>
-        </R_ItemLayout>
-
-        <R_ItemLayout xs="1">
-            <R_SaveButton R_Conductor="@_conductorRef"/>
+        <R_ItemLayout Class="col-lg-2">
+            <R_StackLayout Row="true">
+                <R_ItemLayout xs="1" Class="col-lg">
+                    <R_CancelButton R_Conductor="@_conductorRef"/>
+                </R_ItemLayout>
+                <R_ItemLayout xs="1" Class="col-lg">
+                    <R_SaveButton R_Conductor="@_conductorRef"/>
+                </R_ItemLayout>
+            </R_StackLayout>
         </R_ItemLayout>
     </R_StackLayout>
 </R_StackLayout>
@@ -171,9 +196,11 @@
 <R_Conductor @ref="@_conductorRef"
              R_ViewModel="@_GSM02000ViewModel"
              R_IsHeader="true"
-             R_Display="@Conductor_Display"
+             @* R_Display="@Conductor_Display" *@
+             @* R_Validation="@Conductor_Validation" *@
              R_ServiceGetRecord="@Conductor_ServiceGetRecord"
-             R_Validation="@Conductor_Validation"
+             R_AfterSave="Conductor_AfterSave"
              R_ServiceSave="@Conductor_ServiceSave"
              R_ServiceDelete="@Conductor_ServiceDelete"
-             R_ConvertToGridEntity="@R_ConvertToGridEntity"/>
+             @* R_ConvertToGridEntity="@R_ConvertToGridEntity" *@
+             />

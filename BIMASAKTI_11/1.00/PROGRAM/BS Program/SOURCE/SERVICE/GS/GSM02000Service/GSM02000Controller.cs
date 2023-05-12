@@ -54,6 +54,9 @@ public class GSM02000Controller : ControllerBase, IGSM02000
             
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+            // poParameter.Entity.CCOMPANY_ID = "RCD";
+            // poParameter.Entity.CUSER_ID = "RHC";
             
             loRtn.data = loCls.R_Save(poParameter.Entity, poParameter.CRUDMode);
         }
