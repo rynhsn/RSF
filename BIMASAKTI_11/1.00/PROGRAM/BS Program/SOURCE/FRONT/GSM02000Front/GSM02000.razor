@@ -52,8 +52,7 @@
         <R_ItemLayout xs="4">
             <R_CheckBox @bind-Value="@_GSM02000ViewModel.Data.LACTIVE"
                         R_ConductorSource="@_conductorRef"
-                        R_EnableAdd="true"
-                        R_EnableEdit="false"/>
+                        Enabled="false"/>
         </R_ItemLayout>
         <R_ItemLayout xs="4">
             <R_Label>Active</R_Label>
@@ -99,7 +98,7 @@
                         TextField="@nameof(GSM02000RoundingDTO.CDESCRIPTION)"
                         R_ConductorSource="@_conductorRef"
                         R_EnableAdd="true"
-                        R_EnableEdit="true"/>
+                        R_EnableEdit="false"/>
         </R_ItemLayout>
 
         <R_ItemLayout xs="2" Class="col-lg-1 text-md-end">
@@ -127,8 +126,8 @@
         <R_ItemLayout xs="4" Class="col-lg-2">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NO"
                        R_ConductorSource="@_conductorRef"
-                       R_EnableAdd="true"
-                       R_EnableEdit="false"/>
+                       Enabled="false"
+                       />
         </R_ItemLayout>
         
         <R_ItemLayout xs="2">
@@ -138,8 +137,8 @@
         <R_ItemLayout xs="4" Class="col-lg-3">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NAME"
                        R_ConductorSource="@_conductorRef"
-                       R_EnableAdd="true"
-                       R_EnableEdit="false"/>
+                       Enabled="false"
+                       />
         </R_ItemLayout>
     </R_StackLayout>
 
@@ -190,7 +189,9 @@
              R_AfterSave="Conductor_AfterSave"
              R_ServiceSave="@Conductor_ServiceSave"
              R_ServiceDelete="@Conductor_ServiceDelete"
-             @* R_SetHasData="@R_SetHasData" *@
+             R_SetHasData="@R_SetHasData"
+             R_SetAdd="@R_SetAdd"
+             R_SetEdit="@R_SetEdit"
              @* R_Display="@Conductor_Display" *@
              @* R_Validation="@Conductor_Validation" *@
              @* R_ConvertToGridEntity="@R_ConvertToGridEntity" *@

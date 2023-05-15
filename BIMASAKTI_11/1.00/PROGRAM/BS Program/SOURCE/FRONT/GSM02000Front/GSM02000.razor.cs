@@ -126,7 +126,8 @@ public partial class GSM02000 : R_Page
     }
     
     #region Lookup Button
-    
+
+    private R_AddButton R_AddBtn;
     private R_Button R_ActiveInActiveBtn;
     private R_Lookup R_LookupBtn;
     
@@ -157,6 +158,27 @@ public partial class GSM02000 : R_Page
         var loGetData = (GSM02000DTO)_conductorRef.R_GetCurrentData();
         loGetData.CGLACCOUNT_NO = loTempResult.CGLACCOUNT_NO;
         loGetData.CGLACCOUNT_NAME = loTempResult?.CGLACCOUNT_NAME;
+    }
+    
+    private void R_SetHasData(R_SetEventArgs eventArgs)
+    {
+        if (R_AddBtn != null)
+            R_AddBtn.Enabled = eventArgs.Enable;
+    
+        if (R_ActiveInActiveBtn != null)
+            R_ActiveInActiveBtn.Enabled = eventArgs.Enable;
+    }   
+
+    private void R_SetAdd(R_SetEventArgs eventArgs)
+    {
+        if (R_LookupBtn != null)
+            R_LookupBtn.Enabled = eventArgs.Enable;
+    }
+    
+    private void R_SetEdit(R_SetEventArgs eventArgs)
+    {
+        if (R_LookupBtn != null)
+            R_LookupBtn.Enabled = eventArgs.Enable;
     }
     
     #endregion

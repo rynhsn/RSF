@@ -16,8 +16,8 @@ namespace GSM02000Model.ViewModel
         public ObservableCollection<GSM02000GridDTO> GridList = new ObservableCollection<GSM02000GridDTO>();
         
         public GSM02000DTO Entity = new GSM02000DTO();
+        
         public List<GSM02000RoundingDTO> RoundingModeList = new List<GSM02000RoundingDTO>();
-        public string RoundingMode = "";
         
         public async Task GetGridList()
         {
