@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\GFF00900SERVICES\GFF00900SERVICES.csproj" />
     <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_GSSERVICES\Lookup_GSSERVICES.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GS\BlazorMenuService\BlazorMenuService.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GS\GSM00100Service\GSM00100Service.csproj" />

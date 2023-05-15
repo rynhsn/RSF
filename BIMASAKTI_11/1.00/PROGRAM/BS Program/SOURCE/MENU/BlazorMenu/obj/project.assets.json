@@ -1187,6 +1187,45 @@
           "bin/placeholder/BlazorMenuCommon.dll": {}
         }
       },
+      "GFF00900COMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GFF00900COMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GFF00900COMMON.dll": {}
+        }
+      },
+      "GFF00900FRONT/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "BlazorClientHelper": "1.0.0",
+          "GFF00900COMMON": "1.0.0",
+          "GFF00900Model": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+        },
+        "compile": {
+          "bin/placeholder/GFF00900FRONT.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GFF00900FRONT.dll": {}
+        }
+      },
+      "GFF00900Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "GFF00900COMMON": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GFF00900Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GFF00900Model.dll": {}
+        }
+      },
       "GSM02000Common/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -1205,6 +1244,7 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "BlazorClientHelper": "1.0.0",
+          "GFF00900FRONT": "1.0.0",
           "GSM02000FrontResources": "1.0.0",
           "GSM02000Model": "1.0.0",
           "Lookup_GSCOMMON": "1.0.0",
@@ -2584,6 +2624,45 @@
           "bin/placeholder/BlazorMenuCommon.dll": {}
         }
       },
+      "GFF00900COMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GFF00900COMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GFF00900COMMON.dll": {}
+        }
+      },
+      "GFF00900FRONT/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "BlazorClientHelper": "1.0.0",
+          "GFF00900COMMON": "1.0.0",
+          "GFF00900Model": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+        },
+        "compile": {
+          "bin/placeholder/GFF00900FRONT.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GFF00900FRONT.dll": {}
+        }
+      },
+      "GFF00900Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "GFF00900COMMON": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GFF00900Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GFF00900Model.dll": {}
+        }
+      },
       "GSM02000Common/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -2602,6 +2681,7 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "BlazorClientHelper": "1.0.0",
+          "GFF00900FRONT": "1.0.0",
           "GSM02000FrontResources": "1.0.0",
           "GSM02000Model": "1.0.0",
           "Lookup_GSCOMMON": "1.0.0",
@@ -5852,6 +5932,21 @@
       "path": "../BlazorMenuCommon/BlazorMenuCommon.vbproj",
       "msbuildProject": "../BlazorMenuCommon/BlazorMenuCommon.vbproj"
     },
+    "GFF00900COMMON/1.0.0": {
+      "type": "project",
+      "path": "../../../../BS Shared Form/SOURCE/BACK/GFF00900COMMON/GFF00900COMMON.csproj",
+      "msbuildProject": "../../../../BS Shared Form/SOURCE/BACK/GFF00900COMMON/GFF00900COMMON.csproj"
+    },
+    "GFF00900FRONT/1.0.0": {
+      "type": "project",
+      "path": "../../../../BS Shared Form/SOURCE/FRONT/GFF00900FRONT/GFF00900FRONT.csproj",
+      "msbuildProject": "../../../../BS Shared Form/SOURCE/FRONT/GFF00900FRONT/GFF00900FRONT.csproj"
+    },
+    "GFF00900Model/1.0.0": {
+      "type": "project",
+      "path": "../../../../BS Shared Form/SOURCE/FRONT/GFF00900Model/GFF00900Model.csproj",
+      "msbuildProject": "../../../../BS Shared Form/SOURCE/FRONT/GFF00900Model/GFF00900Model.csproj"
+    },
     "GSM02000Common/1.0.0": {
       "type": "project",
       "path": "../../COMMON/GS/GSM02000Common/GSM02000Common.csproj",
@@ -5917,11 +6012,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorMenu\\BlazorMenu.csproj",
+      "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj",
       "projectName": "BlazorMenu",
-      "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorMenu\\BlazorMenu.csproj",
+      "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj",
       "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
-      "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorMenu\\obj\\",
+      "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5950,11 +6045,11 @@
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM03000Front\\GSM03000Front.csproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM03000Front\\GSM03000Front.csproj"
             },
-            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorClientHelper\\BlazorClientHelper.csproj": {
-              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorClientHelper\\BlazorClientHelper.csproj"
+            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj": {
+              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj"
             },
-            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
-              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorMenuCommon\\BlazorMenuCommon.vbproj"
+            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
+              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj"
             }
           }
         }

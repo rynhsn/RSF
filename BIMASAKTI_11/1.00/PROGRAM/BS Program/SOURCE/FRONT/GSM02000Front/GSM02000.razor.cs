@@ -151,9 +151,7 @@ public partial class GSM02000 : R_Page
     {
         var loTempResult = (GSL00500DTO)eventArgs.Result;
         if (loTempResult == null)
-        {
             return;
-        }
     
         var loGetData = (GSM02000DTO)_conductorRef.R_GetCurrentData();
         loGetData.CGLACCOUNT_NO = loTempResult.CGLACCOUNT_NO;
@@ -182,4 +180,34 @@ public partial class GSM02000 : R_Page
     }
     
     #endregion
+
+    private async Task BeforeOpenActiveInactive(R_BeforeOpenPopupEventArgs arg)
+    {
+        arg.TargetPageType = typeof(GFF00900FRONT.GFF00900);
+        //
+        // R_Exception loException = new R_Exception();
+        // try
+        // {
+        //     await _GSM02000ViewModel.RSP_ACTIVITY_VALIDITYMethodAsync();
+        //     if (_GSM02000ViewModel.loRspActivityValidityResult.Data.IAPPROVAL_MODE == 2)
+        //     {
+        //         arg.Parameter = _GSM02000ViewModel.ACTIVATE_INACTIVE_ACTIVITY_CODE;
+        //         arg.TargetPageType = typeof(GFF00900FRONT.GFF00900);
+        //         if (loException.HasError == false)
+        //         {
+        //             await _GSM02000ViewModel.ActiveInactiveProcessAsync();
+        //         }
+        //     }
+        // }
+        // catch (Exception ex)
+        // {
+        //     loException.Add(ex);
+        // }
+        // loException.ThrowExceptionIfErrors();
+    }
+
+    private Task AfterOpenActiveInactive(R_AfterOpenPopupEventArgs arg)
+    {
+        throw new NotImplementedException();
+    }
 }
