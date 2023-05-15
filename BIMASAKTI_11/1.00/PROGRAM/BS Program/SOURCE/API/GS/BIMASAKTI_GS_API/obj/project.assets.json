@@ -2842,6 +2842,44 @@
           "bin/placeholder/GSM02000Service.dll": {}
         }
       },
+      "Lookup_GSBACK/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Lookup_GSCOMMON": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Lookup_GSBACK.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GSBACK.dll": {}
+        }
+      },
+      "Lookup_GSCOMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Lookup_GSCOMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GSCOMMON.dll": {}
+        }
+      },
+      "Lookup_GSSERVICES/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Lookup_GSBACK": "1.0.0",
+          "Lookup_GSCOMMON": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
+        },
+        "compile": {
+          "bin/placeholder/Lookup_GSSERVICES.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GSSERVICES.dll": {}
+        }
+      },
       "RSP_GS_MAINTAIN_SALES_TAXResources/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -8410,6 +8448,21 @@
       "path": "../../../SERVICE/GS/GSM02000Service/GSM02000Service.csproj",
       "msbuildProject": "../../../SERVICE/GS/GSM02000Service/GSM02000Service.csproj"
     },
+    "Lookup_GSBACK/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GSBACK/Lookup_GSBACK.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GSBACK/Lookup_GSBACK.csproj"
+    },
+    "Lookup_GSCOMMON/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GSCOMMON/Lookup_GSCOMMON.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GSCOMMON/Lookup_GSCOMMON.csproj"
+    },
+    "Lookup_GSSERVICES/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/SERVICES/Lookup_GSSERVICES/Lookup_GSSERVICES.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/SERVICES/Lookup_GSSERVICES/Lookup_GSSERVICES.csproj"
+    },
     "RSP_GS_MAINTAIN_SALES_TAXResources/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_SALES_TAXResources/RSP_GS_MAINTAIN_SALES_TAXResources.csproj",
@@ -8451,6 +8504,7 @@
       "BlazorMenuService >= 1.0.0",
       "GSM00100Service >= 1.0.0",
       "GSM02000Service >= 1.0.0",
+      "Lookup_GSSERVICES >= 1.0.0",
       "R_SecurityPolicyService >= 1.0.0",
       "R_SecurityTokenService >= 1.0.0",
       "Realta.BackCollectionNuGet >= 1.0.0",
@@ -8506,6 +8560,9 @@
             },
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj"
+            },
+            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj": {
+              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj"
             }
           }
         }

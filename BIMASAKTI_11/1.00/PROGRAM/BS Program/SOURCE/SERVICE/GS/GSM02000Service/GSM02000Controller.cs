@@ -17,8 +17,7 @@ public class GSM02000Controller : ControllerBase, IGSM02000
     public R_ServiceGetRecordResultDTO<GSM02000DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GSM02000DTO> poParameter)
     {
         R_Exception loEx = new R_Exception();
-        R_ServiceGetRecordResultDTO<GSM02000DTO> loRtn = new R_ServiceGetRecordResultDTO<GSM02000DTO>();        
-        // GSM02000Cls loCls;
+        R_ServiceGetRecordResultDTO<GSM02000DTO> loRtn = new R_ServiceGetRecordResultDTO<GSM02000DTO>();
         
         try
         {
@@ -54,9 +53,6 @@ public class GSM02000Controller : ControllerBase, IGSM02000
             
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
-
-            // poParameter.Entity.CCOMPANY_ID = "RCD";
-            // poParameter.Entity.CUSER_ID = "RHC";
             
             loRtn.data = loCls.R_Save(poParameter.Entity, poParameter.CRUDMode);
         }
@@ -136,9 +132,6 @@ public class GSM02000Controller : ControllerBase, IGSM02000
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbPar.CUSER_ID = R_BackGlobalVar.USER_ID;
 
-            loDbPar.CCOMPANY_ID = "RCD";
-            loDbPar.CUSER_ID = "Admin";
-
             loCls = new GSM02000Cls();
             loRtnTmp = loCls.SalesTaxListDb(loDbPar);
 
@@ -190,7 +183,6 @@ public class GSM02000Controller : ControllerBase, IGSM02000
         foreach (GSM02000GridDTO item in poParameter)
         {
             yield return item;
-            // await Task.Delay(5000);
         }
     }
     #endregion
