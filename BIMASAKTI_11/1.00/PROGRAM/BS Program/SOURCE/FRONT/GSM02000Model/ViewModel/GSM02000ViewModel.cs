@@ -16,6 +16,7 @@ namespace GSM02000Model.ViewModel
         public ObservableCollection<GSM02000GridDTO> GridList = new ObservableCollection<GSM02000GridDTO>();
         public GSM02000DTO Entity = new GSM02000DTO();
         public List<GSM02000RoundingDTO> RoundingModeList = new List<GSM02000RoundingDTO>();
+        public GSM02000ActiveInactiveDTO ActiveInactiveEntity = new GSM02000ActiveInactiveDTO();
         
         public async Task GetGridList()
         {
@@ -96,5 +97,22 @@ namespace GSM02000Model.ViewModel
             loEx.ThrowExceptionIfErrors();
         }
 
+        public async Task SetActiveInactive()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                R_FrontContext.R_SetContext(ContextConstant.CTAX_ID, ActiveInactiveEntity.CTAX_ID);
+                R_FrontContext.R_SetContext(ContextConstant.LACTIVE, ActiveInactiveEntity.LACTIVE);
+                await _GSM02000Model.SetActiveInactiveAsync();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
     }
 }

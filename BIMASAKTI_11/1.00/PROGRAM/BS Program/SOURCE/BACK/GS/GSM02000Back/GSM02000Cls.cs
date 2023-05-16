@@ -234,7 +234,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         return loRtn;
     }
 
-    public void ActiveInactiveDb(GSM02000ActiveInactiveSalesTaxDb poParameter)
+    public void SetActiveInactiveDb(GSM02000ActiveInactiveDb poParameter)
     {
         R_Exception loEx = new R_Exception();
         R_Db loDb;

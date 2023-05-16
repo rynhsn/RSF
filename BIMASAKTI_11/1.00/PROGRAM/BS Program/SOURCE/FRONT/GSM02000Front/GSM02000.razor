@@ -41,7 +41,7 @@
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAX_ID"
                        R_ConductorSource="@_conductorRef"
                        R_EnableAdd="true"
-                       R_EnableEdit="false" required/>
+                       R_EnableEdit="false"/>
         </R_ItemLayout>
         <R_ItemLayout xs="4" Class="col-lg-4">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAX_NAME"
@@ -163,7 +163,7 @@
             <R_StackLayout Row="true">
                 <R_ItemLayout Class="col-lg">
                     <R_ItemLayout xs="3">
-                        <R_PopupButton R_After_Open_Popup="@AfterOpenActiveInactive" R_Before_Open_Popup="@BeforeOpenActiveInactive">Active/InActive</R_PopupButton>
+                        <R_PopupButton R_After_Open_Popup="@AfterOpenActiveInactive" R_Before_Open_Popup="@BeforeOpenActiveInactive">@loLabel</R_PopupButton>
                     </R_ItemLayout>
                 </R_ItemLayout>
             </R_StackLayout>
@@ -191,9 +191,9 @@
              R_ServiceDelete="@Conductor_ServiceDelete"
              R_SetAdd="@R_SetAdd"
              R_SetEdit="@R_SetEdit"
+             R_Display="@Grid_Display"
              @* R_SetHasData="@R_SetHasData" *@
              @* R_AfterAdd="Conductor_AfterAdd" *@
-             @* R_Display="@Conductor_Display" *@
              @* R_Validation="@Conductor_Validation" *@
              @* R_ConvertToGridEntity="@R_ConvertToGridEntity" *@
              />

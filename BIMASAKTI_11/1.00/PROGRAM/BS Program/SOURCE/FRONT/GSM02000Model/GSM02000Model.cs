@@ -35,11 +35,11 @@ namespace GSM02000Model
         {
             throw new NotImplementedException();
         }
-
-        public Task ActiveInactiveAsync(GSM02000DTO poEntity)
+        public GSM02000ActiveInactiveDTO SetActiveInactive()
         {
             throw new NotImplementedException();
         }
+
 
         #region GetAllAsync
 
@@ -125,6 +125,28 @@ namespace GSM02000Model
         }
 
         #endregion
+        
+        #region SetActiveInactive
+        public async Task SetActiveInactiveAsync()
+        {
+            var loEx = new R_Exception();
 
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+                await R_HTTPClientWrapper.R_APIRequestObject<GSM02000ActiveInactiveDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGSM02000.SetActiveInactive),
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+        #endregion
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FsQKJrzG/c0TCSGYbQC8WPCVMxzumcpBx9o80VYZbkkyHBTCFM0CzNehLOizxmtNYOTsPRlSKt3xcAmR0XgU8g==",
+  "dgSpecHash": "u5DEPuYM6KlrHh1PNSbebAtRckuIMTrIhK7ncu1dFiSy+T5ajLI2C6acOPcO8xFjn/X/7oMN2Xgg/iT5sMuxlg==",
   "success": true,
-  "projectFilePath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
+  "projectFilePath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\gs\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\castle.core\\4.3.1\\castle.core.4.3.1.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\log4net\\2.0.13\\log4net.2.0.13.nupkg.sha512",

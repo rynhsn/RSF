@@ -16,9 +16,6 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="Microsoft.AspNetCore.Mvc.Core">
-		  <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\6.0.16\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
-		</Reference>
 		<Reference Include="R_APIBackEnd">
 			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
 		</Reference>

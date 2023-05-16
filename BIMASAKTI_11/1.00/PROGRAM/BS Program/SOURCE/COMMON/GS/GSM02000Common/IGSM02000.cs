@@ -11,6 +11,6 @@ namespace GSM02000Common
         IAsyncEnumerable<GSM02000GridDTO> GetAllSalesTaxStream();
         GSM02000ListDTO<GSM02000RoundingDTO> GetAllRounding();
         
-        Task ActiveInactiveAsync(GSM02000DTO poEntity);
+        GSM02000ActiveInactiveDTO SetActiveInactive();
     }
 }

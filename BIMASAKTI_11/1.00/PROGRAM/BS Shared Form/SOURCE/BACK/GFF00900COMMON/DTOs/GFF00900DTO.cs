@@ -11,5 +11,6 @@ namespace GFF00900COMMON.DTOs
         public string CPASSWORD { get; set; }
         public string CACTION_CODE { get; set; }
         public string CUSER_LOGIN_ID { get; set; }
+        public string DETAIL_ACTION { get; set; }
     }
 }

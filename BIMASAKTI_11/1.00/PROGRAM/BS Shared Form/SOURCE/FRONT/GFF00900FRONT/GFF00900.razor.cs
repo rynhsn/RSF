@@ -20,6 +20,11 @@ namespace GFF00900FRONT
         private R_Conductor _conductorRef;
         [Inject] R_ISymmetricJSProvider _encryptProvider { get; set; }
 
+        private bool ReasonVisibility = true;
+
+        private bool AccessValidationVisibility = true;
+
+
         protected override async Task R_Init_From_Master(object poParameter)
         {
             var loEx = new R_Exception();
@@ -27,6 +32,34 @@ namespace GFF00900FRONT
             try
             {
                 loViewModel.loParameter.ACTION_CODE = (string)poParameter;
+                loViewModel.ACTIVATE_INACTIVE_ACTIVITY_CODE = (string)poParameter;
+
+                R_Exception loException = new R_Exception();
+                try
+                {
+                    await loViewModel.RSP_ACTIVITY_VALIDITYMethodAsync();
+                    if (loException.HasError == false)
+                    {
+                        ReasonVisibility = false;
+                        if (loViewModel.loRspActivityValidityResult.Data.IAPPROVAL_MODE == 1)
+                        {
+                            await this.Close(true, true);
+                        }
+                        else if (loViewModel.loRspActivityValidityResult.Data.IAPPROVAL_MODE == 2)
+                        {
+
+                        }
+                        else if (loViewModel.loRspActivityValidityResult.Data.IAPPROVAL_MODE == 3)
+                        {
+                            await this.Close(true, false);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loException.Add(ex);
+                }
+                loException.ThrowExceptionIfErrors();
             }
             catch (Exception ex)
             {
@@ -34,6 +67,17 @@ namespace GFF00900FRONT
             }
 
             R_DisplayException(loEx);
+        }
+
+        private void OnOKReason()
+        {
+            ReasonVisibility = true;
+            AccessValidationVisibility = false;
+        }
+
+        private async Task OnCancelReason()
+        {
+            await this.Close(true, false);
         }
 
         private async Task OnOK()
@@ -53,6 +97,7 @@ namespace GFF00900FRONT
 
             await this.Close(true, true);
         }
+
         private async Task OnCancel()
         {
             await this.Close(true, false);

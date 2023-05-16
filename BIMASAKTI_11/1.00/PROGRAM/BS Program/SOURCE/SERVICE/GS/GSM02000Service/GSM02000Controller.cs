@@ -177,22 +177,22 @@ public class GSM02000Controller : ControllerBase, IGSM02000
         return loRtn;    
     }
 
+
     [HttpPost]
-    public async Task ActiveInactiveAsync(GSM02000DTO poEntity)
+    public GSM02000ActiveInactiveDTO SetActiveInactive()
     {
         R_Exception loEx = new R_Exception();
-        GSM02000Cls loCls;
-        GSM02000ActiveInactiveSalesTaxDb loDbPar = new GSM02000ActiveInactiveSalesTaxDb();
+        GSM02000ActiveInactiveDb loDbPar = new GSM02000ActiveInactiveDb();
+        GSM02000ActiveInactiveDTO loRtn = new GSM02000ActiveInactiveDTO();
+        GSM02000Cls loCls = new GSM02000Cls();
 
         try
         {
-            loCls = new GSM02000Cls();
-            
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbPar.CTAX_ID = poEntity.CTAX_ID;
-            loDbPar.LACTIVE = poEntity.LACTIVE;
+            loDbPar.CTAX_ID = R_Utility.R_GetContext<string>(ContextConstant.CTAX_ID);
+            loDbPar.LACTIVE = R_Utility.R_GetContext<bool>(ContextConstant.LACTIVE);
             loDbPar.CUSER_ID = R_BackGlobalVar.USER_ID;
-            loCls.ActiveInactiveDb(loDbPar);
+            loCls.SetActiveInactiveDb(loDbPar);
         }
         catch (Exception ex)
         {
@@ -201,6 +201,7 @@ public class GSM02000Controller : ControllerBase, IGSM02000
 
         loEx.ThrowExceptionIfErrors();
 
+        return loRtn;
     }
 
     #region "Helper GetSalesTaxStream Functions"
