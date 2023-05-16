@@ -27,8 +27,9 @@ public partial class GSM02000 : R_Page
         
         try
         {
+            var loUserLanguage = clientHelper.CultureUI.TwoLetterISOLanguageName;
             await _gridRef.R_RefreshGrid(null);
-            await _GSM02000ViewModel.GetRoundingMode();
+            await _GSM02000ViewModel.GetRoundingMode(loUserLanguage);
         }
         catch (Exception ex)
         {
@@ -39,11 +40,6 @@ public partial class GSM02000 : R_Page
         
     }
     
-    private async Task Conductor_Display(R_DisplayEventArgs arg)
-    {
-        await _gridRef.R_RefreshGrid((GSM02000DTO)arg.Data);
-    }
-
     private async Task Grid_R_ServiceGetListRecord(R_ServiceGetListRecordEventArgs arg)
     {
         var loEx = new R_Exception();
@@ -115,11 +111,6 @@ public partial class GSM02000 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private async Task R_ConvertToGridEntity(R_ConvertToGridEntityEventArgs arg)
-    {
-        arg.GridData = R_FrontUtility.ConvertObjectToObject<GSM02000GridDTO>(arg.Data);
-    }
-
     private async Task Conductor_AfterSave(R_AfterSaveEventArgs arg)
     {
         await _gridRef.R_RefreshGrid((GSM02000DTO)arg.Data);
@@ -157,15 +148,6 @@ public partial class GSM02000 : R_Page
         loGetData.CGLACCOUNT_NO = loTempResult.CGLACCOUNT_NO;
         loGetData.CGLACCOUNT_NAME = loTempResult?.CGLACCOUNT_NAME;
     }
-    
-    private void R_SetHasData(R_SetEventArgs eventArgs)
-    {
-        if (R_AddBtn != null)
-            R_AddBtn.Enabled = eventArgs.Enable;
-    
-        if (R_ActiveInActiveBtn != null)
-            R_ActiveInActiveBtn.Enabled = eventArgs.Enable;
-    }   
 
     private void R_SetAdd(R_SetEventArgs eventArgs)
     {
@@ -183,31 +165,12 @@ public partial class GSM02000 : R_Page
 
     private async Task BeforeOpenActiveInactive(R_BeforeOpenPopupEventArgs arg)
     {
+        arg.Parameter = "GSM02001";
         arg.TargetPageType = typeof(GFF00900FRONT.GFF00900);
-        //
-        // R_Exception loException = new R_Exception();
-        // try
-        // {
-        //     await _GSM02000ViewModel.RSP_ACTIVITY_VALIDITYMethodAsync();
-        //     if (_GSM02000ViewModel.loRspActivityValidityResult.Data.IAPPROVAL_MODE == 2)
-        //     {
-        //         arg.Parameter = _GSM02000ViewModel.ACTIVATE_INACTIVE_ACTIVITY_CODE;
-        //         arg.TargetPageType = typeof(GFF00900FRONT.GFF00900);
-        //         if (loException.HasError == false)
-        //         {
-        //             await _GSM02000ViewModel.ActiveInactiveProcessAsync();
-        //         }
-        //     }
-        // }
-        // catch (Exception ex)
-        // {
-        //     loException.Add(ex);
-        // }
-        // loException.ThrowExceptionIfErrors();
     }
 
-    private Task AfterOpenActiveInactive(R_AfterOpenPopupEventArgs arg)
+    private async Task AfterOpenActiveInactive(R_AfterOpenPopupEventArgs arg)
     {
-        throw new NotImplementedException();
+        await _gridRef.R_RefreshGrid(null);
     }
 }

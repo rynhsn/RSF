@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using GSM02000Common;
 using GSM02000Common.DTOs;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
@@ -12,11 +13,8 @@ namespace GSM02000Model.ViewModel
     public class GSM02000ViewModel : R_ViewModel<GSM02000DTO>
     {
         private GSM02000Model _GSM02000Model = new GSM02000Model();
-
         public ObservableCollection<GSM02000GridDTO> GridList = new ObservableCollection<GSM02000GridDTO>();
-        
         public GSM02000DTO Entity = new GSM02000DTO();
-        
         public List<GSM02000RoundingDTO> RoundingModeList = new List<GSM02000RoundingDTO>();
         
         public async Task GetGridList()
@@ -60,7 +58,6 @@ namespace GSM02000Model.ViewModel
             }
             catch (Exception ex)
             {
-                // loEx.Add();
                 loEx.Add(ex);
             }
 
@@ -81,12 +78,13 @@ namespace GSM02000Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        public async Task GetRoundingMode()
+        public async Task GetRoundingMode(string poUserLanguage)
         {
             var loEx = new R_Exception();
 
             try
             {
+                R_FrontContext.R_SetStreamingContext(ContextConstant.CUSER_LANGUAGE, poUserLanguage);
                 var loReturn = await _GSM02000Model.GetRoundingModeAsync();
                 RoundingModeList = loReturn.Data;
             }

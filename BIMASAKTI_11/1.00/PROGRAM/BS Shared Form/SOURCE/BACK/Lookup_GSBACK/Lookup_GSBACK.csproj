@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lookup_GSCOMMON\Lookup_GSCOMMON.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BackHelper">
+      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\BackHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="R_APIBackEnd">
+      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+    </Reference>
+    <Reference Include="R_APICommon">
+      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+    </Reference>
+    <Reference Include="R_CommonFrontBackAPI">
+      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+	
+</Project>

@@ -180,7 +180,6 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             loConn = loDb.GetConnection("BimasaktiConnectionString");
             loCmd = loDb.GetCommand();
 
-            // lcQuery = "EXEC RSP_GS_GET_SALES_TAX_LIST @CCOMPANY_ID, @CUSER_ID";
             lcQuery = "RSP_GS_GET_SALES_TAX_LIST";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
@@ -218,7 +217,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             loCmd = loDb.GetCommand();
 
             lcQuery =
-                $"SELECT * FROM RFT_GET_GSB_CODE_INFO ('BIMASAKTI', '{poParameter.CCOMPANY_ID}' , '_ROUNDING_MODE', '', '{poParameter.CCULTURE}')";
+                $"SELECT * FROM RFT_GET_GSB_CODE_INFO ('BIMASAKTI', '{poParameter.CCOMPANY_ID}' , '_ROUNDING_MODE', '', '{poParameter.CUSER_LANGUAGE}')";
             loCmd.CommandType = CommandType.Text;
             loCmd.CommandText = lcQuery;
 
@@ -233,5 +232,38 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         loEx.ThrowExceptionIfErrors();
 
         return loRtn;
+    }
+
+    public void ActiveInactiveDb(GSM02000ActiveInactiveSalesTaxDb poParameter)
+    {
+        R_Exception loEx = new R_Exception();
+        R_Db loDb;
+        DbConnection loConn = null;
+        DbCommand loCmd;
+        string lcQuery = null;
+
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection("BimasaktiConnectionString");
+            loCmd = loDb.GetCommand();
+
+            lcQuery = "RSP_GS_ACTIVE_INACTIVE_SALES_TAX";
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
+
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParameter.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CTAX_ID", DbType.String, 50, poParameter.CTAX_ID);
+            loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, 1 , poParameter.LACTIVE);
+            loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poParameter.CUSER_ID);
+
+            loDb.SqlExecNonQuery(loConn, loCmd, true);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
     }
 }

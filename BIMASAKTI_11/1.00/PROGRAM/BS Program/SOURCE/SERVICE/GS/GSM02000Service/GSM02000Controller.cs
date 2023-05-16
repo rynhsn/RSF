@@ -161,7 +161,7 @@ public class GSM02000Controller : ControllerBase, IGSM02000
         {
             loDbPar = new GSM02000ParameterDb();
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbPar.CCULTURE = R_BackGlobalVar.CULTURE;
+            loDbPar.CUSER_LANGUAGE = R_Utility.R_GetStreamingContext<string>(ContextConstant.CUSER_LANGUAGE);
 
             loCls = new GSM02000Cls();
             loResult = loCls.RoundingListDb(loDbPar);
@@ -175,6 +175,32 @@ public class GSM02000Controller : ControllerBase, IGSM02000
         loEx.ThrowExceptionIfErrors();
 
         return loRtn;    
+    }
+
+    [HttpPost]
+    public async Task ActiveInactiveAsync(GSM02000DTO poEntity)
+    {
+        R_Exception loEx = new R_Exception();
+        GSM02000Cls loCls;
+        GSM02000ActiveInactiveSalesTaxDb loDbPar = new GSM02000ActiveInactiveSalesTaxDb();
+
+        try
+        {
+            loCls = new GSM02000Cls();
+            
+            loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbPar.CTAX_ID = poEntity.CTAX_ID;
+            loDbPar.LACTIVE = poEntity.LACTIVE;
+            loDbPar.CUSER_ID = R_BackGlobalVar.USER_ID;
+            loCls.ActiveInactiveDb(loDbPar);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
     }
 
     #region "Helper GetSalesTaxStream Functions"

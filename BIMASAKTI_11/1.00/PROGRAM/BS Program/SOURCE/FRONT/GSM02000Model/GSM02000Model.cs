@@ -35,7 +35,12 @@ namespace GSM02000Model
         {
             throw new NotImplementedException();
         }
-        
+
+        public Task ActiveInactiveAsync(GSM02000DTO poEntity)
+        {
+            throw new NotImplementedException();
+        }
+
         #region GetAllAsync
 
         public async Task<GSM02000ListDTO<GSM02000GridDTO>> GetAllAsync()
@@ -120,5 +125,6 @@ namespace GSM02000Model
         }
 
         #endregion
+
     }
 }

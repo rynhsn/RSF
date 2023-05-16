@@ -3102,14 +3102,6 @@ D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\Blazor
 D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\bWnaONTz.gz
 D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\YnUEb6NH.gz
 D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\XkCELalG.gz
-D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\YZGpPX2u.gz
-D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\++NF+1T9.gz
-D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\Bi5jYia6.gz
-D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\RguwTqLv.gz
-D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\uF8tX7pR.gz
-D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\WhTq7Dv+.gz
-D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\wVoQFeqU.gz
-D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\B1C9LEHm.gz
 D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\bin\Debug\net6.0\wwwroot\_framework\GFF00900COMMON.dll
 D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\bin\Debug\net6.0\wwwroot\_framework\GFF00900COMMON.pdb
 D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\bin\Debug\net6.0\wwwroot\_framework\GFF00900FRONT.dll
@@ -3136,3 +3128,11 @@ D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\Blazor
 D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\WA0CqbbS.gz
 D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\2g2D3VED.gz
 D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\HBzyEG1u.gz
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\YZGpPX2u.gz
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\++NF+1T9.gz
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\Bi5jYia6.gz
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\RguwTqLv.gz
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\uF8tX7pR.gz
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\WhTq7Dv+.gz
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\wVoQFeqU.gz
+D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\MENU\BlazorMenu\obj\Debug\net6.0\build-gz\B1C9LEHm.gz
