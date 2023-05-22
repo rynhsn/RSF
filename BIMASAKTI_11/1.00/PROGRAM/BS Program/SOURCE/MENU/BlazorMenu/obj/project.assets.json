@@ -1272,8 +1272,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
-          "GSM02000Common": "1.0.0",
-          "GSM02000FrontResources": "1.0.0"
+          "GSM02000Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/GSM02000Model.dll": {}
@@ -1293,6 +1292,43 @@
         },
         "runtime": {
           "bin/placeholder/GSM03000Front.dll": {}
+        }
+      },
+      "GSM05000Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GSM05000Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM05000Common.dll": {}
+        }
+      },
+      "GSM05000Front/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GSM05000Model": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+        },
+        "compile": {
+          "bin/placeholder/GSM05000Front.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM05000Front.dll": {}
+        }
+      },
+      "GSM05000Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "GSM05000Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GSM05000Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM05000Model.dll": {}
         }
       },
       "Lookup_GSCOMMON/1.0.0": {
@@ -2709,8 +2745,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
-          "GSM02000Common": "1.0.0",
-          "GSM02000FrontResources": "1.0.0"
+          "GSM02000Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/GSM02000Model.dll": {}
@@ -2730,6 +2765,43 @@
         },
         "runtime": {
           "bin/placeholder/GSM03000Front.dll": {}
+        }
+      },
+      "GSM05000Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GSM05000Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM05000Common.dll": {}
+        }
+      },
+      "GSM05000Front/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GSM05000Model": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+        },
+        "compile": {
+          "bin/placeholder/GSM05000Front.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM05000Front.dll": {}
+        }
+      },
+      "GSM05000Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "GSM05000Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GSM05000Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM05000Model.dll": {}
         }
       },
       "Lookup_GSCOMMON/1.0.0": {
@@ -5972,6 +6044,21 @@
       "path": "../../FRONT/GSM03000Front/GSM03000Front.csproj",
       "msbuildProject": "../../FRONT/GSM03000Front/GSM03000Front.csproj"
     },
+    "GSM05000Common/1.0.0": {
+      "type": "project",
+      "path": "../../COMMON/GS/GSM05000Common/GSM05000Common.csproj",
+      "msbuildProject": "../../COMMON/GS/GSM05000Common/GSM05000Common.csproj"
+    },
+    "GSM05000Front/1.0.0": {
+      "type": "project",
+      "path": "../../FRONT/GSM05000Front/GSM05000Front.csproj",
+      "msbuildProject": "../../FRONT/GSM05000Front/GSM05000Front.csproj"
+    },
+    "GSM05000Model/1.0.0": {
+      "type": "project",
+      "path": "../../FRONT/GSM05000Model/GSM05000Model.csproj",
+      "msbuildProject": "../../FRONT/GSM05000Model/GSM05000Model.csproj"
+    },
     "Lookup_GSCOMMON/1.0.0": {
       "type": "project",
       "path": "../../../../BS Shared Form/SOURCE/BACK/Lookup_GSCOMMON/Lookup_GSCOMMON.csproj",
@@ -5995,6 +6082,7 @@
       "Blazored.LocalStorage >= 4.2.0",
       "GSM02000Front >= 1.0.0",
       "GSM03000Front >= 1.0.0",
+      "GSM05000Front >= 1.0.0",
       "Microsoft.AspNetCore.Components.Authorization >= 6.0.14",
       "Microsoft.AspNetCore.Components.WebAssembly >= 6.0.14",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 6.0.14",
@@ -6012,11 +6100,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorMenu\\BlazorMenu.csproj",
+      "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj",
       "projectName": "BlazorMenu",
-      "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorMenu\\BlazorMenu.csproj",
+      "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj",
       "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
-      "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorMenu\\obj\\",
+      "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -6045,11 +6133,14 @@
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM03000Front\\GSM03000Front.csproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM03000Front\\GSM03000Front.csproj"
             },
-            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorClientHelper\\BlazorClientHelper.csproj": {
-              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorClientHelper\\BlazorClientHelper.csproj"
+            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM05000Front\\GSM05000Front.csproj": {
+              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM05000Front\\GSM05000Front.csproj"
             },
-            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
-              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorMenuCommon\\BlazorMenuCommon.vbproj"
+            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj": {
+              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj"
+            },
+            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
+              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj"
             }
           }
         }
