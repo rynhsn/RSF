@@ -1,29 +1,24 @@
 ﻿using BlazorClientHelper;
-using BlazorMenu.Clients;
-using BlazorMenuCommon;
+using BlazorMenuCommon.DTOs;
+using BlazorMenuModel;
 using R_BlazorFrontEnd.Configurations;
 using R_BlazorFrontEnd.Exceptions;
-using R_BlazorFrontEnd.State;
-using R_ContextFrontEnd;
 
 namespace BlazorMenu.Services
 {
     public class R_MenuService : R_IMenuService
     {
         private readonly IClientHelper _clientHelper;
-        private readonly R_AccessStateContainer _stateContainer;
-        private R_MenuServiceClient _clientWrapper = null;
+        //private readonly R_AccessStateContainer _stateContainer;
+        private R_MenuModel _menuModel = null;
         public Dictionary<string, string[]> MenuAccess { get; private set; }
 
         public string[] MenuIdList { get; private set; }
 
-        public R_MenuService(IClientHelper clientHelper,
-            R_AccessStateContainer stateContainer,
-            R_ContextHeader contextHeader)
+        public R_MenuService(IClientHelper clientHelper)
         {
             _clientHelper = clientHelper;
-            _stateContainer = stateContainer;
-            _clientWrapper = new R_MenuServiceClient(contextHeader);
+            _menuModel = new R_MenuModel();
         }
 
         public async Task SetMenuAccessAsync()
@@ -40,13 +35,13 @@ namespace BlazorMenu.Services
                     CLANGUAGE_ID = "en"
                 };
 
-                var loMenuAccess = await _clientWrapper.GetMenuAccessAsync(loParam);
+                var loMenuAccess = await _menuModel.GetMenuAccessAsync(loParam);
 
                 loResult = loMenuAccess.Data;
 
                 MenuAccess = loResult.ToDictionary(x => x.CPROGRAM_ID, x => x.CACCESS_ID.Split(','));
 
-                _stateContainer.SetValue(MenuAccess);
+                //_stateContainer.SetValue(MenuAccess);
             }
             catch (Exception ex)
             {
@@ -74,7 +69,7 @@ namespace BlazorMenu.Services
                     CMODUL_ID = R_FrontConfig.R_GetConfigAsString("R_Md")
                 };
 
-                var loMenuList = await _clientWrapper.GetMenuAsync(loParam);
+                var loMenuList = await _menuModel.GetMenuAsync(loParam);
 
                 loResult = loMenuList.Data;
             }

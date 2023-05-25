@@ -123,62 +123,49 @@
             <R_Label>GL Account No.</R_Label>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="4" Class="col-lg-2">
+        <R_ItemLayout xs="4" Class="col">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NO"
                        R_ConductorSource="@_conductorRef"
-                       Enabled="false"
-                       />
+                       Enabled="false"/>
         </R_ItemLayout>
-        
+
         <R_ItemLayout xs="2">
             <R_Lookup @ref="@R_LookupBtn" R_Before_Open_Lookup="@Before_Open_Lookup" R_After_Open_Lookup="@After_Open_Lookup">Pick</R_Lookup>
         </R_ItemLayout>
-            
-        <R_ItemLayout xs="4" Class="col-lg-3">
+
+        <R_ItemLayout xs="4" Class="col">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NAME"
                        R_ConductorSource="@_conductorRef"
-                       Enabled="false"
-                       />
+                       Enabled="false"/>
         </R_ItemLayout>
     </R_StackLayout>
 
     <R_StackLayout Row="true" Spacing="5">
-        <R_ItemLayout Class="col-lg-2">
-            <R_StackLayout Row="true">
-                <R_ItemLayout xs="1" Class="col-lg">
-                    <R_AddButton R_Conductor="@_conductorRef"/>
-                </R_ItemLayout>
-
-                <R_ItemLayout xs="1" Class="col-lg">
-                    <R_EditButton R_Conductor="@_conductorRef"/>
-                </R_ItemLayout>
-
-                <R_ItemLayout xs="1" Class="col-lg">
-                    <R_DeleteButton R_Conductor="@_conductorRef"/>
-                </R_ItemLayout>
-            </R_StackLayout>
+        <R_ItemLayout xs="1" Class="col-lg">
+            <R_AddButton R_Conductor="@_conductorRef"/>
         </R_ItemLayout>
 
-        <R_ItemLayout Class="col-lg-2">
-            <R_StackLayout Row="true">
-                <R_ItemLayout Class="col-lg">
-                    <R_ItemLayout xs="3">
-                        <R_PopupButton R_After_Open_Popup="@AfterOpenActiveInactive" R_Before_Open_Popup="@BeforeOpenActiveInactive">@loLabel</R_PopupButton>
-                    </R_ItemLayout>
-                </R_ItemLayout>
-            </R_StackLayout>
+        <R_ItemLayout xs="1" Class="col-lg">
+            <R_EditButton R_Conductor="@_conductorRef"/>
         </R_ItemLayout>
 
-        <R_ItemLayout Class="col-lg-2">
-            <R_StackLayout Row="true">
-                <R_ItemLayout xs="1" Class="col-lg">
-                    <R_CancelButton R_Conductor="@_conductorRef"/>
-                </R_ItemLayout>
-                <R_ItemLayout xs="1" Class="col-lg">
-                    <R_SaveButton R_Conductor="@_conductorRef"/>
-                </R_ItemLayout>
-            </R_StackLayout>
+        <R_ItemLayout xs="1" Class="col-lg">
+            <R_DeleteButton R_Conductor="@_conductorRef"/>
         </R_ItemLayout>
+
+        <R_ItemLayout Class="col-lg">
+            <R_ItemLayout xs="3">
+                <R_PopupButton R_After_Open_Popup="@AfterOpenActiveInactive" R_Before_Open_Popup="@BeforeOpenActiveInactive">@loLabel</R_PopupButton>
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+        <R_ItemLayout xs="1" Class="col-lg">
+            <R_CancelButton R_Conductor="@_conductorRef"/>
+        </R_ItemLayout>
+        <R_ItemLayout xs="1" Class="col-lg">
+            <R_SaveButton R_Conductor="@_conductorRef"/>
+        </R_ItemLayout>
+        
     </R_StackLayout>
 </R_StackLayout>
 
@@ -195,5 +182,4 @@
              @* R_SetHasData="@R_SetHasData" *@
              @* R_AfterAdd="Conductor_AfterAdd" *@
              @* R_Validation="@Conductor_Validation" *@
-             @* R_ConvertToGridEntity="@R_ConvertToGridEntity" *@
-             />
+             @* R_ConvertToGridEntity="@R_ConvertToGridEntity" *@/>

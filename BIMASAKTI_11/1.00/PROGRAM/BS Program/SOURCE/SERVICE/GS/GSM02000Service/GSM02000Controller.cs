@@ -8,7 +8,7 @@ using R_CommonFrontBackAPI;
 
 namespace GSM02000Service;
 
-[ApiController]
+[ApiController] 
 [Route("api/[controller]/[action]")]
 public class GSM02000Controller : ControllerBase, IGSM02000
 {
@@ -161,7 +161,7 @@ public class GSM02000Controller : ControllerBase, IGSM02000
         {
             loDbPar = new GSM02000ParameterDb();
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbPar.CUSER_LANGUAGE = R_Utility.R_GetStreamingContext<string>(ContextConstant.CUSER_LANGUAGE);
+            loDbPar.CUSER_LANGUAGE = R_BackGlobalVar.CULTURE_MENU;
 
             loCls = new GSM02000Cls();
             loResult = loCls.RoundingListDb(loDbPar);

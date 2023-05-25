@@ -6,7 +6,8 @@
 
 <CascadingAuthenticationState>
     <Router AppAssembly="@typeof(Program).Assembly"
-            AdditionalAssemblies="@lazyLoadedAssemblies" OnNavigateAsync="@OnNavigateAsync">
+            AdditionalAssemblies="@lazyLoadedAssemblies" 
+            OnNavigateAsync="@OnNavigateAsync">
         <Found Context="routeData">
             <MenuTabsRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         </Found>
@@ -21,7 +22,7 @@
 @code {
     private List<Assembly> lazyLoadedAssemblies = new()
     {
-        typeof(GSM03000Front.GSM03000).Assembly,
+        typeof(GSM00100Front.GSM00100).Assembly,
         typeof(GSM02000Front.GSM02000).Assembly,
         typeof(GSM05000Front.GSM05000).Assembly,
     };

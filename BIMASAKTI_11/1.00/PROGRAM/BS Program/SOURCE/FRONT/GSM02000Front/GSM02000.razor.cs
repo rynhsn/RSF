@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
-using R_BlazorFrontEnd.Controls.Forms;
-using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
@@ -22,7 +20,7 @@ public partial class GSM02000 : R_Page
     private R_Conductor _conductorRef;
     private R_Grid<GSM02000GridDTO> _gridRef;
     private string loLabel = "Activate";
-    [Inject] IClientHelper clientHelper { get; set; }
+    [Inject] private IClientHelper _clientHelper { get; set; }
 
     protected override async Task R_Init_From_Master(object poParam)
     {
@@ -30,9 +28,8 @@ public partial class GSM02000 : R_Page
 
         try
         {
-            var loUserLanguage = clientHelper.CultureUI.TwoLetterISOLanguageName;
             await _gridRef.R_RefreshGrid(null);
-            await _GSM02000ViewModel.GetRoundingMode(loUserLanguage);
+            await _GSM02000ViewModel.GetRoundingMode();
         }
         catch (Exception ex)
         {
@@ -44,21 +41,34 @@ public partial class GSM02000 : R_Page
 
     private async Task Grid_Display(R_DisplayEventArgs eventArgs)
     {
-        if (eventArgs.ConductorMode == R_eConductorMode.Normal)
+        var loEx = new R_Exception();
+
+        try
         {
-            var loParam = (GSM02000DTO)eventArgs.Data;
-            _GSM02000ViewModel.ActiveInactiveEntity.CTAX_ID = loParam.CTAX_ID;
-            if (loParam.LACTIVE)
+            if (eventArgs.ConductorMode == R_eConductorMode.Normal)
             {
-                loLabel = "Inactive";
-                _GSM02000ViewModel.ActiveInactiveEntity.LACTIVE = false;
+                var loParam = (GSM02000DTO)eventArgs.Data;
+                _GSM02000ViewModel.ActiveInactiveEntity.CTAX_ID = loParam.CTAX_ID;
+                if (loParam.LACTIVE)
+                {
+                    loLabel = "Inactive";
+                    _GSM02000ViewModel.ActiveInactiveEntity.LACTIVE = false;
+                }
+                else
+                {
+                    loLabel = "Activate";
+                    _GSM02000ViewModel.ActiveInactiveEntity.LACTIVE = true;
+                }
             }
-            else
-            {
-                loLabel = "Activate";
-                _GSM02000ViewModel.ActiveInactiveEntity.LACTIVE = true;
-            }
+
+            // eventArgs.ListEntityResult = _GSM02000ViewModel.GridList;
         }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        R_DisplayException(loEx);
     }
 
     private async Task Grid_R_ServiceGetListRecord(R_ServiceGetListRecordEventArgs arg)
@@ -68,6 +78,7 @@ public partial class GSM02000 : R_Page
         try
         {
             await _GSM02000ViewModel.GetGridList();
+            arg.ListEntityResult = _GSM02000ViewModel.GridList;
         }
         catch (Exception ex)
         {
@@ -103,15 +114,6 @@ public partial class GSM02000 : R_Page
         try
         {
             var loParam = R_FrontUtility.ConvertObjectToObject<GSM02000DTO>(arg.Data);
-            // if (arg.ConductorMode == R_eConductorMode.Add)
-            // {
-            //     if (loParam.CTAX_ID == "")
-            //     {
-            //         //buat pesan error
-            //         var loMessage = new R_MessageBox();
-            //         loMessage.
-            //     }
-            // }
             await _GSM02000ViewModel.SaveEntity(loParam, (eCRUDMode)arg.ConductorMode);
 
             arg.Result = _GSM02000ViewModel.Entity;
@@ -143,7 +145,18 @@ public partial class GSM02000 : R_Page
 
     private async Task Conductor_AfterSave(R_AfterSaveEventArgs arg)
     {
-        await _gridRef.R_RefreshGrid((GSM02000DTO)arg.Data);
+        var loEx = new R_Exception();
+
+        try
+        {
+            await _gridRef.R_RefreshGrid((GSM02000DTO)arg.Data);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
     }
 
     #region Lookup Button
@@ -163,7 +176,7 @@ public partial class GSM02000 : R_Page
             LCENTER_RESTR = false,
             LUSER_RESTR = false,
             CCENTER_CODE = "",
-            CUSER_LANGUAGE = clientHelper.CultureUI.TwoLetterISOLanguageName
+            CUSER_LANGUAGE = _clientHelper.CultureUI.TwoLetterISOLanguageName
         };
         eventArgs.Parameter = param;
         eventArgs.TargetPageType = typeof(GSL00500);
@@ -213,6 +226,7 @@ public partial class GSM02000 : R_Page
         {
             loException.Add(ex);
         }
+
         loException.ThrowExceptionIfErrors();
         await _gridRef.R_RefreshGrid(null);
     }

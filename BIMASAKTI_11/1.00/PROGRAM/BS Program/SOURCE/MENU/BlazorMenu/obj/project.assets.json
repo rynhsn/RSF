@@ -14,10 +14,10 @@
           "lib/net6.0/Blazored.LocalStorage.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Authorization/6.0.16": {
+      "Microsoft.AspNetCore.Authorization/6.0.15": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Metadata": "6.0.16",
+          "Microsoft.AspNetCore.Metadata": "6.0.15",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.3",
           "Microsoft.Extensions.Options": "6.0.0"
         },
@@ -32,11 +32,11 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components/6.0.16": {
+      "Microsoft.AspNetCore.Components/6.0.15": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Authorization": "6.0.16",
-          "Microsoft.AspNetCore.Components.Analyzers": "6.0.16"
+          "Microsoft.AspNetCore.Authorization": "6.0.15",
+          "Microsoft.AspNetCore.Components.Analyzers": "6.0.15"
         },
         "compile": {
           "lib/net6.0/Microsoft.AspNetCore.Components.dll": {
@@ -49,7 +49,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Analyzers/6.0.16": {
+      "Microsoft.AspNetCore.Components.Analyzers/6.0.15": {
         "type": "package",
         "build": {
           "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
@@ -72,10 +72,10 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Forms/6.0.16": {
+      "Microsoft.AspNetCore.Components.Forms/6.0.15": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "6.0.16"
+          "Microsoft.AspNetCore.Components": "6.0.15"
         },
         "compile": {
           "lib/net6.0/Microsoft.AspNetCore.Components.Forms.dll": {
@@ -88,13 +88,13 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Web/6.0.16": {
+      "Microsoft.AspNetCore.Components.Web/6.0.15": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "6.0.16",
-          "Microsoft.AspNetCore.Components.Forms": "6.0.16",
+          "Microsoft.AspNetCore.Components": "6.0.15",
+          "Microsoft.AspNetCore.Components.Forms": "6.0.15",
           "Microsoft.Extensions.DependencyInjection": "6.0.1",
-          "Microsoft.JSInterop": "6.0.16",
+          "Microsoft.JSInterop": "6.0.15",
           "System.IO.Pipelines": "6.0.3"
         },
         "compile": {
@@ -137,7 +137,7 @@
           "build/Microsoft.AspNetCore.Components.WebAssembly.DevServer.targets": {}
         }
       },
-      "Microsoft.AspNetCore.Metadata/6.0.16": {
+      "Microsoft.AspNetCore.Metadata/6.0.15": {
         "type": "package",
         "compile": {
           "lib/net6.0/Microsoft.AspNetCore.Metadata.dll": {
@@ -503,7 +503,7 @@
           }
         }
       },
-      "Microsoft.JSInterop/6.0.16": {
+      "Microsoft.JSInterop/6.0.15": {
         "type": "package",
         "compile": {
           "lib/net6.0/Microsoft.JSInterop.dll": {
@@ -1151,42 +1151,6 @@
           }
         }
       },
-      "Toolbelt.Blazor.HttpClientInterceptor/10.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Components.WebAssembly": "3.2.0-preview2.20160.5"
-        },
-        "compile": {
-          "lib/netstandard2.1/Toolbelt.Blazor.HttpClientInterceptor.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.1/Toolbelt.Blazor.HttpClientInterceptor.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "BlazorClientHelper/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/BlazorClientHelper.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BlazorClientHelper.dll": {}
-        }
-      },
-      "BlazorMenuCommon/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/BlazorMenuCommon.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BlazorMenuCommon.dll": {}
-        }
-      },
       "GFF00900COMMON/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -1201,7 +1165,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "BlazorClientHelper": "1.0.0",
           "GFF00900COMMON": "1.0.0",
           "GFF00900Model": "1.0.0",
           "Microsoft.AspNetCore.Components.Web": "6.0.15"
@@ -1243,7 +1206,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "BlazorClientHelper": "1.0.0",
           "GFF00900FRONT": "1.0.0",
           "GSM02000FrontResources": "1.0.0",
           "GSM02000Model": "1.0.0",
@@ -1279,19 +1241,6 @@
         },
         "runtime": {
           "bin/placeholder/GSM02000Model.dll": {}
-        }
-      },
-      "GSM03000Front/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.Components.Web": "6.0.16"
-        },
-        "compile": {
-          "bin/placeholder/GSM03000Front.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GSM03000Front.dll": {}
         }
       },
       "GSM05000Common/1.0.0": {
@@ -1383,10 +1332,10 @@
           "lib/net6.0/Blazored.LocalStorage.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Authorization/6.0.16": {
+      "Microsoft.AspNetCore.Authorization/6.0.15": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Metadata": "6.0.16",
+          "Microsoft.AspNetCore.Metadata": "6.0.15",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.3",
           "Microsoft.Extensions.Options": "6.0.0"
         },
@@ -1401,11 +1350,11 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components/6.0.16": {
+      "Microsoft.AspNetCore.Components/6.0.15": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Authorization": "6.0.16",
-          "Microsoft.AspNetCore.Components.Analyzers": "6.0.16"
+          "Microsoft.AspNetCore.Authorization": "6.0.15",
+          "Microsoft.AspNetCore.Components.Analyzers": "6.0.15"
         },
         "compile": {
           "lib/net6.0/Microsoft.AspNetCore.Components.dll": {
@@ -1418,7 +1367,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Analyzers/6.0.16": {
+      "Microsoft.AspNetCore.Components.Analyzers/6.0.15": {
         "type": "package",
         "build": {
           "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
@@ -1441,10 +1390,10 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Forms/6.0.16": {
+      "Microsoft.AspNetCore.Components.Forms/6.0.15": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "6.0.16"
+          "Microsoft.AspNetCore.Components": "6.0.15"
         },
         "compile": {
           "lib/net6.0/Microsoft.AspNetCore.Components.Forms.dll": {
@@ -1457,13 +1406,13 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Web/6.0.16": {
+      "Microsoft.AspNetCore.Components.Web/6.0.15": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "6.0.16",
-          "Microsoft.AspNetCore.Components.Forms": "6.0.16",
+          "Microsoft.AspNetCore.Components": "6.0.15",
+          "Microsoft.AspNetCore.Components.Forms": "6.0.15",
           "Microsoft.Extensions.DependencyInjection": "6.0.1",
-          "Microsoft.JSInterop": "6.0.16",
+          "Microsoft.JSInterop": "6.0.15",
           "System.IO.Pipelines": "6.0.3"
         },
         "compile": {
@@ -1506,7 +1455,7 @@
           "build/Microsoft.AspNetCore.Components.WebAssembly.DevServer.targets": {}
         }
       },
-      "Microsoft.AspNetCore.Metadata/6.0.16": {
+      "Microsoft.AspNetCore.Metadata/6.0.15": {
         "type": "package",
         "compile": {
           "lib/net6.0/Microsoft.AspNetCore.Metadata.dll": {
@@ -1872,7 +1821,7 @@
           }
         }
       },
-      "Microsoft.JSInterop/6.0.16": {
+      "Microsoft.JSInterop/6.0.15": {
         "type": "package",
         "compile": {
           "lib/net6.0/Microsoft.JSInterop.dll": {
@@ -2624,42 +2573,6 @@
           }
         }
       },
-      "Toolbelt.Blazor.HttpClientInterceptor/10.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Components.WebAssembly": "3.2.0-preview2.20160.5"
-        },
-        "compile": {
-          "lib/netstandard2.1/Toolbelt.Blazor.HttpClientInterceptor.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.1/Toolbelt.Blazor.HttpClientInterceptor.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "BlazorClientHelper/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/BlazorClientHelper.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BlazorClientHelper.dll": {}
-        }
-      },
-      "BlazorMenuCommon/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/BlazorMenuCommon.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BlazorMenuCommon.dll": {}
-        }
-      },
       "GFF00900COMMON/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -2674,7 +2587,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "BlazorClientHelper": "1.0.0",
           "GFF00900COMMON": "1.0.0",
           "GFF00900Model": "1.0.0",
           "Microsoft.AspNetCore.Components.Web": "6.0.15"
@@ -2716,7 +2628,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "BlazorClientHelper": "1.0.0",
           "GFF00900FRONT": "1.0.0",
           "GSM02000FrontResources": "1.0.0",
           "GSM02000Model": "1.0.0",
@@ -2752,19 +2663,6 @@
         },
         "runtime": {
           "bin/placeholder/GSM02000Model.dll": {}
-        }
-      },
-      "GSM03000Front/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.Components.Web": "6.0.16"
-        },
-        "compile": {
-          "bin/placeholder/GSM03000Front.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GSM03000Front.dll": {}
         }
       },
       "GSM05000Common/1.0.0": {
@@ -2860,10 +2758,10 @@
         "lib/netstandard2.1/Blazored.LocalStorage.dll"
       ]
     },
-    "Microsoft.AspNetCore.Authorization/6.0.16": {
-      "sha512": "cH4jU2xuNptO6HXl2gyF/+lWvIOLXj53x8YPPLQ9vcvSDJwZmdI5+l8MXm/Yk31EI626KwWJr4hxbfZiPw3WhQ==",
+    "Microsoft.AspNetCore.Authorization/6.0.15": {
+      "sha512": "STjQZVKTwbvwKJXR5agYUOgDbi2ZOYtFgRVnVOWZFD+4VxEOgNrP6MWsur3v9jiM0gRCGxczRCB6M65byJ8L+w==",
       "type": "package",
-      "path": "microsoft.aspnetcore.authorization/6.0.16",
+      "path": "microsoft.aspnetcore.authorization/6.0.15",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2875,14 +2773,14 @@
         "lib/net6.0/Microsoft.AspNetCore.Authorization.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.xml",
-        "microsoft.aspnetcore.authorization.6.0.16.nupkg.sha512",
+        "microsoft.aspnetcore.authorization.6.0.15.nupkg.sha512",
         "microsoft.aspnetcore.authorization.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components/6.0.16": {
-      "sha512": "AB/AKDLXqdTpA3qIFOgjlfZ2gufGTIiVxLOLURbKkj9goNUWBEZXLM3eqa1XyUL+QNU11D5gANT6V9UzYeZ9Iw==",
+    "Microsoft.AspNetCore.Components/6.0.15": {
+      "sha512": "IEzta5yOeq558iB1e442vfOjGh9F6/yTYCrvgQjSldrOjplSmtunnHE8v0tJwZTk07PlxP4jeGJOo81f+4b5kw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components/6.0.16",
+      "path": "microsoft.aspnetcore.components/6.0.15",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2890,14 +2788,14 @@
         "THIRD-PARTY-NOTICES.txt",
         "lib/net6.0/Microsoft.AspNetCore.Components.dll",
         "lib/net6.0/Microsoft.AspNetCore.Components.xml",
-        "microsoft.aspnetcore.components.6.0.16.nupkg.sha512",
+        "microsoft.aspnetcore.components.6.0.15.nupkg.sha512",
         "microsoft.aspnetcore.components.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components.Analyzers/6.0.16": {
-      "sha512": "p4imFdqu/RFa3sX5H579SdfnkKizdZ+Jg14psxgJ9Oaa2Mo1VM/RbcatZrf/PEP32ofi3WBWXgvzdNxF6FPyeg==",
+    "Microsoft.AspNetCore.Components.Analyzers/6.0.15": {
+      "sha512": "SY3lpvgNeGiCHbBi+B8yIB/LhfvXUtXdHLEasFf+ervZ0qEaGyN+qF92Xk70rVpmXZrK3bxAtr1Fez2ufepU6w==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components.analyzers/6.0.16",
+      "path": "microsoft.aspnetcore.components.analyzers/6.0.15",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2906,7 +2804,7 @@
         "analyzers/dotnet/cs/Microsoft.AspNetCore.Components.Analyzers.dll",
         "build/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
         "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
-        "microsoft.aspnetcore.components.analyzers.6.0.16.nupkg.sha512",
+        "microsoft.aspnetcore.components.analyzers.6.0.15.nupkg.sha512",
         "microsoft.aspnetcore.components.analyzers.nuspec"
       ]
     },
@@ -2925,10 +2823,10 @@
         "microsoft.aspnetcore.components.authorization.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components.Forms/6.0.16": {
-      "sha512": "nPi3GkXKy/sbuH0pKumKuJljcsG9c7yqb9gqsIy6YPdAQOhSyPUIjIeVS7WFqLqCrPQRaouT34m6m0efLYevxg==",
+    "Microsoft.AspNetCore.Components.Forms/6.0.15": {
+      "sha512": "eYn6YId3ImDjkL0Rleno5bNf131IQVfa4p0XajJYfVfXoReQqHqJFQOOLaKboObXFcbLtR+5zTTH9yc7SN1HSA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components.forms/6.0.16",
+      "path": "microsoft.aspnetcore.components.forms/6.0.15",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2936,14 +2834,14 @@
         "THIRD-PARTY-NOTICES.txt",
         "lib/net6.0/Microsoft.AspNetCore.Components.Forms.dll",
         "lib/net6.0/Microsoft.AspNetCore.Components.Forms.xml",
-        "microsoft.aspnetcore.components.forms.6.0.16.nupkg.sha512",
+        "microsoft.aspnetcore.components.forms.6.0.15.nupkg.sha512",
         "microsoft.aspnetcore.components.forms.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components.Web/6.0.16": {
-      "sha512": "k7wdV85awVY+BMKhdrUYan/GeOrJyETKHgot96kk2jS3Fk/qMHGmL14Y0juEgwJIT/zDjIPGQRYI0Dd3of5SSQ==",
+    "Microsoft.AspNetCore.Components.Web/6.0.15": {
+      "sha512": "nRqJv7KTc+uSgbfBfGAfQyQB4W2st+DpTFygNDnu1C+7TLSIT7rLI/VACraHimXPmCRkB0gFuTz1mKPbVylKSg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components.web/6.0.16",
+      "path": "microsoft.aspnetcore.components.web/6.0.15",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2951,7 +2849,7 @@
         "THIRD-PARTY-NOTICES.txt",
         "lib/net6.0/Microsoft.AspNetCore.Components.Web.dll",
         "lib/net6.0/Microsoft.AspNetCore.Components.Web.xml",
-        "microsoft.aspnetcore.components.web.6.0.16.nupkg.sha512",
+        "microsoft.aspnetcore.components.web.6.0.15.nupkg.sha512",
         "microsoft.aspnetcore.components.web.nuspec"
       ]
     },
@@ -3094,10 +2992,10 @@
         "tools/x86/aspnetcorev2_inprocess.dll"
       ]
     },
-    "Microsoft.AspNetCore.Metadata/6.0.16": {
-      "sha512": "nXuClg3284DKBwVp6Dfai+tVDLsqkOMB87mPNocCLjSlgfYRBnf0XpdrJCHKmAipabG75S2HGhUjawYEHJKhVA==",
+    "Microsoft.AspNetCore.Metadata/6.0.15": {
+      "sha512": "J1+dXw+8nI/FZ5RO7eKWJcBDC2ywCns1sbhk9f+RT1QjLqH7GLGHDHUpYlEy59Lf0DBZT7PHQzTeq9ZKAPk8yQ==",
       "type": "package",
-      "path": "microsoft.aspnetcore.metadata/6.0.16",
+      "path": "microsoft.aspnetcore.metadata/6.0.15",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3109,7 +3007,7 @@
         "lib/net6.0/Microsoft.AspNetCore.Metadata.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.xml",
-        "microsoft.aspnetcore.metadata.6.0.16.nupkg.sha512",
+        "microsoft.aspnetcore.metadata.6.0.15.nupkg.sha512",
         "microsoft.aspnetcore.metadata.nuspec"
       ]
     },
@@ -3672,10 +3570,10 @@
         "microsoft.identitymodel.tokens.nuspec"
       ]
     },
-    "Microsoft.JSInterop/6.0.16": {
-      "sha512": "57qernFFApJ+CsA/Mn53TJ9QSreucgfyf91ESBwsIifaG6o9hN56y4VsJ9P0RFbNRbpz+KstKUj/U1HK5tqiGQ==",
+    "Microsoft.JSInterop/6.0.15": {
+      "sha512": "0pGIlgMfwFKOsaxCdGNIlftIUbWW8FdF5EYiewYfENgArmlHfwWHF629M14Hv6+6KsOnnKjulN8/VxdTov27Eg==",
       "type": "package",
-      "path": "microsoft.jsinterop/6.0.16",
+      "path": "microsoft.jsinterop/6.0.15",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3683,7 +3581,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net6.0/Microsoft.JSInterop.dll",
         "lib/net6.0/Microsoft.JSInterop.xml",
-        "microsoft.jsinterop.6.0.16.nupkg.sha512",
+        "microsoft.jsinterop.6.0.15.nupkg.sha512",
         "microsoft.jsinterop.nuspec"
       ]
     },
@@ -5979,31 +5877,6 @@
         "telerik.zip.nuspec"
       ]
     },
-    "Toolbelt.Blazor.HttpClientInterceptor/10.1.0": {
-      "sha512": "rHJzJzBm3rYchA2Lzb7Fr46Xspr2cbE4p9jIYvj60rl+x5+5oiOh3QT2Cmn/u8/zuQ914k3AepH/FdFS1UfDew==",
-      "type": "package",
-      "path": "toolbelt.blazor.httpclientinterceptor/10.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "lib/netstandard2.1/Toolbelt.Blazor.HttpClientInterceptor.dll",
-        "lib/netstandard2.1/Toolbelt.Blazor.HttpClientInterceptor.xml",
-        "nupkg-icon.png",
-        "toolbelt.blazor.httpclientinterceptor.10.1.0.nupkg.sha512",
-        "toolbelt.blazor.httpclientinterceptor.nuspec"
-      ]
-    },
-    "BlazorClientHelper/1.0.0": {
-      "type": "project",
-      "path": "../BlazorClientHelper/BlazorClientHelper.csproj",
-      "msbuildProject": "../BlazorClientHelper/BlazorClientHelper.csproj"
-    },
-    "BlazorMenuCommon/1.0.0": {
-      "type": "project",
-      "path": "../BlazorMenuCommon/BlazorMenuCommon.vbproj",
-      "msbuildProject": "../BlazorMenuCommon/BlazorMenuCommon.vbproj"
-    },
     "GFF00900COMMON/1.0.0": {
       "type": "project",
       "path": "../../../../BS Shared Form/SOURCE/BACK/GFF00900COMMON/GFF00900COMMON.csproj",
@@ -6039,11 +5912,6 @@
       "path": "../../FRONT/GSM02000Model/GSM02000Model.csproj",
       "msbuildProject": "../../FRONT/GSM02000Model/GSM02000Model.csproj"
     },
-    "GSM03000Front/1.0.0": {
-      "type": "project",
-      "path": "../../FRONT/GSM03000Front/GSM03000Front.csproj",
-      "msbuildProject": "../../FRONT/GSM03000Front/GSM03000Front.csproj"
-    },
     "GSM05000Common/1.0.0": {
       "type": "project",
       "path": "../../COMMON/GS/GSM05000Common/GSM05000Common.csproj",
@@ -6077,11 +5945,8 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "BlazorClientHelper >= 1.0.0",
-      "BlazorMenuCommon >= 1.0.0",
       "Blazored.LocalStorage >= 4.2.0",
       "GSM02000Front >= 1.0.0",
-      "GSM03000Front >= 1.0.0",
       "GSM05000Front >= 1.0.0",
       "Microsoft.AspNetCore.Components.Authorization >= 6.0.14",
       "Microsoft.AspNetCore.Components.WebAssembly >= 6.0.14",
@@ -6089,8 +5954,7 @@
       "Microsoft.Extensions.Http >= 7.0.0",
       "Newtonsoft.Json >= 13.0.1",
       "System.IdentityModel.Tokens.Jwt >= 6.23.1",
-      "Telerik.UI.for.Blazor >= 3.7.0",
-      "Toolbelt.Blazor.HttpClientInterceptor >= 10.1.0"
+      "Telerik.UI.for.Blazor >= 3.7.0"
     ]
   },
   "packageFolders": {
@@ -6130,17 +5994,8 @@
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM02000Front\\GSM02000Front.csproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM02000Front\\GSM02000Front.csproj"
             },
-            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM03000Front\\GSM03000Front.csproj": {
-              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM03000Front\\GSM03000Front.csproj"
-            },
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM05000Front\\GSM05000Front.csproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM05000Front\\GSM05000Front.csproj"
-            },
-            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj": {
-              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj"
-            },
-            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
-              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj"
             }
           }
         }
@@ -6187,10 +6042,6 @@
           "Telerik.UI.for.Blazor": {
             "target": "Package",
             "version": "[3.7.0, )"
-          },
-          "Toolbelt.Blazor.HttpClientInterceptor": {
-            "target": "Package",
-            "version": "[10.1.0, )"
           }
         },
         "imports": [

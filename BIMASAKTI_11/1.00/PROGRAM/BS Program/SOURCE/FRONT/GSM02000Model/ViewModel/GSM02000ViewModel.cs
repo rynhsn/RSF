@@ -79,13 +79,12 @@ namespace GSM02000Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        public async Task GetRoundingMode(string poUserLanguage)
+        public async Task GetRoundingMode()
         {
             var loEx = new R_Exception();
 
             try
             {
-                R_FrontContext.R_SetStreamingContext(ContextConstant.CUSER_LANGUAGE, poUserLanguage);
                 var loReturn = await _GSM02000Model.GetRoundingModeAsync();
                 RoundingModeList = loReturn.Data;
             }

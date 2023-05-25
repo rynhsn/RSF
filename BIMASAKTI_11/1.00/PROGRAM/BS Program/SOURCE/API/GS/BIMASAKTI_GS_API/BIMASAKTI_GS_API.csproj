@@ -22,6 +22,7 @@
     <ProjectReference Include="..\..\..\SERVICE\GS\BlazorMenuService\BlazorMenuService.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GS\GSM00100Service\GSM00100Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GS\GSM02000Service\GSM02000Service.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GS\GSM05000Sevice\GSM05000Sevice.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GS\R_SecurityPolicyService\R_SecurityPolicyService.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GS\R_SecurityTokenService\R_SecurityTokenService.csproj" />
   </ItemGroup>

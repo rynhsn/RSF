@@ -36,10 +36,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/4. Work/1. SOURCECODE/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/Menu/BlazorMenu/Shared/MainBody.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5Cb2R5LnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/4. Work/1. SOURCECODE/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/Menu/BlazorMenu/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -55,6 +51,10 @@ build_metadata.AdditionalFiles.CssScope =
 [D:/4. Work/1. SOURCECODE/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/Menu/BlazorMenu/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
+
+[D:/4. Work/1. SOURCECODE/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/Menu/BlazorMenu/Shared/MainBody.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5Cb2R5LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-cg252p0773
 
 [D:/4. Work/1. SOURCECODE/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/Menu/BlazorMenu/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=

@@ -2,8 +2,9 @@
 using Blazored.LocalStorage;
 using BlazorMenu.Authentication;
 using BlazorMenu.Constants.Storage;
-using BlazorMenu.Models;
 using BlazorMenu.Services;
+using BlazorMenu.Shared.Tabs;
+using BlazorMenuModel;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using R_AuthenticationEnumAndInterface;
@@ -24,13 +25,15 @@ namespace BlazorMenu.Pages.Authentication
         [Inject] private R_ITokenRepository _tokenRepository { get; set; }
         [Inject] private ILocalStorageService _localStorageService { get; set; }
         [Inject] private R_IMenuService _menuService { get; set; }
-        [Inject] private R_ILoginService _loginService { get; set; }
+        //[Inject] private R_ILoginService _loginService { get; set; }
         [Inject] private IClientHelper _clientHelper { get; set; }
         [Inject] public R_MessageBoxService R_MessageBox { get; set; }
 
         private LoginModel _loginModel = new LoginModel();
+
         R_SecurityPolicyClient loClientWrapper = new R_SecurityPolicyClient();
-        [Inject] R_ISymmetricJSProvider _encryptProvider { get; set; }
+        [Inject] private R_ISymmetricJSProvider _encryptProvider { get; set; }
+        [Inject] private MenuTabSetTool MenuTabSetTool { get; set; }
 
         protected override async Task OnParametersSetAsync()
         {
@@ -45,8 +48,6 @@ namespace BlazorMenu.Pages.Authentication
                 var loPolicyParameter = await loClientWrapper.R_GetSecurityPolicyParameterAsync();
 
                 _loginModel.CompanyId = "rcd";
-                //_loginModel.UserId = "fmc";
-                //_loginModel.Password = "kcGefWZO";
                 _loginModel.UserId = "rhc";
                 _loginModel.Password = "2023003CD@Realta";
             }
@@ -83,7 +84,8 @@ namespace BlazorMenu.Pages.Authentication
 
                     await _localStorageService.SetItemAsStringAsync(StorageConstants.TokenId, loPolicyLogin.Data.CTOKEN_ID);
 
-                    var loLogin = await _loginService.Login(_loginModel);
+                    R_LoginViewModel _loginViewModel = new R_LoginViewModel();
+                    var loLogin = await _loginViewModel.LoginAsync(_loginModel);
 
                     _clientHelper.Set_UserId(loLogin.CUSER_ID);
                     _clientHelper.Set_UserName(loLogin.CUSER_NAME);
@@ -135,6 +137,8 @@ namespace BlazorMenu.Pages.Authentication
                     await _localStorageService.SetItemAsStringAsync(StorageConstants.Culture, loLogin.CCULTURE_ID);
                     if (!loLogin.CCULTURE_ID.Equals("en", StringComparison.InvariantCultureIgnoreCase))
                         _navigationManager.NavigateTo(_navigationManager.Uri, true);
+
+                    MenuTabSetTool.Tabs.Clear();
 
                     await ((BlazorMenuAuthenticationStateProvider)_stateProvider).MarkUserAsAuthenticated();
                 }

@@ -138,6 +138,8 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             // loConn = loDb.GetConnection("BimasaktiConnectionString");
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
+            
+            R_ExternalException.R_SP_Init_Exception(loConn);
 
             lcQuery = "RSP_GS_MAINTAIN_SALES_TAX";
             loCmd.CommandType = CommandType.StoredProcedure;
@@ -155,7 +157,16 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             loDb.R_AddCommandParameter(loCmd, "@CGLACCOUNT_NO", DbType.String, 20, poEntity.CGLACCOUNT_NO);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 10, poEntity.CUSER_ID);
 
-            loDb.SqlExecNonQuery(loConn, loCmd, true);
+            try
+            {
+                loDb.SqlExecNonQuery(loConn, loCmd, false);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
         }
         catch (Exception ex)
         {
@@ -177,7 +188,8 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         try
         {
             loDb = new R_Db();
-            loConn = loDb.GetConnection("BimasaktiConnectionString");
+            // loConn = loDb.GetConnection("BimasaktiConnectionString");
+            loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
             lcQuery = "RSP_GS_GET_SALES_TAX_LIST";
@@ -245,7 +257,8 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         try
         {
             loDb = new R_Db();
-            loConn = loDb.GetConnection("BimasaktiConnectionString");
+            // loConn = loDb.GetConnection("BimasaktiConnectionString");
+            loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
             lcQuery = "RSP_GS_ACTIVE_INACTIVE_SALES_TAX";

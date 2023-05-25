@@ -1,19 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "qnaCidgzsTpKxpSpRLprFmc5iEbDuNf2KKomjlQvSMHdTMvoUfZccqnSFOmOXRGW4iNpppoNXyQdkjb5JUFcsw==",
+  "dgSpecHash": "EW6x5vLY6k4pSFBm8TeuOhdNe8lansJWM8agjnr1vdJTWzBMbLwZE6Me0z0fSWoZ8oVbfmp8RQK8Tf17Y42AxQ==",
   "success": true,
   "projectFilePath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\blazored.localstorage\\4.2.0\\blazored.localstorage.4.2.0.nupkg.sha512",
-    "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.16\\microsoft.aspnetcore.authorization.6.0.16.nupkg.sha512",
-    "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.aspnetcore.components\\6.0.16\\microsoft.aspnetcore.components.6.0.16.nupkg.sha512",
-    "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\6.0.16\\microsoft.aspnetcore.components.analyzers.6.0.16.nupkg.sha512",
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.15\\microsoft.aspnetcore.authorization.6.0.15.nupkg.sha512",
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.aspnetcore.components\\6.0.15\\microsoft.aspnetcore.components.6.0.15.nupkg.sha512",
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\6.0.15\\microsoft.aspnetcore.components.analyzers.6.0.15.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.aspnetcore.components.authorization\\6.0.14\\microsoft.aspnetcore.components.authorization.6.0.14.nupkg.sha512",
-    "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\6.0.16\\microsoft.aspnetcore.components.forms.6.0.16.nupkg.sha512",
-    "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.aspnetcore.components.web\\6.0.16\\microsoft.aspnetcore.components.web.6.0.16.nupkg.sha512",
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\6.0.15\\microsoft.aspnetcore.components.forms.6.0.15.nupkg.sha512",
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.aspnetcore.components.web\\6.0.15\\microsoft.aspnetcore.components.web.6.0.15.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly\\6.0.14\\microsoft.aspnetcore.components.webassembly.6.0.14.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.devserver\\6.0.14\\microsoft.aspnetcore.components.webassembly.devserver.6.0.14.nupkg.sha512",
-    "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.aspnetcore.metadata\\6.0.16\\microsoft.aspnetcore.metadata.6.0.16.nupkg.sha512",
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.aspnetcore.metadata\\6.0.15\\microsoft.aspnetcore.metadata.6.0.15.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.csharp\\4.6.0\\microsoft.csharp.4.6.0.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.0\\microsoft.extensions.configuration.6.0.0.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
@@ -34,7 +34,7 @@
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\6.23.1\\microsoft.identitymodel.jsonwebtokens.6.23.1.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.identitymodel.logging\\6.23.1\\microsoft.identitymodel.logging.6.23.1.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.23.1\\microsoft.identitymodel.tokens.6.23.1.nupkg.sha512",
-    "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.jsinterop\\6.0.16\\microsoft.jsinterop.6.0.16.nupkg.sha512",
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.jsinterop\\6.0.15\\microsoft.jsinterop.6.0.15.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.jsinterop.webassembly\\6.0.14\\microsoft.jsinterop.webassembly.6.0.14.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
@@ -85,8 +85,7 @@
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\telerik.documents.spreadsheetstreaming\\2022.3.1108\\telerik.documents.spreadsheetstreaming.2022.3.1108.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\telerik.recurrence\\0.2.0\\telerik.recurrence.0.2.0.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\telerik.ui.for.blazor\\3.7.0\\telerik.ui.for.blazor.3.7.0.nupkg.sha512",
-    "C:\\Users\\riyan.codeid\\.nuget\\packages\\telerik.zip\\2022.3.1108\\telerik.zip.2022.3.1108.nupkg.sha512",
-    "C:\\Users\\riyan.codeid\\.nuget\\packages\\toolbelt.blazor.httpclientinterceptor\\10.1.0\\toolbelt.blazor.httpclientinterceptor.10.1.0.nupkg.sha512"
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\telerik.zip\\2022.3.1108\\telerik.zip.2022.3.1108.nupkg.sha512"
   ],
   "logs": []
 }

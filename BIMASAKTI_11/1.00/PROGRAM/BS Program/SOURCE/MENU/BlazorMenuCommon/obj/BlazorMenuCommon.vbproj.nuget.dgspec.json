@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {}
+    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {}
   },
   "projects": {
-    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
+    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorMenuCommon\\BlazorMenuCommon.vbproj",
+        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj",
         "projectName": "BlazorMenuCommon",
-        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorMenuCommon\\BlazorMenuCommon.vbproj",
+        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj",
         "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\MENU\\BlazorMenuCommon\\obj\\",
+        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

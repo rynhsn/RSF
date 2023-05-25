@@ -2881,6 +2881,44 @@
           "bin/placeholder/GSM02000Service.dll": {}
         }
       },
+      "GSM05000Back/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GSM05000Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GSM05000Back.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM05000Back.dll": {}
+        }
+      },
+      "GSM05000Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GSM05000Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM05000Common.dll": {}
+        }
+      },
+      "GSM05000Sevice/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GSM05000Back": "1.0.0",
+          "GSM05000Common": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
+        },
+        "compile": {
+          "bin/placeholder/GSM05000Sevice.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM05000Sevice.dll": {}
+        }
+      },
       "Lookup_GSBACK/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -8512,6 +8550,21 @@
       "path": "../../../SERVICE/GS/GSM02000Service/GSM02000Service.csproj",
       "msbuildProject": "../../../SERVICE/GS/GSM02000Service/GSM02000Service.csproj"
     },
+    "GSM05000Back/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GSM05000Back/GSM05000Back.csproj",
+      "msbuildProject": "../../../BACK/GS/GSM05000Back/GSM05000Back.csproj"
+    },
+    "GSM05000Common/1.0.0": {
+      "type": "project",
+      "path": "../../../COMMON/GS/GSM05000Common/GSM05000Common.csproj",
+      "msbuildProject": "../../../COMMON/GS/GSM05000Common/GSM05000Common.csproj"
+    },
+    "GSM05000Sevice/1.0.0": {
+      "type": "project",
+      "path": "../../../SERVICE/GS/GSM05000Sevice/GSM05000Sevice.csproj",
+      "msbuildProject": "../../../SERVICE/GS/GSM05000Sevice/GSM05000Sevice.csproj"
+    },
     "Lookup_GSBACK/1.0.0": {
       "type": "project",
       "path": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GSBACK/Lookup_GSBACK.csproj",
@@ -8574,6 +8627,7 @@
       "GFF00900SERVICES >= 1.0.0",
       "GSM00100Service >= 1.0.0",
       "GSM02000Service >= 1.0.0",
+      "GSM05000Sevice >= 1.0.0",
       "Lookup_GSSERVICES >= 1.0.0",
       "R_SecurityPolicyService >= 1.0.0",
       "R_SecurityTokenService >= 1.0.0",
@@ -8624,6 +8678,9 @@
             },
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02000Service\\GSM02000Service.csproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02000Service\\GSM02000Service.csproj"
+            },
+            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Sevice\\GSM05000Sevice.csproj": {
+              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Sevice\\GSM05000Sevice.csproj"
             },
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj"
