@@ -36,7 +36,7 @@ public partial class GSM02000 : R_Page
             loEx.Add(ex);
         }
 
-        R_DisplayException(loEx);
+        loEx.ThrowExceptionIfErrors();
     }
 
     private async Task Grid_Display(R_DisplayEventArgs eventArgs)
@@ -60,15 +60,12 @@ public partial class GSM02000 : R_Page
                     _GSM02000ViewModel.ActiveInactiveEntity.LACTIVE = true;
                 }
             }
-
-            // eventArgs.ListEntityResult = _GSM02000ViewModel.GridList;
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
         }
-
-        R_DisplayException(loEx);
+        loEx.ThrowExceptionIfErrors();
     }
 
     private async Task Grid_R_ServiceGetListRecord(R_ServiceGetListRecordEventArgs arg)
@@ -84,8 +81,7 @@ public partial class GSM02000 : R_Page
         {
             loEx.Add(ex);
         }
-
-        R_DisplayException(loEx);
+        loEx.ThrowExceptionIfErrors();
     }
 
     private async Task Conductor_ServiceGetRecord(R_ServiceGetRecordEventArgs arg)
@@ -218,7 +214,7 @@ public partial class GSM02000 : R_Page
         R_Exception loException = new R_Exception();
         try
         {
-            bool result = (bool)arg.Result;
+            var result = (bool)arg.Result;
             if (result)
                 await _GSM02000ViewModel.SetActiveInactive();
         }

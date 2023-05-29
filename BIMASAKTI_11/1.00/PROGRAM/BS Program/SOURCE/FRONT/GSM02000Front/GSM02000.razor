@@ -155,7 +155,7 @@
 
         <R_ItemLayout Class="col-lg">
             <R_ItemLayout xs="3">
-                <R_PopupButton R_After_Open_Popup="@AfterOpenActiveInactive" R_Before_Open_Popup="@BeforeOpenActiveInactive">@loLabel</R_PopupButton>
+                <R_Popup R_After_Open_Popup="@AfterOpenActiveInactive" R_Before_Open_Popup="@BeforeOpenActiveInactive">@loLabel</R_Popup>
             </R_ItemLayout>
         </R_ItemLayout>
 
@@ -179,7 +179,4 @@
              R_SetAdd="@R_SetAdd"
              R_SetEdit="@R_SetEdit"
              R_Display="@Grid_Display"
-             @* R_SetHasData="@R_SetHasData" *@
-             @* R_AfterAdd="Conductor_AfterAdd" *@
-             @* R_Validation="@Conductor_Validation" *@
-             @* R_ConvertToGridEntity="@R_ConvertToGridEntity" *@/>
+             />

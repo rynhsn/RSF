@@ -3,7 +3,6 @@ using GSM05000Model.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
-using R_BlazorFrontEnd.Controls.Grid.Columns;
 using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
@@ -22,6 +21,8 @@ public partial class GSM05000 : R_Page
     private R_ConductorGrid _conductorRefNumbering;
     private R_Grid<GSM05000NumberingGridDTO> _gridRefNumbering;
 
+    private bool GroupIncremental;
+    private bool GroupApproval;
     protected override async Task R_Init_From_Master(object poParam)
     {
         var loEx = new R_Exception();
@@ -59,6 +60,42 @@ public partial class GSM05000 : R_Page
             loEx.Add(ex);
         }
 
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private async Task IncrementalCheck(object b)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            if (_conductorRef.R_ConductorMode == R_eConductorMode.Edit)
+            {
+                GroupIncremental = (bool)b;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        loEx.ThrowExceptionIfErrors();
+    }
+    
+    private async Task ApprovalCheck(object b)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            if (_conductorRef.R_ConductorMode == R_eConductorMode.Edit)
+            {
+                GroupApproval = (bool)b;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
         loEx.ThrowExceptionIfErrors();
     }
 
@@ -156,8 +193,6 @@ public partial class GSM05000 : R_Page
 
     #region Tab Numbering
 
-    private R_GridLookupColumn llDeptCode;
-
     private async Task Grid_GetListNumbering(R_ServiceGetListRecordEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -195,8 +230,6 @@ public partial class GSM05000 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    #endregion
-
     private async Task Conductor_AfterAddNumbering(R_AfterAddEventArgs arg)
     {
         var ldYear = DateTime.Now;
@@ -206,11 +239,6 @@ public partial class GSM05000 : R_Page
             : ldYear.Year.ToString("D4");
     }
 
-    private async Task Conductor_SetAddNumbering(R_SetEventArgs arg)
-    {
-        if (_GSM05000NumberingViewModel.HeaderEntity.LDEPT_MODE == false)
-        {
-            llDeptCode.R_EnableAdd = arg.Enable;
-        }
-    }
+    #endregion
+
 }

@@ -37,9 +37,12 @@
 
 <R_StackLayout Row="true" Class="mt-3">
     <R_ItemLayout>
-        <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LINCREMENT_FLAG"
-                    R_ConductorSource="@_conductorRef" R_EnableEdit/>
+        <R_CheckBox OnChanged="IncrementalCheck" 
+                    @bind-Value="_GSM05000ViewModel.Data.LINCREMENT_FLAG"
+                    R_ConductorSource="@_conductorRef" 
+                    R_EnableEdit/>
     </R_ItemLayout>
+    
     <R_ItemLayout Class="col-lg">
         <R_Label>Using Incremental Document Number</R_Label>
     </R_ItemLayout>
@@ -50,7 +53,10 @@
         <R_Label>Sequence</R_Label>
     </R_ItemLayout>
 </R_StackLayout>
-<R_StackLayout Row="true" Class="ms-4 mt-1">
+
+<R_GroupBox Enabled="@GroupIncremental">
+
+<R_StackLayout Row="true" Class="mt-1">
     <R_ItemLayout>
         <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LDEPT_MODE"
                     R_ConductorSource="@_conductorRef"
@@ -80,8 +86,7 @@
     </R_ItemLayout>
 
 </R_StackLayout>
-
-<R_StackLayout Row="true" Class="ms-4 mt-1">
+<R_StackLayout Row="true" Class="mt-1">
     <R_ItemLayout>
         <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LTRANSACTION_MODE"
                     R_ConductorSource="@_conductorRef"
@@ -111,10 +116,8 @@
                           R_EnableEdit/>
     </R_ItemLayout>
 </R_StackLayout>
-
-
 @* Periode Mode *@
-<R_StackLayout Row="true" Class="ms-4 mt-1">
+<R_StackLayout Row="true" Class="mt-1">
     <R_ItemLayout Class="col-lg-2">
         <R_Label>Periode Mode</R_Label>
     </R_ItemLayout>
@@ -150,9 +153,8 @@
                           R_EnableEdit/>
     </R_ItemLayout>
 </R_StackLayout>
-
 @* Year Format *@
-<R_StackLayout Row="true" Class="ms-4 mt-1">
+<R_StackLayout Row="true" Class="mt-1">
     <R_ItemLayout Class="col-lg-2">
         <R_Label>Year Format</R_Label>
     </R_ItemLayout>
@@ -167,9 +169,8 @@
                       R_EnableEdit/>
     </R_ItemLayout>
 </R_StackLayout>
-
 @* Length of Number *@
-<R_StackLayout Row="true" Class="ms-4 mt-1">
+<R_StackLayout Row="true" Class="mt-1">
     <R_ItemLayout Class="col-lg-2">
         <R_Label>Length of Number</R_Label>
     </R_ItemLayout>
@@ -202,9 +203,8 @@
                           R_EnableEdit/>
     </R_ItemLayout>
 </R_StackLayout>
-
 @* Prefix *@
-<R_StackLayout Row="true" Class="ms-4 mt-1">
+<R_StackLayout Row="true" Class="mt-1">
     <R_ItemLayout Class="col-lg-2">
         <R_Label>Prefix</R_Label>
     </R_ItemLayout>
@@ -239,9 +239,8 @@
                           R_EnableEdit/>
     </R_ItemLayout>
 </R_StackLayout>
-
 @* Sufix *@
-<R_StackLayout Row="true" Class="ms-4 mt-1">
+<R_StackLayout Row="true" Class="mt-1">
     <R_ItemLayout Class="col-lg-2">
         <R_Label>Sufix</R_Label>
     </R_ItemLayout>
@@ -256,6 +255,7 @@
         </R_ItemLayout>
     </R_ItemLayout>
 </R_StackLayout>
+</R_GroupBox>
 
 @* Begin::Sample Row *@
 <R_StackLayout Class="mt-3">
@@ -285,14 +285,17 @@
 @* Begin::Using Approval *@
 <R_StackLayout Row="true" Class="mt-5">
     <R_ItemLayout>
-        <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LAPPROVAL_FLAG"
-                    R_ConductorSource="@_conductorRef" R_EnableEdit/>
+        <R_CheckBox OnChanged="ApprovalCheck" 
+                    @bind-Value="_GSM05000ViewModel.Data.LAPPROVAL_FLAG"
+                    R_ConductorSource="@_conductorRef" 
+                    R_EnableEdit/>
     </R_ItemLayout>
     <R_ItemLayout Class="col-lg">
         <R_Label>Using Approval</R_Label>
     </R_ItemLayout>
 </R_StackLayout>
 
+<R_GroupBox Enabled="@GroupApproval" >
 @* Use 3rd party *@
 <R_StackLayout Row="true" Class="ms-4">
     <R_ItemLayout>
@@ -303,7 +306,6 @@
         <R_Label>Using Third Party</R_Label>
     </R_ItemLayout>
 </R_StackLayout>
-
 @* Approval Mode *@
 <R_StackLayout Row="true" Class="ms-4">
     <R_ItemLayout Class="col-lg-2">
@@ -318,8 +320,6 @@
                     R_ConductorSource="@_conductorRef" R_EnableEdit/>
     </R_ItemLayout>
 </R_StackLayout>
-
-
 @* By Dept appr *@
 <R_StackLayout Row="true" Class="ms-4">
     <R_ItemLayout>
@@ -330,7 +330,7 @@
         <R_Label>By Department</R_Label>
     </R_ItemLayout>
 </R_StackLayout>
-
+</R_GroupBox>
 @* Updated by date *@
 <R_StackLayout Row="true" Class="mt-3">
     <R_ItemLayout Class="col-lg-1">
@@ -424,15 +424,15 @@
             <R_CheckBox Value="@_GSM05000NumberingViewModel.HeaderEntity.LDEPT_MODE"
                         Enabled="false"/>
         </R_ItemLayout>
-        
+
         <R_ItemLayout xs="1">
             <R_Label>By Department</R_Label>
         </R_ItemLayout>
-        
+
         <R_ItemLayout>
             <R_Label>Period Mode</R_Label>
         </R_ItemLayout>
-        
+
         <R_ItemLayout xs="2">
             <R_TextBox Value="@_GSM05000NumberingViewModel.HeaderEntity.CPERIOD_MODE_DESCR"
                        Enabled="false"/>
@@ -449,7 +449,7 @@
                     PageSize="20">
                 <R_GridColumns>
                     <R_GridTextColumn FieldName="CPERIOD" HeaderText="Period"/>
-                    <R_GridLookupColumn FieldName="CDEPT_CODE" HeaderText="Department Code" />
+                    <R_GridLookupColumn FieldName="CDEPT_CODE" HeaderText="Department Code"/>
                     <R_GridTextColumn FieldName="CDEPT_NAME" HeaderText="Department Name"/>
                     <R_GridNumericColumn FieldName="ISTART_NUMBER" HeaderText="Starting No" R_EnableAdd/>
                     <R_GridNumericColumn FieldName="ILAST_NUMBER" HeaderText="Last No"/>
@@ -464,7 +464,6 @@
     <R_ConductorGrid @ref="@_conductorRefNumbering"
                      R_ViewModel="@_GSM05000NumberingViewModel"
                      R_ConductorParent="@_conductorRef"
-                     R_AfterAdd="@Conductor_AfterAddNumbering"
-                     />
+                     R_AfterAdd="@Conductor_AfterAddNumbering"/>
 </R_TabStripTab>
 </R_TabStrip>
