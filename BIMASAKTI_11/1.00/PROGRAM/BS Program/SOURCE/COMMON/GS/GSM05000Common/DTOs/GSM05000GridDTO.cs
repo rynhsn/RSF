@@ -3,6 +3,7 @@ namespace GSM05000Common.DTOs
     public class GSM05000GridDTO
     {
         public string CTRANSACTION_CODE { get; set; }
+
         public string CTRANSACTION_NAME { get; set; }
         public string CMODULE_NAME { get; set; }
 

@@ -24,7 +24,6 @@ public class GSM05000Controller : ControllerBase, IGSM05000
             loRtn = new R_ServiceGetRecordResultDTO<GSM05000DTO>();
             
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            // poParameter.Entity.CCOMPANY_ID = "RCD";
             
             loRtn.data = loCls.R_GetRecord(poParameter.Entity);
         }
@@ -85,7 +84,6 @@ public class GSM05000Controller : ControllerBase, IGSM05000
             
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbPar.CLANGUAGE_ID = R_BackGlobalVar.CULTURE_MENU;
-            // loDbPar.CCOMPANY_ID = "RCD";
 
             loCls = new GSM05000Cls();
             loResult = loCls.GetTransactionCodeListDb(loDbPar);
@@ -116,10 +114,6 @@ public class GSM05000Controller : ControllerBase, IGSM05000
             
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbPar.CLANGUAGE_ID = R_BackGlobalVar.CULTURE_MENU;
-            // loDbPar.CLANGUAGE_ID = R_Utility.R_GetContext<string>(GSM05000ContextConstant.CLANGUAGE_ID);
-            
-            // loDbPar.CCOMPANY_ID = "RCD";
-            // loDbPar.CLANGUAGE_ID = "en";
             
             loCls = new GSM05000Cls();
             loResult = loCls.GetDelimiterListDb(loDbPar);

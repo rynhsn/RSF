@@ -10,4 +10,10 @@ namespace GSM05000Common
         GSM05000ListDTO<GSM05000GridDTO> GetTransactionCodeList();
         GSM05000ListDTO<GSM05000DelimiterDTO> GetDelimiterList();
     }
+
+    public interface IGSM05000Numbering : R_IServiceCRUDBase<GSM05000NumberingGridDTO>
+    {
+        GSM05000ListDTO<GSM05000NumberingGridDTO> GetNumberingList();
+        GSM05000NumberingHeaderDTO GetNumberingHeader();
+    }
 }

@@ -2871,15 +2871,17 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "GSM02000Back": "1.0.0",
-          "GSM02000Common": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
+          "GSM02000Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/GSM02000Service.dll": {}
         },
         "runtime": {
           "bin/placeholder/GSM02000Service.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "GSM05000Back/1.0.0": {
         "type": "project",
@@ -2909,15 +2911,17 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "GSM05000Back": "1.0.0",
-          "GSM05000Common": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
+          "GSM05000Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/GSM05000Sevice.dll": {}
         },
         "runtime": {
           "bin/placeholder/GSM05000Sevice.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Lookup_GSBACK/1.0.0": {
         "type": "project",

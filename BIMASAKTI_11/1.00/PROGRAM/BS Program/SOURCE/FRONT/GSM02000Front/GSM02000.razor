@@ -34,7 +34,7 @@
     </R_StackLayout>
 
     <R_StackLayout Row="true">
-        <R_ItemLayout xs="2" Class="col-lg-1">
+        <R_ItemLayout xs="1">
             <R_Label>Tax Id*</R_Label>
         </R_ItemLayout>
         <R_ItemLayout xs="4" Class="col-lg-2">
@@ -61,7 +61,7 @@
     </R_StackLayout>
 
     <R_StackLayout Row="true">
-        <R_ItemLayout xs="2" Class="col-lg-1">
+        <R_ItemLayout Class="col-1">
             <R_Label>Description</R_Label>
         </R_ItemLayout>
 
@@ -74,11 +74,11 @@
     </R_StackLayout>
 
     <R_StackLayout Row="true">
-        <R_ItemLayout xs="2" Class="col-lg-1">
+        <R_ItemLayout Class="col-1">
             <R_Label>Tax %</R_Label>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="4" Class="col-lg-1 me-5">
+        <R_ItemLayout xs="4" Class="col-1 me-5">
             <R_NumericTextBox @bind-Value="@_GSM02000ViewModel.Data.NTAX_PERCENTAGE"
                               R_ConductorSource="@_conductorRef"
                               R_EnableAdd="true"
@@ -87,11 +87,11 @@
                               Max="100"/>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="2" Class="col-lg-1 text-md-end">
+        <R_ItemLayout xs="2" Class="col-1 text-md-end">
             <R_Label>Rounding Mode*</R_Label>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="4" Class="col-lg-1 me-5">
+        <R_ItemLayout xs="4" Class="col-1 me-5">
             <R_ComboBox Data="@_GSM02000ViewModel.RoundingModeList"
                         @bind-Value="@_GSM02000ViewModel.Data.CROUNDING_MODE"
                         ValueField="@nameof(GSM02000RoundingDTO.CCODE)"
