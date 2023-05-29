@@ -13,13 +13,14 @@ namespace GSM05000Model
     {
         private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrl";
         private const string DEFAULT_SERVICEPOINT_NAME = "api/GSM05000";
+        private const string DEFAULT_MODULE = "gs";
 
         public GSM05000Model(
             string pcHttpClientName = DEFAULT_HTTP_NAME,
             string pcRequestServiceEndPoint = DEFAULT_SERVICEPOINT_NAME,
             bool plSendWithContext = true,
             bool plSendWithToken = true) :
-            base(pcHttpClientName, pcRequestServiceEndPoint, plSendWithContext, plSendWithToken)
+            base(pcHttpClientName, pcRequestServiceEndPoint, DEFAULT_MODULE, plSendWithContext, plSendWithToken)
         {
         }
 
@@ -44,6 +45,7 @@ namespace GSM05000Model
                 loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ListDTO<GSM05000GridDTO>>(
                     _RequestServiceEndPoint,
                     nameof(IGSM05000.GetTransactionCodeList),
+                    DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
             }
@@ -68,6 +70,7 @@ namespace GSM05000Model
                 loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ListDTO<GSM05000DelimiterDTO>>(
                     _RequestServiceEndPoint,
                     nameof(IGSM05000.GetDelimiterList),
+                    DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
             }

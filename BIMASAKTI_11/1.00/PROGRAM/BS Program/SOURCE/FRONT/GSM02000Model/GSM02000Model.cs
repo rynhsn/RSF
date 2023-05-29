@@ -13,13 +13,14 @@ namespace GSM02000Model
     {
         private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrl";
         private const string DEFAULT_SERVICEPOINT_NAME = "api/GSM02000";
+        private const string DEFAULT_MODULE = "gs";
 
         public GSM02000Model(
             string pcHttpClientName = DEFAULT_HTTP_NAME,
             string pcRequestServiceEndPoint = DEFAULT_SERVICEPOINT_NAME,
             bool plSendWithContext = true,
             bool plSendWithToken = true) :
-            base(pcHttpClientName, pcRequestServiceEndPoint, plSendWithContext, plSendWithToken)
+            base(pcHttpClientName, pcRequestServiceEndPoint, DEFAULT_MODULE, plSendWithContext, plSendWithToken)
         {
         }
 
@@ -54,6 +55,7 @@ namespace GSM02000Model
                 loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM02000ListDTO<GSM02000GridDTO>>(
                     _RequestServiceEndPoint,
                     nameof(IGSM02000.GetAllSalesTax),
+                    DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
             }
@@ -82,6 +84,7 @@ namespace GSM02000Model
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSM02000GridDTO>(
                     _RequestServiceEndPoint,
                     nameof(IGSM02000.GetAllSalesTaxStream),
+                    DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken,
                     null);
@@ -111,6 +114,7 @@ namespace GSM02000Model
                 loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM02000ListDTO<GSM02000RoundingDTO>>(
                     _RequestServiceEndPoint,
                     nameof(IGSM02000.GetAllRounding),
+                    DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
             }
@@ -137,6 +141,7 @@ namespace GSM02000Model
                 await R_HTTPClientWrapper.R_APIRequestObject<GSM02000ActiveInactiveDTO>(
                     _RequestServiceEndPoint,
                     nameof(IGSM02000.SetActiveInactive),
+                    DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
             }

@@ -12,13 +12,14 @@ public class GSM05000NumberingModel : R_BusinessObjectServiceClientBase<GSM05000
 {
     private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrl";
     private const string DEFAULT_SERVICEPOINT_NAME = "api/GSM05000Numbering";
+    private const string DEFAULT_MODULE = "gs";
 
     public GSM05000NumberingModel(
         string pcHttpClientName = DEFAULT_HTTP_NAME,
         string pcRequestServiceEndPoint = DEFAULT_SERVICEPOINT_NAME,
         bool plSendWithContext = true,
         bool plSendWithToken = true) :
-        base(pcHttpClientName, pcRequestServiceEndPoint, plSendWithContext, plSendWithToken)
+        base(pcHttpClientName, pcRequestServiceEndPoint, DEFAULT_MODULE, plSendWithContext, plSendWithToken)
     {
     }
 
@@ -43,6 +44,7 @@ public class GSM05000NumberingModel : R_BusinessObjectServiceClientBase<GSM05000
             loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ListDTO<GSM05000NumberingGridDTO>>(
                 _RequestServiceEndPoint,
                 nameof(IGSM05000Numbering.GetNumberingList),
+                DEFAULT_MODULE, 
                 _SendWithContext,
                 _SendWithToken);
         }
@@ -67,6 +69,7 @@ public class GSM05000NumberingModel : R_BusinessObjectServiceClientBase<GSM05000
             loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000NumberingHeaderDTO>(
                 _RequestServiceEndPoint,
                 nameof(IGSM05000Numbering.GetNumberingHeader),
+                DEFAULT_MODULE, 
                 _SendWithContext,
                 _SendWithToken);
         }
