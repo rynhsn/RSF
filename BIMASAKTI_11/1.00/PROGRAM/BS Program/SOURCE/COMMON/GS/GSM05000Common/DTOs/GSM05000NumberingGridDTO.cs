@@ -9,9 +9,9 @@ namespace GSM05000Common.DTOs
         public string CCYEAR { get; set; }
         public string CPERIOD_NO { get; set; } = "";
         public string CDEPT_CODE { get; set; } = "";
-        public string? CDEPT_NAME { get; set; } = "";
+        public string CDEPT_NAME { get; set; } = "";
         public int ISTART_NUMBER { get; set; }
-        public int ILAST_NUMBER { get; set; } = 1;
+        public int ILAST_NUMBER { get; set; }
         public string CCREATE_BY { get; set; }
         public string CUPDATE_BY { get; set; }
         public DateTime DCREATE_DATE { get; set; }

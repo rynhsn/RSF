@@ -24,7 +24,7 @@ public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
 
         try
         {
-            R_FrontContext.R_SetStreamingContext(GSM05000NumberingContextConstant.CTRANSACTION_CODE, TransactionCode);
+            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, TransactionCode);
             var loReturn = await _GSM05000NumberingModel.GetNumberingListAsync();
             GridList = new ObservableCollection<GSM05000NumberingGridDTO>(loReturn.Data);
             await _setPeriod();
@@ -43,7 +43,7 @@ public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
 
         try
         {
-            R_FrontContext.R_SetStreamingContext(GSM05000NumberingContextConstant.CTRANSACTION_CODE, TransactionCode);
+            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, TransactionCode);
             var loReturn = await _GSM05000NumberingModel.GetNumberingHeaderAsync();
             HeaderEntity = loReturn;
         }
@@ -77,14 +77,15 @@ public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
         var loEx = new R_Exception();
         try
         {
-            var loPeriod = await GeneratePeriod(poNewEntity);
-            poNewEntity.CTRANSACTION_CODE = HeaderEntity.CTRANSACTION_CODE;
-            poNewEntity.CCYEAR = loPeriod.CCYEAR;
-            poNewEntity.CPERIOD_NO = loPeriod.CPERIOD_NO;
+            if (eCRUDMode.AddMode == peCrudMode)
+            {
+                var loPeriod = await GeneratePeriod(poNewEntity);
+                poNewEntity.CTRANSACTION_CODE = HeaderEntity.CTRANSACTION_CODE;
+                poNewEntity.CCYEAR = loPeriod.CCYEAR;
+                poNewEntity.CPERIOD_NO = loPeriod.CPERIOD_NO;
+            }
             
             Entity = await _GSM05000NumberingModel.R_ServiceSaveAsync(poNewEntity, peCrudMode);
-            
-            
         }
         catch (Exception ex)
         {

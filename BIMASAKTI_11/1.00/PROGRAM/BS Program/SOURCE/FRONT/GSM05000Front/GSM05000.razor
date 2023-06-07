@@ -3,409 +3,419 @@
 
 <R_TabStrip OnActiveTabIndexChanged="@ChangeTab">
 <R_TabStripTab Title="Transaction">
-
-<R_StackLayout Row="true" Spacing="3">
-
-<R_ItemLayout xs="4">
-    <R_Grid @ref="@_gridRef"
-            DataSource="@_GSM05000ViewModel.GridList"
-            Pageable="true"
-            R_ConductorSource="@_conductorRef"
-            R_GridType="@R_eGridType.Navigator"
-            R_ServiceGetListRecord="@Grid_GetList"
-            PageSize="20">
-        <R_GridColumns>
-            <R_GridTextColumn FieldName="CTRANSACTION" HeaderText="Transaction"/>
-        </R_GridColumns>
-    </R_Grid>
-</R_ItemLayout>
-
-<R_ItemLayout xs="8" Class="ms-5">
-<R_StackLayout Row="true">
-    <R_ItemLayout xs="2">
-        <R_Label>Transaction Code</R_Label>
-    </R_ItemLayout>
-    <R_ItemLayout xs="2">
-        <R_TextBox @bind-Value="@_GSM05000ViewModel.Data.CTRANSACTION_CODE"
-                   R_ConductorSource="@_conductorRef"
-                   Enabled="false"/>
-    </R_ItemLayout>
-    <R_ItemLayout xs="7">
-        <R_TextBox @bind-Value="@_GSM05000ViewModel.Data.CTRANSACTION_NAME"
-                   R_ConductorSource="@_conductorRef"
-                   Enabled="false"/>
-    </R_ItemLayout>
-</R_StackLayout>
-
-<R_StackLayout Row="true" Class="mt-3">
-    <R_ItemLayout xs="8">
-        <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LINCREMENT_FLAG"
-                    R_ConductorSource="@_conductorRef"
-                    R_EnableEdit/>
-
-        <R_Label>Using Incremental Document Number</R_Label>
-    </R_ItemLayout>
-    <R_ItemLayout xs="2">
-        <R_Label>Separator</R_Label>
-    </R_ItemLayout>
-    <R_ItemLayout xs="2">
-        <R_Label>Sequence</R_Label>
-    </R_ItemLayout>
-</R_StackLayout>
-
-<R_GroupBox Enabled="_GSM05000ViewModel.Data.LINCREMENT_FLAG" Class="ms-10">
-
-<R_StackLayout Row="true">
-    <R_ItemLayout>
-        <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LDEPT_MODE"
-                    R_ConductorSource="@_conductorRef"
-                    R_EnableEdit/>
-    </R_ItemLayout>
-    <R_ItemLayout xs="7">
-        <R_Label>By Department</R_Label>
-    </R_ItemLayout>
-
-    <R_GroupBox Enabled="_GSM05000ViewModel.Data.LDEPT_MODE" ShowBorder="true">
-        <R_StackLayout Row="true">
-            <R_ItemLayout>
-                <R_ComboBox Data="@_GSM05000ViewModel.DelimiterListDepartment"
-                            @bind-Value="_GSM05000ViewModel.Data.CDEPT_DELIMITER"
-                            ValueField="@nameof(GSM05000DelimiterDTO.CCODE)"
-                            TextField="@nameof(GSM05000DelimiterDTO.CDESCRIPTION)"
-                            R_ConductorSource="@_conductorRef"
-                            OnChanged="GetUpdateSample"
-                            R_EnableEdit/>
+    <R_StackLayout Row="true" Spacing="3">
+            <R_ItemLayout xs="4">
+                <R_Grid @ref="@_gridRef"
+                        DataSource="@_GSM05000ViewModel.GridList"
+                        Pageable="true"
+                        R_ConductorSource="@_conductorRef"
+                        R_GridType="@R_eGridType.Navigator"
+                        R_ServiceGetListRecord="@Grid_GetList"
+                        PageSize="20">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="CTRANSACTION" HeaderText="Transaction"/>
+                    </R_GridColumns>
+                </R_Grid>
             </R_ItemLayout>
-            <R_ItemLayout>
-                <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.DeptSequence"
-                                  R_ConductorSource="@_conductorRef"
-                                  Min="0"
-                                  Max="5"
-                                  OnLostFocused="GetUpdateSample"
-                                  R_EnableEdit/>
+            <R_ItemLayout xs="8" Class="ms-5">
+                <R_StackLayout Row="true">
+                    <R_ItemLayout xs="2">
+                        <R_Label>Transaction Code</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout xs="2">
+                        <R_TextBox @bind-Value="@_GSM05000ViewModel.Data.CTRANSACTION_CODE"
+                                   R_ConductorSource="@_conductorRef"
+                                   Enabled="false"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout xs="7">
+                        <R_TextBox @bind-Value="@_GSM05000ViewModel.Data.CTRANSACTION_NAME"
+                                   R_ConductorSource="@_conductorRef"
+                                   Enabled="false"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true" Class="mt-3">
+                    <R_ItemLayout xs="8">
+                        <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LINCREMENT_FLAG"
+                                    R_ConductorSource="@_conductorRef"
+                                    R_EnableEdit/>
+
+                        <R_Label>Using Incremental Document Number</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout xs="2">
+                        <R_Label>Separator</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout xs="2">
+                        <R_Label>Sequence</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                    
+                <R_GroupBox Enabled="_GSM05000ViewModel.Data.LINCREMENT_FLAG" Class="ps-4" ShowBorder="false">
+                @* By Department *@
+                <R_StackLayout Row="true">
+                    <R_ItemLayout xs="8">
+                        <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LDEPT_MODE"
+                                    R_ConductorSource="@_conductorRef"
+                                    R_EnableEdit/>
+                        <R_Label>By Department</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout xs="3">
+                        <R_GroupBox Enabled="_GSM05000ViewModel.Data.LDEPT_MODE" ShowBorder="false">
+                            <R_StackLayout Row="true">
+                                <R_ItemLayout>
+                                    <R_ComboBox Data="@_GSM05000ViewModel.DelimiterListDepartment"
+                                                @bind-Value="_GSM05000ViewModel.Data.CDEPT_DELIMITER"
+                                                ValueField="@nameof(GSM05000DelimiterDTO.CCODE)"
+                                                TextField="@nameof(GSM05000DelimiterDTO.CDESCRIPTION)"
+                                                R_ConductorSource="@_conductorRef"
+                                                OnChanged="GetUpdateSample"
+                                                R_EnableEdit/>
+                                </R_ItemLayout>
+                                <R_ItemLayout>
+                                    <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.DeptSequence"
+                                                      R_ConductorSource="@_conductorRef"
+                                                      Min="0"
+                                                      Max="5"
+                                                      OnLostFocused="GetUpdateSample"
+                                                      R_EnableEdit/>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_GroupBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                @* Show Transaction Code *@
+                <R_StackLayout Row="true">
+                    <R_ItemLayout xs="8">
+                        <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LTRANSACTION_MODE"
+                                    R_ConductorSource="@_conductorRef"
+                                    R_EnableEdit/>
+                        <R_Label>Show Transaction Code</R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout xs="3">
+                        <R_GroupBox Enabled="_GSM05000ViewModel.Data.LTRANSACTION_MODE" ShowBorder="false">
+                            <R_StackLayout Row="true">
+                                <R_ItemLayout>
+                                    <R_ComboBox Data="@_GSM05000ViewModel.DelimiterListTransCode"
+                                                @bind-Value="_GSM05000ViewModel.Data.CTRANSACTION_DELIMITER"
+                                                ValueField="@nameof(GSM05000DelimiterDTO.CCODE)"
+                                                TextField="@nameof(GSM05000DelimiterDTO.CDESCRIPTION)"
+                                                R_ConductorSource="@_conductorRef"
+                                                OnChanged="GetUpdateSample"
+                                                R_EnableEdit/>
+                                </R_ItemLayout>
+
+                                <R_ItemLayout>
+                                    <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.TrxSequence"
+                                                      R_ConductorSource="@_conductorRef"
+                                                      Min="0"
+                                                      Max="4"
+                                                      OnLostFocused="GetUpdateSample"
+                                                      R_EnableEdit/>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_GroupBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                @* Periode Mode *@
+                <R_StackLayout Row="true">
+                    <R_ItemLayout xs="8">
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout xs="3">
+                                <R_Label>Periode Mode</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout xs="4">
+                                <R_ComboBox Data="@_GSM05000ViewModel.CPERIODE_MODE"
+                                            @bind-Value="_GSM05000ViewModel.Data.CPERIOD_MODE"
+                                            ValueField="Key"
+                                            TextField="Value"
+                                            R_ConductorSource="@_conductorRef"
+                                            OnLostFocused="GetUpdateSample"
+                                            R_EnableEdit/>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout xs="3">
+                        <R_GroupBox Enabled ShowBorder="false">
+                            <R_StackLayout Row="true">
+                                <R_ItemLayout>
+                                    <R_ComboBox Data="@_GSM05000ViewModel.DelimiterListPeriodMode"
+                                                @bind-Value="_GSM05000ViewModel.Data.CPERIOD_DELIMITER"
+                                                ValueField="@nameof(GSM05000DelimiterDTO.CCODE)"
+                                                TextField="@nameof(GSM05000DelimiterDTO.CDESCRIPTION)"
+                                                R_ConductorSource="@_conductorRef"
+                                                OnChanged="GetUpdateSample"
+                                                R_EnableEdit/>
+                                </R_ItemLayout>
+
+                                <R_ItemLayout>
+                                    <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.PeriodSequence"
+                                                      R_ConductorSource="@_conductorRef"
+                                                      Min="0"
+                                                      Max="4"
+                                                      OnLostFocused="GetUpdateSample"
+                                                      R_EnableEdit/>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_GroupBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                @* Year Format *@
+                <R_StackLayout Row="true">
+                    <R_ItemLayout xs="2">
+                        <R_Label>Year Format</R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout>
+                        <R_RadioGroup Data="@_GSM05000ViewModel.CYEAR_FORMAT"
+                                      @bind-Value="_GSM05000ViewModel.Data.CYEAR_FORMAT"
+                                      ValueField="Key"
+                                      TextField="Value"
+                                      R_ConductorSource="@_conductorRef"
+                                      OnLostFocused="GetUpdateSample"
+                                      R_EnableEdit/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                @* Length of Number *@
+                <R_StackLayout Row="true">
+                    <R_ItemLayout xs="8">
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout xs="3">
+                                <R_Label>Length of Number</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout xs="4">
+                                <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.Data.INUMBER_LENGTH"
+                                                  R_ConductorSource="@_conductorRef"
+                                                  OnLostFocused="GetUpdateSample"
+                                                  R_EnableEdit/>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                        
+                    <R_ItemLayout xs="3">
+                        <R_GroupBox Enabled ShowBorder="false">
+                            <R_StackLayout Row="true">
+                                <R_ItemLayout>
+                                    <R_ComboBox Data="@_GSM05000ViewModel.DelimiterListNumber"
+                                                @bind-Value="_GSM05000ViewModel.Data.CNUMBER_DELIMITER"
+                                                ValueField="@nameof(GSM05000DelimiterDTO.CCODE)"
+                                                TextField="@nameof(GSM05000DelimiterDTO.CDESCRIPTION)"
+                                                R_ConductorSource="@_conductorRef"
+                                                OnChanged="GetUpdateSample"
+                                                R_EnableEdit/>
+                                </R_ItemLayout>
+
+                                <R_ItemLayout>
+                                    <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.LenSequence"
+                                                      R_ConductorSource="@_conductorRef"
+                                                      Min="0"
+                                                      Max="4"
+                                                      OnLostFocused="GetUpdateSample"
+                                                      R_EnableEdit/>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_GroupBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                @* Prefix *@
+                <R_StackLayout Row="true">
+                    <R_ItemLayout xs="8">
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout xs="3">
+                                <R_Label>Prefix</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout xs="4">
+                                <R_TextBox @bind-Value="@_GSM05000ViewModel.Data.CPREFIX"
+                                           R_ConductorSource="@_conductorRef"
+                                           MaxLength="29"
+                                           OnLostFocused="GetUpdateSample"
+                                           R_EnableEdit/>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                        
+                    <R_ItemLayout xs="3">
+                        <R_GroupBox Enabled ShowBorder="false">
+                            <R_StackLayout Row="true">
+                                <R_ItemLayout>
+                                    <R_ComboBox Data="@_GSM05000ViewModel.DelimiterListPrefix"
+                                                @bind-Value="_GSM05000ViewModel.Data.CPREFIX_DELIMITER"
+                                                ValueField="@nameof(GSM05000DelimiterDTO.CCODE)"
+                                                TextField="@nameof(GSM05000DelimiterDTO.CDESCRIPTION)"
+                                                R_ConductorSource="@_conductorRef"
+                                                OnChanged="GetUpdateSample"
+                                                R_EnableEdit/>
+
+                                </R_ItemLayout>
+
+                                <R_ItemLayout>
+                                    <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.PrefixSequence"
+                                                      R_ConductorSource="@_conductorRef"
+                                                      Min="0"
+                                                      Max="4"
+                                                      OnLostFocused="GetUpdateSample"
+                                                      R_EnableEdit/>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_GroupBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                @* Sufix *@
+                <R_StackLayout Row="true">
+                    <R_ItemLayout xs="8">
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout xs="3">
+                                <R_Label>Sufix</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout xs="4">
+                                <R_TextBox @bind-Value="@_GSM05000ViewModel.Data.CSUFFIX"
+                                           R_ConductorSource="@_conductorRef"
+                                           MaxLength="29"
+                                           OnLostFocused="GetUpdateSample"
+                                           R_EnableEdit/>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                </R_GroupBox>
+
+                @* Begin::Sample Row *@
+                <R_StackLayout Class="mt-3">
+                    <R_ItemLayout xs="2">
+                        <R_Label>Sample</R_Label>
+                    </R_ItemLayout>
+                    <R_StackLayout Row="true">
+                        <R_ItemLayout xs="8">
+                            <R_TextBox @bind-Value="@_GSM05000ViewModel.REFNO"
+                                       R_ConductorSource="@_conductorRef"
+                                       Enabled="false"/>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout xs="1">
+                            <R_TextBox @bind-Value="@_GSM05000ViewModel.REFNO_LENGTH"
+                                       R_ConductorSource="@_conductorRef"
+                                       Enabled="false"/>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout xs="3" Class="text-center">
+                            <R_Label Class="text-danger k-font-weight-bold">Maximum 30</R_Label>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_StackLayout>
+                @* End::Sample Row *@
+
+                @* Begin::Using Approval *@
+                <R_StackLayout Row="true" Class="mt-5">
+                    <R_ItemLayout>
+                        <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LAPPROVAL_FLAG"
+                                    R_ConductorSource="@_conductorRef"
+                                    R_EnableEdit/>
+                        <R_Label>Using Approval</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_GroupBox Enabled="_GSM05000ViewModel.Data.LAPPROVAL_FLAG" Class="ps-4" ShowBorder="false">
+                    @* Use 3rd party *@
+                    <R_StackLayout Row="true">
+                        <R_ItemLayout xs="6">
+                            <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LUSE_THIRD_PARTY"
+                                        R_ConductorSource="@_conductorRef" R_EnableEdit/>
+                            <R_Label>Using Third Party</R_Label>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    @* Approval Mode *@
+                    <R_StackLayout Row="true">
+                        <R_ItemLayout xs="2">
+                            <R_Label>Approval Mode</R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout xs="3">
+                            <R_ComboBox Data="@_GSM05000ViewModel.CAPPROVAL_MODE"
+                                        @bind-Value="_GSM05000ViewModel.Data.CAPPROVAL_MODE"
+                                        ValueField="Key"
+                                        TextField="Value"
+                                        R_ConductorSource="@_conductorRef" R_EnableEdit/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    @* By Dept appr *@
+                    <R_StackLayout Row="true">
+                        <R_ItemLayout xs="6">
+                            <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LAPPROVAL_DEPT"
+                                        R_ConductorSource="@_conductorRef" R_EnableEdit/>
+                            <R_Label>By Department</R_Label>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_GroupBox>
+                @* Updated by date *@
+                <R_StackLayout Row="true" Class="mt-3">
+                    <R_ItemLayout xs="1">
+                        <R_Label>Updated By</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_TextBox @bind-Value="@_GSM05000ViewModel.Data.CUPDATE_BY"
+                                   R_ConductorSource="@_conductorRef"
+                                   Enabled="false"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout xs="1" Class="ms-3">
+                        <R_Label>Date</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout xs="3">
+                        <R_DateInput @bind-Value="@_GSM05000ViewModel.Data.DUPDATE_DATE"
+                                     R_ConductorSource="@_conductorRef"
+                                     Enabled="false"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            @* Created by date *@
+                <R_StackLayout Row="true" Class="mt-1">
+                    <R_ItemLayout xs="1">
+                        <R_Label>Created By</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_TextBox @bind-Value="@_GSM05000ViewModel.Data.CCREATE_BY"
+                                   R_ConductorSource="@_conductorRef"
+                                   Enabled="false"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout xs="1" Class="ms-3">
+                        <R_Label>Date</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout xs="3">
+                        <R_DateInput @bind-Value="@_GSM05000ViewModel.Data.DCREATE_DATE"
+                                     R_ConductorSource="@_conductorRef"
+                                     Enabled="false"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true" Spacing="5" Class="mt-5">
+                    <R_ItemLayout xs="6">
+                    <R_ItemLayout xs="3">
+                        <R_EditButton R_Conductor="@_conductorRef"/>
+                    </R_ItemLayout>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout xs="6">
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout xs="3">
+                                <R_CancelButton R_Conductor="@_conductorRef"/>
+                            </R_ItemLayout>
+                            <R_ItemLayout xs="3">
+                                <R_SaveButton R_Conductor="@_conductorRef"/>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
             </R_ItemLayout>
         </R_StackLayout>
-    </R_GroupBox>
-
-</R_StackLayout>
-<R_StackLayout Row="true" Class="mt-1">
-    <R_ItemLayout>
-        <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LTRANSACTION_MODE"
-                    R_ConductorSource="@_conductorRef"
-                    R_EnableEdit/>
-    </R_ItemLayout>
-
-    <R_ItemLayout>
-        <R_Label>Show Transaction Code</R_Label>
-    </R_ItemLayout>
-
-    <R_GroupBox Enabled="_GSM05000ViewModel.Data.LTRANSACTION_MODE" ShowBorder="true">
-        <R_ItemLayout>
-            <R_ComboBox Data="@_GSM05000ViewModel.DelimiterListTransCode"
-                        @bind-Value="_GSM05000ViewModel.Data.CTRANSACTION_DELIMITER"
-                        ValueField="@nameof(GSM05000DelimiterDTO.CCODE)"
-                        TextField="@nameof(GSM05000DelimiterDTO.CDESCRIPTION)"
-                        R_ConductorSource="@_conductorRef"
-                        OnChanged="GetUpdateSample"
-                        R_EnableEdit/>
-        </R_ItemLayout>
-
-        <R_ItemLayout>
-            <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.TrxSequence"
-                              R_ConductorSource="@_conductorRef"
-                              Min="0"
-                              Max="4"
-                              OnLostFocused="GetUpdateSample"
-                              R_EnableEdit/>
-        </R_ItemLayout>
-    </R_GroupBox>
-</R_StackLayout>
-
-@* Periode Mode *@
-<R_StackLayout Row="true" Class="mt-1">
-    <R_ItemLayout xs="2">
-        <R_Label>Periode Mode</R_Label>
-    </R_ItemLayout>
-
-    <R_ItemLayout>
-        <R_ItemLayout xs="2">
-            <R_ComboBox Data="@_GSM05000ViewModel.CPERIODE_MODE"
-                        @bind-Value="_GSM05000ViewModel.Data.CPERIOD_MODE"
-                        ValueField="Key"
-                        TextField="Value"
-                        R_ConductorSource="@_conductorRef"
-                        OnLostFocused="GetUpdateSample"
-                        R_EnableEdit/>
-        </R_ItemLayout>
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="2">
-        <R_ComboBox Data="@_GSM05000ViewModel.DelimiterListPeriodMode"
-                    @bind-Value="_GSM05000ViewModel.Data.CPERIOD_DELIMITER"
-                    ValueField="@nameof(GSM05000DelimiterDTO.CCODE)"
-                    TextField="@nameof(GSM05000DelimiterDTO.CDESCRIPTION)"
-                    R_ConductorSource="@_conductorRef"
-                    OnChanged="GetUpdateSample"
-                    R_EnableEdit/>
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="2">
-        <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.PeriodSequence"
-                          R_ConductorSource="@_conductorRef"
-                          Min="0"
-                          Max="4"
-                          OnLostFocused="GetUpdateSample"
-                          R_EnableEdit/>
-    </R_ItemLayout>
-</R_StackLayout>
-@* Year Format *@
-<R_StackLayout Row="true" Class="mt-1">
-    <R_ItemLayout xs="2">
-        <R_Label>Year Format</R_Label>
-    </R_ItemLayout>
-
-    <R_ItemLayout>
-        <R_RadioGroup Data="@_GSM05000ViewModel.CYEAR_FORMAT"
-                      @bind-Value="_GSM05000ViewModel.Data.CYEAR_FORMAT"
-                      ValueField="Key"
-                      TextField="Value"
-                      R_ConductorSource="@_conductorRef"
-                      OnLostFocused="GetUpdateSample"
-                      R_EnableEdit/>
-    </R_ItemLayout>
-</R_StackLayout>
-@* Length of Number *@
-<R_StackLayout Row="true" Class="mt-1">
-    <R_ItemLayout xs="2">
-        <R_Label>Length of Number</R_Label>
-    </R_ItemLayout>
-
-    <R_ItemLayout>
-        <R_ItemLayout xs="2">
-            <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.Data.INUMBER_LENGTH"
-                              R_ConductorSource="@_conductorRef"
-                              OnLostFocused="GetUpdateSample"
-                              R_EnableEdit/>
-        </R_ItemLayout>
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="2">
-        <R_ComboBox Data="@_GSM05000ViewModel.DelimiterListNumber"
-                    @bind-Value="_GSM05000ViewModel.Data.CNUMBER_DELIMITER"
-                    ValueField="@nameof(GSM05000DelimiterDTO.CCODE)"
-                    TextField="@nameof(GSM05000DelimiterDTO.CDESCRIPTION)"
-                    R_ConductorSource="@_conductorRef"
-                    OnChanged="GetUpdateSample"
-                    R_EnableEdit/>
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="2">
-        <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.LenSequence"
-                          R_ConductorSource="@_conductorRef"
-                          Min="0"
-                          Max="4"
-                          OnLostFocused="GetUpdateSample"
-                          R_EnableEdit/>
-    </R_ItemLayout>
-</R_StackLayout>
-@* Prefix *@
-<R_StackLayout Row="true" Class="mt-1">
-    <R_ItemLayout xs="2">
-        <R_Label>Prefix</R_Label>
-    </R_ItemLayout>
-
-    <R_ItemLayout>
-        <R_ItemLayout xs="6">
-            <R_TextBox @bind-Value="@_GSM05000ViewModel.Data.CPREFIX"
-                       R_ConductorSource="@_conductorRef"
-                       MaxLength="29"
-                       OnLostFocused="GetUpdateSample"
-                       R_EnableEdit/>
-        </R_ItemLayout>
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="2">
-        <R_ComboBox Data="@_GSM05000ViewModel.DelimiterListPrefix"
-                    @bind-Value="_GSM05000ViewModel.Data.CPREFIX_DELIMITER"
-                    ValueField="@nameof(GSM05000DelimiterDTO.CCODE)"
-                    TextField="@nameof(GSM05000DelimiterDTO.CDESCRIPTION)"
-                    R_ConductorSource="@_conductorRef"
-                    OnChanged="GetUpdateSample"
-                    R_EnableEdit/>
-
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="2">
-        <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.PrefixSequence"
-                          R_ConductorSource="@_conductorRef"
-                          Min="0"
-                          Max="4"
-                          OnLostFocused="GetUpdateSample"
-                          R_EnableEdit/>
-    </R_ItemLayout>
-</R_StackLayout>
-@* Sufix *@
-<R_StackLayout Row="true" Class="mt-1">
-    <R_ItemLayout xs="2">
-        <R_Label>Sufix</R_Label>
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="6">
-        <R_ItemLayout xs="6" Class="pe-2">
-            <R_TextBox @bind-Value="@_GSM05000ViewModel.Data.CSUFFIX"
-                       R_ConductorSource="@_conductorRef"
-                       MaxLength="29"
-                       OnLostFocused="GetUpdateSample"
-                       R_EnableEdit/>
-        </R_ItemLayout>
-    </R_ItemLayout>
-</R_StackLayout>
-</R_GroupBox>
-
-@* Begin::Sample Row *@
-<R_StackLayout Class="mt-3">
-    <R_ItemLayout xs="2">
-        <R_Label>Sample</R_Label>
-    </R_ItemLayout>
-    <R_StackLayout Row="true">
-        <R_ItemLayout>
-            <R_TextBox @bind-Value="@_GSM05000ViewModel.REFNO"
-                       R_ConductorSource="@_conductorRef"
-                       Enabled="false"/>
-        </R_ItemLayout>
-
-        <R_ItemLayout xs="1">
-            <R_TextBox @bind-Value="@_GSM05000ViewModel.REFNO_LENGTH"
-                       R_ConductorSource="@_conductorRef"
-                       Enabled="false"/>
-        </R_ItemLayout>
-
-        <R_ItemLayout xs="3" Class="text-center">
-            <R_Label Class="text-danger k-font-weight-bold">Maximum 30</R_Label>
-        </R_ItemLayout>
-    </R_StackLayout>
-</R_StackLayout>
-@* End::Sample Row *@
-
-@* Begin::Using Approval *@
-<R_StackLayout Row="true" Class="mt-5">
-    <R_ItemLayout>
-        <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LAPPROVAL_FLAG"
-                    R_ConductorSource="@_conductorRef"
-                    R_EnableEdit/>
-    </R_ItemLayout>
-    <R_ItemLayout>
-        <R_Label>Using Approval</R_Label>
-    </R_ItemLayout>
-</R_StackLayout>
-
-<R_GroupBox Enabled="_GSM05000ViewModel.Data.LAPPROVAL_FLAG">
-    @* Use 3rd party *@
-    <R_StackLayout Row="true" Class="ms-4">
-        <R_ItemLayout>
-            <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LUSE_THIRD_PARTY"
-                        R_ConductorSource="@_conductorRef" R_EnableEdit/>
-        </R_ItemLayout>
-        <R_ItemLayout>
-            <R_Label>Using Third Party</R_Label>
-        </R_ItemLayout>
-    </R_StackLayout>
-    @* Approval Mode *@
-    <R_StackLayout Row="true" Class="ms-4">
-        <R_ItemLayout xs="2">
-            <R_Label>Approval Mode</R_Label>
-        </R_ItemLayout>
-
-        <R_ItemLayout xs="3">
-            <R_ComboBox Data="@_GSM05000ViewModel.CAPPROVAL_MODE"
-                        @bind-Value="_GSM05000ViewModel.Data.CAPPROVAL_MODE"
-                        ValueField="Key"
-                        TextField="Value"
-                        R_ConductorSource="@_conductorRef" R_EnableEdit/>
-        </R_ItemLayout>
-    </R_StackLayout>
-    @* By Dept appr *@
-    <R_StackLayout Row="true" Class="ms-4">
-        <R_ItemLayout>
-            <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LAPPROVAL_DEPT"
-                        R_ConductorSource="@_conductorRef" R_EnableEdit/>
-        </R_ItemLayout>
-        <R_ItemLayout>
-            <R_Label>By Department</R_Label>
-        </R_ItemLayout>
-    </R_StackLayout>
-</R_GroupBox>
-@* Updated by date *@
-<R_StackLayout Row="true" Class="mt-3">
-    <R_ItemLayout xs="1">
-        <R_Label>Updated By</R_Label>
-    </R_ItemLayout>
-    <R_ItemLayout>
-        <R_TextBox @bind-Value="@_GSM05000ViewModel.Data.CUPDATE_BY"
-                   R_ConductorSource="@_conductorRef"
-                   Enabled="false"/>
-    </R_ItemLayout>
-    <R_ItemLayout xs="1" Class="ms-3">
-        <R_Label>Date</R_Label>
-    </R_ItemLayout>
-    <R_ItemLayout xs="3">
-        <R_DateInput @bind-Value="@_GSM05000ViewModel.Data.DUPDATE_DATE"
-                     R_ConductorSource="@_conductorRef"
-                     Enabled="false"/>
-    </R_ItemLayout>
-</R_StackLayout>
-
-@* Created by date *@
-<R_StackLayout Row="true" Class="mt-1">
-    <R_ItemLayout xs="1">
-        <R_Label>Created By</R_Label>
-    </R_ItemLayout>
-    <R_ItemLayout>
-        <R_TextBox @bind-Value="@_GSM05000ViewModel.Data.CCREATE_BY"
-                   R_ConductorSource="@_conductorRef"
-                   Enabled="false"/>
-    </R_ItemLayout>
-    <R_ItemLayout xs="1" Class="ms-3">
-        <R_Label>Date</R_Label>
-    </R_ItemLayout>
-    <R_ItemLayout xs="3">
-        <R_DateInput @bind-Value="@_GSM05000ViewModel.Data.DCREATE_DATE"
-                     R_ConductorSource="@_conductorRef"
-                     Enabled="false"/>
-    </R_ItemLayout>
-</R_StackLayout>
-
-<R_StackLayout Row="true" Spacing="5">
-    <R_ItemLayout xs="2">
-        <R_EditButton R_Conductor="@_conductorRef">Modify</R_EditButton>
-    </R_ItemLayout>
-
-    <R_ItemLayout>
-        <R_StackLayout Row="true">
-            <R_ItemLayout xs="2">
-                <R_CancelButton R_Conductor="@_conductorRef"/>
-            </R_ItemLayout>
-            <R_ItemLayout xs="2">
-                <R_SaveButton R_Conductor="@_conductorRef"/>
-            </R_ItemLayout>
-        </R_StackLayout>
-    </R_ItemLayout>
-</R_StackLayout>
-</R_ItemLayout>
-
-</R_StackLayout>
-
-<R_Conductor @ref="@_conductorRef"
-             R_ViewModel="@_GSM05000ViewModel"
-             R_IsHeader="true"
-             R_ServiceGetRecord="@Conductor_ServiceGetRecord"
-             R_ServiceSave="@Conductor_ServiceSave"
-             R_AfterSave="@Conductor_AfterServiceSave"
-             R_Display="@Grid_Display"/>
+    <R_Conductor @ref="@_conductorRef"
+                     R_ViewModel="@_GSM05000ViewModel"
+                     R_IsHeader="true"
+                     R_ServiceGetRecord="@Conductor_ServiceGetRecord"
+                     R_ServiceSave="@Conductor_ServiceSave"
+                     R_AfterSave="@Conductor_AfterServiceSave"
+                     R_Display="@Grid_Display"/>
 </R_TabStripTab>
 
 <R_TabStripTab Title="Numbering" Id="tabNumbering">
-
     <R_StackLayout Row="true" Spacing="1">
         <R_ItemLayout xs="1">
             <R_Label>Transaction Code</R_Label>
@@ -449,8 +459,7 @@
                     AllowEditRow="true"
                     AllowAddNewRow="true"
                     R_Before_Open_Grid_Lookup="BeforeLookupNumbering"
-                    R_After_Open_Grid_Lookup="AfterLookupNumbering"
-                    >
+                    R_After_Open_Grid_Lookup="AfterLookupNumbering">
                 <R_GridColumns>
                     <R_GridTextColumn FieldName="CPERIOD" HeaderText="Period"/>
                     <R_GridLookupColumn FieldName="CDEPT_CODE" HeaderText="Department Code" R_EnableAdd/>
@@ -472,7 +481,10 @@
                      R_AfterAdd="@Grid_AfterAddNumbering"
                      R_ServiceSave="Grid_ServiceSaveNumbering"
                      R_AfterSave="Grid_ServiceAfterSaveNumbering"
-                     R_ServiceDelete="Grid_ServiceDeleteNumbering"
-                     />
+                     R_ServiceDelete="Grid_ServiceDeleteNumbering"/>
+</R_TabStripTab>
+
+<R_TabStripTab Title="Approval" Id="tabApproval">
+    <h1>Ini tab Approval</h1>
 </R_TabStripTab>
 </R_TabStrip>

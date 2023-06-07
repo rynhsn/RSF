@@ -114,7 +114,7 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
             
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbPar.CUSER_ID = R_BackGlobalVar.USER_ID;
-            loDbPar.CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000NumberingContextConstant.CTRANSACTION_CODE);
+            loDbPar.CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE);
 
             // loDbPar.CCOMPANY_ID = "rcd";
             // loDbPar.CUSER_ID = "rhc";
@@ -147,7 +147,7 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
             loDbPar = new GSM05000ParameterDb();
             
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbPar.CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000NumberingContextConstant.CTRANSACTION_CODE);
+            loDbPar.CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE);
 
             // loDbPar.CCOMPANY_ID = "rcd";
             // loDbPar.CTRANSACTION_CODE = "000000";

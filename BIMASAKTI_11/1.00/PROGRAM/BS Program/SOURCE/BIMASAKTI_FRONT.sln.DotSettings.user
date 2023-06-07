@@ -14,7 +14,9 @@
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGSM02000_002FGSM02000FrontResources_002FGSM02000FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=2fd89e72_002D7b96_002D44d2_002D934f_002D8f0bf5b2e96e_0023BlazorClientHelper/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=4b2085f9_002Dc333_002D4e98_002Da1e6_002D0888172c9267_0023BlazorMenu/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=e734d409_002Ddaf4_002D4efa_002D90e2_002Daff28e814c26_0023BlazorMenuCommon/@EntryIndexedValue">True</s:Boolean>
 	
 	
 	

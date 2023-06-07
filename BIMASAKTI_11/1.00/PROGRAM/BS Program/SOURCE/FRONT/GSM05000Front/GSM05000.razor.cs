@@ -235,8 +235,6 @@ public partial class GSM05000 : R_Page
         {
             var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000NumberingGridDTO>(arg.Data);
             await _GSM05000NumberingViewModel.SaveEntity(loParam, (eCRUDMode)arg.ConductorMode);
-            await _GSM05000NumberingViewModel.GetEntityNumbering(loParam);
-
             arg.Result = _GSM05000NumberingViewModel.Entity;
         }
         catch (Exception ex)
