@@ -15,7 +15,29 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
     [HttpPost]
     public R_ServiceGetRecordResultDTO<GSM05000NumberingGridDTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GSM05000NumberingGridDTO> poParameter)
     {
-        throw new NotImplementedException();
+        R_Exception loEx = new R_Exception();
+        R_ServiceGetRecordResultDTO<GSM05000NumberingGridDTO> loRtn = new R_ServiceGetRecordResultDTO<GSM05000NumberingGridDTO>();
+
+        try
+        {
+            var loCls = new GSM05000NumberingCls();
+            loRtn = new R_ServiceGetRecordResultDTO<GSM05000NumberingGridDTO>();
+            
+            poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+
+            loRtn.data = loCls.R_GetRecord(poParameter.Entity);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        
+        EndBlock:
+        loEx.ThrowExceptionIfErrors();
+        
+        return loRtn;
     }
 
     [HttpPost]
@@ -32,6 +54,15 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
             
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
+            
+            // poParameter.Entity.CCOMPANY_ID = "rcd";
+            // poParameter.Entity.CUSER_ID= "rhc";
+            // poParameter.Entity.CDEPT_CODE = "";
+            // poParameter.Entity.CCYEAR= "2023";
+            // poParameter.Entity.CPERIOD_NO = "05";
+            // poParameter.Entity.CTRANSACTION_CODE = "000000";
+            // poParameter.Entity.ISTART_NUMBER = 2;
+            // poParameter.CRUDMode = eCRUDMode.AddMode;
             
             loRtn.data = loCls.R_Save(poParameter.Entity, poParameter.CRUDMode);
         }

@@ -50,7 +50,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
     protected override void R_Saving(GSM02000DTO poNewEntity, eCRUDMode poCRUDMode)
     {
         R_Exception loEx = new R_Exception();
-        string lcQuery = null;
+        string lcQuery;
         R_Db loDb;
         DbCommand loCmd;
         DbConnection loConn = null;
@@ -126,10 +126,10 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
     protected override void R_Deleting(GSM02000DTO poEntity)
     {
         R_Exception loEx = new R_Exception();
-        string lcQuery = null;
+        string lcQuery;
         R_Db loDb;
         DbCommand loCmd;
-        DbConnection loConn = null;
+        DbConnection loConn;
         string lcAction = "";
         
         try
@@ -181,9 +181,9 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         R_Exception loEx = new R_Exception();
         List<GSM02000GridDTO> loRtn = null;
         R_Db loDb;
-        DbConnection loConn = null;
+        DbConnection loConn;
         DbCommand loCmd;
-        string lcQuery = null;
+        string lcQuery;
 
         try
         {
@@ -217,9 +217,9 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         R_Exception loEx = new R_Exception();
         List<GSM02000RoundingDTO> loRtn = null;
         R_Db loDb;
-        DbConnection loConn = null;
+        DbConnection loConn;
         DbCommand loCmd;
-        string lcQuery = null;
+        string lcQuery;
 
         try
         {
@@ -250,9 +250,9 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
     {
         R_Exception loEx = new R_Exception();
         R_Db loDb;
-        DbConnection loConn = null;
+        DbConnection loConn;
         DbCommand loCmd;
-        string lcQuery = null;
+        string lcQuery;
 
         try
         {

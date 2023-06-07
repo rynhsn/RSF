@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Xml;
 using GSM05000Common.DTOs;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
-using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
 
 namespace GSM05000Model.ViewModel
@@ -219,9 +217,7 @@ namespace GSM05000Model.ViewModel
                         Data.CSEQUENCE01 == "04" ? new string('9', Data.INUMBER_LENGTH) :
                         ""
                     ) +
-                    (string.IsNullOrEmpty(Data.CSEQUENCE01)
-                        ? ""
-                        : (
+                    (string.IsNullOrEmpty(Data.CSEQUENCE01) ? "" : (
                             Data.CSEQUENCE01 == "01" ? Data.CDEPT_DELIMITER :
                             Data.CSEQUENCE01 == "02" ? Data.CTRANSACTION_DELIMITER :
                             Data.CSEQUENCE01 == "03" ? Data.CPERIOD_DELIMITER :

@@ -25,12 +25,12 @@ public class GSM05000NumberingModel : R_BusinessObjectServiceClientBase<GSM05000
 
     public GSM05000ListDTO<GSM05000NumberingGridDTO> GetNumberingList()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public GSM05000NumberingHeaderDTO GetNumberingHeader()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public async Task<GSM05000ListDTO<GSM05000NumberingGridDTO>> GetNumberingListAsync()

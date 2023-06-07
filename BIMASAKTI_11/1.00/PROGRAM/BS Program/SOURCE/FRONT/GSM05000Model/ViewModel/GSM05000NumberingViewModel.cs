@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using GSM05000Common;
 using GSM05000Common.DTOs;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
+using R_CommonFrontBackAPI;
 
 namespace GSM05000Model.ViewModel;
 
@@ -53,27 +55,81 @@ public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
         loEx.ThrowExceptionIfErrors();
     }
 
+    public async Task GetEntityNumbering(GSM05000NumberingGridDTO poEntity)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            poEntity.CTRANSACTION_CODE = HeaderEntity.CTRANSACTION_CODE;
+            Entity = await _GSM05000NumberingModel.R_ServiceGetRecordAsync(poEntity);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    public async Task SaveEntity(GSM05000NumberingGridDTO poNewEntity, eCRUDMode peCrudMode)
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            var loPeriod = await GeneratePeriod(poNewEntity);
+            poNewEntity.CTRANSACTION_CODE = HeaderEntity.CTRANSACTION_CODE;
+            poNewEntity.CCYEAR = loPeriod.CCYEAR;
+            poNewEntity.CPERIOD_NO = loPeriod.CPERIOD_NO;
+            
+            Entity = await _GSM05000NumberingModel.R_ServiceSaveAsync(poNewEntity, peCrudMode);
+            
+            
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    public async Task DeleteEntity(GSM05000NumberingGridDTO poEntity)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            await _GSM05000NumberingModel.R_ServiceDeleteAsync(poEntity);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
     private async Task _setPeriod()
     {
         var loEx = new R_Exception();
-        
+
         try
         {
             if (HeaderEntity.CPERIOD_MODE == "P")
             {
                 foreach (var VARIABLE in GridList)
                 {
-                    VARIABLE.CPERIOD = VARIABLE.CCYEAR + "-" + VARIABLE.CPERIOD_NO; 
+                    VARIABLE.CPERIOD = VARIABLE.CCYEAR + "-" + VARIABLE.CPERIOD_NO;
                 }
             }
             else
             {
                 foreach (var VARIABLE in GridList)
                 {
-                    VARIABLE.CPERIOD = VARIABLE.CCYEAR; 
+                    VARIABLE.CPERIOD = VARIABLE.CCYEAR;
                 }
             }
-            
         }
         catch (Exception ex)
         {
@@ -81,4 +137,22 @@ public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
         }
     }
 
+    public async Task<GSM05000NumberingGridDTO> GeneratePeriod(GSM05000NumberingGridDTO poParam)
+    {
+        var lcYear = DateTime.Now;
+        var lnPeriod = 1;
+
+        if (GridList.Count != 0)
+        {
+            var lnLastPeriod = GridList.OrderByDescending(x => x.CPERIOD_NO).FirstOrDefault();
+            lnPeriod = Convert.ToInt32(lnLastPeriod.CPERIOD_NO) + 1;
+        }
+        
+        poParam.CCYEAR = HeaderEntity.CYEAR_FORMAT == "1" ? lcYear.Year.ToString("D2") : lcYear.Year.ToString("D4");
+        poParam.CPERIOD_NO = lnPeriod.ToString("D2");
+        
+        poParam.CPERIOD = HeaderEntity.CPERIOD_MODE == "P" ? poParam.CCYEAR + "-" + poParam.CPERIOD_NO : poParam.CCYEAR;
+
+        return poParam;
+    }
 }

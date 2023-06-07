@@ -1,5 +1,7 @@
 ﻿using GSM05000Common.DTOs;
 using GSM05000Model.ViewModel;
+using Lookup_GSCOMMON.DTOs;
+using Lookup_GSFRONT;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
@@ -21,8 +23,6 @@ public partial class GSM05000 : R_Page
     private R_ConductorGrid _conductorRefNumbering;
     private R_Grid<GSM05000NumberingGridDTO> _gridRefNumbering;
 
-    private bool GroupIncremental;
-    private bool GroupApproval;
     protected override async Task R_Init_From_Master(object poParam)
     {
         var loEx = new R_Exception();
@@ -60,42 +60,6 @@ public partial class GSM05000 : R_Page
             loEx.Add(ex);
         }
 
-        loEx.ThrowExceptionIfErrors();
-    }
-
-    private async Task IncrementalCheck(object b)
-    {
-        var loEx = new R_Exception();
-
-        try
-        {
-            if (_conductorRef.R_ConductorMode == R_eConductorMode.Edit)
-            {
-                GroupIncremental = (bool)b;
-            }
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-        loEx.ThrowExceptionIfErrors();
-    }
-    
-    private async Task ApprovalCheck(object b)
-    {
-        var loEx = new R_Exception();
-
-        try
-        {
-            if (_conductorRef.R_ConductorMode == R_eConductorMode.Edit)
-            {
-                GroupApproval = (bool)b;
-            }
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
         loEx.ThrowExceptionIfErrors();
     }
 
@@ -210,6 +174,23 @@ public partial class GSM05000 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
+    private async Task Grid_GetRecordNumbering(R_ServiceGetRecordEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000NumberingGridDTO>(eventArgs.Data);
+            await _GSM05000NumberingViewModel.GetEntityNumbering(loParam);
+            eventArgs.Result = _GSM05000NumberingViewModel.Entity;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
     private async Task ChangeTab(R_TabStripTab arg)
     {
         var loEx = new R_Exception();
@@ -230,13 +211,112 @@ public partial class GSM05000 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private async Task Conductor_AfterAddNumbering(R_AfterAddEventArgs arg)
+    private async Task Grid_AfterAddNumbering(R_AfterAddEventArgs arg)
     {
-        var ldYear = DateTime.Now;
+        var loEx = new R_Exception();
 
-        ((GSM05000NumberingGridDTO)arg.Data).CPERIOD = (_GSM05000NumberingViewModel.HeaderEntity.CPERIOD_MODE == "P")
-            ? ldYear.Year.ToString("D4") + "-" + ldYear.Month.ToString("D2")
-            : ldYear.Year.ToString("D4");
+        try
+        {
+            var loParam = (GSM05000NumberingGridDTO)arg.Data;
+            await _GSM05000NumberingViewModel.GeneratePeriod(loParam);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private async Task Grid_ServiceSaveNumbering(R_ServiceSaveEventArgs arg)
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000NumberingGridDTO>(arg.Data);
+            await _GSM05000NumberingViewModel.SaveEntity(loParam, (eCRUDMode)arg.ConductorMode);
+            await _GSM05000NumberingViewModel.GetEntityNumbering(loParam);
+
+            arg.Result = _GSM05000NumberingViewModel.Entity;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+    
+    private async Task Grid_ServiceDeleteNumbering(R_ServiceDeleteEventArgs arg)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000NumberingGridDTO>(arg.Data);
+            await _GSM05000NumberingViewModel.DeleteEntity(loParam);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private async Task Grid_ServiceAfterSaveNumbering(R_AfterSaveEventArgs arg)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            await _gridRefNumbering.R_RefreshGrid((GSM05000NumberingGridDTO)arg.Data);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private void BeforeLookupNumbering(R_BeforeOpenGridLookupColumnEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            eventArgs.Parameter = new GSL00700ParameterDTO();
+            eventArgs.TargetPageType = typeof(GSL00700);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private void AfterLookupNumbering(R_AfterOpenGridLookupColumnEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loTempResult = (GSL00700DTO)eventArgs.Result;
+            var loGetData = (GSM05000NumberingGridDTO)eventArgs.ColumnData;
+            if (loTempResult == null)
+                return;
+
+            loGetData.CDEPT_CODE = loTempResult.CDEPT_CODE;
+            loGetData.CDEPT_NAME = loTempResult.CDEPT_NAME;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
     }
 
     #endregion
