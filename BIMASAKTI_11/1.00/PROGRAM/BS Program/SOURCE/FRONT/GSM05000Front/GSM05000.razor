@@ -38,7 +38,7 @@
 </R_StackLayout>
 
 <R_StackLayout Row="true" Class="mt-3">
-    <R_ItemLayout xs="7">
+    <R_ItemLayout xs="8">
         <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LINCREMENT_FLAG"
                     R_ConductorSource="@_conductorRef"
                     R_EnableEdit/>
@@ -53,9 +53,9 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_GroupBox Enabled="_GSM05000ViewModel.Data.LINCREMENT_FLAG">
+<R_GroupBox Enabled="_GSM05000ViewModel.Data.LINCREMENT_FLAG" Class="ms-10">
 
-<R_StackLayout Row="true" Class="mt-1">
+<R_StackLayout Row="true">
     <R_ItemLayout>
         <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LDEPT_MODE"
                     R_ConductorSource="@_conductorRef"
@@ -65,7 +65,7 @@
         <R_Label>By Department</R_Label>
     </R_ItemLayout>
 
-    <R_GroupBox Enabled="_GSM05000ViewModel.Data.LDEPT_MODE" ShowBorder="true" Class="m-0 p-0">
+    <R_GroupBox Enabled="_GSM05000ViewModel.Data.LDEPT_MODE" ShowBorder="true">
         <R_StackLayout Row="true">
             <R_ItemLayout>
                 <R_ComboBox Data="@_GSM05000ViewModel.DelimiterListDepartment"
