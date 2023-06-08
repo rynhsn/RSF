@@ -54,16 +54,7 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
             
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
-            
-            // poParameter.Entity.CCOMPANY_ID = "rcd";
-            // poParameter.Entity.CUSER_ID= "rhc";
-            // poParameter.Entity.CDEPT_CODE = "";
-            // poParameter.Entity.CCYEAR= "2023";
-            // poParameter.Entity.CPERIOD_NO = "05";
-            // poParameter.Entity.CTRANSACTION_CODE = "000000";
-            // poParameter.Entity.ISTART_NUMBER = 2;
-            // poParameter.CRUDMode = eCRUDMode.AddMode;
-            
+
             loRtn.data = loCls.R_Save(poParameter.Entity, poParameter.CRUDMode);
         }
         catch (Exception ex)
@@ -115,10 +106,6 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbPar.CUSER_ID = R_BackGlobalVar.USER_ID;
             loDbPar.CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE);
-
-            // loDbPar.CCOMPANY_ID = "rcd";
-            // loDbPar.CUSER_ID = "rhc";
-            // loDbPar.CTRANSACTION_CODE = "000000";
 
             loCls = new GSM05000NumberingCls();
             loResult = loCls.GetNumberingListDb(loDbPar);

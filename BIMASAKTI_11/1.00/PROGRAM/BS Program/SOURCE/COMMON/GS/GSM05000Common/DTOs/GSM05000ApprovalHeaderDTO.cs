@@ -7,6 +7,8 @@ namespace GSM05000Common.DTOs
         public string CTRANSACTION_CODE { get; set; }
         public string CTRANSACTION_NAME { get; set; }
         public bool LDEPT_MODE { get; set; }
+        public string CPERIOD_MODE { get; set; }
         public string CAPPROVAL_MODE { get; set; }
+        public string CAPPROVAL_MODE_DESCR { get; set; }
     }
 }

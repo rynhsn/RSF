@@ -12,15 +12,15 @@ namespace GSM05000Common
 
     public interface IGSM05000Numbering : R_IServiceCRUDBase<GSM05000NumberingGridDTO>
     {
-        GSM05000ListDTO<GSM05000NumberingGridDTO> GetNumberingList();
         GSM05000NumberingHeaderDTO GetNumberingHeader();
+        GSM05000ListDTO<GSM05000NumberingGridDTO> GetNumberingList();
     }
 
-    public interface IGSM05000Approval : R_IServiceCRUDBase<GSM05000ApprovalUserDTO>
+    public interface IGSM05000ApprovalUser : R_IServiceCRUDBase<GSM05000ApprovalUserDTO>
     {
-        GSM05000ListDTO<GSM05000ApprovalUserDTO> GSM05000GetApprovalList();
         GSM05000ApprovalHeaderDTO GSM05000GetApprovalHeader();
-        GSM05000ApprovalDepartmentDTO GSM05000GetApprovalDepartment();
+        GSM05000ListDTO<GSM05000ApprovalUserDTO> GSM05000GetApprovalList();
+        GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> GSM05000GetApprovalDepartment();
     }
     
     public interface IGSM05000ApprovalReplacement : R_IServiceCRUDBase<GSM05000ApprovalReplacementDTO>

@@ -44,7 +44,7 @@ public class GSM05000NumberingModel : R_BusinessObjectServiceClientBase<GSM05000
             loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ListDTO<GSM05000NumberingGridDTO>>(
                 _RequestServiceEndPoint,
                 nameof(IGSM05000Numbering.GetNumberingList),
-                DEFAULT_MODULE, 
+                DEFAULT_MODULE,
                 _SendWithContext,
                 _SendWithToken);
         }
@@ -52,7 +52,7 @@ public class GSM05000NumberingModel : R_BusinessObjectServiceClientBase<GSM05000
         {
             loEx.Add(ex);
         }
-            
+
         loEx.ThrowExceptionIfErrors();
 
         return loResult;
@@ -62,14 +62,14 @@ public class GSM05000NumberingModel : R_BusinessObjectServiceClientBase<GSM05000
     {
         var loEx = new R_Exception();
         GSM05000NumberingHeaderDTO loResult = null;
-        
+
         try
         {
             R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
             loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000NumberingHeaderDTO>(
                 _RequestServiceEndPoint,
                 nameof(IGSM05000Numbering.GetNumberingHeader),
-                DEFAULT_MODULE, 
+                DEFAULT_MODULE,
                 _SendWithContext,
                 _SendWithToken);
         }
@@ -77,6 +77,7 @@ public class GSM05000NumberingModel : R_BusinessObjectServiceClientBase<GSM05000
         {
             loEx.Add(ex);
         }
+
         loEx.ThrowExceptionIfErrors();
         return loResult;
     }
