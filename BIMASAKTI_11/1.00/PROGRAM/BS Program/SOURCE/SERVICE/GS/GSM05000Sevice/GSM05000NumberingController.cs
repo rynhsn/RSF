@@ -132,13 +132,11 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
         try
         {
             loDbPar = new GSM05000ParameterDb();
-            
-            loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbPar.CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE);
 
-            // loDbPar.CCOMPANY_ID = "rcd";
-            // loDbPar.CTRANSACTION_CODE = "000000";
-            
+            loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbPar.CTRANSACTION_CODE =
+                R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE);
+
             loCls = new GSM05000NumberingCls();
             loRtn = loCls.GetNumberingHeaderDb(loDbPar);
         }

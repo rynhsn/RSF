@@ -5,6 +5,8 @@ using Lookup_GSFRONT;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
+using R_BlazorFrontEnd.Controls.Grid;
+using R_BlazorFrontEnd.Controls.Grid.Columns;
 using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
@@ -24,8 +26,10 @@ public partial class GSM05000 : R_Page
     private R_Grid<GSM05000NumberingGridDTO> _gridRefNumbering;
     
     private GSM05000ApprovalUserViewModel _GSM05000ApprovalUserViewModel = new();
-    private R_Conductor _conductorRefDept;
+    private R_ConductorGrid _conductorRefDept;
+    private R_ConductorGrid _conductorRefApprover;
     private R_Grid<GSM05000ApprovalDepartmentDTO> _gridRefDept;
+    private R_Grid<GSM05000ApprovalUserDTO> _gridRefApprover;
 
     protected override async Task R_Init_From_Master(object poParam)
     {
@@ -34,6 +38,12 @@ public partial class GSM05000 : R_Page
         try
         {
             await _GSM05000ViewModel.GetDelimiterList();
+
+            var loGroupDescriptor = new List<R_GridGroupDescriptor>
+            {
+                new(){ FieldName = "CMODULE_NAME" }
+            };
+            await _gridRef.R_GroupBy(loGroupDescriptor);
             await _gridRef.R_RefreshGrid(null);
         }
         catch (Exception ex)
@@ -44,7 +54,35 @@ public partial class GSM05000 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
+    private async Task ChangeTab(R_TabStripTab arg)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            if (arg.Id == "tabNumbering")
+            {
+                await _GSM05000NumberingViewModel.GetNumberingHeader();
+                await _gridRefNumbering.R_RefreshGrid(null);
+            }
+
+            if (arg.Id == "tabApproval")
+            {
+                await _GSM05000ApprovalUserViewModel.GetApprovalHeader();
+                await _gridRefDept.R_RefreshGrid(null);
+                await _gridRefApprover.R_RefreshGrid(null);
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+    
     #region Tab Transaction
+    
     private async Task Grid_Display(R_DisplayEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -65,6 +103,7 @@ public partial class GSM05000 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
+    
     private async Task Grid_GetList(R_ServiceGetListRecordEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -81,6 +120,7 @@ public partial class GSM05000 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
+
     private async Task Conductor_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -105,6 +145,7 @@ public partial class GSM05000 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
+    
     private async Task Conductor_ServiceSave(R_ServiceSaveEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -122,6 +163,7 @@ public partial class GSM05000 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
+    
     private async Task Conductor_AfterServiceSave(R_AfterSaveEventArgs arg)
     {
         var loEx = new R_Exception();
@@ -137,6 +179,7 @@ public partial class GSM05000 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
+    
     private async Task GetUpdateSample()
     {
         var loEx = new R_Exception();
@@ -152,35 +195,11 @@ public partial class GSM05000 : R_Page
 
         R_DisplayException(loEx);
     }
+    
     #endregion
     
-    private async Task ChangeTab(R_TabStripTab arg)
-    {
-        var loEx = new R_Exception();
-
-        try
-        {
-            if (arg.Id == "tabNumbering")
-            {
-                await _GSM05000NumberingViewModel.GetNumberingHeader();
-                await _gridRefNumbering.R_RefreshGrid(null);
-            }
-
-            if (arg.Id == "tabApproval")
-            {
-                await _GSM05000ApprovalUserViewModel.GetApprovalHeader();
-                await _gridRefDept.R_RefreshGrid(null);
-            }
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-
-        loEx.ThrowExceptionIfErrors();
-    }
-    
     #region Tab Numbering
+    
     private async Task Grid_GetListNumbering(R_ServiceGetListRecordEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -197,6 +216,7 @@ public partial class GSM05000 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
+    
     private async Task Grid_GetRecordNumbering(R_ServiceGetRecordEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -213,6 +233,7 @@ public partial class GSM05000 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
+    
     private async Task Grid_AfterAddNumbering(R_AfterAddEventArgs arg)
     {
         var loEx = new R_Exception();
@@ -229,6 +250,7 @@ public partial class GSM05000 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
+    
     private async Task Grid_ServiceSaveNumbering(R_ServiceSaveEventArgs arg)
     {
         var loEx = new R_Exception();
@@ -245,6 +267,7 @@ public partial class GSM05000 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
+    
     private async Task Grid_ServiceAfterSaveNumbering(R_AfterSaveEventArgs arg)
     {
         var loEx = new R_Exception();
@@ -260,6 +283,7 @@ public partial class GSM05000 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
+    
     private async Task Grid_ServiceDeleteNumbering(R_ServiceDeleteEventArgs arg)
     {
         var loEx = new R_Exception();
@@ -276,6 +300,7 @@ public partial class GSM05000 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
+    
     private void BeforeLookupNumbering(R_BeforeOpenGridLookupColumnEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -292,6 +317,7 @@ public partial class GSM05000 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
+    
     private void AfterLookupNumbering(R_AfterOpenGridLookupColumnEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -313,7 +339,191 @@ public partial class GSM05000 : R_Page
         
         loEx.ThrowExceptionIfErrors();
     }
+    
     #endregion
     
     
+    
+    #region Tab Approver
+    
+    private async Task GetListDept(R_ServiceGetListRecordEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            await _GSM05000ApprovalUserViewModel.GetDepartmentList();
+            eventArgs.ListEntityResult = _GSM05000ApprovalUserViewModel.DepartmentList;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+    
+    private async Task DisplayDept(R_DisplayEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+    
+        try
+        {
+            if (eventArgs.ConductorMode == R_eConductorMode.Normal)
+            {
+                var loParam = (GSM05000ApprovalDepartmentDTO)eventArgs.Data;
+                await _GSM05000ApprovalUserViewModel.GetDepartmentEntity(loParam);
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+    
+        loEx.ThrowExceptionIfErrors();
+    }
+    
+    private async Task GetListApprover(R_ServiceGetListRecordEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            await _GSM05000ApprovalUserViewModel.GetApproverList();
+            eventArgs.ListEntityResult = _GSM05000ApprovalUserViewModel.ApproverList;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private async Task GetRecordApprover(R_ServiceGetRecordEventArgs arg)
+    {
+        var loEx = new R_Exception();
+        
+        try
+        {
+            var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000ApprovalUserDTO>(arg.Data);
+            await _GSM05000ApprovalUserViewModel.GetApproverEntity(loParam);
+            arg.Result = _GSM05000ApprovalUserViewModel.ApproverEntity;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+    }
+
+    private async Task SaveApprover(R_ServiceSaveEventArgs arg)
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000ApprovalUserDTO>(arg.Data);
+            await _GSM05000ApprovalUserViewModel.SaveEntity(loParam, (eCRUDMode)arg.ConductorMode);
+            arg.Result = _GSM05000ApprovalUserViewModel.ApproverEntity;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+    
+    private async Task DisplayApprover(R_DisplayEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            if (eventArgs.ConductorMode == R_eConductorMode.Normal)
+            {
+                var loParam = (GSM05000ApprovalUserDTO)eventArgs.Data;
+                await _GSM05000ApprovalUserViewModel.GetApproverEntity(loParam);
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+    
+    private async Task AfterAddApprover(R_AfterAddEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+        
+        try
+        {
+            var loParam = (GSM05000ApprovalUserDTO)eventArgs.Data;
+            await _GSM05000ApprovalUserViewModel.GenerateSequence(loParam);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+    }
+
+    private async Task BeforeLookupApprover(R_BeforeOpenGridLookupColumnEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            eventArgs.Parameter = new GSL01100ParameterDTO()
+            {
+                CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE
+            };
+            eventArgs.TargetPageType = typeof(GSL01100);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private async Task AfterLookupApprover(R_AfterOpenGridLookupColumnEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loTempResult = (GSL01100DTO)eventArgs.Result;
+            var loGetData = (GSM05000ApprovalUserDTO)eventArgs.ColumnData;
+            if (loTempResult == null)
+                return;
+
+            loGetData.CUSER_ID = loTempResult.CUSER_ID;
+            loGetData.CUSER_NAME = loTempResult.CUSER_NAME;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    #endregion
+
+    private async Task DeleteApprover(R_ServiceDeleteEventArgs arg)
+    {
+        var loEx = new R_Exception();
+        
+        try
+        {
+            var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000ApprovalUserDTO>(arg.Data);
+            await _GSM05000ApprovalUserViewModel.DeleteEntity(loParam);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+    }
 }

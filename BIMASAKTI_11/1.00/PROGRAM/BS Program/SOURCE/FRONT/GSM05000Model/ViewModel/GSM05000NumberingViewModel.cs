@@ -84,7 +84,7 @@ public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
                 poNewEntity.CCYEAR = loPeriod.CCYEAR;
                 poNewEntity.CPERIOD_NO = loPeriod.CPERIOD_NO;
             }
-            
+
             Entity = await _GSM05000NumberingModel.R_ServiceSaveAsync(poNewEntity, peCrudMode);
         }
         catch (Exception ex)
@@ -148,10 +148,10 @@ public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
             var lnLastPeriod = GridList.OrderByDescending(x => x.CPERIOD_NO).FirstOrDefault();
             lnPeriod = Convert.ToInt32(lnLastPeriod.CPERIOD_NO) + 1;
         }
-        
+
         poParam.CCYEAR = HeaderEntity.CYEAR_FORMAT == "1" ? lcYear.Year.ToString("D2") : lcYear.Year.ToString("D4");
         poParam.CPERIOD_NO = lnPeriod.ToString("D2");
-        
+
         poParam.CPERIOD = HeaderEntity.CPERIOD_MODE == "P" ? poParam.CCYEAR + "-" + poParam.CPERIOD_NO : poParam.CCYEAR;
 
         return poParam;

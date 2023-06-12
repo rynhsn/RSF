@@ -37,7 +37,12 @@ public class GSM05000ApprovalUserModel : R_BusinessObjectServiceClientBase<GSM05
     {
         throw new NotImplementedException();
     }
-    
+
+    public string GSM05000ValidationForAction()
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<GSM05000ListDTO<GSM05000ApprovalDepartmentDTO>> GetApprovalDepartmentAsync()
     {
         var loEx = new R_Exception();

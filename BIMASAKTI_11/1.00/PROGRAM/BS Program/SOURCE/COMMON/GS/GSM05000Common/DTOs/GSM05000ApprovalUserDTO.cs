@@ -1,8 +1,13 @@
+using System;
+
 namespace GSM05000Common.DTOs
 {
     public class GSM05000ApprovalUserDTO
     {
         public string CCOMPANY_ID { get; set; }
+        public string CTRANSACTION_CODE { get; set; }
+        public string CDEPT_CODE { get; set; }
+        
         public string CSEQUENCE { get; set; }
         public string CUSER_ID { get; set; }
         public string CUSER_NAME { get; set; }
@@ -10,9 +15,9 @@ namespace GSM05000Common.DTOs
         public bool LREPLACEMENT { get; set; }
         public int NLIMIT_AMOUNT { get; set; }
         public string CUPDATE_BY { get; set; }
-        public string CUPDATE_DATE { get; set; }
+        public DateTime DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; }
-        public string CCREATE_DATE { get; set; }
+        public DateTime DCREATE_DATE { get; set; }
         public string CUSER_LOGIN_ID { get; set; }
     }
 }

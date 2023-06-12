@@ -21,6 +21,7 @@ namespace GSM05000Common
         GSM05000ApprovalHeaderDTO GSM05000GetApprovalHeader();
         GSM05000ListDTO<GSM05000ApprovalUserDTO> GSM05000GetApprovalList();
         GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> GSM05000GetApprovalDepartment();
+        string GSM05000ValidationForAction();
     }
     
     public interface IGSM05000ApprovalReplacement : R_IServiceCRUDBase<GSM05000ApprovalReplacementDTO>
