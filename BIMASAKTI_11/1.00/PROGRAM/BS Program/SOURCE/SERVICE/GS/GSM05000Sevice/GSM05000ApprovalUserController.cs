@@ -99,7 +99,8 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
             {
                 CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
                 CUSER_ID = R_BackGlobalVar.USER_ID,
-                CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE)
+                CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE),
+                
             };
 
             loCls = new GSM05000ApprovalUserCls();

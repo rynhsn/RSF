@@ -591,9 +591,40 @@
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_GroupBox>
+            <R_GroupBox ShowBorder="true" Class="p-2">
+                <R_Grid @ref="@_gridRefReplacement"
+                        DataSource="@_GSM05000ApprovalReplacementViewModel.ReplacementList"
+                        Pageable="true"
+                        R_ConductorGridSource="@_conductorRefReplacement"
+                        R_GridType="@R_eGridType.Original"
+                        R_ServiceGetListRecord="@GetListReplacement"
+                        PageSize="20"
+                        AllowDeleteRow="true"
+                        AllowEditRow="true"
+                        AllowAddNewRow="true"
+                        R_Before_Open_Grid_Lookup="BeforeLookupReplacement"
+                        R_After_Open_Grid_Lookup="AfterLookupReplacement">
+                    <R_GridColumns>
+                        <R_GridLookupColumn FieldName="CUSER_ID" HeaderText="User Id" R_EnableAdd/>
+                        <R_GridTextColumn FieldName="CUSER_NAME" HeaderText="User Name"/>
+                        <R_GridDatePickerColumn FieldName="DVALID_FROM" HeaderText="Valid From" R_EnableAdd/>
+                        <R_GridDatePickerColumn FieldName="DVALID_TO" HeaderText="Valid To" R_EnableAdd/>
+                        <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Last Updated By"/>
+                        <R_GridDateTimePickerColumn FieldName="DUPDATE_DATE" HeaderText="Last Updated Date"/>
+                        <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Created By"/>
+                        <R_GridDateTimePickerColumn FieldName="DCREATE_DATE" HeaderText="Created Date"/>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_GroupBox>
         </R_ItemLayout>
     </R_StackLayout>
 
+    <R_ConductorGrid @ref="@_conductorRefDept"
+                     R_ViewModel="@_GSM05000ApprovalUserViewModel"
+                     R_IsHeader="true"
+                     R_Display="@DisplayDept"
+                     R_ServiceSave="@SaveApprover"/>
+    
     <R_ConductorGrid @ref="@_conductorRefApprover"
                      R_ViewModel="@_GSM05000ApprovalUserViewModel"
                      R_IsHeader="true"
@@ -601,13 +632,17 @@
                      R_Display="DisplayApprover"
                      R_AfterAdd="@AfterAddApprover"
                      R_ServiceSave="@SaveApprover"
-                     R_ServiceDelete="@DeleteApprover"
-                     @* R_BeforeDelete="" *@/>
-
-    <R_ConductorGrid @ref="@_conductorRefDept"
-                     R_ViewModel="@_GSM05000ApprovalUserViewModel"
-                     R_IsHeader="true"
-                     R_Display="@DisplayDept"
-                     R_ServiceSave="@SaveApprover"/>
+                     R_ServiceDelete="@DeleteApprover"/>
+    
+    <R_ConductorGrid @ref="@_conductorRefReplacement"
+                     R_ViewModel="@_GSM05000ApprovalReplacementViewModel"
+                     R_ConductorParent="@_conductorRefApprover"
+                     R_Display="@DisplayReplacement"
+                     R_AfterAdd="@AfterAddReplacement"
+                     @* R_Saving="@SavingReplacement" *@
+                     R_ServiceSave="@SaveReplacement"
+                     R_ServiceDelete="@DeleteReplacement"/>
+    />
+    
 </R_TabStripTab>
 </R_TabStrip>

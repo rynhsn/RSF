@@ -7,4 +7,6 @@ public class GSM05000ParameterDb
     public string CLANGUAGE_ID { get; set; }
     public string CTRANSACTION_CODE { get; set; }
     public string CDEPT_CODE { get; set; }
+    
+    public string CUSER_LOGIN_ID { get; set; }
 }
