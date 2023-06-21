@@ -2906,7 +2906,7 @@
           "bin/placeholder/GSM05000Common.dll": {}
         }
       },
-      "GSM05000Sevice/1.0.0": {
+      "GSM05000Service/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
@@ -2914,10 +2914,10 @@
           "GSM05000Common": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/GSM05000Sevice.dll": {}
+          "bin/placeholder/GSM05000Service.dll": {}
         },
         "runtime": {
-          "bin/placeholder/GSM05000Sevice.dll": {}
+          "bin/placeholder/GSM05000Service.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -8564,10 +8564,10 @@
       "path": "../../../COMMON/GS/GSM05000Common/GSM05000Common.csproj",
       "msbuildProject": "../../../COMMON/GS/GSM05000Common/GSM05000Common.csproj"
     },
-    "GSM05000Sevice/1.0.0": {
+    "GSM05000Service/1.0.0": {
       "type": "project",
-      "path": "../../../SERVICE/GS/GSM05000Sevice/GSM05000Sevice.csproj",
-      "msbuildProject": "../../../SERVICE/GS/GSM05000Sevice/GSM05000Sevice.csproj"
+      "path": "../../../SERVICE/GS/GSM05000Service/GSM05000Service.csproj",
+      "msbuildProject": "../../../SERVICE/GS/GSM05000Service/GSM05000Service.csproj"
     },
     "Lookup_GSBACK/1.0.0": {
       "type": "project",
@@ -8631,7 +8631,7 @@
       "GFF00900SERVICES >= 1.0.0",
       "GSM00100Service >= 1.0.0",
       "GSM02000Service >= 1.0.0",
-      "GSM05000Sevice >= 1.0.0",
+      "GSM05000Service >= 1.0.0",
       "Lookup_GSSERVICES >= 1.0.0",
       "R_SecurityPolicyService >= 1.0.0",
       "R_SecurityTokenService >= 1.0.0",
@@ -8683,8 +8683,8 @@
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02000Service\\GSM02000Service.csproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02000Service\\GSM02000Service.csproj"
             },
-            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Sevice\\GSM05000Sevice.csproj": {
-              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Sevice\\GSM05000Sevice.csproj"
+            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Service\\GSM05000Service.csproj": {
+              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Service\\GSM05000Service.csproj"
             },
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj"

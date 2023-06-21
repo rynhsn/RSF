@@ -6,7 +6,7 @@ using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
 
-namespace GSM05000Sevice;
+namespace GSM05000Service;
 
 [ApiController]
 [Route("api/[controller]/[action]")]
@@ -21,10 +21,11 @@ public class GSM05000ApprovalReplacementController : ControllerBase, IGSM05000Ap
         try
         {
             var loCls = new GSM05000ApprovalReplacementCls();
-            loRtn = new R_ServiceGetRecordResultDTO<GSM05000ApprovalReplacementDTO>
-            {
-                data = loCls.R_GetRecord(poParameter.Entity)
-            };
+            loRtn = new R_ServiceGetRecordResultDTO<GSM05000ApprovalReplacementDTO>();
+            poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            poParameter.Entity.CUSER_LOGIN_ID = R_BackGlobalVar.USER_ID;
+
+            loRtn.data = loCls.R_GetRecord(poParameter.Entity);
         }
         catch (Exception ex)
         {
@@ -117,4 +118,5 @@ public class GSM05000ApprovalReplacementController : ControllerBase, IGSM05000Ap
 
         return loRtn;
     }
+
 }

@@ -6,7 +6,7 @@ using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
 
-namespace GSM05000Sevice;
+namespace GSM05000Service;
 
 [ApiController]
 [Route("api/[controller]/[action]")]

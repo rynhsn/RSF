@@ -1,0 +1,69 @@
+﻿@inherits R_Page
+
+<R_StackLayout Row="true" Spacing="1">
+    <R_ItemLayout xs="1">
+        <R_Label>Transaction Code</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_TextBox Value="@_GSM05000NumberingViewModel.HeaderEntity.CTRANSACTION_CODE"
+                   Enabled="false" />
+    </R_ItemLayout>
+    <R_ItemLayout xs="3">
+        <R_TextBox Value="@_GSM05000NumberingViewModel.HeaderEntity.CTRANSACTION_NAME"
+                   Enabled="false" />
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CheckBox Value="@_GSM05000NumberingViewModel.HeaderEntity.LDEPT_MODE"
+                    Enabled="false" />
+    </R_ItemLayout>
+
+    <R_ItemLayout xs="2">
+        <R_Label>By Department</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_Label>Period Mode</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout xs="2">
+        <R_TextBox Value="@_GSM05000NumberingViewModel.HeaderEntity.CPERIOD_MODE_DESCR"
+                   Enabled="false" />
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout>
+    <R_ItemLayout>
+        <R_Grid @ref="@_gridRefNumbering"
+                DataSource="@_GSM05000NumberingViewModel.GridList"
+                Pageable="true"
+                R_ConductorGridSource="@_conductorRefNumbering"
+                R_GridType="@R_eGridType.Original"
+                R_ServiceGetListRecord="@Grid_GetListNumbering"
+                PageSize="20"
+                AllowDeleteRow="true"
+                AllowEditRow="true"
+                AllowAddNewRow="true"
+                R_Before_Open_Grid_Lookup="BeforeLookupNumbering"
+                R_After_Open_Grid_Lookup="AfterLookupNumbering"
+                Width="1000px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CPERIOD" HeaderText="Period" />
+                <R_GridLookupColumn FieldName="CDEPT_CODE" HeaderText="Department Code" R_EnableAdd />
+                <R_GridTextColumn FieldName="CDEPT_NAME" HeaderText="Department Name" />
+                <R_GridNumericColumn FieldName="ISTART_NUMBER" HeaderText="Starting No" R_EnableAdd R_EnableEdit Min="1" Max="1000" Step="1" />
+                <R_GridNumericColumn FieldName="ILAST_NUMBER" HeaderText="Last No" />
+                <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Last Update By" />
+                <R_GridTextColumn FieldName="DUPDATE_DATE" HeaderText="Last Update Date" />
+                <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Last Create By" />
+                <R_GridTextColumn FieldName="DCREATE_DATE" HeaderText="Last Create Date" />
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_ConductorGrid @ref="@_conductorRefNumbering"
+                 R_ViewModel="@_GSM05000NumberingViewModel"
+                 R_IsHeader
+                 R_ServiceGetRecord="Grid_GetRecordNumbering"
+                 R_AfterAdd="@Grid_AfterAddNumbering"
+                 R_ServiceSave="Grid_ServiceSaveNumbering"
+                 R_AfterSave="Grid_ServiceAfterSaveNumbering"
+                 R_ServiceDelete="Grid_ServiceDeleteNumbering" />
