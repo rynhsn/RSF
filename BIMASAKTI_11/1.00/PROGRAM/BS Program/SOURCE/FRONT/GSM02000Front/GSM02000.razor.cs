@@ -20,6 +20,7 @@ public partial class GSM02000 : R_Page
     private R_Conductor _conductorRef;
     private R_Grid<GSM02000GridDTO> _gridRef;
     private string loLabel = "Activate";
+    
     [Inject] private IClientHelper _clientHelper { get; set; }
 
     protected override async Task R_Init_From_Master(object poParam)

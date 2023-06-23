@@ -127,11 +127,11 @@
                        Enabled="false"/>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="1">
-            <R_Lookup @ref="@R_LookupBtn" R_Before_Open_Lookup="@Before_Open_Lookup" R_After_Open_Lookup="@After_Open_Lookup">Pick</R_Lookup>
+        <R_ItemLayout>
+            <R_Lookup @ref="@R_LookupBtn" R_Before_Open_Lookup="@Before_Open_Lookup" R_After_Open_Lookup="@After_Open_Lookup"></R_Lookup>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="3">
+        <R_ItemLayout xs="4">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NAME"
                        R_ConductorSource="@_conductorRef"
                        Enabled="false"/>
@@ -144,7 +144,7 @@
         </R_ItemLayout>
 
         <R_ItemLayout xs="1">
-            <R_EditButton R_Conductor="@_conductorRef"/>
+            <R_EditButton R_Conductor="@_conductorRef" R_SetOther/>
         </R_ItemLayout>
 
         <R_ItemLayout xs="1">
@@ -152,7 +152,7 @@
         </R_ItemLayout>
 
         <R_ItemLayout xs="1">
-            <R_Popup R_After_Open_Popup="@AfterOpenActiveInactive" R_Before_Open_Popup="@BeforeOpenActiveInactive">@loLabel</R_Popup>
+            <R_Popup R_ConductorSource="_conductorRef" R_EnableOther="true" R_After_Open_Popup="@AfterOpenActiveInactive" R_Before_Open_Popup="@BeforeOpenActiveInactive">@loLabel</R_Popup>
         </R_ItemLayout>
 
         <R_ItemLayout xs="1">

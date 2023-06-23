@@ -13,7 +13,7 @@ namespace GSM05000Common.DTOs
         public string CUSER_NAME { get; set; }
         public string CPOSITION { get; set; }
         public bool LREPLACEMENT { get; set; }
-        public int NLIMIT_AMOUNT { get; set; }
+        public decimal NLIMIT_AMOUNT { get; set; }
         public string CUPDATE_BY { get; set; }
         public DateTime DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; }

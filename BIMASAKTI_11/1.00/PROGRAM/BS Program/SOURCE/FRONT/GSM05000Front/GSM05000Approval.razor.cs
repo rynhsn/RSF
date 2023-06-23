@@ -1,5 +1,7 @@
 ﻿using GSM05000Common.DTOs;
 using GSM05000Model.ViewModel;
+using Lookup_GSCOMMON.DTOs;
+using Lookup_GSFRONT;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
@@ -33,6 +35,7 @@ namespace GSM05000Front
 
                 await _gridRefDept.R_RefreshGrid(null);
                 await _gridRefApprover.R_RefreshGrid(null);
+                await _gridRefApprover.AutoFitAllColumnsAsync();
                 //await _gridRefReplacement.R_RefreshGrid(null);
             }
             catch (Exception ex)
@@ -155,8 +158,8 @@ namespace GSM05000Front
             {
                 if (eventArgs.ConductorMode == R_eConductorMode.Normal)
                 {
-                    _GSM05000ApprovalReplacementViewModel.SelectedUserId = ((GSM05000ApprovalUserDTO)eventArgs.Data).CUSER_ID;
-                    await _gridRefReplacement.R_RefreshGrid(null);
+                    var pcSelectedUserId = ((GSM05000ApprovalUserDTO)eventArgs.Data).CUSER_ID;
+                    await _gridRefReplacement.R_RefreshGrid(pcSelectedUserId);
                 }
             }
             catch (Exception ex)
@@ -199,43 +202,43 @@ namespace GSM05000Front
 
         private void BeforeLookupApprover(R_BeforeOpenGridLookupColumnEventArgs eventArgs)
         {
-            //var loEx = new R_Exception();
+            var loEx = new R_Exception();
 
-            //try
-            //{
-            //    eventArgs.Parameter = new GSL01100ParameterDTO()
-            //    {
-            //        CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE
-            //    };
-            //    eventArgs.TargetPageType = typeof(GSL01100);
-            //}
-            //catch (Exception ex)
-            //{
-            //    loEx.Add(ex);
-            //}
+            try
+            {
+                eventArgs.Parameter = new GSL01100ParameterDTO()
+                {
+                    CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE
+                };
+                eventArgs.TargetPageType = typeof(GSL01100);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
 
-            //loEx.ThrowExceptionIfErrors();
+            loEx.ThrowExceptionIfErrors();
         }
 
         private void AfterLookupApprover(R_AfterOpenGridLookupColumnEventArgs eventArgs)
         {
-            //var loEx = new R_Exception();
-            //try
-            //{
-            //    var loTempResult = (GSL01100DTO)eventArgs.Result;
-            //    var loGetData = (GSM05000ApprovalUserDTO)eventArgs.ColumnData;
-            //    if (loTempResult == null)
-            //        return;
+            var loEx = new R_Exception();
+            try
+            {
+                var loTempResult = (GSL01100DTO)eventArgs.Result;
+                var loGetData = (GSM05000ApprovalUserDTO)eventArgs.ColumnData;
+                if (loTempResult == null)
+                    return;
 
-            //    loGetData.CUSER_ID = loTempResult.CUSER_ID;
-            //    loGetData.CUSER_NAME = loTempResult.CUSER_NAME;
-            //}
-            //catch (Exception ex)
-            //{
-            //    loEx.Add(ex);
-            //}
+                loGetData.CUSER_ID = loTempResult.CUSER_ID;
+                loGetData.CUSER_NAME = loTempResult.CUSER_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
 
-            //loEx.ThrowExceptionIfErrors();
+            loEx.ThrowExceptionIfErrors();
         }
 
         #endregion
@@ -247,11 +250,11 @@ namespace GSM05000Front
 
             try
             {
-                _GSM05000ApprovalReplacementViewModel.DeptCode = _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_CODE;
-                _GSM05000ApprovalReplacementViewModel.TransactionCode = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE;
-                //_GSM05000ApprovalReplacementViewModel.SelectedUserId = _GSM05000ApprovalUserViewModel.ApproverEntity.CUSER_ID;
+                var lcDeptCode = _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_CODE;
+                var lcTransactionCode = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE;
+                var lcSelectedUserId = eventArgs.Parameter.ToString();
 
-                await _GSM05000ApprovalReplacementViewModel.GetReplacementList();
+                await _GSM05000ApprovalReplacementViewModel.GetReplacementList(lcTransactionCode, lcDeptCode, lcSelectedUserId);
                 eventArgs.ListEntityResult = _GSM05000ApprovalReplacementViewModel.ReplacementList;
             }
             catch (Exception ex)
@@ -271,7 +274,11 @@ namespace GSM05000Front
                 if (eventArgs.ConductorMode == R_eConductorMode.Normal)
                 {
                     var loParam = (GSM05000ApprovalReplacementDTO)eventArgs.Data;
-                    await _GSM05000ApprovalReplacementViewModel.GetReplacementEntity(loParam);
+                    
+                    var lcDeptCode = loParam.CDEPT_CODE;
+                    var lcTransactionCode = loParam.CTRANSACTION_CODE;
+                    var lcSelectedUserId = loParam.CUSER_ID;
+                    await _GSM05000ApprovalReplacementViewModel.GetReplacementEntity(loParam, lcTransactionCode, lcDeptCode, lcSelectedUserId);
                 }
             }
             catch (Exception ex)
@@ -318,43 +325,43 @@ namespace GSM05000Front
 
         private void BeforeLookupReplacement(R_BeforeOpenGridLookupColumnEventArgs eventArgs)
         {
-            //var loEx = new R_Exception();
+            var loEx = new R_Exception();
 
-            //try
-            //{
-            //    eventArgs.Parameter = new GSL01100ParameterDTO()
-            //    {
-            //        CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE
-            //    };
-            //    eventArgs.TargetPageType = typeof(GSL01100);
-            //}
-            //catch (Exception ex)
-            //{
-            //    loEx.Add(ex);
-            //}
+            try
+            {
+                eventArgs.Parameter = new GSL01100ParameterDTO()
+                {
+                    CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE
+                };
+                eventArgs.TargetPageType = typeof(GSL01100);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
 
-            //loEx.ThrowExceptionIfErrors();
+            loEx.ThrowExceptionIfErrors();
         }
 
         private void AfterLookupReplacement(R_AfterOpenGridLookupColumnEventArgs eventArgs)
         {
-            //var loEx = new R_Exception();
-            //try
-            //{
-            //    var loTempResult = (GSL01100DTO)eventArgs.Result;
-            //    var loGetData = (GSM05000ApprovalReplacementDTO)eventArgs.ColumnData;
-            //    if (loTempResult == null)
-            //        return;
+            var loEx = new R_Exception();
+            try
+            {
+                var loTempResult = (GSL01100DTO)eventArgs.Result;
+                var loGetData = (GSM05000ApprovalReplacementDTO)eventArgs.ColumnData;
+                if (loTempResult == null)
+                    return;
 
-            //    loGetData.CUSER_REPLACEMENT = loTempResult.CUSER_ID;
-            //    loGetData.CUSER_REPLACEMENT_NAME = loTempResult.CUSER_NAME;
-            //}
-            //catch (Exception ex)
-            //{
-            //    loEx.Add(ex);
-            //}
+                loGetData.CUSER_REPLACEMENT = loTempResult.CUSER_ID;
+                loGetData.CUSER_REPLACEMENT_NAME = loTempResult.CUSER_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
 
-            //loEx.ThrowExceptionIfErrors();
+            loEx.ThrowExceptionIfErrors();
         }
 
         private void AfterAddReplacement(R_AfterAddEventArgs eventArgs)

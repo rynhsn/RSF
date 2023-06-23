@@ -51,7 +51,7 @@ namespace GSM05000Model.ViewModel
             new("1", "YY"),
             new("2", "YYYY"),
         };
-        
+
         #endregion
 
         public async Task GetGridList()
@@ -78,7 +78,7 @@ namespace GSM05000Model.ViewModel
             try
             {
                 Entity = await _GSM05000Model.R_ServiceGetRecordAsync(poEntity);
-                await this.GetSequence();
+                this.GetSequence();
             }
             catch (Exception ex)
             {
@@ -140,7 +140,7 @@ namespace GSM05000Model.ViewModel
 
         #region Parse sequence
 
-        public async Task GetSequence()
+        public void GetSequence()
         {
             DeptSequence = GetSequenceIndex("01");
             TrxSequence = GetSequenceIndex("02");
@@ -163,10 +163,10 @@ namespace GSM05000Model.ViewModel
 
         #region REF NO / Sample Code
 
-        public string REFNO;
-        public string REFNO_LENGTH;
+        public string REFNO = "";
+        public string REFNO_LENGTH = "";
 
-        public async Task getRefNo()
+        public void getRefNo()
         {
             var loEx = new R_Exception();
 
@@ -289,7 +289,7 @@ namespace GSM05000Model.ViewModel
                 loEx.Add(ex);
             }
 
-            EndBlock:
+        EndBlock:
             loEx.ThrowExceptionIfErrors();
         }
 

@@ -15,19 +15,19 @@ public class GSM05000ApprovalReplacementViewModel : R_ViewModel<GSM05000Approval
     private GSM05000ApprovalReplacementModel _Model = new();
     public ObservableCollection<GSM05000ApprovalReplacementDTO> ReplacementList = new();
     public GSM05000ApprovalReplacementDTO ReplacementEntity = new();
-    public string TransactionCode = "";
-    public string DeptCode = "";
-    public string SelectedUserId = "";
+    // public string TransactionCode = "";
+    // public string DeptCode = "";
+    // public string SelectedUserId = "";
     
-    public async Task GetReplacementList()
+    public async Task GetReplacementList(string pcTransCode, string pcDeptCode, string? pcSelectedUserId)
     {
         var loEx = new R_Exception();
 
         try
         {
-            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, TransactionCode);
-            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE, DeptCode);
-            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CUSER_ID, SelectedUserId);
+            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, pcTransCode);
+            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE, pcDeptCode);
+            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CUSER_ID, pcSelectedUserId);
             var loReturn = await _Model.GetReplacementListAsync();
             
             ReplacementList = new ObservableCollection<GSM05000ApprovalReplacementDTO>(loReturn.Data);
@@ -35,6 +35,7 @@ public class GSM05000ApprovalReplacementViewModel : R_ViewModel<GSM05000Approval
             foreach (var list in ReplacementList)
             {
                 list.DVALID_TO = DateTime.ParseExact(list.CVALID_TO, "yyyyMMdd", CultureInfo.InvariantCulture);
+                list.DVALID_FROM = DateTime.ParseExact(list.CVALID_FROM, "yyyyMMdd", CultureInfo.InvariantCulture);
             }
         }
         catch (Exception ex)
@@ -44,13 +45,16 @@ public class GSM05000ApprovalReplacementViewModel : R_ViewModel<GSM05000Approval
         loEx.ThrowExceptionIfErrors();
     }
     
-    public async Task GetReplacementEntity(GSM05000ApprovalReplacementDTO poEntity)
+    public async Task GetReplacementEntity(GSM05000ApprovalReplacementDTO poEntity, string pcTransCode, string pcDeptCode, string pcSelectedUserId)
     {
         var loEx = new R_Exception();
 
         try
         {
-            ReplacementEntity = poEntity;
+            poEntity.CTRANSACTION_CODE = pcTransCode;
+            poEntity.CDEPT_CODE = pcDeptCode;
+            poEntity.CUSER_ID = pcSelectedUserId;
+            ReplacementEntity = await _Model.R_ServiceGetRecordAsync(poEntity);
         }
         catch (Exception ex)
         {
@@ -65,13 +69,6 @@ public class GSM05000ApprovalReplacementViewModel : R_ViewModel<GSM05000Approval
         var loEx = new R_Exception();
         try
         {
-            // if (eCRUDMode.AddMode == peCrudMode)
-            // {
-            //     poNewEntity.CDEPT_CODE = DeptCode;
-            //     poNewEntity.CTRANSACTION_CODE = TransactionCode;
-            //     poNewEntity.CUSER_REPLACEMENT = SelectedUserId;
-            // }
-
             ReplacementEntity = await _Model.R_ServiceSaveAsync(poNewEntity, peCrudMode);
         }
         catch (Exception ex)
@@ -82,12 +79,12 @@ public class GSM05000ApprovalReplacementViewModel : R_ViewModel<GSM05000Approval
         loEx.ThrowExceptionIfErrors();
     }
     
-    public async Task DeleteEntity(GSM05000ApprovalReplacementDTO poNewEntity)
+    public async Task DeleteEntity(GSM05000ApprovalReplacementDTO poEntity)
     {
         var loEx = new R_Exception();
         try
         {
-            await _Model.R_ServiceDeleteAsync(poNewEntity);
+            await _Model.R_ServiceDeleteAsync(poEntity);
         }
         catch (Exception ex)
         {

@@ -11,11 +11,33 @@ public class GSM05000ApprovalReplacementCls : R_BusinessObject<GSM05000ApprovalR
 {
     protected override GSM05000ApprovalReplacementDTO R_Display(GSM05000ApprovalReplacementDTO poEntity)
     {
-        var loEx = new R_Exception();
+        R_Exception loEx = new R_Exception();
         GSM05000ApprovalReplacementDTO loRtn = null;
+        R_Db loDb;
+        DbConnection loConn;
+        DbCommand loCmd;
+        string lcQuery;
         try
         {
-            loRtn = poEntity;
+            loDb = new R_Db();
+            loConn = loDb.GetConnection();
+            loCmd = loDb.GetCommand();
+
+            lcQuery = "RSP_GS_GET_TRANS_CODE_REPLACEMENT_DETAIL";
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
+
+            
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 50, poEntity.CTRANSACTION_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 255, poEntity.CDEPT_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CUSER_REPLACEMENT", DbType.String, 50, poEntity.CUSER_REPLACEMENT);
+            loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 50, poEntity.CUSER_LOGIN_ID);
+
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+            loRtn = R_Utility.R_ConvertTo<GSM05000ApprovalReplacementDTO>(loDataTable).FirstOrDefault();
         }
         catch (Exception ex)
         {
@@ -58,7 +80,7 @@ public class GSM05000ApprovalReplacementCls : R_BusinessObject<GSM05000ApprovalR
             loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 255, poNewEntity.CDEPT_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poNewEntity.CUSER_ID);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_REPLACEMENT", DbType.String, 50, poNewEntity.CUSER_REPLACEMENT);
-            loDb.R_AddCommandParameter(loCmd, "@CVALID_FROM", DbType.String, 1, poNewEntity.CVALID_FROM);
+            loDb.R_AddCommandParameter(loCmd, "@CVALID_FROM", DbType.String, 50, poNewEntity.CVALID_FROM);
             loDb.R_AddCommandParameter(loCmd, "@CVALID_TO", DbType.String, 20, poNewEntity.CVALID_TO);
             loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, lcAction);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 50, poNewEntity.CUSER_LOGIN_ID);
@@ -88,7 +110,7 @@ public class GSM05000ApprovalReplacementCls : R_BusinessObject<GSM05000ApprovalR
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
             
-            lcQuery = "RSP_GS_MAINTAIN_TRANS_CODE_APPROVER";
+            lcQuery = "RSP_GS_MAINTAIN_TRANS_CODE_APPR_REPLACE";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
@@ -97,7 +119,7 @@ public class GSM05000ApprovalReplacementCls : R_BusinessObject<GSM05000ApprovalR
             loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 255, poEntity.CDEPT_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_REPLACEMENT", DbType.String, 50, poEntity.CUSER_REPLACEMENT);
-            loDb.R_AddCommandParameter(loCmd, "@CVALID_FROM", DbType.String, 1, poEntity.CVALID_FROM);
+            loDb.R_AddCommandParameter(loCmd, "@CVALID_FROM", DbType.String, 50, poEntity.CVALID_FROM);
             loDb.R_AddCommandParameter(loCmd, "@CVALID_TO", DbType.String, 20, poEntity.CVALID_TO);
             loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, lcAction);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 50, poEntity.CUSER_LOGIN_ID);

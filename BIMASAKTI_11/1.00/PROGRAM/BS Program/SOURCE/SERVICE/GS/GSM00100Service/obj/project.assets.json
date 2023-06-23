@@ -1211,19 +1211,6 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "GSM00100Back/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "GSM00100Common": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/GSM00100Back.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GSM00100Back.dll": {}
-        }
-      },
       "GSM00100Common/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -4068,11 +4055,6 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "GSM00100Back/1.0.0": {
-      "type": "project",
-      "path": "../../../BACK/GS/GSM00100Back/GSM00100Back.vbproj",
-      "msbuildProject": "../../../BACK/GS/GSM00100Back/GSM00100Back.vbproj"
-    },
     "GSM00100Common/1.0.0": {
       "type": "project",
       "path": "../../../COMMON/GS/GSM00100Common/GSM00100Common.vbproj",
@@ -4081,7 +4063,6 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "GSM00100Back >= 1.0.0",
       "GSM00100Common >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.Core >= 2.2.5"
     ]
@@ -4120,9 +4101,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM00100Back\\GSM00100Back.vbproj": {
-              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM00100Back\\GSM00100Back.vbproj"
-            },
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM00100Common\\GSM00100Common.vbproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM00100Common\\GSM00100Common.vbproj"
             }

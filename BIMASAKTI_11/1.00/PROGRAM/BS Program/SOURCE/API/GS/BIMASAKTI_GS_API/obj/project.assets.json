@@ -2801,44 +2801,6 @@
           "bin/placeholder/GFF00900SERVICES.dll": {}
         }
       },
-      "GSM00100Back/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "GSM00100Common": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/GSM00100Back.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GSM00100Back.dll": {}
-        }
-      },
-      "GSM00100Common/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
-        "compile": {
-          "bin/placeholder/GSM00100Common.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GSM00100Common.dll": {}
-        }
-      },
-      "GSM00100Service/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "GSM00100Back": "1.0.0",
-          "GSM00100Common": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
-        },
-        "compile": {
-          "bin/placeholder/GSM00100Service.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GSM00100Service.dll": {}
-        }
-      },
       "GSM02000Back/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -8524,21 +8486,6 @@
       "path": "../../../../../BS Shared Form/SOURCE/SERVICES/GFF00900SERVICES/GFF00900SERVICES.csproj",
       "msbuildProject": "../../../../../BS Shared Form/SOURCE/SERVICES/GFF00900SERVICES/GFF00900SERVICES.csproj"
     },
-    "GSM00100Back/1.0.0": {
-      "type": "project",
-      "path": "../../../BACK/GS/GSM00100Back/GSM00100Back.vbproj",
-      "msbuildProject": "../../../BACK/GS/GSM00100Back/GSM00100Back.vbproj"
-    },
-    "GSM00100Common/1.0.0": {
-      "type": "project",
-      "path": "../../../COMMON/GS/GSM00100Common/GSM00100Common.vbproj",
-      "msbuildProject": "../../../COMMON/GS/GSM00100Common/GSM00100Common.vbproj"
-    },
-    "GSM00100Service/1.0.0": {
-      "type": "project",
-      "path": "../../../SERVICE/GS/GSM00100Service/GSM00100Service.csproj",
-      "msbuildProject": "../../../SERVICE/GS/GSM00100Service/GSM00100Service.csproj"
-    },
     "GSM02000Back/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/GSM02000Back/GSM02000Back.csproj",
@@ -8629,7 +8576,6 @@
     "net6.0": [
       "BlazorMenuService >= 1.0.0",
       "GFF00900SERVICES >= 1.0.0",
-      "GSM00100Service >= 1.0.0",
       "GSM02000Service >= 1.0.0",
       "GSM05000Service >= 1.0.0",
       "Lookup_GSSERVICES >= 1.0.0",
@@ -8676,9 +8622,6 @@
           "projectReferences": {
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj"
-            },
-            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM00100Service\\GSM00100Service.csproj": {
-              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM00100Service\\GSM00100Service.csproj"
             },
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02000Service\\GSM02000Service.csproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02000Service\\GSM02000Service.csproj"

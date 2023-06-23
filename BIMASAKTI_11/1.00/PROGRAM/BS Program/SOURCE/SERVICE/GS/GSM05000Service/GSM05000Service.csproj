@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>GSM05000Sevice</RootNamespace>
+        <RootNamespace>GSM05000Service</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

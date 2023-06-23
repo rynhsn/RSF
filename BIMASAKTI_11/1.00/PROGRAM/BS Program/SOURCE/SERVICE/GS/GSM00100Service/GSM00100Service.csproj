@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\BACK\GS\GSM00100Back\GSM00100Back.vbproj" />
     <ProjectReference Include="..\..\..\COMMON\GS\GSM00100Common\GSM00100Common.vbproj" />
   </ItemGroup>
 

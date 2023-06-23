@@ -63,7 +63,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
         loEx.ThrowExceptionIfErrors();
     }
 
-    public async Task GetDepartmentEntity(GSM05000ApprovalDepartmentDTO poEntity)
+    public void GetDepartmentEntity(GSM05000ApprovalDepartmentDTO poEntity)
     {
         var loEx = new R_Exception();
 
@@ -103,7 +103,8 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
 
         try
         {
-            ApproverEntity = poEntity;
+            poEntity.CTRANSACTION_CODE = TransactionCode;
+            ApproverEntity = await _Model.R_ServiceGetRecordAsync(poEntity);
         }
         catch (Exception ex)
         {
@@ -149,8 +150,8 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
 
         loEx.ThrowExceptionIfErrors();
     }
-    
-    public async Task GenerateSequence(GSM05000ApprovalUserDTO poNewEntity)
+
+    public void GenerateSequence(GSM05000ApprovalUserDTO poNewEntity)
     {
         var loEx = new R_Exception();
         var lnSequence = 1;

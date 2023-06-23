@@ -129,7 +129,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         string lcQuery;
         R_Db loDb;
         DbCommand loCmd;
-        DbConnection loConn;
+        DbConnection loConn = null;
         string lcAction = "";
         
         try
@@ -171,6 +171,19 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+        }
+
+        finally
+        {
+            if (loConn != null)
+            {
+                if (loConn.State != ConnectionState.Closed)
+                {
+                    loConn.Close();
+                }
+
+                loConn.Dispose();
+            }
         }
 
         loEx.ThrowExceptionIfErrors();
