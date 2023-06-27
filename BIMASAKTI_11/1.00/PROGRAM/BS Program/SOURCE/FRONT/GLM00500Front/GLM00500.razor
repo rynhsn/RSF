@@ -9,14 +9,20 @@
                 <R_Label>Year</R_Label>
             </R_ItemLayout>
             <R_ItemLayout xs="1">
-                <R_NumericTextBox @bind-Value="@_viewModel.SelectedYear" Min="@_viewModel.Periods.IMIN_YEAR" Max="@_viewModel.Periods.IMAX_YEAR" R_ConductorSource="_conductorRef" Step="1"/>
+                <R_NumericTextBox
+                    @bind-Value="@_viewModel.SelectedYear"
+                    Min="@_viewModel.Periods.IMIN_YEAR"
+                    Max="@_viewModel.Periods.IMAX_YEAR"
+                    R_ConductorSource="_conductorRef" 
+                    R_EnableOther="true"
+                    Step="1"/>
             </R_ItemLayout>
             <R_ItemLayout xs="1">
                 <R_Button OnClick="RefreshList" R_ConductorSource="_conductorRef" R_EnableOther="true">Refresh</R_Button>
             </R_ItemLayout>
         </R_StackLayout>
 
-        <R_StackLayout>
+        <R_StackLayout Class="mb-3">
             <R_ItemLayout>
                 <R_Grid @ref="_gridRef"
                         DataSource="_viewModel.BudgetHDList"
@@ -24,11 +30,12 @@
                         R_ConductorSource="_conductorRef"
                         R_GridType="R_eGridType.Navigator"
                         R_ServiceGetListRecord="GetBudgetHDList"
-                        PageSize="20">
+                        Width="1050px"
+                        >
                     <R_GridColumns>
                         <R_GridTextColumn FieldName="CBUDGET_NO" HeaderText="Budget No."/>
                         <R_GridTextColumn FieldName="CBUDGET_NAME" HeaderText="Budget Name"/>
-                        <R_GridTextColumn FieldName="CCURRENCY_TYPE" HeaderText="Currency Type"/>
+                        <R_GridTextColumn FieldName="CCURRENCY_TYPE_NAME" HeaderText="Currency Type"/>
                         <R_GridCheckBoxColumn FieldName="LFINAL" HeaderText="Final"/>
                         <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Updated By"/>
                         <R_GridDateTimePickerColumn FieldName="DUPDATE_DATE" HeaderText="Updated Date"/>
@@ -40,64 +47,140 @@
             </R_ItemLayout>
         </R_StackLayout>
 
-        <R_GroupBox ShowBorder="true">
+        <R_GroupBox ShowBorder="true" Class="mb-3 p-3">
             <R_StackLayout Row>
-                <R_ItemLayout xs="1">
-                    <R_Label>Budget No.</R_Label>
+                <R_ItemLayout xs="6">
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="2">
+                            <R_Label>Budget No.</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="3">
+                            <R_TextBox @bind-Value="_viewModel.Data.CBUDGET_NO"
+                                       R_ConductorSource="_conductorRef"
+                                       MaxLength="20"
+                                       R_EnableAdd/>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="2">
+                            <R_CheckBox @bind-Value="_viewModel.Data.LFINAL"
+                                        R_ConductorSource="_conductorRef"
+                                        Enabled="false"/>
+                            <R_Label>Final</R_Label>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="2">
+                            <R_Label>Budget Name</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="8">
+                            <R_TextBox @bind-Value="_viewModel.Data.CBUDGET_NAME"
+                                       R_ConductorSource="_conductorRef"
+                                       MaxLength="50"
+                                       R_EnableAdd
+                                       R_EnableEdit/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="2">
+                            <R_Label>Currency Type</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="4">
+                            <R_ComboBox Data="_viewModel.CurrencyTypeList"
+                                        @bind-Value="_viewModel.Data.CCURRENCY_TYPE"
+                                        ValueField="@nameof(GLM00500FunctionDTO.CCODE)"
+                                        TextField="@nameof(GLM00500FunctionDTO.CDESCRIPTION)"
+                                        R_ConductorSource="_conductorRef"
+                                        R_EnableAdd
+                                        R_EnableEdit/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
                 </R_ItemLayout>
-                <R_ItemLayout xs="1">
-                    <R_TextBox @bind-Value="_viewModel.Data.CBUDGET_NO" 
-                               R_ConductorSource="_conductorRef" 
-                               MaxLength="20" 
-                               R_EnableAdd/>
-                </R_ItemLayout>
-                <R_ItemLayout xs="1">
-                    <R_CheckBox @bind-Value="_viewModel.Data.LFINAL" 
-                                R_ConductorSource="_conductorRef" 
-                                Enabled="false"/>
-                    <R_Label>Final</R_Label>
-                </R_ItemLayout>
-            </R_StackLayout>
-            <R_StackLayout Row>
-                <R_ItemLayout xs="1">
-                    <R_Label>Budget Name</R_Label>
-                </R_ItemLayout>
-                <R_ItemLayout xs="3">
-                    <R_TextBox @bind-Value="_viewModel.Data.CBUDGET_NAME" 
-                               R_ConductorSource="_conductorRef" 
-                               MaxLength="50" 
-                               R_EnableAdd 
-                               R_EnableEdit/>
-                </R_ItemLayout>
-            </R_StackLayout>
-            <R_StackLayout Row>
-                <R_ItemLayout xs="1">
-                    <R_Label>Currency Type</R_Label>
-                </R_ItemLayout>
-                <R_ItemLayout xs="2">
-                    <R_ComboBox Data="_viewModel.CurrencyTypeList" 
-                                @bind-Value="_viewModel.Data.CCURRENCY_TYPE"
-                                ValueField="@nameof(GLM00500FunctionDTO.CCODE)"
-                                TextField="@nameof(GLM00500FunctionDTO.CDESCRIPTION)"
-                                R_ConductorSource="_conductorRef" 
-                                R_EnableAdd 
-                                R_EnableEdit/>
+                <R_ItemLayout xs="6">
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="2">
+                            <R_Label>Updated By</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="2">
+                            <R_TextBox @bind-Value="_viewModel.Data.CUPDATE_BY"
+                                       R_ConductorSource="_conductorRef" Enabled="false"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="5">
+                            <R_DateTimePicker @bind-Value="_viewModel.Data.DUPDATE_DATE"
+                                              R_ConductorSource="_conductorRef" Enabled="false"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="2">
+                            <R_Label>Created By</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="2">
+                            <R_TextBox @bind-Value="_viewModel.Data.CCREATE_BY"
+                                       R_ConductorSource="_conductorRef" Enabled="false"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="5">
+                            <R_DateTimePicker @bind-Value="_viewModel.Data.DCREATE_DATE"
+                                              R_ConductorSource="_conductorRef" Enabled="false"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
                 </R_ItemLayout>
             </R_StackLayout>
         </R_GroupBox>
-        
-        <R_AddButton R_Conductor="_conductorRef"/>
-        <R_EditButton R_Conductor="_conductorRef"/>
-        <R_CancelButton R_Conductor="_conductorRef"/>
-        <R_SaveButton R_Conductor="_conductorRef"/>
+
+        <R_StackLayout Row>
+            <R_ItemLayout xs="1">
+                <R_AddButton R_Conductor="_conductorRef"/>
+            </R_ItemLayout>
+            <R_ItemLayout xs="1">
+                <R_EditButton R_Conductor="_conductorRef"/>
+            </R_ItemLayout>
+            <R_ItemLayout xs="1" Class="me-5">
+                <R_DeleteButton R_Conductor="_conductorRef"/>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="1">
+                <R_Button
+                    OnClick="SetFinal"
+                    R_ConductorSource="_conductorRef"
+                    R_EnableOther="true">
+                    Final
+                </R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout xs="1">
+                <R_Popup
+                    R_ConductorSource="_conductorRef"
+                    R_EnableOther="true">
+                    Upload
+                </R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout xs="1" Class="me-5">
+                <R_Button
+                    OnClick="DownloadTemplate"
+                    R_ConductorSource="_conductorRef"
+                    R_EnableOther="true">
+                    Template
+                </R_Button>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="1">
+                <R_CancelButton R_Conductor="_conductorRef"/>
+            </R_ItemLayout>
+            <R_ItemLayout xs="1">
+                <R_SaveButton R_Conductor="_conductorRef"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_Conductor @ref="@_conductorRef"
+                     R_ViewModel="@_viewModel"
+                     R_IsHeader="true"
+                     R_ServiceGetRecord="@GetBudgetHD"
+                     R_Validation="@ValidationBudgetHD"
+                     R_ServiceSave="@SaveBudgetHD"
+                     R_ServiceDelete="@DeleteBudgetHD"
+                     R_AfterDelete="@AfterDeleteBudgetHD"
+                     R_BeforeCancel="@BeforeCancelBudgetHD"
+                     />
 
     </R_TabStripTab>
-    <R_TabStripTab Title="Detail">
-        <label>detail</label>
+    <R_TabStripTab @ref="_detailTab" Title="Detail">
+            <R_TabPage R_ConductorParent="@_conductorRef" R_Before_Open_TabPage="@BeforeOpenTabDetail"></R_TabPage>
     </R_TabStripTab>
 </R_TabStrip>
-    
-<R_Conductor @ref="@_conductorRef"
-             R_ViewModel="@_viewModel"
-             R_IsHeader="true"
-             R_ServiceGetRecord="@GetBudgetHD"/>

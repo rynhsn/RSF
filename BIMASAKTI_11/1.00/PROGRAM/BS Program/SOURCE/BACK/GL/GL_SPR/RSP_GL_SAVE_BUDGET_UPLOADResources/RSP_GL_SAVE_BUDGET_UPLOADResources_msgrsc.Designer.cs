@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RSP_GL_SAVE_BUDGET_WEIGHTINGResources {
+namespace RSP_GL_SAVE_BUDGET_UPLOADResources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace RSP_GL_SAVE_BUDGET_WEIGHTINGResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class RSP_GL_SAVE_BUDGET_WEIGHTINGResources_msgrsc {
+    internal class RSP_GL_SAVE_BUDGET_UPLOADResources_msgrsc {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal RSP_GL_SAVE_BUDGET_WEIGHTINGResources_msgrsc() {
+        internal RSP_GL_SAVE_BUDGET_UPLOADResources_msgrsc() {
         }
         
         /// <summary>
@@ -39,8 +39,7 @@ namespace RSP_GL_SAVE_BUDGET_WEIGHTINGResources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RSP_GL_SAVE_BUDGET_WEIGHTINGResources.RSP_GL_SAVE_BUDGET_WEIGHTINGResources_msgrs" +
-                            "c", typeof(RSP_GL_SAVE_BUDGET_WEIGHTINGResources_msgrsc).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RSP_GL_SAVE_BUDGET_UPLOADResources.RSP_GL_SAVE_BUDGET_UPLOADResources_msgrsc", typeof(RSP_GL_SAVE_BUDGET_UPLOADResources_msgrsc).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,16 +61,7 @@ namespace RSP_GL_SAVE_BUDGET_WEIGHTINGResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Budget Weighting Code {0} already exists!.
-        /// </summary>
-        internal static string Error100 {
-            get {
-                return ResourceManager.GetString("Error100", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Process failed! unable to save budget weighting {0}.
+        ///   Looks up a localized string similar to Process failed! unable to save Account Budget {0}.
         /// </summary>
         internal static string Error900 {
             get {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RSP_GL_UPDATE_RECURRING_STATUSResources {
+namespace RSP_GL_SAVE_BUDGET_DTResources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace RSP_GL_UPDATE_RECURRING_STATUSResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class RSP_GL_UPDATE_RECURRING_STATUSResources_msgrsc {
+    internal class RSP_GL_SAVE_BUDGET_DTResources_msgrsc {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal RSP_GL_UPDATE_RECURRING_STATUSResources_msgrsc() {
+        internal RSP_GL_SAVE_BUDGET_DTResources_msgrsc() {
         }
         
         /// <summary>
@@ -39,8 +39,7 @@ namespace RSP_GL_UPDATE_RECURRING_STATUSResources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RSP_GL_UPDATE_RECURRING_STATUSResources.RSP_GL_UPDATE_RECURRING_STATUSResources.m" +
-                            "sgrsc", typeof(RSP_GL_UPDATE_RECURRING_STATUSResources_msgrsc).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RSP_GL_SAVE_BUDGET_DTResources.RSP_GL_SAVE_BUDGET_DTResources_msgrsc", typeof(RSP_GL_SAVE_BUDGET_DTResources_msgrsc).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,7 +61,16 @@ namespace RSP_GL_UPDATE_RECURRING_STATUSResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Process failed! unable to update Recurring Journal status {0}.
+        ///   Looks up a localized string similar to Account No. {0} already exists for selected center code!.
+        /// </summary>
+        internal static string Error100 {
+            get {
+                return ResourceManager.GetString("Error100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Process failed! unable to save Budget Detail {0}.
         /// </summary>
         internal static string Error900 {
             get {

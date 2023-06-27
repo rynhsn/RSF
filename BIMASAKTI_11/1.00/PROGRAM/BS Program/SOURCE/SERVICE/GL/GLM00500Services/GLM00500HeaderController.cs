@@ -190,7 +190,7 @@ public class GLM00500HeaderController : ControllerBase, IGLM00500Header
         try
         {
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbParams.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
+            loDbParams.CUSER_ID = R_BackGlobalVar.USER_ID;
             loDbParams.CREC_ID = R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CREC_ID);
             loCls.GLM00500FinalizeBudgetDb(loDbParams);
         }

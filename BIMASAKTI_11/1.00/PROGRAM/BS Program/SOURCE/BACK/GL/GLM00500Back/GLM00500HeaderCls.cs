@@ -35,6 +35,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
             var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
             loReturn = R_Utility.R_ConvertTo<GLM00500BudgetHDDTO>(DataTable).FirstOrDefault();
+            loReturn.CREC_ID = poEntity.CREC_ID;
         }
         catch (Exception ex)
         {
@@ -147,7 +148,10 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
 
             try
             {
-                loDb.SqlExecNonQuery(loConn, loCmd, false);
+                // loDb.SqlExecNonQuery(loConn, loCmd, false);
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+                var loResult = R_Utility.R_ConvertTo<GLM00500BudgetHDDTO>(loDataTable).FirstOrDefault();
+                poNewEntity.CREC_ID = loResult.CREC_ID;
             }
             catch (Exception ex)
             {
@@ -194,7 +198,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
             
             R_ExternalException.R_SP_Init_Exception(loConn);
 
-                lcQuery = "RSP_GL_FINALIZE_BUDGET";
+            lcQuery = "RSP_GL_FINALIZE_BUDGET";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 

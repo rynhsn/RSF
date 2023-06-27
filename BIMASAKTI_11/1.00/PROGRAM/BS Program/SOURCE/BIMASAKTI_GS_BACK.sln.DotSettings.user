@@ -13,6 +13,16 @@
   &lt;Assembly Path="C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\6.0.16\Microsoft.AspNetCore.Mvc.Core.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FDELETE_005FBUDGET_005FDTResources_002FRSP_005FGL_005FDELETE_005FBUDGET_005FDTResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FDELETE_005FBUDGETResources_002FRSP_005FGL_005FDELETE_005FBUDGETResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FFINALIZE_005FBUDGETResources_002FRSP_005FGL_005FFINALIZE_005FBUDGETResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FPROCESS_005FBUDGET_005FUPLOADResources_002FRSP_005FGL_005FPROCESS_005FBUDGET_005FUPLOADResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FSAVE_005FBUDGET_005FDTResources_002FRSP_005FGL_005FSAVE_005FBUDGET_005FDTResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FSAVE_005FBUDGET_005FHDResources_002FRSP_005FGL_005FSAVE_005FBUDGET_005FHDResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FSAVE_005FBUDGET_005FUPLOADResources_002FRSP_005FGL_005FSAVE_005FBUDGET_005FUPLOADResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGS_005FMAINTAIN_005FSALES_005FTAXResources_002FRSP_005FGS_005FMAINTAIN_005FSALES_005FTAXResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGS_005FVALIDATE_005FUSER_005FACT_005FAPPRResources_002FRSP_005FGS_005FVALIDATE_005FUSER_005FACT_005FAPPRResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>

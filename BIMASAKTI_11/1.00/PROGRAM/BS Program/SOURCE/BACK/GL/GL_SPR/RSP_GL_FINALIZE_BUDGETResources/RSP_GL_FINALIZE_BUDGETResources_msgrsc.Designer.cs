@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RSP_GL_PROCESS_BUDGET_UPLOADResources {
+namespace RSP_GL_FINALIZE_BUDGETResources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace RSP_GL_PROCESS_BUDGET_UPLOADResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class RSP_GL_PROCESS_BUDGET_UPLOADResources_msgrsc {
+    internal class RSP_GL_FINALIZE_BUDGETResources_msgrsc {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal RSP_GL_PROCESS_BUDGET_UPLOADResources_msgrsc() {
+        internal RSP_GL_FINALIZE_BUDGETResources_msgrsc() {
         }
         
         /// <summary>
@@ -39,8 +39,7 @@ namespace RSP_GL_PROCESS_BUDGET_UPLOADResources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RSP_GL_PROCESS_BUDGET_UPLOADResources.RSP_GL_PROCESS_BUDGET_UPLOADResources.msgrs" +
-                            "c", typeof(RSP_GL_PROCESS_BUDGET_UPLOADResources_msgrsc).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RSP_GL_FINALIZE_BUDGETResources.RSP_GL_FINALIZE_BUDGETResources_msgrsc", typeof(RSP_GL_FINALIZE_BUDGETResources_msgrsc).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,7 +61,7 @@ namespace RSP_GL_PROCESS_BUDGET_UPLOADResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Process failed! unable to preview budget {0}.
+        ///   Looks up a localized string similar to Process failed! unable to update budget final status {0}.
         /// </summary>
         internal static string Error900 {
             get {

@@ -5,6 +5,7 @@ using GLM00500Common;
 using GLM00500Common.DTOs;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
+using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
 
 namespace GLM00500Model.ViewModel
@@ -18,11 +19,8 @@ namespace GLM00500Model.ViewModel
         public GLM00500BudgetHDDTO BudgetHDEntity = new();
         public GLM00500GSMPeriodDTO Periods = new();
         public GLM00500GLSystemParamDTO SystemParams = new();
-        
-        public GLM00500FunctionDTO CurrencyType = new();
-        
-        public int SelectedYear = 0;
-        public int DefaultYear = 0;
+
+        public int SelectedYear;
 
         public async Task Init()
         {
@@ -31,6 +29,7 @@ namespace GLM00500Model.ViewModel
             await GetSystemParams();
             await GetCurrencyTypeList();
         }
+
         //get list
         public async Task GetBudgetHDList(int pnYear)
         {
@@ -52,7 +51,7 @@ namespace GLM00500Model.ViewModel
         }
 
         //get budget header 
-        public async Task GetBudgetHDEntity(GLM00500BudgetHDDTO poEntity)
+        public async Task GetBudgetHD(GLM00500BudgetHDDTO poEntity)
         {
             var loEx = new R_Exception();
             GLM00500BudgetHDDTO loResult;
@@ -60,6 +59,7 @@ namespace GLM00500Model.ViewModel
             try
             {
                 loResult = await _model.R_ServiceGetRecordAsync(poEntity);
+                loResult.CREC_ID = poEntity.CREC_ID;
                 BudgetHDEntity = loResult;
             }
             catch (R_Exception ex)
@@ -69,15 +69,16 @@ namespace GLM00500Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        
+
         //save budget header
-        public async Task SaveBudgetHDEntity(GLM00500BudgetHDDTO poEntity, eCRUDMode peCRUDMode)
+        public async Task SaveBudgetHD(GLM00500BudgetHDDTO poEntity, eCRUDMode peCRUDMode)
         {
             var loEx = new R_Exception();
             GLM00500BudgetHDDTO loResult;
 
             try
             {
+                poEntity.CYEAR = R_FrontUtility.ConvertObjectToObject<string>(SelectedYear);
                 loResult = await _model.R_ServiceSaveAsync(poEntity, peCRUDMode);
                 BudgetHDEntity = loResult;
             }
@@ -88,12 +89,11 @@ namespace GLM00500Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        
+
         //delete budget header
-        public async Task DeleteBudgetHDEntity(GLM00500BudgetHDDTO poEntity)
+        public async Task DeleteBudgetHD(GLM00500BudgetHDDTO poEntity)
         {
             var loEx = new R_Exception();
-            GLM00500BudgetHDDTO loResult;
 
             try
             {
@@ -106,7 +106,7 @@ namespace GLM00500Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        
+
         //get period list
         public async Task GetPeriods()
         {
@@ -125,7 +125,7 @@ namespace GLM00500Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        
+
         //get currency type list
         public async Task GetCurrencyTypeList()
         {
@@ -144,7 +144,7 @@ namespace GLM00500Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        
+
         //get system param
         public async Task GetSystemParams()
         {
@@ -163,6 +163,32 @@ namespace GLM00500Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        
+
+        //set finalize budget
+        public async Task SetFinalizeBudget(string pcRecId)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.CREC_ID, pcRecId);
+                await _model.GLM00500FinalizeBudgetModel();
+            }
+            catch (R_Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        public async Task ValidationBudgetHD(GLM00500BudgetHDDTO param)
+        {
+            var loEx = new R_Exception();
+            if (param.CBUDGET_NO is null or "") loEx.Add(new Exception("Budget No. is required!"));
+            if (param.CBUDGET_NAME is null or "") loEx.Add(new Exception("Budget Name is required!"));
+            if (param.CCURRENCY_TYPE is null or "") loEx.Add(new Exception("Please select Currency Type!"));
+            loEx.ThrowExceptionIfErrors();
+        }
     }
 }
