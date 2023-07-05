@@ -30,6 +30,7 @@ public partial class GSM02000 : R_Page
         try
         {
             await _gridRef.R_RefreshGrid(null);
+            await _gridRef.AutoFitAllColumnsAsync();
             await _GSM02000ViewModel.GetRoundingMode();
         }
         catch (Exception ex)

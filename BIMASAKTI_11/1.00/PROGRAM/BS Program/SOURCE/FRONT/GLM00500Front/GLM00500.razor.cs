@@ -204,14 +204,8 @@ public partial class GLM00500 : R_Page
         var loResult = await R_MessageBox.Show("Confirm", "Are you sure want to cancel selected Budget?", R_eMessageBoxButtonType.YesNo);
         if (loResult == R_eMessageBoxResult.No) eventArgs.Cancel = true;
     }
-    
-    private async Task BeforeOpenTabDetail(R_BeforeOpenTabPageEventArgs eventArgs)
-    {
-        eventArgs.TargetPageType = typeof(GLM00500Detail);
-        eventArgs.Parameter = R_FrontUtility.ConvertObjectToObject<GLM00500BudgetHDDTO>(_viewModel.BudgetHDEntity);
-    }
 
-    private async Task BeforeOpenTabDetail1(R_InstantiateDockEventArgs eventArgs)
+    private async Task BeforeOpenTabDetail(R_InstantiateDockEventArgs eventArgs)
     {
         eventArgs.TargetPageType = typeof(GLM00500Detail);
         eventArgs.Parameter = R_FrontUtility.ConvertObjectToObject<GLM00500BudgetHDDTO>(_viewModel.BudgetHDEntity);
