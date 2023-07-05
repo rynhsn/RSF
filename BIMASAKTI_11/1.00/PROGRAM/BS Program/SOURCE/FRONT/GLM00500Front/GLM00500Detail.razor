@@ -1,2 +1,184 @@
 ﻿@page "/GLM00500Detail"
+@using GLM00500Common.DTOs
 @inherits R_Page
+@attribute [R_Page(Title = "Detail")]
+
+<R_StackLayout Row Class="mb-3">
+    <R_ItemLayout>
+        <R_Label>Year</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1" Class="me-2">
+        <R_TextBox Value="@_viewModel.BudgetHDEntity.CYEAR" Enabled="false"/>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Label>Budget</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_TextBox Value="@_viewModel.BudgetHDEntity.CBUDGET_NO" Enabled="false"/>
+    </R_ItemLayout>
+    <R_ItemLayout xs="3" Class="me-2">
+        <R_TextBox Value="@_viewModel.BudgetHDEntity.CBUDGET_NAME" Enabled="false"/>
+    </R_ItemLayout>
+    <R_ItemLayout Class="me-2">
+        <R_Label>Account Type</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout Class="me-5">
+        <R_RadioGroup Data="@_viewModel.CGLACCOUNT_TYPE"
+                      @bind-Value="_viewModel.SelectedAccountType"
+                      ValueField="Key"
+                      TextField="Value"
+                      R_ConductorSource="@_conductorRef"
+                      R_EnableOther/>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button>Generate</R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button>Refresh</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row Class="mb-3">
+    <R_ItemLayout xs="3">
+        <R_Grid @ref="_gridRef"
+                DataSource="_viewModel.BudgetDTList"
+                Pageable
+                R_ConductorSource="_conductorRef"
+                R_GridType="R_eGridType.Navigator"
+                R_ServiceGetListRecord="GetBudgetDTList">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="Account No."/>
+                <R_GridTextColumn FieldName="CCENTER_CODE" HeaderText="Center"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+    <R_ItemLayout xs="9">
+        <R_GroupBox ShowBorder Class="px-3 py-2" Title="Detail">
+            <R_StackLayout Row Class="mb-2">
+                <R_ItemLayout xs="2">
+                    <R_Label>Account No.</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout xs="2">
+                    <R_TextBox @bind-Value="_viewModel.Data.CGLACCOUNT_NO"
+                               R_ConductorSource="_conductorRef"
+                               Enabled="false"/>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Lookup R_ConductorSource="_conductorRef" 
+                              R_EnableAdd 
+                              R_EnableEdit></R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout xs="6">
+                    <R_TextBox @bind-Value="_viewModel.Data.CGLACCOUNT_NAME" 
+                               R_ConductorSource="_conductorRef"
+                               Enabled="false"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+            
+            <R_StackLayout Row Class="mb-2">
+                <R_ItemLayout xs="2">
+                    <R_Label>Center</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout xs="2">
+                    <R_TextBox @bind-Value="_viewModel.Data.CCENTER_CODE"
+                               R_ConductorSource="_conductorRef"
+                               Enabled="false"/>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Lookup R_ConductorSource="_conductorRef"
+                              R_EnableAdd 
+                              R_EnableEdit></R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout xs="6">
+                    <R_TextBox @bind-Value="_viewModel.Data.CCENTER_NAME"
+                               R_ConductorSource="_conductorRef" 
+                               Enabled="false"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+            
+            <R_StackLayout Row Class="mb-2">
+                <R_ItemLayout xs="2">
+                    <R_Label>Input Method</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout xs="10">
+                    <R_RadioGroup Data="@_viewModel.CINPUT_METHOD"
+                                  @bind-Value="_viewModel.Data.CINPUT_METHOD"
+                                  ValueField="Key"
+                                  TextField="Value"
+                                  R_ConductorSource="@_conductorRef"
+                                  R_EnableOther/>
+                </R_ItemLayout>
+            </R_StackLayout>
+            
+            <R_StackLayout Row Class="mb-2">
+                <R_ItemLayout xs="2">
+                    <R_Label>Budget</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout xs="2" Class="me-5">
+                    <R_NumericTextBox @bind-Value="_viewModel.Data.NBUDGET"
+                               R_ConductorSource="_conductorRef"
+                               Enabled="false"/>
+                </R_ItemLayout>
+                <R_ItemLayout xs="2">
+                    <R_Label>Rounding Method</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout xs="4">
+                    <R_ComboBox Data="@_viewModel.RoundingMethodList"
+                               @bind-Value="_viewModel.Data.CROUNDING_METHOD"
+                               ValueField="@nameof(GLM00500FunctionDTO.CCODE)"
+                               TextField="@nameof(GLM00500FunctionDTO.CDESCRIPTION)"
+                               R_ConductorSource="@_conductorRef"
+                               R_EnableAdd
+                               R_EnableEdit/>
+                </R_ItemLayout>
+            </R_StackLayout>
+            
+            <R_StackLayout Row Class="mb-2">
+                <R_ItemLayout xs="2">
+                    <R_Label>Budget</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout xs="2" Class="me-5">
+                    <R_NumericTextBox @bind-Value="_viewModel.Data.NBUDGET"
+                               R_ConductorSource="_conductorRef"
+                               Enabled="false"/>
+                </R_ItemLayout>
+                <R_ItemLayout xs="2">
+                    <R_Label>Rounding Method</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout xs="4">
+                    <R_ComboBox Data="@_viewModel.RoundingMethodList"
+                               @bind-Value="_viewModel.Data.CROUNDING_METHOD"
+                               ValueField="@nameof(GLM00500FunctionDTO.CCODE)"
+                               TextField="@nameof(GLM00500FunctionDTO.CDESCRIPTION)"
+                               R_ConductorSource="@_conductorRef"
+                               R_EnableAdd
+                               R_EnableEdit/>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_GroupBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="1">
+        <R_AddButton R_Conductor="_conductorRef"/>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_EditButton R_Conductor="_conductorRef"/>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1" Class="me-5">
+        <R_DeleteButton R_Conductor="_conductorRef"/>
+    </R_ItemLayout>
+
+    <R_ItemLayout xs="1">
+        <R_CancelButton R_Conductor="_conductorRef"/>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_SaveButton R_Conductor="_conductorRef"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@GetBudgetDT"/>

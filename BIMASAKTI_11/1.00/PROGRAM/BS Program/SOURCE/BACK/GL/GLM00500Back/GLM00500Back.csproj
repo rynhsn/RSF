@@ -9,8 +9,12 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\COMMON\GL\GLM00500Common\GLM00500Common.csproj" />
     <ProjectReference Include="..\GL_SPR\RSP_GL_DELETE_BUDGETResources\RSP_GL_DELETE_BUDGETResources.csproj" />
+    <ProjectReference Include="..\GL_SPR\RSP_GL_DELETE_BUDGET_DTResources\RSP_GL_DELETE_BUDGET_DTResources.csproj" />
     <ProjectReference Include="..\GL_SPR\RSP_GL_FINALIZE_BUDGETResources\RSP_GL_FINALIZE_BUDGETResources.csproj" />
+    <ProjectReference Include="..\GL_SPR\RSP_GL_PROCESS_BUDGET_UPLOADResources\RSP_GL_PROCESS_BUDGET_UPLOADResources.csproj" />
+    <ProjectReference Include="..\GL_SPR\RSP_GL_SAVE_BUDGET_DTResources\RSP_GL_SAVE_BUDGET_DTResources.csproj" />
     <ProjectReference Include="..\GL_SPR\RSP_GL_SAVE_BUDGET_HDResources\RSP_GL_SAVE_BUDGET_HDResources.csproj" />
+    <ProjectReference Include="..\GL_SPR\RSP_GL_SAVE_BUDGET_UPLOADResources\RSP_GL_SAVE_BUDGET_UPLOADResources.csproj" />
   </ItemGroup>
 
   <ItemGroup>

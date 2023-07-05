@@ -95,7 +95,6 @@ namespace GSM02000Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-
         public async Task SetActiveInactive()
         {
             var loEx = new R_Exception();

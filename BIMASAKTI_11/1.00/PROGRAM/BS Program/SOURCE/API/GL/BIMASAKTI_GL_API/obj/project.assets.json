@@ -2600,8 +2600,12 @@
         "dependencies": {
           "GLM00500Common": "1.0.0",
           "RSP_GL_DELETE_BUDGETResources": "1.0.0",
+          "RSP_GL_DELETE_BUDGET_DTResources": "1.0.0",
           "RSP_GL_FINALIZE_BUDGETResources": "1.0.0",
-          "RSP_GL_SAVE_BUDGET_HDResources": "1.0.0"
+          "RSP_GL_PROCESS_BUDGET_UPLOADResources": "1.0.0",
+          "RSP_GL_SAVE_BUDGET_DTResources": "1.0.0",
+          "RSP_GL_SAVE_BUDGET_HDResources": "1.0.0",
+          "RSP_GL_SAVE_BUDGET_UPLOADResources": "1.0.0"
         },
         "compile": {
           "bin/placeholder/GLM00500Back.dll": {}
@@ -2647,6 +2651,16 @@
           "bin/placeholder/RSP_GL_DELETE_BUDGETResources.dll": {}
         }
       },
+      "RSP_GL_DELETE_BUDGET_DTResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GL_DELETE_BUDGET_DTResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GL_DELETE_BUDGET_DTResources.dll": {}
+        }
+      },
       "RSP_GL_FINALIZE_BUDGETResources/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -2657,6 +2671,26 @@
           "bin/placeholder/RSP_GL_FINALIZE_BUDGETResources.dll": {}
         }
       },
+      "RSP_GL_PROCESS_BUDGET_UPLOADResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GL_PROCESS_BUDGET_UPLOADResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GL_PROCESS_BUDGET_UPLOADResources.dll": {}
+        }
+      },
+      "RSP_GL_SAVE_BUDGET_DTResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GL_SAVE_BUDGET_DTResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GL_SAVE_BUDGET_DTResources.dll": {}
+        }
+      },
       "RSP_GL_SAVE_BUDGET_HDResources/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -2665,6 +2699,16 @@
         },
         "runtime": {
           "bin/placeholder/RSP_GL_SAVE_BUDGET_HDResources.dll": {}
+        }
+      },
+      "RSP_GL_SAVE_BUDGET_UPLOADResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GL_SAVE_BUDGET_UPLOADResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GL_SAVE_BUDGET_UPLOADResources.dll": {}
         }
       }
     }
@@ -8011,15 +8055,35 @@
       "path": "../../../BACK/GL/GL_SPR/RSP_GL_DELETE_BUDGETResources/RSP_GL_DELETE_BUDGETResources.csproj",
       "msbuildProject": "../../../BACK/GL/GL_SPR/RSP_GL_DELETE_BUDGETResources/RSP_GL_DELETE_BUDGETResources.csproj"
     },
+    "RSP_GL_DELETE_BUDGET_DTResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GL/GL_SPR/RSP_GL_DELETE_BUDGET_DTResources/RSP_GL_DELETE_BUDGET_DTResources.csproj",
+      "msbuildProject": "../../../BACK/GL/GL_SPR/RSP_GL_DELETE_BUDGET_DTResources/RSP_GL_DELETE_BUDGET_DTResources.csproj"
+    },
     "RSP_GL_FINALIZE_BUDGETResources/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GL/GL_SPR/RSP_GL_FINALIZE_BUDGETResources/RSP_GL_FINALIZE_BUDGETResources.csproj",
       "msbuildProject": "../../../BACK/GL/GL_SPR/RSP_GL_FINALIZE_BUDGETResources/RSP_GL_FINALIZE_BUDGETResources.csproj"
     },
+    "RSP_GL_PROCESS_BUDGET_UPLOADResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GL/GL_SPR/RSP_GL_PROCESS_BUDGET_UPLOADResources/RSP_GL_PROCESS_BUDGET_UPLOADResources.csproj",
+      "msbuildProject": "../../../BACK/GL/GL_SPR/RSP_GL_PROCESS_BUDGET_UPLOADResources/RSP_GL_PROCESS_BUDGET_UPLOADResources.csproj"
+    },
+    "RSP_GL_SAVE_BUDGET_DTResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GL/GL_SPR/RSP_GL_SAVE_BUDGET_DTResources/RSP_GL_SAVE_BUDGET_DTResources.csproj",
+      "msbuildProject": "../../../BACK/GL/GL_SPR/RSP_GL_SAVE_BUDGET_DTResources/RSP_GL_SAVE_BUDGET_DTResources.csproj"
+    },
     "RSP_GL_SAVE_BUDGET_HDResources/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GL/GL_SPR/RSP_GL_SAVE_BUDGET_HDResources/RSP_GL_SAVE_BUDGET_HDResources.csproj",
       "msbuildProject": "../../../BACK/GL/GL_SPR/RSP_GL_SAVE_BUDGET_HDResources/RSP_GL_SAVE_BUDGET_HDResources.csproj"
+    },
+    "RSP_GL_SAVE_BUDGET_UPLOADResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GL/GL_SPR/RSP_GL_SAVE_BUDGET_UPLOADResources/RSP_GL_SAVE_BUDGET_UPLOADResources.csproj",
+      "msbuildProject": "../../../BACK/GL/GL_SPR/RSP_GL_SAVE_BUDGET_UPLOADResources/RSP_GL_SAVE_BUDGET_UPLOADResources.csproj"
     }
   },
   "projectFileDependencyGroups": {

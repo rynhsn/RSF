@@ -201,5 +201,12 @@ public partial class GSM05000 : R_Page
         eventArgs.TargetPageType = typeof(GSM05000Approval);
         eventArgs.Parameter = R_FrontUtility.ConvertObjectToObject<GSM05000ApprovalHeaderDTO>(_GSM05000ViewModel.Entity);
     }
+    
+    
+    private void R_Before_Open_TabPageApproval1(R_BeforeOpenTabPageEventArgs eventArgs)
+    {
+        eventArgs.TargetPageType = typeof(GSM05000Approval);
+        eventArgs.Parameter = R_FrontUtility.ConvertObjectToObject<GSM05000ApprovalHeaderDTO>(_GSM05000ViewModel.Entity);
+    }
     #endregion
 }

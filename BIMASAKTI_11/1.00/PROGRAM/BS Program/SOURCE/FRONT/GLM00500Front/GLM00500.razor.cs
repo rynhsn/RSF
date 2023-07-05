@@ -19,7 +19,7 @@ public partial class GLM00500 : R_Page
     private GLM00500HeaderViewModel _viewModel = new();
     private R_Conductor _conductorRef;
     private R_Grid<GLM00500BudgetHDDTO> _gridRef = new();
-    private R_TabStripTab _detailTab;
+    // private R_TabStripTab _detailTab;
     [Inject] private IClientHelper _clientHelper { get; set; }
     [Inject] private R_IExcel _excelProvider { get; set; }
     [Inject] private IJSRuntime JS { get; set; }
@@ -57,7 +57,7 @@ public partial class GLM00500 : R_Page
         {
             await _viewModel.GetBudgetHDList(_viewModel.SelectedYear);
             eventArgs.ListEntityResult = _viewModel.BudgetHDList;
-            _detailTab.Enabled = false;
+            // _detailTab.Enabled = false;
         }
         catch (Exception ex)
         {
@@ -172,7 +172,7 @@ public partial class GLM00500 : R_Page
 
     private Task CheckAttribute()
     {
-        _detailTab.Enabled = _viewModel.BudgetHDEntity.CREC_ID != null;
+        // _detailTab.Enabled = _viewModel.BudgetHDEntity.CREC_ID != null;
         return Task.CompletedTask;
     }
 
@@ -208,6 +208,12 @@ public partial class GLM00500 : R_Page
     private async Task BeforeOpenTabDetail(R_BeforeOpenTabPageEventArgs eventArgs)
     {
         eventArgs.TargetPageType = typeof(GLM00500Detail);
+        eventArgs.Parameter = R_FrontUtility.ConvertObjectToObject<GLM00500BudgetHDDTO>(_viewModel.BudgetHDEntity);
     }
 
+    private async Task BeforeOpenTabDetail1(R_InstantiateDockEventArgs eventArgs)
+    {
+        eventArgs.TargetPageType = typeof(GLM00500Detail);
+        eventArgs.Parameter = R_FrontUtility.ConvertObjectToObject<GLM00500BudgetHDDTO>(_viewModel.BudgetHDEntity);
+    }
 }
