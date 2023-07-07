@@ -1,6 +1,7 @@
 ﻿@page "/GSM02000"
 @using GSM02000Common.DTOs
 @inherits R_Page
+@attribute [R_Page(Title = "Sales Tax")]
 
 <R_StackLayout Spacing="3" Class="mb-4">
     <R_StackLayout>
@@ -123,7 +124,8 @@
         <R_ItemLayout xs="2">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NO"
                        R_ConductorSource="@_conductorRef"
-                       Enabled="false"/>
+                       R_EnableAdd="true"
+                       R_EnableEdit="true"/>
         </R_ItemLayout>
 
         <R_ItemLayout>
@@ -168,10 +170,14 @@
              R_ViewModel="@_GSM02000ViewModel"
              R_IsHeader="true"
              R_ServiceGetRecord="@Conductor_ServiceGetRecord"
+             R_Validation="Validation"
+             R_Saving="Saving"
              R_AfterSave="Conductor_AfterSave"
              R_ServiceSave="@Conductor_ServiceSave"
              R_ServiceDelete="@Conductor_ServiceDelete"
              R_SetAdd="@R_SetAdd"
              R_SetEdit="@R_SetEdit"
              R_Display="@Grid_Display"
-             />
+/>
+
+<R_PredefinedDock R_InstantiateDock="InstanceTaxTab" Title="Tax%"/>

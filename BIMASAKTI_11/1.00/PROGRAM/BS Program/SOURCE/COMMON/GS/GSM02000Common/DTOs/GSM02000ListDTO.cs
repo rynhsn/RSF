@@ -24,12 +24,4 @@ namespace GSM02000Common.DTOs
         public string CCREATE_BY { get; set; }
         public DateTime DCREATE_DATE { get; set; }
     }
-    
-    public class GSM02000RoundingDTO
-    {
-        public string CCODE { get; set; }
-        public string CDESCRIPTION { get; set; }
-    }
-    
-    // public class 
 }

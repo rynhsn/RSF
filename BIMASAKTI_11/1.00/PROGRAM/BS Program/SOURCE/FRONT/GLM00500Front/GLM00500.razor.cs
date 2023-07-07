@@ -205,7 +205,7 @@ public partial class GLM00500 : R_Page
         if (loResult == R_eMessageBoxResult.No) eventArgs.Cancel = true;
     }
 
-    private async Task BeforeOpenTabDetail(R_InstantiateDockEventArgs eventArgs)
+    private async Task InstanceDetailTab(R_InstantiateDockEventArgs eventArgs)
     {
         eventArgs.TargetPageType = typeof(GLM00500Detail);
         eventArgs.Parameter = R_FrontUtility.ConvertObjectToObject<GLM00500BudgetHDDTO>(_viewModel.BudgetHDEntity);

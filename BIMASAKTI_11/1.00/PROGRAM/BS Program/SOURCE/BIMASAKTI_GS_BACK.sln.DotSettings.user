@@ -24,7 +24,8 @@
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FSAVE_005FBUDGET_005FUPLOADResources_002FRSP_005FGL_005FSAVE_005FBUDGET_005FUPLOADResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	
 	
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGS_005FMAINTAIN_005FSALES_005FTAXResources_002FRSP_005FGS_005FMAINTAIN_005FSALES_005FTAXResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGS_005FMAINTAIN_005FSALES_005FTAXResources_002FRSP_005FGS_005FMAINTAIN_005FSALES_005FTAXResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGS_005FMAINTAIN_005FSALES_005FTAX_005FPCTResources_002FRSP_005FGS_005FMAINTAIN_005FSALES_005FTAX_005FPCTResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGS_005FVALIDATE_005FUSER_005FACT_005FAPPRResources_002FRSP_005FGS_005FVALIDATE_005FUSER_005FACT_005FAPPRResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/OrderByFullPath/@EntryValue">False</s:Boolean>

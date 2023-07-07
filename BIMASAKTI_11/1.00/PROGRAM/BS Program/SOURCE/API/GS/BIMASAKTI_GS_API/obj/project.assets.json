@@ -2806,7 +2806,8 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "GSM02000Common": "1.0.0",
-          "RSP_GS_MAINTAIN_SALES_TAXResources": "1.0.0"
+          "RSP_GS_MAINTAIN_SALES_TAXResources": "1.0.0",
+          "RSP_GS_MAINTAIN_SALES_TAX_PCTResources": "1.0.0"
         },
         "compile": {
           "bin/placeholder/GSM02000Back.dll": {}
@@ -2931,6 +2932,16 @@
         },
         "runtime": {
           "bin/placeholder/RSP_GS_MAINTAIN_SALES_TAXResources.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_SALES_TAX_PCTResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_SALES_TAX_PCTResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_SALES_TAX_PCTResources.dll": {}
         }
       },
       "RSP_GS_VALIDATE_USER_ACT_APPRResources/1.0.0": {
@@ -8535,6 +8546,11 @@
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_SALES_TAXResources/RSP_GS_MAINTAIN_SALES_TAXResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_SALES_TAXResources/RSP_GS_MAINTAIN_SALES_TAXResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_SALES_TAX_PCTResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_SALES_TAX_PCTResources/RSP_GS_MAINTAIN_SALES_TAX_PCTResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_SALES_TAX_PCTResources/RSP_GS_MAINTAIN_SALES_TAX_PCTResources.csproj"
     },
     "RSP_GS_VALIDATE_USER_ACT_APPRResources/1.0.0": {
       "type": "project",

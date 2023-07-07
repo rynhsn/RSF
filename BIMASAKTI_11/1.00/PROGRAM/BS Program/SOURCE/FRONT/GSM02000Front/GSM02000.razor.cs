@@ -228,4 +228,49 @@ public partial class GSM02000 : R_Page
         loException.ThrowExceptionIfErrors();
         await _gridRef.R_RefreshGrid(null);
     }
+
+    private Task InstanceTaxTab(R_InstantiateDockEventArgs eventArgs)
+    {
+        // eventArgs.Parameter = R_FrontUtility.ConvertObjectToObject<GSM02000DTO>(_GSM02000ViewModel.Entity);
+        eventArgs.TargetPageType = typeof(GSM02000Tax);
+        return Task.CompletedTask;
+    }
+
+    private Task Validation(R_ValidationEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+        
+        try
+        {
+            var loParam = R_FrontUtility.ConvertObjectToObject<GSM02000DTO>(eventArgs.Data);
+            _GSM02000ViewModel.Validate(loParam);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
+        return Task.CompletedTask;
+    }
+
+    private Task Saving(R_SavingEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+        
+        try
+        {
+            var loParam = R_FrontUtility.ConvertObjectToObject<GSM02000DTO>(eventArgs.Data);
+            //cek apakah cdescription null maka akan diberikan string kosong
+            // if (string.IsNullOrEmpty(loParam.CDESCRIPTION))
+            //     loParam.CDESCRIPTION = string.Empty;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
+        return Task.CompletedTask;
+    }
 }

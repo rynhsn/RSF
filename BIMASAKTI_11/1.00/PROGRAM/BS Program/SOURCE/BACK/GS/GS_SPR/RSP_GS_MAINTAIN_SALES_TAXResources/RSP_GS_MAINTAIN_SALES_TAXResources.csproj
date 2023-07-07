@@ -8,7 +8,7 @@
   <ItemGroup>
     <EmbeddedResource Update="RSP_GS_MAINTAIN_SALES_TAXResources_msgrsc.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>RSP_GS_MAINTAIN_SALESRresources.msgrsc.Designer.cs</LastGenOutput>
+      <LastGenOutput>RSP_GS_MAINTAIN_SALES_TAXResources_msgrsc.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

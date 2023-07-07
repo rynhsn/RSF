@@ -7,12 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\BACK\GS\GSM02000Back\GSM02000Back.csproj"/>
-        <ProjectReference Include="..\..\..\COMMON\GS\GSM02000Common\GSM02000Common.csproj"/>
+        <ProjectReference Include="..\..\..\BACK\GS\GSM02000Back\GSM02000Back.csproj" />
+        <ProjectReference Include="..\..\..\COMMON\GS\GSM02000Common\GSM02000Common.csproj" />
     </ItemGroup>
 
     <ItemGroup>

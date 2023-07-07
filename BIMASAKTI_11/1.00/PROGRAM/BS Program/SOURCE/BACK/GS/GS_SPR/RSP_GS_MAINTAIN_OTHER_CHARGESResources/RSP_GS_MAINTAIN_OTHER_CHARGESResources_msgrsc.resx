@@ -126,4 +126,19 @@
   <data name="3003" xml:space="preserve">
     <value>Cannot Delete, this charges status is not draft</value>
   </data>
+  <data name="3004" xml:space="preserve">
+    <value>Charges Id cannot be empty!</value>
+  </data>
+  <data name="3005" xml:space="preserve">
+    <value>Charges Name cannot be empty!</value>
+  </data>
+  <data name="3006" xml:space="preserve">
+    <value>GL Account cannot be empty!</value>
+  </data>
+  <data name="3007" xml:space="preserve">
+    <value>Charges Id cannot be greater than 20 character!</value>
+  </data>
+  <data name="3008" xml:space="preserve">
+    <value>Charges Name cannot be greater than 100 character!</value>
+  </data>
 </root>

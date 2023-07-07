@@ -24,6 +24,7 @@ namespace GSM02000Model
         {
         }
 
+        #region not implemented
         public GSM02000ListDTO<GSM02000GridDTO> GetAllSalesTax()
         {
             throw new NotImplementedException();
@@ -40,7 +41,7 @@ namespace GSM02000Model
         {
             throw new NotImplementedException();
         }
-
+        #endregion
 
         #region GetAllAsync
 

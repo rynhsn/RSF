@@ -50,7 +50,7 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_GroupBox Enabled="_GSM05000ViewModel.Data.LINCREMENT_FLAG" Class="ps-4" ShowBorder="false">
+<R_GroupBox Enabled="_GSM05000ViewModel.Data.LINCREMENT_FLAG" Class="ps-4" ShowBorder="true">
 @* By Department *@
 <R_StackLayout Row="true">
     <R_ItemLayout xs="8">
@@ -60,7 +60,7 @@
         <R_Label>By Department</R_Label>
     </R_ItemLayout>
     <R_ItemLayout xs="3">
-        <R_GroupBox Enabled="_GSM05000ViewModel.Data.LDEPT_MODE" ShowBorder="false">
+        <R_GroupBox Enabled="_GSM05000ViewModel.Data.LDEPT_MODE" ShowBorder Width="50px">
             <R_StackLayout Row="true">
                 <R_ItemLayout>
                     <R_ComboBox Data="@_GSM05000ViewModel.DelimiterListDepartment"
@@ -422,8 +422,4 @@
 <R_TabStripTab Title="Approval" Id="tabApproval">
     <R_TabPage R_ConductorParent="@_conductorRef" R_Before_Open_TabPage="@R_Before_Open_TabPageApproval"></R_TabPage>
 </R_TabStripTab>
-<R_TabStripTab Title="Approval1" Id="tabApproval1">
-    <R_TabPage R_ConductorParent="@_conductorRef" R_Before_Open_TabPage="@R_Before_Open_TabPageApproval1"></R_TabPage>
-</R_TabStripTab>
-
 </R_TabStrip>

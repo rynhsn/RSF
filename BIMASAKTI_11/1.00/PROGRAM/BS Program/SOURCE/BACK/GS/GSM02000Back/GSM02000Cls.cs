@@ -20,7 +20,6 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         try
         {
             loDb = new R_Db();
-            // loConn = loDb.GetConnection("BimasaktiConnectionString");
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
@@ -59,7 +58,6 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         try
         {
             loDb = new R_Db();
-            // loConn = loDb.GetConnection("BimasaktiConnectionString");
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
             
@@ -135,7 +133,6 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         try
         {
             loDb = new R_Db();
-            // loConn = loDb.GetConnection("BimasaktiConnectionString");
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
             
@@ -201,7 +198,6 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         try
         {
             loDb = new R_Db();
-            // loConn = loDb.GetConnection("BimasaktiConnectionString");
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
@@ -237,7 +233,6 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         try
         {
             loDb = new R_Db();
-            // loConn = loDb.GetConnection("BimasaktiConnectionString");
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
@@ -270,7 +265,6 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         try
         {
             loDb = new R_Db();
-            // loConn = loDb.GetConnection("BimasaktiConnectionString");
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 

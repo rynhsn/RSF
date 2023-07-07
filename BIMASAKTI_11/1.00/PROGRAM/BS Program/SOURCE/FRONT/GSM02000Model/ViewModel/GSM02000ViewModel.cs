@@ -112,5 +112,29 @@ namespace GSM02000Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
+
+        public Task Validate(GSM02000DTO poParam)
+        {
+            var loEx = new R_Exception();
+            
+            try
+            {
+                if(poParam.CTAX_ID == null)
+                    loEx.Add(new Exception("Tax ID is required"));
+                if (poParam.CTAX_NAME == null)
+                    loEx.Add(new Exception("Tax Name is required"));
+                if (poParam.CROUNDING_MODE == null)
+                    loEx.Add(new Exception("Rounding Mode is required"));
+                if (poParam.IROUNDING == null)
+                    loEx.Add(new Exception("Rounding Unit is required"));
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            
+            loEx.ThrowExceptionIfErrors();
+            return Task.CompletedTask;
+        }
     }
 }

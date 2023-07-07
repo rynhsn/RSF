@@ -1,0 +1,55 @@
+﻿@page "/GSM02000Tax"
+@using GSM02000Common.DTOs
+@inherits R_Page
+
+<R_StackLayout Row Spacing="3">
+    <R_ItemLayout xs="4">
+        <R_Grid @ref="@_gridSalesRef"
+                DataSource="@_viewModel.SalesGridList"
+                Pageable
+                R_ConductorSource="@_conductorSalesRef"
+                R_GridType="R_eGridType.Navigator"
+                R_ServiceGetListRecord="@GetSalesTaxList">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CTAX_ID" HeaderText="Tax Id"/>
+                <R_GridTextColumn FieldName="CTAX_NAME" HeaderText="Tax Name"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.GridList"
+                Pageable
+                R_ConductorGridSource="@_conductorRef"
+                R_GridType="R_eGridType.Original"
+                R_ServiceGetListRecord="@GetList"
+                AllowEditRow
+                AllowAddNewRow
+                AllowDeleteRow
+                Width="645px">
+            <R_GridColumns>
+                <R_GridDatePickerColumn FieldName="DTAX_DATE" HeaderText="Tax Date" R_EnableAdd/>
+                <R_GridNumericColumn FieldName="NTAX_PERCENTAGE" HeaderText="Tax %" Min="0" Max="100" R_EnableAdd R_EnableEdit/>
+                <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Last Update By"/>
+                <R_GridDateTimePickerColumn FieldName="DUPDATE_DATE" HeaderText="Last Update Date"/>
+                <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Create By"/>
+                <R_GridDateTimePickerColumn FieldName="DCREATE_DATE" HeaderText="Create Date"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorSalesRef"
+                 R_ViewModel="_viewModel"
+                 R_IsHeader
+                 R_ServiceGetRecord="@GetSalesTaxRecord"/>
+
+<R_ConductorGrid @ref="@_conductorRef"
+             R_ViewModel="_viewModel"
+             R_IsHeader
+             R_ServiceGetRecord="@GetRecord"
+             R_AfterAdd="@AfterAdd"
+             R_Saving="Saving"
+             R_ServiceSave="Save"
+             R_BeforeDelete="BeforeDelete"
+             R_ServiceDelete="Delete"/>

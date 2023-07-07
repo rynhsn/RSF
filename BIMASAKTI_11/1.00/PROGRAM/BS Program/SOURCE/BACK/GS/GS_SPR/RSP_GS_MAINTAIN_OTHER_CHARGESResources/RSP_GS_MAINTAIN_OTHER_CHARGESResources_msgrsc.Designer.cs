@@ -87,5 +87,50 @@ namespace RSP_GS_MAINTAIN_OTHER_CHARGESResources {
                 return ResourceManager.GetString("3003", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charges Id cannot be empty!.
+        /// </summary>
+        internal static string _3004 {
+            get {
+                return ResourceManager.GetString("3004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charges Name cannot be empty!.
+        /// </summary>
+        internal static string _3005 {
+            get {
+                return ResourceManager.GetString("3005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GL Account cannot be empty!.
+        /// </summary>
+        internal static string _3006 {
+            get {
+                return ResourceManager.GetString("3006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charges Id cannot be greater than 20 character!.
+        /// </summary>
+        internal static string _3007 {
+            get {
+                return ResourceManager.GetString("3007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charges Name cannot be greater than 100 character!.
+        /// </summary>
+        internal static string _3008 {
+            get {
+                return ResourceManager.GetString("3008", resourceCulture);
+            }
+        }
     }
 }

@@ -22,7 +22,6 @@ public class GSM02000Controller : ControllerBase, IGSM02000
         try
         {
             var loCls = new GSM02000Cls();
-            loRtn = new R_ServiceGetRecordResultDTO<GSM02000DTO>();
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
 
@@ -33,7 +32,6 @@ public class GSM02000Controller : ControllerBase, IGSM02000
             loEx.Add(ex);
         }
         
-        EndBlock:
         loEx.ThrowExceptionIfErrors();
         
         return loRtn;
