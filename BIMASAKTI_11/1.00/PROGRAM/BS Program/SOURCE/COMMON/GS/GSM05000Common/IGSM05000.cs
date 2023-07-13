@@ -8,6 +8,7 @@ namespace GSM05000Common
         //ambil data dari database
         GSM05000ListDTO<GSM05000GridDTO> GetTransactionCodeList();
         GSM05000ListDTO<GSM05000DelimiterDTO> GetDelimiterList();
+        GSM005000ExistDTO CheckExistData();
     }
 
     public interface IGSM05000Numbering : R_IServiceCRUDBase<GSM05000NumberingGridDTO>
@@ -20,8 +21,11 @@ namespace GSM05000Common
     {
         GSM05000ApprovalHeaderDTO GSM05000GetApprovalHeader();
         GSM05000ListDTO<GSM05000ApprovalUserDTO> GSM05000GetApprovalList();
-        GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> GSM05000GetApprovalDepartment();
         string GSM05000ValidationForAction();
+        GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> GSM05000GetApprovalDepartment();
+        GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartment();
+        void GSM05000CopyToApproval();
+        void GSM05000CopyFromApproval();
     }
     
     public interface IGSM05000ApprovalReplacement : R_IServiceCRUDBase<GSM05000ApprovalReplacementDTO>

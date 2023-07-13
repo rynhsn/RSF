@@ -33,7 +33,12 @@ namespace GSM05000Model
         {
             throw new NotImplementedException();
         }
-        
+
+        public GSM005000ExistDTO CheckExistData()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<GSM05000ListDTO<GSM05000GridDTO>> GetAllAsync()
         {
             var loEx = new R_Exception();
@@ -70,6 +75,31 @@ namespace GSM05000Model
                 loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ListDTO<GSM05000DelimiterDTO>>(
                     _RequestServiceEndPoint,
                     nameof(IGSM05000.GetDelimiterList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        public async Task<GSM005000ExistDTO> CheckExistDataAsync()
+        {
+            var loEx = new R_Exception();
+            GSM005000ExistDTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM005000ExistDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGSM05000.CheckExistData),
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);

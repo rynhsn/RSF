@@ -28,39 +28,10 @@ public partial class GSM05000 : R_Page
 
             var loGroupDescriptor = new List<R_GridGroupDescriptor>
             {
-                new(){ FieldName = "CMODULE_NAME" }
+                new() { FieldName = "CMODULE_NAME" }
             };
             await _gridRef.R_GroupBy(loGroupDescriptor);
             await _gridRef.R_RefreshGrid(null);
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-
-        loEx.ThrowExceptionIfErrors();
-    }
-
-    private void ChangeTab(R_TabStripTab eventArgs)
-    {
-        var loEx = new R_Exception();
-
-        try
-        {
-            if (eventArgs.Id == "tabNumbering")
-            {
-                //await _GSM05000NumberingViewModel.GetNumberingHeader();
-                //_GSM05000NumberingViewModel.HeaderEntity = R_FrontUtility.ConvertObjectToObject<GSM05000NumberingHeaderDTO>(_GSM05000ViewModel.Entity);
-                //await _gridRefNumbering.R_RefreshGrid(null);
-            }
-
-            if (eventArgs.Id == "tabApproval")
-            {
-                //await _GSM05000ApprovalUserViewModel.GetApprovalHeader();
-                //await _gridRefDept.R_RefreshGrid(null);
-                //await _gridRefApprover.R_RefreshGrid(null);
-                //await _gridRefReplacement.R_RefreshGrid(null);
-            }
         }
         catch (Exception ex)
         {
@@ -80,9 +51,16 @@ public partial class GSM05000 : R_Page
         {
             if (eventArgs.ConductorMode == R_eConductorMode.Normal)
             {
-                //var loParam = (GSM05000DTO)eventArgs.Data;
-                //await _GSM05000ViewModel.GetEntity(loParam);
                 GetUpdateSample();
+                _radioGroup = false;
+            }
+            else
+            {
+                var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000DTO>(eventArgs.Data);
+                if (loParam.CPERIOD_MODE != "N")
+                {
+                    _radioGroup = true;
+                }
             }
         }
         catch (Exception ex)
@@ -119,12 +97,6 @@ public partial class GSM05000 : R_Page
             var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000DTO>(eventArgs.Data);
             await _GSM05000ViewModel.GetEntity(loParam);
 
-            //var loParamNumbering = R_FrontUtility.ConvertObjectToObject<GSM05000NumberingHeaderDTO>(eventArgs.Data);
-            //var loParamApproval = R_FrontUtility.ConvertObjectToObject<GSM05000ApprovalHeaderDTO>(eventArgs.Data);
-
-            //_GSM05000NumberingViewModel.TransactionCode = loParam.CTRANSACTION_CODE;
-            //_GSM05000ApprovalUserViewModel.TransactionCode = loParam.CTRANSACTION_CODE;
-
             eventArgs.Result = _GSM05000ViewModel.Entity;
         }
         catch (Exception ex)
@@ -135,13 +107,133 @@ public partial class GSM05000 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
+    private async Task Validation(R_ValidationEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loData = (GSM05000DTO)eventArgs.Data;
+
+            var llCondition1 = loData is { LAPPROVAL_FLAG: true, LUSE_THIRD_PARTY: false, CAPPROVAL_MODE: "" };
+            var llCondition2 = loData.LINCREMENT_FLAG != _GSM05000ViewModel.TempEntity.LINCREMENT_FLAG;
+            var llCondition3 = loData.LDEPT_MODE != _GSM05000ViewModel.TempEntity.LDEPT_MODE;
+            var llCondition4 = loData.LTRANSACTION_MODE != _GSM05000ViewModel.TempEntity.LTRANSACTION_MODE;
+            var llCondition5 = loData.CPERIOD_MODE != _GSM05000ViewModel.TempEntity.CPERIOD_MODE;
+            var llCondition6 = loData.LAPPROVAL_FLAG != _GSM05000ViewModel.TempEntity.LAPPROVAL_FLAG;
+            var llCondition7 = loData.LAPPROVAL_DEPT != _GSM05000ViewModel.TempEntity.LAPPROVAL_DEPT;
+            var llCondition8 = loData.LUSE_THIRD_PARTY != _GSM05000ViewModel.TempEntity.LUSE_THIRD_PARTY;
+
+            var llIsExist = await _GSM05000ViewModel.CheckExistData(loData);
+
+
+            if (llIsExist)
+            {
+
+                if (llCondition1)
+                {
+                    await R_MessageBox.Show("Error", "You must fill Approval Mode", R_eMessageBoxButtonType.OK);
+                    eventArgs.Cancel = true;
+                    return;
+                }
+
+                if (llCondition2 || llCondition3 || llCondition4 || llCondition5)
+                {
+                    var llReturn = await R_MessageBox.Show("Sure?",
+                        "There is some detail in Detail Document Numbering table. Your data changing will delete all Detail Document Numbering table.",
+                        R_eMessageBoxButtonType.OKCancel);
+
+                    if (llReturn == R_eMessageBoxResult.Cancel)
+                    {
+                        eventArgs.Cancel = true;
+                        return;
+                    }
+                }
+
+                if (llCondition6 || llCondition7 || llCondition8)
+                {
+                    var llReturn = await R_MessageBox.Show("Sure?",
+                        "There is some detail in User Approval table. Your data changing will delete all User Approval table.",
+                        R_eMessageBoxButtonType.OKCancel);
+
+                    if (llReturn == R_eMessageBoxResult.Cancel)
+                    {
+                        eventArgs.Cancel = true;
+                        return;
+                    }
+                }
+            }
+            
+
+            if (_GSM05000ViewModel.DeptSequence == 0 && loData.LDEPT_MODE)
+            {
+                await R_MessageBox.Show("Error", "You should fill Sequence By Department", R_eMessageBoxButtonType.OK);
+                eventArgs.Cancel = true;
+                return;
+            }
+
+            if (_GSM05000ViewModel.TrxSequence == 0 && loData.LTRANSACTION_MODE)
+            {
+                await R_MessageBox.Show("Error", "You should fill Sequence By Transaction Code", R_eMessageBoxButtonType.OK);
+                eventArgs.Cancel = true;
+                return;
+            }
+
+            if (_GSM05000ViewModel.PeriodSequence == 0 && loData.LINCREMENT_FLAG)
+            {
+                await R_MessageBox.Show("Error", "You should fill Sequence Period Mode", R_eMessageBoxButtonType.OK);
+                eventArgs.Cancel = true;
+                return;
+            }
+
+            if (loData.INUMBER_LENGTH == 0 && loData.LINCREMENT_FLAG)
+            {
+                await R_MessageBox.Show("Error", "You should fill Sequence Length of Number", R_eMessageBoxButtonType.OK);
+                eventArgs.Cancel = true;
+                return;
+            }
+            
+            var llIsDuplicate = _GSM05000ViewModel.IsDuplicateSequence(loData);
+            if (llIsDuplicate)
+            {
+                await R_MessageBox.Show("Error", "Sequence value can not same each other", R_eMessageBoxButtonType.OK);
+                eventArgs.Cancel = true;
+                return;
+            }
+            
+            var llIsValid = _GSM05000ViewModel.IsValidSequence(loData, out var loCount);
+            if (!llIsValid)
+            {
+                await R_MessageBox.Show("Error", $"Sequence can not overlap or else must Sequential from 1 to {loCount}", R_eMessageBoxButtonType.OK);
+                eventArgs.Cancel = true;
+                return;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+    
+    private void Saving(R_SavingEventArgs eventArgs)
+    {
+        var loData = (GSM05000DTO)eventArgs.Data;
+        loData.CDEPT_DELIMITER ??= "";
+        loData.CTRANSACTION_DELIMITER ??= "";
+        loData.CPERIOD_DELIMITER ??= "";
+        loData.CNUMBER_DELIMITER ??= "";
+        loData.CPREFIX_DELIMITER ??= "";
+    }
+
     private async Task Conductor_ServiceSave(R_ServiceSaveEventArgs eventArgs)
     {
         var loEx = new R_Exception();
 
         try
         {
-            var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000DTO>(eventArgs.Data);
+            var loParam = (GSM05000DTO)eventArgs.Data;
             await _GSM05000ViewModel.SaveEntity(loParam, (eCRUDMode)eventArgs.ConductorMode);
             eventArgs.Result = _GSM05000ViewModel.Entity;
         }
@@ -153,20 +245,126 @@ public partial class GSM05000 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private void Conductor_AfterServiceSave(R_AfterSaveEventArgs eventArgs)
+    #endregion
+
+    private Task InstanceNumberingTab(R_InstantiateDockEventArgs eventArgs)
     {
-        //var loEx = new R_Exception();
+        eventArgs.TargetPageType = typeof(GSM05000Numbering);
+        eventArgs.Parameter =
+            R_FrontUtility.ConvertObjectToObject<GSM05000NumberingHeaderDTO>(_GSM05000ViewModel.Entity);
+        return Task.CompletedTask;
+    }
 
-        //try
-        //{
-        //    await _gridRef.R_RefreshGrid((GSM05000DTO)eventArgs.Data);
-        //}
-        //catch (Exception ex)
-        //{
-        //    loEx.Add(ex);
-        //}
+    private Task InstanceApprovalTab(R_InstantiateDockEventArgs eventArgs)
+    {
+        eventArgs.TargetPageType = typeof(GSM05000Approval);
+        eventArgs.Parameter =
+            R_FrontUtility.ConvertObjectToObject<GSM05000ApprovalHeaderDTO>(_GSM05000ViewModel.Entity);
+        return Task.CompletedTask;
+    }
 
-        //loEx.ThrowExceptionIfErrors();
+    private Task CheckIncrementFlag(object eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            if ((bool)eventArgs == false)
+            {
+                _GSM05000ViewModel.Data.LDEPT_MODE = false;
+                _GSM05000ViewModel.Data.LTRANSACTION_MODE = false;
+                _GSM05000ViewModel.Data.CPERIOD_MODE = "";
+                _GSM05000ViewModel.Data.INUMBER_LENGTH = 0;
+                _GSM05000ViewModel.Data.CPREFIX = "";
+                _GSM05000ViewModel.Data.CSUFFIX = "";
+                _GSM05000ViewModel.Data.CYEAR_FORMAT = "";
+
+                _GSM05000ViewModel.Data.CDEPT_DELIMITER = "";
+                _GSM05000ViewModel.Data.CTRANSACTION_DELIMITER = "";
+                _GSM05000ViewModel.Data.CPERIOD_DELIMITER = "";
+                _GSM05000ViewModel.Data.CNUMBER_DELIMITER = "";
+                _GSM05000ViewModel.Data.CPREFIX_DELIMITER = "";
+
+                _GSM05000ViewModel.DeptSequence = 0;
+                _GSM05000ViewModel.TrxSequence = 0;
+                _GSM05000ViewModel.PeriodSequence = 0;
+                _GSM05000ViewModel.LenSequence = 0;
+                _GSM05000ViewModel.PrefixSequence = 0;
+            }
+
+            GetUpdateSample();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        return Task.CompletedTask;
+    }
+
+    private Task CheckApprovalFlag(object eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            if ((bool)eventArgs == false)
+            {
+                _GSM05000ViewModel.Data.LAPPROVAL_FLAG = false;
+                _GSM05000ViewModel.Data.CAPPROVAL_MODE = "";
+                _GSM05000ViewModel.Data.LAPPROVAL_DEPT = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        return Task.CompletedTask;
+    }
+
+    private Task CheckDeptMode(object eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            if ((bool)eventArgs == false)
+            {
+                _GSM05000ViewModel.Data.CDEPT_DELIMITER = "";
+                _GSM05000ViewModel.DeptSequence = 0;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        return Task.CompletedTask;
+    }
+
+    private Task CheckTrxMode(object eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            if ((bool)eventArgs == false)
+            {
+                _GSM05000ViewModel.Data.CTRANSACTION_DELIMITER = "";
+                _GSM05000ViewModel.TrxSequence = 0;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        return Task.CompletedTask;
     }
 
     private void GetUpdateSample()
@@ -185,22 +383,19 @@ public partial class GSM05000 : R_Page
         R_DisplayException(loEx);
     }
 
-    #endregion
+    private bool _radioGroup = false;
 
-    #region Tab Numbering
-    private void R_Before_Open_TabPageNumbering(R_BeforeOpenTabPageEventArgs eventArgs)
+    private void CheckPeriodMode(object eventArgs)
     {
-        eventArgs.TargetPageType = typeof(GSM05000Numbering);
-        eventArgs.Parameter = R_FrontUtility.ConvertObjectToObject<GSM05000NumberingHeaderDTO>(_GSM05000ViewModel.Entity);
+        if (_conductorRef.R_ConductorMode == R_eConductorMode.Edit)
+        {
+            _radioGroup = (string)eventArgs != "N";
+        }
     }
-    #endregion
 
-    #region Tab Approver
-    private void R_Before_Open_TabPageApproval(R_BeforeOpenTabPageEventArgs eventArgs)
+    private void ConvertGridToEntity(R_ConvertToGridEntityEventArgs eventArgs)
     {
-        eventArgs.TargetPageType = typeof(GSM05000Approval);
-        eventArgs.Parameter = R_FrontUtility.ConvertObjectToObject<GSM05000ApprovalHeaderDTO>(_GSM05000ViewModel.Entity);
+        var loData= (GSM05000DTO)eventArgs.Data;
+        eventArgs.GridData = new GSM05000GridDTO() { CTRANSACTION_CODE = loData.CTRANSACTION_CODE, CTRANSACTION_NAME = loData.CTRANSACTION_NAME };
     }
-    
-    #endregion
 }

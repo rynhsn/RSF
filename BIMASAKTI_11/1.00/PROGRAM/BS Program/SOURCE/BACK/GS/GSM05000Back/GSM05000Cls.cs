@@ -68,7 +68,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
 
             if (poCRUDMode == eCRUDMode.EditMode)
             {
-                lcQuery = @"Update GSM_TRANSACTION_CODE Set 
+                lcQuery = @"UPDATE GSM_TRANSACTION_CODE SET 
                         LINCREMENT_FLAG = @LINCREMENT_FLAG 
                       , LDEPT_MODE = @LDEPT_MODE 
                       , CDEPT_DELIMITER = @CDEPT_DELIMITER 
@@ -92,7 +92,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
                       , LAPPROVAL_DEPT = @LAPPROVAL_DEPT 
                       , CUPDATE_BY = @CUPDATE_BY 
                       , DUPDATE_DATE = @DUPDATE_DATE
-                        Where CCOMPANY_ID = @CCOMPANY_ID AND CTRANSACTION_CODE = @CTRANSACTION_CODE";
+                        WHERE CCOMPANY_ID = @CCOMPANY_ID AND CTRANSACTION_CODE = @CTRANSACTION_CODE";
 
                 loCmd.CommandType = CommandType.Text;
                 loCmd.CommandText = lcQuery;
@@ -185,10 +185,10 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
     }
 
     
-    public int GetValidateUpdateDb(GSM05000DTO poEntity)
+    public GSM005000ExistDTO GetValidateUpdateDb(GSM05000ParameterDb poEntity)
     {
         R_Exception loEx = new R_Exception();
-        int loRtn = 0;
+        GSM005000ExistDTO loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -199,7 +199,10 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = @"select top 1 1 from GSM_TRANSACTION_NUMBER (nolock) where @CCOMPANY_ID and @CTRANSACTION_CODE";
+            lcQuery = @"select top 1 1 as EXIST 
+                          from GSM_TRANSACTION_NUMBER (nolock) 
+                         where CCOMPANY_ID = @CCOMPANY_ID 
+                           and CTRANSACTION_CODE = @CTRANSACTION_CODE";
             loCmd.CommandType = CommandType.Text;
             loCmd.CommandText = lcQuery;
 
@@ -208,7 +211,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loRtn = R_Utility.R_ConvertTo<int>(loDataTable).FirstOrDefault();
+            loRtn = R_Utility.R_ConvertTo<GSM005000ExistDTO>(loDataTable).FirstOrDefault();
         }
         catch (Exception ex)
         {

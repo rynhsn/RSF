@@ -1,4 +1,5 @@
 using System;
+using R_APICommonDTO;
 
 namespace GSM05000Common.DTOs
 {
@@ -10,16 +11,16 @@ namespace GSM05000Common.DTOs
         public string CMODULE_ID {get; set;}
         public bool LINCREMENT_FLAG {get; set;}
         public bool LDEPT_MODE {get; set;}
-        public string CDEPT_DELIMITER {get; set;}
+        public string CDEPT_DELIMITER {get; set;} = "";
         public bool LTRANSACTION_MODE {get; set;}
-        public string CTRANSACTION_DELIMITER {get; set;}
+        public string CTRANSACTION_DELIMITER {get; set;} = "";
         public string CPERIOD_MODE {get; set;}
-        public string CPERIOD_DELIMITER {get; set;}
+        public string CPERIOD_DELIMITER {get; set;} = "";
         public string CYEAR_FORMAT {get; set;}
         public int INUMBER_LENGTH {get; set;}
-        public string CNUMBER_DELIMITER {get; set;}
+        public string CNUMBER_DELIMITER {get; set;} = "";
         public string CPREFIX {get; set;}
-        public string CPREFIX_DELIMITER {get; set;}
+        public string CPREFIX_DELIMITER {get; set;} = "";
         public string CSUFFIX {get; set;}
         public string CSEQUENCE01 {get; set;}
         public string CSEQUENCE02 {get; set;}
@@ -42,5 +43,10 @@ namespace GSM05000Common.DTOs
         
         public string CUPDATE_BY {get; set;}
         public DateTime DUPDATE_DATE {get; set;}
+    }
+
+    public class GSM005000ExistDTO : R_APIResultBaseDTO
+    {
+        public int EXIST { get; set; }
     }
 }

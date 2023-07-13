@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using GSM05000Common;
 using GSM05000Common.DTOs;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
+using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
 
 namespace GSM05000Model.ViewModel
@@ -15,6 +18,7 @@ namespace GSM05000Model.ViewModel
         private GSM05000Model _GSM05000Model = new();
         public ObservableCollection<GSM05000GridDTO> GridList = new();
         public GSM05000DTO Entity = new();
+        public GSM05000DTO TempEntity = new();
 
         // Delimiter List
         public List<GSM05000DelimiterDTO> DelimiterListPrefix = new();
@@ -78,7 +82,8 @@ namespace GSM05000Model.ViewModel
             try
             {
                 Entity = await _GSM05000Model.R_ServiceGetRecordAsync(poEntity);
-                this.GetSequence();
+                TempEntity = R_FrontUtility.ConvertObjectToObject<GSM05000DTO>(Entity);
+                GetSequence();
             }
             catch (Exception ex)
             {
@@ -87,7 +92,6 @@ namespace GSM05000Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-
 
         public async Task SaveEntity(GSM05000DTO poNewEntity, eCRUDMode peCRUDMode)
         {
@@ -108,6 +112,26 @@ namespace GSM05000Model.ViewModel
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+
+        public async Task<bool> CheckExistData(GSM05000DTO poEntity)
+        {
+            var loEx = new R_Exception();
+            bool llReturn = false;
+
+            try
+            {
+                R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, poEntity.CTRANSACTION_CODE);
+                var loResult = await _GSM05000Model.CheckExistDataAsync();
+                llReturn = R_FrontUtility.ConvertObjectToObject<bool>(loResult.EXIST);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return llReturn;
         }
 
         public async Task GetDelimiterList()
@@ -294,5 +318,71 @@ namespace GSM05000Model.ViewModel
         }
 
         #endregion
+
+        public bool IsDuplicateSequence(GSM05000DTO poEntity)
+        {
+            bool llReturn = false;
+            List<int> list = new List<int>
+            {
+                PeriodSequence, LenSequence
+            };
+
+            if (poEntity.LDEPT_MODE)
+            {
+                list.Insert(0, DeptSequence);
+            }
+            if (poEntity.LTRANSACTION_MODE)
+            {
+                list.Insert(0, TrxSequence);
+            }
+            
+            // var isZero = list.Any(x => x == 0);
+            
+            var isDuplicate = list.GroupBy(x => x)
+                .Where(g => g.Count() > 1)
+                .Select(y => y.Key)
+                .ToList();
+
+            if (isDuplicate.Count > 0)
+            {
+                llReturn = true;
+            }
+            
+            return llReturn;
+        }
+
+        public bool IsValidSequence(GSM05000DTO poEntity, out int pnSequence)
+        {
+            bool llReturn = true;
+            List<int> list = new List<int>
+            {
+                PeriodSequence, LenSequence
+            };
+
+            if (poEntity.LDEPT_MODE)
+            {
+                list.Insert(0, DeptSequence);
+            }
+            if (poEntity.LTRANSACTION_MODE)
+            {
+                list.Insert(0, TrxSequence);
+            }
+            
+            pnSequence = list.Count();
+            
+            bool llValid;
+            
+            for(var i = 1; i <= list.Count; i++)
+            {
+                llValid = list.Any(x => x == i);
+                if (!llValid)
+                {
+                    llReturn = false;
+                    break;
+                }
+            }
+            
+            return llReturn;
+        }
     }
 }

@@ -128,4 +128,38 @@ public class GSM05000Controller : ControllerBase, IGSM05000
 
         return loRtn;
     }
+
+    [HttpPost]
+    public GSM005000ExistDTO CheckExistData()
+    {
+        R_Exception loEx = new R_Exception();
+        GSM005000ExistDTO loRtn = null;
+        GSM005000ExistDTO loResult;
+        GSM05000ParameterDb loDbPar;
+        GSM05000Cls loCls;
+
+        try
+        {
+            loDbPar = new GSM05000ParameterDb();
+            
+            loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbPar.CTRANSACTION_CODE =
+                R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE);
+            
+            // loDbPar.CCOMPANY_ID = "rcd";
+            // loDbPar.CTRANSACTION_CODE = "000000";
+            
+            loCls = new GSM05000Cls();
+            loResult = loCls.GetValidateUpdateDb(loDbPar);
+            loRtn = loResult;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return loRtn;
+    }
 }

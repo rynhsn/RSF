@@ -75,6 +75,8 @@ namespace GSM05000Front
                 {
                     var loParam = (GSM05000ApprovalDepartmentDTO)eventArgs.Data;
                     _GSM05000ApprovalUserViewModel.GetDepartmentEntity(loParam);
+                    // await _gridRefReplacement.R_RefreshGrid(_GSM05000ApprovalUserViewModel.ApproverEntity.CUSER_ID);
+                    // await _gridRefReplacement.AutoFitAllColumnsAsync();
                 }
             }
             catch (Exception ex)
@@ -160,6 +162,7 @@ namespace GSM05000Front
                 {
                     var pcSelectedUserId = ((GSM05000ApprovalUserDTO)eventArgs.Data).CUSER_ID;
                     await _gridRefReplacement.R_RefreshGrid(pcSelectedUserId);
+                    await _gridRefReplacement.AutoFitAllColumnsAsync();
                 }
             }
             catch (Exception ex)

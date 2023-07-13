@@ -38,34 +38,24 @@ public class GSM05000ApprovalUserModel : R_BusinessObjectServiceClientBase<GSM05
         throw new NotImplementedException();
     }
 
-    public string GSM05000ValidationForAction()
+    public GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartment()
     {
         throw new NotImplementedException();
     }
 
-    public async Task<GSM05000ListDTO<GSM05000ApprovalDepartmentDTO>> GetApprovalDepartmentAsync()
+    public void GSM05000CopyToApproval()
     {
-        var loEx = new R_Exception();
-        GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> loResult = null;
+        throw new NotImplementedException();
+    }
 
-        try
-        {
-            R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ListDTO<GSM05000ApprovalDepartmentDTO>>(
-                _RequestServiceEndPoint,
-                nameof(IGSM05000ApprovalUser.GSM05000GetApprovalDepartment),
-                DEFAULT_MODULE,
-                _SendWithContext,
-                _SendWithToken);
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
+    public void GSM05000CopyFromApproval()
+    {
+        throw new NotImplementedException();
+    }
 
-        loEx.ThrowExceptionIfErrors();
-
-        return loResult;
+    public string GSM05000ValidationForAction()
+    {
+        throw new NotImplementedException();
     }
     
     public async Task<GSM05000ListDTO<GSM05000ApprovalUserDTO>> GetApprovalListAsync()
@@ -117,4 +107,99 @@ public class GSM05000ApprovalUserModel : R_BusinessObjectServiceClientBase<GSM05
 
         return loResult;
     }
+
+    public async Task<GSM05000ListDTO<GSM05000ApprovalDepartmentDTO>> GetApprovalDepartmentAsync()
+    {
+        var loEx = new R_Exception();
+        GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> loResult = null;
+
+        try
+        {
+            R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ListDTO<GSM05000ApprovalDepartmentDTO>>(
+                _RequestServiceEndPoint,
+                nameof(IGSM05000ApprovalUser.GSM05000GetApprovalDepartment),
+                DEFAULT_MODULE,
+                _SendWithContext,
+                _SendWithToken);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return loResult;
+    }
+    
+    public async Task<GSM05000ListDTO<GSM05000ApprovalDepartmentDTO>> LookupApprovalDepartmentAsync()
+    {
+        var loEx = new R_Exception();
+        GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> loResult = null;
+
+        try
+        {
+            R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ListDTO<GSM05000ApprovalDepartmentDTO>>(
+                _RequestServiceEndPoint,
+                nameof(IGSM05000ApprovalUser.GSM05000LookupApprovalDepartment),
+                DEFAULT_MODULE,
+                _SendWithContext,
+                _SendWithToken);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return loResult;
+    }
+    
+    public async Task CopyToApprovalAsync()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+            await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ListDTO<GSM05000ApprovalDepartmentDTO>>(
+                _RequestServiceEndPoint,
+                nameof(IGSM05000ApprovalUser.GSM05000CopyToApproval),
+                DEFAULT_MODULE,
+                _SendWithContext,
+                _SendWithToken);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+    
+    public async Task CopyFromApprovalAsync()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+            await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ListDTO<GSM05000ApprovalDepartmentDTO>>(
+                _RequestServiceEndPoint,
+                nameof(IGSM05000ApprovalUser.GSM05000CopyFromApproval),
+                DEFAULT_MODULE,
+                _SendWithContext,
+                _SendWithToken);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+    
 }

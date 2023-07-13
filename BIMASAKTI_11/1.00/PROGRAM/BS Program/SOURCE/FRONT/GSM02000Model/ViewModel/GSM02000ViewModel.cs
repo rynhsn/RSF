@@ -120,13 +120,21 @@ namespace GSM02000Model.ViewModel
             try
             {
                 if(poParam.CTAX_ID == null)
-                    loEx.Add(new Exception("Tax ID is required"));
+                {
+                    loEx.Add("", "Tax ID is required");
+                }
                 if (poParam.CTAX_NAME == null)
-                    loEx.Add(new Exception("Tax Name is required"));
+                {
+                    loEx.Add("", "Tax Name is required");
+                }
                 if (poParam.CROUNDING_MODE == null)
-                    loEx.Add(new Exception("Rounding Mode is required"));
+                {
+                    loEx.Add("", "Rounding Mode is required");
+                }
                 if (poParam.IROUNDING == null)
-                    loEx.Add(new Exception("Rounding Unit is required"));
+                {
+                    loEx.Add("", "Rounding Unit is required");
+                }
             }
             catch (Exception ex)
             {
