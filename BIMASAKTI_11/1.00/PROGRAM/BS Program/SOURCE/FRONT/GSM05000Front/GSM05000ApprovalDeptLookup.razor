@@ -1,0 +1,29 @@
+﻿@page "/GSM05000ApprovalDeptLookup"
+@inherits R_Page
+@attribute [R_Page(Title = "Department")];
+
+<R_StackLayout Class="mb-2">
+    <R_Grid @ref="@_grid"
+            DataSource="@_viewModel.DepartmentLookup"
+            Pageable="true"
+            R_GridType="@R_eGridType.Navigator"
+            R_ServiceGetListRecord="@GetList">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="CDEPT_CODE" HeaderText="Department Code"/>
+            <R_GridLookupColumn FieldName="CDEPT_NAME" HeaderText="Department Name"/>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            OK
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            Cancel
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

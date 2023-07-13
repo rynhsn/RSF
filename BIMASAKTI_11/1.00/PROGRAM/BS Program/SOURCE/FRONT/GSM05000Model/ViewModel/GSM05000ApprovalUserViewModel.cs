@@ -16,7 +16,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
     public ObservableCollection<GSM05000ApprovalUserDTO> ApproverList = new();
     public ObservableCollection<GSM05000ApprovalDepartmentDTO> DepartmentList = new();
     public ObservableCollection<GSM05000ApprovalDepartmentDTO> DepartmentLookup = new();
-    public GSM05000ApprovalDepartmentDTO TempEntityForCopy = new();
+    public GSM05000ApprovalCopyDTO TempEntityForCopy = new();
     
     public GSM05000ApprovalUserDTO ApproverEntity = new();
     public GSM05000ApprovalHeaderDTO HeaderEntity = new();
@@ -181,12 +181,13 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
         loEx.ThrowExceptionIfErrors();
     }
     
-    public async Task LookupDepartment()
+    public async Task LookupDepartment(GSM05000ApprovalCopyDTO poParameter)
     {
         var loEx = new R_Exception();
 
         try
         {
+            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE, poParameter.CDEPT_CODE);
             var loReturn = await _Model.LookupApprovalDepartmentAsync();
             DepartmentLookup = new ObservableCollection<GSM05000ApprovalDepartmentDTO>(loReturn.Data);
         }
@@ -198,15 +199,15 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
         loEx.ThrowExceptionIfErrors();
     }
 
-    public async Task CopyTo()
+    public async Task CopyTo(GSM05000ApprovalCopyDTO poEntity)
     {
         var loEx = new R_Exception();
         
         try
         {
-            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, TransactionCode);
-            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE, DepartmentEntity.CDEPT_CODE);
-            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE_TO, TempEntityForCopy.CDEPT_CODE);
+            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, poEntity.CTRANSACTION_CODE);
+            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE, poEntity.CDEPT_CODE);
+            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE_TO, poEntity.CDEPT_CODE_TO);
             await _Model.CopyToApprovalAsync();
         }
         catch (Exception ex)
@@ -215,15 +216,15 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
         }
     }
 
-    public async Task CopyFrom()
+    public async Task CopyFrom(GSM05000ApprovalCopyDTO poEntity)
     {
         var loEx = new R_Exception();
         
         try
         {
-            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, TransactionCode);
-            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE, DepartmentEntity.CDEPT_CODE);
-            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE_FROM, TempEntityForCopy.CDEPT_CODE);
+            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, poEntity.CTRANSACTION_CODE);
+            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE, poEntity.CDEPT_CODE);
+            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE_FROM, poEntity.CDEPT_CODE_FROM);
             await _Model.CopyToApprovalAsync();
         }
         catch (Exception ex)

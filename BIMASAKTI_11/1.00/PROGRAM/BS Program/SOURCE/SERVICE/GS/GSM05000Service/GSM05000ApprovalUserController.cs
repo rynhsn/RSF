@@ -227,7 +227,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
             };
 
             loCls = new GSM05000ApprovalUserCls();
-            loResult = loCls.GSM05000GetApprovalDepartment(loDbPar);
+            loResult = loCls.GSM05000LookupApprovalDepartment(loDbPar);
             loRtn = new GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> { Data = loResult };
         }
         catch (Exception ex)
@@ -255,7 +255,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
                 CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE),
                 CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CDEPT_CODE),
                 CDEPT_CODE_TO = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CDEPT_CODE_TO),
-                CUSER_ID = R_BackGlobalVar.USER_ID
+                CUSER_LOGIN_ID = R_BackGlobalVar.USER_ID
             };
 
             loCls = new GSM05000ApprovalUserCls();

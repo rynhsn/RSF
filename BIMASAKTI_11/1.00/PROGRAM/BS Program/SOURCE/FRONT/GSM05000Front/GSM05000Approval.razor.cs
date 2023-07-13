@@ -408,5 +408,17 @@ namespace GSM05000Front
         }
 
         #endregion
+
+        private Task CopyToBeforePopup(R_BeforeOpenPopupEventArgs eventArgs)
+        {
+            eventArgs.Parameter = new GSM05000ApprovalCopyDTO()
+            {
+                CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE,
+                CDEPT_CODE = _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_CODE,
+                CDEPT_NAME = _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_NAME,
+            };
+            eventArgs.TargetPageType = typeof(GSM05000ApprovalCopyTo);
+            return Task.CompletedTask;
+        }
     }
 }

@@ -336,12 +336,12 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = "EXEC RSP_COPY_TO_USER_APPR";
+            lcQuery = "RSP_COPY_TO_USER_APPR";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
             
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParameter.CCOMPANY_ID);
-            loDb.R_AddCommandParameter(loCmd, "@TRANSACTION_CODE", DbType.String, 50, poParameter.CTRANSACTION_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 50, poParameter.CTRANSACTION_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, poParameter.CDEPT_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE_TO", DbType.String, 50, poParameter.CDEPT_CODE_TO);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 50, poParameter.CUSER_LOGIN_ID);
@@ -371,12 +371,12 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = "EXEC RSP_COPY_FROM_USER_APPR";
+            lcQuery = "RSP_COPY_FROM_USER_APPR";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
             
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParameter.CCOMPANY_ID);
-            loDb.R_AddCommandParameter(loCmd, "@TRANSACTION_CODE", DbType.String, 50, poParameter.CTRANSACTION_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 50, poParameter.CTRANSACTION_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, poParameter.CDEPT_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE_FROM", DbType.String, 50, poParameter.CDEPT_CODE_FROM);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 50, poParameter.CUSER_LOGIN_ID);
