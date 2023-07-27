@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GSM05000Common;
 using GSM05000Common.DTOs;
@@ -38,7 +39,22 @@ public class GSM05000ApprovalUserModel : R_BusinessObjectServiceClientBase<GSM05
         throw new NotImplementedException();
     }
 
+    public GSM05000ListDTO<GSM05000ApprovalUserDTO> GSM05000GetUserSequenceData()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void GSM05000UpdateSequence(List<GSM05000ApprovalUserDTO> poEntity)
+    {
+        throw new NotImplementedException();
+    }
+
     public GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartment()
+    {
+        throw new NotImplementedException();
+    }
+
+    public GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> GSM05000DepartmentChangeSequence()
     {
         throw new NotImplementedException();
     }
@@ -131,6 +147,79 @@ public class GSM05000ApprovalUserModel : R_BusinessObjectServiceClientBase<GSM05
         loEx.ThrowExceptionIfErrors();
 
         return loResult;
+    }
+    
+    public async Task<GSM05000ListDTO<GSM05000ApprovalDepartmentDTO>> GSM05000DepartmentChangeSequenceModel()
+    {
+        var loEx = new R_Exception();
+        GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> loResult = null;
+
+        try
+        {
+            R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ListDTO<GSM05000ApprovalDepartmentDTO>>(
+                _RequestServiceEndPoint,
+                nameof(IGSM05000ApprovalUser.GSM05000DepartmentChangeSequence),
+                DEFAULT_MODULE,
+                _SendWithContext,
+                _SendWithToken);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return loResult;
+    }
+    
+    public async Task<GSM05000ListDTO<GSM05000ApprovalUserDTO>> GSM05000GetUserSequenceDataModel()
+    {
+        var loEx = new R_Exception();
+        GSM05000ListDTO<GSM05000ApprovalUserDTO> loResult = null;
+
+        try
+        {
+            R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ListDTO<GSM05000ApprovalUserDTO>>(
+                _RequestServiceEndPoint,
+                nameof(IGSM05000ApprovalUser.GSM05000GetUserSequenceData),
+                DEFAULT_MODULE,
+                _SendWithContext,
+                _SendWithToken);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return loResult;
+    }
+    
+    public async Task GSM05000UpdateSequenceModel(List<GSM05000ApprovalUserDTO> poEntity)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+            await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ListDTO<GSM05000ApprovalUserDTO>, List<GSM05000ApprovalUserDTO>>(
+                _RequestServiceEndPoint,
+                nameof(IGSM05000ApprovalUser.GSM05000UpdateSequence),
+                poEntity,
+                DEFAULT_MODULE,
+                _SendWithContext,
+                _SendWithToken);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
     }
     
     public async Task<GSM05000ListDTO<GSM05000ApprovalDepartmentDTO>> LookupApprovalDepartmentAsync()

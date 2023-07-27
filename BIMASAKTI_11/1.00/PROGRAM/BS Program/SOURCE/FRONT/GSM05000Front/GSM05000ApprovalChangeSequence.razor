@@ -1,0 +1,80 @@
+﻿@page "/GSM05000ApprovalChangeSequence"
+@inherits R_Page
+@attribute [R_Page(Title = "Change User Sequence")];
+
+<R_StackLayout Row Spacing="3" Class="d-flex justify-content-between mb-2">
+    <R_ItemLayout>
+        <R_Label>Department</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout xs="10" Class="d-flex align-items-end">
+        <R_ComboBox Data="@_viewModel.DeptSeqList"
+                    @bind-Value="_viewModel.DepartmentEntity.CDEPT_CODE"
+                    ValueField="@nameof(GSM05000ApprovalDepartmentDTO.CDEPT_CODE)"
+                    TextField="@nameof(GSM05000ApprovalDepartmentDTO.CDEPT_NAME)"
+                    OnChanged="ChangedDept"
+        />
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Class="mb-2">
+    <R_Grid @ref="@_grid"
+           DataSource="@_viewModel.ApproverList"
+           Pageable
+           R_ConductorGridSource="@_conductor"
+           R_GridType="@R_eGridType.Batch"
+           R_ServiceGetListRecord="@GetList"
+           Width="650px"
+           DragDrop
+           DragClueField="@nameof(GSM05000ApprovalUserDTO.CDEPT_CODE)" 
+           R_GridRowAfterDrop="BeforeDrop" R_GridRowBeforeDrop="AfterDrop">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CDEPT_CODE)"
+                              HeaderText="Department"
+                              Width="150px"/>
+            <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CUSER_ID)"
+                              HeaderText="User Id"
+                              Width="150px"/>
+            <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CUSER_NAME)"
+                              HeaderText="User Name"
+                              Width="150px"/>
+            <R_GridNumericColumn FieldName="@nameof(GSM05000ApprovalUserDTO.NLIMIT_AMOUNT)"
+                              HeaderText="Limit Amount"
+                              Width="175px"/>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row Class="d-flex justify-content-between mb-5">
+    
+    <R_ItemLayout>
+        <R_Label>Change User Sequence</R_Label>
+    </R_ItemLayout>
+    
+    <R_ItemLayout Class="d-flex align-items-end">
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Button R_ConductorGridSource="_conductor" OnClick="OnClickNext">Move Next</R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Button R_ConductorGridSource="_conductor" OnClick="OnClickPrevious">Move Previous</R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="d-flex justify-content-end">
+    <R_ItemLayout>
+        <R_Button R_ConductorGridSource="_conductor" OnClick="OnClickSave">Save</R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="OnClickCancel">Cancel</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="_conductor"
+             R_ViewModel="_viewModel"
+             R_IsHeader = "true"
+             @* R_Display="Display" *@
+             R_BeforeSaveBatch="BeforeSaveBatch"
+             R_ServiceSaveBatch="SaveBatch"
+             />

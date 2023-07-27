@@ -190,5 +190,24 @@ namespace GLM00500Model.ViewModel
             if (param.CCURRENCY_TYPE is null or "") loEx.Add(new Exception("Please select Currency Type!"));
             loEx.ThrowExceptionIfErrors();
         }
+
+        public async Task<GLM00500AccountBudgetExcelDTO> DownloadTemplate()
+        {
+            var loEx = new R_Exception();
+            GLM00500AccountBudgetExcelDTO loResult = null;
+
+            try
+            {
+                loResult = await _model.GLM00500DownloadTemplateFileModel();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
     }
 }

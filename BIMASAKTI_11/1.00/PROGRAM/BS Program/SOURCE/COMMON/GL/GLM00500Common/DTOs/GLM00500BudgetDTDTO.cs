@@ -8,7 +8,9 @@ namespace GLM00500Common.DTOs
         public string CLANGUAGE_ID { get; set; }
         public string CUSER_ID { get; set; }
         public string CBUDGET_NO { get; set; }
-        public string CGLACCOUNT_TYPE { get; set; }
+        public string CGLACCOUNT_TYPE { get; set; }        
+        public string CBSIS { get; set; }
+
         public string CGLACCOUNT_NO { get; set; }
         public string CGLACCOUNT_NAME { get; set; } 
         public string CCENTER_CODE { get; set; }
@@ -17,7 +19,7 @@ namespace GLM00500Common.DTOs
         public decimal NBUDGET { get; set; }
         public string CROUNDING_METHOD { get; set; }
         public string CDIST_METHOD { get; set; }
-        public string CBW_METHOD { get; set; }
+        public string CBW_CODE { get; set; }
         public decimal NPERIOD1 { get; set; }
         public decimal NPERIOD2 { get; set; }
         public decimal NPERIOD3 { get; set; }

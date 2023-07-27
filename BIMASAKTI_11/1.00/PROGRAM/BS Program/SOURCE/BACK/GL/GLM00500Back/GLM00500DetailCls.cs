@@ -92,7 +92,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
             loDb.R_AddCommandParameter(loCmd, "@NBUDGET", DbType.Decimal, 22 ,poNewEntity.NBUDGET);
             loDb.R_AddCommandParameter(loCmd, "@CROUNDING_METHOD", DbType.String, 50, poNewEntity.CROUNDING_METHOD);
             loDb.R_AddCommandParameter(loCmd, "@CDIST_METHOD", DbType.String, 50, poNewEntity.CDIST_METHOD);
-            loDb.R_AddCommandParameter(loCmd, "@CBW_METHOD", DbType.String, 50, poNewEntity.CBW_METHOD);
+            loDb.R_AddCommandParameter(loCmd, "@CBW_CODE", DbType.String, 50, poNewEntity.CBW_CODE);
             loDb.R_AddCommandParameter(loCmd, "@NPERIOD1", DbType.Decimal, 22 ,poNewEntity.NPERIOD1);
             loDb.R_AddCommandParameter(loCmd, "@NPERIOD2", DbType.Decimal, 22 ,poNewEntity.NPERIOD2);
             loDb.R_AddCommandParameter(loCmd, "@NPERIOD3", DbType.Decimal, 22 ,poNewEntity.NPERIOD3);
@@ -252,7 +252,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = @"SELECT COUNT(1) AS Num 
+            lcQuery = @"SELECT COUNT(1) AS INUM 
                         FROM GSM_PERIOD_DT (NOLOCK) 
                         WHERE CCOMPANY_ID = @CCOMPANY_ID 
                         AND CCYEAR = @CYEAR 
@@ -276,8 +276,6 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
         return lnReturn;
     }
             
-    
-
     public List<GLM00500FunctionDTO> GLM00500GetRoundingMethodListDb(GLM00500ParameterDb poParams)
     {
         R_Exception loEx = new R_Exception();
@@ -311,6 +309,82 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
         
         loEx.ThrowExceptionIfErrors();
         return loReturn;
+    }
+    
+    public List<GLM00500BudgetWeightingDTO> GLM00500GetBudgetWeightingListDb(GLM00500ParameterDb poParams)
+    {
+        R_Exception loEx = new R_Exception();
+        List<GLM00500BudgetWeightingDTO> loReturn = null;
+        R_Db loDb;
+        DbConnection loConn;
+        DbCommand loCmd;
+        string lcQuery;
+
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection();
+            loCmd = loDb.GetCommand();
+
+            lcQuery = "RSP_GL_GET_BUDGET_WEIGHTING_LIST";
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
+            
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParams.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, poParams.CLANGUAGE_ID);
+            
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+            loReturn = R_Utility.R_ConvertTo<GLM00500BudgetWeightingDTO>(loDataTable).ToList();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
+        return loReturn;
+    }
+
+    public GLM00500GSMCompanyDTO GLM00500GetGSMCompanyDb(GLM00500ParameterDb poParams)
+    {
+        R_Exception loEx = new R_Exception();
+        GLM00500GSMCompanyDTO lnReturn = new();
+        R_Db loDb;
+        DbConnection loConn;
+        DbCommand loCmd;
+        string lcQuery;
+
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection();
+            loCmd = loDb.GetCommand();
+
+            lcQuery = @"SELECT CCOGS_METHOD
+                             ,LENABLE_CENTER_IS
+                             ,LENABLE_CENTER_BS
+                             ,LPRIMARY_ACCOUNT
+                             ,CBASE_CURRENCY_CODE
+                             ,CLOCAL_CURRENCY_CODE
+                        FROM GSM_COMPANY (NOLOCK)
+                        WHERE CCOMPANY_ID = @CCOMPANY_ID";
+            loCmd.CommandType = CommandType.Text;
+            loCmd.CommandText = lcQuery;
+
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParams.CCOMPANY_ID);
+
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+            lnReturn = R_Utility.R_ConvertTo<GLM00500GSMCompanyDTO>(loDataTable).FirstOrDefault();
+
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
+        return lnReturn;
     }
     
 }

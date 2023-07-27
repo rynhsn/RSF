@@ -13,10 +13,12 @@ namespace GSM05000Service;
 public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalUser
 {
     [HttpPost]
-    public R_ServiceGetRecordResultDTO<GSM05000ApprovalUserDTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GSM05000ApprovalUserDTO> poParameter)
+    public R_ServiceGetRecordResultDTO<GSM05000ApprovalUserDTO> R_ServiceGetRecord(
+        R_ServiceGetRecordParameterDTO<GSM05000ApprovalUserDTO> poParameter)
     {
         R_Exception loEx = new R_Exception();
-        R_ServiceGetRecordResultDTO<GSM05000ApprovalUserDTO> loRtn = new R_ServiceGetRecordResultDTO<GSM05000ApprovalUserDTO>();
+        R_ServiceGetRecordResultDTO<GSM05000ApprovalUserDTO> loRtn =
+            new R_ServiceGetRecordResultDTO<GSM05000ApprovalUserDTO>();
 
         try
         {
@@ -31,13 +33,15 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
         {
             loEx.Add(ex);
         }
+
         loEx.ThrowExceptionIfErrors();
-        
+
         return loRtn;
     }
 
     [HttpPost]
-    public R_ServiceSaveResultDTO<GSM05000ApprovalUserDTO> R_ServiceSave(R_ServiceSaveParameterDTO<GSM05000ApprovalUserDTO> poParameter)
+    public R_ServiceSaveResultDTO<GSM05000ApprovalUserDTO> R_ServiceSave(
+        R_ServiceSaveParameterDTO<GSM05000ApprovalUserDTO> poParameter)
     {
         R_Exception loEx = new R_Exception();
         R_ServiceSaveResultDTO<GSM05000ApprovalUserDTO> loRtn = null;
@@ -47,7 +51,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
         {
             loCls = new GSM05000ApprovalUserCls();
             loRtn = new R_ServiceSaveResultDTO<GSM05000ApprovalUserDTO>();
-            
+
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParameter.Entity.CUSER_LOGIN_ID = R_BackGlobalVar.USER_ID;
 
@@ -57,6 +61,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
         {
             loEx.Add(ex);
         }
+
         loEx.ThrowExceptionIfErrors();
         return loRtn;
     }
@@ -101,7 +106,6 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
                 CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
                 CUSER_ID = R_BackGlobalVar.USER_ID,
                 CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE),
-                
             };
 
             loCls = new GSM05000ApprovalUserCls();
@@ -150,7 +154,6 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     [HttpPost]
     public string GSM05000ValidationForAction()
     {
-        
         R_Exception loEx = new R_Exception();
         string loRtn = null;
         GSM05000ParameterDb loDbPar;
@@ -208,7 +211,90 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
 
         return loRtn;
     }
-    
+
+    [HttpPost]
+    public GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> GSM05000DepartmentChangeSequence()
+    {
+        R_Exception loEx = new R_Exception();
+        List<GSM05000ApprovalDepartmentDTO> loResult;
+        GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> loRtn = null;
+        GSM05000ParameterDb loDbPar;
+        GSM05000ApprovalUserCls loCls;
+
+        try
+        {
+            loDbPar = new GSM05000ParameterDb
+            {
+                CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE)
+            };
+
+            loCls = new GSM05000ApprovalUserCls();
+            loResult = loCls.GSM05000DepartmentChangeSequence(loDbPar);
+            loRtn = new GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> { Data = loResult };
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return loRtn;
+    }
+
+    [HttpPost]
+    public GSM05000ListDTO<GSM05000ApprovalUserDTO> GSM05000GetUserSequenceData()
+    {
+        R_Exception loEx = new R_Exception();
+        List<GSM05000ApprovalUserDTO> loResult;
+        GSM05000ListDTO<GSM05000ApprovalUserDTO> loRtn = null;
+        GSM05000ParameterDb loDbPar;
+        GSM05000ApprovalUserCls loCls;
+
+        try
+        {
+            loDbPar = new GSM05000ParameterDb
+            {
+                CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE),
+                CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CDEPT_CODE)
+            };
+
+            loCls = new GSM05000ApprovalUserCls();
+            loResult = loCls.GSM05000GetUserSequenceData(loDbPar);
+            loRtn = new GSM05000ListDTO<GSM05000ApprovalUserDTO> { Data = loResult };
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return loRtn;
+    }
+
+    [HttpPost]
+    public void GSM05000UpdateSequence(List<GSM05000ApprovalUserDTO> poEntity)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loCls = new GSM05000ApprovalUserCls();
+            foreach (var loItem in poEntity)
+            {
+                loItem.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                loCls.GSM05000UpdateSequence(loItem);
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
     [HttpPost]
     public GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartment()
     {
@@ -239,7 +325,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
 
         return loRtn;
     }
-    
+
     [HttpPost]
     public void GSM05000CopyToApproval()
     {
@@ -268,7 +354,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     [HttpPost]
     public void GSM05000CopyFromApproval()
     {
@@ -284,7 +370,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
                 CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE),
                 CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CDEPT_CODE),
                 CDEPT_CODE_FROM = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CDEPT_CODE_FROM),
-                CUSER_ID = R_BackGlobalVar.USER_ID
+                CUSER_LOGIN_ID = R_BackGlobalVar.USER_ID
             };
 
             loCls = new GSM05000ApprovalUserCls();
@@ -297,6 +383,4 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
 
         loEx.ThrowExceptionIfErrors();
     }
-    
-    
 }

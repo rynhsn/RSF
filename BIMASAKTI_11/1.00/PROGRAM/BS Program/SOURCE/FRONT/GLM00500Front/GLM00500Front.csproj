@@ -13,6 +13,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.15" />
+        <PackageReference Include="Telerik.SvgIcons" Version="1.0.2" />
     </ItemGroup>
 
     <ItemGroup>
@@ -31,6 +32,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\BACK\Lookup_GSCOMMON\Lookup_GSCOMMON.csproj" />
+      <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj" />
       <ProjectReference Include="..\GLM00500Model\GLM00500Model.csproj" />
     </ItemGroup>
 

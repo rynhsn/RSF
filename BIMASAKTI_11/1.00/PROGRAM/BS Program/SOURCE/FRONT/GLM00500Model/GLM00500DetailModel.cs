@@ -34,11 +34,21 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         throw new NotImplementedException();
     }
 
+    public GLM00500ListDTO<GLM00500BudgetWeightingDTO> GLM00500GetBudgetWeightingList()
+    {
+        throw new NotImplementedException();
+    }
+
     public GLM00500PeriodCount GLM00500GetPeriodCount()
     {
         throw new NotImplementedException();
     }
-        
+
+    public GLM00500GSMCompanyDTO GLM00500GetGSMCompany()
+    {
+        throw new NotImplementedException();
+    }
+
     #endregion
         
     public async Task<GLM00500ListDTO<GLM00500BudgetDTGridDTO>> GLM00500GetBudgetDTListModel()
@@ -88,6 +98,30 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         loEx.ThrowExceptionIfErrors();
         return loResult;
     }
+    
+    public async Task<GLM00500ListDTO<GLM00500BudgetWeightingDTO>> GLM00500GetBudgetWeightingListModel()
+    {
+        var loEx = new R_Exception();
+        GLM00500ListDTO<GLM00500BudgetWeightingDTO> loResult = null;
+            
+        try
+        {
+            R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500ListDTO<GLM00500BudgetWeightingDTO>>(
+                _RequestServiceEndPoint,
+                nameof(IGLM00500Detail.GLM00500GetBudgetWeightingList),
+                DEFAULT_MODULE,
+                _SendWithContext,
+                _SendWithToken);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+            
+        loEx.ThrowExceptionIfErrors();
+        return loResult;
+    }
 
     public async Task<GLM00500PeriodCount> GLM00500GetPeriodCountModel()
     {
@@ -100,6 +134,29 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
             loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500PeriodCount>(
                 _RequestServiceEndPoint,
                 nameof(IGLM00500Detail.GLM00500GetPeriodCount),
+                DEFAULT_MODULE,
+                _SendWithContext,
+                _SendWithToken);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+            
+        loEx.ThrowExceptionIfErrors();
+        return loResult;
+    }
+    public async Task<GLM00500GSMCompanyDTO> GLM00500GetGSMCompanyModel()
+    {
+        var loEx = new R_Exception();
+        GLM00500GSMCompanyDTO loResult = null;
+            
+        try
+        {
+            R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500GSMCompanyDTO>(
+                _RequestServiceEndPoint,
+                nameof(IGLM00500Detail.GLM00500GetGSMCompany),
                 DEFAULT_MODULE,
                 _SendWithContext,
                 _SendWithToken);

@@ -31,7 +31,8 @@ namespace GSM05000Front
             try
             {
                 _GSM05000ApprovalUserViewModel.HeaderEntity = (GSM05000ApprovalHeaderDTO)poParameter;
-                _GSM05000ApprovalUserViewModel.TransactionCode = ((GSM05000ApprovalHeaderDTO)poParameter).CTRANSACTION_CODE;
+                _GSM05000ApprovalUserViewModel.TransactionCode =
+                    ((GSM05000ApprovalHeaderDTO)poParameter).CTRANSACTION_CODE;
 
                 await _gridRefDept.R_RefreshGrid(null);
                 await _gridRefApprover.R_RefreshGrid(null);
@@ -76,7 +77,7 @@ namespace GSM05000Front
                     var loParam = (GSM05000ApprovalDepartmentDTO)eventArgs.Data;
                     _GSM05000ApprovalUserViewModel.GetDepartmentEntity(loParam);
                     // await _gridRefReplacement.R_RefreshGrid(_GSM05000ApprovalUserViewModel.ApproverEntity.CUSER_ID);
-                    // await _gridRefReplacement.AutoFitAllColumnsAsync();
+                    
                 }
             }
             catch (Exception ex)
@@ -118,6 +119,8 @@ namespace GSM05000Front
             {
                 loEx.Add(ex);
             }
+
+            loEx.ThrowExceptionIfErrors();
         }
 
         private void AfterAddApprover(R_AfterAddEventArgs eventArgs)
@@ -133,6 +136,8 @@ namespace GSM05000Front
             {
                 loEx.Add(ex);
             }
+
+            loEx.ThrowExceptionIfErrors();
         }
 
         private async Task SaveApprover(R_ServiceSaveEventArgs eventArgs)
@@ -160,9 +165,11 @@ namespace GSM05000Front
             {
                 if (eventArgs.ConductorMode == R_eConductorMode.Normal)
                 {
-                    var pcSelectedUserId = ((GSM05000ApprovalUserDTO)eventArgs.Data).CUSER_ID;
+                    var loParam = (GSM05000ApprovalUserDTO)eventArgs.Data;
+                    var pcSelectedUserId = loParam.CUSER_ID;
+                    _GSM05000ApprovalReplacementViewModel.SelectedUserId = pcSelectedUserId;
                     await _gridRefReplacement.R_RefreshGrid(pcSelectedUserId);
-                    await _gridRefReplacement.AutoFitAllColumnsAsync();
+
                 }
             }
             catch (Exception ex)
@@ -186,9 +193,11 @@ namespace GSM05000Front
             {
                 loEx.Add(ex);
             }
+
+            loEx.ThrowExceptionIfErrors();
         }
 
-        private async Task AfterDeleteApprover(object arg)
+        private async Task AfterDeleteApprover(object eventArgs)
         {
             var loEx = new R_Exception();
 
@@ -201,6 +210,8 @@ namespace GSM05000Front
             {
                 loEx.Add(ex);
             }
+
+            loEx.ThrowExceptionIfErrors();
         }
 
         private void BeforeLookupApprover(R_BeforeOpenGridLookupColumnEventArgs eventArgs)
@@ -247,6 +258,7 @@ namespace GSM05000Front
         #endregion
 
         #region Replacement
+
         private async Task GetListReplacement(R_ServiceGetListRecordEventArgs eventArgs)
         {
             var loEx = new R_Exception();
@@ -257,8 +269,33 @@ namespace GSM05000Front
                 var lcTransactionCode = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE;
                 var lcSelectedUserId = eventArgs.Parameter.ToString();
 
-                await _GSM05000ApprovalReplacementViewModel.GetReplacementList(lcTransactionCode, lcDeptCode, lcSelectedUserId);
+                await _GSM05000ApprovalReplacementViewModel.GetReplacementList(lcTransactionCode, lcDeptCode,
+                    lcSelectedUserId);
                 eventArgs.ListEntityResult = _GSM05000ApprovalReplacementViewModel.ReplacementList;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task GetRecordReplacement(R_ServiceGetRecordEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loParam = (GSM05000ApprovalReplacementDTO)eventArgs.Data;
+
+                var lcDeptCode = loParam.CDEPT_CODE;
+                var lcTransactionCode = loParam.CTRANSACTION_CODE;
+                var lcSelectedUserId = loParam.CUSER_ID;
+                await _GSM05000ApprovalReplacementViewModel.GetReplacementEntity(loParam, lcTransactionCode, lcDeptCode,
+                    lcSelectedUserId);
+
+                eventArgs.Result = _GSM05000ApprovalReplacementViewModel.ReplacementEntity;
             }
             catch (Exception ex)
             {
@@ -277,11 +314,12 @@ namespace GSM05000Front
                 if (eventArgs.ConductorMode == R_eConductorMode.Normal)
                 {
                     var loParam = (GSM05000ApprovalReplacementDTO)eventArgs.Data;
-                    
+
                     var lcDeptCode = loParam.CDEPT_CODE;
                     var lcTransactionCode = loParam.CTRANSACTION_CODE;
                     var lcSelectedUserId = loParam.CUSER_ID;
-                    await _GSM05000ApprovalReplacementViewModel.GetReplacementEntity(loParam, lcTransactionCode, lcDeptCode, lcSelectedUserId);
+                    await _GSM05000ApprovalReplacementViewModel.GetReplacementEntity(loParam, lcTransactionCode,
+                        lcDeptCode, lcSelectedUserId);
                 }
             }
             catch (Exception ex)
@@ -298,6 +336,7 @@ namespace GSM05000Front
             try
             {
                 var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000ApprovalReplacementDTO>(eventArgs.Data);
+                loParam.CUSER_ID = _GSM05000ApprovalReplacementViewModel.SelectedUserId;
                 await _GSM05000ApprovalReplacementViewModel.SaveEntity(loParam, (eCRUDMode)eventArgs.ConductorMode);
                 eventArgs.Result = _GSM05000ApprovalReplacementViewModel.ReplacementEntity;
             }
@@ -419,6 +458,44 @@ namespace GSM05000Front
             };
             eventArgs.TargetPageType = typeof(GSM05000ApprovalCopyTo);
             return Task.CompletedTask;
+        }
+
+        private async Task CopyToAfterPopup(R_AfterOpenPopupEventArgs eventArgs)
+        {
+            await _gridRefApprover.R_RefreshGrid(null);
+        }
+
+        private Task CopyFromBeforePopup(R_BeforeOpenPopupEventArgs eventArgs)
+        {
+            eventArgs.Parameter = new GSM05000ApprovalCopyDTO()
+            {
+                CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE,
+                CDEPT_CODE = _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_CODE,
+                CDEPT_NAME = _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_NAME,
+            };
+            eventArgs.TargetPageType = typeof(GSM05000ApprovalCopyFrom);
+            return Task.CompletedTask;
+        }
+        
+        private async Task CopyFromAfterPopup(R_AfterOpenPopupEventArgs eventArgs)
+        {
+            await _gridRefApprover.R_RefreshGrid(null);
+        }
+
+        private Task ChangeSequenceBeforePopup(R_BeforeOpenPopupEventArgs eventArgs)
+        {
+            var loParam = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE;
+            eventArgs.Parameter = loParam;
+            eventArgs.TargetPageType = typeof(GSM05000ApprovalChangeSequence);
+            return Task.CompletedTask;
+        }
+        
+        private async Task ChangeSequenceAfterPopup(R_AfterOpenPopupEventArgs eventArgs)
+        {
+            if ((bool)eventArgs.Result)
+            {
+                await _gridRefApprover.R_RefreshGrid(null);
+            }
         }
     }
 }

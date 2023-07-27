@@ -324,7 +324,6 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
     public void GSM05000ApprovalCopyTo(GSM05000ParameterDb poParameter)
     {
         R_Exception loEx = new R_Exception();
-        List<GSM05000ApprovalDepartmentDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -359,7 +358,6 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
     public void GSM05000ApprovalCopyFrom(GSM05000ParameterDb poParameter)
     {
         R_Exception loEx = new R_Exception();
-        List<GSM05000ApprovalDepartmentDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -389,5 +387,133 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
         }
 
         loEx.ThrowExceptionIfErrors();
+    }
+    
+    public List<GSM05000ApprovalDepartmentDTO> GSM05000DepartmentChangeSequence(GSM05000ParameterDb poParameter)
+    {
+        R_Exception loEx = new R_Exception();
+        List<GSM05000ApprovalDepartmentDTO> loRtn = null;
+        R_Db loDb;
+        DbConnection loConn;
+        DbCommand loCmd;
+        string lcQuery;
+
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection();
+            loCmd = loDb.GetCommand();
+
+            lcQuery = @"SELECT A.CDEPT_CODE, B.CDEPT_NAME 
+                         FROM GSM_TRANSACTION_APPROVAL A (NOLOCK)
+                   INNER JOIN GSM_DEPARTMENT B (NOLOCK) 
+                           ON A.CCOMPANY_ID = B.CCOMPANY_ID 
+                          AND B.CDEPT_CODE = A.CDEPT_CODE
+                        WHERE A.CCOMPANY_ID = B.CCOMPANY_ID 
+                          AND A.CTRANSACTION_CODE = @CTRANSACTION_CODE
+                        GROUP BY A.CDEPT_CODE, B.CDEPT_NAME";
+            loCmd.CommandType = CommandType.Text;
+            loCmd.CommandText = lcQuery;
+            
+            loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 100, poParameter.CTRANSACTION_CODE);
+
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+            loRtn = R_Utility.R_ConvertTo<GSM05000ApprovalDepartmentDTO>(loDataTable).ToList();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        return loRtn;
+    }
+
+    public List<GSM05000ApprovalUserDTO> GSM05000GetUserSequenceData(GSM05000ParameterDb poParameter)
+    {
+        
+        R_Exception loEx = new R_Exception();
+        List<GSM05000ApprovalUserDTO> loRtn = null;
+        R_Db loDb;
+        DbConnection loConn;
+        DbCommand loCmd;
+        string lcQuery;
+
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection();
+            loCmd = loDb.GetCommand();
+
+            lcQuery = @"SELECT A.CTRANSACTION_CODE, 
+                               A.CDEPT_CODE, 
+                               A.CUSER_ID, 
+                               A.CSEQUENCE, 
+                               A.NLIMIT_AMOUNT, 
+                               B.CDEPT_NAME, 
+                               C.CUSER_NAME, 
+                               A.CUPDATE_BY, 
+                               A.DUPDATE_DATE
+                        FROM GSM_TRANSACTION_APPROVAL A (NOLOCK)
+                            INNER JOIN GSM_DEPARTMENT B (NOLOCK) ON  A.CCOMPANY_ID = B.CCOMPANY_ID AND B.CDEPT_CODE = A.CDEPT_CODE
+                            INNER JOIN SAM_USER C (NOLOCK) ON C.CUSER_ID = A.CUSER_ID
+                        WHERE A.CCOMPANY_ID = B.CCOMPANY_ID AND A.CTRANSACTION_CODE = @CTRANSACTION_CODE AND A.CDEPT_CODE = @CDEPT_CODE";
+            loCmd.CommandType = CommandType.Text;
+            loCmd.CommandText = lcQuery;
+            
+            loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 10, poParameter.CDEPT_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 100, poParameter.CTRANSACTION_CODE);
+
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+            loRtn = R_Utility.R_ConvertTo<GSM05000ApprovalUserDTO>(loDataTable).ToList();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        return loRtn;
+    }
+
+    public void GSM05000UpdateSequence(GSM05000ApprovalUserDTO poParameter)
+    {
+        R_Exception loEx = new R_Exception();
+        R_Db loDb;
+        DbConnection loConn;
+        DbCommand loCmd;
+        string lcQuery;
+
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection();
+            loCmd = loDb.GetCommand();
+
+            lcQuery = @"UPDATE A SET A.CSEQUENCE = @CSEQUENCE 
+                        FROM GSM_TRANSACTION_APPROVAL A (NOLOCK) 
+                        WHERE A.CCOMPANY_ID = @CCOMPANY_ID 
+                        AND A.CTRANSACTION_CODE = @CTRANSACTION_CODE 
+                        AND A.CDEPT_CODE = @CDEPT_CODE 
+                        AND A.CUSER_ID = @CUSER_ID";
+            loCmd.CommandType = CommandType.Text;
+            loCmd.CommandText = lcQuery;
+            
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 10, poParameter.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 100, poParameter.CTRANSACTION_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 20, poParameter.CDEPT_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poParameter.CUSER_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CSEQUENCE", DbType.String, 3, poParameter.CSEQUENCE);
+
+            loDb.SqlExecNonQuery(loConn, loCmd, true);
+            // loRtn = R_Utility.R_ConvertTo<GSM05000ApprovalUserDTO>(loDataTable).ToList();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        // return loRtn;
     }
 }

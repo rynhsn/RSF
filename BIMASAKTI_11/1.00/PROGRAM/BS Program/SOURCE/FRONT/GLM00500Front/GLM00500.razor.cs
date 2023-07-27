@@ -19,9 +19,7 @@ public partial class GLM00500 : R_Page
     private GLM00500HeaderViewModel _viewModel = new();
     private R_Conductor _conductorRef;
     private R_Grid<GLM00500BudgetHDDTO> _gridRef = new();
-    // private R_TabStripTab _detailTab;
     [Inject] private IClientHelper _clientHelper { get; set; }
-    [Inject] private R_IExcel _excelProvider { get; set; }
     [Inject] private IJSRuntime JS { get; set; }
 
 
@@ -90,7 +88,7 @@ public partial class GLM00500 : R_Page
     private async Task ValidationBudgetHD(R_ValidationEventArgs eventArgs)
     {
         var loEx = new R_Exception();
-        
+
         try
         {
             var loParam = R_FrontUtility.ConvertObjectToObject<GLM00500BudgetHDDTO>(eventArgs.Data);
@@ -100,7 +98,7 @@ public partial class GLM00500 : R_Page
         {
             loEx.Add(ex);
         }
-        
+
         loEx.ThrowExceptionIfErrors();
     }
 
@@ -166,7 +164,7 @@ public partial class GLM00500 : R_Page
         {
             loEx.Add(ex);
         }
-        
+
         loEx.ThrowExceptionIfErrors();
     }
 
@@ -179,29 +177,25 @@ public partial class GLM00500 : R_Page
     private async Task DownloadTemplate()
     {
         var loEx = new R_Exception();
-        
+
         try
         {
-            var loDataTable = R_FrontUtility.R_ConvertTo(new List<GLM00500AccountBudgetExcelDTO>());
-            loDataTable.TableName = "Budget";
-
-            //export to excel
-            var loByteFile = _excelProvider.R_WriteToExcel(loDataTable);
-            var saveFileName = "ACCOUNT_BUDGET_UPLOAD.xlsx";
-
-            await JS.downloadFileFromStreamHandler(saveFileName, loByteFile);
+            var loByteFile = await _viewModel.DownloadTemplate();
+            var saveFileName = $"ACCOUNT_BUDGET_UPLOAD.xlsx";
+            await JS.downloadFileFromStreamHandler(saveFileName, loByteFile.FileBytes);
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
         }
-        
+
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     private async Task BeforeCancelBudgetHD(R_BeforeCancelEventArgs eventArgs)
     {
-        var loResult = await R_MessageBox.Show("Confirm", "Are you sure want to cancel selected Budget?", R_eMessageBoxButtonType.YesNo);
+        var loResult = await R_MessageBox.Show("Confirm", "Are you sure want to cancel selected Budget?",
+            R_eMessageBoxButtonType.YesNo);
         if (loResult == R_eMessageBoxResult.No) eventArgs.Cancel = true;
     }
 

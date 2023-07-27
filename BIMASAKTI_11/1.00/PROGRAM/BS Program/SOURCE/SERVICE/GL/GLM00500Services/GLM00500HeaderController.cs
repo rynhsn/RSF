@@ -1,4 +1,5 @@
-﻿using GLM00500Back;
+﻿using System.Reflection;
+using GLM00500Back;
 using GLM00500Common;
 using GLM00500Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
@@ -119,7 +120,7 @@ public class GLM00500HeaderController : ControllerBase, IGLM00500Header
         var loCls = new GLM00500HeaderCls();
         var loDbParams = new GLM00500ParameterDb();
         var loReturn = new GLM00500GSMPeriodDTO();
-        
+
         try
         {
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
@@ -129,7 +130,7 @@ public class GLM00500HeaderController : ControllerBase, IGLM00500Header
         {
             loEx.Add(ex);
         }
-        
+
         loEx.ThrowExceptionIfErrors();
         return loReturn;
     }
@@ -141,7 +142,7 @@ public class GLM00500HeaderController : ControllerBase, IGLM00500Header
         var loCls = new GLM00500HeaderCls();
         var loDbParams = new GLM00500ParameterDb();
         var loReturn = new GLM00500GLSystemParamDTO();
-        
+
         try
         {
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
@@ -152,7 +153,7 @@ public class GLM00500HeaderController : ControllerBase, IGLM00500Header
         {
             loEx.Add(ex);
         }
-        
+
         loEx.ThrowExceptionIfErrors();
         return loReturn;
     }
@@ -164,7 +165,7 @@ public class GLM00500HeaderController : ControllerBase, IGLM00500Header
         var loCls = new GLM00500HeaderCls();
         var loDbParams = new GLM00500ParameterDb();
         var loReturn = new GLM00500ListDTO<GLM00500FunctionDTO>();
-        
+
         try
         {
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
@@ -175,7 +176,7 @@ public class GLM00500HeaderController : ControllerBase, IGLM00500Header
         {
             loEx.Add(ex);
         }
-        
+
         loEx.ThrowExceptionIfErrors();
         return loReturn;
     }
@@ -186,7 +187,7 @@ public class GLM00500HeaderController : ControllerBase, IGLM00500Header
         var loEx = new R_Exception();
         var loCls = new GLM00500HeaderCls();
         var loDbParams = new GLM00500ParameterDb();
-        
+
         try
         {
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
@@ -198,7 +199,37 @@ public class GLM00500HeaderController : ControllerBase, IGLM00500Header
         {
             loEx.Add(ex);
         }
-        
+
         loEx.ThrowExceptionIfErrors();
+    }
+
+    [HttpPost]
+    public GLM00500AccountBudgetExcelDTO GLM00500DownloadTemplateFile()
+    {
+        var loEx = new R_Exception();
+        var loRtn = new GLM00500AccountBudgetExcelDTO();
+
+        try
+        {
+            Assembly loAsm = Assembly.Load("BIMASAKTI_GL_API");
+            var lcResourceFile = "BIMASAKTI_GL_API.Template.GL_ACCOUNT_BUDGET_UPLOAD.xlsx";
+
+            using (Stream resFilestream = loAsm.GetManifestResourceStream(lcResourceFile))
+            {
+                var ms = new MemoryStream();
+                resFilestream.CopyTo(ms);
+                var bytes = ms.ToArray();
+
+                loRtn.FileBytes = bytes;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return loRtn;
     }
 }

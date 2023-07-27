@@ -7,6 +7,8 @@ namespace GLM00500Common
     {
         GLM00500ListDTO<GLM00500BudgetDTGridDTO> GLM00500GetBudgetDTList();
         GLM00500ListDTO<GLM00500FunctionDTO> GLM00500GetRoundingMethodList();
+        GLM00500ListDTO<GLM00500BudgetWeightingDTO> GLM00500GetBudgetWeightingList();
         GLM00500PeriodCount GLM00500GetPeriodCount();
+        GLM00500GSMCompanyDTO GLM00500GetGSMCompany();
     }
 }

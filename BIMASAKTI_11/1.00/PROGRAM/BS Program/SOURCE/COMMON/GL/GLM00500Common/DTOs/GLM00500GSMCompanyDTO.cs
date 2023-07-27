@@ -1,6 +1,8 @@
+using R_APICommonDTO;
+
 namespace GLM00500Common.DTOs
 {
-    public class GLM00500GSMCompanyDTO
+    public class GLM00500GSMCompanyDTO : R_APIResultBaseDTO
     {
         public string CCOGS_METHOD { get; set; }
         public bool LENABLE_CENTER_IS { get; set; }

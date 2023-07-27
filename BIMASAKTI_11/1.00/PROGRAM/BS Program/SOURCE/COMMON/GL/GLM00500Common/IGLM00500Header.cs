@@ -10,5 +10,6 @@ namespace GLM00500Common
         GLM00500GLSystemParamDTO GLM00500GetSystemParams();
         GLM00500ListDTO<GLM00500FunctionDTO> GLM00500GetCurrencyTypeList();
         void GLM00500FinalizeBudget();
+        GLM00500AccountBudgetExcelDTO GLM00500DownloadTemplateFile();
     }
 }

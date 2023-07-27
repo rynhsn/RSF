@@ -1,0 +1,229 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "GLM00500Services/1.0.0": {
+        "dependencies": {
+          "GLM00500Back": "1.0.0",
+          "GLM00500Common": "1.0.0",
+          "R_APIBackEnd": "1.0.0.0",
+          "R_APICommon": "1.0.0.0",
+          "R_CommonFrontBackAPI": "1.0.0.0"
+        },
+        "runtime": {
+          "GLM00500Services.dll": {}
+        }
+      },
+      "GLM00500Back/1.0.0": {
+        "dependencies": {
+          "GLM00500Common": "1.0.0",
+          "RSP_GL_DELETE_BUDGETResources": "1.0.0",
+          "RSP_GL_DELETE_BUDGET_DTResources": "1.0.0",
+          "RSP_GL_FINALIZE_BUDGETResources": "1.0.0",
+          "RSP_GL_PROCESS_BUDGET_UPLOADResources": "1.0.0",
+          "RSP_GL_SAVE_BUDGET_DTResources": "1.0.0",
+          "RSP_GL_SAVE_BUDGET_HDResources": "1.0.0",
+          "RSP_GL_SAVE_BUDGET_UPLOADResources": "1.0.0"
+        },
+        "runtime": {
+          "GLM00500Back.dll": {}
+        }
+      },
+      "GLM00500Common/1.0.0": {
+        "runtime": {
+          "GLM00500Common.dll": {}
+        }
+      },
+      "RSP_GL_DELETE_BUDGETResources/1.0.0": {
+        "runtime": {
+          "RSP_GL_DELETE_BUDGETResources.dll": {}
+        }
+      },
+      "RSP_GL_DELETE_BUDGET_DTResources/1.0.0": {
+        "runtime": {
+          "RSP_GL_DELETE_BUDGET_DTResources.dll": {}
+        }
+      },
+      "RSP_GL_FINALIZE_BUDGETResources/1.0.0": {
+        "runtime": {
+          "RSP_GL_FINALIZE_BUDGETResources.dll": {}
+        }
+      },
+      "RSP_GL_PROCESS_BUDGET_UPLOADResources/1.0.0": {
+        "runtime": {
+          "RSP_GL_PROCESS_BUDGET_UPLOADResources.dll": {}
+        }
+      },
+      "RSP_GL_SAVE_BUDGET_DTResources/1.0.0": {
+        "runtime": {
+          "RSP_GL_SAVE_BUDGET_DTResources.dll": {}
+        }
+      },
+      "RSP_GL_SAVE_BUDGET_HDResources/1.0.0": {
+        "runtime": {
+          "RSP_GL_SAVE_BUDGET_HDResources.dll": {}
+        }
+      },
+      "RSP_GL_SAVE_BUDGET_UPLOADResources/1.0.0": {
+        "runtime": {
+          "RSP_GL_SAVE_BUDGET_UPLOADResources.dll": {}
+        }
+      },
+      "R_APIBackEnd/1.0.0.0": {
+        "runtime": {
+          "R_APIBackEnd.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "resources": {
+          "id/R_APIBackEnd.resources.dll": {
+            "locale": "id"
+          },
+          "ja/R_APIBackEnd.resources.dll": {
+            "locale": "ja"
+          }
+        }
+      },
+      "R_APICommon/1.0.0.0": {
+        "runtime": {
+          "R_APICommon.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_CommonFrontBackAPI/1.0.0.0": {
+        "runtime": {
+          "R_CommonFrontBackAPI.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_APICommonDTO/1.0.0.0": {
+        "runtime": {
+          "R_APICommonDTO.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_ContextBackEnd/1.0.0.0": {
+        "runtime": {
+          "R_ContextBackEnd.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_Security/1.0.0.0": {
+        "runtime": {
+          "R_Security.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_ContextEnumAndInterface/1.0.0.0": {
+        "runtime": {
+          "R_ContextEnumAndInterface.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "GLM00500Services/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GLM00500Back/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GLM00500Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_GL_DELETE_BUDGETResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_GL_DELETE_BUDGET_DTResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_GL_FINALIZE_BUDGETResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_GL_PROCESS_BUDGET_UPLOADResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_GL_SAVE_BUDGET_DTResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_GL_SAVE_BUDGET_HDResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_GL_SAVE_BUDGET_UPLOADResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_APIBackEnd/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_APICommon/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_CommonFrontBackAPI/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_APICommonDTO/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ContextBackEnd/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_Security/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ContextEnumAndInterface/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

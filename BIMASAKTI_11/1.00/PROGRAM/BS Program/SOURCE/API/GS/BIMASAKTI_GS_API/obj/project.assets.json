@@ -2914,15 +2914,17 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Lookup_GSBACK": "1.0.0",
-          "Lookup_GSCOMMON": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
+          "Lookup_GSCOMMON": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Lookup_GSSERVICES.dll": {}
         },
         "runtime": {
           "bin/placeholder/Lookup_GSSERVICES.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "RSP_GS_MAINTAIN_SALES_TAXResources/1.0.0": {
         "type": "project",

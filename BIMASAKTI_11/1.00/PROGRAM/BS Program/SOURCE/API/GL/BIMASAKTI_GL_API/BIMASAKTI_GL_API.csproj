@@ -4,7 +4,19 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>BIMASAKTI_GL_API</RootNamespace>
+    <AssemblyName>BIMASAKTI_GL_API</AssemblyName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Template\GL_ACCOUNT_BUDGET_UPLOAD.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Template\GL_ACCOUNT_BUDGET_UPLOAD.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.0" />

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using GLM00500Common;
 using GLM00500Common.DTOs;
@@ -15,14 +16,19 @@ public class GLM00500DetailViewModel : R_ViewModel<GLM00500BudgetDTDTO>
     private GLM00500DetailModel _model = new();
     public ObservableCollection<GLM00500BudgetDTGridDTO> BudgetDTList = new();
     public ObservableCollection<GLM00500FunctionDTO> RoundingMethodList = new();
+    public ObservableCollection<GLM00500BudgetWeightingDTO> BudgetWeightingList = new();
 
-    //header
     public GLM00500BudgetHDDTO BudgetHDEntity = new();
-    public GLM00500BudgetDTDTO BudgetDTEntity = new();
+    public GLM00500BudgetDTDTO BudgetDTEntity = new()
+    {
+        CINPUT_METHOD = "MN", 
+        CDIST_METHOD = "EV", 
+        CROUNDING_METHOD = "00"
+    };
     public GLM00500PeriodCount PeriodCount = new();
+    public GLM00500GSMCompanyDTO Company = new();
     
     public string SelectedAccountType { get; set; } = "N";
-    public string SelectedInputMethod { get; set; } = "MN";
 
     public List<KeyValuePair<string, string>> CGLACCOUNT_TYPE { get; } = new()
     {
@@ -48,6 +54,9 @@ public class GLM00500DetailViewModel : R_ViewModel<GLM00500BudgetDTDTO>
     {
         BudgetHDEntity = R_FrontUtility.ConvertObjectToObject<GLM00500BudgetHDDTO>(poEntity);
         await GetRoundingMethodList();
+        await GetBudgetWeightingList();
+        await GetPeriodCount();
+        await GetCompany();
     }
 
     //get rounding method list
@@ -58,7 +67,26 @@ public class GLM00500DetailViewModel : R_ViewModel<GLM00500BudgetDTDTO>
         try
         {
             var loResult = await _model.GLM00500GetRoundingMethodListModel();
-            RoundingMethodList = new ObservableCollection<GLM00500FunctionDTO>(loResult.Data);
+            // RoundingMethodList = new ObservableCollection<GLM00500FunctionDTO>(loResult.Data);
+            //order by ccode
+            RoundingMethodList = new ObservableCollection<GLM00500FunctionDTO>(loResult.Data.OrderBy(x => x.CCODE));
+        }
+        catch (R_Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
+    }
+    
+    public async Task GetBudgetWeightingList()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loResult = await _model.GLM00500GetBudgetWeightingListModel();
+            BudgetWeightingList = new ObservableCollection<GLM00500BudgetWeightingDTO>(loResult.Data);
         }
         catch (R_Exception ex)
         {
@@ -147,6 +175,23 @@ public class GLM00500DetailViewModel : R_ViewModel<GLM00500BudgetDTDTO>
         try
         {
             PeriodCount = await _model.GLM00500GetPeriodCountModel();
+        }
+        catch (R_Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
+    }
+    
+    //get company
+    public async Task GetCompany()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            Company = await _model.GLM00500GetGSMCompanyModel();
         }
         catch (R_Exception ex)
         {

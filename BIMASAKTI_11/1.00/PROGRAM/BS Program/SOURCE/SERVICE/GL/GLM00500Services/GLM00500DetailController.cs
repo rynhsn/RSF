@@ -50,6 +50,7 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
 
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
+            poParameter.Entity.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
 
             loRtn.data = loCls.R_Save(poParameter.Entity, poParameter.CRUDMode);
         }
@@ -130,6 +131,29 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
         loEx.ThrowExceptionIfErrors();
         return loReturn;
     }
+    
+    [HttpPost]
+    public GLM00500ListDTO<GLM00500BudgetWeightingDTO> GLM00500GetBudgetWeightingList()
+    {
+        var loEx = new R_Exception();
+        var loCls = new GLM00500DetailCls();
+        var loDbParams = new GLM00500ParameterDb();
+        var loReturn = new GLM00500ListDTO<GLM00500BudgetWeightingDTO>();
+        
+        try
+        {
+            loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbParams.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
+            loReturn.Data = loCls.GLM00500GetBudgetWeightingListDb(loDbParams);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
+        return loReturn;
+    }
 
     [HttpPost]
     public GLM00500PeriodCount GLM00500GetPeriodCount()
@@ -144,6 +168,29 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbParams.CYEAR = R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CYEAR);
             var lnResult = loCls.GLM00500GetPeriodCountDb(loDbParams);
+            loReturn = lnResult;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
+        return loReturn;
+    }
+
+    [HttpPost]
+    public GLM00500GSMCompanyDTO GLM00500GetGSMCompany()
+    {
+        var loEx = new R_Exception();
+        var loCls = new GLM00500DetailCls();
+        var loDbParams = new GLM00500ParameterDb();
+        var loReturn = new GLM00500GSMCompanyDTO();
+        
+        try
+        {
+            loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            var lnResult = loCls.GLM00500GetGSMCompanyDb(loDbParams);
             loReturn = lnResult;
         }
         catch (Exception ex)

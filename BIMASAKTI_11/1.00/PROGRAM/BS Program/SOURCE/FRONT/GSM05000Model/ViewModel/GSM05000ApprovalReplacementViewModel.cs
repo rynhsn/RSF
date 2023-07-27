@@ -17,7 +17,7 @@ public class GSM05000ApprovalReplacementViewModel : R_ViewModel<GSM05000Approval
     public GSM05000ApprovalReplacementDTO ReplacementEntity = new();
     // public string TransactionCode = "";
     // public string DeptCode = "";
-    // public string SelectedUserId = "";
+    public string SelectedUserId = "";
     
     public async Task GetReplacementList(string pcTransCode, string pcDeptCode, string? pcSelectedUserId)
     {
@@ -70,6 +70,9 @@ public class GSM05000ApprovalReplacementViewModel : R_ViewModel<GSM05000Approval
         try
         {
             ReplacementEntity = await _Model.R_ServiceSaveAsync(poNewEntity, peCrudMode);
+            
+            ReplacementEntity.DVALID_TO = DateTime.ParseExact(ReplacementEntity.CVALID_TO, "yyyyMMdd", CultureInfo.InvariantCulture);
+            ReplacementEntity.DVALID_FROM = DateTime.ParseExact(ReplacementEntity.CVALID_FROM, "yyyyMMdd", CultureInfo.InvariantCulture);
         }
         catch (Exception ex)
         {
