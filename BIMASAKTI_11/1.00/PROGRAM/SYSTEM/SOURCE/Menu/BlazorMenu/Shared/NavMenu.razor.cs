@@ -8,15 +8,25 @@ namespace BlazorMenu.Shared
 {
     public partial class NavMenu
     {
+        private bool IconMenuActive { get; set; } = false;
+
         private bool collapseNavMenu = true;
         private bool expandedSubMenu = false;
         private bool expandedSubNav = false;
 
         private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
+        [Parameter] public EventCallback<bool> ShowIconMenu { get; set; }
+
         private void ToggleNavMenu()
         {
             collapseNavMenu = !collapseNavMenu;
+        }
+
+        private async Task ToggleIconMenu()
+        {
+            IconMenuActive = !IconMenuActive;
+            await ShowIconMenu.InvokeAsync(IconMenuActive);
         }
 
         [Inject] public R_IMenuService _menuService { get; set; }
@@ -49,6 +59,8 @@ namespace BlazorMenu.Shared
         public List<MenuListDTO> _menuGroupList { get; set; }
         public void GetClicked(MenuListDTO poMenu)
         {
+            expandedSubMenu = false;
+
             _clickedMenu = poMenu.CMENU_ID;
             if (_prevClickedMenu != _clickedMenu)
             {
@@ -66,7 +78,7 @@ namespace BlazorMenu.Shared
         public List<MenuListDTO> _menuProgramList { get; set; }
         public void GetClickedGroup(MenuListDTO poMenu)
         {
-            _clickedGroup = poMenu.CSUB_MENU_ID;
+            _clickedGroup = poMenu.CMENU_ID + poMenu.CSUB_MENU_ID;
 
             if (_prevClickedGroup != _clickedGroup)
             {

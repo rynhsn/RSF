@@ -1,11 +1,7 @@
 ﻿using BlazorClientHelper;
-using Blazored.LocalStorage;
-using BlazorMenu.Constants.Storage;
 using BlazorMenu.Services;
-using BlazorMenu.Shared.Tabs;
 using BlazorMenuCommon.DTOs;
 using BlazorMenuModel;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using R_AuthenticationEnumAndInterface;
 using R_BlazorFrontEnd.Exceptions;
@@ -18,26 +14,20 @@ namespace BlazorMenu.Authentication
     public class BlazorMenuAuthenticationStateProvider : AuthenticationStateProvider
     {
         private readonly R_ITokenRepository _tokenRepository;
-        private readonly ISyncLocalStorageService _localStorageService;
+        private readonly LocalStorageService _localStorageService;
         private readonly R_IMenuService _menuService;
-        private readonly NavigationManager _navigationManager;
-        private readonly MenuTabSetTool _menuTabSetTool;
         private readonly IClientHelper _clientHelper;
 
         public BlazorMenuAuthenticationStateProvider(
             R_ITokenRepository tokenRepository,
-            ISyncLocalStorageService localStorageService,
+            LocalStorageService localStorageService,
             IClientHelper clientHelper,
-            R_IMenuService menuService,
-            NavigationManager navigationManager,
-            MenuTabSetTool menuTabSetTool)
+            R_IMenuService menuService)
         {
             _tokenRepository = tokenRepository;
             _localStorageService = localStorageService;
             _clientHelper = clientHelper;
             _menuService = menuService;
-            _navigationManager = navigationManager;
-            _menuTabSetTool = menuTabSetTool;
         }
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
@@ -47,6 +37,9 @@ namespace BlazorMenu.Authentication
 
             try
             {
+                if (_tokenRepository.R_IsTokenExpired())
+                    return loState;
+
                 var lcSavedToken = _tokenRepository.R_GetToken();
 
                 if (string.IsNullOrWhiteSpace(lcSavedToken))
@@ -57,7 +50,7 @@ namespace BlazorMenu.Authentication
                 _clientHelper.Set_CompanyId(loUserClaim.Where(x => x.Type == "COMPANY_ID").FirstOrDefault().Value);
                 _clientHelper.Set_UserId(loUserClaim.Where(x => x.Type == "USER_ID").FirstOrDefault().Value);
 
-                var lcCultureId = _localStorageService.GetItemAsString(StorageConstants.Culture);
+                var lcCultureId = _localStorageService.GetCulture();
                 if (!string.IsNullOrWhiteSpace(lcCultureId))
                 {
                     var leLoginCulture = R_Culture.R_GetCultureEnum(lcCultureId);
@@ -65,23 +58,23 @@ namespace BlazorMenu.Authentication
                     _clientHelper.Set_CultureUI(leLoginCulture);
                 }
                 else
-                {
                     _clientHelper.Set_CultureUI(eCulture.English);
-                }
 
-                //if (!_navigationManager.Uri.Equals(_navigationManager.BaseUri, StringComparison.InvariantCultureIgnoreCase))
-                //{
-                //    _navigationManager.NavigateTo(_navigationManager.BaseUri);
-                //}
+                var loStorageCultureInfo = _localStorageService.GetCultureInfo();
 
-                if (_menuService.MenuAccess == null)
-                    await _menuService.SetMenuAccessAsync();
+                var loCultureInfoBuilder = new CultureInfoBuilder();
+                loCultureInfoBuilder.WithNumberFormatInfo(loStorageCultureInfo["CNUMBER_FORMAT"], Convert.ToInt32(loStorageCultureInfo["IDECIMAL_PLACES"]))
+                                    .WithDatePattern(loStorageCultureInfo["CDATE_LONG_FORMAT"], loStorageCultureInfo["CDATE_SHORT_FORMAT"])
+                                    .WithTimePattern(loStorageCultureInfo["CTIME_LONG_FORMAT"], loStorageCultureInfo["CTIME_SHORT_FORMAT"]);
+
+                var loCultureInfo = loCultureInfoBuilder.BuildCultureInfo();
+                _clientHelper.Set_Culture(loCultureInfo.NumberFormat, loCultureInfo.DateTimeFormat);
 
                 loState = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(loUserClaim, "jwt")));
             }
             catch (Exception)
             {
-                await UserLockingFlushAsync();
+                await _localStorageService.ClearLocalStorageAsync();
                 return loState;
             }
 
@@ -120,26 +113,30 @@ namespace BlazorMenu.Authentication
 
         private async Task UserLockingFlushAsync()
         {
-            var lcSavedToken = _tokenRepository.R_GetToken();
-            var loUserClaim = GetClaimsFromToken(lcSavedToken);
+            var loEx = new R_Exception();
 
-            var loParam = new LoginDTO
+            try
             {
-                CCOMPANY_ID = loUserClaim.Where(x => x.Type == "COMPANY_ID").FirstOrDefault().Value,
-                CUSER_ID = loUserClaim.Where(x => x.Type == "USER_ID").FirstOrDefault().Value
-            };
+                var lcSavedToken = _tokenRepository.R_GetToken();
+                var loUserClaim = GetClaimsFromToken(lcSavedToken);
 
-            R_LoginViewModel _loginViewModel = new R_LoginViewModel();
-            await _loginViewModel.UserLockingFlushAsync(loParam);
+                var loParam = new LoginDTO
+                {
+                    CCOMPANY_ID = loUserClaim.Where(x => x.Type == "COMPANY_ID").FirstOrDefault().Value,
+                    CUSER_ID = loUserClaim.Where(x => x.Type == "USER_ID").FirstOrDefault().Value
+                };
 
-            ClearLocalStorage();
-        }
+                R_LoginViewModel _loginViewModel = new R_LoginViewModel();
+                await _loginViewModel.UserLockingFlushAsync(loParam);
 
-        private void ClearLocalStorage()
-        {
-            _localStorageService.RemoveItem(StorageConstants.AuthToken);
-            _localStorageService.RemoveItem(StorageConstants.Culture);
-            _localStorageService.RemoveItem(StorageConstants.TokenId);
+                await _localStorageService.ClearLocalStorageAsync();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
         }
 
         private IEnumerable<Claim> GetClaimsFromToken(string pcToken)

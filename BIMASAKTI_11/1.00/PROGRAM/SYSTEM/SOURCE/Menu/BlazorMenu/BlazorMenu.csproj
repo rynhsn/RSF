@@ -13,10 +13,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.14" />
 	<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.14" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+	<PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.23.1" />
-    <PackageReference Include="Telerik.UI.for.Blazor" Version="3.7.0" />
+    <PackageReference Include="Telerik.UI.for.Blazor" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -80,14 +80,14 @@
     <Reference Include="R_SecurityPolicyFront">
       <HintPath>..\..\LIBRARY\Menu\R_SecurityPolicyFront.dll</HintPath>
     </Reference>
+	<Reference Include="R_BlazorFrontEnd.FileConverter">
+		<HintPath>..\..\LIBRARY\Front\R_BlazorFrontEnd.FileConverter.dll</HintPath>
+	</Reference>
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLM00500Front\GLM00500Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM02000Front\GSM02000Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM05000Front\GSM05000Front.csproj" />
   </ItemGroup>
-
-    <!--<ItemGroup>
-	    <BlazorWebAssemblyLazyLoad Include="SAB00700Front.dll" />
-    </ItemGroup>-->
 </Project>
