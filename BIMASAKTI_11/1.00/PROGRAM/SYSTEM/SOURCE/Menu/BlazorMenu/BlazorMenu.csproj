@@ -77,11 +77,11 @@
     <Reference Include="R_SecurityPolicyCommon">
       <HintPath>..\..\LIBRARY\Menu\R_SecurityPolicyCommon.dll</HintPath>
     </Reference>
-    <Reference Include="R_SecurityPolicyFront">
-      <HintPath>..\..\LIBRARY\Menu\R_SecurityPolicyFront.dll</HintPath>
-    </Reference>
 	<Reference Include="R_BlazorFrontEnd.FileConverter">
 		<HintPath>..\..\LIBRARY\Front\R_BlazorFrontEnd.FileConverter.dll</HintPath>
+	</Reference>
+	<Reference Include="R_SecurityPolicyModel">
+	  <HintPath>..\..\LIBRARY\Menu\R_SecurityPolicyModel.dll</HintPath>
 	</Reference>
   </ItemGroup>
 

@@ -1,6 +1,6 @@
 ﻿using BlazorClientHelper;
 using BlazorMenu.Services;
-using BlazorMenuCommon.DTOs;
+using BlazorMenuCommon.Requests;
 using BlazorMenuModel;
 using Microsoft.AspNetCore.Components.Authorization;
 using R_AuthenticationEnumAndInterface;
@@ -14,13 +14,13 @@ namespace BlazorMenu.Authentication
     public class BlazorMenuAuthenticationStateProvider : AuthenticationStateProvider
     {
         private readonly R_ITokenRepository _tokenRepository;
-        private readonly LocalStorageService _localStorageService;
+        private readonly BlazorMenuLocalStorageService _localStorageService;
         private readonly R_IMenuService _menuService;
         private readonly IClientHelper _clientHelper;
 
         public BlazorMenuAuthenticationStateProvider(
             R_ITokenRepository tokenRepository,
-            LocalStorageService localStorageService,
+            BlazorMenuLocalStorageService localStorageService,
             IClientHelper clientHelper,
             R_IMenuService menuService)
         {
@@ -37,13 +37,16 @@ namespace BlazorMenu.Authentication
 
             try
             {
-                if (_tokenRepository.R_IsTokenExpired())
-                    return loState;
-
                 var lcSavedToken = _tokenRepository.R_GetToken();
 
                 if (string.IsNullOrWhiteSpace(lcSavedToken))
                     return loState;
+
+                if (_tokenRepository.R_IsTokenExpired())
+                {
+                    //await _localStorageService.ClearLocalStorageAsync();
+                    //return loState;
+                }
 
                 var loUserClaim = GetClaimsFromToken(lcSavedToken);
 
@@ -120,7 +123,7 @@ namespace BlazorMenu.Authentication
                 var lcSavedToken = _tokenRepository.R_GetToken();
                 var loUserClaim = GetClaimsFromToken(lcSavedToken);
 
-                var loParam = new LoginDTO
+                var loParam = new UserLockingFlushRequest
                 {
                     CCOMPANY_ID = loUserClaim.Where(x => x.Type == "COMPANY_ID").FirstOrDefault().Value,
                     CUSER_ID = loUserClaim.Where(x => x.Type == "USER_ID").FirstOrDefault().Value

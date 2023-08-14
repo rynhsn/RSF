@@ -1,14 +1,47 @@
 ﻿@inherits ComponentBase
+@implements R_IMenuTabSet
 
 @if (Tabs.Count == 0)
 {
-    @*<div>Home</div>*@
+    <style>
+        .card {
+            box-shadow:none;
+            background:transparent;
+        }
+    </style>
+    <div class="d-flex align-items-center justify-content-between mt-3 mx-5">
+        <div class="ms-3">
+            <h1 class="fw-bold lh-base">We Provide Better Solution<br />For Your Business</h1>
+            <p>We are team of talented programmer to make an easy way to manage your business</p>
+        </div>
+        <div class="me-5">
+            <img src="assets/img/bg-home.png" width="400px" />
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <img src="assets/img/box.png" width="50px">
+            <h3 class="mt-3">Simple Application</h3>
+            <p>Our application takes less time<br />than making cup of coffee.</p>
+        </div>
+        <div class="col">
+            <img src="assets/img/program.png" width="50px">
+            <h3 class="mt-3">Program For Everyone</h3>
+            <p>We offer financing for nearly all<br />credit ranges and price points.</p>
+        </div>
+        <div class="col">
+            <img src="assets/img/bag.png" width="50px">
+            <h3 class="mt-3">Flexible Payment</h3>
+            <p>Payment schedules that are build<br />to fit your needs</p>
+        </div>
+    </div>
 }
 else
 {
-    <div class="card-body overflow-hidden" style="padding: 5px;">
+<CascadingValue Value="this" Name="MenuTabSet">
+    <div class="card-body overflow-hidden p-1">
         <TelerikTabStrip ActiveTabIndex="@ActiveTabIndex"
-                         ActiveTabIndexChanged="@OnActiveTabIndexChanged" 
+                         ActiveTabIndexChanged="@OnActiveTabIndexChanged"
                          PersistTabContent>
             @foreach (var loTab in Tabs)
             {
@@ -16,15 +49,15 @@ else
                              Disabled="@loTab.Disabled"
                              Visible="@loTab.Visible"
                              Id="@loTab.Id.ToString()"
-                            @key="@loTab.Id">
+                             @key="@loTab.Id">
                     <HeaderTemplate>
-                        <strong>@loTab.Title</strong>
-                        <i class="oi oi-x" @onclick="@(() => OnTabClose(loTab))"></i>
+                        <a>@loTab.Title</a>
+                        <span class="ms-2 close" @onclick="@(() => OnTabClose(loTab))"><span class="tab btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></span></span>
                     </HeaderTemplate>
                     <Content>
                         @if (loTab.Body != null)
                         {
-                            <CascadingValue Value="@loTab" Name="currentTabMenu" TValue="MenuTab">
+                            <CascadingValue Value="@loTab" Name="currentTabMenu">
                                 <MainBody>
                                     @loTab.Body
                                 </MainBody>
@@ -35,6 +68,7 @@ else
             }
         </TelerikTabStrip>
     </div>
+</CascadingValue>
 }
 
 <style>
@@ -79,9 +113,16 @@ else
         return Task.CompletedTask;
     }
 
-    private Task OnTabClose(MenuTab poTab)
+    private async Task OnTabClose(MenuTab poTab)
     {
         var liTabIndex = Tabs.IndexOf(poTab);
+        if (poTab.OnCloseMenuTab is not null)
+        {
+            var llPageClose = await poTab.OnCloseMenuTab.Invoke();
+            if (!llPageClose)
+                return;
+        }
+
         Tabs.Remove(poTab);
 
         if (poTab.IsActive)
@@ -93,12 +134,10 @@ else
                 activeTab = Tabs[0];
 
             if (activeTab != null)
-                ActivateTab(activeTab);
+                await ActivateTab(activeTab);
             else
                 NavigationManager.NavigateTo("/");
         }
-
-        return Task.CompletedTask;
     }
 
     private Task ActivateTab(MenuTab poTab)
@@ -126,5 +165,11 @@ else
         }
 
         return Task.CompletedTask;
+    }
+
+    public async Task CloseTabFromProgram(R_IMenuTab poTab)
+    {
+        var loTab = (MenuTab)poTab;
+        await OnTabClose(loTab);
     }
 }

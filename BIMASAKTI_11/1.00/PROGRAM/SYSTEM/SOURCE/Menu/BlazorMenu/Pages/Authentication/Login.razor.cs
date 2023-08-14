@@ -7,11 +7,12 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using R_AuthenticationEnumAndInterface;
 using R_BlazorFrontEnd.Controls.MessageBox;
+using R_BlazorFrontEnd.Controls.Notification;
 using R_BlazorFrontEnd.Exceptions;
 using R_CommonFrontBackAPI;
 using R_CrossPlatformSecurity;
-using R_SecurityPolicyCommon;
-using R_SecurityPolicyFront;
+using R_SecurityPolicyCommon.Requests;
+using R_SecurityPolicyModel;
 
 namespace BlazorMenu.Pages.Authentication
 {
@@ -20,15 +21,16 @@ namespace BlazorMenu.Pages.Authentication
         [Inject] private AuthenticationStateProvider _stateProvider { get; set; }
         [Inject] private R_ITokenRepository _tokenRepository { get; set; }
         //[Inject] private ILocalStorageService _localStorageService { get; set; }
-        [Inject] private LocalStorageService _localStorageService { get; set; }
+        [Inject] private BlazorMenuLocalStorageService _localStorageService { get; set; }
         //[Inject] private R_IMenuService _menuService { get; set; }
         [Inject] private IClientHelper _clientHelper { get; set; }
         [Inject] public R_MessageBoxService R_MessageBox { get; set; }
         [Inject] private R_ISymmetricJSProvider _encryptProvider { get; set; }
         [Inject] private MenuTabSetTool MenuTabSetTool { get; set; }
+        [Inject] private R_NotificationService _notificationService { get; set; }
 
         private LoginModel _loginModel = new LoginModel();
-        private R_SecurityPolicyClient loClientWrapper = new R_SecurityPolicyClient();
+        private R_SecurityModel loClientWrapper = new R_SecurityModel();
 
         protected override async Task OnParametersSetAsync()
         {
@@ -72,7 +74,7 @@ namespace BlazorMenu.Pages.Authentication
 
                 var loPolicyLogin = await loClientWrapper.R_SecurityPolicyLogonAsync
                     (
-                        new R_SecurityPolicyDTO
+                        new R_SecurityPolicyLogonRequest
                         {
                             CCOMPANY_ID = _loginModel.CompanyId,
                             CUSER_ID = _loginModel.UserId.ToLower(),
@@ -82,17 +84,14 @@ namespace BlazorMenu.Pages.Authentication
 
                 if (loPolicyLogin.Data != null)
                 {
-                    _tokenRepository.R_SetToken(loPolicyLogin.Data.CTOKEN);
-
-                    //await _localStorageService.SetItemAsStringAsync(StorageConstants.TokenId, loPolicyLogin.Data.CTOKEN_ID);
-
                     R_LoginViewModel _loginViewModel = new R_LoginViewModel();
                     var loLogin = await _loginViewModel.LoginAsync(_loginModel);
 
+                    _tokenRepository.R_SetToken(loPolicyLogin.Data.CTOKEN);
+                    _tokenRepository.R_SetRefreshToken(loPolicyLogin.Data.CREFRESH_TOKEN);
+
                     _clientHelper.Set_UserId(loLogin.CUSER_ID);
                     _clientHelper.Set_UserName(loLogin.CUSER_NAME);
-
-                    //await _menuService.SetMenuAccessAsync();
 
                     if (!string.IsNullOrWhiteSpace(loLogin.CCULTURE_ID))
                     {
@@ -148,7 +147,8 @@ namespace BlazorMenu.Pages.Authentication
 
             if (loEx.HasError)
             {
-                await R_MessageBox.Show("Error", loEx.ErrorList[0].ErrDescp, R_eMessageBoxButtonType.OK);
+                _notificationService.Error(loEx.ErrorList[0].ErrDescp);
+
                 _tokenRepository.R_SetToken("");
             }
         }
