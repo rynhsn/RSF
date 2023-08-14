@@ -201,4 +201,75 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
         loEx.ThrowExceptionIfErrors();
         return loReturn;
     }
+
+    [HttpPost]
+    public GLM00500BudgetCalculateDTO GLM00500BudgetCalculate()
+    {
+        var loEx = new R_Exception();
+        
+        var loCls = new GLM00500DetailCls();
+        var loDbParams = new GLM00500ParameterDb();
+        var loReturn = new GLM00500BudgetCalculateDTO();
+        
+        try
+        {
+            loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbParams.NPERIOD_COUNT = R_Utility.R_GetStreamingContext<int>(GLM00500ContextContant.NPERIOD_COUNT);
+            loDbParams.CCURRENCY_TYPE = R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CCURRENCY_TYPE);
+            loDbParams.NBUDGET = R_Utility.R_GetStreamingContext<decimal>(GLM00500ContextContant.NBUDGET);
+            loDbParams.CROUNDING_METHOD = R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CROUNDING_METHOD);
+            loDbParams.CDIST_METHOD = R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CDIST_METHOD);
+            loDbParams.CBW_CODE = R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CBW_CODE);
+            
+            loDbParams.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
+            loReturn = loCls.GLM00500BudgetCalculateDb(loDbParams);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
+        return loReturn;
+    }
+
+    [HttpPost]
+    public void GLM00500GenerateBudget(GLM00500GenerateAccountBudgetDTO poGenerateAccountBudgetDTO)
+    {
+        var loEx = new R_Exception();
+        
+        var loCls = new GLM00500DetailCls();
+        var loDbParams = new GLM00500ParameterGenerateDb();
+        
+        try
+        {
+            loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbParams.CUSER_ID = R_BackGlobalVar.USER_ID;
+            loDbParams.CBUDGET_NO = poGenerateAccountBudgetDTO.CBUDGET_NO;
+            loDbParams.CBUDGET_ID = poGenerateAccountBudgetDTO.CBUDGET_ID;
+            loDbParams.CCURRENCY_TYPE = poGenerateAccountBudgetDTO.CCURRENCY_TYPE;
+            loDbParams.CGLACCOUNT_TYPE = poGenerateAccountBudgetDTO.CGLACCOUNT_TYPE;
+            loDbParams.CFROM_GLACCOUNT_NO = poGenerateAccountBudgetDTO.CFROM_GLACCOUNT_NO;
+            loDbParams.CTO_GLACCOUNT_NO = poGenerateAccountBudgetDTO.CTO_GLACCOUNT_NO;
+            loDbParams.CFROM_CENTER_CODE = poGenerateAccountBudgetDTO.CFROM_CENTER_CODE;
+            loDbParams.CTO_CENTER_CODE = poGenerateAccountBudgetDTO.CTO_CENTER_CODE;
+            loDbParams.CBASED_ON = poGenerateAccountBudgetDTO.CBASED_ON;
+            loDbParams.CYEAR = poGenerateAccountBudgetDTO.CYEAR;
+            loDbParams.CSOURCE_BUDGET_NO = poGenerateAccountBudgetDTO.CSOURCE_BUDGET_NO;
+            loDbParams.CFROM_PERIOD_NO = poGenerateAccountBudgetDTO.CFROM_PERIOD_NO;
+            loDbParams.CTO_PERIOD_NO = poGenerateAccountBudgetDTO.CTO_PERIOD_NO;
+            loDbParams.CBY = poGenerateAccountBudgetDTO.CBY;
+            loDbParams.NBY_PCT = poGenerateAccountBudgetDTO.NBY_PCT;
+            loDbParams.NBY_AMOUNT = poGenerateAccountBudgetDTO.NBY_AMOUNT;
+            loDbParams.CUPDATE_METHOD = poGenerateAccountBudgetDTO.CUPDATE_METHOD;
+            
+            loCls.GLM00500GenerateBudget(loDbParams);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
+    }
 }

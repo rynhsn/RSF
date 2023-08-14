@@ -13,12 +13,14 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
     private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrlGL";
     private const string DEFAULT_SERVICEPOINT_NAME = "api/GLM00500Detail";
     private const string DEFAULT_MODULE = "gl";
+
     public GLM00500DetailModel(
-        string pcHttpClientName = DEFAULT_HTTP_NAME, 
-        string pcRequestServiceEndPoint = DEFAULT_SERVICEPOINT_NAME, 
-        string pcModuleName = DEFAULT_HTTP_NAME, 
-        bool plSendWithContext = true, 
-        bool plSendWithToken = true) : base(pcHttpClientName, pcRequestServiceEndPoint, pcModuleName, plSendWithContext, plSendWithToken)
+        string pcHttpClientName = DEFAULT_HTTP_NAME,
+        string pcRequestServiceEndPoint = DEFAULT_SERVICEPOINT_NAME,
+        string pcModuleName = DEFAULT_MODULE,
+        bool plSendWithContext = true,
+        bool plSendWithToken = true) : base(pcHttpClientName, pcRequestServiceEndPoint, pcModuleName, plSendWithContext,
+        plSendWithToken)
     {
     }
 
@@ -49,13 +51,23 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         throw new NotImplementedException();
     }
 
+    public GLM00500BudgetCalculateDTO GLM00500BudgetCalculate()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void GLM00500GenerateBudget(GLM00500GenerateAccountBudgetDTO poGenerateAccountBudgetDTO)
+    {
+        throw new NotImplementedException();
+    }
+
     #endregion
-        
+
     public async Task<GLM00500ListDTO<GLM00500BudgetDTGridDTO>> GLM00500GetBudgetDTListModel()
     {
         var loEx = new R_Exception();
         GLM00500ListDTO<GLM00500BudgetDTGridDTO> loResult = null;
-            
+
         try
         {
             R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
@@ -70,16 +82,16 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         {
             loEx.Add(ex);
         }
-            
+
         loEx.ThrowExceptionIfErrors();
         return loResult;
     }
-        
+
     public async Task<GLM00500ListDTO<GLM00500FunctionDTO>> GLM00500GetRoundingMethodListModel()
     {
         var loEx = new R_Exception();
         GLM00500ListDTO<GLM00500FunctionDTO> loResult = null;
-            
+
         try
         {
             R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
@@ -94,16 +106,16 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         {
             loEx.Add(ex);
         }
-            
+
         loEx.ThrowExceptionIfErrors();
         return loResult;
     }
-    
+
     public async Task<GLM00500ListDTO<GLM00500BudgetWeightingDTO>> GLM00500GetBudgetWeightingListModel()
     {
         var loEx = new R_Exception();
         GLM00500ListDTO<GLM00500BudgetWeightingDTO> loResult = null;
-            
+
         try
         {
             R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
@@ -118,7 +130,7 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         {
             loEx.Add(ex);
         }
-            
+
         loEx.ThrowExceptionIfErrors();
         return loResult;
     }
@@ -127,7 +139,7 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
     {
         var loEx = new R_Exception();
         GLM00500PeriodCount loResult = null;
-            
+
         try
         {
             R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
@@ -142,15 +154,16 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         {
             loEx.Add(ex);
         }
-            
+
         loEx.ThrowExceptionIfErrors();
         return loResult;
     }
+
     public async Task<GLM00500GSMCompanyDTO> GLM00500GetGSMCompanyModel()
     {
         var loEx = new R_Exception();
         GLM00500GSMCompanyDTO loResult = null;
-            
+
         try
         {
             R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
@@ -165,8 +178,56 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         {
             loEx.Add(ex);
         }
-            
+
         loEx.ThrowExceptionIfErrors();
         return loResult;
+    }
+
+    public async Task<GLM00500BudgetCalculateDTO> GLM00500BudgetCalculateModel()
+    {
+        var loEx = new R_Exception();
+        GLM00500BudgetCalculateDTO loResult = null;
+
+        try
+        {
+            R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500BudgetCalculateDTO>(
+                _RequestServiceEndPoint,
+                nameof(IGLM00500Detail.GLM00500BudgetCalculate),
+                DEFAULT_MODULE,
+                _SendWithContext,
+                _SendWithToken);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        return loResult;
+    }
+
+    public async Task GLM00500GenerateBudgetModel(GLM00500GenerateAccountBudgetDTO result)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+            await R_HTTPClientWrapper
+                .R_APIRequestObject<GLM00500GenerateAccountBudgetDTO, GLM00500GenerateAccountBudgetDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGLM00500Detail.GLM00500GenerateBudget),
+                    result,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
     }
 }

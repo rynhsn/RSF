@@ -16,12 +16,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\Menu\BlazorClientHelper\BlazorClientHelper.csproj" />
     <ProjectReference Include="..\..\BACK\GFF00900COMMON\GFF00900COMMON.csproj" />
     <ProjectReference Include="..\GFF00900Model\GFF00900Model.csproj" />
   </ItemGroup>
 
 	<ItemGroup>
+		<Reference Include="BlazorClientHelper">
+		  <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
+		</Reference>
 		<Reference Include="R_BlazorFrontEnd">
 			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.dll</HintPath>
 		</Reference>

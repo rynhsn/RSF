@@ -18,9 +18,10 @@ namespace GLM00500Model
         public GLM00500HeaderModel(
             string pcHttpClientName = DEFAULT_HTTP_NAME,
             string pcRequestServiceEndPoint = DEFAULT_SERVICEPOINT_NAME,
+            string pcModuleName = DEFAULT_MODULE,
             bool plSendWithContext = true,
             bool plSendWithToken = true) :
-            base(pcHttpClientName, pcRequestServiceEndPoint, DEFAULT_MODULE, plSendWithContext, plSendWithToken)
+            base(pcHttpClientName, pcRequestServiceEndPoint, pcModuleName, plSendWithContext, plSendWithToken)
         {
         }
 
@@ -204,5 +205,6 @@ namespace GLM00500Model
             
             return loResult;
         }
+
     }
 }

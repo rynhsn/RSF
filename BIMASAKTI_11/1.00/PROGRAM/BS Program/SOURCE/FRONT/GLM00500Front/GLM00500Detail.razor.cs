@@ -28,8 +28,8 @@ public partial class GLM00500Detail
 
     public R_ComboBox<GLM00500BudgetWeightingDTO, string> FieldWeightingCode { get; set; }
 
-    // public R_Button BtnCalculate { get; set; }
     // public R_Button BtnRefresh { get; set; }
+    public R_Button BtnCalculate { get; set; }
     public R_Popup BtnGenerate { get; set; }
 
     R_NumericTextBox<decimal> FieldPeriod1 { get; set; }
@@ -160,8 +160,12 @@ public partial class GLM00500Detail
 
         try
         {
+            BtnGenerate.Enabled = _viewModel.BudgetHDEntity.LFINAL == false;
+            BtnCalculate.Enabled = false;
             if (eventArgs.ConductorMode != R_eConductorMode.Normal)
             {
+                BtnCalculate.Enabled = _viewModel.BudgetHDEntity.LFINAL == false;
+                BtnGenerate.Enabled = false;
                 EnableCenter(_viewModel.BudgetDTEntity.CBSIS);
                 ChangeInputMethod(_viewModel.BudgetDTEntity.CINPUT_METHOD);
                 EnablePeriod();
@@ -195,17 +199,6 @@ public partial class GLM00500Detail
     private void ChangeInputMethod(object eventArgs)
     {
         var lcValue = eventArgs.ToString();
-
-        _viewModel.Data.NBUDGET = 0;
-        _viewModel.Data.CROUNDING_METHOD = "";
-        _viewModel.Data.CDIST_METHOD = "";
-        _viewModel.Data.CBW_CODE = "";
-
-        FieldBudget.Enabled = false;
-        FieldRoundingMethod.Enabled = false;
-        FieldDistributionMethod.Enabled = false;
-        FieldWeightingCode.Enabled = false;
-
         if (lcValue != "MN")
         {
             _viewModel.Data.CROUNDING_METHOD = "00";
@@ -214,6 +207,18 @@ public partial class GLM00500Detail
             FieldBudget.Enabled = true;
             FieldRoundingMethod.Enabled = true;
             FieldDistributionMethod.Enabled = true;
+        }
+        else
+        {
+            _viewModel.Data.NBUDGET = 0;
+            _viewModel.Data.CROUNDING_METHOD = "";
+            _viewModel.Data.CDIST_METHOD = "";
+            _viewModel.Data.CBW_CODE = "";
+
+            FieldBudget.Enabled = false;
+            FieldRoundingMethod.Enabled = false;
+            FieldDistributionMethod.Enabled = false;
+            FieldWeightingCode.Enabled = false;
         }
 
         ChangeDistMethod();
@@ -228,7 +233,7 @@ public partial class GLM00500Detail
         loData.CGLACCOUNT_TYPE = _viewModel.SelectedAccountType;
         loData.CINPUT_METHOD = "MN";
         loData.CROUNDING_METHOD = "00";
-        loData.CDIST_METHOD = "EV";      
+        loData.CDIST_METHOD = "EV";
     }
 
     private void ChangeDistMethod()
@@ -242,7 +247,6 @@ public partial class GLM00500Detail
 
     private void EnablePeriod()
     {
-        
         FieldPeriod1.Value = 0;
         FieldPeriod1.Enabled = false;
         FieldPeriod2.Value = 0;
@@ -364,7 +368,92 @@ public partial class GLM00500Detail
         {
             loEx.Add(ex);
         }
-        
+
         loEx.ThrowExceptionIfErrors();
+    }
+
+    private async Task Calcuate()
+    {
+        switch (_viewModel.Data.CINPUT_METHOD)
+        {
+            case "MO":
+            {
+                if (_viewModel.PeriodCount.INUM >= 1) _viewModel.Data.NPERIOD1 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INUM >= 2) _viewModel.Data.NPERIOD2 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INUM >= 3) _viewModel.Data.NPERIOD3 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INUM >= 4) _viewModel.Data.NPERIOD4 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INUM >= 5) _viewModel.Data.NPERIOD5 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INUM >= 6) _viewModel.Data.NPERIOD6 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INUM >= 7) _viewModel.Data.NPERIOD7 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INUM >= 8) _viewModel.Data.NPERIOD8 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INUM >= 9) _viewModel.Data.NPERIOD9 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INUM >= 10) _viewModel.Data.NPERIOD10 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INUM >= 11) _viewModel.Data.NPERIOD11 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INUM >= 12) _viewModel.Data.NPERIOD12 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INUM >= 13) _viewModel.Data.NPERIOD13 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INUM >= 14) _viewModel.Data.NPERIOD14 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INUM >= 15) _viewModel.Data.NPERIOD15 = _viewModel.Data.NBUDGET;
+                break;
+            }
+            case "AN":
+            {
+                _viewModel.Data.NBUDGET = FieldBudget.Value; // sementara, karena perubahan tidak langsung bind value
+                var loResult = await _viewModel.CalculateBudget(_viewModel.BudgetHDEntity, _viewModel.BudgetDTEntity);
+                if (_viewModel.PeriodCount.INUM >= 1) _viewModel.Data.NPERIOD1 = loResult.NPERIOD1;
+                if (_viewModel.PeriodCount.INUM >= 2) _viewModel.Data.NPERIOD2 = loResult.NPERIOD2;
+                if (_viewModel.PeriodCount.INUM >= 3) _viewModel.Data.NPERIOD3 = loResult.NPERIOD3;
+                if (_viewModel.PeriodCount.INUM >= 4) _viewModel.Data.NPERIOD4 = loResult.NPERIOD4;
+                if (_viewModel.PeriodCount.INUM >= 5) _viewModel.Data.NPERIOD5 = loResult.NPERIOD5;
+                if (_viewModel.PeriodCount.INUM >= 6) _viewModel.Data.NPERIOD6 = loResult.NPERIOD6;
+                if (_viewModel.PeriodCount.INUM >= 7) _viewModel.Data.NPERIOD7 = loResult.NPERIOD7;
+                if (_viewModel.PeriodCount.INUM >= 8) _viewModel.Data.NPERIOD8 = loResult.NPERIOD8;
+                if (_viewModel.PeriodCount.INUM >= 9) _viewModel.Data.NPERIOD9 = loResult.NPERIOD9;
+                if (_viewModel.PeriodCount.INUM >= 10) _viewModel.Data.NPERIOD10 = loResult.NPERIOD10;
+                if (_viewModel.PeriodCount.INUM >= 11) _viewModel.Data.NPERIOD11 = loResult.NPERIOD11;
+                if (_viewModel.PeriodCount.INUM >= 12) _viewModel.Data.NPERIOD12 = loResult.NPERIOD12;
+                if (_viewModel.PeriodCount.INUM >= 13) _viewModel.Data.NPERIOD13 = loResult.NPERIOD13;
+                if (_viewModel.PeriodCount.INUM >= 14) _viewModel.Data.NPERIOD14 = loResult.NPERIOD14;
+                if (_viewModel.PeriodCount.INUM >= 15) _viewModel.Data.NPERIOD15 = loResult.NPERIOD15;
+                break;
+            }
+        }
+    }
+
+    private void CheckAdd(R_CheckAddEventArgs eventArgs)
+    {
+        BtnGenerate.Enabled = _viewModel.BudgetHDEntity.LFINAL == false;
+        eventArgs.Allow = _viewModel.BudgetHDEntity.LFINAL == false;
+    }
+
+    private void CheckEdit(R_CheckEditEventArgs eventArgs)
+    {
+        eventArgs.Allow = _viewModel.BudgetHDEntity.LFINAL == false;
+    }
+
+    private void CheckDelete(R_CheckDeleteEventArgs eventArgs)
+    {
+        eventArgs.Allow = _viewModel.BudgetHDEntity.LFINAL == false && _viewModel.BudgetDTList.Count > 0;
+    }
+
+    private Task BeforeGeneratePopup(R_BeforeOpenPopupEventArgs eventArgs)
+    {
+        eventArgs.Parameter = new GLM00500ParameterGenerateBudget
+        {
+            BudgetHD = _viewModel.BudgetHDEntity,
+            CGLACCOUNT_TYPE = _viewModel.SelectedAccountType
+        };
+        eventArgs.TargetPageType = typeof(GLM00500DetailGenerate);
+        return Task.CompletedTask;
+    }
+
+    private async Task AfterGeneratePopup(R_AfterOpenPopupEventArgs eventArgs)
+    {
+        if (eventArgs.Success)
+        {
+            var loResult = (GLM00500GenerateAccountBudgetDTO)eventArgs.Result;
+            await _viewModel.GenerateBudget(loResult);
+        }
+        
+        
     }
 }

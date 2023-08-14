@@ -9,5 +9,8 @@ namespace Lookup_GSCOMMON.DTOs
     {
         public string CDEPT_CODE { get; set; }
         public string CDEPT_NAME { get; set; }
+        public string CCENTER_CODE { get; set; }
+        public string CCENTER_NAME { get; set; }
+
     }
 }

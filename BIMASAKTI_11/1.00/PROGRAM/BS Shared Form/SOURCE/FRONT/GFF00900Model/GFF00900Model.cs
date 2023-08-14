@@ -14,12 +14,13 @@ namespace GFF00900Model
     {
         private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrl"; 
         private const string DEFAULT_SERVICEPOINT_NAME = "api/GFF00900";
+        private const string DEFAULT_MODULE_NAME = "GS";
 
         public GFF00900Model(string pcHttpClientName = DEFAULT_HTTP_NAME, 
             string pcRequestServiceEndPoint = DEFAULT_SERVICEPOINT_NAME, 
             bool plSendWithContext = true, 
             bool plSendWithToken = true) : 
-            base(pcHttpClientName, pcRequestServiceEndPoint, plSendWithContext, plSendWithToken)
+            base(pcHttpClientName, pcRequestServiceEndPoint, DEFAULT_MODULE_NAME, plSendWithContext, plSendWithToken)
         {
         }
 
@@ -40,6 +41,7 @@ namespace GFF00900Model
                 loRtn = await R_HTTPClientWrapper.R_APIRequestObject<RSP_ACTIVITY_VALIDITYResultDTO>(
                     _RequestServiceEndPoint,
                     nameof(IGFF00900.RSP_ACTIVITY_VALIDITYMethod),
+                    DEFAULT_MODULE_NAME,
                     _SendWithContext,
                     _SendWithToken);
             }
@@ -101,6 +103,7 @@ namespace GFF00900Model
                 loRtn = await R_HTTPClientWrapper.R_APIRequestObject<ValidationResultDTO>(
                     _RequestServiceEndPoint,
                     nameof(IGFF00900.UsernameAndPasswordValidationMethod),
+                    DEFAULT_MODULE_NAME,
                     _SendWithContext,
                     _SendWithToken);
             }

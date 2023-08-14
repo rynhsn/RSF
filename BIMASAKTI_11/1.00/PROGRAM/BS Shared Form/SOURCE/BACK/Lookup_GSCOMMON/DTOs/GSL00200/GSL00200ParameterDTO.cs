@@ -9,7 +9,6 @@ namespace Lookup_GSCOMMON.DTOs
     {
         public string CCOMPANY_ID { get; set; }
         public string CTAX_TYPE { get; set; }
-        public string CUSER_ID { get; set; }
     }
 
 }

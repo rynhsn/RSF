@@ -1,5 +1,6 @@
 ﻿@page "/GSM02000"
 @using GSM02000Common.DTOs
+@using R_BlazorFrontEnd.Enums
 @inherits R_Page
 @attribute [R_Page(Title = "Sales Tax")]
 
@@ -11,20 +12,20 @@
                 R_ConductorSource="@_conductorRef"
                 R_GridType="@R_eGridType.Navigator"
                 R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord"
-                Width="1100px"
-                >
+                Height="255px">
             <R_GridColumns>
-                <R_GridCheckBoxColumn FieldName="LACTIVE" HeaderText="Active"/>
-                <R_GridTextColumn FieldName="CTAX_ID" HeaderText="Tax Id"/>
-                <R_GridTextColumn FieldName="CTAX_NAME" HeaderText="Tax Name"/>
-                <R_GridTextColumn FieldName="CROUNDING_MODE_DESCR" HeaderText="Rounding Mode"/>
-                <R_GridNumericColumn FieldName="IROUNDING" HeaderText="Rounding Unit"/>
-                <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="GL Account No"/>
-                <R_GridTextColumn FieldName="CGLACCOUNT_NAME" HeaderText="GL Account Name"/>
-                <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Last Update By"/>
-                <R_GridDateTimePickerColumn FieldName="DUPDATE_DATE" HeaderText="Last Update Date"/>
-                <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Create By"/>
-                <R_GridDateTimePickerColumn FieldName="DCREATE_DATE" HeaderText="Create Date"/>
+                <R_GridCheckBoxColumn FieldName="LACTIVE" HeaderText="Active" Width="100px" Filterable="false"/>
+                <R_GridTextColumn FieldName="CTAX_ID" HeaderText="Tax Id" Width="100px"/>
+                <R_GridTextColumn FieldName="CTAX_NAME" HeaderText="Tax Name" Width="150px"/>
+                <R_GridTextColumn FieldName="CROUNDING_MODE_DESCR" HeaderText="Rounding Mode" Width="150px"/>
+                <R_GridNumericColumn FieldName="IROUNDING" HeaderText="Rounding Unit" Width="150px"/>
+                <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="GL Account No" Width="150px"/>
+                <R_GridTextColumn FieldName="CGLACCOUNT_NAME" HeaderText="GL Account Name" Width="250px"/>
+                <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Last Update By" Width="150px"/>
+                <R_GridDateTimePickerColumn FieldName="DUPDATE_DATE" HeaderText="Last Update Date" Width="150px"/>
+                <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Create By" Width="150px"/>
+                <R_GridDateTimePickerColumn FieldName="DCREATE_DATE" HeaderText="Create Date" Width="150px"/>
+
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>
@@ -32,22 +33,22 @@
 
 <R_StackLayout>
     <R_StackLayout Row="true">
-        <R_ItemLayout xs="2">
+        <R_ItemLayout col="2">
             <R_Label>Tax Id*</R_Label>
         </R_ItemLayout>
-        <R_ItemLayout xs="2">
+        <R_ItemLayout col="2">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAX_ID"
                        R_ConductorSource="@_conductorRef"
                        R_EnableAdd="true"
                        R_EnableEdit="false" MaxLength="20"/>
         </R_ItemLayout>
-        <R_ItemLayout xs="4">
+        <R_ItemLayout col="4">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAX_NAME"
                        R_ConductorSource="@_conductorRef"
                        R_EnableAdd="true"
                        R_EnableEdit="true" MaxLength="100"/>
         </R_ItemLayout>
-        <R_ItemLayout xs="4">
+        <R_ItemLayout col="4">
             <R_CheckBox @bind-Value="@_GSM02000ViewModel.Data.LACTIVE"
                         R_ConductorSource="@_conductorRef"
                         Enabled="false"/>
@@ -57,11 +58,11 @@
     </R_StackLayout>
 
     <R_StackLayout Row="true">
-        <R_ItemLayout xs="2">
+        <R_ItemLayout col="2">
             <R_Label>Description</R_Label>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="6">
+        <R_ItemLayout col="6">
             <R_TextArea @bind-Value="@_GSM02000ViewModel.Data.CDESCRIPTION"
                         R_ConductorSource="@_conductorRef"
                         R_EnableAdd="true"
@@ -70,11 +71,11 @@
     </R_StackLayout>
 
     <R_StackLayout Row="true">
-        @* <R_ItemLayout xs="1"> *@
+        @* <R_ItemLayout col="1"> *@
         @*     <R_Label>Tax %</R_Label> *@
         @* </R_ItemLayout> *@
         @* *@
-        @* <R_ItemLayout xs="1" Class="me-5"> *@
+        @* <R_ItemLayout col="1" Class="me-5"> *@
         @*     <R_NumericTextBox @bind-Value="@_GSM02000ViewModel.Data.NTAX_PERCENTAGE" *@
         @*                       R_ConductorSource="@_conductorRef" *@
         @*                       R_EnableAdd="true" *@
@@ -83,44 +84,46 @@
         @*                       Max="100"/> *@
         @* </R_ItemLayout> *@
 
-        <R_ItemLayout xs="2">
+        <R_ItemLayout col="2">
             <R_Label>Rounding Mode*</R_Label>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="2" Class="me-5">
+        <R_ItemLayout col="2" Class="me-5">
             <R_ComboBox Data="@_GSM02000ViewModel.RoundingModeList"
                         @bind-Value="@_GSM02000ViewModel.Data.CROUNDING_MODE"
                         ValueField="@nameof(GSM02000RoundingDTO.CCODE)"
                         TextField="@nameof(GSM02000RoundingDTO.CDESCRIPTION)"
                         R_ConductorSource="@_conductorRef"
                         R_EnableAdd="true"
-                        R_EnableEdit="true"/>
+                        R_EnableEdit="true"
+                        OnChanged="ChangeRoundingMode"/>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="1">
+        <R_ItemLayout>
             <R_Label>Rounding Unit*</R_Label>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="1">
+        <R_ItemLayout col="1">
             <R_NumericTextBox @bind-Value="@_GSM02000ViewModel.Data.IROUNDING"
                               R_ConductorSource="@_conductorRef"
+                              Enabled="@(_GSM02000ViewModel.Data.CROUNDING_MODE != "03" && _conductorRef.R_ConductorMode != R_eConductorMode.Normal)"
                               R_EnableAdd="true"
                               R_EnableEdit="true"
                               Min="-2"
                               Max="2"/>
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_Label Style="font-style: italic">(-2, -1, 0, 1, 2)</R_Label>
+            <R_Label FontStyle="R_eFontStyle.Italic">(-2, -1, 0, 1, 2)</R_Label>
         </R_ItemLayout>
 
     </R_StackLayout>
-    
+
     <R_StackLayout Row="true">
-        <R_ItemLayout xs="2">
+        <R_ItemLayout col="2">
             <R_Label>GL Account No.</R_Label>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="2">
+        <R_ItemLayout col="2">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NO"
                        R_ConductorSource="@_conductorRef"
                        R_EnableAdd="true"
@@ -131,7 +134,7 @@
             <R_Lookup @ref="@R_LookupBtn" R_Before_Open_Lookup="@Before_Open_Lookup" R_After_Open_Lookup="@After_Open_Lookup"></R_Lookup>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="4">
+        <R_ItemLayout col="4">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NAME"
                        R_ConductorSource="@_conductorRef"
                        Enabled="false"/>
@@ -139,30 +142,33 @@
     </R_StackLayout>
 </R_StackLayout>
 
-<R_StackLayout Row="true" Spacing="5" Class="mt-3">
-    <R_ItemLayout xs="1">
-        <R_AddButton R_Conductor="@_conductorRef"/>
-    </R_ItemLayout>
+<R_StackLayout Row="true" Spacing="5" Class="mt-3 d-flex justify-content-between">
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_AddButton R_Conductor="@_conductorRef"/>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_EditButton R_Conductor="@_conductorRef" R_SetOther/>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_DeleteButton R_Conductor="@_conductorRef"/>
+        </R_ItemLayout>
+    </R_StackLayout>
 
-    <R_ItemLayout xs="1">
-        <R_EditButton R_Conductor="@_conductorRef" R_SetOther/>
-    </R_ItemLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Popup R_ConductorSource="_conductorRef" R_EnableOther="true" R_After_Open_Popup="@AfterOpenActiveInactive" R_Before_Open_Popup="@BeforeOpenActiveInactive">@loLabel</R_Popup>
+        </R_ItemLayout>
+    </R_StackLayout>
 
-    <R_ItemLayout xs="1">
-        <R_DeleteButton R_Conductor="@_conductorRef"/>
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="1">
-        <R_Popup R_ConductorSource="_conductorRef" R_EnableOther="true" R_After_Open_Popup="@AfterOpenActiveInactive" R_Before_Open_Popup="@BeforeOpenActiveInactive">@loLabel</R_Popup>
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="1">
-        <R_CancelButton R_Conductor="@_conductorRef"/>
-    </R_ItemLayout>
-    <R_ItemLayout xs="1">
-        <R_SaveButton R_Conductor="@_conductorRef"/>
-    </R_ItemLayout>
-    
+    <R_StackLayout Row>
+        <R_ItemLayout col="7">
+            <R_CancelButton R_Conductor="@_conductorRef"/>
+        </R_ItemLayout>
+        <R_ItemLayout col="4" Class="me-2">
+            <R_SaveButton R_Conductor="@_conductorRef"/>
+        </R_ItemLayout>
+    </R_StackLayout>
 </R_StackLayout>
 
 <R_Conductor @ref="@_conductorRef"
@@ -176,7 +182,6 @@
              R_ServiceDelete="@Conductor_ServiceDelete"
              R_SetAdd="@R_SetAdd"
              R_SetEdit="@R_SetEdit"
-             R_Display="@Grid_Display"
-/>
+             R_Display="@Grid_Display"/>
 
 <R_PredefinedDock R_InstantiateDock="InstanceTaxTab" Title="Tax%"/>

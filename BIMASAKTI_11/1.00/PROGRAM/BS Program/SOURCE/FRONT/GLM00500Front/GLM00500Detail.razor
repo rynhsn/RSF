@@ -3,26 +3,29 @@
 @using R_BlazorFrontEnd.Controls.Events
 @inherits R_Page
 
-<R_StackLayout Row Class="mb-3">
+<R_StackLayout Row Class="mb-1">
     <R_ItemLayout>
         <R_Label>Year</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="1" Class="me-2">
+    <R_ItemLayout col="1" Class="me-2">
         <R_TextBox Value="@_viewModel.BudgetHDEntity.CYEAR" Enabled="false"/>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_Label>Budget</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="1">
+    <R_ItemLayout col="1">
         <R_TextBox Value="@_viewModel.BudgetHDEntity.CBUDGET_NO" Enabled="false"/>
     </R_ItemLayout>
-    <R_ItemLayout xs="3" Class="me-2">
+    <R_ItemLayout col="2" Class="me-2">
         <R_TextBox Value="@_viewModel.BudgetHDEntity.CBUDGET_NAME" Enabled="false"/>
     </R_ItemLayout>
-    <R_ItemLayout Class="me-2">
+@* </R_StackLayout> *@
+@* *@
+@* <R_StackLayout Row Class="mb-1"> *@
+    <R_ItemLayout col="1" Class="me-2">
         <R_Label>Account Type</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout Class="me-5">
+    <R_ItemLayout col="3" Class="me-5">
         <R_RadioGroup Data="@_viewModel.CGLACCOUNT_TYPE"
                       @bind-Value="_viewModel.SelectedAccountType"
                       ValueField="Key"
@@ -32,33 +35,48 @@
                       R_EnableOther/>
     </R_ItemLayout>
     <R_ItemLayout>
-        <R_Popup R_ConductorSource="_conductorRef" Enabled="@(_viewModel.BudgetHDEntity.LFINAL == false)" R_EnableOther>Generate</R_Popup>
+        <R_Popup @ref="BtnGenerate" R_ConductorSource="_conductorRef" R_EnableOther R_Before_Open_Popup="BeforeGeneratePopup" R_After_Open_Popup="AfterGeneratePopup">Generate</R_Popup>
     </R_ItemLayout>
-    <R_ItemLayout>
+    <R_ItemLayout Class="align-items-end">
         <R_Button R_ConductorSource="_conductorRef" R_EnableOther OnClick="RefreshFormProcess">Refresh</R_Button>
     </R_ItemLayout>
 </R_StackLayout>
-<R_StackLayout Row Class="mb-3">
-<R_ItemLayout xs="3">
+
+<R_StackLayout Row Class="mb-1">
+<R_ItemLayout>
     <R_Grid @ref="_gridRef"
             DataSource="_viewModel.BudgetDTList"
             Pageable
             R_ConductorSource="_conductorRef"
             R_GridType="R_eGridType.Navigator"
-            R_ServiceGetListRecord="GetBudgetDTList">
+            R_ServiceGetListRecord="GetBudgetDTList"
+            Width="220px"
+            >
         <R_GridColumns>
-            <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="Account No."/>
-            <R_GridTextColumn FieldName="CCENTER_CODE" HeaderText="Center"/>
+            <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="Account No." 
+                              Width="120px"
+                              />
+            <R_GridTextColumn FieldName="CCENTER_CODE" HeaderText="Center" 
+                              Width="85px"
+                              />
         </R_GridColumns>
     </R_Grid>
 </R_ItemLayout>
-<R_ItemLayout xs="9">
-<R_GroupBox ShowBorder Class="px-3 py-2" Title="Detail">
-<R_StackLayout Row Class="mb-2">
-    <R_ItemLayout xs="2">
+
+<R_ItemLayout>
+<R_GroupBox ShowBorder="false">
+
+<R_StackLayout>
+    <R_ItemLayout>
+        <R_Label Class="fw-bolder">Detail</R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2">
         <R_Label>Account No.</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_TextBox @ref="FieldAcc" @bind-Value="_viewModel.Data.CGLACCOUNT_NO"
                    R_ConductorSource="_conductorRef"
                    MaxLength="20"
@@ -71,7 +89,7 @@
                   R_After_Open_Lookup="AfterOpenLookupAccount">
         </R_Lookup>
     </R_ItemLayout>
-    <R_ItemLayout xs="6">
+    <R_ItemLayout col="6">
         <R_TextBox @bind-Value="_viewModel.Data.CGLACCOUNT_NAME"
                    R_ConductorSource="_conductorRef"
                    CharacterCasing="R_eCharacterCasing.Upper"
@@ -79,11 +97,11 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_StackLayout Row Class="mb-2">
-    <R_ItemLayout xs="2">
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2">
         <R_Label>Center</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_TextBox @ref="FieldCenterCode" @bind-Value="_viewModel.Data.CCENTER_CODE"
                    R_ConductorSource="_conductorRef"
                    CharacterCasing="R_eCharacterCasing.Upper"
@@ -99,7 +117,7 @@
                   R_EnableEdit>
         </R_Lookup>
     </R_ItemLayout>
-    <R_ItemLayout xs="6">
+    <R_ItemLayout col="6">
         <R_TextBox @bind-Value="_viewModel.Data.CCENTER_NAME"
                    R_ConductorSource="_conductorRef"
                    CharacterCasing="R_eCharacterCasing.Upper"
@@ -107,11 +125,11 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_StackLayout Row Class="mb-2">
-    <R_ItemLayout xs="2">
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2">
         <R_Label>Input Method</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="10">
+    <R_ItemLayout col="10">
         <R_RadioGroup Data="@_viewModel.CINPUT_METHOD"
                       @bind-Value="_viewModel.Data.CINPUT_METHOD"
                       ValueField="Key"
@@ -123,13 +141,13 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_StackLayout Row Class="mb-2">
-    <R_ItemLayout xs="6">
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="5">
         <R_StackLayout Row>
-            <R_ItemLayout xs="4">
+            <R_ItemLayout col="5">
                 <R_Label>Budget</R_Label>
             </R_ItemLayout>
-            <R_ItemLayout xs="4">
+            <R_ItemLayout col="5">
                 <R_NumericTextBox @ref="FieldBudget"
                                   @bind-Value="_viewModel.Data.NBUDGET"
                                   R_ConductorSource="_conductorRef"
@@ -138,12 +156,12 @@
             </R_ItemLayout>
         </R_StackLayout>
     </R_ItemLayout>
-    <R_ItemLayout xs="6">
+    <R_ItemLayout col="6">
         <R_StackLayout Row>
-            <R_ItemLayout xs="3">
+            <R_ItemLayout col="4">
                 <R_Label>Rounding Method</R_Label>
             </R_ItemLayout>
-            <R_ItemLayout xs="6">
+            <R_ItemLayout col="7">
                 <R_ComboBox @ref="FieldRoundingMethod" Data="@_viewModel.RoundingMethodList"
                             @bind-Value="_viewModel.Data.CROUNDING_METHOD"
                             ValueField="@nameof(GLM00500FunctionDTO.CCODE)"
@@ -156,11 +174,11 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_StackLayout Row Class="mb-4">
+<R_StackLayout Row>
 
-    <R_ItemLayout xs="6">
+    <R_ItemLayout col="5">
         <R_StackLayout Row>
-            <R_ItemLayout xs="4">
+            <R_ItemLayout col="5">
                 <R_Label>Distribution Method</R_Label>
             </R_ItemLayout>
             <R_ItemLayout>
@@ -175,13 +193,13 @@
             </R_ItemLayout>
         </R_StackLayout>
     </R_ItemLayout>
-    <R_ItemLayout xs="6">
+    <R_ItemLayout col="6">
         <R_StackLayout Row>
-            <R_ItemLayout xs="3">
+            <R_ItemLayout col="4">
                 <R_Label>Weighting Code</R_Label>
             </R_ItemLayout>
-            <R_ItemLayout xs="6">
-                <R_ComboBox @ref="FieldWeightingCode" 
+            <R_ItemLayout col="7">
+                <R_ComboBox @ref="FieldWeightingCode"
                             Data="@_viewModel.BudgetWeightingList"
                             @bind-Value="_viewModel.Data.CBW_CODE"
                             ValueField="@nameof(GLM00500BudgetWeightingDTO.CBW_CODE)"
@@ -191,7 +209,7 @@
                             R_EnableEdit/>
             </R_ItemLayout>
             <R_ItemLayout>
-                <R_Button R_ConductorSource="_conductorRef" Enabled="@(_viewModel.Data.CINPUT_METHOD == "AN")" R_EnableAdd R_EnableEdit>Calculate</R_Button>
+                <R_Button @ref="BtnCalculate" R_ConductorSource="_conductorRef" R_EnableAdd R_EnableEdit OnClick="Calcuate">Calculate</R_Button>
             </R_ItemLayout>
         </R_StackLayout>
     </R_ItemLayout>
@@ -204,14 +222,14 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_GroupBox Enabled="@(_viewModel.Data.CINPUT_METHOD == "MN")" ShowBorder="false">
-    <R_StackLayout Row Spacing="2" Class="mb-5">
-        <R_ItemLayout xs="4">
+<R_GroupBox Enabled="@(_viewModel.Data.CINPUT_METHOD == "MN")" ShowBorder="false" Class="mb-2 pt-1 pb-1">
+    <R_StackLayout Row Spacing="2">
+        <R_ItemLayout col="4">
             <R_StackLayout Row Class="mb-1">
-                <R_ItemLayout xs="3">
+                <R_ItemLayout col="3">
                     <R_Label>Period 1</R_Label>
                 </R_ItemLayout>
-                <R_ItemLayout xs="7">
+                <R_ItemLayout col="7">
                     <R_NumericTextBox @ref="FieldPeriod1" @bind-Value="_viewModel.Data.NPERIOD1"
                                       R_ConductorSource="_conductorRef"
                                       R_EnableAdd
@@ -219,10 +237,10 @@
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row Class="mb-1">
-                <R_ItemLayout xs="3">
+                <R_ItemLayout col="3">
                     <R_Label>Period 2</R_Label>
                 </R_ItemLayout>
-                <R_ItemLayout xs="7">
+                <R_ItemLayout col="7">
                     <R_NumericTextBox @ref="FieldPeriod2" @bind-Value="_viewModel.Data.NPERIOD2"
                                       R_ConductorSource="_conductorRef"
                                       R_EnableAdd
@@ -230,10 +248,10 @@
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row Class="mb-1">
-                <R_ItemLayout xs="3">
+                <R_ItemLayout col="3">
                     <R_Label>Period 3</R_Label>
                 </R_ItemLayout>
-                <R_ItemLayout xs="7">
+                <R_ItemLayout col="7">
                     <R_NumericTextBox @ref="FieldPeriod3" @bind-Value="_viewModel.Data.NPERIOD3"
                                       R_ConductorSource="_conductorRef"
                                       R_EnableAdd
@@ -241,10 +259,10 @@
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row Class="mb-1">
-                <R_ItemLayout xs="3">
+                <R_ItemLayout col="3">
                     <R_Label>Period 4</R_Label>
                 </R_ItemLayout>
-                <R_ItemLayout xs="7">
+                <R_ItemLayout col="7">
                     <R_NumericTextBox @ref="FieldPeriod4" @bind-Value="_viewModel.Data.NPERIOD4"
                                       R_ConductorSource="_conductorRef"
                                       R_EnableAdd
@@ -252,10 +270,10 @@
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row Class="mb-1">
-                <R_ItemLayout xs="3">
+                <R_ItemLayout col="3">
                     <R_Label>Period 5</R_Label>
                 </R_ItemLayout>
-                <R_ItemLayout xs="7">
+                <R_ItemLayout col="7">
                     <R_NumericTextBox @ref="FieldPeriod5" @bind-Value="_viewModel.Data.NPERIOD5"
                                       R_ConductorSource="_conductorRef"
                                       R_EnableAdd
@@ -263,12 +281,12 @@
                 </R_ItemLayout>
             </R_StackLayout>
         </R_ItemLayout>
-        <R_ItemLayout xs="4">
+        <R_ItemLayout col="4">
             <R_StackLayout Row Class="mb-1">
-                <R_ItemLayout xs="3">
+                <R_ItemLayout col="3">
                     <R_Label>Period 6</R_Label>
                 </R_ItemLayout>
-                <R_ItemLayout xs="7">
+                <R_ItemLayout col="7">
                     <R_NumericTextBox @ref="FieldPeriod6" @bind-Value="_viewModel.Data.NPERIOD6"
                                       R_ConductorSource="_conductorRef"
                                       R_EnableAdd
@@ -276,10 +294,10 @@
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row Class="mb-1">
-                <R_ItemLayout xs="3">
+                <R_ItemLayout col="3">
                     <R_Label>Period 7</R_Label>
                 </R_ItemLayout>
-                <R_ItemLayout xs="7">
+                <R_ItemLayout col="7">
                     <R_NumericTextBox @ref="FieldPeriod7" @bind-Value="_viewModel.Data.NPERIOD7"
                                       R_ConductorSource="_conductorRef"
                                       R_EnableAdd
@@ -287,10 +305,10 @@
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row Class="mb-1">
-                <R_ItemLayout xs="3">
+                <R_ItemLayout col="3">
                     <R_Label>Period 8</R_Label>
                 </R_ItemLayout>
-                <R_ItemLayout xs="7">
+                <R_ItemLayout col="7">
                     <R_NumericTextBox @ref="FieldPeriod8" @bind-Value="_viewModel.Data.NPERIOD8"
                                       R_ConductorSource="_conductorRef"
                                       R_EnableAdd
@@ -298,10 +316,10 @@
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row Class="mb-1">
-                <R_ItemLayout xs="3">
+                <R_ItemLayout col="3">
                     <R_Label>Period 9</R_Label>
                 </R_ItemLayout>
-                <R_ItemLayout xs="7">
+                <R_ItemLayout col="7">
                     <R_NumericTextBox @ref="FieldPeriod9" @bind-Value="_viewModel.Data.NPERIOD9"
                                       R_ConductorSource="_conductorRef"
                                       R_EnableAdd
@@ -309,10 +327,10 @@
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row Class="mb-1">
-                <R_ItemLayout xs="3">
+                <R_ItemLayout col="3">
                     <R_Label>Period 10</R_Label>
                 </R_ItemLayout>
-                <R_ItemLayout xs="7">
+                <R_ItemLayout col="7">
                     <R_NumericTextBox @ref="FieldPeriod10" @bind-Value="_viewModel.Data.NPERIOD10"
                                       R_ConductorSource="_conductorRef"
                                       R_EnableAdd
@@ -320,12 +338,12 @@
                 </R_ItemLayout>
             </R_StackLayout>
         </R_ItemLayout>
-        <R_ItemLayout xs="4">
+        <R_ItemLayout col="4">
             <R_StackLayout Row Class="mb-1">
-                <R_ItemLayout xs="3">
+                <R_ItemLayout col="3">
                     <R_Label>Period 11</R_Label>
                 </R_ItemLayout>
-                <R_ItemLayout xs="7">
+                <R_ItemLayout col="7">
                     <R_NumericTextBox @ref="FieldPeriod11" @bind-Value="_viewModel.Data.NPERIOD11"
                                       R_ConductorSource="_conductorRef"
                                       R_EnableAdd
@@ -333,10 +351,10 @@
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row Class="mb-1">
-                <R_ItemLayout xs="3">
+                <R_ItemLayout col="3">
                     <R_Label>Period 12</R_Label>
                 </R_ItemLayout>
-                <R_ItemLayout xs="7">
+                <R_ItemLayout col="7">
                     <R_NumericTextBox @ref="FieldPeriod12" @bind-Value="_viewModel.Data.NPERIOD12"
                                       R_ConductorSource="_conductorRef"
                                       R_EnableAdd
@@ -344,10 +362,10 @@
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row Class="mb-1">
-                <R_ItemLayout xs="3">
+                <R_ItemLayout col="3">
                     <R_Label>Period 13</R_Label>
                 </R_ItemLayout>
-                <R_ItemLayout xs="7">
+                <R_ItemLayout col="7">
                     <R_NumericTextBox @ref="FieldPeriod13" @bind-Value="_viewModel.Data.NPERIOD13"
                                       R_ConductorSource="_conductorRef"
                                       R_EnableAdd
@@ -355,10 +373,10 @@
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row Class="mb-1">
-                <R_ItemLayout xs="3">
+                <R_ItemLayout col="3">
                     <R_Label>Period 14</R_Label>
                 </R_ItemLayout>
-                <R_ItemLayout xs="7">
+                <R_ItemLayout col="7">
                     <R_NumericTextBox @ref="FieldPeriod14" @bind-Value="_viewModel.Data.NPERIOD14"
                                       R_ConductorSource="_conductorRef"
                                       R_EnableAdd
@@ -366,10 +384,10 @@
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row Class="mb-1">
-                <R_ItemLayout xs="3">
+                <R_ItemLayout col="3">
                     <R_Label>Period 15</R_Label>
                 </R_ItemLayout>
-                <R_ItemLayout xs="7">
+                <R_ItemLayout col="7">
                     <R_NumericTextBox @ref="FieldPeriod15" @bind-Value="_viewModel.Data.NPERIOD15"
                                       R_ConductorSource="_conductorRef"
                                       R_EnableAdd
@@ -384,18 +402,18 @@
     <R_ItemLayout>
         <R_Label>Updated By</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout>
+    <R_ItemLayout col="1">
         <R_TextBox @bind-Value="@_viewModel.Data.CUPDATE_BY" Enabled="false"/>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_DateTimePicker @bind-Value="@_viewModel.Data.DUPDATE_DATE" Enabled="false"/>
     </R_ItemLayout>
-</R_StackLayout>
-<R_StackLayout Row Spacing="3" Class="d-flex justify-content-end">
+@* </R_StackLayout> *@
+@* <R_StackLayout Row Spacing="3" Class="d-flex justify-content-end"> *@
     <R_ItemLayout>
         <R_Label>Created By</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout>
+    <R_ItemLayout col="1">
         <R_TextBox @bind-Value="@_viewModel.Data.CCREATE_BY" Enabled="false"/>
     </R_ItemLayout>
     <R_ItemLayout>
@@ -407,23 +425,27 @@
 </R_ItemLayout>
 </R_StackLayout>
 
-<R_StackLayout Row>
-    <R_ItemLayout xs="1">
-        <R_AddButton R_Conductor="_conductorRef" Enabled="@(_viewModel.BudgetHDEntity.LFINAL == false)"/>
-    </R_ItemLayout>
-    <R_ItemLayout xs="1">
-        <R_EditButton R_Conductor="_conductorRef" Enabled="@(_viewModel.BudgetHDEntity.LFINAL == false)"/>
-    </R_ItemLayout>
-    <R_ItemLayout xs="1" Class="me-5">
-        <R_DeleteButton R_Conductor="_conductorRef" Enabled="@(_viewModel.BudgetHDEntity.LFINAL == false)"/>
-    </R_ItemLayout>
+<R_StackLayout Row Class="d-flex justify-content-between">
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_AddButton R_Conductor="_conductorRef"/>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_EditButton R_Conductor="_conductorRef"/>
+        </R_ItemLayout>
+        <R_ItemLayout col="4" Class="me-5">
+            <R_DeleteButton R_Conductor="_conductorRef"/>
+        </R_ItemLayout>
+    </R_StackLayout>
 
-    <R_ItemLayout xs="1">
-        <R_CancelButton R_Conductor="_conductorRef"/>
-    </R_ItemLayout>
-    <R_ItemLayout xs="1">
-        <R_SaveButton R_Conductor="_conductorRef"/>
-    </R_ItemLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="7">
+            <R_CancelButton R_Conductor="_conductorRef"/>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_SaveButton R_Conductor="_conductorRef"/>
+        </R_ItemLayout>
+    </R_StackLayout>
 </R_StackLayout>
 
 
@@ -436,4 +458,6 @@
              R_Validation="Validation"
              R_ServiceSave="Save"
              R_ServiceDelete="Delete"
-             />
+             R_CheckAdd="CheckAdd"
+             R_CheckEdit="CheckEdit"
+             R_CheckDelete="CheckDelete"/>

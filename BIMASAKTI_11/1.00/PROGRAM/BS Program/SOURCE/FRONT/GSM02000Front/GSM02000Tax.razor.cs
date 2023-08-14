@@ -26,7 +26,7 @@ public partial class GSM02000Tax : R_Page
         try
         {
             await _gridSalesRef.R_RefreshGrid(null);
-            await _gridRef.AutoFitAllColumnsAsync();
+            // await _gridRef.AutoFitAllColumnsAsync();
         }
         catch (Exception ex)
         {

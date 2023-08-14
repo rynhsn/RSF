@@ -9,6 +9,7 @@ namespace Lookup_GSCOMMON.DTOs
     {
         public string CCOMPANY_ID { get; set; }
         public string CPROPERTY_ID { get; set; }
+        public string CJRNGRP_TYPE { get; set; }
     }
 
 }

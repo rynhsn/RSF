@@ -1,5 +1,5 @@
 ﻿using Lookup_GSCOMMON.DTOs;
-using Lookup_GSModel.ViewModel.GSL00500;
+using Lookup_GSModel.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Exceptions;
@@ -41,6 +41,8 @@ namespace Lookup_GSFRONT
             {
                 var loParam = (GSL00500ParameterDTO)eventArgs.Parameter;
                 await _viewModel.GetGLAccountList(loParam);
+
+                eventArgs.ListEntityResult = _viewModel.GLAccountList;
             }
             catch (Exception ex)
             {

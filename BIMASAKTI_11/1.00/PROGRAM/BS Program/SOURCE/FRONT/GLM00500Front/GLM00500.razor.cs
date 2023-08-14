@@ -8,6 +8,7 @@ using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.MessageBox;
+using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
@@ -21,6 +22,7 @@ public partial class GLM00500 : R_Page
     private R_Grid<GLM00500BudgetHDDTO> _gridRef = new();
     [Inject] private IClientHelper _clientHelper { get; set; }
     [Inject] private IJSRuntime JS { get; set; }
+    private R_TextBox FieldBudgetNo { get; set; }
 
 
     protected override async Task R_Init_From_Master(object eventArgs)
@@ -31,7 +33,7 @@ public partial class GLM00500 : R_Page
         {
             await _viewModel.Init();
             await _gridRef.R_RefreshGrid(null);
-            await _gridRef.AutoFitAllColumnsAsync();
+            // await _gridRef.AutoFitAllColumnsAsync();
         }
         catch (Exception ex)
         {
@@ -203,5 +205,35 @@ public partial class GLM00500 : R_Page
     {
         eventArgs.TargetPageType = typeof(GLM00500Detail);
         eventArgs.Parameter = R_FrontUtility.ConvertObjectToObject<GLM00500BudgetHDDTO>(_viewModel.BudgetHDEntity);
+    }
+
+    private void BeforeOpenUpload(R_BeforeOpenPopupEventArgs eventArgs)
+    {
+        eventArgs.Parameter = _viewModel.BudgetHDEntity;
+        eventArgs.TargetPageType = typeof(GLM00500UploadPopup);
+    }
+
+    private async Task AfterOpenUpload(R_AfterOpenPopupEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private async Task Display(R_DisplayEventArgs eventArgs)
+    {
+        if (eventArgs.ConductorMode == R_eConductorMode.Add)
+        {
+            await FieldBudgetNo.FocusAsync();
+        }
     }
 }

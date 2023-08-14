@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lookup_GSModel.ViewModel.GSL00500
+namespace Lookup_GSModel.ViewModel
 {
     public class LookupGSL00500ViewModel : R_ViewModel<GSL00500DTO>
     {

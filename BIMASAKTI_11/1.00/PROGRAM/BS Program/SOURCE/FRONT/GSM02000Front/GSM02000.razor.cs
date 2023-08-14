@@ -30,7 +30,7 @@ public partial class GSM02000 : R_Page
         try
         {
             await _gridRef.R_RefreshGrid(null);
-            await _gridRef.AutoFitAllColumnsAsync();
+            // await _gridRef.AutoFitAllColumnsAsync();
             await _GSM02000ViewModel.GetRoundingMode();
         }
         catch (Exception ex)
@@ -272,5 +272,13 @@ public partial class GSM02000 : R_Page
         
         loEx.ThrowExceptionIfErrors();
         return Task.CompletedTask;
+    }
+
+    private void ChangeRoundingMode(object obj)
+    {
+        if ((string)obj == "03")
+        {
+            _GSM02000ViewModel.Data.IROUNDING = 0;
+        }
     }
 }

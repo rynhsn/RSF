@@ -38,7 +38,7 @@ namespace GSM02000FrontResources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GSM02000FrontResources.GSM02000FrontResources_msgrsc", typeof(GSM02000FrontResources_msgrsc).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GLM00500FrontResources.GSM02000FrontResources_msgrsc", typeof(GSM02000FrontResources_msgrsc).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

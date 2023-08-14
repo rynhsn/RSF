@@ -6,5 +6,15 @@
         public const string CBUDGET_ID = "CBUDGET_ID";
         public const string CGLACCOUNT_TYPE = "CGLACCOUNT_TYPE";
         public const string CYEAR = "CYEAR";
+        //currency_type
+        public const string NPERIOD_COUNT = "NPERIOD_COUNT";
+        public const string CCURRENCY_TYPE = "CCURRENCY_TYPE";
+        public const string NBUDGET = "NBUDGET";
+        public const string CROUNDING_METHOD = "CROUNDING_METHOD";
+        public const string CDIST_METHOD = "CDIST_METHOD";
+        public const string CBW_CODE = "CBW_CODE";
+        public const string CPROCESS_ID = "CPROCESS_ID";
+
+        public const string BULKDATA = "BULKDATA";
     }
 }
