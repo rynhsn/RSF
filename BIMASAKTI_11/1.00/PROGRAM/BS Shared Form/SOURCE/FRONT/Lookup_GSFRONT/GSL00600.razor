@@ -1,0 +1,28 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Unit Type Category")]
+
+<R_StackLayout Row>
+    <R_Grid @ref="@GridRef"
+            DataSource="_viewModel.UnitTypeCategoryGrid"
+            R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+            Pageable
+            PageSize="5">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="CUNIT_TYPE_CATEGORY_ID" HeaderText="Unit Type Category Id"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CUNIT_TYPE_CATEGORY_NAME" HeaderText="Unit Type Category Name"></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            OK
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            Cancel
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

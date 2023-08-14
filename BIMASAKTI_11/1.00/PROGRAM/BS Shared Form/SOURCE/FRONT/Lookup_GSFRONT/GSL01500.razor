@@ -1,0 +1,46 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Cash Flow Group")]
+@using Lookup_GSCOMMON.DTOs
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="4">
+        <R_Label Class="fw-bold" FontSize="15">Cash Flow Group</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout xs="8">
+        <R_ComboBox Data="@_viewModel.CashFlowGropList"
+                @bind-Value="_viewModel.Data.CCASH_FLOW_GROUP_CODE"
+                ValueField="@nameof(GSL01500ResultGroupDTO.CCASH_FLOW_GROUP_CODE)"
+                TextField="@nameof(GSL01500ResultGroupDTO.CCASH_FLOW_GROUP_NAME)"
+                OnChanged="@PropertyDropdown_OnChange">
+        </R_ComboBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_Grid @ref="@GridRef"
+            DataSource="_viewModel.CashFlowDetailGrid"
+            R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+            Pageable
+            PageSize="5">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="CSEQUENCE" HeaderText="Sequence"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CCASH_FLOW_CODE" HeaderText="Cash Flow Code"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CCASH_FLOW_NAME" HeaderText="Cash Flow Name"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CCASH_FLOW_TYPE_DESCR" HeaderText="Cash Flow Type"></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            OK
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            Cancel
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

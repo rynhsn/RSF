@@ -1,0 +1,60 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Currency Rate")]
+@using Lookup_GSCOMMON.DTOs
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="2">
+        <R_Label Class="fw-bold" FontSize="15">Rate Date</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout xs="3">
+        <R_TextBox @bind-Value="@_viewModel.Data.CRATE_DATE"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="2">
+        <R_Label Class="fw-bold" FontSize="15">Rate Type</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout xs="3">
+        <R_ComboBox Data="@_viewModel.RateTypeList"
+                @bind-Value="_viewModel.Data.CRATETYPE_CODE"
+                ValueField="@nameof(GSL01701DTO.CRATETYPE_CODE)"
+                TextField="@nameof(GSL01701DTO.CRATETYPE_DESCRIPTION)"
+                OnChanged="@RateType_OnChange">
+        </R_ComboBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_Grid @ref="@GridRef"
+            DataSource="_viewModel.CurrencyRateGrid"
+            R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+            Pageable
+            PageSize="5">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="CCURRENCY_CODE" HeaderText="Currency Code"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CCURRENCY_NAME" HeaderText="Currency Name"></R_GridTextColumn>
+            <R_GridNumericColumn FieldName="NLBASE_RATE_AMOUNT" HeaderText="Local Curr. Base Rate"></R_GridNumericColumn>
+            <R_GridNumericColumn FieldName="NLCURRENCY_RATE_AMOUNT" HeaderText="Local Currency Rate"></R_GridNumericColumn>
+            <R_GridNumericColumn FieldName="NBBASE_RATE_AMOUNT" HeaderText="Base Curr. Base Rate"></R_GridNumericColumn>
+            <R_GridNumericColumn FieldName="NBCURRENCY_RATE_AMOUNT" HeaderText="Base Currency Rate"></R_GridNumericColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            OK
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            Cancel
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

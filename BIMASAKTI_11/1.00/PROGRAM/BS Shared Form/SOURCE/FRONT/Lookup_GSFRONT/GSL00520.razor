@@ -1,0 +1,31 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "COA by GOA")]
+
+<R_StackLayout Row>
+    <R_Grid @ref="@GridRef"
+            DataSource="_viewModel.GOACOAGrid"
+            R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+            Pageable
+            PageSize="5">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="Account No"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CGLACCOUNT_NAME" HeaderText="Account Name"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CBSIS_DESCR" HeaderText="BS/IS"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CDBCR_DESCR" HeaderText="D/C"></R_GridTextColumn>
+            <R_GridCheckBoxColumn FieldName="LACTIVE" HeaderText="Active"></R_GridCheckBoxColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            OK
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            Cancel
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

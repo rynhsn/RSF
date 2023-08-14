@@ -1,0 +1,7 @@
+ERROR001=Activity Code cannot be empty!
+ERROR002=There''s no activity parameter for this program!
+ERROR003=Company Id cannot be empty!
+ERROR004=This activity is not allowed!
+ERROR005=You Need To Maintain User For This Activity Approval First!
+
+

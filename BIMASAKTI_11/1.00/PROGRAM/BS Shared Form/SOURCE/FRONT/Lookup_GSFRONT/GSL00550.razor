@@ -1,0 +1,32 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "GL Account")]
+
+<R_StackLayout Row>
+    <R_Grid @ref="@GridRef"
+            DataSource="_viewModel.GOAGrid"
+            R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+            Pageable
+            PageSize="5">
+        <R_GridColumns>
+            <R_GridNumericColumn FieldName="CGOA_CODE" HeaderText="Group of Account"></R_GridNumericColumn>
+            <R_GridTextColumn FieldName="CGOA_NAME" HeaderText="Group of Account Name"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CBSIS_DESCR" HeaderText="BS/IS"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CDBCR_DESCR" HeaderText="D/C"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Update BY"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="DUPDATE_DATE" HeaderText="Update Date"></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            OK
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            Cancel
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

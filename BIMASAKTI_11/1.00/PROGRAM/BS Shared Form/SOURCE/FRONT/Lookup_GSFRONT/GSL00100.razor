@@ -1,0 +1,29 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Sales Tax")]
+
+<R_StackLayout Row>
+    <R_Grid @ref="@GridRef"
+            DataSource="_viewModel.SalesTaxGrid"
+            R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+            Pageable
+            PageSize="5">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="CTAX_ID" HeaderText="Tax Id"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CTAX_NAME" HeaderText="Tax Name"></R_GridTextColumn>
+            <R_GridNumericColumn FieldName="NTAX_PERCENTAGE" HeaderText="Tax %"></R_GridNumericColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            OK
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            Cancel
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

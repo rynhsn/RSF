@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Lookup_GSFrontResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:61467;http://localhost:61468"
+    }
+  }
+}
