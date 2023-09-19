@@ -25,8 +25,8 @@ public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
         try
         {
             R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, TransactionCode);
-            var loReturn = await _GSM05000NumberingModel.GetNumberingListAsync();
-            GridList = new ObservableCollection<GSM05000NumberingGridDTO>(loReturn.Data);
+            var loReturn = await _GSM05000NumberingModel.GetNumberingListStreamAsync();
+            GridList = new ObservableCollection<GSM05000NumberingGridDTO>(loReturn);
             _setPeriod();
         }
         catch (Exception ex)
@@ -43,8 +43,8 @@ public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
 
         try
         {
-            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, TransactionCode);
-            var loReturn = await _GSM05000NumberingModel.GetNumberingHeaderAsync();
+            GSM05000TrxCodeParamsDTO loParams = new(){ CTRANSACTION_CODE = TransactionCode };
+            var loReturn = await _GSM05000NumberingModel.GetNumberingHeaderAsync(loParams);
             HeaderEntity = loReturn;
         }
         catch (Exception ex)

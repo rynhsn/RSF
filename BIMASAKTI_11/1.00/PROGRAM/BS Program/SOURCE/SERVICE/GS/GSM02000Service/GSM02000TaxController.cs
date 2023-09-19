@@ -88,10 +88,10 @@ public class GSM02000TaxController : ControllerBase, IGSM02000Tax
     }
 
     [HttpPost]
-    public GSM02000ListDTO<GSM02000TaxSalesDTO> GSM02000GetAllSalesTaxList()
+    public IAsyncEnumerable<GSM02000TaxSalesDTO> GSM02000GetAllSalesTaxListStream()
     {
         R_Exception loEx = new R_Exception();
-        GSM02000ListDTO<GSM02000TaxSalesDTO> loRtn = null;
+        IAsyncEnumerable<GSM02000TaxSalesDTO> loRtn = null;
         GSM02000TaxCls loCls;
 
         List<GSM02000TaxSalesDTO> loResult;
@@ -106,10 +106,7 @@ public class GSM02000TaxController : ControllerBase, IGSM02000Tax
             loCls = new GSM02000TaxCls();
             loResult = loCls.SalesTaxListDb(loDbPar);
 
-            loRtn = new GSM02000ListDTO<GSM02000TaxSalesDTO>
-            {
-                Data = loResult
-            };
+            loRtn = GetStream(loResult);
         }
         catch (Exception ex)
         {
@@ -121,10 +118,10 @@ public class GSM02000TaxController : ControllerBase, IGSM02000Tax
     }
 
     [HttpPost]
-    public GSM02000ListDTO<GSM02000TaxDTO> GSM02000GetAllTaxList()
+    public IAsyncEnumerable<GSM02000TaxDTO> GSM02000GetAllTaxListStream()
     {
         R_Exception loEx = new R_Exception();
-        GSM02000ListDTO<GSM02000TaxDTO> loRtn = null;
+        IAsyncEnumerable<GSM02000TaxDTO> loRtn = null;
         GSM02000TaxCls loCls;
         
         List<GSM02000TaxDTO> loResult;
@@ -140,10 +137,7 @@ public class GSM02000TaxController : ControllerBase, IGSM02000Tax
             loCls = new GSM02000TaxCls();
             loResult = loCls.TaxListDb(loDbPar);
 
-            loRtn = new GSM02000ListDTO<GSM02000TaxDTO>
-            {
-                Data = loResult
-            };
+            loRtn = GetStream(loResult);
         }
         catch (Exception ex)
         {
@@ -153,4 +147,19 @@ public class GSM02000TaxController : ControllerBase, IGSM02000Tax
         loEx.ThrowExceptionIfErrors();
         return loRtn;
     }
+    
+    
+    
+    
+    #region "Helper ListStream Functions"
+
+    private async IAsyncEnumerable<T> GetStream<T>(List<T> poParameter)
+    {
+        foreach (T item in poParameter)
+        {
+            yield return item;
+        }
+    }
+
+    #endregion
 }

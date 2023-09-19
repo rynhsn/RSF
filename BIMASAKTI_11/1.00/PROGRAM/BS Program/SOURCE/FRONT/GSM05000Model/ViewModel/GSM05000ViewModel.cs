@@ -35,6 +35,7 @@ namespace GSM05000Model.ViewModel
         public int PrefixSequence;
 
         #region Combo Box Helper List
+
         public List<KeyValuePair<string, string>> CPERIODE_MODE { get; } = new()
         {
             new("N", "None"),
@@ -64,8 +65,8 @@ namespace GSM05000Model.ViewModel
 
             try
             {
-                var loReturn = await _GSM05000Model.GetAllAsync();
-                GridList = new ObservableCollection<GSM05000GridDTO>(loReturn.Data);
+                var loReturn = await _GSM05000Model.GetAllStreamAsync();
+                GridList = new ObservableCollection<GSM05000GridDTO>(loReturn);
             }
             catch (Exception ex)
             {
@@ -121,8 +122,9 @@ namespace GSM05000Model.ViewModel
 
             try
             {
-                R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, poEntity.CTRANSACTION_CODE);
-                var loResult = await _GSM05000Model.CheckExistDataAsync();
+                GSM05000TrxCodeParamsDTO loParams = new();
+                loParams.CTRANSACTION_CODE = poEntity.CTRANSACTION_CODE;
+                var loResult = await _GSM05000Model.CheckExistDataAsync(loParams);
                 llReturn = R_FrontUtility.ConvertObjectToObject<bool>(loResult.EXIST);
             }
             catch (Exception ex)
@@ -241,7 +243,9 @@ namespace GSM05000Model.ViewModel
                         Data.CSEQUENCE01 == "04" ? new string('9', Data.INUMBER_LENGTH) :
                         ""
                     ) +
-                    (string.IsNullOrEmpty(Data.CSEQUENCE01) ? "" : (
+                    (string.IsNullOrEmpty(Data.CSEQUENCE01)
+                        ? ""
+                        : (
                             Data.CSEQUENCE01 == "01" ? Data.CDEPT_DELIMITER :
                             Data.CSEQUENCE01 == "02" ? Data.CTRANSACTION_DELIMITER :
                             Data.CSEQUENCE01 == "03" ? Data.CPERIOD_DELIMITER :
@@ -313,7 +317,7 @@ namespace GSM05000Model.ViewModel
                 loEx.Add(ex);
             }
 
-        EndBlock:
+            EndBlock:
             loEx.ThrowExceptionIfErrors();
         }
 
@@ -331,13 +335,14 @@ namespace GSM05000Model.ViewModel
             {
                 list.Insert(0, DeptSequence);
             }
+
             if (poEntity.LTRANSACTION_MODE)
             {
                 list.Insert(0, TrxSequence);
             }
-            
+
             // var isZero = list.Any(x => x == 0);
-            
+
             var isDuplicate = list.GroupBy(x => x)
                 .Where(g => g.Count() > 1)
                 .Select(y => y.Key)
@@ -347,7 +352,7 @@ namespace GSM05000Model.ViewModel
             {
                 llReturn = true;
             }
-            
+
             return llReturn;
         }
 
@@ -363,16 +368,17 @@ namespace GSM05000Model.ViewModel
             {
                 list.Insert(0, DeptSequence);
             }
+
             if (poEntity.LTRANSACTION_MODE)
             {
                 list.Insert(0, TrxSequence);
             }
-            
+
             pnSequence = list.Count();
-            
+
             bool llValid;
-            
-            for(var i = 1; i <= list.Count; i++)
+
+            for (var i = 1; i <= list.Count; i++)
             {
                 llValid = list.Any(x => x == i);
                 if (!llValid)
@@ -381,7 +387,7 @@ namespace GSM05000Model.ViewModel
                     break;
                 }
             }
-            
+
             return llReturn;
         }
     }

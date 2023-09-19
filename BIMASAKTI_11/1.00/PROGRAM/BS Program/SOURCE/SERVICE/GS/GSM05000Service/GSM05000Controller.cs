@@ -68,12 +68,12 @@ public class GSM05000Controller : ControllerBase, IGSM05000
     {
         throw new NotImplementedException();
     }
-
+    
     [HttpPost]
-    public GSM05000ListDTO<GSM05000GridDTO> GetTransactionCodeList()
+    public IAsyncEnumerable<GSM05000GridDTO> GetTransactionCodeListStream()
     {
         R_Exception loEx = new R_Exception();
-        GSM05000ListDTO<GSM05000GridDTO> loRtn = null;
+        IAsyncEnumerable<GSM05000GridDTO> loRtn = null;
         List<GSM05000GridDTO> loResult;
         GSM05000ParameterDb loDbPar;
         GSM05000Cls loCls;
@@ -87,7 +87,7 @@ public class GSM05000Controller : ControllerBase, IGSM05000
 
             loCls = new GSM05000Cls();
             loResult = loCls.GetTransactionCodeListDb(loDbPar);
-            loRtn = new GSM05000ListDTO<GSM05000GridDTO> { Data = loResult };
+            loRtn = GetTransactionCodeStream(loResult);
         }
         catch (Exception ex)
         {
@@ -130,11 +130,11 @@ public class GSM05000Controller : ControllerBase, IGSM05000
     }
 
     [HttpPost]
-    public GSM005000ExistDTO CheckExistData()
+    public GSM05000ExistDTO CheckExistData(GSM05000TrxCodeParamsDTO poParams)
     {
         R_Exception loEx = new R_Exception();
-        GSM005000ExistDTO loRtn = null;
-        GSM005000ExistDTO loResult;
+        GSM05000ExistDTO loRtn = null;
+        GSM05000ExistDTO loResult;
         GSM05000ParameterDb loDbPar;
         GSM05000Cls loCls;
 
@@ -143,8 +143,7 @@ public class GSM05000Controller : ControllerBase, IGSM05000
             loDbPar = new GSM05000ParameterDb();
             
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbPar.CTRANSACTION_CODE =
-                R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE);
+            loDbPar.CTRANSACTION_CODE = poParams.CTRANSACTION_CODE;
             
             // loDbPar.CCOMPANY_ID = "rcd";
             // loDbPar.CTRANSACTION_CODE = "000000";
@@ -162,4 +161,15 @@ public class GSM05000Controller : ControllerBase, IGSM05000
 
         return loRtn;
     }
+    
+    
+    #region "Helper ListStream Functions"
+    private async IAsyncEnumerable<GSM05000GridDTO> GetTransactionCodeStream(List<GSM05000GridDTO> poParameter)
+    {
+        foreach (GSM05000GridDTO item in poParameter)
+        {
+            yield return item;
+        }
+    }
+    #endregion
 }

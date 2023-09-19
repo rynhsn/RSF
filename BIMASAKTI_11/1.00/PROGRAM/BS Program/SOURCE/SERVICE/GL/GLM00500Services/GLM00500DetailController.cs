@@ -82,14 +82,15 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
         loEx.ThrowExceptionIfErrors();
         return loRtn;
     }
-
+    
     [HttpPost]
-    public GLM00500ListDTO<GLM00500BudgetDTGridDTO> GLM00500GetBudgetDTList()
+    public IAsyncEnumerable<GLM00500BudgetDTGridDTO> GLM00500GetBudgetDTListStream()
     {
         var loEx = new R_Exception();
         var loCls = new GLM00500DetailCls();
         var loDbParams = new GLM00500ParameterDb();
-        var loReturn = new GLM00500ListDTO<GLM00500BudgetDTGridDTO>();
+        List<GLM00500BudgetDTGridDTO> loResult = null;
+        IAsyncEnumerable<GLM00500BudgetDTGridDTO> loReturn = null;
 
         try
         {
@@ -98,7 +99,8 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
             loDbParams.CGLACCOUNT_TYPE = R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CGLACCOUNT_TYPE);
             loDbParams.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
             
-            loReturn.Data = loCls.GLM00500GetBudgetDTListDb(loDbParams);
+            loResult = loCls.GLM00500GetBudgetDTListDb(loDbParams);
+            loReturn = GetStream(loResult);
         }
         catch (Exception ex)
         {
@@ -133,18 +135,20 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
     }
     
     [HttpPost]
-    public GLM00500ListDTO<GLM00500BudgetWeightingDTO> GLM00500GetBudgetWeightingList()
+    public IAsyncEnumerable<GLM00500BudgetWeightingDTO> GLM00500GetBudgetWeightingListStream()
     {
         var loEx = new R_Exception();
         var loCls = new GLM00500DetailCls();
         var loDbParams = new GLM00500ParameterDb();
-        var loReturn = new GLM00500ListDTO<GLM00500BudgetWeightingDTO>();
+        List<GLM00500BudgetWeightingDTO> loResult = null;
+        IAsyncEnumerable<GLM00500BudgetWeightingDTO> loReturn = null;
         
         try
         {
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbParams.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
-            loReturn.Data = loCls.GLM00500GetBudgetWeightingListDb(loDbParams);
+            loResult = loCls.GLM00500GetBudgetWeightingListDb(loDbParams);
+            loReturn = GetStream(loResult);
         }
         catch (Exception ex)
         {
@@ -156,7 +160,7 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
     }
 
     [HttpPost]
-    public GLM00500PeriodCount GLM00500GetPeriodCount()
+    public GLM00500PeriodCount GLM00500GetPeriodCount(GLM00500YearParamsDTO poParams)
     {
         var loEx = new R_Exception();
         var loCls = new GLM00500DetailCls();
@@ -166,7 +170,7 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
         try
         {
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbParams.CYEAR = R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CYEAR);
+            loDbParams.CYEAR = poParams.CYEAR;
             var lnResult = loCls.GLM00500GetPeriodCountDb(loDbParams);
             loReturn = lnResult;
         }
@@ -272,4 +276,17 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
         
         loEx.ThrowExceptionIfErrors();
     }
+    
+    
+    #region "Helper ListStream Functions"
+
+    private async IAsyncEnumerable<T> GetStream<T>(List<T> poParameter)
+    {
+        foreach (T item in poParameter)
+        {
+            yield return item;
+        }
+    }
+    
+    #endregion
 }

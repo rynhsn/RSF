@@ -1,93 +1,96 @@
 ﻿@page "/GLM00500UploadPopup"
-@using GLM00500Common.DTOs
+@using R_BlazorFrontEnd.Controls.Events
 @inherits R_Page
 @attribute [R_Page(Title = "Upload Account Budget")]
 
-<R_StackLayout Row Spacing="2" Class="mb-5">
-    <R_ItemLayout col="2">
-        <R_Label>Select File to Upload</R_Label>
+<R_StackLayout Row Spacing="3" Class="mb-3">
+    <R_ItemLayout>
+        <R_Label>Source File</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="6">
-        <R_InputFile OnChange="FileHasSelected" Accepts="new[] { R_eFileSelectAccept.Excel }"/>
-    </R_ItemLayout>
-    <R_ItemLayout>
-        <R_Button OnClick="UploadProcess">Upload</R_Button>
+        <R_InputFile OnChange="ChooseFile" Accepts="new[] { R_eFileSelectAccept.Excel }"/>
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_StackLayout Row Class="mb-5">
+<R_StackLayout Row Class="mb-3">
     <R_ItemLayout xs="12">
         <R_Grid @ref="_gridRef"
                 DataSource="_viewModel.UploadedList"
                 Pageable
                 R_GridType="R_eGridType.Batch"
-                R_ConductorGridSource="_conductorRef"
                 R_ServiceGetListRecord="GetUploadedList"
+                R_RowRender="@((R_GridRowRenderEventArgs args) => R_RowRender(args))"
                 AllowDeleteRow="false"
                 AllowEditRow="false"
                 AllowAddNewRow="false"
-                Width="1000px">
+                Width="1000px"
+                Height="400px">
             <R_GridColumns>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.INO)" HeaderText="No." Width="50px" Filterable="false"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.CBUDGET_YEAR)" HeaderText="Budget Year" Width="130px"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.CBUDGET_NO)" HeaderText="Budget No." Width="150px"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.CBUDGET_NAME)" HeaderText="Budget Name" Width="150px"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.CCURRENCY_TYPE)" HeaderText="Currency Type" Width="150px"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.CGLACCOUNT_TYPE)" HeaderText="Account Type" Width="150px"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.CGLACCOUNT_NO)" HeaderText="Account No." Width="150px"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.CCENTER_CODE)" HeaderText="Center" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.NPERIOD1)" HeaderText="Period 1" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.NPERIOD2)" HeaderText="Period 2" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.NPERIOD3)" HeaderText="Period 3" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.NPERIOD4)" HeaderText="Period 4" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.NPERIOD5)" HeaderText="Period 5" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.NPERIOD6)" HeaderText="Period 6" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.NPERIOD7)" HeaderText="Period 7" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.NPERIOD8)" HeaderText="Period 8" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.NPERIOD9)" HeaderText="Period 9" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.NPERIOD10)" HeaderText="Period 10" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.NPERIOD11)" HeaderText="Period 11" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.NPERIOD12)" HeaderText="Period 12" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.NPERIOD13)" HeaderText="Period 13" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.NPERIOD14)" HeaderText="Period 14" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadFromSystemDTO.NPERIOD15)" HeaderText="Period 15" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.SEQ_NO)" HeaderText="No." Width="100px"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.BUDGET_YEAR)" HeaderText="Budget Year" Width="130px"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.BUDGET_NO)" HeaderText="Budget No." Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.BUDGET_NAME)" HeaderText="Budget Name" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.CURRENCY_TYPE)" HeaderText="Currency Type" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.ACCOUNT_TYPE)" HeaderText="Account Type" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.ACCOUNT_NO)" HeaderText="Account No." Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.CENTER)" HeaderText="Center" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_1)" HeaderText="Period 1" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_2)" HeaderText="Period 2" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_3)" HeaderText="Period 3" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_4)" HeaderText="Period 4" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_5)" HeaderText="Period 5" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_6)" HeaderText="Period 6" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_7)" HeaderText="Period 7" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_8)" HeaderText="Period 8" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_9)" HeaderText="Period 9" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_10)" HeaderText="Period 10" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_11)" HeaderText="Period 11" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_12)" HeaderText="Period 12" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_13)" HeaderText="Period 13" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_14)" HeaderText="Period 14" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_15)" HeaderText="Period 15" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.VALID)" HeaderText="Valid" Width="150px" Visible="@_viewModel.IsSuccess"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.NOTES)" HeaderText="Notes" Width="300px" Visible="@_viewModel.IsSuccess"/>
             </R_GridColumns>
         </R_Grid>
     </R_ItemLayout>
 </R_StackLayout>
-
-<R_ConductorGrid
-    @ref="_conductorRef"
-    R_ViewModel="_viewModel"
-    R_IsHeader="true"/>
-
-<R_StackLayout Row Class="mb-5">
+<R_StackLayout Row Class="mb-3">
     <R_ItemLayout xs="12">
-        <R_Grid @ref="_gridErrorRef"
-                DataSource="_viewModel.ErrorList"
-                Pageable
-                R_GridType="R_eGridType.Batch"
-                R_ConductorGridSource="_conductorErrorRef"
-                R_ServiceGetListRecord="GetErrorList"
-                AllowDeleteRow="false"
-                AllowEditRow="false"
-                AllowAddNewRow="false"
-                Width="1000px">
-            <R_GridColumns>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadErrorDTO.INO)" HeaderText="No." Width="50px" Filterable="false"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadErrorDTO.CERROR_MSG)" HeaderText="Error Description" Width="900px" Filterable="false"/>
-            </R_GridColumns>
-        </R_Grid>
+        <R_ProgressBar Label="@_viewModel.Message" MaxValue="100" Value="@_viewModel.Percentage"></R_ProgressBar>
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_ConductorGrid
-    @ref="_conductorErrorRef"
-    R_ViewModel="_viewModel"
-    R_IsHeader="true"/>
-
-<R_StackLayout>
-    <R_ItemLayout>
-        <R_Button OnClick="CloseEvent">Close</R_Button>
-    </R_ItemLayout>
+<R_StackLayout Row>
+    <R_StackLayout Row Spacing="3" Class="align-content-start">
+        <R_ItemLayout>
+            <R_Label>Total Row(s)</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_NumericTextBox @bind-Value="_viewModel.TotalRows" Enabled="false" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Label>Valid</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_NumericTextBox class="bg-success" @bind-Value="_viewModel.ValidRows" Enabled="false" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Label>Invalid</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_NumericTextBox class="bg-danger" @bind-Value="_viewModel.InvalidRows" Enabled="false" Arrows="false"/>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row Spacing="2" Class="align-content-end">
+        <R_ItemLayout>
+            <R_Button OnClick="CloseEvent">Close</R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout hidden="@_viewModel.IsSuccess">
+            <R_Button OnClick="OnClickProcess" Enabled="@_viewModel.HasData">Process</R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout hidden="@(!_viewModel.IsSuccess)">
+            <R_Button OnClick="OnClickSave">Save To Excel</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
 </R_StackLayout>

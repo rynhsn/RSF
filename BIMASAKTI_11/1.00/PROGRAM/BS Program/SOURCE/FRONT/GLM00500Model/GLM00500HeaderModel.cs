@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GLM00500Common;
 using GLM00500Common.DTOs;
@@ -32,6 +33,11 @@ namespace GLM00500Model
             throw new NotImplementedException();
         }
 
+        public IAsyncEnumerable<GLM00500BudgetHDDTO> GLM00500GetBudgetHDListStream()
+        {
+            throw new NotImplementedException();
+        }
+
         public GLM00500GSMPeriodDTO GLM00500GetPeriods()
         {
             throw new NotImplementedException();
@@ -47,7 +53,7 @@ namespace GLM00500Model
             throw new NotImplementedException();
         }
 
-        public void GLM00500FinalizeBudget()
+        public void GLM00500FinalizeBudget(GLM00500CrecParamsDTO poParams)
         {
             throw new NotImplementedException();
         }
@@ -70,6 +76,30 @@ namespace GLM00500Model
                 loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500ListDTO<GLM00500BudgetHDDTO>>(
                     _RequestServiceEndPoint,
                     nameof(IGLM00500Header.GLM00500GetBudgetHDList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+        
+        public async Task<List<GLM00500BudgetHDDTO>> GLM00500GetBudgetHDListStreamModel()
+        {
+            var loEx = new R_Exception();
+            List<GLM00500BudgetHDDTO> loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GLM00500BudgetHDDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGLM00500Header.GLM00500GetBudgetHDListStream),
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
@@ -159,16 +189,17 @@ namespace GLM00500Model
         }
 
         //finalize budget
-        public async Task GLM00500FinalizeBudgetModel()
+        public async Task GLM00500FinalizeBudgetModel(GLM00500CrecParamsDTO poParams)
         {
             var loEx = new R_Exception();
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-                await R_HTTPClientWrapper.R_APIRequestObject<GLM00500ListDTO<GLM00500FunctionDTO>>(
+                await R_HTTPClientWrapper.R_APIRequestObject<GLM00500ListDTO<GLM00500FunctionDTO>, GLM00500CrecParamsDTO>(
                     _RequestServiceEndPoint,
                     nameof(IGLM00500Header.GLM00500FinalizeBudget),
+                    poParams,
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);

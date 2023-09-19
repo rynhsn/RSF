@@ -1,5 +1,4 @@
 using System;
-using R_APICommonDTO;
 
 namespace GSM05000Common.DTOs
 {
@@ -43,10 +42,5 @@ namespace GSM05000Common.DTOs
         
         public string CUPDATE_BY {get; set;}
         public DateTime DUPDATE_DATE {get; set;}
-    }
-
-    public class GSM005000ExistDTO : R_APIResultBaseDTO
-    {
-        public int EXIST { get; set; }
     }
 }

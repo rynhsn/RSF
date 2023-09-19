@@ -37,39 +37,10 @@ namespace GSM02000Model
         {
             throw new NotImplementedException();
         }
-        public GSM02000ActiveInactiveDTO SetActiveInactive()
+        public GSM02000ActiveInactiveDTO SetActiveInactive(GSM02000ActiveInactiveParamsDTO poParams)
         {
             throw new NotImplementedException();
         }
-        #endregion
-
-        #region GetAllAsync
-
-        public async Task<GSM02000ListDTO<GSM02000GridDTO>> GetAllAsync()
-        {
-            var loEx = new R_Exception();
-            GSM02000ListDTO<GSM02000GridDTO> loResult = null;
-
-            try
-            {
-                R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM02000ListDTO<GSM02000GridDTO>>(
-                    _RequestServiceEndPoint,
-                    nameof(IGSM02000.GetAllSalesTax),
-                    DEFAULT_MODULE,
-                    _SendWithContext,
-                    _SendWithToken);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-
-            return loResult;
-        }
-
         #endregion
 
         #region GetAllStreamAsync
@@ -132,16 +103,17 @@ namespace GSM02000Model
         #endregion
         
         #region SetActiveInactive
-        public async Task SetActiveInactiveAsync()
+        public async Task SetActiveInactiveAsync(GSM02000ActiveInactiveParamsDTO poParams)
         {
             var loEx = new R_Exception();
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-                await R_HTTPClientWrapper.R_APIRequestObject<GSM02000ActiveInactiveDTO>(
+                await R_HTTPClientWrapper.R_APIRequestObject<GSM02000ActiveInactiveDTO, GSM02000ActiveInactiveParamsDTO>(
                     _RequestServiceEndPoint,
                     nameof(IGSM02000.SetActiveInactive),
+                    poParams,
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);

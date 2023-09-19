@@ -161,9 +161,10 @@ public partial class GSM02000 : R_Page
 
     private R_AddButton R_AddBtn;
     private R_Button R_ActiveInActiveBtn;
-    private R_Lookup R_LookupBtn;
+    public R_Lookup R_LookupBtnIn;
+    private R_Lookup R_LookupBtnOut;
 
-    private void Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
+    private void BeforeOpenLookupIn(R_BeforeOpenLookupEventArgs eventArgs)
     {
         var param = new GSL00500ParameterDTO
         {
@@ -180,27 +181,59 @@ public partial class GSM02000 : R_Page
         eventArgs.TargetPageType = typeof(GSL00500);
     }
 
-    private void After_Open_Lookup(R_AfterOpenLookupEventArgs eventArgs)
+    private void AfterOpenLookupIn(R_AfterOpenLookupEventArgs eventArgs)
     {
         var loTempResult = (GSL00500DTO)eventArgs.Result;
         if (loTempResult == null)
             return;
 
         var loGetData = (GSM02000DTO)_conductorRef.R_GetCurrentData();
-        loGetData.CGLACCOUNT_NO = loTempResult.CGLACCOUNT_NO;
-        loGetData.CGLACCOUNT_NAME = loTempResult?.CGLACCOUNT_NAME;
+        loGetData.CTAXIN_GL_ACCOUNT_NO = loTempResult.CGLACCOUNT_NO;
+        loGetData.CTAXIN_GL_ACCOUNT_NAME = loTempResult?.CGLACCOUNT_NAME;
+    }
+
+    private void BeforeOpenLookupOut(R_BeforeOpenLookupEventArgs eventArgs)
+    {
+        var param = new GSL00500ParameterDTO
+        {
+            CPROPERTY_ID = "",
+            CPROGRAM_CODE = "GSM02000",
+            CBSIS = "",
+            CDBCR = "",
+            LCENTER_RESTR = false,
+            LUSER_RESTR = false,
+            CCENTER_CODE = "",
+            CUSER_LANGUAGE = _clientHelper.CultureUI.TwoLetterISOLanguageName
+        };
+        eventArgs.Parameter = param;
+        eventArgs.TargetPageType = typeof(GSL00500);
+    }
+
+    private void AfterOpenLookupOut(R_AfterOpenLookupEventArgs eventArgs)
+    {
+        var loTempResult = (GSL00500DTO)eventArgs.Result;
+        if (loTempResult == null)
+            return;
+
+        var loGetData = (GSM02000DTO)_conductorRef.R_GetCurrentData();
+        loGetData.CTAXOUT_GL_ACCOUNT_NO = loTempResult.CGLACCOUNT_NO;
+        loGetData.CTAXOUT_GL_ACCOUNT_NAME = loTempResult?.CGLACCOUNT_NAME;
     }
 
     private void R_SetAdd(R_SetEventArgs eventArgs)
     {
-        if (R_LookupBtn != null)
-            R_LookupBtn.Enabled = eventArgs.Enable;
+        if (R_LookupBtnOut != null)
+            R_LookupBtnOut.Enabled = eventArgs.Enable;
+        if (R_LookupBtnIn != null)
+            R_LookupBtnIn.Enabled = eventArgs.Enable;
     }
 
     private void R_SetEdit(R_SetEventArgs eventArgs)
     {
-        if (R_LookupBtn != null)
-            R_LookupBtn.Enabled = eventArgs.Enable;
+        if (R_LookupBtnOut != null)
+            R_LookupBtnOut.Enabled = eventArgs.Enable;
+        if (R_LookupBtnIn != null)
+            R_LookupBtnIn.Enabled = eventArgs.Enable;
     }
 
     #endregion

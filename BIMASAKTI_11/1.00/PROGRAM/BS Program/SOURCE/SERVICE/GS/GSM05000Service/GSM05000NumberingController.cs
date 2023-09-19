@@ -91,10 +91,10 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
     }
 
     [HttpPost]
-    public GSM05000ListDTO<GSM05000NumberingGridDTO> GetNumberingList()
+    public IAsyncEnumerable<GSM05000NumberingGridDTO> GetNumberingListStream()
     {
         R_Exception loEx = new R_Exception();
-        GSM05000ListDTO<GSM05000NumberingGridDTO> loRtn = null;
+        IAsyncEnumerable<GSM05000NumberingGridDTO> loRtn = null;
         List<GSM05000NumberingGridDTO> loResult;
         GSM05000ParameterDb loDbPar;
         GSM05000NumberingCls loCls;
@@ -109,7 +109,7 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
 
             loCls = new GSM05000NumberingCls();
             loResult = loCls.GetNumberingListDb(loDbPar);
-            loRtn = new GSM05000ListDTO<GSM05000NumberingGridDTO> { Data = loResult };
+            loRtn = GetNumberingStream(loResult);
         }
         catch (Exception ex)
         {
@@ -122,7 +122,7 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
     }
 
     [HttpPost]
-    public GSM05000NumberingHeaderDTO GetNumberingHeader()
+    public GSM05000NumberingHeaderDTO GetNumberingHeader(GSM05000TrxCodeParamsDTO poParams)
     {
         R_Exception loEx = new R_Exception();
         GSM05000NumberingHeaderDTO loRtn = null;
@@ -134,8 +134,7 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
             loDbPar = new GSM05000ParameterDb();
 
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbPar.CTRANSACTION_CODE =
-                R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE);
+            loDbPar.CTRANSACTION_CODE = poParams.CTRANSACTION_CODE;
 
             loCls = new GSM05000NumberingCls();
             loRtn = loCls.GetNumberingHeaderDb(loDbPar);
@@ -149,4 +148,15 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
 
         return loRtn;
     }
+    
+    
+    #region "Helper ListStream Functions"
+    private async IAsyncEnumerable<GSM05000NumberingGridDTO> GetNumberingStream(List<GSM05000NumberingGridDTO> poParameter)
+    {
+        foreach (GSM05000NumberingGridDTO item in poParameter)
+        {
+            yield return item;
+        }
+    }
+    #endregion
 }

@@ -25,110 +25,20 @@ public class GLM00500UploadModel : R_BusinessObjectServiceClientBase<GLM00500Upl
     {
     }
 
-
-    public GLM00500UploadCheckErrorDTO GLM00500UploadCheckBudget(List<GLM00500UploadToSystemDTO> poUploadBudgetDTO)
+    public GLM00500UploadErrorReturnDTO GLM00500UploadGetBudgetList()
     {
         throw new NotImplementedException();
     }
 
-    public void GLM00500UploadBudget(List<GLM00500UploadToSystemDTO> poUploadBudgetDTO)
-    {
-        throw new NotImplementedException();
-    }
-
-    public GLM00500ListDTO<GLM00500UploadFromSystemDTO> GLM00500UploadGetBudgetList()
-    {
-        throw new NotImplementedException();
-    }
-
-    public GLM00500UploadErrorDTO GLM00500UploadGetErrorMsg()
-    {
-        throw new NotImplementedException();
-    }
-    
-    
-    public async Task<GLM00500UploadCheckErrorDTO> GLM00500UploadCheckBudgetModel(List<GLM00500UploadToSystemDTO> poUploadBudgetDTO)
+    public async Task<GLM00500UploadErrorReturnDTO> GLM00500UploadGetBudgetListModel()
     {
         var loEx = new R_Exception();
-        GLM00500UploadCheckErrorDTO loResult = null;
+        GLM00500UploadErrorReturnDTO loResult = null;
 
         try
         {
             R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500UploadCheckErrorDTO, List<GLM00500UploadToSystemDTO>>(
-                _RequestServiceEndPoint,
-                nameof(IGLM00500Upload.GLM00500UploadCheckBudget),
-                poUploadBudgetDTO,
-                DEFAULT_MODULE,
-                _SendWithContext,
-                _SendWithToken);
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-
-        loEx.ThrowExceptionIfErrors();
-        return loResult;
-    }
-    
-    public async Task GLM00500UploadBudgetModel(List<GLM00500UploadToSystemDTO> poUploadBudgetDTO)
-    {
-        var loEx = new R_Exception();
-
-        try
-        {
-            R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-            await R_HTTPClientWrapper.R_APIRequestObject<GLM00500UploadCheckErrorDTO, List<GLM00500UploadToSystemDTO>>(
-                _RequestServiceEndPoint,
-                nameof(IGLM00500Upload.GLM00500UploadBudget),
-                poUploadBudgetDTO,
-                DEFAULT_MODULE,
-                _SendWithContext,
-                _SendWithToken);
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-
-        loEx.ThrowExceptionIfErrors();
-    }
-    
-    public async Task<GLM00500ListDTO<GLM00500UploadErrorDTO>> GLM00500UploadGetErrorMsgModel(List<GLM00500UploadParameterGetErrorDTO> poParam)
-    {
-        var loEx = new R_Exception();
-        GLM00500ListDTO<GLM00500UploadErrorDTO> loResult = null;
-
-        try
-        {
-            R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500ListDTO<GLM00500UploadErrorDTO>, List<GLM00500UploadParameterGetErrorDTO>>(
-                _RequestServiceEndPoint,
-                nameof(IGLM00500Upload.GLM00500UploadGetErrorMsg),
-                poParam,
-                DEFAULT_MODULE,
-                _SendWithContext,
-                _SendWithToken);
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-
-        loEx.ThrowExceptionIfErrors();
-        return loResult;
-    }
-    
-    public async Task<GLM00500ListDTO<GLM00500UploadFromSystemDTO>> GLM00500UploadGetBudgetListModel()
-    {
-        var loEx = new R_Exception();
-        GLM00500ListDTO<GLM00500UploadFromSystemDTO> loResult = null;
-
-        try
-        {
-            R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500ListDTO<GLM00500UploadFromSystemDTO>>(
+            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500UploadErrorReturnDTO>(
                 _RequestServiceEndPoint,
                 nameof(IGLM00500Upload.GLM00500UploadGetBudgetList),
                 DEFAULT_MODULE,

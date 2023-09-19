@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GLM00500Common;
@@ -34,13 +35,13 @@ namespace GLM00500Model.ViewModel
         public async Task GetBudgetHDList(int pnYear)
         {
             var loEx = new R_Exception();
-            GLM00500ListDTO<GLM00500BudgetHDDTO> loResult;
+            List<GLM00500BudgetHDDTO> loResult;
 
             try
             {
                 R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.CYEAR, pnYear.ToString());
-                loResult = await _model.GLM00500GetBudgetHDListModel();
-                BudgetHDList = new ObservableCollection<GLM00500BudgetHDDTO>(loResult.Data);
+                loResult = await _model.GLM00500GetBudgetHDListStreamModel();
+                BudgetHDList = new ObservableCollection<GLM00500BudgetHDDTO>(loResult);
             }
             catch (R_Exception ex)
             {
@@ -171,8 +172,8 @@ namespace GLM00500Model.ViewModel
 
             try
             {
-                R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.CREC_ID, pcRecId);
-                await _model.GLM00500FinalizeBudgetModel();
+                GLM00500CrecParamsDTO loParams = new(){CREC_ID = pcRecId};
+                await _model.GLM00500FinalizeBudgetModel(loParams);
             }
             catch (R_Exception ex)
             {

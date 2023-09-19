@@ -19,12 +19,12 @@
                 <R_GridTextColumn FieldName="CTAX_NAME" HeaderText="Tax Name" Width="150px"/>
                 <R_GridTextColumn FieldName="CROUNDING_MODE_DESCR" HeaderText="Rounding Mode" Width="150px"/>
                 <R_GridNumericColumn FieldName="IROUNDING" HeaderText="Rounding Unit" Width="150px"/>
-                <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="GL Account No" Width="150px"/>
-                <R_GridTextColumn FieldName="CGLACCOUNT_NAME" HeaderText="GL Account Name" Width="250px"/>
-                <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Last Update By" Width="150px"/>
-                <R_GridDateTimePickerColumn FieldName="DUPDATE_DATE" HeaderText="Last Update Date" Width="150px"/>
-                <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Create By" Width="150px"/>
-                <R_GridDateTimePickerColumn FieldName="DCREATE_DATE" HeaderText="Create Date" Width="150px"/>
+                <R_GridTextColumn FieldName="CTAXIN_GLACCOUNT_NO" HeaderText="Tax In GL Account" Width="150px"/>
+                <R_GridTextColumn FieldName="CTAXOUT_GLACCOUNT_NO" HeaderText="Tax Out GL Account" Width="250px"/>
+                <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Updated By" Width="150px"/>
+                <R_GridDateTimePickerColumn FieldName="DUPDATE_DATE" HeaderText="Updated Date" Width="150px"/>
+                <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Created By" Width="150px"/>
+                <R_GridDateTimePickerColumn FieldName="DCREATE_DATE" HeaderText="Created Date" Width="150px"/>
 
             </R_GridColumns>
         </R_Grid>
@@ -71,19 +71,6 @@
     </R_StackLayout>
 
     <R_StackLayout Row="true">
-        @* <R_ItemLayout col="1"> *@
-        @*     <R_Label>Tax %</R_Label> *@
-        @* </R_ItemLayout> *@
-        @* *@
-        @* <R_ItemLayout col="1" Class="me-5"> *@
-        @*     <R_NumericTextBox @bind-Value="@_GSM02000ViewModel.Data.NTAX_PERCENTAGE" *@
-        @*                       R_ConductorSource="@_conductorRef" *@
-        @*                       R_EnableAdd="true" *@
-        @*                       R_EnableEdit="true" *@
-        @*                       Min="0" *@
-        @*                       Max="100"/> *@
-        @* </R_ItemLayout> *@
-
         <R_ItemLayout col="2">
             <R_Label>Rounding Mode*</R_Label>
         </R_ItemLayout>
@@ -120,22 +107,44 @@
 
     <R_StackLayout Row="true">
         <R_ItemLayout col="2">
-            <R_Label>GL Account No.</R_Label>
+            <R_Label>Tax In GL Account No</R_Label>
         </R_ItemLayout>
 
         <R_ItemLayout col="2">
-            <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NO"
+            <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAXIN_GL_ACCOUNT_NO"
                        R_ConductorSource="@_conductorRef"
                        R_EnableAdd="true"
                        R_EnableEdit="true"/>
         </R_ItemLayout>
 
         <R_ItemLayout>
-            <R_Lookup @ref="@R_LookupBtn" R_Before_Open_Lookup="@Before_Open_Lookup" R_After_Open_Lookup="@After_Open_Lookup"></R_Lookup>
+            <R_Lookup @ref="@R_LookupBtnIn" R_Before_Open_Lookup="@BeforeOpenLookupIn" R_After_Open_Lookup="@AfterOpenLookupIn"></R_Lookup>
         </R_ItemLayout>
 
         <R_ItemLayout col="4">
-            <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CGLACCOUNT_NAME"
+            <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAXIN_GL_ACCOUNT_NAME"
+                       R_ConductorSource="@_conductorRef"
+                       Enabled="false"/>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row="true">
+        <R_ItemLayout col="2">
+            <R_Label>Tax Out GL Account No</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAXOUT_GL_ACCOUNT_NO"
+                       R_ConductorSource="@_conductorRef"
+                       R_EnableAdd="true"
+                       R_EnableEdit="true"/>
+        </R_ItemLayout>
+
+        <R_ItemLayout>
+            <R_Lookup @ref="@R_LookupBtnOut" R_Before_Open_Lookup="@BeforeOpenLookupOut" R_After_Open_Lookup="@AfterOpenLookupOut"></R_Lookup>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="4">
+            <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAXOUT_GL_ACCOUNT_NAME"
                        R_ConductorSource="@_conductorRef"
                        Enabled="false"/>
         </R_ItemLayout>

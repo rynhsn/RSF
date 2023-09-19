@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GSM05000Common;
 using GSM05000Common.DTOs;
@@ -24,7 +25,7 @@ namespace GSM05000Model
         {
         }
 
-        public GSM05000ListDTO<GSM05000GridDTO> GetTransactionCodeList()
+        public IAsyncEnumerable<GSM05000GridDTO> GetTransactionCodeListStream()
         {
             throw new NotImplementedException();
         }
@@ -34,22 +35,22 @@ namespace GSM05000Model
             throw new NotImplementedException();
         }
 
-        public GSM005000ExistDTO CheckExistData()
+        public GSM05000ExistDTO CheckExistData(GSM05000TrxCodeParamsDTO poParams)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<GSM05000ListDTO<GSM05000GridDTO>> GetAllAsync()
+        public async Task<List<GSM05000GridDTO>> GetAllStreamAsync()
         {
             var loEx = new R_Exception();
-            GSM05000ListDTO<GSM05000GridDTO> loResult = null;
+            List<GSM05000GridDTO> loResult = null;
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ListDTO<GSM05000GridDTO>>(
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSM05000GridDTO>(
                     _RequestServiceEndPoint,
-                    nameof(IGSM05000.GetTransactionCodeList),
+                    nameof(IGSM05000.GetTransactionCodeListStream),
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
@@ -89,17 +90,18 @@ namespace GSM05000Model
             return loResult;
         }
 
-        public async Task<GSM005000ExistDTO> CheckExistDataAsync()
+        public async Task<GSM05000ExistDTO> CheckExistDataAsync(GSM05000TrxCodeParamsDTO poParams)
         {
             var loEx = new R_Exception();
-            GSM005000ExistDTO loResult = null;
+            GSM05000ExistDTO loResult = null;
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM005000ExistDTO>(
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ExistDTO, GSM05000TrxCodeParamsDTO>(
                     _RequestServiceEndPoint,
                     nameof(IGSM05000.CheckExistData),
+                    poParams,
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);

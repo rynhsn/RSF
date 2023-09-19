@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GLM00500Common;
 using GLM00500Common.DTOs;
@@ -26,7 +27,7 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
 
     #region IGLM00500Detail Members not implemented
 
-    public GLM00500ListDTO<GLM00500BudgetDTGridDTO> GLM00500GetBudgetDTList()
+    public IAsyncEnumerable<GLM00500BudgetDTGridDTO> GLM00500GetBudgetDTListStream()
     {
         throw new NotImplementedException();
     }
@@ -36,12 +37,12 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         throw new NotImplementedException();
     }
 
-    public GLM00500ListDTO<GLM00500BudgetWeightingDTO> GLM00500GetBudgetWeightingList()
+    public IAsyncEnumerable<GLM00500BudgetWeightingDTO> GLM00500GetBudgetWeightingListStream()
     {
         throw new NotImplementedException();
     }
 
-    public GLM00500PeriodCount GLM00500GetPeriodCount()
+    public GLM00500PeriodCount GLM00500GetPeriodCount(GLM00500YearParamsDTO poParams)
     {
         throw new NotImplementedException();
     }
@@ -63,17 +64,17 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
 
     #endregion
 
-    public async Task<GLM00500ListDTO<GLM00500BudgetDTGridDTO>> GLM00500GetBudgetDTListModel()
+    public async Task<List<GLM00500BudgetDTGridDTO>> GLM00500GetBudgetDTListStreamModel()
     {
         var loEx = new R_Exception();
-        GLM00500ListDTO<GLM00500BudgetDTGridDTO> loResult = null;
+        List<GLM00500BudgetDTGridDTO> loResult = null;
 
         try
         {
             R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500ListDTO<GLM00500BudgetDTGridDTO>>(
+            loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GLM00500BudgetDTGridDTO>(
                 _RequestServiceEndPoint,
-                nameof(IGLM00500Detail.GLM00500GetBudgetDTList),
+                nameof(IGLM00500Detail.GLM00500GetBudgetDTListStream),
                 DEFAULT_MODULE,
                 _SendWithContext,
                 _SendWithToken);
@@ -111,17 +112,17 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         return loResult;
     }
 
-    public async Task<GLM00500ListDTO<GLM00500BudgetWeightingDTO>> GLM00500GetBudgetWeightingListModel()
+    public async Task<List<GLM00500BudgetWeightingDTO>> GLM00500GetBudgetWeightingListStreamModel()
     {
         var loEx = new R_Exception();
-        GLM00500ListDTO<GLM00500BudgetWeightingDTO> loResult = null;
+        List<GLM00500BudgetWeightingDTO> loResult = null;
 
         try
         {
             R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500ListDTO<GLM00500BudgetWeightingDTO>>(
+            loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GLM00500BudgetWeightingDTO>(
                 _RequestServiceEndPoint,
-                nameof(IGLM00500Detail.GLM00500GetBudgetWeightingList),
+                nameof(IGLM00500Detail.GLM00500GetBudgetWeightingListStream),
                 DEFAULT_MODULE,
                 _SendWithContext,
                 _SendWithToken);
@@ -135,7 +136,7 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         return loResult;
     }
 
-    public async Task<GLM00500PeriodCount> GLM00500GetPeriodCountModel()
+    public async Task<GLM00500PeriodCount> GLM00500GetPeriodCountModel(GLM00500YearParamsDTO poParams)
     {
         var loEx = new R_Exception();
         GLM00500PeriodCount loResult = null;
@@ -143,9 +144,10 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         try
         {
             R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500PeriodCount>(
+            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500PeriodCount, GLM00500YearParamsDTO>(
                 _RequestServiceEndPoint,
                 nameof(IGLM00500Detail.GLM00500GetPeriodCount),
+                poParams,
                 DEFAULT_MODULE,
                 _SendWithContext,
                 _SendWithToken);

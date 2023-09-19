@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GSM02000Common;
 using GSM02000Common.DTOs;
@@ -29,23 +30,34 @@ namespace GSM02000Model
             throw new NotImplementedException();
         }
 
+        public IAsyncEnumerable<GSM02000TaxSalesDTO> GSM02000GetAllSalesTaxListStream()
+        {
+            throw new NotImplementedException();
+        }
+
         public GSM02000ListDTO<GSM02000TaxDTO> GSM02000GetAllTaxList()
         {
             throw new NotImplementedException();
         }
+
+        public IAsyncEnumerable<GSM02000TaxDTO> GSM02000GetAllTaxListStream()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
-        public async Task<GSM02000ListDTO<GSM02000TaxSalesDTO>> GetAllSalesTaxListModel()
+        public async Task<List<GSM02000TaxSalesDTO>> GetAllSalesTaxListStreamModel()
         {
             var loEx = new R_Exception();
-            GSM02000ListDTO<GSM02000TaxSalesDTO> loResult = null;
+            List<GSM02000TaxSalesDTO> loResult = null;
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM02000ListDTO<GSM02000TaxSalesDTO>>(
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSM02000TaxSalesDTO>(
                     _RequestServiceEndPoint,
-                    nameof(IGSM02000Tax.GSM02000GetAllSalesTaxList),
+                    nameof(IGSM02000Tax.GSM02000GetAllSalesTaxListStream),
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
@@ -60,17 +72,17 @@ namespace GSM02000Model
             return loResult;
         }
         
-        public async Task<GSM02000ListDTO<GSM02000TaxDTO>> GetAllTaxListModel()
+        public async Task<List<GSM02000TaxDTO>> GetAllTaxListStreamModel()
         {
             var loEx = new R_Exception();
-            GSM02000ListDTO<GSM02000TaxDTO> loResult = null;
+            List<GSM02000TaxDTO> loResult = null;
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM02000ListDTO<GSM02000TaxDTO>>(
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSM02000TaxDTO>(
                     _RequestServiceEndPoint,
-                    nameof(IGSM02000Tax.GSM02000GetAllTaxList),
+                    nameof(IGSM02000Tax.GSM02000GetAllTaxListStream),
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);

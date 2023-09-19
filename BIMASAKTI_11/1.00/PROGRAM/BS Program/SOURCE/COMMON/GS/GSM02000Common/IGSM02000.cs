@@ -7,14 +7,13 @@ namespace GSM02000Common
 {
     public interface IGSM02000Tax : R_IServiceCRUDBase<GSM02000TaxDTO>
     {
-        GSM02000ListDTO<GSM02000TaxSalesDTO> GSM02000GetAllSalesTaxList();
-        GSM02000ListDTO<GSM02000TaxDTO> GSM02000GetAllTaxList();
+        IAsyncEnumerable<GSM02000TaxSalesDTO> GSM02000GetAllSalesTaxListStream();
+        IAsyncEnumerable<GSM02000TaxDTO> GSM02000GetAllTaxListStream();
     }
     public interface IGSM02000 : R_IServiceCRUDBase<GSM02000DTO>
     {
-        GSM02000ListDTO<GSM02000GridDTO> GetAllSalesTax();
         IAsyncEnumerable<GSM02000GridDTO> GetAllSalesTaxStream();
         GSM02000ListDTO<GSM02000RoundingDTO> GetAllRounding();
-        GSM02000ActiveInactiveDTO SetActiveInactive();
+        GSM02000ActiveInactiveDTO SetActiveInactive(GSM02000ActiveInactiveParamsDTO poParams);
     }
 }

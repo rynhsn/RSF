@@ -13,8 +13,7 @@
         public const string CROUNDING_METHOD = "CROUNDING_METHOD";
         public const string CDIST_METHOD = "CDIST_METHOD";
         public const string CBW_CODE = "CBW_CODE";
-        public const string CPROCESS_ID = "CPROCESS_ID";
-
-        public const string BULKDATA = "BULKDATA";
+        //upload
+        public const string CKEY_GUID = "CKEY_GUID";
     }
 }

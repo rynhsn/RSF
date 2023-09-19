@@ -90,11 +90,12 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
         return loRtn;
     }
 
+
     [HttpPost]
-    public GSM05000ListDTO<GSM05000ApprovalUserDTO> GSM05000GetApprovalList()
+    public IAsyncEnumerable<GSM05000ApprovalUserDTO> GSM05000GetApprovalListStream()
     {
         R_Exception loEx = new R_Exception();
-        GSM05000ListDTO<GSM05000ApprovalUserDTO> loRtn = null;
+        IAsyncEnumerable<GSM05000ApprovalUserDTO> loRtn = null;
         List<GSM05000ApprovalUserDTO> loResult;
         GSM05000ParameterDb loDbPar;
         GSM05000ApprovalUserCls loCls;
@@ -110,7 +111,8 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
 
             loCls = new GSM05000ApprovalUserCls();
             loResult = loCls.GSM05000GetApprovalUser(loDbPar);
-            loRtn = new GSM05000ListDTO<GSM05000ApprovalUserDTO> { Data = loResult };
+            // loRtn = GetApprovalStream(loResult);
+            loRtn = GetStream(loResult);
         }
         catch (Exception ex)
         {
@@ -123,7 +125,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     }
 
     [HttpPost]
-    public GSM05000ApprovalHeaderDTO GSM05000GetApprovalHeader()
+    public GSM05000ApprovalHeaderDTO GSM05000GetApprovalHeader(GSM05000TrxCodeParamsDTO poParams)
     {
         R_Exception loEx = new R_Exception();
         GSM05000ApprovalHeaderDTO loRtn = null;
@@ -135,7 +137,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
             loDbPar = new GSM05000ParameterDb
             {
                 CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
-                CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE)
+                CTRANSACTION_CODE = poParams.CTRANSACTION_CODE
             };
 
             loCls = new GSM05000ApprovalUserCls();
@@ -152,7 +154,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     }
 
     [HttpPost]
-    public string GSM05000ValidationForAction()
+    public string GSM05000ValidationForAction(GSM05000TrxDeptParamsDTO poParams)
     {
         R_Exception loEx = new R_Exception();
         string loRtn = null;
@@ -165,8 +167,8 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
             {
                 CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
                 CUSER_ID = R_BackGlobalVar.USER_ID,
-                CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE),
-                CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CDEPT_CODE),
+                CTRANSACTION_CODE = poParams.CTRANSACTION_CODE,
+                CDEPT_CODE = poParams.CDEPT_CODE,
             };
 
             loCls = new GSM05000ApprovalUserCls();
@@ -183,11 +185,11 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     }
 
     [HttpPost]
-    public GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> GSM05000GetApprovalDepartment()
+    public IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000GetApprovalDepartmentStream()
     {
         R_Exception loEx = new R_Exception();
         List<GSM05000ApprovalDepartmentDTO> loResult;
-        GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> loRtn = null;
+        IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> loRtn = null;
         GSM05000ParameterDb loDbPar;
         GSM05000ApprovalUserCls loCls;
 
@@ -200,7 +202,8 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
 
             loCls = new GSM05000ApprovalUserCls();
             loResult = loCls.GSM05000GetApprovalDepartment(loDbPar);
-            loRtn = new GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> { Data = loResult };
+            // loRtn = GetApprovalDepartmentStream(loResult);
+            loRtn = GetStream(loResult);
         }
         catch (Exception ex)
         {
@@ -213,11 +216,12 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     }
 
     [HttpPost]
-    public GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> GSM05000DepartmentChangeSequence()
+    public IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000DepartmentChangeSequenceStream(
+        GSM05000TrxCodeParamsDTO poParams)
     {
         R_Exception loEx = new R_Exception();
         List<GSM05000ApprovalDepartmentDTO> loResult;
-        GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> loRtn = null;
+        IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> loRtn = null;
         GSM05000ParameterDb loDbPar;
         GSM05000ApprovalUserCls loCls;
 
@@ -225,12 +229,13 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
         {
             loDbPar = new GSM05000ParameterDb
             {
-                CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE)
+                CTRANSACTION_CODE = poParams.CTRANSACTION_CODE
             };
 
             loCls = new GSM05000ApprovalUserCls();
             loResult = loCls.GSM05000DepartmentChangeSequence(loDbPar);
-            loRtn = new GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> { Data = loResult };
+            // loRtn = DepartmentChangeSequenceStream(loResult);
+            loRtn = GetStream(loResult);
         }
         catch (Exception ex)
         {
@@ -243,11 +248,11 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     }
 
     [HttpPost]
-    public GSM05000ListDTO<GSM05000ApprovalUserDTO> GSM05000GetUserSequenceData()
+    public IAsyncEnumerable<GSM05000ApprovalUserDTO> GSM05000GetUserSequenceDataStream()
     {
         R_Exception loEx = new R_Exception();
         List<GSM05000ApprovalUserDTO> loResult;
-        GSM05000ListDTO<GSM05000ApprovalUserDTO> loRtn = null;
+        IAsyncEnumerable<GSM05000ApprovalUserDTO> loRtn = null;
         GSM05000ParameterDb loDbPar;
         GSM05000ApprovalUserCls loCls;
 
@@ -261,7 +266,8 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
 
             loCls = new GSM05000ApprovalUserCls();
             loResult = loCls.GSM05000GetUserSequenceData(loDbPar);
-            loRtn = new GSM05000ListDTO<GSM05000ApprovalUserDTO> { Data = loResult };
+            // loRtn = GetUserSequenceDataStream(loResult);
+            loRtn = GetStream(loResult);
         }
         catch (Exception ex)
         {
@@ -296,11 +302,12 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     }
 
     [HttpPost]
-    public GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartment()
+    public IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentStream(
+        GSM05000DeptCodeParamsDTO poParams)
     {
         R_Exception loEx = new R_Exception();
         List<GSM05000ApprovalDepartmentDTO> loResult;
-        GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> loRtn = null;
+        IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> loRtn = null;
         GSM05000ParameterDb loDbPar;
         GSM05000ApprovalUserCls loCls;
 
@@ -309,12 +316,13 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
             loDbPar = new GSM05000ParameterDb
             {
                 CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
-                CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CDEPT_CODE)
+                CDEPT_CODE = poParams.CDEPT_CODE
             };
 
             loCls = new GSM05000ApprovalUserCls();
             loResult = loCls.GSM05000LookupApprovalDepartment(loDbPar);
-            loRtn = new GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> { Data = loResult };
+            // loRtn = LookupApprovalDepartmentStream(loResult);
+            loRtn = GetStream(loResult);
         }
         catch (Exception ex)
         {
@@ -327,7 +335,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     }
 
     [HttpPost]
-    public void GSM05000CopyToApproval()
+    public void GSM05000CopyToApproval(GSM05000CopyToParamsDTO poParams)
     {
         R_Exception loEx = new R_Exception();
         GSM05000ParameterDb loDbPar;
@@ -338,9 +346,9 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
             loDbPar = new GSM05000ParameterDb
             {
                 CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
-                CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE),
-                CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CDEPT_CODE),
-                CDEPT_CODE_TO = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CDEPT_CODE_TO),
+                CTRANSACTION_CODE = poParams.CTRANSACTION_CODE,
+                CDEPT_CODE = poParams.CDEPT_CODE,
+                CDEPT_CODE_TO = poParams.CDEPT_CODE_TO,
                 CUSER_LOGIN_ID = R_BackGlobalVar.USER_ID
             };
 
@@ -356,7 +364,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     }
 
     [HttpPost]
-    public void GSM05000CopyFromApproval()
+    public void GSM05000CopyFromApproval(GSM05000CopyFromParamsDTO poParams)
     {
         R_Exception loEx = new R_Exception();
         GSM05000ParameterDb loDbPar;
@@ -367,9 +375,9 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
             loDbPar = new GSM05000ParameterDb
             {
                 CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
-                CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE),
-                CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CDEPT_CODE),
-                CDEPT_CODE_FROM = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CDEPT_CODE_FROM),
+                CTRANSACTION_CODE = poParams.CTRANSACTION_CODE,
+                CDEPT_CODE = poParams.CDEPT_CODE,
+                CDEPT_CODE_FROM = poParams.CDEPT_CODE_FROM,
                 CUSER_LOGIN_ID = R_BackGlobalVar.USER_ID
             };
 
@@ -383,4 +391,17 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
 
         loEx.ThrowExceptionIfErrors();
     }
+
+
+    #region "Helper ListStream Functions"
+
+    private async IAsyncEnumerable<T> GetStream<T>(List<T> poParameter)
+    {
+        foreach (T item in poParameter)
+        {
+            yield return item;
+        }
+    }
+
+    #endregion
 }

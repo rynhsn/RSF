@@ -28,9 +28,11 @@ public class GSM05000ApprovalReplacementViewModel : R_ViewModel<GSM05000Approval
             R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, pcTransCode);
             R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE, pcDeptCode);
             R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CUSER_ID, pcSelectedUserId);
-            var loReturn = await _Model.GetReplacementListAsync();
+            // var loReturn = await _Model.GetReplacementListAsync();
+            var loReturn = await _Model.GetReplacementListStreamAsync();
             
-            ReplacementList = new ObservableCollection<GSM05000ApprovalReplacementDTO>(loReturn.Data);
+            // ReplacementList = new ObservableCollection<GSM05000ApprovalReplacementDTO>(loReturn.Data);
+            ReplacementList = new ObservableCollection<GSM05000ApprovalReplacementDTO>(loReturn);
             
             foreach (var list in ReplacementList)
             {

@@ -44,14 +44,14 @@
                 Width="100%">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CPERIOD" HeaderText="Period"/>
-                <R_GridLookupColumn FieldName="CDEPT_CODE" HeaderText="Department Code" R_EnableAdd/>
+                <R_GridLookupColumn FieldName="CDEPT_CODE" HeaderText="Department Code" R_EnableAdd Enabled="@_GSM05000NumberingViewModel.HeaderEntity.LDEPT_MODE"/>
                 <R_GridTextColumn FieldName="CDEPT_NAME" HeaderText="Department Name"/>
                 <R_GridNumericColumn FieldName="ISTART_NUMBER" HeaderText="Starting No" R_EnableAdd R_EnableEdit Min="1" Max="1000" Step="1"/>
                 <R_GridNumericColumn FieldName="ILAST_NUMBER" HeaderText="Last No"/>
-                <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Last Update By"/>
-                <R_GridTextColumn FieldName="DUPDATE_DATE" HeaderText="Last Update Date"/>
-                <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Last Create By"/>
-                <R_GridTextColumn FieldName="DCREATE_DATE" HeaderText="Last Create Date"/>
+                <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Updated By"/>
+                <R_GridTextColumn FieldName="DUPDATE_DATE" HeaderText="Updated Date"/>
+                <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Created By"/>
+                <R_GridTextColumn FieldName="DCREATE_DATE" HeaderText="Created Date"/>
             </R_GridColumns>
         </R_Grid>
     </R_ItemLayout>

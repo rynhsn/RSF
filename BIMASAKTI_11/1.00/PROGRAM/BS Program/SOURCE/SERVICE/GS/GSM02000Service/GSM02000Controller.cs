@@ -87,35 +87,6 @@ public class GSM02000Controller : ControllerBase, IGSM02000
     }
 
     [HttpPost]
-    public GSM02000ListDTO<GSM02000GridDTO> GetAllSalesTax()
-    {
-        R_Exception loEx = new R_Exception();
-        GSM02000ListDTO<GSM02000GridDTO> loRtn = null;
-        List<GSM02000GridDTO> loResult;
-        GSM02000ParameterDb loDbPar;
-        GSM02000Cls loCls;
-
-        try
-        {
-            loDbPar = new GSM02000ParameterDb();
-            loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbPar.CUSER_ID = R_BackGlobalVar.USER_ID;
-
-            loCls = new GSM02000Cls();
-            loResult = loCls.SalesTaxListDb(loDbPar);
-            loRtn = new GSM02000ListDTO<GSM02000GridDTO> { Data = loResult };
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-
-        loEx.ThrowExceptionIfErrors();
-
-        return loRtn;
-    }
-
-    [HttpPost]
     public IAsyncEnumerable<GSM02000GridDTO> GetAllSalesTaxStream()
     {
         R_Exception loEx = new R_Exception();
@@ -175,9 +146,8 @@ public class GSM02000Controller : ControllerBase, IGSM02000
         return loRtn;    
     }
 
-
     [HttpPost]
-    public GSM02000ActiveInactiveDTO SetActiveInactive()
+    public GSM02000ActiveInactiveDTO SetActiveInactive(GSM02000ActiveInactiveParamsDTO poParams)
     {
         R_Exception loEx = new R_Exception();
         GSM02000ActiveInactiveDb loDbPar = new GSM02000ActiveInactiveDb();
@@ -187,9 +157,9 @@ public class GSM02000Controller : ControllerBase, IGSM02000
         try
         {
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbPar.CTAX_ID = R_Utility.R_GetContext<string>(ContextConstant.CTAX_ID);
-            loDbPar.LACTIVE = R_Utility.R_GetContext<bool>(ContextConstant.LACTIVE);
             loDbPar.CUSER_ID = R_BackGlobalVar.USER_ID;
+            loDbPar.CTAX_ID = poParams.CTAX_ID;
+            loDbPar.LACTIVE = poParams.LACTIVE;
             loCls.SetActiveInactiveDb(loDbPar);
         }
         catch (Exception ex)

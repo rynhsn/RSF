@@ -1,5 +1,7 @@
 ﻿using GSM05000Common.DTOs;
 using GSM05000Model.ViewModel;
+using Lookup_GSCOMMON.DTOs;
+using Lookup_GSFRONT;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
@@ -138,41 +140,41 @@ namespace GSM05000Front
 
         private void BeforeLookupNumbering(R_BeforeOpenGridLookupColumnEventArgs eventArgs)
         {
-            //var loEx = new R_Exception();
+            var loEx = new R_Exception();
 
-            //try
-            //{
-            //    eventArgs.Parameter = new GSL00700ParameterDTO();
-            //    eventArgs.TargetPageType = typeof(GSL00700);
-            //}
-            //catch (Exception ex)
-            //{
-            //    loEx.Add(ex);
-            //}
+            try
+            {
+                eventArgs.Parameter = new GSL00700ParameterDTO();
+                eventArgs.TargetPageType = typeof(GSL00700);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
 
-            //loEx.ThrowExceptionIfErrors();
+            loEx.ThrowExceptionIfErrors();
         }
 
         private void AfterLookupNumbering(R_AfterOpenGridLookupColumnEventArgs eventArgs)
         {
-            //var loEx = new R_Exception();
+            var loEx = new R_Exception();
 
-            //try
-            //{
-            //    var loTempResult = (GSL00700DTO)eventArgs.Result;
-            //    var loGetData = (GSM05000NumberingGridDTO)eventArgs.ColumnData;
-            //    if (loTempResult == null)
-            //        return;
+            try
+            {
+                var loTempResult = (GSL00700DTO)eventArgs.Result;
+                var loGetData = (GSM05000NumberingGridDTO)eventArgs.ColumnData;
+                if (loTempResult == null)
+                    return;
 
-            //    loGetData.CDEPT_CODE = loTempResult.CDEPT_CODE;
-            //    loGetData.CDEPT_NAME = loTempResult.CDEPT_NAME;
-            //}
-            //catch (Exception ex)
-            //{
-            //    loEx.Add(ex);
-            //}
+                loGetData.CDEPT_CODE = loTempResult.CDEPT_CODE;
+                loGetData.CDEPT_NAME = loTempResult.CDEPT_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
 
-            //loEx.ThrowExceptionIfErrors();
+            loEx.ThrowExceptionIfErrors();
         }
     }
 }

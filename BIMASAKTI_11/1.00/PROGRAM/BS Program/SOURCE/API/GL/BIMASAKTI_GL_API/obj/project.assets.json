@@ -3041,6 +3041,48 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "GLT00200BACK/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GLT00200COMMON": "1.0.0",
+          "RSP_GL_IMPORT_JOURNALResources": "1.0.0",
+          "System.Data.SqlClient": "4.8.5"
+        },
+        "compile": {
+          "bin/placeholder/GLT00200BACK.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLT00200BACK.dll": {}
+        }
+      },
+      "GLT00200COMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GLT00200COMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLT00200COMMON.dll": {}
+        }
+      },
+      "GLT00200SERVICE/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GLT00200BACK": "1.0.0",
+          "GLT00200COMMON": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GLT00200SERVICE.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLT00200SERVICE.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "RSP_GL_DELETE_BUDGETResources/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -3069,6 +3111,16 @@
         },
         "runtime": {
           "bin/placeholder/RSP_GL_FINALIZE_BUDGETResources.dll": {}
+        }
+      },
+      "RSP_GL_IMPORT_JOURNALResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GL_IMPORT_JOURNALResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GL_IMPORT_JOURNALResources.dll": {}
         }
       },
       "RSP_GL_PROCESS_BUDGET_UPLOADResources/1.0.0": {
@@ -8966,6 +9018,21 @@
       "path": "../../../SERVICE/GL/GLM00500Services/GLM00500Services.csproj",
       "msbuildProject": "../../../SERVICE/GL/GLM00500Services/GLM00500Services.csproj"
     },
+    "GLT00200BACK/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GL/GLT00200BACK/GLT00200BACK.csproj",
+      "msbuildProject": "../../../BACK/GL/GLT00200BACK/GLT00200BACK.csproj"
+    },
+    "GLT00200COMMON/1.0.0": {
+      "type": "project",
+      "path": "../../../COMMON/GL/GLT00200COMMON/GLT00200COMMON.csproj",
+      "msbuildProject": "../../../COMMON/GL/GLT00200COMMON/GLT00200COMMON.csproj"
+    },
+    "GLT00200SERVICE/1.0.0": {
+      "type": "project",
+      "path": "../../../SERVICE/GL/GLT00200SERVICE/GLT00200SERVICE.csproj",
+      "msbuildProject": "../../../SERVICE/GL/GLT00200SERVICE/GLT00200SERVICE.csproj"
+    },
     "RSP_GL_DELETE_BUDGETResources/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GL/GL_SPR/RSP_GL_DELETE_BUDGETResources/RSP_GL_DELETE_BUDGETResources.csproj",
@@ -8980,6 +9047,11 @@
       "type": "project",
       "path": "../../../BACK/GL/GL_SPR/RSP_GL_FINALIZE_BUDGETResources/RSP_GL_FINALIZE_BUDGETResources.csproj",
       "msbuildProject": "../../../BACK/GL/GL_SPR/RSP_GL_FINALIZE_BUDGETResources/RSP_GL_FINALIZE_BUDGETResources.csproj"
+    },
+    "RSP_GL_IMPORT_JOURNALResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GL/GL_SPR/RSP_GL_IMPORT_JOURNALResources/RSP_GL_IMPORT_JOURNALResources.csproj",
+      "msbuildProject": "../../../BACK/GL/GL_SPR/RSP_GL_IMPORT_JOURNALResources/RSP_GL_IMPORT_JOURNALResources.csproj"
     },
     "RSP_GL_PROCESS_BUDGET_UPLOADResources/1.0.0": {
       "type": "project",
@@ -9005,6 +9077,7 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "GLM00500Services >= 1.0.0",
+      "GLT00200SERVICE >= 1.0.0",
       "Realta.BackCollectionNuGet >= 1.0.0",
       "Realta.CommonCollectionNuGet >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.2.3"
@@ -9046,6 +9119,9 @@
           "projectReferences": {
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLM00500Services\\GLM00500Services.csproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLM00500Services\\GLM00500Services.csproj"
+            },
+            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLT00200SERVICE\\GLT00200SERVICE.csproj": {
+              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLT00200SERVICE\\GLT00200SERVICE.csproj"
             }
           }
         }

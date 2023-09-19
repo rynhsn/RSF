@@ -86,10 +86,10 @@ public class GSM05000ApprovalReplacementController : ControllerBase, IGSM05000Ap
     }
 
     [HttpPost]
-    public GSM05000ListDTO<GSM05000ApprovalReplacementDTO> GSM05000GetApprovalReplacementList()
+    public IAsyncEnumerable<GSM05000ApprovalReplacementDTO> GSM05000GetApprovalReplacementListStream()
     {
         R_Exception loEx = new R_Exception();
-        GSM05000ListDTO<GSM05000ApprovalReplacementDTO> loRtn = null;
+        IAsyncEnumerable<GSM05000ApprovalReplacementDTO> loRtn = null;
         List<GSM05000ApprovalReplacementDTO> loResult;
         GSM05000ParameterDb loDbPar;
         GSM05000ApprovalReplacementCls loCls;
@@ -107,7 +107,7 @@ public class GSM05000ApprovalReplacementController : ControllerBase, IGSM05000Ap
 
             loCls = new GSM05000ApprovalReplacementCls();
             loResult = loCls.GSM05000GetApprovalReplacement(loDbPar);
-            loRtn = new GSM05000ListDTO<GSM05000ApprovalReplacementDTO> { Data = loResult };
+            loRtn = GetStream(loResult);
         }
         catch (Exception ex)
         {
@@ -119,4 +119,15 @@ public class GSM05000ApprovalReplacementController : ControllerBase, IGSM05000Ap
         return loRtn;
     }
 
+    #region "Helper ListStream Functions"
+
+    private async IAsyncEnumerable<T> GetStream<T>(List<T> poParameter)
+    {
+        foreach (T item in poParameter)
+        {
+            yield return item;
+        }
+    }
+    
+    #endregion
 }

@@ -26,8 +26,8 @@ namespace GSM02000Model.ViewModel
             try
             {
                 R_FrontContext.R_SetStreamingContext(ContextConstant.CTAX_ID, pcSalesTaxId);
-                var loReturn = await _model.GetAllTaxListModel();
-                GridList = new ObservableCollection<GSM02000TaxDTO>(loReturn.Data);
+                var loReturn = await _model.GetAllTaxListStreamModel();
+                GridList = new ObservableCollection<GSM02000TaxDTO>(loReturn);
 
                 if (GridList.Count > 0)
                 {
@@ -100,8 +100,8 @@ namespace GSM02000Model.ViewModel
 
             try
             {
-                var loReturn = await _model.GetAllSalesTaxListModel();
-                SalesGridList = new ObservableCollection<GSM02000TaxSalesDTO>(loReturn.Data);
+                var loReturn = await _model.GetAllSalesTaxListStreamModel();
+                SalesGridList = new ObservableCollection<GSM02000TaxSalesDTO>(loReturn);
             }
             catch (Exception ex)
             {

@@ -1,5 +1,5 @@
 ﻿@page "/GLM00500"
-@using GLM00500Common.DTOs
+@using R_BlazorFrontEnd.Controls.Events
 @inherits R_Page
 @attribute [R_Page(Title = "List")]
 
@@ -185,4 +185,4 @@
              R_AfterDelete="@AfterDeleteBudgetHD"
              R_BeforeCancel="@BeforeCancelBudgetHD"/>
 
-<R_PredefinedDock R_InstantiateDock="InstanceDetailTab" Title="Detail"/>
+<R_PredefinedDock R_InstantiateDock="InstanceDetailTab" Title="Detail" Enabled="@(_viewModel.BudgetHDList.Count > 0)"/>

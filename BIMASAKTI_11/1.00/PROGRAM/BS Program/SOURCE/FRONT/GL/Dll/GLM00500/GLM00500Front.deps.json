@@ -16,7 +16,8 @@
           "BlazorClientHelper": "1.0.0.0",
           "R_BlazorFrontEnd.Controls": "1.0.0.0",
           "R_BlazorFrontEnd": "1.0.0.0",
-          "R_CommonFrontBackAPI": "1.0.0.0"
+          "R_CommonFrontBackAPI": "1.0.0.0",
+          "R_ProcessAndUploadFront": "1.0.0.0"
         },
         "runtime": {
           "GLM00500Front.dll": {}
@@ -900,6 +901,14 @@
           }
         }
       },
+      "R_ProcessAndUploadFront/1.0.0.0": {
+        "runtime": {
+          "R_ProcessAndUploadFront.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "R_APICommonDTO/1.0.0.0": {
         "runtime": {
           "R_APICommonDTO.dll": {
@@ -1613,6 +1622,11 @@
       "sha512": ""
     },
     "R_CommonFrontBackAPI/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ProcessAndUploadFront/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

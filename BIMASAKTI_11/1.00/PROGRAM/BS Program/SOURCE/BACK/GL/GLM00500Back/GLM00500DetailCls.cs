@@ -249,7 +249,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
         try
         {
             loDb = new R_Db();
-            loConn = loDb.GetConnection();
+            loConn = loDb.GetConnection();  
             loCmd = loDb.GetCommand();
 
             lcQuery = @"SELECT COUNT(1) AS INUM 

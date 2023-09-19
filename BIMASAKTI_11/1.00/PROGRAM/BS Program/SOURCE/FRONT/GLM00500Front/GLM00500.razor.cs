@@ -7,6 +7,7 @@ using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
+using R_BlazorFrontEnd.Controls.Grid;
 using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
@@ -182,6 +183,8 @@ public partial class GLM00500 : R_Page
 
         try
         {
+            //buat lcDate dengan format yyyyMMdd_HHmm
+            // var lcDate = DateTime.Now.ToString("yyyyMMdd_HHmm");
             var loByteFile = await _viewModel.DownloadTemplate();
             var saveFileName = $"ACCOUNT_BUDGET_UPLOAD.xlsx";
             await JS.downloadFileFromStreamHandler(saveFileName, loByteFile.FileBytes);
@@ -215,18 +218,7 @@ public partial class GLM00500 : R_Page
 
     private async Task AfterOpenUpload(R_AfterOpenPopupEventArgs eventArgs)
     {
-        var loEx = new R_Exception();
-
-        try
-        {
-            
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-
-        loEx.ThrowExceptionIfErrors();
+        await Task.CompletedTask;
     }
 
     private async Task Display(R_DisplayEventArgs eventArgs)

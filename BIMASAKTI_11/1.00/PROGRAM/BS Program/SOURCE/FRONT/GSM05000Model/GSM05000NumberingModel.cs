@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GSM05000Common;
 using GSM05000Common.DTOs;
@@ -23,27 +24,27 @@ public class GSM05000NumberingModel : R_BusinessObjectServiceClientBase<GSM05000
     {
     }
 
-    public GSM05000ListDTO<GSM05000NumberingGridDTO> GetNumberingList()
+    public IAsyncEnumerable<GSM05000NumberingGridDTO> GetNumberingListStream()
     {
         throw new NotImplementedException();
     }
 
-    public GSM05000NumberingHeaderDTO GetNumberingHeader()
+    public GSM05000NumberingHeaderDTO GetNumberingHeader(GSM05000TrxCodeParamsDTO poParams)
     {
         throw new NotImplementedException();
     }
-
-    public async Task<GSM05000ListDTO<GSM05000NumberingGridDTO>> GetNumberingListAsync()
+    
+    public async Task<List<GSM05000NumberingGridDTO>> GetNumberingListStreamAsync()
     {
         var loEx = new R_Exception();
-        GSM05000ListDTO<GSM05000NumberingGridDTO> loResult = null;
+        List<GSM05000NumberingGridDTO> loResult = null;
 
         try
         {
             R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ListDTO<GSM05000NumberingGridDTO>>(
+            loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSM05000NumberingGridDTO>(
                 _RequestServiceEndPoint,
-                nameof(IGSM05000Numbering.GetNumberingList),
+                nameof(IGSM05000Numbering.GetNumberingListStream),
                 DEFAULT_MODULE,
                 _SendWithContext,
                 _SendWithToken);
@@ -58,7 +59,7 @@ public class GSM05000NumberingModel : R_BusinessObjectServiceClientBase<GSM05000
         return loResult;
     }
 
-    public async Task<GSM05000NumberingHeaderDTO> GetNumberingHeaderAsync()
+    public async Task<GSM05000NumberingHeaderDTO> GetNumberingHeaderAsync(GSM05000TrxCodeParamsDTO poParams)
     {
         var loEx = new R_Exception();
         GSM05000NumberingHeaderDTO loResult = null;
@@ -66,9 +67,10 @@ public class GSM05000NumberingModel : R_BusinessObjectServiceClientBase<GSM05000
         try
         {
             R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000NumberingHeaderDTO>(
+            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000NumberingHeaderDTO, GSM05000TrxCodeParamsDTO>(
                 _RequestServiceEndPoint,
                 nameof(IGSM05000Numbering.GetNumberingHeader),
+                poParams,
                 DEFAULT_MODULE,
                 _SendWithContext,
                 _SendWithToken);

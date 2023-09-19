@@ -6,10 +6,10 @@ namespace GLM00500Common
 {
     public interface IGLM00500Detail : R_IServiceCRUDBase<GLM00500BudgetDTDTO>
     {
-        GLM00500ListDTO<GLM00500BudgetDTGridDTO> GLM00500GetBudgetDTList();
+        IAsyncEnumerable<GLM00500BudgetDTGridDTO> GLM00500GetBudgetDTListStream();
         GLM00500ListDTO<GLM00500FunctionDTO> GLM00500GetRoundingMethodList();
-        GLM00500ListDTO<GLM00500BudgetWeightingDTO> GLM00500GetBudgetWeightingList();
-        GLM00500PeriodCount GLM00500GetPeriodCount();
+        IAsyncEnumerable<GLM00500BudgetWeightingDTO> GLM00500GetBudgetWeightingListStream();
+        GLM00500PeriodCount GLM00500GetPeriodCount(GLM00500YearParamsDTO poParams);
         GLM00500GSMCompanyDTO GLM00500GetGSMCompany();
         GLM00500BudgetCalculateDTO GLM00500BudgetCalculate();
         void GLM00500GenerateBudget(GLM00500GenerateAccountBudgetDTO poGenerateAccountBudgetDTO);
@@ -17,12 +17,6 @@ namespace GLM00500Common
     
     public interface IGLM00500Upload
     {
-        GLM00500UploadCheckErrorDTO GLM00500UploadCheckBudget(List<GLM00500UploadToSystemDTO> poUploadBudgetDTO);
-        
-        void GLM00500UploadBudget(List<GLM00500UploadToSystemDTO> poUploadBudgetDTO);
-        
-        GLM00500ListDTO<GLM00500UploadFromSystemDTO> GLM00500UploadGetBudgetList();
-
-        GLM00500UploadErrorDTO GLM00500UploadGetErrorMsg();
+        GLM00500UploadErrorReturnDTO GLM00500UploadGetBudgetList();
     }
 }

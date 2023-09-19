@@ -113,6 +113,32 @@ public class GLM00500HeaderController : ControllerBase, IGLM00500Header
         return loReturn;
     }
 
+    public IAsyncEnumerable<GLM00500BudgetHDDTO> GLM00500GetBudgetHDListStream()
+    {
+        var loEx = new R_Exception();
+        var loCls = new GLM00500HeaderCls();
+        var loDbParams = new GLM00500ParameterDb();
+        List<GLM00500BudgetHDDTO> loResult = null;
+        IAsyncEnumerable<GLM00500BudgetHDDTO> loReturn = null;
+
+
+        try
+        {
+            loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbParams.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
+            loDbParams.CYEAR = R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CYEAR);
+            loResult = loCls.GLM00500GetBudgetHDListDb(loDbParams);
+            loReturn = GetStream(loResult);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        return loReturn;
+    }
+
     [HttpPost]
     public GLM00500GSMPeriodDTO GLM00500GetPeriods()
     {
@@ -182,7 +208,7 @@ public class GLM00500HeaderController : ControllerBase, IGLM00500Header
     }
 
     [HttpPost]
-    public void GLM00500FinalizeBudget()
+    public void GLM00500FinalizeBudget(GLM00500CrecParamsDTO poParams)
     {
         var loEx = new R_Exception();
         var loCls = new GLM00500HeaderCls();
@@ -192,7 +218,7 @@ public class GLM00500HeaderController : ControllerBase, IGLM00500Header
         {
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbParams.CUSER_ID = R_BackGlobalVar.USER_ID;
-            loDbParams.CREC_ID = R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CREC_ID);
+            loDbParams.CREC_ID = poParams.CREC_ID;
             loCls.GLM00500FinalizeBudgetDb(loDbParams);
         }
         catch (Exception ex)
@@ -232,4 +258,17 @@ public class GLM00500HeaderController : ControllerBase, IGLM00500Header
 
         return loRtn;
     }
+    
+    
+    #region "Helper ListStream Functions"
+
+    private async IAsyncEnumerable<T> GetStream<T>(List<T> poParameter)
+    {
+        foreach (T item in poParameter)
+        {
+            yield return item;
+        }
+    }
+
+    #endregion
 }

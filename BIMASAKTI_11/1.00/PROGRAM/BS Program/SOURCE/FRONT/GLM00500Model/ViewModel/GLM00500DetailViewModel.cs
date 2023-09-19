@@ -126,8 +126,8 @@ public class GLM00500DetailViewModel : R_ViewModel<GLM00500BudgetDTDTO>
 
         try
         {
-            var loResult = await _model.GLM00500GetBudgetWeightingListModel();
-            BudgetWeightingList = new ObservableCollection<GLM00500BudgetWeightingDTO>(loResult.Data);
+            var loResult = await _model.GLM00500GetBudgetWeightingListStreamModel();
+            BudgetWeightingList = new ObservableCollection<GLM00500BudgetWeightingDTO>(loResult);
         }
         catch (R_Exception ex)
         {
@@ -146,8 +146,8 @@ public class GLM00500DetailViewModel : R_ViewModel<GLM00500BudgetDTDTO>
         {
             R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.CBUDGET_ID, pcBudgetId);
             R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.CGLACCOUNT_TYPE, pcAccountType);
-            var loResult = await _model.GLM00500GetBudgetDTListModel();
-            BudgetDTList = new ObservableCollection<GLM00500BudgetDTGridDTO>(loResult.Data);
+            var loResult = await _model.GLM00500GetBudgetDTListStreamModel();
+            BudgetDTList = new ObservableCollection<GLM00500BudgetDTGridDTO>(loResult);
         }
         catch (R_Exception ex)
         {
@@ -215,7 +215,8 @@ public class GLM00500DetailViewModel : R_ViewModel<GLM00500BudgetDTDTO>
 
         try
         {
-            PeriodCount = await _model.GLM00500GetPeriodCountModel();
+            GLM00500YearParamsDTO loParams = new() {CYEAR = BudgetHDEntity.CYEAR};
+            PeriodCount = await _model.GLM00500GetPeriodCountModel(loParams);
         }
         catch (R_Exception ex)
         {
@@ -275,13 +276,13 @@ public class GLM00500DetailViewModel : R_ViewModel<GLM00500BudgetDTDTO>
     public async Task GetBudgetHDList(int pnYear)
     {
         var loEx = new R_Exception();
-        GLM00500ListDTO<GLM00500BudgetHDDTO> loResult;
+        List<GLM00500BudgetHDDTO> loResult;
 
         try
         {
             R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.CYEAR, pnYear.ToString());
-            loResult = await _headerModel.GLM00500GetBudgetHDListModel();
-            BudgetHDList = loResult.Data;
+            loResult = await _headerModel.GLM00500GetBudgetHDListStreamModel();
+            BudgetHDList = loResult;
         }
         catch (R_Exception ex)
         {

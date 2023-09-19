@@ -185,10 +185,10 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
     }
 
     
-    public GSM005000ExistDTO GetValidateUpdateDb(GSM05000ParameterDb poEntity)
+    public GSM05000ExistDTO GetValidateUpdateDb(GSM05000ParameterDb poEntity)
     {
         R_Exception loEx = new R_Exception();
-        GSM005000ExistDTO loRtn = null;
+        GSM05000ExistDTO loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -211,7 +211,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loRtn = R_Utility.R_ConvertTo<GSM005000ExistDTO>(loDataTable).FirstOrDefault();
+            loRtn = R_Utility.R_ConvertTo<GSM05000ExistDTO>(loDataTable).FirstOrDefault();
         }
         catch (Exception ex)
         {

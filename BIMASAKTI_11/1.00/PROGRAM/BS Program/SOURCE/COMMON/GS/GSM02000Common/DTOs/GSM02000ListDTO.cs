@@ -17,8 +17,10 @@ namespace GSM02000Common.DTOs
         public decimal NTAX_PERCENTAGE { get; set; }
         public string CROUNDING_MODE_DESCR { get; set; }
         public int IROUNDING { get; set; }
-        public string CGLACCOUNT_NO { get; set; }
-        public string CGLACCOUNT_NAME { get; set; }
+        public string CTAXIN_GLACCOUNT_NO { get; set; }
+        public string CTAXOUT_GLACCOUNT_NO { get; set; }
+        public string CTAXIN_GLACCOUNT_NAME { get; set; }
+        public string CTAXOUT_GLACCOUNT_NAME { get; set; }
         public string CUPDATE_BY { get; set; }
         public DateTime DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; }

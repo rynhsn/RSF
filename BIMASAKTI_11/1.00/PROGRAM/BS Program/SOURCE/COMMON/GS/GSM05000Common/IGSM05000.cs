@@ -6,34 +6,33 @@ namespace GSM05000Common
 {
     public interface IGSM05000 : R_IServiceCRUDBase<GSM05000DTO>
     {
-        //ambil data dari database
-        GSM05000ListDTO<GSM05000GridDTO> GetTransactionCodeList();
+        IAsyncEnumerable<GSM05000GridDTO> GetTransactionCodeListStream();
         GSM05000ListDTO<GSM05000DelimiterDTO> GetDelimiterList();
-        GSM005000ExistDTO CheckExistData();
+        GSM05000ExistDTO CheckExistData(GSM05000TrxCodeParamsDTO poParams);
     }
 
     public interface IGSM05000Numbering : R_IServiceCRUDBase<GSM05000NumberingGridDTO>
     {
-        GSM05000NumberingHeaderDTO GetNumberingHeader();
-        GSM05000ListDTO<GSM05000NumberingGridDTO> GetNumberingList();
+        GSM05000NumberingHeaderDTO GetNumberingHeader(GSM05000TrxCodeParamsDTO poParams);
+        IAsyncEnumerable<GSM05000NumberingGridDTO> GetNumberingListStream();
     }
 
     public interface IGSM05000ApprovalUser : R_IServiceCRUDBase<GSM05000ApprovalUserDTO>
     {
-        GSM05000ApprovalHeaderDTO GSM05000GetApprovalHeader();
-        GSM05000ListDTO<GSM05000ApprovalUserDTO> GSM05000GetApprovalList();
-        string GSM05000ValidationForAction();
-        GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> GSM05000GetApprovalDepartment();
-        GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> GSM05000DepartmentChangeSequence();
-        GSM05000ListDTO<GSM05000ApprovalUserDTO> GSM05000GetUserSequenceData();
+        GSM05000ApprovalHeaderDTO GSM05000GetApprovalHeader(GSM05000TrxCodeParamsDTO poParams);
+        IAsyncEnumerable<GSM05000ApprovalUserDTO> GSM05000GetApprovalListStream();
+        string GSM05000ValidationForAction(GSM05000TrxDeptParamsDTO poParams);
+        IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000GetApprovalDepartmentStream();
+        IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000DepartmentChangeSequenceStream(GSM05000TrxCodeParamsDTO poParams);
+        IAsyncEnumerable<GSM05000ApprovalUserDTO> GSM05000GetUserSequenceDataStream();
         void GSM05000UpdateSequence(List<GSM05000ApprovalUserDTO> poEntity);
-        GSM05000ListDTO<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartment();
-        void GSM05000CopyToApproval();
-        void GSM05000CopyFromApproval();
+        IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentStream(GSM05000DeptCodeParamsDTO poParams);
+        void GSM05000CopyToApproval(GSM05000CopyToParamsDTO poParams);
+        void GSM05000CopyFromApproval(GSM05000CopyFromParamsDTO poParams);
     }
     
     public interface IGSM05000ApprovalReplacement : R_IServiceCRUDBase<GSM05000ApprovalReplacementDTO>
     {
-        GSM05000ListDTO<GSM05000ApprovalReplacementDTO> GSM05000GetApprovalReplacementList();
+        IAsyncEnumerable<GSM05000ApprovalReplacementDTO> GSM05000GetApprovalReplacementListStream();
     }
 }

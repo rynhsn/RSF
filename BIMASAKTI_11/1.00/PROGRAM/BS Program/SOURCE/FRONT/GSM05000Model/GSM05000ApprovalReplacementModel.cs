@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GSM05000Common;
 using GSM05000Common.DTOs;
@@ -24,22 +25,22 @@ public class GSM05000ApprovalReplacementModel : R_BusinessObjectServiceClientBas
     {
     }
 
-    public GSM05000ListDTO<GSM05000ApprovalReplacementDTO> GSM05000GetApprovalReplacementList()
+    public IAsyncEnumerable<GSM05000ApprovalReplacementDTO> GSM05000GetApprovalReplacementListStream()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
-    
-    public async Task<GSM05000ListDTO<GSM05000ApprovalReplacementDTO>> GetReplacementListAsync()
+
+    public async Task<List<GSM05000ApprovalReplacementDTO>> GetReplacementListStreamAsync()
     {
         var loEx = new R_Exception();
-        GSM05000ListDTO<GSM05000ApprovalReplacementDTO> loResult = null;
+        List<GSM05000ApprovalReplacementDTO> loResult = null;
 
         try
         {
             R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM05000ListDTO<GSM05000ApprovalReplacementDTO>>(
+            loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSM05000ApprovalReplacementDTO>(
                 _RequestServiceEndPoint,
-                nameof(IGSM05000ApprovalReplacement.GSM05000GetApprovalReplacementList),
+                nameof(IGSM05000ApprovalReplacement.GSM05000GetApprovalReplacementListStream),
                 DEFAULT_MODULE,
                 _SendWithContext,
                 _SendWithToken);

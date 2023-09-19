@@ -24,8 +24,8 @@ namespace GSM02000Model.ViewModel
 
             try
             {
-                var loReturn = await _GSM02000Model.GetAllAsync();
-                GridList = new ObservableCollection<GSM02000GridDTO>(loReturn.Data);
+                var loReturn = await _GSM02000Model.GetAllStreamAsync();
+                GridList = new ObservableCollection<GSM02000GridDTO>(loReturn);
             }
             catch (Exception ex)
             {
@@ -101,9 +101,10 @@ namespace GSM02000Model.ViewModel
 
             try
             {
-                R_FrontContext.R_SetContext(ContextConstant.CTAX_ID, ActiveInactiveEntity.CTAX_ID);
-                R_FrontContext.R_SetContext(ContextConstant.LACTIVE, ActiveInactiveEntity.LACTIVE);
-                await _GSM02000Model.SetActiveInactiveAsync();
+                var loParams = new GSM02000ActiveInactiveParamsDTO();
+                loParams.CTAX_ID = ActiveInactiveEntity.CTAX_ID;
+                loParams.LACTIVE = ActiveInactiveEntity.LACTIVE;
+                await _GSM02000Model.SetActiveInactiveAsync(loParams);
             }
             catch (Exception ex)
             {
