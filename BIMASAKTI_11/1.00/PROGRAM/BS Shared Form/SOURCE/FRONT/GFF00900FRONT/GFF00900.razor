@@ -1,70 +1,77 @@
 ﻿@inherits R_Page
+@attribute [R_Page(Title = "Activity Approval")]
 @using GFF00900COMMON.DTOs
 
-<div hidden="@ReasonVisibility">
-    <R_StackLayout>
+<R_StackLayout Style="width:600px">
+    <div hidden="@IsReasonHidden">
+        <R_StackLayout>
+            <R_StackLayout Row="true">
+                <R_ItemLayout Class="col-4">
+                    <R_Label>Reason</R_Label>
+                </R_ItemLayout>
 
-        <R_StackLayout Row="true">
-            <R_ItemLayout xs="2">
-                <R_Label>Reason</R_Label>
-            </R_ItemLayout>
+                <R_ItemLayout Class="col-8">
+                    <R_TextArea @bind-Value="@loViewModel.DETAIL_ACTION"
+                                R_ConductorSource="@_conductorRef"
+                                Enabled="true"></R_TextArea>
+                </R_ItemLayout>
+            </R_StackLayout>
 
-            <R_ItemLayout xs="4">
-                <R_TextBox @bind-Value="@loViewModel.DETAIL_ACTION"
-                           R_ConductorSource="@_conductorRef"
-                           Enabled="true"></R_TextBox>
-            </R_ItemLayout>
+            <R_StackLayout Row></R_StackLayout>
+
+            <R_StackLayout Row="true">
+                <R_ItemLayout Class="col-3">
+                    <R_Button R_ConductorSource="@_conductorRef" OnClick="OnOKReason">OK</R_Button>
+                </R_ItemLayout>
+                <R_ItemLayout Class="col-3">
+                    <R_Button R_ConductorSource="@_conductorRef" OnClick="OnCancelReason">Cancel</R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
         </R_StackLayout>
+    </div>
 
-        <R_StackLayout Row="true" Spacing="3">
-            <R_ItemLayout xs="1">
-                <R_Button R_ConductorSource="@_conductorRef" OnClick="OnOKReason">OK</R_Button>
-            </R_ItemLayout>
+    <div hidden="@IsAccessValidationHidden">
+        <R_StackLayout>
+            <R_StackLayout Row="true">
+                <R_ItemLayout Class="col-4">
+                    <R_Label>User Id</R_Label>
+                </R_ItemLayout>
 
-            <R_ItemLayout xs="1">
-                <R_Button R_ConductorSource="@_conductorRef" OnClick="OnCancelReason">Cancel</R_Button>
-            </R_ItemLayout>
+                <R_ItemLayout Class="col-8">
+                    <R_TextBox @bind-Value="@loViewModel.loParameter.USER"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="true"></R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row></R_StackLayout>
+
+            <R_StackLayout Row="true">
+                <R_ItemLayout Class="col-4">
+                    <R_Label>Password</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout Class="col-8">
+                    <R_TextBox Password @bind-Value="@loViewModel.loParameter.PASSWORD"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="true"></R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row></R_StackLayout>
+
+            <R_StackLayout Row="true">
+                <R_ItemLayout Class="col-3">
+                    <R_Button R_ConductorSource="@_conductorRef" OnClick="OnOK">OK</R_Button>
+                </R_ItemLayout>
+
+                <R_ItemLayout Class="col-3">
+                    <R_Button R_ConductorSource="@_conductorRef" OnClick="OnCancel">Cancel</R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
         </R_StackLayout>
-    </R_StackLayout>
-</div>
-
-<div hidden="@AccessValidationVisibility">
-    <R_StackLayout>
-        <R_StackLayout Row="true">
-            <R_ItemLayout xs="2">
-                <R_Label>User Id</R_Label>
-            </R_ItemLayout>
-
-            <R_ItemLayout xs="4">
-                <R_TextBox @bind-Value="@loViewModel.loParameter.USER"
-                           R_ConductorSource="@_conductorRef"
-                           Enabled="true"></R_TextBox>
-            </R_ItemLayout>
-        </R_StackLayout>
-
-        <R_StackLayout Row="true">
-            <R_ItemLayout xs="2">
-                <R_Label>Password</R_Label>
-            </R_ItemLayout>
-
-            <R_ItemLayout xs="4">
-                <R_TextBox @bind-Value="@loViewModel.loParameter.PASSWORD"
-                           R_ConductorSource="@_conductorRef"
-                           Enabled="true"></R_TextBox>
-            </R_ItemLayout>
-        </R_StackLayout>
-
-        <R_StackLayout Row="true" Spacing="3">
-            <R_ItemLayout xs="1">
-                <R_Button R_ConductorSource="@_conductorRef" OnClick="OnOK">OK</R_Button>
-            </R_ItemLayout>
-
-            <R_ItemLayout xs="1">
-                <R_Button R_ConductorSource="@_conductorRef" OnClick="OnCancel">Cancel</R_Button>
-            </R_ItemLayout>
-        </R_StackLayout>
-    </R_StackLayout>
-</div>
+    </div>
+</R_StackLayout>
 
 <R_Conductor @ref="@_conductorRef"
              R_ViewModel="@loViewModel"

@@ -4,7 +4,6 @@ using R_BlazorFrontEnd.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Lookup_GSModel.ViewModel
@@ -25,7 +24,7 @@ namespace Lookup_GSModel.ViewModel
             {
                 var loResult = await _model.GSL01500GetCashDetailListAsync(poParameter);
 
-                CashFlowDetailGrid = new ObservableCollection<GSL01500ResultDetailDTO>(loResult.Data);
+                CashFlowDetailGrid = new ObservableCollection<GSL01500ResultDetailDTO>(loResult);
             }
             catch (Exception ex)
             {
@@ -41,9 +40,9 @@ namespace Lookup_GSModel.ViewModel
 
             try
             {
-                var loResult = await _model.GSL01500GetCashFlowGroupListAsync(poParameter);
+                var loResult = await _model.GSL01500GetCashFlowGroupListAsync();
 
-                CashFlowGropList = new List<GSL01500ResultGroupDTO>(loResult.Data);
+                CashFlowGropList = new List<GSL01500ResultGroupDTO>(loResult);
             }
             catch (Exception ex)
             {

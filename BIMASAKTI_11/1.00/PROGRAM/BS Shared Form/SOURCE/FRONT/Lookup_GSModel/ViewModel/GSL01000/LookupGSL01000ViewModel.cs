@@ -2,9 +2,7 @@
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Lookup_GSModel.ViewModel
@@ -23,7 +21,7 @@ namespace Lookup_GSModel.ViewModel
             {
                 var loResult = await _model.GSL01000GetUserListAsync();
 
-                UserGrid = new ObservableCollection<GSL01000DTO>(loResult.Data);
+                UserGrid = new ObservableCollection<GSL01000DTO>(loResult);
             }
             catch (Exception ex)
             {

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\BACK\GS\GS_SPR\RSP_ACTIVITY_VALIDITYResources\RSP_ACTIVITY_VALIDITYResources.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\BACK\GS\GS_SPR\RSP_GS_VALIDATE_USER_ACT_APPRResources\RSP_GS_VALIDATE_USER_ACT_APPRResources.csproj" />
     <ProjectReference Include="..\GFF00900COMMON\GFF00900COMMON.csproj" />
   </ItemGroup>

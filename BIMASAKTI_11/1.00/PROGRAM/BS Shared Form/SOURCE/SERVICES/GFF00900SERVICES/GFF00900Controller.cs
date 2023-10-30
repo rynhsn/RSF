@@ -20,18 +20,18 @@ namespace GFF00900SERVICES
         }
 
         [HttpPost]
-        public RSP_ACTIVITY_VALIDITYResultDTO RSP_ACTIVITY_VALIDITYMethod()
+        public RSP_ACTIVITY_VALIDITYResultDTO RSP_ACTIVITY_VALIDITYMethod(RSP_ACTIVITY_VALIDITYParameterDTO poParam)
         {
             R_Exception loException = new R_Exception();
             RSP_ACTIVITY_VALIDITYResultDTO loRtn = new RSP_ACTIVITY_VALIDITYResultDTO();
-            RSP_ACTIVITY_VALIDITYParameterDTO loContext = new RSP_ACTIVITY_VALIDITYParameterDTO();
+            //RSP_ACTIVITY_VALIDITYParameterDTO loContext = new RSP_ACTIVITY_VALIDITYParameterDTO();
             GFF00900Cls loCls = new GFF00900Cls();
 
             try
             {
-                loContext.ACTIVITY_CODE = R_Utility.R_GetContext<string>(ContextConstant.ACTIVITY_CODE_CONTEXT);
-                loContext.COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                loRtn.Data = loCls.RSP_ACTIVITY_VALIDITYMethod(loContext);
+                //loContext.ACTIVITY_CODE = R_Utility.R_GetContext<string>(ContextConstant.ACTIVITY_CODE_CONTEXT);
+                poParam.COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                loRtn.Data = loCls.RSP_ACTIVITY_VALIDITYMethod(poParam);
             }
             catch (Exception ex)
             {
@@ -68,28 +68,28 @@ namespace GFF00900SERVICES
         }
 */
         [HttpPost]
-        public ValidationResultDTO UsernameAndPasswordValidationMethod()
+        public ValidationResultDTO UsernameAndPasswordValidationMethod(GFF00900DTO poParam)
         {
             R_Exception loException = new R_Exception();
-            GFF00900DTO loParam = new GFF00900DTO();
+            //GFF00900DTO loParam = new GFF00900DTO();
             ValidationResultDTO loRtn = new ValidationResultDTO();
             GFF00900Cls loCls = new GFF00900Cls();
 
             try
             {
-                loParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                loParam.CUSER_ID = R_Utility.R_GetContext<string>(ContextConstant.VALIDATION_USER_CONTEXT);
-                loParam.CPASSWORD = R_Utility.R_GetContext<string>(ContextConstant.VALIDATION_PASSWORD_CONTEXT);
-                loParam.CACTION_CODE = R_Utility.R_GetContext<string>(ContextConstant.VALIDATION_ACTION_CODE_CONTEXT);
-                loParam.DETAIL_ACTION = R_Utility.R_GetContext<string>(ContextConstant.ACTION_DETAIL_CONTEXT);
-                loParam.CUSER_LOGIN_ID = R_BackGlobalVar.USER_ID;
+                poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParam.CUSER_ID = R_Utility.R_GetContext<string>(ContextConstant.VALIDATION_USER_CONTEXT);
+                poParam.CPASSWORD = R_Utility.R_GetContext<string>(ContextConstant.VALIDATION_PASSWORD_CONTEXT);
+                //loParam.CACTION_CODE = R_Utility.R_GetContext<string>(ContextConstant.VALIDATION_ACTION_CODE_CONTEXT);
+                //loParam.DETAIL_ACTION = R_Utility.R_GetContext<string>(ContextConstant.ACTION_DETAIL_CONTEXT);
+                poParam.CUSER_LOGIN_ID = R_BackGlobalVar.USER_ID;
 
-                var lcDecrypt = symmetricProvider.TextDecrypt(loParam.CPASSWORD, loParam.CUSER_ID);
-                loParam.CPASSWORD = R_Utility.HashPassword(lcDecrypt, loParam.CUSER_ID);
+                var lcDecrypt = symmetricProvider.TextDecrypt(poParam.CPASSWORD, poParam.CUSER_ID);
+                poParam.CPASSWORD = R_Utility.HashPassword(lcDecrypt, poParam.CUSER_ID);
 
-                loCls.UsernameAndPasswordValidationMethod(loParam);
+                loCls.UsernameAndPasswordValidationMethod(poParam);
 
-                loCls.RSP_CREATE_ACTIVITY_APPROVAL_LOGMethod(loParam);
+                loCls.RSP_CREATE_ACTIVITY_APPROVAL_LOGMethod(poParam);
             }
             catch (Exception ex)
             {

@@ -1,17 +1,9 @@
 ﻿using Lookup_GSCOMMON.DTOs;
 using Lookup_GSModel.ViewModel;
 using R_BlazorFrontEnd.Controls;
-using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Lookup_GSFRONT
 {
@@ -52,12 +44,14 @@ namespace Lookup_GSFRONT
             loEx.ThrowExceptionIfErrors();
         }
 
-        public async Task RateType_OnChange(object poParam)
+        public async Task RateType_OnChange(string poParam)
         {
             var loEx = new R_Exception();
 
             try
             {
+                _viewModel.Data.CRATETYPE_CODE = poParam;
+
                 await GridRef.R_RefreshGrid(null);
             }
             catch (Exception ex)

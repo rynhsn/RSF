@@ -2,9 +2,7 @@
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Lookup_GSModel.ViewModel
@@ -21,9 +19,9 @@ namespace Lookup_GSModel.ViewModel
 
             try
             {
-                var loResult = await _model.GSL00800GetCurrencyTypeListAsync(poParam);
+                var loResult = await _model.GSL00800GetCurrencyTypeListAsync();
 
-                CurrencyRateTypeGrid = new ObservableCollection<GSL00800DTO>(loResult.Data);
+                CurrencyRateTypeGrid = new ObservableCollection<GSL00800DTO>(loResult);
             }
             catch (Exception ex)
             {

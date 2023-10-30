@@ -4,7 +4,6 @@ using R_BlazorFrontEnd.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Lookup_GSModel.ViewModel
@@ -27,7 +26,7 @@ namespace Lookup_GSModel.ViewModel
             {
                 var loResult = await _model.GSL01700GetRateTypeListAsync();
 
-                RateTypeList = new List<GSL01701DTO>(loResult.Data);
+                RateTypeList = new List<GSL01701DTO>(loResult);
             }
             catch (Exception ex)
             {
@@ -45,7 +44,7 @@ namespace Lookup_GSModel.ViewModel
             {
                 var loResult = await _model.GSL01700GetLocalAndBaseCurrencyListAsync();
 
-                LocalAndBaseCurrencyList = new List<GSL01702DTO>(loResult.Data);
+                LocalAndBaseCurrencyList = new List<GSL01702DTO>(loResult);
             }
             catch (Exception ex)
             {
@@ -63,7 +62,7 @@ namespace Lookup_GSModel.ViewModel
             {
                 var loResult = await _model.GSL01700GetCurrencyRateListAsync(poParameter);
 
-                CurrencyRateGrid = new ObservableCollection<GSL01700DTO>(loResult.Data);
+                CurrencyRateGrid = new ObservableCollection<GSL01700DTO>(loResult);
             }
             catch (Exception ex)
             {

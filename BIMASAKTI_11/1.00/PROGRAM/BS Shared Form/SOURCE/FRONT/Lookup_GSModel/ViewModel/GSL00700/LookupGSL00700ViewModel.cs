@@ -2,9 +2,7 @@
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Lookup_GSModel.ViewModel
@@ -21,9 +19,9 @@ namespace Lookup_GSModel.ViewModel
 
             try
             {
-                var loResult = await _model.GSL00700GetDepartmentListAsync(poParam);
+                var loResult = await _model.GSL00700GetDepartmentListAsync();
 
-                DepartmentGrid = new ObservableCollection<GSL00700DTO>(loResult.Data);
+                DepartmentGrid = new ObservableCollection<GSL00700DTO>(loResult);
             }
             catch (Exception ex)
             {

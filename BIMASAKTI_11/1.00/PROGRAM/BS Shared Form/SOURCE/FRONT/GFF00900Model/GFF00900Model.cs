@@ -14,34 +14,35 @@ namespace GFF00900Model
     {
         private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrl"; 
         private const string DEFAULT_SERVICEPOINT_NAME = "api/GFF00900";
-        private const string DEFAULT_MODULE_NAME = "GS";
+        private const string DEFAULT_MODULE = "gf";
 
         public GFF00900Model(string pcHttpClientName = DEFAULT_HTTP_NAME, 
             string pcRequestServiceEndPoint = DEFAULT_SERVICEPOINT_NAME, 
             bool plSendWithContext = true, 
             bool plSendWithToken = true) : 
-            base(pcHttpClientName, pcRequestServiceEndPoint, DEFAULT_MODULE_NAME, plSendWithContext, plSendWithToken)
+            base(pcHttpClientName, pcRequestServiceEndPoint, DEFAULT_MODULE, plSendWithContext, plSendWithToken)
         {
         }
 
-        public RSP_ACTIVITY_VALIDITYResultDTO RSP_ACTIVITY_VALIDITYMethod()
+        public RSP_ACTIVITY_VALIDITYResultDTO RSP_ACTIVITY_VALIDITYMethod(RSP_ACTIVITY_VALIDITYParameterDTO poParam)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<RSP_ACTIVITY_VALIDITYResultDTO> RSP_ACTIVITY_VALIDITYMethodAsync()
+        public async Task<RSP_ACTIVITY_VALIDITYResultDTO> RSP_ACTIVITY_VALIDITYMethodAsync(RSP_ACTIVITY_VALIDITYParameterDTO poParam)
         {
             var loEx = new R_Exception();
-            RSP_ACTIVITY_VALIDITYResultDTO loRtn = new RSP_ACTIVITY_VALIDITYResultDTO();
+            RSP_ACTIVITY_VALIDITYResultDTO loRtn = null;
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
 
-                loRtn = await R_HTTPClientWrapper.R_APIRequestObject<RSP_ACTIVITY_VALIDITYResultDTO>(
+                loRtn = await R_HTTPClientWrapper.R_APIRequestObject<RSP_ACTIVITY_VALIDITYResultDTO, RSP_ACTIVITY_VALIDITYParameterDTO>(
                     _RequestServiceEndPoint,
                     nameof(IGFF00900.RSP_ACTIVITY_VALIDITYMethod),
-                    DEFAULT_MODULE_NAME,
+                    poParam,
+                    DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
             }
@@ -86,24 +87,25 @@ namespace GFF00900Model
             loEx.ThrowExceptionIfErrors();
         }
 */
-        public ValidationResultDTO UsernameAndPasswordValidationMethod()
+        public ValidationResultDTO UsernameAndPasswordValidationMethod(GFF00900DTO poParam)
         {
             throw new NotImplementedException();
         }
 
-        public async Task UsernameAndPasswordValidationMethodAsync()
+        public async Task UsernameAndPasswordValidationMethodAsync(GFF00900DTO poParam)
         {
             var loEx = new R_Exception();
-            ValidationResultDTO loRtn = new ValidationResultDTO();
+            ValidationResultDTO loRtn = null;
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
 
-                loRtn = await R_HTTPClientWrapper.R_APIRequestObject<ValidationResultDTO>(
+                loRtn = await R_HTTPClientWrapper.R_APIRequestObject<ValidationResultDTO, GFF00900DTO>(
                     _RequestServiceEndPoint,
                     nameof(IGFF00900.UsernameAndPasswordValidationMethod),
-                    DEFAULT_MODULE_NAME,
+                    poParam,
+                    DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
             }

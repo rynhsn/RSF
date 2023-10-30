@@ -11,9 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="BackHelper">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\BackHelper.dll</HintPath>
-    </Reference>
     <Reference Include="R_APIBackEnd">
       <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
     </Reference>

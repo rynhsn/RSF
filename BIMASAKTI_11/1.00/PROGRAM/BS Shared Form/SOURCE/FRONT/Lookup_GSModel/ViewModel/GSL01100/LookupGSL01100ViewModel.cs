@@ -2,9 +2,7 @@
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Lookup_GSModel.ViewModel
@@ -21,9 +19,10 @@ namespace Lookup_GSModel.ViewModel
 
             try
             {
+
                 var loResult = await _model.GSL01100GetUserApprovalListAsync(poParameter);
 
-                UserApprovalGrid = new ObservableCollection<GSL01100DTO>(loResult.Data);
+                UserApprovalGrid = new ObservableCollection<GSL01100DTO>(loResult);
             }
             catch (Exception ex)
             {

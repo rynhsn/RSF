@@ -53,6 +53,9 @@
     <Reference Include="R_BlazorFrontEnd.Excel">
       <HintPath>..\..\LIBRARY\Front\R_BlazorFrontEnd.Excel.dll</HintPath>
     </Reference>
+    <Reference Include="R_BlazorFrontEnd.Report">
+      <HintPath>..\..\LIBRARY\Front\R_BlazorFrontEnd.Report.dll</HintPath>
+    </Reference>
     <Reference Include="R_BlazorStartup">
       <HintPath>..\..\LIBRARY\Front\R_BlazorStartup.dll</HintPath>
     </Reference>
@@ -86,7 +89,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLI00100Front\GLI00100Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLM00500Front\GLM00500Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLT00200FRONT\GLT00200FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM02000Front\GSM02000Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM05000Front\GSM05000Front.csproj" />
   </ItemGroup>

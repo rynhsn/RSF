@@ -2,9 +2,7 @@
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Lookup_GSModel.ViewModel
@@ -23,7 +21,7 @@ namespace Lookup_GSModel.ViewModel
             {
                 var loResult = await _model.GSL00520GetGOACOAListAsync(poParam);
 
-                GOACOAGrid = new ObservableCollection<GSL00520DTO>(loResult.Data);
+                GOACOAGrid = new ObservableCollection<GSL00520DTO>(loResult);
             }
             catch (Exception ex)
             {

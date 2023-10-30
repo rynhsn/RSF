@@ -1,7 +1,5 @@
-﻿using System;
+﻿using R_APICommonDTO;
 using System.Collections.Generic;
-using System.Text;
-using R_APICommonDTO;
 
 namespace Lookup_GSCOMMON.DTOs
 {

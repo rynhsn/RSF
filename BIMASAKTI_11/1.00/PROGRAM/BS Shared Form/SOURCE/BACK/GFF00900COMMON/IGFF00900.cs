@@ -7,8 +7,8 @@ namespace GFF00900COMMON
 {
     public interface IGFF00900
     {
-        ValidationResultDTO UsernameAndPasswordValidationMethod();
-        RSP_ACTIVITY_VALIDITYResultDTO RSP_ACTIVITY_VALIDITYMethod();
+        ValidationResultDTO UsernameAndPasswordValidationMethod(GFF00900DTO poParam);
+        RSP_ACTIVITY_VALIDITYResultDTO RSP_ACTIVITY_VALIDITYMethod(RSP_ACTIVITY_VALIDITYParameterDTO poParam);
         //RSP_CREATE_ACTIVITY_APPROVAL_LOGResultDTO RSP_CREATE_ACTIVITY_APPROVAL_LOGMethod();
     }
 }

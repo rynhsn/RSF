@@ -2,9 +2,7 @@
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Lookup_GSModel.ViewModel
@@ -21,9 +19,9 @@ namespace Lookup_GSModel.ViewModel
 
             try
             {
-                var loResult = await _model.GSL00100GetSalesTaxListAsync(poParam);
+                var loResult = await _model.GSL00100GetSalesTaxListAsync();
 
-                SalesTaxGrid = new ObservableCollection<GSL00100DTO>(loResult.Data);
+                SalesTaxGrid = new ObservableCollection<GSL00100DTO>(loResult);
             }
             catch (Exception ex)
             {

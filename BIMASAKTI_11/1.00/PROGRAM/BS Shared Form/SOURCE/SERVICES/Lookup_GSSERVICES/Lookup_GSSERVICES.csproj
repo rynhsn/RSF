@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\BACK\Lookup_GSBACK\Lookup_GSBACK.csproj" />
-    <ProjectReference Include="..\..\BACK\Lookup_GSCOMMON\Lookup_GSCOMMON.csproj" />
   </ItemGroup>
 
 	<ItemGroup>
