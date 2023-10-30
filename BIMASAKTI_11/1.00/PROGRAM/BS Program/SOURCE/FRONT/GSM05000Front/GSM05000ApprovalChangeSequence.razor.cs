@@ -21,7 +21,7 @@ public partial class GSM05000ApprovalChangeSequence : R_Page
         try
         {
             var loArgs = (string)poParameter;
-            _viewModel.ApproverEntity.CTRANSACTION_CODE = loArgs;
+            _viewModel.ApproverEntity.CTRANS_CODE = loArgs;
             await _viewModel.GetDeptSeqList(loArgs);
         }
         catch (Exception ex)

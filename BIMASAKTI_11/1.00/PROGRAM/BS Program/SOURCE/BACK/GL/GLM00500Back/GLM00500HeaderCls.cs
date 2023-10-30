@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.Common;
+using GLM00500Common;
 using GLM00500Common.DTOs;
 using R_BackEnd;
 using R_Common;
@@ -9,6 +10,13 @@ namespace GLM00500Back;
 
 public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
 {
+    private LoggerGLM00500 _logger;
+    
+    public GLM00500HeaderCls()
+    {
+        _logger = LoggerGLM00500.R_GetInstanceLogger();
+    }
+    
     protected override GLM00500BudgetHDDTO R_Display(GLM00500BudgetHDDTO poEntity)
     {
         var loEx = new R_Exception();
@@ -31,7 +39,18 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CBUDGET_ID", DbType.String, 255, poEntity.CREC_ID);
             loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, poEntity.CLANGUAGE_ID);
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is 
+                        "@CCOMPANY_ID" or 
+                        "@CBUDGET_ID" or
+                        "@CLANGUAGE_ID"
+                )
+                .Select(x => x.Value);
 
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            
             var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
             loReturn = R_Utility.R_ConvertTo<GLM00500BudgetHDDTO>(DataTable).FirstOrDefault();
@@ -40,6 +59,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
@@ -48,7 +68,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
 
     protected override void R_Deleting(GLM00500BudgetHDDTO poEntity)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         R_Db loDb;
         DbCommand loCmd;
         DbConnection loConn = null;
@@ -67,7 +87,16 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
             loCmd.CommandText = lcQuery;
 
             loDb.R_AddCommandParameter(loCmd, "@CBUDGET_ID", DbType.String, 255, poEntity.CREC_ID);
-
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is 
+                        "@CBUDGET_ID"
+                )
+                .Select(x => x.Value);
+            
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            
             try
             {
                 loDb.SqlExecNonQuery(loConn, loCmd, false);
@@ -82,6 +111,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         finally
@@ -102,7 +132,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
 
     protected override void R_Saving(GLM00500BudgetHDDTO poNewEntity, eCRUDMode poCRUDMode)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         string lcQuery;
         R_Db loDb;
         DbCommand loCmd;
@@ -144,7 +174,23 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
             loDb.R_AddCommandParameter(loCmd, "@CBUDGET_NAME", DbType.String, 255, poNewEntity.CBUDGET_NAME);
             loDb.R_AddCommandParameter(loCmd, "@CCURRENCY_TYPE", DbType.String, 255, poNewEntity.CCURRENCY_TYPE);
             loDb.R_AddCommandParameter(loCmd, "@LFINAL", DbType.Boolean, 1, llFinal);
-
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is 
+                        "@CUSER_ID" or 
+                        "@CACTION" or 
+                        "@CREC_ID" or 
+                        "@CCOMPANY_ID" or 
+                        "@CBUDGET_NO" or 
+                        "@CYEAR" or 
+                        "@CBUDGET_NAME" or 
+                        "@CCURRENCY_TYPE" or 
+                        "@LFINAL"
+                )
+                .Select(x => x.Value);
+            
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
 
             try
             {
@@ -163,6 +209,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         finally
@@ -184,7 +231,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
     
     public void GLM00500FinalizeBudgetDb(GLM00500ParameterDb poParams)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         R_Db loDb;
         DbCommand loCmd;
         DbConnection loConn = null;
@@ -205,7 +252,18 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 255, poParams.CUSER_ID);
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 255, poParams.CCOMPANY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CBUDGET_ID", DbType.String, 255, poParams.CREC_ID);
-
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is 
+                        "@CUSER_ID" or 
+                        "@CCOMPANY_ID" or 
+                        "@CBUDGET_ID"
+                )
+                .Select(x => x.Value);
+            
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            
             try
             {
                 loDb.SqlExecNonQuery(loConn, loCmd, false);
@@ -220,6 +278,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         finally
@@ -240,7 +299,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
 
     public List<GLM00500BudgetHDDTO> GLM00500GetBudgetHDListDb(GLM00500ParameterDb poParams)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         List<GLM00500BudgetHDDTO> loReturn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -256,12 +315,22 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
             lcQuery = "RSP_GL_GET_BUDGET_HD_LIST";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
-
-
+            
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParams.CCOMPANY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CYEAR", DbType.String, 50, poParams.CYEAR);
             loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, poParams.CLANGUAGE_ID);
-
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is 
+                        "@CCOMPANY_ID" or 
+                        "@CYEAR" or 
+                        "@CLANGUAGE_ID"
+                )
+                .Select(x => x.Value);
+            
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            
             var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
             loReturn = R_Utility.R_ConvertTo<GLM00500BudgetHDDTO>(DataTable).ToList();
@@ -269,6 +338,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
@@ -277,7 +347,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
 
     public GLM00500GSMPeriodDTO GLM00500GetPeriodsDb(GLM00500ParameterDb poParams)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         GLM00500GSMPeriodDTO loReturn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -290,12 +360,11 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = @$"SELECT IMIN_YEAR=CAST(MIN(CYEAR) AS INT), IMAX_YEAR=CAST(MAX(CYEAR) AS INT)
-                        FROM GSM_PERIOD (NOLOCK)
-                        WHERE CCOMPANY_ID = '{poParams.CCOMPANY_ID}'";
+            lcQuery = $"EXEC RSP_GS_GET_PERIOD_YEAR_RANGE '{poParams.CCOMPANY_ID}', '', ''";
             loCmd.CommandType = CommandType.Text;
             loCmd.CommandText = lcQuery;
 
+            _logger.LogDebug("{pcQuery}", lcQuery);
 
             var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -304,6 +373,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
@@ -312,7 +382,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
 
     public GLM00500GLSystemParamDTO GLM00500GetSystemParamDb(GLM00500ParameterDb poParams)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         GLM00500GLSystemParamDTO loReturn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -333,6 +403,16 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParams.CCOMPANY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, poParams.CLANGUAGE_ID);
 
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
+                        "@CLANGUAGE_ID"
+                )
+                .Select(x => x.Value);
+            
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            
             var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
             loReturn = R_Utility.R_ConvertTo<GLM00500GLSystemParamDTO>(DataTable).FirstOrDefault();
@@ -340,6 +420,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
         
         loEx.ThrowExceptionIfErrors();
@@ -348,7 +429,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
 
     public List<GLM00500FunctionDTO> GLM00500GetCurrencyTypeListDb(GLM00500ParameterDb poParams)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         List<GLM00500FunctionDTO> loReturn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -361,9 +442,26 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = @$"SELECT CCODE, CDESCRIPTION FROM RFT_GET_GSB_CODE_INFO('BIMASAKTI', '{poParams.CCOMPANY_ID}', '_CURRENCY_TYPE', '', '{poParams.CLANGUAGE_ID}')";
-            loCmd.CommandType = CommandType.Text;
+            lcQuery = $"RSP_GS_GET_GSB_CODE_LIST";
+            loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
+            
+            loDb.R_AddCommandParameter(loCmd, "@CAPPLICATION", DbType.String, 20, "BIMASAKTI");
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParams.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CCLASS_ID", DbType.String, 40, "_CURRENCY_TYPE");
+            loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, poParams.CLANGUAGE_ID);
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is 
+                        "@CAPPLICATION" or 
+                        "@CCOMPANY_ID" or 
+                        "@CCLASS_ID" or 
+                        "@CLANGUAGE_ID"
+                )
+                .Select(x => x.Value);
+            
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
             
             var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -372,6 +470,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
         
         loEx.ThrowExceptionIfErrors();

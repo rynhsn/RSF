@@ -5,7 +5,7 @@ namespace GSM05000Common.DTOs
     public class GSM05000ApprovalUserDTO
     {
         public string CCOMPANY_ID { get; set; }
-        public string CTRANSACTION_CODE { get; set; }
+        public string CTRANS_CODE { get; set; }
         public string CDEPT_CODE { get; set; }
         
         public string CSEQUENCE { get; set; }

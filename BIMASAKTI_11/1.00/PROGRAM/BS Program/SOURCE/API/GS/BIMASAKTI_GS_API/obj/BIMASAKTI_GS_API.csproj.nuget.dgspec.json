@@ -125,11 +125,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_SALES_TAXResources\\RSP_GS_MAINTAIN_SALES_TAXResources.csproj": {
-                "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_SALES_TAXResources\\RSP_GS_MAINTAIN_SALES_TAXResources.csproj"
+              "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TAXResources\\RSP_GS_MAINTAIN_TAXResources.csproj": {
+                "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TAXResources\\RSP_GS_MAINTAIN_TAXResources.csproj"
               },
-              "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_SALES_TAX_PCTResources\\RSP_GS_MAINTAIN_SALES_TAX_PCTResources.csproj": {
-                "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_SALES_TAX_PCTResources\\RSP_GS_MAINTAIN_SALES_TAX_PCTResources.csproj"
+              "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TAX_PCTResources\\RSP_GS_MAINTAIN_TAX_PCTResources.csproj": {
+                "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TAX_PCTResources\\RSP_GS_MAINTAIN_TAX_PCTResources.csproj"
               },
               "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM02000Common\\GSM02000Common.csproj": {
                 "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM02000Common\\GSM02000Common.csproj"
@@ -292,14 +292,14 @@
         }
       }
     },
-    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_SALES_TAXResources\\RSP_GS_MAINTAIN_SALES_TAXResources.csproj": {
+    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TAXResources\\RSP_GS_MAINTAIN_TAXResources.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_SALES_TAXResources\\RSP_GS_MAINTAIN_SALES_TAXResources.csproj",
-        "projectName": "RSP_GS_MAINTAIN_SALES_TAXResources",
-        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_SALES_TAXResources\\RSP_GS_MAINTAIN_SALES_TAXResources.csproj",
+        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TAXResources\\RSP_GS_MAINTAIN_TAXResources.csproj",
+        "projectName": "RSP_GS_MAINTAIN_TAXResources",
+        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TAXResources\\RSP_GS_MAINTAIN_TAXResources.csproj",
         "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_SALES_TAXResources\\obj\\",
+        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TAXResources\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -353,14 +353,14 @@
         }
       }
     },
-    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_SALES_TAX_PCTResources\\RSP_GS_MAINTAIN_SALES_TAX_PCTResources.csproj": {
+    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TAX_PCTResources\\RSP_GS_MAINTAIN_TAX_PCTResources.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_SALES_TAX_PCTResources\\RSP_GS_MAINTAIN_SALES_TAX_PCTResources.csproj",
-        "projectName": "RSP_GS_MAINTAIN_SALES_TAX_PCTResources",
-        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_SALES_TAX_PCTResources\\RSP_GS_MAINTAIN_SALES_TAX_PCTResources.csproj",
+        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TAX_PCTResources\\RSP_GS_MAINTAIN_TAX_PCTResources.csproj",
+        "projectName": "RSP_GS_MAINTAIN_TAX_PCTResources",
+        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TAX_PCTResources\\RSP_GS_MAINTAIN_TAX_PCTResources.csproj",
         "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_SALES_TAX_PCTResources\\obj\\",
+        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TAX_PCTResources\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

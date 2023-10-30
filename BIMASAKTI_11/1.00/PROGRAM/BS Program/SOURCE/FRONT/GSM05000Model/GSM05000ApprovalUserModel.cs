@@ -168,6 +168,7 @@ public class GSM05000ApprovalUserModel : R_BusinessObjectServiceClientBase<GSM05
 
         loEx.ThrowExceptionIfErrors();
     } 
+    // public async Task<List<GSM05000ApprovalDepartmentDTO>> LookupApprovalDepartmentStreamAsync(GSM05000DeptCodeParamsDTO poParams)
     public async Task<List<GSM05000ApprovalDepartmentDTO>> LookupApprovalDepartmentStreamAsync()
     {
         var loEx = new R_Exception();
@@ -277,7 +278,8 @@ public class GSM05000ApprovalUserModel : R_BusinessObjectServiceClientBase<GSM05
         throw new NotImplementedException();
     }
 
-    public IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentStream(GSM05000DeptCodeParamsDTO poParams)
+    // public IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentStream(GSM05000DeptCodeParamsDTO poParams)
+    public IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentStream()
     {
         throw new NotImplementedException();
     }

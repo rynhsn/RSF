@@ -42,7 +42,7 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         throw new NotImplementedException();
     }
 
-    public GLM00500PeriodCount GLM00500GetPeriodCount(GLM00500YearParamsDTO poParams)
+    public GLM00500PeriodCountDTO GLM00500GetPeriodCount(GLM00500YearParamsDTO poParams)
     {
         throw new NotImplementedException();
     }
@@ -136,15 +136,15 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         return loResult;
     }
 
-    public async Task<GLM00500PeriodCount> GLM00500GetPeriodCountModel(GLM00500YearParamsDTO poParams)
+    public async Task<GLM00500PeriodCountDTO> GLM00500GetPeriodCountModel(GLM00500YearParamsDTO poParams)
     {
         var loEx = new R_Exception();
-        GLM00500PeriodCount loResult = null;
+        GLM00500PeriodCountDTO loResult = null;
 
         try
         {
             R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500PeriodCount, GLM00500YearParamsDTO>(
+            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500PeriodCountDTO, GLM00500YearParamsDTO>(
                 _RequestServiceEndPoint,
                 nameof(IGLM00500Detail.GLM00500GetPeriodCount),
                 poParams,

@@ -2,6 +2,7 @@ using GSM05000Back;
 using GSM05000Common;
 using GSM05000Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
@@ -12,54 +13,69 @@ namespace GSM05000Service;
 [Route("api/[controller]/[action]")]
 public class GSM05000Controller : ControllerBase, IGSM05000
 {
+    private LoggerGSM05000 _logger;
+    
+    public GSM05000Controller(ILogger<GSM05000Controller> logger)
+    {
+        //Initial and Get Logger
+        LoggerGSM05000.R_InitializeLogger(logger);
+        _logger = LoggerGSM05000.R_GetInstanceLogger();
+    }
+    
     [HttpPost]
     public R_ServiceGetRecordResultDTO<GSM05000DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GSM05000DTO> poParameter)
     {
-        R_Exception loEx = new R_Exception();
-        R_ServiceGetRecordResultDTO<GSM05000DTO> loRtn = new R_ServiceGetRecordResultDTO<GSM05000DTO>();
+        _logger.LogInfo("Start - Get Transaction Code Record");
+        R_Exception loEx = new();
+        R_ServiceGetRecordResultDTO<GSM05000DTO> loRtn = new();
 
         try
         {
             var loCls = new GSM05000Cls();
-            loRtn = new R_ServiceGetRecordResultDTO<GSM05000DTO>();
             
+            _logger.LogInfo("Set Parameter");
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             
+            _logger.LogInfo("Get Transaction Code Record");
             loRtn.data = loCls.R_GetRecord(poParameter.Entity);
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
         
-        EndBlock:
         loEx.ThrowExceptionIfErrors();
-        
+        _logger.LogInfo("End - Get Transaction Code Record");
         return loRtn;
     }
     
     [HttpPost]
     public R_ServiceSaveResultDTO<GSM05000DTO> R_ServiceSave(R_ServiceSaveParameterDTO<GSM05000DTO> poParameter)
     {
+        _logger.LogInfo("Start - Save Transaction Code Entity");
         R_Exception loEx = new R_Exception();
-        R_ServiceSaveResultDTO<GSM05000DTO> loRtn = null;
+        R_ServiceSaveResultDTO<GSM05000DTO> loRtn = new();
         GSM05000Cls loCls;
 
         try
         {
             loCls = new GSM05000Cls();
-            loRtn = new R_ServiceSaveResultDTO<GSM05000DTO>();
             
+            _logger.LogInfo("Set Parameter");
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             
+            _logger.LogInfo("Save Transaction Code Entity");
             loRtn.data = loCls.R_Save(poParameter.Entity, poParameter.CRUDMode);
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
-        EndBlock:
+        
         loEx.ThrowExceptionIfErrors();
+        _logger.LogInfo("End - Save Transaction Code Entity");
         return loRtn;
     }
 
@@ -72,6 +88,7 @@ public class GSM05000Controller : ControllerBase, IGSM05000
     [HttpPost]
     public IAsyncEnumerable<GSM05000GridDTO> GetTransactionCodeListStream()
     {
+        _logger.LogInfo("Start - Get Transaction Code List");
         R_Exception loEx = new R_Exception();
         IAsyncEnumerable<GSM05000GridDTO> loRtn = null;
         List<GSM05000GridDTO> loResult;
@@ -82,27 +99,32 @@ public class GSM05000Controller : ControllerBase, IGSM05000
         {
             loDbPar = new GSM05000ParameterDb();
             
+            _logger.LogInfo("Set Parameter");
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbPar.CLANGUAGE_ID = R_BackGlobalVar.CULTURE_MENU;
-
+            loDbPar.CUSER_ID = R_BackGlobalVar.USER_ID;
+            
             loCls = new GSM05000Cls();
+            
+            _logger.LogInfo("Get Transaction Code List");
             loResult = loCls.GetTransactionCodeListDb(loDbPar);
             loRtn = GetTransactionCodeStream(loResult);
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
-
+        
         loEx.ThrowExceptionIfErrors();
-
+        _logger.LogInfo("End - Get Transaction Code List");
         return loRtn;
     }
 
     [HttpPost]
     public GSM05000ListDTO<GSM05000DelimiterDTO> GetDelimiterList()
     {
-        R_Exception loEx = new R_Exception();
+        _logger.LogInfo("Start - Get Delimiter List");
+        R_Exception loEx = new();
         GSM05000ListDTO<GSM05000DelimiterDTO> loRtn = null;
         List<GSM05000DelimiterDTO> loResult;
         GSM05000ParameterDb loDbPar;
@@ -112,27 +134,32 @@ public class GSM05000Controller : ControllerBase, IGSM05000
         {
             loDbPar = new GSM05000ParameterDb();
             
+            _logger.LogInfo("Set Parameter");
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbPar.CLANGUAGE_ID = R_BackGlobalVar.CULTURE_MENU;
             
             loCls = new GSM05000Cls();
+            
+            _logger.LogInfo("Get Delimiter List");
             loResult = loCls.GetDelimiterListDb(loDbPar);
             loRtn = new GSM05000ListDTO<GSM05000DelimiterDTO> { Data = loResult };
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
-
+        _logger.LogInfo("End - Get Delimiter List");
         return loRtn;
     }
 
     [HttpPost]
     public GSM05000ExistDTO CheckExistData(GSM05000TrxCodeParamsDTO poParams)
     {
-        R_Exception loEx = new R_Exception();
+        _logger.LogInfo("Start - Check Exist Data");
+        R_Exception loEx = new();
         GSM05000ExistDTO loRtn = null;
         GSM05000ExistDTO loResult;
         GSM05000ParameterDb loDbPar;
@@ -142,23 +169,24 @@ public class GSM05000Controller : ControllerBase, IGSM05000
         {
             loDbPar = new GSM05000ParameterDb();
             
+            _logger.LogInfo("Set Parameter");
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbPar.CTRANSACTION_CODE = poParams.CTRANSACTION_CODE;
-            
-            // loDbPar.CCOMPANY_ID = "rcd";
-            // loDbPar.CTRANSACTION_CODE = "000000";
+            loDbPar.CTRANS_CODE = poParams.CTRANS_CODE;
             
             loCls = new GSM05000Cls();
+            
+            _logger.LogInfo("Check Exist Data");
             loResult = loCls.GetValidateUpdateDb(loDbPar);
             loRtn = loResult;
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
-
+        
         loEx.ThrowExceptionIfErrors();
-
+        _logger.LogInfo("End - Check Exist Data");
         return loRtn;
     }
     

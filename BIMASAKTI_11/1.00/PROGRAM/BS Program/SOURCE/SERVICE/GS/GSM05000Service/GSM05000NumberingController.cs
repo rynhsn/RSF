@@ -2,6 +2,7 @@
 using GSM05000Common;
 using GSM05000Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
@@ -12,39 +13,50 @@ namespace GSM05000Service;
 [Route("api/[controller]/[action]")]
 public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
 {
+    private LoggerGSM05000 _logger;
+    
+    public GSM05000NumberingController(ILogger<GSM05000NumberingController> logger)
+    {
+        //Initial and Get Logger
+        LoggerGSM05000.R_InitializeLogger(logger);
+        _logger = LoggerGSM05000.R_GetInstanceLogger();
+    }
+    
     [HttpPost]
     public R_ServiceGetRecordResultDTO<GSM05000NumberingGridDTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GSM05000NumberingGridDTO> poParameter)
     {
-        R_Exception loEx = new R_Exception();
-        R_ServiceGetRecordResultDTO<GSM05000NumberingGridDTO> loRtn = new R_ServiceGetRecordResultDTO<GSM05000NumberingGridDTO>();
+        _logger.LogInfo("Start - Get Numbering Record");
+        R_Exception loEx = new();
+        R_ServiceGetRecordResultDTO<GSM05000NumberingGridDTO> loRtn = new();
 
         try
         {
             var loCls = new GSM05000NumberingCls();
-            loRtn = new R_ServiceGetRecordResultDTO<GSM05000NumberingGridDTO>();
             
+            _logger.LogInfo("Set Parameter");
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
-
-
+            
+            _logger.LogInfo("Get Numbering Record");
             loRtn.data = loCls.R_GetRecord(poParameter.Entity);
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
         
-        EndBlock:
         loEx.ThrowExceptionIfErrors();
-        
+        _logger.LogInfo("End - Get Numbering Record");
         return loRtn;
     }
 
     [HttpPost]
     public R_ServiceSaveResultDTO<GSM05000NumberingGridDTO> R_ServiceSave(R_ServiceSaveParameterDTO<GSM05000NumberingGridDTO> poParameter)
     {
-        R_Exception loEx = new R_Exception();
-        R_ServiceSaveResultDTO<GSM05000NumberingGridDTO> loRtn = null;
+        _logger.LogInfo("Start - Save Numbering Entity");
+        R_Exception loEx = new();
+        R_ServiceSaveResultDTO<GSM05000NumberingGridDTO> loRtn = new();
         GSM05000NumberingCls loCls;
 
         try
@@ -52,48 +64,59 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
             loCls = new GSM05000NumberingCls();
             loRtn = new R_ServiceSaveResultDTO<GSM05000NumberingGridDTO>();
             
+            _logger.LogInfo("Set Parameter");
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
 
+            _logger.LogInfo("Save Numbering Entity");
             loRtn.data = loCls.R_Save(poParameter.Entity, poParameter.CRUDMode);
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
-        EndBlock:
+        
         loEx.ThrowExceptionIfErrors();
+        _logger.LogInfo("End - Save Numbering Entity");
         return loRtn;
     }
 
     [HttpPost]
     public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<GSM05000NumberingGridDTO> poParameter)
     {
-        R_Exception loEx = new R_Exception();
-        R_ServiceDeleteResultDTO loRtn = new R_ServiceDeleteResultDTO();
+        _logger.LogInfo("Start - Delete Numbering Entity");
+        R_Exception loEx = new();
+        R_ServiceDeleteResultDTO loRtn = new();
         GSM05000NumberingCls loCls;
 
         try
         {
             loCls = new GSM05000NumberingCls();
+            
+            _logger.LogInfo("Set Parameter");
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
+            
+            _logger.LogInfo("Delete Numbering Entity");
             loCls.R_Delete(poParameter.Entity);
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
-
+        _logger.LogInfo("End - Delete Numbering Entity");
         return loRtn;
     }
 
     [HttpPost]
     public IAsyncEnumerable<GSM05000NumberingGridDTO> GetNumberingListStream()
     {
-        R_Exception loEx = new R_Exception();
+        _logger.LogInfo("Start - Get Numbering List");
+        R_Exception loEx = new();
         IAsyncEnumerable<GSM05000NumberingGridDTO> loRtn = null;
         List<GSM05000NumberingGridDTO> loResult;
         GSM05000ParameterDb loDbPar;
@@ -103,28 +126,33 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
         {
             loDbPar = new GSM05000ParameterDb();
             
+            _logger.LogInfo("Set Parameter");
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbPar.CUSER_ID = R_BackGlobalVar.USER_ID;
-            loDbPar.CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE);
+            loDbPar.CUSER_LOGIN_ID = R_BackGlobalVar.USER_ID;
+            loDbPar.CTRANS_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE);
 
             loCls = new GSM05000NumberingCls();
+            
+            _logger.LogInfo("Get Numbering List");
             loResult = loCls.GetNumberingListDb(loDbPar);
             loRtn = GetNumberingStream(loResult);
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
-
+        _logger.LogInfo("End - Get Numbering List");
         return loRtn;
     }
 
     [HttpPost]
     public GSM05000NumberingHeaderDTO GetNumberingHeader(GSM05000TrxCodeParamsDTO poParams)
     {
-        R_Exception loEx = new R_Exception();
+        _logger.LogInfo("Start - Get Numbering Header");
+        R_Exception loEx = new();
         GSM05000NumberingHeaderDTO loRtn = null;
         GSM05000ParameterDb loDbPar;
         GSM05000NumberingCls loCls;
@@ -133,19 +161,23 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
         {
             loDbPar = new GSM05000ParameterDb();
 
+            _logger.LogInfo("Set Parameter");
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbPar.CTRANSACTION_CODE = poParams.CTRANSACTION_CODE;
+            loDbPar.CTRANS_CODE = poParams.CTRANS_CODE;
 
             loCls = new GSM05000NumberingCls();
+            
+            _logger.LogInfo("Get Numbering Header");
             loRtn = loCls.GetNumberingHeaderDb(loDbPar);
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
-
+        _logger.LogInfo("End - Get Numbering Header");
         return loRtn;
     }
     

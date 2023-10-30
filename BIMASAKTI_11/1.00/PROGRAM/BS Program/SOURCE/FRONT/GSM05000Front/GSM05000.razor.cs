@@ -396,6 +396,6 @@ public partial class GSM05000 : R_Page
     private void ConvertGridToEntity(R_ConvertToGridEntityEventArgs eventArgs)
     {
         var loData= (GSM05000DTO)eventArgs.Data;
-        eventArgs.GridData = new GSM05000GridDTO() { CTRANSACTION_CODE = loData.CTRANSACTION_CODE, CTRANSACTION_NAME = loData.CTRANSACTION_NAME };
+        eventArgs.GridData = new GSM05000GridDTO() { CTRANS_CODE = loData.CTRANS_CODE, CTRANSACTION_NAME = loData.CTRANSACTION_NAME };
     }
 }

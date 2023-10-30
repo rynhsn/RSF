@@ -1,4 +1,5 @@
 ﻿using BlazorClientHelper;
+using GFF00900COMMON.DTOs;
 using GSM02000Common.DTOs;
 using GSM02000Model.ViewModel;
 using Lookup_GSCOMMON.DTOs;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
+using R_BlazorFrontEnd.Controls.Popup;
 using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
@@ -22,6 +24,7 @@ public partial class GSM02000 : R_Page
     private string loLabel = "Activate";
     
     [Inject] private IClientHelper _clientHelper { get; set; }
+    [Inject] private R_PopupService PopupService { get; set;}
 
     protected override async Task R_Init_From_Master(object poParam)
     {
@@ -105,16 +108,16 @@ public partial class GSM02000 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private async Task Conductor_ServiceSave(R_ServiceSaveEventArgs arg)
+    private async Task Conductor_ServiceSave(R_ServiceSaveEventArgs eventArgs)
     {
         var loEx = new R_Exception();
 
         try
         {
-            var loParam = R_FrontUtility.ConvertObjectToObject<GSM02000DTO>(arg.Data);
-            await _GSM02000ViewModel.SaveEntity(loParam, (eCRUDMode)arg.ConductorMode);
+            var loParam = R_FrontUtility.ConvertObjectToObject<GSM02000DTO>(eventArgs.Data);
+            await _GSM02000ViewModel.SaveEntity(loParam, (eCRUDMode)eventArgs.ConductorMode);
 
-            arg.Result = _GSM02000ViewModel.Entity;
+            eventArgs.Result = _GSM02000ViewModel.Entity;
         }
         catch (Exception ex)
         {
@@ -188,8 +191,8 @@ public partial class GSM02000 : R_Page
             return;
 
         var loGetData = (GSM02000DTO)_conductorRef.R_GetCurrentData();
-        loGetData.CTAXIN_GL_ACCOUNT_NO = loTempResult.CGLACCOUNT_NO;
-        loGetData.CTAXIN_GL_ACCOUNT_NAME = loTempResult?.CGLACCOUNT_NAME;
+        loGetData.CTAXIN_GLACCOUNT_NO = loTempResult.CGLACCOUNT_NO;
+        loGetData.CTAXIN_GLACCOUNT_NAME = loTempResult?.CGLACCOUNT_NAME;
     }
 
     private void BeforeOpenLookupOut(R_BeforeOpenLookupEventArgs eventArgs)
@@ -216,8 +219,8 @@ public partial class GSM02000 : R_Page
             return;
 
         var loGetData = (GSM02000DTO)_conductorRef.R_GetCurrentData();
-        loGetData.CTAXOUT_GL_ACCOUNT_NO = loTempResult.CGLACCOUNT_NO;
-        loGetData.CTAXOUT_GL_ACCOUNT_NAME = loTempResult?.CGLACCOUNT_NAME;
+        loGetData.CTAXOUT_GLACCOUNT_NO = loTempResult.CGLACCOUNT_NO;
+        loGetData.CTAXOUT_GLACCOUNT_NAME = loTempResult?.CGLACCOUNT_NAME;
     }
 
     private void R_SetAdd(R_SetEventArgs eventArgs)
@@ -238,20 +241,53 @@ public partial class GSM02000 : R_Page
 
     #endregion
 
-    private async Task BeforeOpenActiveInactive(R_BeforeOpenPopupEventArgs arg)
+    private async Task BeforeOpenActiveInactive(R_BeforeOpenPopupEventArgs eventArgs)
     {
-        arg.Parameter = "GSM02001";
-        arg.TargetPageType = typeof(GFF00900FRONT.GFF00900);
-    }
-
-    private async Task AfterOpenActiveInactive(R_AfterOpenPopupEventArgs arg)
-    {
-        R_Exception loException = new R_Exception();
+        var loException = new R_Exception();
         try
         {
-            var result = (bool)arg.Result;
-            if (result)
+            var loValidateViewModel = new GFF00900Model.ViewModel.GFF00900ViewModel();
+            loValidateViewModel.ACTIVATE_INACTIVE_ACTIVITY_CODE = "GSM02001"; //Uabh Approval Code sesuai Spec masing masing
+            await loValidateViewModel.RSP_ACTIVITY_VALIDITYMethodAsync(); //Jika IAPPROVAL_CODE == 3, maka akan keluar RSP_ERROR disini
+
+            //Jika Approval User ALL dan Approval Code 1, maka akan langsung menjalankan ActiveInactive
+            if (loValidateViewModel.loRspActivityValidityList.FirstOrDefault().CAPPROVAL_USER == "ALL" && loValidateViewModel.loRspActivityValidityResult.Data.FirstOrDefault().IAPPROVAL_MODE == 1)
+            {
                 await _GSM02000ViewModel.SetActiveInactive();
+                await _gridRef.R_RefreshGrid(null);
+                return;
+            }
+            else //Disini Approval Code yang didapat adalah 2, yang berarti Active Inactive akan dijalankan jika User yang diinput ada di RSP_ACTIVITY_VALIDITY
+            {
+                eventArgs.Parameter = new GFF00900ParameterDTO()
+                {
+                    Data = loValidateViewModel.loRspActivityValidityList,
+                    IAPPROVAL_CODE = "GSM02001" //Uabh Approval Code sesuai Spec masing masing
+                };
+                eventArgs.TargetPageType = typeof(GFF00900FRONT.GFF00900);
+            }
+        }
+        catch (Exception ex)
+        {
+            loException.Add(ex);
+        }
+        loException.ThrowExceptionIfErrors();
+    }
+
+    private async Task AfterOpenActiveInactive(R_AfterOpenPopupEventArgs eventArgs)
+    {
+        var loException = new R_Exception();
+        try
+        {
+            if (eventArgs.Success == false)
+                return;
+
+            var result = (bool)eventArgs.Result;
+            if (result)
+            {
+                await _GSM02000ViewModel.SetActiveInactive();
+                await _gridRef.R_RefreshGrid(null);
+            }
         }
         catch (Exception ex)
         {
@@ -259,7 +295,6 @@ public partial class GSM02000 : R_Page
         }
 
         loException.ThrowExceptionIfErrors();
-        await _gridRef.R_RefreshGrid(null);
     }
 
     private Task InstanceTaxTab(R_InstantiateDockEventArgs eventArgs)
@@ -269,14 +304,47 @@ public partial class GSM02000 : R_Page
         return Task.CompletedTask;
     }
 
-    private Task Validation(R_ValidationEventArgs eventArgs)
+    private async Task Validation(R_ValidationEventArgs eventArgs)
     {
         var loEx = new R_Exception();
         
+        R_PopupResult loResult = null;
+        GFF00900ParameterDTO loParam = null;
+        GSM02000DTO loData = null;
+        var lsApprovalCode = "GSM02001";
         try
         {
-            var loParam = R_FrontUtility.ConvertObjectToObject<GSM02000DTO>(eventArgs.Data);
-            _GSM02000ViewModel.Validate(loParam);
+            loData = (GSM02000DTO)eventArgs.Data;
+            _GSM02000ViewModel.Validate(loData);
+            
+            loData.CTAXIN_GLACCOUNT_NO ??= "";
+            loData.CTAXOUT_GLACCOUNT_NO ??= "";
+            
+            if (loData.LACTIVE == true && _conductorRef.R_ConductorMode == R_eConductorMode.Add)
+            {
+                var loValidateViewModel = new GFF00900Model.ViewModel.GFF00900ViewModel();
+                loValidateViewModel.ACTIVATE_INACTIVE_ACTIVITY_CODE = lsApprovalCode;
+                await loValidateViewModel.RSP_ACTIVITY_VALIDITYMethodAsync();
+
+                if (loValidateViewModel.loRspActivityValidityList.FirstOrDefault().CAPPROVAL_USER == "ALL" && loValidateViewModel.loRspActivityValidityResult.Data.FirstOrDefault().IAPPROVAL_MODE == 1)
+                {
+                    eventArgs.Cancel = false;
+                }
+                else
+                {
+                    loParam = new GFF00900ParameterDTO()
+                    {
+                        Data = loValidateViewModel.loRspActivityValidityList,
+                        IAPPROVAL_CODE = lsApprovalCode
+                    };
+                    loResult = await PopupService.Show(typeof(GFF00900FRONT.GFF00900), loParam);
+                    if (loResult.Success == false || (bool)loResult.Result == false)
+                    {
+                        eventArgs.Cancel = true;
+                    }
+                }
+            }
+
         }
         catch (Exception ex)
         {
@@ -284,7 +352,6 @@ public partial class GSM02000 : R_Page
         }
         
         loEx.ThrowExceptionIfErrors();
-        return Task.CompletedTask;
     }
 
     private Task Saving(R_SavingEventArgs eventArgs)
@@ -313,5 +380,12 @@ public partial class GSM02000 : R_Page
         {
             _GSM02000ViewModel.Data.IROUNDING = 0;
         }
+    }
+
+    private void Conductor_AfterAdd(R_AfterAddEventArgs eventArgs)
+    {
+        var tes = (GSM02000DTO)eventArgs.Data;
+        tes.LACTIVE = true;
+        // eventArgs.Data = tes;
     }
 }

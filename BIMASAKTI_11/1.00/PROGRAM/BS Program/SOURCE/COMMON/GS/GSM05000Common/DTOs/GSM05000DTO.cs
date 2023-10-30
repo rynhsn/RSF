@@ -5,7 +5,7 @@ namespace GSM05000Common.DTOs
     public class GSM05000DTO
     {
         public string CCOMPANY_ID {get; set;}
-        public string CTRANSACTION_CODE {get; set;}
+        public string CTRANS_CODE {get; set;}
         public string CTRANSACTION_NAME {get; set;}
         public string CMODULE_ID {get; set;}
         public bool LINCREMENT_FLAG {get; set;}

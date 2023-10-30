@@ -28,11 +28,6 @@ namespace GLM00500Model
 
         #region IGLM00500Header Members not implemented
 
-        public GLM00500ListDTO<GLM00500BudgetHDDTO> GLM00500GetBudgetHDList()
-        {
-            throw new NotImplementedException();
-        }
-
         public IAsyncEnumerable<GLM00500BudgetHDDTO> GLM00500GetBudgetHDListStream()
         {
             throw new NotImplementedException();
@@ -65,30 +60,6 @@ namespace GLM00500Model
 
         #endregion
 
-        public async Task<GLM00500ListDTO<GLM00500BudgetHDDTO>> GLM00500GetBudgetHDListModel()
-        {
-            var loEx = new R_Exception();
-            GLM00500ListDTO<GLM00500BudgetHDDTO> loResult = null;
-
-            try
-            {
-                R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500ListDTO<GLM00500BudgetHDDTO>>(
-                    _RequestServiceEndPoint,
-                    nameof(IGLM00500Header.GLM00500GetBudgetHDList),
-                    DEFAULT_MODULE,
-                    _SendWithContext,
-                    _SendWithToken);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-            return loResult;
-        }
-        
         public async Task<List<GLM00500BudgetHDDTO>> GLM00500GetBudgetHDListStreamModel()
         {
             var loEx = new R_Exception();

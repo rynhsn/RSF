@@ -31,7 +31,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
 
         try
         {
-            GSM05000TrxCodeParamsDTO loParams = new() { CTRANSACTION_CODE = TransactionCode };
+            GSM05000TrxCodeParamsDTO loParams = new() { CTRANS_CODE = TransactionCode };
             var loReturn = await _Model.GetApprovalHeaderAsync(loParams);
             HeaderEntity = loReturn;
         }
@@ -109,7 +109,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
 
         try
         {
-            poEntity.CTRANSACTION_CODE = TransactionCode;
+            poEntity.CTRANS_CODE = TransactionCode;
             ApproverEntity = await _Model.R_ServiceGetRecordAsync(poEntity);
         }
         catch (Exception ex)
@@ -129,7 +129,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
             if (eCRUDMode.AddMode == peCrudMode)
             {
                 poNewEntity.CDEPT_CODE = DepartmentEntity.CDEPT_CODE ?? "";
-                poNewEntity.CTRANSACTION_CODE = HeaderEntity.CTRANSACTION_CODE;
+                poNewEntity.CTRANS_CODE = HeaderEntity.CTRANS_CODE;
             }
 
             ApproverEntity = await _Model.R_ServiceSaveAsync(poNewEntity, peCrudMode);
@@ -190,7 +190,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
 
         try
         {
-            GSM05000TrxCodeParamsDTO loParams = new() { CTRANSACTION_CODE = poTransactionCode };
+            GSM05000TrxCodeParamsDTO loParams = new() { CTRANS_CODE = poTransactionCode };
             // var loReturn = await _Model.DepartmentChangeSequenceModel(loParams);
             var loReturn = await _Model.DepartmentChangeSequenceModelStream(loParams);
             // DeptSeqList = loReturn.Data;
@@ -210,7 +210,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
 
         try
         {
-            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, poParameter.CTRANSACTION_CODE);
+            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, poParameter.CTRANS_CODE);
             R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE, poParameter.CDEPT_CODE);
             var loReturn = await _Model.GSM05000GetUserSequenceDataModelStream();
             //urutkan berdasarkan sequence
@@ -241,13 +241,14 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
         loEx.ThrowExceptionIfErrors();
     }
     
-    public async Task LookupDepartment(GSM05000ApprovalCopyDTO poParameter)
+    // public async Task LookupDepartment(GSM05000ApprovalCopyDTO poParameter)
+    public async Task LookupDepartment()
     {
         var loEx = new R_Exception();
 
         try
         {
-            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE, poParameter.CDEPT_CODE);
+            // R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE, poParameter.CDEPT_CODE);
             var loReturn = await _Model.LookupApprovalDepartmentStreamAsync();
             DepartmentLookup = new ObservableCollection<GSM05000ApprovalDepartmentDTO>(loReturn);
         }

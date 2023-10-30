@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.Common;
+using GSM05000Common;
 using GSM05000Common.DTOs;
 using R_BackEnd;
 using R_Common;
@@ -9,9 +10,16 @@ namespace GSM05000Back;
 
 public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
 {
+    private LoggerGSM05000 _logger;
+
+    public GSM05000NumberingCls()
+    {
+        _logger = LoggerGSM05000.R_GetInstanceLogger();
+    }
+    
     protected override GSM05000NumberingGridDTO R_Display(GSM05000NumberingGridDTO poEntity)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         GSM05000NumberingGridDTO loRtn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -33,12 +41,27 @@ public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
             loDb.R_AddCommandParameter(loCmd, "@CPERIOD_NO", DbType.String, 50, poEntity.CPERIOD_NO);
             loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, poEntity.CDEPT_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 50, poEntity.CUSER_ID);
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is 
+                        "@CCOMPANY_ID" or 
+                        "@CTRANSACTION_CODE" or 
+                        "@CPERIOD_NO" or
+                        "@CDEPT_CODE" or
+                        "@CUSER_LOGIN_ID"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
             loRtn = R_Utility.R_ConvertTo<GSM05000NumberingGridDTO>(loDataTable).FirstOrDefault();
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
@@ -47,12 +70,12 @@ public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
 
     protected override void R_Saving(GSM05000NumberingGridDTO poNewEntity, eCRUDMode poCRUDMode)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         string lcQuery;
         R_Db loDb;
         DbCommand loCmd;
         DbConnection loConn;
-        string lcAction = "";
+        var lcAction = "";
 
         try
         {
@@ -81,11 +104,29 @@ public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
             loDb.R_AddCommandParameter(loCmd, "@ISTART_NUMBER", DbType.Int32, 8, poNewEntity.ISTART_NUMBER);
             loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, lcAction);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 10, poNewEntity.CUSER_ID);
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is 
+                        "@CCOMPANY_ID" or 
+                        "@CTRANSACTION_CODE" or 
+                        "@CCYEAR" or
+                        "@CPERIOD_NO" or
+                        "@CDEPT_CODE" or
+                        "@ISTART_NUMBER" or
+                        "@CACTION" or
+                        "@CUSER_ID"
+                )
+                .Select(x => x.Value);
+            
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            
             loDb.SqlExecNonQuery(loConn, loCmd, true);
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         EndBlock:
@@ -94,12 +135,12 @@ public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
 
     protected override void R_Deleting(GSM05000NumberingGridDTO poEntity)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         string lcQuery;
         R_Db loDb;
         DbCommand loCmd;
         DbConnection loConn;
-        string lcAction = "DELETE";
+        var lcAction = "DELETE";
 
         try
         {
@@ -119,11 +160,29 @@ public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
             loDb.R_AddCommandParameter(loCmd, "@ISTART_NUMBER", DbType.Int32, 8, poEntity.ISTART_NUMBER);
             loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, lcAction);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 10, poEntity.CUSER_ID);
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is 
+                        "@CCOMPANY_ID" or 
+                        "@CTRANSACTION_CODE" or 
+                        "@CCYEAR" or
+                        "@CPERIOD_NO" or
+                        "@CDEPT_CODE" or
+                        "@ISTART_NUMBER" or
+                        "@CACTION" or
+                        "@CUSER_ID"
+                )
+                .Select(x => x.Value);
+            
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            
             loDb.SqlExecNonQuery(loConn, loCmd, true);
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         EndBlock:
@@ -132,7 +191,7 @@ public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
 
     public List<GSM05000NumberingGridDTO> GetNumberingListDb(GSM05000ParameterDb poParameter)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         List<GSM05000NumberingGridDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -149,16 +208,28 @@ public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
-            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParameter.CCOMPANY_ID);
-            loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 50, poParameter.CTRANSACTION_CODE);
-            loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 50, poParameter.CUSER_ID);
-
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 20, poParameter.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 20, poParameter.CTRANS_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 20, poParameter.CUSER_LOGIN_ID);
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is 
+                        "@CCOMPANY_ID" or 
+                        "@CTRANSACTION_CODE" or 
+                        "@CUSER_LOGIN_ID"
+                )
+                .Select(x => x.Value);
+            
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
             loRtn = R_Utility.R_ConvertTo<GSM05000NumberingGridDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
@@ -168,7 +239,7 @@ public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
 
     public GSM05000NumberingHeaderDTO GetNumberingHeaderDb(GSM05000ParameterDb poParameter)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         GSM05000NumberingHeaderDTO loRtn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -181,7 +252,7 @@ public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = @"SELECT CTRANSACTION_CODE, 
+            lcQuery = @"SELECT CTRANS_CODE, 
                         CTRANSACTION_NAME, 
                         LDEPT_MODE, 
                         CPERIOD_MODE, 
@@ -190,12 +261,22 @@ public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
                               WHEN CPERIOD_MODE = 'Y' THEN 'Yearly' END) AS CPERIOD_MODE_DESCR
                         FROM GSM_TRANSACTION_CODE (NOLOCK)
                         WHERE CCOMPANY_ID = @CCOMPANY_ID
-                        AND CTRANSACTION_CODE = @CTRANSACTION_CODE";
+                        AND CTRANS_CODE = @CTRANS_CODE";
             loCmd.CommandType = CommandType.Text;
             loCmd.CommandText = lcQuery;
 
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParameter.CCOMPANY_ID);
-            loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 50, poParameter.CTRANSACTION_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 50, poParameter.CTRANS_CODE);
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is 
+                        "@CCOMPANY_ID" or 
+                        "@CTRANS_CODE"
+                )
+                .Select(x => x.Value);
+            
+            _logger.LogDebug("{pcQuery} {@poParam}", lcQuery, loDbParam);
             
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
             loRtn = R_Utility.R_ConvertTo<GSM05000NumberingHeaderDTO>(loDataTable).FirstOrDefault();
@@ -203,6 +284,7 @@ public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();

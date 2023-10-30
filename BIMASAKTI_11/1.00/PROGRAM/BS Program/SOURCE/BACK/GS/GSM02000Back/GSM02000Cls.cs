@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.Common;
+using GSM02000Common;
 using GSM02000Common.DTOs;
 using R_BackEnd;
 using R_Common;
@@ -9,9 +10,16 @@ namespace GSM02000Back;
 
 public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
 {
+    private LoggerGSM02000 _logger;
+    
+    public GSM02000Cls()
+    {
+        _logger = LoggerGSM02000.R_GetInstanceLogger();
+    }
+    
     protected override GSM02000DTO R_Display(GSM02000DTO poEntity)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         GSM02000DTO loRtn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -31,6 +39,10 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
             loDb.R_AddCommandParameter(loCmd, "@CTAX_ID", DbType.String, 50, poEntity.CTAX_ID);
 
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x => x.ParameterName == "@"+ poEntity.GetType().GetProperty(x.ParameterName.Replace("@", "")).Name).Select(x => x.Value);
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
             loRtn = R_Utility.R_ConvertTo<GSM02000DTO>(loDataTable).FirstOrDefault();
@@ -38,6 +50,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         EndBlock:
@@ -48,7 +61,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
 
     protected override void R_Saving(GSM02000DTO poNewEntity, eCRUDMode poCRUDMode)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         string lcQuery;
         R_Db loDb;
         DbCommand loCmd;
@@ -83,11 +96,16 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             // loDb.R_AddCommandParameter(loCmd, "@NTAX_PERCENTAGE", DbType.Decimal, 18, poNewEntity.NTAX_PERCENTAGE);
             loDb.R_AddCommandParameter(loCmd, "@CROUNDING_MODE", DbType.String, 10, poNewEntity.CROUNDING_MODE);
             loDb.R_AddCommandParameter(loCmd, "@IROUNDING", DbType.Int32, 10, poNewEntity.IROUNDING);
-            loDb.R_AddCommandParameter(loCmd, "@CTAXIN_GL_ACCOUNT_NO", DbType.String, 20, poNewEntity.CTAXIN_GL_ACCOUNT_NO);
-            loDb.R_AddCommandParameter(loCmd, "@CTAXOUT_GL_ACCOUNT_NO", DbType.String, 60, poNewEntity.CTAXOUT_GL_ACCOUNT_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CTAXIN_GLACCOUNT_NO", DbType.String, 20, poNewEntity.CTAXIN_GLACCOUNT_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CTAXOUT_GLACCOUNT_NO", DbType.String, 60, poNewEntity.CTAXOUT_GLACCOUNT_NO);
             loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, 1, poNewEntity.LACTIVE);
             loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, lcAction);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poNewEntity.CUSER_ID);
+            
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x => x.ParameterName == "@"+ poNewEntity.GetType().GetProperty(x.ParameterName.Replace("@", "")).Name).Select(x => x.Value);
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
 
             try
             {
@@ -95,14 +113,16 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             }
             catch (Exception ex)
             {
-                loEx.Add(ex);
+                loEx.Add(ex);            
+                _logger.LogError(loEx);
             }
 
             loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
         }
         catch (Exception ex)
         {
-            loEx.Add(ex);
+            loEx.Add(ex);            
+            _logger.LogError(loEx);
         }
 
         finally
@@ -124,7 +144,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
 
     protected override void R_Deleting(GSM02000DTO poEntity)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         string lcQuery;
         R_Db loDb;
         DbCommand loCmd;
@@ -151,24 +171,31 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             loDb.R_AddCommandParameter(loCmd, "@CDESCRIPTION", DbType.String, 255, poEntity.CDESCRIPTION);
             loDb.R_AddCommandParameter(loCmd, "@CROUNDING_MODE", DbType.String, 10, poEntity.CROUNDING_MODE);
             loDb.R_AddCommandParameter(loCmd, "@IROUNDING", DbType.Int32, 10, poEntity.IROUNDING);
-            loDb.R_AddCommandParameter(loCmd, "@CTAXIN_GL_ACCOUNT_NO", DbType.String, 20, poEntity.CTAXIN_GL_ACCOUNT_NO);
-            loDb.R_AddCommandParameter(loCmd, "@CTAXOUT_GL_ACCOUNT_NO", DbType.String, 60, poEntity.CTAXOUT_GL_ACCOUNT_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CTAXIN_GL_ACCOUNT_NO", DbType.String, 20, poEntity.CTAXIN_GLACCOUNT_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CTAXOUT_GL_ACCOUNT_NO", DbType.String, 60, poEntity.CTAXOUT_GLACCOUNT_NO);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
 
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x => x.ParameterName == "@"+ poEntity.GetType().GetProperty(x.ParameterName.Replace("@", "")).Name).Select(x => x.Value);
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            
             try
             {
                 loDb.SqlExecNonQuery(loConn, loCmd, false);
             }
             catch (Exception ex)
             {
-                loEx.Add(ex);
+                loEx.Add(ex);            
+                _logger.LogError(loEx);
             }
 
             loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
         }
         catch (Exception ex)
         {
-            loEx.Add(ex);
+            loEx.Add(ex);            
+            _logger.LogError(loEx);
         }
 
         finally
@@ -189,7 +216,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
 
     public List<GSM02000GridDTO> SalesTaxListDb(GSM02000ParameterDb poParameter)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         List<GSM02000GridDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -208,13 +235,18 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
 
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParameter.CCOMPANY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poParameter.CUSER_ID);
-
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x => x.ParameterName == "@"+ poParameter.GetType().GetProperty(x.ParameterName.Replace("@", "")).Name).Select(x => x.Value);
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
             loRtn = R_Utility.R_ConvertTo<GSM02000GridDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {
-            loEx.Add(ex);
+            loEx.Add(ex);            
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
@@ -224,7 +256,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
 
     public List<GSM02000RoundingDTO> RoundingListDb(GSM02000ParameterDb poParameter)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         List<GSM02000RoundingDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -242,12 +274,15 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             loCmd.CommandType = CommandType.Text;
             loCmd.CommandText = lcQuery;
 
+            _logger.LogDebug("{poQuery}", lcQuery);
+
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
             loRtn = R_Utility.R_ConvertTo<GSM02000RoundingDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {
-            loEx.Add(ex);
+            loEx.Add(ex);            
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
@@ -257,7 +292,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
 
     public void SetActiveInactiveDb(GSM02000ActiveInactiveDb poParameter)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -269,7 +304,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = "RSP_GS_ACTIVE_INACTIVE_SALES_TAX";
+            lcQuery = "RSP_GS_ACTIVE_INACTIVE_TAX";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
@@ -278,11 +313,17 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, 1 , poParameter.LACTIVE);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poParameter.CUSER_ID);
 
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x => x.ParameterName == "@"+ poParameter.GetType().GetProperty(x.ParameterName.Replace("@", "")).Name).Select(x => x.Value);
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            
             loDb.SqlExecNonQuery(loConn, loCmd, true);
         }
         catch (Exception ex)
         {
-            loEx.Add(ex);
+            loEx.Add(ex);            
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();

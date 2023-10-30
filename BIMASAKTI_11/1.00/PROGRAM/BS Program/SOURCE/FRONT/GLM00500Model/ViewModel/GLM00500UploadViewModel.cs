@@ -17,7 +17,6 @@ namespace GLM00500Model.ViewModel;
 
 public class GLM00500UploadViewModel : R_IProcessProgressStatus
 {
-    private GLM00500UploadModel _model = new();
     public ObservableCollection<GLM00500UploadForSystemDTO> UploadedList = new();
 
     public string CompanyId { get; set; }

@@ -4,26 +4,28 @@
 @attribute [R_Page(Title = "Transaction")]
 
 <R_StackLayout Row="true" Spacing="3">
-<R_ItemLayout col="4">
+<R_ItemLayout>
     <R_Grid @ref="@_gridRef"
             DataSource="@_GSM05000ViewModel.GridList"
             Pageable="true"
             R_ConductorSource="@_conductorRef"
             R_GridType="@R_eGridType.Navigator"
-            R_ServiceGetListRecord="@Grid_GetList">
+            R_ServiceGetListRecord="@Grid_GetList"
+            Width="350px"
+            Height="532px">
         <R_GridColumns>
-            <R_GridTextColumn FieldName="CTRANSACTION" HeaderText="Transaction"/>
+            <R_GridTextColumn FieldName="@nameof(GSM05000GridDTO.CTRANSACTION)" HeaderText="Transaction" TextAlignment="R_eTextAlignment.Left"/>
         </R_GridColumns>
     </R_Grid>
 </R_ItemLayout>
 
-<R_ItemLayout col="7">
+<R_ItemLayout col="8">
 <R_StackLayout Row="true">
     <R_ItemLayout col="3">
         <R_Label>Transaction Code</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
-        <R_TextBox @bind-Value="@_GSM05000ViewModel.Data.CTRANSACTION_CODE"
+        <R_TextBox @bind-Value="@_GSM05000ViewModel.Data.CTRANS_CODE"
                    R_ConductorSource="@_conductorRef"
                    Enabled="false"/>
     </R_ItemLayout>
@@ -43,7 +45,7 @@
 
         <R_Label>Using Incremental Document Number</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout col="2" Class="me-5">
+    <R_ItemLayout col="3">
         <R_Label>Separator</R_Label>
     </R_ItemLayout>
     <R_ItemLayout>
@@ -51,7 +53,7 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_GroupBox Enabled="_GSM05000ViewModel.Data.LINCREMENT_FLAG" ShowBorder="false">
+<R_GroupBox Enabled="_GSM05000ViewModel.Data.LINCREMENT_FLAG" ShowBorder="false" Class="p-2">
 @* By Department *@
 <R_StackLayout Row="true" Spacing="1" Class="mb-1">
     <R_ItemLayout col="6">
@@ -285,7 +287,7 @@
 @* End::Sample Row *@
 
 @* Begin::Using Approval *@
-<R_StackLayout Row="true" Class="mt-2">
+<R_StackLayout Row="true" Class="mt-1">
     <R_ItemLayout>
         <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LAPPROVAL_FLAG"
                     R_ConductorSource="@_conductorRef"
@@ -367,19 +369,19 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_StackLayout Row="true"Class="mt-2">
+<R_StackLayout Row="true"Class="mt-1">
     <R_ItemLayout col="6">
-        <R_ItemLayout col="3">
+        <R_ItemLayout>
             <R_EditButton R_Conductor="@_conductorRef"/>
         </R_ItemLayout>
     </R_ItemLayout>
 
     <R_ItemLayout col="6">
-        <R_StackLayout Row="true">
-            <R_ItemLayout col="3">
+        <R_StackLayout Row="true" Class="justify-content-end">
+            <R_ItemLayout>
                 <R_CancelButton R_Conductor="@_conductorRef"/>
             </R_ItemLayout>
-            <R_ItemLayout col="3">
+            <R_ItemLayout>
                 <R_SaveButton R_Conductor="@_conductorRef"/>
             </R_ItemLayout>
         </R_StackLayout>

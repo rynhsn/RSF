@@ -114,7 +114,7 @@ namespace GSM02000Model.ViewModel
             loEx.ThrowExceptionIfErrors();
         }
 
-        public Task Validate(GSM02000DTO poParam)
+        public void Validate(GSM02000DTO poParam)
         {
             var loEx = new R_Exception();
             
@@ -136,6 +136,7 @@ namespace GSM02000Model.ViewModel
                 {
                     loEx.Add("", "Rounding Unit is required");
                 }
+                
             }
             catch (Exception ex)
             {
@@ -143,7 +144,6 @@ namespace GSM02000Model.ViewModel
             }
             
             loEx.ThrowExceptionIfErrors();
-            return Task.CompletedTask;
         }
     }
 }

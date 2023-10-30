@@ -43,7 +43,7 @@ public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
 
         try
         {
-            GSM05000TrxCodeParamsDTO loParams = new(){ CTRANSACTION_CODE = TransactionCode };
+            GSM05000TrxCodeParamsDTO loParams = new(){ CTRANS_CODE = TransactionCode };
             var loReturn = await _GSM05000NumberingModel.GetNumberingHeaderAsync(loParams);
             HeaderEntity = loReturn;
         }
@@ -61,7 +61,7 @@ public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
 
         try
         {
-            poEntity.CTRANSACTION_CODE = HeaderEntity.CTRANSACTION_CODE;
+            poEntity.CTRANSACTION_CODE = HeaderEntity.CTRANS_CODE;
             Entity = await _GSM05000NumberingModel.R_ServiceGetRecordAsync(poEntity);
         }
         catch (Exception ex)
@@ -80,7 +80,7 @@ public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
             if (eCRUDMode.AddMode == peCrudMode)
             {
                 var loPeriod = GeneratePeriod(poNewEntity);
-                poNewEntity.CTRANSACTION_CODE = HeaderEntity.CTRANSACTION_CODE;
+                poNewEntity.CTRANSACTION_CODE = HeaderEntity.CTRANS_CODE;
                 poNewEntity.CCYEAR = loPeriod.CCYEAR;
                 poNewEntity.CPERIOD_NO = loPeriod.CPERIOD_NO;
             }

@@ -129,7 +129,7 @@ public partial class GLM00500UploadPopup : R_Page
             loEx.Add(ex);
         }
 
-        loEx.ThrowExceptionIfErrors();
+        R_DisplayException(loEx);
     }
 
     private async Task OnClickProcess()

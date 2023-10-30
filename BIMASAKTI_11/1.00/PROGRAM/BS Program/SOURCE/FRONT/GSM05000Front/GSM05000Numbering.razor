@@ -5,7 +5,7 @@
         <R_Label>Transaction Code</R_Label>
     </R_ItemLayout>
     <R_ItemLayout xs="1">
-        <R_TextBox Value="@_GSM05000NumberingViewModel.HeaderEntity.CTRANSACTION_CODE"
+        <R_TextBox Value="@_GSM05000NumberingViewModel.HeaderEntity.CTRANS_CODE"
                    Enabled="false" />
     </R_ItemLayout>
     <R_ItemLayout xs="3">
@@ -41,17 +41,18 @@
                 AllowAddNewRow="true"
                 R_Before_Open_Grid_Lookup="BeforeLookupNumbering"
                 R_After_Open_Grid_Lookup="AfterLookupNumbering"
-                Width="100%">
+                Width="100%"
+                Height="420px">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="CPERIOD" HeaderText="Period"/>
-                <R_GridLookupColumn FieldName="CDEPT_CODE" HeaderText="Department Code" R_EnableAdd Enabled="@_GSM05000NumberingViewModel.HeaderEntity.LDEPT_MODE"/>
-                <R_GridTextColumn FieldName="CDEPT_NAME" HeaderText="Department Name"/>
-                <R_GridNumericColumn FieldName="ISTART_NUMBER" HeaderText="Starting No" R_EnableAdd R_EnableEdit Min="1" Max="1000" Step="1"/>
-                <R_GridNumericColumn FieldName="ILAST_NUMBER" HeaderText="Last No"/>
-                <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Updated By"/>
-                <R_GridTextColumn FieldName="DUPDATE_DATE" HeaderText="Updated Date"/>
-                <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Created By"/>
-                <R_GridTextColumn FieldName="DCREATE_DATE" HeaderText="Created Date"/>
+                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.CPERIOD)" HeaderText="Period" Width="150px"/>
+                <R_GridLookupColumn FieldName="@nameof(GSM05000NumberingGridDTO.CDEPT_CODE)" HeaderText="Department Code" R_EnableAdd="@_GSM05000NumberingViewModel.HeaderEntity.LDEPT_MODE" Enabled="@_GSM05000NumberingViewModel.HeaderEntity.LDEPT_MODE" Width="200px"/>
+                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.CDEPT_NAME)" HeaderText="Department Name" Width="250px"/>
+                <R_GridNumericColumn FieldName="@nameof(GSM05000NumberingGridDTO.ISTART_NUMBER)" HeaderText="Starting No" R_EnableAdd R_EnableEdit Min="1" Max="1000" Step="1" Width="130px"/>
+                <R_GridNumericColumn FieldName="@nameof(GSM05000NumberingGridDTO.ILAST_NUMBER)" HeaderText="Last No" Width="100px"/>
+                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.CUPDATE_BY)" HeaderText="Updated By" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.DUPDATE_DATE)" HeaderText="Updated Date" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.CCREATE_BY)" HeaderText="Created By" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.DCREATE_DATE)" HeaderText="Created Date" Width="150px"/>
             </R_GridColumns>
         </R_Grid>
     </R_ItemLayout>

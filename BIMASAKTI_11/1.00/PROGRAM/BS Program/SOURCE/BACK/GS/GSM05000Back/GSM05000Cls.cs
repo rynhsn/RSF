@@ -1,5 +1,6 @@
 using System.Data;
 using System.Data.Common;
+using GSM05000Common;
 using GSM05000Common.DTOs;
 using R_BackEnd;
 using R_Common;
@@ -9,9 +10,16 @@ namespace GSM05000Back;
 
 public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
 {
+    private LoggerGSM05000 _logger;
+
+    public GSM05000Cls()
+    {
+        _logger = LoggerGSM05000.R_GetInstanceLogger();
+    }
+
     protected override GSM05000DTO R_Display(GSM05000DTO poEntity)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         GSM05000DTO loRtn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -23,22 +31,30 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = @"Select A.* From GSM_TRANSACTION_CODE A (Nolock) 
-                        Where A.CCOMPANY_ID = @CCOMPANY_ID
-                        AND A.CTRANSACTION_CODE = @CTRANSACTION_CODE";
-            loCmd.CommandType = CommandType.Text;
+            lcQuery = @"RSP_GS_GET_TRANS_CODE_INFO";
+            loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 10, poEntity.CCOMPANY_ID);
-            loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 30, poEntity.CTRANSACTION_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 30, poEntity.CTRANS_CODE);
+
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is 
+                        "@CCOMPANY_ID" or 
+                        "@CTRANS_CODE"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
-
             loRtn = R_Utility.R_ConvertTo<GSM05000DTO>(loDataTable).FirstOrDefault();
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         EndBlock:
@@ -54,7 +70,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
 
     protected override void R_Saving(GSM05000DTO poNewEntity, eCRUDMode poCRUDMode)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         string lcQuery;
         R_Db loDb;
         DbCommand loCmd;
@@ -92,7 +108,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
                       , LAPPROVAL_DEPT = @LAPPROVAL_DEPT 
                       , CUPDATE_BY = @CUPDATE_BY 
                       , DUPDATE_DATE = @DUPDATE_DATE
-                        WHERE CCOMPANY_ID = @CCOMPANY_ID AND CTRANSACTION_CODE = @CTRANSACTION_CODE";
+                        WHERE CCOMPANY_ID = @CCOMPANY_ID AND CTRANS_CODE = @CTRANS_CODE";
 
                 loCmd.CommandType = CommandType.Text;
                 loCmd.CommandText = lcQuery;
@@ -126,11 +142,44 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
                 loDb.R_AddCommandParameter(loCmd, "@CUPDATE_BY", DbType.String, 10, poNewEntity.CUPDATE_BY);
                 loDb.R_AddCommandParameter(loCmd, "@DUPDATE_DATE", DbType.DateTime, 8, poNewEntity.DUPDATE_DATE);
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 10, poNewEntity.CCOMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 10,
-                    poNewEntity.CTRANSACTION_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 10,
+                    poNewEntity.CTRANS_CODE);
+
+
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                    .Where(x =>
+                        x.ParameterName is
+                            "@LINCREMENT_FLAG" or
+                            "@LDEPT_MODE" or
+                            "@CDEPT_DELIMITER" or
+                            "@LTRANSACTION_MODE" or
+                            "@CTRANSACTION_DELIMITER" or
+                            "@CPERIOD_MODE" or
+                            "@CYEAR_FORMAT" or
+                            "@CPERIOD_DELIMITER" or
+                            "@INUMBER_LENGTH" or
+                            "@CNUMBER_DELIMITER" or
+                            "@CPREFIX" or
+                            "@CPREFIX_DELIMITER" or
+                            "@CSUFFIX" or
+                            "@CSEQUENCE01" or
+                            "@CSEQUENCE02" or
+                            "@CSEQUENCE03" or
+                            "@CSEQUENCE04" or
+                            "@LAPPROVAL_FLAG" or
+                            "@LUSE_THIRD_PARTY" or
+                            "@CAPPROVAL_MODE" or
+                            "@LAPPROVAL_DEPT" or
+                            "@CUPDATE_BY" or
+                            "@DUPDATE_DATE" or
+                            "@CCOMPANY_ID" or
+                            "@CTRANS_CODE"
+                    )
+                    .Select(x => x.Value);
+
+                _logger.LogDebug("{pcQuery} {@poParam}", lcQuery, loDbParam);
 
                 loDb.SqlExecNonQuery(loConn, loCmd, true);
-                
             }
             else
             {
@@ -140,6 +189,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         EndBlock:
@@ -149,7 +199,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
     //method get semua data
     public List<GSM05000GridDTO> GetTransactionCodeListDb(GSM05000ParameterDb poParameterDb)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         List<GSM05000GridDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -161,14 +211,12 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = @$"Select A.*, CMODULE_NAME = Isnull((Select Top 1 RTRIM(CMODULE_NAME)
-                      From SAM_PROGRAM (Nolock) Where CMODULE_ID = A.CMODULE_ID), '***Not found***') 
-                      From GSM_TRANSACTION_CODE A (Nolock) 
-                      WHERE A.CCOMPANY_ID = '{poParameterDb.CCOMPANY_ID}' 
-                      ORDER BY A.CTRANSACTION_CODE, A.CMODULE_ID ASC";
+            lcQuery = $"EXEC RSP_GS_GET_TRANS_CODE_LIST '{poParameterDb.CCOMPANY_ID}', '{poParameterDb.CUSER_ID}'";
             loCmd.CommandType = CommandType.Text;
             loCmd.CommandText = lcQuery;
-
+            
+            _logger.LogDebug("{pcQuery}", lcQuery);
+            
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
             loRtn = R_Utility.R_ConvertTo<GSM05000GridDTO>(loDataTable).ToList();
@@ -176,6 +224,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         EndBlock:
@@ -184,10 +233,10 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
         return loRtn;
     }
 
-    
+
     public GSM05000ExistDTO GetValidateUpdateDb(GSM05000ParameterDb poEntity)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         GSM05000ExistDTO loRtn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -202,13 +251,23 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
             lcQuery = @"select top 1 1 as EXIST 
                           from GSM_TRANSACTION_NUMBER (nolock) 
                          where CCOMPANY_ID = @CCOMPANY_ID 
-                           and CTRANSACTION_CODE = @CTRANSACTION_CODE";
+                           and CTRANS_CODE = @CTRANS_CODE";
             loCmd.CommandType = CommandType.Text;
             loCmd.CommandText = lcQuery;
 
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 10, poEntity.CCOMPANY_ID);
-            loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 30, poEntity.CTRANSACTION_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 30, poEntity.CTRANS_CODE);
 
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
+                        "@CTRANS_CODE"
+                )
+                .Select(x => x.Value);
+            
+            _logger.LogDebug("{pcQuery} {@poParam}", lcQuery, loDbParam);
+            
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
             loRtn = R_Utility.R_ConvertTo<GSM05000ExistDTO>(loDataTable).FirstOrDefault();
@@ -216,6 +275,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         EndBlock:
@@ -223,10 +283,10 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
 
         return loRtn;
     }
-    
+
     public List<GSM05000DelimiterDTO> GetDelimiterListDb(GSM05000ParameterDb poParameterDb)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         List<GSM05000DelimiterDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -243,6 +303,8 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
             loCmd.CommandType = CommandType.Text;
             loCmd.CommandText = lcQuery;
 
+            _logger.LogDebug("{pcQuery}", lcQuery);
+
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
             loRtn = R_Utility.R_ConvertTo<GSM05000DelimiterDTO>(loDataTable).ToList();
@@ -250,6 +312,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         EndBlock:

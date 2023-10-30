@@ -34,12 +34,14 @@ public partial class GSM05000ApprovalCopyTo : R_Page
         return Task.CompletedTask;
     }
 
-    private Task AfterOpenLookup(R_AfterOpenLookupEventArgs eventArgs)
+    private void AfterOpenLookup(R_AfterOpenLookupEventArgs eventArgs)
     {
         var loData = (GSM05000ApprovalDepartmentDTO)eventArgs.Result;
+        if (loData == null)
+            return;
+        
         _viewModel.TempEntityForCopy.CDEPT_CODE_TO = loData.CDEPT_CODE;
         _viewModel.TempEntityForCopy.CDEPT_NAME_TO = loData.CDEPT_NAME;
-        return Task.CompletedTask;
     }
     
     public async Task Button_OnClickProcessAsync()

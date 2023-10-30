@@ -2,7 +2,7 @@ namespace GSM05000Common.DTOs
 {
     public class GSM05000TrxCodeParamsDTO
     {
-        public string CTRANSACTION_CODE { get; set; }
+        public string CTRANS_CODE { get; set; }
     }
     
     public class GSM05000TrxDeptParamsDTO

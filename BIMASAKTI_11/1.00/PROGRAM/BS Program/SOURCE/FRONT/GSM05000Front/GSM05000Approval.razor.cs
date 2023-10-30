@@ -32,11 +32,11 @@ namespace GSM05000Front
             {
                 _GSM05000ApprovalUserViewModel.HeaderEntity = (GSM05000ApprovalHeaderDTO)poParameter;
                 _GSM05000ApprovalUserViewModel.TransactionCode =
-                    ((GSM05000ApprovalHeaderDTO)poParameter).CTRANSACTION_CODE;
+                    ((GSM05000ApprovalHeaderDTO)poParameter).CTRANS_CODE;
 
                 await _gridRefDept.R_RefreshGrid(null);
                 await _gridRefApprover.R_RefreshGrid(null);
-                await _gridRefApprover.AutoFitAllColumnsAsync();
+                // await _gridRefApprover.AutoFitAllColumnsAsync();
                 //await _gridRefReplacement.R_RefreshGrid(null);
             }
             catch (Exception ex)
@@ -222,7 +222,7 @@ namespace GSM05000Front
             {
                 eventArgs.Parameter = new GSL01100ParameterDTO()
                 {
-                    CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE
+                    CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANS_CODE
                 };
                 eventArgs.TargetPageType = typeof(GSL01100);
             }
@@ -266,7 +266,7 @@ namespace GSM05000Front
             try
             {
                 var lcDeptCode = _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_CODE;
-                var lcTransactionCode = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE;
+                var lcTransactionCode = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANS_CODE;
                 var lcSelectedUserId = eventArgs.Parameter.ToString();
 
                 await _GSM05000ApprovalReplacementViewModel.GetReplacementList(lcTransactionCode, lcDeptCode,
@@ -373,7 +373,7 @@ namespace GSM05000Front
             {
                 eventArgs.Parameter = new GSL01100ParameterDTO()
                 {
-                    CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE
+                    CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANS_CODE
                 };
                 eventArgs.TargetPageType = typeof(GSL01100);
             }
@@ -433,7 +433,7 @@ namespace GSM05000Front
             {
                 var loParam = (GSM05000ApprovalReplacementDTO)eventArgs.Data;
                 loParam.CDEPT_CODE = _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_CODE;
-                loParam.CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE;
+                loParam.CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANS_CODE;
                 loParam.CUSER_ID = _GSM05000ApprovalUserViewModel.ApproverEntity.CUSER_ID;
                 loParam.CVALID_TO = loParam.DVALID_TO.ToString("yyyyMMdd");
                 loParam.CVALID_FROM = loParam.DVALID_FROM.ToString("yyyyMMdd");
@@ -452,7 +452,7 @@ namespace GSM05000Front
         {
             eventArgs.Parameter = new GSM05000ApprovalCopyDTO()
             {
-                CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE,
+                CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANS_CODE,
                 CDEPT_CODE = _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_CODE,
                 CDEPT_NAME = _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_NAME,
             };
@@ -469,7 +469,7 @@ namespace GSM05000Front
         {
             eventArgs.Parameter = new GSM05000ApprovalCopyDTO()
             {
-                CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE,
+                CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANS_CODE,
                 CDEPT_CODE = _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_CODE,
                 CDEPT_NAME = _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_NAME,
             };
@@ -484,7 +484,7 @@ namespace GSM05000Front
 
         private Task ChangeSequenceBeforePopup(R_BeforeOpenPopupEventArgs eventArgs)
         {
-            var loParam = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_CODE;
+            var loParam = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANS_CODE;
             eventArgs.Parameter = loParam;
             eventArgs.TargetPageType = typeof(GSM05000ApprovalChangeSequence);
             return Task.CompletedTask;

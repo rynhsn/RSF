@@ -35,8 +35,9 @@ public partial class GSM05000ApprovalDeptLookup
         
         try
         {
-            var loParameter = (GSM05000ApprovalCopyDTO)eventArgs.Parameter;
-            await _viewModel.LookupDepartment(loParameter);
+            // var loParameter = (GSM05000ApprovalCopyDTO)eventArgs.Parameter;
+            // await _viewModel.LookupDepartment(loParameter);
+            await _viewModel.LookupDepartment();
             eventArgs.ListEntityResult = _viewModel.DepartmentLookup;
         }
         catch (Exception ex)

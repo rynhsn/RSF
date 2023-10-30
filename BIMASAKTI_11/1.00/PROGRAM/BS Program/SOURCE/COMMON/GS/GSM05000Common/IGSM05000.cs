@@ -26,7 +26,8 @@ namespace GSM05000Common
         IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000DepartmentChangeSequenceStream(GSM05000TrxCodeParamsDTO poParams);
         IAsyncEnumerable<GSM05000ApprovalUserDTO> GSM05000GetUserSequenceDataStream();
         void GSM05000UpdateSequence(List<GSM05000ApprovalUserDTO> poEntity);
-        IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentStream(GSM05000DeptCodeParamsDTO poParams);
+        // IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentStream(GSM05000DeptCodeParamsDTO poParams);
+        IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentStream();
         void GSM05000CopyToApproval(GSM05000CopyToParamsDTO poParams);
         void GSM05000CopyFromApproval(GSM05000CopyFromParamsDTO poParams);
     }

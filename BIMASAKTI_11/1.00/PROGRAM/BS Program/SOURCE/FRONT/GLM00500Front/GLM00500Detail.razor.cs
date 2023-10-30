@@ -280,21 +280,21 @@ public partial class GLM00500Detail
 
         if (_viewModel.Data.CINPUT_METHOD == "MN")
         {
-            if (_viewModel.PeriodCount.INUM >= 1) FieldPeriod1.Enabled = true;
-            if (_viewModel.PeriodCount.INUM >= 2) FieldPeriod2.Enabled = true;
-            if (_viewModel.PeriodCount.INUM >= 3) FieldPeriod3.Enabled = true;
-            if (_viewModel.PeriodCount.INUM >= 4) FieldPeriod4.Enabled = true;
-            if (_viewModel.PeriodCount.INUM >= 5) FieldPeriod5.Enabled = true;
-            if (_viewModel.PeriodCount.INUM >= 6) FieldPeriod6.Enabled = true;
-            if (_viewModel.PeriodCount.INUM >= 7) FieldPeriod7.Enabled = true;
-            if (_viewModel.PeriodCount.INUM >= 8) FieldPeriod8.Enabled = true;
-            if (_viewModel.PeriodCount.INUM >= 9) FieldPeriod9.Enabled = true;
-            if (_viewModel.PeriodCount.INUM >= 10) FieldPeriod10.Enabled = true;
-            if (_viewModel.PeriodCount.INUM >= 11) FieldPeriod11.Enabled = true;
-            if (_viewModel.PeriodCount.INUM >= 12) FieldPeriod12.Enabled = true;
-            if (_viewModel.PeriodCount.INUM >= 13) FieldPeriod13.Enabled = true;
-            if (_viewModel.PeriodCount.INUM >= 14) FieldPeriod14.Enabled = true;
-            if (_viewModel.PeriodCount.INUM >= 15) FieldPeriod15.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 1) FieldPeriod1.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 2) FieldPeriod2.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 3) FieldPeriod3.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 4) FieldPeriod4.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 5) FieldPeriod5.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 6) FieldPeriod6.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 7) FieldPeriod7.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 8) FieldPeriod8.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 9) FieldPeriod9.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 10) FieldPeriod10.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 11) FieldPeriod11.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 12) FieldPeriod12.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 13) FieldPeriod13.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 14) FieldPeriod14.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 15) FieldPeriod15.Enabled = true;
         }
     }
 
@@ -378,42 +378,42 @@ public partial class GLM00500Detail
         {
             case "MO":
             {
-                if (_viewModel.PeriodCount.INUM >= 1) _viewModel.Data.NPERIOD1 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INUM >= 2) _viewModel.Data.NPERIOD2 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INUM >= 3) _viewModel.Data.NPERIOD3 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INUM >= 4) _viewModel.Data.NPERIOD4 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INUM >= 5) _viewModel.Data.NPERIOD5 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INUM >= 6) _viewModel.Data.NPERIOD6 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INUM >= 7) _viewModel.Data.NPERIOD7 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INUM >= 8) _viewModel.Data.NPERIOD8 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INUM >= 9) _viewModel.Data.NPERIOD9 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INUM >= 10) _viewModel.Data.NPERIOD10 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INUM >= 11) _viewModel.Data.NPERIOD11 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INUM >= 12) _viewModel.Data.NPERIOD12 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INUM >= 13) _viewModel.Data.NPERIOD13 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INUM >= 14) _viewModel.Data.NPERIOD14 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INUM >= 15) _viewModel.Data.NPERIOD15 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 1) _viewModel.Data.NPERIOD1 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 2) _viewModel.Data.NPERIOD2 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 3) _viewModel.Data.NPERIOD3 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 4) _viewModel.Data.NPERIOD4 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 5) _viewModel.Data.NPERIOD5 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 6) _viewModel.Data.NPERIOD6 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 7) _viewModel.Data.NPERIOD7 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 8) _viewModel.Data.NPERIOD8 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 9) _viewModel.Data.NPERIOD9 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 10) _viewModel.Data.NPERIOD10 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 11) _viewModel.Data.NPERIOD11 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 12) _viewModel.Data.NPERIOD12 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 13) _viewModel.Data.NPERIOD13 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 14) _viewModel.Data.NPERIOD14 = _viewModel.Data.NBUDGET;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 15) _viewModel.Data.NPERIOD15 = _viewModel.Data.NBUDGET;
                 break;
             }
             case "AN":
             {
                 _viewModel.Data.NBUDGET = FieldBudget.Value; // sementara, karena perubahan tidak langsung bind value
                 var loResult = await _viewModel.CalculateBudget(_viewModel.BudgetHDEntity, _viewModel.BudgetDTEntity);
-                if (_viewModel.PeriodCount.INUM >= 1) _viewModel.Data.NPERIOD1 = loResult.NPERIOD1;
-                if (_viewModel.PeriodCount.INUM >= 2) _viewModel.Data.NPERIOD2 = loResult.NPERIOD2;
-                if (_viewModel.PeriodCount.INUM >= 3) _viewModel.Data.NPERIOD3 = loResult.NPERIOD3;
-                if (_viewModel.PeriodCount.INUM >= 4) _viewModel.Data.NPERIOD4 = loResult.NPERIOD4;
-                if (_viewModel.PeriodCount.INUM >= 5) _viewModel.Data.NPERIOD5 = loResult.NPERIOD5;
-                if (_viewModel.PeriodCount.INUM >= 6) _viewModel.Data.NPERIOD6 = loResult.NPERIOD6;
-                if (_viewModel.PeriodCount.INUM >= 7) _viewModel.Data.NPERIOD7 = loResult.NPERIOD7;
-                if (_viewModel.PeriodCount.INUM >= 8) _viewModel.Data.NPERIOD8 = loResult.NPERIOD8;
-                if (_viewModel.PeriodCount.INUM >= 9) _viewModel.Data.NPERIOD9 = loResult.NPERIOD9;
-                if (_viewModel.PeriodCount.INUM >= 10) _viewModel.Data.NPERIOD10 = loResult.NPERIOD10;
-                if (_viewModel.PeriodCount.INUM >= 11) _viewModel.Data.NPERIOD11 = loResult.NPERIOD11;
-                if (_viewModel.PeriodCount.INUM >= 12) _viewModel.Data.NPERIOD12 = loResult.NPERIOD12;
-                if (_viewModel.PeriodCount.INUM >= 13) _viewModel.Data.NPERIOD13 = loResult.NPERIOD13;
-                if (_viewModel.PeriodCount.INUM >= 14) _viewModel.Data.NPERIOD14 = loResult.NPERIOD14;
-                if (_viewModel.PeriodCount.INUM >= 15) _viewModel.Data.NPERIOD15 = loResult.NPERIOD15;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 1) _viewModel.Data.NPERIOD1 = loResult.NPERIOD1;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 2) _viewModel.Data.NPERIOD2 = loResult.NPERIOD2;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 3) _viewModel.Data.NPERIOD3 = loResult.NPERIOD3;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 4) _viewModel.Data.NPERIOD4 = loResult.NPERIOD4;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 5) _viewModel.Data.NPERIOD5 = loResult.NPERIOD5;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 6) _viewModel.Data.NPERIOD6 = loResult.NPERIOD6;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 7) _viewModel.Data.NPERIOD7 = loResult.NPERIOD7;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 8) _viewModel.Data.NPERIOD8 = loResult.NPERIOD8;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 9) _viewModel.Data.NPERIOD9 = loResult.NPERIOD9;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 10) _viewModel.Data.NPERIOD10 = loResult.NPERIOD10;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 11) _viewModel.Data.NPERIOD11 = loResult.NPERIOD11;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 12) _viewModel.Data.NPERIOD12 = loResult.NPERIOD12;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 13) _viewModel.Data.NPERIOD13 = loResult.NPERIOD13;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 14) _viewModel.Data.NPERIOD14 = loResult.NPERIOD14;
+                if (_viewModel.PeriodCount.INO_PERIOD >= 15) _viewModel.Data.NPERIOD15 = loResult.NPERIOD15;
                 break;
             }
         }

@@ -10,8 +10,10 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CBack_005CR_005FAPICommon_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CBack_005CR_005FAuthenticationBack_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CBack_005CR_005FAuthenticationEnumAndInterface_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CBack_005CR_005FCache_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CBack_005CR_005FCommonFrontBackAPI_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CBack_005CR_005FHelperController_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CBack_005CR_005FReportFastReportBack_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CMenuBack_005CBackExtension_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CMenuBack_005CBlazorMenuBack_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CMenuBack_005CBlazorMenuCommon_002Edll/@EntryIndexedValue">True</s:Boolean>
@@ -25,34 +27,120 @@
   &lt;Assembly Path="C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\6.0.16\Microsoft.AspNetCore.Mvc.Core.dll" /&gt;&#xD;
   &lt;Assembly Path="D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\SYSTEM\SOURCE\LIBRARY\Back\R_AuthenticationBack.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FCOPY_005FEXPENDITUREResources_002FRSP_005FAP_005FCOPY_005FEXPENDITUREResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FDELETE_005FEXPENDITUREResources_002FRSP_005FAP_005FDELETE_005FEXPENDITUREResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FDELETE_005FPRODUCTResources_002FRSP_005FAP_005FDELETE_005FPRODUCTResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	
 	
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FDELETE_005FBUDGET_005FDTResources_002FRSP_005FGL_005FDELETE_005FBUDGET_005FDTResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FDELETE_005FBUDGETResources_002FRSP_005FGL_005FDELETE_005FBUDGETResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FDELETE_005FPRODUCT_005FALLOCATIONResources_002FRSP_005FAP_005FDELETE_005FPRODUCT_005FALLOCATIONResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FDELETE_005FPRODUCT_005FALLOCATION_005FDEPTResources_002FRSP_005FAP_005FDELETE_005FPRODUCT_005FALLOCATION_005FDEPTResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FDELETE_005FSUPPLIERResources_002FRSP_005FAP_005FDELETE_005FSUPPLIERResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FDELETE_005FSUPPLIER_005FBANKResources_002FRSP_005FAP_005FDELETE_005FSUPPLIER_005FBANKResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FEXPENDITURE_005FUPLOADResources_002FRSP_005FAP_005FEXPENDITURE_005FUPLOADResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FFINALIZE_005FBUDGETResources_002FRSP_005FGL_005FFINALIZE_005FBUDGETResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FIMPORT_005FJOURNALResources_002FRSP_005FGL_005FIMPORT_005FJOURNALResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FPROCESS_005FBUDGET_005FUPLOADResources_002FRSP_005FGL_005FPROCESS_005FBUDGET_005FUPLOADResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FSAVE_005FBUDGET_005FDTResources_002FRSP_005FGL_005FSAVE_005FBUDGET_005FDTResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FPRODUCT_005FALLOCATION_005FUPLOADResources_002FRSP_005FAP_005FPRODUCT_005FALLOCATION_005FUPLOADResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FPRODUCT_005FUPLOADResources_002FRSP_005FAP_005FPRODUCT_005FUPLOADResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FSAVE_005FEXPENDITUREResources_002FRSP_005FAP_005FSAVE_005FEXPENDITUREResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FSAVE_005FPRODUCTResources_002FRSP_005FAP_005FSAVE_005FPRODUCTResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FSAVE_005FPRODUCT_005FALLOCATIONResources_002FRSP_005FAP_005FSAVE_005FPRODUCT_005FALLOCATIONResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FSAVE_005FPRODUCT_005FALLOCATION_005FDEPTResources_002FRSP_005FAP_005FSAVE_005FPRODUCT_005FALLOCATION_005FDEPTResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FSAVE_005FSUPPLIERResources_002FRSP_005FAP_005FSAVE_005FSUPPLIERResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FSAVE_005FSUPPLIER_005FBANKResources_002FRSP_005FAP_005FSAVE_005FSUPPLIER_005FBANKResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FSAVE_005FSUPPLIER_005FINFOResources_002FRSP_005FAP_005FSAVE_005FSUPPLIER_005FINFOResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FSAVE_005FSYSTEM_005FPARAMResources_002FRSP_005FAP_005FSAVE_005FSYSTEM_005FPARAMResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FUPDATE_005FEXPENDITURE_005FACTIVE_005FFLAGResources_002FRSP_005FAP_005FUPDATE_005FEXPENDITURE_005FACTIVE_005FFLAGResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FUPDATE_005FPRODUCT_005FACTIVE_005FFLAGResources_002FRSP_005FAP_005FUPDATE_005FPRODUCT_005FACTIVE_005FFLAGResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FUPDATE_005FPRODUCT_005FALLOCATION_005FACTIVE_005FFLAGResources_002FRSP_005FAP_005FUPDATE_005FPRODUCT_005FALLOCATION_005FACTIVE_005FFLAGResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FDELETE_005FBUDGET_005FDTResources_002FRSP_005FGL_005FDELETE_005FBUDGET_005FDTResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FDELETE_005FBUDGETResources_002FRSP_005FGL_005FDELETE_005FBUDGETResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FFINALIZE_005FBUDGETResources_002FRSP_005FGL_005FFINALIZE_005FBUDGETResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FIMPORT_005FJOURNALResources_002FRSP_005FGL_005FIMPORT_005FJOURNALResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FPROCESS_005FBUDGET_005FUPLOADResources_002FRSP_005FGL_005FPROCESS_005FBUDGET_005FUPLOADResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FSAVE_005FBUDGET_005FDTResources_002FRSP_005FGL_005FSAVE_005FBUDGET_005FDTResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FSAVE_005FBUDGET_005FHDResources_002FRSP_005FGL_005FSAVE_005FBUDGET_005FHDResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGL_005FSAVE_005FBUDGET_005FUPLOADResources_002FRSP_005FGL_005FSAVE_005FBUDGET_005FUPLOADResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGS_005FMAINTAIN_005FTAXResources_002FRSP_005FGS_005FMAINTAIN_005FTAXResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	
 	
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGS_005FMAINTAIN_005FSALES_005FTAXResources_002FRSP_005FGS_005FMAINTAIN_005FSALES_005FTAXResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGS_005FMAINTAIN_005FSALES_005FTAX_005FPCTResources_002FRSP_005FGS_005FMAINTAIN_005FSALES_005FTAX_005FPCTResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGS_005FMAINTAIN_005FTAX_005FPCTResources_002FRSP_005FGS_005FMAINTAIN_005FTAX_005FPCTResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGS_005FMAINTAIN_005FTRANS_005FCODE_005FAPPROVERResources_002FRSP_005FGS_005FMAINTAIN_005FTRANS_005FCODE_005FAPPROVERResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	
+	
+	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FGS_005FVALIDATE_005FUSER_005FACT_005FAPPRResources_002FRSP_005FGS_005FVALIDATE_005FUSER_005FACT_005FAPPRResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/OrderByFullPath/@EntryValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/ShowComments/@EntryValue">False</s:Boolean>
-	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=0897e7ad_002Dc406_002D407c_002D9292_002Df4fd4ef33fbc_0023R_005FSecurityTokenService/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=2c7a0f14_002Da204_002D4408_002D833c_002D332123edf634_0023BlazorMenuBack/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=3599aacb_002D2501_002D46f8_002D8537_002D5c02b2429f03_0023R_005FSecurityPolicyBack/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/ShowOnlyErrors/@EntryValue">False</s:Boolean>
+	
+	
+	
 	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=4c79ebf6_002D8281_002D4f29_002D97f0_002D7c633690548f_0023R_005FSecurityPolicyCommon/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=8292e015_002D42ac_002D4180_002Dba4d_002D127210a5ed67_0023R_005FSecurityTokenBack/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=8a5ca6a5_002D94df_002D40b0_002D9661_002D081aec0aa723_0023BlazorMenuService/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=8d885199_002Dc202_002D488d_002Da12b_002D692ceb1049ed_0023R_005FSecurityPolicyService/@EntryIndexedValue">True</s:Boolean>
+	
+	
+	
+	
 	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=a89f6408_002D4284_002D47de_002Daf66_002Defa5eedc282a_0023R_005FSecurityTokenCommon/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=e1a1c36b_002D6c10_002D49d7_002D95f9_002D7261b2351064_0023BlazorMenuCommon/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

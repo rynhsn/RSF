@@ -22,8 +22,8 @@
       "GSM02000Back/1.0.0": {
         "dependencies": {
           "GSM02000Common": "1.0.0",
-          "RSP_GS_MAINTAIN_SALES_TAXResources": "1.0.0",
-          "RSP_GS_MAINTAIN_SALES_TAX_PCTResources": "1.0.0"
+          "RSP_GS_MAINTAIN_TAXResources": "1.0.0",
+          "RSP_GS_MAINTAIN_TAX_PCTResources": "1.0.0"
         },
         "runtime": {
           "GSM02000Back.dll": {}
@@ -37,14 +37,14 @@
           "GSM02000Common.dll": {}
         }
       },
-      "RSP_GS_MAINTAIN_SALES_TAXResources/1.0.0": {
+      "RSP_GS_MAINTAIN_TAXResources/1.0.0": {
         "runtime": {
-          "RSP_GS_MAINTAIN_SALES_TAXResources.dll": {}
+          "RSP_GS_MAINTAIN_TAXResources.dll": {}
         }
       },
-      "RSP_GS_MAINTAIN_SALES_TAX_PCTResources/1.0.0": {
+      "RSP_GS_MAINTAIN_TAX_PCTResources/1.0.0": {
         "runtime": {
-          "RSP_GS_MAINTAIN_SALES_TAX_PCTResources.dll": {}
+          "RSP_GS_MAINTAIN_TAX_PCTResources.dll": {}
         }
       },
       "R_APIBackEnd/1.0.0.0": {
@@ -144,12 +144,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "RSP_GS_MAINTAIN_SALES_TAXResources/1.0.0": {
+    "RSP_GS_MAINTAIN_TAXResources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "RSP_GS_MAINTAIN_SALES_TAX_PCTResources/1.0.0": {
+    "RSP_GS_MAINTAIN_TAX_PCTResources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

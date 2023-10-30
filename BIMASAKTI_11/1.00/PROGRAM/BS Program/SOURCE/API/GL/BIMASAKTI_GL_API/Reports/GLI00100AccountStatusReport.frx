@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderCommon.frx" BaseReportAbsolutePath="D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\GL\BIMASAKTI_GL_API\Reports\BaseHeaderCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="10/13/2023 09:44:18" ReportInfo.CreatorVersion="2023.2.21.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="Data" DataType="GLI00100Common.DTOs.Print.GLI00100PrintResultDTO, GLI00100Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="HeaderTitle" DataType="GLI00100Common.DTOs.Print.GLI00100PrintHeaderTitleDTO, GLI00100Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="ACCOUNT_NO" DataType="System.String"/>
+          <Column Name="ACCOUNT_TYPE" DataType="System.String"/>
+          <Column Name="NORMAL_JOURNAL" DataType="System.String"/>
+          <Column Name="YEAR" DataType="System.String"/>
+          <Column Name="CENTER" DataType="System.String"/>
+          <Column Name="BUDGET" DataType="System.String"/>
+          <Column Name="CURRENCY" DataType="System.String"/>
+        </Column>
+        <Column Name="Column" DataType="GLI00100Common.DTOs.Print.GLI00100PrintColumnDTO, GLI00100Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="COLUMN_CURRENT_MONTH" DataType="System.String"/>
+          <Column Name="COLUMN_BUDGET" DataType="System.String"/>
+          <Column Name="COLUMN_CURRENT_YEAR" DataType="System.String"/>
+          <Column Name="COLUMN_LAST_YEAR" DataType="System.String"/>
+        </Column>
+        <Column Name="Row" DataType="GLI00100Common.DTOs.Print.GLI00100PrintRowDTO, GLI00100Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="OPENING" DataType="System.String"/>
+          <Column Name="PERIOD_01" DataType="System.String"/>
+          <Column Name="PERIOD_02" DataType="System.String"/>
+          <Column Name="PERIOD_03" DataType="System.String"/>
+          <Column Name="PERIOD_04" DataType="System.String"/>
+          <Column Name="PERIOD_05" DataType="System.String"/>
+          <Column Name="PERIOD_06" DataType="System.String"/>
+          <Column Name="PERIOD_07" DataType="System.String"/>
+          <Column Name="PERIOD_08" DataType="System.String"/>
+          <Column Name="PERIOD_09" DataType="System.String"/>
+          <Column Name="PERIOD_10" DataType="System.String"/>
+          <Column Name="PERIOD_11" DataType="System.String"/>
+          <Column Name="PERIOD_12" DataType="System.String"/>
+          <Column Name="PERIOD_13" DataType="System.String"/>
+          <Column Name="PERIOD_14" DataType="System.String"/>
+          <Column Name="PERIOD_15" DataType="System.String"/>
+        </Column>
+        <Column Name="Data" DataType="GLI00100Common.DTOs.GLI00100AccountAnalysisDTO, GLI00100Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="CGLACCOUNT_NO" DataType="System.String"/>
+          <Column Name="CGLACCOUNT_NAME" DataType="System.String"/>
+          <Column Name="CDBCR" DataType="System.String"/>
+          <Column Name="NCURRENT_OPENING" DataType="System.Decimal"/>
+          <Column Name="NLAST_OPENING" DataType="System.Decimal"/>
+          <Column Name="NMONTH1" DataType="System.Decimal"/>
+          <Column Name="NMONTH2" DataType="System.Decimal"/>
+          <Column Name="NMONTH3" DataType="System.Decimal"/>
+          <Column Name="NMONTH4" DataType="System.Decimal"/>
+          <Column Name="NMONTH5" DataType="System.Decimal"/>
+          <Column Name="NMONTH6" DataType="System.Decimal"/>
+          <Column Name="NMONTH7" DataType="System.Decimal"/>
+          <Column Name="NMONTH8" DataType="System.Decimal"/>
+          <Column Name="NMONTH9" DataType="System.Decimal"/>
+          <Column Name="NMONTH10" DataType="System.Decimal"/>
+          <Column Name="NMONTH11" DataType="System.Decimal"/>
+          <Column Name="NMONTH12" DataType="System.Decimal"/>
+          <Column Name="NMONTH13" DataType="System.Decimal"/>
+          <Column Name="NMONTH14" DataType="System.Decimal"/>
+          <Column Name="NMONTH15" DataType="System.Decimal"/>
+          <Column Name="NBUDGET1" DataType="System.Decimal"/>
+          <Column Name="NBUDGET2" DataType="System.Decimal"/>
+          <Column Name="NBUDGET3" DataType="System.Decimal"/>
+          <Column Name="NBUDGET4" DataType="System.Decimal"/>
+          <Column Name="NBUDGET5" DataType="System.Decimal"/>
+          <Column Name="NBUDGET6" DataType="System.Decimal"/>
+          <Column Name="NBUDGET7" DataType="System.Decimal"/>
+          <Column Name="NBUDGET8" DataType="System.Decimal"/>
+          <Column Name="NBUDGET9" DataType="System.Decimal"/>
+          <Column Name="NBUDGET10" DataType="System.Decimal"/>
+          <Column Name="NBUDGET11" DataType="System.Decimal"/>
+          <Column Name="NBUDGET12" DataType="System.Decimal"/>
+          <Column Name="NBUDGET13" DataType="System.Decimal"/>
+          <Column Name="NBUDGET14" DataType="System.Decimal"/>
+          <Column Name="NBUDGET15" DataType="System.Decimal"/>
+          <Column Name="NCURRENT1" DataType="System.Decimal"/>
+          <Column Name="NCURRENT2" DataType="System.Decimal"/>
+          <Column Name="NCURRENT3" DataType="System.Decimal"/>
+          <Column Name="NCURRENT4" DataType="System.Decimal"/>
+          <Column Name="NCURRENT5" DataType="System.Decimal"/>
+          <Column Name="NCURRENT6" DataType="System.Decimal"/>
+          <Column Name="NCURRENT7" DataType="System.Decimal"/>
+          <Column Name="NCURRENT8" DataType="System.Decimal"/>
+          <Column Name="NCURRENT9" DataType="System.Decimal"/>
+          <Column Name="NCURRENT10" DataType="System.Decimal"/>
+          <Column Name="NCURRENT11" DataType="System.Decimal"/>
+          <Column Name="NCURRENT12" DataType="System.Decimal"/>
+          <Column Name="NCURRENT13" DataType="System.Decimal"/>
+          <Column Name="NCURRENT14" DataType="System.Decimal"/>
+          <Column Name="NCURRENT15" DataType="System.Decimal"/>
+          <Column Name="NLAST1" DataType="System.Decimal"/>
+          <Column Name="NLAST2" DataType="System.Decimal"/>
+          <Column Name="NLAST3" DataType="System.Decimal"/>
+          <Column Name="NLAST4" DataType="System.Decimal"/>
+          <Column Name="NLAST5" DataType="System.Decimal"/>
+          <Column Name="NLAST6" DataType="System.Decimal"/>
+          <Column Name="NLAST7" DataType="System.Decimal"/>
+          <Column Name="NLAST8" DataType="System.Decimal"/>
+          <Column Name="NLAST9" DataType="System.Decimal"/>
+          <Column Name="NLAST10" DataType="System.Decimal"/>
+          <Column Name="NLAST11" DataType="System.Decimal"/>
+          <Column Name="NLAST12" DataType="System.Decimal"/>
+          <Column Name="NLAST13" DataType="System.Decimal"/>
+          <Column Name="NLAST14" DataType="System.Decimal"/>
+          <Column Name="NLAST15" DataType="System.Decimal"/>
+          <Column Name="INO_PERIOD" DataType="System.Int32"/>
+          <Column Name="CCENTER" DataType="System.String"/>
+          <Column Name="CCURRENCY" DataType="System.String"/>
+          <Column Name="CBUDGET" DataType="System.String"/>
+          <Column Name="CBSIS" DataType="System.String"/>
+          <Column Name="CBSIS_SHORT_NAME" DataType="System.String"/>
+          <Column Name="CBSIS_LONG_NAME" DataType="System.String"/>
+          <Column Name="CDBCR_" DataType="System.String"/>
+          <Column Name="CDBCR_SHORT_NAME" DataType="System.String"/>
+          <Column Name="CDBCR_LONG_NAME" DataType="System.String"/>
+          <Column Name="CYEAR" DataType="System.String"/>
+          <BusinessObjectDataSource Name="BusinessObjectDataSource1" Alias="errors" Enabled="false" DataType="System.Collections.Generic.List`1[[R_APICommonDTO.R_Error, R_APICommonDTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" PropName="errors"/>
+        </Column>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="Picture1"/>
+      <inherited Name="Text33"/>
+      <inherited Name="Text40">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="Text36"/>
+      <inherited Name="Text38"/>
+      <inherited Name="Text41"/>
+      <inherited Name="Text34"/>
+      <inherited Name="Text37"/>
+      <inherited Name="Text39"/>
+      <inherited Name="Text42"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="80.93" Width="718.2" Height="94.5">
+        <TextObject Name="Text109" Top="37.8" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.HeaderTitle.ACCOUNT_NO]" Font="Arial, 7pt, style=Bold"/>
+        <TextObject Name="Text110" Top="56.7" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.HeaderTitle.ACCOUNT_TYPE]" Font="Arial, 7pt, style=Bold"/>
+        <TextObject Name="Text111" Top="75.6" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.HeaderTitle.NORMAL_JOURNAL]" Font="Arial, 7pt, style=Bold"/>
+        <TextObject Name="Text112" Left="292.95" Top="37.8" Width="75.6" Height="18.9" Text="[ResponseDataModel.Data.HeaderTitle.YEAR]" Font="Arial, 7pt, style=Bold"/>
+        <TextObject Name="Text113" Left="292.95" Top="56.7" Width="75.6" Height="18.9" Text="[ResponseDataModel.Data.HeaderTitle.CENTER]" Font="Arial, 7pt, style=Bold"/>
+        <TextObject Name="Text114" Left="292.95" Top="75.6" Width="75.6" Height="18.9" Text="[ResponseDataModel.Data.HeaderTitle.BUDGET]" Font="Arial, 7pt, style=Bold"/>
+        <TextObject Name="Text115" Left="519.75" Top="37.8" Width="66.15" Height="18.9" Text="[ResponseDataModel.Data.HeaderTitle.CURRENCY]" Font="Arial, 7pt, style=Bold"/>
+        <TextObject Name="Text117" Left="94.5" Top="37.8" Width="198.45" Height="18.9" Text=": [ResponseDataModel.Data.Data.CGLACCOUNT_NO] - [ResponseDataModel.Data.Data.CGLACCOUNT_NAME]" Font="Arial, 7pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text118" Left="94.5" Top="75.6" Width="198.45" Height="18.9" Text=": [ResponseDataModel.Data.Data.CDBCR_LONG_NAME]" Font="Arial, 7pt"/>
+        <TextObject Name="Text119" Left="368.55" Top="37.8" Width="151.2" Height="18.9" Text=": [ResponseDataModel.Data.Data.CYEAR]" Font="Arial, 7pt"/>
+        <TextObject Name="Text120" Left="368.55" Top="56.7" Width="255.15" Height="18.9" Text=": [ResponseDataModel.Data.Data.CCENTER]" Font="Arial, 7pt"/>
+        <TextObject Name="Text121" Left="368.55" Top="75.6" Width="255.15" Height="18.9" Text=": [ResponseDataModel.Data.Data.CBUDGET]" Font="Arial, 7pt"/>
+        <TextObject Name="Text122" Left="585.9" Top="37.8" Width="122.85" Height="18.9" Text=": [ResponseDataModel.Data.Data.CCURRENCY]" Font="Arial, 7pt"/>
+        <TextObject Name="Text123" Left="94.5" Top="56.7" Width="198.45" Height="18.9" Text=": [ResponseDataModel.Data.Data.CBSIS_LONG_NAME]" Font="Arial, 7pt"/>
+      </ChildBand>
+    </inherited>
+    <ColumnHeaderBand Name="ColumnHeader1" ZOrder="-1" Top="180.77" Width="718.2" Height="18.9" Border.Lines="Top, Bottom" Border.TopLine.Width="2" Border.BottomLine.Width="2">
+      <TextObject Name="Text43" Left="113.4" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Column.COLUMN_CURRENT_MONTH]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text44" Left="255.15" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Column.COLUMN_BUDGET]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text45" Left="396.9" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Column.COLUMN_CURRENT_YEAR]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text46" Left="538.65" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Column.COLUMN_LAST_YEAR]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+    </ColumnHeaderBand>
+    <DataBand Name="Data1" ZOrder="0" Top="205" Width="718.2" Height="463.05" Border.Lines="Bottom" Border.BottomLine.Width="2" DataSource="ResponseDataModel">
+      <TextObject Name="Text47" Left="396.9" Top="9.45" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT_OPENING]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text48" Left="538.65" Top="9.45" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST_OPENING]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text49" Left="113.4" Top="37.8" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NMONTH1]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text50" Left="113.4" Top="66.15" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NMONTH2]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text51" Left="113.4" Top="94.5" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NMONTH3]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text52" Left="113.4" Top="122.85" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NMONTH4]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text53" Left="113.4" Top="151.2" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NMONTH5]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text54" Left="113.4" Top="179.55" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NMONTH6]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text55" Left="113.4" Top="207.9" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NMONTH7]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text56" Left="113.4" Top="236.25" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NMONTH8]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text57" Left="113.4" Top="264.6" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NMONTH9]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text58" Left="113.4" Top="292.95" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NMONTH10]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text59" Left="113.4" Top="321.3" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NMONTH11]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text60" Left="113.4" Top="349.65" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NMONTH12]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text61" Left="113.4" Top="378" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NMONTH13]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text62" Left="113.4" Top="406.35" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NMONTH14]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text63" Left="113.4" Top="434.7" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NMONTH15]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text64" Left="255.15" Top="37.8" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NBUDGET1]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text65" Left="255.15" Top="66.15" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NBUDGET2]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text66" Left="255.15" Top="94.5" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NBUDGET3]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text67" Left="255.15" Top="122.85" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NBUDGET4]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text68" Left="255.15" Top="151.2" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NBUDGET5]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text69" Left="255.15" Top="179.55" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NBUDGET6]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text70" Left="255.15" Top="207.9" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NBUDGET7]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text71" Left="255.15" Top="236.25" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NBUDGET8]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text72" Left="255.15" Top="264.6" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NBUDGET9]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text73" Left="255.15" Top="292.95" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NBUDGET10]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text74" Left="255.15" Top="321.3" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NBUDGET11]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text75" Left="255.15" Top="349.65" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NBUDGET12]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text76" Left="255.15" Top="378" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NBUDGET13]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text77" Left="255.15" Top="406.35" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NBUDGET14]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text78" Left="255.15" Top="434.7" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NBUDGET15]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text79" Left="396.9" Top="37.8" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT1]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text80" Left="396.9" Top="66.15" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT2]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text81" Left="396.9" Top="94.5" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT3]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text82" Left="396.9" Top="122.85" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT4]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text83" Left="396.9" Top="151.2" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT5]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text84" Left="396.9" Top="179.55" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT6]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text85" Left="396.9" Top="207.9" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT7]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text86" Left="396.9" Top="236.25" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT8]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text87" Left="396.9" Top="264.6" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT9]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text88" Left="396.9" Top="292.95" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT10]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text89" Left="396.9" Top="321.3" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT11]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text90" Left="396.9" Top="349.65" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT12]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text91" Left="396.9" Top="378" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT13]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text92" Left="396.9" Top="406.35" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT14]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text93" Left="396.9" Top="434.7" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT15]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text94" Left="538.65" Top="37.8" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST1]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text95" Left="538.65" Top="66.15" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST2]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text96" Left="538.65" Top="94.5" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST3]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text97" Left="538.65" Top="122.85" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST4]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text98" Left="538.65" Top="151.2" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST5]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text99" Left="538.65" Top="179.55" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST6]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text100" Left="538.65" Top="207.9" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST7]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text101" Left="538.65" Top="236.25" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST8]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text102" Left="538.65" Top="264.6" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST9]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text103" Left="538.65" Top="292.95" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST10]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text104" Left="538.65" Top="321.3" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST11]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text105" Left="538.65" Top="349.65" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST12]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text106" Left="538.65" Top="378" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST13]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text107" Left="538.65" Top="406.35" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST14]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text108" Left="538.65" Top="434.7" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST15]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text124" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Row.OPENING]" Font="Arial, 8pt"/>
+      <TextObject Name="Text125" Top="37.8" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Row.PERIOD_01]" Font="Arial, 8pt"/>
+      <TextObject Name="Text126" Top="66.15" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Row.PERIOD_02]" Font="Arial, 8pt"/>
+      <TextObject Name="Text127" Top="94.5" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Row.PERIOD_03]" Font="Arial, 8pt"/>
+      <TextObject Name="Text128" Top="122.85" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Row.PERIOD_04]" Font="Arial, 8pt"/>
+      <TextObject Name="Text129" Top="151.2" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Row.PERIOD_05]" Font="Arial, 8pt"/>
+      <TextObject Name="Text130" Top="179.55" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Row.PERIOD_06]" Font="Arial, 8pt"/>
+      <TextObject Name="Text131" Top="207.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Row.PERIOD_07]" Font="Arial, 8pt"/>
+      <TextObject Name="Text132" Top="236.25" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Row.PERIOD_08]" Font="Arial, 8pt"/>
+      <TextObject Name="Text133" Top="264.6" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Row.PERIOD_09]" Font="Arial, 8pt"/>
+      <TextObject Name="Text134" Top="292.95" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Row.PERIOD_10]" Font="Arial, 8pt"/>
+      <TextObject Name="Text135" Top="321.3" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Row.PERIOD_11]" Font="Arial, 8pt"/>
+      <TextObject Name="Text136" Top="349.65" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Row.PERIOD_12]" Font="Arial, 8pt"/>
+      <TextObject Name="Text137" Top="378" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Row.PERIOD_13]" Font="Arial, 8pt"/>
+      <TextObject Name="Text138" Top="406.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Row.PERIOD_14]" Font="Arial, 8pt"/>
+      <TextObject Name="Text139" Top="434.7" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Row.PERIOD_15]" Font="Arial, 8pt"/>
+    </DataBand>
+  </inherited>
+</inherited>

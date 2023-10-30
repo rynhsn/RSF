@@ -3,40 +3,38 @@
 @attribute [R_Page(Title = "Copy To Process")];
 
 <R_StackLayout Row Spacing="2" Class="mb-1">
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_Label>Department</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_TextBox @bind-Value="@_viewModel.TempEntityForCopy.CDEPT_CODE" Enabled="false"/>
     </R_ItemLayout>
-    <R_ItemLayout xs="6">
+    <R_ItemLayout col="7">
         <R_TextBox @bind-Value="@_viewModel.TempEntityForCopy.CDEPT_NAME" Enabled="false"/>
     </R_ItemLayout>
 </R_StackLayout>
 
 <R_StackLayout Row Spacing="2" Class="mb-3">
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_Label>Copy To</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_TextBox @bind-Value="@_viewModel.TempEntityForCopy.CDEPT_CODE_TO"/>
     </R_ItemLayout>
-    <R_ItemLayout>
-        <R_Lookup R_Before_Open_Lookup="BeforeOpenLookup" R_After_Open_Lookup="AfterOpenLookup"></R_Lookup>
-    </R_ItemLayout>
-    <R_ItemLayout xs="6">
+    <R_Lookup R_Before_Open_Lookup="BeforeOpenLookup" R_After_Open_Lookup="AfterOpenLookup"></R_Lookup>
+    <R_ItemLayout col="6">
         <R_TextBox @bind-Value="@_viewModel.TempEntityForCopy.CDEPT_NAME_TO" Enabled="false"/>
     </R_ItemLayout>
 </R_StackLayout>
 
 
 <R_StackLayout Row Class="justify-content-end">
-    <R_ItemLayout xs="2">
+    <R_ItemLayout>
         <R_Button OnClick="Button_OnClickProcessAsync">
             Process
         </R_Button>
     </R_ItemLayout>
-    <R_ItemLayout xs="2">
+    <R_ItemLayout>
         <R_Button OnClick="Button_OnClickCloseAsync">
             Cancel
         </R_Button>

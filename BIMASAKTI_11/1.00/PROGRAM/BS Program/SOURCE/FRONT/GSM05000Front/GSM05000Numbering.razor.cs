@@ -24,10 +24,10 @@ namespace GSM05000Front
             try
             {
                 _GSM05000NumberingViewModel.HeaderEntity = (GSM05000NumberingHeaderDTO)poParameter;
-                _GSM05000NumberingViewModel.TransactionCode = ((GSM05000NumberingHeaderDTO)poParameter).CTRANSACTION_CODE;
+                _GSM05000NumberingViewModel.TransactionCode = ((GSM05000NumberingHeaderDTO)poParameter).CTRANS_CODE;
 
                 await _gridRefNumbering.R_RefreshGrid(null);
-                await _gridRefNumbering.AutoFitAllColumnsAsync();
+                // await _gridRefNumbering.AutoFitAllColumnsAsync();
             }
             catch (Exception ex)
             {

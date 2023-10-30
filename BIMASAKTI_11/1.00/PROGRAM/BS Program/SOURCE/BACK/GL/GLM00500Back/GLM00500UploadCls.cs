@@ -12,39 +12,39 @@ namespace GLM00500Back;
 public class GLM00500UploadCls : R_IBatchProcess
 {
 
-    public GLM00500UploadErrorDTO GetErrorMsg(GLM00500ParameterUploadDb poParam)
-    {
-        R_Exception loEx = new R_Exception();
-        GLM00500UploadErrorDTO loRtn = null;
-        R_Db loDb;
-        DbConnection loConn;
-        DbCommand loCmd;
-        string lcQuery;
-
-        try
-        {
-            loDb = new R_Db();
-            loConn = loDb.GetConnection();
-            loCmd = loDb.GetCommand();
-
-            lcQuery = "RSP_GL_GET_DATA_UPLOAD_VALIDATION_LIST";
-            loCmd.CommandType = CommandType.StoredProcedure;
-            loCmd.CommandText = lcQuery;
-
-            loDb.R_AddCommandParameter(loCmd, "@CREC_ID", DbType.String, 50, poParam.CREC_ID);
-
-            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
-            loRtn = R_Utility.R_ConvertTo<GLM00500UploadErrorDTO>(loDataTable).FirstOrDefault();
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-
-        loEx.ThrowExceptionIfErrors();
-
-        return loRtn;
-    }
+    // public GLM00500UploadErrorDTO GetErrorMsg(GLM00500ParameterUploadDb poParam)
+    // {
+    //     R_Exception loEx = new R_Exception();
+    //     GLM00500UploadErrorDTO loRtn = null;
+    //     R_Db loDb;
+    //     DbConnection loConn;
+    //     DbCommand loCmd;
+    //     string lcQuery;
+    //
+    //     try
+    //     {
+    //         loDb = new R_Db();
+    //         loConn = loDb.GetConnection();
+    //         loCmd = loDb.GetCommand();
+    //
+    //         lcQuery = "RSP_GL_GET_DATA_UPLOAD_VALIDATION_LIST";
+    //         loCmd.CommandType = CommandType.StoredProcedure;
+    //         loCmd.CommandText = lcQuery;
+    //
+    //         loDb.R_AddCommandParameter(loCmd, "@CREC_ID", DbType.String, 50, poParam.CREC_ID);
+    //
+    //         var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+    //         loRtn = R_Utility.R_ConvertTo<GLM00500UploadErrorDTO>(loDataTable).FirstOrDefault();
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         loEx.Add(ex);
+    //     }
+    //
+    //     loEx.ThrowExceptionIfErrors();
+    //
+    //     return loRtn;
+    // }
 
     public void R_BatchProcess(R_BatchProcessPar poBatchProcessPar)
     {
@@ -180,48 +180,48 @@ public class GLM00500UploadCls : R_IBatchProcess
         loEx.ThrowExceptionIfErrors();
     }
     
-    public GLM00500UploadErrorReturnDTO GetUploadList(string pcKeyGuid, string pcCompanyId, string pcUserId)
-    {
-        R_Exception loEx = new();
-        GLM00500UploadErrorReturnDTO loRtn = new();
-        DbConnection loConn;
-    
-        try
-        {
-            var loResultUploadList = new List<GLM00500UploadForSystemDTO>();
-            var loResultErrorList = new List<GLM00500UploadErrorDTO>();
-            var loDb = new R_Db();
-            loConn = loDb.GetConnection();
-            var lcCompanyId = pcCompanyId;
-            var lcUserId = pcUserId;
-    
-            var lcQuery = $"EXEC RSP_ConvertXMLToTable '{lcCompanyId}', '{lcUserId}', '{pcKeyGuid}'";
-            var loProcess = loDb.SqlExecObjectQuery<GLM00500UploadCheckErrorDTO>(lcQuery, loConn, false).FirstOrDefault();
-    
-            // if (loProcess == null)
-            //     return default;
-    
-            // lcQuery = $"EXEC RSP_GL_GET_BUDGET_UPLOAD_LIST '{loProcess.CPROCES_ID}'";
-            loResultUploadList = loDb.SqlExecObjectQuery<GLM00500UploadForSystemDTO>(lcQuery, loConn, false);
-    
-            // foreach (var error in loResultUploadList)
-            // {
-            //     lcQuery = $"EXEC RSP_GL_GET_DATA_UPLOAD_VALIDATION_LIST '{error.CREC_ID}'";
-            //     var loValidation = loDb.SqlExecObjectQuery<GLM00500UploadErrorDTO>(lcQuery, loConn, false);
-            //
-            //     loResultErrorList.AddRange(loValidation);
-            // }
-    
-            loRtn.UploadList = loResultUploadList;
-            loRtn.ErrorList = loResultErrorList;
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-    
-        loEx.ThrowExceptionIfErrors();
-    
-        return loRtn;
-    }
+    // public GLM00500UploadErrorReturnDTO GetUploadList(string pcKeyGuid, string pcCompanyId, string pcUserId)
+    // {
+    //     R_Exception loEx = new();
+    //     GLM00500UploadErrorReturnDTO loRtn = new();
+    //     DbConnection loConn;
+    //
+    //     try
+    //     {
+    //         var loResultUploadList = new List<GLM00500UploadForSystemDTO>();
+    //         var loResultErrorList = new List<GLM00500UploadErrorDTO>();
+    //         var loDb = new R_Db();
+    //         loConn = loDb.GetConnection();
+    //         var lcCompanyId = pcCompanyId;
+    //         var lcUserId = pcUserId;
+    //
+    //         var lcQuery = $"EXEC RSP_ConvertXMLToTable '{lcCompanyId}', '{lcUserId}', '{pcKeyGuid}'";
+    //         var loProcess = loDb.SqlExecObjectQuery<GLM00500UploadCheckErrorDTO>(lcQuery, loConn, false).FirstOrDefault();
+    //
+    //         // if (loProcess == null)
+    //         //     return default;
+    //
+    //         // lcQuery = $"EXEC RSP_GL_GET_BUDGET_UPLOAD_LIST '{loProcess.CPROCES_ID}'";
+    //         loResultUploadList = loDb.SqlExecObjectQuery<GLM00500UploadForSystemDTO>(lcQuery, loConn, false);
+    //
+    //         // foreach (var error in loResultUploadList)
+    //         // {
+    //         //     lcQuery = $"EXEC RSP_GL_GET_DATA_UPLOAD_VALIDATION_LIST '{error.CREC_ID}'";
+    //         //     var loValidation = loDb.SqlExecObjectQuery<GLM00500UploadErrorDTO>(lcQuery, loConn, false);
+    //         //
+    //         //     loResultErrorList.AddRange(loValidation);
+    //         // }
+    //
+    //         loRtn.UploadList = loResultUploadList;
+    //         loRtn.ErrorList = loResultErrorList;
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         loEx.Add(ex);
+    //     }
+    //
+    //     loEx.ThrowExceptionIfErrors();
+    //
+    //     return loRtn;
+    // }
 }

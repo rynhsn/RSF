@@ -58,7 +58,6 @@ public partial class GLM00500 : R_Page
         {
             await _viewModel.GetBudgetHDList(_viewModel.SelectedYear);
             eventArgs.ListEntityResult = _viewModel.BudgetHDList;
-            // _detailTab.Enabled = false;
         }
         catch (Exception ex)
         {

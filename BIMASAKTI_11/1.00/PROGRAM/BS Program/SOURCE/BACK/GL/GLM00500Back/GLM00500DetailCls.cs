@@ -1,5 +1,6 @@
 using System.Data;
 using System.Data.Common;
+using GLM00500Common;
 using GLM00500Common.DTOs;
 using R_BackEnd;
 using R_Common;
@@ -9,6 +10,13 @@ namespace GLM00500Back;
 
 public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 {
+    private LoggerGLM00500 _logger;
+
+    public GLM00500DetailCls()
+    {
+        _logger = LoggerGLM00500.R_GetInstanceLogger();
+    }
+
     protected override GLM00500BudgetDTDTO R_Display(GLM00500BudgetDTDTO poEntity)
     {
         var loEx = new R_Exception();
@@ -27,10 +35,20 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
-
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CREC_ID", DbType.String, 255, poEntity.CREC_ID);
             loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, poEntity.CLANGUAGE_ID);
+
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
+                        "@CREC_ID" or
+                        "@CLANGUAGE_ID"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
 
             var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -40,6 +58,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
@@ -48,7 +67,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
     protected override void R_Saving(GLM00500BudgetDTDTO poNewEntity, eCRUDMode poCRUDMode)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         string lcQuery;
         R_Db loDb;
         DbCommand loCmd;
@@ -64,15 +83,16 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
             R_ExternalException.R_SP_Init_Exception(loConn);
 
-            if (poCRUDMode == eCRUDMode.AddMode)
+            switch (poCRUDMode)
             {
-                lcRecId = "";
-                lcAction = "NEW";
-            }
-            else if (poCRUDMode == eCRUDMode.EditMode)
-            {
-                lcRecId = poNewEntity.CREC_ID;
-                lcAction = "EDIT";
+                case eCRUDMode.AddMode:
+                    lcRecId = "";
+                    lcAction = "NEW";
+                    break;
+                case eCRUDMode.EditMode:
+                    lcRecId = poNewEntity.CREC_ID;
+                    lcAction = "EDIT";
+                    break;
             }
 
             lcQuery = "RSP_GL_SAVE_BUDGET_DT";
@@ -109,6 +129,43 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
             loDb.R_AddCommandParameter(loCmd, "@NPERIOD14", DbType.Decimal, 22, poNewEntity.NPERIOD14);
             loDb.R_AddCommandParameter(loCmd, "@NPERIOD15", DbType.Decimal, 22, poNewEntity.NPERIOD15);
 
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CUSER_ID" or
+                        "@CACTION" or
+                        "@CREC_ID" or
+                        "@CCOMPANY_ID" or
+                        "@CBUDGET_ID" or
+                        "@CBUDGET_NO" or
+                        "@CGLACCOUNT_TYPE" or
+                        "@CGLACCOUNT_NO" or
+                        "@CCENTER_CODE" or
+                        "@CINPUT_METHOD" or
+                        "@NBUDGET" or
+                        "@CROUNDING_METHOD" or
+                        "@CDIST_METHOD" or
+                        "@CBW_CODE" or
+                        "@NPERIOD1" or
+                        "@NPERIOD2" or
+                        "@NPERIOD3" or
+                        "@NPERIOD4" or
+                        "@NPERIOD5" or
+                        "@NPERIOD6" or
+                        "@NPERIOD7" or
+                        "@NPERIOD8" or
+                        "@NPERIOD9" or
+                        "@NPERIOD10" or
+                        "@NPERIOD11" or
+                        "@NPERIOD12" or
+                        "@NPERIOD13" or
+                        "@NPERIOD14" or
+                        "@NPERIOD15"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
             try
             {
                 // loDb.SqlExecNonQuery(loConn, loCmd, false);
@@ -126,6 +183,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         finally
@@ -147,7 +205,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
     protected override void R_Deleting(GLM00500BudgetDTDTO poEntity)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         R_Db loDb;
         DbCommand loCmd;
         DbConnection loConn = null;
@@ -167,6 +225,15 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
             loDb.R_AddCommandParameter(loCmd, "@CREC_ID", DbType.String, 50, poEntity.CREC_ID);
 
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CREC_ID"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
             try
             {
                 loDb.SqlExecNonQuery(loConn, loCmd, false);
@@ -181,6 +248,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         finally
@@ -201,7 +269,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
     public List<GLM00500BudgetDTGridDTO> GLM00500GetBudgetDTListDb(GLM00500ParameterDb poParams)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         List<GLM00500BudgetDTGridDTO> loReturn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -218,11 +286,22 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
-
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParams.CCOMPANY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CBUDGET_ID", DbType.String, 50, poParams.CBUDGET_ID);
             loDb.R_AddCommandParameter(loCmd, "@CGLACCOUNT_TYPE", DbType.String, 50, poParams.CGLACCOUNT_TYPE);
             loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, poParams.CLANGUAGE_ID);
+
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
+                        "@CBUDGET_ID" or
+                        "@CGLACCOUNT_TYPE" or
+                        "@CLANGUAGE_ID"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -231,16 +310,17 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
         return loReturn;
     }
 
-    public GLM00500PeriodCount GLM00500GetPeriodCountDb(GLM00500ParameterDb poParams)
+    public GLM00500PeriodInfoDTO GLI0010Get0PeriodInfoDb(GLM00500ParameterDb poParams)
     {
-        R_Exception loEx = new R_Exception();
-        GLM00500PeriodCount lnReturn = new();
+        R_Exception loEx = new();
+        GLM00500PeriodInfoDTO loReturn = new();
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -249,35 +329,31 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
         try
         {
             loDb = new R_Db();
-            loConn = loDb.GetConnection();  
+            loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = @"SELECT COUNT(1) AS INUM 
-                        FROM GSM_PERIOD_DT (NOLOCK) 
-                        WHERE CCOMPANY_ID = @CCOMPANY_ID 
-                        AND CCYEAR = @CYEAR 
-                        AND CPERIOD_NO < '16'";
+            lcQuery = $"EXEC RSP_GS_GET_PERIOD_YEAR_INFO '{poParams.CCOMPANY_ID}', '{poParams.CYEAR}'";
             loCmd.CommandType = CommandType.Text;
             loCmd.CommandText = lcQuery;
 
-            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParams.CCOMPANY_ID);
-            loDb.R_AddCommandParameter(loCmd, "@CYEAR", DbType.String, 50, poParams.CYEAR);
+            _logger.LogDebug("{pcQuery}", lcQuery);
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
-            lnReturn = R_Utility.R_ConvertTo<GLM00500PeriodCount>(loDataTable).FirstOrDefault();
+            loReturn = R_Utility.R_ConvertTo<GLM00500PeriodInfoDTO>(loDataTable).FirstOrDefault();
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
-        return lnReturn;
+        return loReturn;
     }
 
     public List<GLM00500FunctionDTO> GLM00500GetRoundingMethodListDb(GLM00500ParameterDb poParams)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         List<GLM00500FunctionDTO> loReturn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -290,13 +366,26 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery =
-                $@"SELECT CCODE, CDESCRIPTION FROM RFT_GET_GSB_CODE_INFO('BIMASAKTI', @CCOMPANY_ID, '_GL_ROUNDING_METHOD', '', @CLANGUAGE_ID)";
-            loCmd.CommandType = CommandType.Text;
+            lcQuery = "RSP_GS_GET_GSB_CODE_LIST";
+            loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
+            loDb.R_AddCommandParameter(loCmd, "@CAPPLICATION", DbType.String, 20, "BIMASAKTI");
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParams.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CCLASS_ID", DbType.String, 40, "_GL_ROUNDING_METHOD");
             loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, poParams.CLANGUAGE_ID);
+
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CAPPLICATION" or
+                        "@CCOMPANY_ID" or
+                        "@CCLASS_ID" or
+                        "@CLANGUAGE_ID"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -305,6 +394,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
@@ -313,7 +403,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
     public List<GLM00500BudgetWeightingDTO> GLM00500GetBudgetWeightingListDb(GLM00500ParameterDb poParams)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         List<GLM00500BudgetWeightingDTO> loReturn = null;
         R_Db loDb;
         DbConnection loConn;
@@ -333,6 +423,16 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParams.CCOMPANY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, poParams.CLANGUAGE_ID);
 
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
+                        "@CLANGUAGE_ID"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
             loReturn = R_Utility.R_ConvertTo<GLM00500BudgetWeightingDTO>(loDataTable).ToList();
@@ -340,6 +440,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
@@ -348,7 +449,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
     public GLM00500GSMCompanyDTO GLM00500GetGSMCompanyDb(GLM00500ParameterDb poParams)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         GLM00500GSMCompanyDTO lnReturn = new();
         R_Db loDb;
         DbConnection loConn;
@@ -361,18 +462,11 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = @"SELECT CCOGS_METHOD
-                             ,LENABLE_CENTER_IS
-                             ,LENABLE_CENTER_BS
-                             ,LPRIMARY_ACCOUNT
-                             ,CBASE_CURRENCY_CODE
-                             ,CLOCAL_CURRENCY_CODE
-                        FROM GSM_COMPANY (NOLOCK)
-                        WHERE CCOMPANY_ID = @CCOMPANY_ID";
+            lcQuery = $"EXEC RSP_GS_GET_COMPANY_INFO '{poParams.CCOMPANY_ID}'";
             loCmd.CommandType = CommandType.Text;
             loCmd.CommandText = lcQuery;
 
-            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParams.CCOMPANY_ID);
+            _logger.LogDebug("{pcQuery}", lcQuery);
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
             lnReturn = R_Utility.R_ConvertTo<GLM00500GSMCompanyDTO>(loDataTable).FirstOrDefault();
@@ -380,6 +474,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
@@ -388,7 +483,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
     public GLM00500BudgetCalculateDTO GLM00500BudgetCalculateDb(GLM00500ParameterDb poParams)
     {
-        R_Exception loEx = new R_Exception();
+        R_Exception loEx = new();
         GLM00500BudgetCalculateDTO lnReturn = new();
         R_Db loDb;
         DbConnection loConn = null;
@@ -415,6 +510,21 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
             loDb.R_AddCommandParameter(loCmd, "@CDIST_METHOD", DbType.String, 50, poParams.CDIST_METHOD);
             loDb.R_AddCommandParameter(loCmd, "@CBW_CODE", DbType.String, 50, poParams.CBW_CODE);
 
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
+                        "@IPERIOD_COUNT" or
+                        "@CCURRENCY_TYPE" or
+                        "@NBUDGET" or
+                        "@CROUNDING_METHOD" or
+                        "@CDIST_METHOD" or
+                        "@CBW_CODE"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
             try
             {
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
@@ -430,6 +540,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
         finally
         {
@@ -486,11 +597,39 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
             loDb.R_AddCommandParameter(loCmd, "@NBY_AMOUNT", DbType.Decimal, 19, poParams.NBY_AMOUNT);
             loDb.R_AddCommandParameter(loCmd, "@CUPDATE_METHOD", DbType.String, 1, poParams.CUPDATE_METHOD);
 
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CUSER_ID" or
+                        "@CCOMPANY_ID" or
+                        "@CBUDGET_NO" or
+                        "@CBUDGET_ID" or
+                        "@CCURRENCY_TYPE" or
+                        "@CGLACCOUNT_TYPE" or
+                        "@CFROM_GLACCOUNT_NO" or
+                        "@CTO_GLACCOUNT_NO" or
+                        "@CFROM_CENTER_CODE" or
+                        "@CTO_CENTER_CODE" or
+                        "@CBASED_ON" or
+                        "@CYEAR" or
+                        "@CSOURCE_BUDGET_NO" or
+                        "@CFROM_PERIOD_NO" or
+                        "@CTO_PERIOD_NO" or
+                        "@CBY" or
+                        "@NBY_PCT" or
+                        "@NBY_AMOUNT" or
+                        "@CUPDATE_METHOD"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
             loDb.SqlExecQuery(loConn, loCmd, true);
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
+            _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();

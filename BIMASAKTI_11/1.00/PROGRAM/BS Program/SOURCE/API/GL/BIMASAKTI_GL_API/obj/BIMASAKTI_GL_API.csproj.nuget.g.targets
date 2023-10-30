@@ -2,7 +2,6 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.apidescription.server\3.0.0\build\Microsoft.Extensions.ApiDescription.Server.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.apidescription.server\3.0.0\build\Microsoft.Extensions.ApiDescription.Server.targets')" />
-    <Import Project="$(NuGetPackageRoot)fastreport.compat\2023.1.8\buildTransitive\netcoreapp3.0\FastReport.Compat.targets" Condition="Exists('$(NuGetPackageRoot)fastreport.compat\2023.1.8\buildTransitive\netcoreapp3.0\FastReport.Compat.targets')" />
-    <Import Project="$(NuGetPackageRoot)fastreport.datavisualization\2023.1.0\buildTransitive\netcoreapp3.0\FastReport.DataVisualization.targets" Condition="Exists('$(NuGetPackageRoot)fastreport.datavisualization\2023.1.0\buildTransitive\netcoreapp3.0\FastReport.DataVisualization.targets')" />
+    <Import Project="$(NuGetPackageRoot)fastreport.compat.skia\2023.3.0\buildTransitive\netcoreapp3.0\FastReport.Compat.Skia.targets" Condition="Exists('$(NuGetPackageRoot)fastreport.compat.skia\2023.3.0\buildTransitive\netcoreapp3.0\FastReport.Compat.Skia.targets')" />
   </ImportGroup>
 </Project>

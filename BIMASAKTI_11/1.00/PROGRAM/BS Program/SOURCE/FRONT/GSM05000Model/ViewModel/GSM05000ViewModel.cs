@@ -123,7 +123,7 @@ namespace GSM05000Model.ViewModel
             try
             {
                 GSM05000TrxCodeParamsDTO loParams = new();
-                loParams.CTRANSACTION_CODE = poEntity.CTRANSACTION_CODE;
+                loParams.CTRANS_CODE = poEntity.CTRANS_CODE;
                 var loResult = await _GSM05000Model.CheckExistDataAsync(loParams);
                 llReturn = R_FrontUtility.ConvertObjectToObject<bool>(loResult.EXIST);
             }

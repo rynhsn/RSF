@@ -22,7 +22,7 @@ public class GLM00500DetailViewModel : R_ViewModel<GLM00500BudgetDTDTO>
     public GLM00500BudgetDTDTO BudgetDTEntity = new();
     public GLM00500GenerateAccountBudgetDTO GenerateAccountBudget = new();
 
-    public GLM00500PeriodCount PeriodCount = new();
+    public GLM00500PeriodCountDTO PeriodCount = new();
     public GLM00500GSMCompanyDTO Company = new();
     public string SelectedAccountType { get; set; } = "N";
 
@@ -251,7 +251,7 @@ public class GLM00500DetailViewModel : R_ViewModel<GLM00500BudgetDTDTO>
 
         try
         {
-            R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.NPERIOD_COUNT, PeriodCount.INUM);
+            R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.NPERIOD_COUNT, PeriodCount.INO_PERIOD);
             R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.CCURRENCY_TYPE, poHeader.CCURRENCY_TYPE);
             R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.NBUDGET, poEntity.NBUDGET);
             R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.CROUNDING_METHOD, poEntity.CROUNDING_METHOD);

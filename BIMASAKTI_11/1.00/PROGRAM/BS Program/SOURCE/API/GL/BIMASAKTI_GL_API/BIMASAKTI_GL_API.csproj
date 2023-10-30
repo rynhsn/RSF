@@ -25,7 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SERVICE\GL\GLM00500Services\GLM00500Services.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GL\GLI00100Service\GLI00100Service.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GL\GLM00500Service\GLM00500Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLT00200SERVICE\GLT00200SERVICE.csproj" />
   </ItemGroup>
 
@@ -46,6 +47,16 @@
     <Reference Include="R_HelperController">
       <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_HelperController.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Update="Reports\BaseHeaderCommon.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Reports\BaseHeaderLandscapeCommon.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
