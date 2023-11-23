@@ -35,15 +35,16 @@
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.CurrencyRateGrid"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                Height="300px"
                 Pageable
                 PageSize="5">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="CCURRENCY_CODE" HeaderText="Currency Code"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CCURRENCY_NAME" HeaderText="Currency Name"></R_GridTextColumn>
-                <R_GridNumericColumn FieldName="NLBASE_RATE_AMOUNT" HeaderText="Local Curr. Base Rate"></R_GridNumericColumn>
-                <R_GridNumericColumn FieldName="NLCURRENCY_RATE_AMOUNT" HeaderText="Local Currency Rate"></R_GridNumericColumn>
-                <R_GridNumericColumn FieldName="NBBASE_RATE_AMOUNT" HeaderText="Base Curr. Base Rate"></R_GridNumericColumn>
-                <R_GridNumericColumn FieldName="NBCURRENCY_RATE_AMOUNT" HeaderText="Base Currency Rate"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="CCURRENCY_CODE" HeaderText="Currency Code" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCURRENCY_NAME" HeaderText="Currency Name" Width="300px"></R_GridTextColumn>
+                <R_GridNumericColumn FieldName="NLBASE_RATE_AMOUNT" HeaderText="Local Curr. Base Rate" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn FieldName="NLCURRENCY_RATE_AMOUNT" HeaderText="Local Currency Rate" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn FieldName="NBBASE_RATE_AMOUNT" HeaderText="Base Curr. Base Rate" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn FieldName="NBCURRENCY_RATE_AMOUNT" HeaderText="Base Currency Rate" Width="200px"></R_GridNumericColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>

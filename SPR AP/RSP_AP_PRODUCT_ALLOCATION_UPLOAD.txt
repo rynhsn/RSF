@@ -1,0 +1,30 @@
+Error900=Process failed! unable to preview budget {0}
+Error900=Failed to validate data {0}
+
+ALLOCATION_ID_EMPTY=Allocation ID is mandatory
+ALLOCATION_ID_LENGTH_EXCEEDED=Allocation ID is more than 20 characters
+ALLOCATION_ID_ALREADY_EXIST=Allocation ID already exists
+
+ALLOCATION_NAME_EMPTY=Allocation Name is mandatory
+ALLOCATION_NAME_LENGTH_EXCEEDED=Allocation Name is more than 50 characters
+
+DEPARTMENT_MODE_EMPTY=Department Mode is mandatory
+DEPARTMENT_MODE_LENGTH_EXCEEDED=Department Mode is more than 10 characters
+DEPARTMENT_MODE_INVALID=Invalid Department Mode, valid value is ALL/EACH
+
+DEPARTMENT_CODE_EMPTY=Department Code is mandatory
+DEPARTMENT_CODE_LENGTH_EXCEEDED=Department Code is more than 20 characters
+DEPARTMENT_CODE_NOT_EXIST=Department Code does not exist
+
+ACCOUNT_NO_EMPTY=Account No. is mandatory
+ACCOUNT_NO_LENGTH_EXCEEDED=Account No. is more than 20 characters
+ACCOUNT_NO_NOT_EXIST=Account No. does not exist
+
+ALLOCATION_DUPLICATE_ALL=Duplicated Allocation found for department mode ALL
+ALLOCATION_DUPLICATE_EACH=Duplicated Allocation found for department mode EACH
+
+
+
+
+
+

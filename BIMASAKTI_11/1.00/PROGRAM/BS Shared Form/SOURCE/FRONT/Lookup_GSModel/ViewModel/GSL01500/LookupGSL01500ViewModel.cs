@@ -16,13 +16,15 @@ namespace Lookup_GSModel.ViewModel
 
         public List<GSL01500ResultGroupDTO> CashFlowGropList = new List<GSL01500ResultGroupDTO>();
 
-        public async Task GetCashFlowDetailList(GSL01500ParameterDetailDTO poParameter)
+        public string CashFlowCode { get; set; } = "";
+
+        public async Task GetCashFlowDetailList()
         {
             var loEx = new R_Exception();
 
             try
             {
-                var loResult = await _model.GSL01500GetCashDetailListAsync(poParameter);
+                var loResult = await _model.GSL01500GetCashDetailListAsync(CashFlowCode);
 
                 CashFlowDetailGrid = new ObservableCollection<GSL01500ResultDetailDTO>(loResult);
             }

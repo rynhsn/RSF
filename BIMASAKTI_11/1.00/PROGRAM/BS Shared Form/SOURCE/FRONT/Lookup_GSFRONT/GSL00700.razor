@@ -6,13 +6,14 @@
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.DepartmentGrid"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                Height="300px"
                 Pageable
                 PageSize="5">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="CDEPT_CODE" HeaderText="Department Code"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CDEPT_NAME" HeaderText="Department Name"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CCENTER_CODE" HeaderText="Center Code"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CCENTER_NAME" HeaderText="Center Name"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CDEPT_CODE" HeaderText="Department Code" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CDEPT_NAME" HeaderText="Department Name" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCENTER_CODE" HeaderText="Center Code" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCENTER_NAME" HeaderText="Center Name" Width="300px"></R_GridTextColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>

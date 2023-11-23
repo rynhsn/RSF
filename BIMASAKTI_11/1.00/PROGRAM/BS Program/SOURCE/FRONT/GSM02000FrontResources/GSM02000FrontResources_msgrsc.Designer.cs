@@ -21,14 +21,14 @@ namespace GLI00100FrontResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class GLI00100FrontResources_msgrsc {
+    internal class GSM02000FrontResources_msgrsc {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal GLI00100FrontResources_msgrsc() {
+        internal GSM02000FrontResources_msgrsc() {
         }
         
         /// <summary>
@@ -38,7 +38,7 @@ namespace GLI00100FrontResources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GLI00100FrontResources.GLI00100FrontResources_msgrsc", typeof(GLI00100FrontResources_msgrsc).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GSM02000FrontResources.GSM02000FrontResources_msgrsc", typeof(GSM02000FrontResources_msgrsc).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -60,29 +60,200 @@ namespace GLI00100FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error process, please contact your administrator!.
+        ///   Looks up a localized string similar to Activate.
         /// </summary>
-        internal static string _2001 {
+        internal static string BTN_ACTIVATE {
             get {
-                return ResourceManager.GetString("2001", resourceCulture);
+                return ResourceManager.GetString("BTN_ACTIVATE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Duplicate Sales Tax!.
+        ///   Looks up a localized string similar to Inactive.
         /// </summary>
-        internal static string _2002 {
+        internal static string BTN_INACTIVE {
             get {
-                return ResourceManager.GetString("2002", resourceCulture);
+                return ResourceManager.GetString("BTN_INACTIVE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot Delete, Sales Tax Already in used!.
+        ///   Looks up a localized string similar to Tax ID is required.
         /// </summary>
-        internal static string _2003 {
+        internal static string Err1 {
             get {
-                return ResourceManager.GetString("2003", resourceCulture);
+                return ResourceManager.GetString("Err1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Name is required.
+        /// </summary>
+        internal static string Err2 {
+            get {
+                return ResourceManager.GetString("Err2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rounding Mode is required.
+        /// </summary>
+        internal static string Err3 {
+            get {
+                return ResourceManager.GetString("Err3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rounding Unit is required.
+        /// </summary>
+        internal static string Err4 {
+            get {
+                return ResourceManager.GetString("Err4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Date is required.
+        /// </summary>
+        internal static string Err5 {
+            get {
+                return ResourceManager.GetString("Err5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax % is required.
+        /// </summary>
+        internal static string Err6 {
+            get {
+                return ResourceManager.GetString("Err6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        internal static string LABEL_ACTIVE {
+            get {
+                return ResourceManager.GetString("LABEL_ACTIVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created By.
+        /// </summary>
+        internal static string LABEL_CREATEDBY {
+            get {
+                return ResourceManager.GetString("LABEL_CREATEDBY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created Date.
+        /// </summary>
+        internal static string LABEL_CREATEDDATE {
+            get {
+                return ResourceManager.GetString("LABEL_CREATEDDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string LABEL_DESCRIPTION {
+            get {
+                return ResourceManager.GetString("LABEL_DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rounding Mode.
+        /// </summary>
+        internal static string LABEL_ROUNDINGMODE {
+            get {
+                return ResourceManager.GetString("LABEL_ROUNDINGMODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rounding Unit.
+        /// </summary>
+        internal static string LABEL_ROUNDINGUNIT {
+            get {
+                return ResourceManager.GetString("LABEL_ROUNDINGUNIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Date*.
+        /// </summary>
+        internal static string LABEL_TAXDATE {
+            get {
+                return ResourceManager.GetString("LABEL_TAXDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Id.
+        /// </summary>
+        internal static string LABEL_TAXID {
+            get {
+                return ResourceManager.GetString("LABEL_TAXID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax In GL Account.
+        /// </summary>
+        internal static string LABEL_TAXIN {
+            get {
+                return ResourceManager.GetString("LABEL_TAXIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Name.
+        /// </summary>
+        internal static string LABEL_TAXNAME {
+            get {
+                return ResourceManager.GetString("LABEL_TAXNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Out GL Account.
+        /// </summary>
+        internal static string LABEL_TAXOUT {
+            get {
+                return ResourceManager.GetString("LABEL_TAXOUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax %*.
+        /// </summary>
+        internal static string LABEL_TAXPCT {
+            get {
+                return ResourceManager.GetString("LABEL_TAXPCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated By.
+        /// </summary>
+        internal static string LABEL_UPDATEDBY {
+            get {
+                return ResourceManager.GetString("LABEL_UPDATEDBY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated Date.
+        /// </summary>
+        internal static string LABEL_UPDATEDDATE {
+            get {
+                return ResourceManager.GetString("LABEL_UPDATEDDATE", resourceCulture);
             }
         }
     }

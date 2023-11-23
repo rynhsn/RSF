@@ -1,6 +1,7 @@
 ﻿using BlazorClientHelper;
 using GFF00900COMMON.DTOs;
 using GSM02000Common.DTOs;
+using GSM02000FrontResources;
 using GSM02000Model.ViewModel;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
@@ -21,7 +22,9 @@ public partial class GSM02000 : R_Page
     private GSM02000ViewModel _GSM02000ViewModel = new();
     private R_Conductor _conductorRef;
     private R_Grid<GSM02000GridDTO> _gridRef;
-    private string loLabel = "Activate";
+    private string loLabel;
+
+    // private R_ILocalizer<Resources_Dummy_Class> _localizer;
     
     [Inject] private IClientHelper _clientHelper { get; set; }
     [Inject] private R_PopupService PopupService { get; set;}
@@ -32,6 +35,7 @@ public partial class GSM02000 : R_Page
 
         try
         {
+            loLabel = _localizer["BTN_ACTIVATE"];
             await _gridRef.R_RefreshGrid(null);
             // await _gridRef.AutoFitAllColumnsAsync();
             await _GSM02000ViewModel.GetRoundingMode();
@@ -56,12 +60,12 @@ public partial class GSM02000 : R_Page
                 _GSM02000ViewModel.ActiveInactiveEntity.CTAX_ID = loParam.CTAX_ID;
                 if (loParam.LACTIVE)
                 {
-                    loLabel = "Inactive";
+                    loLabel = _localizer["BTN_INACTIVE"];
                     _GSM02000ViewModel.ActiveInactiveEntity.LACTIVE = false;
                 }
                 else
                 {
-                    loLabel = "Activate";
+                    loLabel = _localizer["BTN_ACTIVATE"];
                     _GSM02000ViewModel.ActiveInactiveEntity.LACTIVE = true;
                 }
             }
@@ -73,14 +77,14 @@ public partial class GSM02000 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private async Task Grid_R_ServiceGetListRecord(R_ServiceGetListRecordEventArgs arg)
+    private async Task Grid_R_ServiceGetListRecord(R_ServiceGetListRecordEventArgs eventArgs)
     {
         var loEx = new R_Exception();
 
         try
         {
             await _GSM02000ViewModel.GetGridList();
-            arg.ListEntityResult = _GSM02000ViewModel.GridList;
+            eventArgs.ListEntityResult = _GSM02000ViewModel.GridList;
         }
         catch (Exception ex)
         {
@@ -89,16 +93,16 @@ public partial class GSM02000 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private async Task Conductor_ServiceGetRecord(R_ServiceGetRecordEventArgs arg)
+    private async Task Conductor_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
     {
         var loEx = new R_Exception();
 
         try
         {
-            var loParam = R_FrontUtility.ConvertObjectToObject<GSM02000DTO>(arg.Data);
+            var loParam = R_FrontUtility.ConvertObjectToObject<GSM02000DTO>(eventArgs.Data);
 
             await _GSM02000ViewModel.GetEntity(loParam);
-            arg.Result = _GSM02000ViewModel.Entity;
+            eventArgs.Result = _GSM02000ViewModel.Entity;
         }
         catch (Exception ex)
         {
@@ -127,13 +131,16 @@ public partial class GSM02000 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private async Task Conductor_ServiceDelete(R_ServiceDeleteEventArgs arg)
+    private async Task Conductor_ServiceDelete(R_ServiceDeleteEventArgs eventArgs)
     {
         var loEx = new R_Exception();
 
         try
         {
-            var loParam = (GSM02000DTO)arg.Data;
+            var loParam = (GSM02000DTO)eventArgs.Data;
+            // loParam.CDESCRIPTION ??= String.Empty;
+            // loParam.CTAXIN_GLACCOUNT_NO ??= String.Empty;
+            // loParam.CTAXOUT_GLACCOUNT_NO ??= String.Empty;
             await _GSM02000ViewModel.DeleteEntity(loParam);
         }
         catch (Exception ex)
@@ -144,13 +151,13 @@ public partial class GSM02000 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private async Task Conductor_AfterSave(R_AfterSaveEventArgs arg)
+    private async Task Conductor_AfterSave(R_AfterSaveEventArgs eventArgs)
     {
         var loEx = new R_Exception();
 
         try
         {
-            await _gridRef.R_RefreshGrid((GSM02000DTO)arg.Data);
+            await _gridRef.R_RefreshGrid((GSM02000DTO)eventArgs.Data);
         }
         catch (Exception ex)
         {
@@ -315,7 +322,7 @@ public partial class GSM02000 : R_Page
         try
         {
             loData = (GSM02000DTO)eventArgs.Data;
-            _GSM02000ViewModel.Validate(loData);
+            Validate(loData);
             
             loData.CTAXIN_GLACCOUNT_NO ??= "";
             loData.CTAXOUT_GLACCOUNT_NO ??= "";
@@ -387,5 +394,37 @@ public partial class GSM02000 : R_Page
         var tes = (GSM02000DTO)eventArgs.Data;
         tes.LACTIVE = true;
         // eventArgs.Data = tes;
+    }
+    
+    private void Validate(GSM02000DTO poParam)
+    {
+        var loEx = new R_Exception();
+            
+        try
+        {
+            if(poParam.CTAX_ID == null)
+            {
+                loEx.Add("Err1", _localizer["Err1"]);
+            }
+            if (poParam.CTAX_NAME == null)
+            {
+                loEx.Add("Err2", _localizer["Err2"]);
+            }
+            if (poParam.CROUNDING_MODE == null)
+            {
+                loEx.Add("Err3", _localizer["Err3"]);
+            }
+            if (poParam.IROUNDING == null)
+            {
+                loEx.Add("Err4", _localizer["Err4"]);
+            }
+                
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+            
+        loEx.ThrowExceptionIfErrors();
     }
 }

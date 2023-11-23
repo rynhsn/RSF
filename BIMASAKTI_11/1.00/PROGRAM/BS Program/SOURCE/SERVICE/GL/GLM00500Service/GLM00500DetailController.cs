@@ -264,7 +264,7 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
     }
 
     [HttpPost]
-    public GLM00500BudgetCalculateDTO GLM00500BudgetCalculate()
+    public GLM00500BudgetCalculateDTO GLM00500BudgetCalculate(GLM00500CalculateParamDTO poParams)
     {
         _logger.LogInfo("Start - Calculate Budget");
         var loEx = new R_Exception();
@@ -276,15 +276,21 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
         {
             _logger.LogInfo("Set Parameter");
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbParams.NPERIOD_COUNT = R_Utility.R_GetStreamingContext<int>(GLM00500ContextContant.NPERIOD_COUNT);
-            loDbParams.CCURRENCY_TYPE = R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CCURRENCY_TYPE);
-            loDbParams.NBUDGET = R_Utility.R_GetStreamingContext<decimal>(GLM00500ContextContant.NBUDGET);
-            loDbParams.CROUNDING_METHOD =
-                R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CROUNDING_METHOD);
-            loDbParams.CDIST_METHOD = R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CDIST_METHOD);
-            loDbParams.CBW_CODE = R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CBW_CODE);
-
+            loDbParams.NPERIOD_COUNT = poParams.INO_PERIOD;
+            loDbParams.CCURRENCY_TYPE = poParams.CCURRENCY_TYPE;
+            loDbParams.NBUDGET = poParams.NBUDGET;
+            loDbParams.CROUNDING_METHOD = poParams.CROUNDING_METHOD;
+            loDbParams.CDIST_METHOD = poParams.CDIST_METHOD;
+            loDbParams.CBW_CODE = poParams.CBW_CODE;
             loDbParams.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
+            // loDbParams.NPERIOD_COUNT = R_Utility.R_GetStreamingContext<int>(GLM00500ContextContant.NPERIOD_COUNT);
+            // loDbParams.CCURRENCY_TYPE = R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CCURRENCY_TYPE);
+            // loDbParams.NBUDGET = R_Utility.R_GetStreamingContext<decimal>(GLM00500ContextContant.NBUDGET);
+            // loDbParams.CROUNDING_METHOD =
+            //     R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CROUNDING_METHOD);
+            // loDbParams.CDIST_METHOD = R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CDIST_METHOD);
+            // loDbParams.CBW_CODE = R_Utility.R_GetStreamingContext<string>(GLM00500ContextContant.CBW_CODE);
+
             
             _logger.LogInfo("Calculate Budget");
             loReturn = loCls.GLM00500BudgetCalculateDb(loDbParams);

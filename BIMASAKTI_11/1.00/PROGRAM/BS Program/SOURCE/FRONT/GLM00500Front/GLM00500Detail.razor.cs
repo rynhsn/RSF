@@ -19,34 +19,34 @@ public partial class GLM00500Detail
     private R_Conductor _conductorRef;
     private R_Grid<GLM00500BudgetDTGridDTO> _gridRef = new();
 
-    public R_TextBox FieldAcc { get; set; }
-    public R_Lookup LookupCenterCode { get; set; }
-    public R_TextBox FieldCenterCode { get; set; }
-    public R_NumericTextBox<decimal> FieldBudget { get; set; }
-    public R_ComboBox<GLM00500FunctionDTO, string> FieldRoundingMethod { get; set; }
-    public R_RadioGroup<KeyValuePair<string, string>, string> FieldDistributionMethod { get; set; }
+    private R_TextBox _fieldAcc { get; set; }
+    private R_Lookup _lookupCenterCode { get; set; }
+    private R_TextBox _fieldCenterCode { get; set; }
+    private R_NumericTextBox<decimal> _fieldBudget { get; set; }
+    private R_ComboBox<GLM00500FunctionDTO, string> _fieldRoundingMethod { get; set; }
+    private R_RadioGroup<KeyValuePair<string, string>, string> _fieldDistributionMethod { get; set; }
 
-    public R_ComboBox<GLM00500BudgetWeightingDTO, string> FieldWeightingCode { get; set; }
+    private R_ComboBox<GLM00500BudgetWeightingDTO, string> _fieldWeightingCode { get; set; }
 
-    // public R_Button BtnRefresh { get; set; }
-    public R_Button BtnCalculate { get; set; }
-    public R_Popup BtnGenerate { get; set; }
+    // private R_Button BtnRefresh { get; set; }
+    private R_Button _btnCalculate { get; set; }
+    private R_Popup _btnGenerate { get; set; }
 
-    R_NumericTextBox<decimal> FieldPeriod1 { get; set; }
-    R_NumericTextBox<decimal> FieldPeriod2 { get; set; }
-    R_NumericTextBox<decimal> FieldPeriod3 { get; set; }
-    R_NumericTextBox<decimal> FieldPeriod4 { get; set; }
-    R_NumericTextBox<decimal> FieldPeriod5 { get; set; }
-    R_NumericTextBox<decimal> FieldPeriod6 { get; set; }
-    R_NumericTextBox<decimal> FieldPeriod7 { get; set; }
-    R_NumericTextBox<decimal> FieldPeriod8 { get; set; }
-    R_NumericTextBox<decimal> FieldPeriod9 { get; set; }
-    R_NumericTextBox<decimal> FieldPeriod10 { get; set; }
-    R_NumericTextBox<decimal> FieldPeriod11 { get; set; }
-    R_NumericTextBox<decimal> FieldPeriod12 { get; set; }
-    R_NumericTextBox<decimal> FieldPeriod13 { get; set; }
-    R_NumericTextBox<decimal> FieldPeriod14 { get; set; }
-    R_NumericTextBox<decimal> FieldPeriod15 { get; set; }
+    private R_NumericTextBox<decimal> _fieldPeriod1 { get; set; }
+    private R_NumericTextBox<decimal> _fieldPeriod2 { get; set; }
+    private R_NumericTextBox<decimal> _fieldPeriod3 { get; set; }
+    private R_NumericTextBox<decimal> _fieldPeriod4 { get; set; }
+    private R_NumericTextBox<decimal> _fieldPeriod5 { get; set; }
+    private R_NumericTextBox<decimal> _fieldPeriod6 { get; set; }
+    private R_NumericTextBox<decimal> _fieldPeriod7 { get; set; }
+    private R_NumericTextBox<decimal> _fieldPeriod8 { get; set; }
+    private R_NumericTextBox<decimal> _fieldPeriod9 { get; set; }
+    private R_NumericTextBox<decimal> _fieldPeriod10 { get; set; }
+    private R_NumericTextBox<decimal> FieldPeriod11 { get; set; }
+    private R_NumericTextBox<decimal> FieldPeriod12 { get; set; }
+    private R_NumericTextBox<decimal> FieldPeriod13 { get; set; }
+    private R_NumericTextBox<decimal> FieldPeriod14 { get; set; }
+    private R_NumericTextBox<decimal> FieldPeriod15 { get; set; }
 
     protected override async Task R_Init_From_Master(object eventArgs)
     {
@@ -130,12 +130,14 @@ public partial class GLM00500Detail
         loGetData.CGLACCOUNT_NO = loTempResult.CGLACCOUNT_NO;
         loGetData.CGLACCOUNT_NAME = loTempResult.CGLACCOUNT_NAME;
         loGetData.CBSIS = R_FrontUtility.ConvertObjectToObject<string>(loTempResult.CBSIS);
-        if ((loTempResult.CBSIS != "I" || _viewModel.Company.LENABLE_CENTER_IS) &&
-            (loTempResult.CBSIS != "B" || _viewModel.Company.LENABLE_CENTER_BS)) return;
-        loGetData.CCENTER_CODE = "";
-        loGetData.CCENTER_NAME = "";
+        if ((loTempResult.CBSIS == "I" && _viewModel.Company.LENABLE_CENTER_IS == false) ||
+            (loTempResult.CBSIS == "B" && _viewModel.Company.LENABLE_CENTER_BS == false))
+        {
+            loGetData.CCENTER_CODE = "";
+            loGetData.CCENTER_NAME = "";
 
-        EnableCenter(loGetData.CBSIS);
+            EnableCenter(loGetData.CBSIS);
+        }
     }
 
     private void BeforeOpenLookupCenter(R_BeforeOpenLookupEventArgs eventArgs)
@@ -160,20 +162,26 @@ public partial class GLM00500Detail
 
         try
         {
-            BtnGenerate.Enabled = _viewModel.BudgetHDEntity.LFINAL == false;
-            BtnCalculate.Enabled = false;
+            _btnGenerate.Enabled = _viewModel.BudgetHDEntity.LFINAL == false;
+            _btnCalculate.Enabled = false;
             if (eventArgs.ConductorMode != R_eConductorMode.Normal)
             {
-                BtnCalculate.Enabled = _viewModel.BudgetHDEntity.LFINAL == false;
-                BtnGenerate.Enabled = false;
-                EnableCenter(_viewModel.BudgetDTEntity.CBSIS);
-                ChangeInputMethod(_viewModel.BudgetDTEntity.CINPUT_METHOD);
+                _btnCalculate.Enabled = _viewModel.BudgetHDEntity.LFINAL == false;
+                _btnGenerate.Enabled = false;
                 EnablePeriod();
             }
 
-            if (eventArgs.ConductorMode == R_eConductorMode.Add)
+            switch (eventArgs.ConductorMode)
             {
-                await FieldAcc.FocusAsync();
+                case R_eConductorMode.Edit:
+                    EnableCenter(_viewModel.BudgetDTEntity.CBSIS);
+                    ChangeInputMethod(_viewModel.BudgetDTEntity.CINPUT_METHOD);
+                    await _fieldCenterCode.FocusAsync();
+                    break;
+                case R_eConductorMode.Add:
+                    ChangeInputMethod((string)"MN");
+                    await _fieldAcc.FocusAsync();
+                    break;
             }
         }
         catch (Exception ex)
@@ -186,13 +194,13 @@ public partial class GLM00500Detail
 
     private void EnableCenter(string pcCBSIS)
     {
-        LookupCenterCode.Enabled = false;
-        FieldCenterCode.Enabled = false;
+        _lookupCenterCode.Enabled = false;
+        _fieldCenterCode.Enabled = false;
         if ((pcCBSIS == "B" && _viewModel.Company.LENABLE_CENTER_BS) ||
             (pcCBSIS == "I" && _viewModel.Company.LENABLE_CENTER_IS))
         {
-            LookupCenterCode.Enabled = true;
-            FieldCenterCode.Enabled = true;
+            _lookupCenterCode.Enabled = true;
+            _fieldCenterCode.Enabled = true;
         }
     }
 
@@ -204,9 +212,9 @@ public partial class GLM00500Detail
             _viewModel.Data.CROUNDING_METHOD = "00";
             _viewModel.Data.CDIST_METHOD = "EV";
 
-            FieldBudget.Enabled = true;
-            FieldRoundingMethod.Enabled = true;
-            FieldDistributionMethod.Enabled = true;
+            _fieldBudget.Enabled = true;
+            _fieldRoundingMethod.Enabled = true;
+            _fieldDistributionMethod.Enabled = true;
         }
         else
         {
@@ -215,10 +223,10 @@ public partial class GLM00500Detail
             _viewModel.Data.CDIST_METHOD = "";
             _viewModel.Data.CBW_CODE = "";
 
-            FieldBudget.Enabled = false;
-            FieldRoundingMethod.Enabled = false;
-            FieldDistributionMethod.Enabled = false;
-            FieldWeightingCode.Enabled = false;
+            _fieldBudget.Enabled = false;
+            _fieldRoundingMethod.Enabled = false;
+            _fieldDistributionMethod.Enabled = false;
+            _fieldWeightingCode.Enabled = false;
         }
 
         ChangeDistMethod();
@@ -228,6 +236,8 @@ public partial class GLM00500Detail
     private void AfterAdd(R_AfterAddEventArgs eventArgs)
     {
         var loData = (GLM00500BudgetDTDTO)eventArgs.Data;
+        loData.DCREATE_DATE = DateTime.Now;
+        loData.DUPDATE_DATE = DateTime.Now;
         loData.CBUDGET_ID = _viewModel.BudgetHDEntity.CREC_ID;
         loData.CBUDGET_NO = _viewModel.BudgetHDEntity.CBUDGET_NO;
         loData.CGLACCOUNT_TYPE = _viewModel.SelectedAccountType;
@@ -238,35 +248,35 @@ public partial class GLM00500Detail
 
     private void ChangeDistMethod()
     {
-        FieldWeightingCode.Enabled = false;
+        _fieldWeightingCode.Enabled = false;
         if (_viewModel.Data.CDIST_METHOD == "BW" && _viewModel.Data.CINPUT_METHOD != "MN")
         {
-            FieldWeightingCode.Enabled = true;
+            _fieldWeightingCode.Enabled = true;
         }
     }
 
     private void EnablePeriod()
     {
-        FieldPeriod1.Value = 0;
-        FieldPeriod1.Enabled = false;
-        FieldPeriod2.Value = 0;
-        FieldPeriod2.Enabled = false;
-        FieldPeriod3.Value = 0;
-        FieldPeriod3.Enabled = false;
-        FieldPeriod4.Value = 0;
-        FieldPeriod4.Enabled = false;
-        FieldPeriod5.Value = 0;
-        FieldPeriod5.Enabled = false;
-        FieldPeriod6.Value = 0;
-        FieldPeriod6.Enabled = false;
-        FieldPeriod7.Value = 0;
-        FieldPeriod7.Enabled = false;
-        FieldPeriod8.Value = 0;
-        FieldPeriod8.Enabled = false;
-        FieldPeriod9.Value = 0;
-        FieldPeriod9.Enabled = false;
-        FieldPeriod10.Value = 0;
-        FieldPeriod10.Enabled = false;
+        _fieldPeriod1.Value = 0;
+        _fieldPeriod1.Enabled = false;
+        _fieldPeriod2.Value = 0;
+        _fieldPeriod2.Enabled = false;
+        _fieldPeriod3.Value = 0;
+        _fieldPeriod3.Enabled = false;
+        _fieldPeriod4.Value = 0;
+        _fieldPeriod4.Enabled = false;
+        _fieldPeriod5.Value = 0;
+        _fieldPeriod5.Enabled = false;
+        _fieldPeriod6.Value = 0;
+        _fieldPeriod6.Enabled = false;
+        _fieldPeriod7.Value = 0;
+        _fieldPeriod7.Enabled = false;
+        _fieldPeriod8.Value = 0;
+        _fieldPeriod8.Enabled = false;
+        _fieldPeriod9.Value = 0;
+        _fieldPeriod9.Enabled = false;
+        _fieldPeriod10.Value = 0;
+        _fieldPeriod10.Enabled = false;
         FieldPeriod11.Value = 0;
         FieldPeriod11.Enabled = false;
         FieldPeriod12.Value = 0;
@@ -280,16 +290,16 @@ public partial class GLM00500Detail
 
         if (_viewModel.Data.CINPUT_METHOD == "MN")
         {
-            if (_viewModel.PeriodCount.INO_PERIOD >= 1) FieldPeriod1.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 2) FieldPeriod2.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 3) FieldPeriod3.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 4) FieldPeriod4.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 5) FieldPeriod5.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 6) FieldPeriod6.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 7) FieldPeriod7.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 8) FieldPeriod8.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 9) FieldPeriod9.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 10) FieldPeriod10.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 1) _fieldPeriod1.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 2) _fieldPeriod2.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 3) _fieldPeriod3.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 4) _fieldPeriod4.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 5) _fieldPeriod5.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 6) _fieldPeriod6.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 7) _fieldPeriod7.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 8) _fieldPeriod8.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 9) _fieldPeriod9.Enabled = true;
+            if (_viewModel.PeriodCount.INO_PERIOD >= 10) _fieldPeriod10.Enabled = true;
             if (_viewModel.PeriodCount.INO_PERIOD >= 11) FieldPeriod11.Enabled = true;
             if (_viewModel.PeriodCount.INO_PERIOD >= 12) FieldPeriod12.Enabled = true;
             if (_viewModel.PeriodCount.INO_PERIOD >= 13) FieldPeriod13.Enabled = true;
@@ -397,8 +407,8 @@ public partial class GLM00500Detail
             }
             case "AN":
             {
-                _viewModel.Data.NBUDGET = FieldBudget.Value; // sementara, karena perubahan tidak langsung bind value
-                var loResult = await _viewModel.CalculateBudget(_viewModel.BudgetHDEntity, _viewModel.BudgetDTEntity);
+                _viewModel.Data.NBUDGET = _fieldBudget.Value; // sementara, karena perubahan tidak langsung bind value
+                var loResult = await _viewModel.CalculateBudget(_viewModel.BudgetHDEntity, _viewModel.Data);
                 if (_viewModel.PeriodCount.INO_PERIOD >= 1) _viewModel.Data.NPERIOD1 = loResult.NPERIOD1;
                 if (_viewModel.PeriodCount.INO_PERIOD >= 2) _viewModel.Data.NPERIOD2 = loResult.NPERIOD2;
                 if (_viewModel.PeriodCount.INO_PERIOD >= 3) _viewModel.Data.NPERIOD3 = loResult.NPERIOD3;
@@ -421,7 +431,7 @@ public partial class GLM00500Detail
 
     private void CheckAdd(R_CheckAddEventArgs eventArgs)
     {
-        BtnGenerate.Enabled = _viewModel.BudgetHDEntity.LFINAL == false;
+        _btnGenerate.Enabled = _viewModel.BudgetHDEntity.LFINAL == false;
         eventArgs.Allow = _viewModel.BudgetHDEntity.LFINAL == false;
     }
 
@@ -448,11 +458,22 @@ public partial class GLM00500Detail
 
     private async Task AfterGeneratePopup(R_AfterOpenPopupEventArgs eventArgs)
     {
-        if (eventArgs.Success)
+        var loException = new R_Exception();
+        try
         {
+            if (eventArgs.Success == false)
+                return;
+
             var loResult = (GLM00500GenerateAccountBudgetDTO)eventArgs.Result;
             await _viewModel.GenerateBudget(loResult);
+            await _gridRef.R_RefreshGrid(null);
         }
+        catch (Exception ex)
+        {
+            loException.Add(ex);
+        }
+
+        loException.ThrowExceptionIfErrors();
         
         
     }

@@ -257,7 +257,7 @@ public class GSM05000ApprovalUserModel : R_BusinessObjectServiceClientBase<GSM05
         throw new NotImplementedException();
     }
 
-
+    
     public IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000GetApprovalDepartmentStream()
     {
         throw new NotImplementedException();

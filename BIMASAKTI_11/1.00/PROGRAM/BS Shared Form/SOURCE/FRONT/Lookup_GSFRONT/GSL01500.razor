@@ -10,7 +10,7 @@
 
         <R_ItemLayout col="8">
             <R_ComboBox Data="@_viewModel.CashFlowGropList"
-                        Value="@_viewModel.Data.CCASH_FLOW_GROUP_CODE"
+                        Value="@_viewModel.CashFlowCode"
                         ValueField="@nameof(GSL01500ResultGroupDTO.CCASH_FLOW_GROUP_CODE)"
                         TextField="@nameof(GSL01500ResultGroupDTO.CCASH_FLOW_GROUP_NAME)"
                         ValueChanged="@((string value) => PropertyDropdown_OnChange(value))"

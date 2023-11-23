@@ -1,0 +1,29 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Payment Term")]
+
+<R_StackLayout Style="width: 800px">
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.PaymentTermGrid"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                Height="300px"
+                Pageable
+                PageSize="5">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CPAY_TERM_CODE" HeaderText="Term Of Payment Code" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CPAY_TERM_NAME" HeaderText="Term Of Payment Name" Width="300px"></R_GridTextColumn>
+                <R_GridNumericColumn FieldName="IPAY_TERM_DAYS" HeaderText="TOP Days" Width="100px"></R_GridNumericColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+            <R_Button OnClick="Button_OnClickOkAsync">
+                OK
+            </R_Button>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                Cancel
+            </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>

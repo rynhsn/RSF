@@ -16,4 +16,10 @@
       <PackageReference Include="FastReport.Net.Pro" Version="2023.2.21" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="BaseHeaderReportCOMMON">
+        <HintPath>..\..\COMMON\BaseHeaderReportCOMMON.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

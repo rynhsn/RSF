@@ -118,6 +118,8 @@ public partial class GSM02000Tax : R_Page
         {
             var loParam = (GSM02000TaxDTO)eventArgs.Data;
             loParam.DTAX_DATE = DateTime.Now;
+            loParam.DCREATE_DATE = DateTime.Now;
+            loParam.DUPDATE_DATE = DateTime.Now;
         }
         catch (Exception ex)
         {
@@ -200,5 +202,31 @@ public partial class GSM02000Tax : R_Page
         
         loEx.ThrowExceptionIfErrors();
         return Task.CompletedTask;
+    }
+
+    private void Validation(R_ValidationEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+        
+        GSM02000TaxDTO loData;
+        try
+        {
+            loData = (GSM02000TaxDTO)eventArgs.Data;
+            if(loData.DTAX_DATE == null)
+            {
+                loEx.Add("Err5", _localizer["Err5"]);
+            }
+            if (loData.NTAX_PERCENTAGE == null)
+            {
+                loEx.Add("Err6", _localizer["Err6"]);
+            }
+
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
     }
 }

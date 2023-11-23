@@ -9,6 +9,7 @@
       "GSM05000Front/1.0.0": {
         "dependencies": {
           "GFF00900FRONT": "1.0.0",
+          "GSM05000FrontResources": "1.0.0",
           "GSM05000Model": "1.0.0",
           "Lookup_GSCOMMON": "1.0.0",
           "Lookup_GSFRONT": "1.0.0",
@@ -177,6 +178,11 @@
           "GSM05000Common.dll": {}
         }
       },
+      "GSM05000FrontResources/1.0.0": {
+        "runtime": {
+          "GSM05000FrontResources.dll": {}
+        }
+      },
       "GSM05000Model/1.0.0": {
         "dependencies": {
           "GSM05000Common": "1.0.0"
@@ -194,6 +200,7 @@
         "dependencies": {
           "Lookup_GSCOMMON": "1.0.0",
           "Lookup_GSModel": "1.0.0",
+          "Microsoft.AspNetCore.Components": "6.0.15",
           "Microsoft.AspNetCore.Components.Web": "6.0.15"
         },
         "runtime": {
@@ -415,6 +422,11 @@
       "sha512": ""
     },
     "GSM05000Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GSM05000FrontResources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

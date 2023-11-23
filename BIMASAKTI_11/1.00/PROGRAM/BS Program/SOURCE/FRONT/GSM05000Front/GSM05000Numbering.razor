@@ -1,29 +1,32 @@
-﻿@inherits R_Page
+﻿@using GSM05000FrontResources
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
 <R_StackLayout Row="true" Spacing="1">
-    <R_ItemLayout xs="2">
-        <R_Label>Transaction Code</R_Label>
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["LABEL_TRANSCODE"]</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="1">
+    <R_ItemLayout col="1">
         <R_TextBox Value="@_GSM05000NumberingViewModel.HeaderEntity.CTRANS_CODE"
                    Enabled="false" />
     </R_ItemLayout>
-    <R_ItemLayout xs="3">
+    <R_ItemLayout col="3">
         <R_TextBox Value="@_GSM05000NumberingViewModel.HeaderEntity.CTRANSACTION_NAME"
                    Enabled="false" />
     </R_ItemLayout>
 
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_CheckBox Value="@_GSM05000NumberingViewModel.HeaderEntity.LDEPT_MODE"
                     Enabled="false" />
-        <R_Label>By Department</R_Label>
+        <R_Label>@_localizer["LABEL_DEPTMODE"]</R_Label>
     </R_ItemLayout>
 
     <R_ItemLayout>
-        <R_Label>Period Mode</R_Label>
+        <R_Label>@_localizer["LABEL_PERIODMODE"]</R_Label>
     </R_ItemLayout>
 
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_TextBox Value="@_GSM05000NumberingViewModel.HeaderEntity.CPERIOD_MODE_DESCR"
                    Enabled="false" />
     </R_ItemLayout>
@@ -44,15 +47,15 @@
                 Width="100%"
                 Height="420px">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.CPERIOD)" HeaderText="Period" Width="150px"/>
-                <R_GridLookupColumn FieldName="@nameof(GSM05000NumberingGridDTO.CDEPT_CODE)" HeaderText="Department Code" R_EnableAdd="@_GSM05000NumberingViewModel.HeaderEntity.LDEPT_MODE" Enabled="@_GSM05000NumberingViewModel.HeaderEntity.LDEPT_MODE" Width="200px"/>
-                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.CDEPT_NAME)" HeaderText="Department Name" Width="250px"/>
-                <R_GridNumericColumn FieldName="@nameof(GSM05000NumberingGridDTO.ISTART_NUMBER)" HeaderText="Starting No" R_EnableAdd R_EnableEdit Min="1" Max="1000" Step="1" Width="130px"/>
-                <R_GridNumericColumn FieldName="@nameof(GSM05000NumberingGridDTO.ILAST_NUMBER)" HeaderText="Last No" Width="100px"/>
-                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.CUPDATE_BY)" HeaderText="Updated By" Width="150px"/>
-                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.DUPDATE_DATE)" HeaderText="Updated Date" Width="150px"/>
-                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.CCREATE_BY)" HeaderText="Created By" Width="150px"/>
-                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.DCREATE_DATE)" HeaderText="Created Date" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.CPERIOD)" HeaderText="@_localizer["LABEL_PERIOD"]" Width="100px"/>
+                <R_GridLookupColumn FieldName="@nameof(GSM05000NumberingGridDTO.CDEPT_CODE)" HeaderText="@_localizer["LABEL_DEPTCODE"]" R_EnableAdd="@_GSM05000NumberingViewModel.HeaderEntity.LDEPT_MODE" Width="180px"/>
+                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.CDEPT_NAME)" HeaderText="@_localizer["LABEL_DEPTNAME"]" Width="200px"/>
+                <R_GridNumericColumn FieldName="@nameof(GSM05000NumberingGridDTO.ISTART_NUMBER)" HeaderText="@_localizer["LABEL_STARTNUMBER"]" R_EnableAdd R_EnableEdit Min="1" Max="1000" Step="1" Width="120px"/>
+                <R_GridNumericColumn FieldName="@nameof(GSM05000NumberingGridDTO.ILAST_NUMBER)" HeaderText="@_localizer["LABEL_LASTNUMBER"]" Width="100px"/>
+                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.CUPDATE_BY)" HeaderText="Updated By" Width="120px"/>
+                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.DUPDATE_DATE)" HeaderText="@_localizer["LABEL_UPDATEDDATE"]" Width="180px"/>
+                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.CCREATE_BY)" HeaderText="Created By" Width="120px"/>
+                <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.DCREATE_DATE)" HeaderText="@_localizer["LABEL_CREATEDDATE"]" Width="180px"/>
             </R_GridColumns>
         </R_Grid>
     </R_ItemLayout>

@@ -7,7 +7,7 @@
       "applicationUrl": "http://localhost:63370",
       "sslPort": 44390
     }
-  },
+},
   "profiles": {
     "BIMASAKTI_GL_API": {
       "commandName": "Project",

@@ -28,6 +28,26 @@
   &lt;Assembly Path="C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\6.0.16\Microsoft.AspNetCore.Mvc.Core.dll" /&gt;&#xD;
   &lt;Assembly Path="D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\SYSTEM\SOURCE\LIBRARY\Back\R_AuthenticationBack.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FCREATE_005FONETIME_005FSUPPLIERResources_002FRSP_005FAP_005FCREATE_005FONETIME_005FSUPPLIERResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FDELETE_005FTRANS_005FADDResources_002FRSP_005FAP_005FDELETE_005FTRANS_005FADDResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FDELETE_005FTRANS_005FHDResources_002FRSP_005FAP_005FDELETE_005FTRANS_005FHDResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FDELETE_005FTRANS_005FPDResources_002FRSP_005FAP_005FDELETE_005FTRANS_005FPDResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FSAVE_005FPURCHASE_005FINVOICE_005FSUMARRYResources_002FRSP_005FAP_005FSAVE_005FPURCHASE_005FINVOICE_005FSUMARRYResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FSAVE_005FTRANS_005FHDResources_002FRSP_005FAP_005FSAVE_005FTRANS_005FHDResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FSUBMIT_005FTRANS_005FHDResources_002FRSP_005FAP_005FSUBMIT_005FTRANS_005FHDResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FCOPY_005FEXPENDITUREResources_002FRSP_005FAP_005FCOPY_005FEXPENDITUREResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FDELETE_005FEXPENDITUREResources_002FRSP_005FAP_005FDELETE_005FEXPENDITUREResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FRSP_005FAP_005FDELETE_005FPRODUCTResources_002FRSP_005FAP_005FDELETE_005FPRODUCTResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>

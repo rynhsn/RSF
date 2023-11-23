@@ -28,7 +28,7 @@ public partial class GSM05000 : R_Page
 
             var loGroupDescriptor = new List<R_GridGroupDescriptor>
             {
-                new() { FieldName = "CMODULE_NAME" }
+                new() { FieldName = "MODULE" }
             };
             await _gridRef.R_GroupBy(loGroupDescriptor);
             await _gridRef.R_RefreshGrid(null);
@@ -234,6 +234,7 @@ public partial class GSM05000 : R_Page
         try
         {
             var loParam = (GSM05000DTO)eventArgs.Data;
+            loParam.DUPDATE_DATE = DateTime.Now;
             await _GSM05000ViewModel.SaveEntity(loParam, (eCRUDMode)eventArgs.ConductorMode);
             eventArgs.Result = _GSM05000ViewModel.Entity;
         }
@@ -397,5 +398,13 @@ public partial class GSM05000 : R_Page
     {
         var loData= (GSM05000DTO)eventArgs.Data;
         eventArgs.GridData = new GSM05000GridDTO() { CTRANS_CODE = loData.CTRANS_CODE, CTRANSACTION_NAME = loData.CTRANSACTION_NAME };
+    }
+
+    private Task BeforeEdit(R_BeforeEditEventArgs eventArgs)
+    {
+        var loData = (GSM05000DTO)eventArgs.Data;
+        loData.DCREATE_DATE = DateTime.Now;
+        loData.DUPDATE_DATE = DateTime.Now;
+        return Task.CompletedTask;
     }
 }

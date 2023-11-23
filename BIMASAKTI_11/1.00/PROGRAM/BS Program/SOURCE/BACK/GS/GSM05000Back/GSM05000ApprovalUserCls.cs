@@ -38,7 +38,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
 
             
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
-            loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 50, poEntity.CTRANS_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 50, poEntity.CTRANS_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 50, poEntity.CUSER_LOGIN_ID);
 
@@ -46,7 +46,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
                 .Where(x =>
                     x.ParameterName is 
                         "@CCOMPANY_ID" or 
-                        "@CTRANS_CODE" or
+                        "@CTRANSACTION_CODE" or
                         "@CUSER_ID" or
                         "@CUSER_LOGIN_ID"
                 )
@@ -97,7 +97,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
             loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 50, poNewEntity.CTRANS_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 255, poNewEntity.CDEPT_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poNewEntity.CUSER_ID);
-            loDb.R_AddCommandParameter(loCmd, "@CSEQUENCE", DbType.String, 10, poNewEntity.CSEQUENCE);
+            loDb.R_AddCommandParameter(loCmd, "@ISEQUENCE", DbType.String, 10, poNewEntity.ISEQUENCE);
             loDb.R_AddCommandParameter(loCmd, "@LREPLACEMENT", DbType.Boolean, 1, poNewEntity.LREPLACEMENT);
             loDb.R_AddCommandParameter(loCmd, "@NLIMIT_AMOUNT", DbType.Decimal, 20, poNewEntity.NLIMIT_AMOUNT);
             loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, lcAction);
@@ -110,7 +110,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
                         "@CTRANS_CODE" or
                         "@CDEPT_CODE" or
                         "@CUSER_ID" or
-                        "@CSEQUENCE" or
+                        "@ISEQUENCE" or
                         "@LREPLACEMENT" or
                         "@NLIMIT_AMOUNT" or
                         "@CACTION" or
@@ -155,7 +155,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
             loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 50, poEntity.CTRANS_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 255, poEntity.CDEPT_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
-            loDb.R_AddCommandParameter(loCmd, "@CSEQUENCE", DbType.String, 10, poEntity.CSEQUENCE);
+            loDb.R_AddCommandParameter(loCmd, "@ISEQUENCE", DbType.String, 10, poEntity.ISEQUENCE);
             loDb.R_AddCommandParameter(loCmd, "@LREPLACEMENT", DbType.Boolean, 1, poEntity.LREPLACEMENT);
             loDb.R_AddCommandParameter(loCmd, "@NLIMIT_AMOUNT", DbType.Decimal, 20, poEntity.NLIMIT_AMOUNT);
             loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, lcAction);
@@ -168,7 +168,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
                         "@CTRANS_CODE" or
                         "@CDEPT_CODE" or
                         "@CUSER_ID" or
-                        "@CSEQUENCE" or
+                        "@ISEQUENCE" or
                         "@LREPLACEMENT" or
                         "@NLIMIT_AMOUNT" or
                         "@CACTION" or
@@ -616,7 +616,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
             loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 6, poParameter.CTRANS_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 8, poParameter.CDEPT_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParameter.CUSER_ID);
-            loDb.R_AddCommandParameter(loCmd, "@CSEQUENCE", DbType.String, 3, poParameter.CSEQUENCE);
+            loDb.R_AddCommandParameter(loCmd, "@ISEQUENCE", DbType.String, 3, poParameter.ISEQUENCE);
             loDb.R_AddCommandParameter(loCmd, "@LREPLACEMENT", DbType.String, 1, poParameter.LREPLACEMENT);
             loDb.R_AddCommandParameter(loCmd, "@NLIMIT_AMOUNT", DbType.Decimal, 18, poParameter.NLIMIT_AMOUNT);
             loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, "EDIT");
@@ -629,7 +629,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
                         "@CTRANS_CODE" or
                         "@CDEPT_CODE" or
                         "@CUSER_ID" or
-                        "@CSEQUENCE" or
+                        "@ISEQUENCE" or
                         "@LREPLACEMENT" or
                         "@NLIMIT_AMOUNT" or
                         "@CACTION" or

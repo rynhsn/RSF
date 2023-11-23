@@ -5,6 +5,7 @@ using Lookup_GSFRONT;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
+using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
@@ -30,9 +31,10 @@ namespace GSM05000Front
 
             try
             {
-                _GSM05000ApprovalUserViewModel.HeaderEntity = (GSM05000ApprovalHeaderDTO)poParameter;
+                // _GSM05000ApprovalUserViewModel.HeaderEntity = (GSM05000ApprovalHeaderDTO)poParameter;
                 _GSM05000ApprovalUserViewModel.TransactionCode =
                     ((GSM05000ApprovalHeaderDTO)poParameter).CTRANS_CODE;
+                await _GSM05000ApprovalUserViewModel.GetApprovalHeader();
 
                 await _gridRefDept.R_RefreshGrid(null);
                 await _gridRefApprover.R_RefreshGrid(null);
@@ -77,7 +79,6 @@ namespace GSM05000Front
                     var loParam = (GSM05000ApprovalDepartmentDTO)eventArgs.Data;
                     _GSM05000ApprovalUserViewModel.GetDepartmentEntity(loParam);
                     // await _gridRefReplacement.R_RefreshGrid(_GSM05000ApprovalUserViewModel.ApproverEntity.CUSER_ID);
-                    
                 }
             }
             catch (Exception ex)
@@ -146,6 +147,23 @@ namespace GSM05000Front
             try
             {
                 var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000ApprovalUserDTO>(eventArgs.Data);
+
+                // if (eventArgs.ConductorMode == R_eConductorMode.Edit)
+                // {
+                //     var loChoice = new R_eMessageBoxResult();
+                //     if(_GSM05000ApprovalUserViewModel.ReplacementFlagTemp == false && loParam.LREPLACEMENT)
+                //     {
+                //         loChoice = await R_MessageBox.Show("Confirmation", "Change Replacement flag to false will remove all replacement for this user, are you sure?", R_eMessageBoxButtonType.YesNo);
+                //     }
+                //
+                //     if (loChoice == R_eMessageBoxResult.No)
+                //         return;
+                // }
+
+
+                // ubah CSEQUENCE jadi integer dan assign ke loParam.ISEQUENCE
+                // loParam.ISEQUENCE = Convert.ToInt32(loParam.CSEQUENCE);
+                
                 await _GSM05000ApprovalUserViewModel.SaveEntity(loParam, (eCRUDMode)eventArgs.ConductorMode);
                 eventArgs.Result = _GSM05000ApprovalUserViewModel.ApproverEntity;
             }
@@ -166,10 +184,10 @@ namespace GSM05000Front
                 if (eventArgs.ConductorMode == R_eConductorMode.Normal)
                 {
                     var loParam = (GSM05000ApprovalUserDTO)eventArgs.Data;
+                    // loParam.CSEQUENCE = loParam.ISEQUENCE.ToString("D3");
                     var pcSelectedUserId = loParam.CUSER_ID;
                     _GSM05000ApprovalReplacementViewModel.SelectedUserId = pcSelectedUserId;
                     await _gridRefReplacement.R_RefreshGrid(pcSelectedUserId);
-
                 }
             }
             catch (Exception ex)
@@ -265,7 +283,9 @@ namespace GSM05000Front
 
             try
             {
-                var lcDeptCode = _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_CODE;
+                var lcDeptCode = _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_CODE == null
+                    ? ""
+                    : _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_CODE;
                 var lcTransactionCode = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANS_CODE;
                 var lcSelectedUserId = eventArgs.Parameter.ToString();
 
@@ -321,24 +341,6 @@ namespace GSM05000Front
                     await _GSM05000ApprovalReplacementViewModel.GetReplacementEntity(loParam, lcTransactionCode,
                         lcDeptCode, lcSelectedUserId);
                 }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        private async Task SaveReplacement(R_ServiceSaveEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-            try
-            {
-                var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000ApprovalReplacementDTO>(eventArgs.Data);
-                loParam.CUSER_ID = _GSM05000ApprovalReplacementViewModel.SelectedUserId;
-                await _GSM05000ApprovalReplacementViewModel.SaveEntity(loParam, (eCRUDMode)eventArgs.ConductorMode);
-                eventArgs.Result = _GSM05000ApprovalReplacementViewModel.ReplacementEntity;
             }
             catch (Exception ex)
             {
@@ -432,11 +434,32 @@ namespace GSM05000Front
             try
             {
                 var loParam = (GSM05000ApprovalReplacementDTO)eventArgs.Data;
-                loParam.CDEPT_CODE = _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_CODE;
+                loParam.CDEPT_CODE = _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_CODE == null
+                    ? ""
+                    : _GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_CODE;
                 loParam.CTRANSACTION_CODE = _GSM05000ApprovalUserViewModel.HeaderEntity.CTRANS_CODE;
                 loParam.CUSER_ID = _GSM05000ApprovalUserViewModel.ApproverEntity.CUSER_ID;
                 loParam.CVALID_TO = loParam.DVALID_TO.ToString("yyyyMMdd");
                 loParam.CVALID_FROM = loParam.DVALID_FROM.ToString("yyyyMMdd");
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+        
+        
+        private async Task SaveReplacement(R_ServiceSaveEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000ApprovalReplacementDTO>(eventArgs.Data);
+                loParam.CUSER_ID = _GSM05000ApprovalReplacementViewModel.SelectedUserId;
+                await _GSM05000ApprovalReplacementViewModel.SaveEntity(loParam, (eCRUDMode)eventArgs.ConductorMode);
+                eventArgs.Result = _GSM05000ApprovalReplacementViewModel.ReplacementEntity;
             }
             catch (Exception ex)
             {
@@ -476,7 +499,7 @@ namespace GSM05000Front
             eventArgs.TargetPageType = typeof(GSM05000ApprovalCopyFrom);
             return Task.CompletedTask;
         }
-        
+
         private async Task CopyFromAfterPopup(R_AfterOpenPopupEventArgs eventArgs)
         {
             await _gridRefApprover.R_RefreshGrid(null);
@@ -489,13 +512,59 @@ namespace GSM05000Front
             eventArgs.TargetPageType = typeof(GSM05000ApprovalChangeSequence);
             return Task.CompletedTask;
         }
-        
+
         private async Task ChangeSequenceAfterPopup(R_AfterOpenPopupEventArgs eventArgs)
         {
-            if ((bool)eventArgs.Result)
+            var loException = new R_Exception();
+            try
             {
-                await _gridRefApprover.R_RefreshGrid(null);
+                if (eventArgs.Success == false)
+                    return;
+
+                var result = (bool)eventArgs.Result;
+
+                if (result)
+                {
+                    await _gridRefApprover.R_RefreshGrid(null);
+                }
             }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+
+            loException.ThrowExceptionIfErrors();
+        }
+
+        private async Task Validation(R_ValidationEventArgs eventArgs)
+        {
+            var loException = new R_Exception();
+            var loChoice = new R_eMessageBoxResult();
+
+            try
+            {
+                if (eventArgs.ConductorMode == R_eConductorMode.Edit)
+                {
+                    var loParam = (GSM05000ApprovalUserDTO)eventArgs.Data;
+                    if (_GSM05000ApprovalUserViewModel.ReplacementFlagTemp == false && loParam.LREPLACEMENT)
+                    {
+                        loChoice = await R_MessageBox.Show("Confirmation",
+                            "Change Replacement flag to false will remove all replacement for this user, are you sure?",
+                            R_eMessageBoxButtonType.YesNo);
+                    }
+
+                    if (loChoice == R_eMessageBoxResult.No)
+                    {
+                        eventArgs.Cancel = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+
+            loException.ThrowExceptionIfErrors();
         }
     }
 }

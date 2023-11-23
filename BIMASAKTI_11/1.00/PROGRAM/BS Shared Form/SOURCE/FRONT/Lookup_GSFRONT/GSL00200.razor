@@ -7,9 +7,14 @@
                 DataSource="_viewModel.WithholdingTaxGrid"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
                 Pageable
-                PageSize="5">
+                PageSize="5" 
+                Height="300px">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="CTAX_TYPE_DESCR" HeaderText="Tax Type"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CTAX_TYPE_DESCR" HeaderText="Tax Type" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CTAX_ID" HeaderText="Tax Id" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CTAX_NAME" HeaderText="Tax Name" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CDESCRIPTION" HeaderText="Description" Width="300px"></R_GridTextColumn>
+                <R_GridNumericColumn FieldName="NTAX_PERCENTAGE" Arrows="false" HeaderText="Tax%" Width="100px"></R_GridNumericColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>

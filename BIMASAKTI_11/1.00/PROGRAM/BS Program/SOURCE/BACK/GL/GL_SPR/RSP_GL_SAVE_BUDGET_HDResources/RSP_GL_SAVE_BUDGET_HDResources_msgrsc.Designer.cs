@@ -39,7 +39,7 @@ namespace RSP_GL_SAVE_BUDGET_HDResources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RSP_GL_SAVE_BUDGET_HDResources.RSP_GL_SAVE_BUDGET_HDResources_msgrsc", typeof(RSP_GL_SAVE_BUDGET_HDResources_msgrsc).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RSP_AP_DELETE_TRANS_HDResources.RSP_GL_SAVE_BUDGET_HDResources_msgrsc", typeof(RSP_GL_SAVE_BUDGET_HDResources_msgrsc).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

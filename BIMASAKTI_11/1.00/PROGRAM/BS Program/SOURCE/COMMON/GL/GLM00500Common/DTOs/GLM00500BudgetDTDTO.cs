@@ -43,4 +43,14 @@ namespace GLM00500Common.DTOs
         public DateTime DUPDATE_DATE { get; set; }
 
     }
+
+    public class GLM00500CalculateParamDTO
+    {
+        public int INO_PERIOD { get; set; }
+        public string CCURRENCY_TYPE { get; set; }
+        public decimal NBUDGET { get; set; }
+        public string CROUNDING_METHOD { get; set; }
+        public string CDIST_METHOD { get; set; }
+        public string CBW_CODE { get; set; }
+    }
 }

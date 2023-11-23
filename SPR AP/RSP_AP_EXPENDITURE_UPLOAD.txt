@@ -1,0 +1,33 @@
+Error900=Failed to validate data {0}
+
+EXPENDITURE_ID_EMPTY=Expenditure ID is mandatory
+EXPENDITURE_ID_LENGTH_EXCEEDED=Expenditure ID is more than 20 characters
+EXPENDITURE_ID_ALREADY_EXIST=Expenditure ID already exists
+
+EXPENDITURE_NAME_EMPTY=Expenditure Name is mandatory
+EXPENDITURE_NAME_LENGTH_EXCEEDED=Expenditure Name is more than 50 characters
+
+CATEGORY_ID_EMPTY=Category ID is mandatory
+CATEGORY_ID_LENGTH_EXCEEDED=Categoroy ID is more than 20 characters
+CATEGORY_ID_NOT_EXIST=Category ID does not exist
+
+JOURNAL_GROUP_ID_EMPTY=Journal Group ID is mandatory
+JOURNAL_GROUP_ID_LENGTH_EXCEEDED=Journal Group ID is more than 8 characters
+JOURNAL_GROUP_ID_NOT_EXIST=Journal Group ID does not exist
+
+UNIT1_EMPTY=Unit 1 is mandatory
+UNIT1_LENGTH_EXCEEDED=Unit 1 is more than 10 characters
+
+PURCHASE_UNIT_EMPTY=Purchase Unit is mandatory
+PURCHASE_UNIT_LENGTH_EXCEEDED=Purchase Unit is more than 10 characters
+PURCHASE_UNIT_INVALID=Invalid Purchase Unit, Purchase Unit must be either Unit 1/Unit 2/Unit 3
+
+
+CONVERSION1_INVALID=Invalid Conversion 1, Conversion 1 value must be > 0
+CONVERSION2_INVALID=Invalid Conversion 2, Conversion 2 value must be > 0
+
+TAXABLE_EMPTY=Taxable is mandatory
+TAXABLE_INVALID=Invalid Taxable value, valid value is Yes/No
+
+TAX_ID_LENGTH_EXCEEDED=Tax ID is more than 20 characters
+TAX_ID_NOT_EXIST=Tax ID does not exist

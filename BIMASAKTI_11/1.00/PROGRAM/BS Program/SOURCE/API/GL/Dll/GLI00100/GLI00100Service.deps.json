@@ -10,6 +10,7 @@
         "dependencies": {
           "GLI00100Back": "1.0.0",
           "GLI00100Common": "1.0.0",
+          "BaseHeaderReportCOMMON": "1.0.0.0",
           "R_APIBackEnd": "1.0.0.0",
           "R_APICommon": "1.0.0.0",
           "R_APICommonDTO": "1.0.0.0",
@@ -21,11 +22,6 @@
           "GLI00100Service.dll": {}
         }
       },
-      "BaseHeaderReportCOMMON/1.0.0": {
-        "runtime": {
-          "BaseHeaderReportCOMMON.dll": {}
-        }
-      },
       "GLI00100Back/1.0.0": {
         "dependencies": {
           "GLI00100Common": "1.0.0"
@@ -35,11 +31,16 @@
         }
       },
       "GLI00100Common/1.0.0": {
-        "dependencies": {
-          "BaseHeaderReportCOMMON": "1.0.0"
-        },
         "runtime": {
           "GLI00100Common.dll": {}
+        }
+      },
+      "BaseHeaderReportCOMMON/1.0.0.0": {
+        "runtime": {
+          "BaseHeaderReportCOMMON.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "R_APIBackEnd/1.0.0.0": {
@@ -138,11 +139,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "BaseHeaderReportCOMMON/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "GLI00100Back/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -150,6 +146,11 @@
     },
     "GLI00100Common/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BaseHeaderReportCOMMON/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },

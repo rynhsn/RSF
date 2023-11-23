@@ -1,0 +1,2 @@
+Error100=Department{0} already used by transaction!
+Error900=Process failed! unable to delete Product Allocation Department {0}

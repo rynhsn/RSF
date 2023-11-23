@@ -6,6 +6,7 @@ namespace Lookup_GSCOMMON
     public interface IPublicLookup
     {
         IAsyncEnumerable<GSL00100DTO> GSL00100GetSalesTaxList();
+        IAsyncEnumerable<GSL00110DTO> GSL00110GetTaxByDateList();
         IAsyncEnumerable<GSL00200DTO> GSL00200GetWithholdingTaxList();
         IAsyncEnumerable<GSL00300DTO> GSL00300GetCurrencyList();
         IAsyncEnumerable<GSL00400DTO> GSL00400GetJournalGroupList();
@@ -15,6 +16,7 @@ namespace Lookup_GSCOMMON
         IAsyncEnumerable<GSL00550DTO> GSL00550GetGOAList();
         IAsyncEnumerable<GSL00600DTO> GSL00600GetUnitTypeCategoryList();
         IAsyncEnumerable<GSL00700DTO> GSL00700GetDepartmentList();
+        IAsyncEnumerable<GSL00710DTO> GSL00710GetDepartmentPropertyList();
         IAsyncEnumerable<GSL00800DTO> GSL00800GetCurrencyTypeList();
         IAsyncEnumerable<GSL00900DTO> GSL00900GetCenterList();
         IAsyncEnumerable<GSL01000DTO> GSL01000GetUserList();
@@ -30,5 +32,7 @@ namespace Lookup_GSCOMMON
         IAsyncEnumerable<GSL01702DTO> GSL01700GetLocalAndBaseCurrencyList();
         IAsyncEnumerable<GSL01800DTO> GSL01800GetCategoryList();
         IAsyncEnumerable<GSL01900DTO> GSL01900GetLOBList();
+        IAsyncEnumerable<GSL02000DTO> GSL02000GetGeographyList();
+        IAsyncEnumerable<GSL02100DTO> GSL02100GetPaymentTermList();
     }
 }

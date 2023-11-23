@@ -1,0 +1,2 @@
+Error100=Bank Account No. {0} already exists!
+Error900=Process failed! unable to save Supplier Bank {0}

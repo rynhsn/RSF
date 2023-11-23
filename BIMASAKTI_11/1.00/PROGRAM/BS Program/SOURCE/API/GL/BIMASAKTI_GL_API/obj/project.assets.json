@@ -3416,16 +3416,6 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
-      "BaseHeaderReportCOMMON/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
-        "compile": {
-          "bin/placeholder/BaseHeaderReportCOMMON.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BaseHeaderReportCOMMON.dll": {}
-        }
-      },
       "GLI00100Back/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -3442,9 +3432,6 @@
       "GLI00100Common/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
-        "dependencies": {
-          "BaseHeaderReportCOMMON": "1.0.0"
-        },
         "compile": {
           "bin/placeholder/GLI00100Common.dll": {}
         },
@@ -10290,11 +10277,6 @@
         "system.xml.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xmldocument.nuspec"
       ]
-    },
-    "BaseHeaderReportCOMMON/1.0.0": {
-      "type": "project",
-      "path": "../../../COMMON/BaseHeaderReportCOMMON/BaseHeaderReportCOMMON.csproj",
-      "msbuildProject": "../../../COMMON/BaseHeaderReportCOMMON/BaseHeaderReportCOMMON.csproj"
     },
     "GLI00100Back/1.0.0": {
       "type": "project",

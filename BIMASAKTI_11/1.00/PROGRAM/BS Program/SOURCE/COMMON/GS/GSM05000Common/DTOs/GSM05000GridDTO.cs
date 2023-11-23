@@ -9,5 +9,6 @@ namespace GSM05000Common.DTOs
         
         // private string _CTRANSACTION;
         public string CTRANSACTION { get => CTRANSACTION_NAME + " (" + CTRANS_CODE + ")"; }
+        public string MODULE { get => CMODULE_NAME; }
     }
 }

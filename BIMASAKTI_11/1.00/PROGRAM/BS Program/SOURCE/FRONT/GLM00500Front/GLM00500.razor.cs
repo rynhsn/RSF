@@ -23,7 +23,8 @@ public partial class GLM00500 : R_Page
     private R_Grid<GLM00500BudgetHDDTO> _gridRef = new();
     [Inject] private IClientHelper _clientHelper { get; set; }
     [Inject] private IJSRuntime JS { get; set; }
-    private R_TextBox FieldBudgetNo { get; set; }
+    private R_TextBox _fieldBudgetNo { get; set; }
+    private R_TextBox _fieldBudgetName { get; set; }
 
 
     protected override async Task R_Init_From_Master(object eventArgs)
@@ -222,9 +223,22 @@ public partial class GLM00500 : R_Page
 
     private async Task Display(R_DisplayEventArgs eventArgs)
     {
-        if (eventArgs.ConductorMode == R_eConductorMode.Add)
+        switch (eventArgs.ConductorMode)
         {
-            await FieldBudgetNo.FocusAsync();
+            case R_eConductorMode.Add:
+                await _fieldBudgetNo.FocusAsync();
+                break;
+            case R_eConductorMode.Edit:
+                await _fieldBudgetName.FocusAsync();
+                break;
         }
     }
+    
+    private void AfterAdd(R_AfterAddEventArgs eventArgs)
+    {
+        var loData = (GLM00500BudgetHDDTO)eventArgs.Data;
+        loData.DCREATE_DATE = DateTime.Now;
+        loData.DUPDATE_DATE = DateTime.Now;
+    }
+
 }

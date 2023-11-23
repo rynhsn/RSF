@@ -1,9 +1,11 @@
 ﻿using Lookup_GSCOMMON.DTOs;
+using Lookup_GSCOMMON.Loggers;
 using R_BackEnd;
 using R_Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,13 @@ namespace Lookup_GSLBACK
 {
     public class PublicLookupCls
     {
+        private LoggerPublicLookup _Logger;
+
+        public PublicLookupCls()
+        {
+            _Logger = LoggerPublicLookup.R_GetInstanceLogger();
+        }
+
         public List<GSL00100DTO> GetALLSalesTax(GSL00100ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -23,13 +32,18 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"EXEC RSP_GS_GET_SALES_TAX_LIST  " +
-                    $"@CCOMPANY_ID, " +
-                    $"@CUSER_ID";
+                var lcQuery = "EXEC RSP_GS_GET_TAX_LIST  " +
+                    "@CCOMPANY_ID, " +
+                    "@CUSER_ID";
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_TAX_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -38,6 +52,47 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+        public List<GSL00110DTO> GetALLTaxByDate(GSL00110ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            List<GSL00110DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = "EXEC RSP_GS_GET_TAX_BY_DATE_LIST  " +
+                    "@CCOMPANY_ID, " +
+                    "@CTAX_DATE, " +
+                    "@CUSER_ID";
+                loCmd.CommandText = lcQuery;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CTAX_DATE", DbType.String, 50, poEntity.CTAX_DATE);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_TAX_BY_DATE_LIST {@poParameter}", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSL00110DTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -56,12 +111,17 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"EXEC RSP_GS_GET_WITHHOLDING_LOOKUP_LIST @CCOMPANY_ID, @CPROPERTY_ID, @CTAX_TYPE_LIST";
+                var lcQuery = "EXEC RSP_GS_GET_WITHHOLDING_LOOKUP_LIST @CCOMPANY_ID, @CPROPERTY_ID, @CTAX_TYPE_LIST";
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CTAX_TYPE_LIST", DbType.String, 50, poEntity.CTAX_TYPE_LIST);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_WITHHOLDING_LOOKUP_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -71,6 +131,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -89,11 +150,17 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"SELECT CCURRENCY_CODE, CCURRENCY_NAME, CCURRENCY_SYMBOL FROM GSM_CURRENCY (NOLOCK) " +
-                    $"WHERE CCOMPANY_ID = @CCOMPANY_ID ";
+                var lcQuery = "RSP_GS_GET_CURRENCY_LIST";
                 loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_CURRENCY_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -102,6 +169,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -120,15 +188,19 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"SELECT CJRNGRP_CODE, CJRNGRP_NAME, CJRNGRP_TYPE, LACCRUAL FROM GSM_JRNGRP (NOLOCK) " +
-                    $"WHERE CCOMPANY_ID = @CCOMPANY_ID " +
-                    $"AND CPROPERTY_ID = @CPROPERTY_ID " +
-                    $"AND CJRNGRP_TYPE = @CJRNGRP_TYPE";
+                var lcQuery = "RSP_GS_GET_JOURNAL_GRP_LIST";
                 loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CJRNGRP_TYPE", DbType.String, 50, poEntity.CJRNGRP_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CJOURNAL_GROUP_TYPE", DbType.String, 50, poEntity.CJRNGRP_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 50, poEntity.CUSER_LOGIN_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_JOURNAL_GRP_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -137,6 +209,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -155,17 +228,17 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"EXEC RSP_GS_GET_GL_ACCOUNT_LIST  " +
-                    $"@CCOMPANY_ID, " +
-                    $"@CPROPERTY_ID, " +
-                    $"@CPROGRAM_CODE, " +
-                    $"@CBSIS, " +
-                    $"@CDBCR, " +
-                    $"@LCENTER_RESTR, " +
-                    $"@LUSER_RESTR, " +
-                    $"@CUSER_ID, " +
-                    $"@CCENTER_CODE, " +
-                    $"@CUSER_LANGUAGE ";
+                var lcQuery = "EXEC RSP_GS_GET_GL_ACCOUNT_LIST  " +
+                    "@CCOMPANY_ID, " +
+                    "@CPROPERTY_ID, " +
+                    "@CPROGRAM_CODE, " +
+                    "@CBSIS, " +
+                    "@CDBCR, " +
+                    "@LCENTER_RESTR, " +
+                    "@LUSER_RESTR, " +
+                    "@CUSER_ID, " +
+                    "@CCENTER_CODE, " +
+                    "@CUSER_LANGUAGE ";
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
@@ -179,6 +252,11 @@ namespace Lookup_GSLBACK
                 loDb.R_AddCommandParameter(loCmd, "@CCENTER_CODE", DbType.String, 50, poEntity.CCENTER_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_LANGUAGE", DbType.String, 50, poEntity.CUSER_LANGUAGE);
 
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_GL_ACCOUNT_LIST {@poParameter}", loDbParam);
+
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
                 loResult = R_Utility.R_ConvertTo<GSL00500DTO>(loDataTable).ToList();
@@ -186,6 +264,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -204,15 +283,20 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"EXEC RSP_GS_GET_COA_LOOKUP_LIST " +
-                    $"@CCOMPANY_ID, " +
-                    $"@CGL_ACCOUNT_TYPE, " +
-                    $"@CUSER_ID ";
+                var lcQuery = "EXEC RSP_GS_GET_COA_LOOKUP_LIST " +
+                    "@CCOMPANY_ID, " +
+                    "@CGL_ACCOUNT_TYPE, " +
+                    "@CUSER_ID ";
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CGL_ACCOUNT_TYPE", DbType.String, 50, poEntity.CGLACCOUNT_TYPE);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_COA_LOOKUP_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -221,6 +305,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -239,13 +324,18 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"EXEC RSP_GS_GET_GOA_COA_LIST " +
-                    $"@CCOMPANY_ID, " +
-                    $"@CGOA_CODE";
+                var lcQuery = "EXEC RSP_GS_GET_GOA_COA_LIST " +
+                    "@CCOMPANY_ID, " +
+                    "@CGOA_CODE";
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CGOA_CODE", DbType.String, 50, poEntity.CGOA_CODE);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_GOA_COA_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -254,6 +344,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -272,11 +363,17 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"EXEC RSP_GS_GET_GOA_LIST  " +
-                    $"@CCOMPANY_ID ";
+                var lcQuery = "EXEC RSP_GS_GET_GOA_LIST  " +
+                    "@CCOMPANY_ID ";
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_GOA_LIST {@poParameter}", loDbParam);
+
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
                 loResult = R_Utility.R_ConvertTo<GSL00550DTO>(loDataTable).ToList();
@@ -284,6 +381,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -302,15 +400,20 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"EXEC RSP_GS_GET_UNIT_TYPE_CTG_LIST  " +
-                    $"@CCOMPANY_ID, " +
-                    $"@CPROPERTY_ID, " +
-                    $"@CUSER_ID ";
+                var lcQuery = "EXEC RSP_GS_GET_UNIT_TYPE_CTG_LIST  " +
+                    "@CCOMPANY_ID, " +
+                    "@CPROPERTY_ID, " +
+                    "@CUSER_ID ";
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_UNIT_TYPE_CTG_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -319,6 +422,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -337,13 +441,18 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"EXEC RSP_GS_GET_DEPT_LOOKUP_LIST  " +
-                    $"@CCOMPANY_ID, " +
-                    $"@CUSER_ID  ";
+                var lcQuery = "EXEC RSP_GS_GET_DEPT_LOOKUP_LIST  " +
+                    "@CCOMPANY_ID, " +
+                    "@CUSER_ID  ";
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_DEPT_LOOKUP_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -352,6 +461,46 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        public List<GSL00710DTO> GetALLDepartmentProperty(GSL00710ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            List<GSL00710DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_GET_PROPERTY_DEPT_LIST";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 50, poEntity.CUSER_LOGIN_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_PROPERTY_DEPT_LIST {@poParameter}", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSL00710DTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -370,13 +519,18 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"EXEC RSP_GS_GET_CURRENCY_TYPE_LIST " +
-                    $"@CCOMPANY_ID, " +
-                    $"@CUSER_ID ";
+                var lcQuery = "EXEC RSP_GS_GET_CURRENCY_TYPE_LIST " +
+                    "@CCOMPANY_ID, " +
+                    "@CUSER_ID ";
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_CURRENCY_TYPE_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -385,6 +539,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -403,13 +558,18 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"EXEC RSP_GS_GET_CENTER_LIST " +
-                    $"@CCOMPANY_ID, " +
-                    $"@CUSER_ID ";
+                var lcQuery = "EXEC RSP_GS_GET_CENTER_LIST " +
+                    "@CCOMPANY_ID, " +
+                    "@CUSER_ID ";
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_CENTER_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -418,6 +578,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -425,7 +586,7 @@ namespace Lookup_GSLBACK
             return loResult;
         }
 
-        public List<GSL01000DTO> GetALLUser()
+        public List<GSL01000DTO> GetALLUser(GSL01000DTO poEntity)
         {
             var loEx = new R_Exception();
             List<GSL01000DTO> loResult = null;
@@ -434,14 +595,27 @@ namespace Lookup_GSLBACK
             {
                 var loDb = new R_Db();
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"SELECT CUSER_ID, CUSER_NAME FROM SAM_USER (NOLOCK) ";
+                var lcQuery = "RSP_GS_GET_USER_LIST";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
 
-                loResult = loDb.SqlExecObjectQuery<GSL01000DTO>(lcQuery, loConn, true);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_USER_LIST {@poParameter}", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSL01000DTO>(loDataTable).ToList();
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -460,15 +634,36 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"SELECT A.CUSER_ID, A.CUSER_NAME FROM SAM_USER A (NOLOCK) " +
-                    $"WHERE NOT EXISTS (SELECT TOP 1 1 FROM GSM_TRANSACTION_APPROVAL C (NOLOCK) " +
-                    $"WHERE C.CCOMPANY_ID = @CCOMPANY_ID " +
-                    $"AND A.CUSER_ID = C.CUSER_ID " +
-                    $"AND C.CTRANSACTION_CODE = @CTRANSACTION_CODE) ";
+                var lcQuery = "RSP_GS_GET_LOOKUP_USER_LIST";
                 loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 50, poEntity.CTRANSACTION_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CPROGRAM_ID", DbType.String, 50, "GST00500");
+                loDb.R_AddCommandParameter(loCmd, "@CPARAMETER_ID", DbType.String, 50, poEntity.CTRANSACTION_CODE);
+
+                //Debug Logs
+                string loCompanyIdLog = null;
+                string loProgramIdLog = null;
+                string loParameterIdLog = null;
+                List<DbParameter> loDbParam = loCmd.Parameters.Cast<DbParameter>().ToList();
+                loDbParam.ForEach(x =>
+                {
+                    switch (x.ParameterName)
+                    {
+                        case "@CCOMPANY_ID":
+                            loCompanyIdLog = (string)x.Value;
+                            break;
+                        case "@CPROGRAM_ID":
+                            loProgramIdLog = (string)x.Value;
+                            break;
+                        case "@CPARAMETER_ID":
+                            loParameterIdLog = (string)x.Value;
+                            break;
+                    }
+                });
+                var loDebugLogResult = string.Format("EXEC RSP_GS_GET_LOOKUP_USER_LIST {0} {1} {2}", loCompanyIdLog, loProgramIdLog, loParameterIdLog);
+                _Logger.LogDebug(loDebugLogResult);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -477,6 +672,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -495,13 +691,19 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"SELECT CCB_CODE, CCB_NAME FROM GSM_CB (NOLOCK) " +
-                    $"WHERE CCOMPANY_ID = @CCOMPANY_ID " +
-                    $"AND CCB_TYPE = @CCB_TYPE ";
+                var lcQuery = "RSP_GS_GET_CASH_BANK_LIST";
                 loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CCB_TYPE", DbType.String, 50, poEntity.CCB_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CBANK_TYPE", DbType.String, 50, poEntity.CBANK_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_CASH_BANK_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -510,6 +712,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -528,17 +731,20 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"SELECT CCB_ACCOUNT_NO, CCB_ACCOUNT_NAME FROM GSM_CB_ACCOUNT (NOLOCK) " +
-                    $"WHERE CCOMPANY_ID = @CCOMPANY_ID " +
-                    $"AND CBANK_TYPE = @CBANK_TYPE " +
-                    $"AND CCB_CODE   = @CCB_CODE " +
-                    $"AND CDEPT_CODE = @CDEPT_CODE  ";
+                var lcQuery = "RSP_GS_GET_CASH_BANK_NUMBER_LIST";
                 loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CBANK_TYPE", DbType.String, 50, poEntity.CBANK_TYPE);
                 loDb.R_AddCommandParameter(loCmd, "@CCB_CODE", DbType.String, 50, poEntity.CCB_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, poEntity.CDEPT_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_CASH_BANK_NUMBER_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -547,6 +753,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -565,17 +772,22 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"EXEC RSP_GS_GET_OTHER_CHARGES_LIST " +
-                    $"@CCOMPANY_ID = @CCOMPANY_ID, " +
-                    $"@CPROPERTY_ID = @CPROPERTY_ID, " +
-                    $"@CCHARGES_TYPE  = @CCHARGES_TYPE, " +
-                    $"@CUSER_ID = @CUSER_ID  ";
+                var lcQuery = "EXEC RSP_GS_GET_OTHER_CHARGES_LIST " +
+                    "@CCOMPANY_ID = @CCOMPANY_ID, " +
+                    "@CPROPERTY_ID = @CPROPERTY_ID, " +
+                    "@CCHARGES_TYPE  = @CCHARGES_TYPE, " +
+                    "@CUSER_ID = @CUSER_ID  ";
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CCHARGES_TYPE", DbType.String, 50, poEntity.CCHARGES_TYPE_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_LOGIN_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_OTHER_CHARGES_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -584,6 +796,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -602,13 +815,18 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"EXEC RSP_GS_GET_CASHFLOW_GRP_LIST  " +
-                    $"@CCOMPANY_ID = @CCOMPANY_ID, " +
-                    $"@CUSER_ID = @CUSER_ID ";
+                var lcQuery = "EXEC RSP_GS_GET_CASHFLOW_GRP_LIST  " +
+                    "@CCOMPANY_ID = @CCOMPANY_ID, " +
+                    "@CUSER_ID = @CUSER_ID ";
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_CASHFLOW_GRP_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -617,6 +835,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -635,15 +854,20 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"EXEC RSP_GS_GET_CASHFLOW_LIST  " +
-                    $"@CCOMPANY_ID = @CCOMPANY_ID, " +
-                    $"@CCASH_FLOW_GROUP_CODE = @CCASH_FLOW_GROUP_CODE, " +
-                    $"@CUSER_ID = @CUSER_ID ";
+                var lcQuery = "EXEC RSP_GS_GET_CASHFLOW_LIST  " +
+                    "@CCOMPANY_ID = @CCOMPANY_ID, " +
+                    "@CCASH_FLOW_GROUP_CODE = @CCASH_FLOW_GROUP_CODE, " +
+                    "@CUSER_ID = @CUSER_ID ";
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CCASH_FLOW_GROUP_CODE", DbType.String, 50, poEntity.CCASH_FLOW_GROUP_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_CASHFLOW_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -652,6 +876,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -670,13 +895,18 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"EXEC RSP_GS_GET_CASHFLOW_GRP_LIST  " +
-                    $"@CCOMPANY_ID = @CCOMPANY_ID, " +
-                    $"@CUSER_ID = @CUSER_ID ";
+                var lcQuery = "EXEC RSP_GS_GET_CASHFLOW_GRP_LIST  " +
+                    "@CCOMPANY_ID = @CCOMPANY_ID, " +
+                    "@CUSER_ID = @CUSER_ID ";
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_CASHFLOW_GRP_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -685,6 +915,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -703,15 +934,22 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"EXEC RSP_GS_GET_CURRENCY_RATE_LIST " +
-                    $"@CCOMPANY_ID = '{poEntity.CCOMPANY_ID}', " +
-                    $"@CUSER_ID = '{poEntity.CUSER_ID}', " +
-                    $"@CRATETYPE_CODE = '{poEntity.CRATETYPE_CODE}', " +
-                    $"@CRATE_DATE = '{poEntity.CRATE_DATE}'";
+                var lcQuery = "EXEC RSP_GS_GET_CURRENCY_RATE_LIST " +
+                    "@CCOMPANY_ID = @CCOMPANY_ID, " +
+                    "@CUSER_ID = @CUSER_ID, " +
+                    "@CRATETYPE_CODE = @CRATETYPE_CODE, " +
+                    "@CRATE_DATE = @CRATE_DATE";
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CRATETYPE_CODE", DbType.String, 50, poEntity.CRATETYPE_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CRATE_DATE", DbType.String, 50, poEntity.CRATE_DATE);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_CURRENCY_RATE_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -720,6 +958,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -738,11 +977,16 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"SELECT CRATETYPE_CODE, CRATETYPE_DESCRIPTION FROM GSM_RATETYPE (NOLOCK) WHERE CCOMPANY_ID = @CCOMPANY_ID";
+                var lcQuery = "RSP_GS_GET_RATETYPE_LIST";
                 loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_RATETYPE_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -751,6 +995,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -769,14 +1014,16 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"SELECT A.CLOCAL_CURRENCY, B.CCURRENCY_NAME AS CLOCAL_CURRENCY_NAME,  A.CBASE_CURRENCY, C.CCURRENCY_NAME AS CBASE_CURRENCY_NAME " +
-                    $"FROM SAM_COMPANIES A (NOLOCK) LEFT JOIN GSM_CURRENCY B (NOLOCK) " +
-                    $"ON A.CLOCAL_CURRENCY = B.CCURRENCY_CODE LEFT JOIN GSM_CURRENCY C (NOLOCK) " +
-                    $"ON A.CBASE_CURRENCY = C.CCURRENCY_CODE " +
-                    $"WHERE A.CCOMPANY_ID = @CCOMPANY_ID";
+                var lcQuery = "RSP_GS_GET_COMPANY_INFO";
                 loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_COMPANY_INFO {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -785,6 +1032,7 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -803,7 +1051,7 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"RSP_GS_GET_CATEGORY_LIST";
+                var lcQuery = "RSP_GS_GET_CATEGORY_LIST";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -812,20 +1060,32 @@ namespace Lookup_GSLBACK
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CCATEGORY_TYPE", DbType.String, 50, poEntity.CCATEGORY_TYPE);
 
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_CATEGORY_LIST {@poParameter}", loDbParam);
+
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
                 loResult = R_Utility.R_ConvertTo<GSL01800DTO>(loDataTable).ToList();
+
+                foreach (var x in loResult)
+                {
+                    x.ILEVEL_CCATEGORY_ID_CCATEGORY_NAME_DISPLAY = string.Format("[{0}] {1} - {2}", x.ILEVEL, x.CCATEGORY_ID, x.CCATEGORY_NAME);
+                    x.CPARENT = string.IsNullOrWhiteSpace(x.CPARENT) ? null : x.CPARENT;
+                }
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();
 
             return loResult;
         }
-        public List<GSL01900DTO> GetALLLOB(GSL01900DTOParameter poEntity)
+        public List<GSL01900DTO> GetALLLOB()
         {
             var loEx = new R_Exception();
             List<GSL01900DTO> loResult = null;
@@ -836,10 +1096,10 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = $"SELECT CLOB_CODE, CLOB_NAME FROM SAM_LOB (NOLOCK) WHERE LACTIVE_FLAG = 1 OR CLOB_CODE = @CLOB_CODE";
+                var lcQuery = "EXEC RSP_GS_GET_LOB_LIST 1, 0, 'CODE'";
                 loCmd.CommandText = lcQuery;
 
-                loDb.R_AddCommandParameter(loCmd, "@CLOB_CODE", DbType.String, 50, poEntity.CLOB_CODE);
+                _Logger.LogDebug("EXEC RSP_GS_GET_LOB_LIST 1, 0, 'CODE'");
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -848,6 +1108,89 @@ namespace Lookup_GSLBACK
             catch (Exception ex)
             {
                 loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        public List<GSL02000DTO> GetALLGeography(GSL02000DTO poEntity)
+        {
+            var loEx = new R_Exception();
+            List<GSL02000DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_GET_GEOGRAPHY_LIST";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+               .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_GEOGRAPHY_LIST {@poParameter}", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSL02000DTO>(loDataTable).ToList();
+
+                foreach (var x in loResult)
+                {
+                    x.CCODE_CNAME_DISPLAY = string.Format("{0} - {1}", x.CCODE, x.CNAME);
+                    x.CPARENT_CODE = string.IsNullOrWhiteSpace(x.CPARENT_CODE) ? null : x.CPARENT_CODE;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        public List<GSL02100DTO> GetALLPaymentTerm(GSL02100ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            List<GSL02100DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_GET_PAYMENT_TERM_LIST";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_PAYMENT_TERM_LIST {@poParameter}", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSL02100DTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();

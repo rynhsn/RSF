@@ -1,0 +1,2 @@
+Error100=Bank Account No. {0} already used by transaction!
+Error900=Process failed! unable to delete Bank Account No. {0}

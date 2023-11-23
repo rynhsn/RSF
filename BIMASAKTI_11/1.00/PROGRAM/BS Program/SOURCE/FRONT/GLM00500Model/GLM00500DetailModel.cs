@@ -52,7 +52,7 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         throw new NotImplementedException();
     }
 
-    public GLM00500BudgetCalculateDTO GLM00500BudgetCalculate()
+    public GLM00500BudgetCalculateDTO GLM00500BudgetCalculate(GLM00500CalculateParamDTO poParams)
     {
         throw new NotImplementedException();
     }
@@ -185,7 +185,7 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         return loResult;
     }
 
-    public async Task<GLM00500BudgetCalculateDTO> GLM00500BudgetCalculateModel()
+    public async Task<GLM00500BudgetCalculateDTO> GLM00500BudgetCalculateModel(GLM00500CalculateParamDTO poParams)
     {
         var loEx = new R_Exception();
         GLM00500BudgetCalculateDTO loResult = null;
@@ -193,9 +193,10 @@ public class GLM00500DetailModel : R_BusinessObjectServiceClientBase<GLM00500Bud
         try
         {
             R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500BudgetCalculateDTO>(
+            loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500BudgetCalculateDTO, GLM00500CalculateParamDTO>(
                 _RequestServiceEndPoint,
                 nameof(IGLM00500Detail.GLM00500BudgetCalculate),
+                poParams,
                 DEFAULT_MODULE,
                 _SendWithContext,
                 _SendWithToken);

@@ -1,40 +1,42 @@
 ﻿@page "/GSM02000"
 @using GSM02000Common.DTOs
+@using GSM02000FrontResources
 @using R_BlazorFrontEnd.Enums
+@using R_BlazorFrontEnd.Interfaces
 @inherits R_Page
 @attribute [R_Page(Title = "Tax")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
-<R_StackLayout Spacing="3" Class="mb-4">
+<R_StackLayout Spacing="3" Class="mb-2">
     <R_StackLayout>
         <R_Grid @ref="@_gridRef"
                 DataSource="@_GSM02000ViewModel.GridList"
                 Pageable="true"
                 R_ConductorSource="@_conductorRef"
                 R_GridType="@R_eGridType.Navigator"
-                R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord"
-                Height="215px">
+                R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
             <R_GridColumns>
-                <R_GridCheckBoxColumn FieldName="@nameof(GSM02000GridDTO.LACTIVE)" HeaderText="Active" Width="100px" Filterable="false" TextAlignment="R_eTextAlignment.Center"/>
-                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CTAX_ID)" HeaderText="Tax Id" Width="100px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CTAX_NAME)" HeaderText="Tax Name" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CROUNDING_MODE_DESCR)" HeaderText="Rounding Mode" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridNumericColumn FieldName="@nameof(GSM02000GridDTO.IROUNDING)" HeaderText="Rounding Unit" Width="150px" TextAlignment="R_eTextAlignment.Right"/>
-                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CTAXIN_GLACCOUNT_NO)" HeaderText="Tax In GL Account" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CTAXOUT_GLACCOUNT_NO)" HeaderText="Tax Out GL Account" Width="250px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CUPDATE_BY)" HeaderText="Updated By" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridDateTimePickerColumn FieldName="@nameof(GSM02000GridDTO.DUPDATE_DATE)" HeaderText="Updated Date" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CCREATE_BY)" HeaderText="Created By" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridDateTimePickerColumn FieldName="@nameof(GSM02000GridDTO.DCREATE_DATE)" HeaderText="Created Date" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridCheckBoxColumn FieldName="@nameof(GSM02000GridDTO.LACTIVE)" HeaderText="@_localizer["LABEL_ACTIVE"]" Width="100px" Filterable="false" TextAlignment="R_eTextAlignment.Center"/>
+                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CTAX_ID)" HeaderText="@_localizer["LABEL_TAXID"]" Width="100px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CTAX_NAME)" HeaderText="@_localizer["LABEL_TAXNAME"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CROUNDING_MODE_DESCR)" HeaderText="@_localizer["LABEL_ROUNDINGMODE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridNumericColumn FieldName="@nameof(GSM02000GridDTO.IROUNDING)" HeaderText="@_localizer["LABEL_ROUNDINGUNIT"]" Width="150px" TextAlignment="R_eTextAlignment.Right"/>
+                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CTAXIN_GLACCOUNT_NO)" HeaderText="@_localizer["LABEL_TAXIN"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CTAXOUT_GLACCOUNT_NO)" HeaderText="@_localizer["LABEL_TAXOUT"]" Width="170px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CUPDATE_BY)" HeaderText="@_localizer["LABEL_UPDATEDBY"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GSM02000GridDTO.DUPDATE_DATE)" HeaderText="@_localizer["LABEL_UPDATEDDATE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CCREATE_BY)" HeaderText="@_localizer["LABEL_CREATEDBY"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GSM02000GridDTO.DCREATE_DATE)" HeaderText="@_localizer["LABEL_CREATEDDATE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
 
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>
 </R_StackLayout>
 
-<R_StackLayout>
+<R_StackLayout Class="mb-2">
     <R_StackLayout Row="true">
         <R_ItemLayout col="2">
-            <R_Label>Tax Id*</R_Label>
+            <R_Label>@_localizer["LABEL_TAXID"]*</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAX_ID"
@@ -52,14 +54,13 @@
             <R_CheckBox @bind-Value="@_GSM02000ViewModel.Data.LACTIVE"
                         R_ConductorSource="@_conductorRef"
                         Enabled="false"/>
-            <R_Label>Active</R_Label>
+            <R_Label>@_localizer["LABEL_ACTIVE"]</R_Label>
         </R_ItemLayout>
-
     </R_StackLayout>
 
     <R_StackLayout Row="true">
         <R_ItemLayout col="2">
-            <R_Label>Description</R_Label>
+            <R_Label>@_localizer["LABEL_DESCRIPTION"]</R_Label>
         </R_ItemLayout>
 
         <R_ItemLayout col="6">
@@ -72,7 +73,7 @@
 
     <R_StackLayout Row="true">
         <R_ItemLayout col="2">
-            <R_Label>Rounding Mode*</R_Label>
+            <R_Label>@_localizer["LABEL_ROUNDINGMODE"]*</R_Label>
         </R_ItemLayout>
 
         <R_ItemLayout col="2" Class="me-5">
@@ -87,7 +88,7 @@
         </R_ItemLayout>
 
         <R_ItemLayout>
-            <R_Label>Rounding Unit*</R_Label>
+            <R_Label>@_localizer["LABEL_ROUNDINGUNIT"]*</R_Label>
         </R_ItemLayout>
 
         <R_ItemLayout col="1">
@@ -102,12 +103,11 @@
         <R_ItemLayout>
             <R_Label FontStyle="R_eFontStyle.Italic">(-2, -1, 0, 1, 2)</R_Label>
         </R_ItemLayout>
-
     </R_StackLayout>
 
     <R_StackLayout Row="true">
         <R_ItemLayout col="2">
-            <R_Label>Tax In GL Account No</R_Label>
+            <R_Label>@_localizer["LABEL_TAXIN"]</R_Label>
         </R_ItemLayout>
 
         <R_ItemLayout col="2">
@@ -117,7 +117,9 @@
                        R_EnableEdit="true"/>
         </R_ItemLayout>
         
-        <R_Lookup @ref="@R_LookupBtnIn" R_Before_Open_Lookup="@BeforeOpenLookupIn" R_After_Open_Lookup="@AfterOpenLookupIn"></R_Lookup>
+        <R_Lookup @ref="@R_LookupBtnIn" 
+                  R_Before_Open_Lookup="@BeforeOpenLookupIn"
+                  R_After_Open_Lookup="@AfterOpenLookupIn"/>
 
         <R_ItemLayout col="4">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAXIN_GLACCOUNT_NAME"
@@ -125,9 +127,10 @@
                        Enabled="false"/>
         </R_ItemLayout>
     </R_StackLayout>
+    
     <R_StackLayout Row="true">
         <R_ItemLayout col="2">
-            <R_Label>Tax Out GL Account No</R_Label>
+            <R_Label>@_localizer["LABEL_TAXOUT"]</R_Label>
         </R_ItemLayout>
 
         <R_ItemLayout col="2">
@@ -137,7 +140,8 @@
                        R_EnableEdit="true"/>
         </R_ItemLayout>
         
-        <R_Lookup @ref="@R_LookupBtnOut" R_Before_Open_Lookup="@BeforeOpenLookupOut" R_After_Open_Lookup="@AfterOpenLookupOut"></R_Lookup>
+        <R_Lookup @ref="@R_LookupBtnOut" 
+                  R_Before_Open_Lookup="@BeforeOpenLookupOut" R_After_Open_Lookup="@AfterOpenLookupOut"/>
 
         <R_ItemLayout col="4">
             <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAXOUT_GLACCOUNT_NAME"
@@ -147,13 +151,13 @@
     </R_StackLayout>
 </R_StackLayout>
 
-<R_StackLayout Row="true" Spacing="5" Class="mt-3 d-flex justify-content-between">
+<R_StackLayout Row="true" Spacing="5" Class="justify-content-between">
     <R_StackLayout Row>
         <R_ItemLayout>
             <R_AddButton R_Conductor="@_conductorRef"/>
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_EditButton R_Conductor="@_conductorRef" R_SetOther/>
+            <R_EditButton R_Conductor="@_conductorRef"/>
         </R_ItemLayout>
         <R_ItemLayout>
             <R_DeleteButton R_Conductor="@_conductorRef"/>
@@ -162,7 +166,10 @@
 
     <R_StackLayout Row>
         <R_ItemLayout>
-            <R_Popup R_ConductorSource="_conductorRef" R_EnableOther="true" R_After_Open_Popup="@AfterOpenActiveInactive" R_Before_Open_Popup="@BeforeOpenActiveInactive">@loLabel</R_Popup>
+            <R_Popup R_ConductorSource="_conductorRef" 
+                     R_EnableOther="true" 
+                     R_After_Open_Popup="@AfterOpenActiveInactive" 
+                     R_Before_Open_Popup="@BeforeOpenActiveInactive">@loLabel</R_Popup>
         </R_ItemLayout>
     </R_StackLayout>
 

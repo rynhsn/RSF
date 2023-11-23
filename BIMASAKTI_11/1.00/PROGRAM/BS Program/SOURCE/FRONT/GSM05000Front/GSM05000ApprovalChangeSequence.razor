@@ -1,10 +1,14 @@
 ﻿@page "/GSM05000ApprovalChangeSequence"
+@using GSM05000FrontResources
+@using R_BlazorFrontEnd.Interfaces
 @inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
 @attribute [R_Page(Title = "Change User Sequence")];
+
 
 <R_StackLayout Row Spacing="3" Class="d-flex justify-content-between mb-2">
     <R_ItemLayout>
-        <R_Label>Department</R_Label>
+        <R_Label>@_localizer["LABEL_DEPARTMENT"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout xs="10" Class="d-flex align-items-end">
         <R_ComboBox Data="@_viewModel.DeptSeqList"
@@ -30,16 +34,16 @@
            R_GridRowAfterDrop="BeforeDrop" R_GridRowBeforeDrop="AfterDrop">
         <R_GridColumns>
             <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CDEPT_CODE)"
-                              HeaderText="Department"
+                              HeaderText="@_localizer["LABEL_DEPARTMENT"]"
                               Width="150px"/>
             <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CUSER_ID)"
-                              HeaderText="User Id"
+                              HeaderText="@_localizer["LABEL_USERID"]"
                               Width="150px"/>
             <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CUSER_NAME)"
-                              HeaderText="User Name"
+                              HeaderText="@_localizer["LABEL_USERNAME"]"
                               Width="150px"/>
             <R_GridNumericColumn FieldName="@nameof(GSM05000ApprovalUserDTO.NLIMIT_AMOUNT)"
-                              HeaderText="Limit Amount"
+                              HeaderText="@_localizer["LABEL_LIMITAMOUNT"]"
                               Width="175px"/>
         </R_GridColumns>
     </R_Grid>
@@ -48,16 +52,16 @@
 <R_StackLayout Row Class="d-flex justify-content-between mb-5">
     
     <R_ItemLayout>
-        <R_Label>Change User Sequence</R_Label>
+        <R_Label>@_localizer["LABEL_CHANGESEQ"]</R_Label>
     </R_ItemLayout>
     
     <R_ItemLayout Class="d-flex align-items-end">
         <R_StackLayout Row>
             <R_ItemLayout>
-                <R_Button R_ConductorGridSource="_conductor" OnClick="OnClickNext">Move Next</R_Button>
+                <R_Button R_ConductorGridSource="_conductor" OnClick="OnClickNext">@_localizer["BTN_MOVENEXT"]</R_Button>
             </R_ItemLayout>
             <R_ItemLayout>
-                <R_Button R_ConductorGridSource="_conductor" OnClick="OnClickPrevious">Move Previous</R_Button>
+                <R_Button R_ConductorGridSource="_conductor" OnClick="OnClickPrevious">@_localizer["BTN_MOVEPREVIOUS"]</R_Button>
             </R_ItemLayout>
         </R_StackLayout>
     </R_ItemLayout>
@@ -65,10 +69,10 @@
 
 <R_StackLayout Row Class="d-flex justify-content-end">
     <R_ItemLayout>
-        <R_Button R_ConductorGridSource="_conductor" OnClick="OnClickSave">Save</R_Button>
+        <R_Button R_ConductorGridSource="_conductor" OnClick="OnClickSave">@_localizer["BTN_SAVE"]</R_Button>
     </R_ItemLayout>
     <R_ItemLayout>
-        <R_Button OnClick="OnClickCancel">Cancel</R_Button>
+        <R_Button OnClick="OnClickCancel">@_localizer["BTN_CANCEL"]</R_Button>
     </R_ItemLayout>
 </R_StackLayout>
 

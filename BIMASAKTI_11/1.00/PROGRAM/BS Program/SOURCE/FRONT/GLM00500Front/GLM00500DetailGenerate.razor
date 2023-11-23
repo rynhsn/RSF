@@ -6,16 +6,16 @@
     <R_ItemLayout>
         <R_Label>Year</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_TextBox Value="@_viewModel.BudgetHDEntity.CYEAR" Enabled="false"/>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_Label>Budget</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_TextBox Value="@_viewModel.BudgetHDEntity.CBUDGET_NO" Enabled="false"/>
     </R_ItemLayout>
-    <R_ItemLayout xs="5">
+    <R_ItemLayout col="5">
         <R_TextBox Value="@_viewModel.BudgetHDEntity.CBUDGET_NAME" Enabled="false"/>
     </R_ItemLayout>
 </R_StackLayout>
@@ -35,63 +35,63 @@
 
 @* <R_GroupBox ShowBorder Class="p-2 mb-3"> *@
 <R_StackLayout Row Spacing="1" Class="mb-1">
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_Label>From Account</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NO"/>
     </R_ItemLayout>
     <R_Lookup
         R_Before_Open_Lookup="BeforeOpenLookupFromAccount"
         R_After_Open_Lookup="AfterOpenLookupFromAccount"/>
-    <R_ItemLayout xs="5">
+    <R_ItemLayout col="5">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NAME" Enabled="false" CharacterCasing="R_eCharacterCasing.Upper"/>
     </R_ItemLayout>
 </R_StackLayout>
 <R_StackLayout Row Spacing="1" Class="mb-1">
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_Label>To Account</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NO"/>
     </R_ItemLayout>
     <R_Lookup
         R_Before_Open_Lookup="BeforeOpenLookupToAccount"
         R_After_Open_Lookup="AfterOpenLookupToAccount"/>
-    <R_ItemLayout xs="5">
+    <R_ItemLayout col="5">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NAME" Enabled="false" CharacterCasing="R_eCharacterCasing.Upper"/>
     </R_ItemLayout>
 </R_StackLayout>
 <R_StackLayout Row Spacing="1" Class="mb-1">
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_Label>From Center</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CFROM_CENTER_CODE" CharacterCasing="R_eCharacterCasing.Upper"/>
     </R_ItemLayout>
     <R_Lookup
         R_Before_Open_Lookup="BeforeOpenLookupFromCenter"
         R_After_Open_Lookup="AfterOpenLookupFromCenter"/>
-    <R_ItemLayout xs="5">
+    <R_ItemLayout col="5">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CFROM_CENTER_NAME" Enabled="false" CharacterCasing="R_eCharacterCasing.Upper"/>
     </R_ItemLayout>
 </R_StackLayout>
 <R_StackLayout Row Spacing="1" Class="mb-1">
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_Label>To Center</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CTO_CENTER_CODE" CharacterCasing="R_eCharacterCasing.Upper"/>
     </R_ItemLayout>
     <R_Lookup
         R_Before_Open_Lookup="BeforeOpenLookupToCenter"
         R_After_Open_Lookup="AfterOpenLookupToCenter"/>
-    <R_ItemLayout xs="5">
+    <R_ItemLayout col="5">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CTO_CENTER_NAME" Enabled="false" CharacterCasing="R_eCharacterCasing.Upper"/>
     </R_ItemLayout>
 </R_StackLayout>
 <R_StackLayout Row Spacing="1" Class="mb-1">
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_Label>Based On</R_Label>
     </R_ItemLayout>
     <R_ItemLayout>
@@ -102,10 +102,10 @@
     </R_ItemLayout>
 </R_StackLayout>
 <R_StackLayout Row Spacing="1" Class="mb-1">
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_Label>Budget Year</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_NumericTextBox @bind-Value="_viewModel.SelectedYear"
                           Max="_viewModel.Periods.IMAX_YEAR"
                           Min="_viewModel.Periods.IMIN_YEAR"
@@ -113,10 +113,10 @@
                           ThousandSeparator="false"
                           Enabled="@(_viewModel.GenerateAccountBudget.CBASED_ON == "EB")"/>
     </R_ItemLayout>
-    <R_ItemLayout xs="2" Class="ms-5">
+    <R_ItemLayout col="2" Class="ms-5">
         <R_Label>Budget No.</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="4">
+    <R_ItemLayout col="4">
         <R_ComboBox Data="_viewModel.BudgetHDList"
                     @bind-Value="_viewModel.GenerateAccountBudget.CSOURCE_BUDGET_NO"
                     ValueField="@nameof(GLM00500BudgetHDDTO.CBUDGET_NO)"
@@ -125,20 +125,20 @@
     </R_ItemLayout>
 </R_StackLayout>
 <R_StackLayout Row Spacing="1" Class="mb-1">
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_Label>From Period</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_ComboBox Data="_viewModel.CPERIOD"
                     @bind-Value="_viewModel.GenerateAccountBudget.CFROM_PERIOD_NO"
                     ValueField="Key"
                     TextField="Value"
                     OnChanged="CheckPeriodFrom"/>
     </R_ItemLayout>
-    <R_ItemLayout xs="2" Class="ms-5">
+    <R_ItemLayout col="2" Class="ms-5">
         <R_Label>To Period</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_ComboBox Data="_viewModel.CPERIOD"
                     @bind-Value="_viewModel.GenerateAccountBudget.CTO_PERIOD_NO"
                     ValueField="Key"
@@ -147,17 +147,17 @@
     </R_ItemLayout>
 </R_StackLayout>
 <R_StackLayout Row Spacing="1" Class="mb-1">
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_Label>By</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_RadioGroup Data="@_viewModel.CBY"
                       @bind-Value="_viewModel.GenerateAccountBudget.CBY"
                       ValueField="Key"
                       TextField="Value"
                       OnChanged="ChangeBy"/>
     </R_ItemLayout>
-    <R_ItemLayout xs="3" Class="ms-5">
+    <R_ItemLayout col="3" Class="ms-5">
         <R_ItemLayout Class="mb-1">
             <R_NumericTextBox @bind-Value="_viewModel.GenerateAccountBudget.NBY_PCT" Enabled="@(_viewModel.GenerateAccountBudget.CBY == "P")" Decimals="2"/>
         </R_ItemLayout>
@@ -167,7 +167,7 @@
     </R_ItemLayout>
 </R_StackLayout>
 <R_StackLayout Row Spacing="1" Class="mb-1">
-    <R_ItemLayout xs="2">
+    <R_ItemLayout col="2">
         <R_Label>Update Method</R_Label>
     </R_ItemLayout>
     <R_ItemLayout>

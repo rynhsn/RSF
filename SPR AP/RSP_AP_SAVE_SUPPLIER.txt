@@ -1,0 +1,2 @@
+Error100=Supplier ID {0} already exists!
+Error900=Process failed! unable to save Supplier {0}

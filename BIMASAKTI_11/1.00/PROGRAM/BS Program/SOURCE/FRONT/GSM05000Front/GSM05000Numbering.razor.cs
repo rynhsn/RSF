@@ -23,8 +23,9 @@ namespace GSM05000Front
 
             try
             {
-                _GSM05000NumberingViewModel.HeaderEntity = (GSM05000NumberingHeaderDTO)poParameter;
+                // _GSM05000NumberingViewModel.HeaderEntity = (GSM05000NumberingHeaderDTO)poParameter;
                 _GSM05000NumberingViewModel.TransactionCode = ((GSM05000NumberingHeaderDTO)poParameter).CTRANS_CODE;
+                await _GSM05000NumberingViewModel.GetNumberingHeader();
 
                 await _gridRefNumbering.R_RefreshGrid(null);
                 // await _gridRefNumbering.AutoFitAllColumnsAsync();

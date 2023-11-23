@@ -36,7 +36,7 @@ namespace GSM05000Model.ViewModel
 
         #region Combo Box Helper List
 
-        public List<KeyValuePair<string, string>> CPERIODE_MODE { get; } = new()
+        public List<KeyValuePair<string, string>> CPERIOD_MODE { get; } = new()
         {
             new("N", "None"),
             new("P", "Periodically"),

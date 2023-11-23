@@ -99,7 +99,7 @@ public class GSM05000ApprovalReplacementCls : R_BusinessObject<GSM05000ApprovalR
             loCmd.CommandText = lcQuery;
 
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poNewEntity.CCOMPANY_ID);
-            loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 50, poNewEntity.CTRANSACTION_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 50, poNewEntity.CTRANSACTION_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 255, poNewEntity.CDEPT_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poNewEntity.CUSER_ID);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_REPLACEMENT", DbType.String, 50, poNewEntity.CUSER_REPLACEMENT);
@@ -112,7 +112,7 @@ public class GSM05000ApprovalReplacementCls : R_BusinessObject<GSM05000ApprovalR
                 .Where(x =>
                     x.ParameterName is 
                         "@CCOMPANY_ID" or 
-                        "@CTRANS_CODE" or
+                        "@CTRANSACTION_CODE" or
                         "@CDEPT_CODE" or
                         "@CUSER_ID" or
                         "@CUSER_REPLACEMENT" or
@@ -157,7 +157,7 @@ public class GSM05000ApprovalReplacementCls : R_BusinessObject<GSM05000ApprovalR
             loCmd.CommandText = lcQuery;
 
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
-            loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 50, poEntity.CTRANSACTION_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 50, poEntity.CTRANSACTION_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 255, poEntity.CDEPT_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_REPLACEMENT", DbType.String, 50, poEntity.CUSER_REPLACEMENT);
@@ -170,7 +170,7 @@ public class GSM05000ApprovalReplacementCls : R_BusinessObject<GSM05000ApprovalR
                 .Where(x =>
                     x.ParameterName is 
                         "@CCOMPANY_ID" or 
-                        "@CTRANS_CODE" or
+                        "@CTRANSACTION_CODE" or
                         "@CDEPT_CODE" or
                         "@CUSER_ID" or
                         "@CUSER_REPLACEMENT" or

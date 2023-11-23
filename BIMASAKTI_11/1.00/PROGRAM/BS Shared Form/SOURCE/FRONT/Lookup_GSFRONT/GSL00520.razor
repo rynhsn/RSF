@@ -8,13 +8,14 @@
                 DataSource="_viewModel.GOACOAGrid"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
                 Pageable
+                Height="300px"
                 PageSize="5">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="Account No"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CGLACCOUNT_NAME" HeaderText="Account Name"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CBSIS_DESCR" HeaderText="BS/IS"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CDBCR_DESCR" HeaderText="D/C"></R_GridTextColumn>
-                <R_GridCheckBoxColumn FieldName="LACTIVE" HeaderText="Active"></R_GridCheckBoxColumn>
+                <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="Account No" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CGLACCOUNT_NAME" HeaderText="Account Name" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CBSIS_DESCR" HeaderText="BS/IS" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CDBCR_DESCR" HeaderText="D/C" Width="100px"></R_GridTextColumn>
+                <R_GridCheckBoxColumn FieldName="LACTIVE" HeaderText="Active" Width="100px"></R_GridCheckBoxColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>

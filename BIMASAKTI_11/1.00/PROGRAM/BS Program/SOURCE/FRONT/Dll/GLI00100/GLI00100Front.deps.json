@@ -149,15 +149,7 @@
         }
       },
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
-      "BaseHeaderReportCOMMON/1.0.0": {
-        "runtime": {
-          "BaseHeaderReportCOMMON.dll": {}
-        }
-      },
       "GLI00100Common/1.0.0": {
-        "dependencies": {
-          "BaseHeaderReportCOMMON": "1.0.0"
-        },
         "runtime": {
           "GLI00100Common.dll": {}
         }
@@ -179,6 +171,7 @@
         "dependencies": {
           "Lookup_GSCOMMON": "1.0.0",
           "Lookup_GSModel": "1.0.0",
+          "Microsoft.AspNetCore.Components": "6.0.15",
           "Microsoft.AspNetCore.Components.Web": "6.0.15"
         },
         "runtime": {
@@ -249,6 +242,14 @@
       "R_APIClient/1.0.0.0": {
         "runtime": {
           "R_APIClient.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "BaseHeaderReportCOMMON/1.0.0.0": {
+        "runtime": {
+          "BaseHeaderReportCOMMON.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -384,11 +385,6 @@
       "path": "system.runtime.compilerservices.unsafe/6.0.0",
       "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
     },
-    "BaseHeaderReportCOMMON/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "GLI00100Common/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -445,6 +441,11 @@
       "sha512": ""
     },
     "R_APIClient/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BaseHeaderReportCOMMON/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

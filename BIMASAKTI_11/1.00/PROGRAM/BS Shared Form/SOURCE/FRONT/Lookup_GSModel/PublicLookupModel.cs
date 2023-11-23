@@ -56,6 +56,44 @@ namespace Lookup_GSModel
 
             return loResult;
         }
+
+
+        #endregion
+
+        #region GSL00110
+        public IAsyncEnumerable<GSL00110DTO> GSL00110GetTaxByDateList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<GSL00110DTO>> GSL00110GetTaxByDateListAsync(GSL00110ParameterDTO poParam)
+        {
+            var loEx = new R_Exception();
+            List<GSL00110DTO> loResult = null;
+
+            try
+            {
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTAX_DATE, poParam.CTAX_DATE);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL00110DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL00110GetTaxByDateList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
         #endregion
 
         #region GSL00200
@@ -373,8 +411,42 @@ namespace Lookup_GSModel
 
             return loResult;
         }
+
         #endregion
 
+        #region GSL00710
+        public IAsyncEnumerable<GSL00710DTO> GSL00710GetDepartmentPropertyList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<GSL00710DTO>> GSL00710GetDepartmentPropertyListAsync(GSL00710ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL00710DTO> loResult = null;
+
+            try
+            {
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParameter.CPROPERTY_ID);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL00710DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL00700GetDepartmentList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+        #endregion
         #region GSL00800
         public IAsyncEnumerable<GSL00800DTO> GSL00800GetCurrencyTypeList()
         {
@@ -625,7 +697,7 @@ namespace Lookup_GSModel
             throw new NotImplementedException();
         }
 
-        public async Task<List<GSL01500ResultDetailDTO>> GSL01500GetCashDetailListAsync(GSL01500ParameterDetailDTO poParameter)
+        public async Task<List<GSL01500ResultDetailDTO>> GSL01500GetCashDetailListAsync(string poCashFlowGrpCode)
         {
             var loEx = new R_Exception();
             List<GSL01500ResultDetailDTO> loResult = null;
@@ -633,7 +705,7 @@ namespace Lookup_GSModel
             try
             {
                 //Set Context
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCASH_FLOW_GROUP_CODE, poParameter.CCASH_FLOW_GROUP_CODE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCASH_FLOW_GROUP_CODE, poCashFlowGrpCode);
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL01500ResultDetailDTO>(
@@ -865,20 +937,87 @@ namespace Lookup_GSModel
             throw new NotImplementedException();
         }
 
-        public async Task<List<GSL01900DTO>> GSL01900GetLOBListAsync(GSL01900DTOParameter poParameter)
+        public async Task<List<GSL01900DTO>> GSL01900GetLOBListAsync()
         {
             var loEx = new R_Exception();
             List<GSL01900DTO> loResult = null;
 
             try
             {
-                //Set Context
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCASH_FLOW_GROUP_CODE, poParameter.CLOB_CODE);
-
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL01900DTO>(
                     _RequestServiceEndPoint,
                     nameof(IPublicLookup.GSL01900GetLOBList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+
+        #endregion
+
+        #region GSL02000
+
+        public IAsyncEnumerable<GSL02000DTO> GSL02000GetGeographyList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<GSL02000DTO>> GSL02000GetGeographyListAsync()
+        {
+            var loEx = new R_Exception();
+            List<GSL02000DTO> loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02000DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL02000GetGeographyList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+        #endregion
+        #region GSL02100
+        public IAsyncEnumerable<GSL02100DTO> GSL02100GetPaymentTermList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL02100DTO>> GSL02100GetPaymentTermListAsync(GSL02100ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL02100DTO> loResult = null;
+
+            try
+            {
+                //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParameter.CPROPERTY_ID);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02100DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL02100GetPaymentTermList),
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);

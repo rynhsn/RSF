@@ -171,11 +171,10 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             loDb.R_AddCommandParameter(loCmd, "@CDESCRIPTION", DbType.String, 255, poEntity.CDESCRIPTION);
             loDb.R_AddCommandParameter(loCmd, "@CROUNDING_MODE", DbType.String, 10, poEntity.CROUNDING_MODE);
             loDb.R_AddCommandParameter(loCmd, "@IROUNDING", DbType.Int32, 10, poEntity.IROUNDING);
-            loDb.R_AddCommandParameter(loCmd, "@CTAXIN_GL_ACCOUNT_NO", DbType.String, 20, poEntity.CTAXIN_GLACCOUNT_NO);
-            loDb.R_AddCommandParameter(loCmd, "@CTAXOUT_GL_ACCOUNT_NO", DbType.String, 60, poEntity.CTAXOUT_GLACCOUNT_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CTAXIN_GLACCOUNT_NO", DbType.String, 20, poEntity.CTAXIN_GLACCOUNT_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CTAXOUT_GLACCOUNT_NO", DbType.String, 60, poEntity.CTAXOUT_GLACCOUNT_NO);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
 
-            
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x => x.ParameterName == "@"+ poEntity.GetType().GetProperty(x.ParameterName.Replace("@", "")).Name).Select(x => x.Value);
             _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);

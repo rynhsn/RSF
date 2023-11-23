@@ -251,14 +251,17 @@ public class GLM00500DetailViewModel : R_ViewModel<GLM00500BudgetDTDTO>
 
         try
         {
-            R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.NPERIOD_COUNT, PeriodCount.INO_PERIOD);
-            R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.CCURRENCY_TYPE, poHeader.CCURRENCY_TYPE);
-            R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.NBUDGET, poEntity.NBUDGET);
-            R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.CROUNDING_METHOD, poEntity.CROUNDING_METHOD);
-            R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.CDIST_METHOD, poEntity.CDIST_METHOD);
-            R_FrontContext.R_SetStreamingContext(GLM00500ContextContant.CBW_CODE, poEntity.CBW_CODE);
+            var loParam = new GLM00500CalculateParamDTO()
+            {
+                INO_PERIOD = PeriodCount.INO_PERIOD,
+                CCURRENCY_TYPE = poHeader.CCURRENCY_TYPE,
+                NBUDGET = poEntity.NBUDGET,
+                CROUNDING_METHOD = poEntity.CROUNDING_METHOD,
+                CDIST_METHOD = poEntity.CDIST_METHOD,
+                CBW_CODE = poEntity.CBW_CODE
+            };
 
-            loResult = await _model.GLM00500BudgetCalculateModel();
+            loResult = await _model.GLM00500BudgetCalculateModel(loParam);
         }
         catch (R_Exception ex)
         {

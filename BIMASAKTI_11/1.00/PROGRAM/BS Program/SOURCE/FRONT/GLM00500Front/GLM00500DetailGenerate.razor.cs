@@ -30,6 +30,7 @@ public partial class GLM00500DetailGenerate
             _viewModel.GenerateAccountBudget.CGLACCOUNT_TYPE = loData.CGLACCOUNT_TYPE;
             _viewModel.GenerateAccountBudget.CBY = "P";
             _viewModel.GenerateAccountBudget.CUPDATE_METHOD = "C";
+            _viewModel.GenerateAccountBudget.CBASED_ON = "EB";
             await _viewModel.Init(loData.BudgetHD);
             await _viewModel.GetPeriods();
             await _viewModel.GetSystemParams();
@@ -136,6 +137,7 @@ public partial class GLM00500DetailGenerate
     private void CheckPeriodFrom(object obj)
     {
         var lcData = (string)obj;
+        if (_viewModel.GenerateAccountBudget.CTO_PERIOD_NO == null) return;
         if (int.Parse(lcData) > int.Parse(_viewModel.GenerateAccountBudget.CTO_PERIOD_NO))
         {
             _viewModel.GenerateAccountBudget.CTO_PERIOD_NO = lcData;
@@ -145,6 +147,7 @@ public partial class GLM00500DetailGenerate
     private void CheckPeriodTo(object obj)
     {
         var lcData = (string)obj;
+        if (_viewModel.GenerateAccountBudget.CFROM_PERIOD_NO == null) return;
         if (int.Parse(lcData) < int.Parse(_viewModel.GenerateAccountBudget.CFROM_PERIOD_NO))
         {
             _viewModel.GenerateAccountBudget.CFROM_PERIOD_NO = lcData;
@@ -160,9 +163,10 @@ public partial class GLM00500DetailGenerate
         }
         else
         {
-            if (_viewModel.GenerateAccountBudget.CBASED_ON == "AV") _viewModel.GenerateAccountBudget.CSOURCE_BUDGET_NO = "";
+            if (_viewModel.GenerateAccountBudget.CBASED_ON == "AV")
+                _viewModel.GenerateAccountBudget.CSOURCE_BUDGET_NO = "";
             _viewModel.GenerateAccountBudget.CYEAR = _viewModel.SelectedYear.ToString();
-            
+
             await this.Close(true, _viewModel.GenerateAccountBudget);
         }
     }

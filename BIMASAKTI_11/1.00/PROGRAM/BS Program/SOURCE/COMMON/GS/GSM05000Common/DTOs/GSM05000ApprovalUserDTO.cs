@@ -9,6 +9,7 @@ namespace GSM05000Common.DTOs
         public string CDEPT_CODE { get; set; }
         
         public string CSEQUENCE { get; set; }
+        public int ISEQUENCE { get; set; }
         public string CUSER_ID { get; set; }
         public string CUSER_NAME { get; set; }
         public string CPOSITION { get; set; }

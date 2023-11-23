@@ -19,11 +19,12 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
     public ObservableCollection<GSM05000ApprovalDepartmentDTO> DepartmentLookup = new();
     public List<GSM05000ApprovalDepartmentDTO> DeptSeqList = new();
     public GSM05000ApprovalCopyDTO TempEntityForCopy = new();
-    
+
     public GSM05000ApprovalUserDTO ApproverEntity = new();
     public GSM05000ApprovalHeaderDTO HeaderEntity = new();
     public GSM05000ApprovalDepartmentDTO DepartmentEntity = new();
     public string TransactionCode = "";
+    public bool ReplacementFlagTemp;
 
     public async Task GetApprovalHeader()
     {
@@ -92,8 +93,19 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
         {
             R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, TransactionCode);
             var loReturn = await _Model.GetApprovalListStreamAsync();
+            // dalam list loreturn ada kolom ISEQUENCE, akan diubah ke CSEQUENCE dengan 3 digit angka
+            foreach (var loItem in loReturn)
+            {
+                loItem.CSEQUENCE = loItem.ISEQUENCE.ToString("D3");
+            }
+            
             //order by deptcode dan seq
-            ApproverList = new ObservableCollection<GSM05000ApprovalUserDTO>(loReturn.OrderBy(x => x.CDEPT_CODE).ThenBy(x => x.CSEQUENCE));
+            
+            
+            ApproverList =
+                new ObservableCollection<GSM05000ApprovalUserDTO>(loReturn.OrderBy(x => x.CDEPT_CODE)
+                    .ThenBy(x => x.ISEQUENCE));
+            
         }
         catch (Exception ex)
         {
@@ -102,7 +114,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     public async Task GetApproverEntity(GSM05000ApprovalUserDTO poEntity)
     {
         var loEx = new R_Exception();
@@ -110,7 +122,9 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
         try
         {
             poEntity.CTRANS_CODE = TransactionCode;
+            ReplacementFlagTemp = ApproverEntity.LREPLACEMENT;
             ApproverEntity = await _Model.R_ServiceGetRecordAsync(poEntity);
+            ApproverEntity.CSEQUENCE = ApproverEntity.ISEQUENCE.ToString("D3");
         }
         catch (Exception ex)
         {
@@ -141,7 +155,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     public async Task DeleteEntity(GSM05000ApprovalUserDTO poNewEntity)
     {
         var loEx = new R_Exception();
@@ -160,7 +174,8 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
     public void GenerateSequence(GSM05000ApprovalUserDTO poNewEntity)
     {
         var loEx = new R_Exception();
-        var lnSequence = 1;
+        // var lnSequence = 1;
+        var lnSeq = 1;
 
         try
         {
@@ -170,10 +185,17 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
                 if (ApproverList.Count != 0)
                 {
                     var loApprover = ApproverList.OrderByDescending(x => x.CSEQUENCE).FirstOrDefault();
-                    lnSequence = Convert.ToInt32(loApprover.CSEQUENCE) + 1;
+                    // lnSequence = Convert.ToInt32(loApprover.CSEQUENCE) + 1;
+                    lnSeq = loApprover.ISEQUENCE + 1;
                 }
 
-                poNewEntity.CSEQUENCE = lnSequence.ToString("D3");
+                // poNewEntity.CSEQUENCE = lnSequence.ToString("D3");
+                poNewEntity.ISEQUENCE = lnSeq;
+            }
+            else
+            {
+                // poNewEntity.CSEQUENCE = "000";
+                poNewEntity.ISEQUENCE = 0;
             }
         }
         catch (Exception ex)
@@ -183,7 +205,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     public async Task GetDeptSeqList(string poTransactionCode)
     {
         var loEx = new R_Exception();
@@ -203,7 +225,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     public async Task GetUserSeqList(GSM05000ApprovalUserDTO poParameter)
     {
         var loEx = new R_Exception();
@@ -237,10 +259,10 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
         {
             loEx.Add(ex);
         }
-        
+
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     // public async Task LookupDepartment(GSM05000ApprovalCopyDTO poParameter)
     public async Task LookupDepartment()
     {
@@ -263,13 +285,13 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
     public async Task CopyTo(GSM05000ApprovalCopyDTO poEntity)
     {
         var loEx = new R_Exception();
-        
+
         try
         {
             GSM05000CopyToParamsDTO loParams = new()
             {
-                CTRANSACTION_CODE = poEntity.CTRANSACTION_CODE, 
-                CDEPT_CODE = poEntity.CDEPT_CODE, 
+                CTRANSACTION_CODE = poEntity.CTRANSACTION_CODE,
+                CDEPT_CODE = poEntity.CDEPT_CODE,
                 CDEPT_CODE_TO = poEntity.CDEPT_CODE_FROM
             };
             await _Model.CopyToApprovalAsync(loParams);
@@ -283,13 +305,13 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
     public async Task CopyFrom(GSM05000ApprovalCopyDTO poEntity)
     {
         var loEx = new R_Exception();
-        
+
         try
         {
             GSM05000CopyFromParamsDTO loParams = new()
             {
-                CTRANSACTION_CODE = poEntity.CTRANSACTION_CODE, 
-                CDEPT_CODE = poEntity.CDEPT_CODE, 
+                CTRANSACTION_CODE = poEntity.CTRANSACTION_CODE,
+                CDEPT_CODE = poEntity.CDEPT_CODE,
                 CDEPT_CODE_FROM = poEntity.CDEPT_CODE_FROM
             };
             await _Model.CopyFromApprovalAsync(loParams);

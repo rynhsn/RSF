@@ -64,6 +64,7 @@ public class GSM05000Controller : ControllerBase, IGSM05000
             
             _logger.LogInfo("Set Parameter");
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            poParameter.Entity.CUPDATE_BY = R_BackGlobalVar.USER_ID;
             
             _logger.LogInfo("Save Transaction Code Entity");
             loRtn.data = loCls.R_Save(poParameter.Entity, poParameter.CRUDMode);
