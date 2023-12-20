@@ -173,12 +173,13 @@ public class GSM05000Controller : ControllerBase, IGSM05000
             _logger.LogInfo("Set Parameter");
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbPar.CTRANS_CODE = poParams.CTRANS_CODE;
+            loDbPar.ETAB_NAME = poParams.ETAB_NAME;
             
             loCls = new GSM05000Cls();
             
             _logger.LogInfo("Check Exist Data");
             loResult = loCls.GetValidateUpdateDb(loDbPar);
-            loRtn = loResult;
+            loRtn = loResult ?? new GSM05000ExistDTO() { EXIST = 0 };
         }
         catch (Exception ex)
         {

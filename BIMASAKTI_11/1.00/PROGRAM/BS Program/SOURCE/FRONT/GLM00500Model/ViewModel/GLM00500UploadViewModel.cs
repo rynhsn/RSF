@@ -26,7 +26,7 @@ public class GLM00500UploadViewModel : R_IProcessProgressStatus
     public int ValidRows { get; set; }
     public int InvalidRows { get; set; }
 
-    public bool IsSuccess { get; set; } = false;
+    public bool IsError { get; set; } = false;
     public bool HasData { get; set; } = false;
 
     #region ProgressBar
@@ -86,7 +86,7 @@ public class GLM00500UploadViewModel : R_IProcessProgressStatus
         HasData = TotalRows > 0;
         ValidRows = 0;
         InvalidRows = 0;
-        IsSuccess = false;
+        IsError = false;
 
         UploadedList = new ObservableCollection<GLM00500UploadForSystemDTO>(loReturn);
     }
@@ -143,12 +143,12 @@ public class GLM00500UploadViewModel : R_IProcessProgressStatus
             if (poProcessResultMode == eProcessResultMode.Success)
             {
                 Message = string.Format("Process Complete and success with GUID {0}", pcKeyGuid);
-                IsSuccess = false;
+                IsError = false;
             }
             else if (poProcessResultMode == eProcessResultMode.Fail)
             {
                 Message = $"Process Complete but fail with GUID {pcKeyGuid}";
-                IsSuccess = true;
+                IsError = true;
                 await ServiceGetError(pcKeyGuid);
             }
         }

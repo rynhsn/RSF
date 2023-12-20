@@ -11,12 +11,13 @@
     <R_Grid @ref="@_gridRef"
             DataSource="@_GSM05000ViewModel.GridList"
             Pageable
-            PageSize="20"
+            PageSize="26"
             R_ConductorSource="@_conductorRef"
             R_GridType="@R_eGridType.Navigator"
             R_ServiceGetListRecord="@Grid_GetList"
             Width="350px"
-            Height="480px">
+            Height="600px"
+            Enabled="_gridEnabled">
         <R_GridColumns>
             <R_GridTextColumn FieldName="@nameof(GSM05000GridDTO.CTRANSACTION)" HeaderText="@_localizer["LABEL_TRANSACTION"]" TextAlignment="R_eTextAlignment.Left"/>
         </R_GridColumns>
@@ -24,7 +25,7 @@
 </R_ItemLayout>
 
 <R_ItemLayout col="8">
-<R_StackLayout Row="true">
+<R_StackLayout Row="true" Class="mb-4">
     <R_ItemLayout col="3">
         <R_Label>@_localizer["LABEL_TRANSCODE"]</R_Label>
     </R_ItemLayout>
@@ -45,7 +46,7 @@
         <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LINCREMENT_FLAG"
                     R_ConductorSource="@_conductorRef"
                     R_EnableEdit
-                    OnChanged="CheckIncrementFlag"/>
+                    OnChanged="@CheckIncrementFlag"/>
 
         <R_Label>@_localizer["LABEL_INCREMENTFLAG"]</R_Label>
     </R_ItemLayout>
@@ -57,7 +58,7 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_GroupBox Enabled="_GSM05000ViewModel.Data.LINCREMENT_FLAG" ShowBorder="false">
+<R_GroupBox Enabled="_GSM05000ViewModel.Data.LINCREMENT_FLAG" ShowBorder="false" Class="px-2 mb-4">
 @* By Department *@
 <R_StackLayout Row="true" Spacing="1" Class="mb-1">
     <R_ItemLayout col="6">
@@ -80,7 +81,7 @@
     <R_ItemLayout col="2">
         <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.DeptSequence"
                           R_ConductorSource="@_conductorRef"
-                          Min="0"
+                          Min="1"
                           Max="4"
                           OnLostFocused="GetUpdateSample"
                           Enabled="@(_GSM05000ViewModel.Data.LDEPT_MODE && _conductorRef.R_ConductorMode == R_eConductorMode.Edit)"
@@ -111,7 +112,7 @@
     <R_ItemLayout col="2">
         <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.TrxSequence"
                           R_ConductorSource="@_conductorRef"
-                          Min="0"
+                          Min="1"
                           Max="4"
                           OnLostFocused="GetUpdateSample"
                           Enabled="@(_GSM05000ViewModel.Data.LTRANSACTION_MODE && _conductorRef.R_ConductorMode == R_eConductorMode.Edit)"
@@ -131,7 +132,6 @@
                             ValueField="Key"
                             TextField="Value"
                             R_ConductorSource="@_conductorRef"
-                            OnLostFocused="GetUpdateSample"
                             R_EnableEdit
                             OnChanged="CheckPeriodMode"/>
             </R_ItemLayout>
@@ -145,16 +145,16 @@
                     TextField="@nameof(GSM05000DelimiterDTO.CDESCRIPTION)"
                     R_ConductorSource="@_conductorRef"
                     OnChanged="GetUpdateSample"
-                    R_EnableEdit/>
+                    Enabled="@(_GSM05000ViewModel.Data.CPERIOD_MODE != "N" && _conductorRef.R_ConductorMode == R_eConductorMode.Edit)"/>
     </R_ItemLayout>
 
     <R_ItemLayout col="2">
         <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.PeriodSequence"
                           R_ConductorSource="@_conductorRef"
-                          Min="0"
+                          Min="1"
                           Max="4"
                           OnLostFocused="GetUpdateSample"
-                          R_EnableEdit="@(_GSM05000ViewModel.Data.CPERIOD_MODE != "N")"/>
+                          Enabled="@(_GSM05000ViewModel.Data.CPERIOD_MODE != "N" && _conductorRef.R_ConductorMode == R_eConductorMode.Edit)"/>
     </R_ItemLayout>
 </R_StackLayout>
 @* Year Format *@
@@ -187,7 +187,7 @@
             <R_ItemLayout col="5">
                 <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.Data.INUMBER_LENGTH"
                                   R_ConductorSource="@_conductorRef"
-                                  OnLostFocused="GetUpdateSample"
+                                  OnChanged="CheckLenMode"
                                   R_EnableEdit/>
             </R_ItemLayout>
         </R_StackLayout>
@@ -200,16 +200,16 @@
                     TextField="@nameof(GSM05000DelimiterDTO.CDESCRIPTION)"
                     R_ConductorSource="@_conductorRef"
                     OnChanged="GetUpdateSample"
-                    R_EnableEdit/>
+                    Enabled="@(_GSM05000ViewModel.Data.INUMBER_LENGTH != 0 && _conductorRef.R_ConductorMode == R_eConductorMode.Edit)"/>
     </R_ItemLayout>
 
     <R_ItemLayout col="2">
         <R_NumericTextBox @bind-Value="@_GSM05000ViewModel.LenSequence"
                           R_ConductorSource="@_conductorRef"
-                          Min="0"
+                          Min="1"
                           Max="4"
                           OnLostFocused="GetUpdateSample"
-                          R_EnableEdit/>
+                          Enabled="@(_GSM05000ViewModel.Data.INUMBER_LENGTH != 0 && _conductorRef.R_ConductorMode == R_eConductorMode.Edit)"/>
     </R_ItemLayout>
 </R_StackLayout>
 @* Prefix *@
@@ -266,8 +266,8 @@
 </R_GroupBox>
 
 @* Begin::Sample Row *@
-<R_StackLayout>
-    <R_ItemLayout col="2">
+<R_StackLayout Class="mb-4">
+    <R_ItemLayout>
         <R_Label>@_localizer["LABEL_SAMPLE"]</R_Label>
     </R_ItemLayout>
     <R_StackLayout Row="true">
@@ -284,7 +284,7 @@
         </R_ItemLayout>
 
         <R_ItemLayout col="2" Class="text-center">
-            <R_Label Class="text-danger k-font-weight-bold">Maximum 30</R_Label>
+            <R_Label FontColor="R_eFontColor.Danger" FontStyle="R_eFontStyle.Bold">@_localizer["LABEL_MAX30"]</R_Label>
         </R_ItemLayout>
     </R_StackLayout>
 </R_StackLayout>
@@ -302,27 +302,31 @@
 </R_StackLayout>
 @* End::Using Approval *@
 
-<R_GroupBox Enabled="_GSM05000ViewModel.Data.LAPPROVAL_FLAG" ShowBorder="false" Width="630px">
+<R_GroupBox Enabled="_GSM05000ViewModel.Data.LAPPROVAL_FLAG" ShowBorder="false" Width="630px" Class="px-2 mb-4">
     @* Use 3rd party *@
     <R_StackLayout Row="true">
         <R_ItemLayout col="6">
             <R_CheckBox @bind-Value="_GSM05000ViewModel.Data.LUSE_THIRD_PARTY"
                         R_ConductorSource="@_conductorRef" R_EnableEdit/>
-            <R_Label>Using Third Party</R_Label>
+            <R_Label>@_localizer["LABEL_USERTHIRDPARTY"]</R_Label>
         </R_ItemLayout>
     </R_StackLayout>
     @* Approval Mode *@
     <R_StackLayout Row="true">
-        <R_ItemLayout col="3">
-            <R_Label>@_localizer["LABEL_APPROVALMODE"]</R_Label>
-        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="5">
+                    <R_Label>@_localizer["LABEL_APPROVALMODE"]</R_Label>
+                </R_ItemLayout>
 
-        <R_ItemLayout col="3">
-            <R_ComboBox Data="@_GSM05000ViewModel.CAPPROVAL_MODE"
-                        @bind-Value="_GSM05000ViewModel.Data.CAPPROVAL_MODE"
-                        ValueField="Key"
-                        TextField="Value"
-                        R_ConductorSource="@_conductorRef" R_EnableEdit/>
+                <R_ItemLayout col="5">
+                    <R_ComboBox Data="@_GSM05000ViewModel.CAPPROVAL_MODE"
+                                @bind-Value="_GSM05000ViewModel.Data.CAPPROVAL_MODE"
+                                ValueField="Key"
+                                TextField="Value"
+                                R_ConductorSource="@_conductorRef" R_EnableEdit/>
+                </R_ItemLayout>
+            </R_StackLayout>
         </R_ItemLayout>
     </R_StackLayout>
     @* By Dept appr *@
@@ -354,7 +358,7 @@
     </R_ItemLayout>
 </R_StackLayout>
 @* Created by date *@
-<R_StackLayout Row="true">
+<R_StackLayout Row="true" Class="mb-4">
     <R_ItemLayout col="2">
         <R_Label>@_localizer["LABEL_CREATEDBY"]</R_Label>
     </R_ItemLayout>
@@ -373,7 +377,7 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_StackLayout Row="true"Class="mt-1">
+<R_StackLayout Row="true">
     <R_ItemLayout col="6">
         <R_ItemLayout>
             <R_EditButton R_Conductor="@_conductorRef"/>
@@ -398,9 +402,11 @@
              R_IsHeader="true"
              R_ConvertToGridEntity="ConvertGridToEntity"
              R_ServiceGetRecord="@Conductor_ServiceGetRecord"
+             R_SetOther="SetOther"
              R_Validation="@Validation"
              R_Saving="Saving"
              R_ServiceSave="@Conductor_ServiceSave"
+             R_BeforeCancel="BeforeCancel"
              R_Display="@Grid_Display"/>
 
 

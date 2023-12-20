@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "GLM00500Front/1.0.0": {
         "dependencies": {
+          "GLM00500FrontResources": "1.0.0",
           "GLM00500Model": "1.0.0",
           "Lookup_GSCOMMON": "1.0.0",
           "Lookup_GSFRONT": "1.0.0",
@@ -833,6 +834,16 @@
           "GLM00500Common.dll": {}
         }
       },
+      "GLM00500FrontResources/1.0.0": {
+        "runtime": {
+          "GLM00500FrontResources.dll": {}
+        },
+        "resources": {
+          "id/GLM00500FrontResources.resources.dll": {
+            "locale": "id"
+          }
+        }
+      },
       "GLM00500Model/1.0.0": {
         "dependencies": {
           "GLM00500Common": "1.0.0"
@@ -1583,6 +1594,11 @@
       "hashPath": "telerik.svgicons.1.0.2.nupkg.sha512"
     },
     "GLM00500Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GLM00500FrontResources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

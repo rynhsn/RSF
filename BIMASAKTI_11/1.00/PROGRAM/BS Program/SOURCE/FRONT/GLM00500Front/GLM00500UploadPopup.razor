@@ -1,11 +1,14 @@
 ﻿@page "/GLM00500UploadPopup"
 @using R_BlazorFrontEnd.Controls.Events
+@using R_BlazorFrontEnd.Interfaces
+@using GLM00500FrontResources
 @inherits R_Page
 @attribute [R_Page(Title = "Upload Account Budget")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
 <R_StackLayout Row Spacing="3" Class="mb-3">
     <R_ItemLayout>
-        <R_Label>Source File</R_Label>
+        <R_Label>@_localizer["LABEL_SRCFILE"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="6">
         <R_InputFile OnChange="ChooseFile" Accepts="new[] { R_eFileSelectAccept.Excel }"/>
@@ -13,7 +16,7 @@
 </R_StackLayout>
 
 <R_StackLayout Row Class="mb-3">
-    <R_ItemLayout xs="12">
+    <R_ItemLayout col="12">
         <R_Grid @ref="_gridRef"
                 DataSource="_viewModel.UploadedList"
                 Pageable
@@ -24,73 +27,73 @@
                 AllowEditRow="false"
                 AllowAddNewRow="false"
                 Width="1000px"
-                Height="400px">
+                Height="270px">
             <R_GridColumns>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.SEQ_NO)" HeaderText="No." Width="100px"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.BUDGET_YEAR)" HeaderText="Budget Year" Width="130px"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.BUDGET_NO)" HeaderText="Budget No." Width="150px"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.BUDGET_NAME)" HeaderText="Budget Name" Width="150px"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.CURRENCY_TYPE)" HeaderText="Currency Type" Width="150px"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.ACCOUNT_TYPE)" HeaderText="Account Type" Width="150px"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.ACCOUNT_NO)" HeaderText="Account No." Width="150px"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.CENTER)" HeaderText="Center" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_1)" HeaderText="Period 1" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_2)" HeaderText="Period 2" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_3)" HeaderText="Period 3" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_4)" HeaderText="Period 4" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_5)" HeaderText="Period 5" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_6)" HeaderText="Period 6" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_7)" HeaderText="Period 7" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_8)" HeaderText="Period 8" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_9)" HeaderText="Period 9" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_10)" HeaderText="Period 10" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_11)" HeaderText="Period 11" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_12)" HeaderText="Period 12" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_13)" HeaderText="Period 13" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_14)" HeaderText="Period 14" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_15)" HeaderText="Period 15" Width="150px"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.VALID)" HeaderText="Valid" Width="150px" Visible="@_viewModel.IsSuccess"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.NOTES)" HeaderText="Notes" Width="300px" Visible="@_viewModel.IsSuccess"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.SEQ_NO)" HeaderText="@_localizer["LABEL_NO"]" Width="100px"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.BUDGET_YEAR)" HeaderText="@_localizer["LABEL_BUDGETYEAR"]" Width="130px"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.BUDGET_NO)" HeaderText="@_localizer["LABEL_BUDGETNO"]" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.BUDGET_NAME)" HeaderText="@_localizer["LABEL_BUDGETNAME"]" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.CURRENCY_TYPE)" HeaderText="@_localizer["LABEL_CURRTYPE"]" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.ACCOUNT_TYPE)" HeaderText="@_localizer["LABEL_ACCTYPE"]" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.ACCOUNT_NO)" HeaderText="@_localizer["LABEL_ACCNO"]" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.CENTER)" HeaderText="@_localizer["LABEL_CENTER"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_1)" HeaderText="@_localizer["LABEL_PERIOD01"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_2)" HeaderText="@_localizer["LABEL_PERIOD02"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_3)" HeaderText="@_localizer["LABEL_PERIOD03"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_4)" HeaderText="@_localizer["LABEL_PERIOD04"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_5)" HeaderText="@_localizer["LABEL_PERIOD05"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_6)" HeaderText="@_localizer["LABEL_PERIOD06"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_7)" HeaderText="@_localizer["LABEL_PERIOD07"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_8)" HeaderText="@_localizer["LABEL_PERIOD08"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_9)" HeaderText="@_localizer["LABEL_PERIOD09"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_10)" HeaderText="@_localizer["LABEL_PERIOD10"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_11)" HeaderText="@_localizer["LABEL_PERIOD11"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_12)" HeaderText="@_localizer["LABEL_PERIOD12"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_13)" HeaderText="@_localizer["LABEL_PERIOD13"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_14)" HeaderText="@_localizer["LABEL_PERIOD14"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(GLM00500UploadForSystemDTO.PERIOD_15)" HeaderText="@_localizer["LABEL_PERIOD15"]" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.VALID)" HeaderText="@_localizer["LABEL_VALID"]" Width="150px" Visible="@_viewModel.IsError"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500UploadForSystemDTO.NOTES)" HeaderText="@_localizer["LABEL_NOTES"]" Width="300px" Visible="@_viewModel.IsError"/>
             </R_GridColumns>
         </R_Grid>
     </R_ItemLayout>
 </R_StackLayout>
 <R_StackLayout Row Class="mb-3">
-    <R_ItemLayout xs="12">
+    <R_ItemLayout col="12">
         <R_ProgressBar Label="@_viewModel.Message" MaxValue="100" Value="@_viewModel.Percentage"></R_ProgressBar>
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_StackLayout Row>
-    <R_StackLayout Row Spacing="3" Class="align-content-start">
+<R_StackLayout Row Class="justify-content-between">
+    <R_StackLayout Row Spacing="3" Class="justify-content-start">
         <R_ItemLayout>
-            <R_Label>Total Row(s)</R_Label>
+            <R_Label>@_localizer["LABEL_TOTALROW"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
             <R_NumericTextBox @bind-Value="_viewModel.TotalRows" Enabled="false" Arrows="false"/>
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_Label>Valid</R_Label>
+            <R_Label>@_localizer["LABEL_VALID"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
-            <R_NumericTextBox class="bg-success" @bind-Value="_viewModel.ValidRows" Enabled="false" Arrows="false"/>
+            <R_NumericTextBox class="bg-success" @bind-Value="_viewModel.ValidRows" ReadOnly Arrows="false"/>
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_Label>Invalid</R_Label>
+            <R_Label>@_localizer["LABEL_INVALID"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
-            <R_NumericTextBox class="bg-danger" @bind-Value="_viewModel.InvalidRows" Enabled="false" Arrows="false"/>
+            <R_NumericTextBox class="bg-danger" @bind-Value="_viewModel.InvalidRows" ReadOnly Arrows="false"/>
         </R_ItemLayout>
     </R_StackLayout>
-    <R_StackLayout Row Spacing="2" Class="align-content-end">
+    <R_StackLayout Row Spacing="2" Class="justify-content-end">
         <R_ItemLayout>
-            <R_Button OnClick="CloseEvent">Close</R_Button>
+            <R_Button OnClick="CloseEvent">@_localizer["LABEL_BTNCLOSE"]</R_Button>
         </R_ItemLayout>
-        <R_ItemLayout hidden="@_viewModel.IsSuccess">
-            <R_Button OnClick="OnClickProcess" Enabled="@_viewModel.HasData">Process</R_Button>
+        <R_ItemLayout hidden="@_viewModel.IsError">
+            <R_Button OnClick="OnClickProcess" Enabled="@_viewModel.HasData">@_localizer["LABEL_BTNPROCESS"]</R_Button>
         </R_ItemLayout>
-        <R_ItemLayout hidden="@(!_viewModel.IsSuccess)">
-            <R_Button OnClick="OnClickSave">Save To Excel</R_Button>
+        <R_ItemLayout hidden="@(!_viewModel.IsError)">
+            <R_Button OnClick="OnClickSave">@_localizer["LABEL_BTNSAVEEXCEL"]</R_Button>
         </R_ItemLayout>
     </R_StackLayout>
 </R_StackLayout>

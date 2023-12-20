@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.Common;
+using System.Transactions;
 using GSM05000Common;
 using GSM05000Common.DTOs;
 using R_BackEnd;
@@ -586,15 +587,15 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
         }
         catch (Exception ex)
         {
-            loEx.Add(ex);
+            loEx.Add(ex); 
             _logger.LogError(loEx);
         }
 
         loEx.ThrowExceptionIfErrors();
         return loRtn;
-    }
+    }   
 
-    public void GSM05000UpdateSequence(GSM05000ApprovalUserDTO poParameter)
+    public void GSM05000UpdateSequence(List<GSM05000ApprovalUserDTO> poParameter)
     {
         R_Exception loEx = new();
         R_Db loDb;
@@ -604,42 +605,53 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
 
         try
         {
-            loDb = new R_Db();
-            loConn = loDb.GetConnection();
-            loCmd = loDb.GetCommand();
+            
+            using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Required))
+            {
+                foreach (var poEntity in poParameter)
+                {
+                    R_Saving(poEntity, eCRUDMode.EditMode);
+                }
 
-            lcQuery = "RSP_GS_MAINTAIN_TRANS_CODE_APPROVER";
-            loCmd.CommandType = CommandType.Text;
-            loCmd.CommandText = lcQuery;
-            
-            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParameter.CCOMPANY_ID);
-            loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 6, poParameter.CTRANS_CODE);
-            loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 8, poParameter.CDEPT_CODE);
-            loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParameter.CUSER_ID);
-            loDb.R_AddCommandParameter(loCmd, "@ISEQUENCE", DbType.String, 3, poParameter.ISEQUENCE);
-            loDb.R_AddCommandParameter(loCmd, "@LREPLACEMENT", DbType.String, 1, poParameter.LREPLACEMENT);
-            loDb.R_AddCommandParameter(loCmd, "@NLIMIT_AMOUNT", DbType.Decimal, 18, poParameter.NLIMIT_AMOUNT);
-            loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, "EDIT");
-            loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 8, poParameter.CUSER_LOGIN_ID);
-            
-            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-                .Where(x =>
-                    x.ParameterName is 
-                        "@CCOMPANY_ID" or 
-                        "@CTRANS_CODE" or
-                        "@CDEPT_CODE" or
-                        "@CUSER_ID" or
-                        "@ISEQUENCE" or
-                        "@LREPLACEMENT" or
-                        "@NLIMIT_AMOUNT" or
-                        "@CACTION" or
-                        "@CUSER_LOGIN_ID"
-                )
-                .Select(x => x.Value);
-            
-            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
-            
-            loDb.SqlExecNonQuery(loConn, loCmd, true);
+                transactionScope.Complete();
+            }
+            //
+            // loDb = new R_Db();
+            // loConn = loDb.GetConnection();
+            // loCmd = loDb.GetCommand();
+            //
+            // lcQuery = "RSP_GS_MAINTAIN_TRANS_CODE_APPROVER";
+            // loCmd.CommandType = CommandType.StoredProcedure;
+            // loCmd.CommandText = lcQuery;
+            //
+            // loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParameter.CCOMPANY_ID);
+            // loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 6, poParameter.CTRANS_CODE);
+            // loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 8, poParameter.CDEPT_CODE);
+            // loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParameter.CUSER_ID);
+            // loDb.R_AddCommandParameter(loCmd, "@ISEQUENCE", DbType.Int32, 3, poParameter.ISEQUENCE);
+            // loDb.R_AddCommandParameter(loCmd, "@LREPLACEMENT", DbType.Boolean, 1, poParameter.LREPLACEMENT);
+            // loDb.R_AddCommandParameter(loCmd, "@NLIMIT_AMOUNT", DbType.Decimal, 18, poParameter.NLIMIT_AMOUNT);
+            // loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, "EDIT");
+            // loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 8, poParameter.CUSER_LOGIN_ID);
+            //
+            // var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+            //     .Where(x =>
+            //         x.ParameterName is 
+            //             "@CCOMPANY_ID" or 
+            //             "@CTRANS_CODE" or
+            //             "@CDEPT_CODE" or
+            //             "@CUSER_ID" or
+            //             "@ISEQUENCE" or
+            //             "@LREPLACEMENT" or
+            //             "@NLIMIT_AMOUNT" or
+            //             "@CACTION" or
+            //             "@CUSER_LOGIN_ID"
+            //     )
+            //     .Select(x => x.Value);
+            //
+            // _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            //
+            // loDb.SqlExecNonQuery(loConn, loCmd, true);
             // loRtn = R_Utility.R_ConvertTo<GSM05000ApprovalUserDTO>(loDataTable).ToList();
         }
         catch (Exception ex)

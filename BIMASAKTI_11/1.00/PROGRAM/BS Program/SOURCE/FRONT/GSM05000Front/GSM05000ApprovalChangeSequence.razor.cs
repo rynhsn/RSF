@@ -34,7 +34,8 @@ public partial class GSM05000ApprovalChangeSequence : R_Page
 
     private void Display(R_DisplayEventArgs eventArgs)
     {
-        _viewModel.ApproverEntity = (GSM05000ApprovalUserDTO)eventArgs.Data;
+        var loData = (GSM05000ApprovalUserDTO)eventArgs.Data;
+        _viewModel.GetEnableMethod(loData);
     }
 
     private async Task GetList(R_ServiceGetListRecordEventArgs eventArgs)
@@ -66,18 +67,24 @@ public partial class GSM05000ApprovalChangeSequence : R_Page
         return Task.CompletedTask;
     }
 
-    private async Task ChangedDept()
+    private async Task ChangedDept(object value)
     {
-        await _grid.R_RefreshGrid(_viewModel.DepartmentEntity.CDEPT_CODE);
+        var lcValue = (string)value;
+        _viewModel.DepartmentEntity.CDEPT_CODE = lcValue;
+        await _grid.R_RefreshGrid(lcValue);
     }
 
     private async Task OnClickNext()
     {
+        var loData = _grid.CurrentSelectedData;
+        await _viewModel.SwapUpSeqMethod(poBtnClick: GetBtnClickUpOrDown.Up, loData);
         await _grid.R_MoveToNextRow();
     }
 
     private async Task OnClickPrevious()
     {
+        var loData = _grid.CurrentSelectedData;
+        await _viewModel.SwapUpSeqMethod(poBtnClick: GetBtnClickUpOrDown.Down, loData);
         await _grid.R_MoveToPreviousRow();
     }
     
@@ -99,7 +106,7 @@ public partial class GSM05000ApprovalChangeSequence : R_Page
         try
         {
             var loData = (List<GSM05000ApprovalUserDTO>)eventArgs.Data;
-            loData.Select(x =>  x.CSEQUENCE = (loData.IndexOf(x) + 1).ToString().PadLeft(3, '0')).ToList();
+            loData.Select(x =>  x.ISEQUENCE = (loData.IndexOf(x) + 1)).ToList();
         }
         catch (Exception ex)
         {

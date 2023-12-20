@@ -3461,9 +3461,11 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "GLM00500Common": "1.0.0",
+          "RSP_GL_BUDGET_UPLOADResources": "1.0.0",
           "RSP_GL_DELETE_BUDGETResources": "1.0.0",
           "RSP_GL_DELETE_BUDGET_DTResources": "1.0.0",
           "RSP_GL_FINALIZE_BUDGETResources": "1.0.0",
+          "RSP_GL_GENERATE_ACCOUNT_BUDGETResources": "1.0.0",
           "RSP_GL_PROCESS_BUDGET_UPLOADResources": "1.0.0",
           "RSP_GL_SAVE_BUDGET_DTResources": "1.0.0",
           "RSP_GL_SAVE_BUDGET_HDResources": "1.0.0",
@@ -3546,6 +3548,16 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "RSP_GL_BUDGET_UPLOADResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GL_BUDGET_UPLOADResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GL_BUDGET_UPLOADResources.dll": {}
+        }
+      },
       "RSP_GL_DELETE_BUDGETResources/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -3574,6 +3586,16 @@
         },
         "runtime": {
           "bin/placeholder/RSP_GL_FINALIZE_BUDGETResources.dll": {}
+        }
+      },
+      "RSP_GL_GENERATE_ACCOUNT_BUDGETResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GL_GENERATE_ACCOUNT_BUDGETResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GL_GENERATE_ACCOUNT_BUDGETResources.dll": {}
         }
       },
       "RSP_GL_IMPORT_JOURNALResources/1.0.0": {
@@ -10323,6 +10345,11 @@
       "path": "../../../SERVICE/GL/GLT00200SERVICE/GLT00200SERVICE.csproj",
       "msbuildProject": "../../../SERVICE/GL/GLT00200SERVICE/GLT00200SERVICE.csproj"
     },
+    "RSP_GL_BUDGET_UPLOADResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GL/GL_SPR/RSP_GL_BUDGET_UPLOADResources/RSP_GL_BUDGET_UPLOADResources.csproj",
+      "msbuildProject": "../../../BACK/GL/GL_SPR/RSP_GL_BUDGET_UPLOADResources/RSP_GL_BUDGET_UPLOADResources.csproj"
+    },
     "RSP_GL_DELETE_BUDGETResources/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GL/GL_SPR/RSP_GL_DELETE_BUDGETResources/RSP_GL_DELETE_BUDGETResources.csproj",
@@ -10337,6 +10364,11 @@
       "type": "project",
       "path": "../../../BACK/GL/GL_SPR/RSP_GL_FINALIZE_BUDGETResources/RSP_GL_FINALIZE_BUDGETResources.csproj",
       "msbuildProject": "../../../BACK/GL/GL_SPR/RSP_GL_FINALIZE_BUDGETResources/RSP_GL_FINALIZE_BUDGETResources.csproj"
+    },
+    "RSP_GL_GENERATE_ACCOUNT_BUDGETResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GL/GL_SPR/RSP_GL_GENERATE_ACCOUNT_BUDGETResources/RSP_GL_GENERATE_ACCOUNT_BUDGETResources.csproj",
+      "msbuildProject": "../../../BACK/GL/GL_SPR/RSP_GL_GENERATE_ACCOUNT_BUDGETResources/RSP_GL_GENERATE_ACCOUNT_BUDGETResources.csproj"
     },
     "RSP_GL_IMPORT_JOURNALResources/1.0.0": {
       "type": "project",

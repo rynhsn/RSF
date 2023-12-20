@@ -53,7 +53,7 @@ public class GLI00100TransactionCls
             
             var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loReturn = R_Utility.R_ConvertTo<GLI00100JournalDTO>(DataTable).FirstOrDefault();
+            loReturn = R_Utility.R_ConvertTo<GLI00100JournalDTO>(DataTable).FirstOrDefault() ?? new GLI00100JournalDTO();
         }
         catch (Exception ex)
         {

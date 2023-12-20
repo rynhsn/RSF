@@ -57,7 +57,7 @@ public class GLI00100AccountJournalCls
             _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
             var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loReturn = R_Utility.R_ConvertTo<GLI00100AccountAnalysisDetailDTO>(DataTable).FirstOrDefault();
+            loReturn = R_Utility.R_ConvertTo<GLI00100AccountAnalysisDetailDTO>(DataTable).FirstOrDefault() ?? new GLI00100AccountAnalysisDetailDTO();
         }
         catch (Exception ex)
         {

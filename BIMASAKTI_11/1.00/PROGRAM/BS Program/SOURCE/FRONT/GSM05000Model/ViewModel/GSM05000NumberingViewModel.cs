@@ -43,7 +43,7 @@ public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
 
         try
         {
-            GSM05000TrxCodeParamsDTO loParams = new(){ CTRANS_CODE = TransactionCode };
+            GSM05000TrxCodeParamsDTO loParams = new() { CTRANS_CODE = TransactionCode };
             var loReturn = await _GSM05000NumberingModel.GetNumberingHeaderAsync(loParams);
             HeaderEntity = loReturn;
         }

@@ -35,7 +35,8 @@
     <R_ItemLayout col="12">
         <R_Grid @ref="@_gridRefNumbering"
                 DataSource="@_GSM05000NumberingViewModel.GridList"
-                Pageable="true"
+                Pageable
+                PageSize="23"
                 R_ConductorGridSource="@_conductorRefNumbering"
                 R_GridType="@R_eGridType.Original"
                 R_ServiceGetListRecord="@Grid_GetListNumbering"
@@ -45,10 +46,10 @@
                 R_Before_Open_Grid_Lookup="BeforeLookupNumbering"
                 R_After_Open_Grid_Lookup="AfterLookupNumbering"
                 Width="100%"
-                Height="420px">
+                Height="575px">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.CPERIOD)" HeaderText="@_localizer["LABEL_PERIOD"]" Width="100px"/>
-                <R_GridLookupColumn FieldName="@nameof(GSM05000NumberingGridDTO.CDEPT_CODE)" HeaderText="@_localizer["LABEL_DEPTCODE"]" R_EnableAdd="@_GSM05000NumberingViewModel.HeaderEntity.LDEPT_MODE" Width="180px"/>
+                <R_GridLookupColumn FieldName="@nameof(GSM05000NumberingGridDTO.CDEPT_CODE)" HeaderText="@_localizer["LABEL_DEPTCODE"]" R_EnableAdd Width="180px"/>
                 <R_GridTextColumn FieldName="@nameof(GSM05000NumberingGridDTO.CDEPT_NAME)" HeaderText="@_localizer["LABEL_DEPTNAME"]" Width="200px"/>
                 <R_GridNumericColumn FieldName="@nameof(GSM05000NumberingGridDTO.ISTART_NUMBER)" HeaderText="@_localizer["LABEL_STARTNUMBER"]" R_EnableAdd R_EnableEdit Min="1" Max="1000" Step="1" Width="120px"/>
                 <R_GridNumericColumn FieldName="@nameof(GSM05000NumberingGridDTO.ILAST_NUMBER)" HeaderText="@_localizer["LABEL_LASTNUMBER"]" Width="100px"/>
@@ -65,6 +66,7 @@
                  R_IsHeader
                  R_ServiceGetRecord="Grid_GetRecordNumbering"
                  R_AfterAdd="@Grid_AfterAddNumbering"
+                 R_BeforeEdit="@Grid_BeforeEditNumbering"
                  R_ServiceSave="Grid_ServiceSaveNumbering"
                  R_AfterSave="Grid_ServiceAfterSaveNumbering"
                  R_ServiceDelete="Grid_ServiceDeleteNumbering" />

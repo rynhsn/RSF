@@ -1,6 +1,106 @@
 @page "/GSM04500AccSetting"
-<h3>GSM04500AccSetting</h3>
+@using R_BlazorFrontEnd.Interfaces
+@using GSM04500FrontResources
+@using GSM04500Common.DTOs
+@inherits R_Page
+@attribute [R_Page(Title = "Account Setting")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
-@code {
-    
-}
+<R_StackLayout Row Class="mb-2">
+    <R_ItemLayout Class="pe-3">
+        <R_Label>@_localizer["LBL_JRNLGRP"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="_viewModel.ParentEntity.CJRNGRP_CODE" Enabled="false"/>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="_viewModel.ParentEntity.CJRNGRP_NAME" Enabled="false"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Class="mb-4">
+    <R_ItemLayout>
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.GridList"
+                Pageable
+                PageSize="6"
+                R_ConductorGridSource="@_conductorRef"
+                R_GridType="R_eGridType.Original"
+                R_ServiceGetListRecord="@GetGridList"
+                R_Before_Open_Grid_Lookup="BeforeLookup"
+                R_After_Open_Grid_Lookup="AfterLookup"
+                AllowEditRow="_flagGrid"
+                AllowAddNewRow="false"
+                AllowDeleteRow="false"
+                Enabled="_flagGrid"
+                Height="200px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GSM04500AccountSettingDTO.CGOA)" HeaderText="@_localizer["LBL_GOA"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
+                <R_GridCheckBoxColumn FieldName="@nameof(GSM04500AccountSettingDTO.LDEPARTMENT_MODE)" HeaderText="@_localizer["LBL_BYDEPT"]" TextAlignment="R_eTextAlignment.Center" Width="150px" R_EnableEdit/>
+                <R_GridLookupColumn FieldName="@nameof(GSM04500AccountSettingDTO.CGLACCOUNT_NO)" HeaderText="@_localizer["LBL_GLACCNO"]" Width="150px" TextAlignment="R_eTextAlignment.Left" R_EnableEdit/>
+                <R_GridTextColumn FieldName="@nameof(GSM04500AccountSettingDTO.CGLACCOUNT_NAME)" HeaderText="@_localizer["LBL_GLACCNAME"]" TextAlignment="R_eTextAlignment.Left" Width="250px"/>
+                <R_GridTextColumn FieldName="@nameof(GSM04500AccountSettingDTO.CUPDATE_BY)" HeaderText="@_localizer["LBL_UPDATEDBY"]" Width="150px"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GSM04500AccountSettingDTO.DUPDATE_DATE)" HeaderText="@_localizer["LBL_UPDATEDDATE"]" Width="250px"/>
+                <R_GridTextColumn FieldName="@nameof(GSM04500AccountSettingDTO.CCREATE_BY)" HeaderText="@_localizer["LBL_CREATEDBY"]" Width="150px"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GSM04500AccountSettingDTO.DCREATE_DATE)" HeaderText="@_localizer["LBL_CREATEDDATE"]" Width="250px"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_ConductorGrid @ref="@_conductorRef"
+                 R_ViewModel="_viewModel"
+                 R_IsHeader
+                 R_SetOther="SetOther"
+                 R_Display="Display"
+                 R_ServiceGetRecord="@GetRecord"
+                 R_ServiceSave="Save"/>
+
+
+<R_StackLayout Row Class="mb-2">
+    <R_ItemLayout Class="pe-3">
+        <R_Label>@_localizer["LBL_GOA"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col=5>
+        <R_TextBox @bind-Value="_viewModelDept.ParentEntity.CGOA" Enabled="false"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout>
+    <R_ItemLayout>
+        <R_Grid @ref="@_gridRefDept"
+                DataSource="@_viewModelDept.GridList"
+                Pageable
+                PageSize="6"
+                R_ConductorGridSource="@_conductorRefDept"
+                R_GridType="R_eGridType.Original"
+                R_ServiceGetListRecord="@GetGridListDept"
+                R_Before_Open_Grid_Lookup="BeforeLookupDept"
+                R_After_Open_Grid_Lookup="AfterLookupDept"
+                AllowEditRow="_flagGridDept"
+                AllowAddNewRow="_flagGridDept"
+                AllowDeleteRow="_flagGridDept"
+                Enabled="_flagGridDept"
+                Height="250px">
+            <R_GridColumns>
+                <R_GridLookupColumn FieldName="@nameof(GSM04500AccountSettingDeptDTO.CDEPT_CODE)" HeaderText="@_localizer["LBL_DEPTCODE"]" Width="200px" TextAlignment="R_eTextAlignment.Left" R_EnableAdd/>
+                <R_GridTextColumn FieldName="@nameof(GSM04500AccountSettingDeptDTO.CDEPT_NAME)" HeaderText="@_localizer["LBL_DEPTNAME"]" TextAlignment="R_eTextAlignment.Left" Width="250px"/>
+                <R_GridLookupColumn FieldName="@nameof(GSM04500AccountSettingDeptDTO.CGLACCOUNT_NO)" HeaderText="@_localizer["LBL_GLACCNO"]" Width="150px" TextAlignment="R_eTextAlignment.Left" R_EnableAdd R_EnableEdit/>
+                <R_GridTextColumn FieldName="@nameof(GSM04500AccountSettingDeptDTO.CGLACCOUNT_NAME)" HeaderText="@_localizer["LBL_GLACCNAME"]" TextAlignment="R_eTextAlignment.Left" Width="250px"/>
+                <R_GridTextColumn FieldName="@nameof(GSM04500AccountSettingDeptDTO.CUPDATE_BY)" HeaderText="@_localizer["LBL_UPDATEDBY"]" Width="150px"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GSM04500AccountSettingDeptDTO.DUPDATE_DATE)" HeaderText="@_localizer["LBL_UPDATEDDATE"]" Width="250px"/>
+                <R_GridTextColumn FieldName="@nameof(GSM04500AccountSettingDeptDTO.CCREATE_BY)" HeaderText="@_localizer["LBL_CREATEDBY"]" Width="150px"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GSM04500AccountSettingDeptDTO.DCREATE_DATE)" HeaderText="@_localizer["LBL_CREATEDDATE"]" Width="250px"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_ConductorGrid @ref="@_conductorRefDept"
+                 R_ViewModel="_viewModelDept"
+                 R_SetOther="SetOtherDept"
+                 R_ServiceGetRecord="@GetRecordDept"
+                 R_ServiceSave="SaveDept"
+                 R_ServiceDelete="DeleteDept"/>

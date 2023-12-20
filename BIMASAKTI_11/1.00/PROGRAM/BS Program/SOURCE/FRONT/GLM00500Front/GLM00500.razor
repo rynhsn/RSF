@@ -1,10 +1,13 @@
 ﻿@page "/GLM00500"
+@using R_BlazorFrontEnd.Interfaces
+@using GLM00500FrontResources
 @inherits R_Page
 @attribute [R_Page(Title = "List")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
 <R_StackLayout Row Class="mb-1">
     <R_ItemLayout>
-        <R_Label>Year</R_Label>
+        <R_Label>@_localizer["LABEL_YEAR"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="1">
         <R_NumericTextBox
@@ -16,7 +19,7 @@
             Step="1" ThousandSeparator="false"/>
     </R_ItemLayout>
     <R_ItemLayout col="1">
-        <R_Button OnClick="RefreshList" R_ConductorSource="_conductorRef" R_EnableOther="true">Refresh</R_Button>
+        <R_Button OnClick="RefreshList" R_ConductorSource="_conductorRef" R_EnableOther="true">@_localizer["LABEL_BTNREFRESH"]</R_Button>
     </R_ItemLayout>
 </R_StackLayout>
 
@@ -24,32 +27,35 @@
     <R_ItemLayout>
         <R_Grid @ref="_gridRef"
                 DataSource="_viewModel.BudgetHDList"
-                Pageable="true"
+                Pageable
+                PageSize="16"
                 R_ConductorSource="_conductorRef"
                 R_GridType="R_eGridType.Navigator"
                 R_ServiceGetListRecord="GetBudgetHDList"
-                Height="265px">
+                Height="400px"
+                Width="100%"
+                Enabled="_gridEnabled">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="@nameof(GLM00500BudgetHDDTO.CBUDGET_NO)" HeaderText="Budget No." Width="100px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500BudgetHDDTO.CBUDGET_NAME)" HeaderText="Budget Name" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500BudgetHDDTO.CCURRENCY_TYPE_NAME)" HeaderText="Currency Type" Width="120px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridCheckBoxColumn FieldName="@nameof(GLM00500BudgetHDDTO.LFINAL)" HeaderText="Final" Width="80px" TextAlignment="R_eTextAlignment.Center"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500BudgetHDDTO.CUPDATE_BY)" HeaderText="Updated By" Width="120px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridDateTimePickerColumn FieldName="@nameof(GLM00500BudgetHDDTO.DUPDATE_DATE)" HeaderText="Updated Date" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridTextColumn FieldName="@nameof(GLM00500BudgetHDDTO.CCREATE_BY)" HeaderText="Created By" Width="120px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridDateTimePickerColumn FieldName="@nameof(GLM00500BudgetHDDTO.DCREATE_DATE)" HeaderText="Created Date" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500BudgetHDDTO.CBUDGET_NO)" HeaderText="@_localizer["LABEL_BUDGETNO"]" Width="120px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500BudgetHDDTO.CBUDGET_NAME)" HeaderText="@_localizer["LABEL_BUDGETNAME"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500BudgetHDDTO.CCURRENCY_TYPE_NAME)" HeaderText="@_localizer["LABEL_CURRTYPE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridCheckBoxColumn FieldName="@nameof(GLM00500BudgetHDDTO.LFINAL)" HeaderText="@_localizer["LABEL_FINAL"]" Width="80px" TextAlignment="R_eTextAlignment.Center"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500BudgetHDDTO.CUPDATE_BY)" HeaderText="@_localizer["LABEL_UPDATEDBY"]" Width="120px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GLM00500BudgetHDDTO.DUPDATE_DATE)" HeaderText="@_localizer["LABEL_UPDATEDDATE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(GLM00500BudgetHDDTO.CCREATE_BY)" HeaderText="@_localizer["LABEL_CREATEDBY"]" Width="120px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GLM00500BudgetHDDTO.DCREATE_DATE)" HeaderText="@_localizer["LABEL_CREATEDDATE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
             </R_GridColumns>
 
         </R_Grid>
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_GroupBox ShowBorder="false" Class="mb-3 p-2">
+<R_GroupBox ShowBorder Class="mb-2" Title="@_localizer["LABEL_DETAIL"]">
     <R_StackLayout Row>
         <R_ItemLayout col="6">
             <R_StackLayout Row Class="mb-1">
                 <R_ItemLayout col="3">
-                    <R_Label>Budget No.</R_Label>
+                    <R_Label>@_localizer["LABEL_BUDGETNO"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
                     <R_TextBox @ref="_fieldBudgetNo" @bind-Value="_viewModel.Data.CBUDGET_NO"
@@ -61,12 +67,12 @@
                     <R_CheckBox @bind-Value="_viewModel.Data.LFINAL"
                                 R_ConductorSource="_conductorRef"
                                 Enabled="false"/>
-                    <R_Label>Final</R_Label>
+                    <R_Label>@_localizer["LABEL_FINAL"]</R_Label>
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row Class="mb-1">
                 <R_ItemLayout col="3">
-                    <R_Label>Budget Name</R_Label>
+                    <R_Label>@_localizer["LABEL_BUDGETNAME"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="8">
                     <R_TextBox @ref="_fieldBudgetName" @bind-Value="_viewModel.Data.CBUDGET_NAME"
@@ -78,7 +84,7 @@
             </R_StackLayout>
             <R_StackLayout Row>
                 <R_ItemLayout col="3">
-                    <R_Label>Currency Type</R_Label>
+                    <R_Label>@_localizer["LABEL_CURRTYPE"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="5">
                     <R_ComboBox Data="_viewModel.CurrencyTypeList"
@@ -94,26 +100,26 @@
         <R_ItemLayout col="6">
             <R_StackLayout Row Class="mb-1">
                 <R_ItemLayout col="3">
-                    <R_Label>Updated By</R_Label>
+                    <R_Label>@_localizer["LABEL_UPDATEDBY"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
                     <R_TextBox @bind-Value="_viewModel.Data.CUPDATE_BY"
                                R_ConductorSource="_conductorRef" Enabled="false"/>
                 </R_ItemLayout>
-                <R_ItemLayout col="6">
+                <R_ItemLayout col="5">
                     <R_DateTimePicker @bind-Value="_viewModel.Data.DUPDATE_DATE"
                                       R_ConductorSource="_conductorRef" Enabled="false"/>
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row>
                 <R_ItemLayout col="3">
-                    <R_Label>Created By</R_Label>
+                    <R_Label>@_localizer["LABEL_CREATEDBY"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
                     <R_TextBox @bind-Value="_viewModel.Data.CCREATE_BY"
                                R_ConductorSource="_conductorRef" Enabled="false"/>
                 </R_ItemLayout>
-                <R_ItemLayout col="6">
+                <R_ItemLayout col="5">
                     <R_DateTimePicker @bind-Value="_viewModel.Data.DCREATE_DATE"
                                       R_ConductorSource="_conductorRef" Enabled="false"/>
                 </R_ItemLayout>
@@ -140,7 +146,7 @@
             <R_Button
                 OnClick="SetFinal"
                 R_ConductorSource="_conductorRef"
-                R_EnableOther="true">
+                Enabled="@(_viewModel.BudgetHDEntity.LFINAL != true && _viewModel.BudgetHDEntity.LALLOW_FINAL == true && (_conductorRef.CurrentConductorStatus != R_eConductorStatus.Add && _conductorRef.CurrentConductorStatus != R_eConductorStatus.Edit))">
                 Final
             </R_Button>
         </R_ItemLayout>
@@ -150,7 +156,7 @@
                 R_EnableOther="true"
                 R_Before_Open_Popup="BeforeOpenUpload"
                 R_After_Open_Popup="AfterOpenUpload">
-                Upload
+                @_localizer["LABEL_BTNUPLOAD"]
             </R_Popup>
         </R_ItemLayout>
         <R_ItemLayout>
@@ -158,7 +164,7 @@
                 OnClick="DownloadTemplate"
                 R_ConductorSource="_conductorRef"
                 R_EnableOther="true">
-                Template
+                @_localizer["LABEL_BTNTEMPLATE"]
             </R_Button>
         </R_ItemLayout>
     </R_StackLayout>
@@ -177,6 +183,7 @@
              R_ViewModel="@_viewModel"
              R_IsHeader="true"
              R_Display="@Display"
+             R_SetOther="SetOther"
              R_AfterAdd="@AfterAdd"
              R_ServiceGetRecord="@GetBudgetHD"
              R_Validation="@ValidationBudgetHD"
@@ -185,4 +192,4 @@
              R_AfterDelete="@AfterDeleteBudgetHD"
              R_BeforeCancel="@BeforeCancelBudgetHD"/>
 
-<R_PredefinedDock R_InstantiateDock="InstanceDetailTab" Title="Detail"/>
+<R_PredefinedDock R_InstantiateDock="InstanceDetailTab" Title="@_localizer["TITLE_DETAIL"]"/>

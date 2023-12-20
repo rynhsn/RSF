@@ -241,17 +241,28 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
-        string lcQuery;
+        string lcQuery = null;
         try
         {
             loDb = new R_Db();
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = @"select top 1 1 as EXIST 
+            if (poEntity.ETAB_NAME == GSM05000eTabName.Numbering)
+            {
+                lcQuery = @"select top 1 1 as EXIST 
                           from GSM_TRANSACTION_NUMBER (nolock) 
                          where CCOMPANY_ID = @CCOMPANY_ID 
                            and CTRANS_CODE = @CTRANS_CODE";
+            }
+            else if (poEntity.ETAB_NAME == GSM05000eTabName.Approval)
+            {
+                lcQuery = @"select top 1 1 as EXIST 
+                          from GSM_TRANSACTION_APPROVAL (nolock) 
+                         where CCOMPANY_ID = @CCOMPANY_ID 
+                           and CTRANS_CODE = @CTRANS_CODE";
+            }
+
             loCmd.CommandType = CommandType.Text;
             loCmd.CommandText = lcQuery;
 

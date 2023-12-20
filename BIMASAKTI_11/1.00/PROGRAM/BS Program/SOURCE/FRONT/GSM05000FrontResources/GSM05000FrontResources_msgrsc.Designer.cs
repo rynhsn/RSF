@@ -105,6 +105,114 @@ namespace GSM05000FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is some detail in Detail Document Numbering table. Your data changing will delete all Detail Document Numbering table..
+        /// </summary>
+        internal static string Confirm01 {
+            get {
+                return ResourceManager.GetString("Confirm01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is some detail in User Approval table. Your data changing will delete all User Approval table..
+        /// </summary>
+        internal static string Confirm02 {
+            get {
+                return ResourceManager.GetString("Confirm02", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Replacement flag to false will remove all replacement for this user, are you sure?.
+        /// </summary>
+        internal static string Confirm03 {
+            get {
+                return ResourceManager.GetString("Confirm03", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirmation.
+        /// </summary>
+        internal static string ConfirmLabel {
+            get {
+                return ResourceManager.GetString("ConfirmLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must fill Approval Mode.
+        /// </summary>
+        internal static string Err01 {
+            get {
+                return ResourceManager.GetString("Err01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You should fill Sequence By Department.
+        /// </summary>
+        internal static string Err02 {
+            get {
+                return ResourceManager.GetString("Err02", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You should fill Sequence By Transaction Code.
+        /// </summary>
+        internal static string Err03 {
+            get {
+                return ResourceManager.GetString("Err03", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You should fill Sequence Period Mode.
+        /// </summary>
+        internal static string Err04 {
+            get {
+                return ResourceManager.GetString("Err04", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You should fill Sequence Length of Number.
+        /// </summary>
+        internal static string Err05 {
+            get {
+                return ResourceManager.GetString("Err05", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sequence value can not same each other.
+        /// </summary>
+        internal static string Err06 {
+            get {
+                return ResourceManager.GetString("Err06", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sequence can not overlap or else must Sequential from 1 to.
+        /// </summary>
+        internal static string Err07 {
+            get {
+                return ResourceManager.GetString("Err07", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Number length cannot exceed 30 characters.
+        /// </summary>
+        internal static string Err08 {
+            get {
+                return ResourceManager.GetString("Err08", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to By Department.
         /// </summary>
         internal static string LABEL_APPROVALDEPT {
@@ -222,6 +330,24 @@ namespace GSM05000FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replacement User.
+        /// </summary>
+        internal static string LABEL_GROUPREPLUSER {
+            get {
+                return ResourceManager.GetString("LABEL_GROUPREPLUSER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Approval.
+        /// </summary>
+        internal static string LABEL_GROUPUSERAPPROVAL {
+            get {
+                return ResourceManager.GetString("LABEL_GROUPUSERAPPROVAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Using Incremental Document.
         /// </summary>
         internal static string LABEL_INCREMENTFLAG {
@@ -245,6 +371,15 @@ namespace GSM05000FrontResources {
         internal static string LABEL_LIMITAMOUNT {
             get {
                 return ResourceManager.GetString("LABEL_LIMITAMOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum 30.
+        /// </summary>
+        internal static string LABEL_MAX30 {
+            get {
+                return ResourceManager.GetString("LABEL_MAX30", resourceCulture);
             }
         }
         
@@ -429,7 +564,7 @@ namespace GSM05000FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use Third Party.
+        ///   Looks up a localized string similar to Use 3rd Party.
         /// </summary>
         internal static string LABEL_USERTHIRDPARTY {
             get {

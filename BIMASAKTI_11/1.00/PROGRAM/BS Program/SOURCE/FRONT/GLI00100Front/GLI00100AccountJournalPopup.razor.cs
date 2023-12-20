@@ -25,7 +25,11 @@ public partial class GLI00100AccountJournalPopup : R_Page
             var loParam = (GLI00100PopupParamsDTO)poParameter;
             _viewModel.PopupParams = loParam;
             await _viewModel.GetHeader();
-            await _gridRef.R_RefreshGrid(null);
+            await _viewModel.GetList();
+            // if (_viewModel.DataList.Count > 0)
+            // {
+                await _gridRef.R_RefreshGrid(null);
+            // }
         }
         catch (Exception ex)
         {
@@ -41,7 +45,6 @@ public partial class GLI00100AccountJournalPopup : R_Page
 
         try
         {
-            await _viewModel.GetList();
             eventArgs.ListEntityResult = _viewModel.DataList;
         }
         catch (Exception ex)

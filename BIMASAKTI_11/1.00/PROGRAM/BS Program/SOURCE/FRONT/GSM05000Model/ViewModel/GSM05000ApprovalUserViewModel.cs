@@ -54,6 +54,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
             {
                 R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, TransactionCode);
                 var loReturn = await _Model.GetApprovalDepartmentStreamAsync();
+
                 DepartmentList = new ObservableCollection<GSM05000ApprovalDepartmentDTO>(loReturn);
             }
             else
@@ -94,18 +95,17 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
             R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, TransactionCode);
             var loReturn = await _Model.GetApprovalListStreamAsync();
             // dalam list loreturn ada kolom ISEQUENCE, akan diubah ke CSEQUENCE dengan 3 digit angka
-            foreach (var loItem in loReturn)
-            {
-                loItem.CSEQUENCE = loItem.ISEQUENCE.ToString("D3");
-            }
-            
+            // foreach (var loItem in loReturn)
+            // {
+            //     loItem.CSEQUENCE = loItem.ISEQUENCE.ToString("D3");
+            // }
+
             //order by deptcode dan seq
-            
-            
+
+
             ApproverList =
                 new ObservableCollection<GSM05000ApprovalUserDTO>(loReturn.OrderBy(x => x.CDEPT_CODE)
                     .ThenBy(x => x.ISEQUENCE));
-            
         }
         catch (Exception ex)
         {
@@ -124,7 +124,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
             poEntity.CTRANS_CODE = TransactionCode;
             ReplacementFlagTemp = ApproverEntity.LREPLACEMENT;
             ApproverEntity = await _Model.R_ServiceGetRecordAsync(poEntity);
-            ApproverEntity.CSEQUENCE = ApproverEntity.ISEQUENCE.ToString("D3");
+            // ApproverEntity.CSEQUENCE = ApproverEntity.ISEQUENCE.ToString("D3");
         }
         catch (Exception ex)
         {
@@ -180,13 +180,18 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
         try
         {
             // cek approval mode 
-            if (HeaderEntity.CAPPROVAL_MODE != "1")
+            if (HeaderEntity.CAPPROVAL_MODE == "1")
             {
                 if (ApproverList.Count != 0)
                 {
-                    var loApprover = ApproverList.OrderByDescending(x => x.CSEQUENCE).FirstOrDefault();
+                    // var loApprover = ApproverList.OrderByDescending(x => x.CSEQUENCE).Where(x=>x.CDEPT_CODE == DepartmentEntity.CDEPT_CODE).FirstOrDefault();
+                    //ambil sequence terakhir dalam approverlist dengan deptcode yang sama dengan deptcode yang dipilih lalu tambah 1 gunakan max
+
+                    var loApprover = ApproverList.Where(x => x.CDEPT_CODE == DepartmentEntity.CDEPT_CODE)
+                        .OrderByDescending(x => x.ISEQUENCE).FirstOrDefault();
+
                     // lnSequence = Convert.ToInt32(loApprover.CSEQUENCE) + 1;
-                    lnSeq = loApprover.ISEQUENCE + 1;
+                    lnSeq = loApprover != null ? loApprover.ISEQUENCE + 1 : 1;
                 }
 
                 // poNewEntity.CSEQUENCE = lnSequence.ToString("D3");
@@ -236,8 +241,71 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
             R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE, poParameter.CDEPT_CODE);
             var loReturn = await _Model.GSM05000GetUserSequenceDataModelStream();
             //urutkan berdasarkan sequence
-            ApproverList = new ObservableCollection<GSM05000ApprovalUserDTO>(loReturn.OrderBy(x => x.CSEQUENCE));
-            // ApproverList = new ObservableCollection<GSM05000ApprovalUserDTO>(loReturn.Data);
+            ApproverList = new ObservableCollection<GSM05000ApprovalUserDTO>(loReturn.OrderBy(x => x.ISEQUENCE));
+            SwapDataList = loReturn.OrderBy(x => x.ISEQUENCE).ToList();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+
+    public bool EnableUpBtn { get; set; } = false;
+    public bool EnableDownBtn { get; set; } = false;
+
+    public List<GSM05000ApprovalUserDTO> SwapDataList = new();
+
+    public void GetEnableMethod(GSM05000ApprovalUserDTO poParam)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loData = SwapDataList.Find(x => x.CUSER_ID == poParam.CUSER_ID);
+
+            EnableDownBtn = loData.ISEQUENCE > loData.LOWEST;
+            EnableUpBtn = loData.ISEQUENCE < loData.HIGHEST;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    public async Task SwapUpSeqMethod(GetBtnClickUpOrDown poBtnClick, GSM05000ApprovalUserDTO poSelectedData)
+    {
+        var loEx = new R_Exception();
+        int liData1;
+        int liData2;
+
+        try
+        {
+            liData1 = SwapDataList.IndexOf(poSelectedData);
+
+            if (poBtnClick == GetBtnClickUpOrDown.Up)
+            {
+                liData2 = liData1 + 1;
+            }
+            else
+            {
+                liData2 = liData1 - 1;
+            }
+
+            // Swap the seq values
+            int temp = SwapDataList[liData1].ISEQUENCE;
+            SwapDataList[liData1].ISEQUENCE = SwapDataList[liData2].ISEQUENCE;
+            SwapDataList[liData2].ISEQUENCE = temp;
+
+            //Enable Up Down Btn
+            GetEnableMethod(poSelectedData);
+
+            SwapDataList = SwapDataList.OrderBy(x => x.ISEQUENCE).ToList();
+            await Task.CompletedTask;
         }
         catch (Exception ex)
         {
@@ -292,14 +360,17 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
             {
                 CTRANSACTION_CODE = poEntity.CTRANSACTION_CODE,
                 CDEPT_CODE = poEntity.CDEPT_CODE,
-                CDEPT_CODE_TO = poEntity.CDEPT_CODE_FROM
+                CDEPT_CODE_TO = poEntity.CDEPT_CODE_TO
             };
             await _Model.CopyToApprovalAsync(loParams);
+            // await Task.CompletedTask;
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
         }
+        
+        loEx.ThrowExceptionIfErrors();
     }
 
     public async Task CopyFrom(GSM05000ApprovalCopyDTO poEntity)
@@ -315,10 +386,19 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
                 CDEPT_CODE_FROM = poEntity.CDEPT_CODE_FROM
             };
             await _Model.CopyFromApprovalAsync(loParams);
+            // await Task.CompletedTask;
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
         }
+        
+        loEx.ThrowExceptionIfErrors();
     }
+}
+
+public enum GetBtnClickUpOrDown
+{
+    Up,
+    Down
 }

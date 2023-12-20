@@ -48,6 +48,14 @@ public class GLI00100TransactionViewModel : R_ViewModel<GLI00100TransactionGridD
 
             var loResult = await _model.GLI00100GetJournalGridStreamModel();
             DataList = new ObservableCollection<GLI00100JournalGridDTO>(loResult);
+
+            if (DataList.Count > 0)
+            {
+                foreach (var list in DataList)
+                {
+                    list.DDOCUMENT_DATE = DateTime.ParseExact(list.CDOCUMENT_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
+                }
+            }
         }
         catch (R_Exception ex)
         {

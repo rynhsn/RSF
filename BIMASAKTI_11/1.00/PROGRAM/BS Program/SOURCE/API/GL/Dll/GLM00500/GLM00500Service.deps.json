@@ -96,9 +96,11 @@
       "GLM00500Back/1.0.0": {
         "dependencies": {
           "GLM00500Common": "1.0.0",
+          "RSP_GL_BUDGET_UPLOADResources": "1.0.0",
           "RSP_GL_DELETE_BUDGETResources": "1.0.0",
           "RSP_GL_DELETE_BUDGET_DTResources": "1.0.0",
           "RSP_GL_FINALIZE_BUDGETResources": "1.0.0",
+          "RSP_GL_GENERATE_ACCOUNT_BUDGETResources": "1.0.0",
           "RSP_GL_PROCESS_BUDGET_UPLOADResources": "1.0.0",
           "RSP_GL_SAVE_BUDGET_DTResources": "1.0.0",
           "RSP_GL_SAVE_BUDGET_HDResources": "1.0.0",
@@ -114,6 +116,11 @@
           "GLM00500Common.dll": {}
         }
       },
+      "RSP_GL_BUDGET_UPLOADResources/1.0.0": {
+        "runtime": {
+          "RSP_GL_BUDGET_UPLOADResources.dll": {}
+        }
+      },
       "RSP_GL_DELETE_BUDGETResources/1.0.0": {
         "runtime": {
           "RSP_GL_DELETE_BUDGETResources.dll": {}
@@ -127,6 +134,11 @@
       "RSP_GL_FINALIZE_BUDGETResources/1.0.0": {
         "runtime": {
           "RSP_GL_FINALIZE_BUDGETResources.dll": {}
+        }
+      },
+      "RSP_GL_GENERATE_ACCOUNT_BUDGETResources/1.0.0": {
+        "runtime": {
+          "RSP_GL_GENERATE_ACCOUNT_BUDGETResources.dll": {}
         }
       },
       "RSP_GL_PROCESS_BUDGET_UPLOADResources/1.0.0": {
@@ -192,14 +204,6 @@
       "R_ContextBackEnd/1.0.0.0": {
         "runtime": {
           "R_ContextBackEnd.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "R_StorageCommon/1.0.0.0": {
-        "runtime": {
-          "R_StorageCommon.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -302,6 +306,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "RSP_GL_BUDGET_UPLOADResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "RSP_GL_DELETE_BUDGETResources/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -313,6 +322,11 @@
       "sha512": ""
     },
     "RSP_GL_FINALIZE_BUDGETResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_GL_GENERATE_ACCOUNT_BUDGETResources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -358,11 +372,6 @@
       "sha512": ""
     },
     "R_ContextBackEnd/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "R_StorageCommon/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

@@ -64,7 +64,13 @@ public partial class GLM00500Detail
 
         loEx.ThrowExceptionIfErrors();
     }
-
+    
+    private bool _gridEnabled;
+    private void SetOther(R_SetEventArgs eventArgs)
+    {
+        _gridEnabled = eventArgs.Enable;
+    }
+    
     //GetList
     private async Task GetBudgetDTList(R_ServiceGetListRecordEventArgs eventArgs)
     {
@@ -317,7 +323,7 @@ public partial class GLM00500Detail
             var loEntity = (GLM00500BudgetDTDTO)eventArgs.Data;
             await _viewModel.DeleteBudgetDT(loEntity);
             await Task.Delay(500);
-            await R_MessageBox.Show("Success", "Account Deleted Successfully!", R_eMessageBoxButtonType.OK);
+            await R_MessageBox.Show(_localizer["SuccessLabel"], _localizer["SuccessDeleteAcc"], R_eMessageBoxButtonType.OK);
         }
         catch (Exception ex)
         {
@@ -336,24 +342,24 @@ public partial class GLM00500Detail
             var loEntity = (GLM00500BudgetDTDTO)eventArgs.Data;
             if (string.IsNullOrEmpty(loEntity.CGLACCOUNT_NO))
             {
-                loEx.Add(new Exception("Account No. is required!"));
+                loEx.Add(new Exception(_localizer["LABEL_PERIOD0"]));
             }
 
             if (string.IsNullOrEmpty(loEntity.CCENTER_CODE) &&
                 ((loEntity.CBSIS == "B" && _viewModel.Company.LENABLE_CENTER_BS) ||
                  (loEntity.CBSIS == "I" && _viewModel.Company.LENABLE_CENTER_IS)))
             {
-                loEx.Add(new Exception($"Center Code is required for Account No. {loEntity.CGLACCOUNT_NO}!"));
+                loEx.Add(new Exception($"{_localizer["Exception05"]} {loEntity.CGLACCOUNT_NO}!"));
             }
 
             if (loEntity.CINPUT_METHOD != "MN" && loEntity.NBUDGET <= 0)
             {
-                loEx.Add(new Exception("Budget must be > 0!"));
+                loEx.Add(new Exception(_localizer["Exception06"]));
             }
 
             if (loEntity.CDIST_METHOD == "BW" && loEntity.CBW_CODE == "")
             {
-                loEx.Add(new Exception("Please select Weighting Code!"));
+                loEx.Add(new Exception(_localizer["Exception07"]));
             }
         }
         catch (Exception ex)

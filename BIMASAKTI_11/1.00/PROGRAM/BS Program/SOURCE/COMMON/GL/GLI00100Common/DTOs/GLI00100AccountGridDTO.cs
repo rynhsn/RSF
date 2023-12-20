@@ -32,6 +32,7 @@ namespace GLI00100Common.DTOs
     {
         public string CREC_ID { get; set; }
         public string CREF_DATE { get; set; }
+        public DateTime DREF_DATE { get; set; }
         public string CREF_NO { get; set; }
         public string CTRANSACTION_NAME { get; set; }
         public string CCENTER { get; set; }
@@ -51,29 +52,6 @@ namespace GLI00100Common.DTOs
 
     public class GLI00100JournalDTO : R_APIResultBaseDTO
     {
-        // public string CREC_ID { get; set; }
-        // public string CDEPT_CODE { get; set; }
-        // public string CDEPT_NAME { get; set; }
-        // public string CREF_NO { get; set; }
-        // public string CREF_DATE { get; set; }
-        // public string CDOC_NO { get; set; }
-        // public string CDOC_DATE { get; set; }
-        // public string CREF_PRD { get; set; }
-        // public string CTRANS_DESC { get; set; }
-        // public string CCURRENCY_CODE { get; set; }
-        // public int NLCURRENCY_RATE { get; set; }
-        // public string CLOCAL_CURRENCY_CODE { get; set; }
-        // public int NBASE_RATE { get; set; }
-        // public int NBCURRENCY_RATE { get; set; }
-        // public string CBASE_CURRENCY_CODE { get; set; }
-        // public int NDEBIT_AMOUNT { get; set; }
-        // public int NCREDIT_AMOUNT { get; set; }
-        // public int NLDEBIT_AMOUNT { get; set; }
-        // public int NLCREDIT_AMOUNT { get; set; }
-        // public int NBDEBIT_AMOUNT { get; set; }
-        // public int NBCREDIT_AMOUNT { get; set; }
-        // public string CTRANSACTION_NAME { get; set; }
-
         public string CCOMPANY_ID { get; set; }
         public string CDEPT_CODE { get; set; }
         public string CDEPT_NAME { get; set; }
@@ -141,6 +119,7 @@ namespace GLI00100Common.DTOs
         public string CDETAIL_DESC { get; set; }
         public string CDOCUMENT_NO { get; set; }
         public string CDOCUMENT_DATE { get; set; }
+        public DateTime DDOCUMENT_DATE { get; set; }
         public int NLDEBIT { get; set; }
         public int NLCREDIT { get; set; }
         public int NBDEBIT { get; set; }

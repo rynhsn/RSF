@@ -26,7 +26,11 @@ public partial class GLI00100TransactionPopup : R_Page
             _viewModel.PopupParams = loParam;
             await _viewModel.GetGSMCompany();
             await _viewModel.GetHeader();
-            await _gridRef.R_RefreshGrid(null);
+            // if (_viewModel.DataList.Count > 0)
+            // {
+                await _gridRef.R_RefreshGrid(null);
+            // }
+            // await _gridRef.R_RefreshGrid(null);
         }
         catch (Exception ex)
         {

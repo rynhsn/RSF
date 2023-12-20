@@ -1,4 +1,5 @@
-﻿using GSM05000Common.DTOs;
+﻿using GSM05000Common;
+using GSM05000Common.DTOs;
 using GSM05000Model.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
@@ -17,6 +18,8 @@ public partial class GSM05000 : R_Page
     private GSM05000ViewModel _GSM05000ViewModel = new();
     private R_Conductor _conductorRef;
     private R_Grid<GSM05000GridDTO> _gridRef;
+    public bool NumberingDock { get; set; }
+    public bool ApprovalDock { get; set; }
 
     protected override async Task R_Init_From_Master(object poParam)
     {
@@ -96,6 +99,7 @@ public partial class GSM05000 : R_Page
         {
             var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000DTO>(eventArgs.Data);
             await _GSM05000ViewModel.GetEntity(loParam);
+            EnTab();
 
             eventArgs.Result = _GSM05000ViewModel.Entity;
         }
@@ -114,6 +118,7 @@ public partial class GSM05000 : R_Page
         try
         {
             var loData = (GSM05000DTO)eventArgs.Data;
+            loData.CAPPROVAL_MODE ??= "";
 
             var llCondition1 = loData is { LAPPROVAL_FLAG: true, LUSE_THIRD_PARTY: false, CAPPROVAL_MODE: "" };
             var llCondition2 = loData.LINCREMENT_FLAG != _GSM05000ViewModel.TempEntity.LINCREMENT_FLAG;
@@ -124,36 +129,21 @@ public partial class GSM05000 : R_Page
             var llCondition7 = loData.LAPPROVAL_DEPT != _GSM05000ViewModel.TempEntity.LAPPROVAL_DEPT;
             var llCondition8 = loData.LUSE_THIRD_PARTY != _GSM05000ViewModel.TempEntity.LUSE_THIRD_PARTY;
 
-            var llIsExist = await _GSM05000ViewModel.CheckExistData(loData);
-
-
-            if (llIsExist)
+            var llIsExistNumbering = await _GSM05000ViewModel.CheckExistData(loData, GSM05000eTabName.Numbering);
+            
+            if (llIsExistNumbering)
             {
-
                 if (llCondition1)
                 {
-                    await R_MessageBox.Show("Error", "You must fill Approval Mode", R_eMessageBoxButtonType.OK);
+                    await R_MessageBox.Show("Error", _localizer["Err01"], R_eMessageBoxButtonType.OK);
                     eventArgs.Cancel = true;
                     return;
                 }
 
                 if (llCondition2 || llCondition3 || llCondition4 || llCondition5)
                 {
-                    var llReturn = await R_MessageBox.Show("Sure?",
-                        "There is some detail in Detail Document Numbering table. Your data changing will delete all Detail Document Numbering table.",
-                        R_eMessageBoxButtonType.OKCancel);
-
-                    if (llReturn == R_eMessageBoxResult.Cancel)
-                    {
-                        eventArgs.Cancel = true;
-                        return;
-                    }
-                }
-
-                if (llCondition6 || llCondition7 || llCondition8)
-                {
-                    var llReturn = await R_MessageBox.Show("Sure?",
-                        "There is some detail in User Approval table. Your data changing will delete all User Approval table.",
+                    var llReturn = await R_MessageBox.Show(_localizer["ConfirmLabel"],
+                        _localizer["Confirm01"],
                         R_eMessageBoxButtonType.OKCancel);
 
                     if (llReturn == R_eMessageBoxResult.Cancel)
@@ -163,48 +153,70 @@ public partial class GSM05000 : R_Page
                     }
                 }
             }
-            
+
+            var llIsExistApproval = await _GSM05000ViewModel.CheckExistData(loData, GSM05000eTabName.Approval);
+
+            if (llIsExistApproval)
+            {
+                if (llCondition6 || llCondition7 || llCondition8)
+                {
+                    var llReturn = await R_MessageBox.Show(_localizer["ConfirmLabel"],
+                        _localizer["Confirm02"],
+                        R_eMessageBoxButtonType.OKCancel);
+
+                    if (llReturn == R_eMessageBoxResult.Cancel)
+                    {
+                        eventArgs.Cancel = true;
+                        return;
+                    }
+                }
+            }
+
 
             if (_GSM05000ViewModel.DeptSequence == 0 && loData.LDEPT_MODE)
             {
-                await R_MessageBox.Show("Error", "You should fill Sequence By Department", R_eMessageBoxButtonType.OK);
+                await R_MessageBox.Show("Error", _localizer["Err02"], R_eMessageBoxButtonType.OK);
                 eventArgs.Cancel = true;
                 return;
             }
 
             if (_GSM05000ViewModel.TrxSequence == 0 && loData.LTRANSACTION_MODE)
             {
-                await R_MessageBox.Show("Error", "You should fill Sequence By Transaction Code", R_eMessageBoxButtonType.OK);
+                await R_MessageBox.Show("Error", _localizer["Err03"],
+                    R_eMessageBoxButtonType.OK);
                 eventArgs.Cancel = true;
                 return;
             }
 
             if (_GSM05000ViewModel.PeriodSequence == 0 && loData.LINCREMENT_FLAG)
             {
-                await R_MessageBox.Show("Error", "You should fill Sequence Period Mode", R_eMessageBoxButtonType.OK);
+                await R_MessageBox.Show("Error", _localizer["Err04"], R_eMessageBoxButtonType.OK);
                 eventArgs.Cancel = true;
                 return;
             }
 
             if (loData.INUMBER_LENGTH == 0 && loData.LINCREMENT_FLAG)
             {
-                await R_MessageBox.Show("Error", "You should fill Sequence Length of Number", R_eMessageBoxButtonType.OK);
+                await R_MessageBox.Show("Error", _localizer["Err05"],
+                    R_eMessageBoxButtonType.OK);
                 eventArgs.Cancel = true;
                 return;
             }
-            
+
             var llIsDuplicate = _GSM05000ViewModel.IsDuplicateSequence(loData);
             if (llIsDuplicate)
             {
-                await R_MessageBox.Show("Error", "Sequence value can not same each other", R_eMessageBoxButtonType.OK);
+                await R_MessageBox.Show("Error", _localizer["Err06"], R_eMessageBoxButtonType.OK);
                 eventArgs.Cancel = true;
                 return;
             }
-            
+
             var llIsValid = _GSM05000ViewModel.IsValidSequence(loData, out var loCount);
             if (!llIsValid)
             {
-                await R_MessageBox.Show("Error", $"Sequence can not overlap or else must Sequential from 1 to {loCount}", R_eMessageBoxButtonType.OK);
+                await R_MessageBox.Show("Error", _localizer["Err07"] +
+                                                 $" {loCount}",
+                    R_eMessageBoxButtonType.OK);
                 eventArgs.Cancel = true;
                 return;
             }
@@ -216,7 +228,7 @@ public partial class GSM05000 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     private void Saving(R_SavingEventArgs eventArgs)
     {
         var loData = (GSM05000DTO)eventArgs.Data;
@@ -250,6 +262,7 @@ public partial class GSM05000 : R_Page
 
     private Task InstanceNumberingTab(R_InstantiateDockEventArgs eventArgs)
     {
+        // EnTab();
         eventArgs.TargetPageType = typeof(GSM05000Numbering);
         eventArgs.Parameter =
             R_FrontUtility.ConvertObjectToObject<GSM05000NumberingHeaderDTO>(_GSM05000ViewModel.Entity);
@@ -258,6 +271,7 @@ public partial class GSM05000 : R_Page
 
     private Task InstanceApprovalTab(R_InstantiateDockEventArgs eventArgs)
     {
+        // EnTab();
         eventArgs.TargetPageType = typeof(GSM05000Approval);
         eventArgs.Parameter =
             R_FrontUtility.ConvertObjectToObject<GSM05000ApprovalHeaderDTO>(_GSM05000ViewModel.Entity);
@@ -332,11 +346,7 @@ public partial class GSM05000 : R_Page
 
         try
         {
-            if ((bool)eventArgs == false)
-            {
-                _GSM05000ViewModel.Data.CDEPT_DELIMITER = "";
-                _GSM05000ViewModel.DeptSequence = 0;
-            }
+            _GSM05000ViewModel.AutoSequence(eNumericList.DeptMode, (bool)eventArgs);
         }
         catch (Exception ex)
         {
@@ -353,11 +363,7 @@ public partial class GSM05000 : R_Page
 
         try
         {
-            if ((bool)eventArgs == false)
-            {
-                _GSM05000ViewModel.Data.CTRANSACTION_DELIMITER = "";
-                _GSM05000ViewModel.TrxSequence = 0;
-            }
+            _GSM05000ViewModel.AutoSequence(eNumericList.TrxMode, (bool)eventArgs);
         }
         catch (Exception ex)
         {
@@ -368,6 +374,31 @@ public partial class GSM05000 : R_Page
         return Task.CompletedTask;
     }
 
+    private void CheckPeriodMode(object eventArgs)
+    {
+        var llCondition = (string)eventArgs != "N";
+        _radioGroup = llCondition;
+        if ((_GSM05000ViewModel.TempEntity.CPERIOD_MODE == "N" && llCondition) ||
+            (_GSM05000ViewModel.TempEntity.CPERIOD_MODE != "N" && !llCondition))
+        {
+            _GSM05000ViewModel.AutoSequence(eNumericList.PeriodMode, llCondition);
+        }
+        _GSM05000ViewModel.TempEntity.CPERIOD_MODE = (string)eventArgs;
+        GetUpdateSample();
+    }
+
+    private void CheckLenMode(object eventArgs)
+    {
+        var llCondition = (int)eventArgs != 0;
+        if ((_GSM05000ViewModel.TempEntity.INUMBER_LENGTH == 0 && llCondition)
+            || (_GSM05000ViewModel.TempEntity.INUMBER_LENGTH != 0 && !llCondition))
+        {
+            _GSM05000ViewModel.AutoSequence(eNumericList.LenMode, llCondition);
+        }
+        _GSM05000ViewModel.TempEntity.INUMBER_LENGTH = (int)eventArgs;
+        GetUpdateSample();
+    }
+
     private void GetUpdateSample()
     {
         var loEx = new R_Exception();
@@ -375,6 +406,11 @@ public partial class GSM05000 : R_Page
         try
         {
             _GSM05000ViewModel.getRefNo();
+            
+            if (_GSM05000ViewModel.REFNO.Length > 30)
+            {
+                loEx.Add("Err08", _localizer["Err08"]);
+            }
         }
         catch (Exception ex)
         {
@@ -386,25 +422,29 @@ public partial class GSM05000 : R_Page
 
     private bool _radioGroup = false;
 
-    private void CheckPeriodMode(object eventArgs)
-    {
-        if (_conductorRef.R_ConductorMode == R_eConductorMode.Edit)
-        {
-            _radioGroup = (string)eventArgs != "N";
-        }
-    }
 
     private void ConvertGridToEntity(R_ConvertToGridEntityEventArgs eventArgs)
     {
-        var loData= (GSM05000DTO)eventArgs.Data;
-        eventArgs.GridData = new GSM05000GridDTO() { CTRANS_CODE = loData.CTRANS_CODE, CTRANSACTION_NAME = loData.CTRANSACTION_NAME };
+        var loData = (GSM05000DTO)eventArgs.Data;
+        eventArgs.GridData = new GSM05000GridDTO()
+            { CTRANS_CODE = loData.CTRANS_CODE, CTRANSACTION_NAME = loData.CTRANSACTION_NAME };
     }
 
-    private Task BeforeEdit(R_BeforeEditEventArgs eventArgs)
+    private bool _gridEnabled;
+
+    private void SetOther(R_SetEventArgs eventArgs)
     {
-        var loData = (GSM05000DTO)eventArgs.Data;
-        loData.DCREATE_DATE = DateTime.Now;
-        loData.DUPDATE_DATE = DateTime.Now;
-        return Task.CompletedTask;
+        _gridEnabled = eventArgs.Enable;
+    }
+
+    private void BeforeCancel(R_BeforeCancelEventArgs eventArgs)
+    {
+        _GSM05000ViewModel.GetSequence();
+    }
+
+    private void EnTab()
+    {
+        NumberingDock = _GSM05000ViewModel.Entity.LDEPT_MODE;
+        ApprovalDock = _GSM05000ViewModel.Entity.LAPPROVAL_FLAG;
     }
 }

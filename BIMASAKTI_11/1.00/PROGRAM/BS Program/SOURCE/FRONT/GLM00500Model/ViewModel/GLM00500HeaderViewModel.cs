@@ -61,6 +61,7 @@ namespace GLM00500Model.ViewModel
             {
                 loResult = await _model.R_ServiceGetRecordAsync(poEntity);
                 loResult.CREC_ID = poEntity.CREC_ID;
+                loResult.LALLOW_FINAL = poEntity.LALLOW_FINAL;
                 BudgetHDEntity = loResult;
             }
             catch (R_Exception ex)
@@ -183,15 +184,6 @@ namespace GLM00500Model.ViewModel
             loEx.ThrowExceptionIfErrors();
         }
 
-        public async Task ValidationBudgetHD(GLM00500BudgetHDDTO param)
-        {
-            var loEx = new R_Exception();
-            if (param.CBUDGET_NO is null or "") loEx.Add(new Exception("Budget No. is required!"));
-            if (param.CBUDGET_NAME is null or "") loEx.Add(new Exception("Budget Name is required!"));
-            if (param.CCURRENCY_TYPE is null or "") loEx.Add(new Exception("Please select Currency Type!"));
-            loEx.ThrowExceptionIfErrors();
-        }
-
         public async Task<GLM00500AccountBudgetExcelDTO> DownloadTemplate()
         {
             var loEx = new R_Exception();
@@ -208,7 +200,7 @@ namespace GLM00500Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
 
-            return loResult;
+            return loResult;
         }
     }
 }

@@ -3,13 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
-    <RootNamespace>GSM02000FrontResources</RootNamespace>
+    <RootNamespace>GLM00500FrontResources</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="GLM00500FrontResources_msgrsc.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>GSM02000FrontResources_msgrsc.Designer.cs</LastGenOutput>
+      <LastGenOutput>GLM00500FrontResources_msgrsc.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

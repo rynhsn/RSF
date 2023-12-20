@@ -1,7 +1,9 @@
 ﻿@page "/GLI00100"
 @using GLI00100Common.DTOs
+@using GLI00100FrontResources
+@using R_BlazorFrontEnd.Interfaces
 @inherits R_Page
-
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
 <R_StackLayout Row Spacing="2">
 
@@ -16,79 +18,91 @@
             Width="350px"
             Height="520px">
         <R_GridColumns>
-            <R_GridTextColumn FieldName="@nameof(GLI00100AccountGridDTO.CGLACCOUNT_NO)" HeaderText="Account No." Width="120px" TextAlignment="R_eTextAlignment.Left"/>
-            <R_GridTextColumn FieldName="@nameof(GLI00100AccountGridDTO.CGLACCOUNT_NAME)" HeaderText="Account Name" Width="230px" TextAlignment="R_eTextAlignment.Left"/>
+            <R_GridTextColumn FieldName="@nameof(GLI00100AccountGridDTO.CGLACCOUNT_NO)" HeaderText="@_localizer["LABEL_ACCNO"]" Width="120px" TextAlignment="R_eTextAlignment.Left"/>
+            <R_GridTextColumn FieldName="@nameof(GLI00100AccountGridDTO.CGLACCOUNT_NAME)" HeaderText="@_localizer["LABEL_ACCNAME"]" Width="270px" TextAlignment="R_eTextAlignment.Left"/>
         </R_GridColumns>
     </R_Grid>
 
-    <R_StackLayout Row Spacing="2">
+    <R_StackLayout Row Spacing="2" Class="mb-2">
         <R_ItemLayout col="4">
-            <R_Label>Account Type</R_Label>
+            <R_Label>@_localizer["LABEL_ACCTYPE"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout>
             <R_RadioGroup Data="@_viewModel.CBSIS"
                           @bind-Value="_viewModel.Data.CBSIS"
                           ValueField="Key"
                           TextField="Value"
+                          Layout="R_eRadioGroupLayout.Vertical"
                           Enabled="false"/>
         </R_ItemLayout>
     </R_StackLayout>
 
     <R_StackLayout Row Spacing="2">
         <R_ItemLayout col="4">
-            <R_Label>Normal Journal</R_Label>
+            <R_Label>@_localizer["LABEL_NRMLJOURNAL"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout>
             <R_RadioGroup Data="@_viewModel.CDBCR"
                           @bind-Value="_viewModel.Data.CDBCR"
                           ValueField="Key"
                           TextField="Value"
+                          Layout="R_eRadioGroupLayout.Horizontal"
                           Enabled="false"/>
         </R_ItemLayout>
     </R_StackLayout>
 </R_ItemLayout>
 
 <R_ItemLayout>
-<R_StackLayout Row Spacing="2" Class="mb-1">
+
+<R_GroupBox ShowBorder Class="pt-2">
+<R_StackLayout Row Spacing="1">
     <R_ItemLayout col="2">
-        <R_Label>Account</R_Label>
+        <R_Label>@_localizer["LABEL_ACC"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="3">
         <R_TextBox @bind-Value="_viewModel.Data.CGLACCOUNT_NO" Enabled="false"/>
     </R_ItemLayout>
-    <R_ItemLayout col="4">
+    <R_ItemLayout col="5">
         <R_TextBox @bind-Value="_viewModel.Data.CGLACCOUNT_NAME" Enabled="false"/>
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_StackLayout Row Spacing="2" Class="mb-1">
-    <R_ItemLayout col="2">
-        <R_Label>Year</R_Label>
+<R_StackLayout Row Spacing="7">
+    <R_ItemLayout col="4">
+        <R_StackLayout Row Spacing="1">
+            <R_ItemLayout col="6">
+                <R_Label>@_localizer["LABEL_YEAR"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_NumericTextBox @bind-Value="_viewModel.Year"
+                                  ThousandSeparator="false"
+                                  Min="@_viewModel.GSMPeriod.IMIN_YEAR"
+                                  Max="@_viewModel.GSMPeriod.IMAX_YEAR"
+                                  OnChanged="RefreshBudgetCombo"/>
+            </R_ItemLayout>
+        </R_StackLayout>
     </R_ItemLayout>
-    <R_ItemLayout col="3">
-        <R_NumericTextBox @bind-Value="_viewModel.Year"
-                          ThousandSeparator="false"
-                          Min="@_viewModel.GSMPeriod.IMIN_YEAR"
-                          Max="@_viewModel.GSMPeriod.IMAX_YEAR"
-                          OnChanged="RefreshBudgetCombo"/>
-    </R_ItemLayout>
-
-    <R_ItemLayout>
-        <R_Label>Currency Type</R_Label>
-    </R_ItemLayout>
-    <R_ItemLayout>
-        <R_RadioGroup Data="@_viewModel.CCURRENCY_TYPE"
-                      @bind-Value="_viewModel.CurrencyTypeValue"
-                      ValueField="Key"
-                      TextField="Value"
-                      Enabled="true"
-                      OnChanged="RefreshBudgetCombo"/>
+    
+    <R_ItemLayout col="7">
+        <R_StackLayout Row Spacing="1">
+            <R_ItemLayout Class="mx-2">
+                <R_Label>@_localizer["LABEL_CURRTYPE"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_RadioGroup Data="@_viewModel.CCURRENCY_TYPE"
+                              @bind-Value="_viewModel.CurrencyTypeValue"
+                              ValueField="Key"
+                              TextField="Value"
+                              Enabled="true"
+                              OnChanged="RefreshBudgetCombo"/>
+            </R_ItemLayout>
+        </R_StackLayout>
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_StackLayout Row Spacing="2" Class="mb-1">
+<R_StackLayout Row Spacing="1">
     <R_ItemLayout col="2">
-        <R_Label>Center</R_Label>
+        <R_Label>@_localizer["LABEL_CENTER"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="3">
         <R_TextBox @bind-Value="_viewModel.CenterCode" Enabled="false"/>
@@ -96,16 +110,16 @@
     <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupCenter"
               R_After_Open_Lookup="AfterOpenLookupCenter">
     </R_Lookup>
-    <R_ItemLayout col="3">
+    <R_ItemLayout col="4">
         <R_TextBox @bind-Value="_viewModel.CenterName" Enabled="false"/>
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_StackLayout Row Spacing="2" Class="mb-1">
+<R_StackLayout Row Spacing="1" Class="mb-1">
     <R_ItemLayout col="2">
-        <R_Label>Budget No.</R_Label>
+        <R_Label>@_localizer["LABEL_BUDGETNO"]</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout col="7">
+    <R_ItemLayout col="8">
         <R_ComboBox Data="@_viewModel.BudgetList"
                     @bind-Value="_viewModel.BudgetNo"
                     ValueField="@nameof(GLI00100BudgetDTO.CBUDGET_NO)"
@@ -115,150 +129,150 @@
     <R_ItemLayout>
         <R_Button Enabled="@(_viewModel.GLAccountList.Count > 0 && _viewModel.CenterCode != null && _viewModel.BudgetNo != null)"
                   OnClick="RefreshAccountAnalysis">
-            Refresh
+            @_localizer["LABEL_BTNREFRESH"]
         </R_Button>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_Popup Enabled="@(_viewModel.GLAccountList.Count > 0 && _viewModel.CenterCode != null && _viewModel.BudgetNo != null)"
                  R_Before_Open_Popup="BeforeOpenPopupPrint">
-            Print
+            @_localizer["LABEL_BTNPRINT"]
         </R_Popup>
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_StackLayout Row Spacing="1" Class="mb-1">
+<R_StackLayout Row Spacing="1">
 <R_ItemLayout col="2">
-    <R_GroupBox>
+    <R_GroupBox ShowBorder="false">
         <R_ItemLayout Style="height: 32.22px"/>
-        <R_StackLayout Class="mb-2 align-items-end">
+        <R_StackLayout Class="mb-2 ms-5">
             <R_ItemLayout>
-                <R_Label>Opening</R_Label>
+                <R_Label>@_localizer["LABEL_OPENING"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
             <R_ItemLayout>
                 <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 1)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_01">...</R_Popup>
             </R_ItemLayout>
-            <R_ItemLayout>
-                <R_Label>Period 01</R_Label>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD01"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
             <R_ItemLayout>
                 <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 2)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_02">...</R_Popup>
             </R_ItemLayout>
-            <R_ItemLayout>
-                <R_Label>Period 02</R_Label>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD02"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
             <R_ItemLayout>
                 <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 3)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_03">...</R_Popup>
             </R_ItemLayout>
-            <R_ItemLayout>
-                <R_Label>Period 03</R_Label>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD03"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
             <R_ItemLayout>
                 <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 4)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_04">...</R_Popup>
             </R_ItemLayout>
-            <R_ItemLayout>
-                <R_Label>Period 04</R_Label>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD04"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
             <R_ItemLayout>
                 <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 5)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_05">...</R_Popup>
             </R_ItemLayout>
-            <R_ItemLayout>
-                <R_Label>Period 05</R_Label>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD05"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
             <R_ItemLayout>
                 <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 6)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_06">...</R_Popup>
             </R_ItemLayout>
-            <R_ItemLayout>
-                <R_Label>Period 06</R_Label>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD06"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
             <R_ItemLayout>
                 <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 7)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_07">...</R_Popup>
             </R_ItemLayout>
-            <R_ItemLayout>
-                <R_Label>Period 07</R_Label>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD07"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
             <R_ItemLayout>
                 <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 8)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_08">...</R_Popup>
             </R_ItemLayout>
-            <R_ItemLayout>
-                <R_Label>Period 08</R_Label>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD08"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
             <R_ItemLayout>
                 <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 9)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_09">...</R_Popup>
             </R_ItemLayout>
-            <R_ItemLayout>
-                <R_Label>Period 09</R_Label>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD09"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
             <R_ItemLayout>
                 <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 10)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_10">...</R_Popup>
             </R_ItemLayout>
-            <R_ItemLayout>
-                <R_Label>Period 10</R_Label>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD10"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
             <R_ItemLayout>
                 <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 11)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_11">...</R_Popup>
             </R_ItemLayout>
-            <R_ItemLayout>
-                <R_Label>Period 11</R_Label>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD11"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
             <R_ItemLayout>
                 <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 12)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_12">...</R_Popup>
             </R_ItemLayout>
-            <R_ItemLayout>
-                <R_Label>Period 12</R_Label>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD12"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
             <R_ItemLayout>
                 <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 13)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_13">...</R_Popup>
             </R_ItemLayout>
-            <R_ItemLayout>
-                <R_Label>Period 13</R_Label>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD13"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
             <R_ItemLayout>
                 <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 14)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_14">...</R_Popup>
             </R_ItemLayout>
-            <R_ItemLayout>
-                <R_Label>Period 14</R_Label>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD14"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
             <R_ItemLayout>
                 <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 15)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_15">...</R_Popup>
             </R_ItemLayout>
-            <R_ItemLayout>
-                <R_Label>Period 15</R_Label>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD15"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
     </R_GroupBox>
 </R_ItemLayout>
 <R_ItemLayout Class="d-flex">
-    <R_GroupBox Title="Current Month">
+    <R_GroupBox Title="@_localizer["LABEL_GROUPCRNTMNTH"]">
         <R_ItemLayout Class="mb-1" Style="height: 25px"/>
         <R_ItemLayout Class="mb-2">
             <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH1" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
@@ -302,13 +316,13 @@
         <R_ItemLayout Class="mb-2">
             <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH14" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
         </R_ItemLayout>
-        <R_ItemLayout Class="mb-2">
+        <R_ItemLayout Class="mb-1">
             <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH15" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
         </R_ItemLayout>
     </R_GroupBox>
 </R_ItemLayout>
 <R_ItemLayout>
-    <R_GroupBox Title="Budget">
+    <R_GroupBox Title="@_localizer["LABEL_GROUPBUDGET"]">
         <R_ItemLayout Class="mb-1" Style="height: 25px"/>
         <R_ItemLayout Class="mb-2">
             <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET1" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
@@ -352,13 +366,13 @@
         <R_ItemLayout Class="mb-2">
             <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET14" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
         </R_ItemLayout>
-        <R_ItemLayout Class="mb-2">
+        <R_ItemLayout Class="mb-1">
             <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET15" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
         </R_ItemLayout>
     </R_GroupBox>
 </R_ItemLayout>
 <R_ItemLayout>
-    <R_GroupBox Title="Current Year">
+    <R_GroupBox Title="@_localizer["LABEL_GROUPCRNTYEAR"]">
         <R_ItemLayout Class="mb-2">
             <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT_OPENING" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
         </R_ItemLayout>
@@ -404,13 +418,13 @@
         <R_ItemLayout Class="mb-2">
             <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT14" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
         </R_ItemLayout>
-        <R_ItemLayout Class="mb-2">
+        <R_ItemLayout Class="mb-1">
             <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT15" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
         </R_ItemLayout>
     </R_GroupBox>
 </R_ItemLayout>
 <R_ItemLayout>
-    <R_GroupBox Title="Last Year">
+    <R_GroupBox Title="@_localizer["LABEL_GROUPLASTYEAR"]">
         <R_ItemLayout Class="mb-2">
             <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST_OPENING" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
         </R_ItemLayout>
@@ -456,12 +470,13 @@
         <R_ItemLayout Class="mb-2">
             <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST14" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
         </R_ItemLayout>
-        <R_ItemLayout Class="mb-2">
+        <R_ItemLayout Class="mb-1">
             <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST15" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
         </R_ItemLayout>
     </R_GroupBox>
 </R_ItemLayout>
 </R_StackLayout>
+</R_GroupBox>
 
 </R_ItemLayout>
 

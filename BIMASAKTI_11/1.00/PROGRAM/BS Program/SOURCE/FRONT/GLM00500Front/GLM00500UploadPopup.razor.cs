@@ -85,11 +85,6 @@ public partial class GLM00500UploadPopup : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private async Task CloseEvent(MouseEventArgs eventArgs)
-    {
-        await this.Close(true, null);
-    }
-
     private void R_RowRender(R_GridRowRenderEventArgs eventArgs)
     {
         var loData = (GLM00500UploadForSystemDTO)eventArgs.Data;
@@ -132,6 +127,11 @@ public partial class GLM00500UploadPopup : R_Page
         R_DisplayException(loEx);
     }
 
+    private async Task CloseEvent(MouseEventArgs eventArgs)
+    {
+        await this.Close(true, null);
+    }
+
     private async Task OnClickProcess()
     {
         var loEx = new R_Exception();
@@ -139,15 +139,15 @@ public partial class GLM00500UploadPopup : R_Page
         try
         {
             var loValidate =
-                await R_MessageBox.Show("", "Are you sure want to import data?", R_eMessageBoxButtonType.YesNo);
+                await R_MessageBox.Show("", _localizer["ConfirmImport"], R_eMessageBoxButtonType.YesNo);
 
             if (loValidate == R_eMessageBoxResult.Yes)
             {
                 await _viewModel.UploadFile(_viewModel.UploadedList.ToList());
 
-                if (_viewModel.IsSuccess)
+                if (_viewModel.IsError)
                 {
-                    await R_MessageBox.Show("", "Staff uploaded successfully!", R_eMessageBoxButtonType.OK);
+                    await R_MessageBox.Show(_localizer["SuccessLabel"], _localizer["SuccessUpload"], R_eMessageBoxButtonType.OK);
                 }
                 else
                 {

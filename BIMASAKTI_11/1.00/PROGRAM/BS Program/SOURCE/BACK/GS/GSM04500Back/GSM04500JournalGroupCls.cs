@@ -16,7 +16,7 @@ public class GSM04500JournalGroupCls : R_BusinessObject<GSM04500JournalGroupDTO>
     {
         _logger = LoggerGSM04500.R_GetInstanceLogger();
     }
-    
+
     protected override GSM04500JournalGroupDTO R_Display(GSM04500JournalGroupDTO poEntity)
     {
         R_Exception loEx = new();
@@ -77,13 +77,13 @@ public class GSM04500JournalGroupCls : R_BusinessObject<GSM04500JournalGroupDTO>
         DbCommand loCmd;
         DbConnection loConn = null;
         string lcAction = "";
-        
+
         try
         {
             loDb = new R_Db();
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
-            
+
             R_ExternalException.R_SP_Init_Exception(loConn);
 
             lcAction = poCRUDMode switch
@@ -92,11 +92,11 @@ public class GSM04500JournalGroupCls : R_BusinessObject<GSM04500JournalGroupDTO>
                 eCRUDMode.EditMode => "EDIT",
                 _ => lcAction
             };
-            
+
             lcQuery = "RSP_GS_MAINTAIN_JOURNAL_GROUP";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
-            
+
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poNewEntity.CCOMPANY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poNewEntity.CPROPERTY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CJRNGRP_TYPE", DbType.String, 2, poNewEntity.CJRNGRP_TYPE);
@@ -128,7 +128,7 @@ public class GSM04500JournalGroupCls : R_BusinessObject<GSM04500JournalGroupDTO>
             }
             catch (Exception ex)
             {
-                loEx.Add(ex);            
+                loEx.Add(ex);
                 _logger.LogError(loEx);
             }
 
@@ -136,7 +136,7 @@ public class GSM04500JournalGroupCls : R_BusinessObject<GSM04500JournalGroupDTO>
         }
         catch (Exception ex)
         {
-            loEx.Add(ex);            
+            loEx.Add(ex);
             _logger.LogError(loEx);
         }
 
@@ -165,19 +165,19 @@ public class GSM04500JournalGroupCls : R_BusinessObject<GSM04500JournalGroupDTO>
         DbCommand loCmd;
         DbConnection loConn = null;
         string lcAction = "";
-        
+
         try
         {
             loDb = new R_Db();
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
-            
+
             R_ExternalException.R_SP_Init_Exception(loConn);
 
             lcQuery = "RSP_GS_MAINTAIN_JOURNAL_GROUP";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
-            
+
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poEntity.CCOMPANY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poEntity.CPROPERTY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CJRNGRP_TYPE", DbType.String, 2, poEntity.CJRNGRP_TYPE);
@@ -187,7 +187,7 @@ public class GSM04500JournalGroupCls : R_BusinessObject<GSM04500JournalGroupDTO>
             loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, "DELETE");
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poEntity.CUSER_ID);
 
-            
+
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x =>
                     x.ParameterName is
@@ -203,14 +203,14 @@ public class GSM04500JournalGroupCls : R_BusinessObject<GSM04500JournalGroupDTO>
                 .Select(x => x.Value);
 
             _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
-            
+
             try
             {
                 loDb.SqlExecNonQuery(loConn, loCmd, false);
             }
             catch (Exception ex)
             {
-                loEx.Add(ex);            
+                loEx.Add(ex);
                 _logger.LogError(loEx);
             }
 
@@ -218,7 +218,7 @@ public class GSM04500JournalGroupCls : R_BusinessObject<GSM04500JournalGroupDTO>
         }
         catch (Exception ex)
         {
-            loEx.Add(ex);            
+            loEx.Add(ex);
             _logger.LogError(loEx);
         }
 
@@ -237,8 +237,7 @@ public class GSM04500JournalGroupCls : R_BusinessObject<GSM04500JournalGroupDTO>
 
         loEx.ThrowExceptionIfErrors();
     }
-    
-    //get list
+
     public List<GSM04500JournalGroupDTO> GetJournalGroupList(GSM04500ParameterDb poParameter)
     {
         R_Exception loEx = new();
@@ -256,12 +255,13 @@ public class GSM04500JournalGroupCls : R_BusinessObject<GSM04500JournalGroupDTO>
             lcQuery = "RSP_GS_GET_JOURNAL_GRP_LIST";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
-            
+
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 20, poParameter.CCOMPANY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 100, poParameter.CPROPERTY_ID);
-            loDb.R_AddCommandParameter(loCmd, "@CJOURNAL_GROUP_TYPE", DbType.String, 2, poParameter.CJOURNAL_GROUP_TYPE);
+            loDb.R_AddCommandParameter(loCmd, "@CJOURNAL_GROUP_TYPE", DbType.String, 2,
+                poParameter.CJOURNAL_GROUP_TYPE);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 8, poParameter.CUSER_ID);
-            
+
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x =>
                     x.ParameterName is
@@ -271,9 +271,9 @@ public class GSM04500JournalGroupCls : R_BusinessObject<GSM04500JournalGroupDTO>
                         "@CUSER_LOGIN_ID"
                 )
                 .Select(x => x.Value);
-            
+
             _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
-            
+
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 

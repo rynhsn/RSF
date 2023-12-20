@@ -18,4 +18,88 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <data name="LBL_PROPERTY" xml:space="preserve">
+        <value>PROPERTY</value>
+    </data>
+    <data name="LBL_JRNLGRPTYPE" xml:space="preserve">
+        <value>Journal Group Type</value>
+    </data>
+    <data name="LBL_TEMPLATE" xml:space="preserve">
+        <value>Template</value>
+    </data>
+    <data name="LBL_UPLOAD" xml:space="preserve">
+        <value>Upload</value>
+    </data>
+    <data name="LBL_JRNLGRP" xml:space="preserve">
+        <value>Journal Group</value>
+    </data>
+    <data name="LBL_JRNLGRPNAME" xml:space="preserve">
+        <value>Journal Group Name</value>
+    </data>
+    <data name="LBL_ENACCRUAL" xml:space="preserve">
+        <value>Enable Accrual</value>
+    </data>
+    <data name="LBL_UPDATEDBY" xml:space="preserve">
+        <value>Updated By</value>
+    </data>
+    <data name="LBL_UPDATEDDATE" xml:space="preserve">
+        <value>Updated Date</value>
+    </data>
+    <data name="LBL_CREATEDBY" xml:space="preserve">
+        <value>Created By</value>
+    </data>
+    <data name="LBL_CREATEDDATE" xml:space="preserve">
+        <value>Created Date</value>
+    </data>
+    <data name="LBL_ACCSETTING" xml:space="preserve">
+        <value>Account Setting</value>
+    </data>
+    <data name="LBL_GOA" xml:space="preserve">
+        <value>Group of Account</value>
+    </data>
+    <data name="LBL_BYDEPT" xml:space="preserve">
+        <value>By Dept</value>
+    </data>
+    <data name="LBL_GLACCNO" xml:space="preserve">
+        <value>GL Account No</value>
+    </data>
+    <data name="LBL_GLACCNAME" xml:space="preserve">
+        <value>GL Account Name</value>
+    </data>
+    <data name="LBL_DEPTCODE" xml:space="preserve">
+        <value>Department Code</value>
+    </data>
+    <data name="LBL_DEPTNAME" xml:space="preserve">
+        <value>Department Name</value>
+    </data>
+    <data name="LBL_PRPRTY" xml:space="preserve">
+        <value>Property</value>
+    </data>
+    <data name="LBL_SRC" xml:space="preserve">
+        <value>Source File</value>
+    </data>
+    <data name="LBL_NO" xml:space="preserve">
+        <value>No.</value>
+    </data>
+    <data name="LBL_VALID" xml:space="preserve">
+        <value>Valid</value>
+    </data>
+    <data name="LBL_NOTES" xml:space="preserve">
+        <value>Notes</value>
+    </data>
+    <data name="LBL_INVALID" xml:space="preserve">
+        <value>Invalid</value>
+    </data>
+    <data name="LBL_TOTAL" xml:space="preserve">
+        <value>Total Row(s)</value>
+    </data>
+    <data name="LBL_CANCEL" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="LBL_PROCESS" xml:space="preserve">
+        <value>Process</value>
+    </data>
+    <data name="LBL_SAVEEXCEL" xml:space="preserve">
+        <value>Save To Excel</value>
+    </data>
 </root>

@@ -220,7 +220,7 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
             loDbParams.CYEAR = poParams.CYEAR;
             
             _logger.LogInfo("Get Period Count");
-            var lnResult = loCls.GLI0010Get0PeriodInfoDb(loDbParams);
+            var lnResult = loCls.GLI0010GetPeriodInfoDb(loDbParams);
             loReturn.INO_PERIOD = lnResult.INO_PERIOD;
         }
         catch (Exception ex)

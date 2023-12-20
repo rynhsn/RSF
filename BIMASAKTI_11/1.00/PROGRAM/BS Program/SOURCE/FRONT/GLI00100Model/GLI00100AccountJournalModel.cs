@@ -42,7 +42,7 @@ public class GLI00100AccountJournalModel : R_BusinessObjectServiceClientBase<GLI
         GLI00100AccountAnalysisDetailParamDTO poParams)
     {
         var loEx = new R_Exception();
-        GLI00100AccountAnalysisDetailDTO loResult = null;
+        GLI00100AccountAnalysisDetailDTO loResult = new GLI00100AccountAnalysisDetailDTO();
 
         try
         {

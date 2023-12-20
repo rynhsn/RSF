@@ -61,7 +61,7 @@
         <value>Using Approval</value>
     </data>
     <data name="LABEL_USERTHIRDPARTY" xml:space="preserve">
-        <value>Use Third Party</value>
+        <value>Use 3rd Party</value>
     </data>
     <data name="LABEL_APPROVALMODE" xml:space="preserve">
         <value>Approval Mode</value>
@@ -152,5 +152,50 @@
     </data>
     <data name="LABEL_MINLIMITAMOUNT" xml:space="preserve">
         <value>Min Limit Amount</value>
+    </data>
+    <data name="Err01" xml:space="preserve">
+        <value>You must fill Approval Mode</value>
+    </data>
+    <data name="Confirm01" xml:space="preserve">
+        <value>There is some detail in Detail Document Numbering table. Your data changing will delete all Detail Document Numbering table.</value>
+    </data>
+    <data name="ConfirmLabel" xml:space="preserve">
+        <value>Confirmation</value>
+    </data>
+    <data name="Confirm02" xml:space="preserve">
+        <value>There is some detail in User Approval table. Your data changing will delete all User Approval table.</value>
+    </data>
+    <data name="Err02" xml:space="preserve">
+        <value>You should fill Sequence By Department</value>
+    </data>
+    <data name="Err03" xml:space="preserve">
+        <value>You should fill Sequence By Transaction Code</value>
+    </data>
+    <data name="Err04" xml:space="preserve">
+        <value>You should fill Sequence Period Mode</value>
+    </data>
+    <data name="Err05" xml:space="preserve">
+        <value>You should fill Sequence Length of Number</value>
+    </data>
+    <data name="Err06" xml:space="preserve">
+        <value>Sequence value can not same each other</value>
+    </data>
+    <data name="Err07" xml:space="preserve">
+        <value>Sequence can not overlap or else must Sequential from 1 to</value>
+    </data>
+    <data name="LABEL_MAX30" xml:space="preserve">
+        <value>Maximum 30</value>
+    </data>
+    <data name="Err08" xml:space="preserve">
+        <value>Reference Number length cannot exceed 30 characters</value>
+    </data>
+    <data name="Confirm03" xml:space="preserve">
+        <value>Change Replacement flag to false will remove all replacement for this user, are you sure?</value>
+    </data>
+    <data name="LABEL_GROUPUSERAPPROVAL" xml:space="preserve">
+        <value>User Approval</value>
+    </data>
+    <data name="LABEL_GROUPREPLUSER" xml:space="preserve">
+        <value>Replacement User</value>
     </data>
 </root>

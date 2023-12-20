@@ -21,5 +21,13 @@ namespace GSM04500Common.DTOs
         
         public string CACTION { get; set; }
         public string CUSER_ID { get; set; }
+        
+        private string _CGOA { get; set; }
+        
+        public string CGOA
+        {
+            get => _CGOA;
+            set => _CGOA = $"{CGOA_NAME} ( {CGOA_CODE} )";
+        }
     }
 }

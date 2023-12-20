@@ -12,10 +12,10 @@
     </R_ItemLayout>
     <R_ItemLayout xs="10" Class="d-flex align-items-end">
         <R_ComboBox Data="@_viewModel.DeptSeqList"
-                    @bind-Value="_viewModel.DepartmentEntity.CDEPT_CODE"
+                    Value="_viewModel.DepartmentEntity.CDEPT_CODE"
                     ValueField="@nameof(GSM05000ApprovalDepartmentDTO.CDEPT_CODE)"
                     TextField="@nameof(GSM05000ApprovalDepartmentDTO.CDEPT_NAME)"
-                    OnChanged="ChangedDept"
+                    ValueChanged="@((string value) => ChangedDept(value))"
         />
     </R_ItemLayout>
 </R_StackLayout>
@@ -30,6 +30,8 @@
            Width="650px"
            DragDrop
            AllowAddNewRow="false"
+           AllowEditRow="false"
+           AllowDeleteRow="false"
            DragClueField="@nameof(GSM05000ApprovalUserDTO.CDEPT_CODE)" 
            R_GridRowAfterDrop="BeforeDrop" R_GridRowBeforeDrop="AfterDrop">
         <R_GridColumns>
@@ -58,10 +60,10 @@
     <R_ItemLayout Class="d-flex align-items-end">
         <R_StackLayout Row>
             <R_ItemLayout>
-                <R_Button R_ConductorGridSource="_conductor" OnClick="OnClickNext">@_localizer["BTN_MOVENEXT"]</R_Button>
+                <R_Button R_ConductorGridSource="_conductor" Enabled="@_viewModel.EnableUpBtn" OnClick="OnClickNext">@_localizer["BTN_MOVENEXT"]</R_Button>
             </R_ItemLayout>
             <R_ItemLayout>
-                <R_Button R_ConductorGridSource="_conductor" OnClick="OnClickPrevious">@_localizer["BTN_MOVEPREVIOUS"]</R_Button>
+                <R_Button R_ConductorGridSource="_conductor" Enabled="@_viewModel.EnableDownBtn" OnClick="OnClickPrevious">@_localizer["BTN_MOVEPREVIOUS"]</R_Button>
             </R_ItemLayout>
         </R_StackLayout>
     </R_ItemLayout>
@@ -78,7 +80,7 @@
 
 <R_ConductorGrid @ref="_conductor"
              R_ViewModel="_viewModel"
-             R_IsHeader = "true"
+             R_IsHeader
              R_Display="Display"
              R_BeforeSaveBatch="BeforeSaveBatch"
              R_ServiceSaveBatch="SaveBatch"

@@ -10,11 +10,11 @@ public partial class GSM05000ApprovalCopyTo : R_Page
 {
     private GSM05000ApprovalUserViewModel _viewModel = new();
     // private GSM05000ApprovalCopyDTO _copyTo = new();
-    
+
     protected override async Task R_Init_From_Master(object poParameter)
     {
         var loEx = new R_Exception();
-        
+
         try
         {
             _viewModel.TempEntityForCopy = (GSM05000ApprovalCopyDTO)poParameter;
@@ -23,7 +23,7 @@ public partial class GSM05000ApprovalCopyTo : R_Page
         {
             loEx.Add(ex);
         }
-        
+
         loEx.ThrowExceptionIfErrors();
     }
 
@@ -39,19 +39,31 @@ public partial class GSM05000ApprovalCopyTo : R_Page
         var loData = (GSM05000ApprovalDepartmentDTO)eventArgs.Result;
         if (loData == null)
             return;
-        
+
         _viewModel.TempEntityForCopy.CDEPT_CODE_TO = loData.CDEPT_CODE;
         _viewModel.TempEntityForCopy.CDEPT_NAME_TO = loData.CDEPT_NAME;
     }
-    
+
     public async Task Button_OnClickProcessAsync()
     {
-        var loData = _viewModel.TempEntityForCopy;
-        await _viewModel.CopyTo(loData);
-        await this.Close(true, loData);
+        var loEx = new R_Exception();
+        
+        try
+        {
+            var loData = _viewModel.TempEntityForCopy;
+            await _viewModel.CopyTo(loData);
+            await this.Close(true, true);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
     }
+
     public async Task Button_OnClickCloseAsync()
     {
-        await this.Close(true, null);
+        await this.Close(true, false);
     }
 }

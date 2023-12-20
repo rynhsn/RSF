@@ -1,9 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using GLI00100Common;
 using GLI00100Common.DTOs;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
+using R_BlazorFrontEnd.Helpers;
 
 namespace GLI00100Model.ViewModel;
 
@@ -30,6 +33,15 @@ public class GLI00100AccountJournalViewModel : R_ViewModel<GLI00100TransactionGr
 
             var loResult = await _model.GLI00100GetTransactionGridStreamModel();
             DataList = new ObservableCollection<GLI00100TransactionGridDTO>(loResult);
+            
+            if (DataList.Count > 0)
+            {
+                foreach (var list in DataList)
+                {
+                    list.DREF_DATE = DateTime.ParseExact(list.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
+                }
+            }
+            
         }
         catch (R_Exception ex)
         {

@@ -29,6 +29,12 @@ namespace GSM04500Model
         {
             throw new NotImplementedException();
         }
+
+        public GSM04500ListDTO<GSM04500FunctionDTO> GSM04500GetTypeList()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
         
         
@@ -43,6 +49,30 @@ namespace GSM04500Model
                 loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM04500ListDTO<GSM04500PropertyDTO>>(
                     _RequestServiceEndPoint,
                     nameof(IGSM04500Init.GSM04500GetPropertyList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+        public async Task<GSM04500ListDTO<GSM04500FunctionDTO>> GetAllTypeAsync()
+        {
+            var loEx = new R_Exception();
+            GSM04500ListDTO<GSM04500FunctionDTO> loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM04500ListDTO<GSM04500FunctionDTO>>(
+                    _RequestServiceEndPoint,
+                    nameof(IGSM04500Init.GSM04500GetTypeList),
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);

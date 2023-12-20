@@ -58,6 +58,8 @@ namespace GSM05000Front
             try
             {
                 await _GSM05000ApprovalUserViewModel.GetDepartmentList();
+                // tambahkan dummy data ke _GSM05000ApprovalUserViewModel.DepartmentList * 50
+                
                 eventArgs.ListEntityResult = _GSM05000ApprovalUserViewModel.DepartmentList;
             }
             catch (Exception ex)
@@ -132,6 +134,8 @@ namespace GSM05000Front
             {
                 var loParam = (GSM05000ApprovalUserDTO)eventArgs.Data;
                 _GSM05000ApprovalUserViewModel.GenerateSequence(loParam);
+                loParam.DCREATE_DATE = DateTime.Now;
+                loParam.DUPDATE_DATE = DateTime.Now;
             }
             catch (Exception ex)
             {
@@ -148,22 +152,9 @@ namespace GSM05000Front
             {
                 var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000ApprovalUserDTO>(eventArgs.Data);
 
-                // if (eventArgs.ConductorMode == R_eConductorMode.Edit)
-                // {
-                //     var loChoice = new R_eMessageBoxResult();
-                //     if(_GSM05000ApprovalUserViewModel.ReplacementFlagTemp == false && loParam.LREPLACEMENT)
-                //     {
-                //         loChoice = await R_MessageBox.Show("Confirmation", "Change Replacement flag to false will remove all replacement for this user, are you sure?", R_eMessageBoxButtonType.YesNo);
-                //     }
-                //
-                //     if (loChoice == R_eMessageBoxResult.No)
-                //         return;
-                // }
-
-
                 // ubah CSEQUENCE jadi integer dan assign ke loParam.ISEQUENCE
                 // loParam.ISEQUENCE = Convert.ToInt32(loParam.CSEQUENCE);
-                
+
                 await _GSM05000ApprovalUserViewModel.SaveEntity(loParam, (eCRUDMode)eventArgs.ConductorMode);
                 eventArgs.Result = _GSM05000ApprovalUserViewModel.ApproverEntity;
             }
@@ -418,6 +409,8 @@ namespace GSM05000Front
                 var lcCurrentDate = (DateTime.Now);
                 loParam.DVALID_TO = lcCurrentDate;
                 loParam.DVALID_FROM = lcCurrentDate;
+                loParam.DCREATE_DATE = DateTime.Now;
+                loParam.DUPDATE_DATE = DateTime.Now;
             }
             catch (Exception ex)
             {
@@ -449,8 +442,8 @@ namespace GSM05000Front
 
             loEx.ThrowExceptionIfErrors();
         }
-        
-        
+
+
         private async Task SaveReplacement(R_ServiceSaveEventArgs eventArgs)
         {
             var loEx = new R_Exception();
@@ -546,11 +539,9 @@ namespace GSM05000Front
                 if (eventArgs.ConductorMode == R_eConductorMode.Edit)
                 {
                     var loParam = (GSM05000ApprovalUserDTO)eventArgs.Data;
-                    if (_GSM05000ApprovalUserViewModel.ReplacementFlagTemp == false && loParam.LREPLACEMENT)
+                    if (_GSM05000ApprovalUserViewModel.ReplacementFlagTemp && loParam.LREPLACEMENT == false)
                     {
-                        loChoice = await R_MessageBox.Show("Confirmation",
-                            "Change Replacement flag to false will remove all replacement for this user, are you sure?",
-                            R_eMessageBoxButtonType.YesNo);
+                        loChoice = await R_MessageBox.Show(_localizer["ConfirmLabel"], _localizer["Confirm03"], R_eMessageBoxButtonType.YesNo);
                     }
 
                     if (loChoice == R_eMessageBoxResult.No)
@@ -565,6 +556,22 @@ namespace GSM05000Front
             }
 
             loException.ThrowExceptionIfErrors();
+        }
+
+        private bool _gridDeptEnabled;
+        private bool _gridUserEnabled;
+        private bool _gridReplacementEnabled;
+
+        private void SetOtherUser(R_SetEventArgs eventArgs)
+        {
+            _gridDeptEnabled = eventArgs.Enable;
+            _gridReplacementEnabled = eventArgs.Enable;
+        }
+
+        private void SetOtherReplacement(R_SetEventArgs eventArgs)
+        {
+            _gridDeptEnabled = eventArgs.Enable;
+            _gridUserEnabled = eventArgs.Enable;
         }
     }
 }

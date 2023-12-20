@@ -322,8 +322,10 @@ public partial class GSM02000 : R_Page
         try
         {
             loData = (GSM02000DTO)eventArgs.Data;
-            Validate(loData);
+            // Validate(loData);
             
+            loData.CTAX_ID ??= "";
+            loData.CTAX_NAME ??= "";
             loData.CTAXIN_GLACCOUNT_NO ??= "";
             loData.CTAXOUT_GLACCOUNT_NO ??= "";
             
@@ -391,10 +393,12 @@ public partial class GSM02000 : R_Page
 
     private void Conductor_AfterAdd(R_AfterAddEventArgs eventArgs)
     {
-        var tes = (GSM02000DTO)eventArgs.Data;
-        tes.LACTIVE = true;
+        var loData = (GSM02000DTO)eventArgs.Data;
+        loData.LACTIVE = true;
+        loData.CROUNDING_MODE = "01";
+        // loData.CROUNDING_MODE = _GSM02000ViewModel.RoundingModeList.FirstOrDefault().CCODE;
         // eventArgs.Data = tes;
-    }
+    } 
     
     private void Validate(GSM02000DTO poParam)
     {
@@ -404,19 +408,27 @@ public partial class GSM02000 : R_Page
         {
             if(poParam.CTAX_ID == null)
             {
-                loEx.Add("Err1", _localizer["Err1"]);
+                loEx.Add("Err01", _localizer["Err01"]);
             }
             if (poParam.CTAX_NAME == null)
             {
-                loEx.Add("Err2", _localizer["Err2"]);
+                loEx.Add("Err02", _localizer["Err02"]);
             }
             if (poParam.CROUNDING_MODE == null)
             {
-                loEx.Add("Err3", _localizer["Err3"]);
+                loEx.Add("Err03", _localizer["Err03"]);
             }
             if (poParam.IROUNDING == null)
             {
-                loEx.Add("Err4", _localizer["Err4"]);
+                loEx.Add("Err04", _localizer["Err04"]);
+            }
+            if (poParam.CTAXIN_GLACCOUNT_NO == null)
+            {
+                loEx.Add("Err07", _localizer["Err07"]);
+            }
+            if (poParam.CTAXOUT_GLACCOUNT_NO == null)
+            {
+                loEx.Add("Err08", _localizer["Err08"]);
             }
                 
         }
@@ -426,5 +438,11 @@ public partial class GSM02000 : R_Page
         }
             
         loEx.ThrowExceptionIfErrors();
+    }
+    
+    private bool _gridEnabled;
+    private void SetOther(R_SetEventArgs eventArgs)
+    {
+        _gridEnabled = eventArgs.Enable;
     }
 }

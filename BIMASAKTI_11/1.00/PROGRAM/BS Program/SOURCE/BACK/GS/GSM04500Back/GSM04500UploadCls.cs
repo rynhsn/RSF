@@ -13,7 +13,7 @@ public class GSM04500UploadCls : R_IBatchProcess
 {
     public void R_BatchProcess(R_BatchProcessPar poBatchProcessPar)
     {
-        R_Exception loException = new R_Exception();
+        var loException = new R_Exception();
         var loDb = new R_Db();
 
         try
@@ -47,12 +47,12 @@ public class GSM04500UploadCls : R_IBatchProcess
         EndBlock:
         loException.ThrowExceptionIfErrors();
     }
-
+    
     public async Task _BatchProcess(R_BatchProcessPar poBatchProcessPar)
     {
-        R_Exception loException = new R_Exception();
-        string lcQuery = "";
-        R_Db loDb = new R_Db();
+        var loException = new R_Exception();
+        var lcQuery = "";
+        var loDb = new R_Db();
         DbConnection loConn = null;
         DbCommand loCommand = null;
         try
@@ -61,24 +61,23 @@ public class GSM04500UploadCls : R_IBatchProcess
 
             loCommand = loDb.GetCommand();
             loConn = loDb.GetConnection();
-            //Get data from poBatchPRocessParam
+            
             var loTempObject =
-                R_NetCoreUtility.R_DeserializeObjectFromByte<List<GSM04500UploadErrorValidateDTO>>(poBatchProcessPar
+                R_NetCoreUtility.R_DeserializeObjectFromByte<List<GSM04500UploadFromSystemDTO>>(poBatchProcessPar
                     .BigObject);
-            //CONVERT DATA, SO TO BE READY INSERT TO TEMPORARY TABLE 
             var loObject =
                 R_Utility
-                    .R_ConvertCollectionToCollection<GSM04500UploadErrorValidateDTO, GSM04500FieldTemporaryTableDTO>(
+                    .R_ConvertCollectionToCollection<GSM04500UploadFromSystemDTO, GSM04500UploadForSystemDTO>(
                         loTempObject);
 
             #region GetParameterPropert
 
-            //get parameter
-            var loVar = poBatchProcessPar.UserParameters.Where((x) => x.Key.Equals(ContextConstant.CPROPERTY_ID))
+            
+            var loVar = poBatchProcessPar.UserParameters.Where((x) => x.Key.Equals(GSM04500ContextConstant.CPROPERTY_ID))
                 .FirstOrDefault().Value;
             var lcPropertyId = ((System.Text.Json.JsonElement)loVar).GetString();
 
-            var loVar2 = poBatchProcessPar.UserParameters.Where((x) => x.Key.Equals(ContextConstant.CJRNGRP_TYPE))
+            var loVar2 = poBatchProcessPar.UserParameters.Where((x) => x.Key.Equals(GSM04500ContextConstant.CJRNGRP_TYPE))
                 .FirstOrDefault().Value;
             var lcJournalGroupType = ((System.Text.Json.JsonElement)loVar2).GetString();
 
@@ -104,7 +103,7 @@ public class GSM04500UploadCls : R_IBatchProcess
             loDb.R_AddCommandParameter(loCommand, "@CJOURNAL_GROUP_TYPE", DbType.String, 20, lcJournalGroupType);
             loDb.R_AddCommandParameter(loCommand, "@CKEY_GUID", DbType.String, 50, poBatchProcessPar.Key.KEY_GUID);
 
-            var abc = loDb.SqlExecNonQuery(loConn, loCommand, false);
+            var loResult = loDb.SqlExecNonQuery(loConn, loCommand, false);
         }
         catch (Exception ex)
         {

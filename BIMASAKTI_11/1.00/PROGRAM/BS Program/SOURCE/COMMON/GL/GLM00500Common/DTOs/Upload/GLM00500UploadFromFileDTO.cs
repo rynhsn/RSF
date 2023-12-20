@@ -35,16 +35,16 @@ namespace GLM00500Common.DTOs
         public int IERROR_COUNT { get; set; }
     }
     
-    public class GLM00500UploadParameterGetErrorDTO
-    {
-        public string CREC_ID { get; set; }
-    }
+    // public class GLM00500UploadParameterGetErrorDTO
+    // {
+    //     public string CREC_ID { get; set; }
+    // }
 
-    public class GLM00500UploadErrorReturnDTO : R_APIResultBaseDTO
-    {
-        public List<GLM00500UploadForSystemDTO> UploadList { get; set; }
-        public List<GLM00500UploadErrorDTO> ErrorList { get; set; }
-    }
+    // public class GLM00500UploadErrorReturnDTO : R_APIResultBaseDTO
+    // {
+    //     public List<GLM00500UploadForSystemDTO> UploadList { get; set; }
+    //     public List<GLM00500UploadErrorDTO> ErrorList { get; set; }
+    // }
 
     public class GLM00500UploadErrorDTO
     {

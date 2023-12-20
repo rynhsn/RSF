@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "GLI00100Front/1.0.0": {
         "dependencies": {
+          "GLI00100FrontResources": "1.0.0",
           "GLI00100Model": "1.0.0",
           "Lookup_GSCOMMON": "1.0.0",
           "Lookup_GSFRONT": "1.0.0",
@@ -152,6 +153,16 @@
       "GLI00100Common/1.0.0": {
         "runtime": {
           "GLI00100Common.dll": {}
+        }
+      },
+      "GLI00100FrontResources/1.0.0": {
+        "runtime": {
+          "GLI00100FrontResources.dll": {}
+        },
+        "resources": {
+          "id/GLI00100FrontResources.resources.dll": {
+            "locale": "id"
+          }
         }
       },
       "GLI00100Model/1.0.0": {
@@ -386,6 +397,11 @@
       "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
     },
     "GLI00100Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GLI00100FrontResources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

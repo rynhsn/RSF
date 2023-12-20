@@ -3,21 +3,21 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
-    <RootNamespace>GSM02000FrontResources</RootNamespace>
+    <RootNamespace>GlI00100FrontResources</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="GLM00500FrontResources_msgrsc.resx">
+    <EmbeddedResource Update="GLI00100FrontResources_msgrsc.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>GSM02000FrontResources_msgrsc.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="GLM00500FrontResources_msgrsc.Designer.cs">
+    <Compile Update="GLI00100FrontResources_msgrsc.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>GLM00500FrontResources_msgrsc.resx</DependentUpon>
+      <DependentUpon>GLI00100FrontResources_msgrsc.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 

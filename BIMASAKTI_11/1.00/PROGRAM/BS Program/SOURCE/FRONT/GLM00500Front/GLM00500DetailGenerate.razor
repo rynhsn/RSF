@@ -1,16 +1,19 @@
 ﻿@page "/GLM00500DetailGenerate"
+@using GLM00500FrontResources
+@using R_BlazorFrontEnd.Interfaces
 @inherits R_Page
 @attribute [R_Page(Title = "Generate Account Budget")];
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
 <R_StackLayout Row Spacing="1" Class="mb-2">
     <R_ItemLayout>
-        <R_Label>Year</R_Label>
+        <R_Label>@_localizer["LABEL_YEAR"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_TextBox Value="@_viewModel.BudgetHDEntity.CYEAR" Enabled="false"/>
     </R_ItemLayout>
     <R_ItemLayout>
-        <R_Label>Budget</R_Label>
+        <R_Label>@_localizer["LABEL_BUDGET"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_TextBox Value="@_viewModel.BudgetHDEntity.CBUDGET_NO" Enabled="false"/>
@@ -22,7 +25,7 @@
 
 <R_StackLayout Row Spacing="1" Class="mb-4">
     <R_ItemLayout>
-        <R_Label>Account Type</R_Label>
+        <R_Label>@_localizer["LABEL_ACCTYPE"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_RadioGroup Data="@_viewModel.CGLACCOUNT_TYPE"
@@ -33,10 +36,10 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-@* <R_GroupBox ShowBorder Class="p-2 mb-3"> *@
+<R_GroupBox ShowBorder Class="pt-2 mb-2">
 <R_StackLayout Row Spacing="1" Class="mb-1">
     <R_ItemLayout col="2">
-        <R_Label>From Account</R_Label>
+        <R_Label>@_localizer["LABEL_FROMACC"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NO"/>
@@ -44,13 +47,13 @@
     <R_Lookup
         R_Before_Open_Lookup="BeforeOpenLookupFromAccount"
         R_After_Open_Lookup="AfterOpenLookupFromAccount"/>
-    <R_ItemLayout col="5">
+    <R_ItemLayout col="6">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NAME" Enabled="false" CharacterCasing="R_eCharacterCasing.Upper"/>
     </R_ItemLayout>
 </R_StackLayout>
 <R_StackLayout Row Spacing="1" Class="mb-1">
     <R_ItemLayout col="2">
-        <R_Label>To Account</R_Label>
+        <R_Label>@_localizer["LABEL_TOACC"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NO"/>
@@ -58,13 +61,13 @@
     <R_Lookup
         R_Before_Open_Lookup="BeforeOpenLookupToAccount"
         R_After_Open_Lookup="AfterOpenLookupToAccount"/>
-    <R_ItemLayout col="5">
+    <R_ItemLayout col="6">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NAME" Enabled="false" CharacterCasing="R_eCharacterCasing.Upper"/>
     </R_ItemLayout>
 </R_StackLayout>
 <R_StackLayout Row Spacing="1" Class="mb-1">
     <R_ItemLayout col="2">
-        <R_Label>From Center</R_Label>
+        <R_Label>@_localizer["LABEL_FROMCENTER"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CFROM_CENTER_CODE" CharacterCasing="R_eCharacterCasing.Upper"/>
@@ -72,13 +75,13 @@
     <R_Lookup
         R_Before_Open_Lookup="BeforeOpenLookupFromCenter"
         R_After_Open_Lookup="AfterOpenLookupFromCenter"/>
-    <R_ItemLayout col="5">
+    <R_ItemLayout col="6">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CFROM_CENTER_NAME" Enabled="false" CharacterCasing="R_eCharacterCasing.Upper"/>
     </R_ItemLayout>
 </R_StackLayout>
 <R_StackLayout Row Spacing="1" Class="mb-1">
     <R_ItemLayout col="2">
-        <R_Label>To Center</R_Label>
+        <R_Label>@_localizer["LABEL_TOCENTER"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CTO_CENTER_CODE" CharacterCasing="R_eCharacterCasing.Upper"/>
@@ -86,13 +89,13 @@
     <R_Lookup
         R_Before_Open_Lookup="BeforeOpenLookupToCenter"
         R_After_Open_Lookup="AfterOpenLookupToCenter"/>
-    <R_ItemLayout col="5">
+    <R_ItemLayout col="6">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CTO_CENTER_NAME" Enabled="false" CharacterCasing="R_eCharacterCasing.Upper"/>
     </R_ItemLayout>
 </R_StackLayout>
 <R_StackLayout Row Spacing="1" Class="mb-1">
     <R_ItemLayout col="2">
-        <R_Label>Based On</R_Label>
+        <R_Label>@_localizer["LABEL_BASEDON"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_RadioGroup Data="@_viewModel.CBASED_ON"
@@ -103,7 +106,7 @@
 </R_StackLayout>
 <R_StackLayout Row Spacing="1" Class="mb-1">
     <R_ItemLayout col="2">
-        <R_Label>Budget Year</R_Label>
+        <R_Label>@_localizer["LABEL_BUDGETYEAR"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_NumericTextBox @bind-Value="_viewModel.SelectedYear"
@@ -114,7 +117,7 @@
                           Enabled="@(_viewModel.GenerateAccountBudget.CBASED_ON == "EB")"/>
     </R_ItemLayout>
     <R_ItemLayout col="2" Class="ms-5">
-        <R_Label>Budget No.</R_Label>
+        <R_Label>@_localizer["LABEL_BUDGETNO"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="4">
         <R_ComboBox Data="_viewModel.BudgetHDList"
@@ -126,7 +129,7 @@
 </R_StackLayout>
 <R_StackLayout Row Spacing="1" Class="mb-1">
     <R_ItemLayout col="2">
-        <R_Label>From Period</R_Label>
+        <R_Label>@_localizer["LABEL_FROMPERIOD"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_ComboBox Data="_viewModel.CPERIOD"
@@ -136,7 +139,7 @@
                     OnChanged="CheckPeriodFrom"/>
     </R_ItemLayout>
     <R_ItemLayout col="2" Class="ms-5">
-        <R_Label>To Period</R_Label>
+        <R_Label>@_localizer["LABEL_TOPERIOD"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_ComboBox Data="_viewModel.CPERIOD"
@@ -148,13 +151,14 @@
 </R_StackLayout>
 <R_StackLayout Row Spacing="1" Class="mb-1">
     <R_ItemLayout col="2">
-        <R_Label>By</R_Label>
+        <R_Label>@_localizer["LABEL_BY"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_RadioGroup Data="@_viewModel.CBY"
                       @bind-Value="_viewModel.GenerateAccountBudget.CBY"
                       ValueField="Key"
                       TextField="Value"
+                      Layout="R_eRadioGroupLayout.Vertical"
                       OnChanged="ChangeBy"/>
     </R_ItemLayout>
     <R_ItemLayout col="3" Class="ms-5">
@@ -168,7 +172,7 @@
 </R_StackLayout>
 <R_StackLayout Row Spacing="1" Class="mb-1">
     <R_ItemLayout col="2">
-        <R_Label>Update Method</R_Label>
+        <R_Label>@_localizer["LABEL_UPDATEMETHOD"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_RadioGroup Data="@_viewModel.CUPDATE_METHOD"
@@ -177,14 +181,14 @@
                       TextField="Value"/>
     </R_ItemLayout>
 </R_StackLayout>
-@* </R_GroupBox> *@
+</R_GroupBox>
 
 
 <R_StackLayout Row Class="mt-4">
     <R_ItemLayout>
-        <R_Button OnClick="ClickProcess">Process</R_Button>
+        <R_Button OnClick="ClickProcess">@_localizer["LABEL_BTNPROCESS"]</R_Button>
     </R_ItemLayout>
     <R_ItemLayout>
-        <R_Button OnClick="ClickCancel">Cancel</R_Button>
+        <R_Button OnClick="ClickCancel">@_localizer["LABEL_BTNCANCEL"]</R_Button>
     </R_ItemLayout>
 </R_StackLayout>

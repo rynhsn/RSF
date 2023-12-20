@@ -44,7 +44,13 @@ public partial class GLM00500 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
-
+    
+    private bool _gridEnabled;
+    private void SetOther(R_SetEventArgs eventArgs)
+    {
+        _gridEnabled = eventArgs.Enable;
+    }
+    
     private async Task RefreshList()
     {
         await _gridRef.R_RefreshGrid(null);
@@ -95,7 +101,9 @@ public partial class GLM00500 : R_Page
         try
         {
             var loParam = R_FrontUtility.ConvertObjectToObject<GLM00500BudgetHDDTO>(eventArgs.Data);
-            await _viewModel.ValidationBudgetHD(loParam);
+            if (loParam.CBUDGET_NO is null or "") loEx.Add(new Exception(_localizer["Exception01"]));
+            if (loParam.CBUDGET_NAME is null or "") loEx.Add(new Exception(_localizer["Exception02"]));
+            if (loParam.CCURRENCY_TYPE is null or "") loEx.Add(new Exception(_localizer["Exception03"]));
         }
         catch (Exception ex)
         {
@@ -145,7 +153,7 @@ public partial class GLM00500 : R_Page
 
     private async Task AfterDeleteBudgetHD(object eventArgs)
     {
-        await R_MessageBox.Show("Success", "Budget Deleted Successfully!", R_eMessageBoxButtonType.OK);
+        await R_MessageBox.Show(_localizer["SuccessLabel"], _localizer["SuccessDelete"], R_eMessageBoxButtonType.OK);
     }
 
     private async Task SetFinal(object eventArgs)
@@ -153,13 +161,13 @@ public partial class GLM00500 : R_Page
         var loEx = new R_Exception();
         try
         {
-            var loConfirm = await R_MessageBox.Show("Confirm", "Are you sure want to finalize selected Budget?",
+            var loConfirm = await R_MessageBox.Show(_localizer["ConfirmLabel"], _localizer["ConfirmFinalize"],
                 R_eMessageBoxButtonType.YesNo);
 
             if (loConfirm == R_eMessageBoxResult.Yes)
             {
                 _viewModel.SetFinalizeBudget(_viewModel.BudgetHDEntity.CREC_ID);
-                R_MessageBox.Show("Success", "Budget Finalized Successfully!", R_eMessageBoxButtonType.OK);
+                R_MessageBox.Show(_localizer["SuccessLabel"], _localizer["SuccessFinalize"], R_eMessageBoxButtonType.OK);
                 _gridRef.R_RefreshGrid(_viewModel.BudgetHDEntity);
             }
         }
@@ -199,7 +207,7 @@ public partial class GLM00500 : R_Page
 
     private async Task BeforeCancelBudgetHD(R_BeforeCancelEventArgs eventArgs)
     {
-        var loResult = await R_MessageBox.Show("Confirm", "Are you sure want to cancel selected Budget?",
+        var loResult = await R_MessageBox.Show(_localizer["ConfirmLabel"], _localizer["CancelBudget"],
             R_eMessageBoxButtonType.YesNo);
         if (loResult == R_eMessageBoxResult.No) eventArgs.Cancel = true;
     }

@@ -90,6 +90,13 @@ public partial class GSM02000Tax : R_Page
         loEx.ThrowExceptionIfErrors();
     }
     
+    
+    private bool _gridEnabled;
+    private void SetOther(R_SetEventArgs eventArgs)
+    {
+        _gridEnabled = eventArgs.Enable;
+    }
+    
     private async Task GetRecord(R_ServiceGetRecordEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -214,11 +221,11 @@ public partial class GSM02000Tax : R_Page
             loData = (GSM02000TaxDTO)eventArgs.Data;
             if(loData.DTAX_DATE == null)
             {
-                loEx.Add("Err5", _localizer["Err5"]);
+                loEx.Add("Err05", _localizer["Err05"]);
             }
             if (loData.NTAX_PERCENTAGE == null)
             {
-                loEx.Add("Err6", _localizer["Err6"]);
+                loEx.Add("Err06", _localizer["Err06"]);
             }
 
         }

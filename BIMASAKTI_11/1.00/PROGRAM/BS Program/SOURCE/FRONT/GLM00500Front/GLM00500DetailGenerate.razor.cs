@@ -159,7 +159,7 @@ public partial class GLM00500DetailGenerate
         if (_viewModel.GenerateAccountBudget.CSOURCE_BUDGET_NO == null &&
             _viewModel.GenerateAccountBudget.CBASED_ON == "EB")
         {
-            await R_MessageBox.Show("Error", "Please select existing Budget No.", R_eMessageBoxButtonType.OK);
+            await R_MessageBox.Show(_localizer["ErrorLabel"], _localizer["Exception08"], R_eMessageBoxButtonType.OK);
         }
         else
         {

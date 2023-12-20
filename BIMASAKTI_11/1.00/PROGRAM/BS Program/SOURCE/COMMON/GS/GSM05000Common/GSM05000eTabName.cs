@@ -1,6 +1,6 @@
 namespace GSM05000Common
 {
-    public enum eTabName
+    public enum GSM05000eTabName
     {
         Numbering,
         Approval

@@ -1,18 +1,21 @@
 ﻿@page "/GLI00100Transaction"
 @using GLI00100Common.DTOs
+@using GLI00100FrontResources
+@using R_BlazorFrontEnd.Interfaces
 @inherits R_Page
 @attribute [R_Page(Title = "Transaction Detail")];
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
 <R_StackLayout Style="width: 1250px">
 
     <R_StackLayout>
-        <R_GroupBox Title="Journal Detail">
+        <R_GroupBox Title="@_localizer["LABEL_GROUPJRNLDESC"]">
             <R_StackLayout Row Class="justify-content-end" Spacing="1">
                 <R_ItemLayout col="1" Class="text-end pe-1">
-                    <R_Label>Debit</R_Label>
+                    <R_Label>@_localizer["LABEL_DEBIT"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="1" Class="text-end pe-1">
-                    <R_Label>Credit</R_Label>
+                    <R_Label>@_localizer["LABEL_CREDIT"]</R_Label>
                 </R_ItemLayout>
             </R_StackLayout>
 
@@ -20,7 +23,7 @@
                 <R_ItemLayout col="5" Class="me-3">
                     <R_StackLayout Row Class="justify-content-start mb-4">
                         <R_ItemLayout col="3">
-                            <R_Label>Department</R_Label>
+                            <R_Label>@_localizer["LABEL_DEPT"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout col="3">
                             <R_TextBox @bind-Value="@_viewModel.DataHeader.CDEPT_CODE" Enabled="false"/>
@@ -31,13 +34,13 @@
                     </R_StackLayout>
                     <R_StackLayout Row Class="justify-content-start mb-1">
                         <R_ItemLayout col="3">
-                            <R_Label>Reference No.</R_Label>
+                            <R_Label>@_localizer["LABEL_REFNO"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout col="4">
                             <R_TextBox @bind-Value="@_viewModel.DataHeader.CREF_NO" Enabled="false"/>
                         </R_ItemLayout>
                         <R_ItemLayout col="2">
-                            <R_Label>Doc. Date</R_Label>
+                            <R_Label>@_localizer["LABEL_REFDATE1"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout col="3" Class="align-items-end">
                             <R_DateInput @bind-Value="@_viewModel.DREF_DATE" Enabled="false"/>
@@ -45,13 +48,13 @@
                     </R_StackLayout>
                     <R_StackLayout Row Class="justify-content-start mb-1">
                         <R_ItemLayout col="3">
-                            <R_Label>Document No.</R_Label>
+                            <R_Label>@_localizer["LABEL_DOCNO"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout col="4">
                             <R_TextBox @bind-Value="@_viewModel.DataHeader.CDOC_NO" Enabled="false"/>
                         </R_ItemLayout>
                         <R_ItemLayout col="2">
-                            <R_Label>Ref. Date</R_Label>
+                            <R_Label>@_localizer["LABEL_DOCDATE"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout col="3" Class="align-items-end">
                             <R_DateInput @bind-Value="@_viewModel.DDOC_DATE" Enabled="false"/>
@@ -61,7 +64,7 @@
                 <R_ItemLayout>
                     <R_StackLayout Row Class="justify-content-start mb-1">
                         <R_ItemLayout col="3">
-                            <R_Label>Currency</R_Label>
+                            <R_Label>@_localizer["LABEL_CURR"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout col="2">
                             <R_TextBox @bind-Value="@_viewModel.DataHeader.CCURRENCY_CODE" Enabled="false" TextAlignment="R_eTextAlignment.Center"/>
@@ -70,25 +73,25 @@
                     <R_StackLayout Row Class="justify-content-start mb-1">
                         <R_ItemLayout col="3"/>
                         <R_ItemLayout col="2">
-                            <R_Label>Base Rate</R_Label>
+                            <R_Label>@_localizer["LABEL_BASERATE"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout col="2"/>
                         <R_ItemLayout col="3">
-                            <R_Label>Currency Rate</R_Label>
+                            <R_Label>@_localizer["LABEL_CURRRATE"]</R_Label>
                         </R_ItemLayout>
                     </R_StackLayout>
                     <R_StackLayout Row Class="justify-content-start mb-1">
                         <R_ItemLayout col="3">
-                            <R_Label>Local Currency</R_Label>
+                            <R_Label>@_localizer["LABEL_LOCALCURR"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout col="2">
-                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NLBASE_RATE" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NLBASE_RATE" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false" ThousandSeparator/>
                         </R_ItemLayout>
                         <R_ItemLayout col="2">
                             <R_TextBox @bind-Value="@_viewModel.DataHeader.CCURRENCY_CODE" Enabled="false" TextAlignment="R_eTextAlignment.Center"/>
                         </R_ItemLayout>
                         <R_ItemLayout col="3">
-                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NLCURRENCY_RATE" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NLCURRENCY_RATE" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false" ThousandSeparator/>
                         </R_ItemLayout>
                         <R_ItemLayout col="2">
                             <R_TextBox @bind-Value="@_viewModel.GSMCompany.CLOCAL_CURRENCY_CODE" Enabled="false" TextAlignment="R_eTextAlignment.Center"/>
@@ -96,16 +99,16 @@
                     </R_StackLayout>
                     <R_StackLayout Row Class="justify-content-start">
                         <R_ItemLayout col="3">
-                            <R_Label>Base Currency</R_Label>
+                            <R_Label>@_localizer["LABEL_BASECURR"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout col="2">
-                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NBBASE_RATE" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NBBASE_RATE" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false" ThousandSeparator/>
                         </R_ItemLayout>
                         <R_ItemLayout col="2">
                             <R_TextBox @bind-Value="@_viewModel.DataHeader.CCURRENCY_CODE" Enabled="false" TextAlignment="R_eTextAlignment.Center"/>
                         </R_ItemLayout>
                         <R_ItemLayout col="3">
-                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NBCURRENCY_RATE" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NBCURRENCY_RATE" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false" ThousandSeparator/>
                         </R_ItemLayout>
                         <R_ItemLayout col="2">
                             <R_TextBox @bind-Value="@_viewModel.GSMCompany.CBASE_CURRENCY_CODE" Enabled="false" TextAlignment="R_eTextAlignment.Center"/>
@@ -115,29 +118,29 @@
                 <R_ItemLayout col="3">
                     <R_StackLayout Row Class="justify-content-end mb-4">
                         <R_ItemLayout>
-                            <R_Label>Total Journal</R_Label>
+                            <R_Label>@_localizer["LABEL_TOTALJOURNAL"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout col="4">
-                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NDEBIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NDEBIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false" ThousandSeparator/>
                         </R_ItemLayout>
                         <R_ItemLayout col="4">
-                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NCREDIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NCREDIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false" ThousandSeparator/>
                         </R_ItemLayout>
                     </R_StackLayout>
                     <R_StackLayout Row Class="justify-content-end mb-1">
                         <R_ItemLayout col="4">
-                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NLDEBIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NLDEBIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false" ThousandSeparator/>
                         </R_ItemLayout>
                         <R_ItemLayout col="4">
-                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NLCREDIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NLCREDIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false" ThousandSeparator/>
                         </R_ItemLayout>
                     </R_StackLayout>
                     <R_StackLayout Row Class="justify-content-end">
                         <R_ItemLayout col="4">
-                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NBDEBIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NBDEBIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false" ThousandSeparator/>
                         </R_ItemLayout>
                         <R_ItemLayout col="4">
-                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NBCREDIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NBCREDIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false" ThousandSeparator/>
                         </R_ItemLayout>
                     </R_StackLayout>
                 </R_ItemLayout>
@@ -146,17 +149,17 @@
             <R_ItemLayout col="5" Class="mb-1">
                 <R_StackLayout Row>
                     <R_ItemLayout col="3">
-                        <R_Label>Description</R_Label>
+                        <R_Label>@_localizer["LABEL_DESC"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="12">
-                        <R_TextBox @bind-Value="@_viewModel.DataHeader.CTRANS_DESC" Enabled="false"/>
+                        <R_TextArea @bind-Value="@_viewModel.DataHeader.CTRANS_DESC" Enabled="false"/>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>
             <R_ItemLayout col="5">
                 <R_StackLayout Row>
                     <R_ItemLayout col="3">
-                        <R_Label>Transaction Type</R_Label>
+                        <R_Label>@_localizer["LABEL_TRXTYPE"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="6">
                         <R_TextBox @bind-Value="@_viewModel.DataHeader.CTRANSACTION_NAME" Enabled="false"/>
@@ -167,11 +170,12 @@
     </R_StackLayout>
 
     <R_StackLayout>
-        <R_GroupBox Title="Journal Detail">
+        <R_GroupBox Title="@_localizer["LABEL_GROUPJRNLDET"]">
             <R_ItemLayout>
                 <R_Grid @ref="_gridRef"
                         DataSource="_viewModel.DataList"
-                        Pageable="true"
+                        Pageable
+                        PageSize="7"
                         R_ConductorGridSource="_conductorRef"
                         R_GridType="R_eGridType.Original"
                         R_ServiceGetListRecord="GetListRecord"
@@ -181,19 +185,19 @@
                         AllowEditRow="false"
                         AllowAddNewRow="false">
                     <R_GridColumns>
-                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CGLACCOUNT_NO)" HeaderText="Account No." Width="150px" TextAlignment="R_eTextAlignment.Left"/>
-                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CGLACCOUNT_NAME)" HeaderText="Account Name" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
-                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CCENTER)" HeaderText="Center" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
-                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CBDCR)" HeaderText="D/C" Width="100px" TextAlignment="R_eTextAlignment.Right"/>
-                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NDEBIT)" HeaderText="Debit" Width="80px" TextAlignment="R_eTextAlignment.Right" Decimals="2"/>
-                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NCREDIT)" HeaderText="Credit" Width="80px" TextAlignment="R_eTextAlignment.Right" Decimals="2"/>
-                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CDETAIL_DESC)" HeaderText="Description." Width="200px" TextAlignment="R_eTextAlignment.Left"/>
-                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CDOCUMENT_NO)" HeaderText="Voucher No." Width="100px" TextAlignment="R_eTextAlignment.Left"/>
-                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CDOCUMENT_DATE)" HeaderText="Voucher Date" Width="100px" TextAlignment="R_eTextAlignment.Left"/>
-                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NLDEBIT)" HeaderText="DB (Local)" Width="100px" TextAlignment="R_eTextAlignment.Right"/>
-                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NLCREDIT)" HeaderText="CR (Local)" Width="100px" TextAlignment="R_eTextAlignment.Right"/>
-                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NBDEBIT)" HeaderText="DB (Base)" Width="100px" TextAlignment="R_eTextAlignment.Right"/>
-                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NBCREDIT)" HeaderText="CR (Base)" Width="100px" TextAlignment="R_eTextAlignment.Right"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CGLACCOUNT_NO)" HeaderText="@_localizer["LABEL_ACCNO"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CGLACCOUNT_NAME)" HeaderText="@_localizer["LABEL_ACCNAME"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CCENTER)" HeaderText="@_localizer["LABEL_CENTER"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CBDCR)" HeaderText="@_localizer["LABEL_DC"]" Width="100px" TextAlignment="R_eTextAlignment.Right"/>
+                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NDEBIT)" HeaderText="@_localizer["LABEL_DEBIT"]" Width="80px" TextAlignment="R_eTextAlignment.Right" Decimals="2" ThousandSeparator/>
+                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NCREDIT)" HeaderText="@_localizer["LABEL_CREDIT"]" Width="80px" TextAlignment="R_eTextAlignment.Right" Decimals="2" ThousandSeparator/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CDETAIL_DESC)" HeaderText="@_localizer["LABEL_DESC"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CDOCUMENT_NO)" HeaderText="@_localizer["LABEL_VOUCHERNO"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridDatePickerColumn FieldName="@nameof(GLI00100JournalGridDTO.DDOCUMENT_DATE)" HeaderText="@_localizer["LABEL_VOUCHERDATE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NLDEBIT)" HeaderText="@_localizer["LABEL_DBLOCAL"]" Width="150px" TextAlignment="R_eTextAlignment.Right" ThousandSeparator/>
+                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NLCREDIT)" HeaderText="@_localizer["LABEL_CRLOCAL"]" Width="150px" TextAlignment="R_eTextAlignment.Right" ThousandSeparator/>
+                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NBDEBIT)" HeaderText="@_localizer["LABEL_DBBASE"]" Width="150px" TextAlignment="R_eTextAlignment.Right" ThousandSeparator/>
+                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NBCREDIT)" HeaderText="@_localizer["LABEL_CRBASE"]" Width="150px" TextAlignment="R_eTextAlignment.Right" ThousandSeparator/>
                     </R_GridColumns>
                 </R_Grid>
             </R_ItemLayout>
@@ -201,10 +205,10 @@
             <R_ItemLayout>
                 <R_StackLayout Row>
                     <R_ItemLayout>
-                        <R_Button>Drill Down</R_Button>
+                        <R_Button>@_localizer["LABEL_BTNDRILLDOWN"]</R_Button>
                     </R_ItemLayout>
                     <R_ItemLayout>
-                        <R_Button OnClick="CloseEvent">Close</R_Button>
+                        <R_Button OnClick="CloseEvent">@_localizer["LABEL_BTNCLOSE"]</R_Button>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>

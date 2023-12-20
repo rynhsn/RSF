@@ -11,12 +11,12 @@ namespace GSM04500Service;
 
 [ApiController]
 [Route("api/[controller]/[action]")]
-public class GSM04500AccountSettingDeptController : ControllerBase, IGSM04500AccountSetting
+public class GSM04500AccountSettingDeptController : ControllerBase, IGSM04500AccountSettingDept
 {
     
     private LoggerGSM04500 _logger;
 
-    public GSM04500AccountSettingController(ILogger<GSM04500AccountSettingController> logger)
+    public GSM04500AccountSettingDeptController(ILogger<GSM04500AccountSettingDeptController> logger)
     {
         //Initial and Get Logger
         LoggerGSM04500.R_InitializeLogger(logger);
@@ -24,23 +24,23 @@ public class GSM04500AccountSettingDeptController : ControllerBase, IGSM04500Acc
     }
 
     [HttpPost]
-    public R_ServiceGetRecordResultDTO<GSM04500AccountSettingDTO> R_ServiceGetRecord(
-        R_ServiceGetRecordParameterDTO<GSM04500AccountSettingDTO> poParameter)
+    public R_ServiceGetRecordResultDTO<GSM04500AccountSettingDeptDTO> R_ServiceGetRecord(
+        R_ServiceGetRecordParameterDTO<GSM04500AccountSettingDeptDTO> poParameter)
     {
-        _logger.LogInfo("Start - Get Account Setting Record");
+        _logger.LogInfo("Start - Get Account Setting Dept Record");
 
         R_Exception loEx = new();
-        R_ServiceGetRecordResultDTO<GSM04500AccountSettingDTO> loRtn = new();
+        R_ServiceGetRecordResultDTO<GSM04500AccountSettingDeptDTO> loRtn = new();
 
         try
         {
-            var loCls = new GSM04500AccountSettingCls();
+            var loCls = new GSM04500AccountSettingDeptCls();
 
             _logger.LogInfo("Set Parameter");
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
 
-            _logger.LogInfo("Get Account Setting Record");
+            _logger.LogInfo("Get Account Setting Dept Record");
             loRtn.data = loCls.R_GetRecord(poParameter.Entity);
         }
         catch (Exception ex)
@@ -50,30 +50,30 @@ public class GSM04500AccountSettingDeptController : ControllerBase, IGSM04500Acc
         }
 
         loEx.ThrowExceptionIfErrors();
-        _logger.LogInfo("End - Get Account Setting Record");
+        _logger.LogInfo("End - Get Account Setting Dept Record");
         return loRtn;
     }
 
 
     [HttpPost]
-    public R_ServiceSaveResultDTO<GSM04500AccountSettingDTO> R_ServiceSave(
-        R_ServiceSaveParameterDTO<GSM04500AccountSettingDTO> poParameter)
+    public R_ServiceSaveResultDTO<GSM04500AccountSettingDeptDTO> R_ServiceSave(
+        R_ServiceSaveParameterDTO<GSM04500AccountSettingDeptDTO> poParameter)
     {
-        _logger.LogInfo("Start - Save Account Setting Entity");
+        _logger.LogInfo("Start - Save Account Setting Dept Entity");
         R_Exception loEx = new();
-        R_ServiceSaveResultDTO<GSM04500AccountSettingDTO> loRtn = null;
-        GSM04500AccountSettingCls loCls;
+        R_ServiceSaveResultDTO<GSM04500AccountSettingDeptDTO> loRtn = null;
+        GSM04500AccountSettingDeptCls loCls;
 
         try
         {
-            loCls = new GSM04500AccountSettingCls();
-            loRtn = new R_ServiceSaveResultDTO<GSM04500AccountSettingDTO>();
+            loCls = new GSM04500AccountSettingDeptCls();
+            loRtn = new R_ServiceSaveResultDTO<GSM04500AccountSettingDeptDTO>();
 
             _logger.LogInfo("Set Parameter");
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
 
-            _logger.LogInfo("Save Account Setting Entity");
+            _logger.LogInfo("Save Account Setting Dept Entity");
             loRtn.data = loCls.R_Save(poParameter.Entity, poParameter.CRUDMode);
         }
         catch (Exception ex)
@@ -83,27 +83,27 @@ public class GSM04500AccountSettingDeptController : ControllerBase, IGSM04500Acc
         }
 
         loEx.ThrowExceptionIfErrors();
-        _logger.LogInfo("End - Save Account Setting Entity");
+        _logger.LogInfo("End - Save Account Setting Dept Entity");
         return loRtn;
     }
 
 
     [HttpPost]
-    public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<GSM04500AccountSettingDTO> poParameter)
+    public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<GSM04500AccountSettingDeptDTO> poParameter)
     {
-        _logger.LogInfo("Start - Delete Account Setting Entity");
+        _logger.LogInfo("Start - Delete Account Setting Dept Entity");
         R_Exception loEx = new();
         R_ServiceDeleteResultDTO loRtn = new();
-        GSM04500AccountSettingCls loCls;
+        GSM04500AccountSettingDeptCls loCls;
 
         try
         {
-            loCls = new GSM04500AccountSettingCls();
+            loCls = new GSM04500AccountSettingDeptCls();
 
             _logger.LogInfo("Set Parameter");
             poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
 
-            _logger.LogInfo("Delete Account Setting Entity");
+            _logger.LogInfo("Delete Account Setting Dept Entity");
             loCls.R_Delete(poParameter.Entity);
         }
         catch (Exception ex)
@@ -113,20 +113,20 @@ public class GSM04500AccountSettingDeptController : ControllerBase, IGSM04500Acc
         }
 
         loEx.ThrowExceptionIfErrors();
-        _logger.LogInfo("End - Delete Account Setting Entity");
+        _logger.LogInfo("End - Delete Account Setting Dept Entity");
         return loRtn;
     }
 
 
     [HttpPost]
-    public IAsyncEnumerable<GSM04500AccountSettingDTO> GSM04500GetAllAccountSettingListStream()
+    public IAsyncEnumerable<GSM04500AccountSettingDeptDTO> GSM04500GetAllAccountSettingDeptListStream()
     {
-        _logger.LogInfo("Start - Get Account Setting List");
+        _logger.LogInfo("Start - Get Account Setting Dept List");
         R_Exception loEx = new();
         GSM04500ParameterDb loDbPar;
-        List<GSM04500AccountSettingDTO> loRtnTmp;
-        GSM04500AccountSettingCls loCls;
-        IAsyncEnumerable<GSM04500AccountSettingDTO> loRtn = null;
+        List<GSM04500AccountSettingDeptDTO> loRtnTmp;
+        GSM04500AccountSettingDeptCls loCls;
+        IAsyncEnumerable<GSM04500AccountSettingDeptDTO> loRtn = null;
 
         try
         {
@@ -135,12 +135,14 @@ public class GSM04500AccountSettingDeptController : ControllerBase, IGSM04500Acc
             loDbPar = new GSM04500ParameterDb(); 
             loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbPar.CUSER_ID = R_BackGlobalVar.USER_ID;
-            loDbPar.CPROPERTY_ID = R_Utility.R_GetContext<string>(ContextConstant.CPROPERTY_ID);
-            loDbPar.CJOURNAL_GROUP_TYPE = R_Utility.R_GetContext<string>(ContextConstant.CJRNGRP_TYPE);
+            loDbPar.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(GSM04500ContextConstant.CPROPERTY_ID);
+            loDbPar.CJOURNAL_GROUP_TYPE = R_Utility.R_GetStreamingContext<string>(GSM04500ContextConstant.CJRNGRP_TYPE);
+            loDbPar.CJOURNAL_GROUP_CODE = R_Utility.R_GetStreamingContext<string>(GSM04500ContextConstant.CJRNGRP_CODE);
+            loDbPar.CGOA_CODE = R_Utility.R_GetStreamingContext<string>(GSM04500ContextConstant.CGOA_CODE);
 
-            loCls = new GSM04500AccountSettingCls();
-            _logger.LogInfo("Get Account Setting List");
-            loRtnTmp = loCls.GetAccountSettingList(loDbPar);
+            loCls = new GSM04500AccountSettingDeptCls();
+            _logger.LogInfo("Get Account Setting Dept List");
+            loRtnTmp = loCls.GetAccountSettingDeptList(loDbPar);
 
             loRtn = GetStream(loRtnTmp);
         }
@@ -151,15 +153,15 @@ public class GSM04500AccountSettingDeptController : ControllerBase, IGSM04500Acc
         }
 
         loEx.ThrowExceptionIfErrors();
-        _logger.LogInfo("End - Get Account Setting List");
+        _logger.LogInfo("End - Get Account Setting Dept List");
         return loRtn;
     }
     
     #region "Helper GetStream Function"
 
-    private async IAsyncEnumerable<GSM04500AccountSettingDTO> GetStream(List<GSM04500AccountSettingDTO> poParameter)
+    private async IAsyncEnumerable<GSM04500AccountSettingDeptDTO> GetStream(List<GSM04500AccountSettingDeptDTO> poParameter)
     {
-        foreach (GSM04500AccountSettingDTO item in poParameter)
+        foreach (GSM04500AccountSettingDeptDTO item in poParameter)
         {
             yield return item;
         }

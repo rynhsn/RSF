@@ -31,10 +31,10 @@
         <value>Rounding Unit</value>
     </data>
     <data name="LABEL_TAXIN" xml:space="preserve">
-        <value>Tax In GL Account</value>
+        <value>Tax In GL Account*</value>
     </data>
     <data name="LABEL_TAXOUT" xml:space="preserve">
-        <value>Tax Out GL Account</value>
+        <value>Tax Out GL Account*</value>
     </data>
     <data name="LABEL_UPDATEDBY" xml:space="preserve">
         <value>Updated By</value>
@@ -54,16 +54,16 @@
     <data name="LABEL_ACTIVE" xml:space="preserve">
         <value>Active</value>
     </data>
-    <data name="Err1" xml:space="preserve">
+    <data name="Err01" xml:space="preserve">
         <value>Tax ID is required</value>
     </data>
-    <data name="Err2" xml:space="preserve">
+    <data name="Err02" xml:space="preserve">
         <value>Tax Name is required</value>
     </data>
-    <data name="Err3" xml:space="preserve">
+    <data name="Err03" xml:space="preserve">
         <value>Rounding Mode is required</value>
     </data>
-    <data name="Err4" xml:space="preserve">
+    <data name="Err04" xml:space="preserve">
         <value>Rounding Unit is required</value>
     </data>
     <data name="LABEL_TAXDATE" xml:space="preserve">
@@ -72,10 +72,10 @@
     <data name="LABEL_TAXPCT" xml:space="preserve">
         <value>Tax %*</value>
     </data>
-    <data name="Err5" xml:space="preserve">
+    <data name="Err05" xml:space="preserve">
         <value>Tax Date is required</value>
     </data>
-    <data name="Err6" xml:space="preserve">
+    <data name="Err06" xml:space="preserve">
         <value>Tax % is required</value>
     </data>
     <data name="BTN_ACTIVATE" xml:space="preserve">
@@ -83,5 +83,11 @@
     </data>
     <data name="BTN_INACTIVE" xml:space="preserve">
         <value>Inactive</value>
+    </data>
+    <data name="Err07" xml:space="preserve">
+        <value>Tax In GL Account is required</value>
+    </data>
+    <data name="Err08" xml:space="preserve">
+        <value>Tax Out GL Account is required</value>
     </data>
 </root>

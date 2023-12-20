@@ -190,6 +190,11 @@
       "GSM02000FrontResources/1.0.0": {
         "runtime": {
           "GSM02000FrontResources.dll": {}
+        },
+        "resources": {
+          "id/GSM02000FrontResources.resources.dll": {
+            "locale": "id"
+          }
         }
       },
       "GSM02000Model/1.0.0": {

@@ -58,5 +58,257 @@ namespace GSM04500FrontResources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Setting.
+        /// </summary>
+        internal static string LBL_ACCSETTING {
+            get {
+                return ResourceManager.GetString("LBL_ACCSETTING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By Dept.
+        /// </summary>
+        internal static string LBL_BYDEPT {
+            get {
+                return ResourceManager.GetString("LBL_BYDEPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string LBL_CANCEL {
+            get {
+                return ResourceManager.GetString("LBL_CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created By.
+        /// </summary>
+        internal static string LBL_CREATEDBY {
+            get {
+                return ResourceManager.GetString("LBL_CREATEDBY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created Date.
+        /// </summary>
+        internal static string LBL_CREATEDDATE {
+            get {
+                return ResourceManager.GetString("LBL_CREATEDDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department Code.
+        /// </summary>
+        internal static string LBL_DEPTCODE {
+            get {
+                return ResourceManager.GetString("LBL_DEPTCODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department Name.
+        /// </summary>
+        internal static string LBL_DEPTNAME {
+            get {
+                return ResourceManager.GetString("LBL_DEPTNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Accrual.
+        /// </summary>
+        internal static string LBL_ENACCRUAL {
+            get {
+                return ResourceManager.GetString("LBL_ENACCRUAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GL Account Name.
+        /// </summary>
+        internal static string LBL_GLACCNAME {
+            get {
+                return ResourceManager.GetString("LBL_GLACCNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GL Account No.
+        /// </summary>
+        internal static string LBL_GLACCNO {
+            get {
+                return ResourceManager.GetString("LBL_GLACCNO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group of Account.
+        /// </summary>
+        internal static string LBL_GOA {
+            get {
+                return ResourceManager.GetString("LBL_GOA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid.
+        /// </summary>
+        internal static string LBL_INVALID {
+            get {
+                return ResourceManager.GetString("LBL_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Journal Group.
+        /// </summary>
+        internal static string LBL_JRNLGRP {
+            get {
+                return ResourceManager.GetString("LBL_JRNLGRP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Journal Group Name.
+        /// </summary>
+        internal static string LBL_JRNLGRPNAME {
+            get {
+                return ResourceManager.GetString("LBL_JRNLGRPNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Journal Group Type.
+        /// </summary>
+        internal static string LBL_JRNLGRPTYPE {
+            get {
+                return ResourceManager.GetString("LBL_JRNLGRPTYPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No..
+        /// </summary>
+        internal static string LBL_NO {
+            get {
+                return ResourceManager.GetString("LBL_NO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        internal static string LBL_NOTES {
+            get {
+                return ResourceManager.GetString("LBL_NOTES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Process.
+        /// </summary>
+        internal static string LBL_PROCESS {
+            get {
+                return ResourceManager.GetString("LBL_PROCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PROPERTY.
+        /// </summary>
+        internal static string LBL_PROPERTY {
+            get {
+                return ResourceManager.GetString("LBL_PROPERTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property.
+        /// </summary>
+        internal static string LBL_PRPRTY {
+            get {
+                return ResourceManager.GetString("LBL_PRPRTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save To Excel.
+        /// </summary>
+        internal static string LBL_SAVEEXCEL {
+            get {
+                return ResourceManager.GetString("LBL_SAVEEXCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source File.
+        /// </summary>
+        internal static string LBL_SRC {
+            get {
+                return ResourceManager.GetString("LBL_SRC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template.
+        /// </summary>
+        internal static string LBL_TEMPLATE {
+            get {
+                return ResourceManager.GetString("LBL_TEMPLATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Row(s).
+        /// </summary>
+        internal static string LBL_TOTAL {
+            get {
+                return ResourceManager.GetString("LBL_TOTAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated By.
+        /// </summary>
+        internal static string LBL_UPDATEDBY {
+            get {
+                return ResourceManager.GetString("LBL_UPDATEDBY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated Date.
+        /// </summary>
+        internal static string LBL_UPDATEDDATE {
+            get {
+                return ResourceManager.GetString("LBL_UPDATEDDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload.
+        /// </summary>
+        internal static string LBL_UPLOAD {
+            get {
+                return ResourceManager.GetString("LBL_UPLOAD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valid.
+        /// </summary>
+        internal static string LBL_VALID {
+            get {
+                return ResourceManager.GetString("LBL_VALID", resourceCulture);
+            }
+        }
     }
 }

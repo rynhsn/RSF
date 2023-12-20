@@ -10,14 +10,15 @@
         <R_Grid @ref="@_gridSalesRef"
                 DataSource="@_viewModel.SalesGridList"
                 Pageable
-                PageSize="20"
+                PageSize="26"
                 R_ConductorSource="@_conductorSalesRef"
                 R_GridType="R_eGridType.Navigator"
                 R_ServiceGetListRecord="@GetSalesTaxList"
-                Height="445px">
+                Height="595px"
+                Enabled="_gridEnabled">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="@nameof(GSM02000TaxSalesDTO.CTAX_ID)" HeaderText="@_localizer["LABEL_TAXID"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
-                <R_GridTextColumn FieldName="@nameof(GSM02000TaxSalesDTO.CTAX_NAME)" HeaderText="@_localizer["LABEL_TAXNAME"]" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(GSM02000TaxSalesDTO.CTAX_NAME)" HeaderText="@_localizer["LABEL_TAXNAME"]" TextAlignment="R_eTextAlignment.Left" Width="250px"/>
             </R_GridColumns>
         </R_Grid>
     </R_ItemLayout>
@@ -25,6 +26,7 @@
         <R_Grid @ref="@_gridRef"
                 DataSource="@_viewModel.GridList"
                 Pageable
+                PageSize="24"
                 R_ConductorGridSource="@_conductorRef"
                 R_GridType="R_eGridType.Original"
                 R_ServiceGetListRecord="@GetList"
@@ -32,7 +34,7 @@
                 AllowAddNewRow
                 AllowDeleteRow
                 Width="100%"
-                Height="445px">
+                Height="595px">
             <R_GridColumns>
                 <R_GridDatePickerColumn FieldName="@nameof(GSM02000TaxDTO.DTAX_DATE)" HeaderText="@_localizer["LABEL_TAXDATE"]" R_EnableAdd Width="200px" TextAlignment="R_eTextAlignment.Left"/>
                 <R_GridNumericColumn FieldName="@nameof(GSM02000TaxDTO.NTAX_PERCENTAGE)" HeaderText="@_localizer["LABEL_TAXPCT"]" Min="0" Max="100" R_EnableAdd R_EnableEdit Width="100px" TextAlignment="R_eTextAlignment.Right"/>
@@ -46,17 +48,18 @@
 </R_StackLayout>
 
 <R_Conductor @ref="@_conductorSalesRef"
-                 R_ViewModel="_viewModel"
-                 R_IsHeader
-                 R_ServiceGetRecord="@GetSalesTaxRecord"/>
-
-<R_ConductorGrid @ref="@_conductorRef"
              R_ViewModel="_viewModel"
              R_IsHeader
-             R_ServiceGetRecord="@GetRecord"
-             R_AfterAdd="@AfterAdd"
-             R_Validation="@Validation"
-             R_Saving="Saving"
-             R_ServiceSave="Save"
-             R_BeforeDelete="BeforeDelete"
-             R_ServiceDelete="Delete"/>
+             R_ServiceGetRecord="@GetSalesTaxRecord"/>
+
+<R_ConductorGrid @ref="@_conductorRef"
+                 R_ViewModel="_viewModel"
+                 R_IsHeader
+                 R_ServiceGetRecord="@GetRecord"
+                 R_AfterAdd="@AfterAdd"
+                 R_SetOther="SetOther"
+                 R_Validation="@Validation"
+                 R_Saving="Saving"
+                 R_ServiceSave="Save"
+                 R_BeforeDelete="BeforeDelete"
+                 R_ServiceDelete="Delete"/>

@@ -29,14 +29,25 @@
   &lt;Assembly Path="D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\SYSTEM\SOURCE\LIBRARY\Back\R_AuthenticationBack.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FCREATE_005FONETIME_005FSUPPLIERResources_002FRSP_005FAP_005FCREATE_005FONETIME_005FSUPPLIERResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FDELETE_005FTRANS_005FADDResources_002FRSP_005FAP_005FDELETE_005FTRANS_005FADDResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FDELETE_005FTRANS_005FADDResources_002FRSP_005FAP_005FDELETE_005FTRANS_005FADDResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FDELETE_005FTRANS_005FHDResources_002FRSP_005FAP_005FDELETE_005FTRANS_005FHDResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FDELETE_005FTRANS_005FPDResources_002FRSP_005FAP_005FDELETE_005FTRANS_005FPDResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FEXPENDITURE_005FUPLOADResources_002FRSP_005FAP_005FEXPENDITURE_005FUPLOADResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FGENERATE_005FWH_005FTAX_005FDEDUCTIONResources_002FRSP_005FAP_005FGENERATE_005FWH_005FTAX_005FDEDUCTIONResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FSAVE_005FPURCHASE_005FINVOICE_005FSUMARRYResources_002FRSP_005FAP_005FSAVE_005FPURCHASE_005FINVOICE_005FSUMARRYResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FSAVE_005FTRANS_005FHDResources_002FRSP_005FAP_005FSAVE_005FTRANS_005FHDResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FSAVE_005FTRANS_005FHD_005FSUMARRYResources_002FRSP_005FAP_005FSAVE_005FTRANS_005FHD_005FSUMARRYResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FSUBMIT_005FTRANS_005FHDResources_002FRSP_005FAP_005FSUBMIT_005FTRANS_005FHDResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FGL_002FRSP_005FGL_005FBUDGET_005FUPLOADResources_002FRSP_005FGL_005FBUDGET_005FUPLOADResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FGL_002FRSP_005FGL_005FGENERATE_005FACCOUNT_005FBUDGETResources_002FRSP_005FGL_005FGENERATE_005FACCOUNT_005FBUDGETResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FGL_002FRSP_005FGL_005FIMPORT_005FJOURNALResources_002FRSP_005FGL_005FIMPORT_005FJOURNALResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FGS_002FRSP_005FGS_005FMAINTAIN_005FJOURNAL_005FGROUPResources_002FRSP_005FGS_005FMAINTAIN_005FJOURNAL_005FGROUPResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FGS_002FRSP_005FGS_005FMAINTAIN_005FJOURNAL_005FGROUP_005FACCOUNT_005FDEPTResources_002FRSP_005FGS_005FMAINTAIN_005FJOURNAL_005FGROUP_005FACCOUNT_005FDEPTResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FGS_002FRSP_005FGS_005FMAINTAIN_005FTAXResources_002FRSP_005FGS_005FMAINTAIN_005FTAXResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FGS_002FRSP_005FGS_005FMAINTAIN_005FTRANS_005FCODE_005FAPPROVERResources_002FRSP_005FGS_005FMAINTAIN_005FTRANS_005FCODE_005FAPPROVERResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FGS_002FRSP_005FGS_005FUPLOAD_005FJOURNAL_005FGROUPResources_002FRSP_005FGS_005FUPLOAD_005FJOURNAL_005FGROUPResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	
 	
 	

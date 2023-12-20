@@ -35,14 +35,16 @@
     <R_ItemLayout col="4">
         <R_Grid @ref="@_gridRefDept"
                 DataSource="@_GSM05000ApprovalUserViewModel.DepartmentList"
-                Pageable="true"
+                Pageable
+                PageSize="25"
                 R_ConductorGridSource="@_conductorRefDept"
                 R_GridType="@R_eGridType.Original"
                 R_ServiceGetListRecord="@GetListDept"
                 AllowDeleteRow="false"
                 AllowEditRow="false"
                 AllowAddNewRow="false"
-                Height="500px">
+                Height="565px"
+                Enabled="_gridDeptEnabled">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalDepartmentDTO.CDEPT)" HeaderText="@_localizer["LABEL_DEPARTMENT"]" TextAlignment="R_eTextAlignment.Left"/>
             </R_GridColumns>
@@ -70,7 +72,7 @@
         </R_StackLayout>
         <R_StackLayout>
             <R_ItemLayout col="12">
-                <R_GroupBox ShowBorder="true" Class="mb-1" Title="User Approval">
+                <R_GroupBox ShowBorder="true" Class="mb-1" Title="@_localizer["LABEL_GROUPUSERAPPROVAL"]">
                     <R_StackLayout>
                         <R_ItemLayout col="12">
                             <R_Grid @ref="@_gridRefApprover"
@@ -85,7 +87,8 @@
                                     R_Before_Open_Grid_Lookup="BeforeLookupApprover"
                                     R_After_Open_Grid_Lookup="AfterLookupApprover"
                                     Width="100%"
-                                    Height="200px">
+                                    Height="200px"
+                                    Enabled="_gridUserEnabled">
                                 <R_GridColumns>
                                     @* <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CSEQUENCE)" HeaderText="@_localizer["LABEL_SEQUENCE"]" Width="130px" TextAlignment="R_eTextAlignment.Left"/> *@
                                     <R_GridNumericColumn FieldName="@nameof(GSM05000ApprovalUserDTO.ISEQUENCE)" HeaderText="@_localizer["LABEL_SEQUENCE"]" Width="130px" TextAlignment="R_eTextAlignment.Left"/>
@@ -128,7 +131,7 @@
                         </R_ItemLayout>
                     </R_StackLayout>
                 </R_GroupBox>
-                <R_GroupBox ShowBorder="true" Class="p-2" Title="Replacement User">
+                <R_GroupBox ShowBorder="true" Title="@_localizer["LABEL_GROUPREPLUSER"]">
                 <R_StackLayout>
                     <R_ItemLayout col="12">
                         <R_Grid @ref="@_gridRefReplacement"
@@ -143,7 +146,8 @@
                                 R_Before_Open_Grid_Lookup="BeforeLookupReplacement"
                                 R_After_Open_Grid_Lookup="AfterLookupReplacement"
                                 Width="100%"
-                                Height="200px">
+                                Height="200px"
+                                Enabled="_gridReplacementEnabled">
                             <R_GridColumns>
                                 <R_GridLookupColumn FieldName="@nameof(GSM05000ApprovalReplacementDTO.CUSER_REPLACEMENT)" HeaderText="@_localizer["LABEL_USERID"]" R_EnableAdd Width="150px" TextAlignment="R_eTextAlignment.Right"/>
                                 <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalReplacementDTO.CUSER_REPLACEMENT_NAME)" HeaderText="@_localizer["LABEL_USERNAME"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
@@ -166,6 +170,7 @@
 <R_ConductorGrid @ref="@_conductorRefApprover"
                  R_ViewModel="@_GSM05000ApprovalUserViewModel"
                  R_IsHeader="true"
+                 R_SetOther="SetOtherUser"
                  R_ServiceGetRecord="@GetRecordApprover"
                  R_Display="DisplayApprover"
                  R_AfterAdd="@AfterAddApprover"
@@ -177,6 +182,7 @@
 <R_ConductorGrid @ref="@_conductorRefReplacement"
                  R_ViewModel="@_GSM05000ApprovalReplacementViewModel"
                  R_ConductorParent="@_conductorRefApprover"
+                 R_SetOther="SetOtherReplacement"
                  R_ServiceGetRecord="GetRecordReplacement"
                  R_Display="@DisplayReplacement"
                  R_AfterAdd="@AfterAddReplacement"

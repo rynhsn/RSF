@@ -80,54 +80,72 @@ namespace GLI00100FrontResources {
         /// <summary>
         ///   Looks up a localized string similar to Tax ID is required.
         /// </summary>
-        internal static string Err1 {
+        internal static string Err01 {
             get {
-                return ResourceManager.GetString("Err1", resourceCulture);
+                return ResourceManager.GetString("Err01", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Tax Name is required.
         /// </summary>
-        internal static string Err2 {
+        internal static string Err02 {
             get {
-                return ResourceManager.GetString("Err2", resourceCulture);
+                return ResourceManager.GetString("Err02", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Rounding Mode is required.
         /// </summary>
-        internal static string Err3 {
+        internal static string Err03 {
             get {
-                return ResourceManager.GetString("Err3", resourceCulture);
+                return ResourceManager.GetString("Err03", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Rounding Unit is required.
         /// </summary>
-        internal static string Err4 {
+        internal static string Err04 {
             get {
-                return ResourceManager.GetString("Err4", resourceCulture);
+                return ResourceManager.GetString("Err04", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Tax Date is required.
         /// </summary>
-        internal static string Err5 {
+        internal static string Err05 {
             get {
-                return ResourceManager.GetString("Err5", resourceCulture);
+                return ResourceManager.GetString("Err05", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Tax % is required.
         /// </summary>
-        internal static string Err6 {
+        internal static string Err06 {
             get {
-                return ResourceManager.GetString("Err6", resourceCulture);
+                return ResourceManager.GetString("Err06", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax In GL Account is required.
+        /// </summary>
+        internal static string Err07 {
+            get {
+                return ResourceManager.GetString("Err07", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Out GL Account is required.
+        /// </summary>
+        internal static string Err08 {
+            get {
+                return ResourceManager.GetString("Err08", resourceCulture);
             }
         }
         
@@ -204,7 +222,7 @@ namespace GLI00100FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tax In GL Account.
+        ///   Looks up a localized string similar to Tax In GL Account*.
         /// </summary>
         internal static string LABEL_TAXIN {
             get {
@@ -222,7 +240,7 @@ namespace GLI00100FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tax Out GL Account.
+        ///   Looks up a localized string similar to Tax Out GL Account*.
         /// </summary>
         internal static string LABEL_TAXOUT {
             get {

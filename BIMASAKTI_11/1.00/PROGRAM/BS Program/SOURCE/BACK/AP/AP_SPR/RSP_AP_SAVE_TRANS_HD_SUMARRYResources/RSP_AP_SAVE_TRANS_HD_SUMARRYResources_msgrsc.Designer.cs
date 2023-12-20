@@ -59,5 +59,14 @@ namespace RSP_AP_SAVE_TRANS_HD_SUMARRYResources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Process failed! unable to save Purchase Invoice Summary {0}.
+        /// </summary>
+        internal static string ERROR_PROCESS {
+            get {
+                return ResourceManager.GetString("ERROR_PROCESS", resourceCulture);
+            }
+        }
     }
 }

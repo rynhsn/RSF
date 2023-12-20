@@ -1,13 +1,16 @@
 ﻿@page "/GLI00100AccountJournal"
 @using GLI00100Common.DTOs
+@using GLI00100FrontResources
+@using R_BlazorFrontEnd.Interfaces
 @inherits R_Page
 @attribute [R_Page(Title = "Account Journal")];
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
 <R_StackLayout Style="width: 1300px">
 
     <R_StackLayout Row>
         <R_ItemLayout col="1">
-            <R_Label>Account</R_Label>
+            <R_Label>@_localizer["LABEL_ACC"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
             <R_TextBox Value="@_viewModel.PopupParams.CGLACCOUNT_NO" Enabled="false"/>
@@ -16,13 +19,13 @@
             <R_TextBox Value="@_viewModel.PopupParams.CGLACCOUNT_NAME" Enabled="false"/>
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_Button OnClick="RefreshList">Refresh</R_Button>
+            <R_Button OnClick="RefreshList">@_localizer["LABEL_BTNREFRESH"]</R_Button>
         </R_ItemLayout>
     </R_StackLayout>
 
     <R_StackLayout Row>
         <R_ItemLayout col="1">
-            <R_Label>Center</R_Label>
+            <R_Label>@_localizer["LABEL_CENTER"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
             <R_TextBox Value="@_viewModel.PopupParams.CCENTER_CODE" Enabled="false"/>
@@ -34,7 +37,7 @@
 
     <R_StackLayout Row Class="mb-2">
         <R_ItemLayout col="1">
-            <R_Label>Period</R_Label>
+            <R_Label>@_localizer["LABEL_PERIOD"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="1">
             <R_TextBox Value="@_viewModel.PopupParams.CYEAR" Enabled="false"/>
@@ -45,7 +48,7 @@
         <R_ItemLayout col="7">
             <R_StackLayout Row>
                 <R_ItemLayout col="2">
-                    <R_Label>Currency Type</R_Label>
+                    <R_Label>@_localizer["LABEL_CURRTYPE"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
                     <R_TextBox Value="@_viewModel.DataHeader.CCURRENCY" Enabled="false"/>
@@ -59,58 +62,58 @@
         <R_ItemLayout col="3" Class="me-2">
             <R_StackLayout Row>
                 <R_ItemLayout col="4">
-                    <R_Label>Opening</R_Label>
+                    <R_Label>@_localizer["LABEL_OPENING"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="8">
-                    <R_NumericTextBox @bind-Value="_viewModel.DataHeader.NOPENING" Enabled="false" Arrows="false" ThousandSeparator="false" Decimals="2"/>
+                    <R_NumericTextBox @bind-Value="_viewModel.DataHeader.NOPENING" Enabled="false" Arrows="false" ThousandSeparator Decimals="2" TextAlignment="R_eTextAlignment.Right"/>
                 </R_ItemLayout>
             </R_StackLayout>
         </R_ItemLayout>
         <R_ItemLayout>
             <R_StackLayout Row Spacing="2" Class="mb-1">
                 <R_ItemLayout col="2">
-                    <R_Label>PTD Debit</R_Label>
+                    <R_Label>@_localizer["LABEL_PTDDEBIT"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_NumericTextBox Value="@_viewModel.DataHeader.NPTD_DEBIT" Enabled="false"
-                                      Arrows="false" ThousandSeparator="false" Decimals="2"/>
+                                      Arrows="false" ThousandSeparator Decimals="2" TextAlignment="R_eTextAlignment.Right"/>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
-                    <R_Label>PTD Credit</R_Label>
+                    <R_Label>@_localizer["LABEL_PTDCREDIT"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_NumericTextBox Value="@_viewModel.DataHeader.NPTD_CREDIT" Enabled="false"
-                                      Arrows="false" ThousandSeparator="false" Decimals="2"/>
+                                      Arrows="false" ThousandSeparator Decimals="2" TextAlignment="R_eTextAlignment.Right"/>
                 </R_ItemLayout>
                 <R_ItemLayout col="1">
-                    <R_Label>Ending</R_Label>
+                    <R_Label>@_localizer["LABEL_ENDING"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_NumericTextBox Value="@_viewModel.DataHeader.NENDING" Enabled="false"
-                                      Arrows="false" ThousandSeparator="false" Decimals="2"/>
+                                      Arrows="false" ThousandSeparator Decimals="2" TextAlignment="R_eTextAlignment.Right"/>
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row Spacing="2">
                 <R_ItemLayout col="2">
-                    <R_Label>PTD Debit Adj.</R_Label>
+                    <R_Label>@_localizer["LABEL_PTDDEBITADJ"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_NumericTextBox Value="@_viewModel.DataHeader.NPTD_DEBIT_ADJ" Enabled="false"
-                                      Arrows="false" ThousandSeparator="false" Decimals="2"/>
+                                      Arrows="false" ThousandSeparator Decimals="2" TextAlignment="R_eTextAlignment.Right"/>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
-                    <R_Label>PTD Credit Adj.</R_Label>
+                    <R_Label>@_localizer["LABEL_PTDCREDITADJ"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_NumericTextBox Value="@_viewModel.DataHeader.NPTD_CREDIT_ADJ" Enabled="false"
-                                      Arrows="false" ThousandSeparator="false" Decimals="2"/>
+                                      Arrows="false" ThousandSeparator Decimals="2" TextAlignment="R_eTextAlignment.Right"/>
                 </R_ItemLayout>
             </R_StackLayout>
         </R_ItemLayout>
     </R_StackLayout>
 
     <R_StackLayout>
-        <R_GroupBox Title="Transaction List">
+        <R_GroupBox Title="@_localizer["LABEL_GROUPTRXLIST"]">
             <R_ItemLayout>
                 <R_Grid @ref="_gridRef"
                         DataSource="_viewModel.DataList"
@@ -124,13 +127,13 @@
                         AllowEditRow="false"
                         AllowAddNewRow="false">
                     <R_GridColumns>
-                        <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CREF_DATE)" HeaderText="Reference Date" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
-                        <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CREF_NO)" HeaderText="Reference No." Width="150px" TextAlignment="R_eTextAlignment.Left"/>
-                        <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CTRANSACTION_NAME)" HeaderText="Transaction Type" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
-                        <R_GridNumericColumn FieldName="@nameof(GLI00100TransactionGridDTO.NDEBIT)" HeaderText="Debit" Width="100px" TextAlignment="R_eTextAlignment.Right" Decimals="2"/>
-                        <R_GridNumericColumn FieldName="@nameof(GLI00100TransactionGridDTO.NCREDIT)" HeaderText="Credit" Width="100px" TextAlignment="R_eTextAlignment.Right" Decimals="2"/>
-                        <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CDOCUMENT_NO)" HeaderText="Voucher No." Width="150px" TextAlignment="R_eTextAlignment.Left"/>
-                        <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CDETAIL_DESC)" HeaderText="Description" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridDatePickerColumn FieldName="@nameof(GLI00100TransactionGridDTO.DREF_DATE)" HeaderText="@_localizer["LABEL_REFDATE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CREF_NO)" HeaderText="@_localizer["LABEL_REFNO"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CTRANSACTION_NAME)" HeaderText="@_localizer["LABEL_TRXTYPE"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridNumericColumn FieldName="@nameof(GLI00100TransactionGridDTO.NDEBIT)" HeaderText="@_localizer["LABEL_DEBIT"]" Width="100px" TextAlignment="R_eTextAlignment.Right" Decimals="2" ThousandSeparator/>
+                        <R_GridNumericColumn FieldName="@nameof(GLI00100TransactionGridDTO.NCREDIT)" HeaderText="@_localizer["LABEL_CREDIT"]" Width="100px" TextAlignment="R_eTextAlignment.Right" Decimals="2" ThousandSeparator/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CDOCUMENT_NO)" HeaderText="@_localizer["LABEL_VOUCHERNO"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CDETAIL_DESC)" HeaderText="@_localizer["LABEL_DESC"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
                     </R_GridColumns>
                 </R_Grid>
             </R_ItemLayout>
@@ -138,10 +141,10 @@
             <R_ItemLayout>
                 <R_StackLayout Row>
                     <R_ItemLayout>
-                        <R_Popup R_Before_Open_Popup="BeforeOpenPopupTransaction">Drill Down</R_Popup>
+                        <R_Popup R_Before_Open_Popup="BeforeOpenPopupTransaction" Enabled="@(_viewModel.DataList.Count > 0)">@_localizer["LABEL_BTNDRILLDOWN"]</R_Popup>
                     </R_ItemLayout>
                     <R_ItemLayout>
-                        <R_Button OnClick="CloseEvent">Close</R_Button>
+                        <R_Button OnClick="CloseEvent">@_localizer["LABEL_BTNCLOSE"]</R_Button>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>

@@ -3,6 +3,7 @@ namespace GSM05000Common.DTOs
     public class GSM05000TrxCodeParamsDTO
     {
         public string CTRANS_CODE { get; set; }
+        public GSM05000eTabName ETAB_NAME { get; set; }
     }
     
     public class GSM05000TrxDeptParamsDTO

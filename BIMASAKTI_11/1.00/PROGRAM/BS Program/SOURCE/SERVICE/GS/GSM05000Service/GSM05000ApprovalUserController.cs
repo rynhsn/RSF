@@ -348,12 +348,9 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
             var loCls = new GSM05000ApprovalUserCls();
             
             _logger.LogInfo("Update Sequence");
-            foreach (var loItem in poEntity)
-            {
-                loItem.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                loItem.CUSER_LOGIN_ID = R_BackGlobalVar.USER_ID;
-                loCls.GSM05000UpdateSequence(loItem);
-            }
+            
+            poEntity.ForEach(x => x.CUSER_LOGIN_ID = R_BackGlobalVar.USER_ID);
+            loCls.GSM05000UpdateSequence(poEntity);
         }
         catch (Exception ex)
         {
@@ -405,10 +402,11 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     }
 
     [HttpPost]
-    public void GSM05000CopyToApproval(GSM05000CopyToParamsDTO poParams)
+    public GSM05000SingleDTO<string> GSM05000CopyToApproval(GSM05000CopyToParamsDTO poParams)
     {
         _logger.LogInfo("Start - Copy To Approval");
         R_Exception loEx = new();
+        GSM05000SingleDTO<string> loReturn = new();
         GSM05000ParameterDb loDbPar;
         GSM05000ApprovalUserCls loCls;
 
@@ -437,13 +435,15 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
 
         loEx.ThrowExceptionIfErrors();
         _logger.LogInfo("End - Copy To Approval");
+        return loReturn;
     }
 
     [HttpPost]
-    public void GSM05000CopyFromApproval(GSM05000CopyFromParamsDTO poParams)
+    public GSM05000SingleDTO<string> GSM05000CopyFromApproval(GSM05000CopyFromParamsDTO poParams)
     {
         _logger.LogInfo("Start - Copy From Approval");
         R_Exception loEx = new();
+        GSM05000SingleDTO<string> loReturn = new();
         GSM05000ParameterDb loDbPar;
         GSM05000ApprovalUserCls loCls;
 
@@ -472,6 +472,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
 
         loEx.ThrowExceptionIfErrors();
         _logger.LogInfo("End - Copy From Approval");
+        return loReturn;
     }
 
 

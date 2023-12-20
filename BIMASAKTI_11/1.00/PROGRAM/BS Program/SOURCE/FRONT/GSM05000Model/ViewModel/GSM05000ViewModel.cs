@@ -115,7 +115,7 @@ namespace GSM05000Model.ViewModel
             loEx.ThrowExceptionIfErrors();
         }
 
-        public async Task<bool> CheckExistData(GSM05000DTO poEntity)
+        public async Task<bool> CheckExistData(GSM05000DTO poEntity, GSM05000eTabName pcEtabName)
         {
             var loEx = new R_Exception();
             bool llReturn = false;
@@ -124,6 +124,7 @@ namespace GSM05000Model.ViewModel
             {
                 GSM05000TrxCodeParamsDTO loParams = new();
                 loParams.CTRANS_CODE = poEntity.CTRANS_CODE;
+                loParams.ETAB_NAME = pcEtabName;
                 var loResult = await _GSM05000Model.CheckExistDataAsync(loParams);
                 llReturn = R_FrontUtility.ConvertObjectToObject<bool>(loResult.EXIST);
             }
@@ -235,7 +236,7 @@ namespace GSM05000Model.ViewModel
 
                 var loResult = string.Concat(
                     Data.CPREFIX.Trim() +
-                    (string.IsNullOrEmpty(Data.CPREFIX) ? "" : "-" + Data.CPREFIX_DELIMITER) +
+                    (string.IsNullOrEmpty(Data.CPREFIX) ? "" : Data.CPREFIX_DELIMITER) +
                     (
                         Data.CSEQUENCE01 == "01" ? "DDDDDDDD" :
                         Data.CSEQUENCE01 == "02" ? "TTTTTT" :
@@ -304,13 +305,8 @@ namespace GSM05000Model.ViewModel
                 );
 
                 REFNO = loResult;
-                REFNO_LENGTH = Regex.Replace(REFNO, "[^a-zA-Z0-9]", "").Length.ToString();
-
-                if (REFNO.Length > 30)
-                {
-                    loEx.Add("", "Reference Number length cannot exceed 30 characters");
-                    goto EndBlock;
-                }
+                REFNO_LENGTH = REFNO.Length.ToString();
+                // REFNO_LENGTH = Regex.Replace(REFNO, "[^a-zA-Z0-9]", "").Length.ToString();
             }
             catch (Exception ex)
             {
@@ -390,5 +386,70 @@ namespace GSM05000Model.ViewModel
 
             return llReturn;
         }
+
+        //parameter bool didapat dari kondisi yang mengaktifkan mode
+        public void AutoSequence(eNumericList peMode, bool poState)
+        {
+            // buat array untuk menampung sequence key dan value
+            var loSequence = new Dictionary<eNumericList, int>
+            {
+                { eNumericList.DeptMode, this.DeptSequence },
+                { eNumericList.TrxMode, this.TrxSequence },
+                { eNumericList.PeriodMode, this.PeriodSequence },
+                { eNumericList.LenMode, this.LenSequence }
+            };
+
+            if (poState)
+            {
+                //buat agar sequence yang diaktifkan menjadi angka tertinggi di array, bukan jumlah data
+                // loSequence[peMode] = loSequence.Values.Max() + 1;
+                
+                //looping unutk mengecek dari angka 1 - 4
+                for (var i = 1; i <= loSequence.Count; i++)
+                {
+                    //jika sequence yang diaktifkan tidak ada di array, maka sequence yang diaktifkan menjadi angka tertinggi
+                    if (!loSequence.ContainsValue(i))
+                    {
+                        loSequence[peMode] = i;
+                        break;
+                    }
+                }
+                
+            }
+            else
+            {
+                if (peMode == eNumericList.DeptMode)
+                    this.Data.CDEPT_DELIMITER = "";
+                else if (peMode == eNumericList.TrxMode)
+                    this.Data.CTRANSACTION_DELIMITER = "";
+                else if (peMode == eNumericList.PeriodMode)
+                    this.Data.CPERIOD_DELIMITER = "";
+                else if (peMode == eNumericList.LenMode) 
+                    this.Data.CNUMBER_DELIMITER = "";
+
+                // loSequence = loSequence.Where(x => x.Value > loSequence[peMode]).ToDictionary(x => x.Key, x => x.Value - 1);
+                
+                foreach (var kvp in loSequence.Where(x => x.Value > loSequence[peMode]))
+                {
+                    loSequence[kvp.Key] -= 1;
+                }
+                
+                loSequence[peMode] = 0;
+            }
+
+            this.DeptSequence = loSequence[eNumericList.DeptMode];
+            this.TrxSequence = loSequence[eNumericList.TrxMode];
+            this.PeriodSequence = loSequence[eNumericList.PeriodMode];
+            this.LenSequence = loSequence[eNumericList.LenMode];
+        }
+    }
+
+    public enum eNumericList
+    {
+        DeptMode,
+        TrxMode,
+        PeriodMode,
+        LenMode,
+        // PrefixMode
     }
 }

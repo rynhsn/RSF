@@ -104,10 +104,8 @@ public class GSM04500AccountSettingCls : R_BusinessObject<GSM04500AccountSetting
             loDb.R_AddCommandParameter(loCmd, "@CJRNGRP_TYPE", DbType.String, 2, poNewEntity.CJRNGRP_TYPE);
             loDb.R_AddCommandParameter(loCmd, "@CJRNGRP_CODE", DbType.String, 8, poNewEntity.CJRNGRP_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CGOA_CODE", DbType.String, 8, poNewEntity.CGOA_CODE);
-            // loDb.R_AddCommandParameter(loCmd, "@CGOA_NAME", DbType.String, 80, poNewEntity.CGOA_NAME);
             loDb.R_AddCommandParameter(loCmd, "@LLDEPARTMENT_MODE", DbType.Boolean, 1, poNewEntity.LDEPARTMENT_MODE);
             loDb.R_AddCommandParameter(loCmd, "@CGLACCOUNT_NO", DbType.String, 20, poNewEntity.CGLACCOUNT_NO);
-            // loDb.R_AddCommandParameter(loCmd, "@CGLACCOUNT_NAME", DbType.String, 80, poNewEntity.CGLACCOUNT_NAME);
             loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, lcAction);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poNewEntity.CUSER_ID);
 

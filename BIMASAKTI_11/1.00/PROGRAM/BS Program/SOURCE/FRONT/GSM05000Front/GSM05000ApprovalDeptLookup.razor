@@ -7,9 +7,10 @@
             DataSource="@_viewModel.DepartmentLookup"
             Pageable="true"
             R_GridType="@R_eGridType.Navigator"
-            R_ServiceGetListRecord="@GetList">
+            R_ServiceGetListRecord="@GetList"
+            Width="700px">
         <R_GridColumns>
-            <R_GridTextColumn FieldName="CDEPT_CODE" HeaderText="Department Code"/>
+            <R_GridTextColumn FieldName="CDEPT_CODE" HeaderText="Department Code" Width="200px"/>
             <R_GridLookupColumn FieldName="CDEPT_NAME" HeaderText="Department Name"/>
         </R_GridColumns>
     </R_Grid>

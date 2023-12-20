@@ -30,7 +30,7 @@ public class GLI00100AccountJournalController : ControllerBase, IGLI00100Account
         var loCls = new GLI00100AccountJournalCls();
         var loDbParam = new GLI00100ParameterDb();
         var loDbOptParam = new GLI00100AccountAnalysisDetailTransactionParamDb();
-        GLI00100AccountAnalysisDetailDTO loReturn = null;
+        GLI00100AccountAnalysisDetailDTO loReturn = new();
         
         try
         {

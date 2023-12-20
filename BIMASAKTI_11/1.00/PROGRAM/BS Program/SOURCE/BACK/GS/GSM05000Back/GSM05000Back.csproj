@@ -20,6 +20,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\COMMON\GS\GSM05000Common\GSM05000Common.csproj" />
+      <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources\RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.csproj" />
     </ItemGroup>
 
 </Project>

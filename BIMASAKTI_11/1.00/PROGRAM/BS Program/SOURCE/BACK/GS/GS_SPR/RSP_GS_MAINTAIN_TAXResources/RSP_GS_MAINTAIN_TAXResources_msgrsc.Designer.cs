@@ -21,14 +21,14 @@ namespace RSP_AP_COPY_EXPENDITUREResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class RSP_AP_COPY_EXPENDITUREResources_msgrsc {
+    internal class RSP_GS_MAINTAIN_TAXResources_msgrsc {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal RSP_AP_COPY_EXPENDITUREResources_msgrsc() {
+        internal RSP_GS_MAINTAIN_TAXResources_msgrsc() {
         }
         
         /// <summary>
@@ -38,7 +38,7 @@ namespace RSP_AP_COPY_EXPENDITUREResources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RSP_AP_DELETE_PRODUCT_ALLOCATIONResources.RSP_AP_COPY_EXPENDITUREResources_msgrsc", typeof(RSP_AP_COPY_EXPENDITUREResources_msgrsc).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RSP_GS_MAINTAIN_TAXResources.RSP_GS_MAINTAIN_TAXResources_msgrsc", typeof(RSP_GS_MAINTAIN_TAXResources_msgrsc).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -83,6 +83,60 @@ namespace RSP_AP_COPY_EXPENDITUREResources {
         internal static string _2003 {
             get {
                 return ResourceManager.GetString("2003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Id cannot be empty!.
+        /// </summary>
+        internal static string _2004 {
+            get {
+                return ResourceManager.GetString("2004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Name cannot be empty!.
+        /// </summary>
+        internal static string _2005 {
+            get {
+                return ResourceManager.GetString("2005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Id cannot be greater than 20 character!.
+        /// </summary>
+        internal static string _2006 {
+            get {
+                return ResourceManager.GetString("2006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Name cannot be greater than 100 character!.
+        /// </summary>
+        internal static string _2007 {
+            get {
+                return ResourceManager.GetString("2007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax In GL Account cannot be empty!.
+        /// </summary>
+        internal static string _2008 {
+            get {
+                return ResourceManager.GetString("2008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Out GL Account cannot be empty!.
+        /// </summary>
+        internal static string _2009 {
+            get {
+                return ResourceManager.GetString("2009", resourceCulture);
             }
         }
     }

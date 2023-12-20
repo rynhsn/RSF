@@ -317,7 +317,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
         return loReturn;
     }
 
-    public GLM00500PeriodInfoDTO GLI0010Get0PeriodInfoDb(GLM00500ParameterDb poParams)
+    public GLM00500PeriodInfoDTO GLI0010GetPeriodInfoDb(GLM00500ParameterDb poParams)
     {
         R_Exception loEx = new();
         GLM00500PeriodInfoDTO loReturn = new();
