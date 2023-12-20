@@ -6,11 +6,11 @@
     <div hidden="@IsReasonHidden">
         <R_StackLayout>
             <R_StackLayout Row="true">
-                <R_ItemLayout Class="col-4">
+                <R_ItemLayout Class="col-2">
                     <R_Label>Reason</R_Label>
                 </R_ItemLayout>
 
-                <R_ItemLayout Class="col-8">
+                <R_ItemLayout Class="col-9">
                     <R_TextArea @bind-Value="@loViewModel.DETAIL_ACTION"
                                 R_ConductorSource="@_conductorRef"
                                 Enabled="true"></R_TextArea>
@@ -19,11 +19,9 @@
 
             <R_StackLayout Row></R_StackLayout>
 
-            <R_StackLayout Row="true">
-                <R_ItemLayout Class="col-3">
+            <R_StackLayout Row Class="justify-content-start">
+                <R_ItemLayout>
                     <R_Button R_ConductorSource="@_conductorRef" OnClick="OnOKReason">OK</R_Button>
-                </R_ItemLayout>
-                <R_ItemLayout Class="col-3">
                     <R_Button R_ConductorSource="@_conductorRef" OnClick="OnCancelReason">Cancel</R_Button>
                 </R_ItemLayout>
             </R_StackLayout>
@@ -33,11 +31,11 @@
     <div hidden="@IsAccessValidationHidden">
         <R_StackLayout>
             <R_StackLayout Row="true">
-                <R_ItemLayout Class="col-4">
+                <R_ItemLayout Class="col-2">
                     <R_Label>User Id</R_Label>
                 </R_ItemLayout>
 
-                <R_ItemLayout Class="col-8">
+                <R_ItemLayout Class="col-9">
                     <R_TextBox @bind-Value="@loViewModel.loParameter.USER"
                                R_ConductorSource="@_conductorRef"
                                Enabled="true"></R_TextBox>
@@ -47,11 +45,11 @@
             <R_StackLayout Row></R_StackLayout>
 
             <R_StackLayout Row="true">
-                <R_ItemLayout Class="col-4">
+                <R_ItemLayout Class="col-2">
                     <R_Label>Password</R_Label>
                 </R_ItemLayout>
 
-                <R_ItemLayout Class="col-8">
+                <R_ItemLayout Class="col-9">
                     <R_TextBox Password @bind-Value="@loViewModel.loParameter.PASSWORD"
                                R_ConductorSource="@_conductorRef"
                                Enabled="true"></R_TextBox>
@@ -60,12 +58,9 @@
 
             <R_StackLayout Row></R_StackLayout>
 
-            <R_StackLayout Row="true">
-                <R_ItemLayout Class="col-3">
+            <R_StackLayout Row Class="justify-content-start">
+                <R_ItemLayout>
                     <R_Button R_ConductorSource="@_conductorRef" OnClick="OnOK">OK</R_Button>
-                </R_ItemLayout>
-
-                <R_ItemLayout Class="col-3">
                     <R_Button R_ConductorSource="@_conductorRef" OnClick="OnCancel">Cancel</R_Button>
                 </R_ItemLayout>
             </R_StackLayout>
