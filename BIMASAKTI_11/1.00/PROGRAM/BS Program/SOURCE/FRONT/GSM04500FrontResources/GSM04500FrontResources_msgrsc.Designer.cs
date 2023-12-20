@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GSM02000FrontResources {
+namespace GSM04500FrontResources {
     using System;
     
     
@@ -21,14 +21,14 @@ namespace GSM02000FrontResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class GLM00500FrontResources_msgrsc {
+    internal class GSM04500FrontResources_msgrsc {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal GLM00500FrontResources_msgrsc() {
+        internal GSM04500FrontResources_msgrsc() {
         }
         
         /// <summary>
@@ -38,7 +38,7 @@ namespace GSM02000FrontResources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GSM02000FrontResources.GLM00500FrontResources_msgrsc", typeof(GLM00500FrontResources_msgrsc).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GSM04500FrontResources.GSM04500FrontResources_msgrsc", typeof(GSM04500FrontResources_msgrsc).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

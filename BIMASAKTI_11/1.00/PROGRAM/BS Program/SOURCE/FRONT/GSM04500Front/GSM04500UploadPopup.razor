@@ -1,0 +1,29 @@
+@page "/GSM04500Upload"
+@using GSM04500FrontResources
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_Page
+@attribute [R_Page(Title = "Upload Journal Group")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row>
+    <R_ItemLayout>
+        <R_Label>@_localizer["LBL_PRPRTY"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox Value="Code" Enabled="false"/>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_TextBox Value="Name" Enabled="false"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_ItemLayout>
+        <R_Label>@_localizer["LBL_SRC"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="6">
+            <R_InputFile OnChange="ChooseFile" Accepts="new[] { R_eFileSelectAccept.Excel }"/>
+        </R_ItemLayout>
+</R_StackLayout>
+

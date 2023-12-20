@@ -37,6 +37,9 @@
               "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02000Service\\GSM02000Service.csproj": {
                 "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02000Service\\GSM02000Service.csproj"
               },
+              "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM04500Service\\GSM04500Service.csproj": {
+                "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM04500Service\\GSM04500Service.csproj"
+              },
               "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Service\\GSM05000Service.csproj": {
                 "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Service\\GSM05000Service.csproj"
               },
@@ -166,6 +169,86 @@
         }
       }
     },
+    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM04500Back\\GSM04500Back.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM04500Back\\GSM04500Back.csproj",
+        "projectName": "GSM04500Back",
+        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM04500Back\\GSM04500Back.csproj",
+        "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM04500Back\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {},
+          "https://www1.realta.net/realtanuget/nuget": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_JOURNAL_GROUPResources\\RSP_GS_MAINTAIN_JOURNAL_GROUPResources.csproj": {
+                "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_JOURNAL_GROUPResources\\RSP_GS_MAINTAIN_JOURNAL_GROUPResources.csproj"
+              },
+              "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources\\RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.csproj": {
+                "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources\\RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.csproj"
+              },
+              "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_UPLOAD_JOURNAL_GROUPResources\\RSP_GS_UPLOAD_JOURNAL_GROUPResources.csproj": {
+                "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_UPLOAD_JOURNAL_GROUPResources\\RSP_GS_UPLOAD_JOURNAL_GROUPResources.csproj"
+              },
+              "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM04500Common\\GSM04500Common.csproj": {
+                "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM04500Common\\GSM04500Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM05000Back\\GSM05000Back.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -196,6 +279,9 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+              "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources\\RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.csproj": {
+                "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources\\RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.csproj"
+              },
               "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM05000Common\\GSM05000Common.csproj": {
                 "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM05000Common\\GSM05000Common.csproj"
               }
@@ -239,6 +325,128 @@
         "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_ACTIVITY_VALIDITYResources\\RSP_ACTIVITY_VALIDITYResources.csproj",
         "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
         "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_ACTIVITY_VALIDITYResources\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {},
+          "https://www1.realta.net/realtanuget/nuget": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_JOURNAL_GROUPResources\\RSP_GS_MAINTAIN_JOURNAL_GROUPResources.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_JOURNAL_GROUPResources\\RSP_GS_MAINTAIN_JOURNAL_GROUPResources.csproj",
+        "projectName": "RSP_GS_MAINTAIN_JOURNAL_GROUPResources",
+        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_JOURNAL_GROUPResources\\RSP_GS_MAINTAIN_JOURNAL_GROUPResources.csproj",
+        "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_JOURNAL_GROUPResources\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {},
+          "https://www1.realta.net/realtanuget/nuget": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources\\RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources\\RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.csproj",
+        "projectName": "RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources",
+        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources\\RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.csproj",
+        "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -361,6 +569,128 @@
         "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TAX_PCTResources\\RSP_GS_MAINTAIN_TAX_PCTResources.csproj",
         "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
         "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TAX_PCTResources\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {},
+          "https://www1.realta.net/realtanuget/nuget": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources\\RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources\\RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.csproj",
+        "projectName": "RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources",
+        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources\\RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.csproj",
+        "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {},
+          "https://www1.realta.net/realtanuget/nuget": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_UPLOAD_JOURNAL_GROUPResources\\RSP_GS_UPLOAD_JOURNAL_GROUPResources.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_UPLOAD_JOURNAL_GROUPResources\\RSP_GS_UPLOAD_JOURNAL_GROUPResources.csproj",
+        "projectName": "RSP_GS_UPLOAD_JOURNAL_GROUPResources",
+        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_UPLOAD_JOURNAL_GROUPResources\\RSP_GS_UPLOAD_JOURNAL_GROUPResources.csproj",
+        "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_UPLOAD_JOURNAL_GROUPResources\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -542,6 +872,67 @@
         }
       }
     },
+    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM04500Common\\GSM04500Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM04500Common\\GSM04500Common.csproj",
+        "projectName": "GSM04500Common",
+        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM04500Common\\GSM04500Common.csproj",
+        "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM04500Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {},
+          "https://www1.realta.net/realtanuget/nuget": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM05000Common\\GSM05000Common.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -638,6 +1029,77 @@
               },
               "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM02000Common\\GSM02000Common.csproj": {
                 "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM02000Common\\GSM02000Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM04500Service\\GSM04500Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM04500Service\\GSM04500Service.csproj",
+        "projectName": "GSM04500Service",
+        "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM04500Service\\GSM04500Service.csproj",
+        "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+        "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM04500Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {},
+          "https://www1.realta.net/realtanuget/nuget": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM04500Back\\GSM04500Back.csproj": {
+                "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM04500Back\\GSM04500Back.csproj"
+              },
+              "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM04500Common\\GSM04500Common.csproj": {
+                "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM04500Common\\GSM04500Common.csproj"
               }
             }
           }

@@ -3507,11 +3507,56 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "GSM04500Back/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GSM04500Common": "1.0.0",
+          "RSP_GS_MAINTAIN_JOURNAL_GROUPResources": "1.0.0",
+          "RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources": "1.0.0",
+          "RSP_GS_UPLOAD_JOURNAL_GROUPResources": "1.0.0",
+          "System.Data.SqlClient": "4.8.5"
+        },
+        "compile": {
+          "bin/placeholder/GSM04500Back.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM04500Back.dll": {}
+        }
+      },
+      "GSM04500Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GSM04500Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM04500Common.dll": {}
+        }
+      },
+      "GSM04500Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GSM04500Back": "1.0.0",
+          "GSM04500Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GSM04500Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM04500Service.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "GSM05000Back/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "GSM05000Common": "1.0.0"
+          "GSM05000Common": "1.0.0",
+          "RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources": "1.0.0"
         },
         "compile": {
           "bin/placeholder/GSM05000Back.dll": {}
@@ -3596,6 +3641,26 @@
           "bin/placeholder/RSP_ACTIVITY_VALIDITYResources.dll": {}
         }
       },
+      "RSP_GS_MAINTAIN_JOURNAL_GROUPResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_JOURNAL_GROUPResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_JOURNAL_GROUPResources.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.dll": {}
+        }
+      },
       "RSP_GS_MAINTAIN_TAXResources/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -3614,6 +3679,26 @@
         },
         "runtime": {
           "bin/placeholder/RSP_GS_MAINTAIN_TAX_PCTResources.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.dll": {}
+        }
+      },
+      "RSP_GS_UPLOAD_JOURNAL_GROUPResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_UPLOAD_JOURNAL_GROUPResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_UPLOAD_JOURNAL_GROUPResources.dll": {}
         }
       },
       "RSP_GS_VALIDATE_USER_ACT_APPRResources/1.0.0": {
@@ -10307,6 +10392,21 @@
       "path": "../../../SERVICE/GS/GSM02000Service/GSM02000Service.csproj",
       "msbuildProject": "../../../SERVICE/GS/GSM02000Service/GSM02000Service.csproj"
     },
+    "GSM04500Back/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GSM04500Back/GSM04500Back.csproj",
+      "msbuildProject": "../../../BACK/GS/GSM04500Back/GSM04500Back.csproj"
+    },
+    "GSM04500Common/1.0.0": {
+      "type": "project",
+      "path": "../../../COMMON/GS/GSM04500Common/GSM04500Common.csproj",
+      "msbuildProject": "../../../COMMON/GS/GSM04500Common/GSM04500Common.csproj"
+    },
+    "GSM04500Service/1.0.0": {
+      "type": "project",
+      "path": "../../../SERVICE/GS/GSM04500Service/GSM04500Service.csproj",
+      "msbuildProject": "../../../SERVICE/GS/GSM04500Service/GSM04500Service.csproj"
+    },
     "GSM05000Back/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/GSM05000Back/GSM05000Back.csproj",
@@ -10342,6 +10442,16 @@
       "path": "../../../BACK/GS/GS_SPR/RSP_ACTIVITY_VALIDITYResources/RSP_ACTIVITY_VALIDITYResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_ACTIVITY_VALIDITYResources/RSP_ACTIVITY_VALIDITYResources.csproj"
     },
+    "RSP_GS_MAINTAIN_JOURNAL_GROUPResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_JOURNAL_GROUPResources/RSP_GS_MAINTAIN_JOURNAL_GROUPResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_JOURNAL_GROUPResources/RSP_GS_MAINTAIN_JOURNAL_GROUPResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.csproj"
+    },
     "RSP_GS_MAINTAIN_TAXResources/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_TAXResources/RSP_GS_MAINTAIN_TAXResources.csproj",
@@ -10351,6 +10461,16 @@
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_TAX_PCTResources/RSP_GS_MAINTAIN_TAX_PCTResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_TAX_PCTResources/RSP_GS_MAINTAIN_TAX_PCTResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources/RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources/RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.csproj"
+    },
+    "RSP_GS_UPLOAD_JOURNAL_GROUPResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_JOURNAL_GROUPResources/RSP_GS_UPLOAD_JOURNAL_GROUPResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_JOURNAL_GROUPResources/RSP_GS_UPLOAD_JOURNAL_GROUPResources.csproj"
     },
     "RSP_GS_VALIDATE_USER_ACT_APPRResources/1.0.0": {
       "type": "project",
@@ -10362,6 +10482,7 @@
     "net6.0": [
       "GFF00900SERVICES >= 1.0.0",
       "GSM02000Service >= 1.0.0",
+      "GSM04500Service >= 1.0.0",
       "GSM05000Service >= 1.0.0",
       "Lookup_GSSERVICES >= 1.0.0",
       "Realta.BackCollectionNuGet >= 1.0.0",
@@ -10405,6 +10526,9 @@
           "projectReferences": {
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02000Service\\GSM02000Service.csproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02000Service\\GSM02000Service.csproj"
+            },
+            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM04500Service\\GSM04500Service.csproj": {
+              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM04500Service\\GSM04500Service.csproj"
             },
             "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Service\\GSM05000Service.csproj": {
               "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Service\\GSM05000Service.csproj"

@@ -1,0 +1,64 @@
+﻿@page "/GSM04500"
+@using R_BlazorFrontEnd.Interfaces
+@using GSM04500FrontResources
+@using GSM04500Common.DTOs
+@inherits R_Page
+@attribute [R_Page(Title = "Journal Group")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+
+<R_StackLayout Row Class="justify-content-between">
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>@_localizer["LBL_PROPERTY"]</R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_ComboBox Data="@_viewModel.PropertyList"
+                            @bind-Value="@_viewModel.PropertyId"
+                            ValueField="@nameof(GSM04500FunctionDTO.CCODE)"
+                            TextField="@nameof(GSM04500FunctionDTO.CDESCRIPTION)"
+                            R_ConductorGridSource="@_conductorRef"
+                            R_EnableOther="true"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout Class="align-items-end">
+        <R_StackLayout Row>
+            <R_StackLayout Row>
+                <R_ItemLayout>@_localizer["LBL_JRNLGRPTYPE"]</R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_ComboBox Data="@_viewModel.TypeList"
+                                @bind-Value="@_viewModel.TypeCode"
+                                ValueField="@nameof(GSM04500FunctionDTO.CCODE)"
+                                TextField="@nameof(GSM04500FunctionDTO.CDESCRIPTION)"
+                                R_ConductorGridSource="@_conductorRef"
+                                R_EnableOther="true"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout>
+    <R_ItemLayout>
+        <R_Grid DataSource="@_viewModel.GridList"
+                Pageable
+                R_ConductorGridSource="@_conductorRef"
+                R_GridType="R_eGridType.Navigator"
+                R_ServiceGetListRecord="@GetGridList"
+                Height="595px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GSM04500JournalGroupDTO.CJRNGRP_CODE)" HeaderText="@_localizer["LBL_JRNLGRP"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                <R_GridTextColumn FieldName="@nameof(GSM04500JournalGroupDTO.CJRNGRP_NAME)" HeaderText="@_localizer["LBL_JRNLGRPNAME"]" TextAlignment="R_eTextAlignment.Left" Width="250px"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_ConductorGrid @ref="@_conductorRef"
+                 R_ViewModel="_viewModel"
+                 R_IsHeader
+                 R_ServiceGetRecord="@GetRecord"
+                 R_ServiceSave="Save"
+                 R_ServiceDelete="Delete"/>

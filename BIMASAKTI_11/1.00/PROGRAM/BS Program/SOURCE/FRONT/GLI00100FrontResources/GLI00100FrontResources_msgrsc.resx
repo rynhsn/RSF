@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="LABEL_ACCNO" xml:space="preserve">
+        <value>Account No.</value>
+    </data>
+    <data name="LABEL_ACCNAME" xml:space="preserve">
+        <value>Account Name</value>
+    </data>
+    <data name="LABEL_ACCTYPE" xml:space="preserve">
+        <value>Account Type</value>
+    </data>
+    <data name="LABEL_NRMLJOURNAL" xml:space="preserve">
+        <value>Normal Journal</value>
+    </data>
+    <data name="LABEL_ACC" xml:space="preserve">
+        <value>Account</value>
+    </data>
+    <data name="LABEL_YEAR" xml:space="preserve">
+        <value>Year</value>
+    </data>
+    <data name="LABEL_CURRTYPE" xml:space="preserve">
+        <value>Currency Type</value>
+    </data>
+    <data name="LABEL_CENTER" xml:space="preserve">
+        <value>Center</value>
+    </data>
+    <data name="LABEL_BUDGETNO" xml:space="preserve">
+        <value>Budget No.</value>
+    </data>
+    <data name="LABEL_BTNREFRESH" xml:space="preserve">
+        <value>Refresh</value>
+    </data>
+    <data name="LABEL_BTNPRINT" xml:space="preserve">
+        <value>Print</value>
+    </data>
+    <data name="LABEL_OPENING" xml:space="preserve">
+        <value>Opening</value>
+    </data>
+    <data name="LABEL_PERIOD01" xml:space="preserve">
+        <value>Period 01</value>
+    </data>
+    <data name="LABEL_PERIOD02" xml:space="preserve">
+        <value>Period 02</value>
+    </data>
+    <data name="LABEL_PERIOD03" xml:space="preserve">
+        <value>Period 03</value>
+    </data>
+    <data name="LABEL_PERIOD04" xml:space="preserve">
+        <value>Period 04</value>
+    </data>
+    <data name="LABEL_PERIOD05" xml:space="preserve">
+        <value>Period 05</value>
+    </data>
+    <data name="LABEL_PERIOD06" xml:space="preserve">
+        <value>Period 06</value>
+    </data>
+    <data name="LABEL_PERIOD07" xml:space="preserve">
+        <value>Period 07</value>
+    </data>
+    <data name="LABEL_PERIOD08" xml:space="preserve">
+        <value>Period 08</value>
+    </data>
+    <data name="LABEL_PERIOD09" xml:space="preserve">
+        <value>Period 09</value>
+    </data>
+    <data name="LABEL_PERIOD10" xml:space="preserve">
+        <value>Period 10</value>
+    </data>
+    <data name="LABEL_PERIOD11" xml:space="preserve">
+        <value>Period 11</value>
+    </data>
+    <data name="LABEL_PERIOD12" xml:space="preserve">
+        <value>Period 12</value>
+    </data>
+    <data name="LABEL_PERIOD13" xml:space="preserve">
+        <value>Period 13</value>
+    </data>
+    <data name="LABEL_PERIOD14" xml:space="preserve">
+        <value>Period 14</value>
+    </data>
+    <data name="LABEL_PERIOD15" xml:space="preserve">
+        <value>Period 15</value>
+    </data>
+    <data name="LABEL_GROUPCRNTMNTH" xml:space="preserve">
+        <value>Current Month</value>
+    </data>
+    <data name="LABEL_GROUPBUDGET" xml:space="preserve">
+        <value>Budget</value>
+    </data>
+    <data name="LABEL_GROUPCRNTYEAR" xml:space="preserve">
+        <value>Current Year</value>
+    </data>
+    <data name="LABEL_GROUPLASTYEAR" xml:space="preserve">
+        <value>Last Year</value>
+    </data>
+    <data name="LABEL_PERIOD" xml:space="preserve">
+        <value>Period</value>
+    </data>
+    <data name="LABEL_PTDDEBIT" xml:space="preserve">
+        <value>PTD Debit</value>
+    </data>
+    <data name="LABEL_PTDCREDIT" xml:space="preserve">
+        <value>PTD Credit</value>
+    </data>
+    <data name="LABEL_ENDING" xml:space="preserve">
+        <value>Ending</value>
+    </data>
+    <data name="LABEL_PTDDEBITADJ" xml:space="preserve">
+        <value>PTD Debit Adj.</value>
+    </data>
+    <data name="LABEL_PTDCREDITADJ" xml:space="preserve">
+        <value>PTD Credit Adj.</value>
+    </data>
+    <data name="LABEL_GROUPTRXLIST" xml:space="preserve">
+        <value>Transaction List</value>
+    </data>
+    <data name="LABEL_REFDATE" xml:space="preserve">
+        <value>Reference Date</value>
+    </data>
+    <data name="LABEL_REFNO" xml:space="preserve">
+        <value>Reference No.</value>
+    </data>
+    <data name="LABEL_TRXTYPE" xml:space="preserve">
+        <value>Transaction Type</value>
+    </data>
+    <data name="LABEL_DEBIT" xml:space="preserve">
+        <value>Debit</value>
+    </data>
+    <data name="LABEL_CREDIT" xml:space="preserve">
+        <value>Credit</value>
+    </data>
+    <data name="LABEL_VOUCHERNO" xml:space="preserve">
+        <value>Voucher No.</value>
+    </data>
+    <data name="LABEL_DESC" xml:space="preserve">
+        <value>Description</value>
+    </data>
+    <data name="LABEL_BTNDRILLDOWN" xml:space="preserve">
+        <value>Drill Down</value>
+    </data>
+    <data name="LABEL_BTNCLOSE" xml:space="preserve">
+        <value>Close</value>
+    </data>
+    <data name="LABEL_DEPT" xml:space="preserve">
+        <value>Department</value>
+    </data>
+    <data name="LABEL_DOCDATE" xml:space="preserve">
+        <value>Doc. Date</value>
+    </data>
+    <data name="LABEL_DOCNO" xml:space="preserve">
+        <value>Document No</value>
+    </data>
+    <data name="LABEL_REFDATE1" xml:space="preserve">
+        <value>Ref. Date</value>
+    </data>
+    <data name="LABEL_BASERATE" xml:space="preserve">
+        <value>Base Rate</value>
+    </data>
+    <data name="LABEL_CURR" xml:space="preserve">
+        <value>Currency</value>
+    </data>
+    <data name="LABEL_CURRRATE" xml:space="preserve">
+        <value>Currency Rate</value>
+    </data>
+    <data name="LABEL_LOCALCURR" xml:space="preserve">
+        <value>Local Currency</value>
+    </data>
+    <data name="LABEL_BASECURR" xml:space="preserve">
+        <value>Base Currency</value>
+    </data>
+    <data name="LABEL_TOTALJOURNAL" xml:space="preserve">
+        <value>Total Journal</value>
+    </data>
+    <data name="LABEL_GROUPJRNLDET" xml:space="preserve">
+        <value>Journal Detail</value>
+    </data>
+    <data name="LABEL_DC" xml:space="preserve">
+        <value>D/C</value>
+    </data>
+    <data name="LABEL_VOUCHERDATE" xml:space="preserve">
+        <value>Voucher Date</value>
+    </data>
+    <data name="LABEL_DBLOCAL" xml:space="preserve">
+        <value>DB (Local)</value>
+    </data>
+    <data name="LABEL_CRLOCAL" xml:space="preserve">
+        <value>CR (Local)</value>
+    </data>
+    <data name="LABEL_CRBASE" xml:space="preserve">
+        <value>CR (Base)</value>
+    </data>
+    <data name="LABEL_DBBASE" xml:space="preserve">
+        <value>DB (Base)</value>
+    </data>
+    <data name="LABEL_GROUPJRNLDESC" xml:space="preserve">
+        <value>Journal Description</value>
+    </data>
+</root>
