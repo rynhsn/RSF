@@ -169,10 +169,10 @@
 	
 	
 	
-	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=4c79ebf6_002D8281_002D4f29_002D97f0_002D7c633690548f_0023R_005FSecurityPolicyCommon/@EntryIndexedValue">True</s:Boolean>
 	
 	
 	
 	
-	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=a89f6408_002D4284_002D47de_002Daf66_002Defa5eedc282a_0023R_005FSecurityTokenCommon/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=e1a1c36b_002D6c10_002D49d7_002D95f9_002D7261b2351064_0023BlazorMenuCommon/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
+	
+	
+	</wpf:ResourceDictionary>

@@ -11,7 +11,8 @@
     <R_ItemLayout col="6">
         <R_StackLayout Row Spacing="2">
             <R_ItemLayout>
-                <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">
+                <R_Label FontStyle="R_eFontStyle.Bold" 
+                         FontColor="R_eFontColor.Danger">
                     @_localizer["LBL_PROPERTY"]
                 </R_Label>
             </R_ItemLayout>
@@ -102,7 +103,7 @@
                          R_ServiceSave="Save"
                          R_ServiceDelete="Delete"/>
     </R_TabStripTab>
-    <R_TabStripTab @ref="_tabAccSetting" Title="Account Setting" Id="AccSetting">
+    <R_TabStripTab @ref="_tabAccSetting" Title="Account Setting">
         <R_TabPage R_Before_Open_TabPage="BeforeOpenAccSetting"/>
     </R_TabStripTab>
 </R_TabStrip>

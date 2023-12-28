@@ -62,6 +62,7 @@ namespace GSM04500Model
 
             return loResult;
         }
+        
         public async Task<GSM04500ListDTO<GSM04500FunctionDTO>> GetAllTypeAsync()
         {
             var loEx = new R_Exception();

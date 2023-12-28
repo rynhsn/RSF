@@ -13,16 +13,15 @@ namespace GSM04500Model.ViewModel
 {
     public class GSM04500JournalGroupViewModel : R_ViewModel<GSM04500JournalGroupDTO>
     {
-        private GSM04500InitModel _initModel = new GSM04500InitModel();
-        private GSM04500JournalGroupModel _model = new GSM04500JournalGroupModel();
+        private GSM04500InitModel _initModel = new();
+        private GSM04500JournalGroupModel _model = new();
 
-        public ObservableCollection<GSM04500JournalGroupDTO> GridList =
-            new ObservableCollection<GSM04500JournalGroupDTO>();
+        public ObservableCollection<GSM04500JournalGroupDTO> GridList = new();
 
-        public GSM04500JournalGroupDTO Entity = new GSM04500JournalGroupDTO();
+        public GSM04500JournalGroupDTO Entity = new();
 
-        public List<GSM04500PropertyDTO> PropertyList = new List<GSM04500PropertyDTO>();
-        public List<GSM04500FunctionDTO> TypeList = new List<GSM04500FunctionDTO>();
+        public List<GSM04500PropertyDTO> PropertyList = new();
+        public List<GSM04500FunctionDTO> TypeList = new();
 
         public string PropertyId = string.Empty;
         public string TypeCode = string.Empty;
