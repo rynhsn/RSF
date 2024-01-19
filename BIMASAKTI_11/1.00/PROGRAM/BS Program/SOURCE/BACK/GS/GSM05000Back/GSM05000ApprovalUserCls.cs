@@ -1,26 +1,33 @@
 ﻿using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 using System.Transactions;
 using GSM05000Common;
 using GSM05000Common.DTOs;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources;
 
 namespace GSM05000Back;
 
 public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
 {
     
+    Resources_Dummy_Class _resources = new();
+    
     private LoggerGSM05000 _logger;
+    private readonly ActivitySource _activitySource;
 
     public GSM05000ApprovalUserCls()
     {
         _logger = LoggerGSM05000.R_GetInstanceLogger();
+        _activitySource = GSM05000Activity.R_GetInstanceActivitySource();
     }
     
     protected override GSM05000ApprovalUserDTO R_Display(GSM05000ApprovalUserDTO poEntity)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(R_Display));
         R_Exception loEx = new();
         GSM05000ApprovalUserDTO loRtn = null;
         R_Db loDb;
@@ -70,11 +77,12 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
 
     protected override void R_Saving(GSM05000ApprovalUserDTO poNewEntity, eCRUDMode poCRUDMode)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(R_Saving));
         R_Exception loEx = new();
         string lcQuery;
         R_Db loDb;
         DbCommand loCmd;
-        DbConnection loConn;
+        DbConnection loConn=null;
         var lcAction = "";
 
         try
@@ -82,7 +90,9 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
             loDb = new R_Db();
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
-
+            
+            R_ExternalException.R_SP_Init_Exception(loConn);
+            
             lcAction = poCRUDMode switch
             {
                 eCRUDMode.AddMode => "ADD",
@@ -121,12 +131,33 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
             
             _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
             
-            loDb.SqlExecNonQuery(loConn, loCmd, true);
+            try
+            {
+                loDb.SqlExecNonQuery(loConn, loCmd, false);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
             _logger.LogError(loEx);
+        }
+        finally
+        {
+            if (loConn != null)
+            {
+                if (loConn.State != ConnectionState.Closed)
+                {
+                    loConn.Close();
+                }
+
+                loConn.Dispose();
+            }
         }
 
         EndBlock:
@@ -135,11 +166,12 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
 
     protected override void R_Deleting(GSM05000ApprovalUserDTO poEntity)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(R_Deleting));
         R_Exception loEx = new();
         string lcQuery;
         R_Db loDb;
         DbCommand loCmd;
-        DbConnection loConn;
+        DbConnection loConn=null;
         var lcAction = "DELETE";
 
         try
@@ -147,6 +179,8 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
             loDb = new R_Db();
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
+            
+            R_ExternalException.R_SP_Init_Exception(loConn);
             
             lcQuery = "RSP_GS_MAINTAIN_TRANS_CODE_APPROVER";
             loCmd.CommandType = CommandType.StoredProcedure;
@@ -179,12 +213,33 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
             
             _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
             
-            loDb.SqlExecNonQuery(loConn, loCmd, true);
+            try
+            {
+                loDb.SqlExecNonQuery(loConn, loCmd, false);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
             _logger.LogError(loEx);
+        }
+        finally
+        {
+            if (loConn != null)
+            {
+                if (loConn.State != ConnectionState.Closed)
+                {
+                    loConn.Close();
+                }
+
+                loConn.Dispose();
+            }
         }
 
         EndBlock:
@@ -193,6 +248,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
     
     public List<GSM05000ApprovalUserDTO> GSM05000GetApprovalUser(GSM05000ParameterDb poParameter)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GSM05000GetApprovalUser));
         R_Exception loEx = new();
         List<GSM05000ApprovalUserDTO> loRtn = null;
         R_Db loDb;
@@ -240,6 +296,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
     
     public GSM05000ApprovalHeaderDTO GSM05000GetApprovalHeader (GSM05000ParameterDb poParameter)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GSM05000GetApprovalHeader));
         R_Exception loEx = new();
         GSM05000ApprovalHeaderDTO loRtn = null;
         R_Db loDb;
@@ -285,6 +342,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
     
     public string GSM05000ValidationForAction (GSM05000ParameterDb poParameter)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GSM05000ValidationForAction));
         R_Exception loEx = new();
         string lcRtn = "";
         R_Db loDb;
@@ -336,6 +394,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
 
     public List<GSM05000ApprovalDepartmentDTO> GSM05000GetApprovalDepartment(GSM05000ParameterDb poParameter)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GSM05000GetApprovalDepartment));
         R_Exception loEx = new();
         List<GSM05000ApprovalDepartmentDTO> loRtn = null;
         R_Db loDb;
@@ -370,6 +429,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
 
     public List<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartment(GSM05000ParameterDb poParameter)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GSM05000LookupApprovalDepartment));
         R_Exception loEx = new();
         List<GSM05000ApprovalDepartmentDTO> loRtn = null;
         R_Db loDb;
@@ -404,6 +464,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
     
     public void GSM05000ApprovalCopyTo(GSM05000ParameterDb poParameter)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GSM05000ApprovalCopyTo));
         R_Exception loEx = new();
         R_Db loDb;
         DbConnection loConn;
@@ -452,6 +513,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
     
     public void GSM05000ApprovalCopyFrom(GSM05000ParameterDb poParameter)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GSM05000ApprovalCopyFrom));
         R_Exception loEx = new();
         R_Db loDb;
         DbConnection loConn;
@@ -500,6 +562,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
     
     public List<GSM05000ApprovalDepartmentDTO> GSM05000DepartmentChangeSequence(GSM05000ParameterDb poParameter)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GSM05000DepartmentChangeSequence));
         R_Exception loEx = new();
         List<GSM05000ApprovalDepartmentDTO> loRtn = null;
         R_Db loDb;
@@ -547,7 +610,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
 
     public List<GSM05000ApprovalUserDTO> GSM05000GetUserSequenceData(GSM05000ParameterDb poParameter)
     {
-        
+        using Activity loActivity = _activitySource.StartActivity(nameof(GSM05000GetUserSequenceData));
         R_Exception loEx = new();
         List<GSM05000ApprovalUserDTO> loRtn = null;
         R_Db loDb;
@@ -597,6 +660,7 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
 
     public void GSM05000UpdateSequence(List<GSM05000ApprovalUserDTO> poParameter)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GSM05000UpdateSequence));
         R_Exception loEx = new();
         R_Db loDb;
         DbConnection loConn;
@@ -615,44 +679,6 @@ public class GSM05000ApprovalUserCls: R_BusinessObject<GSM05000ApprovalUserDTO>
 
                 transactionScope.Complete();
             }
-            //
-            // loDb = new R_Db();
-            // loConn = loDb.GetConnection();
-            // loCmd = loDb.GetCommand();
-            //
-            // lcQuery = "RSP_GS_MAINTAIN_TRANS_CODE_APPROVER";
-            // loCmd.CommandType = CommandType.StoredProcedure;
-            // loCmd.CommandText = lcQuery;
-            //
-            // loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParameter.CCOMPANY_ID);
-            // loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 6, poParameter.CTRANS_CODE);
-            // loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 8, poParameter.CDEPT_CODE);
-            // loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParameter.CUSER_ID);
-            // loDb.R_AddCommandParameter(loCmd, "@ISEQUENCE", DbType.Int32, 3, poParameter.ISEQUENCE);
-            // loDb.R_AddCommandParameter(loCmd, "@LREPLACEMENT", DbType.Boolean, 1, poParameter.LREPLACEMENT);
-            // loDb.R_AddCommandParameter(loCmd, "@NLIMIT_AMOUNT", DbType.Decimal, 18, poParameter.NLIMIT_AMOUNT);
-            // loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, "EDIT");
-            // loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 8, poParameter.CUSER_LOGIN_ID);
-            //
-            // var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-            //     .Where(x =>
-            //         x.ParameterName is 
-            //             "@CCOMPANY_ID" or 
-            //             "@CTRANS_CODE" or
-            //             "@CDEPT_CODE" or
-            //             "@CUSER_ID" or
-            //             "@ISEQUENCE" or
-            //             "@LREPLACEMENT" or
-            //             "@NLIMIT_AMOUNT" or
-            //             "@CACTION" or
-            //             "@CUSER_LOGIN_ID"
-            //     )
-            //     .Select(x => x.Value);
-            //
-            // _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
-            //
-            // loDb.SqlExecNonQuery(loConn, loCmd, true);
-            // loRtn = R_Utility.R_ConvertTo<GSM05000ApprovalUserDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {

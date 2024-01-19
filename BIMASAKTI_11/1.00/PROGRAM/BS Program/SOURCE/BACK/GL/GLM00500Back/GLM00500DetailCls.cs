@@ -10,6 +10,11 @@ namespace GLM00500Back;
 
 public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 {
+    
+    RSP_GL_BUDGET_UPLOADResources.Resources_Dummy_Class _rsc = new();
+    RSP_GL_SAVE_BUDGET_UPLOADResources.Resources_Dummy_Class _rscSave = new();
+    RSP_GL_PROCESS_BUDGET_UPLOADResources.Resources_Dummy_Class _rscProcess = new();
+    
     private LoggerGLM00500 _logger;
 
     public GLM00500DetailCls()

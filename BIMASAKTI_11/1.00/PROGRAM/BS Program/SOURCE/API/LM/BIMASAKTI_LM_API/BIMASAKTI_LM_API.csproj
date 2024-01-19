@@ -14,12 +14,19 @@
 
 
 	<ItemGroup>
+		<Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
 		<Reference Include="R_APIStartUp">
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIStartUp.dll</HintPath>
 		</Reference>
 		<Reference Include="R_CrossPlatformSecurity">
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CrossPlatformSecurity.dll</HintPath>
 		</Reference>
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\SERVICE\LM\LMM01500Service\LMM01500Service.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\LMM02500Service\LMM02500Service.csproj" />
 	</ItemGroup>
 
 

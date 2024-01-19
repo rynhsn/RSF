@@ -1,22 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <EmbeddedResource Update="LMM01500FrontResources_msgrsc.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>LMM01500FrontResources_msgrsc.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-    </ItemGroup>
+  <ItemGroup>
+    <Compile Update="LMM01500FrontResources_msgrsc.Designer.cs">
+      <DependentUpon>LMM01500FrontResources_msgrsc.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
 
-    <ItemGroup>
-      <Compile Update="LMM01500FrontResources_msgrsc.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>LMM01500FrontResources_msgrsc.resx</DependentUpon>
-      </Compile>
-    </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="LMM01500FrontResources_msgrsc.resx">
+      <LastGenOutput>LMM01500FrontResources_msgrsc.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 
 </Project>

@@ -1,0 +1,164 @@
+﻿@inherits R_Page
+@using LMM01500COMMON
+@using LMM01500MODEL
+@inject R_ILocalizer<LMM01500FrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label Class="fw-bold" FontSize="11">@_localizer["_InvGrp"]</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="@_BankAccountGrid_viewModel.InvGrpCode"
+                   R_ConductorSource="@_BankAccount_conductorRef"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="5">
+        <R_TextBox @bind-Value="@_BankAccountGrid_viewModel.InvGrpName"
+                   R_ConductorSource="@_BankAccount_conductorRef"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_Grid @ref="@_BankAccount_gridRef"
+                DataSource="@_BankAccountGrid_viewModel.TemplateBankAccountGrid"
+                R_ConductorSource="@_BankAccountGrid_conductorRef"
+                R_GridType="@R_eGridType.Navigator"
+                Enabled="@_pageSupplierOnCRUDmode"
+                Pageable="true"
+                R_ServiceGetListRecord="@BankAccount_ServiceGetListRecord"
+                >
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CDEPT_NAME" HeaderText="@_localizer["_Dept"]" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CBANK_NAME" HeaderText="@_localizer["_Bank"]" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CBANK_ACCOUNT" HeaderText="@_localizer["_BankAccount"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CINVOICE_TEMPLATE" HeaderText="@_localizer["_InvTemplate"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="@_localizer["_UpdateBy"]" Width="150px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName="DUPDATE_DATE" HeaderText="@_localizer["_UpdateDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="@_localizer["_CreateBy"]" Width="150px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName="DCREATE_DATE" HeaderText="@_localizer["_CreateDate"]" Width="200px"></R_GridDateTimePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>@_localizer["_Dept"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @ref="@DeptLookup_TextBox"
+                       @bind-Value="@_BankAccount_viewModel.Data.CDEPT_CODE"
+                       R_ConductorSource="@_BankAccount_conductorRef"
+                       OnLostFocus="@BankAccountDeptCode_OnLostFocus"
+                       R_EnableAdd R_EnableEdit></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="0">
+            <R_Lookup R_ConductorSource="@_BankAccount_conductorRef" R_Before_Open_Lookup="@Department_Before_Open_Lookup" R_After_Open_Lookup="@BankAccount_Department_After_Open_Lookup" R_EnableAdd R_EnableEdit>...</R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_TextBox @bind-Value="@_BankAccount_viewModel.Data.CDEPT_NAME"
+                       R_ConductorSource="@_BankAccount_conductorRef"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label Class="ms-2">@(_localizer["_InvTemplate"])*</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="7">
+            <R_TextBox @bind-Value="@_BankAccount_viewModel.Data.FileNameExtension"
+                       R_ConductorSource="@_BankAccount_conductorRef"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout Style="width: 100px">
+            <R_InputFile Class="text-white bg-dark" OnChange="@_BankAccount_InvTemplateUpload_OnChange" R_ConductorSource="@_BankAccount_conductorRef" Accepts="@accepts" R_EnableAdd R_EnableEdit></R_InputFile>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_Label FontColor="@R_eFontColor.Danger" Class="fw-bold" FontSize="13">Bank Receipt Info</R_Label>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>@(_localizer["_Bank"])*</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@_BankAccount_viewModel.Data.CBANK_CODE"
+                       R_ConductorSource="@_BankAccount_conductorRef"
+                       OnLostFocus="@BankAccountBankCode_OnLostFocus"
+                       R_EnableAdd R_EnableEdit></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="0">
+            <R_Lookup R_ConductorSource="@_BankAccount_conductorRef" R_Before_Open_Lookup="@BankAccount_Bank_Before_Open_Lookup" R_After_Open_Lookup="@BankAccount_Bank_After_Open_Lookup" R_EnableAdd R_EnableEdit>...</R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_TextBox @bind-Value="@_BankAccount_viewModel.Data.CBANK_NAME"
+                       R_ConductorSource="@_BankAccount_conductorRef"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>@(_localizer["_BankAccount"])*</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@_BankAccount_viewModel.Data.CBANK_ACCOUNT"
+                       R_ConductorSource="@_BankAccount_conductorRef"
+                       OnLostFocus="@BankAcount_OnLostFocus"
+                       Enabled="@BankAccountButtonEnable"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="0">
+            <R_Lookup Enabled="@BankAccountButtonEnable" R_Before_Open_Lookup="@BankAccount_BankAccount_Before_Open_Lookup" R_After_Open_Lookup="@BankAccount_BankAccount_After_Open_Lookup">...</R_Lookup>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>
+
+<R_StackLayout Row Class="d-flex justify-content-between">
+    <R_ItemLayout>
+        <R_AddButton Enabled="@enableAdd" R_Conductor="@_BankAccount_conductorRef"></R_AddButton>
+        <R_EditButton R_Conductor="@_BankAccount_conductorRef"></R_EditButton>
+        <R_DeleteButton R_Conductor="@_BankAccount_conductorRef"></R_DeleteButton>
+
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CancelButton R_Conductor="@_BankAccount_conductorRef"></R_CancelButton>
+        <R_SaveButton R_Conductor="@_BankAccount_conductorRef"></R_SaveButton>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_BankAccountGrid_conductorRef"
+             R_ViewModel="@_BankAccountGrid_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@R_GetRecord"
+             R_Display="@R_Display"
+             >
+</R_Conductor>
+
+<R_Conductor @ref="@_BankAccount_conductorRef"
+             R_ViewModel="@_BankAccount_viewModel"
+             R_ConductorParent="@_BankAccountGrid_conductorRef"
+             R_ServiceGetRecord="@BankAccount_ServiceGetRecord"
+             R_Validation="@BankAccount_Validation"
+             R_ServiceSave="@BankAccount_ServiceSave"
+             R_ServiceDelete="@BankAccount_ServiceDelete"
+             R_SetOther="@BankAccount_SetOther"
+             R_BeforeAdd="@BankAccount_BeforeAdd"
+             R_BeforeCancel="@BankAccount_BeforeCancel"
+             R_AfterSave="@BankAccount_AfterSave"
+             R_AfterAdd="@BankAccount_AfterAdd"
+             R_AfterDelete="@BankAccount_AfterDelete"
+             R_Display="@BankAccount_Display"
+             >
+</R_Conductor>
+

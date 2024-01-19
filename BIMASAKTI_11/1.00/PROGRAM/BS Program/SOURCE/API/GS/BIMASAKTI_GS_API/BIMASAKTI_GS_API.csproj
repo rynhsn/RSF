@@ -49,6 +49,7 @@
     <Reference Include="BlazorMenuService">
       <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\BlazorMenuService.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     <Reference Include="R_APIStartUp">
       <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIStartUp.dll</HintPath>
     </Reference>

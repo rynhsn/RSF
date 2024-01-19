@@ -11,6 +11,11 @@ namespace GLM00500Back;
 
 public class GLM00500UploadCls : R_IBatchProcess
 {
+    
+    RSP_GL_SAVE_BUDGET_DTResources.Resources_Dummy_Class _rscSaveDT = new();
+    RSP_GL_DELETE_BUDGET_DTResources.Resources_Dummy_Class _rscDeleteDT = new();
+    RSP_GL_GENERATE_ACCOUNT_BUDGETResources.Resources_Dummy_Class _rscGenerateAccount = new();
+    
     public void R_BatchProcess(R_BatchProcessPar poBatchProcessPar)
     {
         var loEx = new R_Exception();
@@ -32,6 +37,8 @@ public class GLM00500UploadCls : R_IBatchProcess
                     loTempObject);
 
             loConn = loDb.GetConnection();
+            
+            R_ExternalException.R_SP_Init_Exception(loConn);
 
             var lcQuery = $"CREATE TABLE #GLM00500_BUDGET_UPLOAD( " +
                           $"SEQ_NO INT, " +
@@ -72,7 +79,17 @@ public class GLM00500UploadCls : R_IBatchProcess
             if (loCheckError.IERROR_COUNT == 0)
             {
                 lcQuery = $"EXEC RSP_GL_SAVE_BUDGET_UPLOAD '{lcUserId}', '{lcCompanyId}', '{lcGuid}'";
-                loDb.SqlExecNonQuery(lcQuery, loConn, false);
+                // loDb.SqlExecNonQuery(lcQuery, loConn, false);
+                try
+                {
+                    loDb.SqlExecNonQuery(lcQuery, loConn, false);
+                }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
+
+                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
             }
         }
         catch (Exception ex)

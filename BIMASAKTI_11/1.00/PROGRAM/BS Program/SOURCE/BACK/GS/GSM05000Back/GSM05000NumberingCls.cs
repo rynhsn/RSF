@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 using GSM05000Common;
 using GSM05000Common.DTOs;
 using R_BackEnd;
@@ -11,14 +12,17 @@ namespace GSM05000Back;
 public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
 {
     private LoggerGSM05000 _logger;
+    private readonly ActivitySource _activitySource;
 
     public GSM05000NumberingCls()
     {
         _logger = LoggerGSM05000.R_GetInstanceLogger();
+        _activitySource =GSM05000Activity.R_GetInstanceActivitySource();
     }
     
     protected override GSM05000NumberingGridDTO R_Display(GSM05000NumberingGridDTO poEntity)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(R_Display));
         R_Exception loEx = new();
         GSM05000NumberingGridDTO loRtn = null;
         R_Db loDb;
@@ -70,6 +74,7 @@ public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
 
     protected override void R_Saving(GSM05000NumberingGridDTO poNewEntity, eCRUDMode poCRUDMode)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(R_Saving));
         R_Exception loEx = new();
         string lcQuery;
         R_Db loDb;
@@ -135,6 +140,7 @@ public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
 
     protected override void R_Deleting(GSM05000NumberingGridDTO poEntity)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(R_Deleting));
         R_Exception loEx = new();
         string lcQuery;
         R_Db loDb;
@@ -191,6 +197,7 @@ public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
 
     public List<GSM05000NumberingGridDTO> GetNumberingListDb(GSM05000ParameterDb poParameter)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GetNumberingListDb));
         R_Exception loEx = new();
         List<GSM05000NumberingGridDTO> loRtn = null;
         R_Db loDb;
@@ -239,6 +246,7 @@ public class GSM05000NumberingCls : R_BusinessObject<GSM05000NumberingGridDTO>
 
     public GSM05000NumberingHeaderDTO GetNumberingHeaderDb(GSM05000ParameterDb poParameter)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GetNumberingHeaderDb));
         R_Exception loEx = new();
         GSM05000NumberingHeaderDTO loRtn = null;
         R_Db loDb;

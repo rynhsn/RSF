@@ -1,8 +1,10 @@
+using System.Diagnostics;
 using GSM02000Back;
 using GSM02000Common;
 using GSM02000Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using R_OpenTelemetry;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
@@ -14,18 +16,21 @@ namespace GSM02000Service;
 public class GSM02000Controller : ControllerBase, IGSM02000
 {
     private LoggerGSM02000 _logger;
+    private readonly ActivitySource _activitySource;
 
     public GSM02000Controller(ILogger<GSM02000Controller> logger)
     {
         //Initial and Get Logger
         LoggerGSM02000.R_InitializeLogger(logger);
         _logger = LoggerGSM02000.R_GetInstanceLogger();
+        _activitySource =GSM02000Activity.R_InitializeAndGetActivitySource(nameof(GSM02000Controller));
     }
 
     [HttpPost]
     public R_ServiceGetRecordResultDTO<GSM02000DTO> R_ServiceGetRecord(
         R_ServiceGetRecordParameterDTO<GSM02000DTO> poParameter)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(R_ServiceGetRecord));
         _logger.LogInfo("Start - Get Tax Record");
 
         R_Exception loEx = new();
@@ -56,6 +61,7 @@ public class GSM02000Controller : ControllerBase, IGSM02000
     [HttpPost]
     public R_ServiceSaveResultDTO<GSM02000DTO> R_ServiceSave(R_ServiceSaveParameterDTO<GSM02000DTO> poParameter)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(R_ServiceSave));
         _logger.LogInfo("Start - Save Tax Entity");
         R_Exception loEx = new();
         R_ServiceSaveResultDTO<GSM02000DTO> loRtn = null;
@@ -88,6 +94,7 @@ public class GSM02000Controller : ControllerBase, IGSM02000
     [HttpPost]
     public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<GSM02000DTO> poParameter)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(R_ServiceDelete));
         _logger.LogInfo("Start - Delete Tax Entity");
         R_Exception loEx = new();
         R_ServiceDeleteResultDTO loRtn = new();
@@ -117,6 +124,7 @@ public class GSM02000Controller : ControllerBase, IGSM02000
     [HttpPost]
     public IAsyncEnumerable<GSM02000GridDTO> GetAllSalesTaxStream()
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GetAllSalesTaxStream));
         _logger.LogInfo("Start - Get Tax List");
         R_Exception loEx = new();
         GSM02000ParameterDb loDbPar;
@@ -152,6 +160,7 @@ public class GSM02000Controller : ControllerBase, IGSM02000
     [HttpPost]
     public GSM02000ListDTO<GSM02000RoundingDTO> GetAllRounding()
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GetAllRounding));
         _logger.LogInfo("Start - Get Rounding List");
         R_Exception loEx = new();
         GSM02000ListDTO<GSM02000RoundingDTO> loRtn = null;
@@ -187,6 +196,7 @@ public class GSM02000Controller : ControllerBase, IGSM02000
     [HttpPost]
     public GSM02000ActiveInactiveDTO SetActiveInactive(GSM02000ActiveInactiveParamsDTO poParams)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(SetActiveInactive));
         _logger.LogInfo("Start - Set Active/Inactive");
         R_Exception loEx = new();
         GSM02000ActiveInactiveDb loDbPar = new GSM02000ActiveInactiveDb();

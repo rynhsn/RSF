@@ -10,6 +10,10 @@ namespace GLM00500Back;
 
 public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
 {
+    RSP_GL_SAVE_BUDGET_HDResources.Resources_Dummy_Class _rscSave = new();
+    RSP_GL_DELETE_BUDGETResources.Resources_Dummy_Class _rscDelete = new();
+    RSP_GL_FINALIZE_BUDGETResources.Resources_Dummy_Class _rscFinalize = new();
+    
     private LoggerGLM00500 _logger;
     
     public GLM00500HeaderCls()

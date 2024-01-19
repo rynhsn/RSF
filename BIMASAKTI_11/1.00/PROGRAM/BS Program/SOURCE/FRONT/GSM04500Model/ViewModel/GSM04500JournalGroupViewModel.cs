@@ -77,6 +77,7 @@ namespace GSM04500Model.ViewModel
                 R_FrontContext.R_SetStreamingContext(GSM04500ContextConstant.CPROPERTY_ID, PropertyId);
                 R_FrontContext.R_SetStreamingContext(GSM04500ContextConstant.CJRNGRP_TYPE, TypeCode);
                 var loReturn = await _model.GetAllStreamAsync();
+                
                 GridList = new ObservableCollection<GSM04500JournalGroupDTO>(loReturn);
             }
             catch (Exception ex)

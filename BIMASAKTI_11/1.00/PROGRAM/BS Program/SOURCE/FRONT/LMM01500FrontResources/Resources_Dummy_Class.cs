@@ -1,8 +1,7 @@
-﻿using System;
-
-namespace LMM01500FrontResources
+﻿namespace LMM01500FrontResources
 {
     public class Resources_Dummy_Class
     {
+
     }
 }

@@ -80,7 +80,7 @@ namespace GSM05000Model
                     _SendWithContext,
                     _SendWithToken);
             }
-            catch (Exception ex)
+            catch (Exception ex) 
             {
                 loEx.Add(ex);
             }

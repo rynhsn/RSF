@@ -1,8 +1,10 @@
-﻿using GSM02000Back;
+﻿using System.Diagnostics;
+using GSM02000Back;
 using GSM02000Common;
 using GSM02000Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using R_OpenTelemetry;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
@@ -14,18 +16,22 @@ namespace GSM02000Service;
 public class GSM02000TaxController : ControllerBase, IGSM02000Tax
 {
     
-    private LoggerGSM02000 _logger;
+    private LoggerGSM02000 _logger;    
+    private readonly ActivitySource _activitySource;
+
 
     public GSM02000TaxController(ILogger<GSM02000TaxController> logger)
     {
         LoggerGSM02000.R_InitializeLogger(logger);
         _logger = LoggerGSM02000.R_GetInstanceLogger();
+        _activitySource =GSM02000Activity.R_InitializeAndGetActivitySource(nameof(GSM02000Controller));
     }
 
     [HttpPost]
     public R_ServiceGetRecordResultDTO<GSM02000TaxDTO> R_ServiceGetRecord(
         R_ServiceGetRecordParameterDTO<GSM02000TaxDTO> poParameter)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(R_ServiceGetRecord));
         _logger.LogInfo("Start - Get Tax % Record");
         var loEx = new R_Exception();
         var loRtn = new R_ServiceGetRecordResultDTO<GSM02000TaxDTO>();
@@ -55,6 +61,7 @@ public class GSM02000TaxController : ControllerBase, IGSM02000Tax
     [HttpPost]
     public R_ServiceSaveResultDTO<GSM02000TaxDTO> R_ServiceSave(R_ServiceSaveParameterDTO<GSM02000TaxDTO> poParameter)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(R_ServiceSave));
         _logger.LogInfo("Start - Save Tax % Entity");
         R_Exception loEx = new R_Exception();
         R_ServiceSaveResultDTO<GSM02000TaxDTO> loRtn = null;
@@ -86,6 +93,7 @@ public class GSM02000TaxController : ControllerBase, IGSM02000Tax
     [HttpPost]
     public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<GSM02000TaxDTO> poParameter)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(R_ServiceDelete));
         _logger.LogInfo("Start - Delete Tax % Entity");
         R_Exception loEx = new R_Exception();
         R_ServiceDeleteResultDTO loRtn = null;
@@ -117,6 +125,7 @@ public class GSM02000TaxController : ControllerBase, IGSM02000Tax
     [HttpPost]
     public IAsyncEnumerable<GSM02000TaxSalesDTO> GSM02000GetAllSalesTaxListStream()
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GSM02000GetAllSalesTaxListStream));
         _logger.LogInfo("Start - Get All Tax List");
         R_Exception loEx = new R_Exception();
         IAsyncEnumerable<GSM02000TaxSalesDTO> loRtn = null;
@@ -154,6 +163,7 @@ public class GSM02000TaxController : ControllerBase, IGSM02000Tax
     [HttpPost]
     public IAsyncEnumerable<GSM02000TaxDTO> GSM02000GetAllTaxListStream()
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GSM02000GetAllTaxListStream));
         _logger.LogInfo("Start - Get All Tax % List");
         R_Exception loEx = new R_Exception();
         IAsyncEnumerable<GSM02000TaxDTO> loRtn = null;

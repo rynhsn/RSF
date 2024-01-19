@@ -1,21 +1,363 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <root>
-    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-        <xsd:element name="root" msdata:IsDataSet="true">
-            
-        </xsd:element>
-    </xsd:schema>
-    <resheader name="resmimetype">
-        <value>text/microsoft-resx</value>
-    </resheader>
-    <resheader name="version">
-        <value>1.3</value>
-    </resheader>
-    <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
-    <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="1501" xml:space="preserve">
+    <value>Invoice Group Code is required</value>
+  </data>
+  <data name="1502" xml:space="preserve">
+    <value>Invoice Group Name is required</value>
+  </data>
+  <data name="1503" xml:space="preserve">
+    <value>Before Limit Invoice Date cannot be smaller than Limit Invoice Dates*</value>
+  </data>
+  <data name="1504" xml:space="preserve">
+    <value>After Limit Invoice Date cannot be smaller than Limit Invoice Dates*</value>
+  </data>
+  <data name="1505" xml:space="preserve">
+    <value>Additional Id and Name is required</value>
+  </data>
+  <data name="1506" xml:space="preserve">
+    <value>Invoice Template Is Required</value>
+  </data>
+  <data name="1507" xml:space="preserve">
+    <value>Departement Is Required</value>
+  </data>
+  <data name="1508" xml:space="preserve">
+    <value>Bank Is Required</value>
+  </data>
+  <data name="1509" xml:space="preserve">
+    <value>Bank Account Is Required</value>
+  </data>
+  <data name="1511" xml:space="preserve">
+    <value>Additional Id is required</value>
+  </data>
+  <data name="1512" xml:space="preserve">
+    <value>Cut of Date by is required</value>
+  </data>
+  <data name="_Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="_AdditionalId" xml:space="preserve">
+    <value>Additional Id</value>
+  </data>
+  <data name="_AfterLimit" xml:space="preserve">
+    <value>After Limit</value>
+  </data>
+  <data name="_AllDept" xml:space="preserve">
+    <value>All Department</value>
+  </data>
+  <data name="_Bank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="_BankAccount" xml:space="preserve">
+    <value>Bank Account</value>
+  </data>
+  <data name="_BankReceiptInfo" xml:space="preserve">
+    <value>Bank Receipt Info</value>
+  </data>
+  <data name="_ByDept" xml:space="preserve">
+    <value>By Departement</value>
+  </data>
+  <data name="_CalculationBaseOn" xml:space="preserve">
+    <value>Calculation base on</value>
+  </data>
+  <data name="_CancelBtn" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="_Charges" xml:space="preserve">
+    <value>Charges</value>
+  </data>
+  <data name="_ChargesId" xml:space="preserve">
+    <value>Charges Id</value>
+  </data>
+  <data name="_ChargesName" xml:space="preserve">
+    <value>Charges Name</value>
+  </data>
+  <data name="_ChargesType" xml:space="preserve">
+    <value>Charges Type</value>
+  </data>
+  <data name="_ChargesTypeDesc" xml:space="preserve">
+    <value>Charges Type Descr</value>
+  </data>
+  <data name="_CreateBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="_CreateDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="_CutOfDateBy" xml:space="preserve">
+    <value>Cut of Date By</value>
+  </data>
+  <data name="_Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="_DayAmount" xml:space="preserve">
+    <value>Daily Amount</value>
+  </data>
+  <data name="_DayPercen" xml:space="preserve">
+    <value>Daily Percentage</value>
+  </data>
+  <data name="_Days" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="_Dept" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_Desc" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="_DescMinPinalty" xml:space="preserve">
+    <value>(valid for Percentage Calculation Pinalty Type Only)</value>
+  </data>
+  <data name="_DueDate" xml:space="preserve">
+    <value>Due Date</value>
+  </data>
+  <data name="_DueDateTolarance" xml:space="preserve">
+    <value>Due Date Tolarance</value>
+  </data>
+  <data name="_DueDays" xml:space="preserve">
+    <value>Due Days</value>
+  </data>
+  <data name="_EnablePinalty" xml:space="preserve">
+    <value>Enable Pinalty</value>
+  </data>
+  <data name="_ExcludeSpesialDay" xml:space="preserve">
+    <value>Exclude Spesial Day</value>
+  </data>
+  <data name="_FixedDueDate" xml:space="preserve">
+    <value>Fixed Due Date</value>
+  </data>
+  <data name="_GeneralInfo" xml:space="preserve">
+    <value>General Info</value>
+  </data>
+  <data name="_GracePeriod" xml:space="preserve">
+    <value>Grace Period</value>
+  </data>
+  <data name="_GracePriod" xml:space="preserve">
+    <value>Grace Priod</value>
+  </data>
+  <data name="_Holiday" xml:space="preserve">
+    <value>Holiday</value>
+  </data>
+  <data name="_InvDueMode" xml:space="preserve">
+    <value>Invoice Due Mode</value>
+  </data>
+  <data name="_InvGrp" xml:space="preserve">
+    <value>Invoice Group</value>
+  </data>
+  <data name="_InvGrpMode" xml:space="preserve">
+    <value>Invoice Group Mode</value>
+  </data>
+  <data name="_InvTemplate" xml:space="preserve">
+    <value>Invoice Template</value>
+  </data>
+  <data name="_LessThanEqualLimit" xml:space="preserve">
+    <value>Less Than Equal Limit</value>
+  </data>
+  <data name="_LimitInvDate" xml:space="preserve">
+    <value>Limit Invoice Date</value>
+  </data>
+  <data name="_MaxPinaltyAmount" xml:space="preserve">
+    <value>Max Pinalty Amount</value>
+  </data>
+  <data name="_MinPinaltyAmount" xml:space="preserve">
+    <value>Min Pinalty Amount</value>
+  </data>
+  <data name="_MonAmount" xml:space="preserve">
+    <value>Monthly Amount</value>
+  </data>
+  <data name="_MonPercen" xml:space="preserve">
+    <value>Monthly Percentage</value>
+  </data>
+  <data name="_NextMont" xml:space="preserve">
+    <value>Next Month</value>
+  </data>
+  <data name="_NotifByDeptAlert" xml:space="preserve">
+    <value>By Department Flag value change will deleted all template on tab – Template and Bank Account, do you want to processed?</value>
+  </data>
+  <data name="_OkBtn" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="_OneDayNextMon" xml:space="preserve">
+    <value>1st Day of the Next Month</value>
+  </data>
+  <data name="_OneTimeAmount" xml:space="preserve">
+    <value>One Time Amount</value>
+  </data>
+  <data name="_OneTimePercen" xml:space="preserve">
+    <value>One Time Percentage</value>
+  </data>
+  <data name="_Pinalty" xml:space="preserve">
+    <value>Pinalty</value>
+  </data>
+  <data name="_PinaltyFeeStartFrom" xml:space="preserve">
+    <value>Penalty Fee Start from</value>
+  </data>
+  <data name="_PinaltyType" xml:space="preserve">
+    <value>Penalty Type</value>
+  </data>
+  <data name="_Principal" xml:space="preserve">
+    <value>Principal</value>
+  </data>
+  <data name="_PrincipalPinalty" xml:space="preserve">
+    <value>Principal and Penalty</value>
+  </data>
+  <data name="_ProcessBtn" xml:space="preserve">
+    <value>Process</value>
+  </data>
+  <data name="_Property" xml:space="preserve">
+    <value>Property</value>
+  </data>
+  <data name="_RangeFixDueDate" xml:space="preserve">
+    <value>Range Fixed Due Date</value>
+  </data>
+  <data name="_Round" xml:space="preserve">
+    <value>Rounded</value>
+  </data>
+  <data name="_Saturday" xml:space="preserve">
+    <value>Saturday</value>
+  </data>
+  <data name="_Seq" xml:space="preserve">
+    <value>Seq</value>
+  </data>
+  <data name="_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="_Sunday" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="_TemplateAndBankAccount" xml:space="preserve">
+    <value>Template and Bank Account</value>
+  </data>
+  <data name="_Tenant" xml:space="preserve">
+    <value>Tenant</value>
+  </data>
+  <data name="_UnitOrUtilityCharges" xml:space="preserve">
+    <value>Unit/Utility Charges</value>
+  </data>
+  <data name="_UpdateBy" xml:space="preserve">
+    <value>Updated By</value>
+  </data>
+  <data name="_UpdateDate" xml:space="preserve">
+    <value>Updated Date</value>
+  </data>
+  <data name="_UseStamp" xml:space="preserve">
+    <value>Use Stamp</value>
+  </data>
 </root>

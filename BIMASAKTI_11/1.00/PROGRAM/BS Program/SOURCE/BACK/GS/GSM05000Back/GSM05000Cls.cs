@@ -1,5 +1,6 @@
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 using GSM05000Common;
 using GSM05000Common.DTOs;
 using R_BackEnd;
@@ -11,14 +12,17 @@ namespace GSM05000Back;
 public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
 {
     private LoggerGSM05000 _logger;
+    private readonly ActivitySource _activitySource;
 
     public GSM05000Cls()
     {
         _logger = LoggerGSM05000.R_GetInstanceLogger();
+        _activitySource =GSM05000Activity.R_GetInstanceActivitySource();
     }
 
     protected override GSM05000DTO R_Display(GSM05000DTO poEntity)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(R_Display));
         R_Exception loEx = new();
         GSM05000DTO loRtn = null;
         R_Db loDb;
@@ -70,6 +74,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
 
     protected override void R_Saving(GSM05000DTO poNewEntity, eCRUDMode poCRUDMode)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(R_Saving));
         R_Exception loEx = new();
         string lcQuery;
         R_Db loDb;
@@ -199,6 +204,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
     //method get semua data
     public List<GSM05000GridDTO> GetTransactionCodeListDb(GSM05000ParameterDb poParameterDb)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GetTransactionCodeListDb));
         R_Exception loEx = new();
         List<GSM05000GridDTO> loRtn = null;
         R_Db loDb;
@@ -236,6 +242,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
 
     public GSM05000ExistDTO GetValidateUpdateDb(GSM05000ParameterDb poEntity)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GetValidateUpdateDb));
         R_Exception loEx = new();
         GSM05000ExistDTO loRtn = null;
         R_Db loDb;
@@ -297,6 +304,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
 
     public List<GSM05000DelimiterDTO> GetDelimiterListDb(GSM05000ParameterDb poParameterDb)
     {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GetDelimiterListDb));
         R_Exception loEx = new();
         List<GSM05000DelimiterDTO> loRtn = null;
         R_Db loDb;

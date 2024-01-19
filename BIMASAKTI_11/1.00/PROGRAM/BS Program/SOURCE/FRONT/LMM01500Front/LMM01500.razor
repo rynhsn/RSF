@@ -1,0 +1,407 @@
+﻿@page "/LMM01500"
+@inherits R_Page
+@using LMM01500COMMON
+@using LMM01500Models
+@inject R_ILocalizer<LMM01500FrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Class="mb-2">
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label FontColor="@R_eFontColor.Danger" Class="fw-bold ms-3" FontSize="12">@_localizer["_Property"]</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="4">
+            <R_ComboBox Data="@_Genereal_viewModel.PropertyList"
+                            Value="_Genereal_viewModel.PropertyValueContext"
+                            PopupMaxHeight="140px"
+                            ValueField="@nameof(LMM01500DTOPropety.CPROPERTY_ID)"
+                            TextField="@nameof(LMM01500DTOPropety.CPROPERTY_NAME)"
+                            Enabled="@(!_pageSupplierOnCRUDmode)"
+                            R_ConductorSource="@_Genereal_conductorRef" ValueChanged="@((string value) => PropertyDropdown_OnChange(value))">
+            </R_ComboBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_TabStrip @ref="@_TabGeneral" OnActiveTabIndexChanging="@General_OnActiveTabIndexChanging">
+
+    <R_TabStripTab Title="@_localizer["_GeneralInfo"]" Id="General">
+
+        <R_TabStrip @ref="@_TabBankAccount" OnActiveTabIndexChanging="@Tempalte_OnActiveTabIndexChanging">
+
+            <R_TabStripTab Title="@_localizer["_GeneralInfo"]" Id="GeneralBankAccount">
+                <R_StackLayout Spacing="1" Row="true">
+                    <R_ItemLayout col="3">
+                        <R_Grid @ref="@_Genereal_gridRef"
+                                DataSource="@_Genereal_viewModel.InvoinceGroupGrid"
+                                R_ConductorSource="@_Genereal_conductorRef"
+                                R_GridType="@R_eGridType.Navigator"
+                                Enabled="@(!_pageSupplierOnCRUDmode)"
+                                R_ServiceGetListRecord="@GroupGrid_ServiceGetListRecord">
+                            <R_GridColumns>
+                                <R_GridTextColumn FieldName="CINVGRP_CODE_NAME" HeaderText="@_localizer["_InvGrp"]"></R_GridTextColumn>
+                            </R_GridColumns>
+                        </R_Grid>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="9">
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout col="2">
+                                <R_Label>@(_localizer["_InvGrp"])*</R_Label>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout col="2">
+                                <R_TextBox @ref="@InvGrpId_TextBox"
+                                           @bind-Value="@_Genereal_viewModel.Data.CINVGRP_CODE"
+                                           R_ConductorSource="@_Genereal_conductorRef"
+                                           R_EnableAdd="true"
+                                           R_EnableEdit="false">
+                                </R_TextBox>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="7">
+                                <R_TextBox @ref="@InvGrpName_TextBox"
+                                           @bind-Value="@_Genereal_viewModel.Data.CINVGRP_NAME"
+                                           R_ConductorSource="@_Genereal_conductorRef"
+                                           R_EnableAdd="true"
+                                           R_EnableEdit="true">
+                                </R_TextBox>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="1">
+                                <R_CheckBox @bind-Value="@_Genereal_viewModel.Data.LACTIVE"
+                                            R_ConductorSource="@_Genereal_conductorRef"
+                                            Enabled="false">
+                                </R_CheckBox>
+                                <R_Label>@_localizer["_Active"]</R_Label>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout col="2">
+                                <R_Label>@(_localizer["_ProcessBtn"]) @(_localizer["_Seq"])</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="1">
+                                <R_NumericTextBox @bind-Value="@_Genereal_viewModel.Data.CSEQUENCEInt"
+                                           R_ConductorSource="@_Genereal_conductorRef"
+                                          Arrows="false"  R_EnableAdd="true" R_EnableEdit="true"></R_NumericTextBox>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout col="2">
+                                    <R_Label>@(_localizer["_InvDueMode"])</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="8">
+                                <R_RadioGroup Data="@_Genereal_viewModel.RadioInvDMList"
+                                              Value="@_Genereal_viewModel.Data.CINVOICE_DUE_MODE"
+                                              ValueField="@nameof(RadioButton.Id)"
+                                              TextField="@nameof(RadioButton.Text)"
+                                              R_ConductorSource="@_Genereal_conductorRef"
+                                              R_EnableAdd="true" R_EnableEdit="true" ValueChanged="@((string value) => InvDue_OnChanged(value))"></R_RadioGroup>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_GroupBox Title="@(_localizer["_InvGrpMode"])" Enabled="@InvGrpModeEnable">
+                            <R_StackLayout Row>
+                                <R_ItemLayout>
+                                    <R_StackLayout Style="width: 14rem"></R_StackLayout>
+                                    <R_RadioGroup Class="d-block" Data="@_Genereal_viewModel.RadioInvGrpMode"
+                                                  Value="@_Genereal_viewModel.Data.CINVOICE_GROUP_MODE"
+                                                  ValueField="@nameof(RadioButton.Id)"
+                                                  TextField="@nameof(RadioButton.Text)"
+                                                  R_ConductorSource="@_Genereal_conductorRef"
+                                                  Layout="@R_eRadioGroupLayout.Vertical"
+                                                  Enabled="@InvGrpModeEnable" ValueChanged="@((string value) => InvGrp_OnChanged(value))">
+                                     </R_RadioGroup>
+                                </R_ItemLayout>   
+                                <R_ItemLayout col="10">
+                                    <R_StackLayout Row>
+                                        <R_ItemLayout col="2">
+                                            <R_NumericTextBox @bind-Value="@_Genereal_viewModel.Data.IDUE_DAYS"
+                                                              R_ConductorSource="@_Genereal_conductorRef"
+                                                              Arrows="false" Enabled="@IDueDaysEnable">
+                                            </R_NumericTextBox>
+                                        </R_ItemLayout>
+                                    </R_StackLayout>
+                                    <R_StackLayout Row>
+                                        <R_ItemLayout col="2">
+                                            <R_NumericTextBox @bind-Value="@_Genereal_viewModel.Data.IFIXED_DUE_DATE"
+                                                              R_ConductorSource="@_Genereal_conductorRef"
+                                                              Arrows="false" Enabled="@IFixDueDateEnable"></R_NumericTextBox>
+                                        </R_ItemLayout>
+                                        
+                                    </R_StackLayout>
+                                    <R_StackLayout Row>
+                                        <R_ItemLayout col="3">
+                                            <R_Label>@(_localizer["_LimitInvDate"])*</R_Label>
+                                        </R_ItemLayout>
+                                        <R_ItemLayout col="1">
+                                            <R_NumericTextBox @bind-Value="@_Genereal_viewModel.Data.ILIMIT_INVOICE_DATE"
+                                                              R_ConductorSource="@_Genereal_conductorRef"
+                                                              Arrows="false" Enabled="@ILimitDueDateEnable"></R_NumericTextBox>
+                                        </R_ItemLayout>
+                                        <R_ItemLayout col="3">
+                                            <R_Label >@(_localizer["_LessThanEqualLimit"])*</R_Label>
+                                        </R_ItemLayout>
+                                        <R_ItemLayout col="1">
+                                            <R_NumericTextBox @bind-Value="@_Genereal_viewModel.Data.IBEFORE_LIMIT_INVOICE_DATE"
+                                                              R_ConductorSource="@_Genereal_conductorRef"
+                                                              Arrows="false" Enabled="@IBeforeLimitEnable"></R_NumericTextBox>
+                                        </R_ItemLayout>
+                                        <R_ItemLayout col="2">
+                                            <R_Label>@(_localizer["_AfterLimit"])*</R_Label>
+                                        </R_ItemLayout>
+                                        <R_ItemLayout col="1">
+                                            <R_NumericTextBox @bind-Value="@_Genereal_viewModel.Data.IAFTER_LIMIT_INVOICE_DATE"
+                                                              R_ConductorSource="@_Genereal_conductorRef"
+                                                              Arrows="false" Enabled="@IAfterLimitEnable"></R_NumericTextBox>
+                                        </R_ItemLayout>
+                                    </R_StackLayout>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_GroupBox>
+                        
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout col="2">
+                                <R_Label>@(_localizer["_DueDateTolarance"])</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_CheckBox @bind-Value="@_Genereal_viewModel.Data.LDUE_DATE_TOLERANCE_HOLIDAY"
+                                            R_ConductorSource="@_Genereal_conductorRef"
+                                            R_EnableAdd="true" R_EnableEdit="true">Holiday</R_CheckBox>
+                                <R_Label>@(_localizer["_Holiday"])</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_CheckBox @bind-Value="@_Genereal_viewModel.Data.LDUE_DATE_TOLERANCE_SATURDAY"
+                                            R_ConductorSource="@_Genereal_conductorRef"
+                                            R_EnableAdd="true" R_EnableEdit="true"></R_CheckBox>
+                                <R_Label >@(_localizer["_Saturday"])</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_CheckBox @bind-Value="@_Genereal_viewModel.Data.LDUE_DATE_TOLERANCE_SUNDAY"
+                                            R_ConductorSource="@_Genereal_conductorRef"
+                                            R_EnableAdd="true" R_EnableEdit="true"></R_CheckBox>
+                                <R_Label >@(_localizer["_Sunday"])</R_Label>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout col="2">
+                                <R_CheckBox @bind-Value="@_Genereal_viewModel.Data.LUSE_STAMP"
+                                            R_ConductorSource="@_Genereal_conductorRef"
+                                            R_EnableAdd="true" R_EnableEdit="true"></R_CheckBox>
+                                <R_Label>@(_localizer["_UseStamp"])</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_Label>@(_localizer["_AdditionalId"])*</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CSTAMP_ADD_ID"
+                                           R_ConductorSource="@_Genereal_conductorRef"
+                                           OnLostFocus="@StampId_OnLostFocus"
+                                           Enabled="@(_Genereal_viewModel.Data.LUSE_STAMP && _Genereal_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)"></R_TextBox>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="0">
+                                <R_Lookup R_ConductorSource="_Genereal_conductorRef" R_Before_Open_Lookup="@OtherCharges_Before_Open_Lookup" R_After_Open_Lookup="@OtherCharges_After_Open_Lookup" 
+                                    Enabled="@(_Genereal_viewModel.Data.LUSE_STAMP && _Genereal_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)">...</R_Lookup>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="4">
+                                <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CCHARGES_NAME"
+                                           R_ConductorSource="@_Genereal_conductorRef"
+                                           Enabled="false"></R_TextBox>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout col="2">
+                                <R_Label>@(_localizer["_Desc"])</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="9">
+                                <R_TextArea @bind-Value="@_Genereal_viewModel.Data.CDESCRIPTION"
+                                            R_ConductorSource="@_Genereal_conductorRef"
+                                            R_EnableAdd="true" R_EnableEdit="true"></R_TextArea>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout col="2">
+                                <R_CheckBox Value="@_Genereal_viewModel.Data.LBY_DEPARTMENT"
+                                            R_ConductorSource="@_Genereal_conductorRef"
+                                            R_EnableAdd="true" R_EnableEdit="true" ValueChanged="@((bool value) => ByDept_OnChange(value))"></R_CheckBox>
+                                  <R_Label>@(_localizer["_ByDept"])</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="10">
+
+                                    <R_GroupBox Title="@_localizer["_AllDept"]" Enabled="@ByDeptEnalble">
+                                        <R_StackLayout Row="true">
+                                            <R_ItemLayout col="3">
+                                                <R_Label>@(_localizer["_InvTemplate"])*</R_Label>
+                                        </R_ItemLayout>
+                                        <R_ItemLayout col="7">
+                                            <R_TextBox @bind-Value="@_Genereal_viewModel.Data.FileNameExtension"
+                                                       R_ConductorSource="@_Genereal_conductorRef"
+                                                       Enabled="false"></R_TextBox>
+                                        </R_ItemLayout>
+                                        <R_ItemLayout col="1">
+                                            <R_OpenFileDialogButton Class="text-white bg-dark" Enabled="@ByDeptEnalble" OnChange="@_General_InvTemplateUpload_OnChange" Accepts="@accepts">Browse File</R_OpenFileDialogButton>
+                                        </R_ItemLayout>
+                                    </R_StackLayout>
+
+                                    <R_StackLayout Row="true">
+                                        <R_Label FontColor="@R_eFontColor.Danger" Class="fw-bold" FontSize="13">@(_localizer["_BankReceiptInfo"])</R_Label>
+                                    </R_StackLayout>
+
+                                    <R_StackLayout Row="true">
+                                        <R_ItemLayout col="1"><R_Label></R_Label></R_ItemLayout>
+                                        <R_ItemLayout col="2">
+                                                <R_Label>@(_localizer["_Dept"])*</R_Label>
+                                        </R_ItemLayout>
+                                        <R_ItemLayout col="2">
+                                            <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CDEPT_CODE"
+                                                       R_ConductorSource="@_Genereal_conductorRef"
+                                                       OnLostFocus="@GeneralDeptCode_OnLostFocus"
+                                                       Enabled="@ByDeptEnalble"></R_TextBox>
+                                        </R_ItemLayout>
+                                        <R_ItemLayout col="0">
+                                            <R_Lookup Enabled="@ByDeptEnalble" R_Before_Open_Lookup="@Department_Before_Open_Lookup" R_After_Open_Lookup="@General_Department_After_Open_Lookup">...</R_Lookup>
+                                        </R_ItemLayout>
+                                        <R_ItemLayout col="6">
+                                            <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CDEPT_NAME"
+                                                       R_ConductorSource="@_Genereal_conductorRef"
+                                                       Enabled="false"></R_TextBox>
+                                        </R_ItemLayout>
+                                    </R_StackLayout>
+
+                                    <R_StackLayout Row="true">
+                                        <R_ItemLayout col="1"><R_Label></R_Label></R_ItemLayout>
+                                        <R_ItemLayout col="2">
+                                            <R_Label>@(_localizer["_Bank"])*</R_Label>
+                                        </R_ItemLayout>
+                                        <R_ItemLayout col="2">
+                                            <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CBANK_CODE"
+                                                       R_ConductorSource="@_Genereal_conductorRef"
+                                                       OnLostFocus="@GeneralBankCode_OnLostFocus"
+                                                       Enabled="@ByDeptEnalble"></R_TextBox>
+                                        </R_ItemLayout>
+                                        <R_ItemLayout col="0">
+                                            <R_Lookup Enabled="@ByDeptEnalble" R_Before_Open_Lookup="@Bank_Before_Open_Lookup" R_After_Open_Lookup="@General_Bank_After_Open_Lookup">...</R_Lookup>
+                                        </R_ItemLayout>
+                                        <R_ItemLayout col="6">
+                                            <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CCB_NAME"
+                                                       R_ConductorSource="@_Genereal_conductorRef"
+                                                       Enabled="false"></R_TextBox>
+                                        </R_ItemLayout>
+                                    </R_StackLayout>
+
+                                    <R_StackLayout Row="true">
+                                        <R_ItemLayout col="1"><R_Label></R_Label></R_ItemLayout>
+                                        <R_ItemLayout col="2">
+                                            <R_Label>@(_localizer["_BankAccount"])*</R_Label>
+                                        </R_ItemLayout>
+                                        <R_ItemLayout col="6">
+                                            <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CBANK_ACCOUNT"
+                                                       R_ConductorSource="@_Genereal_conductorRef"
+                                                       OnLostFocus="@GeneralBankAcount_OnLostFocus"
+                                                       Enabled="@GeneralButtonEnable"></R_TextBox>
+                                        </R_ItemLayout>
+                                        <R_ItemLayout col="0">
+                                            <R_Lookup Enabled="@GeneralButtonEnable" R_Before_Open_Lookup="@BankAccount_Before_Open_Lookup" R_After_Open_Lookup="@BankAccount_After_Open_Lookup">...</R_Lookup>
+                                        </R_ItemLayout>
+                                    </R_StackLayout>
+                                </R_GroupBox>
+
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout col="2">
+                                <R_Label>@(_localizer["_UpdateBy"])</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="4">
+                                <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CUPDATE_BY"
+                                           R_ConductorSource="@_Genereal_conductorRef"
+                                           Enabled="false"></R_TextBox>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="1">
+                                <R_Label>@(_localizer["_Date"])</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="3">
+                                <R_DateTimePicker @bind-Value="@_Genereal_viewModel.Data.DUPDATE_DATE"
+                                                  R_ConductorSource="@_Genereal_conductorRef"
+                                                  Enabled="false"></R_DateTimePicker>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout col="2">
+                                    <R_Label>@(_localizer["_CreateBy"])</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="4">
+                                <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CCREATE_BY"
+                                           R_ConductorSource="@_Genereal_conductorRef"
+                                           Enabled="false"></R_TextBox>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="1">
+                                    <R_Label>@(_localizer["_Date"])</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="3">
+                                <R_DateTimePicker @bind-Value="@_Genereal_viewModel.Data.DCREATE_DATE"
+                                                  R_ConductorSource="@_Genereal_conductorRef"
+                                                  Enabled="false"></R_DateTimePicker>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+
+                    </R_ItemLayout>
+
+                </R_StackLayout>
+
+                <R_StackLayout Row Class="mt-2 justify-content-between">
+                    <R_ItemLayout >
+                        <R_AddButton R_Conductor="@_Genereal_conductorRef"></R_AddButton>
+                        <R_EditButton R_Conductor="@_Genereal_conductorRef"></R_EditButton>
+                        <R_DeleteButton R_Conductor="@_Genereal_conductorRef"></R_DeleteButton>
+                    </R_ItemLayout>
+                    <R_ItemLayout >
+                        <R_Popup R_ConductorSource="@_Genereal_conductorRef" R_Before_Open_Popup="@R_Before_Open_Popup_ActivateInactive" R_After_Open_Popup="@R_After_Open_Popup_ActivateInactive" R_EnableHasData>@_Genereal_lcLabel</R_Popup>
+                    </R_ItemLayout>
+                    <R_ItemLayout >
+                        <R_CancelButton R_Conductor="@_Genereal_conductorRef"></R_CancelButton>
+                        <R_SaveButton R_Conductor="@_Genereal_conductorRef"></R_SaveButton>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_Conductor @ref="@_Genereal_conductorRef"
+                             R_ViewModel="@_Genereal_viewModel"
+                             R_IsHeader="true"
+                             R_ServiceGetRecord="@R_ServiceGetRecord"
+                             R_ServiceSave="@R_ServiceSave"
+                             R_ServiceDelete="@R_ServiceDelete"
+                             R_Validation="@R_Validation"
+                             R_AfterAdd="@R_AfterAdd"
+                             R_Display="@R_Display"
+                             R_CheckAdd="@R_CheckAdd"
+                             R_AfterSave="@General_AfterSave"
+                             R_BeforeCancel="@General_BeforeCancel"
+                             R_ConvertToGridEntity="@R_ConvertToGridEntity"
+                             >
+                </R_Conductor>
+
+            </R_TabStripTab>
+
+            <R_TabStripTab Title="@_localizer["_TemplateAndBankAccount"]" Id="BankAccount" Enabled="@TabEnalbleDept">
+                <R_TabPage @ref="@_tabPageBankAccount" R_Before_Open_TabPage="@_BankAccount_Before_Open_TabPage" R_TabEventCallback="@R_TabEventCallback"></R_TabPage>
+            </R_TabStripTab>
+
+        </R_TabStrip>
+        
+    </R_TabStripTab>
+
+    <R_TabStripTab Title="@_localizer["_Pinalty"]" Id="Pinalty" Enabled="@(_Genereal_viewModel.InvoinceGroupGrid.Count > 0 && _Genereal_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)">
+          <R_TabPage @ref="@_tabPagePinalty" R_Before_Open_TabPage="@_PinaltyTab_Before_Open_TabPage" R_TabEventCallback="@R_TabEventCallback" ></R_TabPage>
+    </R_TabStripTab>
+
+    <R_TabStripTab Title="@_localizer["_Charges"]" Id="OtherCharges" Enabled="@(_Genereal_viewModel.InvoinceGroupGrid.Count > 0 && _Genereal_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)">
+         <R_TabPage @ref="@_tabPageOtherCharges" R_Before_Open_TabPage="@_OtherCharges_Before_Open_TabPage" R_TabEventCallback="@R_TabEventCallback"></R_TabPage>
+    </R_TabStripTab>
+    
+</R_TabStrip>
+
