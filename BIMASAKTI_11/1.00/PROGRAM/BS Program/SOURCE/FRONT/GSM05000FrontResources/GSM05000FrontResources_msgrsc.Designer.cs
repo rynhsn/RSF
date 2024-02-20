@@ -141,7 +141,7 @@ namespace GSM05000FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You must fill Approval Mode.
+        ///   Looks up a localized string similar to You must select the Aproval Mode.
         /// </summary>
         internal static string Err01 {
             get {
@@ -209,6 +209,15 @@ namespace GSM05000FrontResources {
         internal static string Err08 {
             get {
                 return ResourceManager.GetString("Err08", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You should fill Transaction Short Name.
+        /// </summary>
+        internal static string Err09 {
+            get {
+                return ResourceManager.GetString("Err09", resourceCulture);
             }
         }
         
@@ -348,7 +357,7 @@ namespace GSM05000FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Using Incremental Document.
+        ///   Looks up a localized string similar to Using Incremental Document Number.
         /// </summary>
         internal static string LABEL_INCREMENTFLAG {
             get {
@@ -524,6 +533,15 @@ namespace GSM05000FrontResources {
         internal static string LABEL_TRANSCODE {
             get {
                 return ResourceManager.GetString("LABEL_TRANSCODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction Short Name.
+        /// </summary>
+        internal static string LABEL_TRANSSHORT {
+            get {
+                return ResourceManager.GetString("LABEL_TRANSSHORT", resourceCulture);
             }
         }
         

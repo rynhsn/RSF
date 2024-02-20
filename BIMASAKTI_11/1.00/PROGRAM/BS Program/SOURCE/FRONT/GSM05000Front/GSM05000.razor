@@ -10,8 +10,6 @@
 <R_ItemLayout>
     <R_Grid @ref="@_gridRef"
             DataSource="@_GSM05000ViewModel.GridList"
-            Pageable
-            PageSize="26"
             R_ConductorSource="@_conductorRef"
             R_GridType="@R_eGridType.Navigator"
             R_ServiceGetListRecord="@Grid_GetList"
@@ -38,6 +36,17 @@
         <R_TextBox @bind-Value="@_GSM05000ViewModel.Data.CTRANSACTION_NAME"
                    R_ConductorSource="@_conductorRef"
                    Enabled="false"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row="true" Class="mb-4">
+    <R_ItemLayout col="3">
+        <R_Label>@_localizer["LABEL_TRANSSHORT"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="9">
+        <R_TextBox @bind-Value="@_GSM05000ViewModel.Data.CTRANS_SHORT_NAME"
+                   R_ConductorSource="@_conductorRef"
+                   R_EnableEdit/>
     </R_ItemLayout>
 </R_StackLayout>
 
@@ -410,5 +419,5 @@
              R_Display="@Grid_Display"/>
 
 
-<R_PredefinedDock R_InstantiateDock="InstanceNumberingTab" Title="Numbering"/>
-<R_PredefinedDock R_InstantiateDock="InstanceApprovalTab" Title="Approval"/>
+<R_PredefinedDock R_InstantiateDock="InstanceNumberingTab" Title="Numbering" Enabled="@_GSM05000ViewModel.Entity.LINCREMENT_FLAG"/>
+<R_PredefinedDock R_InstantiateDock="InstanceApprovalTab" Title="Approval" Enabled="@_GSM05000ViewModel.Entity.LAPPROVAL_FLAG"/>

@@ -1,8 +1,10 @@
+using System.Diagnostics;
 using GSM05000Back;
 using GSM05000Common;
 using GSM05000Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using R_OpenTelemetry;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
@@ -14,17 +16,20 @@ namespace GSM05000Service;
 public class GSM05000Controller : ControllerBase, IGSM05000
 {
     private LoggerGSM05000 _logger;
+    private readonly ActivitySource _activitySource;
     
     public GSM05000Controller(ILogger<GSM05000Controller> logger)
     {
         //Initial and Get Logger
         LoggerGSM05000.R_InitializeLogger(logger);
         _logger = LoggerGSM05000.R_GetInstanceLogger();
+        _activitySource = GSM05000Activity.R_InitializeAndGetActivitySource(nameof(GSM05000Controller));
     }
     
     [HttpPost]
     public R_ServiceGetRecordResultDTO<GSM05000DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GSM05000DTO> poParameter)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(R_ServiceGetRecord));
         _logger.LogInfo("Start - Get Transaction Code Record");
         R_Exception loEx = new();
         R_ServiceGetRecordResultDTO<GSM05000DTO> loRtn = new();
@@ -53,6 +58,7 @@ public class GSM05000Controller : ControllerBase, IGSM05000
     [HttpPost]
     public R_ServiceSaveResultDTO<GSM05000DTO> R_ServiceSave(R_ServiceSaveParameterDTO<GSM05000DTO> poParameter)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(R_ServiceSave));
         _logger.LogInfo("Start - Save Transaction Code Entity");
         R_Exception loEx = new R_Exception();
         R_ServiceSaveResultDTO<GSM05000DTO> loRtn = new();
@@ -89,6 +95,7 @@ public class GSM05000Controller : ControllerBase, IGSM05000
     [HttpPost]
     public IAsyncEnumerable<GSM05000GridDTO> GetTransactionCodeListStream()
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GetTransactionCodeListStream));
         _logger.LogInfo("Start - Get Transaction Code List");
         R_Exception loEx = new R_Exception();
         IAsyncEnumerable<GSM05000GridDTO> loRtn = null;
@@ -124,6 +131,7 @@ public class GSM05000Controller : ControllerBase, IGSM05000
     [HttpPost]
     public GSM05000ListDTO<GSM05000DelimiterDTO> GetDelimiterList()
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GetDelimiterList));
         _logger.LogInfo("Start - Get Delimiter List");
         R_Exception loEx = new();
         GSM05000ListDTO<GSM05000DelimiterDTO> loRtn = null;
@@ -159,6 +167,7 @@ public class GSM05000Controller : ControllerBase, IGSM05000
     [HttpPost]
     public GSM05000ExistDTO CheckExistData(GSM05000TrxCodeParamsDTO poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(CheckExistData));
         _logger.LogInfo("Start - Check Exist Data");
         R_Exception loEx = new();
         GSM05000ExistDTO loRtn = null;

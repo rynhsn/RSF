@@ -1,8 +1,10 @@
-﻿using GSM05000Back;
+﻿using System.Diagnostics;
+using GSM05000Back;
 using GSM05000Common;
 using GSM05000Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using R_OpenTelemetry;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
@@ -14,18 +16,21 @@ namespace GSM05000Service;
 public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalUser
 {
     private LoggerGSM05000 _logger;
-    
+    private readonly ActivitySource _activitySource;
+
     public GSM05000ApprovalUserController(ILogger<GSM05000ApprovalUserController> logger)
     {
         //Initial and Get Logger
         LoggerGSM05000.R_InitializeLogger(logger);
         _logger = LoggerGSM05000.R_GetInstanceLogger();
+        _activitySource =GSM05000Activity.R_InitializeAndGetActivitySource(nameof(GSM05000ApprovalUserController));
     }
     
     [HttpPost]
     public R_ServiceGetRecordResultDTO<GSM05000ApprovalUserDTO> R_ServiceGetRecord(
         R_ServiceGetRecordParameterDTO<GSM05000ApprovalUserDTO> poParameter)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(R_ServiceGetRecord));
         _logger.LogInfo("Start - Get Approval User Record");
         R_Exception loEx = new();
         R_ServiceGetRecordResultDTO<GSM05000ApprovalUserDTO> loRtn = new();
@@ -56,6 +61,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     public R_ServiceSaveResultDTO<GSM05000ApprovalUserDTO> R_ServiceSave(
         R_ServiceSaveParameterDTO<GSM05000ApprovalUserDTO> poParameter)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(R_ServiceSave));
         _logger.LogInfo("Start - Save Approval User Entity");
         R_Exception loEx = new();
         R_ServiceSaveResultDTO<GSM05000ApprovalUserDTO> loRtn = null;
@@ -87,6 +93,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     [HttpPost]
     public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<GSM05000ApprovalUserDTO> poParameter)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(R_ServiceDelete));
         _logger.LogInfo("Start - Delete Approval User Entity");
         R_Exception loEx = new();
         R_ServiceDeleteResultDTO loRtn = new();
@@ -118,6 +125,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     [HttpPost]
     public IAsyncEnumerable<GSM05000ApprovalUserDTO> GSM05000GetApprovalListStream()
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GSM05000GetApprovalListStream));
         _logger.LogInfo("Start - Get Approval User List Stream");
         R_Exception loEx = new();
         IAsyncEnumerable<GSM05000ApprovalUserDTO> loRtn = null;
@@ -133,6 +141,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
                 CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
                 CUSER_LOGIN_ID = R_BackGlobalVar.USER_ID,
                 CTRANS_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CTRANSACTION_CODE),
+                CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(GSM05000ContextConstant.CDEPT_CODE)
             };
             
             _logger.LogInfo("Get Approval User List");
@@ -155,6 +164,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     [HttpPost]
     public GSM05000ApprovalHeaderDTO GSM05000GetApprovalHeader(GSM05000TrxCodeParamsDTO poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GSM05000GetApprovalHeader));
         _logger.LogInfo("Start - Get Approval Header");
         R_Exception loEx = new();
         GSM05000ApprovalHeaderDTO loRtn = null;
@@ -189,6 +199,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     [HttpPost]
     public string GSM05000ValidationForAction(GSM05000TrxDeptParamsDTO poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GSM05000ValidationForAction));
         _logger.LogInfo("Start - Validate For Action");
         R_Exception loEx = new();
         string loRtn = null;
@@ -225,6 +236,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     [HttpPost]
     public IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000GetApprovalDepartmentStream()
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GSM05000GetApprovalDepartmentStream));
         _logger.LogInfo("Start - Get Approval Department Stream");
         R_Exception loEx = new();
         List<GSM05000ApprovalDepartmentDTO> loResult;
@@ -260,9 +272,9 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     }
 
     [HttpPost]
-    public IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000DepartmentChangeSequenceStream(
-        GSM05000TrxCodeParamsDTO poParams)
+    public IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000DepartmentChangeSequenceStream(GSM05000TrxCodeParamsDTO poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GSM05000DepartmentChangeSequenceStream));
         _logger.LogInfo("Start - Department Change Sequence Stream");
         R_Exception loEx = new();
         List<GSM05000ApprovalDepartmentDTO> loResult;
@@ -301,6 +313,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     [HttpPost]
     public IAsyncEnumerable<GSM05000ApprovalUserDTO> GSM05000GetUserSequenceDataStream()
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GSM05000GetUserSequenceDataStream));
         _logger.LogInfo("Start - Get User Sequence Data Stream");
         R_Exception loEx = new();
         List<GSM05000ApprovalUserDTO> loResult;
@@ -340,6 +353,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     [HttpPost]
     public void GSM05000UpdateSequence(List<GSM05000ApprovalUserDTO> poEntity)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GSM05000UpdateSequence));
         _logger.LogInfo("Start - Update Sequence");
         var loEx = new R_Exception();
 
@@ -366,6 +380,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     // public IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentStream(GSM05000DeptCodeParamsDTO poParams)
     public IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentStream()
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GSM05000LookupApprovalDepartmentStream));
         _logger.LogInfo("Start - Lookup Approval Department Stream");
         R_Exception loEx = new();
         List<GSM05000ApprovalDepartmentDTO> loResult;
@@ -404,6 +419,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     [HttpPost]
     public GSM05000SingleDTO<string> GSM05000CopyToApproval(GSM05000CopyToParamsDTO poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GSM05000CopyToApproval));
         _logger.LogInfo("Start - Copy To Approval");
         R_Exception loEx = new();
         GSM05000SingleDTO<string> loReturn = new();
@@ -441,6 +457,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     [HttpPost]
     public GSM05000SingleDTO<string> GSM05000CopyFromApproval(GSM05000CopyFromParamsDTO poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GSM05000CopyFromApproval));
         _logger.LogInfo("Start - Copy From Approval");
         R_Exception loEx = new();
         GSM05000SingleDTO<string> loReturn = new();

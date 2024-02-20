@@ -24,7 +24,7 @@ public class GSM02000TaxController : ControllerBase, IGSM02000Tax
     {
         LoggerGSM02000.R_InitializeLogger(logger);
         _logger = LoggerGSM02000.R_GetInstanceLogger();
-        _activitySource =GSM02000Activity.R_InitializeAndGetActivitySource(nameof(GSM02000Controller));
+        _activitySource =GSM02000Activity.R_InitializeAndGetActivitySource(nameof(GSM02000TaxController));
     }
 
     [HttpPost]

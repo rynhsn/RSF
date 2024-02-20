@@ -1,7 +1,9 @@
 ﻿using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 using GLM00500Common;
 using GLM00500Common.DTOs;
+using R_OpenTelemetry;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
@@ -15,14 +17,17 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
     RSP_GL_FINALIZE_BUDGETResources.Resources_Dummy_Class _rscFinalize = new();
     
     private LoggerGLM00500 _logger;
+    private readonly ActivitySource _activitySource;
     
     public GLM00500HeaderCls()
     {
         _logger = LoggerGLM00500.R_GetInstanceLogger();
+        _activitySource = GLM00500Activity.R_GetInstanceActivitySource();
     }
     
     protected override GLM00500BudgetHDDTO R_Display(GLM00500BudgetHDDTO poEntity)
     {
+        using var loScope = _activitySource.StartActivity(nameof(R_Display));
         var loEx = new R_Exception();
         GLM00500BudgetHDDTO loReturn = null;
         R_Db loDb;
@@ -72,6 +77,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
 
     protected override void R_Deleting(GLM00500BudgetHDDTO poEntity)
     {
+        using var loScope = _activitySource.StartActivity(nameof(R_Deleting));
         R_Exception loEx = new();
         R_Db loDb;
         DbCommand loCmd;
@@ -136,6 +142,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
 
     protected override void R_Saving(GLM00500BudgetHDDTO poNewEntity, eCRUDMode poCRUDMode)
     {
+        using var loScope = _activitySource.StartActivity(nameof(R_Saving));
         R_Exception loEx = new();
         string lcQuery;
         R_Db loDb;
@@ -235,6 +242,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
     
     public void GLM00500FinalizeBudgetDb(GLM00500ParameterDb poParams)
     {
+        using var loScope = _activitySource.StartActivity(nameof(GLM00500FinalizeBudgetDb));
         R_Exception loEx = new();
         R_Db loDb;
         DbCommand loCmd;
@@ -303,6 +311,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
 
     public List<GLM00500BudgetHDDTO> GLM00500GetBudgetHDListDb(GLM00500ParameterDb poParams)
     {
+        using var loScope = _activitySource.StartActivity(nameof(GLM00500GetBudgetHDListDb));
         R_Exception loEx = new();
         List<GLM00500BudgetHDDTO> loReturn = null;
         R_Db loDb;
@@ -351,6 +360,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
 
     public GLM00500GSMPeriodDTO GLM00500GetPeriodsDb(GLM00500ParameterDb poParams)
     {
+        using var loScope = _activitySource.StartActivity(nameof(GLM00500GetPeriodsDb));
         R_Exception loEx = new();
         GLM00500GSMPeriodDTO loReturn = null;
         R_Db loDb;
@@ -386,6 +396,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
 
     public GLM00500GLSystemParamDTO GLM00500GetSystemParamDb(GLM00500ParameterDb poParams)
     {
+        using var loScope = _activitySource.StartActivity(nameof(GLM00500GetSystemParamDb));
         R_Exception loEx = new();
         GLM00500GLSystemParamDTO loReturn = null;
         R_Db loDb;
@@ -433,6 +444,7 @@ public class GLM00500HeaderCls : R_BusinessObject<GLM00500BudgetHDDTO>
 
     public List<GLM00500FunctionDTO> GLM00500GetCurrencyTypeListDb(GLM00500ParameterDb poParams)
     {
+        using var loScope = _activitySource.StartActivity(nameof(GLM00500GetCurrencyTypeListDb));
         R_Exception loEx = new();
         List<GLM00500FunctionDTO> loReturn = null;
         R_Db loDb;

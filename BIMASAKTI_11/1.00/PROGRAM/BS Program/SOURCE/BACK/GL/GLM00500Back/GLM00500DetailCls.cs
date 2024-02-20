@@ -1,5 +1,6 @@
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 using GLM00500Common;
 using GLM00500Common.DTOs;
 using R_BackEnd;
@@ -16,14 +17,17 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
     RSP_GL_PROCESS_BUDGET_UPLOADResources.Resources_Dummy_Class _rscProcess = new();
     
     private LoggerGLM00500 _logger;
+    private readonly ActivitySource _activitySource;
 
     public GLM00500DetailCls()
     {
         _logger = LoggerGLM00500.R_GetInstanceLogger();
+        _activitySource =GLM00500Activity.R_GetInstanceActivitySource();
     }
 
     protected override GLM00500BudgetDTDTO R_Display(GLM00500BudgetDTDTO poEntity)
     {
+        using var loScope = _activitySource.StartActivity(nameof(R_Display));
         var loEx = new R_Exception();
         GLM00500BudgetDTDTO loReturn = null;
         R_Db loDb;
@@ -72,6 +76,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
     protected override void R_Saving(GLM00500BudgetDTDTO poNewEntity, eCRUDMode poCRUDMode)
     {
+        using var loScope = _activitySource.StartActivity(nameof(R_Saving));
         R_Exception loEx = new();
         string lcQuery;
         R_Db loDb;
@@ -210,6 +215,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
     protected override void R_Deleting(GLM00500BudgetDTDTO poEntity)
     {
+        using var loScope = _activitySource.StartActivity(nameof(R_Deleting));
         R_Exception loEx = new();
         R_Db loDb;
         DbCommand loCmd;
@@ -274,6 +280,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
     public List<GLM00500BudgetDTGridDTO> GLM00500GetBudgetDTListDb(GLM00500ParameterDb poParams)
     {
+        using var loScope = _activitySource.StartActivity(nameof(GLM00500GetBudgetDTListDb));
         R_Exception loEx = new();
         List<GLM00500BudgetDTGridDTO> loReturn = null;
         R_Db loDb;
@@ -324,6 +331,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
     public GLM00500PeriodInfoDTO GLI0010GetPeriodInfoDb(GLM00500ParameterDb poParams)
     {
+        using var loScope = _activitySource.StartActivity(nameof(GLI0010GetPeriodInfoDb));
         R_Exception loEx = new();
         GLM00500PeriodInfoDTO loReturn = new();
         R_Db loDb;
@@ -358,6 +366,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
     public List<GLM00500FunctionDTO> GLM00500GetRoundingMethodListDb(GLM00500ParameterDb poParams)
     {
+        using var loScope = _activitySource.StartActivity(nameof(GLM00500GetRoundingMethodListDb));
         R_Exception loEx = new();
         List<GLM00500FunctionDTO> loReturn = null;
         R_Db loDb;
@@ -408,6 +417,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
     public List<GLM00500BudgetWeightingDTO> GLM00500GetBudgetWeightingListDb(GLM00500ParameterDb poParams)
     {
+        using var loScope = _activitySource.StartActivity(nameof(GLM00500GetBudgetWeightingListDb));
         R_Exception loEx = new();
         List<GLM00500BudgetWeightingDTO> loReturn = null;
         R_Db loDb;
@@ -454,6 +464,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
     public GLM00500GSMCompanyDTO GLM00500GetGSMCompanyDb(GLM00500ParameterDb poParams)
     {
+        using var loScope = _activitySource.StartActivity(nameof(GLM00500GetGSMCompanyDb));
         R_Exception loEx = new();
         GLM00500GSMCompanyDTO lnReturn = new();
         R_Db loDb;
@@ -488,6 +499,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
     public GLM00500BudgetCalculateDTO GLM00500BudgetCalculateDb(GLM00500ParameterDb poParams)
     {
+        using var loScope = _activitySource.StartActivity(nameof(GLM00500BudgetCalculateDb));
         R_Exception loEx = new();
         GLM00500BudgetCalculateDTO lnReturn = new();
         R_Db loDb;
@@ -566,6 +578,7 @@ public class GLM00500DetailCls : R_BusinessObject<GLM00500BudgetDTDTO>
 
     public void GLM00500GenerateBudget(GLM00500ParameterGenerateDb poParams)
     {
+        using var loScope = _activitySource.StartActivity(nameof(GLM00500GenerateBudget));
         R_Exception loEx = new R_Exception();
         R_Db loDb;
         DbConnection loConn;

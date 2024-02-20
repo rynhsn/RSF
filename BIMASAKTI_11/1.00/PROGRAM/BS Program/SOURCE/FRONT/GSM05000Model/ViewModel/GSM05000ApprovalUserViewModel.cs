@@ -93,6 +93,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
         try
         {
             R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, TransactionCode);
+            R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE, DepartmentEntity.CDEPT_CODE);
             var loReturn = await _Model.GetApprovalListStreamAsync();
             // dalam list loreturn ada kolom ISEQUENCE, akan diubah ke CSEQUENCE dengan 3 digit angka
             // foreach (var loItem in loReturn)

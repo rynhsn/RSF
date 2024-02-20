@@ -23,12 +23,15 @@
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGSM02000_002FGSM02000FrontResources_002FGSM02000FrontResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGSM04500_002FGSM04500FrontResources_002FGSM04500FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGSM05000_002FGSM05000FrontResources_002FGSM05000FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLMT03500_002FLMT03500FrontResources_002FLMT03500FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	
 	
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/ShowComments/@EntryValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=12aae2aa_002D3b3f_002D4a75_002D8c20_002Df418c67fa3d1_0023LMM01500Front/@EntryIndexedValue">True</s:Boolean>
+	
+	
 	
 	
 	

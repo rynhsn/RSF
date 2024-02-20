@@ -1,0 +1,87 @@
+@page "/LMT03500Detail"
+@using LMT03500FrontResources
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+
+<R_StackLayout>
+    <R_ItemLayout col="7">
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["LBL_BUILDING"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox Value="@_viewModel.Entity.CBUILDING_ID" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox Value="@_viewModel.Entity.CBUILDING_NAME" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["LBL_FLOOR"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox Value="@_viewModel.Entity.CFLOOR_ID" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox Value="@_viewModel.Entity.CFLOOR_NAME" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["LBL_UNIT"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox Value="@_viewModel.Entity.CUNIT_ID" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox Value="@_viewModel.Entity.CUNIT_NAME" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["LBL_TENANT"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox Value="@_viewModel.Entity.CTENANT_ID" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox Value="@_viewModel.Entity.CTENANT_NAME" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["LBL_CHARGE"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox Value="@_viewModel.Entity.CCHARGES_ID" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox Value="@_viewModel.Entity.CCHARGES_NAME" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["LBL_INVPERIOD"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox Value="@_viewModel.Entity.CINV_PRD" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox Value="09" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="2" Class="d-flex justify-content-end">
+                <R_Label>@_localizer["LBL_UTILITYPERIOD"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox Value="@_viewModel.Entity.CUTILITY_PRD" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox Value="@_viewModel.Entity.CUTILITY_PRD" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout></R_ItemLayout>
+</R_StackLayout>

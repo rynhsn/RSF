@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-	 <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.0" />
+	 <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.1" />
 	 <PackageReference Include="Realta.CommonCollectionNuGet" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
@@ -15,11 +15,20 @@
 
 	<ItemGroup>
 		<Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+		<Reference Include="R_APIBackEnd">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+		</Reference>
 		<Reference Include="R_APIStartUp">
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIStartUp.dll</HintPath>
 		</Reference>
 		<Reference Include="R_CrossPlatformSecurity">
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CrossPlatformSecurity.dll</HintPath>
+		</Reference>
+		<Reference Include="R_HelperController">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_HelperController.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 
@@ -27,6 +36,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\SERVICE\LM\LMM01500Service\LMM01500Service.csproj" />
 	  <ProjectReference Include="..\..\..\SERVICE\LM\LMM02500Service\LMM02500Service.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\LMT03500Service\LMT03500Service.csproj" />
 	</ItemGroup>
 
 

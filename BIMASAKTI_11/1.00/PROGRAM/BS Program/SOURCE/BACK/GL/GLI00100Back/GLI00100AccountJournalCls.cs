@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 using GLI00100Common;
 using GLI00100Common.DTOs;
 using R_BackEnd;
@@ -10,14 +11,17 @@ namespace GLI00100Back;
 public class GLI00100AccountJournalCls
 {
     private LoggerGLI00100 _logger;
+    private readonly ActivitySource _activitySource;
 
     public GLI00100AccountJournalCls()
     {
         _logger = LoggerGLI00100.R_GetInstanceLogger();
+        _activitySource = GLI00100Activity.R_GetInstanceActivitySource();
     }
 
     public GLI00100AccountAnalysisDetailDTO GetAccountAnalysisDetailDb(GLI00100ParameterDb poParam, GLI00100AccountAnalysisDetailTransactionParamDb poOptParam)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GetAccountAnalysisDetailDb));
         var loEx = new R_Exception();
         GLI00100AccountAnalysisDetailDTO loReturn = new();
         R_Db loDb;
@@ -72,6 +76,7 @@ public class GLI00100AccountJournalCls
     public List<GLI00100TransactionGridDTO> GetTransactionListDb(GLI00100ParameterDb poParam,
         GLI00100AccountAnalysisDetailTransactionParamDb poOptParam)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GetTransactionListDb));
         R_Exception loEx = new();
         List<GLI00100TransactionGridDTO> loReturn = null;
         R_Db loDb;

@@ -7,6 +7,8 @@ namespace GSM05000Common.DTOs
         public string CCOMPANY_ID {get; set;}
         public string CTRANS_CODE {get; set;}
         public string CTRANSACTION_NAME {get; set;}
+        
+        public string CTRANS_SHORT_NAME {get; set;}
         public string CMODULE_ID {get; set;}
         public bool LINCREMENT_FLAG { get; set; }
         public bool LDEPT_MODE {get; set;}

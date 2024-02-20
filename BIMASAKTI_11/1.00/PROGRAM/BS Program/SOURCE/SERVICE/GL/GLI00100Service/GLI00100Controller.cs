@@ -1,8 +1,10 @@
-﻿using GLI00100Back;
+﻿using System.Diagnostics;
+using GLI00100Back;
 using GLI00100Common;
 using GLI00100Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using R_OpenTelemetry;
 using R_BackEnd;
 using R_Common;
 
@@ -13,17 +15,20 @@ namespace GLI00100Service;
 public class GLI00100Controller : ControllerBase, IGLI00100
 {
     private LoggerGLI00100 _logger;
+    private readonly ActivitySource _activitySource;
 
     public GLI00100Controller(ILogger<GLI00100Controller> logger)
     {
         //Initial and Get Logger
         LoggerGLI00100.R_InitializeLogger(logger);
         _logger = LoggerGLI00100.R_GetInstanceLogger();
+        _activitySource = GLI00100Activity.R_InitializeAndGetActivitySource(nameof(GLI00100Controller));
     }
     
     [HttpPost]
     public GLI00100AccountDTO GLI00100GetAccountDetail(GLI00100AccountParameterDTO poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLI00100GetAccountDetail));
         _logger.LogInfo("Start - Get Account Detail");
         var loEx = new R_Exception();
         var loCls = new GLI00100Cls();
@@ -55,6 +60,7 @@ public class GLI00100Controller : ControllerBase, IGLI00100
     [HttpPost]
     public GLI00100AccountAnalysisDTO GLI00100GetAccountAnalysisDetail(GLI00100AccountAnalysisParameterDTO poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLI00100GetAccountAnalysisDetail));
         _logger.LogInfo("Start - Get Account Analysis Detail");
         var loEx = new R_Exception();
         var loCls = new GLI00100Cls();
@@ -90,6 +96,7 @@ public class GLI00100Controller : ControllerBase, IGLI00100
     [HttpPost]
     public IAsyncEnumerable<GLI00100BudgetDTO> GLI00100GetBudgetStream(GLI00100BudgetParamsDTO poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLI00100GetBudgetStream));
         _logger.LogInfo("Start - Get Budget Stream");
         var loEx = new R_Exception();
         var loCls = new GLI00100Cls();

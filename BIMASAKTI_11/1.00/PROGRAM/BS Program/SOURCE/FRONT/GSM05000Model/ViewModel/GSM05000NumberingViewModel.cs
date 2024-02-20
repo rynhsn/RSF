@@ -140,16 +140,26 @@ public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
 
     public GSM05000NumberingGridDTO GeneratePeriod(GSM05000NumberingGridDTO poParam)
     {
-        var lcYear = DateTime.Now;
+        var lnYear = DateTime.Now.Year;
+
         var lnPeriod = 1;
 
         if (GridList.Count != 0)
         {
+            if (HeaderEntity.CPERIOD_MODE == "Y")
+            {
+                var loLastYear = Convert.ToInt32(GridList.OrderByDescending(x => x.CCYEAR).FirstOrDefault().CCYEAR);
+                lnYear = loLastYear + 1;
+            }
             var lnLastPeriod = GridList.OrderByDescending(x => x.CPERIOD_NO).FirstOrDefault();
             lnPeriod = Convert.ToInt32(lnLastPeriod.CPERIOD_NO) + 1;
         }
 
-        poParam.CCYEAR = HeaderEntity.CYEAR_FORMAT == "1" ? lcYear.Year.ToString("D2") : lcYear.Year.ToString("D4");
+        // poParam.CCYEAR = HeaderEntity.CYEAR_FORMAT == "1" ? lnYear.ToString("D2") : lnYear.ToString("D4");
+
+        poParam.CCYEAR = HeaderEntity.CYEAR_FORMAT == "1" ? lnYear.ToString().Substring(2, 2) : lnYear.ToString();
+        
+
         poParam.CPERIOD_NO = lnPeriod.ToString("D2");
 
         poParam.CPERIOD = HeaderEntity.CPERIOD_MODE == "P" ? poParam.CCYEAR + "-" + poParam.CPERIOD_NO : poParam.CCYEAR;

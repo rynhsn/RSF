@@ -130,15 +130,9 @@ public partial class GSM05000 : R_Page
             var llCondition8 = loData.LUSE_THIRD_PARTY != _GSM05000ViewModel.TempEntity.LUSE_THIRD_PARTY;
 
             var llIsExistNumbering = await _GSM05000ViewModel.CheckExistData(loData, GSM05000eTabName.Numbering);
-            
+
             if (llIsExistNumbering)
             {
-                if (llCondition1)
-                {
-                    await R_MessageBox.Show("Error", _localizer["Err01"], R_eMessageBoxButtonType.OK);
-                    eventArgs.Cancel = true;
-                    return;
-                }
 
                 if (llCondition2 || llCondition3 || llCondition4 || llCondition5)
                 {
@@ -158,6 +152,13 @@ public partial class GSM05000 : R_Page
 
             if (llIsExistApproval)
             {
+                if (llCondition1)
+                {
+                    await R_MessageBox.Show("Error", _localizer["Err01"], R_eMessageBoxButtonType.OK);
+                    eventArgs.Cancel = true;
+                    return;
+                }
+                
                 if (llCondition6 || llCondition7 || llCondition8)
                 {
                     var llReturn = await R_MessageBox.Show(_localizer["ConfirmLabel"],
@@ -172,53 +173,61 @@ public partial class GSM05000 : R_Page
                 }
             }
 
-
-            if (_GSM05000ViewModel.DeptSequence == 0 && loData.LDEPT_MODE)
+            if (_GSM05000ViewModel.Data.CTRANS_SHORT_NAME == String.Empty)
             {
-                await R_MessageBox.Show("Error", _localizer["Err02"], R_eMessageBoxButtonType.OK);
+                await R_MessageBox.Show("Error", _localizer["Err09"], R_eMessageBoxButtonType.OK);
                 eventArgs.Cancel = true;
                 return;
             }
 
-            if (_GSM05000ViewModel.TrxSequence == 0 && loData.LTRANSACTION_MODE)
+            if (_GSM05000ViewModel.Data.LINCREMENT_FLAG)
             {
-                await R_MessageBox.Show("Error", _localizer["Err03"],
-                    R_eMessageBoxButtonType.OK);
-                eventArgs.Cancel = true;
-                return;
-            }
+                if (_GSM05000ViewModel.DeptSequence == 0 && loData.LDEPT_MODE)
+                {
+                    await R_MessageBox.Show("Error", _localizer["Err02"], R_eMessageBoxButtonType.OK);
+                    eventArgs.Cancel = true;
+                    return;
+                }
 
-            if (_GSM05000ViewModel.PeriodSequence == 0 && loData.LINCREMENT_FLAG)
-            {
-                await R_MessageBox.Show("Error", _localizer["Err04"], R_eMessageBoxButtonType.OK);
-                eventArgs.Cancel = true;
-                return;
-            }
+                if (_GSM05000ViewModel.TrxSequence == 0 && loData.LTRANSACTION_MODE)
+                {
+                    await R_MessageBox.Show("Error", _localizer["Err03"],
+                        R_eMessageBoxButtonType.OK);
+                    eventArgs.Cancel = true;
+                    return;
+                }
 
-            if (loData.INUMBER_LENGTH == 0 && loData.LINCREMENT_FLAG)
-            {
-                await R_MessageBox.Show("Error", _localizer["Err05"],
-                    R_eMessageBoxButtonType.OK);
-                eventArgs.Cancel = true;
-                return;
-            }
+                if (_GSM05000ViewModel.PeriodSequence == 0 && loData.LINCREMENT_FLAG)
+                {
+                    await R_MessageBox.Show("Error", _localizer["Err04"], R_eMessageBoxButtonType.OK);
+                    eventArgs.Cancel = true;
+                    return;
+                }
 
-            var llIsDuplicate = _GSM05000ViewModel.IsDuplicateSequence(loData);
-            if (llIsDuplicate)
-            {
-                await R_MessageBox.Show("Error", _localizer["Err06"], R_eMessageBoxButtonType.OK);
-                eventArgs.Cancel = true;
-                return;
-            }
+                if (loData.INUMBER_LENGTH == 0 && loData.LINCREMENT_FLAG)
+                {
+                    await R_MessageBox.Show("Error", _localizer["Err05"],
+                        R_eMessageBoxButtonType.OK);
+                    eventArgs.Cancel = true;
+                    return;
+                }
 
-            var llIsValid = _GSM05000ViewModel.IsValidSequence(loData, out var loCount);
-            if (!llIsValid)
-            {
-                await R_MessageBox.Show("Error", _localizer["Err07"] +
-                                                 $" {loCount}",
-                    R_eMessageBoxButtonType.OK);
-                eventArgs.Cancel = true;
-                return;
+                var llIsDuplicate = _GSM05000ViewModel.IsDuplicateSequence(loData);
+                if (llIsDuplicate)
+                {
+                    await R_MessageBox.Show("Error", _localizer["Err06"], R_eMessageBoxButtonType.OK);
+                    eventArgs.Cancel = true;
+                    return;
+                }
+
+                var llIsValid = _GSM05000ViewModel.IsValidSequence(loData, out var loCount);
+                if (!llIsValid)
+                {
+                    await R_MessageBox.Show("Error", _localizer["Err07"] + $" {loCount}",
+                        R_eMessageBoxButtonType.OK);
+                    eventArgs.Cancel = true;
+                    return;
+                }
             }
         }
         catch (Exception ex)
@@ -239,7 +248,7 @@ public partial class GSM05000 : R_Page
         loData.CPREFIX_DELIMITER ??= "";
     }
 
-    private async Task Conductor_ServiceSave(R_ServiceSaveEventArgs eventArgs)
+    private async Task Conductor_ServiceSave(R_ServiceSaveEventArgs eventArgs)  
     {
         var loEx = new R_Exception();
 
@@ -288,7 +297,7 @@ public partial class GSM05000 : R_Page
             {
                 _GSM05000ViewModel.Data.LDEPT_MODE = false;
                 _GSM05000ViewModel.Data.LTRANSACTION_MODE = false;
-                _GSM05000ViewModel.Data.CPERIOD_MODE = "";
+                _GSM05000ViewModel.Data.CPERIOD_MODE = "N";
                 _GSM05000ViewModel.Data.INUMBER_LENGTH = 0;
                 _GSM05000ViewModel.Data.CPREFIX = "";
                 _GSM05000ViewModel.Data.CSUFFIX = "";
@@ -329,6 +338,10 @@ public partial class GSM05000 : R_Page
                 _GSM05000ViewModel.Data.LAPPROVAL_FLAG = false;
                 _GSM05000ViewModel.Data.CAPPROVAL_MODE = "";
                 _GSM05000ViewModel.Data.LAPPROVAL_DEPT = false;
+            }
+            else
+            {
+                _GSM05000ViewModel.Data.CAPPROVAL_MODE = "1";
             }
         }
         catch (Exception ex)
@@ -383,6 +396,7 @@ public partial class GSM05000 : R_Page
         {
             _GSM05000ViewModel.AutoSequence(eNumericList.PeriodMode, llCondition);
         }
+
         _GSM05000ViewModel.TempEntity.CPERIOD_MODE = (string)eventArgs;
         GetUpdateSample();
     }
@@ -395,6 +409,7 @@ public partial class GSM05000 : R_Page
         {
             _GSM05000ViewModel.AutoSequence(eNumericList.LenMode, llCondition);
         }
+
         _GSM05000ViewModel.TempEntity.INUMBER_LENGTH = (int)eventArgs;
         GetUpdateSample();
     }
@@ -406,7 +421,7 @@ public partial class GSM05000 : R_Page
         try
         {
             _GSM05000ViewModel.getRefNo();
-            
+
             if (_GSM05000ViewModel.REFNO.Length > 30)
             {
                 loEx.Add("Err08", _localizer["Err08"]);

@@ -1,8 +1,10 @@
-﻿using GSM05000Back;
+﻿using System.Diagnostics;
+using GSM05000Back;
 using GSM05000Common;
 using GSM05000Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using R_OpenTelemetry;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
@@ -14,17 +16,20 @@ namespace GSM05000Service;
 public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
 {
     private LoggerGSM05000 _logger;
-    
+    private readonly ActivitySource _activitySource;
+
     public GSM05000NumberingController(ILogger<GSM05000NumberingController> logger)
     {
         //Initial and Get Logger
         LoggerGSM05000.R_InitializeLogger(logger);
         _logger = LoggerGSM05000.R_GetInstanceLogger();
+        _activitySource = GSM05000Activity.R_InitializeAndGetActivitySource(nameof(GSM05000NumberingController));
     }
     
     [HttpPost]
     public R_ServiceGetRecordResultDTO<GSM05000NumberingGridDTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GSM05000NumberingGridDTO> poParameter)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(R_ServiceGetRecord));
         _logger.LogInfo("Start - Get Numbering Record");
         R_Exception loEx = new();
         R_ServiceGetRecordResultDTO<GSM05000NumberingGridDTO> loRtn = new();
@@ -54,6 +59,7 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
     [HttpPost]
     public R_ServiceSaveResultDTO<GSM05000NumberingGridDTO> R_ServiceSave(R_ServiceSaveParameterDTO<GSM05000NumberingGridDTO> poParameter)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(R_ServiceSave));
         _logger.LogInfo("Start - Save Numbering Entity");
         R_Exception loEx = new();
         R_ServiceSaveResultDTO<GSM05000NumberingGridDTO> loRtn = new();
@@ -85,6 +91,7 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
     [HttpPost]
     public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<GSM05000NumberingGridDTO> poParameter)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(R_ServiceDelete));
         _logger.LogInfo("Start - Delete Numbering Entity");
         R_Exception loEx = new();
         R_ServiceDeleteResultDTO loRtn = new();
@@ -115,6 +122,7 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
     [HttpPost]
     public IAsyncEnumerable<GSM05000NumberingGridDTO> GetNumberingListStream()
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GetNumberingListStream));
         _logger.LogInfo("Start - Get Numbering List");
         R_Exception loEx = new();
         IAsyncEnumerable<GSM05000NumberingGridDTO> loRtn = null;
@@ -151,6 +159,7 @@ public class GSM05000NumberingController : ControllerBase, IGSM05000Numbering
     [HttpPost]
     public GSM05000NumberingHeaderDTO GetNumberingHeader(GSM05000TrxCodeParamsDTO poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GetNumberingHeader));
         _logger.LogInfo("Start - Get Numbering Header");
         R_Exception loEx = new();
         GSM05000NumberingHeaderDTO loRtn = null;

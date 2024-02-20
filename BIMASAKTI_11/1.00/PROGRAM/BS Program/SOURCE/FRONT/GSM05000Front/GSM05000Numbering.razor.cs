@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
+using R_BlazorFrontEnd.Controls.Grid.Columns;
 using R_BlazorFrontEnd.Controls.Popup;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
@@ -20,6 +21,7 @@ namespace GSM05000Front
         private R_ConductorGrid _conductorRefNumbering;
         private R_Grid<GSM05000NumberingGridDTO> _gridRefNumbering;
         [Inject] public R_PopupService PopupService { get; set; }
+        public bool DeptCol { get; set; }
 
         protected override async Task R_Init_From_Master(object poParameter)
         {
@@ -30,7 +32,7 @@ namespace GSM05000Front
                 // _GSM05000NumberingViewModel.HeaderEntity = (GSM05000NumberingHeaderDTO)poParameter;
                 _GSM05000NumberingViewModel.TransactionCode = ((GSM05000NumberingHeaderDTO)poParameter).CTRANS_CODE;
                 await _GSM05000NumberingViewModel.GetNumberingHeader();
-
+                DeptCol = _GSM05000NumberingViewModel.HeaderEntity.LDEPT_MODE;
                 await _gridRefNumbering.R_RefreshGrid(null);
                 // await _gridRefNumbering.AutoFitAllColumnsAsync();
             }

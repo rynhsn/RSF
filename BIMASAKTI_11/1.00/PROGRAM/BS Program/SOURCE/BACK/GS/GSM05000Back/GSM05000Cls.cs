@@ -90,7 +90,8 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
             if (poCRUDMode == eCRUDMode.EditMode)
             {
                 lcQuery = @"UPDATE GSM_TRANSACTION_CODE SET 
-                        LINCREMENT_FLAG = @LINCREMENT_FLAG 
+                        CTRANS_SHORT_NAME = @CTRANS_SHORT_NAME 
+                      , LINCREMENT_FLAG = @LINCREMENT_FLAG 
                       , LDEPT_MODE = @LDEPT_MODE 
                       , CDEPT_DELIMITER = @CDEPT_DELIMITER 
                       , LTRANSACTION_MODE = @LTRANSACTION_MODE 
@@ -118,6 +119,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
                 loCmd.CommandType = CommandType.Text;
                 loCmd.CommandText = lcQuery;
 
+                loDb.R_AddCommandParameter(loCmd, "@CTRANS_SHORT_NAME", DbType.String, 20, poNewEntity.CTRANS_SHORT_NAME);
                 loDb.R_AddCommandParameter(loCmd, "@LINCREMENT_FLAG", DbType.Boolean, 1, poNewEntity.LINCREMENT_FLAG);
                 loDb.R_AddCommandParameter(loCmd, "@LDEPT_MODE", DbType.Boolean, 1, poNewEntity.LDEPT_MODE);
                 loDb.R_AddCommandParameter(loCmd, "@CDEPT_DELIMITER", DbType.String, 1, poNewEntity.CDEPT_DELIMITER);
@@ -154,6 +156,7 @@ public class GSM05000Cls : R_BusinessObject<GSM05000DTO>
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                     .Where(x =>
                         x.ParameterName is
+                            "@CTRANS_SHORT_NAME" or
                             "@LINCREMENT_FLAG" or
                             "@LDEPT_MODE" or
                             "@CDEPT_DELIMITER" or

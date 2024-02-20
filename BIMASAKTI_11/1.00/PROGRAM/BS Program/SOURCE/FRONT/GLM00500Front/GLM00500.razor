@@ -192,4 +192,4 @@
              R_AfterDelete="@AfterDeleteBudgetHD"
              R_BeforeCancel="@BeforeCancelBudgetHD"/>
 
-<R_PredefinedDock R_InstantiateDock="InstanceDetailTab" Title="@_localizer["TITLE_DETAIL"]"/>
+<R_PredefinedDock R_InstantiateDock="InstanceDetailTab" Title="@_localizer["TITLE_DETAIL"]" Enabled="@(_viewModel.BudgetHDList.Count != 0)"/>

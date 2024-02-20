@@ -1,8 +1,10 @@
+using System.Diagnostics;
 using GLM00500Back;
 using GLM00500Common;
 using GLM00500Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using R_OpenTelemetry;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
@@ -14,18 +16,21 @@ namespace GLM00500Service;
 public class GLM00500DetailController : ControllerBase, IGLM00500Detail
 {
     private LoggerGLM00500 _logger;
+    private readonly ActivitySource _activitySource;
 
     public GLM00500DetailController(ILogger<GLM00500DetailController> logger)
     {
         //Initial and Get Logger
         LoggerGLM00500.R_InitializeLogger(logger);
         _logger = LoggerGLM00500.R_GetInstanceLogger();
+        _activitySource = GLM00500Activity.R_InitializeAndGetActivitySource(nameof(GLM00500DetailController));
     }
 
     [HttpPost]
     public R_ServiceGetRecordResultDTO<GLM00500BudgetDTDTO> R_ServiceGetRecord(
         R_ServiceGetRecordParameterDTO<GLM00500BudgetDTDTO> poParameter)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(R_ServiceGetRecord));
         _logger.LogInfo("Start - Get Account Budget Detail Record");
         var loEx = new R_Exception();
         var loRtn = new R_ServiceGetRecordResultDTO<GLM00500BudgetDTDTO>();
@@ -57,6 +62,7 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
     public R_ServiceSaveResultDTO<GLM00500BudgetDTDTO> R_ServiceSave(
         R_ServiceSaveParameterDTO<GLM00500BudgetDTDTO> poParameter)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(R_ServiceSave));
         _logger.LogInfo("Start - Save Account Budget Detail Entity");
         var loEx = new R_Exception();
         R_ServiceSaveResultDTO<GLM00500BudgetDTDTO> loRtn = null;
@@ -88,6 +94,7 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
     [HttpPost]
     public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<GLM00500BudgetDTDTO> poParameter)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(R_ServiceDelete));
         _logger.LogInfo("Start - Delete Account Budget Detail Entity");
         var loEx = new R_Exception();
         var loRtn = new R_ServiceDeleteResultDTO();
@@ -113,6 +120,7 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
     [HttpPost]
     public IAsyncEnumerable<GLM00500BudgetDTGridDTO> GLM00500GetBudgetDTListStream()
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLM00500GetBudgetDTListStream));
         _logger.LogInfo("Start - Get Account Budget Detail List Stream");
         var loEx = new R_Exception();
         var loCls = new GLM00500DetailCls();
@@ -147,6 +155,7 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
     [HttpPost]
     public GLM00500ListDTO<GLM00500FunctionDTO> GLM00500GetRoundingMethodList()
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLM00500GetRoundingMethodList));
         _logger.LogInfo("Start - Get Rounding Method List");
         var loEx = new R_Exception();
         var loCls = new GLM00500DetailCls();
@@ -176,6 +185,7 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
     [HttpPost]
     public IAsyncEnumerable<GLM00500BudgetWeightingDTO> GLM00500GetBudgetWeightingListStream()
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLM00500GetBudgetWeightingListStream));
         _logger.LogInfo("Start - Get Budget Weighting List Stream");
         var loEx = new R_Exception();
         var loCls = new GLM00500DetailCls();
@@ -207,6 +217,7 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
     [HttpPost]
     public GLM00500PeriodCountDTO GLM00500GetPeriodCount(GLM00500YearParamsDTO poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLM00500GetPeriodCount));
         _logger.LogInfo("Start - Get Period Count");
         var loEx = new R_Exception();
         var loCls = new GLM00500DetailCls();
@@ -237,6 +248,7 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
     [HttpPost]
     public GLM00500GSMCompanyDTO GLM00500GetGSMCompany()
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLM00500GetGSMCompany));
         _logger.LogInfo("Start - Get GSM Company");
         var loEx = new R_Exception();
         var loCls = new GLM00500DetailCls();
@@ -266,6 +278,7 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
     [HttpPost]
     public GLM00500BudgetCalculateDTO GLM00500BudgetCalculate(GLM00500CalculateParamDTO poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLM00500BudgetCalculate));
         _logger.LogInfo("Start - Calculate Budget");
         var loEx = new R_Exception();
         var loCls = new GLM00500DetailCls();
@@ -309,6 +322,7 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
     [HttpPost]
     public void GLM00500GenerateBudget(GLM00500GenerateAccountBudgetDTO poGenerateAccountBudgetDTO)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLM00500GenerateBudget));
         _logger.LogInfo("Start - Generate Account Budget");
         var loEx = new R_Exception();
         var loCls = new GLM00500DetailCls();

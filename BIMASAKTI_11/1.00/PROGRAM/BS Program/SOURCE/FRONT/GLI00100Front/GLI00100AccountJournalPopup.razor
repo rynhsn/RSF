@@ -125,7 +125,8 @@
                         Height="310px"
                         AllowDeleteRow="false"
                         AllowEditRow="false"
-                        AllowAddNewRow="false">
+                        AllowAddNewRow="false"
+                        R_Display="@Display">
                     <R_GridColumns>
                         <R_GridDatePickerColumn FieldName="@nameof(GLI00100TransactionGridDTO.DREF_DATE)" HeaderText="@_localizer["LABEL_REFDATE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
                         <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CREF_NO)" HeaderText="@_localizer["LABEL_REFNO"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
@@ -152,8 +153,6 @@
     </R_StackLayout>
     
     <R_ConductorGrid @ref="@_conductorRef"
-                 R_ViewModel="_viewModel"
-                 R_IsHeader
-                 R_Display="@Display"/>
+                 R_IsHeader/>
 
 </R_StackLayout>

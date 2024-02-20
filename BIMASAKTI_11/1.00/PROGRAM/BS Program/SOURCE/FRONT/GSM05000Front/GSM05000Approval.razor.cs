@@ -70,7 +70,7 @@ namespace GSM05000Front
             loEx.ThrowExceptionIfErrors();
         }
 
-        private void DisplayDept(R_DisplayEventArgs eventArgs)
+        private async Task DisplayDept(R_DisplayEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
@@ -80,6 +80,7 @@ namespace GSM05000Front
                 {
                     var loParam = (GSM05000ApprovalDepartmentDTO)eventArgs.Data;
                     _GSM05000ApprovalUserViewModel.GetDepartmentEntity(loParam);
+                    await _gridRefApprover.R_RefreshGrid(null);
                     // await _gridRefReplacement.R_RefreshGrid(_GSM05000ApprovalUserViewModel.ApproverEntity.CUSER_ID);
                 }
             }
@@ -564,13 +565,21 @@ namespace GSM05000Front
 
         private void SetOtherUser(R_SetEventArgs eventArgs)
         {
-            _gridDeptEnabled = eventArgs.Enable;
+            if (_GSM05000ApprovalUserViewModel.HeaderEntity.LAPPROVAL_DEPT)
+            {
+                _gridDeptEnabled = eventArgs.Enable;
+            }
+            
             _gridReplacementEnabled = eventArgs.Enable;
         }
 
         private void SetOtherReplacement(R_SetEventArgs eventArgs)
         {
-            _gridDeptEnabled = eventArgs.Enable;
+            if (_GSM05000ApprovalUserViewModel.HeaderEntity.LAPPROVAL_DEPT)
+            {
+                _gridDeptEnabled = eventArgs.Enable;
+            }
+            
             _gridUserEnabled = eventArgs.Enable;
         }
     }

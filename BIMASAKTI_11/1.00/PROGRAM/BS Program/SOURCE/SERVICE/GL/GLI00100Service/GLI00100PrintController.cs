@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics;
 using BaseHeaderReportCOMMON;
 using GLI00100Back;
 using GLI00100Common;
@@ -8,6 +9,7 @@ using GLI00100Service.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using R_OpenTelemetry;
 using R_BackEnd;
 using R_Cache;
 using R_Common;
@@ -22,11 +24,13 @@ public class GLI00100PrintController : R_ReportControllerBase
     private LoggerGLI00100 _logger;
     private R_ReportFastReportBackClass _ReportCls;
     private GLI00100PopupParamsDTO _Parameter;
+    private readonly ActivitySource _activitySource;
 
     public GLI00100PrintController(ILogger<GLI00100PrintController> logger)
     {
         LoggerGLI00100.R_InitializeLogger(logger);
         _logger = LoggerGLI00100.R_GetInstanceLogger();
+        _activitySource = GLI00100Activity.R_InitializeAndGetActivitySource(nameof(GLI00100PrintController));
 
         _ReportCls = new R_ReportFastReportBackClass();
         _ReportCls.R_InstantiateMainReportWithFileName += _ReportCls_R_InstantiateMainReportWithFileName;
@@ -47,6 +51,7 @@ public class GLI00100PrintController : R_ReportControllerBase
     [HttpPost]
     public R_DownloadFileResultDTO AccountStatusPost(GLI00100PopupParamsDTO poParam)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(AccountStatusPost));
         _logger.LogInfo("Start - Post Account Status");
         R_Exception loException = new();
         GLI00100PrintLogKeyDTO loCache = null;
@@ -78,6 +83,7 @@ public class GLI00100PrintController : R_ReportControllerBase
     [HttpGet, AllowAnonymous]
     public FileStreamResult AccountStatusGet(string pcGuid)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(AccountStatusGet));
         _logger.LogInfo("Start - Get Account Status");
         R_Exception loException = new();
         FileStreamResult loRtn = null;
@@ -108,6 +114,7 @@ public class GLI00100PrintController : R_ReportControllerBase
 
     private GLI00100PrintWithBaseHeaderDTO GeneratePrint(GLI00100PopupParamsDTO poParam)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GeneratePrint));
         var loEx = new R_Exception();
         var loRtn = new GLI00100PrintWithBaseHeaderDTO();
         var loParam = new BaseHeaderDTO();

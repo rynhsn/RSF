@@ -34,7 +34,15 @@
                 AllowAddNewRow
                 AllowDeleteRow
                 Width="100%"
-                Height="595px">
+                Height="595px"
+                R_ServiceGetRecord="@GetRecord"
+                R_AfterAdd="@AfterAdd"
+                R_SetOther="SetOther"
+                R_Validation="@Validation"
+                R_Saving="Saving"
+                R_ServiceSave="Save"
+                R_BeforeDelete="BeforeDelete"
+                R_ServiceDelete="Delete">
             <R_GridColumns>
                 <R_GridDatePickerColumn FieldName="@nameof(GSM02000TaxDTO.DTAX_DATE)" HeaderText="@_localizer["LABEL_TAXDATE"]" R_EnableAdd Width="200px" TextAlignment="R_eTextAlignment.Left"/>
                 <R_GridNumericColumn FieldName="@nameof(GSM02000TaxDTO.NTAX_PERCENTAGE)" HeaderText="@_localizer["LABEL_TAXPCT"]" Min="0" Max="100" R_EnableAdd R_EnableEdit Width="100px" TextAlignment="R_eTextAlignment.Right"/>
@@ -53,13 +61,4 @@
              R_ServiceGetRecord="@GetSalesTaxRecord"/>
 
 <R_ConductorGrid @ref="@_conductorRef"
-                 R_ViewModel="_viewModel"
-                 R_IsHeader
-                 R_ServiceGetRecord="@GetRecord"
-                 R_AfterAdd="@AfterAdd"
-                 R_SetOther="SetOther"
-                 R_Validation="@Validation"
-                 R_Saving="Saving"
-                 R_ServiceSave="Save"
-                 R_BeforeDelete="BeforeDelete"
-                 R_ServiceDelete="Delete"/>
+                 R_IsHeader/>

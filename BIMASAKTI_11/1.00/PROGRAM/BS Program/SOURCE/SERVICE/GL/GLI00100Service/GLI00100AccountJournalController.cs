@@ -1,8 +1,10 @@
-﻿using GLI00100Back;
+﻿using System.Diagnostics;
+using GLI00100Back;
 using GLI00100Common;
 using GLI00100Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using R_OpenTelemetry;
 using R_BackEnd;
 using R_Common;
 
@@ -13,18 +15,21 @@ namespace GLI00100Service;
 public class GLI00100AccountJournalController : ControllerBase, IGLI00100AccountJournal
 {
     private LoggerGLI00100 _logger;
+    private readonly ActivitySource _activitySource;
 
     public GLI00100AccountJournalController(ILogger<GLI00100AccountJournalController> logger)
     {
         //Initial and Get Logger
         LoggerGLI00100.R_InitializeLogger(logger);
         _logger = LoggerGLI00100.R_GetInstanceLogger();
+        _activitySource = GLI00100Activity.R_InitializeAndGetActivitySource(nameof(GLI00100AccountJournalController));
     }
 
     [HttpPost]
     public GLI00100AccountAnalysisDetailDTO GLI00100GetAccountAnalysisDetail(
         GLI00100AccountAnalysisDetailParamDTO poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLI00100GetAccountAnalysisDetail));
         _logger.LogInfo("Start - Get Account Analysis Detail");
         var loEx = new R_Exception();
         var loCls = new GLI00100AccountJournalCls();
@@ -76,6 +81,7 @@ public class GLI00100AccountJournalController : ControllerBase, IGLI00100Account
     [HttpPost]
     public IAsyncEnumerable<GLI00100TransactionGridDTO> GLI00100GetTransactionGridStream()
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLI00100GetTransactionGridStream));
         _logger.LogInfo("Start - Get Transaction Grid Stream");
         var loEx = new R_Exception();
         var loCls = new GLI00100AccountJournalCls();

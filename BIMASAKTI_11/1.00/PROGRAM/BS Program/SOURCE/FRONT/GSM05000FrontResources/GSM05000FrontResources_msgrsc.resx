@@ -25,7 +25,7 @@
         <value>Transaction Code</value>
     </data>
     <data name="LABEL_INCREMENTFLAG" xml:space="preserve">
-        <value>Using Incremental Document</value>
+        <value>Using Incremental Document Number</value>
     </data>
     <data name="LABEL_SEPARATOR" xml:space="preserve">
         <value>Separator</value>
@@ -154,7 +154,7 @@
         <value>Min Limit Amount</value>
     </data>
     <data name="Err01" xml:space="preserve">
-        <value>You must fill Approval Mode</value>
+        <value>You must select the Aproval Mode</value>
     </data>
     <data name="Confirm01" xml:space="preserve">
         <value>There is some detail in Detail Document Numbering table. Your data changing will delete all Detail Document Numbering table.</value>
@@ -197,5 +197,11 @@
     </data>
     <data name="LABEL_GROUPREPLUSER" xml:space="preserve">
         <value>Replacement User</value>
+    </data>
+    <data name="LABEL_TRANSSHORT" xml:space="preserve">
+        <value>Transaction Short Name</value>
+    </data>
+    <data name="Err09" xml:space="preserve">
+        <value>You should fill Transaction Short Name</value>
     </data>
 </root>

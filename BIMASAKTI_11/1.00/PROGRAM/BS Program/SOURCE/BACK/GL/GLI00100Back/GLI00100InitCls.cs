@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 using GLI00100Common;
 using GLI00100Common.DTOs;
 using R_BackEnd;
@@ -10,14 +11,17 @@ namespace GLI00100Back;
 public class GLI00100InitCls
 {
     private LoggerGLI00100 _logger;
+    private readonly ActivitySource _activitySource;
 
     public GLI00100InitCls()
     {
         _logger = LoggerGLI00100.R_GetInstanceLogger();
+        _activitySource = GLI00100Activity.R_GetInstanceActivitySource();
     }
     
     public GLI00100GSMCompanyDTO GLI00100GetCompanyDb(GLI00100InitParameterDb poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLI00100GetCompanyDb));
         R_Exception loEx = new();
         GLI00100GSMCompanyDTO loReturn = null;
         R_Db loDb;
@@ -53,6 +57,7 @@ public class GLI00100InitCls
     
     public GLI00100GLSystemParamDTO GLI00100GetSystemParamDb(GLI00100InitParameterDb poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLI00100GetSystemParamDb));
         R_Exception loEx = new();
         GLI00100GLSystemParamDTO loReturn = null;
         R_Db loDb;
@@ -88,6 +93,7 @@ public class GLI00100InitCls
     
     public GLI00100GSMPeriodDTO GLI00100GetPeriodDb(GLI00100InitParameterDb poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLI00100GetPeriodDb));
         R_Exception loEx = new();
         GLI00100GSMPeriodDTO loReturn = null;
         R_Db loDb;
@@ -123,6 +129,7 @@ public class GLI00100InitCls
 
     public GLI00100PeriodInfoDTO GLI00100GetPeriodInfoDb(GLI00100InitParameterDb poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLI00100GetPeriodInfoDb));
         R_Exception loEx = new();
         GLI00100PeriodInfoDTO loReturn = new();
         R_Db loDb;
@@ -157,6 +164,7 @@ public class GLI00100InitCls
     
     public List<GLI00100AccountGridDTO> GLI00100GetAccountListDb(GLI00100InitParameterDb poParams)
     {
+        using var loActivity = _activitySource.StartActivity(nameof(GLI00100GetAccountListDb));
         R_Exception loEx = new();
         List<GLI00100AccountGridDTO> loReturn = null;
         R_Db loDb;
