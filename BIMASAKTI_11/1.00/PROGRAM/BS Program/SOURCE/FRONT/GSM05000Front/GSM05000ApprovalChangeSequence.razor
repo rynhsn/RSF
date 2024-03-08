@@ -33,7 +33,12 @@
            AllowEditRow="false"
            AllowDeleteRow="false"
            DragClueField="@nameof(GSM05000ApprovalUserDTO.CDEPT_CODE)" 
-           R_GridRowAfterDrop="BeforeDrop" R_GridRowBeforeDrop="AfterDrop">
+           R_GridRowAfterDrop="BeforeDrop" 
+           R_GridRowBeforeDrop="AfterDrop"
+           
+             R_Display="Display"
+             R_BeforeSaveBatch="BeforeSaveBatch"
+             R_ServiceSaveBatch="SaveBatch">
         <R_GridColumns>
             <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CDEPT_CODE)"
                               HeaderText="@_localizer["LABEL_DEPARTMENT"]"
@@ -49,6 +54,9 @@
                               Width="175px"/>
         </R_GridColumns>
     </R_Grid>
+
+<R_ConductorGrid @ref="_conductor"
+             R_IsHeader/>
 </R_StackLayout>
 
 <R_StackLayout Row Class="d-flex justify-content-between mb-5">
@@ -77,11 +85,3 @@
         <R_Button OnClick="OnClickCancel">@_localizer["BTN_CANCEL"]</R_Button>
     </R_ItemLayout>
 </R_StackLayout>
-
-<R_ConductorGrid @ref="_conductor"
-             R_ViewModel="_viewModel"
-             R_IsHeader
-             R_Display="Display"
-             R_BeforeSaveBatch="BeforeSaveBatch"
-             R_ServiceSaveBatch="SaveBatch"
-             />

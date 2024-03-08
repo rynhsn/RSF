@@ -8,16 +8,16 @@
         <R_Label>@_localizer["LABEL_TRANSCODE"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="1">
-        <R_TextBox Value="@_GSM05000ApprovalUserViewModel.HeaderEntity.CTRANS_CODE"
+        <R_TextBox Value="@_viewModelUser.HeaderEntity.CTRANS_CODE"
                    Enabled="false"/>
     </R_ItemLayout>
     <R_ItemLayout col="3">
-        <R_TextBox Value="@_GSM05000ApprovalUserViewModel.HeaderEntity.CTRANSACTION_NAME"
+        <R_TextBox Value="@_viewModelUser.HeaderEntity.CTRANSACTION_NAME"
                    Enabled="false"/>
     </R_ItemLayout>
 
     <R_ItemLayout col="2">
-        <R_CheckBox Value="@_GSM05000ApprovalUserViewModel.HeaderEntity.LAPPROVAL_DEPT"
+        <R_CheckBox Value="@_viewModelUser.HeaderEntity.LAPPROVAL_DEPT"
                     Enabled="false"/>
         <R_Label>@_localizer["LABEL_DEPTMODE"]</R_Label>
     </R_ItemLayout>
@@ -27,14 +27,14 @@
     </R_ItemLayout>
 
     <R_ItemLayout col="2">
-        <R_TextBox Value="@_GSM05000ApprovalUserViewModel.HeaderEntity.CAPPROVAL_MODE_DESCR"
+        <R_TextBox Value="@_viewModelUser.HeaderEntity.CAPPROVAL_MODE_DESCR"
                    Enabled="false"/>
     </R_ItemLayout>
 </R_StackLayout>
 <R_StackLayout Row="true" Class="mt-1">
     <R_ItemLayout col="4">
         <R_Grid @ref="@_gridRefDept"
-                DataSource="@_GSM05000ApprovalUserViewModel.DepartmentList"
+                DataSource="@_viewModelUser.DepartmentList"
                 Pageable
                 PageSize="25"
                 R_ConductorGridSource="@_conductorRefDept"
@@ -45,8 +45,8 @@
                 AllowAddNewRow="false"
                 Height="565px"
                 Enabled="_gridDeptEnabled"
-                         R_Display="@DisplayDept"
-                         R_ServiceSave="@SaveApprover">
+                R_Display="@DisplayDept"
+                R_ServiceSave="@SaveApprover">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalDepartmentDTO.CDEPT)" HeaderText="@_localizer["LABEL_DEPARTMENT"]" TextAlignment="R_eTextAlignment.Left"/>
             </R_GridColumns>
@@ -62,23 +62,23 @@
                 <R_Label>@_localizer["LABEL_DEPARTMENT"]</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="2">
-                <R_TextBox Value="@_GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_CODE"
+                <R_TextBox Value="@_viewModelUser.DepartmentEntity.CDEPT_CODE"
                            Enabled="false"/>
             </R_ItemLayout>
             <R_ItemLayout col="6">
-                <R_TextBox Value="@_GSM05000ApprovalUserViewModel.DepartmentEntity.CDEPT_NAME"
+                <R_TextBox Value="@_viewModelUser.DepartmentEntity.CDEPT_NAME"
                            Enabled="false"/>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout>
             <R_ItemLayout col="12">
-                <R_GroupBox ShowBorder="true" Class="mb-1" Title="@_localizer["LABEL_GROUPUSERAPPROVAL"]">
+                <R_GroupBox ShowBorder="true" Class="mb-1" Title="@_localizer["LABEL_GROUPUSERAPPROVAL"]" Enabled="_gridUserEnabled">
                     <R_StackLayout>
                         <R_ItemLayout col="12">
-                            <R_Grid @ref="@_gridRefApprover"
-                                    DataSource="@_GSM05000ApprovalUserViewModel.ApproverList"
+                            <R_Grid @ref="@_gridRefUser"
+                                    DataSource="@_viewModelUser.ApproverList"
                                     Pageable="true"
-                                    R_ConductorGridSource="@_conductorRefApprover"
+                                    R_ConductorGridSource="@_conductorRefUser"
                                     R_GridType="@R_eGridType.Original"
                                     R_ServiceGetListRecord="@GetListApprover"
                                     AllowDeleteRow="true"
@@ -88,7 +88,13 @@
                                     R_After_Open_Grid_Lookup="AfterLookupApprover"
                                     Width="100%"
                                     Height="200px"
-                                    Enabled="_gridUserEnabled">
+
+                                    R_ServiceGetRecord="@GetRecordApprover"
+                                    R_Display="DisplayApprover"
+                                    R_AfterAdd="@AfterAddApprover"
+                                    R_Validation="@Validation"
+                                    R_ServiceSave="@SaveApprover"
+                                    R_ServiceDelete="@DeleteApprover">
                                 <R_GridColumns>
                                     @* <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CSEQUENCE)" HeaderText="@_localizer["LABEL_SEQUENCE"]" Width="130px" TextAlignment="R_eTextAlignment.Left"/> *@
                                     <R_GridNumericColumn FieldName="@nameof(GSM05000ApprovalUserDTO.ISEQUENCE)" HeaderText="@_localizer["LABEL_SEQUENCE"]" Width="130px" TextAlignment="R_eTextAlignment.Left"/>
@@ -104,9 +110,9 @@
                                 </R_GridColumns>
                             </R_Grid>
 
-                            <R_ConductorGrid @ref="@_conductorRefApprover"
+                            <R_ConductorGrid @ref="@_conductorRefUser"
                                              R_IsHeader="true"
-                                             @* R_SetOther="SetOtherUser" *@
+                                             R_SetOther="SetOtherUser"
                                              @* R_AfterDelete="@AfterDeleteApprover" *@/>
                         </R_ItemLayout>
                         <R_ItemLayout>
@@ -117,14 +123,14 @@
                         <R_ItemLayout>
                             <R_Popup
                                 R_Before_Open_Popup="CopyToBeforePopup"
-                                R_After_Open_Popup="CopyToAfterPopup">
+                                R_After_Open_Popup="CopyToAfterPopup" Enabled="_viewModelUser.HeaderEntity.LAPPROVAL_DEPT">
                                 @_localizer["LABEL_COPYTO"]
                             </R_Popup>
                         </R_ItemLayout>
                         <R_ItemLayout Class="me-5">
                             <R_Popup
                                 R_Before_Open_Popup="CopyFromBeforePopup"
-                                R_After_Open_Popup="CopyFromAfterPopup">
+                                R_After_Open_Popup="CopyFromAfterPopup" Enabled="_viewModelUser.HeaderEntity.LAPPROVAL_DEPT">
                                 @_localizer["LABEL_COPYFROM"]
                             </R_Popup>
                         </R_ItemLayout>
@@ -136,11 +142,12 @@
                         </R_ItemLayout>
                     </R_StackLayout>
                 </R_GroupBox>
+                
                 <R_GroupBox ShowBorder="true" Title="@_localizer["LABEL_GROUPREPLUSER"]">
                     <R_StackLayout>
                         <R_ItemLayout col="12">
                             <R_Grid @ref="@_gridRefReplacement"
-                                    DataSource="@_GSM05000ApprovalReplacementViewModel.ReplacementList"
+                                    DataSource="@_viewModelReplacement.ReplacementList"
                                     Pageable="true"
                                     R_ConductorGridSource="@_conductorRefReplacement"
                                     R_GridType="@R_eGridType.Original"
@@ -153,14 +160,14 @@
                                     Width="100%"
                                     Height="200px"
                                     Enabled="_gridReplacementEnabled"
-                                             R_ServiceGetRecord="GetRecordReplacement"
-                                             R_Display="@DisplayReplacement"
-                                             R_AfterAdd="@AfterAddReplacement"
-                                             R_Saving="@SavingReplacement"
-                                             R_ServiceSave="@SaveReplacement"
+                                    R_ServiceGetRecord="GetRecordReplacement"
+                                    R_Display="@DisplayReplacement"
+                                    R_AfterAdd="@AfterAddReplacement"
+                                    R_Saving="@SavingReplacement"
+                                    R_ServiceSave="@SaveReplacement"
                                     R_ServiceDelete="@DeleteReplacement">
                                 <R_GridColumns>
-                                    <R_GridLookupColumn FieldName="@nameof(GSM05000ApprovalReplacementDTO.CUSER_REPLACEMENT)" HeaderText="@_localizer["LABEL_USERID"]" R_EnableAdd Width="150px" TextAlignment="R_eTextAlignment.Right"/>
+                                    <R_GridLookupColumn FieldName="@nameof(GSM05000ApprovalReplacementDTO.CUSER_REPLACEMENT)" HeaderText="@_localizer["LABEL_USERID"]" R_EnableAdd Width="150px" TextAlignment="R_eTextAlignment.Left"/>
                                     <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalReplacementDTO.CUSER_REPLACEMENT_NAME)" HeaderText="@_localizer["LABEL_USERNAME"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
                                     <R_GridDatePickerColumn FieldName="@nameof(GSM05000ApprovalReplacementDTO.DVALID_FROM)" HeaderText="@_localizer["LABEL_VALIDFROM"]" R_EnableAdd Width="175px" TextAlignment="R_eTextAlignment.Left"/>
                                     <R_GridDatePickerColumn FieldName="@nameof(GSM05000ApprovalReplacementDTO.DVALID_TO)" HeaderText="@_localizer["LABEL_VALIDTO"]" R_EnableAdd Width="175px" TextAlignment="R_eTextAlignment.Left"/>
@@ -172,8 +179,8 @@
                             </R_Grid>
 
                             <R_ConductorGrid @ref="@_conductorRefReplacement"
-                                             @* R_ViewModel="@_GSM05000ApprovalReplacementViewModel" *@
-                                             R_ConductorParent="@_conductorRefApprover"
+                                             @* R_ViewModel="@_viewModelReplacement" *@
+                                             R_ConductorParent="@_conductorRefUser"
                                              R_SetOther="SetOtherReplacement"/>
                         </R_ItemLayout>
                     </R_StackLayout>

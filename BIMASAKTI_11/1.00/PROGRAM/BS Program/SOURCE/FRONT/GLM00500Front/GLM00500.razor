@@ -15,11 +15,12 @@
             Min="@_viewModel.Periods.IMIN_YEAR"
             Max="@_viewModel.Periods.IMAX_YEAR"
             R_ConductorSource="_conductorRef"
-            R_EnableOther="true"
-            Step="1" ThousandSeparator="false"/>
+            Step="1" 
+            ThousandSeparator="false"
+            R_EnableOther/>
     </R_ItemLayout>
     <R_ItemLayout col="1">
-        <R_Button OnClick="RefreshList" R_ConductorSource="_conductorRef" R_EnableOther="true">@_localizer["LABEL_BTNREFRESH"]</R_Button>
+        <R_Button R_ConductorSource="_conductorRef" OnClick="RefreshList" R_EnableOther>@_localizer["LABEL_BTNREFRESH"]</R_Button>
     </R_ItemLayout>
 </R_StackLayout>
 
@@ -45,8 +46,20 @@
                 <R_GridTextColumn FieldName="@nameof(GLM00500BudgetHDDTO.CCREATE_BY)" HeaderText="@_localizer["LABEL_CREATEDBY"]" Width="120px" TextAlignment="R_eTextAlignment.Left"/>
                 <R_GridDateTimePickerColumn FieldName="@nameof(GLM00500BudgetHDDTO.DCREATE_DATE)" HeaderText="@_localizer["LABEL_CREATEDDATE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
             </R_GridColumns>
-
         </R_Grid>
+
+        <R_Conductor @ref="@_conductorRef"
+                     R_ViewModel="@_viewModel"
+                     R_IsHeader="true"
+                     R_Display="@Display"
+                     R_SetOther="SetOther"
+                     R_AfterAdd="@AfterAdd"
+                     R_ServiceGetRecord="@GetBudgetHD"
+                     R_Validation="@ValidationBudgetHD"
+                     R_ServiceSave="@SaveBudgetHD"
+                     R_ServiceDelete="@DeleteBudgetHD"
+                     R_AfterDelete="@AfterDeleteBudgetHD"
+                     R_BeforeCancel="@BeforeCancelBudgetHD"/>
     </R_ItemLayout>
 </R_StackLayout>
 
@@ -146,14 +159,14 @@
             <R_Button
                 OnClick="SetFinal"
                 R_ConductorSource="_conductorRef"
-                Enabled="@(_viewModel.BudgetHDEntity.LFINAL != true && _viewModel.BudgetHDEntity.LALLOW_FINAL == true && (_conductorRef.CurrentConductorStatus != R_eConductorStatus.Add && _conductorRef.CurrentConductorStatus != R_eConductorStatus.Edit))">
+                Enabled="@(_viewModel.BudgetHDEntity.LFINAL != true && _viewModel.BudgetHDEntity.LALLOW_FINAL && (_conductorRef.CurrentConductorStatus != R_eConductorStatus.Add && _conductorRef.CurrentConductorStatus != R_eConductorStatus.Edit))">
                 Final
             </R_Button>
         </R_ItemLayout>
         <R_ItemLayout>
             <R_Popup
                 R_ConductorSource="_conductorRef"
-                R_EnableOther="true"
+                R_EnableOther
                 R_Before_Open_Popup="BeforeOpenUpload"
                 R_After_Open_Popup="AfterOpenUpload">
                 @_localizer["LABEL_BTNUPLOAD"]
@@ -163,7 +176,8 @@
             <R_Button
                 OnClick="DownloadTemplate"
                 R_ConductorSource="_conductorRef"
-                R_EnableOther="true">
+                R_EnableOther
+                >
                 @_localizer["LABEL_BTNTEMPLATE"]
             </R_Button>
         </R_ItemLayout>
@@ -178,18 +192,5 @@
         </R_ItemLayout>
     </R_StackLayout>
 </R_StackLayout>
-
-<R_Conductor @ref="@_conductorRef"
-             R_ViewModel="@_viewModel"
-             R_IsHeader="true"
-             R_Display="@Display"
-             R_SetOther="SetOther"
-             R_AfterAdd="@AfterAdd"
-             R_ServiceGetRecord="@GetBudgetHD"
-             R_Validation="@ValidationBudgetHD"
-             R_ServiceSave="@SaveBudgetHD"
-             R_ServiceDelete="@DeleteBudgetHD"
-             R_AfterDelete="@AfterDeleteBudgetHD"
-             R_BeforeCancel="@BeforeCancelBudgetHD"/>
 
 <R_PredefinedDock R_InstantiateDock="InstanceDetailTab" Title="@_localizer["TITLE_DETAIL"]" Enabled="@(_viewModel.BudgetHDList.Count != 0)"/>

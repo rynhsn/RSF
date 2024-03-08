@@ -161,7 +161,8 @@
                     AllowEditRow="false"
                     AllowAddNewRow="false"
                     Width="100%"
-                    Height="330px">
+                    Height="330px"
+                R_ServiceGetRecord="@GetUtilityRecord">
                 <R_GridColumns>
                     <R_GridCheckBoxSelectColumn FieldName="@nameof(LMT03500UtilityUsageDTO.LSELECTED)" Width="30px" ShowSelectAllHeader Filterable="false" Resizable="false"/>
                     <R_GridTextColumn FieldName="@nameof(LMT03500UtilityUsageDTO.CFLOOR_ID)" HeaderText="@_localizer["LBL_FLOORID"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
@@ -196,9 +197,7 @@
             </R_Grid>
             
             <R_ConductorGrid @ref="@_conductorRefUtility"
-                             R_IsHeader
-                             R_ViewModel="_viewModelUtility"
-                         R_ServiceGetRecord="@GetUtilityRecord"/>
+                             R_ConductorParent="_conductorRefBuilding"/>
         </R_ItemLayout>
     </R_StackLayout>
     <R_StackLayout Row Class="justify-content-between">
@@ -206,36 +205,36 @@
             <R_StackLayout Row>
                 <R_ItemLayout>
                     <R_Button Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0)">
-                        Download
+                        @_localizer["LBL_DOWNLOAD"]
                     </R_Button>
                 </R_ItemLayout>
                 <R_ItemLayout>
                     <R_Button Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0)">
-                        Upload
+                        @_localizer["LBL_UPLOAD"]
                     </R_Button>
                 </R_ItemLayout>
                 <R_ItemLayout>
                     <R_Popup R_Before_Open_Popup="BeforeOpenPhoto" Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0)">
-                        Photo
+                        @_localizer["LBL_PHOTO"]
                     </R_Popup>
                 </R_ItemLayout>
             </R_StackLayout>
         </R_ItemLayout>
         <R_ItemLayout Class="@_display">
             <R_Button Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0)">
-                Undo
+                @_localizer["LBL_UNDO"]
             </R_Button>
         </R_ItemLayout>
         <R_ItemLayout Class="@_display">
             <R_StackLayout Row>
                 <R_ItemLayout>
                     <R_Button Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0)">
-                        Cancel
+                        @_localizer["LBL_CANCEL"]
                     </R_Button>
                 </R_ItemLayout>
                 <R_ItemLayout>
                     <R_Button Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0)">
-                        Save
+                        @_localizer["LBL_SAVE"]
                     </R_Button>
                 </R_ItemLayout>
             </R_StackLayout>
@@ -247,15 +246,15 @@
 
 
 </R_TabStripTab>
-<R_TabStripTab Id="DI" Title="Detail Info">
+<R_TabStripTab Id="DI" Title="@_localizer["TAB_DETAILINFO"]">
     <R_TabPage R_Before_Open_TabPage="BeforeTabDetail"/>
 </R_TabStripTab>
 </R_TabStrip>
 </R_TabStripTab>
-<R_TabStripTab Id="CutOff" Title="Cut Off">
+<R_TabStripTab Id="CutOff" Title="@_localizer["TAB_CUTOFF"]">
     <R_TabPage @ref="_pageCO" R_Before_Open_TabPage="BeforeTabCutOff"/>
 </R_TabStripTab>
-<R_TabStripTab Id="ChangeMeter" Title="Change Meter No">
-    <R_TabPage @ref="_pageMN" R_Before_Open_TabPage="BeforeTabCutOff"/>
+<R_TabStripTab Id="ChangeMeter" Title="@_localizer["TAB_CHANGEMETER"]">
+    <R_TabPage @ref="_pageMN" R_Before_Open_TabPage="BeforeTabUpdateMeter"/>
 </R_TabStripTab>
 </R_TabStrip>

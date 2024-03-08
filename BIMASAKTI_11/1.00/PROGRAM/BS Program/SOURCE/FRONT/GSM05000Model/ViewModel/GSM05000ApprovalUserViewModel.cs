@@ -50,7 +50,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
 
         try
         {
-            if (HeaderEntity.LDEPT_MODE)
+            if (HeaderEntity.LAPPROVAL_DEPT)
             {
                 R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, TransactionCode);
                 var loReturn = await _Model.GetApprovalDepartmentStreamAsync();
@@ -92,6 +92,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
 
         try
         {
+            DepartmentEntity.CDEPT_CODE ??= "";
             R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, TransactionCode);
             R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE, DepartmentEntity.CDEPT_CODE);
             var loReturn = await _Model.GetApprovalListStreamAsync();

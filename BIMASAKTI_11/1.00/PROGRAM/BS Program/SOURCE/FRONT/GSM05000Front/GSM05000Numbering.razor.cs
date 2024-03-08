@@ -17,11 +17,10 @@ namespace GSM05000Front
 {
     public partial class GSM05000Numbering : R_Page
     {
-        private GSM05000NumberingViewModel _GSM05000NumberingViewModel = new();
+        private GSM05000NumberingViewModel _viewModelNumbering = new();
         private R_ConductorGrid _conductorRefNumbering;
         private R_Grid<GSM05000NumberingGridDTO> _gridRefNumbering;
         [Inject] public R_PopupService PopupService { get; set; }
-        public bool DeptCol { get; set; }
 
         protected override async Task R_Init_From_Master(object poParameter)
         {
@@ -29,10 +28,9 @@ namespace GSM05000Front
 
             try
             {
-                // _GSM05000NumberingViewModel.HeaderEntity = (GSM05000NumberingHeaderDTO)poParameter;
-                _GSM05000NumberingViewModel.TransactionCode = ((GSM05000NumberingHeaderDTO)poParameter).CTRANS_CODE;
-                await _GSM05000NumberingViewModel.GetNumberingHeader();
-                DeptCol = _GSM05000NumberingViewModel.HeaderEntity.LDEPT_MODE;
+                // _viewModelNumbering.HeaderEntity = (GSM05000NumberingHeaderDTO)poParameter;
+                _viewModelNumbering.TransactionCode = ((GSM05000NumberingHeaderDTO)poParameter).CTRANS_CODE;
+                await _viewModelNumbering.GetNumberingHeader();
                 await _gridRefNumbering.R_RefreshGrid(null);
                 // await _gridRefNumbering.AutoFitAllColumnsAsync();
             }
@@ -50,8 +48,8 @@ namespace GSM05000Front
 
             try
             {
-                await _GSM05000NumberingViewModel.GetNumberingList();
-                eventArgs.ListEntityResult = _GSM05000NumberingViewModel.GridList;
+                await _viewModelNumbering.GetNumberingList();
+                eventArgs.ListEntityResult = _viewModelNumbering.GridList;
             }
             catch (Exception ex)
             {
@@ -67,8 +65,8 @@ namespace GSM05000Front
             try
             {
                 var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000NumberingGridDTO>(eventArgs.Data);
-                await _GSM05000NumberingViewModel.GetEntityNumbering(loParam);
-                eventArgs.Result = _GSM05000NumberingViewModel.Entity;
+                await _viewModelNumbering.GetEntityNumbering(loParam);
+                eventArgs.Result = _viewModelNumbering.Entity;
             }
             catch (Exception ex)
             {
@@ -85,7 +83,7 @@ namespace GSM05000Front
             try
             {
                 var loParam = (GSM05000NumberingGridDTO)eventArgs.Data;
-                _GSM05000NumberingViewModel.GeneratePeriod(loParam);
+                _viewModelNumbering.GeneratePeriod(loParam);
                 loParam.DCREATE_DATE = DateTime.Now;
                 loParam.DUPDATE_DATE = DateTime.Now;
             }
@@ -149,8 +147,8 @@ namespace GSM05000Front
             try
             {
                 var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000NumberingGridDTO>(eventArgs.Data);
-                await _GSM05000NumberingViewModel.SaveEntity(loParam, (eCRUDMode)eventArgs.ConductorMode);
-                eventArgs.Result = _GSM05000NumberingViewModel.Entity;
+                await _viewModelNumbering.SaveEntity(loParam, (eCRUDMode)eventArgs.ConductorMode);
+                eventArgs.Result = _viewModelNumbering.Entity;
             }
             catch (Exception ex)
             {
@@ -183,7 +181,7 @@ namespace GSM05000Front
             try
             {
                 var loParam = R_FrontUtility.ConvertObjectToObject<GSM05000NumberingGridDTO>(eventArgs.Data);
-                await _GSM05000NumberingViewModel.DeleteEntity(loParam);
+                await _viewModelNumbering.DeleteEntity(loParam);
             }
             catch (Exception ex)
             {

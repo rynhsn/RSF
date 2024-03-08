@@ -10,16 +10,16 @@
         <R_Label>@_localizer["LABEL_YEAR"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="1" Class="me-2">
-        <R_TextBox Value="@_viewModel.BudgetHDEntity.CYEAR" Enabled="false"/>
+        <R_TextBox Value="@_detailViewModel.BudgetHDEntity.CYEAR" Enabled="false"/>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_Label>@_localizer["LABEL_BUDGET"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="1">
-        <R_TextBox Value="@_viewModel.BudgetHDEntity.CBUDGET_NO" Enabled="false"/>
+        <R_TextBox Value="@_detailViewModel.BudgetHDEntity.CBUDGET_NO" Enabled="false"/>
     </R_ItemLayout>
     <R_ItemLayout col="3" Class="me-2">
-        <R_TextBox Value="@_viewModel.BudgetHDEntity.CBUDGET_NAME" Enabled="false"/>
+        <R_TextBox Value="@_detailViewModel.BudgetHDEntity.CBUDGET_NAME" Enabled="false"/>
     </R_ItemLayout>
     @* </R_StackLayout> *@
     @* *@
@@ -28,29 +28,29 @@
         <R_Label>@_localizer["LABEL_ACCTYPE"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="3" Class="me-4">
-        <R_RadioGroup Data="@_viewModel.CGLACCOUNT_TYPE"
-                      @bind-Value="_viewModel.SelectedAccountType"
+        <R_RadioGroup Data="@_detailViewModel.CGLACCOUNT_TYPE"
+                      @bind-Value="_detailViewModel.SelectedAccountType"
                       ValueField="Key"
                       TextField="Value"
-                      R_ConductorSource="@_conductorRef"
+                      R_ConductorSource="@_conductorRefDetail"
                       OnChanged="RefreshFormProcess"
                       R_EnableOther/>
     </R_ItemLayout>
     <R_ItemLayout>
-        <R_Popup @ref="_btnGenerate" R_ConductorSource="_conductorRef" R_EnableOther R_Before_Open_Popup="BeforeGeneratePopup" R_After_Open_Popup="AfterGeneratePopup">@_localizer["LABEL_BTNGENERATE"]</R_Popup>
+        <R_Popup @ref="_btnGenerate" R_ConductorSource="_conductorRefDetail" R_EnableOther R_Before_Open_Popup="BeforeGeneratePopup" R_After_Open_Popup="AfterGeneratePopup">@_localizer["LABEL_BTNGENERATE"]</R_Popup>
     </R_ItemLayout>
     <R_ItemLayout Class="align-items-end">
-        <R_Button R_ConductorSource="_conductorRef" R_EnableOther OnClick="RefreshFormProcess">@_localizer["LABEL_BTNREFRESH"]</R_Button>
+        <R_Button R_ConductorSource="_conductorRefDetail" R_EnableOther OnClick="RefreshFormProcess">@_localizer["LABEL_BTNREFRESH"]</R_Button>
     </R_ItemLayout>
 </R_StackLayout>
 
 <R_StackLayout Row>
 <R_ItemLayout>
-    <R_Grid @ref="_gridRef"
-            DataSource="_viewModel.BudgetDTList"
+    <R_Grid @ref="_gridRefDetail"
+            DataSource="_detailViewModel.BudgetDTList"
             Pageable
             PageSize="23"
-            R_ConductorSource="_conductorRef"
+            R_ConductorSource="_conductorRefDetail"
             R_GridType="R_eGridType.Navigator"
             R_ServiceGetListRecord="GetBudgetDTList"
             Width="260px"
@@ -71,19 +71,19 @@
         <R_Label>@_localizer["LABEL_ACCNO"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
-        <R_TextBox @ref="_fieldAcc" @bind-Value="_viewModel.Data.CGLACCOUNT_NO"
-                   R_ConductorSource="_conductorRef"
+        <R_TextBox @ref="_fieldAcc" @bind-Value="_detailViewModel.Data.CGLACCOUNT_NO"
+                   R_ConductorSource="_conductorRefDetail"
                    MaxLength="20"
                    R_EnableAdd/>
     </R_ItemLayout>
-    <R_Lookup R_ConductorSource="_conductorRef"
+    <R_Lookup R_ConductorSource="_conductorRefDetail"
               R_EnableAdd
               R_Before_Open_Lookup="BeforeOpenLookupAccount"
               R_After_Open_Lookup="AfterOpenLookupAccount">
     </R_Lookup>
     <R_ItemLayout col="6">
-        <R_TextBox @bind-Value="_viewModel.Data.CGLACCOUNT_NAME"
-                   R_ConductorSource="_conductorRef"
+        <R_TextBox @bind-Value="_detailViewModel.Data.CGLACCOUNT_NAME"
+                   R_ConductorSource="_conductorRefDetail"
                    CharacterCasing="R_eCharacterCasing.Upper"
                    Enabled="false"/>
     </R_ItemLayout>
@@ -94,22 +94,22 @@
         <R_Label>@_localizer["LABEL_CENTER"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
-        <R_TextBox @ref="_fieldCenterCode" @bind-Value="_viewModel.Data.CCENTER_CODE"
-                   R_ConductorSource="_conductorRef"
+        <R_TextBox @ref="_fieldCenterCode" @bind-Value="_detailViewModel.Data.CCENTER_CODE"
+                   R_ConductorSource="_conductorRefDetail"
                    CharacterCasing="R_eCharacterCasing.Upper"
                    MaxLength="10"
                    R_EnableAdd
                    R_EnableEdit/>
     </R_ItemLayout>
-    <R_Lookup @ref="_lookupCenterCode" R_ConductorSource="_conductorRef"
+    <R_Lookup @ref="_lookupCenterCode" R_ConductorSource="_conductorRefDetail"
               R_Before_Open_Lookup="BeforeOpenLookupCenter"
               R_After_Open_Lookup="AfterOpenLookupCenter"
               R_EnableAdd
               R_EnableEdit>
     </R_Lookup>
     <R_ItemLayout col="6">
-        <R_TextBox @bind-Value="_viewModel.Data.CCENTER_NAME"
-                   R_ConductorSource="_conductorRef"
+        <R_TextBox @bind-Value="_detailViewModel.Data.CCENTER_NAME"
+                   R_ConductorSource="_conductorRefDetail"
                    CharacterCasing="R_eCharacterCasing.Upper"
                    Enabled="false"/>
     </R_ItemLayout>
@@ -120,11 +120,11 @@
         <R_Label>@_localizer["LABEL_INPUTMETHOD"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="10">
-        <R_RadioGroup Data="@_viewModel.CINPUT_METHOD"
-                      @bind-Value="_viewModel.Data.CINPUT_METHOD"
+        <R_RadioGroup Data="@_detailViewModel.CINPUT_METHOD"
+                      @bind-Value="_detailViewModel.Data.CINPUT_METHOD"
                       ValueField="Key"
                       TextField="Value"
-                      R_ConductorSource="@_conductorRef"
+                      R_ConductorSource="@_conductorRefDetail"
                       R_EnableAdd
                       R_EnableEdit
                       OnChanged="ChangeInputMethod"/>
@@ -139,8 +139,8 @@
             </R_ItemLayout>
             <R_ItemLayout col="7" Class="ms-4">
                 <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldBudget"
-                                  @bind-Value="_viewModel.Data.NBUDGET"
-                                  R_ConductorSource="_conductorRef"
+                                  @bind-Value="_detailViewModel.Data.NBUDGET"
+                                  R_ConductorSource="_conductorRefDetail"
                                   R_EnableAdd
                                   R_EnableEdit/>
             </R_ItemLayout>
@@ -152,11 +152,11 @@
                 <R_Label>@_localizer["LABEL_ROUNDMETHOD"]</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="7">
-                <R_ComboBox @ref="_fieldRoundingMethod" Data="@_viewModel.RoundingMethodList"
-                            @bind-Value="_viewModel.Data.CROUNDING_METHOD"
+                <R_ComboBox @ref="_fieldRoundingMethod" Data="@_detailViewModel.RoundingMethodList"
+                            @bind-Value="_detailViewModel.Data.CROUNDING_METHOD"
                             ValueField="@nameof(GLM00500FunctionDTO.CCODE)"
                             TextField="@nameof(GLM00500FunctionDTO.CNAME)"
-                            R_ConductorSource="@_conductorRef"
+                            R_ConductorSource="@_conductorRefDetail"
                             R_EnableAdd
                             R_EnableEdit/>
             </R_ItemLayout>
@@ -171,11 +171,11 @@
                 <R_Label>@_localizer["LABEL_DISTMETHOD"]</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="7">
-                <R_RadioGroup @ref="_fieldDistributionMethod" Data="@_viewModel.CDIST_METHOD"
-                              @bind-Value="_viewModel.Data.CDIST_METHOD"
+                <R_RadioGroup @ref="_fieldDistributionMethod" Data="@_detailViewModel.CDIST_METHOD"
+                              @bind-Value="_detailViewModel.Data.CDIST_METHOD"
                               ValueField="Key"
                               TextField="Value"
-                              R_ConductorSource="@_conductorRef"
+                              R_ConductorSource="@_conductorRefDetail"
                               R_EnableAdd
                               R_EnableEdit
                               OnChanged="ChangeDistMethod"/>
@@ -189,16 +189,16 @@
             </R_ItemLayout>
             <R_ItemLayout col="7">
                 <R_ComboBox @ref="_fieldWeightingCode"
-                            Data="@_viewModel.BudgetWeightingList"
-                            @bind-Value="_viewModel.Data.CBW_CODE"
+                            Data="@_detailViewModel.BudgetWeightingList"
+                            @bind-Value="_detailViewModel.Data.CBW_CODE"
                             ValueField="@nameof(GLM00500BudgetWeightingDTO.CBW_CODE)"
                             TextField="@nameof(GLM00500BudgetWeightingDTO.CBW_NAME_DISPLAY)"
-                            R_ConductorSource="@_conductorRef"
+                            R_ConductorSource="@_conductorRefDetail"
                             R_EnableAdd
                             R_EnableEdit/>
             </R_ItemLayout>
             <R_ItemLayout>
-                <R_Button @ref="_btnCalculate" R_ConductorSource="_conductorRef" R_EnableAdd R_EnableEdit OnClick="Calcuate">@_localizer["LABEL_BTNCALCULATE"]</R_Button>
+                <R_Button @ref="_btnCalculate" R_ConductorSource="_conductorRefDetail" R_EnableAdd R_EnableEdit OnClick="Calcuate">@_localizer["LABEL_BTNCALCULATE"]</R_Button>
             </R_ItemLayout>
         </R_StackLayout>
     </R_ItemLayout>
@@ -211,7 +211,7 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_GroupBox Enabled="@(_viewModel.Data.CINPUT_METHOD == "MN")" ShowBorder="false" Class="py-1 mb-5">
+<R_GroupBox Enabled="@(_detailViewModel.Data.CINPUT_METHOD == "MN")" ShowBorder="false" Class="py-1 mb-5">
     <R_StackLayout Row Spacing="2">
         <R_ItemLayout col="4">
             <R_StackLayout Row Class="mb-2">
@@ -219,8 +219,8 @@
                     <R_Label>@_localizer["LABEL_PERIOD01"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="7">
-                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod1" @bind-Value="_viewModel.Data.NPERIOD1"
-                                      R_ConductorSource="_conductorRef"
+                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod1" @bind-Value="_detailViewModel.Data.NPERIOD1"
+                                      R_ConductorSource="_conductorRefDetail"
                                       R_EnableAdd
                                       R_EnableEdit/>
                 </R_ItemLayout>
@@ -230,8 +230,8 @@
                     <R_Label>@_localizer["LABEL_PERIOD02"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="7">
-                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod2" @bind-Value="_viewModel.Data.NPERIOD2"
-                                      R_ConductorSource="_conductorRef"
+                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod2" @bind-Value="_detailViewModel.Data.NPERIOD2"
+                                      R_ConductorSource="_conductorRefDetail"
                                       R_EnableAdd
                                       R_EnableEdit/>
                 </R_ItemLayout>
@@ -241,8 +241,8 @@
                     <R_Label>@_localizer["LABEL_PERIOD03"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="7">
-                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod3" @bind-Value="_viewModel.Data.NPERIOD3"
-                                      R_ConductorSource="_conductorRef"
+                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod3" @bind-Value="_detailViewModel.Data.NPERIOD3"
+                                      R_ConductorSource="_conductorRefDetail"
                                       R_EnableAdd
                                       R_EnableEdit/>
                 </R_ItemLayout>
@@ -252,8 +252,8 @@
                     <R_Label>@_localizer["LABEL_PERIOD04"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="7">
-                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod4" @bind-Value="_viewModel.Data.NPERIOD4"
-                                      R_ConductorSource="_conductorRef"
+                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod4" @bind-Value="_detailViewModel.Data.NPERIOD4"
+                                      R_ConductorSource="_conductorRefDetail"
                                       R_EnableAdd
                                       R_EnableEdit/>
                 </R_ItemLayout>
@@ -263,8 +263,8 @@
                     <R_Label>@_localizer["LABEL_PERIOD05"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="7">
-                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod5" @bind-Value="_viewModel.Data.NPERIOD5"
-                                      R_ConductorSource="_conductorRef"
+                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod5" @bind-Value="_detailViewModel.Data.NPERIOD5"
+                                      R_ConductorSource="_conductorRefDetail"
                                       R_EnableAdd
                                       R_EnableEdit/>
                 </R_ItemLayout>
@@ -276,8 +276,8 @@
                     <R_Label>@_localizer["LABEL_PERIOD06"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="7">
-                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod6" @bind-Value="_viewModel.Data.NPERIOD6"
-                                      R_ConductorSource="_conductorRef"
+                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod6" @bind-Value="_detailViewModel.Data.NPERIOD6"
+                                      R_ConductorSource="_conductorRefDetail"
                                       R_EnableAdd
                                       R_EnableEdit/>
                 </R_ItemLayout>
@@ -287,8 +287,8 @@
                     <R_Label>@_localizer["LABEL_PERIOD07"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="7">
-                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod7" @bind-Value="_viewModel.Data.NPERIOD7"
-                                      R_ConductorSource="_conductorRef"
+                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod7" @bind-Value="_detailViewModel.Data.NPERIOD7"
+                                      R_ConductorSource="_conductorRefDetail"
                                       R_EnableAdd
                                       R_EnableEdit/>
                 </R_ItemLayout>
@@ -298,8 +298,8 @@
                     <R_Label>@_localizer["LABEL_PERIOD08"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="7">
-                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod8" @bind-Value="_viewModel.Data.NPERIOD8"
-                                      R_ConductorSource="_conductorRef"
+                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod8" @bind-Value="_detailViewModel.Data.NPERIOD8"
+                                      R_ConductorSource="_conductorRefDetail"
                                       R_EnableAdd
                                       R_EnableEdit/>
                 </R_ItemLayout>
@@ -309,8 +309,8 @@
                     <R_Label>@_localizer["LABEL_PERIOD09"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="7">
-                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod9" @bind-Value="_viewModel.Data.NPERIOD9"
-                                      R_ConductorSource="_conductorRef"
+                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod9" @bind-Value="_detailViewModel.Data.NPERIOD9"
+                                      R_ConductorSource="_conductorRefDetail"
                                       R_EnableAdd
                                       R_EnableEdit/>
                 </R_ItemLayout>
@@ -320,8 +320,8 @@
                     <R_Label>@_localizer["LABEL_PERIOD10"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="7">
-                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod10" @bind-Value="_viewModel.Data.NPERIOD10"
-                                      R_ConductorSource="_conductorRef"
+                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="_fieldPeriod10" @bind-Value="_detailViewModel.Data.NPERIOD10"
+                                      R_ConductorSource="_conductorRefDetail"
                                       R_EnableAdd
                                       R_EnableEdit/>
                 </R_ItemLayout>
@@ -333,8 +333,8 @@
                     <R_Label>@_localizer["LABEL_PERIOD11"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="7">
-                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="FieldPeriod11" @bind-Value="_viewModel.Data.NPERIOD11"
-                                      R_ConductorSource="_conductorRef"
+                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="FieldPeriod11" @bind-Value="_detailViewModel.Data.NPERIOD11"
+                                      R_ConductorSource="_conductorRefDetail"
                                       R_EnableAdd
                                       R_EnableEdit/>
                 </R_ItemLayout>
@@ -344,8 +344,8 @@
                     <R_Label>@_localizer["LABEL_PERIOD12"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="7">
-                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="FieldPeriod12" @bind-Value="_viewModel.Data.NPERIOD12"
-                                      R_ConductorSource="_conductorRef"
+                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="FieldPeriod12" @bind-Value="_detailViewModel.Data.NPERIOD12"
+                                      R_ConductorSource="_conductorRefDetail"
                                       R_EnableAdd
                                       R_EnableEdit/>
                 </R_ItemLayout>
@@ -355,8 +355,8 @@
                     <R_Label>@_localizer["LABEL_PERIOD13"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="7">
-                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="FieldPeriod13" @bind-Value="_viewModel.Data.NPERIOD13"
-                                      R_ConductorSource="_conductorRef"
+                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="FieldPeriod13" @bind-Value="_detailViewModel.Data.NPERIOD13"
+                                      R_ConductorSource="_conductorRefDetail"
                                       R_EnableAdd
                                       R_EnableEdit/>
                 </R_ItemLayout>
@@ -366,8 +366,8 @@
                     <R_Label>@_localizer["LABEL_PERIOD14"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="7">
-                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="FieldPeriod14" @bind-Value="_viewModel.Data.NPERIOD14"
-                                      R_ConductorSource="_conductorRef"
+                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="FieldPeriod14" @bind-Value="_detailViewModel.Data.NPERIOD14"
+                                      R_ConductorSource="_conductorRefDetail"
                                       R_EnableAdd
                                       R_EnableEdit/>
                 </R_ItemLayout>
@@ -377,8 +377,8 @@
                     <R_Label>@_localizer["LABEL_PERIOD15"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="7">
-                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="FieldPeriod15" @bind-Value="_viewModel.Data.NPERIOD15"
-                                      R_ConductorSource="_conductorRef"
+                    <R_NumericTextBox TextAlignment="R_eTextAlignment.Right" @ref="FieldPeriod15" @bind-Value="_detailViewModel.Data.NPERIOD15"
+                                      R_ConductorSource="_conductorRefDetail"
                                       R_EnableAdd
                                       R_EnableEdit/>
                 </R_ItemLayout>
@@ -392,10 +392,10 @@
         <R_Label>@_localizer["LABEL_UPDATEDBY"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="1">
-        <R_TextBox @bind-Value="@_viewModel.Data.CUPDATE_BY" Enabled="false"/>
+        <R_TextBox @bind-Value="@_detailViewModel.Data.CUPDATE_BY" Enabled="false"/>
     </R_ItemLayout>
     <R_ItemLayout col="4">
-        <R_DateTimePicker @bind-Value="@_viewModel.Data.DUPDATE_DATE" Enabled="false"/>
+        <R_DateTimePicker @bind-Value="@_detailViewModel.Data.DUPDATE_DATE" Enabled="false"/>
     </R_ItemLayout>
 </R_StackLayout>
 @* </R_StackLayout> *@
@@ -405,10 +405,10 @@
         <R_Label>@_localizer["LABEL_CREATEDBY"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="1">
-        <R_TextBox @bind-Value="@_viewModel.Data.CCREATE_BY" Enabled="false"/>
+        <R_TextBox @bind-Value="@_detailViewModel.Data.CCREATE_BY" Enabled="false"/>
     </R_ItemLayout>
     <R_ItemLayout col="4">
-        <R_DateTimePicker @bind-Value="@_viewModel.Data.DCREATE_DATE" Enabled="false"/>
+        <R_DateTimePicker @bind-Value="@_detailViewModel.Data.DCREATE_DATE" Enabled="false"/>
     </R_ItemLayout>
 </R_StackLayout>
 
@@ -419,29 +419,29 @@
 <R_StackLayout Row Class="justify-content-between">
     <R_StackLayout Row Class="justify-content-start">
         <R_ItemLayout>
-            <R_AddButton R_Conductor="_conductorRef"/>
+            <R_AddButton R_Conductor="_conductorRefDetail"/>
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_EditButton R_Conductor="_conductorRef"/>
+            <R_EditButton R_Conductor="_conductorRefDetail"/>
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_DeleteButton R_Conductor="_conductorRef"/>
+            <R_DeleteButton R_Conductor="_conductorRefDetail"/>
         </R_ItemLayout>
     </R_StackLayout>
 
     <R_StackLayout Row Class="justify-content-end">
         <R_ItemLayout>
-            <R_CancelButton R_Conductor="_conductorRef"/>
+            <R_CancelButton R_Conductor="_conductorRefDetail"/>
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_SaveButton R_Conductor="_conductorRef"/>
+            <R_SaveButton R_Conductor="_conductorRefDetail"/>
         </R_ItemLayout>
     </R_StackLayout>
 </R_StackLayout>
 
 
-<R_Conductor @ref="@_conductorRef"
-             R_ViewModel="@_viewModel"
+<R_Conductor @ref="@_conductorRefDetail"
+             R_ViewModel="@_detailViewModel"
              R_IsHeader="true"
              R_ServiceGetRecord="@GetBudgetDT"
              R_Display="Display"

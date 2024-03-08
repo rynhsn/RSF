@@ -12,5 +12,9 @@ namespace LMT03500Common
         public const string CUTILITY_PRD = "CUTILITY_PRD";
         public const string CUTILITY_PRD_FROM_DATE = "CUTILITY_PRD_FROM_DATE";
         public const string CUTILITY_PRD_TO_DATE = "CUTILITY_PRD_TO_DATE";
+        public const string CFLOOR_ID = "CFLOOR_ID";
+        public const string CTENANT_ID = "CTENANT_ID";
+        public const string CREF_NO = "CREF_NO";
+        public const string CUNIT_ID = "CUNIT_ID";
     }
 }

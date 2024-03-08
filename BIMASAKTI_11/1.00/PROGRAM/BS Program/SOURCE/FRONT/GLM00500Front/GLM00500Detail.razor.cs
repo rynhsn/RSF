@@ -15,9 +15,9 @@ namespace GLM00500Front;
 
 public partial class GLM00500Detail
 {
-    private GLM00500DetailViewModel _viewModel = new();
-    private R_Conductor _conductorRef;
-    private R_Grid<GLM00500BudgetDTGridDTO> _gridRef = new();
+    private GLM00500DetailViewModel _detailViewModel = new();
+    private R_Conductor _conductorRefDetail;
+    private R_Grid<GLM00500BudgetDTGridDTO> _gridRefDetail;
 
     private R_TextBox _fieldAcc { get; set; }
     private R_Lookup _lookupCenterCode { get; set; }
@@ -54,8 +54,8 @@ public partial class GLM00500Detail
 
         try
         {
-            await _viewModel.Init(eventArgs);
-            await _gridRef.R_RefreshGrid(null);
+            await _detailViewModel.Init(eventArgs);
+            await _gridRefDetail.R_RefreshGrid(null);
         }
         catch (Exception ex)
         {
@@ -78,10 +78,10 @@ public partial class GLM00500Detail
 
         try
         {
-            var lcBudgetId = _viewModel.BudgetHDEntity.CREC_ID;
-            var lcAccountType = _viewModel.SelectedAccountType;
-            await _viewModel.GetBudgetDTList(lcBudgetId, lcAccountType);
-            eventArgs.ListEntityResult = _viewModel.BudgetDTList;
+            var lcBudgetId = _detailViewModel.BudgetHDEntity.CREC_ID;
+            var lcAccountType = _detailViewModel.SelectedAccountType;
+            await _detailViewModel.GetBudgetDTList(lcBudgetId, lcAccountType);
+            eventArgs.ListEntityResult = _detailViewModel.BudgetDTList;
         }
         catch (Exception ex)
         {
@@ -99,8 +99,8 @@ public partial class GLM00500Detail
         try
         {
             var lcParam = R_FrontUtility.ConvertObjectToObject<GLM00500BudgetDTDTO>(eventArgs.Data);
-            await _viewModel.GetBudgetDT(lcParam);
-            eventArgs.Result = _viewModel.BudgetDTEntity;
+            await _detailViewModel.GetBudgetDT(lcParam);
+            eventArgs.Result = _detailViewModel.BudgetDTEntity;
         }
         catch (Exception ex)
         {
@@ -112,14 +112,14 @@ public partial class GLM00500Detail
 
     private async Task RefreshFormProcess()
     {
-        await _gridRef.R_RefreshGrid(null);
+        await _gridRefDetail.R_RefreshGrid(null);
     }
 
     private void BeforeOpenLookupAccount(R_BeforeOpenLookupEventArgs eventArgs)
     {
         var loParameter = new GSL00510ParameterDTO()
         {
-            CGLACCOUNT_TYPE = _viewModel.SelectedAccountType
+            CGLACCOUNT_TYPE = _detailViewModel.SelectedAccountType
         };
 
         eventArgs.Parameter = loParameter;
@@ -132,12 +132,12 @@ public partial class GLM00500Detail
 
         var loTempResult = (GSL00510DTO)eventArgs.Result;
 
-        var loGetData = (GLM00500BudgetDTDTO)_conductorRef.R_GetCurrentData();
+        var loGetData = (GLM00500BudgetDTDTO)_conductorRefDetail.R_GetCurrentData();
         loGetData.CGLACCOUNT_NO = loTempResult.CGLACCOUNT_NO;
         loGetData.CGLACCOUNT_NAME = loTempResult.CGLACCOUNT_NAME;
         loGetData.CBSIS = R_FrontUtility.ConvertObjectToObject<string>(loTempResult.CBSIS);
-        if ((loTempResult.CBSIS == "I" && _viewModel.Company.LENABLE_CENTER_IS == false) ||
-            (loTempResult.CBSIS == "B" && _viewModel.Company.LENABLE_CENTER_BS == false))
+        if ((loTempResult.CBSIS == "I" && _detailViewModel.Company.LENABLE_CENTER_IS == false) ||
+            (loTempResult.CBSIS == "B" && _detailViewModel.Company.LENABLE_CENTER_BS == false))
         {
             loGetData.CCENTER_CODE = "";
             loGetData.CCENTER_NAME = "";
@@ -157,7 +157,7 @@ public partial class GLM00500Detail
         if (eventArgs.Result == null) return;
         var loTempResult = (GSL00900DTO)eventArgs.Result;
 
-        var loGetData = (GLM00500BudgetDTDTO)_conductorRef.R_GetCurrentData();
+        var loGetData = (GLM00500BudgetDTDTO)_conductorRefDetail.R_GetCurrentData();
         loGetData.CCENTER_CODE = loTempResult.CCENTER_CODE;
         loGetData.CCENTER_NAME = loTempResult.CCENTER_NAME;
     }
@@ -168,11 +168,11 @@ public partial class GLM00500Detail
 
         try
         {
-            _btnGenerate.Enabled = _viewModel.BudgetHDEntity.LFINAL == false;
+            _btnGenerate.Enabled = _detailViewModel.BudgetHDEntity.LFINAL == false;
             _btnCalculate.Enabled = false;
             if (eventArgs.ConductorMode != R_eConductorMode.Normal)
             {
-                _btnCalculate.Enabled = _viewModel.BudgetHDEntity.LFINAL == false;
+                _btnCalculate.Enabled = _detailViewModel.BudgetHDEntity.LFINAL == false;
                 _btnGenerate.Enabled = false;
                 EnablePeriod();
             }
@@ -180,8 +180,8 @@ public partial class GLM00500Detail
             switch (eventArgs.ConductorMode)
             {
                 case R_eConductorMode.Edit:
-                    EnableCenter(_viewModel.BudgetDTEntity.CBSIS);
-                    ChangeInputMethod(_viewModel.BudgetDTEntity.CINPUT_METHOD);
+                    EnableCenter(_detailViewModel.BudgetDTEntity.CBSIS);
+                    ChangeInputMethod(_detailViewModel.BudgetDTEntity.CINPUT_METHOD);
                     await _fieldCenterCode.FocusAsync();
                     break;
                 case R_eConductorMode.Add:
@@ -202,8 +202,8 @@ public partial class GLM00500Detail
     {
         _lookupCenterCode.Enabled = false;
         _fieldCenterCode.Enabled = false;
-        if ((pcCBSIS == "B" && _viewModel.Company.LENABLE_CENTER_BS) ||
-            (pcCBSIS == "I" && _viewModel.Company.LENABLE_CENTER_IS))
+        if ((pcCBSIS == "B" && _detailViewModel.Company.LENABLE_CENTER_BS) ||
+            (pcCBSIS == "I" && _detailViewModel.Company.LENABLE_CENTER_IS))
         {
             _lookupCenterCode.Enabled = true;
             _fieldCenterCode.Enabled = true;
@@ -215,8 +215,8 @@ public partial class GLM00500Detail
         var lcValue = eventArgs.ToString();
         if (lcValue != "MN")
         {
-            _viewModel.Data.CROUNDING_METHOD = "00";
-            _viewModel.Data.CDIST_METHOD = "EV";
+            _detailViewModel.Data.CROUNDING_METHOD = "00";
+            _detailViewModel.Data.CDIST_METHOD = "EV";
 
             _fieldBudget.Enabled = true;
             _fieldRoundingMethod.Enabled = true;
@@ -224,10 +224,10 @@ public partial class GLM00500Detail
         }
         else
         {
-            _viewModel.Data.NBUDGET = 0;
-            _viewModel.Data.CROUNDING_METHOD = "";
-            _viewModel.Data.CDIST_METHOD = "";
-            _viewModel.Data.CBW_CODE = "";
+            _detailViewModel.Data.NBUDGET = 0;
+            _detailViewModel.Data.CROUNDING_METHOD = "";
+            _detailViewModel.Data.CDIST_METHOD = "";
+            _detailViewModel.Data.CBW_CODE = "";
 
             _fieldBudget.Enabled = false;
             _fieldRoundingMethod.Enabled = false;
@@ -244,9 +244,9 @@ public partial class GLM00500Detail
         var loData = (GLM00500BudgetDTDTO)eventArgs.Data;
         loData.DCREATE_DATE = DateTime.Now;
         loData.DUPDATE_DATE = DateTime.Now;
-        loData.CBUDGET_ID = _viewModel.BudgetHDEntity.CREC_ID;
-        loData.CBUDGET_NO = _viewModel.BudgetHDEntity.CBUDGET_NO;
-        loData.CGLACCOUNT_TYPE = _viewModel.SelectedAccountType;
+        loData.CBUDGET_ID = _detailViewModel.BudgetHDEntity.CREC_ID;
+        loData.CBUDGET_NO = _detailViewModel.BudgetHDEntity.CBUDGET_NO;
+        loData.CGLACCOUNT_TYPE = _detailViewModel.SelectedAccountType;
         loData.CINPUT_METHOD = "MN";
         loData.CROUNDING_METHOD = "00";
         loData.CDIST_METHOD = "EV";
@@ -255,7 +255,7 @@ public partial class GLM00500Detail
     private void ChangeDistMethod()
     {
         _fieldWeightingCode.Enabled = false;
-        if (_viewModel.Data.CDIST_METHOD == "BW" && _viewModel.Data.CINPUT_METHOD != "MN")
+        if (_detailViewModel.Data.CDIST_METHOD == "BW" && _detailViewModel.Data.CINPUT_METHOD != "MN")
         {
             _fieldWeightingCode.Enabled = true;
         }
@@ -294,23 +294,23 @@ public partial class GLM00500Detail
         FieldPeriod15.Value = 0;
         FieldPeriod15.Enabled = false;
 
-        if (_viewModel.Data.CINPUT_METHOD == "MN")
+        if (_detailViewModel.Data.CINPUT_METHOD == "MN")
         {
-            if (_viewModel.PeriodCount.INO_PERIOD >= 1) _fieldPeriod1.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 2) _fieldPeriod2.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 3) _fieldPeriod3.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 4) _fieldPeriod4.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 5) _fieldPeriod5.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 6) _fieldPeriod6.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 7) _fieldPeriod7.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 8) _fieldPeriod8.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 9) _fieldPeriod9.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 10) _fieldPeriod10.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 11) FieldPeriod11.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 12) FieldPeriod12.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 13) FieldPeriod13.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 14) FieldPeriod14.Enabled = true;
-            if (_viewModel.PeriodCount.INO_PERIOD >= 15) FieldPeriod15.Enabled = true;
+            if (_detailViewModel.PeriodCount.INO_PERIOD >= 1) _fieldPeriod1.Enabled = true;
+            if (_detailViewModel.PeriodCount.INO_PERIOD >= 2) _fieldPeriod2.Enabled = true;
+            if (_detailViewModel.PeriodCount.INO_PERIOD >= 3) _fieldPeriod3.Enabled = true;
+            if (_detailViewModel.PeriodCount.INO_PERIOD >= 4) _fieldPeriod4.Enabled = true;
+            if (_detailViewModel.PeriodCount.INO_PERIOD >= 5) _fieldPeriod5.Enabled = true;
+            if (_detailViewModel.PeriodCount.INO_PERIOD >= 6) _fieldPeriod6.Enabled = true;
+            if (_detailViewModel.PeriodCount.INO_PERIOD >= 7) _fieldPeriod7.Enabled = true;
+            if (_detailViewModel.PeriodCount.INO_PERIOD >= 8) _fieldPeriod8.Enabled = true;
+            if (_detailViewModel.PeriodCount.INO_PERIOD >= 9) _fieldPeriod9.Enabled = true;
+            if (_detailViewModel.PeriodCount.INO_PERIOD >= 10) _fieldPeriod10.Enabled = true;
+            if (_detailViewModel.PeriodCount.INO_PERIOD >= 11) FieldPeriod11.Enabled = true;
+            if (_detailViewModel.PeriodCount.INO_PERIOD >= 12) FieldPeriod12.Enabled = true;
+            if (_detailViewModel.PeriodCount.INO_PERIOD >= 13) FieldPeriod13.Enabled = true;
+            if (_detailViewModel.PeriodCount.INO_PERIOD >= 14) FieldPeriod14.Enabled = true;
+            if (_detailViewModel.PeriodCount.INO_PERIOD >= 15) FieldPeriod15.Enabled = true;
         }
     }
 
@@ -321,7 +321,7 @@ public partial class GLM00500Detail
         try
         {
             var loEntity = (GLM00500BudgetDTDTO)eventArgs.Data;
-            await _viewModel.DeleteBudgetDT(loEntity);
+            await _detailViewModel.DeleteBudgetDT(loEntity);
             await Task.Delay(500);
             await R_MessageBox.Show(_localizer["SuccessLabel"], _localizer["SuccessDeleteAcc"], R_eMessageBoxButtonType.OK);
         }
@@ -346,8 +346,8 @@ public partial class GLM00500Detail
             }
 
             if (string.IsNullOrEmpty(loEntity.CCENTER_CODE) &&
-                ((loEntity.CBSIS == "B" && _viewModel.Company.LENABLE_CENTER_BS) ||
-                 (loEntity.CBSIS == "I" && _viewModel.Company.LENABLE_CENTER_IS)))
+                ((loEntity.CBSIS == "B" && _detailViewModel.Company.LENABLE_CENTER_BS) ||
+                 (loEntity.CBSIS == "I" && _detailViewModel.Company.LENABLE_CENTER_IS)))
             {
                 loEx.Add(new Exception($"{_localizer["Exception05"]} {loEntity.CGLACCOUNT_NO}!"));
             }
@@ -377,8 +377,8 @@ public partial class GLM00500Detail
         try
         {
             var loEntity = (GLM00500BudgetDTDTO)eventArgs.Data;
-            await _viewModel.SaveBudgetDT(loEntity, (eCRUDMode)eventArgs.ConductorMode);
-            eventArgs.Result = _viewModel.BudgetDTEntity;
+            await _detailViewModel.SaveBudgetDT(loEntity, (eCRUDMode)eventArgs.ConductorMode);
+            eventArgs.Result = _detailViewModel.BudgetDTEntity;
         }
         catch (Exception ex)
         {
@@ -390,46 +390,46 @@ public partial class GLM00500Detail
 
     private async Task Calcuate()
     {
-        switch (_viewModel.Data.CINPUT_METHOD)
+        switch (_detailViewModel.Data.CINPUT_METHOD)
         {
             case "MO":
             {
-                if (_viewModel.PeriodCount.INO_PERIOD >= 1) _viewModel.Data.NPERIOD1 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 2) _viewModel.Data.NPERIOD2 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 3) _viewModel.Data.NPERIOD3 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 4) _viewModel.Data.NPERIOD4 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 5) _viewModel.Data.NPERIOD5 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 6) _viewModel.Data.NPERIOD6 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 7) _viewModel.Data.NPERIOD7 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 8) _viewModel.Data.NPERIOD8 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 9) _viewModel.Data.NPERIOD9 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 10) _viewModel.Data.NPERIOD10 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 11) _viewModel.Data.NPERIOD11 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 12) _viewModel.Data.NPERIOD12 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 13) _viewModel.Data.NPERIOD13 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 14) _viewModel.Data.NPERIOD14 = _viewModel.Data.NBUDGET;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 15) _viewModel.Data.NPERIOD15 = _viewModel.Data.NBUDGET;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 1) _detailViewModel.Data.NPERIOD1 = _detailViewModel.Data.NBUDGET;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 2) _detailViewModel.Data.NPERIOD2 = _detailViewModel.Data.NBUDGET;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 3) _detailViewModel.Data.NPERIOD3 = _detailViewModel.Data.NBUDGET;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 4) _detailViewModel.Data.NPERIOD4 = _detailViewModel.Data.NBUDGET;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 5) _detailViewModel.Data.NPERIOD5 = _detailViewModel.Data.NBUDGET;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 6) _detailViewModel.Data.NPERIOD6 = _detailViewModel.Data.NBUDGET;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 7) _detailViewModel.Data.NPERIOD7 = _detailViewModel.Data.NBUDGET;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 8) _detailViewModel.Data.NPERIOD8 = _detailViewModel.Data.NBUDGET;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 9) _detailViewModel.Data.NPERIOD9 = _detailViewModel.Data.NBUDGET;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 10) _detailViewModel.Data.NPERIOD10 = _detailViewModel.Data.NBUDGET;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 11) _detailViewModel.Data.NPERIOD11 = _detailViewModel.Data.NBUDGET;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 12) _detailViewModel.Data.NPERIOD12 = _detailViewModel.Data.NBUDGET;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 13) _detailViewModel.Data.NPERIOD13 = _detailViewModel.Data.NBUDGET;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 14) _detailViewModel.Data.NPERIOD14 = _detailViewModel.Data.NBUDGET;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 15) _detailViewModel.Data.NPERIOD15 = _detailViewModel.Data.NBUDGET;
                 break;
             }
             case "AN":
             {
-                _viewModel.Data.NBUDGET = _fieldBudget.Value; // sementara, karena perubahan tidak langsung bind value
-                var loResult = await _viewModel.CalculateBudget(_viewModel.BudgetHDEntity, _viewModel.Data);
-                if (_viewModel.PeriodCount.INO_PERIOD >= 1) _viewModel.Data.NPERIOD1 = loResult.NPERIOD1;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 2) _viewModel.Data.NPERIOD2 = loResult.NPERIOD2;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 3) _viewModel.Data.NPERIOD3 = loResult.NPERIOD3;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 4) _viewModel.Data.NPERIOD4 = loResult.NPERIOD4;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 5) _viewModel.Data.NPERIOD5 = loResult.NPERIOD5;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 6) _viewModel.Data.NPERIOD6 = loResult.NPERIOD6;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 7) _viewModel.Data.NPERIOD7 = loResult.NPERIOD7;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 8) _viewModel.Data.NPERIOD8 = loResult.NPERIOD8;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 9) _viewModel.Data.NPERIOD9 = loResult.NPERIOD9;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 10) _viewModel.Data.NPERIOD10 = loResult.NPERIOD10;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 11) _viewModel.Data.NPERIOD11 = loResult.NPERIOD11;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 12) _viewModel.Data.NPERIOD12 = loResult.NPERIOD12;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 13) _viewModel.Data.NPERIOD13 = loResult.NPERIOD13;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 14) _viewModel.Data.NPERIOD14 = loResult.NPERIOD14;
-                if (_viewModel.PeriodCount.INO_PERIOD >= 15) _viewModel.Data.NPERIOD15 = loResult.NPERIOD15;
+                _detailViewModel.Data.NBUDGET = _fieldBudget.Value; // sementara, karena perubahan tidak langsung bind value
+                var loResult = await _detailViewModel.CalculateBudget(_detailViewModel.BudgetHDEntity, _detailViewModel.Data);
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 1) _detailViewModel.Data.NPERIOD1 = loResult.NPERIOD1;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 2) _detailViewModel.Data.NPERIOD2 = loResult.NPERIOD2;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 3) _detailViewModel.Data.NPERIOD3 = loResult.NPERIOD3;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 4) _detailViewModel.Data.NPERIOD4 = loResult.NPERIOD4;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 5) _detailViewModel.Data.NPERIOD5 = loResult.NPERIOD5;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 6) _detailViewModel.Data.NPERIOD6 = loResult.NPERIOD6;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 7) _detailViewModel.Data.NPERIOD7 = loResult.NPERIOD7;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 8) _detailViewModel.Data.NPERIOD8 = loResult.NPERIOD8;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 9) _detailViewModel.Data.NPERIOD9 = loResult.NPERIOD9;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 10) _detailViewModel.Data.NPERIOD10 = loResult.NPERIOD10;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 11) _detailViewModel.Data.NPERIOD11 = loResult.NPERIOD11;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 12) _detailViewModel.Data.NPERIOD12 = loResult.NPERIOD12;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 13) _detailViewModel.Data.NPERIOD13 = loResult.NPERIOD13;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 14) _detailViewModel.Data.NPERIOD14 = loResult.NPERIOD14;
+                if (_detailViewModel.PeriodCount.INO_PERIOD >= 15) _detailViewModel.Data.NPERIOD15 = loResult.NPERIOD15;
                 break;
             }
         }
@@ -437,26 +437,26 @@ public partial class GLM00500Detail
 
     private void CheckAdd(R_CheckAddEventArgs eventArgs)
     {
-        _btnGenerate.Enabled = _viewModel.BudgetHDEntity.LFINAL == false;
-        eventArgs.Allow = _viewModel.BudgetHDEntity.LFINAL == false;
+        _btnGenerate.Enabled = _detailViewModel.BudgetHDEntity.LFINAL == false;
+        eventArgs.Allow = _detailViewModel.BudgetHDEntity.LFINAL == false;
     }
 
     private void CheckEdit(R_CheckEditEventArgs eventArgs)
     {
-        eventArgs.Allow = _viewModel.BudgetHDEntity.LFINAL == false;
+        eventArgs.Allow = _detailViewModel.BudgetHDEntity.LFINAL == false;
     }
 
     private void CheckDelete(R_CheckDeleteEventArgs eventArgs)
     {
-        eventArgs.Allow = _viewModel.BudgetHDEntity.LFINAL == false && _viewModel.BudgetDTList.Count > 0;
+        eventArgs.Allow = _detailViewModel.BudgetHDEntity.LFINAL == false && _detailViewModel.BudgetDTList.Count > 0;
     }
 
     private Task BeforeGeneratePopup(R_BeforeOpenPopupEventArgs eventArgs)
     {
         eventArgs.Parameter = new GLM00500ParameterGenerateBudget
         {
-            BudgetHD = _viewModel.BudgetHDEntity,
-            CGLACCOUNT_TYPE = _viewModel.SelectedAccountType
+            BudgetHD = _detailViewModel.BudgetHDEntity,
+            CGLACCOUNT_TYPE = _detailViewModel.SelectedAccountType
         };
         eventArgs.TargetPageType = typeof(GLM00500DetailGenerate);
         return Task.CompletedTask;
@@ -471,8 +471,8 @@ public partial class GLM00500Detail
                 return;
 
             var loResult = (GLM00500GenerateAccountBudgetDTO)eventArgs.Result;
-            await _viewModel.GenerateBudget(loResult);
-            await _gridRef.R_RefreshGrid(null);
+            await _detailViewModel.GenerateBudget(loResult);
+            await _gridRefDetail.R_RefreshGrid(null);
         }
         catch (Exception ex)
         {

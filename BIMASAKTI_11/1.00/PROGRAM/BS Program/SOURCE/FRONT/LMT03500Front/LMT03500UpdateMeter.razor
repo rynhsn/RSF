@@ -1,7 +1,229 @@
 ﻿@page "/LMT03500UpdateMeter"
 @using LMT03500FrontResources
 @using R_BlazorFrontEnd.Interfaces
+@using LMT03500Common.DTOs
 @inherits R_Page
 @inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
-<h1>Tes</h1>
+<R_StackLayout>
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["LBL_BUILDING"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="7">
+                        <R_TextBox @bind-Value="@_viewModel.Header.CBUILDING_ID" 
+                                   OnChanged="OnChangeBuildingParam"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Lookup R_Before_Open_Lookup="BeforeLookupBuilding" R_After_Open_Lookup="AfterLookupBuilding">...</R_Lookup>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["LBL_AGREEMENTNO"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="7">
+                        <R_TextBox @bind-Value="@_viewModel.Header.CREF_NO" Enabled="false"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["LBL_UNITID"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="@_viewModel.Header.CUNIT_ID" Enabled="@(_viewModel.Header.CBUILDING_ID is not (null or ""))"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Lookup R_Before_Open_Lookup="BeforeLookupBuildingUnit" R_After_Open_Lookup="AfterLookupBuildingUnit" Enabled="@(_viewModel.Header.CBUILDING_ID is not (null or ""))">...</R_Lookup>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_TextBox @bind-Value="@_viewModel.Header.CUNIT_NAME" Enabled="false"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["LBL_TENANT"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="@_viewModel.Header.CTENANT_ID" Enabled="false"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6" Class="pe-2">
+                        <R_TextBox @bind-Value="@_viewModel.Header.CTENANT_NAME" Enabled="false"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_StackLayout>
+                    <R_ItemLayout>
+                        <R_Button>@_localizer["LBL_REFRESH"]</R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout Class="mb-4">
+        <R_Grid @ref="_gridRef"
+                R_ConductorSource="_conductorRef"
+                DataSource="@_viewModel.GridList"
+                Pageable
+                R_ServiceGetListRecord="GetList"
+                R_GridType="R_eGridType.Navigator"
+                AllowDeleteRow="false"
+                AllowEditRow="false"
+                AllowAddNewRow="false"
+                Width="1080px"
+                Height="270px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(LMT03500UtilityMeterDTO.CUTILITY_TYPE_NAME)" HeaderText="@_localizer["LBL_UTILITYTYPE"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
+                <R_GridTextColumn FieldName="@nameof(LMT03500UtilityMeterDTO.CCHARGES)" HeaderText="@_localizer["LBL_CHARGE"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
+                <R_GridTextColumn FieldName="@nameof(LMT03500UtilityMeterDTO.CMETER_NO)" HeaderText="@_localizer["LBL_METERNO"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
+                <R_GridTextColumn FieldName="@nameof(LMT03500UtilityMeterDTO.CSTATUS)" HeaderText="@_localizer["LBL_STATUS"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
+                <R_GridTextColumn FieldName="@nameof(LMT03500UtilityMeterDTO.CUPDATE_BY)" HeaderText="@_localizer["LBL_UPDBY"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(LMT03500UtilityMeterDTO.DUPDATE_DATE)" HeaderText="@_localizer["LBL_UPDDT"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
+                <R_GridTextColumn FieldName="@nameof(LMT03500UtilityMeterDTO.CCREATE_BY)" HeaderText="@_localizer["LBL_CRTBY"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(LMT03500UtilityMeterDTO.DCREATE_DATE)" HeaderText="@_localizer["LBL_CRTDT"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+
+    <R_ItemLayout Class="mb-4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="8">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["LBL_UTILITYTYPE"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="8">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["LBL_CHARGE"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox/>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
+                        <R_TextBox/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["LBL_METERNO"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="8">
+                        <R_TextBox/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="8">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["LBL_TAXCODE"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox/>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
+                        <R_TextBox/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["LBL_METERSTART"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_TextBox/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="8">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="6" Class="me-4">
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="6">
+                                <R_Label>@_localizer["LBL_STARTINVPERIOD"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox/>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="4">
+                                <R_TextBox/>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
+                        <R_StackLayout Row>
+                            <R_ItemLayout>
+                                <R_Label>@_localizer["LBL_INVOICINGPERIOD"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox/>
+                            </R_ItemLayout>
+                            <R_ItemLayout>
+                                <R_Label>Month(s)</R_Label>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="8">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["LBL_INVGRP"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox/>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
+                        <R_TextBox/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["LBL_STATUS"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_TextBox/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_Button>@_localizer["LBL_ADD"] @_localizer["LBL_METERNO"]</R_Button>
+            <R_Button>@_localizer["LBL_UPDATE"] @_localizer["LBL_METERNO"]</R_Button>
+            <R_Button>@_localizer["LBL_CHANGE"] @_localizer["LBL_METERNO"]</R_Button>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+</R_StackLayout>
+<R_Conductor @ref="_conductorRef"
+             R_ViewModel="_viewModel"
+             R_IsHeader
+             R_ServiceGetRecord="GetRecord"/>

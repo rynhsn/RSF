@@ -222,7 +222,13 @@ public partial class LMT03500 : R_Page
         eventArgs.TargetPageType = typeof(LMT03500CutOff);
         eventArgs.Parameter = _viewModel.PropertyId;
     }
-    
+
+    private void BeforeTabUpdateMeter(R_BeforeOpenTabPageEventArgs eventArgs)
+    {
+        eventArgs.TargetPageType = typeof(LMT03500UpdateMeter);
+        eventArgs.Parameter = _viewModel.PropertyId;
+    }
+
     private void BeforeTabDetail(R_BeforeOpenTabPageEventArgs eventArgs)
     {
         eventArgs.TargetPageType = typeof(LMT03500Detail);

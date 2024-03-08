@@ -132,7 +132,7 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
             loEx.Add(ex);
             _logger.LogError(loEx);
         }
-
+    
         loEx.ThrowExceptionIfErrors();
         _logger.LogInfo("End - Get Floor List");
         return loReturn;

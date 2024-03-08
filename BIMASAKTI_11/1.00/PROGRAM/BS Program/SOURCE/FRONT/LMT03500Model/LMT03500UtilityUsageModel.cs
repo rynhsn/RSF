@@ -15,7 +15,7 @@ namespace LMT03500Model
     {
         private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrlLM";
         private const string DEFAULT_SERVICEPOINT_NAME = "api/LMT03500UtilityUsage";
-        private const string DEFAULT_MODULE = "gl";
+        private const string DEFAULT_MODULE = "lm";
 
         public LMT03500UtilityUsageModel(
             string pcHttpClientName = DEFAULT_HTTP_NAME,
@@ -59,6 +59,7 @@ namespace LMT03500Model
         }
         
 
+        //Untuk fetch data streaming dari controller
         public async Task<List<T>> GetListStreamAsync<T>(string pcNameOf)
         {
             var loEx = new R_Exception();
@@ -85,6 +86,8 @@ namespace LMT03500Model
             return loResult;
         }
         
+        
+        //Untuk fetch data streaming dari controller dengan parameter
         public async Task<List<T>> GetListStreamAsync<T, T1>(string pcNameOf, T1 poParameter)
         {
             var loEx = new R_Exception();
@@ -112,6 +115,7 @@ namespace LMT03500Model
             return loResult;
         }
 
+        //Untuk fetch data object dari controller
         public async Task<T> GetAsync<T>(string pcNameOf) where T : R_APIResultBaseDTO
         {
             var loEx = new R_Exception();
@@ -137,6 +141,7 @@ namespace LMT03500Model
             return loResult;
         }
 
+        //Untuk fetch data object dari controller dengan parameter
         public async Task<T> GetAsync<T, T1>(string pcNameOf, T1 poParameter) where T : R_APIResultBaseDTO
         {
             var loEx = new R_Exception();

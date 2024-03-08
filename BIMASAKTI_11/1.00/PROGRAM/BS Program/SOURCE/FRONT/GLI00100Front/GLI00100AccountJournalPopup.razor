@@ -137,6 +137,9 @@
                         <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CDETAIL_DESC)" HeaderText="@_localizer["LABEL_DESC"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
                     </R_GridColumns>
                 </R_Grid>
+
+                <R_ConductorGrid @ref="@_conductorRef"
+                                 R_IsHeader/>
             </R_ItemLayout>
 
             <R_ItemLayout>
@@ -151,8 +154,5 @@
             </R_ItemLayout>
         </R_GroupBox>
     </R_StackLayout>
-    
-    <R_ConductorGrid @ref="@_conductorRef"
-                 R_IsHeader/>
 
 </R_StackLayout>

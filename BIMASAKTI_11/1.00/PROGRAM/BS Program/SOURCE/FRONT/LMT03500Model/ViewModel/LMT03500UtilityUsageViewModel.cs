@@ -68,8 +68,7 @@ namespace LMT03500Model.ViewModel
             try
             {
                 R_FrontContext.R_SetStreamingContext(LMT03500ContextConstant.CPROPERTY_ID, PropertyId);
-                var loReturn =
-                    await _model.GetListStreamAsync<LMT03500BuildingDTO>(nameof(ILMT03500UtilityUsage
+                var loReturn = await _model.GetListStreamAsync<LMT03500BuildingDTO>(nameof(ILMT03500UtilityUsage
                         .LMT03500GetBuildingListStream));
 
                 GridBuildingList = new ObservableCollection<LMT03500BuildingDTO>(loReturn);
@@ -129,15 +128,15 @@ namespace LMT03500Model.ViewModel
                 GridUtilityUsageList = new ObservableCollection<LMT03500UtilityUsageDTO>(loReturn);
                 
                 //buat dummy data 20
-                for (int i = 0; i < 20; i++)
-                {
-                    GridUtilityUsageList.Add(new LMT03500UtilityUsageDTO()
-                    {
-                        CFLOOR_ID = "Floor" + i,
-                        CUNIT_ID = "Unit" + i,
-                        CMETER_NO = "Meter" + i,
-                    });
-                }
+                // for (int i = 0; i < 20; i++)
+                // {
+                //     GridUtilityUsageList.Add(new LMT03500UtilityUsageDTO()
+                //     {
+                //         CFLOOR_ID = "Floor" + i,
+                //         CUNIT_ID = "Unit" + i,
+                //         CMETER_NO = "Meter" + i,
+                //     });
+                // }
             }
             catch (Exception ex)
             {
@@ -176,9 +175,7 @@ namespace LMT03500Model.ViewModel
                     CPROPERTY_ID = PropertyId,
                     CBUILDING_ID = Entity.CBUILDING_ID
                 };
-                var loReturn =
-                    await _model.GetAsync<LMT03500ListDTO<LMT03500FloorDTO>, LMT03500FloorParam>(
-                        nameof(ILMT03500UtilityUsage.LMT03500GetFloorList), loParam);
+                var loReturn = await _model.GetAsync<LMT03500ListDTO<LMT03500FloorDTO>, LMT03500FloorParam>(nameof(ILMT03500UtilityUsage.LMT03500GetFloorList), loParam);
                 FloorList = loReturn.Data;
                 FloorId = FloorList.FirstOrDefault()?.CFLOOR_ID;
             }

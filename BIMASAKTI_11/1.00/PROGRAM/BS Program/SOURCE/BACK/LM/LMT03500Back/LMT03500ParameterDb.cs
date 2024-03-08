@@ -19,4 +19,6 @@ public class LMT03500ParameterDb
     public string CUTILITY_PRD_FROM_DATE { get; set; }
     public string CUTILITY_PRD_TO_DATE { get; set; }
     public string CREF_NO { get; set; }
+    public string CTENANT_ID { get; set; }
+    public string CFLOOR_ID { get; set; }
 }

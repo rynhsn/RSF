@@ -108,7 +108,8 @@
                         AllowEditRow="false"
                         AllowAddNewRow="false"
                         Width="100%"
-                        Height="330px">
+                        Height="330px"
+                        R_ServiceGetRecord="@GetUtilityRecord">
                     <R_GridColumns>
                         <R_GridCheckBoxSelectColumn FieldName="@nameof(LMT03500UtilityUsageDTO.LSELECTED)" Width="30px" ShowSelectAllHeader Filterable="false" Resizable="false"/>
                         <R_GridTextColumn FieldName="@nameof(LMT03500UtilityUsageDTO.CFLOOR_ID)" HeaderText="@_localizer["LBL_FLOORID"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
@@ -143,9 +144,7 @@
                 </R_Grid>
                     
                 <R_ConductorGrid @ref="@_conductorRefUtility"
-                                 R_IsHeader
-                                 R_ViewModel="_viewModel"
-                                 R_ServiceGetRecord="@GetUtilityRecord"/>
+                                 R_ConductorParent="_conductorRef"/>
             </R_ItemLayout>
         </R_StackLayout>
         

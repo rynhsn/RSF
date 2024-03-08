@@ -19,7 +19,7 @@ namespace GLM00500Front;
 public partial class GLM00500 : R_Page
 {
     private GLM00500HeaderViewModel _viewModel = new();
-    private R_Conductor _conductorRef;
+    private R_Conductor _conductorRef = new();
     private R_Grid<GLM00500BudgetHDDTO> _gridRef = new();
     [Inject] private IClientHelper _clientHelper { get; set; }
     [Inject] private IJSRuntime JS { get; set; }

@@ -8,11 +8,11 @@
 
 
     <ItemGroup>
-        <SupportedPlatform Include="browser"/>
+        <SupportedPlatform Include="browser" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.15"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.15" />
     </ItemGroup>
 
     <ItemGroup>
@@ -40,14 +40,17 @@
         <Reference Include="BlazorClientHelper">
             <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
         </Reference>
+        <Reference Include="R_LockingFront">
+          <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_LockingFront.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\BACK\Lookup_GSCOMMON\Lookup_GSCOMMON.csproj"/>
-        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\GFF00900FRONT\GFF00900FRONT.csproj"/>
-        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj"/>
-        <ProjectReference Include="..\GSM02000FrontResources\GSM02000FrontResources.csproj"/>
-        <ProjectReference Include="..\GSM02000Model\GSM02000Model.csproj"/>
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\BACK\Lookup_GSCOMMON\Lookup_GSCOMMON.csproj" />
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\GFF00900FRONT\GFF00900FRONT.csproj" />
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj" />
+        <ProjectReference Include="..\GSM02000FrontResources\GSM02000FrontResources.csproj" />
+        <ProjectReference Include="..\GSM02000Model\GSM02000Model.csproj" />
     </ItemGroup>
 
 </Project>

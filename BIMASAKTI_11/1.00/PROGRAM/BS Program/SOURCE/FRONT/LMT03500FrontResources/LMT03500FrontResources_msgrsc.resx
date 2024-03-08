@@ -32,6 +32,12 @@
     <data name="LBL_BUILDING" xml:space="preserve">
         <value>Building</value>
     </data>
+    <data name="LBL_BUILDINGID" xml:space="preserve">
+        <value>Building Id</value>
+    </data>
+    <data name="LBL_BUILDINGNAME" xml:space="preserve">
+        <value>Building Name</value>
+    </data>
     <data name="LBL_UTILITYTYPE" xml:space="preserve">
         <value>Utility Type</value>
     </data>
@@ -72,13 +78,16 @@
         <value>Tenant</value>
     </data>
     <data name="LBL_CHARGE" xml:space="preserve">
-        <value>Tenant</value>
+        <value>Charge</value>
     </data>
     <data name="LBL_UNITID" xml:space="preserve">
         <value>Unit Id</value>
     </data>
     <data name="LBL_UNITTYPE" xml:space="preserve">
         <value>Unit Type</value>
+    </data>
+    <data name="LBL_UNITNAME" xml:space="preserve">
+        <value>Unit Name</value>
     </data>
     <data name="LBL_METERNO" xml:space="preserve">
         <value>Meter No</value>
@@ -160,6 +169,57 @@
     </data>
     <data name="LBL_CF" xml:space="preserve">
         <value>CF</value>
+    </data>
+    <data name="LBL_DOWNLOAD" xml:space="preserve">
+        <value>Download</value>
+    </data>
+    <data name="LBL_UPLOAD" xml:space="preserve">
+        <value>Upload</value>
+    </data>
+    <data name="LBL_PHOTO" xml:space="preserve">
+        <value>Photo</value>
+    </data>
+    <data name="LBL_UNDO" xml:space="preserve">
+        <value>Undo</value>
+    </data>
+    <data name="LBL_CANCEL" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="LBL_SAVE" xml:space="preserve">
+        <value>Save</value>
+    </data>
+    <data name="TAB_DETAILINFO" xml:space="preserve">
+        <value>Detail Info</value>
+    </data>
+    <data name="TAB_CUTOFF" xml:space="preserve">
+        <value>Cut Off</value>
+    </data>
+    <data name="TAB_CHANGEMETER" xml:space="preserve">
+        <value>Change Meter No</value>
+    </data>
+    <data name="LBL_ADD" xml:space="preserve">
+        <value>Add</value>
+    </data>
+    <data name="LBL_UPDATE" xml:space="preserve">
+        <value>Update</value>
+    </data>
+    <data name="LBL_CHANGE" xml:space="preserve">
+        <value>Change</value>
+    </data>
+    <data name="LBL_AGREEMENTNO" xml:space="preserve">
+        <value>Agreement No</value>
+    </data>
+    <data name="LBL_TAXCODE" xml:space="preserve">
+        <value>Tax Code</value>
+    </data>
+    <data name="LBL_STARTINVPERIOD" xml:space="preserve">
+        <value>Start Invoice Period</value>
+    </data>
+    <data name="LBL_INVOICINGPERIOD" xml:space="preserve">
+        <value>Invoicing Period</value>
+    </data>
+    <data name="LBL_INVGRP" xml:space="preserve">
+        <value>Invoice Group</value>
     </data>
 
 
