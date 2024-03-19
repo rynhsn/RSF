@@ -197,6 +197,9 @@
     <data name="TAB_CHANGEMETER" xml:space="preserve">
         <value>Change Meter No</value>
     </data>
+    <data name="TAB_UPDATEMETER" xml:space="preserve">
+        <value>Update Meter No</value>
+    </data>
     <data name="LBL_ADD" xml:space="preserve">
         <value>Add</value>
     </data>

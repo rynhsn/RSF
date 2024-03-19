@@ -163,7 +163,7 @@ public partial class LMT03500 : R_Page
             loEx.Add(ex);
         }
 
-        R_DisplayException(loEx);
+        await R_DisplayExceptionAsync(loEx);
     }
 
     private void ValidateDate(object obj)

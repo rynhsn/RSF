@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using LMT03500Common;
 using LMT03500Common.DTOs;
+using LMT03500Common.Params;
 using R_APIClient;
 using R_APICommonDTO;
 using R_BlazorFrontEnd.Exceptions;
@@ -37,7 +38,17 @@ namespace LMT03500Model
         {
             throw new NotImplementedException();
         }
-        
+
+        public LMT03500SingleDTO<LMT03500UtilityMeterDetailDTO> LMT03500GetUtilityMeterDetail(LMT03500UtilityMeterDetailParam poParam)
+        {
+            throw new NotImplementedException();
+        }
+
+        public LMT03500SingleDTO<LMT03500AgreementUtilitiesDTO> LMT03500GetAgreementUtilities(LMT03500AgreementUtilitiesParam poParam)
+        {
+            throw new NotImplementedException();
+        }
+
         //Untuk fetch data streaming dari controller  
         public async Task<List<T>> GetListStreamAsync<T>(string pcNameOf)
         {

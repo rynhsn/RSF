@@ -36,7 +36,7 @@
                         <R_Label>@_localizer["LBL_UNITID"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
-                        <R_TextBox @bind-Value="@_viewModel.Header.CUNIT_ID" Enabled="@(_viewModel.Header.CBUILDING_ID is not (null or ""))"/>
+                        <R_TextBox @bind-Value="@_viewModel.Header.CUNIT_ID" Enabled="@(_viewModel.Header.CBUILDING_ID is not (null or ""))" OnChanged="OnChangeHeader"/>
                     </R_ItemLayout>
                     <R_ItemLayout>
                         <R_Lookup R_Before_Open_Lookup="BeforeLookupBuildingUnit" R_After_Open_Lookup="AfterLookupBuildingUnit" Enabled="@(_viewModel.Header.CBUILDING_ID is not (null or ""))">...</R_Lookup>
@@ -100,7 +100,7 @@
                         <R_Label>@_localizer["LBL_UTILITYTYPE"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
-                        <R_TextBox/>
+                        <R_TextBox @bind-Value="_viewModel.Detail.CUTILITY_TYPE"/>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>
@@ -112,10 +112,10 @@
                         <R_Label>@_localizer["LBL_CHARGE"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
-                        <R_TextBox/>
+                        <R_TextBox @bind-Value="_viewModel.Detail.CCHARGES_ID"/>
                     </R_ItemLayout>
                     <R_ItemLayout col="6">
-                        <R_TextBox/>
+                        <R_TextBox @bind-Value="_viewModel.Detail.CCHARGES_NAME"/>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>

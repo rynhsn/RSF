@@ -652,5 +652,14 @@ namespace LMT03500FrontResources {
                 return ResourceManager.GetString("TAB_DETAILINFO", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Meter No.
+        /// </summary>
+        internal static string TAB_UPDATEMETER {
+            get {
+                return ResourceManager.GetString("TAB_UPDATEMETER", resourceCulture);
+            }
+        }
     }
 }

@@ -17,7 +17,7 @@ public partial class GLM00500Detail
 {
     private GLM00500DetailViewModel _detailViewModel = new();
     private R_Conductor _conductorRefDetail;
-    private R_Grid<GLM00500BudgetDTGridDTO> _gridRefDetail;
+    private R_Grid<GLM00500BudgetDTGridDTO> _gridRefDetail = new();
 
     private R_TextBox _fieldAcc { get; set; }
     private R_Lookup _lookupCenterCode { get; set; }

@@ -2,6 +2,7 @@
 using LMT03500Back;
 using LMT03500Common;
 using LMT03500Common.DTOs;
+using LMT03500Common.Params;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using R_BackEnd;
@@ -94,6 +95,74 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
         return loReturn;
     }
     
+    [HttpPost]
+    public LMT03500SingleDTO<LMT03500UtilityMeterDetailDTO> LMT03500GetUtilityMeterDetail(LMT03500UtilityMeterDetailParam poParam)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetUtilityMeterDetail));
+        _logger.LogInfo("Start - Get UtilityMeter Detail");
+        var loEx = new R_Exception();
+        var loCls = new LMT03500UpdateMeterCls();
+        var loDbParams = new LMT03500ParameterDb();
+        var loResult = new LMT03500SingleDTO<LMT03500UtilityMeterDetailDTO>();
+
+        try
+        {
+            _logger.LogInfo("Set Parameter");
+            loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbParams.CUSER_ID = R_BackGlobalVar.USER_ID;
+            loDbParams.CPROPERTY_ID = poParam.CPROPERTY_ID;
+            loDbParams.CBUILDING_ID = poParam.CBUILDING_ID;
+            loDbParams.CUNIT_ID = poParam.CUNIT_ID;
+            loDbParams.CCHARGES_TYPE = poParam.CCHARGES_TYPE;
+            loDbParams.CCHARGES_ID = poParam.CCHARGES_ID;
+
+            _logger.LogInfo("Get UtilityMeter Detail");
+            loResult.Data = loCls.GetUtilityMeterDetail(loDbParams);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        _logger.LogInfo("End - Get UtilityMeter Detail");
+        return loResult;
+    }
+    
+    [HttpPost]
+    public LMT03500SingleDTO<LMT03500AgreementUtilitiesDTO> LMT03500GetAgreementUtilities(LMT03500AgreementUtilitiesParam poParam)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetAgreementUtilities));
+        _logger.LogInfo("Start - Get Agreement Utilities");
+        var loEx = new R_Exception();
+        var loCls = new LMT03500UpdateMeterCls();
+        var loDbParams = new LMT03500ParameterDb();
+        var loResult = new LMT03500SingleDTO<LMT03500AgreementUtilitiesDTO>();
+
+        try
+        {
+            _logger.LogInfo("Set Parameter");
+            loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbParams.CUSER_ID = R_BackGlobalVar.USER_ID;
+            loDbParams.CPROPERTY_ID = poParam.CPROPERTY_ID;
+            loDbParams.CBUILDING_ID = poParam.CBUILDING_ID;
+            loDbParams.CUNIT_ID = poParam.CUNIT_ID;
+
+            _logger.LogInfo("Get Agreement Utilities");
+            loResult.Data = loCls.GetAgreementUtilities(loDbParams);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        _logger.LogInfo("End - Get Agreement Utilities");
+        return loResult;
+    }
+
     #region "Helper ListStream Functions"
 
     private async IAsyncEnumerable<T> GetStream<T>(List<T> poParameter)

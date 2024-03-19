@@ -21,4 +21,8 @@ public class LMT03500ParameterDb
     public string CREF_NO { get; set; }
     public string CTENANT_ID { get; set; }
     public string CFLOOR_ID { get; set; }
+    public string CUNIT_ID { get; set; }
+    public string CCHARGES_TYPE { get; set; }
+    public string CCHARGES_ID { get; set; }
+    
 }

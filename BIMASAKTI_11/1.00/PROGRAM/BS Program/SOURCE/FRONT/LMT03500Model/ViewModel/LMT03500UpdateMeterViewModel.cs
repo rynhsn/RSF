@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LMT03500Common;
 using LMT03500Common.DTOs;
+using LMT03500Common.Params;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
 
@@ -16,6 +17,7 @@ namespace LMT03500Model.ViewModel
         
         public ObservableCollection<LMT03500UtilityMeterDTO> GridList = new ObservableCollection<LMT03500UtilityMeterDTO>();
         public LMT03500UtilityMeterDTO Entity = new LMT03500UtilityMeterDTO();
+        public LMT03500UtilityMeterDetailDTO Detail = new LMT03500UtilityMeterDetailDTO();
 
         public async Task Init(object poParam)
         {
@@ -44,6 +46,35 @@ namespace LMT03500Model.ViewModel
                 var loReturn = await _model.GetListStreamAsync<LMT03500UtilityMeterDTO>(nameof(ILMT03500UpdateMeter
                     .LMT03500GetUtilityMeterListStream));
                 GridList = new ObservableCollection<LMT03500UtilityMeterDTO>(loReturn);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        public async Task GetAgreementTenant(LMT03500UpdateMeterHeader poParam)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loParam = new LMT03500AgreementUtilitiesParam
+                {
+                    CPROPERTY_ID = poParam.CPROPERTY_ID,
+                    CBUILDING_ID = poParam.CBUILDING_ID,
+                    CUNIT_ID = poParam.CUNIT_ID
+                };
+                
+                var loReturn = await _model.GetAsync<LMT03500SingleDTO<LMT03500AgreementUtilitiesDTO>, LMT03500AgreementUtilitiesParam>(nameof(ILMT03500UpdateMeter.LMT03500GetAgreementUtilities), loParam);
+
+                if(loReturn.Data != null)
+                {
+                    Header.CREF_NO = loReturn.Data.CREF_NO;
+                    Header.CTENANT_ID = loReturn.Data.CTENANT_ID;
+                    Header.CTENANT_NAME = loReturn.Data.CTENANT_NAME;
+                }   
             }
             catch (Exception ex)
             {

@@ -449,61 +449,61 @@ public partial class GSM02000 : R_Page
     }
     
     private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrl";
-        private const string DEFAULT_MODULE_NAME = "GS";
-        protected async override Task<bool> R_LockUnlock(R_LockUnlockEventArgs eventArgs)
+    private const string DEFAULT_MODULE_NAME = "GS";
+    protected async override Task<bool> R_LockUnlock(R_LockUnlockEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+        var llRtn = false;
+        R_LockingFrontResult loLockResult;
+
+        try
         {
-            var loEx = new R_Exception();
-            var llRtn = false;
-            R_LockingFrontResult loLockResult;
+            var loData = (GSM02000DTO)eventArgs.Data;
 
-            try
+            var loCls = new R_LockingServiceClient(pcModuleName: DEFAULT_MODULE_NAME,
+                plSendWithContext: true,    
+                plSendWithToken: true,
+                pcHttpClientName: DEFAULT_HTTP_NAME);
+
+            if (eventArgs.Mode == R_eLockUnlock.Lock)
             {
-                var loData = (GSM02000DTO)eventArgs.Data;
-
-                var loCls = new R_LockingServiceClient(pcModuleName: DEFAULT_MODULE_NAME,
-                    plSendWithContext: true,    
-                    plSendWithToken: true,
-                    pcHttpClientName: DEFAULT_HTTP_NAME);
-
-                if (eventArgs.Mode == R_eLockUnlock.Lock)
+                var loLockPar = new R_ServiceLockingLockParameterDTO
                 {
-                    var loLockPar = new R_ServiceLockingLockParameterDTO
-                    {
-                        Company_Id = _clientHelper.CompanyId,
-                        User_Id = _clientHelper.UserId,
-                        Program_Id = "GSM02000",
-                        Table_Name = "GSM_TAX",
-                        Key_Value = string.Join("|", _clientHelper.CompanyId, loData.CTAX_ID) 
-                    };
+                    Company_Id = _clientHelper.CompanyId,
+                    User_Id = _clientHelper.UserId,
+                    Program_Id = "GSM02000",
+                    Table_Name = "GSM_TAX",
+                    Key_Value = string.Join("|", _clientHelper.CompanyId, loData.CTAX_ID) 
+                };
 
-                    loLockResult = await loCls.R_Lock(loLockPar);
-                }
-                else
-                {
-                    var loUnlockPar = new R_ServiceLockingUnLockParameterDTO
-                    {
-                        Company_Id = _clientHelper.CompanyId,
-                        User_Id = _clientHelper.UserId,
-                        Program_Id = "APM00310",
-                        Table_Name = "APM_SUPPLIER",
-                        Key_Value = string.Join("|", _clientHelper.CompanyId, loData.CTAX_ID)
-                    };
-
-                    loLockResult = await loCls.R_UnLock(loUnlockPar);
-                }
-
-                llRtn = loLockResult.IsSuccess;
-                if (!loLockResult.IsSuccess && loLockResult.Exception != null)
-                    throw loLockResult.Exception;
+                loLockResult = await loCls.R_Lock(loLockPar);
             }
-            catch (Exception ex)
+            else
             {
-                loEx.Add(ex);
+                var loUnlockPar = new R_ServiceLockingUnLockParameterDTO
+                {
+                    Company_Id = _clientHelper.CompanyId,
+                    User_Id = _clientHelper.UserId,
+                    Program_Id = "APM00310",
+                    Table_Name = "APM_SUPPLIER",
+                    Key_Value = string.Join("|", _clientHelper.CompanyId, loData.CTAX_ID)
+                };
+
+                loLockResult = await loCls.R_UnLock(loUnlockPar);
             }
 
-            loEx.ThrowExceptionIfErrors();
-
-            return llRtn;
-            
+            llRtn = loLockResult.IsSuccess;
+            if (!loLockResult.IsSuccess && loLockResult.Exception != null)
+                throw loLockResult.Exception;
         }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return llRtn;
+        
+    }
 }

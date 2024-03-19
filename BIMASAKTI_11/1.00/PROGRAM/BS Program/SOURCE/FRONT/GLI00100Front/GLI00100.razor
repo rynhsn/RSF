@@ -127,13 +127,13 @@
                     Enabled="true"/>
     </R_ItemLayout>
     <R_ItemLayout>
-        <R_Button Enabled="@(_viewModel.GLAccountList.Count > 0 && _viewModel.CenterCode != null && _viewModel.BudgetNo != null)"
+        <R_Button Enabled="@(_viewModel.GLAccountList.Count > 0 && _viewModel.CenterCode != null)"
                   OnClick="RefreshAccountAnalysis">
             @_localizer["LABEL_BTNREFRESH"]
         </R_Button>
     </R_ItemLayout>
     <R_ItemLayout>
-        <R_Popup Enabled="@(_viewModel.GLAccountList.Count > 0 && _viewModel.CenterCode != null && _viewModel.BudgetNo != null)"
+        <R_Popup Enabled="@(_viewModel.GLAccountList.Count > 0 && _viewModel.CenterCode != null)"
                  R_Before_Open_Popup="BeforeOpenPopupPrint">
             @_localizer["LABEL_BTNPRINT"]
         </R_Popup>
