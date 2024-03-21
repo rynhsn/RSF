@@ -241,7 +241,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
         {
             R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CTRANSACTION_CODE, poParameter.CTRANS_CODE);
             R_FrontContext.R_SetStreamingContext(GSM05000ContextConstant.CDEPT_CODE, poParameter.CDEPT_CODE);
-            var loReturn = await _Model.GSM05000GetUserSequenceDataModelStream();
+            var loReturn = await _Model.GetUserSequenceDataModelStream();
             //urutkan berdasarkan sequence
             ApproverList = new ObservableCollection<GSM05000ApprovalUserDTO>(loReturn.OrderBy(x => x.ISEQUENCE));
             SwapDataList = loReturn.OrderBy(x => x.ISEQUENCE).ToList();
@@ -323,7 +323,7 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
 
         try
         {
-            await _Model.GSM05000UpdateSequenceModel(poEntity);
+            await _Model.UpdateSequenceModel(poEntity);
         }
         catch (Exception ex)
         {
@@ -350,6 +350,26 @@ public class GSM05000ApprovalUserViewModel : R_ViewModel<GSM05000ApprovalUserDTO
         }
 
         loEx.ThrowExceptionIfErrors();
+    }
+    
+    public async Task<GSM05000ApprovalDepartmentDTO> LookupDepartmentRecord(GSM05000SearchTextDTO poText)
+    {
+        var loEx = new R_Exception();
+        GSM05000ApprovalDepartmentDTO loReturn = null;
+
+        try
+        {
+            var loResult = await _Model.LookupApprovalDepartmentRecordAsync(poText);
+            loReturn = loResult.Data;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return loReturn;
     }
 
     public async Task CopyTo(GSM05000ApprovalCopyDTO poEntity)

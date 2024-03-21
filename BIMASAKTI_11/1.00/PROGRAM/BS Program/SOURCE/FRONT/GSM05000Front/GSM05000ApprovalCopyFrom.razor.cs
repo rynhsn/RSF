@@ -3,6 +3,7 @@ using GSM05000Model.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Exceptions;
+using R_BlazorFrontEnd.Helpers;
 
 namespace GSM05000Front;
 
@@ -27,6 +28,39 @@ public partial class GSM05000ApprovalCopyFrom : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
+    private async Task OnLostFocus()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var param = new GSM05000SearchTextDTO()
+            {
+                CSEARCH_TEXT = _viewModel.TempEntityForCopy.CDEPT_CODE_FROM
+            };
+
+            var loResult = await _viewModel.LookupDepartmentRecord(param);
+
+            if (loResult == null)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(
+                    typeof(GSM05000FrontResources.Resources_Dummy_Class),
+                    "_ErrLookupDept"));
+                _viewModel.TempEntityForCopy.CDEPT_NAME_FROM= "";
+                goto EndBlock;
+            }
+
+            _viewModel.TempEntityForCopy.CDEPT_NAME_FROM = loResult.CDEPT_NAME;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        EndBlock:
+        await R_DisplayExceptionAsync(loEx);
+    }
+    
     private Task BeforeOpenLookup(R_BeforeOpenLookupEventArgs eventArgs)
     {
         eventArgs.Parameter = _viewModel.TempEntityForCopy;

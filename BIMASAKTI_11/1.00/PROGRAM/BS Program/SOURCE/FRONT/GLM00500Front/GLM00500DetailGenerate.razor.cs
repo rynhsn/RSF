@@ -3,6 +3,7 @@ using GLM00500Common.DTOs;
 using GLM00500Model.ViewModel;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
+using Lookup_GSModel.ViewModel;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Exceptions;
@@ -60,6 +61,41 @@ public partial class GLM00500DetailGenerate
         loEx.ThrowExceptionIfErrors();
     }
 
+    private async Task OnLostFocusFromAccount()
+    {
+        var loEx = new R_Exception();
+
+        LookupGSL00510ViewModel loLookupViewModel = new LookupGSL00510ViewModel();
+        try
+        {
+            var param = new GSL00510ParameterDTO
+            {
+                CGLACCOUNT_TYPE = _viewModel.SelectedAccountType,
+                CSEARCH_TEXT = _viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NO
+            };
+
+            var loResult = await loLookupViewModel.GetCOA(param);
+
+            if (loResult == null)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(
+                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                    "_ErrLookup01"));
+                _viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NAME = "";
+                goto EndBlock;
+            }
+
+            _viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        EndBlock:
+        await R_DisplayExceptionAsync(loEx);
+    }
+
     private void BeforeOpenLookupFromAccount(R_BeforeOpenLookupEventArgs eventArgs)
     {
         var loParameter = new GSL00510ParameterDTO
@@ -80,6 +116,41 @@ public partial class GLM00500DetailGenerate
         _viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NAME = loTempResult.CGLACCOUNT_NAME;
     }
 
+    private async Task OnLostFocusToAccount()
+    {
+        var loEx = new R_Exception();
+
+        LookupGSL00510ViewModel loLookupViewModel = new LookupGSL00510ViewModel();
+        try
+        {
+            var param = new GSL00510ParameterDTO
+            {
+                CGLACCOUNT_TYPE = _viewModel.SelectedAccountType,
+                CSEARCH_TEXT = _viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NO
+            };
+
+            var loResult = await loLookupViewModel.GetCOA(param);
+
+            if (loResult == null)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(
+                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                    "_ErrLookup01"));
+                _viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NAME = "";
+                goto EndBlock;
+            }
+
+            _viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        EndBlock:
+        await R_DisplayExceptionAsync(loEx);
+    }
+    
     private void BeforeOpenLookupToAccount(R_BeforeOpenLookupEventArgs eventArgs)
     {
         var loParameter = new GSL00510ParameterDTO
@@ -100,6 +171,40 @@ public partial class GLM00500DetailGenerate
         _viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NAME = loTempResult.CGLACCOUNT_NAME;
     }
 
+    private async Task OnLostFocusFromCenter()
+    {
+        var loEx = new R_Exception();
+
+        LookupGSL00900ViewModel loLookupViewModel = new LookupGSL00900ViewModel();
+        try
+        {
+            var param = new GSL00900ParameterDTO
+            {
+                CSEARCH_TEXT = _viewModel.GenerateAccountBudget.CFROM_CENTER_CODE
+            };
+
+            var loResult = await loLookupViewModel.GetCenter(param);
+
+            if (loResult == null)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(
+                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                    "_ErrLookup01"));
+                _viewModel.GenerateAccountBudget.CFROM_CENTER_NAME = "";
+                goto EndBlock;
+            }
+
+            _viewModel.GenerateAccountBudget.CFROM_CENTER_NAME = loResult.CCENTER_NAME;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        EndBlock:
+        await R_DisplayExceptionAsync(loEx);
+    }
+    
     private void BeforeOpenLookupFromCenter(R_BeforeOpenLookupEventArgs eventArgs)
     {
         var loParameter = new GSL00900ParameterDTO();
@@ -117,6 +222,40 @@ public partial class GLM00500DetailGenerate
         _viewModel.GenerateAccountBudget.CFROM_CENTER_NAME = loTempResult.CCENTER_NAME;
     }
 
+    private async Task OnLostFocusToCenter()
+    {
+        var loEx = new R_Exception();
+
+        LookupGSL00900ViewModel loLookupViewModel = new LookupGSL00900ViewModel();
+        try
+        {
+            var param = new GSL00900ParameterDTO
+            {
+                CSEARCH_TEXT = _viewModel.GenerateAccountBudget.CTO_CENTER_CODE
+            };
+
+            var loResult = await loLookupViewModel.GetCenter(param);
+
+            if (loResult == null)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(
+                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                    "_ErrLookup01"));
+                _viewModel.GenerateAccountBudget.CTO_CENTER_NAME = "";
+                goto EndBlock;
+            }
+
+            _viewModel.GenerateAccountBudget.CTO_CENTER_NAME = loResult.CCENTER_NAME;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        EndBlock:
+        await R_DisplayExceptionAsync(loEx);
+    }
+    
     private void BeforeOpenLookupToCenter(R_BeforeOpenLookupEventArgs eventArgs)
     {
         var loParameter = new GSL00900ParameterDTO();

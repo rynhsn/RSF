@@ -204,4 +204,7 @@
     <data name="Err09" xml:space="preserve">
         <value>You should fill Transaction Short Name</value>
     </data>
+    <data name="_ErrLookupDept" xml:space="preserve">
+        <value>Not found data by search text!</value>
+    </data>
 </root>

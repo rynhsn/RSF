@@ -11,7 +11,7 @@ using R_BusinessObjectFront;
 
 namespace LMT03500Model
 {
-    public class LMT03500UpdateMeterModel : R_BusinessObjectServiceClientBase<LMT03500UtilityMeterDTO>,
+    public class LMT03500UpdateMeterModel : R_BusinessObjectServiceClientBase<LMT03500UtilityMeterDetailDTO>,
         ILMT03500UpdateMeter
     {
         private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrlLM";
@@ -45,6 +45,16 @@ namespace LMT03500Model
         }
 
         public LMT03500SingleDTO<LMT03500AgreementUtilitiesDTO> LMT03500GetAgreementUtilities(LMT03500AgreementUtilitiesParam poParam)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LMT03500UpdateMeterNo(LMT03500UpdateChangeMeterNoParam poParam)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LMT03500ChangeMeterNo(LMT03500UpdateChangeMeterNoParam poParam)
         {
             throw new NotImplementedException();
         }
@@ -155,6 +165,30 @@ namespace LMT03500Model
             loEx.ThrowExceptionIfErrors();
 
             return loResult;
+        }
+        
+        //Untuk execute query non object (T hanya syarat untuk memenuhi generic)
+        public async Task ExecuteAsync<T, T1>(string pcNameOf, T1 poParameter) where T : R_APIResultBaseDTO
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+                await R_HTTPClientWrapper.R_APIRequestObject<T, T1>(
+                        _RequestServiceEndPoint,
+                        pcNameOf,
+                        poParameter,
+                        DEFAULT_MODULE,
+                        _SendWithContext,
+                        _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
         }
     }
 }

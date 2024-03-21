@@ -28,6 +28,7 @@ namespace GSM05000Common
         void GSM05000UpdateSequence(List<GSM05000ApprovalUserDTO> poEntity);
         // IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentStream(GSM05000DeptCodeParamsDTO poParams);
         IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentStream();
+        GSM05000SingleDTO<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentRecord(GSM05000SearchTextDTO poText);
         GSM05000SingleDTO<string> GSM05000CopyToApproval(GSM05000CopyToParamsDTO poParams);
         GSM05000SingleDTO<string> GSM05000CopyFromApproval(GSM05000CopyFromParamsDTO poParams);
     }

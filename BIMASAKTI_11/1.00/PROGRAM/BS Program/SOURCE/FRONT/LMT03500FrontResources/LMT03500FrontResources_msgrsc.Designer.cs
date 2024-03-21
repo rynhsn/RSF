@@ -78,6 +78,15 @@ namespace LMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agreement Unit(s).
+        /// </summary>
+        internal static string LBL_AGREEMENTUNITS {
+            get {
+                return ResourceManager.GetString("LBL_AGREEMENTUNITS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Floor.
         /// </summary>
         internal static string LBL_ALLFLOOR {
@@ -321,6 +330,15 @@ namespace LMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to From Meter No.
+        /// </summary>
+        internal static string LBL_FROMMETERNO {
+            get {
+                return ResourceManager.GetString("LBL_FROMMETERNO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invoice Group.
         /// </summary>
         internal static string LBL_INVGRP {
@@ -393,6 +411,24 @@ namespace LMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Month(s).
+        /// </summary>
+        internal static string LBL_MONTHS {
+            get {
+                return ResourceManager.GetString("LBL_MONTHS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        internal static string LBL_OK {
+            get {
+                return ResourceManager.GetString("LBL_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Photo.
         /// </summary>
         internal static string LBL_PHOTO {
@@ -458,9 +494,9 @@ namespace LMT03500FrontResources {
         /// <summary>
         ///   Looks up a localized string similar to Start Invoice Period.
         /// </summary>
-        internal static string LBL_STARTINVPERIOD {
+        internal static string LBL_STARTINVPRD {
             get {
-                return ResourceManager.GetString("LBL_STARTINVPERIOD", resourceCulture);
+                return ResourceManager.GetString("LBL_STARTINVPRD", resourceCulture);
             }
         }
         
@@ -497,6 +533,15 @@ namespace LMT03500FrontResources {
         internal static string LBL_TO {
             get {
                 return ResourceManager.GetString("LBL_TO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Meter No.
+        /// </summary>
+        internal static string LBL_TOMETERNO {
+            get {
+                return ResourceManager.GetString("LBL_TOMETERNO", resourceCulture);
             }
         }
         

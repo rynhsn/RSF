@@ -42,11 +42,11 @@
         <R_Label>@_localizer["LABEL_FROMACC"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
-        <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NO"/>
+        <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NO" OnLostFocus="OnLostFocusFromAccount"/>
     </R_ItemLayout>
     <R_Lookup
         R_Before_Open_Lookup="BeforeOpenLookupFromAccount"
-        R_After_Open_Lookup="AfterOpenLookupFromAccount"/>
+        R_After_Open_Lookup="AfterOpenLookupFromAccount">...</R_Lookup>
     <R_ItemLayout col="6">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NAME" Enabled="false" CharacterCasing="R_eCharacterCasing.Upper"/>
     </R_ItemLayout>
@@ -56,11 +56,11 @@
         <R_Label>@_localizer["LABEL_TOACC"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
-        <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NO"/>
+        <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NO" OnLostFocus="OnLostFocusToAccount"/>
     </R_ItemLayout>
     <R_Lookup
         R_Before_Open_Lookup="BeforeOpenLookupToAccount"
-        R_After_Open_Lookup="AfterOpenLookupToAccount"/>
+        R_After_Open_Lookup="AfterOpenLookupToAccount">...</R_Lookup>
     <R_ItemLayout col="6">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NAME" Enabled="false" CharacterCasing="R_eCharacterCasing.Upper"/>
     </R_ItemLayout>
@@ -70,11 +70,11 @@
         <R_Label>@_localizer["LABEL_FROMCENTER"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
-        <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CFROM_CENTER_CODE" CharacterCasing="R_eCharacterCasing.Upper"/>
+        <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CFROM_CENTER_CODE" CharacterCasing="R_eCharacterCasing.Upper" OnLostFocus="OnLostFocusFromCenter"/>
     </R_ItemLayout>
     <R_Lookup
         R_Before_Open_Lookup="BeforeOpenLookupFromCenter"
-        R_After_Open_Lookup="AfterOpenLookupFromCenter"/>
+        R_After_Open_Lookup="AfterOpenLookupFromCenter">...</R_Lookup>
     <R_ItemLayout col="6">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CFROM_CENTER_NAME" Enabled="false" CharacterCasing="R_eCharacterCasing.Upper"/>
     </R_ItemLayout>
@@ -84,11 +84,11 @@
         <R_Label>@_localizer["LABEL_TOCENTER"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
-        <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CTO_CENTER_CODE" CharacterCasing="R_eCharacterCasing.Upper"/>
+        <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CTO_CENTER_CODE" CharacterCasing="R_eCharacterCasing.Upper" OnLostFocus="OnLostFocusToCenter"/>
     </R_ItemLayout>
     <R_Lookup
         R_Before_Open_Lookup="BeforeOpenLookupToCenter"
-        R_After_Open_Lookup="AfterOpenLookupToCenter"/>
+        R_After_Open_Lookup="AfterOpenLookupToCenter">...</R_Lookup>
     <R_ItemLayout col="6">
         <R_TextBox @bind-Value="_viewModel.GenerateAccountBudget.CTO_CENTER_NAME" Enabled="false" CharacterCasing="R_eCharacterCasing.Upper"/>
     </R_ItemLayout>
@@ -189,6 +189,7 @@
         <R_Button OnClick="ClickProcess">@_localizer["LABEL_BTNPROCESS"]</R_Button>
     </R_ItemLayout>
     <R_ItemLayout>
+        
         <R_Button OnClick="ClickCancel">@_localizer["LABEL_BTNCANCEL"]</R_Button>
     </R_ItemLayout>
 </R_StackLayout>

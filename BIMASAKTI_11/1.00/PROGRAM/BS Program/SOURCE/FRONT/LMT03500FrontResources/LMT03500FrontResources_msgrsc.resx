@@ -185,6 +185,9 @@
     <data name="LBL_CANCEL" xml:space="preserve">
         <value>Cancel</value>
     </data>
+    <data name="LBL_OK" xml:space="preserve">
+        <value>Ok</value>
+    </data>
     <data name="LBL_SAVE" xml:space="preserve">
         <value>Save</value>
     </data>
@@ -212,10 +215,13 @@
     <data name="LBL_AGREEMENTNO" xml:space="preserve">
         <value>Agreement No</value>
     </data>
+    <data name="LBL_AGREEMENTUNITS" xml:space="preserve">
+        <value>Agreement Unit(s)</value>
+    </data>
     <data name="LBL_TAXCODE" xml:space="preserve">
         <value>Tax Code</value>
     </data>
-    <data name="LBL_STARTINVPERIOD" xml:space="preserve">
+    <data name="LBL_STARTINVPRD" xml:space="preserve">
         <value>Start Invoice Period</value>
     </data>
     <data name="LBL_INVOICINGPERIOD" xml:space="preserve">
@@ -223,6 +229,15 @@
     </data>
     <data name="LBL_INVGRP" xml:space="preserve">
         <value>Invoice Group</value>
+    </data>
+    <data name="LBL_MONTHS" xml:space="preserve">
+        <value>Month(s)</value>
+    </data>
+    <data name="LBL_TOMETERNO" xml:space="preserve">
+        <value>To Meter No</value>
+    </data>
+    <data name="LBL_FROMMETERNO" xml:space="preserve">
+        <value>From Meter No</value>
     </data>
 
 

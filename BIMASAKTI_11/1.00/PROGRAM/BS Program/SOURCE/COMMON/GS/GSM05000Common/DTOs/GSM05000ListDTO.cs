@@ -12,4 +12,9 @@ namespace GSM05000Common.DTOs
     {
         public T Data { get; set; }
     }
+
+    public class GSM05000SearchTextDTO
+    {
+        public string CSEARCH_TEXT { get; set; } = "";
+    }
 }

@@ -417,6 +417,46 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
     }
 
     [HttpPost]
+    public GSM05000SingleDTO<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentRecord(GSM05000SearchTextDTO poText)
+    {
+        using Activity activity = _activitySource.StartActivity(nameof(GSM05000LookupApprovalDepartmentRecord));
+        _logger.LogInfo("Start Start - Lookup Approval Department Record");
+        
+        var loEx = new R_Exception();
+        GSM05000SingleDTO<GSM05000ApprovalDepartmentDTO> loReturn = new();
+        GSM05000ParameterDb loDbPar;
+        GSM05000ApprovalUserCls loCls;
+        
+        try
+        {
+            _logger.LogInfo("Set Parameter");
+            loDbPar = new GSM05000ParameterDb
+            {
+                CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
+                CUSER_ID = R_BackGlobalVar.USER_ID
+            };
+            
+            loCls = new GSM05000ApprovalUserCls();
+            
+            _logger.LogInfo("Call Back Method - Lookup Approval Department Record");
+            var loResult = loCls.GSM05000LookupApprovalDepartment(loDbPar);
+
+            _logger.LogInfo("Filter Search by text - Lookup Approval Department Record");
+            loReturn.Data = loResult.Find(x => x.CDEPT_CODE.Trim() == poText.CSEARCH_TEXT);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        _logger.LogInfo("End GSL00100GetSalesTax");
+        return loReturn;
+    }
+
+    [HttpPost]
     public GSM05000SingleDTO<string> GSM05000CopyToApproval(GSM05000CopyToParamsDTO poParams)
     {
         using var loActivity = _activitySource.StartActivity(nameof(GSM05000CopyToApproval));

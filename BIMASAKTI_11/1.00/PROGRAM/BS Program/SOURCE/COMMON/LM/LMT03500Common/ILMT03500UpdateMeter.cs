@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using LMT03500Common.DTOs;
 using LMT03500Common.Params;
+using R_CommonFrontBackAPI;
 
 namespace LMT03500Common
 {
@@ -12,5 +13,7 @@ namespace LMT03500Common
             LMT03500UtilityMeterDetailParam poParam);
         LMT03500SingleDTO<LMT03500AgreementUtilitiesDTO> LMT03500GetAgreementUtilities(
             LMT03500AgreementUtilitiesParam poParam);
+        void LMT03500UpdateMeterNo(LMT03500UpdateChangeMeterNoParam poParam);
+        void LMT03500ChangeMeterNo(LMT03500UpdateChangeMeterNoParam poParam);
     }
 }

@@ -18,7 +18,7 @@ public partial class GSM05000ApprovalDeptLookup
         try
         {
             // _viewModel.TempEntityForCopy = (GSM05000ApprovalCopyDTO)poParameter;
-            _grid.R_RefreshGrid(poParameter);
+            await _grid.R_RefreshGrid(poParameter);
         }
         catch (Exception ex)
         {
@@ -47,7 +47,7 @@ public partial class GSM05000ApprovalDeptLookup
         
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     public async Task Button_OnClickOkAsync()
     {
         var loData = _grid.GetCurrentData();

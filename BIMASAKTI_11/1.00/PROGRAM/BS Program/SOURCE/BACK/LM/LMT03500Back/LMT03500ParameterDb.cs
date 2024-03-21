@@ -24,5 +24,11 @@ public class LMT03500ParameterDb
     public string CUNIT_ID { get; set; }
     public string CCHARGES_TYPE { get; set; }
     public string CCHARGES_ID { get; set; }
-    
+    public string CMETER_NO { get; set; }
+    public int IMETER_START { get; set; }
+    public string CSTART_INV_PRD { get; set; }
+    public string CSTART_DATE { get; set; }
+    public int IFROM_METER_NO { get; set; }
+    public int IMETER_END { get; set; }
+    public int ITO_METER_NO { get; set; }
 }

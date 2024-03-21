@@ -131,7 +131,7 @@ public class GSM05000ApprovalUserModel : R_BusinessObjectServiceClientBase<GSM05
         return loResult;
     }
 
-    public async Task<List<GSM05000ApprovalUserDTO>> GSM05000GetUserSequenceDataModelStream()
+    public async Task<List<GSM05000ApprovalUserDTO>> GetUserSequenceDataModelStream()
     {
         var loEx = new R_Exception();
         List<GSM05000ApprovalUserDTO> loResult = null;
@@ -156,7 +156,7 @@ public class GSM05000ApprovalUserModel : R_BusinessObjectServiceClientBase<GSM05
         return loResult;
     }
 
-    public async Task GSM05000UpdateSequenceModel(List<GSM05000ApprovalUserDTO> poEntity)
+    public async Task UpdateSequenceModel(List<GSM05000ApprovalUserDTO> poEntity)
     {
         var loEx = new R_Exception();
 
@@ -195,6 +195,33 @@ public class GSM05000ApprovalUserModel : R_BusinessObjectServiceClientBase<GSM05
                 DEFAULT_MODULE,
                 _SendWithContext,
                 _SendWithToken);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return loResult;
+    }
+    
+    public async Task<GSM05000SingleDTO<GSM05000ApprovalDepartmentDTO>> LookupApprovalDepartmentRecordAsync(GSM05000SearchTextDTO poParams)
+    {
+        var loEx = new R_Exception();
+        GSM05000SingleDTO<GSM05000ApprovalDepartmentDTO> loResult = null;
+
+        try
+        {
+            R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+            loResult =
+                await R_HTTPClientWrapper.R_APIRequestObject<GSM05000SingleDTO<GSM05000ApprovalDepartmentDTO>, GSM05000SearchTextDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGSM05000ApprovalUser.GSM05000LookupApprovalDepartmentRecord),
+                    poParams,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
         }
         catch (Exception ex)
         {
@@ -292,6 +319,11 @@ public class GSM05000ApprovalUserModel : R_BusinessObjectServiceClientBase<GSM05
 
     // public IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentStream(GSM05000DeptCodeParamsDTO poParams)
     public IAsyncEnumerable<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentStream()
+    {
+        throw new NotImplementedException();
+    }
+
+    public GSM05000SingleDTO<GSM05000ApprovalDepartmentDTO> GSM05000LookupApprovalDepartmentRecord(GSM05000SearchTextDTO poText)
     {
         throw new NotImplementedException();
     }

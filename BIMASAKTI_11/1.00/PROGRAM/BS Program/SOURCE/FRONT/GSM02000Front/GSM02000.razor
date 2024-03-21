@@ -10,7 +10,7 @@
 <R_StackLayout Spacing="3" Class="mb-4">
     <R_StackLayout>
         <R_Grid @ref="@_gridRef"
-                DataSource="@_GSM02000ViewModel.GridList"
+                DataSource="@_viewModel.GridList"
                 Pageable
                 PageSize="15"
                 R_ConductorSource="@_conductorRef"
@@ -43,19 +43,19 @@
             <R_Label>@_localizer["LABEL_TAXID"]*</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
-            <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAX_ID"
+            <R_TextBox @bind-Value="@_viewModel.Data.CTAX_ID"
                        R_ConductorSource="@_conductorRef"
                        R_EnableAdd="true"
                        R_EnableEdit="false" MaxLength="20"/>
         </R_ItemLayout>
         <R_ItemLayout col="4">
-            <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAX_NAME"
+            <R_TextBox @bind-Value="@_viewModel.Data.CTAX_NAME"
                        R_ConductorSource="@_conductorRef"
                        R_EnableAdd="true"
                        R_EnableEdit="true" MaxLength="100"/>
         </R_ItemLayout>
         <R_ItemLayout col="4">
-            <R_CheckBox @bind-Value="@_GSM02000ViewModel.Data.LACTIVE"
+            <R_CheckBox @bind-Value="@_viewModel.Data.LACTIVE"
                         R_ConductorSource="@_conductorRef"
                         Enabled="false"/>
             <R_Label>@_localizer["LABEL_ACTIVE"]</R_Label>
@@ -68,7 +68,7 @@
         </R_ItemLayout>
 
         <R_ItemLayout col="6">
-            <R_TextArea @bind-Value="@_GSM02000ViewModel.Data.CDESCRIPTION"
+            <R_TextArea @bind-Value="@_viewModel.Data.CDESCRIPTION"
                         R_ConductorSource="@_conductorRef"
                         R_EnableAdd="true"
                         R_EnableEdit="true"/>
@@ -81,8 +81,8 @@
         </R_ItemLayout>
 
         <R_ItemLayout col="2" Class="me-5">
-            <R_ComboBox Data="@_GSM02000ViewModel.RoundingModeList"
-                        @bind-Value="@_GSM02000ViewModel.Data.CROUNDING_MODE"
+            <R_ComboBox Data="@_viewModel.RoundingModeList"
+                        @bind-Value="@_viewModel.Data.CROUNDING_MODE"
                         ValueField="@nameof(GSM02000RoundingDTO.CCODE)"
                         TextField="@nameof(GSM02000RoundingDTO.CDESCRIPTION)"
                         R_ConductorSource="@_conductorRef"
@@ -96,9 +96,9 @@
         </R_ItemLayout>
 
         <R_ItemLayout col="1">
-            <R_NumericTextBox @bind-Value="@_GSM02000ViewModel.Data.IROUNDING"
+            <R_NumericTextBox @bind-Value="@_viewModel.Data.IROUNDING"
                               R_ConductorSource="@_conductorRef"
-                              Enabled="@(_GSM02000ViewModel.Data.CROUNDING_MODE != "03" && _conductorRef.R_ConductorMode != R_eConductorMode.Normal)"
+                              Enabled="@(_viewModel.Data.CROUNDING_MODE != "03" && _conductorRef.R_ConductorMode != R_eConductorMode.Normal)"
                               R_EnableAdd="true"
                               R_EnableEdit="true"
                               Min="-2"
@@ -116,18 +116,21 @@
         </R_ItemLayout>
 
         <R_ItemLayout col="2">
-            <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAXIN_GLACCOUNT_NO"
+            <R_TextBox @bind-Value="@_viewModel.Data.CTAXIN_GLACCOUNT_NO"
                        R_ConductorSource="@_conductorRef"
                        R_EnableAdd="true"
-                       R_EnableEdit="true"/>
+                       R_EnableEdit="true"
+                       OnLostFocus="OnLostFocusGLAccountIn"/>
         </R_ItemLayout>
         
-        <R_Lookup @ref="@R_LookupBtnIn" 
+        <R_Lookup @ref="@R_LookupBtnIn"
                   R_Before_Open_Lookup="@BeforeOpenLookupIn"
-                  R_After_Open_Lookup="@AfterOpenLookupIn"/>
+                  R_After_Open_Lookup="@AfterOpenLookupIn">
+            ...
+        </R_Lookup>
 
         <R_ItemLayout col="4">
-            <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAXIN_GLACCOUNT_NAME"
+            <R_TextBox @bind-Value="@_viewModel.Data.CTAXIN_GLACCOUNT_NAME"
                        R_ConductorSource="@_conductorRef"
                        Enabled="false"/>
         </R_ItemLayout>
@@ -139,17 +142,21 @@
         </R_ItemLayout>
 
         <R_ItemLayout col="2">
-            <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAXOUT_GLACCOUNT_NO"
+            <R_TextBox @bind-Value="@_viewModel.Data.CTAXOUT_GLACCOUNT_NO"
                        R_ConductorSource="@_conductorRef"
                        R_EnableAdd="true"
-                       R_EnableEdit="true"/>
+                       R_EnableEdit="true"
+                       OnLostFocus="OnLostFocusGLAccountOut"/>
         </R_ItemLayout>
-        
-        <R_Lookup @ref="@R_LookupBtnOut" 
-                  R_Before_Open_Lookup="@BeforeOpenLookupOut" R_After_Open_Lookup="@AfterOpenLookupOut"/>
+    
+        <R_Lookup @ref="@R_LookupBtnOut"
+                  R_Before_Open_Lookup="@BeforeOpenLookupOut"
+                  R_After_Open_Lookup="@AfterOpenLookupOut">
+            ...
+        </R_Lookup>
 
         <R_ItemLayout col="4">
-            <R_TextBox @bind-Value="@_GSM02000ViewModel.Data.CTAXOUT_GLACCOUNT_NAME"
+            <R_TextBox @bind-Value="@_viewModel.Data.CTAXOUT_GLACCOUNT_NAME"
                        R_ConductorSource="@_conductorRef"
                        Enabled="false"/>
         </R_ItemLayout>
@@ -189,7 +196,7 @@
 </R_StackLayout>
 
 <R_Conductor @ref="@_conductorRef"
-             R_ViewModel="@_GSM02000ViewModel"
+             R_ViewModel="@_viewModel"
              R_IsHeader="true"
              R_ServiceGetRecord="@Conductor_ServiceGetRecord"
              R_SetOther="SetOther"

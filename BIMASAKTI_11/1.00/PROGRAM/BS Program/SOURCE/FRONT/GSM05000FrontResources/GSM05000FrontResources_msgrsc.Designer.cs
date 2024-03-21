@@ -60,6 +60,15 @@ namespace GSM05000FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not found data by search text!.
+        /// </summary>
+        internal static string _ErrLookupDept {
+            get {
+                return ResourceManager.GetString("_ErrLookupDept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string BTN_CANCEL {

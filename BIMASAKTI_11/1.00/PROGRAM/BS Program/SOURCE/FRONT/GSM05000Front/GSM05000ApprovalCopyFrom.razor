@@ -5,27 +5,27 @@
 @attribute [R_Page(Title = "Copy From Process")];
 @inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
-<R_StackLayout Row Spacing="2" Class="mb-1">
+<R_StackLayout Row Spacing="1" Class="mb-1">
     <R_ItemLayout col="2">
         <R_Label>@_localizer["LABEL_DEPARTMENT"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="@_viewModel.TempEntityForCopy.CDEPT_CODE" Enabled="false"/>
     </R_ItemLayout>
-    <R_ItemLayout col="7">
+    <R_ItemLayout col="8" Class="pe-2">
         <R_TextBox @bind-Value="@_viewModel.TempEntityForCopy.CDEPT_NAME" Enabled="false"/>
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_StackLayout Row Spacing="2" Class="mb-3">
+<R_StackLayout Row Spacing="1" Class="mb-3">
     <R_ItemLayout col="2">
         <R_Label>@_localizer["LABEL_COPYFROM"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
-        <R_TextBox @bind-Value="@_viewModel.TempEntityForCopy.CDEPT_CODE_FROM"/>
+        <R_TextBox @bind-Value="@_viewModel.TempEntityForCopy.CDEPT_CODE_FROM" OnLostFocus="OnLostFocus"/>
     </R_ItemLayout>
-    <R_Lookup R_Before_Open_Lookup="BeforeOpenLookup" R_After_Open_Lookup="AfterOpenLookup"></R_Lookup>
-    <R_ItemLayout col="6">
+    <R_Lookup R_Before_Open_Lookup="BeforeOpenLookup" R_After_Open_Lookup="AfterOpenLookup">...</R_Lookup>
+    <R_ItemLayout col="7">
         <R_TextBox @bind-Value="@_viewModel.TempEntityForCopy.CDEPT_NAME_FROM" Enabled="false"/>
     </R_ItemLayout>
 </R_StackLayout>

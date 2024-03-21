@@ -2,6 +2,7 @@
 using GLI00100Model.ViewModel;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
+using Lookup_GSModel.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
@@ -69,6 +70,41 @@ public partial class GLI00100 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
+    private async Task OnLostFocusCenter()
+    {
+        var loEx = new R_Exception();
+
+        LookupGSL00900ViewModel loLookupViewModel = new LookupGSL00900ViewModel();
+        try
+        {
+            var param = new GSL00900ParameterDTO
+            {
+                CSEARCH_TEXT = _viewModel.CenterCode
+            };
+
+            GSL00900DTO loResult = null;
+            if(_viewModel.CenterCode is not (null or ""))
+                loResult = await loLookupViewModel.GetCenter(param);
+
+            if (loResult is null)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(
+                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                    "_ErrLookup01"));
+                _viewModel.CenterName = "";
+                goto EndBlock;
+            }
+
+            _viewModel.CenterName = loResult.CCENTER_NAME;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        EndBlock:
+        await R_DisplayExceptionAsync(loEx);
+    }
     private void BeforeOpenLookupCenter(R_BeforeOpenLookupEventArgs eventArgs)
     {
         var loParameter = new GSL00900ParameterDTO();

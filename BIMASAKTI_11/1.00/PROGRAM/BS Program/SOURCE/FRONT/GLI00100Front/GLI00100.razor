@@ -105,10 +105,11 @@
         <R_Label>@_localizer["LABEL_CENTER"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="3">
-        <R_TextBox @bind-Value="_viewModel.CenterCode" Enabled="false"/>
+        <R_TextBox @bind-Value="_viewModel.CenterCode" Enabled OnLostFocus="OnLostFocusCenter"/>
     </R_ItemLayout>
     <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupCenter"
               R_After_Open_Lookup="AfterOpenLookupCenter">
+        ...
     </R_Lookup>
     <R_ItemLayout col="4">
         <R_TextBox @bind-Value="_viewModel.CenterName" Enabled="false"/>

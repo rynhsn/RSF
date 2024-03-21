@@ -1,9 +1,11 @@
 ﻿using LMT03500Common.DTOs;
 using LMT03500Model.ViewModel;
+using Microsoft.AspNetCore.Components.Web;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Exceptions;
+using R_BlazorFrontEnd.Helpers;
 
 namespace LMT03500Front;
 
@@ -67,7 +69,22 @@ public partial class LMT03500UpdateMeter : R_Page
         {
             loEx.Add(ex);
         }
-        
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private async Task OnClickRefresh()
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            await _gridRef.R_RefreshGrid(null);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
         loEx.ThrowExceptionIfErrors();
     }
 
@@ -88,10 +105,21 @@ public partial class LMT03500UpdateMeter : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private void GetRecord(R_ServiceGetRecordEventArgs eventArgs)
+    private async Task GetRecord(R_ServiceGetRecordEventArgs eventArgs)
     {
-        _viewModel.GetRecord((LMT03500UtilityMeterDTO)eventArgs.Data);
-        eventArgs.Result = _viewModel.Entity;
+        var loEx = new R_Exception();
+        try
+        {
+            var loParam = R_FrontUtility.ConvertObjectToObject<LMT03500UtilityMeterDTO>(eventArgs.Data);
+            await _viewModel.GetRecord(loParam);
+            eventArgs.Result = _viewModel.Entity;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
     }
 
     private void OnChangeBuildingParam()
@@ -109,7 +137,7 @@ public partial class LMT03500UpdateMeter : R_Page
         {
             loEx.Add(ex);
         }
-        
+
         R_DisplayException(loEx);
     }
 
@@ -134,8 +162,26 @@ public partial class LMT03500UpdateMeter : R_Page
         {
             loEx.Add(ex);
         }
-        
+
         EndBlock:
         loEx.ThrowExceptionIfErrors();
+    }
+
+    private void BeforeOpenUpdate(R_BeforeOpenPopupEventArgs eventArgs)
+    {
+        eventArgs.TargetPageType = typeof(LMT03500UpdateMeterPopup);
+        _viewModel.Data.CUNIT_NAME = _viewModel.Header.CUNIT_NAME;
+        _viewModel.Data.CTENANT_ID = _viewModel.Header.CTENANT_ID;
+        _viewModel.Data.CTENANT_NAME = _viewModel.Header.CTENANT_NAME;
+        eventArgs.Parameter = _viewModel.Data;
+    }
+    
+    private void BeforeOpenChange(R_BeforeOpenPopupEventArgs eventArgs)
+    {
+        eventArgs.TargetPageType = typeof(LMT03500ChangeMeterPopup);
+        _viewModel.Data.CUNIT_NAME = _viewModel.Header.CUNIT_NAME;
+        _viewModel.Data.CTENANT_ID = _viewModel.Header.CTENANT_ID;
+        _viewModel.Data.CTENANT_NAME = _viewModel.Header.CTENANT_NAME;
+        eventArgs.Parameter = _viewModel.Data;
     }
 }

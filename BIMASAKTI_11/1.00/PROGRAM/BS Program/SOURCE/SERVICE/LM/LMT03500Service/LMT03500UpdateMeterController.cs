@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
+using R_CommonFrontBackAPI;
 
 namespace LMT03500Service;
 
@@ -24,6 +25,7 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
         _logger = LoggerLMT03500.R_GetInstanceLogger();
         _activitySource = LMT03500Activity.R_InitializeAndGetActivitySource(nameof(LMT03500UpdateMeterController));
     }
+    
     [HttpPost]
     public IAsyncEnumerable<LMT03500UtilityMeterDTO> LMT03500GetUtilityMeterListStream()
     {
@@ -161,6 +163,80 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
         loEx.ThrowExceptionIfErrors();
         _logger.LogInfo("End - Get Agreement Utilities");
         return loResult;
+    }
+
+    public void LMT03500UpdateMeterNo(LMT03500UpdateChangeMeterNoParam poParam)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(LMT03500UpdateMeterNo));
+        _logger.LogInfo("Start - Generate Account Budget");
+        var loEx = new R_Exception();
+        var loCls = new LMT03500UpdateMeterCls();
+        var loDbParams = new LMT03500ParameterDb();
+
+        try
+        {
+            _logger.LogInfo("Set Parameter");
+            loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbParams.CUSER_ID = R_BackGlobalVar.USER_ID;
+            loDbParams.CPROPERTY_ID = poParam.CPROPERTY_ID;
+            loDbParams.CREF_NO = poParam.CREF_NO;
+            loDbParams.CUNIT_ID = poParam.CUNIT_ID;
+            loDbParams.CTENANT_ID = poParam.CTENANT_ID;
+            loDbParams.CUTILITY_TYPE = poParam.CUTILITY_TYPE;
+            loDbParams.CMETER_NO = poParam.CMETER_NO;
+            loDbParams.IMETER_START = poParam.IMETER_START;
+            loDbParams.CSTART_INV_PRD = poParam.CSTART_INV_PRD;
+            loDbParams.CSTART_DATE = poParam.CSTART_DATE;
+
+            _logger.LogInfo("Generate Account Budget");
+            loCls.LMT03500UpdateMeterNo(loDbParams);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
+        _logger.LogInfo("End - Generate Account Budget");  
+    }
+
+    public void LMT03500ChangeMeterNo(LMT03500UpdateChangeMeterNoParam poParam)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(LMT03500ChangeMeterNo));
+        _logger.LogInfo("Start - Generate Account Budget");
+        var loEx = new R_Exception();
+        var loCls = new LMT03500UpdateMeterCls();
+        var loDbParams = new LMT03500ParameterDb();
+
+        try
+        {
+            _logger.LogInfo("Set Parameter");
+            loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbParams.CUSER_ID = R_BackGlobalVar.USER_ID;
+            loDbParams.CPROPERTY_ID = poParam.CPROPERTY_ID;
+            loDbParams.CREF_NO = poParam.CREF_NO;
+            loDbParams.CUNIT_ID = poParam.CUNIT_ID;
+            loDbParams.CTENANT_ID = poParam.CTENANT_ID;
+            loDbParams.CUTILITY_TYPE = poParam.CUTILITY_TYPE;
+            loDbParams.IFROM_METER_NO = poParam.IFROM_METER_NO;
+            loDbParams.IMETER_END = poParam.IMETER_END;
+            loDbParams.ITO_METER_NO = poParam.ITO_METER_NO;
+            loDbParams.IMETER_START = poParam.IMETER_START;
+            loDbParams.CSTART_INV_PRD = poParam.CSTART_INV_PRD;
+            loDbParams.CSTART_DATE = poParam.CSTART_DATE;
+
+            _logger.LogInfo("Generate Account Budget");
+            loCls.LMT03500ChangeMeterNo(loDbParams);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
+        _logger.LogInfo("End - Generate Account Budget");  
     }
 
     #region "Helper ListStream Functions"
