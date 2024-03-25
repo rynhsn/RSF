@@ -6,6 +6,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+	<ItemGroup>
+		<None Remove="Template\UtilityUsage.xlsx" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Template\UtilityUsage.xlsx">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+	</ItemGroup>
+
   <ItemGroup>
 	 <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.1" />
 	 <PackageReference Include="Realta.CommonCollectionNuGet" Version="1.0.0" />

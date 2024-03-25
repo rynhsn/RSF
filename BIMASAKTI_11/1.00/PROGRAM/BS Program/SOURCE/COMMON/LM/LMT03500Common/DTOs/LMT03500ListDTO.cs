@@ -7,4 +7,9 @@ namespace LMT03500Common.DTOs
     {
         public List<T> Data { get; set; }
     }
+    
+    public class LMT03500ExcelDTO : R_APIResultBaseDTO
+    {
+        public byte[] FileBytes { get; set; }
+    }
 }

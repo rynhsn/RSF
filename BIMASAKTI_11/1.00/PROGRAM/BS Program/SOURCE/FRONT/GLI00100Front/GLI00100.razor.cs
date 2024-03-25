@@ -81,16 +81,15 @@ public partial class GLI00100 : R_Page
             {
                 CSEARCH_TEXT = _viewModel.CenterCode
             };
-
-            GSL00900DTO loResult = null;
-            if(_viewModel.CenterCode is not (null or ""))
-                loResult = await loLookupViewModel.GetCenter(param);
+            
+            var loResult = await loLookupViewModel.GetCenter(param);
 
             if (loResult is null)
             {
                 loEx.Add(R_FrontUtility.R_GetError(
                     typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
                     "_ErrLookup01"));
+                _viewModel.CenterCode = "";
                 _viewModel.CenterName = "";
                 goto EndBlock;
             }
@@ -105,6 +104,7 @@ public partial class GLI00100 : R_Page
         EndBlock:
         await R_DisplayExceptionAsync(loEx);
     }
+
     private void BeforeOpenLookupCenter(R_BeforeOpenLookupEventArgs eventArgs)
     {
         var loParameter = new GSL00900ParameterDTO();
@@ -178,7 +178,8 @@ public partial class GLI00100 : R_Page
             CCENTER_CODE = _viewModel.CenterCode ?? "",
             CCENTER_NAME = _viewModel.CenterName,
             CBUDGET_NO = _viewModel.BudgetNo,
-            CBUDGET_NAME_DISPLAY = _viewModel.BudgetList.Where(x => x.CBUDGET_NO == _viewModel.BudgetNo).Select(x => x.CBUDGET_NAME_DISPLAY).FirstOrDefault()
+            CBUDGET_NAME_DISPLAY = _viewModel.BudgetList.Where(x => x.CBUDGET_NO == _viewModel.BudgetNo)
+                .Select(x => x.CBUDGET_NAME_DISPLAY).FirstOrDefault()
         };
         eventArgs.TargetPageType = typeof(GLI00100PrintAccountStatusPopup);
     }
@@ -407,5 +408,4 @@ public partial class GLI00100 : R_Page
         };
         eventArgs.TargetPageType = typeof(GLI00100AccountJournalPopup);
     }
-    
 }

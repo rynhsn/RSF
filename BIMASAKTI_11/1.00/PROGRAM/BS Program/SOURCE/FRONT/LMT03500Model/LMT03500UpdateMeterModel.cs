@@ -39,6 +39,11 @@ namespace LMT03500Model
             throw new NotImplementedException();
         }
 
+        public LMT03500SingleDTO<LMT03500BuildingUnitDTO> LMT03500GetBuildingUnitRecord(LMT03500SearchTextDTO poParam)
+        {
+            throw new NotImplementedException();
+        }
+
         public LMT03500SingleDTO<LMT03500UtilityMeterDetailDTO> LMT03500GetUtilityMeterDetail(LMT03500UtilityMeterDetailParam poParam)
         {
             throw new NotImplementedException();

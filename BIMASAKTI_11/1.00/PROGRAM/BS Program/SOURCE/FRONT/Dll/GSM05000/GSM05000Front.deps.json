@@ -14,6 +14,7 @@
           "Lookup_GSCOMMON": "1.0.0",
           "Lookup_GSFRONT": "1.0.0",
           "Microsoft.AspNetCore.Components.Web": "6.0.15",
+          "R_APICommonDTO": "1.0.0.0",
           "R_BlazorFrontEnd.Controls": "1.0.0.0",
           "R_BlazorFrontEnd": "1.0.0.0",
           "R_CommonFrontBackAPI": "1.0.0.0"
@@ -198,21 +199,33 @@
       },
       "Lookup_GSFRONT/1.0.0": {
         "dependencies": {
-          "Lookup_GSCOMMON": "1.0.0",
           "Lookup_GSModel": "1.0.0",
-          "Microsoft.AspNetCore.Components": "6.0.15",
           "Microsoft.AspNetCore.Components.Web": "6.0.15"
         },
         "runtime": {
           "Lookup_GSFRONT.dll": {}
         }
       },
+      "Lookup_GSFrontResources/1.0.0": {
+        "runtime": {
+          "Lookup_GSFrontResources.dll": {}
+        }
+      },
       "Lookup_GSModel/1.0.0": {
         "dependencies": {
-          "Lookup_GSCOMMON": "1.0.0"
+          "Lookup_GSCOMMON": "1.0.0",
+          "Lookup_GSFrontResources": "1.0.0"
         },
         "runtime": {
           "Lookup_GSModel.dll": {}
+        }
+      },
+      "R_APICommonDTO/1.0.0.0": {
+        "runtime": {
+          "R_APICommonDTO.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "R_BlazorFrontEnd.Controls/1.0.0.0": {
@@ -239,14 +252,6 @@
       "R_CommonFrontBackAPI/1.0.0.0": {
         "runtime": {
           "R_CommonFrontBackAPI.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "R_APICommonDTO/1.0.0.0": {
-        "runtime": {
-          "R_APICommonDTO.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -446,8 +451,18 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Lookup_GSFrontResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Lookup_GSModel/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_APICommonDTO/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
@@ -462,11 +477,6 @@
       "sha512": ""
     },
     "R_CommonFrontBackAPI/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "R_APICommonDTO/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

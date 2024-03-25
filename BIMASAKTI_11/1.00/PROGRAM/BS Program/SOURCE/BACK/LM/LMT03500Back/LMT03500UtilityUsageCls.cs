@@ -89,11 +89,11 @@ public class LMT03500UtilityUsageCls
 
             if (loTypeEC.Contains(poParam.CUTILITY_TYPE))
             {
-                lcQuery = "RSP_LM_GET_UTILITY_USAGE_LIST_EC";
+                lcQuery = "RSP_PM_GET_UTILITY_USAGE_LIST_EC";
             }
             else if (loTypeWG.Contains(poParam.CUTILITY_TYPE))
             {
-                lcQuery = "RSP_LM_GET_UTILITY_USAGE_LIST_WG";
+                lcQuery = "RSP_PM_GET_UTILITY_USAGE_LIST_WG";
             }
 
             // lcQuery = peType == ELMT03500UtilityUsageTypeDb.EC
@@ -167,7 +167,7 @@ public class LMT03500UtilityUsageCls
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = "RSP_LM_GET_UTILITY_INFO";
+            lcQuery = "RSP_PM_GET_UTILITY_INFO";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
@@ -324,6 +324,51 @@ public class LMT03500UtilityUsageCls
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
             loRtn = R_Utility.R_ConvertTo<LMT03500PeriodDTO>(loDataTable).ToList();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        EndBlock:
+        loEx.ThrowExceptionIfErrors();
+
+        return loRtn;
+    }
+    
+    public List<LMT03500YearDTO> GetYearList(LMT03500ParameterDb poParam)
+    {
+        R_Exception loEx = new();
+        List<LMT03500YearDTO> loRtn = null;
+        R_Db loDb;
+        DbConnection loConn;
+        DbCommand loCmd;
+        string lcQuery;
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection();
+            loCmd = loDb.GetCommand();
+
+            lcQuery = "RSP_GS_GET_PERIOD_YEAR_LIST";
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
+
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 20, poParam.CCOMPANY_ID);
+
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+            loRtn = R_Utility.R_ConvertTo<LMT03500YearDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {

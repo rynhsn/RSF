@@ -11,7 +11,7 @@ namespace LMT03500Model.ViewModel
     public class LMT03500BuildingLookupViewModel : R_ViewModel<LMT03500BuildingDTO>
     {
         private LMT03500UtilityUsageModel _model = new LMT03500UtilityUsageModel();
-        
+
         public ObservableCollection<LMT03500BuildingDTO> GridList = new ObservableCollection<LMT03500BuildingDTO>();
 
         public async Task GetList(object poPropertyId)
@@ -30,6 +30,26 @@ namespace LMT03500Model.ViewModel
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+
+        public async Task<LMT03500BuildingDTO> GetRecord(LMT03500SearchTextDTO poParam)
+        {
+            var loEx = new R_Exception();
+            LMT03500BuildingDTO loReturn = null;
+
+            try
+            {
+                var loResult = await _model.GetAsync<LMT03500SingleDTO<LMT03500BuildingDTO>, LMT03500SearchTextDTO>(nameof(ILMT03500UtilityUsage.LMT03500GetBuildingRecord), poParam);
+                loReturn = loResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loReturn;
         }
     }
 }

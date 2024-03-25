@@ -54,7 +54,7 @@ public class LMT03500InitCls
 
         return loRtn;
     }
-    
+
     public List<LMT03500TransCodeDTO> GetTransCodeList(LMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
@@ -72,15 +72,15 @@ public class LMT03500InitCls
             lcQuery = @"RSP_GS_GET_TRANS_CODE_INFO";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
-            
+
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParam.CCOMPANY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 10, poParam.CTRANS_CODE);
 
 
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x =>
-                    x.ParameterName is 
-                        "@CCOMPANY_ID" or 
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
                         "@CTRANS_CODE"
                 )
                 .Select(x => x.Value);

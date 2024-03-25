@@ -46,6 +46,7 @@ public partial class GSM05000ApprovalCopyTo : R_Page
                 loEx.Add(R_FrontUtility.R_GetError(
                     typeof(GSM05000FrontResources.Resources_Dummy_Class),
                     "_ErrLookupDept"));
+                _viewModel.TempEntityForCopy.CDEPT_CODE_TO= "";
                 _viewModel.TempEntityForCopy.CDEPT_NAME_TO= "";
                 goto EndBlock;
             }

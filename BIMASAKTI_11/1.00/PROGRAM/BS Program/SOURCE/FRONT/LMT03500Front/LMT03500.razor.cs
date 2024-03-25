@@ -1,6 +1,8 @@
 ﻿using LMT03500Common.DTOs;
 using LMT03500Model.ViewModel;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
@@ -19,6 +21,8 @@ public partial class LMT03500 : R_Page
     private R_ConductorGrid _conductorRefUtility;
     private R_Grid<LMT03500BuildingDTO> _gridRefBuilding = new();
     private R_Grid<LMT03500UtilityUsageDTO> _gridRefUtility = new();
+    
+    [Inject] private IJSRuntime JS { get; set; }
 
     private R_TabStrip _tabStripRef;
     private R_TabStrip _tabStripUtilityRef;
@@ -148,13 +152,17 @@ public partial class LMT03500 : R_Page
                 case eParamType.Floor:
                     _viewModelUtility.FloorId = (string)value;
                     break;
-                case eParamType.InvPeriod:
+                case eParamType.InvYear:
                     _viewModelUtility.InvPeriodYear = (string)value;
-                    _viewModelUtility.InvPeriodNo = value.ToString()?.Substring(value.ToString()!.Length - 2);
+                    break;
+                case eParamType.UtilityYear:
+                    _viewModelUtility.UtilityPeriodYear = (string)value;
+                    break;
+                case eParamType.InvPeriod:
+                    _viewModelUtility.InvPeriodNo = (string)value;
                     break;
                 case eParamType.UtilityPeriod:
-                    _viewModelUtility.UtilityPeriodYear = (string)value;
-                    _viewModelUtility.UtilityPeriodNo = value.ToString()?.Substring(value.ToString()!.Length - 2);
+                    _viewModelUtility.UtilityPeriodNo = (string)value;
                     break;
             }
         }
@@ -233,5 +241,25 @@ public partial class LMT03500 : R_Page
     {
         eventArgs.TargetPageType = typeof(LMT03500Detail);
         eventArgs.Parameter = _viewModelUtility.EntityUtility;
+    }
+    
+    private async Task DownloadTemplate()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            //buat lcDate dengan format yyyyMMdd_HHmm
+            // var lcDate = DateTime.Now.ToString("yyyyMMdd_HHmm");
+            var loByteFile = await _viewModelUtility.DownloadTemplate();
+            var saveFileName = $"UtilityUsage.xlsx";
+            await JS.downloadFileFromStreamHandler(saveFileName, loByteFile.FileBytes);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,10 +15,16 @@ namespace LMT03500Model.ViewModel
     public class LMT03500UpdateMeterViewModel : R_ViewModel<LMT03500UtilityMeterDetailDTO>
     {
         private LMT03500UpdateMeterModel _model = new LMT03500UpdateMeterModel();
+        private LMT03500UtilityUsageModel _modelUtility = new LMT03500UtilityUsageModel();
+        
         public LMT03500UpdateMeterHeader Header = new LMT03500UpdateMeterHeader();
         
         public ObservableCollection<LMT03500UtilityMeterDTO> GridList = new ObservableCollection<LMT03500UtilityMeterDTO>();
         public LMT03500UtilityMeterDetailDTO Entity = new LMT03500UtilityMeterDetailDTO();
+        
+        
+        public List<LMT03500YearDTO> StartInvYearList = new List<LMT03500YearDTO>();
+        public List<LMT03500PeriodDTO> StartInvMonthList = new List<LMT03500PeriodDTO>();
         
         public string CSTART_INV_PRD_YEAR { get; set; }
         public string CSTART_INV_PRD_MONTH { get; set; }
@@ -28,6 +35,8 @@ namespace LMT03500Model.ViewModel
             try
             {
                 Header.CPROPERTY_ID = poParam.ToString();
+                await GetPeriodList();
+                await GetYearList();
             }
             catch (Exception ex)
             {
@@ -97,7 +106,7 @@ namespace LMT03500Model.ViewModel
                 
                 var loReturn = await _model.GetAsync<LMT03500SingleDTO<LMT03500UtilityMeterDetailDTO>, LMT03500UtilityMeterDetailParam>(nameof(ILMT03500UpdateMeter.LMT03500GetUtilityMeterDetail), loParam);
                 Entity = loReturn.Data;
-
+                
                 if (Entity.CSTART_INV_PRD != null)
                 {
                     CSTART_INV_PRD_YEAR = Entity.CSTART_INV_PRD.Substring(0,4);
@@ -172,7 +181,6 @@ namespace LMT03500Model.ViewModel
             loEx.ThrowExceptionIfErrors();
         }
         
-        
         public async Task ChangeMeterNo(LMT03500UtilityMeterDetailDTO poParam)
         {
             var loEx = new R_Exception();
@@ -202,6 +210,43 @@ namespace LMT03500Model.ViewModel
             
             }
             
+            loEx.ThrowExceptionIfErrors();
+        }
+        
+        public async Task GetPeriodList()
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var lcYear = DateTime.Now;
+                var loParam = new LMT03500PeriodParam { CYEAR = lcYear.Year.ToString() };
+
+                var loReturn =
+                    await _modelUtility.GetAsync<LMT03500ListDTO<LMT03500PeriodDTO>, LMT03500PeriodParam>(
+                        nameof(ILMT03500UtilityUsage.LMT03500GetPeriodList), loParam);
+                StartInvMonthList = loReturn.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+        
+        public async Task GetYearList()
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loReturn = await _modelUtility.GetAsync<LMT03500ListDTO<LMT03500YearDTO>>(nameof(ILMT03500UtilityUsage.LMT03500GetYearList));
+                StartInvYearList = loReturn.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
             loEx.ThrowExceptionIfErrors();
         }
         

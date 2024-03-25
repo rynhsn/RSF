@@ -33,6 +33,11 @@ namespace LMT03500Model
             throw new NotImplementedException();
         }
 
+        public LMT03500SingleDTO<LMT03500BuildingDTO> LMT03500GetBuildingRecord(LMT03500SearchTextDTO poText)
+        {
+            throw new NotImplementedException();
+        }
+
         public IAsyncEnumerable<LMT03500UtilityUsageDTO> LMT03500GetUtilityUsageListStream()
         {
             throw new NotImplementedException();
@@ -53,11 +58,21 @@ namespace LMT03500Model
             throw new NotImplementedException();
         }
 
+        public LMT03500ListDTO<LMT03500YearDTO> LMT03500GetYearList()
+        {
+            throw new NotImplementedException();
+        }
+
         public LMT03500ListDTO<LMT03500PeriodDTO> LMT03500GetPeriodList(LMT03500PeriodParam poParam)
         {
             throw new NotImplementedException();
         }
-        
+
+        public LMT03500ExcelDTO LMT03500DownloadTemplateFile()
+        {
+            throw new NotImplementedException();
+        }
+
 
         //Untuk fetch data streaming dari controller
         public async Task<List<T>> GetListStreamAsync<T>(string pcNameOf)
@@ -85,7 +100,6 @@ namespace LMT03500Model
 
             return loResult;
         }
-        
         
         //Untuk fetch data streaming dari controller dengan parameter
         public async Task<List<T>> GetListStreamAsync<T, T1>(string pcNameOf, T1 poParameter)
@@ -166,6 +180,30 @@ namespace LMT03500Model
             loEx.ThrowExceptionIfErrors();
 
             return loResult;
+        }
+        
+        //Untuk execute query non object (T hanya syarat untuk memenuhi generic)
+        public async Task ExecuteAsync<T, T1>(string pcNameOf, T1 poParameter) where T : R_APIResultBaseDTO
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+                await R_HTTPClientWrapper.R_APIRequestObject<T, T1>(
+                    _RequestServiceEndPoint,
+                    pcNameOf,
+                    poParameter,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
         }
     }
 }

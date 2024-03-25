@@ -60,6 +60,15 @@ namespace LMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not found data by search text!.
+        /// </summary>
+        internal static string _ErrLookup {
+            get {
+                return ResourceManager.GetString("_ErrLookup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         internal static string LBL_ADD {

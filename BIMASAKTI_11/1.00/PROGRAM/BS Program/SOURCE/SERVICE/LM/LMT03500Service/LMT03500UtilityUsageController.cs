@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Reflection;
 using LMT03500Back;
 using LMT03500Common;
 using LMT03500Common.DTOs;
@@ -59,6 +60,41 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         return loReturn;
     }
 
+    public LMT03500SingleDTO<LMT03500BuildingDTO> LMT03500GetBuildingRecord(LMT03500SearchTextDTO poText)
+    {
+        using Activity activity = _activitySource.StartActivity(nameof(LMT03500GetBuildingRecord));
+        _logger.LogInfo("Start Start - Lookup Building Record");
+        
+        var loEx = new R_Exception();
+        LMT03500SingleDTO<LMT03500BuildingDTO> loReturn = new();
+        var loCls = new LMT03500UtilityUsageCls();
+        var loDbPar = new LMT03500ParameterDb();
+        
+        try
+        {
+            _logger.LogInfo("Set Parameter");
+            loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbPar.CUSER_ID = R_BackGlobalVar.USER_ID;
+            loDbPar.CPROPERTY_ID = poText.CPROPERTY_ID;
+            
+            _logger.LogInfo("Call Back Method - Lookup Building Record");
+            var loResult = loCls.GetBuildingList(loDbPar);
+
+            _logger.LogInfo("Filter Search by text - Lookup Building Record");
+            loReturn.Data = loResult.Find(x => x.CBUILDING_ID.Trim() == poText.CSEARCH_TEXT);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        _logger.LogInfo("End Lookup Building Record");
+        return loReturn;
+    }
+
     [HttpPost]
     public IAsyncEnumerable<LMT03500UtilityUsageDTO> LMT03500GetUtilityUsageListStream()
     {
@@ -108,7 +144,7 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
     [HttpPost]
     public LMT03500SingleDTO<LMT03500UtilityUsageDetailDTO> LMT03500GetUtilityUsageDetail(LMT03500UtilityUsageDetailParam poParam)
     {
-        using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetUtilityTypeList));
+        using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetUtilityUsageDetail));
         _logger.LogInfo("Start - Get Floor List");
 
         var loEx = new R_Exception();
@@ -173,7 +209,7 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
     [HttpPost]
     public LMT03500ListDTO<LMT03500FloorDTO> LMT03500GetFloorList(LMT03500FloorParam poParam)
     {
-        using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetUtilityTypeList));
+        using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetFloorList));
         _logger.LogInfo("Start - Get Floor List");
 
         var loEx = new R_Exception();
@@ -202,11 +238,41 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         _logger.LogInfo("End - Get Floor List");
         return loReturn;
     }
+    
+    [HttpPost]
+    public LMT03500ListDTO<LMT03500YearDTO> LMT03500GetYearList()
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetYearList));
+        _logger.LogInfo("Start - Get Period List");
+
+        var loEx = new R_Exception();
+        var loCls = new LMT03500UtilityUsageCls();
+        var loDbParams = new LMT03500ParameterDb();
+        var loReturn = new LMT03500ListDTO<LMT03500YearDTO>();
+
+        try
+        {
+            _logger.LogInfo("Set Parameter");
+            loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+
+            _logger.LogInfo("Get Period List");
+            loReturn.Data = loCls.GetYearList(loDbParams);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        _logger.LogInfo("End - Get Period List");
+        return loReturn;
+    }
 
     [HttpPost]
     public LMT03500ListDTO<LMT03500PeriodDTO> LMT03500GetPeriodList(LMT03500PeriodParam poParam)
     {
-        using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetUtilityTypeList));
+        using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetPeriodList));
         _logger.LogInfo("Start - Get Period List");
 
         var loEx = new R_Exception();
@@ -232,6 +298,43 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         loEx.ThrowExceptionIfErrors();
         _logger.LogInfo("End - Get Period List");
         return loReturn;
+    }
+    
+    [HttpPost]
+    public LMT03500ExcelDTO LMT03500DownloadTemplateFile()
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(LMT03500DownloadTemplateFile));
+        _logger.LogInfo("Start - Download Template File");
+        var loEx = new R_Exception();
+        var loRtn = new LMT03500ExcelDTO();
+
+        try
+        {
+            _logger.LogInfo("Get Template File");
+            var loAsm = Assembly.Load("BIMASAKTI_LM_API");
+            
+            _logger.LogInfo("Set Resource File");
+            var lcResourceFile = "BIMASAKTI_LM_API.Template.UtilityUsage.xlsx";
+
+            _logger.LogInfo("Get Resource File");
+            using (Stream resFilestream = loAsm.GetManifestResourceStream(lcResourceFile))
+            {
+                var ms = new MemoryStream();
+                resFilestream.CopyTo(ms);
+                var bytes = ms.ToArray();
+
+                loRtn.FileBytes = bytes;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+        
+        loEx.ThrowExceptionIfErrors();
+        _logger.LogInfo("End - Download Template File");
+        return loRtn;
     }
 
     #region "Helper ListStream Functions"

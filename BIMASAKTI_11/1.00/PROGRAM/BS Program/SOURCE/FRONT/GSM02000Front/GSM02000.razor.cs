@@ -207,6 +207,7 @@ public partial class GSM02000 : R_Page
                 loEx.Add(R_FrontUtility.R_GetError(
                     typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
                     "_ErrLookup01"));
+                _viewModel.Data.CTAXIN_GLACCOUNT_NO = "";
                 _viewModel.Data.CTAXIN_GLACCOUNT_NAME = "";
                 goto EndBlock;
             }
@@ -277,6 +278,7 @@ public partial class GSM02000 : R_Page
                 loEx.Add(R_FrontUtility.R_GetError(
                     typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
                     "_ErrLookup01"));
+                _viewModel.Data.CTAXOUT_GLACCOUNT_NO = "";
                 _viewModel.Data.CTAXOUT_GLACCOUNT_NAME = "";
                 goto EndBlock;
             }

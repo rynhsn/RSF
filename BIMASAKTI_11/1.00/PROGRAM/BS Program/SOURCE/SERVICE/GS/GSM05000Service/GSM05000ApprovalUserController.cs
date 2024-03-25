@@ -452,7 +452,7 @@ public class GSM05000ApprovalUserController : ControllerBase, IGSM05000ApprovalU
 
         loEx.ThrowExceptionIfErrors();
 
-        _logger.LogInfo("End GSL00100GetSalesTax");
+        _logger.LogInfo("End Lookup Approval Department Record");
         return loReturn;
     }
 

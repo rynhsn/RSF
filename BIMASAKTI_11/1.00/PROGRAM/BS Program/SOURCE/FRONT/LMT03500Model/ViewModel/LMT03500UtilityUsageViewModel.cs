@@ -26,22 +26,29 @@ namespace LMT03500Model.ViewModel
 
         public List<LMT03500FunctDTO> UtilityTypeList = new List<LMT03500FunctDTO>();
         public List<LMT03500FloorDTO> FloorList = new List<LMT03500FloorDTO>();
+        public List<LMT03500YearDTO> InvYearList = new List<LMT03500YearDTO>();
         public List<LMT03500PeriodDTO> InvPeriodList = new List<LMT03500PeriodDTO>();
+        public List<LMT03500YearDTO> UtilityYearList = new List<LMT03500YearDTO>();
         public List<LMT03500PeriodDTO> UtilityPeriodList = new List<LMT03500PeriodDTO>();
 
         public string PropertyId = string.Empty;
         public string TransCodeId = string.Empty;
 
         public string UtilityTypeId = string.Empty;
+        
         public string FloorId = string.Empty;
+        public bool AllFloor = false;
+        
         public string InvPeriodYear = string.Empty;
         public string InvPeriodNo = string.Empty;
+        public bool Invoiced = false;
+        
         public string UtilityPeriodYear = string.Empty;
         public string UtilityPeriodNo = string.Empty;
-        public bool AllFloor = false;
-        public bool Invoiced = false;
+
         public string UtilityPeriodFromDt = string.Empty;
         public string UtilityPeriodToDt = string.Empty;
+        
         public DateTime UtilityPeriodFromDtDt = DateTime.Now;
         public DateTime UtilityPeriodToDtDt = DateTime.Now;
 
@@ -53,6 +60,7 @@ namespace LMT03500Model.ViewModel
                 PropertyId = poParam.ToString();
                 await GetUtilityTypeList();
                 await GetPeriodList();
+                await GetYearList();
             }
             catch (Exception ex)
             {
@@ -152,8 +160,7 @@ namespace LMT03500Model.ViewModel
             try
             {
                 var loReturn =
-                    await _model.GetAsync<LMT03500ListDTO<LMT03500FunctDTO>>(nameof(ILMT03500UtilityUsage
-                        .LMT03500GetUtilityTypeList));
+                    await _model.GetAsync<LMT03500ListDTO<LMT03500FunctDTO>>(nameof(ILMT03500UtilityUsage.LMT03500GetUtilityTypeList));
                 UtilityTypeList = loReturn.Data;
                 UtilityTypeId = UtilityTypeList.FirstOrDefault()?.CCODE;
             }
@@ -201,9 +208,8 @@ namespace LMT03500Model.ViewModel
 
                 InvPeriodList = loReturn.Data;
                 UtilityPeriodList = loReturn.Data;
-                InvPeriodYear = InvPeriodList.FirstOrDefault()?.CPERIOD;
+                
                 InvPeriodNo = InvPeriodList.FirstOrDefault()?.CPERIOD_NO;
-                UtilityPeriodYear = UtilityPeriodList.FirstOrDefault()?.CPERIOD;
                 UtilityPeriodNo = UtilityPeriodList.FirstOrDefault()?.CPERIOD_NO;
             }
             catch (Exception ex)
@@ -212,6 +218,50 @@ namespace LMT03500Model.ViewModel
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+        
+        public async Task GetYearList()
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var lcYear = DateTime.Now;
+                var loParam = new LMT03500PeriodParam { CYEAR = lcYear.Year.ToString() };
+                
+                var loReturn = await _model.GetAsync<LMT03500ListDTO<LMT03500YearDTO>>(nameof(ILMT03500UtilityUsage.LMT03500GetYearList));
+
+                InvYearList = loReturn.Data;
+                UtilityYearList = loReturn.Data;
+                
+                InvPeriodYear = loParam.CYEAR;
+                UtilityPeriodYear = loParam.CYEAR;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+        
+        
+        public async Task<LMT03500ExcelDTO> DownloadTemplate()
+        {
+            var loEx = new R_Exception();
+            LMT03500ExcelDTO loResult = null;
+
+            try
+            {
+                loResult = await _model.GetAsync<LMT03500ExcelDTO>(nameof(ILMT03500UtilityUsage.LMT03500DownloadTemplateFile));
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
         }
     }
 }

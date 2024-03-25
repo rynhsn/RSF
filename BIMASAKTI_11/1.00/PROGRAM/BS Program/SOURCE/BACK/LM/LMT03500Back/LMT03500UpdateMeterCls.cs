@@ -90,7 +90,7 @@ public class LMT03500UpdateMeterCls
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = "RSP_LM_GET_UTILITY_METER_LIST";
+            lcQuery = "RSP_PM_GET_UTILITY_METER_LIST";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
@@ -145,7 +145,7 @@ public class LMT03500UpdateMeterCls
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = "RSP_LM_GET_UTILITY_METER_DT";
+            lcQuery = "RSP_PM_GET_UTILITY_METER_DT";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
@@ -200,7 +200,7 @@ public class LMT03500UpdateMeterCls
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = "RSP_LM_GET_AGREEMENT_UTILITIES";
+            lcQuery = "RSP_PM_GET_AGREEMENT_UTILITIES";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 

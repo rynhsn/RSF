@@ -31,6 +31,40 @@ public partial class LMT03500UpdateMeter : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
+    private async Task OnLostFocusLookupBuilding()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var param = new LMT03500SearchTextDTO()
+            {
+                CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
+                CSEARCH_TEXT = _viewModel.Header.CBUILDING_ID
+            };
+            var loLookupViewModel = new LMT03500BuildingLookupViewModel();
+            var loResult = await loLookupViewModel.GetRecord(param);
+
+            if (loResult == null)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(
+                    typeof(LMT03500FrontResources.Resources_Dummy_Class),
+                    "_ErrLookup"));
+                _viewModel.Header.CBUILDING_ID= "";
+                goto EndBlock;
+            }
+
+            _viewModel.Header.CBUILDING_ID = loResult.CBUILDING_ID;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        EndBlock:
+        await R_DisplayExceptionAsync(loEx);
+    }
+    
     private void BeforeLookupBuilding(R_BeforeOpenLookupEventArgs eventArgs)
     {
         eventArgs.TargetPageType = typeof(LMT03500BuildingLookup);
@@ -44,6 +78,43 @@ public partial class LMT03500UpdateMeter : R_Page
             return;
 
         _viewModel.Header.CBUILDING_ID = loTempResult.CBUILDING_ID;
+    }
+
+    private async Task OnLostFocusLookupUnit()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var param = new LMT03500SearchTextDTO()
+            {
+                CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
+                CBUILDING_ID = _viewModel.Header.CBUILDING_ID,
+                CFLOOR_ID = "",
+                CSEARCH_TEXT = _viewModel.Header.CUNIT_ID
+            };
+            var loLookupViewModel = new LMT03500BuildingUnitLookupViewModel();
+            var loResult = await loLookupViewModel.GetRecord(param);
+
+            if (loResult == null)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(
+                    typeof(LMT03500FrontResources.Resources_Dummy_Class),
+                    "_ErrLookup"));
+                _viewModel.Header.CUNIT_ID= "";
+                _viewModel.Header.CUNIT_NAME= "";
+                goto EndBlock;
+            }
+
+            _viewModel.Header.CUNIT_NAME = loResult.CUNIT_NAME;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        EndBlock:
+        await R_DisplayExceptionAsync(loEx);
     }
 
     private void BeforeLookupBuildingUnit(R_BeforeOpenLookupEventArgs eventArgs)

@@ -34,5 +34,25 @@ namespace LMT03500Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
+        
+        public async Task<LMT03500BuildingUnitDTO> GetRecord(LMT03500SearchTextDTO poParam)
+        {
+            var loEx = new R_Exception();
+            LMT03500BuildingUnitDTO loReturn = null;
+
+            try
+            {
+                var loResult = await _model.GetAsync<LMT03500SingleDTO<LMT03500BuildingUnitDTO>, LMT03500SearchTextDTO>(nameof(ILMT03500UpdateMeter.LMT03500GetBuildingUnitRecord), poParam);
+                loReturn = loResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loReturn;
+        }
     }
 }

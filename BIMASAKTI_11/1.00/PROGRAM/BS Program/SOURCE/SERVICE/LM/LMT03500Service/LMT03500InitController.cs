@@ -86,4 +86,5 @@ public class LMT03500InitController : ControllerBase, ILMT03500Init
         _logger.LogInfo("End - Get TransCode");
         return loReturn;
     }
+    
 }

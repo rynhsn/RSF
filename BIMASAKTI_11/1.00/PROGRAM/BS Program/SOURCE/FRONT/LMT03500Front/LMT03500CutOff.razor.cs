@@ -1,5 +1,7 @@
 ﻿using LMT03500Common.DTOs;
 using LMT03500Model.ViewModel;
+using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
@@ -17,6 +19,8 @@ public partial class LMT03500CutOff : R_ITabPage
     private R_ConductorGrid _conductorRefUtility;
     private R_Grid<LMT03500BuildingDTO> _gridRefBuilding = new();
     private R_Grid<LMT03500UtilityUsageDTO> _gridRefUtility = new();
+    
+    [Inject] private IJSRuntime JS { get; set; }
     
     private string _dataLabel = "";
     private string _display = "d-none";
@@ -166,5 +170,26 @@ public partial class LMT03500CutOff : R_ITabPage
     {
         await _viewModel.Init(poParam);
         await _gridRefBuilding.R_RefreshGrid(null);
+    }
+    
+    
+    private async Task DownloadTemplate()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            //buat lcDate dengan format yyyyMMdd_HHmm
+            // var lcDate = DateTime.Now.ToString("yyyyMMdd_HHmm");
+            var loByteFile = await _viewModel.DownloadTemplate();
+            var saveFileName = $"UtilityUsage.xlsx";
+            await JS.downloadFileFromStreamHandler(saveFileName, loByteFile.FileBytes);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
     }
 }

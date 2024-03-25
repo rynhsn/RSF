@@ -239,6 +239,9 @@
     <data name="LBL_FROMMETERNO" xml:space="preserve">
         <value>From Meter No</value>
     </data>
+    <data name="_ErrLookup" xml:space="preserve">
+        <value>Not found data by search text!</value>
+    </data>
 
 
 </root>

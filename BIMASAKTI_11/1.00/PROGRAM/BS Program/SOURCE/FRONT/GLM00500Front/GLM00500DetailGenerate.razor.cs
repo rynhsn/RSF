@@ -81,6 +81,7 @@ public partial class GLM00500DetailGenerate
                 loEx.Add(R_FrontUtility.R_GetError(
                     typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
                     "_ErrLookup01"));
+                _viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NO = "";
                 _viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NAME = "";
                 goto EndBlock;
             }
@@ -136,6 +137,7 @@ public partial class GLM00500DetailGenerate
                 loEx.Add(R_FrontUtility.R_GetError(
                     typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
                     "_ErrLookup01"));
+                _viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NO = "";
                 _viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NAME = "";
                 goto EndBlock;
             }
@@ -190,6 +192,7 @@ public partial class GLM00500DetailGenerate
                 loEx.Add(R_FrontUtility.R_GetError(
                     typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
                     "_ErrLookup01"));
+                _viewModel.GenerateAccountBudget.CFROM_CENTER_CODE = "";
                 _viewModel.GenerateAccountBudget.CFROM_CENTER_NAME = "";
                 goto EndBlock;
             }
@@ -241,6 +244,7 @@ public partial class GLM00500DetailGenerate
                 loEx.Add(R_FrontUtility.R_GetError(
                     typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
                     "_ErrLookup01"));
+                _viewModel.GenerateAccountBudget.CTO_CENTER_CODE = "";
                 _viewModel.GenerateAccountBudget.CTO_CENTER_NAME = "";
                 goto EndBlock;
             }

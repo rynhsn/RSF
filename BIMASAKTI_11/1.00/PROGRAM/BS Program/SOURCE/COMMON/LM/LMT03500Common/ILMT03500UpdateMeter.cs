@@ -9,6 +9,8 @@ namespace LMT03500Common
     {
         IAsyncEnumerable<LMT03500UtilityMeterDTO> LMT03500GetUtilityMeterListStream();
         IAsyncEnumerable<LMT03500BuildingUnitDTO> LMT03500GetBuildingUnitListStream();
+        
+        LMT03500SingleDTO<LMT03500BuildingUnitDTO> LMT03500GetBuildingUnitRecord(LMT03500SearchTextDTO poParam);
         LMT03500SingleDTO<LMT03500UtilityMeterDetailDTO> LMT03500GetUtilityMeterDetail(
             LMT03500UtilityMeterDetailParam poParam);
         LMT03500SingleDTO<LMT03500AgreementUtilitiesDTO> LMT03500GetAgreementUtilities(

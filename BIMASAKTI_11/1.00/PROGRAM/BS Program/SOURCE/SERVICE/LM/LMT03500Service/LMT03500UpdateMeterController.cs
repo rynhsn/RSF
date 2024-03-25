@@ -96,7 +96,44 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
         _logger.LogInfo("End - Get BuildingUnit List Stream");
         return loReturn;
     }
-    
+
+    public LMT03500SingleDTO<LMT03500BuildingUnitDTO> LMT03500GetBuildingUnitRecord(LMT03500SearchTextDTO poParam)
+    {
+        using Activity activity = _activitySource.StartActivity(nameof(LMT03500GetBuildingUnitRecord));
+        _logger.LogInfo("Start Start - Lookup Building Unit Record");
+        
+        var loEx = new R_Exception();
+        LMT03500SingleDTO<LMT03500BuildingUnitDTO> loReturn = new();
+        var loCls = new LMT03500UpdateMeterCls();
+        var loDbPar = new LMT03500ParameterDb();
+        
+        try
+        {
+            _logger.LogInfo("Set Parameter");
+            loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbPar.CUSER_ID = R_BackGlobalVar.USER_ID;
+            loDbPar.CPROPERTY_ID = poParam.CPROPERTY_ID;
+            loDbPar.CBUILDING_ID = poParam.CBUILDING_ID;
+            loDbPar.CFLOOR_ID = poParam.CFLOOR_ID;
+            
+            _logger.LogInfo("Call Back Method - Lookup Building Unit Record");
+            var loResult = loCls.GetBuildingUnitList(loDbPar);
+
+            _logger.LogInfo("Filter Search by text - Lookup Building Unit Record");
+            loReturn.Data = loResult.Find(x => x.CUNIT_ID.Trim() == poParam.CSEARCH_TEXT);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        _logger.LogInfo("End Lookup Building Unit Record");
+        return loReturn;
+    }
+
     [HttpPost]
     public LMT03500SingleDTO<LMT03500UtilityMeterDetailDTO> LMT03500GetUtilityMeterDetail(LMT03500UtilityMeterDetailParam poParam)
     {

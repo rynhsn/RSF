@@ -67,16 +67,21 @@
                     <R_ItemLayout col="5">
                         <R_Label>@(_localizer["LBL_UTILITYPERIOD"] + "*")</R_Label>
                     </R_ItemLayout>
-                    <R_ItemLayout col="4">
-                        <R_ComboBox Data="@_viewModel.UtilityPeriodList"
+                    <R_ItemLayout col="3">
+                        <R_ComboBox Data="@_viewModel.UtilityYearList"
                                     Value="_viewModel.UtilityPeriodYear"
-                                    ValueField="@nameof(LMT03500PeriodDTO.CPERIOD)"
-                                    TextField="@nameof(LMT03500PeriodDTO.CCYEAR)"
+                                    ValueField="@nameof(LMT03500YearDTO.CYEAR)"
+                                    TextField="@nameof(LMT03500YearDTO.CYEAR)"
+                                    Enabled
+                                    ValueChanged="@((string value) => OnChangeParam(value, eParamType.UtilityYear))"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2" Class="pe-1">
+                        <R_ComboBox Data="@_viewModel.UtilityPeriodList"
+                                    Value="_viewModel.UtilityPeriodNo"
+                                    ValueField="@nameof(LMT03500PeriodDTO.CPERIOD_NO)"
+                                    TextField="@nameof(LMT03500PeriodDTO.CPERIOD_NO)"
                                     Enabled
                                     ValueChanged="@((string value) => OnChangeParam(value, eParamType.UtilityPeriod))"/>
-                    </R_ItemLayout>
-                    <R_ItemLayout col="3">
-                        <R_TextBox @bind-Value="_viewModel.UtilityPeriodNo" Enabled="false"/>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>
@@ -152,13 +157,13 @@
             <R_ItemLayout Class="@_display">
                 <R_StackLayout Row>
                     <R_ItemLayout>
-                        <R_Button Enabled="@(_viewModel.GridUtilityUsageList.Count != 0)">
-                            Download
+                        <R_Button Enabled="@(_viewModel.GridUtilityUsageList.Count != 0)" OnClick="DownloadTemplate">
+                            @_localizer["LBL_DOWNLOAD"]
                         </R_Button>
                     </R_ItemLayout>
                     <R_ItemLayout>
                         <R_Button Enabled="@(_viewModel.GridUtilityUsageList.Count != 0)">
-                            Upload
+                            @_localizer["LBL_UPLOAD"]
                         </R_Button>
                     </R_ItemLayout>
                 </R_StackLayout>
@@ -167,12 +172,12 @@
                 <R_StackLayout Row>
                     <R_ItemLayout>
                         <R_Button Enabled="@(_viewModel.GridUtilityUsageList.Count != 0)">
-                            Cancel
+                            @_localizer["LBL_CANCEL"]
                         </R_Button>
                     </R_ItemLayout>
                     <R_ItemLayout>
                         <R_Button Enabled="@(_viewModel.GridUtilityUsageList.Count != 0)">
-                            Save
+                            @_localizer["LBL_SAVE"]
                         </R_Button>
                     </R_ItemLayout>
                 </R_StackLayout>
