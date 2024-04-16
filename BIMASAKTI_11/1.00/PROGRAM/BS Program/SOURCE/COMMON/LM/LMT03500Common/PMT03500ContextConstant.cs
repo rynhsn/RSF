@@ -1,6 +1,6 @@
 namespace LMT03500Common
 {
-    public class LMT03500ContextConstant
+    public class PMT03500ContextConstant
     {
         public const string CPROPERTY_ID = "CPROPERTY_ID";
         public const string CBUILDING_ID = "CBUILDING_ID";

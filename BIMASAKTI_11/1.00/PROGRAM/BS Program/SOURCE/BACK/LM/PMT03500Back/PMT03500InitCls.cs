@@ -6,23 +6,23 @@ using LMT03500Common.DTOs;
 using R_BackEnd;
 using R_Common;
 
-namespace LMT03500Back;
+namespace PMT03500Back;
 
-public class LMT03500InitCls
+public class PMT03500InitCls
 {
-    private LoggerLMT03500 _logger;
+    private LoggerPMT03500 _logger;
     private readonly ActivitySource _activitySource;
 
-    public LMT03500InitCls()
+    public PMT03500InitCls()
     {
-        _logger = LoggerLMT03500.R_GetInstanceLogger();
-        _activitySource = LMT03500Activity.R_GetInstanceActivitySource();
+        _logger = LoggerPMT03500.R_GetInstanceLogger();
+        _activitySource = PMT03500Activity.R_GetInstanceActivitySource();
     }
 
-    public List<LMT03500PropertyDTO> GetPropertyList(LMT03500ParameterDb poParam)
+    public List<PMT03500PropertyDTO> GetPropertyList(PMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
-        List<LMT03500PropertyDTO> loRtn = null;
+        List<PMT03500PropertyDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -41,7 +41,7 @@ public class LMT03500InitCls
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loRtn = R_Utility.R_ConvertTo<LMT03500PropertyDTO>(loDataTable).ToList();
+            loRtn = R_Utility.R_ConvertTo<PMT03500PropertyDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {
@@ -55,10 +55,10 @@ public class LMT03500InitCls
         return loRtn;
     }
 
-    public List<LMT03500TransCodeDTO> GetTransCodeList(LMT03500ParameterDb poParam)
+    public List<PMT03500TransCodeDTO> GetTransCodeList(PMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
-        List<LMT03500TransCodeDTO> loRtn = null;
+        List<PMT03500TransCodeDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -89,7 +89,7 @@ public class LMT03500InitCls
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loRtn = R_Utility.R_ConvertTo<LMT03500TransCodeDTO>(loDataTable).ToList();
+            loRtn = R_Utility.R_ConvertTo<PMT03500TransCodeDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {

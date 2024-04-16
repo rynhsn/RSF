@@ -34,24 +34,27 @@ public partial class GSM05000ApprovalCopyFrom : R_Page
 
         try
         {
-            var param = new GSM05000SearchTextDTO()
+            if (_viewModel.TempEntityForCopy.CDEPT_CODE_FROM.Length > 0)
             {
-                CSEARCH_TEXT = _viewModel.TempEntityForCopy.CDEPT_CODE_FROM
-            };
+                var param = new GSM05000SearchTextDTO()
+                {
+                    CSEARCH_TEXT = _viewModel.TempEntityForCopy.CDEPT_CODE_FROM
+                };
 
-            var loResult = await _viewModel.LookupDepartmentRecord(param);
+                var loResult = await _viewModel.LookupDepartmentRecord(param);
 
-            if (loResult == null)
-            {
-                loEx.Add(R_FrontUtility.R_GetError(
-                    typeof(GSM05000FrontResources.Resources_Dummy_Class),
-                    "_ErrLookupDept"));
-                _viewModel.TempEntityForCopy.CDEPT_CODE_FROM= "";
-                _viewModel.TempEntityForCopy.CDEPT_NAME_FROM= "";
-                goto EndBlock;
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(GSM05000FrontResources.Resources_Dummy_Class),
+                        "_ErrLookupDept"));
+                    _viewModel.TempEntityForCopy.CDEPT_CODE_FROM = "";
+                    _viewModel.TempEntityForCopy.CDEPT_NAME_FROM = "";
+                    goto EndBlock;
+                }
+
+                _viewModel.TempEntityForCopy.CDEPT_NAME_FROM = loResult.CDEPT_NAME;
             }
-
-            _viewModel.TempEntityForCopy.CDEPT_NAME_FROM = loResult.CDEPT_NAME;
         }
         catch (Exception ex)
         {
@@ -61,7 +64,7 @@ public partial class GSM05000ApprovalCopyFrom : R_Page
         EndBlock:
         await R_DisplayExceptionAsync(loEx);
     }
-    
+
     private Task BeforeOpenLookup(R_BeforeOpenLookupEventArgs eventArgs)
     {
         eventArgs.Parameter = _viewModel.TempEntityForCopy;
@@ -83,7 +86,7 @@ public partial class GSM05000ApprovalCopyFrom : R_Page
     public async Task Button_OnClickProcessAsync()
     {
         var loEx = new R_Exception();
-        
+
         try
         {
             var loData = _viewModel.TempEntityForCopy;

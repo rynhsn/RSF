@@ -1,8 +1,10 @@
-﻿using LMT03500Common.DTOs;
+﻿using LMT03500Common;
+using LMT03500Common.DTOs;
 using LMT03500Model.ViewModel;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
+using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
@@ -21,8 +23,9 @@ public partial class LMT03500 : R_Page
     private R_ConductorGrid _conductorRefUtility;
     private R_Grid<LMT03500BuildingDTO> _gridRefBuilding = new();
     private R_Grid<LMT03500UtilityUsageDTO> _gridRefUtility = new();
-    
+
     [Inject] private IJSRuntime JS { get; set; }
+    [Inject] private R_IExcel ExcelInject { get; set; }
 
     private R_TabStrip _tabStripRef;
     private R_TabStrip _tabStripUtilityRef;
@@ -31,6 +34,8 @@ public partial class LMT03500 : R_Page
     private string _display = "d-none";
     private bool _visibleColumnEC;
     private bool _visibleColumnWG;
+
+    private bool _tabDetail;
 
     private R_TabPage _pageCO { get; set; }
     public R_TabPage _pageMN { get; set; }
@@ -42,7 +47,7 @@ public partial class LMT03500 : R_Page
         try
         {
             await _viewModel.Init();
-            await _viewModelUtility.Init(_viewModel.PropertyId);
+            await _viewModelUtility.Init(_viewModel.Property);
             await _gridRefBuilding.R_RefreshGrid(null);
         }
         catch (Exception ex)
@@ -78,6 +83,7 @@ public partial class LMT03500 : R_Page
         {
             await _viewModelUtility.GetUtilityUsageList();
             eventArgs.ListEntityResult = _viewModelUtility.GridUtilityUsageList;
+            _tabDetail = _viewModelUtility.GridUtilityUsageList.Count > 0;
         }
         catch (Exception ex)
         {
@@ -103,7 +109,7 @@ public partial class LMT03500 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     private async Task GetUtilityRecord(R_ServiceGetRecordEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -111,6 +117,7 @@ public partial class LMT03500 : R_Page
         {
             var loData = (LMT03500UtilityUsageDTO)eventArgs.Data;
             _viewModelUtility.EntityUtility = loData;
+            _viewModelUtility.EntityUtility.CPROPERTY_ID = _viewModel.PropertyId;
             eventArgs.Result = _viewModelUtility.Entity;
         }
         catch (Exception ex)
@@ -130,7 +137,9 @@ public partial class LMT03500 : R_Page
             {
                 case eParamType.Property:
                     _viewModel.PropertyId = (string)value;
-                    _viewModelUtility.PropertyId = (string)value;
+                    // _viewModelUtility.PropertyId = (string)value;
+                    _viewModelUtility.Property =
+                        _viewModel.PropertyList.FirstOrDefault(x => x.CPROPERTY_ID == _viewModel.PropertyId);
 
                     switch (_tabStripRef.ActiveTab.Id)
                     {
@@ -138,10 +147,12 @@ public partial class LMT03500 : R_Page
                             await _gridRefBuilding.R_RefreshGrid(null);
                             break;
                         case "CutOff":
-                            await _pageCO.InvokeRefreshTabPageAsync(_viewModel.PropertyId);
+                            // await _pageCO.InvokeRefreshTabPageAsync(_viewModel.PropertyId);
+                            await _pageCO.InvokeRefreshTabPageAsync(_viewModelUtility.Property);
                             break;
                         case "UpdateMeter":
-                            await _pageMN.InvokeRefreshTabPageAsync(_viewModel.PropertyId);
+                            await _pageMN.InvokeRefreshTabPageAsync(_viewModelUtility.Property.CPROPERTY_ID);
+                            // await _pageMN.InvokeRefreshTabPageAsync(_viewModelUtility.Property);
                             break;
                     }
 
@@ -191,6 +202,7 @@ public partial class LMT03500 : R_Page
         {
             if (_viewModelUtility.UtilityTypeId is "01" or "02")
             {
+                _viewModelUtility.UtilityType = ELMT03500UtilityUsageType.EC;
                 _dataLabel = _localizer["LBL_EC"];
                 _display = "d-block";
                 _visibleColumnEC = true;
@@ -198,6 +210,7 @@ public partial class LMT03500 : R_Page
             }
             else if (_viewModelUtility.UtilityTypeId is "03" or "04")
             {
+                _viewModelUtility.UtilityType = ELMT03500UtilityUsageType.WG;
                 _dataLabel = _localizer["LBL_WG"];
                 _display = "d-block";
                 _visibleColumnEC = false;
@@ -207,7 +220,6 @@ public partial class LMT03500 : R_Page
             {
                 _display = "d-none";
             }
-
 
             await _gridRefUtility.R_RefreshGrid(null);
         }
@@ -228,32 +240,98 @@ public partial class LMT03500 : R_Page
     private void BeforeTabCutOff(R_BeforeOpenTabPageEventArgs eventArgs)
     {
         eventArgs.TargetPageType = typeof(LMT03500CutOff);
-        eventArgs.Parameter = _viewModel.PropertyId;
+        // eventArgs.Parameter = _viewModelUtility.PropertyId;
+        eventArgs.Parameter = _viewModelUtility.Property;
     }
 
     private void BeforeTabUpdateMeter(R_BeforeOpenTabPageEventArgs eventArgs)
     {
         eventArgs.TargetPageType = typeof(LMT03500UpdateMeter);
         eventArgs.Parameter = _viewModel.PropertyId;
+        // eventArgs.Parameter = _viewModelUtility.Property;
     }
 
     private void BeforeTabDetail(R_BeforeOpenTabPageEventArgs eventArgs)
     {
         eventArgs.TargetPageType = typeof(LMT03500Detail);
-        eventArgs.Parameter = _viewModelUtility.EntityUtility;
+        var loParam = new PMT03500DetailParam
+        {
+            OUTILITY_HEADER = _viewModelUtility.EntityUtility,
+            EUTILITY_TYPE = _viewModelUtility.UtilityType
+        };
+        eventArgs.Parameter = loParam;
     }
-    
+
     private async Task DownloadTemplate()
     {
         var loEx = new R_Exception();
 
         try
         {
-            //buat lcDate dengan format yyyyMMdd_HHmm
-            // var lcDate = DateTime.Now.ToString("yyyyMMdd_HHmm");
-            var loByteFile = await _viewModelUtility.DownloadTemplate();
+            var loByte = ExcelInject.R_WriteToExcel(_viewModelUtility.ExcelDataSetUtility);
             var saveFileName = $"UtilityUsage.xlsx";
-            await JS.downloadFileFromStreamHandler(saveFileName, loByteFile.FileBytes);
+            await JS.downloadFileFromStreamHandler(saveFileName, loByte);
+            // var loByteFile = await _viewModelUtility.DownloadTemplate();
+            // var saveFileName = $"UtilityUsage.xlsx";
+            // await JS.downloadFileFromStreamHandler(saveFileName, loByteFile.FileBytes);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private void BeforeOpenUpload(R_BeforeOpenPopupEventArgs eventArgs)
+    {
+        eventArgs.TargetPageType = typeof(LMT03500UploadUtilityPopup);
+        var loParam = new PMT03500UploadParam
+        {
+            EUTILITY_TYPE = _viewModelUtility.UtilityType,
+            CPROPERTY_ID = _viewModel.PropertyId,
+            //ambil property name berdasarkan property id dari property list yang sudah di load
+            CPROPERTY_NAME = _viewModel.PropertyList.FirstOrDefault(x => x.CPROPERTY_ID == _viewModel.PropertyId)
+                ?.CPROPERTY_NAME
+        };
+        eventArgs.Parameter = loParam;
+    }
+
+    private async Task AfterOpenUpload(R_AfterOpenPopupEventArgs eventArgs)
+    {
+        if (eventArgs.Success)
+        {
+            await _gridRefUtility.R_RefreshGrid(null);
+        }
+    }
+
+    private bool _comboProperty = true;
+
+    private async Task OnActiveSubTab(R_TabStripActiveTabIndexChangingEventArgs eventArgs)
+    {
+        if (_tabStripRef.ActiveTab.Id == "Utility")
+        {
+            _comboProperty = eventArgs.TabStripTab.Id != "DI";
+        }
+    }
+
+    private async Task OnActiveTab(R_TabStripActiveTabIndexChangingEventArgs eventArgs)
+    {
+        _comboProperty = true;
+        if (eventArgs.TabStripTab.Id == "Utility")
+        {
+            _comboProperty = _tabStripUtilityRef.ActiveTab.Id != "DI";
+        }
+    }
+
+    private void DisplayUtility(R_DisplayEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            var loData = (LMT03500UtilityUsageDTO)eventArgs.Data;
+            _viewModelUtility.EntityUtility = loData;
+            _viewModelUtility.EntityUtility.CPROPERTY_ID = _viewModel.PropertyId;
         }
         catch (Exception ex)
         {

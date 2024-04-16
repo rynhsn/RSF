@@ -3,7 +3,7 @@ using R_APICommonDTO;
 
 namespace LMT03500Common.DTOs
 {
-    public class LMT03500UtilityMeterDetailDTO:R_APIResultBaseDTO
+    public class PMT03500UtilityMeterDetailDTO:R_APIResultBaseDTO
     {
         public string CFROM_METER_NO { get; set; }
         public string CMETER_END { get; set; }

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
-using LMT03500Back;
+using PMT03500Back;
 using LMT03500Common;
 using LMT03500Common.DTOs;
 using LMT03500Common.Params;
@@ -15,15 +15,15 @@ namespace LMT03500Service;
 [Route("api/[controller]/[action]")]
 public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUsage
 {
-    private LoggerLMT03500 _logger;
+    private LoggerPMT03500 _logger;
     private readonly ActivitySource _activitySource;
 
     public LMT03500UtilityUsageController(ILogger<LMT03500UtilityUsageController> logger)
     {
         //Initial and Get Logger
-        LoggerLMT03500.R_InitializeLogger(logger);
-        _logger = LoggerLMT03500.R_GetInstanceLogger();
-        _activitySource = LMT03500Activity.R_InitializeAndGetActivitySource(nameof(LMT03500InitController));
+        LoggerPMT03500.R_InitializeLogger(logger);
+        _logger = LoggerPMT03500.R_GetInstanceLogger();
+        _activitySource = PMT03500Activity.R_InitializeAndGetActivitySource(nameof(LMT03500UtilityUsageController));
     }
 
     [HttpPost]
@@ -32,8 +32,8 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetBuildingListStream));
         _logger.LogInfo("Start - Get Building List Stream");
         var loEx = new R_Exception();
-        var loCls = new LMT03500UtilityUsageCls();
-        var loDbParams = new LMT03500ParameterDb();
+        var loCls = new PMT03500UtilityUsageCls();
+        var loDbParams = new PMT03500ParameterDb();
         List<LMT03500BuildingDTO> loResult = null;
         IAsyncEnumerable<LMT03500BuildingDTO> loReturn = null;
 
@@ -43,7 +43,7 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
             _logger.LogInfo("Set Parameter");
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbParams.CUSER_ID = R_BackGlobalVar.USER_ID;
-            loDbParams.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(LMT03500ContextConstant.CPROPERTY_ID);
+            loDbParams.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CPROPERTY_ID);
 
             _logger.LogInfo("Get Building List Stream");
             loResult = loCls.GetBuildingList(loDbParams);
@@ -67,8 +67,8 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         
         var loEx = new R_Exception();
         LMT03500SingleDTO<LMT03500BuildingDTO> loReturn = new();
-        var loCls = new LMT03500UtilityUsageCls();
-        var loDbPar = new LMT03500ParameterDb();
+        var loCls = new PMT03500UtilityUsageCls();
+        var loDbPar = new PMT03500ParameterDb();
         
         try
         {
@@ -101,8 +101,8 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetUtilityUsageListStream));
         _logger.LogInfo("Start - Get Building List Stream");
         var loEx = new R_Exception();
-        var loCls = new LMT03500UtilityUsageCls();
-        var loDbParams = new LMT03500ParameterDb();
+        var loCls = new PMT03500UtilityUsageCls();
+        var loDbParams = new PMT03500ParameterDb();
         List<LMT03500UtilityUsageDTO> loResult = null;
         IAsyncEnumerable<LMT03500UtilityUsageDTO> loReturn = null;
 
@@ -112,18 +112,18 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
             _logger.LogInfo("Set Parameter");
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbParams.CUSER_ID = R_BackGlobalVar.USER_ID;
-            loDbParams.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(LMT03500ContextConstant.CPROPERTY_ID);
-            loDbParams.CBUILDING_ID = R_Utility.R_GetStreamingContext<string>(LMT03500ContextConstant.CBUILDING_ID);
-            loDbParams.CUTILITY_TYPE = R_Utility.R_GetStreamingContext<string>(LMT03500ContextConstant.CUTILITY_TYPE);
-            loDbParams.CFLOOR_LIST = R_Utility.R_GetStreamingContext<string>(LMT03500ContextConstant.CFLOOR_LIST);
-            loDbParams.LALL_FLOOR = R_Utility.R_GetStreamingContext<bool>(LMT03500ContextConstant.LALL_FLOOR);
-            loDbParams.CINVOICE_PRD = R_Utility.R_GetStreamingContext<string>(LMT03500ContextConstant.CINVOICE_PRD);
-            loDbParams.LINVOICED = R_Utility.R_GetStreamingContext<bool>(LMT03500ContextConstant.LINVOICED);
-            loDbParams.CUTILITY_PRD = R_Utility.R_GetStreamingContext<string>(LMT03500ContextConstant.CUTILITY_PRD);
+            loDbParams.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CPROPERTY_ID);
+            loDbParams.CBUILDING_ID = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CBUILDING_ID);
+            loDbParams.CUTILITY_TYPE = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CUTILITY_TYPE);
+            loDbParams.CFLOOR_LIST = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CFLOOR_LIST);
+            loDbParams.LALL_FLOOR = R_Utility.R_GetStreamingContext<bool>(PMT03500ContextConstant.LALL_FLOOR);
+            loDbParams.CINVOICE_PRD = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CINVOICE_PRD);
+            loDbParams.LINVOICED = R_Utility.R_GetStreamingContext<bool>(PMT03500ContextConstant.LINVOICED);
+            loDbParams.CUTILITY_PRD = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CUTILITY_PRD);
             loDbParams.CUTILITY_PRD_FROM_DATE =
-                R_Utility.R_GetStreamingContext<string>(LMT03500ContextConstant.CUTILITY_PRD_FROM_DATE);
+                R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CUTILITY_PRD_FROM_DATE);
             loDbParams.CUTILITY_PRD_TO_DATE =
-                R_Utility.R_GetStreamingContext<string>(LMT03500ContextConstant.CUTILITY_PRD_TO_DATE);
+                R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CUTILITY_PRD_TO_DATE);
             // var leType = (ELMT03500UtilityUsageTypeDb)peType;
 
             _logger.LogInfo("Get Building List Stream");
@@ -148,8 +148,8 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         _logger.LogInfo("Start - Get Floor List");
 
         var loEx = new R_Exception();
-        var loCls = new LMT03500UtilityUsageCls();
-        var loDbParams = new LMT03500ParameterDb();
+        var loCls = new PMT03500UtilityUsageCls();
+        var loDbParams = new PMT03500ParameterDb();
         var loReturn = new LMT03500SingleDTO<LMT03500UtilityUsageDetailDTO>();
 
         try
@@ -159,6 +159,7 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
             loDbParams.CUSER_ID = R_BackGlobalVar.USER_ID;
             loDbParams.CPROPERTY_ID = poParam.CPROPERTY_ID;
             loDbParams.CREF_NO = poParam.CREF_NO;
+            loDbParams.CCHARGES_TYPE = poParam.CCHARGES_TYPE;
 
             _logger.LogInfo("Get Floor List");
             loReturn.Data = loCls.GetUtilityUsageDetail(loDbParams);
@@ -182,8 +183,8 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         _logger.LogInfo("Start - Get Utility Type List");
 
         var loEx = new R_Exception();
-        var loCls = new LMT03500UtilityUsageCls();
-        var loDbParams = new LMT03500ParameterDb();
+        var loCls = new PMT03500UtilityUsageCls();
+        var loDbParams = new PMT03500ParameterDb();
         var loReturn = new LMT03500ListDTO<LMT03500FunctDTO>();
 
         try
@@ -213,8 +214,8 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         _logger.LogInfo("Start - Get Floor List");
 
         var loEx = new R_Exception();
-        var loCls = new LMT03500UtilityUsageCls();
-        var loDbParams = new LMT03500ParameterDb();
+        var loCls = new PMT03500UtilityUsageCls();
+        var loDbParams = new PMT03500ParameterDb();
         var loReturn = new LMT03500ListDTO<LMT03500FloorDTO>();
 
         try
@@ -246,8 +247,8 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         _logger.LogInfo("Start - Get Period List");
 
         var loEx = new R_Exception();
-        var loCls = new LMT03500UtilityUsageCls();
-        var loDbParams = new LMT03500ParameterDb();
+        var loCls = new PMT03500UtilityUsageCls();
+        var loDbParams = new PMT03500ParameterDb();
         var loReturn = new LMT03500ListDTO<LMT03500YearDTO>();
 
         try
@@ -276,8 +277,8 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         _logger.LogInfo("Start - Get Period List");
 
         var loEx = new R_Exception();
-        var loCls = new LMT03500UtilityUsageCls();
-        var loDbParams = new LMT03500ParameterDb();
+        var loCls = new PMT03500UtilityUsageCls();
+        var loDbParams = new PMT03500ParameterDb();
         var loReturn = new LMT03500ListDTO<LMT03500PeriodDTO>();
 
         try

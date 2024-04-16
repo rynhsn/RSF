@@ -1,1 +1,132 @@
 ﻿@page "/LMT03500UploadUtilityPopup"
+@using R_BlazorFrontEnd.Interfaces
+@using LMT03500FrontResources
+@using LMT03500Common.DTOs
+@inherits R_Page
+@attribute [R_Page(Title = "Upload Utility Usage")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="2" Class="d-inline">
+            <R_Label>@_localizer["LBL_PROP"]</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_TextBox Value="@_viewModel.UploadParam.CPROPERTY_ID"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_TextBox Value="@_viewModel.UploadParam.CPROPERTY_NAME"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="2" Class="d-inline">
+            <R_Label>@_localizer["LBL_SRCFILE"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="8" Class="ms-2">
+            <R_InputFile OnChange="@OnChangeUploadSrc" Accepts="@_accepts"/>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.GridListUpload"
+                Pageable
+                R_GridType="@R_eGridType.Navigator"
+                Height="450px"
+                Width="900px"
+                R_ServiceGetListRecord="@GetListRecord">
+            <R_GridColumns>
+                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.NO)" HeaderText="@_localizer["LBL_NO"]" Width="75px"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CBUILDING_ID)" Width="150px" HeaderText="@_localizer["LBL_BUILDINGID"]"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CDEPT_CODE)" Width="150px" HeaderText="@_localizer["LBL_DEPT"]"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CREF_NO)" Width="150px" HeaderText="@_localizer["LBL_AGREEMENTNO"]"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CUTILITY_TYPE)" Width="150px" HeaderText="@_localizer["LBL_UTILITYTYPE"]"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CFLOOR_ID)" Width="100px" HeaderText="@_localizer["LBL_FLOOR"]"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CUNIT_ID)" Width="100px" HeaderText="@_localizer["LBL_UNITID"]"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CCHARGES_TYPE)" HeaderText="Type" Width="100px" Visible="false"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CCHARGES_ID)" HeaderText="ID" Width="100px" Visible="false"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CMETER_NO)" Width="100px" HeaderText="@_localizer["LBL_METERNO"]"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CUTILITY_PRD)" Width="150px" HeaderText="@_localizer["LBL_UTILITYPERIOD"]" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CSTART_DATE)" Width="150px" HeaderText="@_localizer["LBL_STARTDATE"]" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CEND_DATE)" Width="150px" HeaderText="@_localizer["LBL_ENDDATE"]" TextAlignment="R_eTextAlignment.Left"/>
+
+                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IBLOCK1_START)" Width="150px" HeaderText="@_localizer["LBL_BLOCK1START"]" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IBLOCK2_START)" Width="150px" HeaderText="@_localizer["LBL_BLOCK2START"]" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IBLOCK1_END)" Width="150px" HeaderText="@_localizer["LBL_BLOCK1END"]" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IBLOCK2_END)" Width="150px" HeaderText="@_localizer["LBL_BLOCK2END"]" Visible="@_visibleColumnEC"/>
+
+                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IMETER_START)" HeaderText="@_localizer["LBL_METERSTART"]" Width="150px" Visible="@_visibleColumnWG"/>
+                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IMETER_END)" HeaderText="@_localizer["LBL_METEREND"]" Width="150px" Visible="@_visibleColumnWG"/>
+
+                <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.ErrorFlag)" HeaderText="@_localizer["VALID"]" Width="100px" Visible="@_viewModel.IsError"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.ErrorMessage)" HeaderText="@_localizer["NOTES"]" Width="300px" Visible="@_viewModel.IsError"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_ProgressBar Label="@_viewModel.Message" MaxValue="100" Value="@_viewModel.Percentage"></R_ProgressBar>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+
+    <R_StackLayout Row Class="justify-content-between">
+        <R_ItemLayout col="8">
+            <R_StackLayout Row Spacing="3" Class="justify-content-start">
+                <R_ItemLayout col="4">
+                    <R_StackLayout Row>
+                        <R_ItemLayout>
+                            <R_Label>@_localizer["LBL_TOTALROW"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_NumericTextBox @bind-Value="_viewModel.TotalRows" Enabled="false" Arrows="false"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="4">
+                    <R_StackLayout Row>
+                        <R_ItemLayout>
+                            <R_Label>@_localizer["LBL_VALID"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_NumericTextBox class="bg-success" @bind-Value="_viewModel.ValidRows" ReadOnly Arrows="false"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="4">
+                    <R_StackLayout Row>
+                        <R_ItemLayout>
+                            <R_Label>@_localizer["LBL_INVALID"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_NumericTextBox class="bg-danger" @bind-Value="_viewModel.InvalidRows" ReadOnly Arrows="false"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        <R_StackLayout Row Spacing="2" Class="justify-content-end">
+            <R_ItemLayout>
+                <R_Button OnClick="OnClickCloseAsync">@_localizer["LBL_CANCEL"]</R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout hidden="@_viewModel.IsError">
+                <R_Button OnClick="OnClickProcessAsync" Enabled="@_viewModel.FileHasData">@_localizer["LBL_PROCESS"]</R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout hidden="@(!_viewModel.IsError)">
+                <R_Button OnClick="OnClickSaveAsync">@_localizer["LBL_SAVEEXCEL"]</R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_StackLayout>
+
+
+</R_StackLayout>

@@ -2,7 +2,7 @@ using R_CommonFrontBackAPI.Log;
 
 namespace LMT03500Common
 {
-    public class LoggerLMT03500 : R_NetCoreLoggerBase<LoggerLMT03500>
+    public class LoggerPMT03500 : R_NetCoreLoggerBase<LoggerPMT03500>
     {
     }
 }

@@ -2,7 +2,7 @@ using System;
 
 namespace LMT03500Common.DTOs
 {
-    public class LMT03500UtilityMeterDTO
+    public class PMT03500UtilityMeterDTO
     {
         public string CCOMPANY_ID { get; set; }
         public string CPROPERTY_ID { get; set; }

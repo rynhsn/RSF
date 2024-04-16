@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\BACK\LM\LMT03500Back\LMT03500Back.csproj" />
+        <ProjectReference Include="..\..\..\BACK\LM\PMT03500Back\PMT03500Back.csproj" />
         <ProjectReference Include="..\..\..\COMMON\LM\LMT03500Common\LMT03500Common.csproj" />
     </ItemGroup>
     

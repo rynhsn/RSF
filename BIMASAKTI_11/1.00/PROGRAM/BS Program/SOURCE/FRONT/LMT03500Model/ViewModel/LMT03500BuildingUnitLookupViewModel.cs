@@ -12,7 +12,7 @@ namespace LMT03500Model.ViewModel
     {
         private LMT03500UpdateMeterModel _model = new LMT03500UpdateMeterModel();
         
-        public ObservableCollection<LMT03500BuildingUnitDTO> GridList = new ObservableCollection<LMT03500BuildingUnitDTO>();
+        public ObservableCollection<PMT03500BuildingUnitDTO> GridList = new ObservableCollection<PMT03500BuildingUnitDTO>();
         
         public async Task GetList(object poParam)
         {
@@ -20,12 +20,12 @@ namespace LMT03500Model.ViewModel
             try
             {
                 var loParam = (LMT03500UpdateMeterHeader)poParam;
-                R_FrontContext.R_SetStreamingContext(LMT03500ContextConstant.CPROPERTY_ID,loParam.CPROPERTY_ID);
-                R_FrontContext.R_SetStreamingContext(LMT03500ContextConstant.CBUILDING_ID,loParam.CBUILDING_ID);
-                R_FrontContext.R_SetStreamingContext(LMT03500ContextConstant.CFLOOR_ID, string.Empty);
-                var loReturn = await _model.GetListStreamAsync<LMT03500BuildingUnitDTO>(nameof(ILMT03500UpdateMeter
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID,loParam.CPROPERTY_ID);
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CBUILDING_ID,loParam.CBUILDING_ID);
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CFLOOR_ID, string.Empty);
+                var loReturn = await _model.GetListStreamAsync<PMT03500BuildingUnitDTO>(nameof(ILMT03500UpdateMeter
                     .LMT03500GetBuildingUnitListStream));
-                GridList = new ObservableCollection<LMT03500BuildingUnitDTO>(loReturn);
+                GridList = new ObservableCollection<PMT03500BuildingUnitDTO>(loReturn);
             }
             catch (Exception ex)
             {
@@ -35,14 +35,14 @@ namespace LMT03500Model.ViewModel
             loEx.ThrowExceptionIfErrors();
         }
         
-        public async Task<LMT03500BuildingUnitDTO> GetRecord(LMT03500SearchTextDTO poParam)
+        public async Task<PMT03500BuildingUnitDTO> GetRecord(LMT03500SearchTextDTO poParam)
         {
             var loEx = new R_Exception();
-            LMT03500BuildingUnitDTO loReturn = null;
+            PMT03500BuildingUnitDTO loReturn = null;
 
             try
             {
-                var loResult = await _model.GetAsync<LMT03500SingleDTO<LMT03500BuildingUnitDTO>, LMT03500SearchTextDTO>(nameof(ILMT03500UpdateMeter.LMT03500GetBuildingUnitRecord), poParam);
+                var loResult = await _model.GetAsync<LMT03500SingleDTO<PMT03500BuildingUnitDTO>, LMT03500SearchTextDTO>(nameof(ILMT03500UpdateMeter.LMT03500GetBuildingUnitRecord), poParam);
                 loReturn = loResult.Data;
             }
             catch (Exception ex)

@@ -4,16 +4,17 @@ using Microsoft.AspNetCore.Components.Web;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
+using R_BlazorFrontEnd.Controls.Tab;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 
 namespace LMT03500Front;
 
-public partial class LMT03500UpdateMeter : R_Page
+public partial class LMT03500UpdateMeter : R_ITabPage
 {
     private LMT03500UpdateMeterViewModel _viewModel = new();
     private R_Conductor _conductorRef;
-    private R_Grid<LMT03500UtilityMeterDTO> _gridRef = new();
+    private R_Grid<PMT03500UtilityMeterDTO> _gridRef = new();
 
     protected override async Task R_Init_From_Master(object poParameter)
     {
@@ -37,24 +38,28 @@ public partial class LMT03500UpdateMeter : R_Page
 
         try
         {
-            var param = new LMT03500SearchTextDTO()
+            
+            if (_viewModel.Header.CBUILDING_ID.Length > 0)
             {
-                CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
-                CSEARCH_TEXT = _viewModel.Header.CBUILDING_ID
-            };
-            var loLookupViewModel = new LMT03500BuildingLookupViewModel();
-            var loResult = await loLookupViewModel.GetRecord(param);
+                var param = new LMT03500SearchTextDTO()
+                {
+                    CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
+                    CSEARCH_TEXT = _viewModel.Header.CBUILDING_ID
+                };
+                var loLookupViewModel = new LMT03500BuildingLookupViewModel();
+                var loResult = await loLookupViewModel.GetRecord(param);
 
-            if (loResult == null)
-            {
-                loEx.Add(R_FrontUtility.R_GetError(
-                    typeof(LMT03500FrontResources.Resources_Dummy_Class),
-                    "_ErrLookup"));
-                _viewModel.Header.CBUILDING_ID= "";
-                goto EndBlock;
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(LMT03500FrontResources.Resources_Dummy_Class),
+                        "_ErrLookup"));
+                    _viewModel.Header.CBUILDING_ID= "";
+                    goto EndBlock;
+                }
+
+                _viewModel.Header.CBUILDING_ID = loResult.CBUILDING_ID;
             }
-
-            _viewModel.Header.CBUILDING_ID = loResult.CBUILDING_ID;
         }
         catch (Exception ex)
         {
@@ -128,7 +133,7 @@ public partial class LMT03500UpdateMeter : R_Page
         var loEx = new R_Exception();
         try
         {
-            var loTempResult = (LMT03500BuildingUnitDTO)eventArgs.Result;
+            var loTempResult = (PMT03500BuildingUnitDTO)eventArgs.Result;
             if (loTempResult == null)
                 return;
 
@@ -181,7 +186,7 @@ public partial class LMT03500UpdateMeter : R_Page
         var loEx = new R_Exception();
         try
         {
-            var loParam = R_FrontUtility.ConvertObjectToObject<LMT03500UtilityMeterDTO>(eventArgs.Data);
+            var loParam = R_FrontUtility.ConvertObjectToObject<PMT03500UtilityMeterDTO>(eventArgs.Data);
             await _viewModel.GetRecord(loParam);
             eventArgs.Result = _viewModel.Entity;
         }
@@ -255,4 +260,11 @@ public partial class LMT03500UpdateMeter : R_Page
         _viewModel.Data.CTENANT_NAME = _viewModel.Header.CTENANT_NAME;
         eventArgs.Parameter = _viewModel.Data;
     }
+    
+    public async Task RefreshTabPageAsync(object poParam)
+    {
+        await _viewModel.Init(poParam);
+        _viewModel.Header.CBUILDING_ID = "";
+    }
+
 }

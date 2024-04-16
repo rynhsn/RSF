@@ -11,7 +11,7 @@ public partial class LMT03500UnitLookup
 {
     private LMT03500BuildingUnitLookupViewModel _viewModel = new();
     private R_Conductor _conductorRef;
-    private R_Grid<LMT03500BuildingUnitDTO> _gridRef = new();
+    private R_Grid<PMT03500BuildingUnitDTO> _gridRef = new();
 
     protected override async Task R_Init_From_Master(object poParameter)
     {

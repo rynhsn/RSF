@@ -7,24 +7,24 @@ using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
 
-namespace LMT03500Back;
+namespace PMT03500Back;
 
-public class LMT03500UpdateMeterCls
+public class PMT03500UpdateMeterCls
 {
-    private LoggerLMT03500 _logger;
+    private LoggerPMT03500 _logger;
     private readonly ActivitySource _activitySource;
 
-    public LMT03500UpdateMeterCls()
+    public PMT03500UpdateMeterCls()
     {
-        _logger = LoggerLMT03500.R_GetInstanceLogger();
-        _activitySource = LMT03500Activity.R_GetInstanceActivitySource();
+        _logger = LoggerPMT03500.R_GetInstanceLogger();
+        _activitySource = PMT03500Activity.R_GetInstanceActivitySource();
     }
 
-    public List<LMT03500BuildingUnitDTO> GetBuildingUnitList(LMT03500ParameterDb poParam)
+    public List<PMT03500BuildingUnitDTO> GetBuildingUnitList(PMT03500ParameterDb poParam)
     {
         using var loScope = _activitySource.StartActivity(nameof(GetBuildingUnitList));
         R_Exception loEx = new();
-        List<LMT03500BuildingUnitDTO> loRtn = null;
+        List<PMT03500BuildingUnitDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -61,7 +61,7 @@ public class LMT03500UpdateMeterCls
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loRtn = R_Utility.R_ConvertTo<LMT03500BuildingUnitDTO>(loDataTable).ToList();
+            loRtn = R_Utility.R_ConvertTo<PMT03500BuildingUnitDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {
@@ -75,11 +75,11 @@ public class LMT03500UpdateMeterCls
         return loRtn;
     }
 
-    public List<LMT03500UtilityMeterDTO> GetUtilityMeterList(LMT03500ParameterDb poParam)
+    public List<PMT03500UtilityMeterDTO> GetUtilityMeterList(PMT03500ParameterDb poParam)
     {
         using var loScope = _activitySource.StartActivity(nameof(GetUtilityMeterList));
         R_Exception loEx = new();
-        List<LMT03500UtilityMeterDTO> loRtn = null;
+        List<PMT03500UtilityMeterDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -116,7 +116,7 @@ public class LMT03500UpdateMeterCls
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loRtn = R_Utility.R_ConvertTo<LMT03500UtilityMeterDTO>(loDataTable).ToList();
+            loRtn = R_Utility.R_ConvertTo<PMT03500UtilityMeterDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {
@@ -130,11 +130,11 @@ public class LMT03500UpdateMeterCls
         return loRtn;
     }
 
-    public LMT03500UtilityMeterDetailDTO GetUtilityMeterDetail(LMT03500ParameterDb poParam)
+    public PMT03500UtilityMeterDetailDTO GetUtilityMeterDetail(PMT03500ParameterDb poParam)
     {
         using var loScope = _activitySource.StartActivity(nameof(GetUtilityMeterDetail));
         R_Exception loEx = new();
-        LMT03500UtilityMeterDetailDTO loRtn = null;
+        PMT03500UtilityMeterDetailDTO loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -173,7 +173,7 @@ public class LMT03500UpdateMeterCls
 
             var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loRtn = R_Utility.R_ConvertTo<LMT03500UtilityMeterDetailDTO>(DataTable).FirstOrDefault();
+            loRtn = R_Utility.R_ConvertTo<PMT03500UtilityMeterDetailDTO>(DataTable).FirstOrDefault();
         }
         catch (Exception ex)
         {
@@ -185,11 +185,11 @@ public class LMT03500UpdateMeterCls
         return loRtn;
     }
 
-    public LMT03500AgreementUtilitiesDTO GetAgreementUtilities(LMT03500ParameterDb poParam)
+    public PMT03500AgreementUtilitiesDTO GetAgreementUtilities(PMT03500ParameterDb poParam)
     {
         using var loScope = _activitySource.StartActivity(nameof(GetAgreementUtilities));
         R_Exception loEx = new();
-        LMT03500AgreementUtilitiesDTO loRtn = null;
+        PMT03500AgreementUtilitiesDTO loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -224,7 +224,7 @@ public class LMT03500UpdateMeterCls
 
             var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loRtn = R_Utility.R_ConvertTo<LMT03500AgreementUtilitiesDTO>(DataTable).FirstOrDefault();
+            loRtn = R_Utility.R_ConvertTo<PMT03500AgreementUtilitiesDTO>(DataTable).FirstOrDefault();
         }
         catch (Exception ex)
         {
@@ -235,9 +235,9 @@ public class LMT03500UpdateMeterCls
         return loRtn;
     }
     
-    public void LMT03500UpdateMeterNo(LMT03500ParameterDb poParams)
+    public void PMT03500UpdateMeterNo(PMT03500ParameterDb poParams)
     {
-        using var loScope = _activitySource.StartActivity(nameof(LMT03500UpdateMeterNo));
+        using var loScope = _activitySource.StartActivity(nameof(PMT03500UpdateMeterNo));
         R_Exception loEx = new R_Exception();
         R_Db loDb;
         DbConnection loConn;
@@ -296,9 +296,9 @@ public class LMT03500UpdateMeterCls
         loEx.ThrowExceptionIfErrors();
     }
     
-    public void LMT03500ChangeMeterNo(LMT03500ParameterDb poParams)
+    public void PMT03500ChangeMeterNo(PMT03500ParameterDb poParams)
     {
-        using var loScope = _activitySource.StartActivity(nameof(LMT03500ChangeMeterNo));
+        using var loScope = _activitySource.StartActivity(nameof(PMT03500ChangeMeterNo));
         R_Exception loEx = new R_Exception();
         R_Db loDb;
         DbConnection loConn;

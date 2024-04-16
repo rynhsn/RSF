@@ -19,7 +19,7 @@ namespace LMT03500Model.ViewModel
             var loEx = new R_Exception();
             try
             {
-                R_FrontContext.R_SetStreamingContext(LMT03500ContextConstant.CPROPERTY_ID, (string)poPropertyId);
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, (string)poPropertyId);
                 var loReturn = await _model.GetListStreamAsync<LMT03500BuildingDTO>(nameof(ILMT03500UtilityUsage
                     .LMT03500GetBuildingListStream));
                 GridList = new ObservableCollection<LMT03500BuildingDTO>(loReturn);

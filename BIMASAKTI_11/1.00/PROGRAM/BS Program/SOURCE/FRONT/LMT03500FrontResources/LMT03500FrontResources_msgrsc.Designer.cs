@@ -78,6 +78,24 @@ namespace LMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Additional.
+        /// </summary>
+        internal static string LBL_ADDITIONAL {
+            get {
+                return ResourceManager.GetString("LBL_ADDITIONAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin Fee.
+        /// </summary>
+        internal static string LBL_ADMIN_FEE {
+            get {
+                return ResourceManager.GetString("LBL_ADMIN_FEE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agreement No.
         /// </summary>
         internal static string LBL_AGREEMENTNO {
@@ -134,9 +152,54 @@ namespace LMT03500FrontResources {
         /// <summary>
         ///   Looks up a localized string similar to Beban Bersama.
         /// </summary>
+        internal static string LBL_BEBAN_BERSAMA {
+            get {
+                return ResourceManager.GetString("LBL_BEBAN_BERSAMA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beban Bersama.
+        /// </summary>
         internal static string LBL_BEBANBERSAMA {
             get {
                 return ResourceManager.GetString("LBL_BEBANBERSAMA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Block I.
+        /// </summary>
+        internal static string LBL_BLOCK_I {
+            get {
+                return ResourceManager.GetString("LBL_BLOCK_I", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Block I Charge.
+        /// </summary>
+        internal static string LBL_BLOCK_I_CHARGE {
+            get {
+                return ResourceManager.GetString("LBL_BLOCK_I_CHARGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Block II.
+        /// </summary>
+        internal static string LBL_BLOCK_II {
+            get {
+                return ResourceManager.GetString("LBL_BLOCK_II", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Block II Charge.
+        /// </summary>
+        internal static string LBL_BLOCK_II_CHARGE {
+            get {
+                return ResourceManager.GetString("LBL_BLOCK_II_CHARGE", resourceCulture);
             }
         }
         
@@ -222,6 +285,15 @@ namespace LMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Calculation Factor.
+        /// </summary>
+        internal static string LBL_CALCULATION_FACTOR {
+            get {
+                return ResourceManager.GetString("LBL_CALCULATION_FACTOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string LBL_CANCEL {
@@ -267,6 +339,15 @@ namespace LMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consumption.
+        /// </summary>
+        internal static string LBL_CONSUMPTION {
+            get {
+                return ResourceManager.GetString("LBL_CONSUMPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created By.
         /// </summary>
         internal static string LBL_CRTBY {
@@ -281,6 +362,15 @@ namespace LMT03500FrontResources {
         internal static string LBL_CRTDT {
             get {
                 return ResourceManager.GetString("LBL_CRTDT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department.
+        /// </summary>
+        internal static string LBL_DEPT {
+            get {
+                return ResourceManager.GetString("LBL_DEPT", resourceCulture);
             }
         }
         
@@ -321,6 +411,15 @@ namespace LMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Equipment Maintenance.
+        /// </summary>
+        internal static string LBL_EQUIPMENT_MAINT {
+            get {
+                return ResourceManager.GetString("LBL_EQUIPMENT_MAINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Floor.
         /// </summary>
         internal static string LBL_FLOOR {
@@ -344,6 +443,15 @@ namespace LMT03500FrontResources {
         internal static string LBL_FROMMETERNO {
             get {
                 return ResourceManager.GetString("LBL_FROMMETERNO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid.
+        /// </summary>
+        internal static string LBL_INVALID {
+            get {
+                return ResourceManager.GetString("LBL_INVALID", resourceCulture);
             }
         }
         
@@ -384,6 +492,15 @@ namespace LMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to KVA Value.
+        /// </summary>
+        internal static string LBL_KVA_VALUE {
+            get {
+                return ResourceManager.GetString("LBL_KVA_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Meter End.
         /// </summary>
         internal static string LBL_METEREND {
@@ -420,11 +537,29 @@ namespace LMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Minimum Charge.
+        /// </summary>
+        internal static string LBL_MINIMUM_CHARGE {
+            get {
+                return ResourceManager.GetString("LBL_MINIMUM_CHARGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Month(s).
         /// </summary>
         internal static string LBL_MONTHS {
             get {
                 return ResourceManager.GetString("LBL_MONTHS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string LBL_NO {
+            get {
+                return ResourceManager.GetString("LBL_NO", resourceCulture);
             }
         }
         
@@ -438,11 +573,29 @@ namespace LMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PF.
+        /// </summary>
+        internal static string LBL_PF {
+            get {
+                return ResourceManager.GetString("LBL_PF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Photo.
         /// </summary>
         internal static string LBL_PHOTO {
             get {
                 return ResourceManager.GetString("LBL_PHOTO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Process.
+        /// </summary>
+        internal static string LBL_PROCESS {
+            get {
+                return ResourceManager.GetString("LBL_PROCESS", resourceCulture);
             }
         }
         
@@ -474,11 +627,65 @@ namespace LMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Retribution.
+        /// </summary>
+        internal static string LBL_RETRIBUTION {
+            get {
+                return ResourceManager.GetString("LBL_RETRIBUTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string LBL_SAVE {
             get {
                 return ResourceManager.GetString("LBL_SAVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save to Excel.
+        /// </summary>
+        internal static string LBL_SAVEEXCEL {
+            get {
+                return ResourceManager.GetString("LBL_SAVEEXCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source File.
+        /// </summary>
+        internal static string LBL_SRCFILE {
+            get {
+                return ResourceManager.GetString("LBL_SRCFILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standing Amount.
+        /// </summary>
+        internal static string LBL_STANDING_AMOUNT {
+            get {
+                return ResourceManager.GetString("LBL_STANDING_AMOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standing Charge.
+        /// </summary>
+        internal static string LBL_STANDING_CHARGE {
+            get {
+                return ResourceManager.GetString("LBL_STANDING_CHARGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standing Consumption.
+        /// </summary>
+        internal static string LBL_STANDING_CONSUMPTION {
+            get {
+                return ResourceManager.GetString("LBL_STANDING_CONSUMPTION", resourceCulture);
             }
         }
         
@@ -555,11 +762,56 @@ namespace LMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        internal static string LBL_TOTAL {
+            get {
+                return ResourceManager.GetString("LBL_TOTAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total + Adm + VAT.
+        /// </summary>
+        internal static string LBL_TOTAL_ADM_VAT {
+            get {
+                return ResourceManager.GetString("LBL_TOTAL_ADM_VAT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Amount.
         /// </summary>
         internal static string LBL_TOTALAMOUNT {
             get {
                 return ResourceManager.GetString("LBL_TOTALAMOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Row(s).
+        /// </summary>
+        internal static string LBL_TOTALROW {
+            get {
+                return ResourceManager.GetString("LBL_TOTALROW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transformator.
+        /// </summary>
+        internal static string LBL_TRANSFORMATOR {
+            get {
+                return ResourceManager.GetString("LBL_TRANSFORMATOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TTLB.
+        /// </summary>
+        internal static string LBL_TTLB {
+            get {
+                return ResourceManager.GetString("LBL_TTLB", resourceCulture);
             }
         }
         
@@ -645,6 +897,24 @@ namespace LMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Usage.
+        /// </summary>
+        internal static string LBL_USAGE {
+            get {
+                return ResourceManager.GetString("LBL_USAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usage x PF.
+        /// </summary>
+        internal static string LBL_USAGE_X_PF {
+            get {
+                return ResourceManager.GetString("LBL_USAGE_X_PF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Utility Period.
         /// </summary>
         internal static string LBL_UTILITYPERIOD {
@@ -668,6 +938,42 @@ namespace LMT03500FrontResources {
         internal static string LBL_UTILITYTYPE {
             get {
                 return ResourceManager.GetString("LBL_UTILITYTYPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valid.
+        /// </summary>
+        internal static string LBL_VALID {
+            get {
+                return ResourceManager.GetString("LBL_VALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VAT (adm tax).
+        /// </summary>
+        internal static string LBL_VAT_ADM_TAX {
+            get {
+                return ResourceManager.GetString("LBL_VAT_ADM_TAX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VAT (non adm tax).
+        /// </summary>
+        internal static string LBL_VAT_NON_ADM_TAX {
+            get {
+                return ResourceManager.GetString("LBL_VAT_NON_ADM_TAX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Water Meter.
+        /// </summary>
+        internal static string LBL_WATER_METER {
+            get {
+                return ResourceManager.GetString("LBL_WATER_METER", resourceCulture);
             }
         }
         
@@ -708,11 +1014,29 @@ namespace LMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to General Info.
+        /// </summary>
+        internal static string TAB_GENERALINFO {
+            get {
+                return ResourceManager.GetString("TAB_GENERALINFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update Meter No.
         /// </summary>
         internal static string TAB_UPDATEMETER {
             get {
                 return ResourceManager.GetString("TAB_UPDATEMETER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utility Usage.
+        /// </summary>
+        internal static string TAB_UTILITYUSAGE {
+            get {
+                return ResourceManager.GetString("TAB_UTILITYUSAGE", resourceCulture);
             }
         }
     }

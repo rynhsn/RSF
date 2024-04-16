@@ -5,7 +5,7 @@ namespace LMT03500Front;
 
 public partial class LMT03500Detail
 {
-    public LMT03500UtilityDetailViewModel _viewModel = new();
+    private LMT03500UtilityDetailViewModel _viewModel = new();
 
     protected override async Task R_Init_From_Master(object poParameter)
     {
@@ -14,6 +14,7 @@ public partial class LMT03500Detail
         try
         {
             await _viewModel.Init(poParameter);
+            
         }
         catch (Exception ex)
         {

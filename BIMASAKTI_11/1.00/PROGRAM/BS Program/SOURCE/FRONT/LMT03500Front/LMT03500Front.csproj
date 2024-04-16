@@ -17,7 +17,7 @@
 
     <ItemGroup>
         <Reference Include="BlazorClientHelper">
-            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\menu\BlazorClientHelper.dll</HintPath>
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
         </Reference>
         <Reference Include="R_BlazorFrontEnd">
             <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.dll</HintPath>
@@ -27,6 +27,9 @@
         </Reference>
         <Reference Include="R_CommonFrontBackAPI">
             <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CommonFrontBackAPI.dll</HintPath>
+        </Reference>
+        <Reference Include="R_ProcessAndUploadFront">
+          <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_ProcessAndUploadFront.dll</HintPath>
         </Reference>
     </ItemGroup>
 

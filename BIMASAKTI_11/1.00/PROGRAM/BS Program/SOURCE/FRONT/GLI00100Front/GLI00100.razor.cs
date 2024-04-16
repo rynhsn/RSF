@@ -74,27 +74,30 @@ public partial class GLI00100 : R_Page
     {
         var loEx = new R_Exception();
 
-        LookupGSL00900ViewModel loLookupViewModel = new LookupGSL00900ViewModel();
+        var loLookupViewModel = new LookupGSL00900ViewModel();
         try
         {
-            var param = new GSL00900ParameterDTO
+            if (_viewModel.CenterCode.Length > 0)
             {
-                CSEARCH_TEXT = _viewModel.CenterCode
-            };
-            
-            var loResult = await loLookupViewModel.GetCenter(param);
+                var param = new GSL00900ParameterDTO
+                {
+                    CSEARCH_TEXT = _viewModel.CenterCode
+                };
+                
+                var loResult = await loLookupViewModel.GetCenter(param);
 
-            if (loResult is null)
-            {
-                loEx.Add(R_FrontUtility.R_GetError(
-                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                    "_ErrLookup01"));
-                _viewModel.CenterCode = "";
-                _viewModel.CenterName = "";
-                goto EndBlock;
+                if (loResult is null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                    _viewModel.CenterCode = "";
+                    _viewModel.CenterName = "";
+                    goto EndBlock;
+                }
+
+                _viewModel.CenterName = loResult.CCENTER_NAME;
             }
-
-            _viewModel.CenterName = loResult.CCENTER_NAME;
         }
         catch (Exception ex)
         {

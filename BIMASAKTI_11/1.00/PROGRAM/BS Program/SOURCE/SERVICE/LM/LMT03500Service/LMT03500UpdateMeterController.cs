@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using LMT03500Back;
+using PMT03500Back;
 using LMT03500Common;
 using LMT03500Common.DTOs;
 using LMT03500Common.Params;
@@ -15,27 +15,27 @@ namespace LMT03500Service;
 [Route("api/[controller]/[action]")]
 public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMeter
 {
-    private LoggerLMT03500 _logger;
+    private LoggerPMT03500 _logger;
     private readonly ActivitySource _activitySource;
 
     public LMT03500UpdateMeterController(ILogger<LMT03500UpdateMeterController> logger)
     {
         //Initial and Get Logger
-        LoggerLMT03500.R_InitializeLogger(logger);
-        _logger = LoggerLMT03500.R_GetInstanceLogger();
-        _activitySource = LMT03500Activity.R_InitializeAndGetActivitySource(nameof(LMT03500UpdateMeterController));
+        LoggerPMT03500.R_InitializeLogger(logger);
+        _logger = LoggerPMT03500.R_GetInstanceLogger();
+        _activitySource = PMT03500Activity.R_InitializeAndGetActivitySource(nameof(LMT03500UpdateMeterController));
     }
     
     [HttpPost]
-    public IAsyncEnumerable<LMT03500UtilityMeterDTO> LMT03500GetUtilityMeterListStream()
+    public IAsyncEnumerable<PMT03500UtilityMeterDTO> LMT03500GetUtilityMeterListStream()
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetUtilityMeterListStream));
         _logger.LogInfo("Start - Get UtilityMeter List Stream");
         var loEx = new R_Exception();
-        var loCls = new LMT03500UpdateMeterCls();
-        var loDbParams = new LMT03500ParameterDb();
-        List<LMT03500UtilityMeterDTO> loResult = null;
-        IAsyncEnumerable<LMT03500UtilityMeterDTO> loReturn = null;
+        var loCls = new PMT03500UpdateMeterCls();
+        var loDbParams = new PMT03500ParameterDb();
+        List<PMT03500UtilityMeterDTO> loResult = null;
+        IAsyncEnumerable<PMT03500UtilityMeterDTO> loReturn = null;
 
 
         try
@@ -43,9 +43,9 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
             _logger.LogInfo("Set Parameter");
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbParams.CUSER_ID = R_BackGlobalVar.USER_ID;
-            loDbParams.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(LMT03500ContextConstant.CPROPERTY_ID);
-            loDbParams.CBUILDING_ID = R_Utility.R_GetStreamingContext<string>(LMT03500ContextConstant.CBUILDING_ID);
-            loDbParams.CTENANT_ID = R_Utility.R_GetStreamingContext<string>(LMT03500ContextConstant.CTENANT_ID);
+            loDbParams.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CPROPERTY_ID);
+            loDbParams.CBUILDING_ID = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CBUILDING_ID);
+            loDbParams.CTENANT_ID = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CTENANT_ID);
 
             _logger.LogInfo("Get UtilityMeter List Stream");
             loResult = loCls.GetUtilityMeterList(loDbParams);
@@ -63,24 +63,24 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
     }
 
     [HttpPost]
-    public IAsyncEnumerable<LMT03500BuildingUnitDTO> LMT03500GetBuildingUnitListStream()
+    public IAsyncEnumerable<PMT03500BuildingUnitDTO> LMT03500GetBuildingUnitListStream()
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetBuildingUnitListStream));
         _logger.LogInfo("Start - Get BuildingUnit List Stream");
         var loEx = new R_Exception();
-        var loCls = new LMT03500UpdateMeterCls();
-        var loDbParams = new LMT03500ParameterDb();
-        List<LMT03500BuildingUnitDTO> loResult = null;
-        IAsyncEnumerable<LMT03500BuildingUnitDTO> loReturn = null;
+        var loCls = new PMT03500UpdateMeterCls();
+        var loDbParams = new PMT03500ParameterDb();
+        List<PMT03500BuildingUnitDTO> loResult = null;
+        IAsyncEnumerable<PMT03500BuildingUnitDTO> loReturn = null;
 
         try
         {
             _logger.LogInfo("Set Parameter");
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbParams.CUSER_ID = R_BackGlobalVar.USER_ID;
-            loDbParams.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(LMT03500ContextConstant.CPROPERTY_ID);
-            loDbParams.CBUILDING_ID = R_Utility.R_GetStreamingContext<string>(LMT03500ContextConstant.CBUILDING_ID);
-            loDbParams.CFLOOR_ID = R_Utility.R_GetStreamingContext<string>(LMT03500ContextConstant.CFLOOR_ID);
+            loDbParams.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CPROPERTY_ID);
+            loDbParams.CBUILDING_ID = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CBUILDING_ID);
+            loDbParams.CFLOOR_ID = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CFLOOR_ID);
 
             _logger.LogInfo("Get BuildingUnit List Stream");
             loResult = loCls.GetBuildingUnitList(loDbParams);
@@ -97,15 +97,15 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
         return loReturn;
     }
 
-    public LMT03500SingleDTO<LMT03500BuildingUnitDTO> LMT03500GetBuildingUnitRecord(LMT03500SearchTextDTO poParam)
+    public LMT03500SingleDTO<PMT03500BuildingUnitDTO> LMT03500GetBuildingUnitRecord(LMT03500SearchTextDTO poParam)
     {
         using Activity activity = _activitySource.StartActivity(nameof(LMT03500GetBuildingUnitRecord));
         _logger.LogInfo("Start Start - Lookup Building Unit Record");
         
         var loEx = new R_Exception();
-        LMT03500SingleDTO<LMT03500BuildingUnitDTO> loReturn = new();
-        var loCls = new LMT03500UpdateMeterCls();
-        var loDbPar = new LMT03500ParameterDb();
+        LMT03500SingleDTO<PMT03500BuildingUnitDTO> loReturn = new();
+        var loCls = new PMT03500UpdateMeterCls();
+        var loDbPar = new PMT03500ParameterDb();
         
         try
         {
@@ -135,14 +135,14 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
     }
 
     [HttpPost]
-    public LMT03500SingleDTO<LMT03500UtilityMeterDetailDTO> LMT03500GetUtilityMeterDetail(LMT03500UtilityMeterDetailParam poParam)
+    public LMT03500SingleDTO<PMT03500UtilityMeterDetailDTO> LMT03500GetUtilityMeterDetail(LMT03500UtilityMeterDetailParam poParam)
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetUtilityMeterDetail));
         _logger.LogInfo("Start - Get UtilityMeter Detail");
         var loEx = new R_Exception();
-        var loCls = new LMT03500UpdateMeterCls();
-        var loDbParams = new LMT03500ParameterDb();
-        var loResult = new LMT03500SingleDTO<LMT03500UtilityMeterDetailDTO>();
+        var loCls = new PMT03500UpdateMeterCls();
+        var loDbParams = new PMT03500ParameterDb();
+        var loResult = new LMT03500SingleDTO<PMT03500UtilityMeterDetailDTO>();
 
         try
         {
@@ -170,14 +170,14 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
     }
     
     [HttpPost]
-    public LMT03500SingleDTO<LMT03500AgreementUtilitiesDTO> LMT03500GetAgreementUtilities(LMT03500AgreementUtilitiesParam poParam)
+    public LMT03500SingleDTO<PMT03500AgreementUtilitiesDTO> LMT03500GetAgreementUtilities(LMT03500AgreementUtilitiesParam poParam)
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetAgreementUtilities));
         _logger.LogInfo("Start - Get Agreement Utilities");
         var loEx = new R_Exception();
-        var loCls = new LMT03500UpdateMeterCls();
-        var loDbParams = new LMT03500ParameterDb();
-        var loResult = new LMT03500SingleDTO<LMT03500AgreementUtilitiesDTO>();
+        var loCls = new PMT03500UpdateMeterCls();
+        var loDbParams = new PMT03500ParameterDb();
+        var loResult = new LMT03500SingleDTO<PMT03500AgreementUtilitiesDTO>();
 
         try
         {
@@ -207,8 +207,8 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500UpdateMeterNo));
         _logger.LogInfo("Start - Generate Account Budget");
         var loEx = new R_Exception();
-        var loCls = new LMT03500UpdateMeterCls();
-        var loDbParams = new LMT03500ParameterDb();
+        var loCls = new PMT03500UpdateMeterCls();
+        var loDbParams = new PMT03500ParameterDb();
 
         try
         {
@@ -226,7 +226,7 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
             loDbParams.CSTART_DATE = poParam.CSTART_DATE;
 
             _logger.LogInfo("Generate Account Budget");
-            loCls.LMT03500UpdateMeterNo(loDbParams);
+            loCls.PMT03500UpdateMeterNo(loDbParams);
         }
         catch (Exception ex)
         {
@@ -243,8 +243,8 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500ChangeMeterNo));
         _logger.LogInfo("Start - Generate Account Budget");
         var loEx = new R_Exception();
-        var loCls = new LMT03500UpdateMeterCls();
-        var loDbParams = new LMT03500ParameterDb();
+        var loCls = new PMT03500UpdateMeterCls();
+        var loDbParams = new PMT03500ParameterDb();
 
         try
         {
@@ -264,7 +264,7 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
             loDbParams.CSTART_DATE = poParam.CSTART_DATE;
 
             _logger.LogInfo("Generate Account Budget");
-            loCls.LMT03500ChangeMeterNo(loDbParams);
+            loCls.PMT03500ChangeMeterNo(loDbParams);
         }
         catch (Exception ex)
         {

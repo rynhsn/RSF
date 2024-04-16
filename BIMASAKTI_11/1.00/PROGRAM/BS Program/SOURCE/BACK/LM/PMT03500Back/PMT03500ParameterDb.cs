@@ -1,6 +1,6 @@
-namespace LMT03500Back;
+namespace PMT03500Back;
 
-public class LMT03500ParameterDb
+public class PMT03500ParameterDb
 {
     public string CCOMPANY_ID { get; set; }
     public string CPROPERTY_ID { get; set; }

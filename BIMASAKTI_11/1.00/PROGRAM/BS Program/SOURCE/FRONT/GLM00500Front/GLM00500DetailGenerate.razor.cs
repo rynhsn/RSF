@@ -68,25 +68,28 @@ public partial class GLM00500DetailGenerate
         LookupGSL00510ViewModel loLookupViewModel = new LookupGSL00510ViewModel();
         try
         {
-            var param = new GSL00510ParameterDTO
+            if (_viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NO.Length > 0)
             {
-                CGLACCOUNT_TYPE = _viewModel.SelectedAccountType,
-                CSEARCH_TEXT = _viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NO
-            };
+                var param = new GSL00510ParameterDTO
+                {
+                    CGLACCOUNT_TYPE = _viewModel.SelectedAccountType,
+                    CSEARCH_TEXT = _viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NO
+                };
 
-            var loResult = await loLookupViewModel.GetCOA(param);
+                var loResult = await loLookupViewModel.GetCOA(param);
 
-            if (loResult == null)
-            {
-                loEx.Add(R_FrontUtility.R_GetError(
-                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                    "_ErrLookup01"));
-                _viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NO = "";
-                _viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NAME = "";
-                goto EndBlock;
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                    _viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NO = "";
+                    _viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NAME = "";
+                    goto EndBlock;
+                }
+
+                _viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
             }
-
-            _viewModel.GenerateAccountBudget.CFROM_GLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
         }
         catch (Exception ex)
         {
@@ -124,25 +127,28 @@ public partial class GLM00500DetailGenerate
         LookupGSL00510ViewModel loLookupViewModel = new LookupGSL00510ViewModel();
         try
         {
-            var param = new GSL00510ParameterDTO
+            if (_viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NO.Length > 0)
             {
-                CGLACCOUNT_TYPE = _viewModel.SelectedAccountType,
-                CSEARCH_TEXT = _viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NO
-            };
+                var param = new GSL00510ParameterDTO
+                {
+                    CGLACCOUNT_TYPE = _viewModel.SelectedAccountType,
+                    CSEARCH_TEXT = _viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NO
+                };
 
-            var loResult = await loLookupViewModel.GetCOA(param);
+                var loResult = await loLookupViewModel.GetCOA(param);
 
-            if (loResult == null)
-            {
-                loEx.Add(R_FrontUtility.R_GetError(
-                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                    "_ErrLookup01"));
-                _viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NO = "";
-                _viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NAME = "";
-                goto EndBlock;
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                    _viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NO = "";
+                    _viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NAME = "";
+                    goto EndBlock;
+                }
+
+                _viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
             }
-
-            _viewModel.GenerateAccountBudget.CTO_GLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
         }
         catch (Exception ex)
         {
@@ -152,7 +158,7 @@ public partial class GLM00500DetailGenerate
         EndBlock:
         await R_DisplayExceptionAsync(loEx);
     }
-    
+
     private void BeforeOpenLookupToAccount(R_BeforeOpenLookupEventArgs eventArgs)
     {
         var loParameter = new GSL00510ParameterDTO
@@ -175,39 +181,45 @@ public partial class GLM00500DetailGenerate
 
     private async Task OnLostFocusFromCenter()
     {
-        var loEx = new R_Exception();
-
-        LookupGSL00900ViewModel loLookupViewModel = new LookupGSL00900ViewModel();
-        try
+        if (_viewModel.GenerateAccountBudget.CFROM_CENTER_CODE.Length > 0)
         {
-            var param = new GSL00900ParameterDTO
-            {
-                CSEARCH_TEXT = _viewModel.GenerateAccountBudget.CFROM_CENTER_CODE
-            };
+            var loEx = new R_Exception();
 
-            var loResult = await loLookupViewModel.GetCenter(param);
-
-            if (loResult == null)
+            LookupGSL00900ViewModel loLookupViewModel = new LookupGSL00900ViewModel();
+            try
             {
-                loEx.Add(R_FrontUtility.R_GetError(
-                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                    "_ErrLookup01"));
-                _viewModel.GenerateAccountBudget.CFROM_CENTER_CODE = "";
-                _viewModel.GenerateAccountBudget.CFROM_CENTER_NAME = "";
-                goto EndBlock;
+                if (_viewModel.GenerateAccountBudget.CFROM_CENTER_CODE.Length > 0)
+                {
+                    var param = new GSL00900ParameterDTO
+                    {
+                        CSEARCH_TEXT = _viewModel.GenerateAccountBudget.CFROM_CENTER_CODE
+                    };
+
+                    var loResult = await loLookupViewModel.GetCenter(param);
+
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                            "_ErrLookup01"));
+                        _viewModel.GenerateAccountBudget.CFROM_CENTER_CODE = "";
+                        _viewModel.GenerateAccountBudget.CFROM_CENTER_NAME = "";
+                        goto EndBlock;
+                    }
+
+                    _viewModel.GenerateAccountBudget.CFROM_CENTER_NAME = loResult.CCENTER_NAME;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
             }
 
-            _viewModel.GenerateAccountBudget.CFROM_CENTER_NAME = loResult.CCENTER_NAME;
+            EndBlock:
+            await R_DisplayExceptionAsync(loEx);
         }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-
-        EndBlock:
-        await R_DisplayExceptionAsync(loEx);
     }
-    
+
     private void BeforeOpenLookupFromCenter(R_BeforeOpenLookupEventArgs eventArgs)
     {
         var loParameter = new GSL00900ParameterDTO();
@@ -232,24 +244,27 @@ public partial class GLM00500DetailGenerate
         LookupGSL00900ViewModel loLookupViewModel = new LookupGSL00900ViewModel();
         try
         {
-            var param = new GSL00900ParameterDTO
+            if (_viewModel.GenerateAccountBudget.CTO_CENTER_CODE.Length > 0)
             {
-                CSEARCH_TEXT = _viewModel.GenerateAccountBudget.CTO_CENTER_CODE
-            };
+                var param = new GSL00900ParameterDTO
+                {
+                    CSEARCH_TEXT = _viewModel.GenerateAccountBudget.CTO_CENTER_CODE
+                };
 
-            var loResult = await loLookupViewModel.GetCenter(param);
+                var loResult = await loLookupViewModel.GetCenter(param);
 
-            if (loResult == null)
-            {
-                loEx.Add(R_FrontUtility.R_GetError(
-                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                    "_ErrLookup01"));
-                _viewModel.GenerateAccountBudget.CTO_CENTER_CODE = "";
-                _viewModel.GenerateAccountBudget.CTO_CENTER_NAME = "";
-                goto EndBlock;
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                    _viewModel.GenerateAccountBudget.CTO_CENTER_CODE = "";
+                    _viewModel.GenerateAccountBudget.CTO_CENTER_NAME = "";
+                    goto EndBlock;
+                }
+
+                _viewModel.GenerateAccountBudget.CTO_CENTER_NAME = loResult.CCENTER_NAME;
             }
-
-            _viewModel.GenerateAccountBudget.CTO_CENTER_NAME = loResult.CCENTER_NAME;
         }
         catch (Exception ex)
         {
@@ -259,7 +274,7 @@ public partial class GLM00500DetailGenerate
         EndBlock:
         await R_DisplayExceptionAsync(loEx);
     }
-    
+
     private void BeforeOpenLookupToCenter(R_BeforeOpenLookupEventArgs eventArgs)
     {
         var loParameter = new GSL00900ParameterDTO();

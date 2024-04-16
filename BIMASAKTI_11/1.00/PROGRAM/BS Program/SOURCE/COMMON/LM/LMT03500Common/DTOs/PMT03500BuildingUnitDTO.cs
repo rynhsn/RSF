@@ -2,7 +2,7 @@ using System;
 
 namespace LMT03500Common.DTOs
 {
-    public class LMT03500BuildingUnitDTO
+    public class PMT03500BuildingUnitDTO
     {
         public string CCOMPANY_ID { get; set; }
         public string CPROPERTY_ID { get; set; }
@@ -24,5 +24,6 @@ namespace LMT03500Common.DTOs
         public DateTime DCREATE_DATE { get; set; }
         public string CUPDATE_BY { get; set; }
         public DateTime DUPDATE_DATE { get; set; }
+        
     }
 }

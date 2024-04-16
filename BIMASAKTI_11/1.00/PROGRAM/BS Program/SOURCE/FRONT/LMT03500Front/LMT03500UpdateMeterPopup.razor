@@ -1,6 +1,7 @@
 ﻿@page "/LMT03500UpdateMeterPopup"
 @using LMT03500FrontResources
 @using R_BlazorFrontEnd.Interfaces
+@using LMT03500Common.DTOs
 @inherits R_Page
 @attribute [R_Page(Title = "Update Meter No")];
 @inject R_ILocalizer<Resources_Dummy_Class> _localizer
@@ -70,12 +71,20 @@
             </R_ItemLayout>
             <R_ItemLayout col="3">
                 <R_StackLayout Row>
-                    <R_ItemLayout col="5">
-                        <R_TextBox @bind-Value="_viewModel.CSTART_INV_PRD_YEAR" Enabled="true"/>
+                    <R_ItemLayout col="6">
+                        <R_ComboBox Data="@_viewModel.StartInvYearList"
+                                    @bind-Value="_viewModel.CSTART_INV_PRD_YEAR"
+                                    ValueField="@nameof(LMT03500YearDTO.CYEAR)"
+                                    TextField="@nameof(LMT03500YearDTO.CYEAR)"
+                                    Enabled/>
                     </R_ItemLayout>
-                    <R_ItemLayout col="3">
-                        <R_TextBox @bind-Value="_viewModel.CSTART_INV_PRD_MONTH" Enabled="true"/>
-                    </R_ItemLayout> 
+                    <R_ItemLayout col="5" Class="pe-1">
+                        <R_ComboBox Data="@_viewModel.StartInvMonthList"
+                                    @bind-Value="_viewModel.CSTART_INV_PRD_MONTH"
+                                    ValueField="@nameof(LMT03500PeriodDTO.CPERIOD_NO)"
+                                    TextField="@nameof(LMT03500PeriodDTO.CPERIOD_NO)"
+                                    Enabled/>
+                    </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>
             <R_ItemLayout col="2" Class="ms-5">

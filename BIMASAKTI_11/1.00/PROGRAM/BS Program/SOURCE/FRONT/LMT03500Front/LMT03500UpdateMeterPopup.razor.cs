@@ -16,8 +16,9 @@ public partial class LMT03500UpdateMeterPopup : R_Page
 
         try
         {
-            var lo = (LMT03500UtilityMeterDetailDTO)poParameter;
-            var loParam = R_FrontUtility.ConvertObjectToObject<LMT03500UtilityMeterDTO>(lo);
+            var lo = (PMT03500UtilityMeterDetailDTO)poParameter;
+            var loParam = R_FrontUtility.ConvertObjectToObject<PMT03500UtilityMeterDTO>(lo);
+            await _viewModel.Init(loParam.CPROPERTY_ID);
             await _viewModel.GetRecord(loParam);
             _viewModel.Entity.CUNIT_NAME = lo.CUNIT_NAME;
             _viewModel.Entity.CTENANT_ID = lo.CTENANT_ID;

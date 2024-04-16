@@ -10,7 +10,7 @@ using R_BusinessObjectFront;
 
 namespace LMT03500Model
 {
-    public class LMT03500InitModel : R_BusinessObjectServiceClientBase<LMT03500PropertyDTO>, ILMT03500Init
+    public class LMT03500InitModel : R_BusinessObjectServiceClientBase<PMT03500PropertyDTO>, ILMT03500Init
     {
         private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrlLM";
         private const string DEFAULT_SERVICEPOINT_NAME = "api/LMT03500Init";
@@ -27,12 +27,12 @@ namespace LMT03500Model
         {
         }
 
-        public LMT03500ListDTO<LMT03500PropertyDTO> LMT03500GetPropertyList()
+        public LMT03500ListDTO<PMT03500PropertyDTO> LMT03500GetPropertyList()
         {
             throw new NotImplementedException();
         }
 
-        public LMT03500ListDTO<LMT03500TransCodeDTO> LMT03500GetTransCodeList()
+        public LMT03500ListDTO<PMT03500TransCodeDTO> LMT03500GetTransCodeList()
         {
             throw new NotImplementedException();
         }

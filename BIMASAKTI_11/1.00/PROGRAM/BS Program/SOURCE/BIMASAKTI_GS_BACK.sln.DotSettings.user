@@ -50,6 +50,7 @@
 	
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FINVOICE_005FUPDATEResources_002FRSP_005FAP_005FINVOICE_005FUPDATEResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FPM_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FUSAGE_005FECResources_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FUSAGE_005FECResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	
 	
 	

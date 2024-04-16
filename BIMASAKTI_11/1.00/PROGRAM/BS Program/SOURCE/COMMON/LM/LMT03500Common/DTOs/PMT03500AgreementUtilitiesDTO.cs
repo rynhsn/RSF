@@ -3,7 +3,7 @@ using R_APICommonDTO;
 
 namespace LMT03500Common.DTOs
 {
-    public class LMT03500AgreementUtilitiesDTO : R_APIResultBaseDTO
+    public class PMT03500AgreementUtilitiesDTO : R_APIResultBaseDTO
     {
         public string CCOMPANY_ID { get; set; }
         public string CPROPERTY_ID { get; set; }

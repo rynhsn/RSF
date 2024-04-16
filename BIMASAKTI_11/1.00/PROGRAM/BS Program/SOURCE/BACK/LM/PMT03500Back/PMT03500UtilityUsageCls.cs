@@ -7,20 +7,20 @@ using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
 
-namespace LMT03500Back;
+namespace PMT03500Back;
 
-public class LMT03500UtilityUsageCls
+public class PMT03500UtilityUsageCls
 {
-    private LoggerLMT03500 _logger;
+    private LoggerPMT03500 _logger;
     private readonly ActivitySource _activitySource;
 
-    public LMT03500UtilityUsageCls()
+    public PMT03500UtilityUsageCls()
     {
-        _logger = LoggerLMT03500.R_GetInstanceLogger();
-        _activitySource = LMT03500Activity.R_GetInstanceActivitySource();
+        _logger = LoggerPMT03500.R_GetInstanceLogger();
+        _activitySource = PMT03500Activity.R_GetInstanceActivitySource();
     }
 
-    public List<LMT03500BuildingDTO> GetBuildingList(LMT03500ParameterDb poParam)
+    public List<LMT03500BuildingDTO> GetBuildingList(PMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
         List<LMT03500BuildingDTO> loRtn = null;
@@ -70,7 +70,7 @@ public class LMT03500UtilityUsageCls
         return loRtn;
     }
 
-    public List<LMT03500UtilityUsageDTO> GetUtilityUsageList(LMT03500ParameterDb poParam)
+    public List<LMT03500UtilityUsageDTO> GetUtilityUsageList(PMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
         List<LMT03500UtilityUsageDTO> loRtn = null;
@@ -153,7 +153,7 @@ public class LMT03500UtilityUsageCls
         return loRtn;
     }
 
-    public LMT03500UtilityUsageDetailDTO GetUtilityUsageDetail(LMT03500ParameterDb poParam)
+    public LMT03500UtilityUsageDetailDTO GetUtilityUsageDetail(PMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
         LMT03500UtilityUsageDetailDTO loRtn = null;
@@ -173,6 +173,7 @@ public class LMT03500UtilityUsageCls
 
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 20, poParam.CCOMPANY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParam.CPROPERTY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CCHARGES_TYPE", DbType.String, 2, poParam.CCHARGES_TYPE);
             loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 30, poParam.CREF_NO);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParam.CUSER_ID);
 
@@ -181,6 +182,7 @@ public class LMT03500UtilityUsageCls
                     x.ParameterName is
                         "@CCOMPANY_ID" or
                         "@CPROPERTY_ID" or
+                        "@CCHARGES_TYPE" or
                         "@CREF_NO" or
                         "@CUSER_ID"
                 )
@@ -202,7 +204,7 @@ public class LMT03500UtilityUsageCls
         return loRtn;
     }
 
-    public List<LMT03500FunctDTO> GetUtilityTypeList(LMT03500ParameterDb poParam)
+    public List<LMT03500FunctDTO> GetUtilityTypeList(PMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
         List<LMT03500FunctDTO> loRtn = null;
@@ -239,7 +241,7 @@ public class LMT03500UtilityUsageCls
         return loRtn;
     }
 
-    public List<LMT03500FloorDTO> GetFloorList(LMT03500ParameterDb poParam)
+    public List<LMT03500FloorDTO> GetFloorList(PMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
         List<LMT03500FloorDTO> loRtn = null;
@@ -290,7 +292,7 @@ public class LMT03500UtilityUsageCls
         return loRtn;
     }
 
-    public List<LMT03500PeriodDTO> GetPeriodList(LMT03500ParameterDb poParam)
+    public List<LMT03500PeriodDTO> GetPeriodList(PMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
         List<LMT03500PeriodDTO> loRtn = null;
@@ -337,7 +339,7 @@ public class LMT03500UtilityUsageCls
         return loRtn;
     }
     
-    public List<LMT03500YearDTO> GetYearList(LMT03500ParameterDb poParam)
+    public List<LMT03500YearDTO> GetYearList(PMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
         List<LMT03500YearDTO> loRtn = null;

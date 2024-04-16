@@ -11,7 +11,7 @@ using R_BusinessObjectFront;
 
 namespace LMT03500Model
 {
-    public class LMT03500UpdateMeterModel : R_BusinessObjectServiceClientBase<LMT03500UtilityMeterDetailDTO>,
+    public class LMT03500UpdateMeterModel : R_BusinessObjectServiceClientBase<PMT03500UtilityMeterDetailDTO>,
         ILMT03500UpdateMeter
     {
         private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrlLM";
@@ -29,27 +29,27 @@ namespace LMT03500Model
         {
         }
 
-        public IAsyncEnumerable<LMT03500UtilityMeterDTO> LMT03500GetUtilityMeterListStream()
+        public IAsyncEnumerable<PMT03500UtilityMeterDTO> LMT03500GetUtilityMeterListStream()
         {
             throw new NotImplementedException();
         }
 
-        public IAsyncEnumerable<LMT03500BuildingUnitDTO> LMT03500GetBuildingUnitListStream()
+        public IAsyncEnumerable<PMT03500BuildingUnitDTO> LMT03500GetBuildingUnitListStream()
         {
             throw new NotImplementedException();
         }
 
-        public LMT03500SingleDTO<LMT03500BuildingUnitDTO> LMT03500GetBuildingUnitRecord(LMT03500SearchTextDTO poParam)
+        public LMT03500SingleDTO<PMT03500BuildingUnitDTO> LMT03500GetBuildingUnitRecord(LMT03500SearchTextDTO poParam)
         {
             throw new NotImplementedException();
         }
 
-        public LMT03500SingleDTO<LMT03500UtilityMeterDetailDTO> LMT03500GetUtilityMeterDetail(LMT03500UtilityMeterDetailParam poParam)
+        public LMT03500SingleDTO<PMT03500UtilityMeterDetailDTO> LMT03500GetUtilityMeterDetail(LMT03500UtilityMeterDetailParam poParam)
         {
             throw new NotImplementedException();
         }
 
-        public LMT03500SingleDTO<LMT03500AgreementUtilitiesDTO> LMT03500GetAgreementUtilities(LMT03500AgreementUtilitiesParam poParam)
+        public LMT03500SingleDTO<PMT03500AgreementUtilitiesDTO> LMT03500GetAgreementUtilities(LMT03500AgreementUtilitiesParam poParam)
         {
             throw new NotImplementedException();
         }

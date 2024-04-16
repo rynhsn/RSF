@@ -200,7 +200,11 @@ public partial class GSM02000 : R_Page
                 CSEARCH_TEXT = _viewModel.Data.CTAXIN_GLACCOUNT_NO
             };
 
-            var loResult = await loLookupViewModel.GetGLAccount(param);
+            GSL00500DTO loResult = null;
+            if (_viewModel.Data.CTAXIN_GLACCOUNT_NO.Length > 0)
+            {
+                loResult = await loLookupViewModel.GetGLAccount(param);
+            }
 
             if (loResult == null)
             {
@@ -258,32 +262,35 @@ public partial class GSM02000 : R_Page
         LookupGSL00500ViewModel loLookupViewModel = new LookupGSL00500ViewModel();
         try
         {
-            var param = new GSL00500ParameterDTO
+            if (_viewModel.Data.CTAXOUT_GLACCOUNT_NO.Length > 0)
             {
-                CPROPERTY_ID = "",
-                CPROGRAM_CODE = "GSM02000",
-                CBSIS = "",
-                CDBCR = "",
-                LCENTER_RESTR = false,
-                LUSER_RESTR = false,
-                CCENTER_CODE = "",
-                CUSER_LANGUAGE = _clientHelper.CultureUI.TwoLetterISOLanguageName,
-                CSEARCH_TEXT = _viewModel.Data.CTAXOUT_GLACCOUNT_NO
-            };
+                var param = new GSL00500ParameterDTO
+                {
+                    CPROPERTY_ID = "",
+                    CPROGRAM_CODE = "GSM02000",
+                    CBSIS = "",
+                    CDBCR = "",
+                    LCENTER_RESTR = false,
+                    LUSER_RESTR = false,
+                    CCENTER_CODE = "",
+                    CUSER_LANGUAGE = _clientHelper.CultureUI.TwoLetterISOLanguageName,
+                    CSEARCH_TEXT = _viewModel.Data.CTAXOUT_GLACCOUNT_NO
+                };
 
-            var loResult = await loLookupViewModel.GetGLAccount(param);
+                var loResult = await loLookupViewModel.GetGLAccount(param);
 
-            if (loResult == null)
-            {
-                loEx.Add(R_FrontUtility.R_GetError(
-                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                    "_ErrLookup01"));
-                _viewModel.Data.CTAXOUT_GLACCOUNT_NO = "";
-                _viewModel.Data.CTAXOUT_GLACCOUNT_NAME = "";
-                goto EndBlock;
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                    _viewModel.Data.CTAXOUT_GLACCOUNT_NO = "";
+                    _viewModel.Data.CTAXOUT_GLACCOUNT_NAME = "";
+                    goto EndBlock;
+                }
+
+                _viewModel.Data.CTAXOUT_GLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
             }
-
-            _viewModel.Data.CTAXOUT_GLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
         }
         catch (Exception ex)
         {
@@ -547,6 +554,8 @@ public partial class GSM02000 : R_Page
         _gridEnabled = eventArgs.Enable;
     }
 
+    #region Locking
+
     private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrl";
     private const string DEFAULT_MODULE_NAME = "GS";
 
@@ -584,8 +593,8 @@ public partial class GSM02000 : R_Page
                 {
                     Company_Id = _clientHelper.CompanyId,
                     User_Id = _clientHelper.UserId,
-                    Program_Id = "APM00310",
-                    Table_Name = "APM_SUPPLIER",
+                    Program_Id = "GSM02000",
+                    Table_Name = "GSM_TAX",
                     Key_Value = string.Join("|", _clientHelper.CompanyId, loData.CTAX_ID)
                 };
 
@@ -593,7 +602,7 @@ public partial class GSM02000 : R_Page
             }
 
             llRtn = loLockResult.IsSuccess;
-            if (!loLockResult.IsSuccess && loLockResult.Exception != null)
+            if (loLockResult is { IsSuccess: false, Exception: not null })
                 throw loLockResult.Exception;
         }
         catch (Exception ex)
@@ -605,4 +614,6 @@ public partial class GSM02000 : R_Page
 
         return llRtn;
     }
+
+    #endregion
 }

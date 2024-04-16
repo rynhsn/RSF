@@ -1,6 +1,6 @@
 ﻿
 using System.Diagnostics;
-using LMT03500Back;
+using PMT03500Back;
 using LMT03500Common;
 using LMT03500Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
@@ -14,27 +14,27 @@ namespace LMT03500Service;
 [Route("api/[controller]/[action]")]
 public class LMT03500InitController : ControllerBase, ILMT03500Init
 {
-    private LoggerLMT03500 _logger;
+    private LoggerPMT03500 _logger;
     private readonly ActivitySource _activitySource;
 
     public LMT03500InitController(ILogger<LMT03500InitController> logger)
     {
         //Initial and Get Logger
-        LoggerLMT03500.R_InitializeLogger(logger);
-        _logger = LoggerLMT03500.R_GetInstanceLogger();
-        _activitySource = LMT03500Activity.R_InitializeAndGetActivitySource(nameof(LMT03500InitController));
+        LoggerPMT03500.R_InitializeLogger(logger);
+        _logger = LoggerPMT03500.R_GetInstanceLogger();
+        _activitySource = PMT03500Activity.R_InitializeAndGetActivitySource(nameof(LMT03500InitController));
     }
     
     [HttpPost]
-    public LMT03500ListDTO<LMT03500PropertyDTO> LMT03500GetPropertyList()
+    public LMT03500ListDTO<PMT03500PropertyDTO> LMT03500GetPropertyList()
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetPropertyList));
         
         _logger.LogInfo("Start - Get Property");
         var loEx = new R_Exception();
-        var loCls = new LMT03500InitCls();
-        var loDbParams = new LMT03500ParameterDb();
-        var loReturn = new LMT03500ListDTO<LMT03500PropertyDTO>();
+        var loCls = new PMT03500InitCls();
+        var loDbParams = new PMT03500ParameterDb();
+        var loReturn = new LMT03500ListDTO<PMT03500PropertyDTO>();
 
         try
         {
@@ -57,15 +57,15 @@ public class LMT03500InitController : ControllerBase, ILMT03500Init
     }
 
     [HttpPost]
-    public LMT03500ListDTO<LMT03500TransCodeDTO> LMT03500GetTransCodeList()
+    public LMT03500ListDTO<PMT03500TransCodeDTO> LMT03500GetTransCodeList()
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetTransCodeList));
         
         _logger.LogInfo("Start - Get TransCode");
         var loEx = new R_Exception();
-        var loCls = new LMT03500InitCls();
-        var loDbParams = new LMT03500ParameterDb();
-        var loReturn = new LMT03500ListDTO<LMT03500TransCodeDTO>();
+        var loCls = new PMT03500InitCls();
+        var loDbParams = new PMT03500ParameterDb();
+        var loReturn = new LMT03500ListDTO<PMT03500TransCodeDTO>();
 
         try
         {

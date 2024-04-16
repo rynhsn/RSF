@@ -23,7 +23,11 @@ namespace LMT03500Common.DTOs
         public string CCHARGES_NAME { get; set; }
         public string CSEQ_NO { get; set; }
         public string CINV_PRD { get; set; }
+        public string CINV_YEAR { get; set; }
+        public string CINV_MONTH { get; set; }
         public string CUTILITY_PRD { get; set; }
+        public string CUTILITY_YEAR { get; set; }
+        public string CUTILITY_MONTH { get; set; }
         public string CSTART_DATE { get; set; }
         public string CEND_DATE { get; set; }
         public string CMETER_NO { get; set; }
@@ -40,5 +44,13 @@ namespace LMT03500Common.DTOs
         public DateTime DCREATE_DATE { get; set; }
         public string CUPDATE_BY { get; set; }
         public DateTime DUPDATE_DATE { get; set; }
+        
+        public decimal NSTANDING_CHARGE { get; set; }
+        public decimal NLWBP_CHARGE { get; set; }
+        public decimal NWBP_CHARGE { get; set; }
+        public decimal NTRANSFORMATOR_FEE { get; set; }
+        public decimal NRETRIBUTION_PCT { get; set; } 
+        public decimal NTTLB_PCT { get; set; }
+        public decimal CADMIN_FEE { get; set; }
     }
 }

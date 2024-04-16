@@ -2,6 +2,7 @@
 using LMT03500Model.ViewModel;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
@@ -13,7 +14,8 @@ namespace LMT03500Front;
 public partial class LMT03500CutOff : R_ITabPage
 {
     
-    private LMT03500UtilityUsageViewModel _viewModel = new();
+    private LMT03500ViewModel _viewModel = new();
+    private LMT03500UtilityUsageViewModel _viewModelUtility = new();
     
     private R_Conductor _conductorRef;
     private R_ConductorGrid _conductorRefUtility;
@@ -21,6 +23,7 @@ public partial class LMT03500CutOff : R_ITabPage
     private R_Grid<LMT03500UtilityUsageDTO> _gridRefUtility = new();
     
     [Inject] private IJSRuntime JS { get; set; }
+    [Inject] private R_IExcel ExcelInject { get; set; }
     
     private string _dataLabel = "";
     private string _display = "d-none";
@@ -33,8 +36,10 @@ public partial class LMT03500CutOff : R_ITabPage
 
         try
         {
-            await _viewModel.Init(eventArgs);
+            // await _viewModel.Init();
+            await _viewModelUtility.Init(eventArgs);
             await _gridRefBuilding.R_RefreshGrid(null);
+            // _viewModelUtility.ActionDataSetExcel = ActionFuncDataSetExcel;
         }
         catch (Exception ex)
         {
@@ -50,8 +55,8 @@ public partial class LMT03500CutOff : R_ITabPage
 
         try
         {
-            await _viewModel.GetBuildingList();
-            eventArgs.ListEntityResult = _viewModel.GridBuildingList;
+            await _viewModelUtility.GetBuildingList();
+            eventArgs.ListEntityResult = _viewModelUtility.GridBuildingList;
         }
         catch (Exception ex)
         {
@@ -67,8 +72,8 @@ public partial class LMT03500CutOff : R_ITabPage
 
         try
         {
-            await _viewModel.GetUtilityUsageList();
-            eventArgs.ListEntityResult = _viewModel.GridUtilityUsageList;
+            await _viewModelUtility.GetUtilityUsageList();
+            eventArgs.ListEntityResult = _viewModelUtility.GridUtilityUsageList;
         }
         catch (Exception ex)
         {
@@ -84,8 +89,8 @@ public partial class LMT03500CutOff : R_ITabPage
         try
         {
             var loData = (LMT03500UtilityUsageDTO)eventArgs.Data;
-            _viewModel.EntityUtility = loData;
-            eventArgs.Result = _viewModel.Entity;
+            _viewModelUtility.EntityUtility = loData;
+            eventArgs.Result = _viewModelUtility.Entity;
         }
         catch (Exception ex)
         {
@@ -98,8 +103,8 @@ public partial class LMT03500CutOff : R_ITabPage
     private async Task GetBuildingRecord(R_ServiceGetRecordEventArgs eventArgs)
     {
         var loData = (LMT03500BuildingDTO)eventArgs.Data;
-        await _viewModel.GetBuildingRecord(loData);
-        eventArgs.Result = _viewModel.Entity;
+        await _viewModelUtility.GetBuildingRecord(loData);
+        eventArgs.Result = _viewModelUtility.Entity;
     }
     
     private async Task OnChangeParam(object value, eParamType type)
@@ -110,14 +115,14 @@ public partial class LMT03500CutOff : R_ITabPage
             switch (type)
             {
                 case eParamType.UtilityType:
-                    _viewModel.UtilityTypeId = (string)value;
+                    _viewModelUtility.UtilityTypeId = (string)value;
                     break;
                 case eParamType.Floor:
-                    _viewModel.FloorId = (string)value;
+                    _viewModelUtility.FloorId = (string)value;
                     break;
                 case eParamType.UtilityPeriod:
-                    _viewModel.UtilityPeriodYear = (string)value;
-                    _viewModel.UtilityPeriodNo = value.ToString()?.Substring(value.ToString()!.Length - 2);
+                    _viewModelUtility.UtilityPeriodYear = (string)value;
+                    _viewModelUtility.UtilityPeriodNo = value.ToString()?.Substring(value.ToString()!.Length - 2);
                     break;
             }
         }
@@ -129,14 +134,13 @@ public partial class LMT03500CutOff : R_ITabPage
         R_DisplayException(loEx);
     }
     
-    
     private async Task OnClickRefresh()
     {
         var loEx = new R_Exception();
 
         try
         {
-            switch (_viewModel.UtilityTypeId)
+            switch (_viewModelUtility.UtilityTypeId)
             {
                 case "01" or "02":
                     _dataLabel = _localizer["LBL_EC"];
@@ -168,7 +172,7 @@ public partial class LMT03500CutOff : R_ITabPage
 
     public async Task RefreshTabPageAsync(object poParam)
     {
-        await _viewModel.Init(poParam);
+        await _viewModelUtility.Init(poParam);
         await _gridRefBuilding.R_RefreshGrid(null);
     }
     
@@ -179,11 +183,9 @@ public partial class LMT03500CutOff : R_ITabPage
 
         try
         {
-            //buat lcDate dengan format yyyyMMdd_HHmm
-            // var lcDate = DateTime.Now.ToString("yyyyMMdd_HHmm");
-            var loByteFile = await _viewModel.DownloadTemplate();
+            var loByte = ExcelInject.R_WriteToExcel(_viewModelUtility.ExcelDataSetCutOff);
             var saveFileName = $"UtilityUsage.xlsx";
-            await JS.downloadFileFromStreamHandler(saveFileName, loByteFile.FileBytes);
+            await JS.downloadFileFromStreamHandler(saveFileName, loByte);
         }
         catch (Exception ex)
         {
@@ -191,5 +193,26 @@ public partial class LMT03500CutOff : R_ITabPage
         }
 
         loEx.ThrowExceptionIfErrors();
+    }
+    
+    private void BeforeOpenUpload(R_BeforeOpenPopupEventArgs eventArgs)
+    {
+        eventArgs.TargetPageType = typeof(PMT03500UploadCutOffPopup);
+        var loParam = new PMT03500UploadParam
+        {
+            EUTILITY_TYPE = _viewModelUtility.UtilityType,
+            CPROPERTY_ID = _viewModelUtility.Property.CPROPERTY_ID,
+            //ambil property name berdasarkan property id dari property list yang sudah di load
+            CPROPERTY_NAME = _viewModelUtility.Property.CPROPERTY_NAME
+        };
+        eventArgs.Parameter = loParam;
+    }
+    
+    private async Task AfterOpenUpload(R_AfterOpenPopupEventArgs eventArgs)
+    {
+        if(eventArgs.Success)
+        {
+            await _gridRefUtility.R_RefreshGrid(null);
+        }
     }
 }

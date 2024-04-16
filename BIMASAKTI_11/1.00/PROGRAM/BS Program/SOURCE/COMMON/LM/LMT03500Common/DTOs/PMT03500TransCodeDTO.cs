@@ -2,7 +2,7 @@ using System;
 
 namespace LMT03500Common.DTOs
 {
-    public class LMT03500TransCodeDTO
+    public class PMT03500TransCodeDTO
     {
         public string CTRANS_CODE { get; set; }
         public string CTRANSACTION_NAME { get; set; }
