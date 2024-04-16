@@ -1,8 +1,8 @@
 ﻿
 using System.Diagnostics;
 using PMT03500Back;
-using LMT03500Common;
-using LMT03500Common.DTOs;
+using PMT03500Common;
+using PMT03500Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using R_BackEnd;
@@ -12,7 +12,7 @@ namespace LMT03500Service;
 
 [ApiController]
 [Route("api/[controller]/[action]")]
-public class LMT03500InitController : ControllerBase, ILMT03500Init
+public class LMT03500InitController : ControllerBase, IPMT03500Init
 {
     private LoggerPMT03500 _logger;
     private readonly ActivitySource _activitySource;
@@ -26,7 +26,7 @@ public class LMT03500InitController : ControllerBase, ILMT03500Init
     }
     
     [HttpPost]
-    public LMT03500ListDTO<PMT03500PropertyDTO> LMT03500GetPropertyList()
+    public PMT03500ListDTO<PMT03500PropertyDTO> LMT03500GetPropertyList()
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetPropertyList));
         
@@ -34,7 +34,7 @@ public class LMT03500InitController : ControllerBase, ILMT03500Init
         var loEx = new R_Exception();
         var loCls = new PMT03500InitCls();
         var loDbParams = new PMT03500ParameterDb();
-        var loReturn = new LMT03500ListDTO<PMT03500PropertyDTO>();
+        var loReturn = new PMT03500ListDTO<PMT03500PropertyDTO>();
 
         try
         {
@@ -57,7 +57,7 @@ public class LMT03500InitController : ControllerBase, ILMT03500Init
     }
 
     [HttpPost]
-    public LMT03500ListDTO<PMT03500TransCodeDTO> LMT03500GetTransCodeList()
+    public PMT03500ListDTO<PMT03500TransCodeDTO> LMT03500GetTransCodeList()
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetTransCodeList));
         
@@ -65,7 +65,7 @@ public class LMT03500InitController : ControllerBase, ILMT03500Init
         var loEx = new R_Exception();
         var loCls = new PMT03500InitCls();
         var loDbParams = new PMT03500ParameterDb();
-        var loReturn = new LMT03500ListDTO<PMT03500TransCodeDTO>();
+        var loReturn = new PMT03500ListDTO<PMT03500TransCodeDTO>();
 
         try
         {

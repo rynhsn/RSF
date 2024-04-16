@@ -1,8 +1,8 @@
 ﻿using System.Data;
 using System.Data.Common;
 using System.Diagnostics;
-using LMT03500Common;
-using LMT03500Common.DTOs;
+using PMT03500Common;
+using PMT03500Common.DTOs;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
@@ -20,10 +20,10 @@ public class PMT03500UtilityUsageCls
         _activitySource = PMT03500Activity.R_GetInstanceActivitySource();
     }
 
-    public List<LMT03500BuildingDTO> GetBuildingList(PMT03500ParameterDb poParam)
+    public List<PMT03500BuildingDTO> GetBuildingList(PMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
-        List<LMT03500BuildingDTO> loRtn = null;
+        List<PMT03500BuildingDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -56,7 +56,7 @@ public class PMT03500UtilityUsageCls
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loRtn = R_Utility.R_ConvertTo<LMT03500BuildingDTO>(loDataTable).ToList();
+            loRtn = R_Utility.R_ConvertTo<PMT03500BuildingDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {
@@ -70,10 +70,10 @@ public class PMT03500UtilityUsageCls
         return loRtn;
     }
 
-    public List<LMT03500UtilityUsageDTO> GetUtilityUsageList(PMT03500ParameterDb poParam)
+    public List<PMT03500UtilityUsageDTO> GetUtilityUsageList(PMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
-        List<LMT03500UtilityUsageDTO> loRtn = null;
+        List<PMT03500UtilityUsageDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -139,7 +139,7 @@ public class PMT03500UtilityUsageCls
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loRtn = R_Utility.R_ConvertTo<LMT03500UtilityUsageDTO>(loDataTable).ToList();
+            loRtn = R_Utility.R_ConvertTo<PMT03500UtilityUsageDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {
@@ -153,10 +153,10 @@ public class PMT03500UtilityUsageCls
         return loRtn;
     }
 
-    public LMT03500UtilityUsageDetailDTO GetUtilityUsageDetail(PMT03500ParameterDb poParam)
+    public PMT03500UtilityUsageDetailDTO GetUtilityUsageDetail(PMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
-        LMT03500UtilityUsageDetailDTO loRtn = null;
+        PMT03500UtilityUsageDetailDTO loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -192,7 +192,7 @@ public class PMT03500UtilityUsageCls
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loRtn = R_Utility.R_ConvertTo<LMT03500UtilityUsageDetailDTO>(loDataTable).FirstOrDefault();
+            loRtn = R_Utility.R_ConvertTo<PMT03500UtilityUsageDetailDTO>(loDataTable).FirstOrDefault();
         }
         catch (Exception ex)
         {
@@ -204,10 +204,10 @@ public class PMT03500UtilityUsageCls
         return loRtn;
     }
 
-    public List<LMT03500FunctDTO> GetUtilityTypeList(PMT03500ParameterDb poParam)
+    public List<PMT03500FunctDTO> GetUtilityTypeList(PMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
-        List<LMT03500FunctDTO> loRtn = null;
+        List<PMT03500FunctDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -227,7 +227,7 @@ public class PMT03500UtilityUsageCls
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loRtn = R_Utility.R_ConvertTo<LMT03500FunctDTO>(loDataTable).ToList();
+            loRtn = R_Utility.R_ConvertTo<PMT03500FunctDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {
@@ -241,10 +241,10 @@ public class PMT03500UtilityUsageCls
         return loRtn;
     }
 
-    public List<LMT03500FloorDTO> GetFloorList(PMT03500ParameterDb poParam)
+    public List<PMT03500FloorDTO> GetFloorList(PMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
-        List<LMT03500FloorDTO> loRtn = null;
+        List<PMT03500FloorDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -278,7 +278,7 @@ public class PMT03500UtilityUsageCls
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loRtn = R_Utility.R_ConvertTo<LMT03500FloorDTO>(loDataTable).ToList();
+            loRtn = R_Utility.R_ConvertTo<PMT03500FloorDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {
@@ -292,10 +292,10 @@ public class PMT03500UtilityUsageCls
         return loRtn;
     }
 
-    public List<LMT03500PeriodDTO> GetPeriodList(PMT03500ParameterDb poParam)
+    public List<PMT03500PeriodDTO> GetPeriodList(PMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
-        List<LMT03500PeriodDTO> loRtn = null;
+        List<PMT03500PeriodDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -325,7 +325,7 @@ public class PMT03500UtilityUsageCls
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loRtn = R_Utility.R_ConvertTo<LMT03500PeriodDTO>(loDataTable).ToList();
+            loRtn = R_Utility.R_ConvertTo<PMT03500PeriodDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {
@@ -339,10 +339,10 @@ public class PMT03500UtilityUsageCls
         return loRtn;
     }
     
-    public List<LMT03500YearDTO> GetYearList(PMT03500ParameterDb poParam)
+    public List<PMT03500YearDTO> GetYearList(PMT03500ParameterDb poParam)
     {
         R_Exception loEx = new();
-        List<LMT03500YearDTO> loRtn = null;
+        List<PMT03500YearDTO> loRtn = null;
         R_Db loDb;
         DbConnection loConn;
         DbCommand loCmd;
@@ -370,7 +370,7 @@ public class PMT03500UtilityUsageCls
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
-            loRtn = R_Utility.R_ConvertTo<LMT03500YearDTO>(loDataTable).ToList();
+            loRtn = R_Utility.R_ConvertTo<PMT03500YearDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {

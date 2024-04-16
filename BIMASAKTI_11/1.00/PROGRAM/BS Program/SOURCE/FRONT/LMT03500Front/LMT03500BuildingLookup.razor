@@ -1,6 +1,6 @@
 ﻿@page "/LMT03500BuildingLookup"
-@using LMT03500Common.DTOs
-@using LMT03500FrontResources
+@using PMT03500Common.DTOs
+@using PMT03500FrontResources
 @using R_BlazorFrontEnd.Interfaces
 @inherits R_Page
 @attribute [R_Page(Title = "Building")];
@@ -19,8 +19,8 @@
                 Width="500px"
                 Height="270px">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="@nameof(LMT03500BuildingDTO.CBUILDING_ID)" HeaderText="@_localizer["LBL_BUILDINGID"]" TextAlignment="R_eTextAlignment.Left" Width="50px"/>
-                <R_GridTextColumn FieldName="@nameof(LMT03500BuildingDTO.CBUILDING_NAME)" HeaderText="@_localizer["LBL_BUILDINGNAME"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500BuildingDTO.CBUILDING_ID)" HeaderText="@_localizer["LBL_BUILDINGID"]" TextAlignment="R_eTextAlignment.Left" Width="50px"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500BuildingDTO.CBUILDING_NAME)" HeaderText="@_localizer["LBL_BUILDINGNAME"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
             </R_GridColumns>
         </R_Grid>
     </R_ItemLayout>

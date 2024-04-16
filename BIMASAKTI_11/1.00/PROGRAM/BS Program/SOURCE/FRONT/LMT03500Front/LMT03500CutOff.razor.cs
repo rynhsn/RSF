@@ -1,5 +1,5 @@
-﻿using LMT03500Common.DTOs;
-using LMT03500Model.ViewModel;
+﻿using PMT03500Common.DTOs;
+using PMT03500Model.ViewModel;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using R_BlazorFrontEnd;
@@ -14,13 +14,13 @@ namespace LMT03500Front;
 public partial class LMT03500CutOff : R_ITabPage
 {
     
-    private LMT03500ViewModel _viewModel = new();
-    private LMT03500UtilityUsageViewModel _viewModelUtility = new();
+    private PMT03500ViewModel _viewModel = new();
+    private PMT03500UtilityUsageViewModel _viewModelUtility = new();
     
     private R_Conductor _conductorRef;
     private R_ConductorGrid _conductorRefUtility;
-    private R_Grid<LMT03500BuildingDTO> _gridRefBuilding = new();
-    private R_Grid<LMT03500UtilityUsageDTO> _gridRefUtility = new();
+    private R_Grid<PMT03500BuildingDTO> _gridRefBuilding = new();
+    private R_Grid<PMT03500UtilityUsageDTO> _gridRefUtility = new();
     
     [Inject] private IJSRuntime JS { get; set; }
     [Inject] private R_IExcel ExcelInject { get; set; }
@@ -88,7 +88,7 @@ public partial class LMT03500CutOff : R_ITabPage
         var loEx = new R_Exception();
         try
         {
-            var loData = (LMT03500UtilityUsageDTO)eventArgs.Data;
+            var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
             _viewModelUtility.EntityUtility = loData;
             eventArgs.Result = _viewModelUtility.Entity;
         }
@@ -102,7 +102,7 @@ public partial class LMT03500CutOff : R_ITabPage
     
     private async Task GetBuildingRecord(R_ServiceGetRecordEventArgs eventArgs)
     {
-        var loData = (LMT03500BuildingDTO)eventArgs.Data;
+        var loData = (PMT03500BuildingDTO)eventArgs.Data;
         await _viewModelUtility.GetBuildingRecord(loData);
         eventArgs.Result = _viewModelUtility.Entity;
     }

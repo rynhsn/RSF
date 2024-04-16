@@ -1,6 +1,6 @@
-﻿using LMT03500Common;
-using LMT03500Common.DTOs;
-using LMT03500Model.ViewModel;
+﻿using PMT03500Common;
+using PMT03500Common.DTOs;
+using PMT03500Model.ViewModel;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
@@ -16,13 +16,13 @@ namespace LMT03500Front;
 
 public partial class LMT03500 : R_Page
 {
-    private LMT03500ViewModel _viewModel = new();
+    private PMT03500ViewModel _viewModel = new();
 
-    private LMT03500UtilityUsageViewModel _viewModelUtility = new();
+    private PMT03500UtilityUsageViewModel _viewModelUtility = new();
     private R_Conductor _conductorRefBuilding;
     private R_ConductorGrid _conductorRefUtility;
-    private R_Grid<LMT03500BuildingDTO> _gridRefBuilding = new();
-    private R_Grid<LMT03500UtilityUsageDTO> _gridRefUtility = new();
+    private R_Grid<PMT03500BuildingDTO> _gridRefBuilding = new();
+    private R_Grid<PMT03500UtilityUsageDTO> _gridRefUtility = new();
 
     [Inject] private IJSRuntime JS { get; set; }
     [Inject] private R_IExcel ExcelInject { get; set; }
@@ -98,7 +98,7 @@ public partial class LMT03500 : R_Page
         var loEx = new R_Exception();
         try
         {
-            var loData = (LMT03500BuildingDTO)eventArgs.Data;
+            var loData = (PMT03500BuildingDTO)eventArgs.Data;
             await _viewModelUtility.GetBuildingRecord(loData);
             eventArgs.Result = _viewModelUtility.Entity;
         }
@@ -115,7 +115,7 @@ public partial class LMT03500 : R_Page
         var loEx = new R_Exception();
         try
         {
-            var loData = (LMT03500UtilityUsageDTO)eventArgs.Data;
+            var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
             _viewModelUtility.EntityUtility = loData;
             _viewModelUtility.EntityUtility.CPROPERTY_ID = _viewModel.PropertyId;
             eventArgs.Result = _viewModelUtility.Entity;
@@ -202,7 +202,7 @@ public partial class LMT03500 : R_Page
         {
             if (_viewModelUtility.UtilityTypeId is "01" or "02")
             {
-                _viewModelUtility.UtilityType = ELMT03500UtilityUsageType.EC;
+                _viewModelUtility.UtilityType = EPMT03500UtilityUsageType.EC;
                 _dataLabel = _localizer["LBL_EC"];
                 _display = "d-block";
                 _visibleColumnEC = true;
@@ -210,7 +210,7 @@ public partial class LMT03500 : R_Page
             }
             else if (_viewModelUtility.UtilityTypeId is "03" or "04")
             {
-                _viewModelUtility.UtilityType = ELMT03500UtilityUsageType.WG;
+                _viewModelUtility.UtilityType = EPMT03500UtilityUsageType.WG;
                 _dataLabel = _localizer["LBL_WG"];
                 _display = "d-block";
                 _visibleColumnEC = false;
@@ -329,7 +329,7 @@ public partial class LMT03500 : R_Page
         var loEx = new R_Exception();
         try
         {
-            var loData = (LMT03500UtilityUsageDTO)eventArgs.Data;
+            var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
             _viewModelUtility.EntityUtility = loData;
             _viewModelUtility.EntityUtility.CPROPERTY_ID = _viewModel.PropertyId;
         }

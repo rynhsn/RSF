@@ -1,5 +1,5 @@
-﻿using LMT03500Common.DTOs;
-using LMT03500Model.ViewModel;
+﻿using PMT03500Common.DTOs;
+using PMT03500Model.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
@@ -9,7 +9,7 @@ namespace LMT03500Front;
 
 public partial class LMT03500UnitLookup
 {
-    private LMT03500BuildingUnitLookupViewModel _viewModel = new();
+    private PMT03500BuildingUnitLookupViewModel _viewModel = new();
     private R_Conductor _conductorRef;
     private R_Grid<PMT03500BuildingUnitDTO> _gridRef = new();
 

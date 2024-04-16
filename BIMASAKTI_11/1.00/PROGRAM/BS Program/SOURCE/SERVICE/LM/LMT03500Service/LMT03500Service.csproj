@@ -12,7 +12,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\..\BACK\LM\PMT03500Back\PMT03500Back.csproj" />
-        <ProjectReference Include="..\..\..\COMMON\LM\LMT03500Common\LMT03500Common.csproj" />
+        <ProjectReference Include="..\..\..\COMMON\LM\PMT03500Common\PMT03500Common.csproj" />
     </ItemGroup>
     
     <ItemGroup>

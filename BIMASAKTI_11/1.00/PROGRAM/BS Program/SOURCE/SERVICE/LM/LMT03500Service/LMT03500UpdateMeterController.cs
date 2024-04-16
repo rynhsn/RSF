@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using PMT03500Back;
-using LMT03500Common;
-using LMT03500Common.DTOs;
-using LMT03500Common.Params;
+using PMT03500Common;
+using PMT03500Common.DTOs;
+using PMT03500Common.Params;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using R_BackEnd;
@@ -13,7 +13,7 @@ namespace LMT03500Service;
 
 [ApiController]
 [Route("api/[controller]/[action]")]
-public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMeter
+public class LMT03500UpdateMeterController : ControllerBase, IPMT03500UpdateMeter
 {
     private LoggerPMT03500 _logger;
     private readonly ActivitySource _activitySource;
@@ -97,13 +97,13 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
         return loReturn;
     }
 
-    public LMT03500SingleDTO<PMT03500BuildingUnitDTO> LMT03500GetBuildingUnitRecord(LMT03500SearchTextDTO poParam)
+    public PMT03500SingleDTO<PMT03500BuildingUnitDTO> LMT03500GetBuildingUnitRecord(PMT03500SearchTextDTO poParam)
     {
         using Activity activity = _activitySource.StartActivity(nameof(LMT03500GetBuildingUnitRecord));
         _logger.LogInfo("Start Start - Lookup Building Unit Record");
         
         var loEx = new R_Exception();
-        LMT03500SingleDTO<PMT03500BuildingUnitDTO> loReturn = new();
+        PMT03500SingleDTO<PMT03500BuildingUnitDTO> loReturn = new();
         var loCls = new PMT03500UpdateMeterCls();
         var loDbPar = new PMT03500ParameterDb();
         
@@ -135,14 +135,14 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
     }
 
     [HttpPost]
-    public LMT03500SingleDTO<PMT03500UtilityMeterDetailDTO> LMT03500GetUtilityMeterDetail(LMT03500UtilityMeterDetailParam poParam)
+    public PMT03500SingleDTO<PMT03500UtilityMeterDetailDTO> LMT03500GetUtilityMeterDetail(PMT03500UtilityMeterDetailParam poParam)
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetUtilityMeterDetail));
         _logger.LogInfo("Start - Get UtilityMeter Detail");
         var loEx = new R_Exception();
         var loCls = new PMT03500UpdateMeterCls();
         var loDbParams = new PMT03500ParameterDb();
-        var loResult = new LMT03500SingleDTO<PMT03500UtilityMeterDetailDTO>();
+        var loResult = new PMT03500SingleDTO<PMT03500UtilityMeterDetailDTO>();
 
         try
         {
@@ -170,14 +170,14 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
     }
     
     [HttpPost]
-    public LMT03500SingleDTO<PMT03500AgreementUtilitiesDTO> LMT03500GetAgreementUtilities(LMT03500AgreementUtilitiesParam poParam)
+    public PMT03500SingleDTO<PMT03500AgreementUtilitiesDTO> LMT03500GetAgreementUtilities(PMT03500AgreementUtilitiesParam poParam)
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetAgreementUtilities));
         _logger.LogInfo("Start - Get Agreement Utilities");
         var loEx = new R_Exception();
         var loCls = new PMT03500UpdateMeterCls();
         var loDbParams = new PMT03500ParameterDb();
-        var loResult = new LMT03500SingleDTO<PMT03500AgreementUtilitiesDTO>();
+        var loResult = new PMT03500SingleDTO<PMT03500AgreementUtilitiesDTO>();
 
         try
         {
@@ -202,7 +202,7 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
         return loResult;
     }
 
-    public void LMT03500UpdateMeterNo(LMT03500UpdateChangeMeterNoParam poParam)
+    public void LMT03500UpdateMeterNo(PMT03500UpdateChangeMeterNoParam poParam)
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500UpdateMeterNo));
         _logger.LogInfo("Start - Generate Account Budget");
@@ -238,7 +238,7 @@ public class LMT03500UpdateMeterController : ControllerBase, ILMT03500UpdateMete
         _logger.LogInfo("End - Generate Account Budget");  
     }
 
-    public void LMT03500ChangeMeterNo(LMT03500UpdateChangeMeterNoParam poParam)
+    public void LMT03500ChangeMeterNo(PMT03500UpdateChangeMeterNoParam poParam)
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500ChangeMeterNo));
         _logger.LogInfo("Start - Generate Account Budget");

@@ -1,11 +1,11 @@
-﻿using LMT03500Model.ViewModel;
+﻿using PMT03500Model.ViewModel;
 using R_BlazorFrontEnd.Exceptions;
 
 namespace LMT03500Front;
 
 public partial class LMT03500PhotoPopup
 {
-    public LMT03500UtilityDetailViewModel _viewModel = new();
+    public PMT03500UtilityDetailViewModel _viewModel = new();
 
     protected override async Task R_Init_From_Master(object poParameter)
     {

@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
+using PMT03500Common;
+using PMT03500Common.DTOs;
+using PMT03500Common.Params;
 using PMT03500Back;
-using LMT03500Common;
-using LMT03500Common.DTOs;
-using LMT03500Common.Params;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using R_BackEnd;
@@ -13,7 +13,7 @@ namespace LMT03500Service;
 
 [ApiController]
 [Route("api/[controller]/[action]")]
-public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUsage
+public class LMT03500UtilityUsageController : ControllerBase, IPMT03500UtilityUsage
 {
     private LoggerPMT03500 _logger;
     private readonly ActivitySource _activitySource;
@@ -27,15 +27,15 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
     }
 
     [HttpPost]
-    public IAsyncEnumerable<LMT03500BuildingDTO> LMT03500GetBuildingListStream()
+    public IAsyncEnumerable<PMT03500BuildingDTO> LMT03500GetBuildingListStream()
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetBuildingListStream));
         _logger.LogInfo("Start - Get Building List Stream");
         var loEx = new R_Exception();
         var loCls = new PMT03500UtilityUsageCls();
         var loDbParams = new PMT03500ParameterDb();
-        List<LMT03500BuildingDTO> loResult = null;
-        IAsyncEnumerable<LMT03500BuildingDTO> loReturn = null;
+        List<PMT03500BuildingDTO> loResult = null;
+        IAsyncEnumerable<PMT03500BuildingDTO> loReturn = null;
 
 
         try
@@ -60,13 +60,13 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         return loReturn;
     }
 
-    public LMT03500SingleDTO<LMT03500BuildingDTO> LMT03500GetBuildingRecord(LMT03500SearchTextDTO poText)
+    public PMT03500SingleDTO<PMT03500BuildingDTO> LMT03500GetBuildingRecord(PMT03500SearchTextDTO poText)
     {
         using Activity activity = _activitySource.StartActivity(nameof(LMT03500GetBuildingRecord));
         _logger.LogInfo("Start Start - Lookup Building Record");
         
         var loEx = new R_Exception();
-        LMT03500SingleDTO<LMT03500BuildingDTO> loReturn = new();
+        PMT03500SingleDTO<PMT03500BuildingDTO> loReturn = new();
         var loCls = new PMT03500UtilityUsageCls();
         var loDbPar = new PMT03500ParameterDb();
         
@@ -96,15 +96,15 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
     }
 
     [HttpPost]
-    public IAsyncEnumerable<LMT03500UtilityUsageDTO> LMT03500GetUtilityUsageListStream()
+    public IAsyncEnumerable<PMT03500UtilityUsageDTO> LMT03500GetUtilityUsageListStream()
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetUtilityUsageListStream));
         _logger.LogInfo("Start - Get Building List Stream");
         var loEx = new R_Exception();
         var loCls = new PMT03500UtilityUsageCls();
         var loDbParams = new PMT03500ParameterDb();
-        List<LMT03500UtilityUsageDTO> loResult = null;
-        IAsyncEnumerable<LMT03500UtilityUsageDTO> loReturn = null;
+        List<PMT03500UtilityUsageDTO> loResult = null;
+        IAsyncEnumerable<PMT03500UtilityUsageDTO> loReturn = null;
 
 
         try
@@ -142,7 +142,7 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
     }
     
     [HttpPost]
-    public LMT03500SingleDTO<LMT03500UtilityUsageDetailDTO> LMT03500GetUtilityUsageDetail(LMT03500UtilityUsageDetailParam poParam)
+    public PMT03500SingleDTO<PMT03500UtilityUsageDetailDTO> LMT03500GetUtilityUsageDetail(PMT03500UtilityUsageDetailParam poParam)
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetUtilityUsageDetail));
         _logger.LogInfo("Start - Get Floor List");
@@ -150,7 +150,7 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         var loEx = new R_Exception();
         var loCls = new PMT03500UtilityUsageCls();
         var loDbParams = new PMT03500ParameterDb();
-        var loReturn = new LMT03500SingleDTO<LMT03500UtilityUsageDetailDTO>();
+        var loReturn = new PMT03500SingleDTO<PMT03500UtilityUsageDetailDTO>();
 
         try
         {
@@ -177,7 +177,7 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
     }
 
     [HttpPost]
-    public LMT03500ListDTO<LMT03500FunctDTO> LMT03500GetUtilityTypeList()
+    public PMT03500ListDTO<PMT03500FunctDTO> LMT03500GetUtilityTypeList()
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetUtilityTypeList));
         _logger.LogInfo("Start - Get Utility Type List");
@@ -185,7 +185,7 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         var loEx = new R_Exception();
         var loCls = new PMT03500UtilityUsageCls();
         var loDbParams = new PMT03500ParameterDb();
-        var loReturn = new LMT03500ListDTO<LMT03500FunctDTO>();
+        var loReturn = new PMT03500ListDTO<PMT03500FunctDTO>();
 
         try
         {
@@ -208,7 +208,7 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
     }
 
     [HttpPost]
-    public LMT03500ListDTO<LMT03500FloorDTO> LMT03500GetFloorList(LMT03500FloorParam poParam)
+    public PMT03500ListDTO<PMT03500FloorDTO> LMT03500GetFloorList(PMT03500FloorParam poParam)
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetFloorList));
         _logger.LogInfo("Start - Get Floor List");
@@ -216,7 +216,7 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         var loEx = new R_Exception();
         var loCls = new PMT03500UtilityUsageCls();
         var loDbParams = new PMT03500ParameterDb();
-        var loReturn = new LMT03500ListDTO<LMT03500FloorDTO>();
+        var loReturn = new PMT03500ListDTO<PMT03500FloorDTO>();
 
         try
         {
@@ -241,7 +241,7 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
     }
     
     [HttpPost]
-    public LMT03500ListDTO<LMT03500YearDTO> LMT03500GetYearList()
+    public PMT03500ListDTO<PMT03500YearDTO> LMT03500GetYearList()
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetYearList));
         _logger.LogInfo("Start - Get Period List");
@@ -249,7 +249,7 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         var loEx = new R_Exception();
         var loCls = new PMT03500UtilityUsageCls();
         var loDbParams = new PMT03500ParameterDb();
-        var loReturn = new LMT03500ListDTO<LMT03500YearDTO>();
+        var loReturn = new PMT03500ListDTO<PMT03500YearDTO>();
 
         try
         {
@@ -271,7 +271,7 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
     }
 
     [HttpPost]
-    public LMT03500ListDTO<LMT03500PeriodDTO> LMT03500GetPeriodList(LMT03500PeriodParam poParam)
+    public PMT03500ListDTO<PMT03500PeriodDTO> LMT03500GetPeriodList(PMT03500PeriodParam poParam)
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500GetPeriodList));
         _logger.LogInfo("Start - Get Period List");
@@ -279,7 +279,7 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
         var loEx = new R_Exception();
         var loCls = new PMT03500UtilityUsageCls();
         var loDbParams = new PMT03500ParameterDb();
-        var loReturn = new LMT03500ListDTO<LMT03500PeriodDTO>();
+        var loReturn = new PMT03500ListDTO<PMT03500PeriodDTO>();
 
         try
         {
@@ -302,12 +302,12 @@ public class LMT03500UtilityUsageController : ControllerBase, ILMT03500UtilityUs
     }
     
     [HttpPost]
-    public LMT03500ExcelDTO LMT03500DownloadTemplateFile()
+    public PMT03500ExcelDTO LMT03500DownloadTemplateFile()
     {
         using var loActivity = _activitySource.StartActivity(nameof(LMT03500DownloadTemplateFile));
         _logger.LogInfo("Start - Download Template File");
         var loEx = new R_Exception();
-        var loRtn = new LMT03500ExcelDTO();
+        var loRtn = new PMT03500ExcelDTO();
 
         try
         {

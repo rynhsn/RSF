@@ -34,8 +34,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\LMT03500FrontResources\LMT03500FrontResources.csproj" />
-      <ProjectReference Include="..\LMT03500Model\LMT03500Model.csproj" />
+      <ProjectReference Include="..\PMT03500FrontResources\PMT03500FrontResources.csproj" />
+      <ProjectReference Include="..\PMT03500Model\PMT03500Model.csproj" />
     </ItemGroup>
 
 </Project>

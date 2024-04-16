@@ -1,7 +1,7 @@
 ﻿using BlazorClientHelper;
-using LMT03500Common;
-using LMT03500Common.DTOs;
-using LMT03500Model.ViewModel;
+using PMT03500Common;
+using PMT03500Common.DTOs;
+using PMT03500Model.ViewModel;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
@@ -203,10 +203,10 @@ public partial class LMT03500UploadUtilityPopup : R_Page
     {
         switch (_viewModel.UploadParam.EUTILITY_TYPE)
         {
-            case ELMT03500UtilityUsageType.EC:
+            case EPMT03500UtilityUsageType.EC:
                 _visibleColumnEC = true;
                 break;
-            case ELMT03500UtilityUsageType.WG:
+            case EPMT03500UtilityUsageType.WG:
                 _visibleColumnWG = true;
                 break;
             default:

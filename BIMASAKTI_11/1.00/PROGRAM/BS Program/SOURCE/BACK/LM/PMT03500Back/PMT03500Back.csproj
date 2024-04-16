@@ -29,6 +29,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\COMMON\LM\LMT03500Common\LMT03500Common.csproj" />
+      <ProjectReference Include="..\..\..\COMMON\LM\PMT03500Common\PMT03500Common.csproj" />
       <ProjectReference Include="..\LM_SPR\RSP_PM_UPLOAD_UTILITY_USAGE_ECResources\RSP_PM_UPLOAD_UTILITY_USAGE_ECResources.csproj" />
     </ItemGroup>
 

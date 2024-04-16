@@ -1,5 +1,5 @@
-﻿using LMT03500Common.DTOs;
-using LMT03500Model.ViewModel;
+﻿using PMT03500Common.DTOs;
+using PMT03500Model.ViewModel;
 using Microsoft.AspNetCore.Components.Web;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
@@ -12,7 +12,7 @@ namespace LMT03500Front;
 
 public partial class LMT03500UpdateMeter : R_ITabPage
 {
-    private LMT03500UpdateMeterViewModel _viewModel = new();
+    private PMT03500UpdateMeterViewModel _viewModel = new();
     private R_Conductor _conductorRef;
     private R_Grid<PMT03500UtilityMeterDTO> _gridRef = new();
 
@@ -41,18 +41,18 @@ public partial class LMT03500UpdateMeter : R_ITabPage
             
             if (_viewModel.Header.CBUILDING_ID.Length > 0)
             {
-                var param = new LMT03500SearchTextDTO()
+                var param = new PMT03500SearchTextDTO()
                 {
                     CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
                     CSEARCH_TEXT = _viewModel.Header.CBUILDING_ID
                 };
-                var loLookupViewModel = new LMT03500BuildingLookupViewModel();
+                var loLookupViewModel = new PMT03500BuildingLookupViewModel();
                 var loResult = await loLookupViewModel.GetRecord(param);
 
                 if (loResult == null)
                 {
                     loEx.Add(R_FrontUtility.R_GetError(
-                        typeof(LMT03500FrontResources.Resources_Dummy_Class),
+                        typeof(PMT03500FrontResources.Resources_Dummy_Class),
                         "_ErrLookup"));
                     _viewModel.Header.CBUILDING_ID= "";
                     goto EndBlock;
@@ -78,7 +78,7 @@ public partial class LMT03500UpdateMeter : R_ITabPage
 
     private void AfterLookupBuilding(R_AfterOpenLookupEventArgs eventArgs)
     {
-        var loTempResult = (LMT03500BuildingDTO)eventArgs.Result;
+        var loTempResult = (PMT03500BuildingDTO)eventArgs.Result;
         if (loTempResult == null)
             return;
 
@@ -91,20 +91,20 @@ public partial class LMT03500UpdateMeter : R_ITabPage
 
         try
         {
-            var param = new LMT03500SearchTextDTO()
+            var param = new PMT03500SearchTextDTO()
             {
                 CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
                 CBUILDING_ID = _viewModel.Header.CBUILDING_ID,
                 CFLOOR_ID = "",
                 CSEARCH_TEXT = _viewModel.Header.CUNIT_ID
             };
-            var loLookupViewModel = new LMT03500BuildingUnitLookupViewModel();
+            var loLookupViewModel = new PMT03500BuildingUnitLookupViewModel();
             var loResult = await loLookupViewModel.GetRecord(param);
 
             if (loResult == null)
             {
                 loEx.Add(R_FrontUtility.R_GetError(
-                    typeof(LMT03500FrontResources.Resources_Dummy_Class),
+                    typeof(PMT03500FrontResources.Resources_Dummy_Class),
                     "_ErrLookup"));
                 _viewModel.Header.CUNIT_ID= "";
                 _viewModel.Header.CUNIT_NAME= "";

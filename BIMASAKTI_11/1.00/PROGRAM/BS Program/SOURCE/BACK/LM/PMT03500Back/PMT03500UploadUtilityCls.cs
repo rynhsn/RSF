@@ -3,8 +3,8 @@ using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using LMT03500Common;
-using LMT03500Common.DTOs;
+using PMT03500Common;
+using PMT03500Common.DTOs;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
@@ -73,8 +73,8 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
         DbConnection loConn = null;
         var lcQuery = "";
         List<PMT03500UploadUtilityErrorValidateDTO> loTempObject = new();
-        IList<LMT03500UploadUtilityRequestECDTO> loObjectEC = new List<LMT03500UploadUtilityRequestECDTO>();
-        IList<LMT03500UploadUtilityRequestWGDTO> loObjectWG = new List<LMT03500UploadUtilityRequestWGDTO>();
+        IList<PMT03500UploadUtilityRequestECDTO> loObjectEC = new List<PMT03500UploadUtilityRequestECDTO>();
+        IList<PMT03500UploadUtilityRequestWGDTO> loObjectWG = new List<PMT03500UploadUtilityRequestWGDTO>();
 
         //object loTempVar = "";
         var LcGroupCode = "";
@@ -100,12 +100,12 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
             {
                 loObjectEC = R_Utility
                     .R_ConvertCollectionToCollection<PMT03500UploadUtilityErrorValidateDTO,
-                        LMT03500UploadUtilityRequestECDTO>(loTempObject);
+                        PMT03500UploadUtilityRequestECDTO>(loTempObject);
             }else if (lcUtility == "WG")
             {
                 loObjectWG = R_Utility
                     .R_ConvertCollectionToCollection<PMT03500UploadUtilityErrorValidateDTO,
-                        LMT03500UploadUtilityRequestWGDTO>(loTempObject);
+                        PMT03500UploadUtilityRequestWGDTO>(loTempObject);
             }
 
             loConn = loDb.GetConnection();

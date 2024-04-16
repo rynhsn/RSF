@@ -1,5 +1,5 @@
-﻿using LMT03500Common.DTOs;
-using LMT03500Model.ViewModel;
+﻿using PMT03500Common.DTOs;
+using PMT03500Model.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
@@ -9,9 +9,9 @@ namespace LMT03500Front;
 
 public partial class LMT03500BuildingLookup
 {
-    private LMT03500BuildingLookupViewModel _viewModel = new();
+    private PMT03500BuildingLookupViewModel _viewModel = new();
     private R_Conductor _conductorRef;
-    private R_Grid<LMT03500BuildingDTO> _gridRef = new();
+    private R_Grid<PMT03500BuildingDTO> _gridRef = new();
 
     protected override async Task R_Init_From_Master(object poParameter)
     {
