@@ -1,11 +1,12 @@
 ﻿@inherits R_Page
 @attribute [R_Page(Title = "Currency Rate")]
 @using Lookup_GSCOMMON.DTOs
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
 
 <R_StackLayout Style="width: 800px">
     <R_StackLayout Row>
         <R_ItemLayout col="2">
-            <R_Label Class="fw-bold" FontSize="15">Rate Date</R_Label>
+            <R_Label Class="fw-bold" FontSize="15">@_localizer["_RateDate"]</R_Label>
         </R_ItemLayout>
 
         <R_ItemLayout col="3">
@@ -17,12 +18,14 @@
 
     <R_StackLayout Row>
         <R_ItemLayout col="2">
-            <R_Label Class="fw-bold" FontSize="15">Rate Type</R_Label>
+            <R_Label Class="fw-bold" FontSize="15">@_localizer["_RateType"]</R_Label>
         </R_ItemLayout>
 
         <R_ItemLayout col="3">
-            <R_ComboBox Data="@_viewModel.RateTypeList"
+            <R_ComboBox @ref="@RateType_ComboBox"
+                        Data="@_viewModel.RateTypeList"
                         Value="@_viewModel.Data.CRATETYPE_CODE"
+                        PopupMaxHeight="140px"
                         ValueField="@nameof(GSL01701DTO.CRATETYPE_CODE)"
                         TextField="@nameof(GSL01701DTO.CRATETYPE_DESCRIPTION)"
                         ValueChanged="@((string value) => RateType_OnChange(value))"
@@ -34,27 +37,27 @@
     <R_StackLayout Row>
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.CurrencyRateGrid"
+                R_GridType="@R_eGridType.Navigator"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Height="300px"
-                Pageable
-                PageSize="5">
+                Pageable="true"
+                Height="300px">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="CCURRENCY_CODE" HeaderText="Currency Code" Width="100px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CCURRENCY_NAME" HeaderText="Currency Name" Width="300px"></R_GridTextColumn>
-                <R_GridNumericColumn FieldName="NLBASE_RATE_AMOUNT" HeaderText="Local Curr. Base Rate" Width="200px"></R_GridNumericColumn>
-                <R_GridNumericColumn FieldName="NLCURRENCY_RATE_AMOUNT" HeaderText="Local Currency Rate" Width="200px"></R_GridNumericColumn>
-                <R_GridNumericColumn FieldName="NBBASE_RATE_AMOUNT" HeaderText="Base Curr. Base Rate" Width="200px"></R_GridNumericColumn>
-                <R_GridNumericColumn FieldName="NBCURRENCY_RATE_AMOUNT" HeaderText="Base Currency Rate" Width="200px"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="CCURRENCY_CODE" HeaderText="@_localizer["_CurrCode"]" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCURRENCY_NAME" HeaderText="@_localizer["_CurrName"]" Width="300px"></R_GridTextColumn>
+                <R_GridNumericColumn FieldName="NLBASE_RATE_AMOUNT" HeaderText="@_localizer["_LocCurrBaseRate"]" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn FieldName="NLCURRENCY_RATE_AMOUNT" HeaderText="@_localizer["_LocCurrRate"]" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn FieldName="NBBASE_RATE_AMOUNT" HeaderText="@_localizer["_BaseCurrBaseRate"]" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn FieldName="NBCURRENCY_RATE_AMOUNT" HeaderText="@_localizer["_BaseCurrRate"]" Width="200px"></R_GridNumericColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>
 
     <R_StackLayout Row Class="justify-content-end">
             <R_Button OnClick="Button_OnClickOkAsync">
-                OK
+                @_localizer["_OkBtn"]
             </R_Button>
             <R_Button OnClick="Button_OnClickCloseAsync">
-                Cancel
+                @_localizer["_CancelBtn"]
             </R_Button>
     </R_StackLayout>
 

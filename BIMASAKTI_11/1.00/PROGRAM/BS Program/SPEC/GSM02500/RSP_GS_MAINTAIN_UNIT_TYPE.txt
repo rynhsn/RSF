@@ -1,0 +1,5 @@
+2511	= Error process, please contact your administrator!
+2512	= Duplicate Unit Type Id!
+2513	= Cannot Delete, Unit Type Already in used!
+
+

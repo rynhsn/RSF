@@ -10,6 +10,7 @@ namespace Lookup_GSModel.ViewModel
     public class LookupGSL00110ViewModel : R_ViewModel<GSL00110DTO>
     {
         private PublicLookupModel _model = new PublicLookupModel();
+        private PublicLookupRecordModel _modelRecord = new PublicLookupRecordModel();
 
         public ObservableCollection<GSL00110DTO> TaxByDateGrid = new ObservableCollection<GSL00110DTO>();
 
@@ -29,6 +30,24 @@ namespace Lookup_GSModel.ViewModel
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+
+        public async Task<GSL00110DTO> GetTaxByDate(GSL00110ParameterDTO poParam)
+        {
+            var loEx = new R_Exception();
+            GSL00110DTO loRtn = null;
+            try
+            {
+                var loResult = await _modelRecord.GSL00110GetTaxByDateAsync(poParam);
+                loRtn = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
         }
     }
 }

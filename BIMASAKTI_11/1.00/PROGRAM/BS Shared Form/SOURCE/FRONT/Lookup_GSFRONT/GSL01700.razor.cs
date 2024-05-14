@@ -12,6 +12,7 @@ namespace Lookup_GSFRONT
         private LookupGSL01700ViewModel _viewModel = new LookupGSL01700ViewModel();
         private R_Grid<GSL01700DTO> GridRef;
 
+        private R_ComboBox<GSL01701DTO, string> RateType_ComboBox;
         protected override async Task R_Init_From_Master(object poParameter)
         {
             var loEx = new R_Exception();
@@ -19,6 +20,13 @@ namespace Lookup_GSFRONT
             try
             {
                 await RateType_ServiceGetListRecordAsync(null);
+                if (_viewModel.RateTypeList.Count > 0)
+                {
+                    var loParam = _viewModel.RateTypeList.FirstOrDefault();
+                    await RateType_OnChange(loParam.CRATETYPE_CODE);
+                }
+
+                await RateType_ComboBox.FocusAsync();
             }
             catch (Exception ex)
             {

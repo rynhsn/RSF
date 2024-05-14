@@ -126,4 +126,13 @@
   <data name="4003" xml:space="preserve">
     <value>Cannot Delete, Dept Already in used!</value>
   </data>
+  <data name="4004" xml:space="preserve">
+    <value>Dept Code cannot be empty!</value>
+  </data>
+  <data name="4005" xml:space="preserve">
+    <value>Dept Name cannot be empty!</value>
+  </data>
+  <data name="4006" xml:space="preserve">
+    <value>Center Code cannot be empty!</value>
+  </data>
 </root>

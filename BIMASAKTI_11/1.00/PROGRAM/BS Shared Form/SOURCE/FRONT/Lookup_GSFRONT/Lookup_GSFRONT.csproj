@@ -12,12 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.15" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.15" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BACK\Lookup_GSCOMMON\Lookup_GSCOMMON.csproj" />
     <ProjectReference Include="..\Lookup_GSModel\Lookup_GSModel.csproj" />
   </ItemGroup>
 
@@ -41,6 +39,12 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
     <Content Update="GSL00510.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="GSL02300.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="GSL02200.razor">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
   </ItemGroup>

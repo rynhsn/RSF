@@ -17,7 +17,7 @@ namespace Lookup_GSFRONT
 
             try
             {
-                await GridRef.R_RefreshGrid(poParameter);
+                await GridRef.R_RefreshGrid(null);
             }
             catch (Exception ex)
             {
@@ -33,8 +33,7 @@ namespace Lookup_GSFRONT
 
             try
             {
-                var loParam = (GSL00100ParameterDTO)eventArgs.Parameter;
-                await _viewModel.GetSalesTaxList(loParam);
+                await _viewModel.GetSalesTaxList();
 
                 eventArgs.ListEntityResult = _viewModel.SalesTaxGrid;
             }

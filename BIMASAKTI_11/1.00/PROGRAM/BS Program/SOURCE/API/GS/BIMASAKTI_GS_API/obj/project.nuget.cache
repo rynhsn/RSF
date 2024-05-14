@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZyXOfRtRTm7Ew7kEYoTMXdxbFU9T76Km+kqI5LICSxohH6g7zqAs6KJlSujV9QH1s8m4KXk4tHINPpvUjmQ7SQ==",
+  "dgSpecHash": "NWVnlRhnnzKOjGgEIV33lg/Odc69ZsDn38lVutGFgWZkvKuzBMK7eThIn8jODiAtd9x7aEBoqfgHDaGzPiYLkA==",
   "success": true,
-  "projectFilePath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
+  "projectFilePath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\castle.core\\4.3.1\\castle.core.4.3.1.nupkg.sha512",
     "C:\\Users\\riyan.codeid\\.nuget\\packages\\fastreport.compat.skia\\2023.3.0\\fastreport.compat.skia.2023.3.0.nupkg.sha512",

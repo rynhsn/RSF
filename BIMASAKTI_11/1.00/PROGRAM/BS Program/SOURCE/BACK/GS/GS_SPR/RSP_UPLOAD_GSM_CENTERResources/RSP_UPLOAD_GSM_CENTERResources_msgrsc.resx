@@ -127,10 +127,10 @@
     <value>Non Active Date cannot be empty for this inactive Center</value>
   </data>
   <data name="EXCESS_CENTER_CODE" xml:space="preserve">
-    <value>Center Code is bigger than 8 character</value>
+    <value>Center Code is bigger than 8 character </value>
   </data>
   <data name="EXCESS_CENTER_NAME" xml:space="preserve">
-    <value>Center Code is bigger than 80 character</value>
+    <value>Center Name is bigger than 80 character</value>
   </data>
   <data name="EXCESS_NON_ACTIVE_DATE" xml:space="preserve">
     <value>NonActiveDate is bigger than 8 character</value>

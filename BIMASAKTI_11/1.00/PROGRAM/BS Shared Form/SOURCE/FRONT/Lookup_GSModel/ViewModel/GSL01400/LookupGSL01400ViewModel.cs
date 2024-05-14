@@ -10,6 +10,7 @@ namespace Lookup_GSModel.ViewModel
     public class LookupGSL01400ViewModel : R_ViewModel<GSL01400DTO>
     {
         private PublicLookupModel _model = new PublicLookupModel();
+        private PublicLookupRecordModel _modelRecord = new PublicLookupRecordModel();
 
         public ObservableCollection<GSL01400DTO> OtherChargesGrid = new ObservableCollection<GSL01400DTO>();
 
@@ -30,6 +31,24 @@ namespace Lookup_GSModel.ViewModel
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+        public async Task<GSL01400DTO> GetOtherCharges(GSL01400ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            GSL01400DTO loRtn = null;
+            try
+            {
+
+                var loResult = await _modelRecord.GSL01400GetOtherChargesAsync(poParameter);
+                loRtn = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
         }
     }
 }

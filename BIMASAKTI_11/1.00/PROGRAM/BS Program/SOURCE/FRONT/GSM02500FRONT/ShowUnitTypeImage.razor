@@ -1,0 +1,11 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Show Image")]
+@using GSM02500COMMON.DTOs.GSM02520
+
+<R_StackLayout Style="width:600px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_ImageBox @bind-Value="@OIMAGE" MaxWidth="500px" MaxHeight="500px"></R_ImageBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>

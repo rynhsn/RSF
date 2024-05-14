@@ -1,0 +1,5 @@
+2571	= Error process, please contact your administrator!
+2572	= Duplicate User Id!
+
+
+

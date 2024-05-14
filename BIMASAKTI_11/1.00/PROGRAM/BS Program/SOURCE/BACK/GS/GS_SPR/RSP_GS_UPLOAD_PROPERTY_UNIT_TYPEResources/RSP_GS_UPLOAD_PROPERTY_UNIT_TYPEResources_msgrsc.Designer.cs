@@ -80,7 +80,7 @@ namespace RSP_GS_UPLOAD_PROPERTY_UNIT_TYPEResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unit Type Code cannot be empty.
+        ///   Looks up a localized string similar to Unit Type Name cannot be empty.
         /// </summary>
         internal static string EMPTY_UNIT_TYPE_NAME {
             get {

@@ -1,16 +1,19 @@
 ﻿@inherits R_Page
 @attribute [R_Page(Title = "Cash Flow Group")]
 @using Lookup_GSCOMMON.DTOs
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
 
 <R_StackLayout Style="width: 800px">
     <R_StackLayout Row>
         <R_ItemLayout col="4">
-            <R_Label Class="fw-bold" FontSize="15">Cash Flow Group</R_Label>
+            <R_Label Class="fw-bold" FontSize="15">@_localizer["_CashFlowGrp"]</R_Label>
         </R_ItemLayout>
 
         <R_ItemLayout col="8">
-            <R_ComboBox Data="@_viewModel.CashFlowGropList"
+            <R_ComboBox @ref="@CashFlowGrp_ComboBox"
+                        Data="@_viewModel.CashFlowGropList"
                         Value="@_viewModel.CashFlowCode"
+                        PopupMaxHeight="140px"
                         ValueField="@nameof(GSL01500ResultGroupDTO.CCASH_FLOW_GROUP_CODE)"
                         TextField="@nameof(GSL01500ResultGroupDTO.CCASH_FLOW_GROUP_NAME)"
                         ValueChanged="@((string value) => PropertyDropdown_OnChange(value))"
@@ -22,24 +25,24 @@
     <R_StackLayout Row>
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.CashFlowDetailGrid"
-                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
-                PageSize="5">
+                R_GridType="@R_eGridType.Navigator"
+                Pageable="true"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="CSEQUENCE" HeaderText="Sequence"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CCASH_FLOW_CODE" HeaderText="Cash Flow Code"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CCASH_FLOW_NAME" HeaderText="Cash Flow Name"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CCASH_FLOW_TYPE_DESCR" HeaderText="Cash Flow Type"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CSEQUENCE" HeaderText="@_localizer["_Seq"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCASH_FLOW_CODE" HeaderText="@_localizer["_CashFlowCode"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCASH_FLOW_NAME" HeaderText="@_localizer["_CashFlowName"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCASH_FLOW_TYPE_DESCR" HeaderText="@_localizer["_CashFlowType"]"></R_GridTextColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>
 
     <R_StackLayout Row Class="justify-content-end">
             <R_Button OnClick="Button_OnClickOkAsync">
-                OK
+                @_localizer["_OkBtn"]
             </R_Button>
             <R_Button OnClick="Button_OnClickCloseAsync">
-                Cancel
+                @_localizer["_CancelBtn"]
             </R_Button>
     </R_StackLayout>
 

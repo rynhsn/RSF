@@ -87,5 +87,23 @@ namespace RSP_GS_MAINTAIN_PAYMENT_TERMResources {
                 return ResourceManager.GetString("6503", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Term Code cannot be empty!.
+        /// </summary>
+        internal static string _6504 {
+            get {
+                return ResourceManager.GetString("6504", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Term Name cannot be empty!.
+        /// </summary>
+        internal static string _6505 {
+            get {
+                return ResourceManager.GetString("6505", resourceCulture);
+            }
+        }
     }
 }

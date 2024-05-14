@@ -1,0 +1,228 @@
+﻿@inherits R_Page
+@using GSM02500COMMON.DTOs.GSM02500;
+@using GSM02500COMMON.DTOs.GSM02530;
+@using GSM02500COMMON.DTOs;
+@using GSM02500MODEL
+@using GSM02500MODEL.View_Model;
+
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label Class="fw-bold" FontSize="15">@_localizer["_Unit"]</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@loUtilitiesViewModel.SelectedUnit.CUNIT_ID"
+                       R_ConductorSource="@_conductorUtilitiesRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="7">
+            <R_TextBox @bind-Value="@loUtilitiesViewModel.SelectedUnit.CUNIT_NAME"
+                       R_ConductorSource="@_conductorUtilitiesRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout Spacing="3" Row="true">
+    <R_ItemLayout col="3">
+        <R_Grid @ref="@_gridUtilityTypeRef"
+                DataSource="@loUtilitiesViewModel.loUtilityTypeList"
+                R_ConductorSource="@_conductorUtilityTypeRef"
+                R_GridType="@R_eGridType.Navigator"
+                Height="250px"
+                R_ServiceGetListRecord="@Grid_R_ServiceGetUtilityTypeListRecord">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GSM02531UtilityTypeDTO.CDESCRIPTION)" HeaderText="@_localizer["_UtilityType"]"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="9">
+        <R_StackLayout Spacing="3" Class="mb-4" Row="true">
+            <R_ItemLayout col="12">
+                <R_Grid @ref="@_gridUtilitiesRef"
+                        DataSource="@loUtilitiesViewModel.loUtilityList"
+                        R_ConductorSource="@_conductorUtilitiesRef"
+                        Height="130px"
+                        R_GridType="@R_eGridType.Navigator"
+                        R_ServiceGetListRecord="@Grid_R_ServiceGetUtilitiesListRecord">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.CSEQUENCE)" HeaderText="@_localizer["_SeqNo"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.CMETER_NO)" HeaderText="@_localizer["_MeterNo"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.CALIAS_METER_NO)" HeaderText="@_localizer["_BASAliasMeterNo"]" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.NCALCULATION_FACTOR)" HeaderText="@_localizer["_CalculationFactor"]" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.NCAPACITY)" HeaderText="@_localizer["_KVA"]" Width="150px"></R_GridTextColumn>
+                        <R_GridCheckBoxColumn FieldName="@nameof(GSM02531UtilityDTO.LACTIVE)" HeaderText="@_localizer["_Active"]" Width="100px"></R_GridCheckBoxColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="150px"></R_GridTextColumn>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(GSM02531UtilityDTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="150px"></R_GridTextColumn>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(GSM02531UtilityDTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_UtilityType"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@loUtilitiesViewModel.loUtilityType.CDESCRIPTION"
+                           R_ConductorSource="@_conductorUtilitiesRef"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+            </R_ItemLayout>
+
+            <R_ItemLayout Style="15px">
+                <R_CheckBox @bind-Value="@loUtilitiesViewModel.Data.LACTIVE"
+                            R_ConductorSource="@_conductorUtilitiesRef"
+                            Enabled="false">
+                </R_CheckBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_Active"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_SequenceNo"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@loUtilitiesViewModel.Data.CSEQUENCE"
+                           R_ConductorSource="@_conductorUtilitiesRef"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_MeterNo"]*</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@loUtilitiesViewModel.Data.CMETER_NO"
+                           R_ConductorSource="@_conductorUtilitiesRef"
+                           @ref="_meterNoRef"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_BASAliasMeterNo"]*</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@loUtilitiesViewModel.Data.CALIAS_METER_NO"
+                           R_ConductorSource="@_conductorUtilitiesRef"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_CalculationFactor"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@loUtilitiesViewModel.Data.NCALCULATION_FACTOR"
+                                  R_ConductorSource="@_conductorUtilitiesRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_Capacity(Electricity)"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@loUtilitiesViewModel.Data.NCAPACITY"
+                                  R_ConductorSource="@_conductorUtilitiesRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_KVA"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_MaxResetValue"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@loUtilitiesViewModel.Data.IMETER_MAX_COUNT"
+                                  R_ConductorSource="@_conductorUtilitiesRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+
+    </R_ItemLayout>
+
+
+</R_StackLayout>
+
+
+<R_StackLayout Row Class="justify-content-between">
+    <R_ItemLayout>
+        <R_AddButton R_Conductor="@_conductorUtilitiesRef"></R_AddButton>
+        <R_EditButton R_Conductor="@_conductorUtilitiesRef"></R_EditButton>
+        <R_DeleteButton R_Conductor="@_conductorUtilitiesRef"></R_DeleteButton>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button R_ConductorSource="@_conductorUtilitiesRef" R_EnableOther OnClick="OnClickTemplate">@_localizer["_Template"]</R_Button>
+        <R_Popup R_ConductorSource="@_conductorUtilitiesRef"
+                 R_EnableOther
+                 R_Before_Open_Popup="Before_Open_Upload_Popup"
+                 R_After_Open_Popup="After_Open_Upload_Popup">@_localizer["_Upload"]</R_Popup>
+        <R_Popup R_ConductorSource="@_conductorUtilitiesRef"
+                 R_Before_Open_Popup="@R_Before_Open_Popup_ActivateInactiveUtilities"
+                 R_After_Open_Popup="@R_After_Open_Popup_ActivateInactiveUtilities"
+                 R_EnableOther>@loUtilitiesLabel</R_Popup>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CancelButton R_Conductor="@_conductorUtilitiesRef"></R_CancelButton>
+        <R_SaveButton R_Conductor="@_conductorUtilitiesRef"></R_SaveButton>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorUtilityTypeRef"
+             R_ViewModel="@loUtilitiesViewModel"
+             R_Display="Grid_Utility_Type_Display"
+             R_ServiceGetRecord="@Grid_ServiceGetUtilityTypeRecord"
+             R_IsHeader>
+</R_Conductor>
+
+<R_Conductor @ref="@_conductorUtilitiesRef"
+             R_ViewModel="@loUtilitiesViewModel"
+             R_ConductorParent="_conductorUtilityTypeRef"
+             R_Display="Grid_Utilities_Display"
+             R_AfterAdd="Grid_AfterAddUtilities"
+             R_Validation="Grid_ValidationUtilities"
+             R_ServiceSave="@Grid_ServiceSaveUtilities"
+             R_Saving="Grid_SavingUtilities"
+             R_ServiceDelete="@Grid_ServiceDeleteUtilities"
+             R_ServiceGetRecord="@Grid_ServiceGetUtilitiesRecord">
+</R_Conductor>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="09/27/2023 13:48:17" ReportInfo.CreatorVersion="2023.2.21.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    private void PageHeader1_AfterData(object sender, EventArgs e)
+    {
+      string BaseHeaderCode = (string)Report.GetColumnValue(&quot;ResponseDataModel.BaseHeaderData.CPRINT_CODE&quot;);
+      string BaseHeaderName = (string)Report.GetColumnValue(&quot;ResponseDataModel.BaseHeaderData.CCOMPANY_NAME&quot;);
+      
+      if (string.IsNullOrWhiteSpace(BaseHeaderCode))
+      {
+        Text33.Text = BaseHeaderName;
+      }else
+      {
+        Text33.Text = BaseHeaderCode + &quot; - &quot; + BaseHeaderName;
+      }
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9" Watermark.Font="Arial, 60pt">
+    <PageHeaderBand Name="PageHeader1" Width="1047.06" Height="75.6" AfterDataEvent="PageHeader1_AfterData">
+      <PictureObject Name="Picture1" Left="37.8" Top="9.45" Width="170.1" Height="66.15" DataColumn="ResponseDataModel.BaseHeaderData.BLOGO_COMPANY"/>
+      <TextObject Name="Text33" Left="387.45" Top="18.9" Width="255.15" Height="18.9" Text="[ResponseDataModel.BaseHeaderData.CCOMPANY_NAME]" HorzAlign="Center" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text40" Left="784.35" Top="18.9" Width="170.1" Height="18.9" Text="Page [Page] of [TotalPages#]" Font="MS Gothic, 10pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text36" Left="888.3" Top="37.8" Width="160.65" Height="18.9" Text="[Date]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text38" Left="784.35" Top="37.8" Width="85.05" Height="18.9" Text="Print Date" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text41" Left="869.4" Top="37.8" Width="18.9" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text34" Left="387.45" Top="47.25" Width="255.15" Height="28.35" Text="[ResponseDataModel.BaseHeaderData.CPRINT_NAME]" HorzAlign="Center" Font="MS Gothic, 12pt, style=Bold"/>
+      <TextObject Name="Text37" Left="888.3" Top="56.7" Width="160.65" Height="18.9" Text="[ResponseDataModel.BaseHeaderData.CUSER_ID]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text39" Left="784.35" Top="56.7" Width="85.05" Height="18.9" Text="Print by" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text42" Left="869.4" Top="56.7" Width="18.9" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
+    </PageHeaderBand>
+  </ReportPage>
+</Report>

@@ -17,7 +17,7 @@ namespace Lookup_GSFRONT
 
             try
             {
-                await GridRef.R_RefreshGrid(poParameter);
+                await GridRef.R_RefreshGrid(null);
             }
             catch (Exception ex)
             {
@@ -33,8 +33,7 @@ namespace Lookup_GSFRONT
 
             try
             {
-                var loParam = (GSL01600ParameterDTO)eventArgs.Parameter;
-                await _viewModel.GetCashFlowGrpList(loParam);
+                await _viewModel.GetCashFlowGrpList();
 
                 eventArgs.ListEntityResult = _viewModel.CashFlowGrpTypeGrid;
             }

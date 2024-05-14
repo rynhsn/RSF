@@ -7,4 +7,9 @@ namespace Lookup_GSCOMMON.DTOs
     {
         public List<T> Data { get; set; }
     }
+
+    public class GSLGenericRecord<T> : R_APIResultBaseDTO
+    {
+        public T Data { get; set; }
+    }
 }

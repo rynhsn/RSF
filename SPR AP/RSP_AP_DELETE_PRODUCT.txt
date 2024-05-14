@@ -1,2 +1,0 @@
-Error100=Product ID {0} already used by transaction!
-Error900=Process failed! unable to delete Product {0}

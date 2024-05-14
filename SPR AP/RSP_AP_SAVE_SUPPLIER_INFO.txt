@@ -1,2 +1,0 @@
-Error100=Supplier with Sequence No. {0} already exists!
-Error900=Process failed! unable to save Supplier Info {0}

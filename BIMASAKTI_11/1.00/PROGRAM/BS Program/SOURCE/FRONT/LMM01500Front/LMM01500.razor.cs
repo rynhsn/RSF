@@ -1,7 +1,7 @@
 ﻿using BlazorClientHelper;
 using GFF00900COMMON.DTOs;
 using LMM01500COMMON;
-using LMM01500FrontResources;
+using LMM01500Models;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
 using Microsoft.AspNetCore.Components;
@@ -17,16 +17,12 @@ using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
-using System;
-using System.Security.Principal;
-using System.Xml.Linq;
-using LMM01500Models;
 
-namespace LMM01500FRONT
+namespace LMM01500FRONT;
+
+public partial class LMM01500 : R_Page
 {
-    public partial class LMM01500 : R_Page
-    {
-        private LMM01500ViewModel _Genereal_viewModel = new LMM01500ViewModel();
+    private LMM01500ViewModel _Genereal_viewModel = new LMM01500ViewModel();
 
         private R_Grid<LMM01501DTO> _Genereal_gridRef;
 
@@ -411,7 +407,7 @@ namespace LMM01500FRONT
                     var loChekcData = await _Genereal_viewModel.CheckDataTab2(loData);
                     if ((_Genereal_viewModel.OldByDeptValue && !loData.LBY_DEPARTMENT) && loChekcData)
                     {
-                        var loValidate = await R_MessageBox.Show("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_NotifByDeptAlert"), R_eMessageBoxButtonType.YesNo);
+                        var loValidate = await R_MessageBox.Show("", R_FrontUtility.R_GetMessage(typeof(Lookup_GSFrontResources.Resources_Dummy_Class), "_NotifByDeptAlert"), R_eMessageBoxButtonType.YesNo);
                         loData.DeleteAllTabDept = loValidate == R_eMessageBoxResult.Yes;
                         eventArgs.Cancel = loValidate == R_eMessageBoxResult.No;
                         return;
@@ -650,6 +646,4 @@ namespace LMM01500FRONT
             loGetData.CBANK_ACCOUNT = loTempResult.CCB_ACCOUNT_NO;
         }
         #endregion
-
-    }
 }

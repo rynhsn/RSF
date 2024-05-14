@@ -10,6 +10,7 @@ namespace Lookup_GSModel.ViewModel
     public class LookupGSL00300ViewModel : R_ViewModel<GSL00300DTO>
     {
         private PublicLookupModel _model = new PublicLookupModel();
+        private PublicLookupRecordModel _modelRecord = new PublicLookupRecordModel();
 
         public ObservableCollection<GSL00300DTO> CurrencyGrid = new ObservableCollection<GSL00300DTO>();
 
@@ -29,6 +30,23 @@ namespace Lookup_GSModel.ViewModel
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+        public async Task<GSL00300DTO> GetCurrency(GSL00300ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            GSL00300DTO loRtn = null;
+            try
+            {
+                var loResult = await _modelRecord.GSL00300GetCurrencyAsync(poEntity);
+                loRtn = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
         }
     }
 }

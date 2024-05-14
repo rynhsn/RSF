@@ -10,6 +10,7 @@ namespace Lookup_GSModel.ViewModel
     public class LookupGSL00500ViewModel : R_ViewModel<GSL00500DTO>
     {
         private PublicLookupModel _model = new PublicLookupModel();
+        private PublicLookupRecordModel _modelRecord = new PublicLookupRecordModel();
 
         public ObservableCollection<GSL00500DTO> GLAccountList = new ObservableCollection<GSL00500DTO>();
 
@@ -30,6 +31,25 @@ namespace Lookup_GSModel.ViewModel
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+
+        public async Task<GSL00500DTO> GetGLAccount(GSL00500ParameterDTO poParam)
+        {
+            var loEx = new R_Exception();
+            GSL00500DTO loRtn = null;
+            try
+            {
+                var loResult = await _modelRecord.GSL00500GetGLAccountAsync(poParam);
+
+                loRtn = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
         }
     }
 }

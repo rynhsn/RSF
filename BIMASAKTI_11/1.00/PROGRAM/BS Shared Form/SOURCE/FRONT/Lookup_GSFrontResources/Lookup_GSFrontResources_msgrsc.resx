@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="_AccountName" xml:space="preserve">
+    <value>Account Name</value>
+  </data>
+  <data name="_AccountNo" xml:space="preserve">
+    <value>Account No</value>
+  </data>
+  <data name="_Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="_Actual" xml:space="preserve">
+    <value>Actual</value>
+  </data>
+  <data name="_BankCode" xml:space="preserve">
+    <value>Bank Code</value>
+  </data>
+  <data name="_BankName" xml:space="preserve">
+    <value>Bank Name</value>
+  </data>
+  <data name="_BaseCurrBaseRate" xml:space="preserve">
+    <value>Base Curr. Base Rate</value>
+  </data>
+  <data name="_BaseCurrRate" xml:space="preserve">
+    <value>Base Currency Rate</value>
+  </data>
+  <data name="_BSISDesc" xml:space="preserve">
+    <value>BS/IS</value>
+  </data>
+  <data name="_BuildingId" xml:space="preserve">
+    <value>Building ID</value>
+  </data>
+  <data name="_BuildingName" xml:space="preserve">
+    <value>Building Name</value>
+  </data>
+  <data name="_CancelBtn" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="_CashFlowCode" xml:space="preserve">
+    <value>Cash Flow Code</value>
+  </data>
+  <data name="_CashFlowGrp" xml:space="preserve">
+    <value>Cash Flow Group</value>
+  </data>
+  <data name="_CashFlowGrpId" xml:space="preserve">
+    <value>Cash Flow Group Id</value>
+  </data>
+  <data name="_CashFlowGrpName" xml:space="preserve">
+    <value>Cash Flow Group Name</value>
+  </data>
+  <data name="_CashFlowGrpType" xml:space="preserve">
+    <value>Cash Flow Group Type</value>
+  </data>
+  <data name="_CashFlowName" xml:space="preserve">
+    <value>Cash Flow Name</value>
+  </data>
+  <data name="_CashFlowType" xml:space="preserve">
+    <value>Cash Flow Type</value>
+  </data>
+  <data name="_CenterCode" xml:space="preserve">
+    <value>Center Code</value>
+  </data>
+  <data name="_CenterName" xml:space="preserve">
+    <value>Center Name</value>
+  </data>
+  <data name="_CenterRestr" xml:space="preserve">
+    <value>Center Restriction</value>
+  </data>
+  <data name="_ChargesId" xml:space="preserve">
+    <value>Charges Id</value>
+  </data>
+  <data name="_ChargesName" xml:space="preserve">
+    <value>Charges Name</value>
+  </data>
+  <data name="_Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="_Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="_CreateBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="_CreateDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="_CurrCode" xml:space="preserve">
+    <value>Currency Code</value>
+  </data>
+  <data name="_Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="_CurrName" xml:space="preserve">
+    <value>Currency Name</value>
+  </data>
+  <data name="_DCDesc" xml:space="preserve">
+    <value>D/C</value>
+  </data>
+  <data name="_Departement" xml:space="preserve">
+    <value>Departement</value>
+  </data>
+  <data name="_DeptCode" xml:space="preserve">
+    <value>Department Code</value>
+  </data>
+  <data name="_DeptName" xml:space="preserve">
+    <value>Department Name</value>
+  </data>
+  <data name="_Desc" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="_EnableCOA" xml:space="preserve">
+    <value>Include Inactive COA</value>
+  </data>
+  <data name="_ErrLookup01" xml:space="preserve">
+    <value>Not found data by search text!!</value>
+  </data>
+  <data name="_Floor" xml:space="preserve">
+    <value>Floor</value>
+  </data>
+  <data name="_FloorId" xml:space="preserve">
+    <value>Floor ID</value>
+  </data>
+  <data name="_FloorName" xml:space="preserve">
+    <value>Floor Name</value>
+  </data>
+  <data name="_GLAccount" xml:space="preserve">
+    <value>GL Account</value>
+  </data>
+  <data name="_GOACode" xml:space="preserve">
+    <value>Group of Account</value>
+  </data>
+  <data name="_GOAName" xml:space="preserve">
+    <value>Group of Account Name</value>
+  </data>
+  <data name="_Gross" xml:space="preserve">
+    <value>Gross</value>
+  </data>
+  <data name="_JrnlGrpCode" xml:space="preserve">
+    <value>Journal Group Code</value>
+  </data>
+  <data name="_JrnlGrpName" xml:space="preserve">
+    <value>Journal Group Name</value>
+  </data>
+  <data name="_LOBCode" xml:space="preserve">
+    <value>LOB Code</value>
+  </data>
+  <data name="_LOBName" xml:space="preserve">
+    <value>LOB Name</value>
+  </data>
+  <data name="_LocCurrBaseRate" xml:space="preserve">
+    <value>Local Curr. Base Rate</value>
+  </data>
+  <data name="_LocCurrRate" xml:space="preserve">
+    <value>Local Currency Rate</value>
+  </data>
+  <data name="_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="_Net" xml:space="preserve">
+    <value>Net</value>
+  </data>
+  <data name="_NotifGSL02000MustCity" xml:space="preserve">
+    <value>Current Selected Data Must City</value>
+  </data>
+  <data name="_OkBtn" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="_RateDate" xml:space="preserve">
+    <value>Rate Date</value>
+  </data>
+  <data name="_RateType" xml:space="preserve">
+    <value>Rate Type</value>
+  </data>
+  <data name="_RateTypeCode" xml:space="preserve">
+    <value>Rate Type Code</value>
+  </data>
+  <data name="_RateTypeName" xml:space="preserve">
+    <value>Rate Type Name</value>
+  </data>
+  <data name="_RoundMode" xml:space="preserve">
+    <value>Rounding Mode</value>
+  </data>
+  <data name="_RoundUnit" xml:space="preserve">
+    <value>Rounding Unit</value>
+  </data>
+  <data name="_Seq" xml:space="preserve">
+    <value>Sequence</value>
+  </data>
+  <data name="_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="_Symbol" xml:space="preserve">
+    <value>Symbol</value>
+  </data>
+  <data name="_TaxDate" xml:space="preserve">
+    <value>Tax Date</value>
+  </data>
+  <data name="_TaxGlAccountName" xml:space="preserve">
+    <value>Tax Out GL Account Name</value>
+  </data>
+  <data name="_TaxGlAccountNo" xml:space="preserve">
+    <value>Tax In GL Account No</value>
+  </data>
+  <data name="_TaxId" xml:space="preserve">
+    <value>Tax Id</value>
+  </data>
+  <data name="_TaxName" xml:space="preserve">
+    <value>Tax Name</value>
+  </data>
+  <data name="_TaxPersen" xml:space="preserve">
+    <value>Tax %</value>
+  </data>
+  <data name="_TaxType" xml:space="preserve">
+    <value>Tax Type</value>
+  </data>
+  <data name="_TOPCode" xml:space="preserve">
+    <value>Term Of Payment Code</value>
+  </data>
+  <data name="_TOPDays" xml:space="preserve">
+    <value>TOP Days</value>
+  </data>
+  <data name="_TOPName" xml:space="preserve">
+    <value>Term Of Payment Name</value>
+  </data>
+  <data name="_UnitCategory" xml:space="preserve">
+    <value>Unit Category</value>
+  </data>
+  <data name="_UnitId" xml:space="preserve">
+    <value>Unit Id</value>
+  </data>
+  <data name="_UnitName" xml:space="preserve">
+    <value>Unit Name</value>
+  </data>
+  <data name="_UnitType" xml:space="preserve">
+    <value>Unit Type</value>
+  </data>
+  <data name="_UnitView" xml:space="preserve">
+    <value>Unit View</value>
+  </data>
+  <data name="_UntTypeCatId" xml:space="preserve">
+    <value>Unit Type Category Id</value>
+  </data>
+  <data name="_UntTypeCatName" xml:space="preserve">
+    <value>Unit Type Category Name</value>
+  </data>
+  <data name="_UpdateBy" xml:space="preserve">
+    <value>Updated By</value>
+  </data>
+  <data name="_UpdateDate" xml:space="preserve">
+    <value>Updated Date</value>
+  </data>
+  <data name="_UserId" xml:space="preserve">
+    <value>User Id</value>
+  </data>
+  <data name="_UserName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="_UserRestr" xml:space="preserve">
+    <value>User Restriction</value>
+  </data>
+</root>

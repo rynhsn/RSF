@@ -1,20 +1,20 @@
 ﻿@inherits R_Page
 @attribute [R_Page(Title = "Withholding Tax")]
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
 
 <R_StackLayout Style="width: 800px">
     <R_StackLayout Row>
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.WithholdingTaxGrid"
+                R_GridType="@R_eGridType.Navigator"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
-                PageSize="5" 
+                Pageable="true"
                 Height="300px">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="CTAX_TYPE_DESCR" HeaderText="Tax Type" Width="100px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CTAX_ID" HeaderText="Tax Id" Width="100px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CTAX_NAME" HeaderText="Tax Name" Width="200px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CDESCRIPTION" HeaderText="Description" Width="300px"></R_GridTextColumn>
-                <R_GridNumericColumn FieldName="NTAX_PERCENTAGE" Arrows="false" HeaderText="Tax%" Width="100px"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="CTAX_TYPE_DESCR" HeaderText="@_localizer["_TaxType"]" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CTAX_ID" HeaderText="@_localizer["_TaxId"]" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CTAX_NAME" HeaderText="@_localizer["_TaxName"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CDESCRIPTION" HeaderText="@_localizer["_Desc"]" Width="300px"></R_GridTextColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>
@@ -22,10 +22,10 @@
         <R_StackLayout Row Class="justify-content-end">
 
             <R_Button OnClick="Button_OnClickOkAsync">
-                OK
+                @_localizer["_OkBtn"]
             </R_Button>
             <R_Button OnClick="Button_OnClickCloseAsync">
-                Cancel
+                @_localizer["_CancelBtn"]
             </R_Button>
     </R_StackLayout>
 

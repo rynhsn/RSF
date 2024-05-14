@@ -11,6 +11,7 @@
         public const string CDBCR = "CDBCR";
         public const string LCENTER_RESTR = "LCENTER_RESTR";
         public const string LUSER_RESTR = "LUSER_RESTR";
+        public const string LINACTIVE_COA = "LINACTIVE_COA";
         public const string CCENTER_CODE = "CCENTER_CODE";
         public const string CGLACCOUNT_TYPE = "CGLACCOUNT_TYPE";
         public const string CGOA_CODE = "CGOA_CODE";
@@ -25,6 +26,11 @@
         public const string CRATE_DATE = "CRATE_DATE";
         public const string CCATEGORY_TYPE = "CCATEGORY_TYPE";
         public const string CLOB_CODE = "CLOB_CODE";
+        public const string CCOUNTRY_ID = "CCOUNTRY_ID";
+        public const string CBUILDING_ID = "CBUILDING_ID";
+        public const string CFLOOR_ID = "CFLOOR_ID";
+        public const string CPROGRAM_ID = "CPROGRAM_ID";
+        public const string CPARAMETER_ID = "CPARAMETER_ID";
 
     }
 }

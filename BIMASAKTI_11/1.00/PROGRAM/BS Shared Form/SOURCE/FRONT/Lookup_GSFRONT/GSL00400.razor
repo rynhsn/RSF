@@ -1,26 +1,27 @@
 ﻿@inherits R_Page
 @attribute [R_Page(Title = "Journal Group")]
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
 
 <R_StackLayout Style="width: 800px">
     <R_StackLayout Row>
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.JournalGroupGrid"
+                R_GridType="@R_eGridType.Navigator"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
-                PageSize="5">
+                Pageable="true">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="CJRNGRP_CODE" HeaderText="Journal Group Code"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CJRNGRP_NAME" HeaderText="Journal Group Name"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CJRNGRP_CODE" HeaderText="@_localizer["_JrnlGrpCode"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CJRNGRP_NAME" HeaderText="@_localizer["_JrnlGrpName"]"></R_GridTextColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>
 
         <R_StackLayout Row Class="justify-content-end">
             <R_Button OnClick="Button_OnClickOkAsync">
-                OK
+                @_localizer["_OkBtn"]
             </R_Button>
             <R_Button OnClick="Button_OnClickCloseAsync">
-                Cancel
+                @_localizer["_CancelBtn"]
             </R_Button>
     </R_StackLayout>
 

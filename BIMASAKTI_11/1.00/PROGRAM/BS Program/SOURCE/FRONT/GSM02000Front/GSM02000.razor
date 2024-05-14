@@ -116,7 +116,7 @@
         </R_ItemLayout>
 
         <R_ItemLayout col="2">
-            <R_TextBox @bind-Value="@_viewModel.Data.CTAXIN_GLACCOUNT_NO"
+            <R_TextBox @ref="@_textTaxIn" @bind-Value="@_viewModel.Data.CTAXIN_GLACCOUNT_NO"
                        R_ConductorSource="@_conductorRef"
                        R_EnableAdd="true"
                        R_EnableEdit="true"

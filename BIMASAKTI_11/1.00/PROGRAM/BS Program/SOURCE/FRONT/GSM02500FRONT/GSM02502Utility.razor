@@ -1,0 +1,37 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Utility")]
+@using GSM02500COMMON.DTOs.GSM02502Utility
+@using GSM02500MODEL
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_Grid @ref="@_gridUtilityRef"
+                DataSource="@loUtilityViewModel.loUtilityList"
+                Pageable="true"
+                R_ConductorGridSource="@_conductorUtilityRef"
+                R_GridType="@R_eGridType.Original"
+                AllowAddNewRow="false"
+                Height="155px"
+                AllowEditRow="true"
+                AllowDeleteRow="false"
+                R_Display="Grid_DisplayUtility"
+                R_ServiceSave="@Grid_ServiceSaveUtility"
+                R_ServiceGetRecord="@Grid_ServiceGetRecordUtility"
+                R_ServiceGetListRecord="@Grid_R_ServiceGetUtilityListRecord">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName=@nameof(GSM02502UtilityDTO.CUTILITY_TYPE_DESCR) HeaderText="@_localizer["_UtilityType"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                <R_GridCheckBoxColumn FieldName="@nameof(GSM02502UtilityDTO.LACTIVE)" HeaderText="@_localizer["_Active"]" R_EnableEdit Width="100px"></R_GridCheckBoxColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM02502UtilityDTO.CUPDATE_BY) HeaderText="@_localizer["_UpdatedBy"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName=@nameof(GSM02502UtilityDTO.DUPDATE_DATE) HeaderText="@_localizer["_UpdatedDate"]" Enabled="false" Width="200px"></R_GridDateTimePickerColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM02502UtilityDTO.CCREATE_BY) HeaderText="@_localizer["_CreatedBy"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName=@nameof(GSM02502UtilityDTO.DCREATE_DATE) HeaderText="@_localizer["_CreatedDate"]" Enabled="false" Width="200px"></R_GridDateTimePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorUtilityRef"
+                 R_ViewModel="@loUtilityViewModel"
+                 R_SetOther="Grid_R_SetOther"
+                 R_IsHeader>
+</R_ConductorGrid>

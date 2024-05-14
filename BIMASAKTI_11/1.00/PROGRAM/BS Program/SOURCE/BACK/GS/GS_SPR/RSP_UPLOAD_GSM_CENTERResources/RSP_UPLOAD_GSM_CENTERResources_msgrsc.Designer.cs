@@ -88,7 +88,7 @@ namespace RSP_UPLOAD_GSM_CENTERResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Center Code is bigger than 8 character.
+        ///   Looks up a localized string similar to Center Code is bigger than 8 character .
         /// </summary>
         internal static string EXCESS_CENTER_CODE {
             get {
@@ -97,7 +97,7 @@ namespace RSP_UPLOAD_GSM_CENTERResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Center Code is bigger than 80 character.
+        ///   Looks up a localized string similar to Center Name is bigger than 80 character.
         /// </summary>
         internal static string EXCESS_CENTER_NAME {
             get {

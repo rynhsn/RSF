@@ -77,27 +77,30 @@ public partial class GLI00100 : R_Page
         var loLookupViewModel = new LookupGSL00900ViewModel();
         try
         {
-            if (_viewModel.CenterCode.Length > 0)
+            if (_viewModel.CenterCode.Length <= 0)
             {
-                var param = new GSL00900ParameterDTO
-                {
-                    CSEARCH_TEXT = _viewModel.CenterCode
-                };
-                
-                var loResult = await loLookupViewModel.GetCenter(param);
-
-                if (loResult is null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                        "_ErrLookup01"));
-                    _viewModel.CenterCode = "";
-                    _viewModel.CenterName = "";
-                    goto EndBlock;
-                }
-
-                _viewModel.CenterName = loResult.CCENTER_NAME;
+                _viewModel.CenterName = "";
+                goto EndBlock;
             }
+
+            var param = new GSL00900ParameterDTO
+            {
+                CSEARCH_TEXT = _viewModel.CenterCode
+            };
+
+            var loResult = await loLookupViewModel.GetCenter(param);
+
+            if (loResult is null)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(
+                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                    "_ErrLookup01"));
+                _viewModel.CenterCode = "";
+                _viewModel.CenterName = "";
+                goto EndBlock;
+            }
+
+            _viewModel.CenterName = loResult.CCENTER_NAME;
         }
         catch (Exception ex)
         {
@@ -143,7 +146,7 @@ public partial class GLI00100 : R_Page
             loEx.Add(ex);
         }
 
-        R_DisplayException(loEx);
+        loEx.ThrowExceptionIfErrors();
     }
 
     private async Task RefreshAccountAnalysis()
@@ -158,7 +161,7 @@ public partial class GLI00100 : R_Page
                 CYEAR = _viewModel.Year.ToString(),
                 CCURRENCY_TYPE = _viewModel.CurrencyTypeValue,
                 CCENTER_CODE = _viewModel.CenterCode ?? "",
-                CBUDGET_NO = _viewModel.BudgetNo
+                CBUDGET_NO = _viewModel.BudgetNo ?? ""
             };
             await _viewModel.GetAccountAnalysisDetail(loParam);
         }
@@ -167,7 +170,7 @@ public partial class GLI00100 : R_Page
             loEx.Add(ex);
         }
 
-        R_DisplayException(loEx);
+        loEx.ThrowExceptionIfErrors();
     }
 
     private void BeforeOpenPopupPrint(R_BeforeOpenPopupEventArgs eventArgs)

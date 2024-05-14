@@ -1,0 +1,32 @@
+﻿@inherits R_Page
+@using GSM02500COMMON.DTOs.GSM02550
+@attribute [R_Page(Title = "User List")]
+
+<R_StackLayout Style="width:800px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_gridUserRef"
+                    DataSource="loUserViewModel.loUserList"
+                    R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                    Pageable
+                    Height="300px"
+                    PageSize="5">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(GetUserIdNameDTO.CUSER_ID)" HeaderText="@_localizer["_UserId"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(GetUserIdNameDTO.CUSER_NAME)" HeaderText="@_localizer["_UserName"]"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+            </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout>
+            <R_Button OnClick="Button_OnClickOkAsync">
+                OK
+            </R_Button>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                Cancel
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>

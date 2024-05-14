@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GSM02500COMMON": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64674;http://localhost:64675"
+    }
+  }
+}

@@ -1,26 +1,27 @@
 ﻿@inherits R_Page
 @attribute [R_Page(Title = "Unit Type Category")]
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
 
 <R_StackLayout Style="width: 800px">
     <R_StackLayout Row>
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.UnitTypeCategoryGrid"
+                R_GridType="@R_eGridType.Navigator"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
-                PageSize="5">
+                Pageable="true">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="CUNIT_TYPE_CATEGORY_ID" HeaderText="Unit Type Category Id"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CUNIT_TYPE_CATEGORY_NAME" HeaderText="Unit Type Category Name"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CUNIT_TYPE_CATEGORY_ID" HeaderText="@_localizer["_UntTypeCatId"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CUNIT_TYPE_CATEGORY_NAME" HeaderText="@_localizer["_UntTypeCatName"]"></R_GridTextColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>
 
     <R_StackLayout Row Class="justify-content-end">
             <R_Button OnClick="Button_OnClickOkAsync">
-                OK
+                @_localizer["_OkBtn"]
             </R_Button>
             <R_Button OnClick="Button_OnClickCloseAsync">
-                Cancel
+                @_localizer["_CancelBtn"]
             </R_Button>
     </R_StackLayout>
 

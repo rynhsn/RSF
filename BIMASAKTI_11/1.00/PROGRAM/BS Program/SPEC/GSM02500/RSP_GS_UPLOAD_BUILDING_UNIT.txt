@@ -1,0 +1,10 @@
+EXCESS_UNIT_ID		= Unit Id is bigger than 20 Character
+EMPTY_UNIT_ID		= Unit Id can not be empty
+EXCESS_UNIT_NAME	= Unit Name is bigger than 100 Character
+EMPTY_UNIT_NAME		= Unit Name can not be empty
+INVALID_ACTIVE_FLAG	= Invalid Active Flag, Active Flag value is not 1 / 0
+EMPTY_NONACTIVE_DATE	= If Active Flag = 0, Non Active Date can not be empty
+INVALID_UNIT_TYPE	= FOUND INVALID UNIT TYPE
+EXCESS_FLOOR_ID		= Floor Id is bigger than 20 Character
+EMPTY_FLOOR_ID		= Floor Id can not be empty
+INVALID_FLOOR_ID	= Invalid Floor Id

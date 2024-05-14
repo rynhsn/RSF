@@ -1,0 +1,37 @@
+﻿@page "/PMT03500UnitLookup"
+@using PMT03500Common.DTOs
+@using PMT03500FrontResources
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_Page
+@attribute [R_Page(Title = "Building")];
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout>
+    <R_ItemLayout>
+        <R_Grid @ref="_gridRef"
+                DataSource="@_viewModel.GridList"
+                Pageable
+                R_ServiceGetListRecord="GetList"
+                R_GridType="R_eGridType.Navigator"
+                AllowDeleteRow="false"
+                AllowEditRow="false"
+                AllowAddNewRow="false"
+                Width="500px"
+                Height="270px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(PMT03500BuildingUnitDTO.CUNIT_ID)" HeaderText="@_localizer["LBL_UNITID"]" TextAlignment="R_eTextAlignment.Left" Width="50px"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500BuildingUnitDTO.CUNIT_NAME)" HeaderText="@_localizer["LBL_UNITNAME"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row Class="justify-content-end">
+        <R_Button OnClick="OnClickOkAsync">
+            @_localizer["LBL_OK"]
+        </R_Button>
+        <R_Button OnClick="OnClickCloseAsync">
+            @_localizer["LBL_CANCEL"]
+        </R_Button>
+</R_StackLayout>

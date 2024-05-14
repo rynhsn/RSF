@@ -5,6 +5,7 @@
         public string CCOMPANY_ID { get; set; }
         public string CPROPERTY_ID { get; set; }
         public string CTAX_TYPE_LIST { get; set; } = "";
+        public string CSEARCH_TEXT { get; set; } = "";
     }
 
 }

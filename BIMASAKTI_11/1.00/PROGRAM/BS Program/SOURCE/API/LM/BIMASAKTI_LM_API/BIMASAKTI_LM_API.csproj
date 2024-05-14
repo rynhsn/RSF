@@ -46,7 +46,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\SERVICE\LM\LMM01500Service\LMM01500Service.csproj" />
 	  <ProjectReference Include="..\..\..\SERVICE\LM\LMM02500Service\LMM02500Service.csproj" />
-	  <ProjectReference Include="..\..\..\SERVICE\LM\LMT03500Service\LMT03500Service.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\LMT03500Service\PMT03500Service.csproj" />
 	</ItemGroup>
 
 

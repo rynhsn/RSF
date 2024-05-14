@@ -1,31 +1,32 @@
 ﻿@inherits R_Page
 @attribute [R_Page(Title = "GL Account")]
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
 
 <R_StackLayout Style="width: 800px">
     <R_StackLayout Row>
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.GOAGrid"
+                R_GridType="@R_eGridType.Navigator"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
                 Height="300px"
-                PageSize="5">
+                Pageable="true">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="CGOA_CODE" HeaderText="Group of Account" Width="100px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CGOA_NAME" HeaderText="Group of Account Name" Width="300px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CBSIS_DESCR" HeaderText="BS/IS" Width="100px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CDBCR_DESCR" HeaderText="D/C" Width="100px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Update BY" Width="100px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="DUPDATE_DATE" HeaderText="Update Date" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CGOA_CODE" HeaderText="@_localizer["_GOACode"]" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CGOA_NAME" HeaderText="@_localizer["_GOAName"]" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CBSIS_DESCR" HeaderText="@_localizer["_BSISDesc"]" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CDBCR_DESCR" HeaderText="@_localizer["_DCDesc"]" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="@_localizer["_UpdateBy"]" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="DUPDATE_DATE" HeaderText="@_localizer["_UpdateDate"]" Width="100px"></R_GridTextColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>
 
     <R_StackLayout Row Class="justify-content-end">
             <R_Button OnClick="Button_OnClickOkAsync">
-                OK
+                @_localizer["_OkBtn"]
             </R_Button>
             <R_Button OnClick="Button_OnClickCloseAsync">
-                Cancel
+                @_localizer["_CancelBtn"]
             </R_Button>
     </R_StackLayout>
 

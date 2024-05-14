@@ -6,7 +6,7 @@ using GSM02000Common.DTOs;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
-using RSP_GS_MAINTAIN_SALES_TAXResources;
+using RSP_GS_MAINTAIN_TAXResources;
 
 namespace GSM02000Back;
 

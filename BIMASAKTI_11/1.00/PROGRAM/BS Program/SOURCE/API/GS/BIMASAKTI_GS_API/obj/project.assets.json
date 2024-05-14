@@ -3997,6 +3997,77 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "GSM02500BACK/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GSM02500BackResources": "1.0.0",
+          "GSM02500COMMON": "1.0.0",
+          "RSP_GS_MAINTAIN_BUILDINGResources": "1.0.0",
+          "RSP_GS_MAINTAIN_BUILDING_FLOORResources": "1.0.0",
+          "RSP_GS_MAINTAIN_BUILDING_UNITResources": "1.0.0",
+          "RSP_GS_MAINTAIN_PROPERTYResources": "1.0.0",
+          "RSP_GS_MAINTAIN_PROPERTY_DEPTResources": "1.0.0",
+          "RSP_GS_MAINTAIN_PROPERTY_USERResources": "1.0.0",
+          "RSP_GS_MAINTAIN_UNIT_PROMOTIONResources": "1.0.0",
+          "RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources": "1.0.0",
+          "RSP_GS_MAINTAIN_UNIT_TYPEResources": "1.0.0",
+          "RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYResources": "1.0.0",
+          "RSP_GS_MAINTAIN_UNIT_VIEWResources": "1.0.0",
+          "RSP_GS_UPLOAD_BUILDING_UNITResources": "1.0.0",
+          "RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources": "1.0.0",
+          "RSP_GS_UPLOAD_PROPERTY_FLOORResources": "1.0.0",
+          "RSP_GS_UPLOAD_PROPERTY_UNIT_TYPEResources": "1.0.0",
+          "RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources": "1.0.0",
+          "RSP_GS_UPLOAD_UNIT_PROMOTIONResources": "1.0.0",
+          "RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources": "1.0.0",
+          "System.Data.SqlClient": "4.8.5"
+        },
+        "compile": {
+          "bin/placeholder/GSM02500BACK.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02500BACK.dll": {}
+        }
+      },
+      "GSM02500BackResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GSM02500BackResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02500BackResources.dll": {}
+        }
+      },
+      "GSM02500COMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GSM02500COMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02500COMMON.dll": {}
+        }
+      },
+      "GSM02500SERVICE/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GSM02500BACK": "1.0.0",
+          "GSM02500COMMON": "1.0.0",
+          "RSP_GS_MAINTAIN_BUILDING_FLOORResources": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GSM02500SERVICE.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02500SERVICE.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "GSM04500Back/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -4131,6 +4202,36 @@
           "bin/placeholder/RSP_ACTIVITY_VALIDITYResources.dll": {}
         }
       },
+      "RSP_GS_MAINTAIN_BUILDINGResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_BUILDINGResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_BUILDINGResources.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_BUILDING_FLOORResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_BUILDING_FLOORResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_BUILDING_FLOORResources.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_BUILDING_UNITResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_BUILDING_UNITResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_BUILDING_UNITResources.dll": {}
+        }
+      },
       "RSP_GS_MAINTAIN_JOURNAL_GROUPResources/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -4149,6 +4250,36 @@
         },
         "runtime": {
           "bin/placeholder/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_PROPERTYResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_PROPERTYResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_PROPERTYResources.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_PROPERTY_DEPTResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_PROPERTY_DEPTResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_PROPERTY_DEPTResources.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_PROPERTY_USERResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_PROPERTY_USERResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_PROPERTY_USERResources.dll": {}
         }
       },
       "RSP_GS_MAINTAIN_TAXResources/1.0.0": {
@@ -4181,6 +4312,76 @@
           "bin/placeholder/RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.dll": {}
         }
       },
+      "RSP_GS_MAINTAIN_UNIT_PROMOTIONResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_UNIT_PROMOTIONResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_UNIT_PROMOTIONResources.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_UNIT_TYPEResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_UNIT_TYPEResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_UNIT_TYPEResources.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYResources.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_UNIT_VIEWResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_UNIT_VIEWResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_UNIT_VIEWResources.dll": {}
+        }
+      },
+      "RSP_GS_UPLOAD_BUILDING_UNITResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_UPLOAD_BUILDING_UNITResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_UPLOAD_BUILDING_UNITResources.dll": {}
+        }
+      },
+      "RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources.dll": {}
+        }
+      },
       "RSP_GS_UPLOAD_JOURNAL_GROUPResources/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -4189,6 +4390,56 @@
         },
         "runtime": {
           "bin/placeholder/RSP_GS_UPLOAD_JOURNAL_GROUPResources.dll": {}
+        }
+      },
+      "RSP_GS_UPLOAD_PROPERTY_FLOORResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_UPLOAD_PROPERTY_FLOORResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_UPLOAD_PROPERTY_FLOORResources.dll": {}
+        }
+      },
+      "RSP_GS_UPLOAD_PROPERTY_UNIT_TYPEResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPEResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPEResources.dll": {}
+        }
+      },
+      "RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources.dll": {}
+        }
+      },
+      "RSP_GS_UPLOAD_UNIT_PROMOTIONResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_UPLOAD_UNIT_PROMOTIONResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_UPLOAD_UNIT_PROMOTIONResources.dll": {}
+        }
+      },
+      "RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources.dll": {}
         }
       },
       "RSP_GS_VALIDATE_USER_ACT_APPRResources/1.0.0": {
@@ -11694,6 +11945,26 @@
       "path": "../../../SERVICE/GS/GSM02000Service/GSM02000Service.csproj",
       "msbuildProject": "../../../SERVICE/GS/GSM02000Service/GSM02000Service.csproj"
     },
+    "GSM02500BACK/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GSM02500BACK/GSM02500BACK.csproj",
+      "msbuildProject": "../../../BACK/GS/GSM02500BACK/GSM02500BACK.csproj"
+    },
+    "GSM02500BackResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GSM02500BackResources/GSM02500BackResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GSM02500BackResources/GSM02500BackResources.csproj"
+    },
+    "GSM02500COMMON/1.0.0": {
+      "type": "project",
+      "path": "../../../COMMON/GS/GSM02500COMMON/GSM02500COMMON.csproj",
+      "msbuildProject": "../../../COMMON/GS/GSM02500COMMON/GSM02500COMMON.csproj"
+    },
+    "GSM02500SERVICE/1.0.0": {
+      "type": "project",
+      "path": "../../../SERVICE/GS/GSM02500SERVICE/GSM02500SERVICE.csproj",
+      "msbuildProject": "../../../SERVICE/GS/GSM02500SERVICE/GSM02500SERVICE.csproj"
+    },
     "GSM04500Back/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/GSM04500Back/GSM04500Back.csproj",
@@ -11744,6 +12015,21 @@
       "path": "../../../BACK/GS/GS_SPR/RSP_ACTIVITY_VALIDITYResources/RSP_ACTIVITY_VALIDITYResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_ACTIVITY_VALIDITYResources/RSP_ACTIVITY_VALIDITYResources.csproj"
     },
+    "RSP_GS_MAINTAIN_BUILDINGResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_BUILDINGResources/RSP_GS_MAINTAIN_BUILDINGResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_BUILDINGResources/RSP_GS_MAINTAIN_BUILDINGResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_BUILDING_FLOORResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_BUILDING_FLOORResources/RSP_GS_MAINTAIN_BUILDING_FLOORResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_BUILDING_FLOORResources/RSP_GS_MAINTAIN_BUILDING_FLOORResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_BUILDING_UNITResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_BUILDING_UNITResources/RSP_GS_MAINTAIN_BUILDING_UNITResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_BUILDING_UNITResources/RSP_GS_MAINTAIN_BUILDING_UNITResources.csproj"
+    },
     "RSP_GS_MAINTAIN_JOURNAL_GROUPResources/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_JOURNAL_GROUPResources/RSP_GS_MAINTAIN_JOURNAL_GROUPResources.csproj",
@@ -11753,6 +12039,21 @@
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_PROPERTYResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_PROPERTYResources/RSP_GS_MAINTAIN_PROPERTYResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_PROPERTYResources/RSP_GS_MAINTAIN_PROPERTYResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_PROPERTY_DEPTResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_PROPERTY_DEPTResources/RSP_GS_MAINTAIN_PROPERTY_DEPTResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_PROPERTY_DEPTResources/RSP_GS_MAINTAIN_PROPERTY_DEPTResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_PROPERTY_USERResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_PROPERTY_USERResources/RSP_GS_MAINTAIN_PROPERTY_USERResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_PROPERTY_USERResources/RSP_GS_MAINTAIN_PROPERTY_USERResources.csproj"
     },
     "RSP_GS_MAINTAIN_TAXResources/1.0.0": {
       "type": "project",
@@ -11769,10 +12070,70 @@
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources/RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources/RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.csproj"
     },
+    "RSP_GS_MAINTAIN_UNIT_PROMOTIONResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_UNIT_PROMOTIONResources/RSP_GS_MAINTAIN_UNIT_PROMOTIONResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_UNIT_PROMOTIONResources/RSP_GS_MAINTAIN_UNIT_PROMOTIONResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources/RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources/RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_UNIT_TYPEResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_UNIT_TYPEResources/RSP_GS_MAINTAIN_UNIT_TYPEResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_UNIT_TYPEResources/RSP_GS_MAINTAIN_UNIT_TYPEResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYResources/RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYResources/RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_UNIT_VIEWResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_UNIT_VIEWResources/RSP_GS_MAINTAIN_UNIT_VIEWResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_UNIT_VIEWResources/RSP_GS_MAINTAIN_UNIT_VIEWResources.csproj"
+    },
+    "RSP_GS_UPLOAD_BUILDING_UNITResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_BUILDING_UNITResources/RSP_GS_UPLOAD_BUILDING_UNITResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_BUILDING_UNITResources/RSP_GS_UPLOAD_BUILDING_UNITResources.csproj"
+    },
+    "RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources/RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources/RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources.csproj"
+    },
     "RSP_GS_UPLOAD_JOURNAL_GROUPResources/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_JOURNAL_GROUPResources/RSP_GS_UPLOAD_JOURNAL_GROUPResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_JOURNAL_GROUPResources/RSP_GS_UPLOAD_JOURNAL_GROUPResources.csproj"
+    },
+    "RSP_GS_UPLOAD_PROPERTY_FLOORResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_PROPERTY_FLOORResources/RSP_GS_UPLOAD_PROPERTY_FLOORResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_PROPERTY_FLOORResources/RSP_GS_UPLOAD_PROPERTY_FLOORResources.csproj"
+    },
+    "RSP_GS_UPLOAD_PROPERTY_UNIT_TYPEResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPEResources/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPEResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPEResources/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPEResources.csproj"
+    },
+    "RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources.csproj"
+    },
+    "RSP_GS_UPLOAD_UNIT_PROMOTIONResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_UNIT_PROMOTIONResources/RSP_GS_UPLOAD_UNIT_PROMOTIONResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_UNIT_PROMOTIONResources/RSP_GS_UPLOAD_UNIT_PROMOTIONResources.csproj"
+    },
+    "RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources/RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources/RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources.csproj"
     },
     "RSP_GS_VALIDATE_USER_ACT_APPRResources/1.0.0": {
       "type": "project",
@@ -11784,6 +12145,7 @@
     "net6.0": [
       "GFF00900SERVICES >= 1.0.0",
       "GSM02000Service >= 1.0.0",
+      "GSM02500SERVICE >= 1.0.0",
       "GSM04500Service >= 1.0.0",
       "GSM05000Service >= 1.0.0",
       "Lookup_GSSERVICES >= 1.0.0",
@@ -11799,11 +12161,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
+      "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
       "projectName": "BIMASAKTI_GS_API",
-      "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
+      "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
       "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
-      "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\obj\\",
+      "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -11826,20 +12188,23 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02000Service\\GSM02000Service.csproj": {
-              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02000Service\\GSM02000Service.csproj"
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02000Service\\GSM02000Service.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02000Service\\GSM02000Service.csproj"
             },
-            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM04500Service\\GSM04500Service.csproj": {
-              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM04500Service\\GSM04500Service.csproj"
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02500SERVICE\\GSM02500SERVICE.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02500SERVICE\\GSM02500SERVICE.csproj"
             },
-            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Service\\GSM05000Service.csproj": {
-              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Service\\GSM05000Service.csproj"
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM04500Service\\GSM04500Service.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM04500Service\\GSM04500Service.csproj"
             },
-            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\GFF00900SERVICES\\GFF00900SERVICES.csproj": {
-              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\GFF00900SERVICES\\GFF00900SERVICES.csproj"
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Service\\GSM05000Service.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Service\\GSM05000Service.csproj"
             },
-            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj": {
-              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj"
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\GFF00900SERVICES\\GFF00900SERVICES.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\GFF00900SERVICES\\GFF00900SERVICES.csproj"
+            },
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj"
             }
           }
         }

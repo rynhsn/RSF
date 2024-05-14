@@ -123,5 +123,14 @@ namespace RSP_GS_MAINTAIN_BUILDING_FLOORResources {
                 return ResourceManager.GetString("2547", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Floor Space must be greater than Total Unit Space!.
+        /// </summary>
+        internal static string _2548 {
+            get {
+                return ResourceManager.GetString("2548", resourceCulture);
+            }
+        }
     }
 }

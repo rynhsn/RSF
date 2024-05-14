@@ -1,2 +1,0 @@
-Error100=Expenditure ID {0} already exists!
-Error900=Process failed! unable to save Expenditure {0}

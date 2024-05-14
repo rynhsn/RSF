@@ -124,7 +124,7 @@
     <value>Unit Type Code cannot be empty</value>
   </data>
   <data name="EMPTY_UNIT_TYPE_NAME" xml:space="preserve">
-    <value>Unit Type Code cannot be empty</value>
+    <value>Unit Type Name cannot be empty</value>
   </data>
   <data name="EXCESS_UNIT_TYPE_CODE" xml:space="preserve">
     <value>Unit Type Code is bigger than 20 Character</value>

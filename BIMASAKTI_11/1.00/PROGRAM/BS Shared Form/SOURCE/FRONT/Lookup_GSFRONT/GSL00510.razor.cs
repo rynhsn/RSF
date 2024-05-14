@@ -17,7 +17,10 @@ namespace Lookup_GSFRONT
 
             try
             {
-                await GridRef.R_RefreshGrid(poParameter);
+                var loParam = (GSL00510ParameterDTO)poParameter;
+                _viewModel.COAParameter = loParam;
+
+                await GridRef.R_RefreshGrid(null);
             }
             catch (Exception ex)
             {
@@ -33,10 +36,27 @@ namespace Lookup_GSFRONT
 
             try
             {
-                var loParam = (GSL00510ParameterDTO)eventArgs.Parameter;
-                await _viewModel.GetCOAList(loParam);
+                await _viewModel.GetCOAList();
 
                 eventArgs.ListEntityResult = _viewModel.COAGrid;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task OnChangeInactiveCOA(bool poParam)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                _viewModel.Inactive_Coa = poParam;
+
+                await GridRef.R_RefreshGrid(null);
             }
             catch (Exception ex)
             {

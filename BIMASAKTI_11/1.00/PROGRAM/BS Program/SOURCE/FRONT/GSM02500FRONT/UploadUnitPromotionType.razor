@@ -1,0 +1,127 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Upload")]
+@using GSM02500COMMON.DTOs.GSM02540
+
+<R_StackLayout Style="width:1000px">
+    <R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout Class="col-2">
+                <R_Label>@_localizer["_Property"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col-2">
+                <R_TextBox R_ConductorGridSource="_conGridUploadUnitPromotionTypeRef"
+                           Enabled="false"
+                           @bind-Value="loUploadUnitPromotionTypeViewModel.loParameter.PropertyData.CPROPERTY_ID">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col-8">
+                <R_TextBox R_ConductorGridSource="_conGridUploadUnitPromotionTypeRef"
+                           Enabled="false"
+                           @bind-Value="loUploadUnitPromotionTypeViewModel.loParameter.PropertyData.CPROPERTY_NAME">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_InputFile OnChange="OnChangeInputFile" Accepts="@accepts"></R_InputFile>
+        </R_StackLayout>
+    </R_StackLayout>
+
+    <R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_Grid @ref="@_gridUploadUnitPromotionTypeRef"
+                        DataSource="@loUploadUnitPromotionTypeViewModel.loUploadUnitPromotionTypeDisplayList"
+                        Pageable="true"
+                        R_ConductorGridSource="@_conGridUploadUnitPromotionTypeRef"
+                        R_GridType="@R_eGridType.Batch"
+                        Height="350px"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false"
+                        AllowDeleteRow="false"
+                        R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
+                    <R_GridColumns>
+                        <R_GridNumericColumn FieldName=@nameof(UploadUnitPromotionTypeDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="100px"></R_GridNumericColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitPromotionTypeDTO.UnitPromotionTypeCode) HeaderText="@_localizer["_OtherUnitTypeCode"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitPromotionTypeDTO.UnitPromotionTypeName) HeaderText="@_localizer["_OtherUnitTypeName"]" Enabled="false" Width="200px"></R_GridTextColumn>
+                        <R_GridNumericColumn FieldName=@nameof(UploadUnitPromotionTypeDTO.GrossAreaSize) HeaderText="@_localizer["_GrossAreaSize"]" Enabled="false" Width="150px"></R_GridNumericColumn>
+                        <R_GridNumericColumn FieldName=@nameof(UploadUnitPromotionTypeDTO.NetAreaSize) HeaderText="@_localizer["_NetAreaSize"]" Enabled="false" Width="150px"></R_GridNumericColumn>
+                        <R_GridCheckBoxColumn FieldName=@nameof(UploadUnitPromotionTypeDTO.Active) HeaderText="@_localizer["_Active"]" Enabled="false" Width="100px"></R_GridCheckBoxColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitPromotionTypeDTO.NonActiveDate) HeaderText="@_localizer["_NonActiveDate"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitPromotionTypeDTO.Valid) HeaderText="@_localizer["_Valid"]" Enabled="false" Width="100px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitPromotionTypeDTO.Notes) HeaderText="@_localizer["_Notes"]" Enabled="false" Width="350px"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_ProgressBar Label="@loUploadUnitPromotionTypeViewModel.Message" MaxValue="100" Value="@loUploadUnitPromotionTypeViewModel.Percentage"></R_ProgressBar>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="8">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["_TotalRows"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@loUploadUnitPromotionTypeViewModel.SumList"
+                                    Arrows="false"
+                                   Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["_Valid"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2" Class="bg-success">
+                        <R_NumericTextBox @bind-Value="@loUploadUnitPromotionTypeViewModel.SumValid"
+                                          Arrows="false"
+                                          Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["_Invalid"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2" Class="badge bg-danger">
+                        <R_NumericTextBox @bind-Value="@loUploadUnitPromotionTypeViewModel.SumInvalid"
+                                          Arrows="false"
+                                          Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="4" hidden="@loUploadUnitPromotionTypeViewModel.VisibleError">
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Button OnClick="OnCancel">
+                            @_localizer["_Cancel"]
+                        </R_Button>
+                        <R_Button OnClick="OnProcess" Enabled="@IsProcessEnabled">
+                            @_localizer["_Process"]
+                        </R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+                <R_ItemLayout col="4" hidden="@(!loUploadUnitPromotionTypeViewModel.VisibleError)">
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Button OnClick="OnCancel">
+                            @_localizer["_Cancel"]
+                        </R_Button>
+                        <R_Button OnClick="@OnSaveToExcel">
+                            @_localizer["_SavetoExcel"]
+                        </R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+                </R_StackLayout>
+                </R_StackLayout>
+
+            <R_ConductorGrid @ref="@_conGridUploadUnitPromotionTypeRef"
+                 R_ViewModel="@loUploadUnitPromotionTypeViewModel"
+                      R_IsHeader
+                 R_BeforeSaveBatch="@R_BeforeSaveBatch"
+                 R_ServiceSaveBatch="@R_ServiceSaveBatch"
+                 R_AfterSaveBatch="@R_AfterSaveBatch">
+</R_ConductorGrid>

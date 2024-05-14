@@ -1,0 +1,5 @@
+2581	= Error process, please contact your administrator!
+2582	= Duplicate Department Code!
+
+
+

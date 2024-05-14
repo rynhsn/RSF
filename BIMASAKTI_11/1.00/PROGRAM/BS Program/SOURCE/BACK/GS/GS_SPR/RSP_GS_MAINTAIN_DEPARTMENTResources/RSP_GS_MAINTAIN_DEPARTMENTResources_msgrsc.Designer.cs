@@ -86,5 +86,32 @@ namespace RSP_GS_MAINTAIN_DEPARTMENTResources {
                 return ResourceManager.GetString("4003", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dept Code cannot be empty!.
+        /// </summary>
+        internal static string _4004 {
+            get {
+                return ResourceManager.GetString("4004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dept Name cannot be empty!.
+        /// </summary>
+        internal static string _4005 {
+            get {
+                return ResourceManager.GetString("4005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Center Code cannot be empty!.
+        /// </summary>
+        internal static string _4006 {
+            get {
+                return ResourceManager.GetString("4006", resourceCulture);
+            }
+        }
     }
 }

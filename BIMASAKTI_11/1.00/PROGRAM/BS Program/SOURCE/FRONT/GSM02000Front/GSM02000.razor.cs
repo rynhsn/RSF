@@ -15,6 +15,7 @@ using R_BlazorFrontEnd.Controls.Popup;
 using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
+using R_BlazorFrontEnd.Interfaces;
 using R_CommonFrontBackAPI;
 using R_LockingFront;
 
@@ -179,6 +180,8 @@ public partial class GSM02000 : R_Page
     public R_Lookup R_LookupBtnIn;
     private R_Lookup R_LookupBtnOut;
 
+    
+    private R_TextBox _textTaxIn;
 
     private async Task OnLostFocusGLAccountIn()
     {
@@ -187,6 +190,12 @@ public partial class GSM02000 : R_Page
         LookupGSL00500ViewModel loLookupViewModel = new LookupGSL00500ViewModel();
         try
         {
+            if (_viewModel.Data.CTAXIN_GLACCOUNT_NO.Length <= 0)
+            {
+                _viewModel.Data.CTAXIN_GLACCOUNT_NAME = "";
+                goto EndBlock;
+            }
+            
             var param = new GSL00500ParameterDTO
             {
                 CPROPERTY_ID = "",
@@ -201,10 +210,8 @@ public partial class GSM02000 : R_Page
             };
 
             GSL00500DTO loResult = null;
-            if (_viewModel.Data.CTAXIN_GLACCOUNT_NO.Length > 0)
-            {
-                loResult = await loLookupViewModel.GetGLAccount(param);
-            }
+
+            loResult = await loLookupViewModel.GetGLAccount(param);
 
             if (loResult == null)
             {
@@ -212,6 +219,7 @@ public partial class GSM02000 : R_Page
                     typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
                     "_ErrLookup01"));
                 _viewModel.Data.CTAXIN_GLACCOUNT_NO = "";
+                // await _textTaxIn.FocusAsync();
                 _viewModel.Data.CTAXIN_GLACCOUNT_NAME = "";
                 goto EndBlock;
             }
@@ -224,7 +232,7 @@ public partial class GSM02000 : R_Page
         }
 
         EndBlock:
-        await R_DisplayExceptionAsync(loEx);
+        R_DisplayException(loEx);
     }
 
     private void BeforeOpenLookupIn(R_BeforeOpenLookupEventArgs eventArgs)
@@ -262,9 +270,13 @@ public partial class GSM02000 : R_Page
         LookupGSL00500ViewModel loLookupViewModel = new LookupGSL00500ViewModel();
         try
         {
-            if (_viewModel.Data.CTAXOUT_GLACCOUNT_NO.Length > 0)
+            if (_viewModel.Data.CTAXOUT_GLACCOUNT_NO.Length <= 0)
             {
-                var param = new GSL00500ParameterDTO
+                _viewModel.Data.CTAXOUT_GLACCOUNT_NAME = "";
+                goto EndBlock;
+            }
+
+            var param = new GSL00500ParameterDTO
                 {
                     CPROPERTY_ID = "",
                     CPROGRAM_CODE = "GSM02000",
@@ -281,7 +293,8 @@ public partial class GSM02000 : R_Page
 
                 if (loResult == null)
                 {
-                    loEx.Add(R_FrontUtility.R_GetError(
+                    loEx.Add(
+                        R_FrontUtility.R_GetError(
                         typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
                         "_ErrLookup01"));
                     _viewModel.Data.CTAXOUT_GLACCOUNT_NO = "";
@@ -290,7 +303,6 @@ public partial class GSM02000 : R_Page
                 }
 
                 _viewModel.Data.CTAXOUT_GLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
-            }
         }
         catch (Exception ex)
         {
@@ -298,7 +310,7 @@ public partial class GSM02000 : R_Page
         }
 
         EndBlock:
-        await R_DisplayExceptionAsync(loEx);
+        R_DisplayException(loEx);
     }
 
     private void BeforeOpenLookupOut(R_BeforeOpenLookupEventArgs eventArgs)

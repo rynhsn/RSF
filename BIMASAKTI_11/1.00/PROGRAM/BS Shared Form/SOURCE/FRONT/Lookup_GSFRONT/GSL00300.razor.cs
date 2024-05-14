@@ -17,7 +17,7 @@ namespace Lookup_GSFRONT
 
             try
             {
-                await GridRef.R_RefreshGrid(poParameter);
+                await GridRef.R_RefreshGrid(null);
             }
             catch (Exception ex)
             {

@@ -5,4 +5,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+	<ItemGroup>
+		<Compile Update="Lookup_GSFrontResources_msgrsc.Designer.cs">
+			<DependentUpon>Lookup_GSFrontResources_msgrsc.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Lookup_GSFrontResources_msgrsc.resx">
+			<LastGenOutput>Lookup_GSFrontResources_msgrsc.Designer.cs</LastGenOutput>
+			<Generator>ResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
+
 </Project>

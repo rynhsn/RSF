@@ -1,1 +1,0 @@
-ERROR_DELETE_AP_TRANSACTION=Process failed! unable to delete AP Transaction {0}

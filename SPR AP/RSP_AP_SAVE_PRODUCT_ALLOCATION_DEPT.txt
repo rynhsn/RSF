@@ -1,2 +1,0 @@
-Error100=Department {0} already exists!
-Error900=Process failed! unable to save Product Allocation Department {0}

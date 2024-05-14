@@ -1,7 +1,0 @@
-INCOMPLETE_TRANSACTION=Incomplete Transaction! Unable to submit.
-AP_GL_ACCOUNT_NO_NOT_FOUND=AP GL Account No. not found!
-PRODUCT_GL_ACCOUNT_NO_NOT_FOUND=Product GL Account No. not found!
-TAX_GL_ACCOUNT_NO_NOT_FOUND=Tax GL Account No. not found!
-OTHER_TAX_GL_ACCOUNT_NO_NOT_FOUND=Other Tax GL Account No. not found!
-
-ERROR_PROCESS=Process failed! unable to save Purchase Invoice Summary {0}

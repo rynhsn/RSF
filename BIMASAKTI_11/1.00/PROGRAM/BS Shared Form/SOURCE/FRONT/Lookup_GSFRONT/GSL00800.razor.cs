@@ -17,7 +17,7 @@ namespace Lookup_GSFRONT
 
             try
             {
-                await GridRef.R_RefreshGrid(poParameter);
+                await GridRef.R_RefreshGrid(null);
             }
             catch (Exception ex)
             {
@@ -33,8 +33,7 @@ namespace Lookup_GSFRONT
 
             try
             {
-                var loParam = (GSL00800ParameterDTO)eventArgs.Parameter;
-                await _viewModel.GetCurrencyRateTypeList(loParam);
+                await _viewModel.GetCurrencyRateTypeList();
 
                 eventArgs.ListEntityResult = _viewModel.CurrencyRateTypeGrid;
             }

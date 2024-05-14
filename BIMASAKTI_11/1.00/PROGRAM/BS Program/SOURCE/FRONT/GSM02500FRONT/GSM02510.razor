@@ -1,0 +1,232 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Building")]
+@using GSM02500COMMON.DTOs.GSM02510
+@using GSM02500MODEL
+
+<R_StackLayout Class="mb-4">
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label Class="fw-bold" FontSize="15">@_localizer["_Property"]</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@loViewModel.SelectedProperty.CPROPERTY_ID"
+                       R_ConductorSource="@_conductorRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="7">
+            <R_TextBox @bind-Value="@loViewModel.SelectedProperty.CPROPERTY_NAME"
+                       R_ConductorSource="@_conductorRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout Spacing="3" Class="mb-4" Row="true">
+
+    @* Lay-Out Table Grid List *@
+    <R_ItemLayout col="3">
+        <R_Grid @ref="@_gridRef"
+                DataSource="@loViewModel.loBuildingCategoryList"
+                R_ConductorSource="@_conductorRef"
+                R_GridType="@R_eGridType.Navigator"
+                Height="350px"
+                R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GSM02510DTO.CBUILDING_NAME)" HeaderText="@_localizer["_UnitTypeCategory"]"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+
+
+    @* Lay-Out Navigator *@
+    <R_ItemLayout col="8">
+
+        <R_StackLayout Row="true" Class="justify-content-end">
+            <R_ItemLayout>
+                <R_CheckBox @bind-Value="@loViewModel.Data.LACTIVE"
+                            R_ConductorSource="@_conductorRef"
+                            Enabled="false">
+                </R_CheckBox>
+                <R_Label>@_localizer["_Active"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Building"]*</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@loViewModel.Data.CBUILDING_ID"
+                           R_ConductorSource="@_conductorRef"
+                           @ref="_buildingIdRef"
+                           R_EnableAdd="true"
+                           R_EnableEdit="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox @bind-Value="@loViewModel.Data.CBUILDING_NAME"
+                           R_ConductorSource="@_conductorRef"
+                           @ref="_buildingNameRef"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Description"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="10">
+                <R_TextArea @bind-Value="@loViewModel.Data.CDESCRIPTION"
+                            R_ConductorSource="@_conductorRef"
+                            R_EnableAdd="true" R_EnableEdit="true"></R_TextArea>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true" Class="mt-2">
+            <R_Label FontColor="R_eFontColor.Danger" FontSize="12">Floor and Unit Info</R_Label>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_TotalFloor"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.NTOTAL_FLOOR"
+                                  R_ConductorSource="@_conductorRef"
+                                  Enabled="false">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_Active"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.NTOTAL_ACTIVE_FLOOR"
+                                  R_ConductorSource="@_conductorRef"
+                                  Enabled="false">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_TotalUnit"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.NTOTAL_UNIT"
+                                  R_ConductorSource="@_conductorRef"
+                                  Enabled="false">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_Active"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.NTOTAL_ACTIVE_UNIT"
+                                  R_ConductorSource="@_conductorRef"
+                                  Enabled="false">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_UpdatedBy"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="@loViewModel.Data.CUPDATE_BY"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_Date"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_DateTimePicker @bind-Value="@loViewModel.Data.DUPDATE_DATE"
+                                  R_ConductorSource="@_conductorRef"
+                                  Enabled="false"></R_DateTimePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_CreatedBy"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="@loViewModel.Data.CCREATE_BY"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_Date"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_DateTimePicker @bind-Value="@loViewModel.Data.DCREATE_DATE"
+                                  R_ConductorSource="@_conductorRef"
+                              Enabled="false"></R_DateTimePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+
+    </R_ItemLayout>
+
+
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-between">
+    <R_ItemLayout>
+        <R_AddButton R_Conductor="@_conductorRef"></R_AddButton>
+        <R_EditButton R_Conductor="@_conductorRef"></R_EditButton>
+        <R_DeleteButton R_Conductor="@_conductorRef"></R_DeleteButton>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Popup R_ConductorSource="@_conductorRef"
+                 R_Before_Open_Popup="@R_Before_Open_Popup_ActivateInactive"
+                 R_After_Open_Popup="@R_After_Open_Popup_ActivateInactive"
+                 Enabled="@(!string.IsNullOrWhiteSpace(loViewModel.loBuildingCategoryDetail.CBUILDING_ID) && _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)">@loLabel</R_Popup>
+        <R_Detail R_ConductorSource="_conductorRef"
+                  R_Before_Open_Detail="R_Before_OpenFloor_Detail"
+                  R_After_Open_Detail="R_After_OpenFloor_Detail"
+                  Enabled="@(!string.IsNullOrWhiteSpace(loViewModel.loBuildingCategoryDetail.CBUILDING_ID) && _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)">@_localizer["_Floor"]</R_Detail>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+        <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@loViewModel"
+             R_Display="Grid_Display"
+             R_ServiceSave="@Grid_ServiceSave"
+             R_AfterAdd="Grid_AfterAdd"
+             R_Saving="Grid_SavingBuilding"
+             R_Validation="Grid_ValidationBuilding"@*
+             R_BeforeEdit="Grid_BeforeEdit"*@
+             R_SetEdit="Grid_SetEdit"
+             R_BeforeCancel="Grid_BeforeCancel"
+             R_ServiceDelete="@Grid_ServiceDelete"
+             R_AfterDelete="Grid_AfterDelete"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Grid_ServiceGetRecord">
+</R_Conductor>

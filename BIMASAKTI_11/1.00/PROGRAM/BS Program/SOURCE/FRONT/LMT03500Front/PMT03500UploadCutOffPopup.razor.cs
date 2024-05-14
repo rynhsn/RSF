@@ -13,12 +13,15 @@ using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 
-namespace LMT03500Front;
+namespace PMT03500Front;
 
 public partial class PMT03500UploadCutOffPopup : R_Page
 {
     private PMT03500UploadCutOffViewModel _viewModel = new();
     private R_Grid<PMT03500UploadCutOffErrorValidateDTO> _gridRef = new();
+    
+    // private PMT03500UploadUtilityViewModel _viewModel = new();
+    // private R_Grid<PMT03500UploadUtilityErrorValidateDTO> _gridRef = new();
 
     private R_eFileSelectAccept[] _accepts = { R_eFileSelectAccept.Excel };
 
@@ -96,6 +99,7 @@ public partial class PMT03500UploadCutOffPopup : R_Page
         try
         {
             var loData = (List<PMT03500UploadCutOffExcelDTO>)eventArgs.Parameter;
+            // var loData = (List<PMT03500UploadUtilityExcelDTO>)eventArgs.Parameter;
 
             await _viewModel.ConvertGrid(loData);
             eventArgs.ListEntityResult = _viewModel.GridListUpload;
@@ -118,7 +122,7 @@ public partial class PMT03500UploadCutOffPopup : R_Page
 
             if (loValidate == R_eMessageBoxResult.Yes)
             {
-                await _viewModel.SaveBulkFile();
+                await _viewModel.SaveBulkFile(_viewModel.UploadParam, _viewModel.GridListUpload.ToList());
 
                 if (_viewModel.IsError)
                 {

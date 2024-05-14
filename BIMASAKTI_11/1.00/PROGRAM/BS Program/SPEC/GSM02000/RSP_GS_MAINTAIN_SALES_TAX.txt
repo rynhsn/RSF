@@ -1,5 +1,0 @@
-2001	= Error process, please contact your administrator!
-2002	= Duplicate Sales Tax!
-2003	= Cannot Delete, Sales Tax Already in used!
-
-

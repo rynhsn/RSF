@@ -7,6 +7,7 @@
 
   <ItemGroup>
 	  <ProjectReference Include="..\..\BACK\Lookup_GSCOMMON\Lookup_GSCOMMON.csproj" />
+	  <ProjectReference Include="..\Lookup_GSFrontResources\Lookup_GSFrontResources.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +26,9 @@
     <Reference Include="R_CommonFrontBackAPI">
       <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CommonFrontBackAPI.dll</HintPath>
     </Reference>
+	  <Reference Include="R_BlazorFrontEnd.Controls">
+		  <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Controls.dll</HintPath>
+	  </Reference>
   </ItemGroup>
 
 </Project>

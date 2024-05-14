@@ -1,27 +1,28 @@
 ﻿@inherits R_Page
 @attribute [R_Page(Title = "Cash Flow Group Type")]
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
 
 <R_StackLayout Style="width: 800px">
     <R_StackLayout Row>
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.CashFlowGrpTypeGrid"
-                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
-                PageSize="5">
+                R_GridType="@R_eGridType.Navigator"
+                Pageable="true"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="CCASH_FLOW_GROUP_CODE" HeaderText="Cash Flow Group Id"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CCASH_FLOW_GROUP_NAME" HeaderText="Cash Flow Group Name"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CCASH_FLOW_GROUP_TYPE_DESCR" HeaderText="Cash Flow Group Type"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCASH_FLOW_GROUP_CODE" HeaderText="@_localizer["_CashFlowGrpId"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCASH_FLOW_GROUP_NAME" HeaderText="@_localizer["_CashFlowGrpName"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCASH_FLOW_GROUP_TYPE_DESCR" HeaderText="@_localizer["_CashFlowGrpType"]"></R_GridTextColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>
 
     <R_StackLayout Row Class="justify-content-end">
             <R_Button OnClick="Button_OnClickOkAsync">
-                OK
+                @_localizer["_OkBtn"]
             </R_Button>
             <R_Button OnClick="Button_OnClickCloseAsync">
-                Cancel
+                @_localizer["_CancelBtn"]
             </R_Button>
     </R_StackLayout>
 

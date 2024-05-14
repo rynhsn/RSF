@@ -248,7 +248,9 @@ namespace GSM05000Front
             {
                 eventArgs.Parameter = new GSL01100ParameterDTO()
                 {
-                    CTRANSACTION_CODE = _viewModelUser.HeaderEntity.CTRANS_CODE
+                    // CTRANSACTION_CODE = _viewModelUser.HeaderEntity.CTRANS_CODE
+                    CPARAMETER_ID = _viewModelUser.HeaderEntity.CTRANS_CODE,
+                    CPROGRAM_ID = "GST00500"
                 };
                 eventArgs.TargetPageType = typeof(GSL01100);
             }
@@ -383,7 +385,9 @@ namespace GSM05000Front
             {
                 eventArgs.Parameter = new GSL01100ParameterDTO()
                 {
-                    CTRANSACTION_CODE = _viewModelUser.HeaderEntity.CTRANS_CODE
+                    // CTRANSACTION_CODE = _viewModelUser.HeaderEntity.CTRANS_CODE
+                    CPARAMETER_ID = _viewModelUser.HeaderEntity.CTRANS_CODE,
+                    CPROGRAM_ID = "GST00500"
                 };
                 eventArgs.TargetPageType = typeof(GSL01100);
             }

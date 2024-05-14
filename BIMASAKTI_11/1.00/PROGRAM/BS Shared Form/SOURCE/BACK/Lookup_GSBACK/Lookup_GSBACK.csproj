@@ -20,6 +20,9 @@
     <Reference Include="R_CommonFrontBackAPI">
       <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
     </Reference>
+	  <Reference Include="R_OpenTelemetry">
+		  <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll</HintPath>
+	  </Reference>
   </ItemGroup>
 
 	

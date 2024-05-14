@@ -1,0 +1,11 @@
+EXCESS_UNIT_PROMOTION_ID	= Unit Promotion Type Id is bigger than 20 Character
+EMPTY_UNIT_PROMOTION_ID		= Unit Promotion Type Id can not be empty
+EXCESS_UNIT_PROMOTION_NAME	= Unit Promotion Type Name is bigger than 100 Character
+EMPTY_UNIT_PROMOTION_NAME	= Unit Promotion Type Name can not be empty
+INVALID_ACTIVE_FLAG		= Invalid Active Flag, Active Flag value is not 1 / 0	
+EMPTY_NONACTIVE_DATE		= If Active Flag = 0, Non Active Date can not be empty	
+EMPTY_FLOOR_CODE		= Floor can not be empty
+INVALID_FLOOR_CODE		= Invalid Floor Code
+EMPTY_BUILDING_CODE		= Building can not be empty
+INVALID_BUILDING_CODE		= Invalid Building Code
+INVALID_UNIT_PROMOTION_TYPE	= Invalid Unit Promotion Type		

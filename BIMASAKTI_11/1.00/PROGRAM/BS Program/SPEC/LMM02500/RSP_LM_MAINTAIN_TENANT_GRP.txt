@@ -1,0 +1,11 @@
+2501	= Error process, please contact your administrator!
+2502	= Duplicate Tenant Group Id!
+2503	= Cannot Delete, Tenant Classification Group already in used!
+2504	= All tenants tax info will overwrite with this tenant group tax info!
+2505	= Please check all tenants tax info under this tenant group!
+2506	= Tenant Group Id cannot be empty!
+2507	= Tenant Group Id cannot be empty!
+2508	= Tenant Group Id cannot be greater than 20 character!
+2509	= Tenant Group Name cannot be greater than 100 character!
+
+

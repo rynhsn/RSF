@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <data name="LBL_PROPERTY" xml:space="preserve">
+        <value>PROPERTY</value>
+    </data>
+    <data name="LBL_PROP" xml:space="preserve">
+        <value>Property</value>
+    </data>
+    <data name="LBL_DEPT" xml:space="preserve">
+        <value>Department</value>
+    </data>
+    <data name="LBL_NO" xml:space="preserve">
+        <value>No</value>
+    </data>
+    <data name="LBL_BUILDING" xml:space="preserve">
+        <value>Building</value>
+    </data>
+    <data name="LBL_BUILDINGID" xml:space="preserve">
+        <value>Building Id</value>
+    </data>
+    <data name="LBL_BUILDINGNAME" xml:space="preserve">
+        <value>Building Name</value>
+    </data>
+    <data name="LBL_UTILITYTYPE" xml:space="preserve">
+        <value>Utility Type</value>
+    </data>
+    <data name="LBL_FLOOR" xml:space="preserve">
+        <value>Floor</value>
+    </data>
+    <data name="LBL_FLOORID" xml:space="preserve">
+        <value>Floor Id</value>
+    </data>
+    <data name="LBL_INVPERIOD" xml:space="preserve">
+        <value>Invoice Period</value>
+    </data>
+    <data name="LBL_UTILITYPERIOD" xml:space="preserve">
+        <value>Utility Period</value>
+    </data>
+    <data name="LBL_ALLFLOOR" xml:space="preserve">
+        <value>All Floor</value>
+    </data>
+    <data name="LBL_INVOICED" xml:space="preserve">
+        <value>Invoiced</value>
+    </data>
+    <data name="LBL_UTILITYPRDDT" xml:space="preserve">
+        <value>Utility Period Date</value>
+    </data>
+    <data name="LBL_TO" xml:space="preserve">
+        <value>To</value>
+    </data>
+    <data name="LBL_EC" xml:space="preserve">
+        <value>ELECTRICITY and CHILLER</value>
+    </data>
+    <data name="LBL_WG" xml:space="preserve">
+        <value>WATER and GAS</value>
+    </data>
+    <data name="LBL_UNIT" xml:space="preserve">
+        <value>Unit</value>
+    </data>
+    <data name="LBL_TENANT" xml:space="preserve">
+        <value>Tenant</value>
+    </data>
+    <data name="LBL_CHARGE" xml:space="preserve">
+        <value>Charge</value>
+    </data>
+    <data name="LBL_UNITID" xml:space="preserve">
+        <value>Unit Id</value>
+    </data>
+    <data name="LBL_UNITTYPE" xml:space="preserve">
+        <value>Unit Type</value>
+    </data>
+    <data name="LBL_UNITNAME" xml:space="preserve">
+        <value>Unit Name</value>
+    </data>
+    <data name="LBL_METERNO" xml:space="preserve">
+        <value>Meter No</value>
+    </data>
+    <data name="LBL_STARTDATE" xml:space="preserve">
+        <value>Start Date</value>
+    </data>
+    <data name="LBL_ENDDATE" xml:space="preserve">
+        <value>End Date</value>
+    </data>
+    <data name="LBL_BLOCK1START" xml:space="preserve">
+        <value>Block I Start</value>
+    </data>
+    <data name="LBL_BLOCK2START" xml:space="preserve">
+        <value>Block II Start</value>
+    </data>
+    <data name="LBL_BLOCK1END" xml:space="preserve">
+        <value>Block I End</value>
+    </data>
+    <data name="LBL_BLOCK2END" xml:space="preserve">
+        <value>Block II End</value>
+    </data>
+    <data name="LBL_BEBANBERSAMA" xml:space="preserve">
+        <value>Beban Bersama</value>
+    </data>
+    <data name="LBL_BLOCK1USAGE" xml:space="preserve">
+        <value>Block I Usage</value>
+    </data>
+    <data name="LBL_BLOCK2USAGE" xml:space="preserve">
+        <value>Block II Usage</value>
+    </data>
+    <data name="LBL_AVGBLOCK1USAGE" xml:space="preserve">
+        <value>Avg Block I Usage</value>
+    </data>
+    <data name="LBL_AVGBLOCK2USAGE" xml:space="preserve">
+        <value>Avg Block II Usage</value>
+    </data>
+    <data name="LBL_STATUS" xml:space="preserve">
+        <value>Status</value>
+    </data>
+    <data name="LBL_UPDBY" xml:space="preserve">
+        <value>Updated By</value>
+    </data>
+    <data name="LBL_UPDDT" xml:space="preserve">
+        <value>Updated Date</value>
+    </data>
+    <data name="LBL_CRTBY" xml:space="preserve">
+        <value>Created By</value>
+    </data>
+    <data name="LBL_CRTDT" xml:space="preserve">
+        <value>Created Date</value>
+    </data>
+    <data name="LBL_REFRESH" xml:space="preserve">
+        <value>Refresh</value>
+    </data>
+    <data name="LBL_METERSTART" xml:space="preserve">
+        <value>Meter Start</value>
+    </data>
+    <data name="LBL_METEREND" xml:space="preserve">
+        <value>Meter End</value>
+    </data>
+    <data name="LBL_METERUSAGE" xml:space="preserve">
+        <value>Meter Usage</value>
+    </data>
+    <data name="LBL_AVGMETERUSAGE" xml:space="preserve">
+        <value>Avg Meter Usage</value>
+    </data>
+    <data name="LBL_TOTALAMOUNT" xml:space="preserve">
+        <value>Total Amount</value>
+    </data>
+    <data name="LBL_START" xml:space="preserve">
+        <value>Start</value>
+    </data>
+    <data name="LBL_END" xml:space="preserve">
+        <value>End</value>
+    </data>
+    <data name="LBL_CAPACITY" xml:space="preserve">
+        <value>Capacity</value>
+    </data>
+    <data name="LBL_CF" xml:space="preserve">
+        <value>CF</value>
+    </data>
+    <data name="LBL_DOWNLOAD" xml:space="preserve">
+        <value>Download</value>
+    </data>
+    <data name="LBL_UPLOAD" xml:space="preserve">
+        <value>Upload</value>
+    </data>
+    <data name="LBL_PHOTO" xml:space="preserve">
+        <value>Photo</value>
+    </data>
+    <data name="LBL_UNDO" xml:space="preserve">
+        <value>Undo</value>
+    </data>
+    <data name="LBL_CANCEL" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="LBL_OK" xml:space="preserve">
+        <value>Ok</value>
+    </data>
+    <data name="LBL_SAVE" xml:space="preserve">
+        <value>Save</value>
+    </data>
+    <data name="TAB_UTILITYUSAGE" xml:space="preserve">
+        <value>Utility Usage</value>
+    </data>
+    <data name="TAB_GENERALINFO" xml:space="preserve">
+        <value>General Info</value>
+    </data>
+    <data name="TAB_DETAILINFO" xml:space="preserve">
+        <value>Detail Info</value>
+    </data>
+    <data name="TAB_CUTOFF" xml:space="preserve">
+        <value>Cut Off</value>
+    </data>
+    <data name="TAB_CHANGEMETER" xml:space="preserve">
+        <value>Change Meter No</value>
+    </data>
+    <data name="TAB_UPDATEMETER" xml:space="preserve">
+        <value>Update Meter No</value>
+    </data>
+    <data name="LBL_ADD" xml:space="preserve">
+        <value>Add</value>
+    </data>
+    <data name="LBL_UPDATE" xml:space="preserve">
+        <value>Update</value>
+    </data>
+    <data name="LBL_CHANGE" xml:space="preserve">
+        <value>Change</value>
+    </data>
+    <data name="LBL_AGREEMENTNO" xml:space="preserve">
+        <value>Agreement No</value>
+    </data>
+    <data name="LBL_AGREEMENTUNITS" xml:space="preserve">
+        <value>Agreement Unit(s)</value>
+    </data>
+    <data name="LBL_TAXCODE" xml:space="preserve">
+        <value>Tax Code</value>
+    </data>
+    <data name="LBL_STARTINVPRD" xml:space="preserve">
+        <value>Start Invoice Period</value>
+    </data>
+    <data name="LBL_INVOICINGPERIOD" xml:space="preserve">
+        <value>Invoicing Period</value>
+    </data>
+    <data name="LBL_INVGRP" xml:space="preserve">
+        <value>Invoice Group</value>
+    </data>
+    <data name="LBL_MONTHS" xml:space="preserve">
+        <value>Month(s)</value>
+    </data>
+    <data name="LBL_TOMETERNO" xml:space="preserve">
+        <value>To Meter No</value>
+    </data>
+    <data name="LBL_FROMMETERNO" xml:space="preserve">
+        <value>From Meter No</value>
+    </data>
+    <data name="LBL_SRCFILE" xml:space="preserve">
+        <value>Source File</value>
+    </data>
+    <data name="LBL_TOTALROW" xml:space="preserve">
+        <value>Total Row(s)</value>
+    </data>
+    <data name="LBL_VALID" xml:space="preserve">
+        <value>Valid</value>
+    </data>
+    <data name="LBL_INVALID" xml:space="preserve">
+        <value>Invalid</value>
+    </data>
+    <data name="LBL_PROCESS" xml:space="preserve">
+        <value>Process</value>
+    </data>
+    <data name="LBL_SAVEEXCEL" xml:space="preserve">
+        <value>Save to Excel</value>
+    </data>
+    <data name="_ErrLookup" xml:space="preserve">
+        <value>Not found data by search text!</value>
+    </data>
+
+    <data name="LBL_STANDING_AMOUNT" xml:space="preserve">
+        <value>Standing Amount</value>
+    </data>
+    <data name="LBL_BLOCK_I_CHARGE" xml:space="preserve">
+        <value>Block I Charge</value>
+    </data>
+    <data name="LBL_BLOCK_II_CHARGE" xml:space="preserve">
+        <value>Block II Charge</value>
+    </data>
+    <data name="LBL_ADDITIONAL" xml:space="preserve">
+        <value>Additional</value>
+    </data>
+    <data name="LBL_RETRIBUTION" xml:space="preserve">
+        <value>Retribution</value>
+    </data>
+    <data name="LBL_TTLB" xml:space="preserve">
+        <value>TTLB</value>
+    </data>
+    <data name="LBL_TRANSFORMATOR" xml:space="preserve">
+        <value>Transformator</value>
+    </data>
+    <data name="LBL_BEBAN_BERSAMA" xml:space="preserve">
+        <value>Beban Bersama</value>
+    </data>
+    <data name="LBL_VAT_NON_ADM_TAX" xml:space="preserve">
+        <value>VAT (non adm tax)</value>
+    </data>
+    <data name="LBL_ADMIN_FEE" xml:space="preserve">
+        <value>Admin Fee</value>
+    </data>
+    <data name="LBL_VAT_ADM_TAX" xml:space="preserve">
+        <value>VAT (adm tax)</value>
+    </data>
+
+    <data name="LBL_BLOCK_I" xml:space="preserve">
+        <value>Block I</value>
+    </data>
+    <data name="LBL_BLOCK_II" xml:space="preserve">
+        <value>Block II</value>
+    </data>
+
+    <data name="LBL_KVA_VALUE" xml:space="preserve">
+        <value>KVA Value</value>
+    </data>
+    <data name="LBL_PF" xml:space="preserve">
+        <value>PF</value>
+    </data>
+    <data name="LBL_USAGE" xml:space="preserve">
+        <value>Usage</value>
+    </data>
+    <data name="LBL_USAGE_X_PF" xml:space="preserve">
+        <value>Usage x PF</value>
+    </data>
+
+    <data name="LBL_STANDING_CONSUMPTION" xml:space="preserve">
+        <value>Standing + Consumption</value>
+    </data>
+    <data name="LBL_TOTAL" xml:space="preserve">
+        <value>Total</value>
+    </data>
+    <data name="LBL_TOTAL_ADM_VAT" xml:space="preserve">
+        <value>Total + Adm + VAT</value>
+    </data>
+
+    <data name="LBL_WATER_METER" xml:space="preserve">
+        <value>Water Meter</value>
+    </data>
+    <data name="LBL_CALCULATION_FACTOR" xml:space="preserve">
+        <value>Calculation Factor</value>
+    </data>
+    <data name="LBL_STANDING_CHARGE" xml:space="preserve">
+        <value>Standing Charge</value>
+    </data>
+    <data name="LBL_CONSUMPTION" xml:space="preserve">
+        <value>Consumption</value>
+    </data>
+    <data name="LBL_EQUIPMENT_MAINT" xml:space="preserve">
+        <value>Equipment Maint</value>
+    </data>
+    <data name="LBL_MINIMUM_CHARGE" xml:space="preserve">
+        <value>Minimum Charge</value>
+    </data>
+
+
+</root>

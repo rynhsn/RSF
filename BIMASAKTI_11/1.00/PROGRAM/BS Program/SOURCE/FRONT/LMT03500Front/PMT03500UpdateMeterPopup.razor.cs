@@ -1,0 +1,88 @@
+﻿using PMT03500Common;
+using PMT03500Common.DTOs;
+using PMT03500Model.ViewModel;
+using R_BlazorFrontEnd.Controls;
+using R_BlazorFrontEnd.Controls.MessageBox;
+using R_BlazorFrontEnd.Exceptions;
+using R_BlazorFrontEnd.Helpers;
+
+namespace PMT03500Front;
+
+public partial class PMT03500UpdateMeterPopup : R_Page
+{
+    private PMT03500UpdateMeterViewModel _viewModel = new();
+
+    protected override async Task R_Init_From_Master(object poParameter)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var lo = (PMT03500UtilityMeterDetailDTO)poParameter;
+            var loParam = R_FrontUtility.ConvertObjectToObject<PMT03500UtilityMeterDTO>(lo);
+            await _viewModel.Init(loParam.CPROPERTY_ID);
+            await _viewModel.GetRecord(loParam);
+            _viewModel.Entity.CUNIT_NAME = lo.CUNIT_NAME;
+            _viewModel.Entity.CTENANT_ID = lo.CTENANT_ID;
+            _viewModel.Entity.CTENANT_NAME = lo.CTENANT_NAME;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private async Task OnClickCancel()
+    {
+        await this.Close(false, false);
+    }
+
+    private async Task OnClickSave()
+    {
+        
+        var loEx = new R_Exception();
+        try
+        {
+            if (_viewModel.UtilityType == EPMT03500UtilityUsageType.EC)
+            {
+                if (_viewModel.Entity.IBLOCK1_START < 0)
+                    loEx.Add("Error", "Please fill in the Block 1 Start");
+                if (_viewModel.Entity.IBLOCK2_START < 0)
+                    loEx.Add("Error", "Please fill in the Block 2 Start");
+            }
+            else if (_viewModel.UtilityType == EPMT03500UtilityUsageType.WG)
+            {
+                if (_viewModel.Entity.IMETER_START < 0)
+                    loEx.Add("Error", "Please fill in the Meter Start");
+            }
+            
+            if (_viewModel.Entity.DSTART_DATE_UPDATE == null)
+                loEx.Add("Error", "Please fill in the Start Date");
+            
+            if (loEx.HasError)
+                goto EndBlock;
+
+            
+            _viewModel.Entity.CSTART_INV_PRD = _viewModel.CSTART_INV_PRD_YEAR + _viewModel.CSTART_INV_PRD_MONTH;
+            _viewModel.Entity.CTENANT_ID ??= "";
+            await _viewModel.UpdateMeterNo(_viewModel.Entity);
+            //update success
+            var loResult = await R_MessageBox.Show("Success", "Data has been updated", R_eMessageBoxButtonType.OK);
+
+            if (loResult == R_eMessageBoxResult.OK)
+            {
+                await this.Close(true, _viewModel.Entity);
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            
+        }
+
+        EndBlock:
+        loEx.ThrowExceptionIfErrors();
+    }
+}

@@ -1,0 +1,29 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Cash & Bank Account Lookup")]
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Style="width: 800px">
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.CBAccountGrid"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                Pageable="true">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CCB_ACCOUNT_NAME" HeaderText="@_localizer["_AccountNo"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CDEPT_NAME" HeaderText="@_localizer["_Departement"]" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCURRENCY_CODE" HeaderText="@_localizer["_Currency"]" Width="200px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+            <R_Button OnClick="Button_OnClickOkAsync">
+                @_localizer["_OkBtn"]
+            </R_Button>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                @_localizer["_CancelBtn"]
+            </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>

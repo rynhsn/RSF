@@ -1,32 +1,33 @@
 ﻿@inherits R_Page
 @attribute [R_Page(Title = "GL Account")]
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
 
 <R_StackLayout Style="width: 800px">
     <R_StackLayout Row>
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.GLAccountList"
+                R_GridType="@R_eGridType.Navigator"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
-                PageSize="5"
+                Pageable="true"
                 Height="300px">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="Account No" Width="200px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CGLACCOUNT_NAME" HeaderText="Account Name" Width="300px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CBSIS_DESCR" HeaderText="BS/IS" Width="100px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CDBCR_DESCR" HeaderText="D/C" Width="100px"></R_GridTextColumn>
-                <R_GridCheckBoxColumn FieldName="LACTIVE" HeaderText="Active" Width="100px"></R_GridCheckBoxColumn>
-                <R_GridCheckBoxColumn FieldName="LCENTER_RESTR" HeaderText="User Restriction" Width="200px"></R_GridCheckBoxColumn>
-                <R_GridCheckBoxColumn FieldName="LUSER_RESTR" HeaderText="Center Restriction" Width="200px"></R_GridCheckBoxColumn>
+                <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="@_localizer["_AccountNo"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CGLACCOUNT_NAME" HeaderText="@_localizer["_AccountName"]" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CBSIS_DESCR" HeaderText="@_localizer["_BSISDesc"]" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CDBCR_DESCR" HeaderText="@_localizer["_DCDesc"]" Width="100px"></R_GridTextColumn>
+                <R_GridCheckBoxColumn FieldName="LACTIVE" HeaderText="@_localizer["_Active"]" Width="100px"></R_GridCheckBoxColumn>
+                <R_GridCheckBoxColumn FieldName="LUSER_RESTR" HeaderText="@_localizer["_UserRestr"]" Width="200px"></R_GridCheckBoxColumn>
+                <R_GridCheckBoxColumn FieldName="LCENTER_RESTR" HeaderText="@_localizer["_CenterRestr"]" Width="200px"></R_GridCheckBoxColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>
 
     <R_StackLayout Row Class="justify-content-end">
             <R_Button OnClick="Button_OnClickOkAsync">
-                OK
+                @_localizer["_OkBtn"]
             </R_Button>
             <R_Button OnClick="Button_OnClickCloseAsync">
-                Cancel
+                @_localizer["_CancelBtn"]
             </R_Button>
     </R_StackLayout>
 

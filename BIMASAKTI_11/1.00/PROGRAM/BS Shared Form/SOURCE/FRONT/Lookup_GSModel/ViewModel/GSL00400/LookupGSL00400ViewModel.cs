@@ -10,6 +10,7 @@ namespace Lookup_GSModel.ViewModel
     public class LookupGSL00400ViewModel : R_ViewModel<GSL00400DTO>
     {
         private PublicLookupModel _model = new PublicLookupModel();
+        private PublicLookupRecordModel _modelRecord = new PublicLookupRecordModel();
 
         public ObservableCollection<GSL00400DTO> JournalGroupGrid = new ObservableCollection<GSL00400DTO>();
 
@@ -29,6 +30,23 @@ namespace Lookup_GSModel.ViewModel
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+        public async Task<GSL00400DTO> GetJournalGroup(GSL00400ParameterDTO poParam)
+        {
+            var loEx = new R_Exception();
+            GSL00400DTO loRtn = null;
+            try
+            {
+                var loResult = await _modelRecord.GSL00400GetJournalGroupAsync(poParam);
+                loRtn = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
         }
     }
 }

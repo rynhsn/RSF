@@ -126,4 +126,10 @@
   <data name="6503" xml:space="preserve">
     <value>Cannot Delete, Payment Term Already in used!</value>
   </data>
+  <data name="6504" xml:space="preserve">
+    <value>Payment Term Code cannot be empty!</value>
+  </data>
+  <data name="6505" xml:space="preserve">
+    <value>Payment Term Name cannot be empty!</value>
+  </data>
 </root>

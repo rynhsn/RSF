@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:49168;http://localhost:49169"
+    }
+  }
+}

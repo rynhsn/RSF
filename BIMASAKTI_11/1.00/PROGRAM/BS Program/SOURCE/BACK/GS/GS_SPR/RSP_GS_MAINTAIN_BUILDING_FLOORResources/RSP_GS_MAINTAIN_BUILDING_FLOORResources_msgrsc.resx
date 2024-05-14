@@ -138,4 +138,7 @@
   <data name="2547" xml:space="preserve">
     <value>Floor Id cannot be greater than 20 character!</value>
   </data>
+  <data name="2548" xml:space="preserve">
+    <value>Total Floor Space must be greater than Total Unit Space!</value>
+  </data>
 </root>

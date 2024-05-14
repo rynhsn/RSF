@@ -1,4 +1,4 @@
-﻿namespace LMT03500Front;
+﻿namespace PMT03500Front;
 
 public enum eParamType
 {
