@@ -448,36 +448,36 @@ public partial class PMT03500 : R_Page
         {
             var loData = (List<PMT03500UtilityUsageDTO>)eventArgs.Data;
             //cek apakah IMETER_END lebih kecil dari IMETER_START
-            if (_viewModelUtility.UtilityType == EPMT03500UtilityUsageType.WG)
-            {
-                loData.ForEach(x =>
-                {
-                    if (x.IMETER_END < x.IMETER_START)
-                    {
-                        loEx.Add("Err", "Meter End must be greater than Meter Start");
-                    }
-
-                    eventArgs.Cancel = loEx.HasError;
-                });
-            }
-
-            if (_viewModelUtility.UtilityType == EPMT03500UtilityUsageType.EC)
-            {
-                loData.ForEach(x =>
-                {
-                    if (x.IBLOCK1_END < x.IBLOCK1_START)
-                    {
-                        loEx.Add("Err", "Block 1 End must be greater than Block 1 Start");
-                    }
-                    
-                    if (x.IBLOCK2_END < x.IBLOCK2_START)
-                    {
-                        loEx.Add("Err", "Block 2 End must be greater than Block 2 Start");
-                    }
-
-                    eventArgs.Cancel = loEx.HasError;
-                });
-            }
+            // if (_viewModelUtility.UtilityType == EPMT03500UtilityUsageType.WG)
+            // {
+            //     loData.ForEach(x =>
+            //     {
+            //         if (x.IMETER_END < x.IMETER_START)
+            //         {
+            //             loEx.Add("Err", "Meter End must be greater than Meter Start");
+            //         }
+            //
+            //         eventArgs.Cancel = loEx.HasError;
+            //     });
+            // }
+            //
+            // if (_viewModelUtility.UtilityType == EPMT03500UtilityUsageType.EC)
+            // {
+            //     loData.ForEach(x =>
+            //     {
+            //         if (x.IBLOCK1_END < x.IBLOCK1_START)
+            //         {
+            //             loEx.Add("Err", "Block 1 End must be greater than Block 1 Start");
+            //         }
+            //         
+            //         if (x.IBLOCK2_END < x.IBLOCK2_START)
+            //         {
+            //             loEx.Add("Err", "Block 2 End must be greater than Block 2 Start");
+            //         }
+            //
+            //         eventArgs.Cancel = loEx.HasError;
+            //     });
+            // }
 
 
             // loData.Select(x =>  x.INO = (loData.IndexOf(x) + 1)).ToList();
@@ -565,7 +565,7 @@ public partial class PMT03500 : R_Page
     {
         var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
 
-        if (loData.LVALID)
+        if (loData.LOVER_USAGE)
         {
             //eventArgs.RowStyle = new R_GridRowRenderStyle
             //{

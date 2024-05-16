@@ -231,7 +231,7 @@ public partial class PMT03500UpdateMeter : R_ITabPage
         }
 
         EndBlock:
-        loEx.ThrowExceptionIfErrors();
+        R_DisplayException(loEx);
     }
 
     private void BeforeLookupBuildingUnit(R_BeforeOpenLookupEventArgs eventArgs)

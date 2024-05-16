@@ -77,7 +77,7 @@ public partial class GLI00100 : R_Page
         var loLookupViewModel = new LookupGSL00900ViewModel();
         try
         {
-            if (_viewModel.CenterCode.Length <= 0)
+            if (_viewModel.CenterCode.Trim().Length <= 0)
             {
                 _viewModel.CenterName = "";
                 goto EndBlock;
@@ -108,7 +108,7 @@ public partial class GLI00100 : R_Page
         }
 
         EndBlock:
-        await R_DisplayExceptionAsync(loEx);
+        R_DisplayException(loEx);
     }
 
     private void BeforeOpenLookupCenter(R_BeforeOpenLookupEventArgs eventArgs)

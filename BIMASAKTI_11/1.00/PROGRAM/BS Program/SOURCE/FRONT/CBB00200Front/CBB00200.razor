@@ -1,0 +1,45 @@
+@page "/CBB00200"
+@using R_BlazorFrontEnd.Interfaces
+@using CBB00200FrontResources
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout>
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="8">
+                <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold">@_localizer["CURRENT_SOFT_PERIOD"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Primary">@(_viewModel.SystemParam.CSOFT_PERIOD_CONCAT)</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="8">
+                <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold">@_localizer["CURRENT_PERIOD"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Primary">@(_viewModel.SystemParam.CCURRENT_PERIOD_CONCAT)</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="5" Class="mt-3">
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_Label>@_localizer["LAST_CLOSED_BY"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_DateTimePicker Enabled="false" Value="@_viewModel.SystemParam.DPLRD_END_DATE"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox Enabled="false" Value="@_viewModel.SystemParam.CPLRD_END_BY"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout Class="mt-3">
+        <R_Label FontColor="R_eFontColor.Danger" FontStyle="R_eFontStyle.Bold">@_localizer["WARN_CANNOT_UNDONE"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout Class="mt-3">
+        <R_Button OnClick="OnClickProcess">@_localizer["PROCESS"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

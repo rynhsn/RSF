@@ -1,0 +1,205 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "CBB00200Service/1.0.0": {
+        "dependencies": {
+          "CBB00200Back": "1.0.0",
+          "CBB00200Common": "1.0.0",
+          "R_APIBackEnd": "1.0.0.0",
+          "R_APICommon": "1.0.0.0",
+          "R_APICommonDTO": "1.0.0.0",
+          "R_Cache": "1.0.0.0",
+          "R_CommonFrontBackAPI": "1.0.0.0",
+          "R_OpenTelemetry": "1.0.0.0"
+        },
+        "runtime": {
+          "CBB00200Service.dll": {}
+        }
+      },
+      "CBB00200Back/1.0.0": {
+        "dependencies": {
+          "CBB00200Common": "1.0.0",
+          "RSP_CB_CLOSE_PERIODResources": "1.0.0"
+        },
+        "runtime": {
+          "CBB00200Back.dll": {}
+        }
+      },
+      "CBB00200Common/1.0.0": {
+        "runtime": {
+          "CBB00200Common.dll": {}
+        }
+      },
+      "RSP_CB_CLOSE_PERIODResources/1.0.0": {
+        "runtime": {
+          "RSP_CB_CLOSE_PERIODResources.dll": {}
+        }
+      },
+      "R_APIBackEnd/1.0.0.0": {
+        "runtime": {
+          "R_APIBackEnd.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "resources": {
+          "id/R_APIBackEnd.resources.dll": {
+            "locale": "id"
+          },
+          "ja/R_APIBackEnd.resources.dll": {
+            "locale": "ja"
+          }
+        }
+      },
+      "R_APICommon/1.0.0.0": {
+        "runtime": {
+          "R_APICommon.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_APICommonDTO/1.0.0.0": {
+        "runtime": {
+          "R_APICommonDTO.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_Cache/1.0.0.0": {
+        "runtime": {
+          "R_Cache.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_CommonFrontBackAPI/1.0.0.0": {
+        "runtime": {
+          "R_CommonFrontBackAPI.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_OpenTelemetry/1.0.0.0": {
+        "runtime": {
+          "R_OpenTelemetry.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_ContextBackEnd/1.0.0.0": {
+        "runtime": {
+          "R_ContextBackEnd.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_AuthorizationBack.Abstract/1.0.0.0": {
+        "runtime": {
+          "R_AuthorizationBack.Abstract.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_Security/1.0.0.0": {
+        "runtime": {
+          "R_Security.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_ContextEnumAndInterface/1.0.0.0": {
+        "runtime": {
+          "R_ContextEnumAndInterface.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CBB00200Service/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CBB00200Back/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CBB00200Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_CB_CLOSE_PERIODResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_APIBackEnd/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_APICommon/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_APICommonDTO/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_Cache/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_CommonFrontBackAPI/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_OpenTelemetry/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ContextBackEnd/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_AuthorizationBack.Abstract/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_Security/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ContextEnumAndInterface/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

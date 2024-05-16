@@ -10,7 +10,6 @@
         "dependencies": {
           "PMT03500Back": "1.0.0",
           "PMT03500Common": "1.0.0",
-          "BaseHeaderReportCOMMON": "1.0.0.0",
           "R_APIBackEnd": "1.0.0.0",
           "R_APICommon": "1.0.0.0",
           "R_APICommonDTO": "1.0.0.0",
@@ -133,14 +132,6 @@
       "RSP_PM_UPLOAD_UTILITY_USAGE_WGResources/1.0.0": {
         "runtime": {
           "RSP_PM_UPLOAD_UTILITY_USAGE_WGResources.dll": {}
-        }
-      },
-      "BaseHeaderReportCOMMON/1.0.0.0": {
-        "runtime": {
-          "BaseHeaderReportCOMMON.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
         }
       },
       "R_APIBackEnd/1.0.0.0": {
@@ -345,11 +336,6 @@
     },
     "RSP_PM_UPLOAD_UTILITY_USAGE_WGResources/1.0.0": {
       "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "BaseHeaderReportCOMMON/1.0.0.0": {
-      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },

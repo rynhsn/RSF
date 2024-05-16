@@ -129,13 +129,13 @@ namespace PMT03500Common.DTOs
         public string CBUILDING_ID { get; set; }
         public string CCHARGES_TYPE { get; set; }
         public string CCHARGES_ID { get; set; }
-        public string CINV_PRD { get; set; }
+        public string CINV_PRD { get; set; } = "";
         public string CUTILITY_PRD { get; set; }
-        public string CSTART_DATE { get; set; }
-        public string CEND_DATE { get; set; }
+        public string CSTART_DATE { get; set; } = "";
+        public string CEND_DATE { get; set; } = "";
         public string CTRANS_CODE { get; set; } = "";
-        public string CMETER_NO { get; set; }
-        public string CSEQ_NO { get; set; }
+        public string CMETER_NO { get; set; } 
+        public string CSEQ_NO { get; set; } = "";
         
         #region EC
 

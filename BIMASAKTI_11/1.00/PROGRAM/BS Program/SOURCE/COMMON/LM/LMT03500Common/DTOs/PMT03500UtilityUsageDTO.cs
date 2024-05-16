@@ -62,6 +62,6 @@ namespace PMT03500Common.DTOs
 
         public bool LSELECTED { get; set; }
 
-        public bool LVALID { get; set; } = true;
+        public bool LOVER_USAGE { get; set; }
     }
 }

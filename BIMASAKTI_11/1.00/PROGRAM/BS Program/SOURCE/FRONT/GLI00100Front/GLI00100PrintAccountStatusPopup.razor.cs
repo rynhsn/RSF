@@ -32,10 +32,10 @@ public partial class GLI00100PrintAccountStatusPopup : R_Page
             _parameter.CGLACCOUNT_NAME = loParam.CGLACCOUNT_NAME;
             _parameter.CYEAR = loParam.CYEAR;
             _parameter.CCURRENCY_TYPE = loParam.CCURRENCY_TYPE;
-            _parameter.CCENTER_CODE = loParam.CCENTER_CODE;
-            _parameter.CCENTER_NAME = loParam.CCENTER_NAME;
-            _parameter.CBUDGET_NO = loParam.CBUDGET_NO;
-            _parameter.CBUDGET_NAME_DISPLAY = loParam.CBUDGET_NAME_DISPLAY;
+            _parameter.CCENTER_CODE = loParam.CCENTER_CODE ?? "";
+            _parameter.CCENTER_NAME = loParam.CCENTER_NAME ?? "";
+            _parameter.CBUDGET_NO = loParam.CBUDGET_NO ?? "";
+            _parameter.CBUDGET_NAME_DISPLAY = loParam.CBUDGET_NAME_DISPLAY ?? "";
         }
         catch (Exception ex)
         {

@@ -1,0 +1,30 @@
+@page "/CBB00200PopupToDoList"
+@using R_BlazorFrontEnd.Interfaces
+@using CBB00200FrontResources
+@using CBB00200Common.DTOs
+@inherits R_Page
+@attribute [R_Page(Title = "Todo List prior to Close CB Period")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Justify="R_eJustify.Center">
+    <R_ItemLayout>
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.ClosePeriodToDoList"
+                Pageable
+                R_ConductorSource="@_conductorRef"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="@ServiceGetListRecord"
+                Enabled
+                Height="270px"
+                Width="800px">
+            <R_GridColumns>
+                <R_GridNumericColumn FieldName="@nameof(CBB00200ClosePeriodToDoListDTO.INO)" HeaderText="@_localizer["NO"]" Width="60px"/>  
+                <R_GridTextColumn FieldName="@nameof(CBB00200ClosePeriodToDoListDTO.CDESCRIPTION)" HeaderText="@_localizer["DESCRIPTION"]" Width="350px"/>
+                <R_GridTextColumn FieldName="@nameof(CBB00200ClosePeriodToDoListDTO.CSOLUTION)" HeaderText="@_localizer["SOLUTION"]" Width="350px"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="_saveToExcel" Enabled="@(_viewModel.ClosePeriodToDoList.Count > 0)">@_localizer["SAVE_TO_EXCEL"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
