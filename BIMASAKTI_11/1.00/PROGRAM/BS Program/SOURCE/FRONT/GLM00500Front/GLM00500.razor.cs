@@ -19,7 +19,7 @@ namespace GLM00500Front;
 public partial class GLM00500 : R_Page
 {
     private GLM00500HeaderViewModel _viewModel = new();
-    private R_Conductor _conductorRef = new();
+    private R_Conductor _conductorRef;
     private R_Grid<GLM00500BudgetHDDTO> _gridRef = new();
     [Inject] private IClientHelper _clientHelper { get; set; }
     [Inject] private IJSRuntime JS { get; set; }
@@ -44,13 +44,14 @@ public partial class GLM00500 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     private bool _gridEnabled;
+
     private void SetOther(R_SetEventArgs eventArgs)
     {
         _gridEnabled = eventArgs.Enable;
     }
-    
+
     private async Task RefreshList()
     {
         await _gridRef.R_RefreshGrid(null);
@@ -84,7 +85,6 @@ public partial class GLM00500 : R_Page
             var loParam = R_FrontUtility.ConvertObjectToObject<GLM00500BudgetHDDTO>(eventArgs.Data);
             await _viewModel.GetBudgetHD(loParam);
             eventArgs.Result = _viewModel.BudgetHDEntity;
-            await CheckAttribute();
         }
         catch (Exception ex)
         {
@@ -161,14 +161,18 @@ public partial class GLM00500 : R_Page
         var loEx = new R_Exception();
         try
         {
-            var loConfirm = await R_MessageBox.Show(_localizer["ConfirmLabel"], _localizer["ConfirmFinalize"],
+            var leConfirm = await R_MessageBox.Show(_localizer["ConfirmLabel"], _localizer["ConfirmFinalize"],
                 R_eMessageBoxButtonType.YesNo);
 
-            if (loConfirm == R_eMessageBoxResult.Yes)
+            if (leConfirm == R_eMessageBoxResult.Yes)
             {
-                _viewModel.SetFinalizeBudget(_viewModel.BudgetHDEntity.CREC_ID);
-                R_MessageBox.Show(_localizer["SuccessLabel"], _localizer["SuccessFinalize"], R_eMessageBoxButtonType.OK);
-                _gridRef.R_RefreshGrid(_viewModel.BudgetHDEntity);
+                var llResult = await _viewModel.SetFinalizeBudget(_viewModel.BudgetHDEntity.CREC_ID);
+                if (llResult)
+                {
+                    var leMessage = await R_MessageBox.Show(_localizer["SuccessLabel"], _localizer["SuccessFinalize"],
+                        R_eMessageBoxButtonType.OK);
+                    await _gridRef.R_RefreshGrid(null);
+                }
             }
         }
         catch (Exception ex)
@@ -177,12 +181,6 @@ public partial class GLM00500 : R_Page
         }
 
         loEx.ThrowExceptionIfErrors();
-    }
-
-    private Task CheckAttribute()
-    {
-        // _detailTab.Enabled = _viewModel.BudgetHDEntity.CREC_ID != null;
-        return Task.CompletedTask;
     }
 
     private async Task DownloadTemplate()
@@ -212,7 +210,7 @@ public partial class GLM00500 : R_Page
         if (loResult == R_eMessageBoxResult.No) eventArgs.Cancel = true;
     }
 
-    private async Task InstanceDetailTab(R_InstantiateDockEventArgs eventArgs)
+    private void InstanceDetailTab(R_InstantiateDockEventArgs eventArgs)
     {
         eventArgs.TargetPageType = typeof(GLM00500Detail);
         eventArgs.Parameter = R_FrontUtility.ConvertObjectToObject<GLM00500BudgetHDDTO>(_viewModel.BudgetHDEntity);
@@ -226,7 +224,18 @@ public partial class GLM00500 : R_Page
 
     private async Task AfterOpenUpload(R_AfterOpenPopupEventArgs eventArgs)
     {
-        await Task.CompletedTask;
+        var loEx = new R_Exception();
+
+        try
+        {
+            await _gridRef.R_RefreshGrid(null);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
     }
 
     private async Task Display(R_DisplayEventArgs eventArgs)
@@ -241,7 +250,7 @@ public partial class GLM00500 : R_Page
                 break;
         }
     }
-    
+
     private void AfterAdd(R_AfterAddEventArgs eventArgs)
     {
         var loData = (GLM00500BudgetHDDTO)eventArgs.Data;
@@ -249,4 +258,19 @@ public partial class GLM00500 : R_Page
         loData.DUPDATE_DATE = DateTime.Now;
     }
 
+    private async Task AfterOpenDock(R_AfterOpenPredefinedDockEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            await _gridRef.R_RefreshGrid(null);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
 }

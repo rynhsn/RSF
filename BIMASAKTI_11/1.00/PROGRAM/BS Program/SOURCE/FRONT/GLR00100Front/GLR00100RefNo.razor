@@ -1,0 +1,154 @@
+﻿@page "/GLR00100RefNo"
+@using GLR00100FrontResources
+@using R_BlazorFrontEnd.Interfaces
+@using GLR00100Common.DTOs
+@inherits R_Page
+@attribute [R_Page(Title = "Based On Reference No.")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout>
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout Class="me-2">
+                <R_Label>@_localizer["TRANS_CODE"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4" Class="me-2">
+                <R_ComboBox @ref="ComboTransCode" 
+                            Data="_viewModel.TransCodeList"
+                            @bind-Value="_viewModel.ReportParam.CTRANS_CODE"
+                            ValueField="@nameof(GLR00100TransCodeDTO.CTRANS_CODE)"
+                            TextField="@nameof(GLR00100TransCodeDTO.CTRANS_CODE_DESC)"
+                            PopupMaxHeight="400px"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_GroupBox Title="@_localizer["DEPARTMENT"]" TitleClass="text-danger" ShowBorder Class="p-2">
+            <R_StackLayout Row>
+                <R_ItemLayout col="1">
+                    <R_Label>@_localizer["FROM"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @ref="TextFromDept" @bind-Value="@_viewModel.ReportParam.CFROM_DEPT_CODE" OnLostFocus="@OnLostFocusLookupFromDept"/>
+                </R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@BeforeLookupFromDept" R_After_Open_Lookup="@AfterLookupFromDept">...</R_Lookup>
+                <R_ItemLayout col="3">
+                    <R_TextBox @ref="TextToDept" @bind-Value="@_viewModel.ReportParam.CFROM_DEPT_NAME" Enabled="false"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="1">
+                    <R_Label>@_localizer["TO"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModel.ReportParam.CTO_DEPT_CODE" OnLostFocus="@OnLostFocusLookupToDept"/>
+                </R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@BeforeLookupToDept" R_After_Open_Lookup="@AfterLookupToDept">...</R_Lookup>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModel.ReportParam.CTO_DEPT_NAME" Enabled="false"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_GroupBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_GroupBox Title="@_localizer["BY"]" TitleClass="text-danger" ShowBorder Class="p-2">
+            <R_StackLayout Row>
+                <R_ItemLayout col="1">
+                    <R_RadioGroup Data="@_viewModel.RadioByType"
+                                  @bind-Value="_viewModel.ReportParam.CPERIOD_TYPE"
+                                  ValueField="Key"
+                                  TextField="Value"
+                                  Enabled="true"
+                                  Layout="R_eRadioGroupLayout.Vertical"
+                                  OnChanged="OnChangeByType"/>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_StackLayout Row>
+                        <R_ItemLayout>
+                            <R_Label>@_localizer["YEAR"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2" Class="me-2">
+                            <R_NumericTextBox @bind-Value="_viewModel.YearPeriod"
+                                              Min="_viewModel.Period.IMIN_YEAR"
+                                              Max="_viewModel.Period.IMAX_YEAR"
+                                              Step="1"
+                                              ThousandSeparator="false"
+                                              Enabled="@(_viewModel.ReportParam.CPERIOD_TYPE == "P")"
+                                              OnChanged="OnChangeYear"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout>
+                            <R_Label>@_localizer["FROM"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2" Class="me-2">
+                            <R_ComboBox Data="_viewModel.PeriodListFrom"
+                                        @bind-Value="_viewModel.FromPeriod"
+                                        ValueField="@nameof(GLR00100PeriodDTDTO.CPERIOD_NO)"
+                                        TextField="@nameof(GLR00100PeriodDTDTO.CPERIOD_NO)"
+                                        Enabled="@(_viewModel.ReportParam.CPERIOD_TYPE == "P")"
+                                        OnChanged="@CheckDateFrom"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout>
+                            <R_Label>@_localizer["TO"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_ComboBox Data="_viewModel.PeriodListTo"
+                                        @bind-Value="_viewModel.ToPeriod"
+                                        ValueField="@nameof(GLR00100PeriodDTDTO.CPERIOD_NO)"
+                                        TextField="@nameof(GLR00100PeriodDTDTO.CPERIOD_NO)"
+                                        Enabled="@(_viewModel.ReportParam.CPERIOD_TYPE == "P")"
+                                        OnChanged="@CheckDateTo"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="3">
+                            <R_DatePicker @bind-Value="_viewModel.DateFrom" Enabled="@(_viewModel.ReportParam.CPERIOD_TYPE == "D")"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout>
+                            <R_Label>@_localizer["TO"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_DatePicker @bind-Value="_viewModel.DateTo" Enabled="@(_viewModel.ReportParam.CPERIOD_TYPE == "D")"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_GroupBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_GroupBox Title="@_localizer["REF_NO"]" TitleClass="text-danger" ShowBorder Class="p-2">
+            <R_StackLayout Row>
+                <R_ItemLayout col="1">
+                    <R_Label>@_localizer["FROM"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @ref="TextFromRef" @bind-Value="@_viewModel.ReportParam.CFROM_REF_NO" OnLostFocus="@OnLostFocusLookupFromRef"/>
+                </R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@BeforeLookupFromRef" R_After_Open_Lookup="@AfterLookupFromRef">...</R_Lookup>
+                <R_ItemLayout col="1">
+                    <R_Label>@_localizer["TO"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @ref="TextToRef" @bind-Value="@_viewModel.ReportParam.CTO_REF_NO" OnLostFocus="@OnLostFocusLookupToRef"/>
+                </R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@BeforeLookupToRef" R_After_Open_Lookup="@AfterLookupToRef">...</R_Lookup>
+            </R_StackLayout>
+        </R_GroupBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_GroupBox Title="@_localizer["CURRENCY_TYPE"]" TitleClass="text-danger" ShowBorder Class="p-2">
+            <R_RadioGroup Data="@_viewModel.RadioCurrencyType"
+                          @bind-Value="_viewModel.ReportParam.CCURRENCY_TYPE"
+                          ValueField="Key"
+                          TextField="Value"
+                          Enabled="true"
+                          Layout="R_eRadioGroupLayout.Vertical"/>
+        </R_GroupBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_Button OnClick="OnClickPrint">@_localizer["PRINT"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

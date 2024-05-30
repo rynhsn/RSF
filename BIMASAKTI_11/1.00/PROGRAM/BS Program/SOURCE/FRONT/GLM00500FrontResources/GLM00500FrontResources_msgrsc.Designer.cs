@@ -708,6 +708,15 @@ namespace GLM00500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Budget Generated Successfully!.
+        /// </summary>
+        internal static string MessageGenerateSuccess {
+            get {
+                return ResourceManager.GetString("MessageGenerateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Budget Deleted Successfully!.
         /// </summary>
         internal static string SuccessDelete {

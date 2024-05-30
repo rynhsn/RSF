@@ -11,13 +11,13 @@ namespace GLM00500Common.DTOs
         public string CBUDGET_ID { get; set; }
         public string CCURRENCY_TYPE { get; set; }
         public string CGLACCOUNT_TYPE { get; set; }
-        public string CFROM_GLACCOUNT_NO { get; set; }
+        public string CFROM_GLACCOUNT_NO { get; set; } = "";
         public string CFROM_GLACCOUNT_NAME { get; set; }
-        public string CTO_GLACCOUNT_NO { get; set; }
+        public string CTO_GLACCOUNT_NO { get; set; } = "";
         public string CTO_GLACCOUNT_NAME { get; set; }
-        public string CFROM_CENTER_CODE { get; set; }
+        public string CFROM_CENTER_CODE { get; set; } = "";
         public string CFROM_CENTER_NAME { get; set; }
-        public string CTO_CENTER_CODE { get; set; }
+        public string CTO_CENTER_CODE { get; set; } = "";
         public string CTO_CENTER_NAME { get; set; }
         public string CBASED_ON { get; set; }
         public string CYEAR { get; set; }

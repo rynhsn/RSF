@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="DEPARTMENT" xml:space="preserve">
+        <value>Department</value>
+    </data>
+    <data name="PERIOD" xml:space="preserve">
+        <value>Period</value>
+    </data>
+    <data name="CURRENCY_TYPE" xml:space="preserve">
+        <value>Currency Type</value>
+    </data>
+    <data name="DATE" xml:space="preserve">
+        <value>Date</value>
+    </data>
+    <data name="TRANS_CODE" xml:space="preserve">
+        <value>Trans. Code</value>
+    </data>
+    <data name="TRANS_NAME" xml:space="preserve">
+        <value>Trans. Name</value>
+    </data>
+    <data name="DEPT" xml:space="preserve">
+        <value>Dept.</value>
+    </data>
+    <data name="REF_NO" xml:space="preserve">
+        <value>Reference No.</value>
+    </data>
+    <data name="ACTIVITY_DESC" xml:space="preserve">
+        <value>Activity Description</value>
+    </data>
+    <data name="CUSTOMER_SUPPLIER" xml:space="preserve">
+        <value>Customer/Supplier</value>
+    </data>
+    <data name="BY" xml:space="preserve">
+        <value>By</value>
+    </data>
+    <data name="MODULE" xml:space="preserve">
+        <value>Module</value>
+    </data>
+    <data name="ACCOUNT_NO" xml:space="preserve">
+        <value>Account No.</value>
+    </data>
+    <data name="ACCOUNT_NAME" xml:space="preserve">
+        <value>Account Name</value>
+    </data>
+    <data name="CENTER" xml:space="preserve">
+        <value>Center</value>
+    </data>
+    <data name="VOUCHER_NO" xml:space="preserve">
+        <value>Voucher No.</value>
+    </data>
+    <data name="JOURNAL_DESC" xml:space="preserve">
+        <value>Journal Description</value>
+    </data>
+    <data name="VOUCHER_DATE" xml:space="preserve">
+        <value>Voucher Date</value>
+    </data>
+    <data name="CURR" xml:space="preserve">
+        <value>Curr.</value>
+    </data>
+    <data name="DEBIT" xml:space="preserve">
+        <value>Debit</value>
+    </data>
+    <data name="CREDIT" xml:space="preserve">
+        <value>Credit</value>
+    </data>
+    <data name="SUMMARY_IN" xml:space="preserve">
+        <value>Summary in</value>
+    </data>
+    <data name="TOTAL_DEBIT" xml:space="preserve">
+        <value>Total Debit</value>
+    </data>
+    <data name="TOTAL_CREDIT" xml:space="preserve">
+        <value>Total Credit</value>
+    </data>
+    <data name="TOTAL" xml:space="preserve">
+        <value>Total</value>
+    </data>
+    <data name="GRAND_TOTAL" xml:space="preserve">
+        <value>Grand Total</value>
+    </data>
+</root>

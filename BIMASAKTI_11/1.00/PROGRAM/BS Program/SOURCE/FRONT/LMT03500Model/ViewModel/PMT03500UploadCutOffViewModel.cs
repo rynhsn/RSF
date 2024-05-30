@@ -127,7 +127,7 @@ namespace PMT03500Model.ViewModel
                         CINV_PRD = item.InvoicePeriod,
                         CUTILITY_PRD = item.UtilityPeriod,
                         CSTART_DATE = item.StartDate,
-                        CEND_DATE = item.EndDate,
+                        // CEND_DATE = item.EndDate,
                         IBLOCK1_START = item.BlockIStart,
                         IBLOCK2_START = item.BlockIIStart,
 
@@ -153,7 +153,7 @@ namespace PMT03500Model.ViewModel
                         CINV_PRD = item.InvoicePeriod,
                         CUTILITY_PRD = item.UtilityPeriod,
                         CSTART_DATE = item.StartDate,
-                        CEND_DATE = item.EndDate,
+                        // CEND_DATE = item.EndDate,
                         IMETER_START = item.MeterStart,
 
                         CCOMPANY_ID = CompanyId
@@ -297,9 +297,9 @@ namespace PMT03500Model.ViewModel
                             MeterNo = item.CMETER_NO,
                             SeqNo = item.CSEQ_NO,
                             InvoicePeriod = item.CINV_PRD,
-                            UtilityPeriod = item.CUTILITY_PRD,
                             StartDate = item.CSTART_DATE,
-                            EndDate = item.CEND_DATE,
+                            UtilityPeriod = item.CUTILITY_PRD,
+                            // EndDate = item.CEND_DATE,
                             BlockIStart = item.IBLOCK1_START,
                             BlockIIStart = item.IBLOCK2_START,
                             Valid = item.ErrorFlag,
@@ -332,9 +332,9 @@ namespace PMT03500Model.ViewModel
                             MeterNo = item.CMETER_NO,
                             SeqNo = item.CSEQ_NO,
                             InvoicePeriod = item.CINV_PRD,
-                            UtilityPeriod = item.CUTILITY_PRD,
                             StartDate = item.CSTART_DATE,
-                            EndDate = item.CEND_DATE,
+                            UtilityPeriod = item.CUTILITY_PRD,
+                            // EndDate = item.CEND_DATE,
                             MeterStart = item.IMETER_START,
                             Valid = item.ErrorFlag,
                             Notes = item.ErrorMessage

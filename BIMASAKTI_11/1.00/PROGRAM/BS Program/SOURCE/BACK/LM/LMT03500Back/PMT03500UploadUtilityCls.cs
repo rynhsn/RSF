@@ -111,24 +111,24 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
             loCmd = loDb.GetCommand();
 
             lcQuery += $"CREATE TABLE #UTILITY_USAGE_{lcUtility}( " +
-                       $"NO             int, " +
-                       $"CCOMPANY_ID    varchar(8), " +
-                       $"CPROPERTY_ID    varchar(20), " +
-                       $"CDEPT_CODE      varchar(20), " +
-                       $"CTRANS_CODE     varchar(10), " +
-                       $"CREF_NO         varchar(30), " +
-                       $"CUTILITY_TYPE   varchar(2),  " +
-                       $"CUNIT_ID        varchar(20), " +
-                       $"CFLOOR_ID       varchar(20), " +
-                       $"CBUILDING_ID    varchar(20), " +
-                       $"CCHARGES_TYPE   varchar(2),  " +
-                       $"CCHARGES_ID 	varchar(20), " +
-                       $"CSEQ_NO 		varchar(3),  " +
-                       $"CINV_PRD    	varchar(6),  " +
-                       $"CUTILITY_PRD    varchar(6),  " +
-                       $"CSTART_DATE 	varchar(8),  " +
-                       $"CEND_DATE   	varchar(8),  " +
-                       $"CMETER_NO   	varchar(50), ";
+                        "NO             int, " +
+                        "CCOMPANY_ID    varchar(8), " +
+                        "CPROPERTY_ID    varchar(20), " +
+                        "CDEPT_CODE      varchar(20), " +
+                        "CTRANS_CODE     varchar(10), " +
+                        "CREF_NO         varchar(30), " +
+                        "CUTILITY_TYPE   varchar(2),  " +
+                        "CUNIT_ID        varchar(20), " +
+                        "CFLOOR_ID       varchar(20), " +
+                        "CBUILDING_ID    varchar(20), " +
+                        "CCHARGES_TYPE   varchar(2),  " +
+                        "CCHARGES_ID 	varchar(20), " +
+                        "CSEQ_NO 		varchar(3),  " +
+                        "CINV_PRD    	varchar(6),  " +
+                        "CUTILITY_PRD    varchar(6),  " +
+                        "CSTART_DATE 	varchar(8),  " +
+                        "CEND_DATE   	varchar(8),  " +
+                        "CMETER_NO   	varchar(50), ";
 
             switch (lcUtility)
             {
@@ -136,7 +136,8 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
                     lcQuery += "IBLOCK1_START   int, " +
                                "IBLOCK2_START   int, " +
                                "IBLOCK1_END 	int, " +
-                               "IBLOCK2_END 	int);";
+                               "IBLOCK2_END 	int, " +
+                               "NBEBAN_BERSAMA 	numeric(16,2));";
                     loDb.SqlExecNonQuery(lcQuery, loConn, false);
                     loDb.R_BulkInsert((SqlConnection)loConn, $"#UTILITY_USAGE_EC", loObjectEC);
                     break;

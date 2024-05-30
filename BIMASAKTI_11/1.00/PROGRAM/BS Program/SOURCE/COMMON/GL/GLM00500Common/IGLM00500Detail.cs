@@ -12,7 +12,7 @@ namespace GLM00500Common
         GLM00500PeriodCountDTO GLM00500GetPeriodCount(GLM00500YearParamsDTO poParams);
         GLM00500GSMCompanyDTO GLM00500GetGSMCompany();
         GLM00500BudgetCalculateDTO GLM00500BudgetCalculate(GLM00500CalculateParamDTO poParams);
-        void GLM00500GenerateBudget(GLM00500GenerateAccountBudgetDTO poGenerateAccountBudgetDTO);
+        GLM00500ReturnDTO GLM00500GenerateBudget(GLM00500GenerateAccountBudgetDTO poGenerateAccountBudgetDTO);
     }
     
 }

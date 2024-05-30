@@ -3906,6 +3906,16 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
+      "BaseHeaderResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/BaseHeaderResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BaseHeaderResources.dll": {}
+        }
+      },
       "GLI00100Back/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -3917,6 +3927,16 @@
         },
         "runtime": {
           "bin/placeholder/GLI00100Back.dll": {}
+        }
+      },
+      "GLI00100BackResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GLI00100BackResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLI00100BackResources.dll": {}
         }
       },
       "GLI00100Common/1.0.0": {
@@ -3933,7 +3953,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "BaseHeaderResources": "1.0.0",
           "GLI00100Back": "1.0.0",
+          "GLI00100BackResources": "1.0.0",
           "GLI00100Common": "1.0.0"
         },
         "compile": {
@@ -3991,6 +4013,59 @@
         },
         "runtime": {
           "bin/placeholder/GLM00500Service.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "GLR00100Back/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GLR00100Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GLR00100Back.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLR00100Back.dll": {}
+        }
+      },
+      "GLR00100BackResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GLR00100BackResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLR00100BackResources.dll": {}
+        }
+      },
+      "GLR00100Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GLR00100Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLR00100Common.dll": {}
+        }
+      },
+      "GLR00100Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "BaseHeaderResources": "1.0.0",
+          "GLI00100Common": "1.0.0",
+          "GLR00100Back": "1.0.0",
+          "GLR00100BackResources": "1.0.0",
+          "GLR00100Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GLR00100Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLR00100Service.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -11602,10 +11677,20 @@
         "system.xml.xmldocument.nuspec"
       ]
     },
+    "BaseHeaderResources/1.0.0": {
+      "type": "project",
+      "path": "../../../COMMON/BaseHeaderResources/BaseHeaderResources.csproj",
+      "msbuildProject": "../../../COMMON/BaseHeaderResources/BaseHeaderResources.csproj"
+    },
     "GLI00100Back/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GL/GLI00100Back/GLI00100Back.csproj",
       "msbuildProject": "../../../BACK/GL/GLI00100Back/GLI00100Back.csproj"
+    },
+    "GLI00100BackResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GL/GLI00100BackResources/GLI00100BackResources.csproj",
+      "msbuildProject": "../../../BACK/GL/GLI00100BackResources/GLI00100BackResources.csproj"
     },
     "GLI00100Common/1.0.0": {
       "type": "project",
@@ -11631,6 +11716,26 @@
       "type": "project",
       "path": "../../../SERVICE/GL/GLM00500Service/GLM00500Service.csproj",
       "msbuildProject": "../../../SERVICE/GL/GLM00500Service/GLM00500Service.csproj"
+    },
+    "GLR00100Back/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GL/GLR00100Back/GLR00100Back.csproj",
+      "msbuildProject": "../../../BACK/GL/GLR00100Back/GLR00100Back.csproj"
+    },
+    "GLR00100BackResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GL/GLR00100BackResources/GLR00100BackResources.csproj",
+      "msbuildProject": "../../../BACK/GL/GLR00100BackResources/GLR00100BackResources.csproj"
+    },
+    "GLR00100Common/1.0.0": {
+      "type": "project",
+      "path": "../../../COMMON/GL/GLR00100Common/GLR00100Common.csproj",
+      "msbuildProject": "../../../COMMON/GL/GLR00100Common/GLR00100Common.csproj"
+    },
+    "GLR00100Service/1.0.0": {
+      "type": "project",
+      "path": "../../../SERVICE/GL/GLR00100Service/GLR00100Service.csproj",
+      "msbuildProject": "../../../SERVICE/GL/GLR00100Service/GLR00100Service.csproj"
     },
     "GLT00200BACK/1.0.0": {
       "type": "project",
@@ -11702,6 +11807,7 @@
     "net6.0": [
       "GLI00100Service >= 1.0.0",
       "GLM00500Service >= 1.0.0",
+      "GLR00100Service >= 1.0.0",
       "GLT00200SERVICE >= 1.0.0",
       "Realta.BackCollectionNuGet >= 1.0.1",
       "Realta.CommonCollectionNuGet >= 1.0.0",
@@ -11747,6 +11853,9 @@
             },
             "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLM00500Service\\GLM00500Service.csproj": {
               "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLM00500Service\\GLM00500Service.csproj"
+            },
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLR00100Service\\GLR00100Service.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLR00100Service\\GLR00100Service.csproj"
             },
             "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLT00200SERVICE\\GLT00200SERVICE.csproj": {
               "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLT00200SERVICE\\GLT00200SERVICE.csproj"

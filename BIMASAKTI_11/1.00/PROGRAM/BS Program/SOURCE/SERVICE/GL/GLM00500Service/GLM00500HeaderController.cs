@@ -243,13 +243,14 @@ public class GLM00500HeaderController : ControllerBase, IGLM00500Header
     }
 
     [HttpPost]
-    public void GLM00500FinalizeBudget(GLM00500CrecParamsDTO poParams)
+    public GLM00500ReturnDTO GLM00500FinalizeBudget(GLM00500CrecParamsDTO poParams)
     {
         using var loActivity = _activitySource.StartActivity(nameof(GLM00500FinalizeBudget));
         _logger.LogInfo("Start - Finalize Budget");
         var loEx = new R_Exception();
         var loCls = new GLM00500HeaderCls();
         var loDbParams = new GLM00500ParameterDb();
+        var loReturn = new GLM00500ReturnDTO();
 
         try
         {
@@ -260,6 +261,8 @@ public class GLM00500HeaderController : ControllerBase, IGLM00500Header
             
             _logger.LogInfo("Finalize Budget");
             loCls.GLM00500FinalizeBudgetDb(loDbParams);
+        
+            loReturn.LRESULT = !loEx.Haserror;
         }
         catch (Exception ex)
         {
@@ -269,6 +272,7 @@ public class GLM00500HeaderController : ControllerBase, IGLM00500Header
         
         loEx.ThrowExceptionIfErrors();
         _logger.LogInfo("End - Finalize Budget");
+        return loReturn;
     }
 
     [HttpPost]

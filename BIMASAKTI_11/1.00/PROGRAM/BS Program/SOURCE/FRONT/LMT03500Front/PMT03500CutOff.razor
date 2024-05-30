@@ -15,7 +15,7 @@
                 R_GridType="R_eGridType.Navigator"
                 R_ServiceGetListRecord="GetBuildingListRecord"
                 Width="100%"
-                Height="485px">
+                Height="530px">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="@nameof(PMT03500BuildingDTO.CBUILDING_NAME)" HeaderText="@_localizer["LBL_BUILDING"]" TextAlignment="R_eTextAlignment.Left"/>
             </R_GridColumns>
@@ -103,7 +103,7 @@
                 <R_Grid @ref="_gridRefUtility"
                         DataSource="_viewModelUtility.GridUtilityUsageList"
                         Pageable
-                        PageSize="12"
+                        PageSize="16"
                         R_ConductorGridSource="_conductorRefUtility"
                         R_GridType="R_eGridType.Batch"
                         R_ServiceGetListRecord="GetUtilityListRecord"
@@ -111,7 +111,7 @@
                         AllowEditRow
                         AllowAddNewRow="false"
                         Width="100%"
-                        Height="330px"
+                        Height="400px"
                         R_Display="@DisplayUtility"
                         R_ServiceGetRecord="@GetUtilityRecord">
                     <R_GridColumns>
@@ -119,8 +119,8 @@
                         <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CFLOOR_ID)" HeaderText="@_localizer["LBL_FLOORID"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
                         <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUNIT_ID)" HeaderText="@_localizer["LBL_UNITID"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
                         <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CMETER_NO)" HeaderText="@_localizer["LBL_METERNO"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
-                        <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DSTART_DATE)" HeaderText="@_localizer["LBL_STARTDATE"]" Width="150px"/>
-                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUTILITY_PRD)" HeaderText="@_localizer["LBL_UTILITYPERIOD"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
+                        <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DSTART_DATE)" HeaderText="@_localizer["LBL_STARTDATE"]" Width="150px" R_EnableEdit/>
+                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUTILITY_PRD)" HeaderText="@_localizer["LBL_UTILITYPERIOD"]" TextAlignment="R_eTextAlignment.Left" Width="150px" R_EnableEdit/>
                         @* <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DEND_DATE)" HeaderText="@_localizer["LBL_ENDDATE"]" Width="150px"/> *@
                             
                         <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK1_START)" HeaderText="@_localizer["LBL_BLOCK1START"]" Width="150px" Visible="@_visibleColumnEC" R_EnableEdit/>
@@ -168,13 +168,13 @@
                 <R_StackLayout Row>
                     <R_ItemLayout>
                         @* <R_CancelButton  R_Conductor="_conductorRefUtility" OnClick="OnClickSave">@_localizer["LBL_SAVE"]</R_CancelButton> *@
-                        <R_Button OnClick="OnClickCancel" Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0 && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit)">
+                        <R_Button OnClick="OnClickCancel" Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0 && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit && _enabledBtn)">
                             @_localizer["LBL_CANCEL"]
                         </R_Button>
                     </R_ItemLayout>
                     <R_ItemLayout>
                         @* <R_SaveButton  R_Conductor="_conductorRefUtility" OnClick="OnClickSave">@_localizer["LBL_SAVE"]</R_SaveButton> *@
-                        <R_Button OnClick="OnClickSave" Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0 && _conductorRefUtility.CurrentConductorStatus != R_eConductorStatus.Edit)">
+                        <R_Button OnClick="OnClickSave" Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0 && _conductorRefUtility.CurrentConductorStatus != R_eConductorStatus.Edit && _enabledBtn)">
                             @_localizer["LBL_SAVE"]
                         </R_Button>
                     </R_ItemLayout>

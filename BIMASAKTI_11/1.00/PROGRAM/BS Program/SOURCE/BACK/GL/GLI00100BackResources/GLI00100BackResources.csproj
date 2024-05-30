@@ -5,4 +5,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="GLI00100BackResources_msgrsc.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GLI00100BackResources_msgrsc.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="GLI00100BackResources_msgrsc.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GLI00100BackResources_msgrsc.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>

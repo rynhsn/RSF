@@ -44,7 +44,8 @@ public partial class PMT03500 : R_Page
     private bool _visibleColumnWG;
 
     private bool _hasDetail;
-
+    private bool _enabledBtn = true;
+    
     private string _flagPropertyUtility;
 
     private R_TabPage _pageCO { get; set; }
@@ -81,12 +82,14 @@ public partial class PMT03500 : R_Page
 
     public async Task ShowSuccessUpdateInvoke()
     {
+        _enabledBtn = true;
         await R_MessageBox.Show("", "Update Successfully", R_eMessageBoxButtonType.OK);
         await _gridRefUtility.R_RefreshGrid(null);
     }
 
     public async Task ShowSuccessUndoInvoke()
     {
+        _enabledBtn = true;
         await R_MessageBox.Show("", "Undo Successfully", R_eMessageBoxButtonType.OK);
         await _gridRefUtility.R_RefreshGrid(null);
     }
@@ -170,7 +173,7 @@ public partial class PMT03500 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private async Task GetUtilityRecord(R_ServiceGetRecordEventArgs eventArgs)
+    private void GetUtilityRecord(R_ServiceGetRecordEventArgs eventArgs)
     {
         var loEx = new R_Exception();
         try
@@ -231,11 +234,13 @@ public partial class PMT03500 : R_Page
                     break;
                 case eParamType.UtilityYear:
                     _viewModelUtility.UtilityPeriodYear = (string)value;
-                    await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear, _viewModelUtility.UtilityPeriodNo);
+                    await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear,
+                        _viewModelUtility.UtilityPeriodNo);
                     break;
                 case eParamType.UtilityPeriod:
                     _viewModelUtility.UtilityPeriodNo = (string)value;
-                    await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear, _viewModelUtility.UtilityPeriodNo);
+                    await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear,
+                        _viewModelUtility.UtilityPeriodNo);
                     break;
             }
         }
@@ -280,6 +285,7 @@ public partial class PMT03500 : R_Page
         {
             loEx.Add(ex);
         }
+
         EndBlock:
         loEx.ThrowExceptionIfErrors();
     }
@@ -408,8 +414,8 @@ public partial class PMT03500 : R_Page
             var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
             // _tabDetail = loData.CUTILITY_TYPE is "03" or "04" && loData.CSTATUS.Length > 0;
 
-            _hasDetail = loData.CSTATUS.Length > 0  && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit;
-            
+            _hasDetail = loData.CSTATUS.Length > 0 && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit;
+
 
             _viewModelUtility.EntityUtility = loData;
             _viewModelUtility.EntityUtility.CPROPERTY_ID = _viewModel.PropertyId;
@@ -430,6 +436,7 @@ public partial class PMT03500 : R_Page
 
         try
         {
+            _enabledBtn = false;
             await _conductorRefUtility.R_SaveBatch();
         }
         catch (Exception ex)
@@ -440,54 +447,27 @@ public partial class PMT03500 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private void BeforeSaveBatch(R_BeforeSaveBatchEventArgs eventArgs)
+    private void Validation(R_ValidationEventArgs eventArgs)
     {
         var loEx = new R_Exception();
-
         try
         {
-            var loData = (List<PMT03500UtilityUsageDTO>)eventArgs.Data;
-            //cek apakah IMETER_END lebih kecil dari IMETER_START
-            // if (_viewModelUtility.UtilityType == EPMT03500UtilityUsageType.WG)
-            // {
-            //     loData.ForEach(x =>
-            //     {
-            //         if (x.IMETER_END < x.IMETER_START)
-            //         {
-            //             loEx.Add("Err", "Meter End must be greater than Meter Start");
-            //         }
-            //
-            //         eventArgs.Cancel = loEx.HasError;
-            //     });
-            // }
-            //
-            // if (_viewModelUtility.UtilityType == EPMT03500UtilityUsageType.EC)
-            // {
-            //     loData.ForEach(x =>
-            //     {
-            //         if (x.IBLOCK1_END < x.IBLOCK1_START)
-            //         {
-            //             loEx.Add("Err", "Block 1 End must be greater than Block 1 Start");
-            //         }
-            //         
-            //         if (x.IBLOCK2_END < x.IBLOCK2_START)
-            //         {
-            //             loEx.Add("Err", "Block 2 End must be greater than Block 2 Start");
-            //         }
-            //
-            //         eventArgs.Cancel = loEx.HasError;
-            //     });
-            // }
+            var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
+            if (loData.DSTART_DATE > loData.DEND_DATE)
+            {
+                loEx.Add("Invalid Date", "Start Date must be less than End Date");
+                eventArgs.Cancel = loEx.HasError;
+            }
 
-
-            // loData.Select(x =>  x.INO = (loData.IndexOf(x) + 1)).ToList();
-            // loData.Where(x => x.LSELECTED).ToList();
+            loData.CSTART_DATE = loData.DSTART_DATE?.ToString("yyyyMMdd");
+            loData.CEND_DATE = loData.DEND_DATE?.ToString("yyyyMMdd");
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
         }
 
+        // completed task
         loEx.ThrowExceptionIfErrors();
     }
 
@@ -560,7 +540,7 @@ public partial class PMT03500 : R_Page
     {
         _viewModelUtility.CheckFloor((bool)obj);
     }
-    
+
     private void R_RowRender(R_GridRowRenderEventArgs eventArgs)
     {
         var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
@@ -575,5 +555,4 @@ public partial class PMT03500 : R_Page
             eventArgs.RowClass = "myCustomRowFormatting";
         }
     }
-    
 }

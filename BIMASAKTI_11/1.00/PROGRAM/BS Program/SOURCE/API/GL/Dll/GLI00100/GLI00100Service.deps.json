@@ -8,7 +8,9 @@
     ".NETCoreApp,Version=v6.0": {
       "GLI00100Service/1.0.0": {
         "dependencies": {
+          "BaseHeaderResources": "1.0.0",
           "GLI00100Back": "1.0.0",
+          "GLI00100BackResources": "1.0.0",
           "GLI00100Common": "1.0.0",
           "BaseHeaderReportCOMMON": "1.0.0.0",
           "R_APIBackEnd": "1.0.0.0",
@@ -23,12 +25,32 @@
           "GLI00100Service.dll": {}
         }
       },
+      "BaseHeaderResources/1.0.0": {
+        "runtime": {
+          "BaseHeaderResources.dll": {}
+        },
+        "resources": {
+          "id/BaseHeaderResources.resources.dll": {
+            "locale": "id"
+          }
+        }
+      },
       "GLI00100Back/1.0.0": {
         "dependencies": {
           "GLI00100Common": "1.0.0"
         },
         "runtime": {
           "GLI00100Back.dll": {}
+        }
+      },
+      "GLI00100BackResources/1.0.0": {
+        "runtime": {
+          "GLI00100BackResources.dll": {}
+        },
+        "resources": {
+          "id/GLI00100BackResources.resources.dll": {
+            "locale": "id"
+          }
         }
       },
       "GLI00100Common/1.0.0": {
@@ -148,7 +170,17 @@
       "serviceable": false,
       "sha512": ""
     },
+    "BaseHeaderResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "GLI00100Back/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GLI00100BackResources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

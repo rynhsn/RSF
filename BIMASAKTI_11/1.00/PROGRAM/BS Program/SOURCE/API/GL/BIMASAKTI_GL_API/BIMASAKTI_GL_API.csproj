@@ -27,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\SERVICE\GL\GLI00100Service\GLI00100Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLM00500Service\GLM00500Service.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GL\GLR00100Service\GLR00100Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLT00200SERVICE\GLT00200SERVICE.csproj" />
   </ItemGroup>
 

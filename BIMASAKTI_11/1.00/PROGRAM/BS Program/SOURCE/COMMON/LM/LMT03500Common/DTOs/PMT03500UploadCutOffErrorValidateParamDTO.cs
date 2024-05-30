@@ -16,7 +16,7 @@ namespace PMT03500Common.DTOs
         public string InvoicePeriod { get; set; }
         public string UtilityPeriod { get; set; }
         public string StartDate { get; set; }
-        public string EndDate { get; set; }
+        // public string EndDate { get; set; }
         public int BlockIStart { get; set; }
         public int BlockIIStart { get; set; }
         public int MeterStart { get; set; }
@@ -39,7 +39,7 @@ namespace PMT03500Common.DTOs
         public string InvoicePeriod { get; set; }
         public string UtilityPeriod { get; set; }
         public string StartDate { get; set; }
-        public string EndDate { get; set; }
+        // public string EndDate { get; set; }
         public int BlockIStart { get; set; }
         public int BlockIIStart { get; set; }
         public string Valid { get; set; }
@@ -63,7 +63,7 @@ namespace PMT03500Common.DTOs
         public string InvoicePeriod { get; set; }
         public string UtilityPeriod { get; set; }
         public string StartDate { get; set; }
-        public string EndDate { get; set; }
+        // public string EndDate { get; set; }
         public int MeterStart { get; set; }
         public string Valid { get; set; }
         public string Notes { get; set; }
@@ -174,7 +174,7 @@ namespace PMT03500Common.DTOs
         public int BlockIIStart { get; set; }
         public int BlockIEnd { get; set; }
         public int BlockIIEnd { get; set; }
-        public int BebanBersama { get; set; }
+        public decimal BebanBersama { get; set; }
     }
     
     public class PMT03500UtilityExcelWGDTO
@@ -212,7 +212,7 @@ namespace PMT03500Common.DTOs
         public string InvoicePeriod { get; set; }
         public string UtilityPeriod { get; set; }
         public string StartDate { get; set; }
-        public string EndDate { get; set; }
+        // public string EndDate { get; set; }
         public int BlockIStart { get; set; }
         public int BlockIIStart { get; set; }
     }
@@ -232,7 +232,7 @@ namespace PMT03500Common.DTOs
         public string InvoicePeriod { get; set; }
         public string UtilityPeriod { get; set; }
         public string StartDate { get; set; }
-        public string EndDate { get; set; }
+        // public string EndDate { get; set; }
         public int MeterStart { get; set; }
     }
 }

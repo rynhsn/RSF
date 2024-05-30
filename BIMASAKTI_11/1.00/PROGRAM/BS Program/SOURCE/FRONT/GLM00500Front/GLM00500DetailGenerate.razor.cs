@@ -32,6 +32,8 @@ public partial class GLM00500DetailGenerate
             _viewModel.GenerateAccountBudget.CBY = "P";
             _viewModel.GenerateAccountBudget.CUPDATE_METHOD = "C";
             _viewModel.GenerateAccountBudget.CBASED_ON = "EB";
+            _viewModel.GenerateAccountBudget.CFROM_PERIOD_NO = _viewModel.CPERIOD.First().Key;
+            _viewModel.GenerateAccountBudget.CTO_PERIOD_NO = _viewModel.CPERIOD.Last().Key;
             await _viewModel.Init(loData.BudgetHD);
             await _viewModel.GetPeriods();
             await _viewModel.GetSystemParams();
@@ -241,7 +243,7 @@ public partial class GLM00500DetailGenerate
     {
         var loEx = new R_Exception();
 
-        LookupGSL00900ViewModel loLookupViewModel = new LookupGSL00900ViewModel();
+        var loLookupViewModel = new LookupGSL00900ViewModel();
         try
         {
             if (_viewModel.GenerateAccountBudget.CTO_CENTER_CODE.Length > 0)
@@ -314,19 +316,46 @@ public partial class GLM00500DetailGenerate
 
     private async Task ClickProcess()
     {
-        if (_viewModel.GenerateAccountBudget.CSOURCE_BUDGET_NO == null &&
-            _viewModel.GenerateAccountBudget.CBASED_ON == "EB")
+        var loEx = new R_Exception();
+        try
         {
-            await R_MessageBox.Show(_localizer["ErrorLabel"], _localizer["Exception08"], R_eMessageBoxButtonType.OK);
-        }
-        else
-        {
-            if (_viewModel.GenerateAccountBudget.CBASED_ON == "AV")
-                _viewModel.GenerateAccountBudget.CSOURCE_BUDGET_NO = "";
-            _viewModel.GenerateAccountBudget.CYEAR = _viewModel.SelectedYear.ToString();
+            if (_viewModel.GenerateAccountBudget.CSOURCE_BUDGET_NO == null &&
+                _viewModel.GenerateAccountBudget.CBASED_ON == "EB")
+            {
+                await R_MessageBox.Show(_localizer["ErrorLabel"], _localizer["Exception08"],
+                    R_eMessageBoxButtonType.OK);
+            }
+            else
+            {
+                if (_viewModel.GenerateAccountBudget.CBASED_ON == "AV")
+                    _viewModel.GenerateAccountBudget.CSOURCE_BUDGET_NO = "";
 
-            await this.Close(true, _viewModel.GenerateAccountBudget);
+                _viewModel.GenerateAccountBudget.CYEAR = _viewModel.SelectedYear.ToString();
+
+                // var loResult = (GLM00500GenerateAccountBudgetDTO)eventArgs.Result;
+                var loResult = await _viewModel.GenerateBudget(_viewModel.GenerateAccountBudget);
+                if (loResult)
+                {
+                    var loMsg = await R_MessageBox.Show(_localizer["SuccessLabel"],
+                        _localizer["MessageGenerateSuccess"], R_eMessageBoxButtonType.OK);
+                    if (loMsg == R_eMessageBoxResult.OK)
+                    {
+                        await Close(true, _viewModel.GenerateAccountBudget);
+                    }
+                }else
+                {
+                    goto EndBlock;
+                }
+
+            }
         }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        EndBlock:
+        await R_DisplayExceptionAsync(loEx);
     }
 
     private async Task ClickCancel()

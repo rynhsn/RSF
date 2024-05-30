@@ -13,22 +13,33 @@ namespace GLM00500Model.ViewModel
 {
     public class GLM00500HeaderViewModel : R_ViewModel<GLM00500BudgetHDDTO>
     {
-        private GLM00500HeaderModel _model = new();
-        public ObservableCollection<GLM00500BudgetHDDTO> BudgetHDList = new();
-        public ObservableCollection<GLM00500FunctionDTO> CurrencyTypeList = new();
+        private GLM00500HeaderModel _model = new GLM00500HeaderModel();
+        public ObservableCollection<GLM00500BudgetHDDTO> BudgetHDList = new ObservableCollection<GLM00500BudgetHDDTO>();
+        public ObservableCollection<GLM00500FunctionDTO> CurrencyTypeList = new ObservableCollection<GLM00500FunctionDTO>();
 
-        public GLM00500BudgetHDDTO BudgetHDEntity = new();
-        public GLM00500GSMPeriodDTO Periods = new();
-        public GLM00500GLSystemParamDTO SystemParams = new();
+        public GLM00500BudgetHDDTO BudgetHDEntity = new GLM00500BudgetHDDTO();
+        public GLM00500GSMPeriodDTO Periods = new GLM00500GSMPeriodDTO();
+        public GLM00500GLSystemParamDTO SystemParams = new GLM00500GLSystemParamDTO();
 
         public int SelectedYear;
 
         public async Task Init()
         {
-            // _model = new GLM00500HeaderModel();
-            await GetPeriods();
-            await GetSystemParams();
-            await GetCurrencyTypeList();
+            var loEx = new R_Exception();
+
+            try
+            {
+                // _model = new GLM00500HeaderModel();
+                await GetPeriods();
+                await GetSystemParams();
+                await GetCurrencyTypeList();
+            }
+            catch (R_Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
         }
 
         //get list
@@ -113,11 +124,10 @@ namespace GLM00500Model.ViewModel
         public async Task GetPeriods()
         {
             var loEx = new R_Exception();
-            GLM00500GSMPeriodDTO loResult;
 
             try
             {
-                loResult = await _model.GLM00500GetPeriodsModel();
+                var loResult = await _model.GLM00500GetPeriodsModel();
                 Periods = loResult;
             }
             catch (R_Exception ex)
@@ -167,14 +177,16 @@ namespace GLM00500Model.ViewModel
         }
 
         //set finalize budget
-        public async Task SetFinalizeBudget(string pcRecId)
+        public async Task<bool> SetFinalizeBudget(string pcRecId)
         {
             var loEx = new R_Exception();
+            bool loReturn = false;
 
             try
             {
-                GLM00500CrecParamsDTO loParams = new(){CREC_ID = pcRecId};
-                await _model.GLM00500FinalizeBudgetModel(loParams);
+                var loParams = new GLM00500CrecParamsDTO{CREC_ID = pcRecId};
+                var loResult = await _model.GLM00500FinalizeBudgetModel(loParams);
+                loReturn = loResult.LRESULT;
             }
             catch (R_Exception ex)
             {
@@ -182,6 +194,7 @@ namespace GLM00500Model.ViewModel
             }
 
             loEx.ThrowExceptionIfErrors();
+            return loReturn;
         }
 
         public async Task<GLM00500AccountBudgetExcelDTO> DownloadTemplate()

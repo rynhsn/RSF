@@ -39,7 +39,9 @@ public partial class PMT03500CutOff : R_ITabPage
     private bool _visibleColumnEC;
     private bool _visibleColumnWG;
     
-    
+    private bool _enabledBtn = true;
+
+
     private void StateChangeInvoke()
     {
         StateHasChanged();
@@ -61,8 +63,10 @@ public partial class PMT03500CutOff : R_ITabPage
 
     public async Task ShowSuccessUpdateInvoke()
     {
+        _enabledBtn = true;
         await R_MessageBox.Show("", "Update Successfully", R_eMessageBoxButtonType.OK);
         await _gridRefUtility.R_RefreshGrid(null);
+        
     }
 
     
@@ -212,7 +216,7 @@ public partial class PMT03500CutOff : R_ITabPage
             loEx.Add(ex);
         }
 
-        R_DisplayException(loEx);
+        loEx.ThrowExceptionIfErrors();
     }
 
     public async Task RefreshTabPageAsync(object poParam)
@@ -228,6 +232,7 @@ public partial class PMT03500CutOff : R_ITabPage
 
         try
         {
+            _enabledBtn = false;
             await _conductorRefUtility.R_SaveBatch();
         }
         catch (Exception ex)
@@ -243,57 +248,6 @@ public partial class PMT03500CutOff : R_ITabPage
         _viewModelUtility.GridUtilityUsageList = new ObservableCollection<PMT03500UtilityUsageDTO>(_viewModelUtility.GridUtilityUsageListTemp);
     }
 
-    private void BeforeSaveBatch(R_BeforeSaveBatchEventArgs eventArgs)
-    {
-        var loEx = new R_Exception();
-
-        try
-        {
-            var loData = (List<PMT03500UtilityUsageDTO>)eventArgs.Data;
-            //cek apakah IMETER_END lebih kecil dari IMETER_START
-            // if (_viewModelUtility.UtilityType == EPMT03500UtilityUsageType.WG)
-            // {
-            //     loData.ForEach(x =>
-            //     {
-            //         if (x.IMETER_END < x.IMETER_START)
-            //         {
-            //             loEx.Add("Err", "Meter End must be greater than Meter Start");
-            //         }
-            //
-            //         eventArgs.Cancel = loEx.HasError;
-            //     });
-            // }
-            //
-            // if (_viewModelUtility.UtilityType == EPMT03500UtilityUsageType.EC)
-            // {
-            //     loData.ForEach(x =>
-            //     {
-            //         if (x.IBLOCK1_END < x.IBLOCK1_START)
-            //         {
-            //             loEx.Add("Err", "Block 1 End must be greater than Block 1 Start");
-            //         }
-            //         
-            //         if (x.IBLOCK2_END < x.IBLOCK2_START)
-            //         {
-            //             loEx.Add("Err", "Block 2 End must be greater than Block 2 Start");
-            //         }
-            //
-            //         eventArgs.Cancel = loEx.HasError;
-            //     });
-            // }
-
-
-            // loData.Select(x =>  x.INO = (loData.IndexOf(x) + 1)).ToList();
-            // loData.Where(x => x.LSELECTED).ToList();
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-
-        loEx.ThrowExceptionIfErrors();
-    }
-
     private async Task SaveBatch(R_ServiceSaveBatchEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -302,10 +256,17 @@ public partial class PMT03500CutOff : R_ITabPage
         {
             // await _viewModelUtility.SaveBatch((List<PMT03500UtilityUsageDTO>)eventArgs.Data, ClientHelper.CompanyId, ClientHelper.UserId);
             var loTempDataList = (List<PMT03500UtilityUsageDTO>)eventArgs.Data;
+            
+            //ubah DSTART_DATE ke CSTART_DATE 
+            loTempDataList.ForEach(x =>
+            {
+                x.CSTART_DATE = x.DSTART_DATE?.ToString("yyyyMMdd");
+            });
+            
             var loDataList = R_FrontUtility.ConvertCollectionToCollection<PMT03500UploadCutOffErrorValidateDTO>(loTempDataList);
             // var loDataList = R_FrontUtility.ConvertCollectionToCollection<PMT03500UploadUtilityErrorValidateDTO>(loTempDataList);
 
-            var loUtilityType = loTempDataList.FirstOrDefault().CUTILITY_TYPE;
+            var loUtilityType = loTempDataList.FirstOrDefault()?.CUTILITY_TYPE;
             _viewModelUpload.CompanyId = ClientHelper.CompanyId;
             _viewModelUpload.UserId = ClientHelper.UserId;
             _viewModelUpload.UploadParam.CPROPERTY_ID = _viewModelUtility.Property.CPROPERTY_ID;

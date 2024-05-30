@@ -20,6 +20,7 @@ namespace PMT03500Common.DTOs
         public int BlockIIStart { get; set; }
         public int BlockIEnd { get; set; }
         public int BlockIIEnd { get; set; }
+        public decimal BebanBersama { get; set; }
         public int MeterStart { get; set; }
         public int MeterEnd { get; set; }
     }
@@ -46,6 +47,7 @@ namespace PMT03500Common.DTOs
         public int BlockIIStart { get; set; }
         public int BlockIEnd { get; set; }
         public int BlockIIEnd { get; set; }
+        public decimal BebanBersama { get; set; }
         public string Valid { get; set; }
         public string Notes { get; set; }
     }
@@ -98,6 +100,7 @@ namespace PMT03500Common.DTOs
         public int IBLOCK2_START { get; set; }
         public int IBLOCK1_END { get; set; }
         public int IBLOCK2_END { get; set; }
+        public decimal NBEBAN_BERSAMA { get; set; }
     }
 
     //
@@ -152,6 +155,7 @@ namespace PMT03500Common.DTOs
         public int IBLOCK2_START { get; set; }
         public int IBLOCK1_END { get; set; }
         public int IBLOCK2_END { get; set; }
+        public decimal NBEBAN_BERSAMA { get; set; }
 
         #endregion
 

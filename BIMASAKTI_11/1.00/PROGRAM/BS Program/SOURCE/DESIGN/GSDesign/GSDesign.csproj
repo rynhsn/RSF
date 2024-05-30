@@ -10,6 +10,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\COMMON\GL\GLI00100Common\GLI00100Common.csproj" />
+      <ProjectReference Include="..\..\COMMON\GL\GLR00100Common\GLR00100Common.csproj" />
     </ItemGroup>
 
     <ItemGroup>

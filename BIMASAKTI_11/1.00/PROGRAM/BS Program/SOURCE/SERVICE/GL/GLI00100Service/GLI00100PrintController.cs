@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Diagnostics;
+using System.Globalization;
 using BaseHeaderReportCOMMON;
 using GLI00100Back;
 using GLI00100Common;
@@ -117,24 +118,52 @@ public class GLI00100PrintController : R_ReportControllerBase
         using var loActivity = _activitySource.StartActivity(nameof(GeneratePrint));
         var loEx = new R_Exception();
         var loRtn = new GLI00100PrintWithBaseHeaderDTO();
-        var loParam = new BaseHeaderDTO();
+        var loCultureInfo = new CultureInfo(R_BackGlobalVar.REPORT_CULTURE);
+
         try
         {
-            _logger.LogInfo("Set Base Header Data");
-            
-            loParam.CCOMPANY_NAME = "PT Realta Chakradarma";
-            loParam.CPRINT_CODE = "GLI00100";
-            loParam.CPRINT_NAME = "Account Status Report";
-            loParam.CUSER_ID = poParam.CUSER_ID;
+            loRtn.BaseHeaderColumn.Page = R_Utility.R_GetMessage(typeof(BaseHeaderResources.Resources_Dummy_Class),
+                "Page", loCultureInfo);
+            loRtn.BaseHeaderColumn.Of =
+                R_Utility.R_GetMessage(typeof(BaseHeaderResources.Resources_Dummy_Class), "Of", loCultureInfo);
+            loRtn.BaseHeaderColumn.Print_Date =
+                R_Utility.R_GetMessage(typeof(BaseHeaderResources.Resources_Dummy_Class), "Print_Date", loCultureInfo);
+            loRtn.BaseHeaderColumn.Print_By = R_Utility.R_GetMessage(typeof(BaseHeaderResources.Resources_Dummy_Class),
+                "Print_By", loCultureInfo);
 
-            GLI00100PrintResultDTO loData = new()
+            var loColumnObject = new GLI00100PrintColumnDTO();
+            var loColumn = AssignValuesWithMessages(typeof(GLI00100BackResources.Resources_Dummy_Class),
+                loCultureInfo, loColumnObject);
+            
+            var loHeaderObject = new GLI00100PrintHeaderTitleDTO();
+            var loHeader = AssignValuesWithMessages(typeof(GLI00100BackResources.Resources_Dummy_Class),
+                loCultureInfo, loHeaderObject);
+            
+            var loRowObject = new GLI00100PrintRowDTO();
+            var loRow = AssignValuesWithMessages(typeof(GLI00100BackResources.Resources_Dummy_Class),
+                loCultureInfo, loRowObject);
+
+            _logger.LogInfo("Set Base Header Data");
+
+            var loParam = new BaseHeaderDTO
+            {
+                CCOMPANY_NAME = "PT Realta Chakradarma",
+                CPRINT_CODE = "GLI00100",
+                CPRINT_NAME = "Account Status Report",
+                CUSER_ID = poParam.CUSER_ID,
+            };
+
+            var loData = new GLI00100PrintResultDTO()
             {
                 Title = "Account Status",
-                HeaderTitle = new GLI00100PrintHeaderTitleDTO(),
-                Column = new GLI00100PrintColumnDTO(),
-                Row = new GLI00100PrintRowDTO(),
+                // HeaderTitle = new GLI00100PrintHeaderTitleDTO(),
+                // Column = new GLI00100PrintColumnDTO(),
+                HeaderTitle = (GLI00100PrintHeaderTitleDTO) loHeader,
+                Column = (GLI00100PrintColumnDTO) loColumn,
+                Row = (GLI00100PrintRowDTO) loRow,
                 Data = new GLI00100AccountAnalysisDTO()
             };
+
             var loCls = new GLI00100Cls();
             var loDbParam = new GLI00100ParameterDb();
             var loDbOptParam = new GLI00100AccountAnalysisParamDb();
@@ -153,7 +182,7 @@ public class GLI00100PrintController : R_ReportControllerBase
 
             loData.Data = loResult;
             loRtn.Data = loData;
-            
+
             loRtn.BaseHeaderData = loParam;
         }
         catch (Exception ex)
@@ -164,5 +193,20 @@ public class GLI00100PrintController : R_ReportControllerBase
 
         loEx.ThrowExceptionIfErrors();
         return loRtn;
+    }
+
+    private object AssignValuesWithMessages(Type poResourceType, CultureInfo poCultureInfo, object poObject)
+    {
+        object loObj = Activator.CreateInstance(poObject.GetType());
+        var loGetPropertyObject = poObject.GetType().GetProperties();
+
+        foreach (var property in loGetPropertyObject)
+        {
+            string propertyName = property.Name;
+            string message = R_Utility.R_GetMessage(poResourceType, propertyName, poCultureInfo);
+            property.SetValue(loObj, message);
+        }
+
+        return loObj;
     }
 }

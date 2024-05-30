@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderCommon.frx" BaseReportAbsolutePath="D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\GL\BIMASAKTI_GL_API\Reports\BaseHeaderCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="12/01/2023 09:47:25" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\GL\BIMASAKTI_GL_API\Reports\BaseHeaderCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="05/22/2024 17:37:08" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="Data" DataType="GLI00100Common.DTOs.Print.GLI00100PrintResultDTO, GLI00100Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -124,12 +124,18 @@
         <Column Name="CPRINT_NAME" DataType="System.String"/>
         <Column Name="CUSER_ID" DataType="System.String"/>
       </Column>
+      <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Page" DataType="System.String"/>
+        <Column Name="Of" DataType="System.String"/>
+        <Column Name="Print_Date" DataType="System.String"/>
+        <Column Name="Print_By" DataType="System.String"/>
+      </Column>
     </BusinessObjectDataSource>
   </Dictionary>
   <inherited Name="Page1">
     <inherited Name="PageHeader1">
       <inherited Name="Picture1"/>
-      <inherited Name="Text33"/>
+      <inherited Name="Text33" Text="[ResponseDataModel.BaseHeaderData.CCOMPANY_NAME]"/>
       <inherited Name="Text40">
         <Formats>
           <GeneralFormat/>
@@ -138,40 +144,38 @@
       </inherited>
       <inherited Name="Text36"/>
       <inherited Name="Text38"/>
-      <inherited Name="Text41"/>
       <inherited Name="Text34"/>
       <inherited Name="Text37"/>
       <inherited Name="Text39"/>
-      <inherited Name="Text42"/>
-      <ChildBand Name="Child1" ZOrder="-1" Top="80.93" Width="718.2" Height="94.5">
-        <TextObject Name="Text109" Top="37.8" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.HeaderTitle.ACCOUNT_NO]" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text110" Top="56.7" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.HeaderTitle.ACCOUNT_TYPE]" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text111" Top="75.6" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.HeaderTitle.NORMAL_JOURNAL]" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text112" Left="292.95" Top="37.8" Width="75.6" Height="18.9" Text="[ResponseDataModel.Data.HeaderTitle.YEAR]" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text113" Left="292.95" Top="56.7" Width="75.6" Height="18.9" Text="[ResponseDataModel.Data.HeaderTitle.CENTER]" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text114" Left="292.95" Top="75.6" Width="75.6" Height="18.9" Text="[ResponseDataModel.Data.HeaderTitle.BUDGET]" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text115" Left="538.65" Top="37.8" Width="66.15" Height="18.9" Text="[ResponseDataModel.Data.HeaderTitle.CURRENCY]" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text117" Left="94.5" Top="37.8" Width="198.45" Height="18.9" Text=": [ResponseDataModel.Data.Data.CGLACCOUNT_NO] - [ResponseDataModel.Data.Data.CGLACCOUNT_NAME]" Font="Arial Unicode MS, 7pt">
+      <ChildBand Name="Child1" ZOrder="-1" Top="78.8" Width="718.2" Height="113.4">
+        <TextObject Name="Text109" Top="37.8" Width="94.5" Height="28.35" Text="[ResponseDataModel.Data.HeaderTitle.ACCOUNT_NO]" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text110" Top="66.15" Width="94.5" Height="28.35" Text="[ResponseDataModel.Data.HeaderTitle.ACCOUNT_TYPE]" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text111" Top="94.5" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.HeaderTitle.NORMAL_JOURNAL]" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text112" Left="292.95" Top="37.8" Width="75.6" Height="28.35" Text="[ResponseDataModel.Data.HeaderTitle.YEAR]" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text113" Left="292.95" Top="66.15" Width="75.6" Height="28.35" Text="[ResponseDataModel.Data.HeaderTitle.CENTER]" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text114" Left="292.95" Top="94.5" Width="75.6" Height="18.9" Text="[ResponseDataModel.Data.HeaderTitle.BUDGET]" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text115" Left="538.65" Top="37.8" Width="66.15" Height="28.35" Text="[ResponseDataModel.Data.HeaderTitle.CURRENCY]" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text117" Left="94.5" Top="37.8" Width="198.45" Height="28.35" Text=": [ResponseDataModel.Data.Data.CGLACCOUNT_NO] - [ResponseDataModel.Data.Data.CGLACCOUNT_NAME]" Font="Arial Unicode MS, 7pt">
           <Formats>
             <GeneralFormat/>
             <GeneralFormat/>
           </Formats>
         </TextObject>
-        <TextObject Name="Text118" Left="94.5" Top="75.6" Width="198.45" Height="18.9" Text=": [ResponseDataModel.Data.Data.CDBCR_LONG_NAME]" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text119" Left="368.55" Top="37.8" Width="151.2" Height="18.9" Text=": [ResponseDataModel.Data.Data.CYEAR]" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text120" Left="368.55" Top="56.7" Width="255.15" Height="18.9" Text=": [ResponseDataModel.Data.Data.CCENTER]" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text121" Left="368.55" Top="75.6" Width="255.15" Height="18.9" Text=": [ResponseDataModel.Data.Data.CBUDGET]" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text122" Left="604.8" Top="37.8" Width="103.95" Height="18.9" Text=": [ResponseDataModel.Data.Data.CCURRENCY]" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text123" Left="94.5" Top="56.7" Width="198.45" Height="18.9" Text=": [ResponseDataModel.Data.Data.CBSIS_LONG_NAME]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text118" Left="94.5" Top="94.5" Width="198.45" Height="18.9" Text=": [ResponseDataModel.Data.Data.CDBCR_LONG_NAME]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text119" Left="368.55" Top="37.8" Width="170.1" Height="28.35" Text=": [ResponseDataModel.Data.Data.CYEAR]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text120" Left="368.55" Top="66.15" Width="311.85" Height="28.35" Text=": [ResponseDataModel.Data.Data.CCENTER]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text121" Left="368.55" Top="94.5" Width="311.85" Height="18.9" Text=": [ResponseDataModel.Data.Data.CBUDGET]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text122" Left="604.8" Top="37.8" Width="103.95" Height="28.35" Text=": [ResponseDataModel.Data.Data.CCURRENCY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text123" Left="94.5" Top="66.15" Width="198.45" Height="28.35" Text=": [ResponseDataModel.Data.Data.CBSIS_LONG_NAME]" Font="Arial Unicode MS, 7pt"/>
       </ChildBand>
     </inherited>
-    <ColumnHeaderBand Name="ColumnHeader1" ZOrder="-1" Top="180.77" Width="718.2" Height="28.35" Border.Lines="Top, Bottom" Border.TopLine.Width="2" Border.BottomLine.Width="2">
+    <ColumnHeaderBand Name="ColumnHeader1" ZOrder="-1" Top="195.4" Width="718.2" Height="28.35" Border.Lines="Top, Bottom" Border.TopLine.Width="2" Border.BottomLine.Width="2">
       <TextObject Name="Text43" Left="113.4" Top="9.45" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Column.COLUMN_CURRENT_MONTH]" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
       <TextObject Name="Text44" Left="255.15" Top="9.45" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Column.COLUMN_BUDGET]" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
       <TextObject Name="Text45" Left="396.9" Top="9.45" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Column.COLUMN_CURRENT_YEAR]" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
       <TextObject Name="Text46" Left="538.65" Top="9.45" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Column.COLUMN_LAST_YEAR]" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
     </ColumnHeaderBand>
-    <DataBand Name="Data1" ZOrder="0" Top="214.45" Width="718.2" Height="463.05" Border.Lines="Bottom" Border.BottomLine.Width="2" DataSource="ResponseDataModel">
+    <DataBand Name="Data1" ZOrder="0" Top="226.95" Width="718.2" Height="463.05" Border.Lines="Bottom" Border.BottomLine.Width="2" DataSource="ResponseDataModel">
       <TextObject Name="Text47" Left="396.9" Top="9.45" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NCURRENT_OPENING]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
       <TextObject Name="Text48" Left="538.65" Top="9.45" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLAST_OPENING]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
       <TextObject Name="Text49" Left="113.4" Top="37.8" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NMONTH1]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>

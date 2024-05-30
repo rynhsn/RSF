@@ -49,7 +49,7 @@ namespace CBB00200Model.ViewModel
             var loEx = new R_Exception();
             var loReturn = 0;
             try
-            {
+            {   
                 var loParam = new CBB00200ClosePeriodParam { CPERIOD = pcPeriod };
                 var loResult =
                     await _model.GetAsync<CBB00200SingleDTO<CBB00200ClosePeriodResultDTO>, CBB00200ClosePeriodParam>(
@@ -61,6 +61,7 @@ namespace CBB00200Model.ViewModel
                 loEx.Add(ex);
             }
 
+            EndBlock:
             loEx.ThrowExceptionIfErrors();
             return loReturn;
         }

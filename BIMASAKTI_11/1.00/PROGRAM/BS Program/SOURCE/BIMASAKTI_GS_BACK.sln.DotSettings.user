@@ -27,13 +27,19 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CMenuBack_005CR_005FSecurityPolicyService_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CMenuBack_005CR_005FSecurityTokenBack_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CMenuBack_005CR_005FSecurityTokenCommon_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CRealCode_005CRSF_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CBS_0020Program_005CSOURCE_005CCOMMON_005CBaseHeaderReportCOMMON_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CRealCode_005CRSF_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CBack_005CR_005FStorageCommon_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\6.0.16\Microsoft.AspNetCore.Mvc.Core.dll" /&gt;&#xD;
   &lt;Assembly Path="D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\SYSTEM\SOURCE\LIBRARY\Back\R_AuthenticationBack.dll" /&gt;&#xD;
   &lt;Assembly Path="D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll" /&gt;&#xD;
   &lt;Assembly Path="D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\COMMON\LM\LMT03500Common\bin\Debug\netstandard2.1\PMT03500Common.dll" /&gt;&#xD;
+  &lt;Assembly Path="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\COMMON\BaseHeaderReportCOMMON.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=BACK_002FGL_002FGLI00100_002FGLI00100BackResources_002FGLI00100BackResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=BACK_002FGL_002FGLR00100_002FGLR00100BackResources_002FGLR00100BackResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=COMMON_002FBaseHeaderResources_002FBaseHeaderResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=DESIGN_002FGSDesign_002FFormMenu/@EntryIndexedValue">False</s:Boolean>
 	
 	
 	
@@ -52,13 +58,13 @@
 	
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FINVOICE_005FUPDATEResources_002FRSP_005FAP_005FINVOICE_005FUPDATEResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FGS_002FRSP_005FGS_005FMAINTAIN_005FPROPERTY_005FDEPTResources_002FRSP_005FGS_005FMAINTAIN_005FPROPERTY_005FDEPTResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FGS_002FRSP_005FGS_005FMAINTAIN_005FUNIT_005FTYPE_005FCATEGORYResources_002FRSP_005FGS_005FMAINTAIN_005FUNIT_005FTYPE_005FCATEGORYResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FPM_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FCUTOFF_005FECResources_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FCUTOFF_005FECResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FGS_002FRSP_005FGS_005FMAINTAIN_005FPROPERTY_005FDEPTResources_002FRSP_005FGS_005FMAINTAIN_005FPROPERTY_005FDEPTResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FGS_002FRSP_005FGS_005FMAINTAIN_005FUNIT_005FTYPE_005FCATEGORYResources_002FRSP_005FGS_005FMAINTAIN_005FUNIT_005FTYPE_005FCATEGORYResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FPM_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FCUTOFF_005FECResources_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FCUTOFF_005FECResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FPM_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FCUTOFF_005FWGResources_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FCUTOFF_005FWGResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FPM_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FUSAGE_005FECResources_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FUSAGE_005FECResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FPM_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FUSAGE_005FWGResources_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FUSAGE_005FWGResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FPM_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FCUTOFF_005FWGResources_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FCUTOFF_005FWGResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FPM_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FUSAGE_005FECResources_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FUSAGE_005FECResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FPM_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FUSAGE_005FWGResources_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FUSAGE_005FWGResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	
 	
 	

@@ -116,7 +116,7 @@ public partial class GLM00500UploadPopup : R_Page
                 ExcelInject.R_ReadFromExcel(loFileByte, new[] { "Budget" }); //ambil data di sheet Budget
             var loResult = R_FrontUtility.R_ConvertTo<GLM00500UploadFromFileDTO>(loDataSet.Tables[0]);
 
-            await _viewModel.AssignData(loResult);
+            _viewModel.AssignData(loResult);
             await _gridRef.R_RefreshGrid(null);
         }
         catch (Exception ex)
@@ -129,7 +129,7 @@ public partial class GLM00500UploadPopup : R_Page
 
     private async Task CloseEvent(MouseEventArgs eventArgs)
     {
-        await this.Close(true, null);
+        await Close(true, null);
     }
 
     private async Task OnClickProcess()

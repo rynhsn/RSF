@@ -10,7 +10,7 @@ namespace GLM00500Common
         GLM00500GSMPeriodDTO GLM00500GetPeriods();
         GLM00500GLSystemParamDTO GLM00500GetSystemParams();
         GLM00500ListDTO<GLM00500FunctionDTO> GLM00500GetCurrencyTypeList();
-        void GLM00500FinalizeBudget(GLM00500CrecParamsDTO poParams);
+        GLM00500ReturnDTO GLM00500FinalizeBudget(GLM00500CrecParamsDTO poParams);
         GLM00500AccountBudgetExcelDTO GLM00500DownloadTemplateFile();
     }
 }

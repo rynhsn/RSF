@@ -35,7 +35,7 @@ namespace PMT03500Common.DTOs
         public int IBLOCK2_START { get; set; }
         public int IBLOCK1_END { get; set; }
         public int IBLOCK2_END { get; set; }
-        public int IBEBAN_BERSAMA { get; set; }
+        public decimal NBEBAN_BERSAMA { get; set; }
         public int IBLOCK1_USAGE { get; set; }
         public int IBLOCK2_USAGE { get; set; }
         public int IAVG_BLOCK1_USAGE { get; set; }

@@ -21,9 +21,6 @@
     <R_ItemLayout col="3" Class="me-2">
         <R_TextBox Value="@_detailViewModel.BudgetHDEntity.CBUDGET_NAME" Enabled="false"/>
     </R_ItemLayout>
-    @* </R_StackLayout> *@
-    @* *@
-    @* <R_StackLayout Row Class="mb-1"> *@
     <R_ItemLayout col="1" Class="me-2">
         <R_Label>@_localizer["LABEL_ACCTYPE"]</R_Label>
     </R_ItemLayout>
@@ -64,7 +61,7 @@
 </R_ItemLayout>
 
 <R_ItemLayout>
-<R_GroupBox ShowBorder Title="@_localizer["LABEL_DETAIL"]">
+<R_GroupBox ShowBorder Title="@_localizer["LABEL_DETAIL"]" Class="p-2">
 
 <R_StackLayout Row Class="mb-2">
     <R_ItemLayout col="2">
@@ -74,12 +71,13 @@
         <R_TextBox @ref="_fieldAcc" @bind-Value="_detailViewModel.Data.CGLACCOUNT_NO"
                    R_ConductorSource="_conductorRefDetail"
                    MaxLength="20"
-                   R_EnableAdd/>
+                   R_EnableAdd
+                   OnLostFocus="@OnLostFocusLookupAccount"/>
     </R_ItemLayout>
     <R_Lookup R_ConductorSource="_conductorRefDetail"
               R_EnableAdd
               R_Before_Open_Lookup="BeforeOpenLookupAccount"
-              R_After_Open_Lookup="AfterOpenLookupAccount">
+              R_After_Open_Lookup="AfterOpenLookupAccount">...
     </R_Lookup>
     <R_ItemLayout col="6">
         <R_TextBox @bind-Value="_detailViewModel.Data.CGLACCOUNT_NAME"
@@ -99,13 +97,14 @@
                    CharacterCasing="R_eCharacterCasing.Upper"
                    MaxLength="10"
                    R_EnableAdd
-                   R_EnableEdit/>
+                   R_EnableEdit
+                   OnLostFocus="@OnLostFocusLookupCenter"/>
     </R_ItemLayout>
     <R_Lookup @ref="_lookupCenterCode" R_ConductorSource="_conductorRefDetail"
               R_Before_Open_Lookup="BeforeOpenLookupCenter"
               R_After_Open_Lookup="AfterOpenLookupCenter"
               R_EnableAdd
-              R_EnableEdit>
+              R_EnableEdit>...
     </R_Lookup>
     <R_ItemLayout col="6">
         <R_TextBox @bind-Value="_detailViewModel.Data.CCENTER_NAME"
@@ -211,7 +210,7 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_GroupBox Enabled="@(_detailViewModel.Data.CINPUT_METHOD == "MN")" ShowBorder="false" Class="py-1 mb-5">
+<R_GroupBox Enabled="@(_detailViewModel.Data.CINPUT_METHOD == "MN")" ShowBorder="false" Class="mb-5">
     <R_StackLayout Row Spacing="2">
         <R_ItemLayout col="4">
             <R_StackLayout Row Class="mb-2">
@@ -398,8 +397,7 @@
         <R_DateTimePicker @bind-Value="@_detailViewModel.Data.DUPDATE_DATE" Enabled="false"/>
     </R_ItemLayout>
 </R_StackLayout>
-@* </R_StackLayout> *@
-@* <R_StackLayout Row Spacing="3" Class="d-flex justify-content-end"> *@
+
 <R_StackLayout Row Class="justify-content-end">
     <R_ItemLayout>
         <R_Label>@_localizer["LABEL_CREATEDBY"]</R_Label>

@@ -252,4 +252,7 @@
     <data name="SuccessUpload" xml:space="preserve">
         <value>Staff uploaded successfully!</value>
     </data>
+    <data name="MessageGenerateSuccess" xml:space="preserve">
+        <value>Account Budget Generated Successfully!</value>
+    </data>
 </root>

@@ -48,8 +48,6 @@ public partial class CBB00200PopupToDoList : R_Page
             await _viewModel.GetClosePeriodToDoList(lcParam);
             eventArgs.ListEntityResult = _viewModel.ClosePeriodToDoList;
             
-            // await Task.Delay(1);
-            
             if (_viewModel.ClosePeriodToDoList.Count > 0)
             {
                 await R_MessageBox.Show("Message",@_localizer["MSG_TODO_LIST_FOUND"], R_eMessageBoxButtonType.OK);

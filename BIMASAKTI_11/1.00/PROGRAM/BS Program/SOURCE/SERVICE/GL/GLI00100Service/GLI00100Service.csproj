@@ -38,7 +38,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\BACK\GL\GLI00100BackResources\GLI00100BackResources.csproj" />
       <ProjectReference Include="..\..\..\BACK\GL\GLI00100Back\GLI00100Back.csproj" />
+      <ProjectReference Include="..\..\..\COMMON\BaseHeaderResources\BaseHeaderResources.csproj" />
       <ProjectReference Include="..\..\..\COMMON\GL\GLI00100Common\GLI00100Common.csproj" />
     </ItemGroup>
 

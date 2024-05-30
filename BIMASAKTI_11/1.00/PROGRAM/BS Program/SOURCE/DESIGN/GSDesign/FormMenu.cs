@@ -49,5 +49,13 @@ namespace GSDesign
             loReport.RegisterData(loData, "ResponseDataModel");
             loReport.Design();
         }
+
+        private void GLR00100_3_Click(object sender, EventArgs e)
+        {
+            var loData = new ArrayList();
+            loData.Add(GLR00100Common.Model.GLR00100ModelReportDummyData.DefaultDataWithHeader());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
     }
 }

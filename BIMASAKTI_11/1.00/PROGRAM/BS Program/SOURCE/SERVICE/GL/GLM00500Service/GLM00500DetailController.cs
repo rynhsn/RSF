@@ -320,13 +320,14 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
     }
 
     [HttpPost]
-    public void GLM00500GenerateBudget(GLM00500GenerateAccountBudgetDTO poGenerateAccountBudgetDTO)
+    public GLM00500ReturnDTO GLM00500GenerateBudget(GLM00500GenerateAccountBudgetDTO poGenerateAccountBudgetDTO)
     {
         using var loActivity = _activitySource.StartActivity(nameof(GLM00500GenerateBudget));
         _logger.LogInfo("Start - Generate Account Budget");
         var loEx = new R_Exception();
         var loCls = new GLM00500DetailCls();
         var loDbParams = new GLM00500ParameterGenerateDb();
+        var loReturn = new GLM00500ReturnDTO();
 
         try
         {
@@ -353,6 +354,8 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
 
             _logger.LogInfo("Generate Account Budget");
             loCls.GLM00500GenerateBudget(loDbParams);
+
+            loReturn.LRESULT = !loEx.Haserror;
         }
         catch (Exception ex)
         {
@@ -361,7 +364,8 @@ public class GLM00500DetailController : ControllerBase, IGLM00500Detail
         }
         
         loEx.ThrowExceptionIfErrors();
-        _logger.LogInfo("End - Generate Account Budget");   
+        _logger.LogInfo("End - Generate Account Budget");
+        return loReturn;
     }
 
     #region "Helper ListStream Functions"

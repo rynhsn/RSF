@@ -48,7 +48,7 @@ namespace GLM00500Model
             throw new NotImplementedException();
         }
 
-        public void GLM00500FinalizeBudget(GLM00500CrecParamsDTO poParams)
+        public GLM00500ReturnDTO GLM00500FinalizeBudget(GLM00500CrecParamsDTO poParams)
         {
             throw new NotImplementedException();
         }
@@ -63,7 +63,7 @@ namespace GLM00500Model
         public async Task<List<GLM00500BudgetHDDTO>> GLM00500GetBudgetHDListStreamModel()
         {
             var loEx = new R_Exception();
-            List<GLM00500BudgetHDDTO> loResult = null;
+            var loResult = new List<GLM00500BudgetHDDTO>();
 
             try
             {
@@ -88,7 +88,7 @@ namespace GLM00500Model
         public async Task<GLM00500GSMPeriodDTO> GLM00500GetPeriodsModel()
         {
             var loEx = new R_Exception();
-            GLM00500GSMPeriodDTO loResult = null;
+            var loResult = default(GLM00500GSMPeriodDTO);
 
             try
             {
@@ -113,7 +113,7 @@ namespace GLM00500Model
         public async Task<GLM00500GLSystemParamDTO> GLM00500GetSystemParamModel()
         {
             var loEx = new R_Exception();
-            GLM00500GLSystemParamDTO loResult = null;
+            var loResult = new GLM00500GLSystemParamDTO();
 
             try
             {
@@ -138,7 +138,7 @@ namespace GLM00500Model
         public async Task<GLM00500ListDTO<GLM00500FunctionDTO>> GLM00500GetCurrencyTypeListModel()
         {
             var loEx = new R_Exception();
-            GLM00500ListDTO<GLM00500FunctionDTO> loResult = null;
+            var loResult = new GLM00500ListDTO<GLM00500FunctionDTO>();
 
             try
             {
@@ -160,14 +160,15 @@ namespace GLM00500Model
         }
 
         //finalize budget
-        public async Task GLM00500FinalizeBudgetModel(GLM00500CrecParamsDTO poParams)
+        public async Task<GLM00500ReturnDTO> GLM00500FinalizeBudgetModel(GLM00500CrecParamsDTO poParams)
         {
             var loEx = new R_Exception();
+            var loReturn = default(GLM00500ReturnDTO);
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-                await R_HTTPClientWrapper.R_APIRequestObject<GLM00500ListDTO<GLM00500FunctionDTO>, GLM00500CrecParamsDTO>(
+                loReturn = await R_HTTPClientWrapper.R_APIRequestObject<GLM00500ReturnDTO, GLM00500CrecParamsDTO>(
                     _RequestServiceEndPoint,
                     nameof(IGLM00500Header.GLM00500FinalizeBudget),
                     poParams,
@@ -181,12 +182,13 @@ namespace GLM00500Model
             }
 
             loEx.ThrowExceptionIfErrors();
+            return loReturn;
         }
 
         public async Task<GLM00500AccountBudgetExcelDTO> GLM00500DownloadTemplateFileModel()
         {
             var loEx = new R_Exception();
-            GLM00500AccountBudgetExcelDTO loResult = new();
+            var loResult = new GLM00500AccountBudgetExcelDTO();
 
             try
             {

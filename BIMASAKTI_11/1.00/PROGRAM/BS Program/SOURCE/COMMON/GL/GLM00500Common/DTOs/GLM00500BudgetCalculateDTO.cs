@@ -20,4 +20,9 @@ namespace GLM00500Common.DTOs
         public decimal NPERIOD14 { get; set; }
         public decimal NPERIOD15 { get; set; }
     }
+
+    public class GLM00500ReturnDTO : R_APIResultBaseDTO
+    {
+        public bool LRESULT { get; set; }
+    }
 }

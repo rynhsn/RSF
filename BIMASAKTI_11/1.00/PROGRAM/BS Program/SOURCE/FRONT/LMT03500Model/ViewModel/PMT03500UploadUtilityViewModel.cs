@@ -160,6 +160,7 @@ namespace PMT03500Model.ViewModel
                         IBLOCK2_START = item.BlockIIStart,
                         IBLOCK1_END = item.BlockIEnd,
                         IBLOCK2_END = item.BlockIIEnd,
+                        NBEBAN_BERSAMA = item.BebanBersama,
 
                         CCOMPANY_ID = CompanyId
                     }).ToList();
@@ -337,6 +338,7 @@ namespace PMT03500Model.ViewModel
                             BlockIIStart = item.IBLOCK2_START,
                             BlockIEnd = item.IBLOCK1_END,
                             BlockIIEnd = item.IBLOCK2_END,
+                            BebanBersama = item.NBEBAN_BERSAMA,
                             Valid = item.ErrorFlag,
                             Notes = item.ErrorMessage
                         }).ToList();

@@ -171,28 +171,31 @@
                 Width="100%"
                 Height="320px"
                 R_Display="@DisplayUtility"
-                R_ServiceGetRecord="GetUtilityRecord">
+                R_ServiceGetRecord="GetUtilityRecord"
+                R_Validation="Validation">
             <R_GridColumns>
                 <R_GridCheckBoxSelectColumn FieldName="@nameof(PMT03500UtilityUsageDTO.LSELECTED)" Width="30px" ShowSelectAllHeader Filterable="false" Resizable="false"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CFLOOR_ID)" HeaderText="@_localizer["LBL_FLOORID"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUNIT_ID)" HeaderText="@_localizer["LBL_UNITID"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CMETER_NO)" HeaderText="@_localizer["LBL_METERNO"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUTILITY_PRD)" HeaderText="@_localizer["LBL_UTILITYPERIOD"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
-                <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DSTART_DATE)" HeaderText="@_localizer["LBL_STARTDATE"]" Width="150px"/>
-                <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DEND_DATE)" HeaderText="@_localizer["LBL_ENDDATE"]" Width="150px"/>
+                @* <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DSTART_DATE)" HeaderText="@_localizer["LBL_STARTDATE"]" Width="150px" R_EnableEdit Min="@(_viewModelUtility.UtilityPeriodFromDtDt)" Max="@(_viewModelUtility.UtilityPeriodToDtDt)"/> *@
+                @* <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DEND_DATE)" HeaderText="@_localizer["LBL_ENDDATE"]" Width="150px" R_EnableEdit Min="@(_viewModelUtility.UtilityPeriodFromDtDt)" Max="@(_viewModelUtility.UtilityPeriodToDtDt)"/> *@
+                <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DSTART_DATE)" HeaderText="@_localizer["LBL_STARTDATE"]" Width="150px" R_EnableEdit/>
+                <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DEND_DATE)" HeaderText="@_localizer["LBL_ENDDATE"]" Width="150px" R_EnableEdit/>
 
-                <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK1_START)" HeaderText="@_localizer["LBL_BLOCK1START"]" Width="150px" Visible="@_visibleColumnEC" R_EnableEdit/>
-                <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK2_START)" HeaderText="@_localizer["LBL_BLOCK2START"]" Width="150px" Visible="@_visibleColumnEC" R_EnableEdit/>
+                <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK1_START)" HeaderText="@_localizer["LBL_BLOCK1START"]" Width="150px" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK2_START)" HeaderText="@_localizer["LBL_BLOCK2START"]" Width="150px" Visible="@_visibleColumnEC"/>
                 <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK1_END)" HeaderText="@_localizer["LBL_BLOCK1END"]" Width="150px" Visible="@_visibleColumnEC" R_EnableEdit/>
                 <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK2_END)" HeaderText="@_localizer["LBL_BLOCK2END"]" Width="150px" Visible="@_visibleColumnEC" R_EnableEdit/>
-                <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IBEBAN_BERSAMA)" HeaderText="@_localizer["LBL_BEBANBERSAMA"]" Width="150px" Visible="@_visibleColumnEC" R_EnableEdit/>
+                <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.NBEBAN_BERSAMA)" HeaderText="@_localizer["LBL_BEBANBERSAMA"]" Width="150px" Visible="@_visibleColumnEC" R_EnableEdit/>
                 <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK1_USAGE)" HeaderText="@_localizer["LBL_BLOCK1USAGE"]" Width="150px" Visible="@_visibleColumnEC"/>
                 <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK2_USAGE)" HeaderText="@_localizer["LBL_BLOCK2USAGE"]" Width="150px" Visible="@_visibleColumnEC"/>
                 <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IAVG_BLOCK1_USAGE)" HeaderText="@_localizer["LBL_AVGBLOCK1USAGE"]" Width="150px" Visible="@_visibleColumnEC"/>
                 <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IAVG_BLOCK2_USAGE)" HeaderText="@_localizer["LBL_AVGBLOCK2USAGE"]" Width="160px" Visible="@_visibleColumnEC"/>
 
                 <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IMETER_START)" HeaderText="@_localizer["LBL_METERSTART"]" Width="150px" Visible="@_visibleColumnWG" R_EnableEdit/>
-                <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IMETER_END)" HeaderText="@_localizer["LBL_METEREND"]" Width="150px" Visible="@_visibleColumnWG" R_EnableEdit/>
+                <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IMETER_END)" HeaderText="@_localizer["LBL_METEREND"]" Width="150px" Visible="@_visibleColumnWG"/>
                 <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IMETER_USAGE)" HeaderText="@_localizer["LBL_METERUSAGE"]" Width="150px" Visible="@_visibleColumnWG"/>
                 <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IAVG_METER_USAGE)" HeaderText="@_localizer["LBL_AVGMETERUSAGE"]" Width="150px" Visible="@_visibleColumnWG"/>
                 <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.ITOTAL_AMOUNT)" HeaderText="@_localizer["LBL_TOTALAMOUNT"]" Width="150px" Visible="@_visibleColumnWG"/>
@@ -221,14 +224,14 @@
                 </R_Popup>
             </R_ItemLayout>
             <R_ItemLayout>
-                <R_Popup R_Before_Open_Popup="BeforeOpenPhoto" Enabled="@_hasDetail">
+                <R_Popup R_Before_Open_Popup="BeforeOpenPhoto" Enabled="@(_conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit && _hasDetail)">
                     @_localizer["LBL_PHOTO"]
                 </R_Popup>
             </R_ItemLayout>
         </R_StackLayout>
     </R_ItemLayout>
     <R_ItemLayout Class="@_display">
-        <R_Button OnClick="OnClickUndo" Enabled="@(_gridRefUtility.DataSource.Count != 0 && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit)">
+        <R_Button OnClick="OnClickUndo" Enabled="@(_gridRefUtility.DataSource.Count != 0 && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit && _enabledBtn)">
             @_localizer["LBL_UNDO"]
         </R_Button>
     </R_ItemLayout>
@@ -236,12 +239,12 @@
         <R_StackLayout Row>
             @* <R_ItemLayout Class="d-none"> *@
             <R_ItemLayout>
-                <R_Button OnClick="OnClickCancel" Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0 && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit)">
+                <R_Button OnClick="OnClickCancel" Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0 && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit && _enabledBtn)">
                     @_localizer["LBL_CANCEL"]
                 </R_Button>
             </R_ItemLayout>
             <R_ItemLayout>
-                <R_Button OnClick="OnClickSave" Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0 && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit)">
+                <R_Button OnClick="OnClickSave" Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0 && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit && _enabledBtn)">
                     @_localizer["LBL_SAVE"]
                 </R_Button>
             </R_ItemLayout>
@@ -276,7 +279,6 @@
 
 <R_ConductorGrid @ref="@_conductorRefUtility"
                  R_ConductorParent="_conductorRefBuilding"
-                R_BeforeSaveBatch="BeforeSaveBatch"
                 R_ServiceSaveBatch="SaveBatch"/>
                 
                 

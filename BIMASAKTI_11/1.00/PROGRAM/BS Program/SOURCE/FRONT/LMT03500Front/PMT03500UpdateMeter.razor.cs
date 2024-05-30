@@ -40,39 +40,6 @@ public partial class PMT03500UpdateMeter : R_ITabPage
 
     private async Task OnLostFocusLookupBuilding()
     {
-        // var loEx = new R_Exception();
-        //
-        // try
-        // {
-        //     if (_viewModel.Header.CBUILDING_ID.Trim().Length == 0) return;
-        //
-        //     var param = new PMT03500SearchTextDTO()
-        //     {
-        //         CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
-        //         CSEARCH_TEXT = _viewModel.Header.CBUILDING_ID
-        //     };
-        //     var loLookupViewModel = new PMT03500BuildingLookupViewModel();
-        //     var loResult = await loLookupViewModel.GetRecord(param);
-        //
-        //     if (loResult == null)
-        //     {
-        //         loEx.Add(R_FrontUtility.R_GetError(
-        //             typeof(PMT03500FrontResources.Resources_Dummy_Class),
-        //             "_ErrLookup"));
-        //         _viewModel.Header.CBUILDING_ID = "";
-        //         goto EndBlock;
-        //     }
-        //
-        //     _viewModel.Header.CBUILDING_ID = loResult.CBUILDING_ID;
-        // }
-        // catch (Exception ex)
-        // {
-        //     loEx.Add(ex);
-        // }
-        //
-        // EndBlock:
-        // await R_DisplayExceptionAsync(loEx);
-        
         var loEx = new R_Exception();
 
         var loLookupViewModel = new LookupGSL02200ViewModel();
@@ -84,7 +51,8 @@ public partial class PMT03500UpdateMeter : R_ITabPage
             var param = new GSL02200ParameterDTO
             {
                 CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
-                CSEARCH_TEXT = _viewModel.Header.CBUILDING_ID
+                CSEARCH_TEXT = _viewModel.Header.CBUILDING_ID,
+                LAGREEMENT = true
             };
 
             GSL02200DTO loResult = null;
@@ -113,24 +81,16 @@ public partial class PMT03500UpdateMeter : R_ITabPage
 
     private void BeforeLookupBuilding(R_BeforeOpenLookupEventArgs eventArgs)
     {
-        // eventArgs.TargetPageType = typeof(PMT03500BuildingLookup);
-        // eventArgs.Parameter = _viewModel.Header.CPROPERTY_ID;
-        
         eventArgs.TargetPageType = typeof(GSL02200);
         eventArgs.Parameter = new GSL02200ParameterDTO
         {
-            CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID
+            CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
+            LAGREEMENT = true
         };
     }
 
     private void AfterLookupBuilding(R_AfterOpenLookupEventArgs eventArgs)
     {
-        // var loTempResult = (PMT03500BuildingDTO)eventArgs.Result;
-        // if (loTempResult == null)
-        //     return;
-        //
-        // _viewModel.Header.CBUILDING_ID = loTempResult.CBUILDING_ID;
-        
         var loEx = new R_Exception();
         try
         {
@@ -150,49 +110,12 @@ public partial class PMT03500UpdateMeter : R_ITabPage
 
     private async Task OnLostFocusLookupUnit()
     {
-        // var loEx = new R_Exception();
-        //
-        // try
-        // {
-        //     if (_viewModel.Header.CUNIT_ID.Trim().Length == 0) return;
-        //
-        //     var param = new PMT03500SearchTextDTO()
-        //     {
-        //         CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
-        //         CBUILDING_ID = _viewModel.Header.CBUILDING_ID,
-        //         CFLOOR_ID = "",
-        //         CSEARCH_TEXT = _viewModel.Header.CUNIT_ID
-        //     };
-        //     var loLookupViewModel = new PMT03500BuildingUnitLookupViewModel();
-        //     var loResult = await loLookupViewModel.GetRecord(param);
-        //
-        //     if (loResult == null)
-        //     {
-        //         loEx.Add(R_FrontUtility.R_GetError(
-        //             typeof(PMT03500FrontResources.Resources_Dummy_Class),
-        //             "_ErrLookup"));
-        //         _viewModel.Header.CUNIT_ID = "";
-        //         _viewModel.Header.CUNIT_NAME = "";
-        //         goto EndBlock;
-        //     }
-        //
-        //     _viewModel.Header.CUNIT_NAME = loResult.CUNIT_NAME;
-        //     await OnChangeHeader();
-        // }
-        // catch (Exception ex)
-        // {
-        //     loEx.Add(ex);
-        // }
-        //
-        // EndBlock:
-        // await R_DisplayExceptionAsync(loEx);
-        
         var loEx = new R_Exception();
 
         var loLookupViewModel = new LookupGSL02300ViewModel();
         try
         {
-            if (_viewModel.Header.CUNIT_ID == null || _viewModel.Header.CBUILDING_ID.Trim().Length <= 0)
+            if (_viewModel.Header.CUNIT_ID == null || _viewModel.Header.CUNIT_ID.Trim().Length <= 0)
             {
                 _viewModel.Header.CUNIT_NAME = "";
                 return;
@@ -202,6 +125,7 @@ public partial class PMT03500UpdateMeter : R_ITabPage
             {
                 CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
                 CBUILDING_ID = _viewModel.Header.CBUILDING_ID,
+                LAGREEMENT = true,
                 CFLOOR_ID = "",
                 CSEARCH_TEXT = _viewModel.Header.CUNIT_ID
             };
@@ -217,6 +141,9 @@ public partial class PMT03500UpdateMeter : R_ITabPage
                     "_ErrLookup01"));
                 _viewModel.Header.CUNIT_ID = "";
                 _viewModel.Header.CUNIT_NAME = "";
+                _viewModel.Header.CREF_NO = "";
+                _viewModel.Header.CTENANT_ID = "";
+                _viewModel.Header.CTENANT_NAME = "";
                 goto EndBlock;
             }
 
@@ -236,38 +163,18 @@ public partial class PMT03500UpdateMeter : R_ITabPage
 
     private void BeforeLookupBuildingUnit(R_BeforeOpenLookupEventArgs eventArgs)
     {
-        // eventArgs.TargetPageType = typeof(PMT03500UnitLookup);
-        // eventArgs.Parameter = _viewModel.Header;
-        
         eventArgs.TargetPageType = typeof(GSL02300);
         eventArgs.Parameter = new GSL02300ParameterDTO
         {
             CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
-            CBUILDING_ID = _viewModel.Header.CBUILDING_ID
+            CBUILDING_ID = _viewModel.Header.CBUILDING_ID,
+            LAGREEMENT = true
         };
         
     }
 
     private async Task AfterLookupBuildingUnit(R_AfterOpenLookupEventArgs eventArgs)
     {
-        // var loEx = new R_Exception();
-        // try
-        // {
-        //     var loTempResult = (PMT03500BuildingUnitDTO)eventArgs.Result;
-        //     if (loTempResult == null)
-        //         return;
-        //
-        //     _viewModel.Header.CUNIT_ID = loTempResult.CUNIT_ID;
-        //     _viewModel.Header.CUNIT_NAME = loTempResult.CUNIT_NAME;
-        //     await OnChangeHeader();
-        // }
-        // catch (Exception ex)
-        // {
-        //     loEx.Add(ex);
-        // }
-        //
-        // loEx.ThrowExceptionIfErrors();
-        
         var loEx = new R_Exception();
         try
         {

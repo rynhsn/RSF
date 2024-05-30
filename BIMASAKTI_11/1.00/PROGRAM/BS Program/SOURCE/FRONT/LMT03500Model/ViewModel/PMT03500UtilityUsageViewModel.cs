@@ -411,9 +411,9 @@ namespace PMT03500Model.ViewModel
                     MeterNo = item.CMETER_NO,
                     SeqNo = item.CSEQ_NO,
                     InvoicePeriod = item.CINV_PRD,
-                    UtilityPeriod = item.CUTILITY_PRD,
                     StartDate = item.CSTART_DATE,
-                    EndDate = item.CEND_DATE,
+                    UtilityPeriod = item.CUTILITY_PRD,
+                    // EndDate = item.CEND_DATE,
                     BlockIStart = item.IBLOCK1_START,
                     BlockIIStart = item.IBLOCK2_START,
                 }).ToList();
@@ -443,9 +443,9 @@ namespace PMT03500Model.ViewModel
                     MeterNo = item.CMETER_NO,
                     SeqNo = item.CSEQ_NO,
                     InvoicePeriod = item.CINV_PRD,
-                    UtilityPeriod = item.CUTILITY_PRD,
                     StartDate = item.CSTART_DATE,
-                    EndDate = item.CEND_DATE,
+                    UtilityPeriod = item.CUTILITY_PRD,
+                    // EndDate = item.CEND_DATE,
                     MeterStart = item.IMETER_START,
                 }).ToList();
 
@@ -487,7 +487,7 @@ namespace PMT03500Model.ViewModel
                     BlockIIStart = item.IBLOCK2_START,
                     BlockIEnd = item.IBLOCK1_END,
                     BlockIIEnd = item.IBLOCK2_END,
-                    // BebanBersama = item.IBEBAN_BERSAMA
+                    BebanBersama = item.NBEBAN_BERSAMA
                 }).ToList();
 
                 var loDataTable = R_FrontUtility.R_ConvertTo(loConvertData);
