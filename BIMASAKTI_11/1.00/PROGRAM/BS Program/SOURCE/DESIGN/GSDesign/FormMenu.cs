@@ -53,7 +53,23 @@ namespace GSDesign
         private void GLR00100_3_Click(object sender, EventArgs e)
         {
             var loData = new ArrayList();
-            loData.Add(GLR00100Common.Model.GLR00100ModelReportDummyData.DefaultDataWithHeader());
+            loData.Add(GLR00100Common.Model.GLR00100ModelReportDummyData.DefaultDataWithHeaderDate());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
+
+        private void GLR00100_2_Click(object sender, EventArgs e)
+        {
+            var loData = new ArrayList();
+            loData.Add(GLR00100Common.Model.GLR00100ModelReportDummyData.DefaultDataWithHeaderRefNo());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
+
+        private void GLR00100_1_Click(object sender, EventArgs e)
+        {
+            var loData = new ArrayList();
+            loData.Add(GLR00100Common.Model.GLR00100ModelReportDummyData.DefaultDataWithHeaderTransCode());
             loReport.RegisterData(loData, "ResponseDataModel");
             loReport.Design();
         }

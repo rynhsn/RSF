@@ -15,9 +15,11 @@
           "Microsoft.AspNetCore.Components.Web": "6.0.15",
           "Telerik.SvgIcons": "1.0.2",
           "BlazorClientHelper": "1.0.0.0",
+          "R_APICommonDTO": "1.0.0.0",
           "R_BlazorFrontEnd.Controls": "1.0.0.0",
           "R_BlazorFrontEnd": "1.0.0.0",
           "R_CommonFrontBackAPI": "1.0.0.0",
+          "R_LockingFront": "1.0.0.0",
           "R_ProcessAndUploadFront": "1.0.0.0"
         },
         "runtime": {
@@ -859,7 +861,6 @@
       },
       "Lookup_GSFRONT/1.0.0": {
         "dependencies": {
-          "Lookup_GSCOMMON": "1.0.0",
           "Lookup_GSModel": "1.0.0",
           "Microsoft.AspNetCore.Components.Web": "6.0.15"
         },
@@ -884,6 +885,14 @@
       "BlazorClientHelper/1.0.0.0": {
         "runtime": {
           "BlazorClientHelper.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_APICommonDTO/1.0.0.0": {
+        "runtime": {
+          "R_APICommonDTO.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -918,17 +927,17 @@
           }
         }
       },
-      "R_ProcessAndUploadFront/1.0.0.0": {
+      "R_LockingFront/1.0.0.0": {
         "runtime": {
-          "R_ProcessAndUploadFront.dll": {
+          "R_LockingFront.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
       },
-      "R_APICommonDTO/1.0.0.0": {
+      "R_ProcessAndUploadFront/1.0.0.0": {
         "runtime": {
-          "R_APICommonDTO.dll": {
+          "R_ProcessAndUploadFront.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1638,6 +1647,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "R_APICommonDTO/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "R_BlazorFrontEnd.Controls/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -1653,12 +1667,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "R_ProcessAndUploadFront/1.0.0.0": {
+    "R_LockingFront/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
-    "R_APICommonDTO/1.0.0.0": {
+    "R_ProcessAndUploadFront/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

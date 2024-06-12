@@ -181,7 +181,7 @@
             <R_Popup R_ConductorSource="_conductorRef" 
                      R_EnableOther="true" 
                      R_After_Open_Popup="@AfterOpenActiveInactive" 
-                     R_Before_Open_Popup="@BeforeOpenActiveInactive">@loLabel</R_Popup>
+                     R_Before_Open_Popup="@BeforeOpenActiveInactive">@(_viewModel.Data.LACTIVE ? _localizer["BTN_INACTIVE"] : _localizer["BTN_ACTIVATE"])</R_Popup>
         </R_ItemLayout>
     </R_StackLayout>
 
@@ -207,7 +207,6 @@
              R_ServiceSave="@Conductor_ServiceSave"
              R_ServiceDelete="@Conductor_ServiceDelete"
              R_SetAdd="@R_SetAdd"
-             R_SetEdit="@R_SetEdit"
-             R_Display="@Grid_Display"/>
+             R_SetEdit="@R_SetEdit"/>
 
 <R_PredefinedDock R_InstantiateDock="InstanceTaxTab" Title="Tax %"/>

@@ -1,15 +1,19 @@
-﻿using GSM05000Common.DTOs;
+﻿using BlazorClientHelper;
+using GSM05000Common.DTOs;
 using GSM05000Model.ViewModel;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
+using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
+using R_BlazorFrontEnd.Controls.Enums;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
+using R_LockingFront;
 
 namespace GSM05000Front
 {
@@ -25,12 +29,13 @@ namespace GSM05000Front
         private R_ConductorGrid _conductorRefReplacement;
         private R_Grid<GSM05000ApprovalReplacementDTO> _gridRefReplacement = new();
 
-        
+        [Inject] public IClientHelper _clientHelper { get; set; }
+
         private bool _gridDeptEnabled;
         private bool _gridUserEnabled;
         private bool _gridReplacementEnabled;
 
-        
+
         protected override async Task R_Init_From_Master(object poParameter)
         {
             var loEx = new R_Exception();
@@ -50,9 +55,9 @@ namespace GSM05000Front
                 await Task.Delay(100);
 
                 _gridUserEnabled = _viewModelUser.HeaderEntity.LAPPROVAL_FLAG;
-                
+
                 await _gridRefUser.R_RefreshGrid(null);
-                
+
                 // await _gridRefUser.AutoFitAllColumnsAsync();
                 //await _gridRefReplacement.R_RefreshGrid(null);
             }
@@ -584,12 +589,12 @@ namespace GSM05000Front
         {
             // if (_viewModelUser.HeaderEntity.LAPPROVAL_FLAG)
             // {
-                if (_viewModelUser.HeaderEntity.LAPPROVAL_DEPT)
-                {
-                    _gridDeptEnabled = eventArgs.Enable;
-                }
+            if (_viewModelUser.HeaderEntity.LAPPROVAL_DEPT)
+            {
+                _gridDeptEnabled = eventArgs.Enable;
+            }
 
-                _gridReplacementEnabled = eventArgs.Enable && _viewModelUser.ApproverList.Count > 0;
+            _gridReplacementEnabled = eventArgs.Enable && _viewModelUser.ApproverList.Count > 0;
             // }
         }
 
@@ -597,13 +602,83 @@ namespace GSM05000Front
         {
             // if (_viewModelUser.HeaderEntity.LAPPROVAL_FLAG)
             // {
-                if (_viewModelUser.HeaderEntity.LAPPROVAL_DEPT)
-                {
-                    _gridDeptEnabled = eventArgs.Enable;
-                }
+            if (_viewModelUser.HeaderEntity.LAPPROVAL_DEPT)
+            {
+                _gridDeptEnabled = eventArgs.Enable;
+            }
 
-                _gridUserEnabled = eventArgs.Enable;
+            _gridUserEnabled = eventArgs.Enable;
             // }
         }
+
+        /*
+        #region Locking
+
+        private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrl";
+        private const string DEFAULT_MODULE_NAME = "GS";
+
+        protected async override Task<bool> R_LockUnlock(R_LockUnlockEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            var llRtn = false;
+            R_LockingFrontResult loLockResult;
+
+            try
+            {
+                var loData = (GSM05000ApprovalUserDTO)eventArgs.Data;
+
+                var loCls = new R_LockingServiceClient(pcModuleName: DEFAULT_MODULE_NAME,
+                    plSendWithContext: true,
+                    plSendWithToken: true,
+                    pcHttpClientName: DEFAULT_HTTP_NAME);
+
+                var Company_Id = _clientHelper.CompanyId;
+                var User_Id = _clientHelper.UserId;
+                var Program_Id = "GSM05000";
+                var Table_Name = "GSM_TRANSACTION_APPROVAL";
+                var Key_Value = string.Join("|", _clientHelper.CompanyId, loData.CTRANS_CODE, loData.CDEPT_CODE,
+                    loData.CUSER_ID);
+
+                if (eventArgs.Mode == R_eLockUnlock.Lock)
+                {
+                    var loLockPar = new R_ServiceLockingLockParameterDTO
+                    {
+                        Company_Id = Company_Id,
+                        User_Id = User_Id,
+                        Program_Id = Program_Id,
+                        Table_Name = Table_Name,
+                        Key_Value = Key_Value
+                    };
+                    loLockResult = await loCls.R_Lock(loLockPar);
+                }
+                else
+                {
+                    var loUnlockPar = new R_ServiceLockingUnLockParameterDTO
+                    {
+                        Company_Id = Company_Id,
+                        User_Id = User_Id,
+                        Program_Id = Program_Id,
+                        Table_Name = Table_Name,
+                        Key_Value = Key_Value
+                    };
+                    loLockResult = await loCls.R_UnLock(loUnlockPar);
+                }
+
+                llRtn = loLockResult.IsSuccess;
+                if (loLockResult is { IsSuccess: false, Exception: not null })
+                    throw loLockResult.Exception;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return llRtn;
+        }
+
+        #endregion
+        */
     }
 }

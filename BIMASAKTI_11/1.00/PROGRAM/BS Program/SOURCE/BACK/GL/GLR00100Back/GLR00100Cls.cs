@@ -317,7 +317,7 @@ public class GLR00100Cls
             loConn = loDb.GetConnection("R_ReportConnectionString");
             loCmd = loDb.GetCommand();
 
-            lcQuery = "RSP_GL_REP_ACTIVITY_BY_DATE";
+            lcQuery = "RSP_GL_REP_ACTIVITY_BY_TRANS_CODE";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
@@ -371,7 +371,7 @@ public class GLR00100Cls
     
     public List<GLR00100ResultActivitySubReportDTO> BasedOnTransCodeSubReportDb(GLR00100ParameterDb poParams)
     {
-        using var loActivity = _activitySource.StartActivity(nameof(BasedOnTransCodeReportDb));
+        using var loActivity = _activitySource.StartActivity(nameof(BasedOnTransCodeSubReportDb));
         var loEx = new R_Exception();
         List<GLR00100ResultActivitySubReportDTO> loReturn = null;
         R_Db loDb;
@@ -384,7 +384,7 @@ public class GLR00100Cls
             loConn = loDb.GetConnection("R_ReportConnectionString");
             loCmd = loDb.GetCommand();
 
-            lcQuery = "RSP_GL_REP_ACTIVITY_BY_DATE";
+            lcQuery = "RSP_GL_REP_ACTIVITY_BY_TRANS_CODE";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
@@ -415,6 +415,144 @@ public class GLR00100Cls
                         "@CFROM_DATE" or
                         "@CTO_DATE" or
                         "@CSORT_BY" or
+                        "@CCURRENCY_TYPE" or
+                        "@CLANGUAGE_ID"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
+            var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+            loReturn = R_Utility.R_ConvertTo<GLR00100ResultActivitySubReportDTO>(DataTable).ToList();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        return loReturn;
+    }
+
+    public List<GLR00100ResultActivityReportDTO> BasedOnRefNoReportDb(GLR00100ParameterDb poParams)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(BasedOnRefNoReportDb));
+        var loEx = new R_Exception();
+        List<GLR00100ResultActivityReportDTO> loReturn = null;
+        R_Db loDb;
+        DbConnection loConn;
+        DbCommand loCmd;
+        string lcQuery;
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection("R_ReportConnectionString");
+            loCmd = loDb.GetCommand();
+
+            lcQuery = "RSP_GL_REP_ACTIVITY_BY_REF_NO";
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
+
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParams.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 10, poParams.CUSER_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CREPORT_TYPE", DbType.String, 1, "D");
+            loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 20, poParams.CTRANS_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CFROM_DEPT_CODE", DbType.String, 20, poParams.CFROM_DEPT_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CTO_DEPT_CODE", DbType.String, 20, poParams.CTO_DEPT_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CFROM_REF_NO", DbType.String, 30, poParams.CFROM_REF_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CTO_REF_NO", DbType.String, 30, poParams.CTO_REF_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CPERIOD_TYPE", DbType.String, 1, poParams.CPERIOD_TYPE);
+            loDb.R_AddCommandParameter(loCmd, "@CFROM_DATE", DbType.String, 8, poParams.CFROM_DATE);
+            loDb.R_AddCommandParameter(loCmd, "@CTO_DATE", DbType.String, 8, poParams.CTO_DATE);
+            loDb.R_AddCommandParameter(loCmd, "@CCURRENCY_TYPE", DbType.String, 1, poParams.CCURRENCY_TYPE);
+            loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 2, poParams.CLANGUAGE_ID);
+
+
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
+                        "@CUSER_ID" or
+                        "@CREPORT_TYPE" or
+                        "@CTRANS_CODE" or
+                        "@CFROM_DEPT_CODE" or
+                        "@CTO_DEPT_CODE" or
+                        "@CFROM_REF_NO" or
+                        "@CTO_REF_NO" or
+                        "@CPERIOD_TYPE" or
+                        "@CFROM_DATE" or
+                        "@CTO_DATE" or
+                        "@CCURRENCY_TYPE" or
+                        "@CLANGUAGE_ID"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
+            var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+            loReturn = R_Utility.R_ConvertTo<GLR00100ResultActivityReportDTO>(DataTable).ToList();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        return loReturn;
+    }
+    
+    public List<GLR00100ResultActivitySubReportDTO> BasedOnRefNoSubReportDb(GLR00100ParameterDb poParams)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(BasedOnRefNoSubReportDb));
+        var loEx = new R_Exception();
+        List<GLR00100ResultActivitySubReportDTO> loReturn = null;
+        R_Db loDb;
+        DbConnection loConn;
+        DbCommand loCmd;
+        string lcQuery;
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection("R_ReportConnectionString");
+            loCmd = loDb.GetCommand();
+
+            lcQuery = "RSP_GL_REP_ACTIVITY_BY_REF_NO";
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
+
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParams.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 10, poParams.CUSER_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CREPORT_TYPE", DbType.String, 1, "S");
+            loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 20, poParams.CTRANS_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CFROM_DEPT_CODE", DbType.String, 20, poParams.CFROM_DEPT_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CTO_DEPT_CODE", DbType.String, 20, poParams.CTO_DEPT_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CFROM_REF_NO", DbType.String, 30, poParams.CFROM_REF_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CTO_REF_NO", DbType.String, 30, poParams.CTO_REF_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CPERIOD_TYPE", DbType.String, 1, poParams.CPERIOD_TYPE);
+            loDb.R_AddCommandParameter(loCmd, "@CFROM_DATE", DbType.String, 8, poParams.CFROM_DATE);
+            loDb.R_AddCommandParameter(loCmd, "@CTO_DATE", DbType.String, 8, poParams.CTO_DATE);
+            loDb.R_AddCommandParameter(loCmd, "@CCURRENCY_TYPE", DbType.String, 1, poParams.CCURRENCY_TYPE);
+            loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 2, poParams.CLANGUAGE_ID);
+
+
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
+                        "@CUSER_ID" or
+                        "@CREPORT_TYPE" or
+                        "@CTRANS_CODE" or
+                        "@CFROM_DEPT_CODE" or
+                        "@CTO_DEPT_CODE" or
+                        "@CFROM_REF_NO" or
+                        "@CTO_REF_NO" or
+                        "@CPERIOD_TYPE" or
+                        "@CFROM_DATE" or
+                        "@CTO_DATE" or
                         "@CCURRENCY_TYPE" or
                         "@CLANGUAGE_ID"
                 )

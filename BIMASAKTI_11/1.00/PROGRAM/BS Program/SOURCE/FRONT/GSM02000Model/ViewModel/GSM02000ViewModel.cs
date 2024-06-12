@@ -102,8 +102,8 @@ namespace GSM02000Model.ViewModel
             try
             {
                 var loParams = new GSM02000ActiveInactiveParamsDTO();
-                loParams.CTAX_ID = ActiveInactiveEntity.CTAX_ID;
-                loParams.LACTIVE = ActiveInactiveEntity.LACTIVE;
+                loParams.CTAX_ID = Entity.CTAX_ID;
+                loParams.LACTIVE = !Entity.LACTIVE;
                 await _GSM02000Model.SetActiveInactiveAsync(loParams);
             }
             catch (Exception ex)

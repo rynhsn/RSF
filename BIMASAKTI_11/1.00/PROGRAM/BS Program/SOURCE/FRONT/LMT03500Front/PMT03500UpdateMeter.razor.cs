@@ -85,7 +85,7 @@ public partial class PMT03500UpdateMeter : R_ITabPage
         eventArgs.Parameter = new GSL02200ParameterDTO
         {
             CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
-            LAGREEMENT = true
+            // LAGREEMENT = true
         };
     }
 

@@ -20,6 +20,9 @@
         <Reference Include="BlazorClientHelper">
           <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\menu\BlazorClientHelper.dll</HintPath>
         </Reference>
+        <Reference Include="R_APICommonDTO">
+          <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_APICommonDTO.dll</HintPath>
+        </Reference>
         <Reference Include="R_BlazorFrontEnd">
             <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.dll</HintPath>
         </Reference>
@@ -28,6 +31,9 @@
         </Reference>
         <Reference Include="R_CommonFrontBackAPI">
             <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CommonFrontBackAPI.dll</HintPath>
+        </Reference>
+        <Reference Include="R_LockingFront">
+          <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_LockingFront.dll</HintPath>
         </Reference>
         <Reference Include="R_ProcessAndUploadFront">
           <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_ProcessAndUploadFront.dll</HintPath>

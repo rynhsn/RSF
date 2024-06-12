@@ -7,9 +7,4 @@ namespace PMT03500Common.DTOs
     {
         public List<T> Data { get; set; }
     }
-    
-    public class PMT03500ExcelDTO : R_APIResultBaseDTO
-    {
-        public byte[] FileBytes { get; set; }
-    }
 }

@@ -5,6 +5,7 @@ namespace GLI00100Common.DTOs
         public string CCOMPANY_ID { get; set; }
         public string CLANGUAGE_ID { get; set; }
         public string CUSER_ID { get; set; }
+        public string CREPORT_CULTURE { get; set; }
         public string CGLACCOUNT_NO { get; set; }
         public string CGLACCOUNT_NAME { get; set; }
         public string CYEAR { get; set; }

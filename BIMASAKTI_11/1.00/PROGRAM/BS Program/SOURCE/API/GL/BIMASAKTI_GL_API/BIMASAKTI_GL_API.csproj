@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_GLSERVICES\Lookup_GLSERVICES.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLI00100Service\GLI00100Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLM00500Service\GLM00500Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLR00100Service\GLR00100Service.csproj" />

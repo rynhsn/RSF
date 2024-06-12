@@ -32,6 +32,8 @@
             BaseHeader = new Button();
             GLI00100 = new Button();
             GLR00100_3 = new Button();
+            GLR00100_2 = new Button();
+            GLR00100_1 = new Button();
             SuspendLayout();
             // 
             // BaseHeaderLandscape
@@ -66,19 +68,41 @@
             // 
             // GLR00100_3
             // 
-            GLR00100_3.Location = new Point(12, 41);
+            GLR00100_3.Location = new Point(12, 131);
             GLR00100_3.Name = "GLR00100_3";
             GLR00100_3.Size = new Size(179, 39);
-            GLR00100_3.TabIndex = 4;
+            GLR00100_3.TabIndex = 6;
             GLR00100_3.Text = "GLR00100 - Activity Report (Based On Date)";
             GLR00100_3.UseVisualStyleBackColor = true;
             GLR00100_3.Click += GLR00100_3_Click;
+            // 
+            // GLR00100_2
+            // 
+            GLR00100_2.Location = new Point(12, 86);
+            GLR00100_2.Name = "GLR00100_2";
+            GLR00100_2.Size = new Size(179, 39);
+            GLR00100_2.TabIndex = 5;
+            GLR00100_2.Text = "GLR00100 - Activity Report (Based On Ref No)";
+            GLR00100_2.UseVisualStyleBackColor = true;
+            GLR00100_2.Click += GLR00100_2_Click;
+            // 
+            // GLR00100_1
+            // 
+            GLR00100_1.Location = new Point(12, 41);
+            GLR00100_1.Name = "GLR00100_1";
+            GLR00100_1.Size = new Size(179, 39);
+            GLR00100_1.TabIndex = 4;
+            GLR00100_1.Text = "GLR00100 - Activity Report (Based On Trans Code)";
+            GLR00100_1.UseVisualStyleBackColor = true;
+            GLR00100_1.Click += GLR00100_1_Click;
             // 
             // FormMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(493, 144);
+            ClientSize = new Size(493, 229);
+            Controls.Add(GLR00100_1);
+            Controls.Add(GLR00100_2);
             Controls.Add(GLR00100_3);
             Controls.Add(GLI00100);
             Controls.Add(BaseHeader);
@@ -94,5 +118,7 @@
         private Button BaseHeader;
         private Button GLI00100;
         private Button GLR00100_3;
+        private Button GLR00100_2;
+        private Button GLR00100_1;
     }
 }

@@ -3,6 +3,7 @@ namespace GLR00100Common.DTOs
     public class GLR00100ResultActivityReportDTO
     {
         public string CREF_NO { get; set; }
+        public string CREF_PRD { get; set; }
         public string CREF_DATE { get; set; }
         public string CREF_DATE_DISPLAY { get; set; }
         public string CDEPT_CODE { get; set; }
@@ -36,6 +37,9 @@ namespace GLR00100Common.DTOs
         public string CFROM_PERIOD { get; set; }
         public string CTO_PERIOD { get; set; }
         public string CCURRENCY_TYPE_NAME { get; set; }
+
+        public string CFROM_REF_NO { get; set; }
+        public string CTO_REF_NO { get; set; }
     }
 
     public class GLR00100ResultActivitySubReportDTO

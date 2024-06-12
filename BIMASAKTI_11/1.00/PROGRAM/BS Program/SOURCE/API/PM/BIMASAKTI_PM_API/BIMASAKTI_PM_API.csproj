@@ -69,6 +69,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_LMSERVICES\Lookup_PMSERVICES.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\LMI00500Service\PMI00500Service.csproj" />
 	  <ProjectReference Include="..\..\..\SERVICE\LM\LMT03500Service\PMT03500Service.csproj" />
 	</ItemGroup>
 </Project>

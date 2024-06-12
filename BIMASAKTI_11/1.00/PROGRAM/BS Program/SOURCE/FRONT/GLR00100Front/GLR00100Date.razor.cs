@@ -202,22 +202,25 @@ public partial class GLR00100Date : R_Page
         var loEx = new R_Exception();
         try
         {
-            if(_viewModel.ReportParam.CFROM_DEPT_CODE == null || _viewModel.ReportParam.CFROM_DEPT_CODE.Trim().Length <= 0)
-            {
-                var loMsg = await R_MessageBox.Show("Warning", "Please fill From Department", R_eMessageBoxButtonType.OK);
-                await TextFromDept.FocusAsync();
-                return;
-            }
-            
-            if(_viewModel.ReportParam.CTO_DEPT_CODE == null || _viewModel.ReportParam.CTO_DEPT_CODE.Trim().Length <= 0)
-            {
-                var loMsg = await R_MessageBox.Show("Warning", "Please fill To Department", R_eMessageBoxButtonType.OK);
-                await TextToDept.FocusAsync();
-                return;
-            }
+            // if(_viewModel.ReportParam.CFROM_DEPT_CODE == null || _viewModel.ReportParam.CFROM_DEPT_CODE.Trim().Length <= 0)
+            // {
+            //     var loMsg = await R_MessageBox.Show("Warning", "Please fill From Department", R_eMessageBoxButtonType.OK);
+            //     await TextFromDept.FocusAsync();
+            //     return;
+            // }
+            //
+            // if(_viewModel.ReportParam.CTO_DEPT_CODE == null || _viewModel.ReportParam.CTO_DEPT_CODE.Trim().Length <= 0)
+            // {
+            //     var loMsg = await R_MessageBox.Show("Warning", "Please fill To Department", R_eMessageBoxButtonType.OK);
+            //     await TextToDept.FocusAsync();
+            //     return;
+            // }
             
             var loParam = _viewModel.ReportParam;
+            loParam.CCOMPANY_ID = _clientHelper.CompanyId;
             loParam.CUSER_ID = _clientHelper.UserId;
+            loParam.CLANGUAGE_ID = _clientHelper.Culture.TwoLetterISOLanguageName;
+            loParam.CREPORT_CULTURE = _clientHelper.ReportCulture;
             loParam.CREPORT_TYPE = _localizer["BASED_ON_DATE"];
             if (loParam.CPERIOD_TYPE == "P")
             {
@@ -251,7 +254,7 @@ public partial class GLR00100Date : R_Page
         _viewModel.ChangeByType((string)eventArgs);
     }
     
-    private void CheckDateFrom(object obj)
+    private void CheckPeriodFrom(object obj)
     {
         var lcData = (string)obj;
         if (_viewModel.FromPeriod == null) return;
@@ -261,7 +264,7 @@ public partial class GLR00100Date : R_Page
         }
     }
 
-    private void CheckDateTo(object obj)
+    private void CheckPeriodTo(object obj)
     {
         var lcData = (string)obj;
         if (_viewModel.ToPeriod == null) return;

@@ -1,6 +1,4 @@
 ﻿using System.Diagnostics;
-using GLI00100Common.DTOs;
-using GLI00100Common.DTOs.Print;
 using GLR00100Back;
 using GLR00100Common;
 using GLR00100Common.DTOs;

@@ -1,8 +1,11 @@
-﻿using GSM05000Common;
+﻿using BlazorClientHelper;
+using GSM05000Common;
 using GSM05000Common.DTOs;
 using GSM05000Model.ViewModel;
+using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
+using R_BlazorFrontEnd.Controls.Enums;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.Grid;
 using R_BlazorFrontEnd.Controls.MessageBox;
@@ -10,6 +13,7 @@ using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
+using R_LockingFront;
 
 namespace GSM05000Front;
 
@@ -20,6 +24,7 @@ public partial class GSM05000 : R_Page
     private R_Grid<GSM05000GridDTO> _gridRef = new();
     public bool NumberingDock { get; set; }
     public bool ApprovalDock { get; set; }
+    [Inject] public IClientHelper _clientHelper { get; set; }
 
     protected override async Task R_Init_From_Master(object poParam)
     {
@@ -133,7 +138,6 @@ public partial class GSM05000 : R_Page
 
             if (llIsExistNumbering)
             {
-
                 if (llCondition2 || llCondition3 || llCondition4 || llCondition5)
                 {
                     var llReturn = await R_MessageBox.Show(_localizer["ConfirmLabel"],
@@ -158,7 +162,7 @@ public partial class GSM05000 : R_Page
                     eventArgs.Cancel = true;
                     return;
                 }
-                
+
                 if (llCondition6 || llCondition7 || llCondition8)
                 {
                     var llReturn = await R_MessageBox.Show(_localizer["ConfirmLabel"],
@@ -248,7 +252,7 @@ public partial class GSM05000 : R_Page
         loData.CPREFIX_DELIMITER ??= "";
     }
 
-    private async Task Conductor_ServiceSave(R_ServiceSaveEventArgs eventArgs)  
+    private async Task Conductor_ServiceSave(R_ServiceSaveEventArgs eventArgs)
     {
         var loEx = new R_Exception();
 
@@ -462,4 +466,72 @@ public partial class GSM05000 : R_Page
         NumberingDock = _viewModel.Entity.LDEPT_MODE;
         ApprovalDock = _viewModel.Entity.LAPPROVAL_FLAG;
     }
+
+
+    #region Locking
+
+    private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrl";
+    private const string DEFAULT_MODULE_NAME = "GS";
+
+    protected async override Task<bool> R_LockUnlock(R_LockUnlockEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+        var llRtn = false;
+        R_LockingFrontResult loLockResult;
+
+        try
+        {
+            var loData = (GSM05000DTO)eventArgs.Data;
+
+            var loCls = new R_LockingServiceClient(pcModuleName: DEFAULT_MODULE_NAME,
+                plSendWithContext: true,
+                plSendWithToken: true,
+                pcHttpClientName: DEFAULT_HTTP_NAME);
+
+            var Company_Id = _clientHelper.CompanyId;
+            var User_Id = _clientHelper.UserId;
+            var Program_Id = "GSM05000";
+            var Table_Name = "GSM_TRANSACTION_CODE";
+            var Key_Value = string.Join("|", _clientHelper.CompanyId, loData.CTRANS_CODE);
+
+            if (eventArgs.Mode == R_eLockUnlock.Lock)
+            {
+                var loLockPar = new R_ServiceLockingLockParameterDTO
+                {
+                    Company_Id = Company_Id,
+                    User_Id = User_Id,
+                    Program_Id = Program_Id,
+                    Table_Name = Table_Name,
+                    Key_Value = Key_Value
+                };
+                loLockResult = await loCls.R_Lock(loLockPar);
+            }
+            else
+            {
+                var loUnlockPar = new R_ServiceLockingUnLockParameterDTO
+                {
+                    Company_Id = Company_Id,
+                    User_Id = User_Id,
+                    Program_Id = Program_Id,
+                    Table_Name = Table_Name,
+                    Key_Value = Key_Value
+                };
+                loLockResult = await loCls.R_UnLock(loUnlockPar);
+            }
+
+            llRtn = loLockResult.IsSuccess;
+            if (loLockResult is { IsSuccess: false, Exception: not null })
+                throw loLockResult.Exception;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return llRtn;
+    }
+
+    #endregion
 }

@@ -118,7 +118,7 @@ public class GLI00100PrintController : R_ReportControllerBase
         using var loActivity = _activitySource.StartActivity(nameof(GeneratePrint));
         var loEx = new R_Exception();
         var loRtn = new GLI00100PrintWithBaseHeaderDTO();
-        var loCultureInfo = new CultureInfo(R_BackGlobalVar.REPORT_CULTURE);
+        var loCultureInfo = new CultureInfo(poParam.CREPORT_CULTURE);
 
         try
         {

@@ -1,0 +1,149 @@
+﻿@page "/PMI00500"
+@using R_BlazorFrontEnd.Interfaces
+@using PMI00500FrontResources
+@using PMI00500Common.DTOs
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="1">
+        <R_Label> @_localizer["PROPERTY"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_ComboBox Data="_viewModel.PropertyList"
+                    Value="@_viewModel.CPROPERTY_ID"
+                    ValueField="@nameof(PMI00500PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(PMI00500PropertyDTO.CPROPERTY_NAME)"
+                    ValueChanged="@((string? value) => OnChangeProperty(value))"
+        />
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label> @_localizer["DEPT"]</R_Label>
+    </R_ItemLayout>
+    
+    <R_ItemLayout col="4" Class="pe-2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="_viewModel.CDEPT_CODE" OnLostFocus="OnLostFocusDept" Enabled/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="BeforeLookupDept" R_After_Open_Lookup="AfterLookupDept">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextBox @bind-Value="_viewModel.CDEPT_NAME" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="3">
+        <R_Grid @ref="_gridRefHeader"
+                DataSource="_viewModel.HeaderList"
+                R_ConductorSource="_conductorRefHeader"
+                R_GridType="R_eGridType.Navigator"
+                R_ServiceGetListRecord="GetHeaderListRecord"
+                Pageable
+                PageSize="23"
+                Width="100%"
+                Height="540px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(PMI00500HeaderDTO.CTENANT_ID)" HeaderText="@_localizer["TENANT_ID"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                <R_GridTextColumn FieldName="@nameof(PMI00500HeaderDTO.CTENANT_NAME)" HeaderText="@_localizer["TENANT_NAME"]" TextAlignment="R_eTextAlignment.Left" Width="200px"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+    <R_ItemLayout col="9">
+        <R_StackLayout>
+            <R_ItemLayout>
+                <R_Grid @ref="_gridRefAgreement"
+                        DataSource="_viewModel.AgreementList"
+                        R_ConductorGridSource="_conductorRefAgreement"
+                        R_GridType="R_eGridType.Original"
+                        R_ServiceGetListRecord="GetDTAgreementListRecord"
+                        R_Display="DisplayDTAgreement"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false"
+                        AllowDeleteRow="false"
+                        Pageable
+                        PageSize="5"
+                        Width="100%"
+                        Height="170px">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(PMI00500DTAgreementDTO.CAGREEMENT_NO)" HeaderText="@_localizer["AGREEMENT_NO"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                        <R_GridDatePickerColumn FieldName="@nameof(PMI00500DTAgreementDTO.DSTART_DATE)" HeaderText="@_localizer["START_DATE"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                        <R_GridDatePickerColumn FieldName="@nameof(PMI00500DTAgreementDTO.DEND_DATE)" HeaderText="@_localizer["END_DATE"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMI00500DTAgreementDTO.CUNIT)" HeaderText="@_localizer["UNIT"]" TextAlignment="R_eTextAlignment.Left" Width="50px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMI00500DTAgreementDTO.CBUILDING)" HeaderText="@_localizer["BUILDING"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMI00500DTAgreementDTO.CAGREEMENT_STATUS)" HeaderText="@_localizer["STATUS"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+            
+            <R_ItemLayout>
+                <R_Grid @ref="_gridRefReminder"
+                        DataSource="_viewModel.ReminderList"
+                        R_ConductorGridSource="_conductorRefReminder"
+                        R_GridType="R_eGridType.Original"
+                        R_ServiceGetListRecord="GetDTReminderListRecord"
+                        R_Display="DisplayDTReminder"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false"
+                        AllowDeleteRow="false"
+                        Pageable
+                        PageSize="5"
+                        Width="100%"
+                        Height="170px">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(PMI00500DTReminderDTO.CREMINDER_NO)" HeaderText="@_localizer["REMINDER_NO"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                        <R_GridDatePickerColumn FieldName="@nameof(PMI00500DTReminderDTO.DREMINDER_DATE)" HeaderText="@_localizer["REMINDER_DATE"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMI00500DTReminderDTO.CREMINDER_LEVEL)" HeaderText="@_localizer["REMINDER_LEVEL"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMI00500DTReminderDTO.CSTATUS)" HeaderText="@_localizer["STATUS"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+            
+            <R_ItemLayout>
+                <R_Grid @ref="_gridRefInvoice"
+                        DataSource="_viewModel.InvoiceList"
+                        R_ConductorGridSource="_conductorRefInvoice"
+                        R_GridType="R_eGridType.Original"
+                        R_ServiceGetListRecord="GetDTInvoiceListRecord"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false"
+                        AllowDeleteRow="false"
+                        Pageable
+                        PageSize="5"
+                        Width="100%"
+                        Height="170px">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(PMI00500DTInvoiceDTO.CINVOICE_NO)" HeaderText="@_localizer["INVOICE_NO"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMI00500DTInvoiceDTO.CINVOICE_DESC)" HeaderText="@_localizer["INVOICE_DESC"]" TextAlignment="R_eTextAlignment.Left" Width="200px"/>
+                        <R_GridDatePickerColumn FieldName="@nameof(PMI00500DTInvoiceDTO.DDUE_DATE)" HeaderText="@_localizer["DUE_DATE"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                        <R_GridNumericColumn FieldName="@nameof(PMI00500DTInvoiceDTO.ILATE_DAYS)" HeaderText="@_localizer["LATE_DAYS"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                        <R_GridNumericColumn FieldName="@nameof(PMI00500DTInvoiceDTO.NPENALTY_AMOUNT)" HeaderText="@_localizer["PENALTY_AMT"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorRefHeader"
+             R_ViewModel="_viewModel"
+             R_ServiceGetRecord="GetHeaderRecord"
+             R_IsHeader/>
+
+<R_ConductorGrid @ref="@_conductorRefAgreement"
+             R_ConductorParent="_conductorRefHeader"
+             />
+<R_ConductorGrid @ref="@_conductorRefReminder"
+             R_ConductorParent="_conductorRefHeader"
+             />
+<R_ConductorGrid @ref="@_conductorRefInvoice"
+             R_ConductorParent="_conductorRefHeader"
+             />
+

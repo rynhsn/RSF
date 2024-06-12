@@ -4056,7 +4056,6 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "BaseHeaderResources": "1.0.0",
-          "GLI00100Common": "1.0.0",
           "GLR00100Back": "1.0.0",
           "GLR00100BackResources": "1.0.0",
           "GLR00100Common": "1.0.0"
@@ -4108,6 +4107,57 @@
         },
         "runtime": {
           "bin/placeholder/GLT00200SERVICE.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Lookup_GLBACK/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Lookup_GLBackResources": "1.0.0",
+          "Lookup_GLCOMMON": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Lookup_GLBACK.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GLBACK.dll": {}
+        }
+      },
+      "Lookup_GLBackResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Lookup_GLBackResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GLBackResources.dll": {}
+        }
+      },
+      "Lookup_GLCOMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Lookup_GLCOMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GLCOMMON.dll": {}
+        }
+      },
+      "Lookup_GLSERVICES/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Lookup_GLBACK": "1.0.0",
+          "Lookup_GLCOMMON": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Lookup_GLSERVICES.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GLSERVICES.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -11752,6 +11802,26 @@
       "path": "../../../SERVICE/GL/GLT00200SERVICE/GLT00200SERVICE.csproj",
       "msbuildProject": "../../../SERVICE/GL/GLT00200SERVICE/GLT00200SERVICE.csproj"
     },
+    "Lookup_GLBACK/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GLBACK/Lookup_GLBACK.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GLBACK/Lookup_GLBACK.csproj"
+    },
+    "Lookup_GLBackResources/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GLBackResources/Lookup_GLBackResources.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GLBackResources/Lookup_GLBackResources.csproj"
+    },
+    "Lookup_GLCOMMON/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GLCOMMON/Lookup_GLCOMMON.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GLCOMMON/Lookup_GLCOMMON.csproj"
+    },
+    "Lookup_GLSERVICES/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/SERVICES/Lookup_GLSERVICES/Lookup_GLSERVICES.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/SERVICES/Lookup_GLSERVICES/Lookup_GLSERVICES.csproj"
+    },
     "RSP_GL_BUDGET_UPLOADResources/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GL/GL_SPR/RSP_GL_BUDGET_UPLOADResources/RSP_GL_BUDGET_UPLOADResources.csproj",
@@ -11809,6 +11879,7 @@
       "GLM00500Service >= 1.0.0",
       "GLR00100Service >= 1.0.0",
       "GLT00200SERVICE >= 1.0.0",
+      "Lookup_GLSERVICES >= 1.0.0",
       "Realta.BackCollectionNuGet >= 1.0.1",
       "Realta.CommonCollectionNuGet >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.2.3"
@@ -11859,6 +11930,9 @@
             },
             "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLT00200SERVICE\\GLT00200SERVICE.csproj": {
               "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLT00200SERVICE\\GLT00200SERVICE.csproj"
+            },
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GLSERVICES\\Lookup_GLSERVICES.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GLSERVICES\\Lookup_GLSERVICES.csproj"
             }
           }
         }

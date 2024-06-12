@@ -19,14 +19,20 @@
   &lt;Assembly Path="D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\SYSTEM\SOURCE\LIBRARY\Front\R_APIClient.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FCBB00200_002FCBB00200FrontResources_002FCBB00200FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FCB_002FCBB00200_002FCBB00200FrontResources_002FCBB00200FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGLI00100_002FGLI00100FrontResources_002FGLI00100FrontResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGLM00500_002FGLM00500FrontResources_002FGLM00500FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGL_002FGLI00100_002FGLI00100FrontResources_002FGLI00100FrontResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGL_002FGLM00500_002FGLM00500FrontResources_002FGLM00500FrontResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGL_002FGLR00100_002FGLR00100FrontResources_002FGLR00100FrontResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGSM05000_002FGSM05000FrontResources_002FGSM05000FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLMT03500_002FLMT03500FrontResources_002FLMT03500FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLookup_002FGL_002FLookup_005FGLFrontResources_002FLookup_005FGLFrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLookup_002FGL_002FLookup_005FGLFrontResources_002FLookup_005FGLFrontResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLookup_002FGS_002FLookup_005FGSFrontResources_002FLookup_005FGSFrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLookup_002FLookup_005FGSFrontResources_002FLookup_005FGSFrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FPMT03500_002FPMT03500FrontResources_002FPMT03500FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FPM_002FPMB00300_002FPMB00300FrontResources_002FPMB00300FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FPM_002FPMI00500_002FPMI00500FrontResources_002FPMI00500FrontResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	
 	
 	
@@ -38,7 +44,8 @@
 	
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/ShowComments/@EntryValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/ShowComments/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/ShowOnlyStringResources/@EntryValue">False</s:Boolean>
 	
 	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=12aae2aa_002D3b3f_002D4a75_002D8c20_002Df418c67fa3d1_0023LMM01500Front/@EntryIndexedValue">True</s:Boolean>
 	

@@ -10,7 +10,7 @@ using R_CommonFrontBackAPI;
 
 namespace GSM05000Model.ViewModel;
 
-public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
+public class GSM05000NumberingViewModel : R_ViewModel<GSM05000NumberingGridDTO>
 {
     private GSM05000NumberingModel _GSM05000NumberingModel = new();
     public ObservableCollection<GSM05000NumberingGridDTO> GridList = new();
@@ -77,14 +77,6 @@ public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
         var loEx = new R_Exception();
         try
         {
-            if (eCRUDMode.AddMode == peCrudMode)
-            {
-                var loPeriod = GeneratePeriod(poNewEntity);
-                poNewEntity.CTRANSACTION_CODE = HeaderEntity.CTRANS_CODE;
-                poNewEntity.CCYEAR = loPeriod.CCYEAR;
-                poNewEntity.CPERIOD_NO = loPeriod.CPERIOD_NO;
-            }
-
             Entity = await _GSM05000NumberingModel.R_ServiceSaveAsync(poNewEntity, peCrudMode);
         }
         catch (Exception ex)
@@ -141,28 +133,44 @@ public class GSM05000NumberingViewModel : R_ViewModel<GSM05000GridDTO>
     public GSM05000NumberingGridDTO GeneratePeriod(GSM05000NumberingGridDTO poParam)
     {
         var lnYear = DateTime.Now.Year;
-
         var lnPeriod = 1;
 
-        if (GridList.Count != 0)
+        if (HeaderEntity.CPERIOD_MODE != "N")
         {
-            if (HeaderEntity.CPERIOD_MODE == "Y")
+            if (GridList.Count > 0)
             {
                 var loLastYear = Convert.ToInt32(GridList.OrderByDescending(x => x.CCYEAR).FirstOrDefault().CCYEAR);
-                lnYear = loLastYear + 1;
+                if (HeaderEntity.CPERIOD_MODE == "Y")
+                {
+                    lnYear = loLastYear + 1;
+                }
+                else if (HeaderEntity.CPERIOD_MODE == "P")
+                {
+                    var lnLastPeriod = GridList.OrderByDescending(x => x.CCYEAR).ThenByDescending(x => x.CPERIOD_NO)
+                        .FirstOrDefault();
+                    lnPeriod = int.Parse(lnLastPeriod.CPERIOD_NO) < 12
+                        ? Convert.ToInt32(lnLastPeriod.CPERIOD_NO) + 1
+                        : 1;
+                    lnYear = loLastYear;
+                }
             }
-            var lnLastPeriod = GridList.OrderByDescending(x => x.CPERIOD_NO).FirstOrDefault();
-            lnPeriod = Convert.ToInt32(lnLastPeriod.CPERIOD_NO) + 1;
+
+            // poParam.CCYEAR = HeaderEntity.CYEAR_FORMAT == "1" ? lnYear.ToString("D2") : lnYear.ToString("D4");
+
+            // poParam.CCYEAR = HeaderEntity.CYEAR_FORMAT == "1" ? lnYear.ToString().Substring(2, 2) : lnYear.ToString();
+
+            poParam.CCYEAR = lnYear.ToString();
+            poParam.CPERIOD_NO = lnPeriod.ToString("D2");
+            poParam.CPERIOD = HeaderEntity.CPERIOD_MODE == "P"
+                ? poParam.CCYEAR + "-" + poParam.CPERIOD_NO
+                : poParam.CCYEAR;
         }
-
-        // poParam.CCYEAR = HeaderEntity.CYEAR_FORMAT == "1" ? lnYear.ToString("D2") : lnYear.ToString("D4");
-
-        poParam.CCYEAR = HeaderEntity.CYEAR_FORMAT == "1" ? lnYear.ToString().Substring(2, 2) : lnYear.ToString();
-        
-
-        poParam.CPERIOD_NO = lnPeriod.ToString("D2");
-
-        poParam.CPERIOD = HeaderEntity.CPERIOD_MODE == "P" ? poParam.CCYEAR + "-" + poParam.CPERIOD_NO : poParam.CCYEAR;
+        else
+        {
+            poParam.CCYEAR = "";
+            poParam.CPERIOD_NO = "";
+            poParam.CPERIOD = "";
+        }
 
         return poParam;
     }

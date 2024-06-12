@@ -114,6 +114,29 @@ namespace GLR00100Front
             loEx.ThrowExceptionIfErrors();
         }
 
+        private async Task<bool> HasTransCode()
+        {
+            var loEx = new R_Exception();
+            var loReturn = true;
+            try
+            {
+                if (_viewModel.ReportParam.CTRANS_CODE == null ||
+                    _viewModel.ReportParam.CTRANS_CODE.Trim().Length <= 0)
+                {
+                    var leMsg = await R_MessageBox.Show("Warning", "Please choose Transaction Code",
+                        R_eMessageBoxButtonType.OK);
+                    await ComboTransCode.FocusAsync();
+                    loReturn = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
+            return loReturn;
+        }
 
         private async Task OnLostFocusLookupToDept()
         {
@@ -201,31 +224,62 @@ namespace GLR00100Front
             loEx.ThrowExceptionIfErrors();
         }
 
+
+        private void OnChangeByType(object eventArgs)
+        {
+            _viewModel.ChangeByType((string)eventArgs);
+        }
+
+        private void CheckPeriodFrom(object obj)
+        {
+            var lcData = (string)obj;
+            if (_viewModel.FromPeriod == null) return;
+            if (int.Parse(lcData) > int.Parse(_viewModel.ToPeriod))
+            {
+                _viewModel.ToPeriod = lcData;
+            }
+        }
+
+        private void CheckPeriodTo(object obj)
+        {
+            var lcData = (string)obj;
+            if (_viewModel.ToPeriod == null) return;
+            if (int.Parse(lcData) < int.Parse(_viewModel.FromPeriod))
+            {
+                _viewModel.FromPeriod = lcData;
+            }
+        }
+        
         private async Task OnClickPrint()
         {
             var loEx = new R_Exception();
             try
             {
-                if (_viewModel.ReportParam.CFROM_DEPT_CODE == null ||
-                    _viewModel.ReportParam.CFROM_DEPT_CODE.Trim().Length <= 0)
-                {
-                    var loMsg = await R_MessageBox.Show("Warning", "Please fill From Department",
-                        R_eMessageBoxButtonType.OK);
-                    await TextFromDept.FocusAsync();
-                    return;
-                }
+                // if (_viewModel.ReportParam.CFROM_DEPT_CODE == null ||
+                //     _viewModel.ReportParam.CFROM_DEPT_CODE.Trim().Length <= 0)
+                // {
+                //     var loMsg = await R_MessageBox.Show("Warning", "Please fill From Department",
+                //         R_eMessageBoxButtonType.OK);
+                //     await TextFromDept.FocusAsync();
+                //     return;
+                // }
+                //
+                // if (_viewModel.ReportParam.CTO_DEPT_CODE == null ||
+                //     _viewModel.ReportParam.CTO_DEPT_CODE.Trim().Length <= 0)
+                // {
+                //     var loMsg = await R_MessageBox.Show("Warning", "Please fill To Department",
+                //         R_eMessageBoxButtonType.OK);
+                //     await TextToDept.FocusAsync();
+                //     return;
+                // }
 
-                if (_viewModel.ReportParam.CTO_DEPT_CODE == null ||
-                    _viewModel.ReportParam.CTO_DEPT_CODE.Trim().Length <= 0)
-                {
-                    var loMsg = await R_MessageBox.Show("Warning", "Please fill To Department",
-                        R_eMessageBoxButtonType.OK);
-                    await TextToDept.FocusAsync();
-                    return;
-                }
+                if (!await HasTransCode()) return;
 
                 var loParam = _viewModel.ReportParam;
+                loParam.CCOMPANY_ID = _clientHelper.CompanyId;
                 loParam.CUSER_ID = _clientHelper.UserId;
+                loParam.CLANGUAGE_ID = _clientHelper.Culture.TwoLetterISOLanguageName;
+                loParam.CREPORT_CULTURE = _clientHelper.ReportCulture;
                 loParam.CREPORT_TYPE = _localizer["BASED_ON_TRANS_CODE"];
                 if (loParam.CPERIOD_TYPE == "P")
                 {
@@ -252,31 +306,6 @@ namespace GLR00100Front
             }
 
             loEx.ThrowExceptionIfErrors();
-        }
-
-        private void OnChangeByType(object eventArgs)
-        {
-            _viewModel.ChangeByType((string)eventArgs);
-        }
-
-        private void CheckDateFrom(object obj)
-        {
-            var lcData = (string)obj;
-            if (_viewModel.FromPeriod == null) return;
-            if (int.Parse(lcData) > int.Parse(_viewModel.ToPeriod))
-            {
-                _viewModel.ToPeriod = lcData;
-            }
-        }
-
-        private void CheckDateTo(object obj)
-        {
-            var lcData = (string)obj;
-            if (_viewModel.ToPeriod == null) return;
-            if (int.Parse(lcData) < int.Parse(_viewModel.FromPeriod))
-            {
-                _viewModel.FromPeriod = lcData;
-            }
         }
 
         private void InstanceRefNoTab(R_InstantiateDockEventArgs eventArgs)

@@ -28,6 +28,7 @@ public partial class GLI00100PrintAccountStatusPopup : R_Page
             _parameter.CCOMPANY_ID = _clientHelper.CompanyId;
             _parameter.CUSER_ID = _clientHelper.UserId;
             _parameter.CLANGUAGE_ID = _clientHelper.CultureUI.TwoLetterISOLanguageName;
+            _parameter.CREPORT_CULTURE = _clientHelper.ReportCulture;
             _parameter.CGLACCOUNT_NO = loParam.CGLACCOUNT_NO;
             _parameter.CGLACCOUNT_NAME = loParam.CGLACCOUNT_NAME;
             _parameter.CYEAR = loParam.CYEAR;

@@ -23,7 +23,7 @@ public partial class GLR00100RefNo
     private R_ComboBox<GLR00100TransCodeDTO, string> ComboTransCode { get; set; }
     private R_TextBox TextFromDept { get; set; }
     private R_TextBox TextToDept { get; set; }
-    
+
     private R_TextBox TextFromRef { get; set; }
     private R_TextBox TextToRef { get; set; }
 
@@ -96,8 +96,19 @@ public partial class GLR00100RefNo
 
     private void BeforeLookupFromDept(R_BeforeOpenLookupEventArgs eventArgs)
     {
-        eventArgs.TargetPageType = typeof(GSL00700);
-        eventArgs.Parameter = new GSL00700ParameterDTO();
+        var loEx = new R_Exception();
+
+        try
+        {
+            eventArgs.TargetPageType = typeof(GSL00700);
+            eventArgs.Parameter = new GSL00700ParameterDTO();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        R_DisplayException(loEx);
     }
 
     private void AfterLookupFromDept(R_AfterOpenLookupEventArgs eventArgs)
@@ -167,8 +178,18 @@ public partial class GLR00100RefNo
 
     private void BeforeLookupToDept(R_BeforeOpenLookupEventArgs eventArgs)
     {
-        eventArgs.TargetPageType = typeof(GSL00700);
-        eventArgs.Parameter = new GSL00700ParameterDTO();
+        var loEx = new R_Exception();
+        try
+        {
+            eventArgs.TargetPageType = typeof(GSL00700);
+            eventArgs.Parameter = new GSL00700ParameterDTO();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        R_DisplayException(loEx);
     }
 
     private void AfterLookupToDept(R_AfterOpenLookupEventArgs eventArgs)
@@ -191,6 +212,29 @@ public partial class GLR00100RefNo
         loEx.ThrowExceptionIfErrors();
     }
 
+    private async Task<bool> HasTransCode()
+    {
+        var loEx = new R_Exception();
+        var loReturn = true;
+        try
+        {
+            if (_viewModel.ReportParam.CTRANS_CODE == null ||
+                _viewModel.ReportParam.CTRANS_CODE.Trim().Length <= 0)
+            {
+                var leMsg = await R_MessageBox.Show("Warning", "Please choose Transaction Code",
+                    R_eMessageBoxButtonType.OK);
+                await ComboTransCode.FocusAsync();
+                loReturn = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        R_DisplayException(loEx);
+        return loReturn;
+    }
 
     private async Task OnLostFocusLookupFromRef()
     {
@@ -199,26 +243,21 @@ public partial class GLR00100RefNo
         var loLookupViewModel = new LookupGLL00110ViewModel();
         try
         {
+            if (!await HasTransCode()) return;
+            
             if (_viewModel.ReportParam.CFROM_REF_NO == null ||
                 _viewModel.ReportParam.CFROM_REF_NO.Trim().Length <= 0) return;
 
-            var fromDate = DateTime.Now.ToString("yyyyMMdd");
-            var toDate = DateTime.Now.ToString("yyyyMMdd");
-
-            if (_viewModel.ReportParam.CPERIOD_TYPE == "P")
-            {
-                fromDate = _viewModel.YearPeriod + _viewModel.FromPeriod;
-                toDate = _viewModel.YearPeriod + _viewModel.ToPeriod;
-            }
-            else
-            {
-                fromDate = _viewModel.DateFrom?.ToString("yyyyMMdd");
-                toDate = _viewModel.DateTo?.ToString("yyyyMMdd");
-            }
-
+            var fromDate = (_viewModel.ReportParam.CPERIOD_TYPE == "P")
+                ? _viewModel.YearPeriod + _viewModel.FromPeriod
+                : _viewModel.DateFrom?.ToString("yyyyMMdd");
+            var toDate = (_viewModel.ReportParam.CPERIOD_TYPE == "P")
+                ? _viewModel.YearPeriod + _viewModel.ToPeriod
+                : _viewModel.DateTo?.ToString("yyyyMMdd");
 
             var param = new GLL00110ParameterGetRecordDTO
             {
+                CTRANS_CODE = _viewModel.ReportParam.CTRANS_CODE,
                 CFROM_DEPT_CODE = _viewModel.ReportParam.CFROM_DEPT_CODE,
                 CTO_DEPT_CODE = _viewModel.ReportParam.CTO_DEPT_CODE,
                 CFROM_DATE = fromDate,
@@ -250,30 +289,39 @@ public partial class GLR00100RefNo
         R_DisplayException(loEx);
     }
 
-    private void BeforeLookupFromRef(R_BeforeOpenLookupEventArgs eventArgs)
+    private async Task BeforeLookupFromRef(R_BeforeOpenLookupEventArgs eventArgs)
     {
-        var fromDate = DateTime.Now.ToString("yyyyMMdd");
-        var toDate = DateTime.Now.ToString("yyyyMMdd");
-        if (_viewModel.ReportParam.CPERIOD_TYPE == "P")
+        var loEx = new R_Exception();
+
+        try
         {
-            fromDate = _viewModel.YearPeriod + _viewModel.FromPeriod;
-            toDate = _viewModel.YearPeriod + _viewModel.ToPeriod;
+            if (!await HasTransCode()) return;
+            
+            var fromDate = (_viewModel.ReportParam.CPERIOD_TYPE == "P")
+                ? _viewModel.YearPeriod + _viewModel.FromPeriod
+                : _viewModel.DateFrom?.ToString("yyyyMMdd");
+            var toDate = (_viewModel.ReportParam.CPERIOD_TYPE == "P")
+                ? _viewModel.YearPeriod + _viewModel.ToPeriod
+                : _viewModel.DateTo?.ToString("yyyyMMdd");
+
+            eventArgs.Parameter = new GLL00110ParameterDTO
+            {
+                CTRANS_CODE = _viewModel.ReportParam.CTRANS_CODE,
+                CFROM_DEPT_CODE = _viewModel.ReportParam.CFROM_DEPT_CODE,
+                CTO_DEPT_CODE = _viewModel.ReportParam.CTO_DEPT_CODE,
+                CFROM_DATE = fromDate,
+                CTO_DATE = toDate,
+            };
+
+            eventArgs.TargetPageType = typeof(GLL00110);
         }
-        else
+        catch (Exception ex)
         {
-            fromDate = _viewModel.DateFrom?.ToString("yyyyMMdd");
-            toDate = _viewModel.DateTo?.ToString("yyyyMMdd");
+            loEx.Add(ex);
         }
 
-        eventArgs.Parameter = new GLL00110ParameterDTO
-        {
-            CFROM_DEPT_CODE = _viewModel.ReportParam.CFROM_DEPT_CODE,
-            CTO_DEPT_CODE = _viewModel.ReportParam.CTO_DEPT_CODE,
-            CFROM_DATE = fromDate,
-            CTO_DATE = toDate,
-        };
-
-        eventArgs.TargetPageType = typeof(GLL00110);
+        EndBlock:
+        R_DisplayException(loEx);
     }
 
     private void AfterLookupFromRef(R_AfterOpenLookupEventArgs eventArgs)
@@ -302,26 +350,21 @@ public partial class GLR00100RefNo
         var loLookupViewModel = new LookupGLL00110ViewModel();
         try
         {
+            if (!await HasTransCode()) return;
+            
             if (_viewModel.ReportParam.CTO_REF_NO == null ||
                 _viewModel.ReportParam.CTO_REF_NO.Trim().Length <= 0) return;
 
-            var fromDate = DateTime.Now.ToString("yyyyMMdd");
-            var toDate = DateTime.Now.ToString("yyyyMMdd");
-
-            if (_viewModel.ReportParam.CPERIOD_TYPE == "P")
-            {
-                fromDate = _viewModel.YearPeriod + _viewModel.FromPeriod;
-                toDate = _viewModel.YearPeriod + _viewModel.ToPeriod;
-            }
-            else
-            {
-                fromDate = _viewModel.DateFrom?.ToString("yyyyMMdd");
-                toDate = _viewModel.DateTo?.ToString("yyyyMMdd");
-            }
-
+            var fromDate = (_viewModel.ReportParam.CPERIOD_TYPE == "P")
+                ? _viewModel.YearPeriod + _viewModel.FromPeriod
+                : _viewModel.DateFrom?.ToString("yyyyMMdd");
+            var toDate = (_viewModel.ReportParam.CPERIOD_TYPE == "P")
+                ? _viewModel.YearPeriod + _viewModel.ToPeriod
+                : _viewModel.DateTo?.ToString("yyyyMMdd");
 
             var param = new GLL00110ParameterGetRecordDTO
             {
+                CTRANS_CODE = _viewModel.ReportParam.CTRANS_CODE,
                 CFROM_DEPT_CODE = _viewModel.ReportParam.CFROM_DEPT_CODE,
                 CTO_DEPT_CODE = _viewModel.ReportParam.CTO_DEPT_CODE,
                 CFROM_DATE = fromDate,
@@ -353,30 +396,38 @@ public partial class GLR00100RefNo
         R_DisplayException(loEx);
     }
 
-    private void BeforeLookupToRef(R_BeforeOpenLookupEventArgs eventArgs)
+    private async Task BeforeLookupToRef(R_BeforeOpenLookupEventArgs eventArgs)
     {
-        var fromDate = DateTime.Now.ToString("yyyyMMdd");
-        var toDate = DateTime.Now.ToString("yyyyMMdd");
-        if (_viewModel.ReportParam.CPERIOD_TYPE == "P")
+        var loEx = new R_Exception();
+        try
         {
-            fromDate = _viewModel.YearPeriod + _viewModel.FromPeriod;
-            toDate = _viewModel.YearPeriod + _viewModel.ToPeriod;
+            if (!await HasTransCode()) return;
+            
+            var fromDate = (_viewModel.ReportParam.CPERIOD_TYPE == "P")
+                ? _viewModel.YearPeriod + _viewModel.FromPeriod
+                : _viewModel.DateFrom?.ToString("yyyyMMdd");
+            var toDate = (_viewModel.ReportParam.CPERIOD_TYPE == "P")
+                ? _viewModel.YearPeriod + _viewModel.ToPeriod
+                : _viewModel.DateTo?.ToString("yyyyMMdd");
+
+            eventArgs.Parameter = new GLL00110ParameterDTO
+            {
+                CTRANS_CODE = _viewModel.ReportParam.CTRANS_CODE,
+                CFROM_DEPT_CODE = _viewModel.ReportParam.CFROM_DEPT_CODE,
+                CTO_DEPT_CODE = _viewModel.ReportParam.CTO_DEPT_CODE,
+                CFROM_DATE = fromDate,
+                CTO_DATE = toDate,
+            };
+
+            eventArgs.TargetPageType = typeof(GLL00110);
         }
-        else
+        catch (Exception ex)
         {
-            fromDate = _viewModel.DateFrom?.ToString("yyyyMMdd");
-            toDate = _viewModel.DateTo?.ToString("yyyyMMdd");
+            loEx.Add(ex);
         }
 
-        eventArgs.Parameter = new GLL00110ParameterDTO
-        {
-            CFROM_DEPT_CODE = _viewModel.ReportParam.CFROM_DEPT_CODE,
-            CTO_DEPT_CODE = _viewModel.ReportParam.CTO_DEPT_CODE,
-            CFROM_DATE = fromDate,
-            CTO_DATE = toDate,
-        };
-
-        eventArgs.TargetPageType = typeof(GLL00110);
+        EndBlock:
+        R_DisplayException(loEx);
     }
 
     private void AfterLookupToRef(R_AfterOpenLookupEventArgs eventArgs)
@@ -388,7 +439,7 @@ public partial class GLR00100RefNo
             if (loTempResult == null)
                 return;
 
-            _viewModel.ReportParam.CFROM_REF_NO = loTempResult.CREF_NO;
+            _viewModel.ReportParam.CTO_REF_NO = loTempResult.CREF_NO;
         }
         catch (Exception ex)
         {
@@ -405,6 +456,8 @@ public partial class GLR00100RefNo
         try
         {
             await _viewModel.GetPeriodDTList(eventArgs.ToString());
+
+            ResetRefNo();
         }
         catch (Exception ex)
         {
@@ -414,49 +467,91 @@ public partial class GLR00100RefNo
         loEx.ThrowExceptionIfErrors();
     }
 
+    private void CheckPeriodFrom(object obj)
+    {
+        var lcData = (string)obj;
+        if (_viewModel.FromPeriod == null) return;
+        if (int.Parse(lcData) > int.Parse(_viewModel.ToPeriod))
+        {
+            _viewModel.ToPeriod = lcData;
+        }
+
+        ResetRefNo();
+    }
+
+    private void CheckPeriodTo(object obj)
+    {
+        var lcData = (string)obj;
+        if (_viewModel.ToPeriod == null) return;
+        if (int.Parse(lcData) < int.Parse(_viewModel.FromPeriod))
+        {
+            _viewModel.FromPeriod = lcData;
+        }
+
+        ResetRefNo();
+    }
+
+    private void ResetRefNo()
+    {
+        _viewModel.ReportParam.CFROM_REF_NO = "";
+        _viewModel.ReportParam.CTO_REF_NO = "";
+    }
+
+    private void OnChangeByType(object eventArgs)
+    {
+        _viewModel.ChangeByType((string)eventArgs);
+        ResetRefNo();
+    }
+
     private async Task OnClickPrint()
     {
         var loEx = new R_Exception();
         try
         {
-            if (_viewModel.ReportParam.CFROM_DEPT_CODE == null ||
-                _viewModel.ReportParam.CFROM_DEPT_CODE.Trim().Length <= 0)
-            {
-                var loMsg = await R_MessageBox.Show("Warning", "Please fill From Department",
-                    R_eMessageBoxButtonType.OK);
-                await TextFromDept.FocusAsync();
-                return;
-            }
-
-            if (_viewModel.ReportParam.CTO_DEPT_CODE == null ||
-                _viewModel.ReportParam.CTO_DEPT_CODE.Trim().Length <= 0)
-            {
-                var loMsg = await R_MessageBox.Show("Warning", "Please fill To Department",
-                    R_eMessageBoxButtonType.OK);
-                await TextToDept.FocusAsync();
-                return;
-            }
+            // if (_viewModel.ReportParam.CFROM_DEPT_CODE == null ||
+            //     _viewModel.ReportParam.CFROM_DEPT_CODE.Trim().Length <= 0)
+            // {
+            //     var loMsg = await R_MessageBox.Show("Warning", "Please fill From Department",
+            //         R_eMessageBoxButtonType.OK);
+            //     await TextFromDept.FocusAsync();
+            //     return;
+            // }
+            //
+            // if (_viewModel.ReportParam.CTO_DEPT_CODE == null ||
+            //     _viewModel.ReportParam.CTO_DEPT_CODE.Trim().Length <= 0)
+            // {
+            //     var loMsg = await R_MessageBox.Show("Warning", "Please fill To Department",
+            //         R_eMessageBoxButtonType.OK);
+            //     await TextToDept.FocusAsync();
+            //     return;
+            // }
+            //
+            // if (_viewModel.ReportParam.CFROM_REF_NO == null ||
+            //     _viewModel.ReportParam.CFROM_REF_NO.Trim().Length <= 0)
+            // {
+            //     var loMsg = await R_MessageBox.Show("Warning", "Please fill From Reference No.",
+            //         R_eMessageBoxButtonType.OK);
+            //     await TextFromRef.FocusAsync();
+            //     return;
+            // }
+            //
+            // if (_viewModel.ReportParam.CTO_REF_NO == null ||
+            //     _viewModel.ReportParam.CTO_REF_NO.Trim().Length <= 0)
+            // {
+            //     var loMsg = await R_MessageBox.Show("Warning", "Please fill To Reference No.",
+            //         R_eMessageBoxButtonType.OK);
+            //     await TextToRef.FocusAsync();
+            //     return;
+            // }
             
-            if (_viewModel.ReportParam.CFROM_REF_NO == null ||
-                _viewModel.ReportParam.CFROM_REF_NO.Trim().Length <= 0)
-            {
-                var loMsg = await R_MessageBox.Show("Warning", "Please fill From Reference No.",
-                    R_eMessageBoxButtonType.OK);
-                await TextFromRef.FocusAsync();
-                return;
-            }
-
-            if (_viewModel.ReportParam.CTO_REF_NO == null ||
-                _viewModel.ReportParam.CTO_REF_NO.Trim().Length <= 0)
-            {
-                var loMsg = await R_MessageBox.Show("Warning", "Please fill To Reference No.",
-                    R_eMessageBoxButtonType.OK);
-                await TextToRef.FocusAsync();
-                return;
-            }
+            
+            if (!await HasTransCode()) return;
 
             var loParam = _viewModel.ReportParam;
+            loParam.CCOMPANY_ID = _clientHelper.CompanyId;
             loParam.CUSER_ID = _clientHelper.UserId;
+            loParam.CLANGUAGE_ID = _clientHelper.Culture.TwoLetterISOLanguageName;
+            loParam.CREPORT_CULTURE = _clientHelper.ReportCulture;
             loParam.CREPORT_TYPE = _localizer["BASED_ON_REF_NO"];
             if (loParam.CPERIOD_TYPE == "P")
             {
@@ -483,30 +578,5 @@ public partial class GLR00100RefNo
         }
 
         loEx.ThrowExceptionIfErrors();
-    }
-
-    private void OnChangeByType(object eventArgs)
-    {
-        _viewModel.ChangeByType((string)eventArgs);
-    }
-
-    private void CheckDateFrom(object obj)
-    {
-        var lcData = (string)obj;
-        if (_viewModel.FromPeriod == null) return;
-        if (int.Parse(lcData) > int.Parse(_viewModel.ToPeriod))
-        {
-            _viewModel.ToPeriod = lcData;
-        }
-    }
-
-    private void CheckDateTo(object obj)
-    {
-        var lcData = (string)obj;
-        if (_viewModel.ToPeriod == null) return;
-        if (int.Parse(lcData) < int.Parse(_viewModel.FromPeriod))
-        {
-            _viewModel.FromPeriod = lcData;
-        }
     }
 }

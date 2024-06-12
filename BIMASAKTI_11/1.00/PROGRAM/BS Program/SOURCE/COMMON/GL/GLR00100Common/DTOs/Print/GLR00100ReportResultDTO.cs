@@ -27,25 +27,16 @@ namespace GLR00100Common.DTOs.Print
         public string CFROM_PERIOD { get; set; }
         public string CTO_PERIOD { get; set; }
         public string CREPORT_BASED_ON { get; set; }
-        
-        // public string CFROM_PERIOD_DISPLAY { get; set; }
-        // public string CTO_PERIOD_DISPLAY { get; set; }
-        
-
         public string CTRANS_CODE { get; set; }
         public string CTRANSACTION_NAME { get; set; }
         public string CFROM_REF_NO { get; set; }
         public string CTO_REF_NO { get; set; }
         public string CCURRENCY_TYPE { get; set; }
         public string CCURRENCY_TYPE_NAME { get; set; }
-    }
-
-    public class GLR00100ReportBasedOnDateDTO
-    {
-        public string CREF_DATE { get; set; }
-        public List<GLR00100ReportBasedOnDateSubDTO> DETAIL { get; set; }
-        public decimal NTOTAL_DEBIT { get; set; }
-        public decimal NTOTAL_CREDIT { get; set; }
+        
+        public string CSORT_BY { get; set; }
+        public bool LTOTAL_BY_REF_NO { get; set; }
+        public bool LTOTAL_BY_DEPT { get; set; }
     }
 
     public class GLR00100ReportBasedOnDateSubDTO
@@ -54,15 +45,7 @@ namespace GLR00100Common.DTOs.Print
         public List<GLR00100ResultActivityReportDTO> SUBDETAIL { get; set; }
     }
 
-    public class GLR00100SubReportBasedOnDateDTO
-    {
-        public string CCURRENCY_TYPE_NAME { get; set; }
-        public static List<GLR00100ResultActivitySubReportDTO> DETAIL { get; set; }
-        public decimal NGRAND_TOTAL_DEBIT { get; set; } = DETAIL.Sum(x => x.NTOTAL_DEBIT);
-        public decimal NGRAND_TOTAL_CREDIT { get; set; } = DETAIL.Sum(x => x.NTOTAL_CREDIT);
-    }
-
-    public class GLR00100ReportWithBaseHeaderBasedOnDateDTO : BaseHeaderReportCOMMON.BaseHeaderResult
+    public class GLR00100ReportWithBaseHeaderDTO : BaseHeaderReportCOMMON.BaseHeaderResult
     {
         public GLR00100ReportResultDTO Data { get; set; }
     }
