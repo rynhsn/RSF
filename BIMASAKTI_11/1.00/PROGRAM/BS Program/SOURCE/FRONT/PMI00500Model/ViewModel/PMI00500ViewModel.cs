@@ -25,11 +25,6 @@ namespace PMI00500Model.ViewModel
 
         public List<PMI00500PropertyDTO> PropertyList = new List<PMI00500PropertyDTO>();
 
-        public PMI00500HeaderDTO Header = new PMI00500HeaderDTO();
-        public PMI00500DTAgreementDTO Agreement = new PMI00500DTAgreementDTO();
-        public PMI00500DTReminderDTO Reminder = new PMI00500DTReminderDTO();
-        public PMI00500DTInvoiceDTO Invoice = new PMI00500DTInvoiceDTO();
-
         #region Parameter
 
         public string CPROPERTY_ID { get; set; } = "";

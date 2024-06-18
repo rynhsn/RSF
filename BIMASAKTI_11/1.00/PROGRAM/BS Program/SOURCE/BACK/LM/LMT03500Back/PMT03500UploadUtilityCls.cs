@@ -150,6 +150,7 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
             }
 
             lcQuery = $"RSP_PM_UPLOAD_UTILITY_USAGE_{lcUtility}";
+            
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 

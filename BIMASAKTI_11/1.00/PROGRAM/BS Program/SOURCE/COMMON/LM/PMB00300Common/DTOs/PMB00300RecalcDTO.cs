@@ -1,8 +1,9 @@
 using System;
+using R_APICommonDTO;
 
 namespace PMB00300Common.DTOs
 {
-    public class PMB00300RecalcDTO
+    public class PMB00300RecalcDTO : R_APIResultBaseDTO
     {
         // public string CCOMPANY_ID { get; set; } = "";
         public string CPROPERTY_ID { get; set; } = "";
@@ -35,8 +36,10 @@ namespace PMB00300Common.DTOs
         public string CUNIT_ID { get; set; } = "";
         public string CUNIT_NAME { get; set; } = "";
         public string CHO_PLAN_DATE { get; set; } = "";
+        public DateTime? DHO_PLAN_DATE { get; set; }
 
         public string CHO_ACTUAL_DATE { get; set; } = "";
+        public DateTime? DHO_ACTUAL_DATE { get; set; }
 
         // public string CSTART_DATE { get; set; } = "";
         // public string CEND_DATE { get; set; } = "";

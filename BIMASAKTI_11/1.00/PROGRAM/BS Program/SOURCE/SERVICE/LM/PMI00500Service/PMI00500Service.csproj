@@ -11,9 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\BACK\LM\LMI00500Back\PMI00500Back.csproj" />
         <ProjectReference Include="..\..\..\BACK\LM\PMI00500Back\PMI00500Back.csproj" />
-        <ProjectReference Include="..\..\..\COMMON\LM\LMI00500Common\PMI00500Common.csproj" />
         <ProjectReference Include="..\..\..\COMMON\LM\PMI00500Common\PMI00500Common.csproj" />
     </ItemGroup>
 

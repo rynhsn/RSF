@@ -189,3 +189,17 @@
         </R_StackLayout>
     </R_ItemLayout>
 </R_StackLayout>
+
+
+<R_ConductorGrid @ref="@_conductorRefDept"
+                 R_IsHeader="true"/>
+
+<R_ConductorGrid @ref="@_conductorRefUser"
+                 R_IsHeader="true"
+                 R_SetOther="SetOtherUser"
+                 @* R_AfterDelete="@AfterDeleteApprover" *@/>
+
+<R_ConductorGrid @ref="@_conductorRefReplacement"
+                 @* R_ViewModel="@_viewModelReplacement" *@
+                 R_ConductorParent="@_conductorRefUser"
+                 R_SetOther="SetOtherReplacement"/>

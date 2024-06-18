@@ -29,4 +29,10 @@
         </Reference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\COMMON\LM\PMB00300Common\PMB00300Common.csproj" />
+      <ProjectReference Include="..\PMB00300FrontResources\PMB00300FrontResources.csproj" />
+      <ProjectReference Include="..\PMB00300Model\PMB00300Model.csproj" />
+    </ItemGroup>
+
 </Project>

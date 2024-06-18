@@ -6,21 +6,19 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "PMI00500Front/1.0.0": {
+      "PMB00300Front/1.0.0": {
         "dependencies": {
-          "Lookup_GSFRONT": "1.0.0",
-          "Lookup_GSModel": "1.0.0",
           "Microsoft.AspNetCore.Components.Web": "6.0.15",
-          "PMI00500Common": "1.0.0",
-          "PMI00500FrontResources": "1.0.0",
-          "PMI00500Model": "1.0.0",
+          "PMB00300Common": "1.0.0",
+          "PMB00300FrontResources": "1.0.0",
+          "PMB00300Model": "1.0.0",
           "BlazorClientHelper": "1.0.0.0",
           "R_BlazorFrontEnd.Controls": "1.0.0.0",
           "R_BlazorFrontEnd": "1.0.0.0",
           "R_CommonFrontBackAPI": "1.0.0.0"
         },
         "runtime": {
-          "PMI00500Front.dll": {}
+          "PMB00300Front.dll": {}
         }
       },
       "Microsoft.AspNetCore.Authorization/6.0.15": {
@@ -151,50 +149,22 @@
         }
       },
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
-      "Lookup_GSCOMMON/1.0.0": {
+      "PMB00300Common/1.0.0": {
         "runtime": {
-          "Lookup_GSCOMMON.dll": {}
+          "PMB00300Common.dll": {}
         }
       },
-      "Lookup_GSFRONT/1.0.0": {
+      "PMB00300FrontResources/1.0.0": {
+        "runtime": {
+          "PMB00300FrontResources.dll": {}
+        }
+      },
+      "PMB00300Model/1.0.0": {
         "dependencies": {
-          "Lookup_GSModel": "1.0.0",
-          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+          "PMB00300Common": "1.0.0"
         },
         "runtime": {
-          "Lookup_GSFRONT.dll": {}
-        }
-      },
-      "Lookup_GSFrontResources/1.0.0": {
-        "runtime": {
-          "Lookup_GSFrontResources.dll": {}
-        }
-      },
-      "Lookup_GSModel/1.0.0": {
-        "dependencies": {
-          "Lookup_GSCOMMON": "1.0.0",
-          "Lookup_GSFrontResources": "1.0.0"
-        },
-        "runtime": {
-          "Lookup_GSModel.dll": {}
-        }
-      },
-      "PMI00500Common/1.0.0": {
-        "runtime": {
-          "PMI00500Common.dll": {}
-        }
-      },
-      "PMI00500FrontResources/1.0.0": {
-        "runtime": {
-          "PMI00500FrontResources.dll": {}
-        }
-      },
-      "PMI00500Model/1.0.0": {
-        "dependencies": {
-          "PMI00500Common": "1.0.0"
-        },
-        "runtime": {
-          "PMI00500Model.dll": {}
+          "PMB00300Model.dll": {}
         }
       },
       "BlazorClientHelper/1.0.0.0": {
@@ -234,6 +204,14 @@
           }
         }
       },
+      "R_APICommonDTO/1.0.0.0": {
+        "runtime": {
+          "R_APICommonDTO.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "R_BusinessObjectFront/1.0.0.0": {
         "runtime": {
           "R_BusinessObjectFront.dll": {
@@ -245,14 +223,6 @@
       "R_APIClient/1.0.0.0": {
         "runtime": {
           "R_APIClient.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "R_APICommonDTO/1.0.0.0": {
-        "runtime": {
-          "R_APICommonDTO.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -285,7 +255,7 @@
     }
   },
   "libraries": {
-    "PMI00500Front/1.0.0": {
+    "PMB00300Front/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -388,37 +358,17 @@
       "path": "system.runtime.compilerservices.unsafe/6.0.0",
       "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
     },
-    "Lookup_GSCOMMON/1.0.0": {
+    "PMB00300Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Lookup_GSFRONT/1.0.0": {
+    "PMB00300FrontResources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Lookup_GSFrontResources/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Lookup_GSModel/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "PMI00500Common/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "PMI00500FrontResources/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "PMI00500Model/1.0.0": {
+    "PMB00300Model/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -443,17 +393,17 @@
       "serviceable": false,
       "sha512": ""
     },
+    "R_APICommonDTO/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "R_BusinessObjectFront/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
     "R_APIClient/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "R_APICommonDTO/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

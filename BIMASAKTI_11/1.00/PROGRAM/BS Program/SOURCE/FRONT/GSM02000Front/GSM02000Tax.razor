@@ -62,3 +62,38 @@
                          R_SetOther="SetOther"/>
     </R_ItemLayout>
 </R_StackLayout>
+
+<R_ItemLayout col="9" Class="pe-3">
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.GridList"
+                Pageable
+                PageSize="24"
+                R_ConductorGridSource="@_conductorRef"
+                R_GridType="R_eGridType.Original"
+                R_ServiceGetListRecord="@GetList"
+                AllowEditRow
+                AllowAddNewRow
+                AllowDeleteRow
+                Width="100%"
+                Height="595px"
+                R_ServiceGetRecord="@GetRecord"
+                R_AfterAdd="@AfterAdd"
+                R_Validation="@Validation"
+                R_Saving="Saving"
+                R_ServiceSave="Save"
+                R_BeforeDelete="BeforeDelete"
+                R_ServiceDelete="Delete">
+            <R_GridColumns>
+                <R_GridDatePickerColumn FieldName="@nameof(GSM02000TaxDTO.DTAX_DATE)" HeaderText="@_localizer["LABEL_TAXDATE"]" R_EnableAdd Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridNumericColumn FieldName="@nameof(GSM02000TaxDTO.NTAX_PERCENTAGE)" HeaderText="@_localizer["LABEL_TAXPCT"]" Min="0" Max="100" R_EnableAdd R_EnableEdit Width="100px" TextAlignment="R_eTextAlignment.Right"/>
+                <R_GridTextColumn FieldName="@nameof(GSM02000TaxDTO.CUPDATE_BY)" HeaderText="@_localizer["LABEL_UPDATEDBY"]" Width="130px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GSM02000TaxDTO.DUPDATE_DATE)" HeaderText="@_localizer["LABEL_UPDATEDDATE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(GSM02000TaxDTO.CCREATE_BY)" HeaderText="@_localizer["LABEL_CREATEDBY"]" Width="130px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GSM02000TaxDTO.DCREATE_DATE)" HeaderText="@_localizer["LABEL_CREATEDDATE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+
+        <R_ConductorGrid @ref="@_conductorRef"
+                         R_IsHeader
+                         R_SetOther="SetOther"/>

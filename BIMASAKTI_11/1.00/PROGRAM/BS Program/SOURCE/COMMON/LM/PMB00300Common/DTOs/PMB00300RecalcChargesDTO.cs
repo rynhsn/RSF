@@ -10,7 +10,9 @@ namespace PMB00300Common.DTOs
         public string CCHARGES_ID { get; set; } = "";
         public string CCHARGES_NAME { get; set; } = "";
         public string CSTART_DATE { get; set; } = "";
+        public DateTime? DSTART_DATE { get; set; }
         public string CEND_DATE { get; set; } = "";
+        public DateTime? DEND_DATE { get; set; }
         public int IINTERVAL { get; set; }
         public string CPERIOD_MODE { get; set; } = "";
         public string CPERIOD_MODE_DESCRIPTION { get; set; } = "";

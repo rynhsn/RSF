@@ -150,7 +150,7 @@ public class PMB00300Controller : ControllerBase, IPMB00300
             loDbParams.CREF_NO = R_Utility.R_GetStreamingContext<string>(PMB00300ContextConstant.CREF_NO);
             loDbParams.CBUILDING_ID = R_Utility.R_GetStreamingContext<string>(PMB00300ContextConstant.CBUILDING_ID);
             loDbParams.CFLOOR_ID = R_Utility.R_GetStreamingContext<string>(PMB00300ContextConstant.CFLOOR_ID);
-            loDbParams.CUNIT_ID = R_Utility.R_GetStreamingContext<string>(PMB00300ContextConstant.CUNIT_ID);
+            loDbParams.CUNIT_ID = R_Utility.R_GetStreamingContext<string>(PMB00300ContextConstant.CUNIT_ID);    
 
             _logger.LogInfo("Get RecalcRule List Stream");
             loResult = loCls.GetRecalcRuleList(loDbParams);
@@ -175,7 +175,8 @@ public class PMB00300Controller : ControllerBase, IPMB00300
         var loEx = new R_Exception();
         var loCls = new PMB00300Cls();
         var loDbParams = new PMB00300ParameterDb();
-        PMB00300SingleDTO<bool> loReturn = new PMB00300SingleDTO<bool>();
+        // var loReturn = new PMB00300RecalcDTO();
+        var loReturn = new PMB00300SingleDTO<bool>();
 
 
         try
@@ -183,17 +184,17 @@ public class PMB00300Controller : ControllerBase, IPMB00300
             _logger.LogInfo("Set Parameter");
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbParams.CLANG_ID = R_BackGlobalVar.CULTURE;
-            loDbParams.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(PMB00300ContextConstant.CPROPERTY_ID);
-            loDbParams.CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(PMB00300ContextConstant.CDEPT_CODE);
-            loDbParams.CTRANS_CODE = R_Utility.R_GetStreamingContext<string>(PMB00300ContextConstant.CTRANS_CODE);
-            loDbParams.CREF_NO = R_Utility.R_GetStreamingContext<string>(PMB00300ContextConstant.CREF_NO);
-            loDbParams.CBUILDING_ID = R_Utility.R_GetStreamingContext<string>(PMB00300ContextConstant.CBUILDING_ID);
-            loDbParams.CUNIT_ID = R_Utility.R_GetStreamingContext<string>(PMB00300ContextConstant.CUNIT_ID);
-            loDbParams.CFLOOR_ID = R_Utility.R_GetStreamingContext<string>(PMB00300ContextConstant.CFLOOR_ID);
-            loDbParams.NACTUAL_AREA_SIZE = R_Utility.R_GetStreamingContext<decimal>(PMB00300ContextConstant.NACTUAL_AREA_SIZE);
+            loDbParams.CPROPERTY_ID = poEntity.CPROPERTY_ID;
+            loDbParams.CDEPT_CODE = poEntity.CDEPT_CODE;
+            loDbParams.CTRANS_CODE = poEntity.CTRANS_CODE;
+            loDbParams.CREF_NO = poEntity.CREF_NO;
+            loDbParams.CBUILDING_ID = poEntity.CBUILDING_ID;
+            loDbParams.CUNIT_ID = poEntity.CUNIT_ID;
+            loDbParams.CFLOOR_ID = poEntity.CFLOOR_ID;
+            loDbParams.NACTUAL_AREA_SIZE = poEntity.NACTUAL_AREA_SIZE;
 
             _logger.LogInfo("RecalcBillingRuleProcess");
-            loCls.GetRecalcRuleList(loDbParams);
+            loCls.RecalcBillingRuleProcess(loDbParams);
             
             loReturn.Data = true;
         }

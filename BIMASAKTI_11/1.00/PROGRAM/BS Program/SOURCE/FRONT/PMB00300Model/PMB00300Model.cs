@@ -104,6 +104,59 @@ namespace PMB00300Model
 
             return loResult;
         }
+
+        public async Task<T> GetAsync<T, T1>(string pcNameOf, T1 poParameter) where T : R_APIResultBaseDTO
+        {
+            var loEx = new R_Exception();
+            var loResult = default(T);
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<T, T1>(
+                    _RequestServiceEndPoint,
+                    pcNameOf,
+                    poParameter,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+        
+        
+        public async Task<PMB00300SingleDTO<bool>> PMB00300RecalcBillingRuleProcessModel(PMB00300RecalcProcessParam poEntity)
+        {
+            var loEx = new R_Exception();
+            PMB00300SingleDTO<bool> loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<PMB00300SingleDTO<bool>, PMB00300RecalcProcessParam>(
+                    _RequestServiceEndPoint,
+                    nameof(IPMB00300.PMB00300RecalcBillingRuleProcess),
+                    poEntity,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
     }
 
 }
