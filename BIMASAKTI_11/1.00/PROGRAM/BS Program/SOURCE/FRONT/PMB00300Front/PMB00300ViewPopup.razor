@@ -27,7 +27,7 @@
                 <R_Label FontStyle="R_eFontStyle.Bold">@_viewModel.Header.CDEPT_NAME</R_Label>
             </R_ItemLayout>
             <R_ItemLayout>
-                <R_Label FontStyle="R_eFontStyle.Bold">LOI Ref No : @_viewModel.Header.CREF_NO</R_Label>
+                <R_Label FontStyle="R_eFontStyle.Bold">@_localizer["LOI_REF_NO"] : @_viewModel.Header.CREF_NO</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
     </R_ItemLayout>
@@ -39,7 +39,7 @@
             <R_ItemLayout col="5">
                 <R_StackLayout Row>
                     <R_ItemLayout col="6">
-                        <R_Label>Gross Size</R_Label>
+                        <R_Label>@_localizer["GROSS_SIZE"] Size</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="5">
                         <R_NumericTextBox Value="@_viewModel.Header.NGROSS_AREA_SIZE" Arrows="false" TextAlignment="R_eTextAlignment.Right" Enabled="false"/>
@@ -47,7 +47,7 @@
                 </R_StackLayout>
                 <R_StackLayout Row>
                     <R_ItemLayout col="6">
-                        <R_Label>Net Size</R_Label>
+                        <R_Label>@_localizer["NET_SIZE"] Size</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="5">
                         <R_NumericTextBox Value="@_viewModel.Header.NNET_AREA_SIZE" Arrows="false" TextAlignment="R_eTextAlignment.Right" Enabled="false"/>
@@ -55,7 +55,7 @@
                 </R_StackLayout>
                 <R_StackLayout Row>
                     <R_ItemLayout col="6">
-                        <R_Label>Actual Size</R_Label>
+                        <R_Label>@_localizer["ACTUAL_SIZE"] Size</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="5">
                         <R_NumericTextBox Value="@_viewModel.Header.NACTUAL_AREA_SIZE" Arrows="false" TextAlignment="R_eTextAlignment.Right" Enabled/>
@@ -66,7 +66,7 @@
                 <R_GroupBox ShowBorder Title="Hand Over" Class="p-1">
                     <R_StackLayout Row>
                         <R_ItemLayout col="5">
-                            <R_Label>Plan Date</R_Label>
+                            <R_Label>@_localizer["PLAN_DATE"] Date</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout>
                             <R_DateInput Value="@_viewModel.Header.DHO_PLAN_DATE" Enabled="false"/>
@@ -74,7 +74,7 @@
                     </R_StackLayout>
                     <R_StackLayout Row>
                         <R_ItemLayout col="5">
-                            <R_Label>Actual Date</R_Label>
+                            <R_Label>@_localizer["ACTUAL_DATE"] Date</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout>
                             <R_DateInput Value="@_viewModel.Header.DHO_ACTUAL_DATE" Enabled="false"/>
@@ -87,7 +87,7 @@
     <R_ItemLayout>
         <R_StackLayout Row>
             <R_ItemLayout col="3">
-                <R_Label>Tenure</R_Label>
+                <R_Label>@_localizer["TENURE"]</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="5">
                 <R_StackLayout Row>
@@ -95,7 +95,7 @@
                         <R_NumericTextBox Value="@_viewModel.Header.IYEARS" Arrows="false" Decimals="0" Enabled="false"/>
                     </R_ItemLayout>
                     <R_ItemLayout>
-                        <R_Label>Year</R_Label>
+                        <R_Label>@_localizer["YEAR"]</R_Label>
                     </R_ItemLayout>
                 </R_StackLayout>
                 <R_StackLayout Row>
@@ -103,7 +103,7 @@
                         <R_NumericTextBox Value="@_viewModel.Header.IMONTHS" Arrows="false" Decimals="0" Enabled="false"/>
                     </R_ItemLayout>
                     <R_ItemLayout>
-                        <R_Label>Month</R_Label>
+                        <R_Label>@_localizer["MONTH"]</R_Label>
                     </R_ItemLayout>
                 </R_StackLayout>
                 <R_StackLayout Row>
@@ -111,7 +111,7 @@
                         <R_NumericTextBox Value="@_viewModel.Header.IDAYS" Arrows="false" Decimals="0" Enabled="false"/>
                     </R_ItemLayout>
                     <R_ItemLayout>
-                        <R_Label>Day</R_Label>
+                        <R_Label>@_localizer["DAY"]</R_Label>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>
@@ -134,20 +134,20 @@
                 Width="1300px"
                 Height="160px">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcChargesDTO.CSEQ_NO)" HeaderText="Seq No" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
-                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcChargesDTO.CCHARGES_TYPE_NAME)" HeaderText="Charges Type" TextAlignment="R_eTextAlignment.Left" Width="200px"/>
-                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcChargesDTO.CCHARGES_NAME)" HeaderText="Charges" TextAlignment="R_eTextAlignment.Left" Width="200px"/>
-                <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcChargesDTO.DSTART_DATE)" HeaderText="Start Date" Width="200px"/>
-                <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcChargesDTO.DEND_DATE)" HeaderText="End Date" Width="200px"/>
-                <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcChargesDTO.IINTERVAL)" HeaderText="Interval" Width="100px"/>
-                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcChargesDTO.CPERIOD_MODE_DESCRIPTION)" HeaderText="Period Mode" TextAlignment="R_eTextAlignment.Left" Width="200px"/>
-                <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcChargesDTO.NBASE_AMOUNT)" HeaderText="Base Rent" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcChargesDTO.NMONTHLY_AMOUNT)" HeaderText="Monthly Amount" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcChargesDTO.NTOTAL_AMOUNT)" HeaderText="Total Amount" Width="150px"/>
-                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcChargesDTO.CUPDATE_BY)" HeaderText="Updated By" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
-                <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcChargesDTO.DUPDATE_DATE)" HeaderText="Updated Date" Width="200px"/>
-                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcChargesDTO.CCREATE_BY)" HeaderText="Created By" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
-                <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcChargesDTO.DCREATE_DATE)" HeaderText="Created Date" Width="200px"/>
+                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcChargesDTO.CSEQ_NO)" HeaderText="@_localizer["SEQ_NO"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcChargesDTO.CCHARGES_TYPE_NAME)" HeaderText="@_localizer["CHARGES_TYPE"]" TextAlignment="R_eTextAlignment.Left" Width="200px"/>
+                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcChargesDTO.CCHARGES_NAME)" HeaderText="@_localizer["CHARGES"]" TextAlignment="R_eTextAlignment.Left" Width="200px"/>
+                <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcChargesDTO.DSTART_DATE)" HeaderText="@_localizer["START_DATE"]" Width="200px"/>
+                <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcChargesDTO.DEND_DATE)" HeaderText="@_localizer["END_DATE"]" Width="200px"/>
+                <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcChargesDTO.IINTERVAL)" HeaderText="@_localizer["INTERVAL"]" Width="100px"/>
+                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcChargesDTO.CPERIOD_MODE_DESCRIPTION)" HeaderText="@_localizer["PERIOD_MODE"]" TextAlignment="R_eTextAlignment.Left" Width="200px"/>
+                <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcChargesDTO.NBASE_AMOUNT)" HeaderText="@_localizer["BASE_RENT"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcChargesDTO.NMONTHLY_AMOUNT)" HeaderText="@_localizer["MONTHLY_AMOUNT"]" Width="150px"/>
+                <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcChargesDTO.NTOTAL_AMOUNT)" HeaderText="@_localizer["TOTAL_AMOUNT"]" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcChargesDTO.CUPDATE_BY)" HeaderText="@_localizer["UPDATED_BY"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
+                <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcChargesDTO.DUPDATE_DATE)" HeaderText="@_localizer["UPDATED_DATE"]" Width="200px"/>
+                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcChargesDTO.CCREATE_BY)" HeaderText="@_localizer["CREATED_BY"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
+                <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcChargesDTO.DCREATE_DATE)" HeaderText="@_localizer["CREATED_DATE"]" Width="200px"/>
             </R_GridColumns>
         </R_Grid>
     </R_ItemLayout>
@@ -169,23 +169,23 @@
                 Width="1300px"
                 Height="190px">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcRuleDTO.CSEQ_NO)" HeaderText="Seq No" Width="100px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcRuleDTO.DSTART_DATE)" HeaderText="Start Date" Width="200px"/>
-                <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcRuleDTO.DEND_DATE)" HeaderText="End Date" Width="200px"/>
-                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcRuleDTO.CPERIOD)" HeaderText="Period" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridMultiHeaderColumn HeaderText="Before">
-                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NAMOUNT_BEFORE)" HeaderText="Amount" Width="200px"/>
-                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NTAX_AMOUNT_BEFORE)" HeaderText="Tax Amount" Width="200px"/>
-                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NAFTER_TAX_AMOUNT_BEFORE)" HeaderText="After Tax Amount" Width="200px"/>
-                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NBOOKING_AMOUNT_BEFORE)" HeaderText="Booking Amount" Width="200px"/>
-                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NTOTAL_AMOUNT_BEFORE)" HeaderText="Total Amount" Width="200px"/>
+                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcRuleDTO.CSEQ_NO)" HeaderText="@_localizer["SEQ_NO"]" Width="100px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcRuleDTO.DSTART_DATE)" HeaderText="@_localizer["START_DATE"]" Width="200px"/>
+                <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcRuleDTO.DEND_DATE)" HeaderText="@_localizer["END_DATE"]" Width="200px"/>
+                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcRuleDTO.CPERIOD)" HeaderText="@_localizer["PERIOD"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridMultiHeaderColumn HeaderText="@_localizer["BEFORE"]">
+                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NAMOUNT_BEFORE)" HeaderText="@_localizer["AMOUNT"]" Width="200px"/>
+                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NTAX_AMOUNT_BEFORE)" HeaderText="@_localizer["TAX_AMOUNT"]" Width="200px"/>
+                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NAFTER_TAX_AMOUNT_BEFORE)" HeaderText="@_localizer["AFTER_TAX_AMOUNT"]" Width="200px"/>
+                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NBOOKING_AMOUNT_BEFORE)" HeaderText="@_localizer["BOOKING_AMOUNT"]" Width="200px"/>
+                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NTOTAL_AMOUNT_BEFORE)" HeaderText="@_localizer["TOTAL_AMOUNT"]" Width="200px"/>
                 </R_GridMultiHeaderColumn>
-                <R_GridMultiHeaderColumn HeaderText="After">
-                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NAMOUNT_AFTER)" HeaderText="Amount" Width="200px"/>
-                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NTAX_AMOUNT_AFTER)" HeaderText="Tax Amount" Width="200px"/>
-                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NAFTER_TAX_AMOUNT_AFTER)" HeaderText="After Tax Amount" Width="200px"/>
-                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NBOOKING_AMOUNT_AFTER)" HeaderText="Booking Amount" Width="200px"/>
-                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NTOTAL_AMOUNT_AFTER)" HeaderText="Total Amount" Width="200px"/>
+                <R_GridMultiHeaderColumn HeaderText="@_localizer["AFTER"]">
+                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NAMOUNT_AFTER)" HeaderText="@_localizer["AMOUNT"]" Width="200px"/>
+                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NTAX_AMOUNT_AFTER)" HeaderText="@_localizer["TAX_AMOUNT"]" Width="200px"/>
+                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NAFTER_TAX_AMOUNT_AFTER)" HeaderText="@_localizer["AFTER_TAX_AMOUNT"]" Width="200px"/>
+                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NBOOKING_AMOUNT_AFTER)" HeaderText="@_localizer["BOOKING_AMOUNT"]" Width="200px"/>
+                    <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcRuleDTO.NTOTAL_AMOUNT_AFTER)" HeaderText="@_localizer["TOTAL_AMOUNT"]" Width="200px"/>
                 </R_GridMultiHeaderColumn>
             </R_GridColumns>
         </R_Grid>
@@ -194,7 +194,7 @@
 
 <R_StackLayout>
     <R_ItemLayout>
-        <R_Button OnClick="OnClickProcess">Process</R_Button>
+        <R_Button OnClick="OnClickProcess">@_localizer["PROCESS"]</R_Button>
     </R_ItemLayout>
 </R_StackLayout>
 

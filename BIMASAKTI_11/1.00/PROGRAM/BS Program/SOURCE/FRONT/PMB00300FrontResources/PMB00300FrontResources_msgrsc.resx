@@ -19,6 +19,186 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="PROPERTY" xml:space="preserve">
-        <value>Property</value><comment>Property</comment>
+        <value>Property</value>
+        <comment>Property</comment>
     </data>
+    <data name="BUILDING_NAME" xml:space="preserve">
+        <value>Building Name</value>
+        <comment>Building Name</comment>
+    </data>
+    <data name="FLOOR" xml:space="preserve">
+        <value>Floor</value>
+        <comment>Floor</comment>
+    </data>
+    <data name="UNIT_ID" xml:space="preserve">
+        <value>Unit Id</value>
+        <comment>Unit Id</comment>
+    </data>
+    <data name="TENANT" xml:space="preserve">
+        <value>Tenant</value>
+        <comment>Tenant</comment>
+    </data>
+    <data name="DEPARTMENT" xml:space="preserve">
+        <value>Department</value>
+        <comment>Department</comment>
+    </data>
+    <data name="LOI_REF_NO" xml:space="preserve">
+        <value>LOI Ref No</value>
+        <comment>LOI Ref No</comment>
+    </data>
+    <data name="HO_DATE" xml:space="preserve">
+        <value>HO Date</value>
+        <comment>HO Date</comment>
+    </data>
+    <data name="GROSS_WIDTH" xml:space="preserve">
+        <value>Gross Width</value>
+        <comment>Gross Width</comment>
+    </data>
+    <data name="NET_WIDTH" xml:space="preserve">
+        <value>Net Width</value>
+        <comment>Net Width</comment>
+    </data>
+    <data name="ACTUAL_WIDTH" xml:space="preserve">
+        <value>Actual Width</value>
+        <comment>Actual Width</comment>
+    </data>
+    <data name="UPDATED_BY" xml:space="preserve">
+        <value>Updated By</value>
+        <comment>Updated By</comment>
+    </data>
+    <data name="UPDATED_DATE" xml:space="preserve">
+        <value>Updated Date</value>
+        <comment>Updated Date</comment>
+    </data>
+    <data name="CREATED_BY" xml:space="preserve">
+        <value>Created By</value>
+        <comment>Created By</comment>
+    </data>
+    <data name="CREATED_DATE" xml:space="preserve">
+        <value>Created Date</value>
+        <comment>Created Date</comment>
+    </data>
+    <data name="VIEW" xml:space="preserve">
+        <value>View</value>
+        <comment>View</comment>
+    </data>
+    <data name="MSG" xml:space="preserve">
+        <value>Massage</value>
+        <comment>Massage</comment>
+    </data>
+    <data name="NO_DATA_FOUND" xml:space="preserve">
+        <value>No Data Found!</value>
+        <comment>No Data Found!</comment>
+    </data>
+
+    
+    <data name="GROSS_SIZE" xml:space="preserve">
+        <value>Gross Size</value>
+        <comment>Gross Size</comment>
+    </data>
+    <data name="NET_SIZE" xml:space="preserve">
+        <value>Net Size</value>
+        <comment>Net Size</comment>
+    </data>
+    <data name="ACTUAL_SIZE" xml:space="preserve">
+        <value>Actual Size</value>
+        <comment>Actual Size</comment>
+    </data>
+    <data name="PLAN_DATE" xml:space="preserve">
+        <value>Plan Date</value>
+        <comment>Plan Date</comment>
+    </data>
+    <data name="ACTUAL_DATE" xml:space="preserve">
+        <value>Actual Date</value>
+        <comment>Actual Date</comment>
+    </data>
+    <data name="TENURE" xml:space="preserve">
+        <value>Tenure</value>
+        <comment>Tenure</comment>
+    </data>
+    <data name="YEAR" xml:space="preserve">
+        <value>Year</value>
+        <comment>Year</comment>
+    </data>
+    <data name="MONTH" xml:space="preserve">
+        <value>Month</value>
+        <comment>Month</comment>
+    </data>
+    <data name="DAY" xml:space="preserve">
+        <value>Day</value>
+        <comment>Day</comment>
+    </data>
+    <data name="SEQ_NO" xml:space="preserve">
+        <value>Seq No</value>
+        <comment>Seq No</comment>
+    </data>
+    <data name="CHARGES_TYPE" xml:space="preserve">
+        <value>Charges Type</value>
+        <comment>Charges Type</comment>
+    </data>
+    <data name="CHARGES" xml:space="preserve">
+        <value>Charges</value>
+        <comment>Charges</comment>
+    </data>
+    <data name="START_DATE" xml:space="preserve">
+        <value>Start Date</value>
+        <comment>Start Date</comment>
+    </data>
+    <data name="END_DATE" xml:space="preserve">
+        <value>End Date</value>
+        <comment>End Date</comment>
+    </data>
+    <data name="INTERVAL" xml:space="preserve">
+        <value>Interval</value>
+        <comment>Interval</comment>
+    </data>
+    <data name="PERIOD_MODE" xml:space="preserve">
+        <value>Period Mode</value>
+        <comment>Period Mode</comment>
+    </data>
+    <data name="BASE_RENT" xml:space="preserve">
+        <value>Base Rent</value>
+        <comment>Base Rent</comment>
+    </data>
+    <data name="MONTHLY_AMOUNT" xml:space="preserve">
+        <value>Monthly Amount</value>
+        <comment>Monthly Amount</comment>
+    </data>
+    <data name="TOTAL_AMOUNT" xml:space="preserve">
+        <value>Total Amount</value>
+        <comment>Total Amount</comment>
+    </data>
+    <data name="PERIOD" xml:space="preserve">
+        <value>Period</value>
+        <comment>Period</comment>
+    </data>
+    <data name="BEFORE" xml:space="preserve">
+        <value>Before</value>
+        <comment>Before</comment>
+    </data>
+    <data name="AMOUNT" xml:space="preserve">
+        <value>Amount</value>
+        <comment>Amount</comment>
+    </data>
+    <data name="TAX_AMOUNT" xml:space="preserve">
+        <value>Tax Amount</value>
+        <comment>Tax Amount</comment>
+    </data>
+    <data name="AFTER_TAX_AMOUNT" xml:space="preserve">
+        <value>After Tax Amount</value>
+        <comment>After Tax Amount</comment>
+    </data>
+    <data name="BOOKING_AMOUNT" xml:space="preserve">
+        <value>Booking Amount</value>
+        <comment>Booking Amount</comment>
+    </data>
+    <data name="AFTER" xml:space="preserve">
+        <value>After</value>
+        <comment>After</comment>
+    </data>
+    <data name="PROCESS" xml:space="preserve">
+        <value>Process</value>
+        <comment>Process</comment>
+    </data>
+    ```
 </root>

@@ -54,7 +54,7 @@ public partial class PMB00300
             eventArgs.ListEntityResult = _viewModel.GridList;
             if (_viewModel.GridList.Count <= 0)
             {
-                var leMsg = R_MessageBox.Show("Message", "No data found!");
+                var leMsg = R_MessageBox.Show(_localizer["MSG"], @_localizer["NO_DATA_FOUND"]);
                 return;
             }
         }
