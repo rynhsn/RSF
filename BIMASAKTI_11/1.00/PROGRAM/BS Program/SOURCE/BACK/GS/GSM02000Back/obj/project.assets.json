@@ -179,6 +179,7 @@
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
+        "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
         "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

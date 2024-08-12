@@ -6,8 +6,8 @@ namespace Lookup_PMCOMMON.DTOs
 {
     public class LML00700DTO
     {
-        public string CDISCOUNT_CODE { get; set; }
-        public string CDISCOUNT_NAME { get; set; }
-        public string CDISCOUNT_TYPE { get; set; }
+        public string? CDISCOUNT_CODE { get; set; }
+        public string? CDISCOUNT_NAME { get; set; }
+        public string? CDISCOUNT_TYPE { get; set; }
     }
 }

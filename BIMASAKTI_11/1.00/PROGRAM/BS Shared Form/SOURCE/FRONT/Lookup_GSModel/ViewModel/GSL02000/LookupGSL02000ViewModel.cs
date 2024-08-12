@@ -48,7 +48,6 @@ namespace Lookup_GSModel.ViewModel
 
                 loResult.Add(loParentData);
 
-
                 var loGridData = loResult.Select(x =>
                 new GSL02000TreeDTO
                 {
@@ -56,7 +55,7 @@ namespace Lookup_GSModel.ViewModel
                     ParentName = x.CPARENT_NAME,
                     Id = x.CCODE,
                     Name = x.CNAME,
-                    DisplayTree = x.CCODE_CNAME_DISPLAY
+                    Description = x.CCODE_CNAME_DISPLAY
                 }).ToList();
 
                 CityGeographyTree = loGridData;

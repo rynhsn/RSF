@@ -91,10 +91,7 @@ public partial class GLM00500UploadPopup : R_Page
 
         if (loData.VALID=="Y")
         {
-            eventArgs.RowStyle = new R_GridRowRenderStyle
-            {
-                FontColor = "red"
-            };
+            eventArgs.RowClass = "errorDataNotValid";
         }
     }
 

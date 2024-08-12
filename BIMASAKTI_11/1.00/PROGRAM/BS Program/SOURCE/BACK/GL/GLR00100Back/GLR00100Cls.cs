@@ -3,6 +3,7 @@ using System.Data.Common;
 using System.Diagnostics;
 using GLR00100Common;
 using GLR00100Common.DTOs;
+using GLR00100Common.DTOs.Print;
 using R_BackEnd;
 using R_Common;
 
@@ -175,6 +176,38 @@ public class GLR00100Cls
 
         return loRtn;
     }
+    
+    public GLR00100PrintBaseHeaderLogoDTO GetBaseHeaderLogoCompany(string pcCompanyId)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(GetBaseHeaderLogoCompany));
+        var loEx = new R_Exception();
+        GLR00100PrintBaseHeaderLogoDTO loResult = null;
+    
+        try
+        {
+            var loDb = new R_Db();
+            var loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
+            var loCmd = loDb.GetCommand();
+    
+    
+            var lcQuery = $"SELECT dbo.RFN_GET_COMPANY_LOGO('{pcCompanyId}') as BLOGO";
+            loCmd.CommandText = lcQuery;
+            loCmd.CommandType = CommandType.Text;
+            
+            _logger.LogDebug("{pcQuery}", lcQuery);
+    
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+            loResult = R_Utility.R_ConvertTo<GLR00100PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+    
+        loEx.ThrowExceptionIfErrors();
+    
+        return loResult;
+    }
 
     public List<GLR00100ResultActivityReportDTO> BasedOnDateReportDb(GLR00100ParameterDb poParams)
     {
@@ -188,7 +221,7 @@ public class GLR00100Cls
         try
         {
             loDb = new R_Db();
-            loConn = loDb.GetConnection("R_ReportConnectionString");
+            loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
             loCmd = loDb.GetCommand();
 
             lcQuery = "RSP_GL_REP_ACTIVITY_BY_DATE";
@@ -251,7 +284,7 @@ public class GLR00100Cls
         try
         {
             loDb = new R_Db();
-            loConn = loDb.GetConnection("R_ReportConnectionString");
+            loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
             loCmd = loDb.GetCommand();
 
             lcQuery = "RSP_GL_REP_ACTIVITY_BY_DATE";
@@ -314,7 +347,7 @@ public class GLR00100Cls
         try
         {
             loDb = new R_Db();
-            loConn = loDb.GetConnection("R_ReportConnectionString");
+            loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
             loCmd = loDb.GetCommand();
 
             lcQuery = "RSP_GL_REP_ACTIVITY_BY_TRANS_CODE";
@@ -381,7 +414,7 @@ public class GLR00100Cls
         try
         {
             loDb = new R_Db();
-            loConn = loDb.GetConnection("R_ReportConnectionString");
+            loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
             loCmd = loDb.GetCommand();
 
             lcQuery = "RSP_GL_REP_ACTIVITY_BY_TRANS_CODE";
@@ -448,7 +481,7 @@ public class GLR00100Cls
         try
         {
             loDb = new R_Db();
-            loConn = loDb.GetConnection("R_ReportConnectionString");
+            loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
             loCmd = loDb.GetCommand();
 
             lcQuery = "RSP_GL_REP_ACTIVITY_BY_REF_NO";
@@ -517,7 +550,7 @@ public class GLR00100Cls
         try
         {
             loDb = new R_Db();
-            loConn = loDb.GetConnection("R_ReportConnectionString");
+            loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
             loCmd = loDb.GetCommand();
 
             lcQuery = "RSP_GL_REP_ACTIVITY_BY_REF_NO";

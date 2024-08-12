@@ -1,8 +1,10 @@
-﻿@using Microsoft.AspNetCore.Components.WebAssembly.Services
+﻿@using BlazorMenu.Routing
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
 @using System.Reflection
 @using R_BlazorFrontEnd.Helpers
 @using BlazorMenu.Shared.Tabs
 @inject LazyAssemblyLoader AssemblyLoader
+@inject NavigationManager NavigationManager
 
 <CascadingAuthenticationState>
     <Router AppAssembly="@typeof(Program).Assembly"
@@ -17,20 +19,38 @@
             </LayoutView>
         </NotFound>
     </Router>
+
+    @* <ConventionRouter>
+        <Found Context="routeData">
+            <MenuTabsRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        </Found>
+        <NotFound>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </NotFound>
+    </ConventionRouter> *@
 </CascadingAuthenticationState>
 
 @code {
     private List<Assembly> lazyLoadedAssemblies = new()
     {
+        typeof(CBB00200Front.CBB00200).Assembly,
         typeof(GSM02000Front.GSM02000).Assembly,
-        typeof(GSM04500Front.GSM04500).Assembly,
+        // typeof(GSM04500Front.GSM04500).Assembly,
         typeof(GSM05000Front.GSM05000).Assembly,
         typeof(GLM00500Front.GLM00500).Assembly,
-        typeof(GLT00200FRONT.GLT00200).Assembly,
+        // typeof(GLT00200FRONT.GLT00200).Assembly,
         typeof(GLI00100Front.GLI00100).Assembly,
-        // typeof(LMM01500Front.LMM01500).Assembly,
-        typeof(LMM02500Front.LMM02500).Assembly,
+        typeof(GLR00100Front.GLR00100).Assembly,
+        typeof(PMB00300Front.PMB00300).Assembly,
+        typeof(PMB05000Front.PMB05000).Assembly,
+        typeof(PMI00500Front.PMI00500).Assembly,
         typeof(PMT03500Front.PMT03500).Assembly,
+        typeof(PMT06000Front.PMT06000).Assembly,
+        typeof(PMT06500Front.PMT06500).Assembly,
+        typeof(PMR02600Front.PMR02600).Assembly,
+    
     };
 
     private async Task OnNavigateAsync(NavigationContext args)

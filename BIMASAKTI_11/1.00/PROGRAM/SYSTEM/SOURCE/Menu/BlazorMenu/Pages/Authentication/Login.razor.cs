@@ -18,18 +18,14 @@ namespace BlazorMenu.Pages.Authentication
     {
         [Inject] private AuthenticationStateProvider _stateProvider { get; set; }
         [Inject] private R_ITokenRepository _tokenRepository { get; set; }
-        //[Inject] private ILocalStorageService _localStorageService { get; set; }
         [Inject] private BlazorMenuLocalStorageService _localStorageService { get; set; }
-        //[Inject] private R_IMenuService _menuService { get; set; }
         [Inject] private IClientHelper _clientHelper { get; set; }
         [Inject] public R_MessageBoxService R_MessageBox { get; set; }
         [Inject] private R_ISymmetricJSProvider _encryptProvider { get; set; }
         [Inject] private MenuTabSetTool MenuTabSetTool { get; set; }
         [Inject] private R_NotificationService _notificationService { get; set; }
 
-        //private LoginModel _loginModel = new LoginModel();
-        //private R_SecurityModel loClientWrapper = new R_SecurityModel();
-        private R_LoginViewModel _loginVM = new R_LoginViewModel();
+        private readonly R_LoginViewModel _loginVM = new();
 
         protected override async Task OnParametersSetAsync()
         {
@@ -42,10 +38,6 @@ namespace BlazorMenu.Pages.Authentication
                     _navigationManager.NavigateTo("/");
 
                 await _loginVM.R_GetSecurityPolicyParameterAsync();
-
-                //_loginVM.LoginModel.CompanyId = "001";
-                //_loginVM.LoginModel.UserId = "cp";
-                //_loginVM.LoginModel.Password = "cp";
             }
             catch (R_Exception rex)
             {
@@ -71,16 +63,6 @@ namespace BlazorMenu.Pages.Authentication
 
                 var lcEncryptedPassword = await _encryptProvider.TextEncrypt(_loginVM.LoginModel.Password, _loginVM.LoginModel.UserId);
 
-                //var loPolicyLogin = await loClientWrapper.R_SecurityPolicyLogonAsync
-                //    (
-                //        new SecurityPolicyLogonParameterDTO
-                //        {
-                //            CCOMPANY_ID = _loginModel.CompanyId,
-                //            CUSER_ID = _loginModel.UserId.ToLower(),
-                //            CUSER_PASSWORD = lcEncryptedPassword
-                //        }
-                //    );
-
                 await _loginVM.LoginAsync(lcEncryptedPassword);
 
                 _tokenRepository.R_SetToken(_loginVM.LoginResult.CTOKEN);
@@ -96,7 +78,9 @@ namespace BlazorMenu.Pages.Authentication
                     _clientHelper.Set_CultureUI(leLoginCulture);
                 }
                 else
+                {
                     _clientHelper.Set_CultureUI(eCulture.English);
+                }
 
                 var loCultureInfoBuilder = new CultureInfoBuilder();
                 loCultureInfoBuilder.WithNumberFormatInfo(_loginVM.LoginResult.CNUMBER_FORMAT, _loginVM.LoginResult.IDECIMAL_PLACES)
@@ -107,7 +91,13 @@ namespace BlazorMenu.Pages.Authentication
 
                 _clientHelper.Set_Culture(loCultureInfo.NumberFormat, loCultureInfo.DateTimeFormat);
 
+                _clientHelper.Set_ReportCulture(_loginVM.LoginResult.CREPORT_CULTURE);
+
+                _clientHelper.Set_ProgramId("");
+
                 await _localStorageService.SetCultureAsync(_loginVM.LoginResult.CCULTURE_ID);
+
+                await _localStorageService.SetCultureReportAsync(_loginVM.LoginResult.CREPORT_CULTURE);
 
                 var loDictCulture = new Dictionary<string, string>
                     {
@@ -140,7 +130,7 @@ namespace BlazorMenu.Pages.Authentication
             {
                 _notificationService.Error(loEx.ErrorList[0].ErrDescp);
 
-                _tokenRepository.R_SetToken("");
+                _tokenRepository.R_SetToken(string.Empty);
             }
         }
     }

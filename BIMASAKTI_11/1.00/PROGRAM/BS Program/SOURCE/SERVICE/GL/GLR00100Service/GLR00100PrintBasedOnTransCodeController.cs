@@ -137,8 +137,11 @@ public class GLR00100PrintBasedOnTransCodeController : R_ReportControllerBase
 
             _logger.LogInfo("Set Base Header Data");
 
+            var loCls = new GLR00100Cls();
+            var loLogo = loCls.GetBaseHeaderLogoCompany(poParam.CCOMPANY_ID);
             loRtn.BaseHeaderData = new BaseHeaderDTO
             {
+                BLOGO_COMPANY = loLogo.BLOGO,
                 CCOMPANY_NAME = "PT Realta Chakradarma",
                 CPRINT_CODE = "GLR00100",
                 CPRINT_NAME = "Activity Report",
@@ -172,23 +175,33 @@ public class GLR00100PrintBasedOnTransCodeController : R_ReportControllerBase
 
             _logger.LogInfo("Get Detail Activity Report");
 
-            var loCls = new GLR00100Cls();
             loData.Data = loCls.BasedOnTransCodeReportDb(loDbParam);
 
             loData.Header = new GLR00100ReportHeaderBasedOnDateDTO
             {
-                CTRANS_CODE = loData.Data.FirstOrDefault()?.CTRANS_CODE,
-                CTRANSACTION_NAME = loData.Data.FirstOrDefault()?.CTRANSACTION_NAME,
-                CFROM_DEPT_CODE = loData.Data.FirstOrDefault()?.CFROM_DEPT_CODE,
-                CTO_DEPT_CODE = loData.Data.FirstOrDefault()?.CTO_DEPT_CODE,
+                CTRANS_CODE = poParam.CTRANS_CODE,
+                CTRANSACTION_NAME = poParam.CTRANSACTION_NAME,
+                CFROM_DEPT_CODE = poParam.CFROM_DEPT_CODE,
+                CTO_DEPT_CODE = poParam.CTO_DEPT_CODE,
                 CFROM_PERIOD = loData.Data.FirstOrDefault()?.CFROM_PERIOD,
                 CTO_PERIOD = loData.Data.FirstOrDefault()?.CTO_PERIOD,
                 CCURRENCY_TYPE = poParam.CCURRENCY_TYPE,
-                CCURRENCY_TYPE_NAME = loData.Data.FirstOrDefault()?.CCURRENCY_TYPE_NAME,
+                CCURRENCY_TYPE_NAME = poParam.CCURRENCY_TYPE_NAME,
                 CREPORT_BASED_ON = poParam.CREPORT_TYPE,
                 LTOTAL_BY_REF_NO = poParam.LTOTAL_BY_REF_NO,
                 LTOTAL_BY_DEPT = poParam.LTOTAL_BY_DEPT
             };
+            
+            if (string.IsNullOrWhiteSpace(loData.Header.CFROM_PERIOD))
+            {
+                
+                loData.Header.CFROM_PERIOD = DateTime.ParseExact(poParam.CFROM_PERIOD, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
+            }
+            
+            if (string.IsNullOrWhiteSpace(loData.Header.CTO_PERIOD))
+            {
+                loData.Header.CTO_PERIOD = DateTime.ParseExact(poParam.CTO_PERIOD, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
+            }
             
             //looping dan ubah ref date menjadi dd-MM-yyyy
             foreach (var item in loData.Data)

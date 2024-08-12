@@ -119,10 +119,7 @@ public partial class GSM04500UploadPopup
 
         if (loData.ErrorFlag == "N")
         {
-            eventArgs.RowStyle = new R_GridRowRenderStyle
-            {
-                FontColor = "red"
-            };
+            eventArgs.RowClass = "errorDataNotValid";
         }
     }
 

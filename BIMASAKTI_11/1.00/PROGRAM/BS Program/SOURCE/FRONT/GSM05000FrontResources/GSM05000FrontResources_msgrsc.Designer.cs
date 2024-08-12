@@ -420,6 +420,15 @@ namespace GSM05000FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next No..
+        /// </summary>
+        internal static string LABEL_NEXTNUMBER {
+            get {
+                return ResourceManager.GetString("LABEL_NEXTNUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Length of Number.
         /// </summary>
         internal static string LABEL_NUMBERLENGTH {

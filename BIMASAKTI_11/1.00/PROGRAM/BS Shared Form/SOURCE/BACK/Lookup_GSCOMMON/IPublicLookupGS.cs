@@ -40,5 +40,6 @@ namespace Lookup_GSCOMMON
         IAsyncEnumerable<GSL02400DTO> GSL02400GetFloorList();
         IAsyncEnumerable<GSL02500DTO> GSL02500GetCBList();
         IAsyncEnumerable<GSL02600DTO> GSL02600GetCBAccountList();
+        IAsyncEnumerable<GSL02700DTO> GSL02700GetOtherUnitList();
     }
 }

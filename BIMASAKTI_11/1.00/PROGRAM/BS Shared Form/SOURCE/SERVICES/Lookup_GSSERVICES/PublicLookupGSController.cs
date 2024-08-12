@@ -1066,6 +1066,7 @@ namespace Lookup_GSSERVICES
                 _Logger.LogInfo("Set Param GSL02100GetPaymentTermList");
                 var loCls = new PublicLookupCls();
                 poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
+                poParameter.LAGREEMENT = R_Utility.R_GetStreamingContext<bool>(ContextConstantPublicLookup.LAGREEMENT);
 
                 _Logger.LogInfo("Call Back Method GetALLBuilding");
                 var loResult = loCls.GetALLBuilding(poParameter);
@@ -1102,6 +1103,10 @@ namespace Lookup_GSSERVICES
                 poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
                 poParameter.CBUILDING_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CBUILDING_ID);
                 poParameter.CFLOOR_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CFLOOR_ID);
+                poParameter.LAGREEMENT = R_Utility.R_GetStreamingContext<bool>(ContextConstantPublicLookup.LAGREEMENT);
+                poParameter.CPROGRAM_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROGRAM_ID);
+                poParameter.CTRANS_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTRANS_CODE);
+                poParameter.CREF_NO = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CREF_NO);
 
                 _Logger.LogInfo("Call Back Method GetALLBuilding");
                 var loResult = loCls.GetALLBuildingUnit(poParameter);
@@ -1137,6 +1142,10 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
                 poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
                 poParameter.CBUILDING_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CBUILDING_ID);
+                poParameter.LAGREEMENT = R_Utility.R_GetStreamingContext<bool>(ContextConstantPublicLookup.LAGREEMENT);
+                poParameter.CPROGRAM_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROGRAM_ID);
+                poParameter.CTRANS_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTRANS_CODE);
+                poParameter.CREF_NO = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CREF_NO);
 
                 _Logger.LogInfo("Call Back Method GetALLFloor");
                 var loResult = loCls.GetALLFloor(poParameter);
@@ -1173,6 +1182,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CDEPT_CODE);
                 poParameter.CCB_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCB_TYPE);
                 poParameter.CBANK_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CBANK_TYPE);
+                poParameter.CCURRENCY_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCURRENCY_CODE);
 
                 _Logger.LogInfo("Call Back Method GetALLCB");
                 var loResult = loCls.GetALLCB(poParameter);
@@ -1210,6 +1220,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CCB_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCB_TYPE);
                 poParameter.CBANK_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CBANK_TYPE);
                 poParameter.CCB_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCB_CODE);
+                poParameter.CCURRENCY_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCURRENCY_CODE);
 
                 _Logger.LogInfo("Call Back Method GetALLCBAccount");
                 var loResult = loCls.GetALLCBAccount(poParameter);
@@ -1225,6 +1236,42 @@ namespace Lookup_GSSERVICES
 
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL02600GetCBAccountList");
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL02700DTO> GSL02700GetOtherUnitList()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL02700GetOtherUnitList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL02700DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL02700GetOtherUnitList");
+
+            try
+            {
+                var poParameter = new GSL02700ParameterDTO();
+
+                _Logger.LogInfo("Set Param GSL02700GetOtherUnitList");
+                var loCls = new PublicLookupCls();
+                poParameter.CBUILDING_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CBUILDING_ID);
+                poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
+                poParameter.LEVENT = R_Utility.R_GetStreamingContext<bool>(ContextConstantPublicLookup.LEVENT);
+
+                _Logger.LogInfo("Call Back Method GetALLOtherUnit");
+                var loResult = loCls.GetALLOtherUnit(poParameter);
+
+                _Logger.LogInfo("Call Stream Method Data GSL02700GetOtherUnitList");
+                loRtn = GetStream<GSL02700DTO>(loResult);
+            }
+            catch (Exception ex)
+            {   
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL02700GetOtherUnitList");
 
             return loRtn;
         }

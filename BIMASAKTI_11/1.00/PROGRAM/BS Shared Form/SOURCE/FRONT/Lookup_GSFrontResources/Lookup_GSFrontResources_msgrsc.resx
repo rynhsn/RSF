@@ -129,6 +129,9 @@
   <data name="_Actual" xml:space="preserve">
     <value>Actual</value>
   </data>
+  <data name="_AdditionalCharges" xml:space="preserve">
+    <value>Additional Charges</value>
+  </data>
   <data name="_BankCode" xml:space="preserve">
     <value>Bank Code</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="_BSISDesc" xml:space="preserve">
     <value>BS/IS</value>
+  </data>
+  <data name="_Building" xml:space="preserve">
+    <value>Building</value>
   </data>
   <data name="_BuildingId" xml:space="preserve">
     <value>Building ID</value>
@@ -213,6 +219,9 @@
   <data name="_DCDesc" xml:space="preserve">
     <value>D/C</value>
   </data>
+  <data name="_DeducationCharges" xml:space="preserve">
+    <value>Deducation Charges</value>
+  </data>
   <data name="_Departement" xml:space="preserve">
     <value>Departement</value>
   </data>
@@ -264,6 +273,9 @@
   <data name="_LOBName" xml:space="preserve">
     <value>LOB Name</value>
   </data>
+  <data name="_Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
   <data name="_LocCurrBaseRate" xml:space="preserve">
     <value>Local Curr. Base Rate</value>
   </data>
@@ -281,6 +293,15 @@
   </data>
   <data name="_OkBtn" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="_OtherUnitId" xml:space="preserve">
+    <value>Other Unit Id</value>
+  </data>
+  <data name="_OtherUnitName" xml:space="preserve">
+    <value>Other Unit Name</value>
+  </data>
+  <data name="_OtherUnitType" xml:space="preserve">
+    <value>Other Unit Type</value>
   </data>
   <data name="_RateDate" xml:space="preserve">
     <value>Rate Date</value>

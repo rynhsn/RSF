@@ -222,6 +222,7 @@ public partial class GLR00100Date : R_Page
             loParam.CLANGUAGE_ID = _clientHelper.Culture.TwoLetterISOLanguageName;
             loParam.CREPORT_CULTURE = _clientHelper.ReportCulture;
             loParam.CREPORT_TYPE = _localizer["BASED_ON_DATE"];
+            loParam.CCURRENCY_TYPE_NAME = _viewModel.RadioCurrencyType.Find(x => x.Key == loParam.CCURRENCY_TYPE).Value;
             if (loParam.CPERIOD_TYPE == "P")
             {
                 loParam.CFROM_PERIOD = _viewModel.YearPeriod + _viewModel.FromPeriod + _viewModel.SuffixPeriod;

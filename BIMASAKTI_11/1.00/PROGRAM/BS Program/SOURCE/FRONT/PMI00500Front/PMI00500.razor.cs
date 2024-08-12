@@ -1,6 +1,8 @@
 ﻿using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
 using Lookup_GSModel.ViewModel;
+using PMB03000Common.DTOs;
+using PMB03000Front;
 using PMI00500Common.DTOs;
 using PMI00500Model.ViewModel;
 using R_BlazorFrontEnd.Controls;
@@ -175,9 +177,9 @@ public partial class PMI00500 : R_Page
         var loEx = new R_Exception();
         try
         {
-            var loData = (PMI00500HeaderDTO)eventArgs.Data;
-            eventArgs.Result = loData;
-            _viewModel.CTENANT_ID = loData.CTENANT_ID;
+            _viewModel.HeaderEntity = (PMI00500HeaderDTO)eventArgs.Data;
+            eventArgs.Result = _viewModel.HeaderEntity;
+            _viewModel.CTENANT_ID = _viewModel.HeaderEntity.CTENANT_ID;
             await _gridRefAgreement.R_RefreshGrid(null);
             // await _gridRefReminder.R_RefreshGrid(null);
             // await _gridRefInvoice.R_RefreshGrid(null);
@@ -211,8 +213,8 @@ public partial class PMI00500 : R_Page
         var loEx = new R_Exception();
         try
         {
-            var loData = (PMI00500DTAgreementDTO)eventArgs.Data;
-            _viewModel.CAGREEMENT_NO = loData.CAGREEMENT_NO;
+            _viewModel.AgreementEntity = (PMI00500DTAgreementDTO)eventArgs.Data;
+            _viewModel.CAGREEMENT_NO = _viewModel.AgreementEntity.CAGREEMENT_NO;
             await _gridRefReminder.R_RefreshGrid(null);
             // await _gridRefInvoice.R_RefreshGrid(null);
         }
@@ -271,5 +273,17 @@ public partial class PMI00500 : R_Page
         }
 
         loEx.ThrowExceptionIfErrors();
+    }
+
+    private void BeforeOpenDetail(R_BeforeOpenDetailEventArgs eventArgs)
+    {
+        var loParam = new PMB03000PageParameterDTO
+        {
+            CTENANT_ID = _viewModel.HeaderEntity.CTENANT_ID,
+            CBUILDING_ID = _viewModel.AgreementEntity.CBUILDING_ID,
+            ISCALLER = true
+        };
+        eventArgs.Parameter = loParam;
+        eventArgs.TargetPageType = typeof(PMB03000);
     }
 }

@@ -17,23 +17,11 @@
             PageSize="26"
             Width="350px"
             Height="600px"
-            Enabled="_gridEnabled">
+            Enabled="_isNormalMode">
         <R_GridColumns>
             <R_GridTextColumn FieldName="@nameof(GSM05000GridDTO.CTRANSACTION)" HeaderText="@_localizer["LABEL_TRANSACTION"]" TextAlignment="R_eTextAlignment.Left"/>
         </R_GridColumns>
     </R_Grid>
-
-    <R_Conductor @ref="@_conductorRef"
-                 R_ViewModel="@_viewModel"
-                 R_IsHeader="true"
-                 R_ConvertToGridEntity="ConvertGridToEntity"
-                 R_ServiceGetRecord="@Conductor_ServiceGetRecord"
-                 R_SetOther="SetOther"
-                 R_Validation="@Validation"
-                 R_Saving="Saving"
-                 R_ServiceSave="@Conductor_ServiceSave"
-                 R_BeforeCancel="BeforeCancel"
-                 R_Display="@Grid_Display"/>
 </R_ItemLayout>
 
 <R_ItemLayout col="8">
@@ -421,10 +409,22 @@
 </R_ItemLayout>
 </R_StackLayout>
 
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ConvertToGridEntity="ConvertGridToEntity"
+             R_ServiceGetRecord="@Conductor_ServiceGetRecord"
+             R_SetOther="SetOther"
+             R_Validation="@Validation"
+             R_Saving="Saving"
+             R_ServiceSave="@Conductor_ServiceSave"
+             R_BeforeCancel="BeforeCancel"
+             R_Display="@Grid_Display"/>
+
 
 <R_PredefinedDock R_InstantiateDock="InstanceNumberingTab" Title="Numbering"
-                  @* Enabled="@_viewModel.Entity.LINCREMENT_FLAG" *@
+                  Enabled="@(_viewModel.Entity.LINCREMENT_FLAG && _isNormalMode)"
                   />
 <R_PredefinedDock R_InstantiateDock="InstanceApprovalTab" Title="Approval" 
-                  @* Enabled="@_viewModel.Entity.LAPPROVAL_FLAG" *@
+                  Enabled="@(_viewModel.Entity.LAPPROVAL_FLAG && _isNormalMode)"
                   />

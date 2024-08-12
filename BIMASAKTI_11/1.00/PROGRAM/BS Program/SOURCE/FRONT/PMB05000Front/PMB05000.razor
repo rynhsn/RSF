@@ -1,0 +1,85 @@
+@page "/PMB05000"
+@using PMB05000FrontResources
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout>
+    <R_ItemLayout col="5">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold">@_localizer["CURRENT_PERIOD"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Primary">@(_viewModel.Data.CCURRENT_PERIOD_YY + " - " + _viewModel.Data.CCURRENT_PERIOD_MM)</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold">@_localizer["CURRENT_SOFT_PERIOD"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.ISOFT_PERIOD_YY" R_ConductorSource="_conductorRef" Min="_viewModel.YearRange.IMIN_YEAR" Max="_viewModel.YearRange.IMAX_YEAR" ThousandSeparator="false" R_EnableEdit/>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_ComboBox Data="_viewModel.ComboPeriod"
+                            @bind-Value="_viewModel.Data.CSOFT_PERIOD_MM" 
+                            R_ConductorSource="_conductorRef"
+                            ValueField="Key"
+                            TextField="Value" 
+                            R_EnableEdit/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="5" Class="mt-3">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_Label>@_localizer["LAST_UPDATED_BY"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_DateTimePicker Enabled="false" Value="@_viewModel.Data.DLSOFT_END_DATE"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox Enabled="false" Value="@_viewModel.Data.CLSOFT_END_BY"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="5">
+        <R_StackLayout Row Justify="R_eJustify.SpaceBetween">
+            <R_ItemLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout Class="mt-3">
+                        <R_Button Enabled="@_viewModel.EnableBtn" OnClick="OnClickProcess">@_localizer["PROCESS"]</R_Button>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="mt-3">
+                        <R_EditButton R_Conductor="_conductorRef"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout Class="mt-3">
+                        <R_CancelButton R_Conductor="_conductorRef"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="mt-3">
+                        <R_SaveButton R_Conductor="_conductorRef"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+
+        </R_StackLayout>
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+<R_Conductor @ref="_conductorRef"
+             R_ViewModel="_viewModel"
+             R_IsHeader="true"
+             R_Validation="Validation"
+             R_ServiceSave="Saving"
+             R_ServiceGetRecord="GetRecord"
+             R_BeforeCancel="BeforeCancel"
+             R_DisableCancelConfirmation="true"
+             R_Display="Display"/>

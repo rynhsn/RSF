@@ -12,12 +12,12 @@
     <PackageReference Include="EPPlus" Version="6.2.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.14" />
-	<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.14" PrivateAssets="all" />
-	<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.14" PrivateAssets="all" />
+	  <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Telerik.UI.for.Blazor" Version="4.6.0" />
-	<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.35.0" />
-	<PackageReference Include="Toolbelt.Blazor.HttpClientInterceptor" Version="10.2.0" />
+    <PackageReference Include="Telerik.UI.for.Blazor" Version="5.1.1" />
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.35.0" />
+	  <PackageReference Include="Toolbelt.Blazor.HttpClientInterceptor" Version="10.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -90,14 +90,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\CBB00200Front\CBB00200Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLI00100Front\GLI00100Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLM00500Front\GLM00500Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLR00100Front\GLR00100Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLT00200FRONT\GLT00200FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM02000Front\GSM02000Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM04500Front\GSM04500Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM05000Front\GSM05000Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\LMM02500Front\LMM02500Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\LMT03500Front\PMT03500Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB00300Front\PMB00300Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB05000Front\PMB05000Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMI00500Front\PMI00500Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMM02000Front\PMM02000Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR02600Front\PMR02600Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMT06000Front\PMT06000Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMT06500Front\PMT06500Front.csproj" />
   </ItemGroup>
 
     <!--<ItemGroup>

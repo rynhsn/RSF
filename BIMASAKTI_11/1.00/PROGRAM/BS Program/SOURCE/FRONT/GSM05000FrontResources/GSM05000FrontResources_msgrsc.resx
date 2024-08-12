@@ -207,4 +207,7 @@
     <data name="_ErrLookupDept" xml:space="preserve">
         <value>Not found data by search text!</value>
     </data>
+    <data name="LABEL_NEXTNUMBER" xml:space="preserve">
+        <value>Next No.</value><comment>Next No.</comment>
+    </data>
 </root>

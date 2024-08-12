@@ -24,7 +24,7 @@
     <R_StackLayout Row>
         <R_TreeView @ref="@_treeRef"
                     DataSource="@_viewModel.CityGeographyTree"
-                    TextField="DisplayTree"
+                    TextField="Description"
                     IdField="Id"
                     ParentIdField="ParentId"
                     HasChildrenField="HasChildren"
@@ -44,9 +44,3 @@
     </R_StackLayout>
 
 </R_StackLayout>
-
-    <R_Conductor @ref="@_conductorRef"
-             R_ViewModel="@_viewModel"
-             R_IsHeader="true"
-             R_ServiceGetRecord="@Conductor_ServiceGetRecord"
-             ></R_Conductor>

@@ -144,9 +144,6 @@ public partial class GSM02000 : R_Page
         try
         {
             var loParam = (GSM02000DTO)eventArgs.Data;
-            // loParam.CDESCRIPTION ??= String.Empty;
-            // loParam.CTAXIN_GLACCOUNT_NO ??= String.Empty;
-            // loParam.CTAXOUT_GLACCOUNT_NO ??= String.Empty;
             await _viewModel.DeleteEntity(loParam);
         }
         catch (Exception ex)

@@ -17,6 +17,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -34,6 +35,9 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLExcelTestService\\GLExcelTestService.csproj": {
+                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLExcelTestService\\GLExcelTestService.csproj"
+              },
               "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLI00100Service\\GLI00100Service.csproj": {
                 "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLI00100Service\\GLI00100Service.csproj"
               },
@@ -45,6 +49,9 @@
               },
               "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLT00200SERVICE\\GLT00200SERVICE.csproj": {
                 "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLT00200SERVICE\\GLT00200SERVICE.csproj"
+              },
+              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\LM\\PMB05000Service\\PMB05000Service.csproj": {
+                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\LM\\PMB05000Service\\PMB05000Service.csproj"
               },
               "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GLSERVICES\\Lookup_GLSERVICES.csproj": {
                 "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GLSERVICES\\Lookup_GLSERVICES.csproj"
@@ -111,6 +118,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -172,6 +180,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -237,6 +246,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -335,6 +345,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -396,6 +407,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -461,6 +473,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -535,6 +548,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -596,6 +610,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -657,6 +672,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -718,6 +734,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -779,6 +796,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -840,6 +858,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -901,6 +920,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -962,6 +982,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -1023,6 +1044,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -1084,6 +1106,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -1132,6 +1155,72 @@
         }
       }
     },
+    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\LM\\PMB05000Back\\PMB05000Back.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\LM\\PMB05000Back\\PMB05000Back.csproj",
+        "projectName": "PMB05000Back",
+        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\LM\\PMB05000Back\\PMB05000Back.csproj",
+        "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\LM\\PMB05000Back\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
+          "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {},
+          "https://www1.realta.net/realtanuget/nuget": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\LM\\PMB05000Common\\PMB05000Common.csproj": {
+                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\LM\\PMB05000Common\\PMB05000Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\BaseHeaderResources\\BaseHeaderResources.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -1145,6 +1234,69 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
+          "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {},
+          "https://www1.realta.net/realtanuget/nuget": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GL\\GLExcelTestCommon\\GLExcelTestCommon.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GL\\GLExcelTestCommon\\GLExcelTestCommon.csproj",
+        "projectName": "GLExcelTestCommon",
+        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GL\\GLExcelTestCommon\\GLExcelTestCommon.csproj",
+        "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GL\\GLExcelTestCommon\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -1206,6 +1358,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -1267,6 +1420,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -1328,6 +1482,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -1389,6 +1544,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -1437,6 +1593,137 @@
         }
       }
     },
+    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\LM\\PMB05000Common\\PMB05000Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\LM\\PMB05000Common\\PMB05000Common.csproj",
+        "projectName": "PMB05000Common",
+        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\LM\\PMB05000Common\\PMB05000Common.csproj",
+        "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\LM\\PMB05000Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
+          "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {},
+          "https://www1.realta.net/realtanuget/nuget": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLExcelTestService\\GLExcelTestService.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLExcelTestService\\GLExcelTestService.csproj",
+        "projectName": "GLExcelTestService",
+        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLExcelTestService\\GLExcelTestService.csproj",
+        "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLExcelTestService\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
+          "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {},
+          "https://www1.realta.net/realtanuget/nuget": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GL\\GLExcelTestCommon\\GLExcelTestCommon.csproj": {
+                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GL\\GLExcelTestCommon\\GLExcelTestCommon.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLI00100Service\\GLI00100Service.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -1450,6 +1737,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -1527,6 +1815,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -1598,6 +1887,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -1675,6 +1965,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -1697,6 +1988,78 @@
               },
               "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GL\\GLT00200COMMON\\GLT00200COMMON.csproj": {
                 "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GL\\GLT00200COMMON\\GLT00200COMMON.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\LM\\PMB05000Service\\PMB05000Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\LM\\PMB05000Service\\PMB05000Service.csproj",
+        "projectName": "PMB05000Service",
+        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\LM\\PMB05000Service\\PMB05000Service.csproj",
+        "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\LM\\PMB05000Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
+          "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {},
+          "https://www1.realta.net/realtanuget/nuget": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\LM\\PMB05000Back\\PMB05000Back.csproj": {
+                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\LM\\PMB05000Back\\PMB05000Back.csproj"
+              },
+              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\LM\\PMB05000Common\\PMB05000Common.csproj": {
+                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\LM\\PMB05000Common\\PMB05000Common.csproj"
               }
             }
           }
@@ -1807,6 +2170,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -1875,6 +2239,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -1936,6 +2301,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
           "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

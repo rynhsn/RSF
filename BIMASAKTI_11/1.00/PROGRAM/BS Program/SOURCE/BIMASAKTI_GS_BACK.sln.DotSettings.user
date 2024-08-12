@@ -38,6 +38,7 @@
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=BACK_002FGL_002FGLI00100_002FGLI00100BackResources_002FGLI00100BackResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=BACK_002FGL_002FGLR00100_002FGLR00100BackResources_002FGLR00100BackResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=BACK_002FPM_002FPMR00400Back_002FPMR00400BackResources_002FPMR00400BackResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=COMMON_002FBaseHeaderResources_002FBaseHeaderResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=DESIGN_002FGSDesign_002FFormMenu/@EntryIndexedValue">False</s:Boolean>
 	
@@ -60,6 +61,7 @@
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FINVOICE_005FUPDATEResources_002FRSP_005FAP_005FINVOICE_005FUPDATEResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FGS_002FRSP_005FGS_005FMAINTAIN_005FPROPERTY_005FDEPTResources_002FRSP_005FGS_005FMAINTAIN_005FPROPERTY_005FDEPTResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FGS_002FRSP_005FGS_005FMAINTAIN_005FUNIT_005FTYPE_005FCATEGORYResources_002FRSP_005FGS_005FMAINTAIN_005FUNIT_005FTYPE_005FCATEGORYResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FPM_002FRSP_005FPM_005FUPDATE_005FOVERTIME_005FSTATUSResources_002FRSP_005FPM_005FUPDATE_005FOVERTIME_005FSTATUSResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FPM_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FCUTOFF_005FECResources_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FCUTOFF_005FECResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FPM_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FCUTOFF_005FWGResources_002FRSP_005FPM_005FUPLOAD_005FUTILITY_005FCUTOFF_005FWGResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>

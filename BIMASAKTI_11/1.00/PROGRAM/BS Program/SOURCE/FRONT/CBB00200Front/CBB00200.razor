@@ -5,9 +5,9 @@
 @inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
 <R_StackLayout>
-    <R_ItemLayout col="4">
+    <R_ItemLayout col="5">
         <R_StackLayout Row>
-            <R_ItemLayout col="8">
+            <R_ItemLayout col="5">
                 <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold">@_localizer["CURRENT_SOFT_PERIOD"]</R_Label>
             </R_ItemLayout>
             <R_ItemLayout>
@@ -15,7 +15,7 @@
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
-            <R_ItemLayout col="8">
+            <R_ItemLayout col="5">
                 <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold">@_localizer["CURRENT_PERIOD"]</R_Label>
             </R_ItemLayout>
             <R_ItemLayout>
@@ -25,10 +25,10 @@
     </R_ItemLayout>
     <R_ItemLayout col="5" Class="mt-3">
         <R_StackLayout Row>
-            <R_ItemLayout col="4">
+            <R_ItemLayout col="5">
                 <R_Label>@_localizer["LAST_CLOSED_BY"]</R_Label>
             </R_ItemLayout>
-            <R_ItemLayout col="6">
+            <R_ItemLayout col="5">
                 <R_DateTimePicker Enabled="false" Value="@_viewModel.SystemParam.DPLRD_END_DATE"/>
             </R_ItemLayout>
             <R_ItemLayout col="2">

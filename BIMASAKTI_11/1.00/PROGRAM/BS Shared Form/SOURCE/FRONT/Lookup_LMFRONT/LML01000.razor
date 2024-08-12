@@ -1,0 +1,40 @@
+@using Lookup_PMCOMMON.DTOs.LML01000;
+@inherits R_Page
+@attribute [R_Page(Title = "Billing Rule")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupPM> _localizer
+
+<R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.BillingRuleList"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                R_GridType="@R_eGridType.Navigator"
+                Pageable
+                PageSize="10"
+                Height="300px"
+                Width="925px">
+            <R_GridColumns>
+                <R_GridTextColumn Width="175px"
+                                  FieldName="@nameof(LML01000DTO.CBILLING_RULE_CODE)"
+                                  HeaderText=@_localizer["_BiilingRuleCode"] />
+                <R_GridTextColumn Width="200px"
+                                  FieldName="@nameof(LML01000DTO.CBILLING_RULE_CODE)"
+                                  HeaderText=@_localizer["_BiilingRuleName"] />
+            </R_GridColumns>
+        </R_Grid>
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout xs="2">
+            <R_Button OnClick="Button_OnClickOkAsync">
+                OK
+            </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout xs="2">
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                Cancel
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+    </R_StackLayout>

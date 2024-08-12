@@ -184,10 +184,10 @@
                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUNIT_ID)" HeaderText="@_localizer["LBL_UNITID"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CMETER_NO)" HeaderText="@_localizer["LBL_METERNO"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUTILITY_PRD)" HeaderText="@_localizer["LBL_UTILITYPERIOD"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
-                @* <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DSTART_DATE)" HeaderText="@_localizer["LBL_STARTDATE"]" Width="150px" R_EnableEdit Min="@(_viewModelUtility.UtilityPeriodFromDtDt)" Max="@(_viewModelUtility.UtilityPeriodToDtDt)"/> *@
-                @* <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DEND_DATE)" HeaderText="@_localizer["LBL_ENDDATE"]" Width="150px" R_EnableEdit Min="@(_viewModelUtility.UtilityPeriodFromDtDt)" Max="@(_viewModelUtility.UtilityPeriodToDtDt)"/> *@
-                <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DSTART_DATE)" HeaderText="@_localizer["LBL_STARTDATE"]" Width="150px" R_EnableEdit/>
-                <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DEND_DATE)" HeaderText="@_localizer["LBL_ENDDATE"]" Width="150px" R_EnableEdit/>
+                <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DSTART_DATE)" HeaderText="@_localizer["LBL_STARTDATE"]" Width="150px" R_EnableEdit Min="@(_viewModelUtility.UtilityPeriodFromDtDt)" Max="@(_viewModelUtility.UtilityPeriodToDtDt)"/>
+                <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DEND_DATE)" HeaderText="@_localizer["LBL_ENDDATE"]" Width="150px" R_EnableEdit Min="@(_viewModelUtility.UtilityPeriodFromDtDt)" Max="@(_viewModelUtility.UtilityPeriodToDtDt)"/>
+                @* <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DSTART_DATE)" HeaderText="@_localizer["LBL_STARTDATE"]" Width="150px" R_EnableEdit/> *@
+                @* <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DEND_DATE)" HeaderText="@_localizer["LBL_ENDDATE"]" Width="150px" R_EnableEdit/> *@
 
                 <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK1_START)" HeaderText="@_localizer["LBL_BLOCK1START"]" Width="150px" Visible="@_visibleColumnEC"/>
                 <R_GridNumericColumn FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK2_START)" HeaderText="@_localizer["LBL_BLOCK2START"]" Width="150px" Visible="@_visibleColumnEC"/>

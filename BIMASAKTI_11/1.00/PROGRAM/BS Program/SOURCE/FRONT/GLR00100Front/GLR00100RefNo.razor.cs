@@ -262,7 +262,7 @@ public partial class GLR00100RefNo
                 CTO_DEPT_CODE = _viewModel.ReportParam.CTO_DEPT_CODE,
                 CFROM_DATE = fromDate,
                 CTO_DATE = toDate,
-                CSEARCH_TEXT = _viewModel.ReportParam.CFROM_REF_NO
+                CSEARCH_TEXT = _viewModel.ReportParam.CFROM_REF_NO,
             };
 
             GLL00110DTO loResult = null;
@@ -553,6 +553,8 @@ public partial class GLR00100RefNo
             loParam.CLANGUAGE_ID = _clientHelper.Culture.TwoLetterISOLanguageName;
             loParam.CREPORT_CULTURE = _clientHelper.ReportCulture;
             loParam.CREPORT_TYPE = _localizer["BASED_ON_REF_NO"];
+            loParam.CCURRENCY_TYPE_NAME = _viewModel.RadioCurrencyType.Find(x => x.Key == loParam.CCURRENCY_TYPE).Value;
+            loParam.CTRANSACTION_NAME = _viewModel.TransCodeList?.Find(x => x.CTRANS_CODE == loParam.CTRANS_CODE).CTRANSACTION_NAME;
             if (loParam.CPERIOD_TYPE == "P")
             {
                 loParam.CFROM_PERIOD = _viewModel.YearPeriod + _viewModel.FromPeriod + _viewModel.SuffixPeriod;

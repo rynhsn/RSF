@@ -50,7 +50,7 @@ namespace Lookup_PMModel.ViewModel.LML00700
                 loEx.Add(ex);
             }
             loEx.ThrowExceptionIfErrors();
-            return loRtn;
+            return loRtn!;
         }
     }
 }

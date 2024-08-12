@@ -11,6 +11,8 @@
           "Lookup_GSFRONT": "1.0.0",
           "Lookup_GSModel": "1.0.0",
           "Microsoft.AspNetCore.Components.Web": "6.0.15",
+          "PMB03000Common": "1.0.0",
+          "PMB03000Front": "1.0.0",
           "PMI00500Common": "1.0.0",
           "PMI00500FrontResources": "1.0.0",
           "PMI00500Model": "1.0.0",
@@ -177,6 +179,19 @@
         },
         "runtime": {
           "Lookup_GSModel.dll": {}
+        }
+      },
+      "PMB03000Common/1.0.0": {
+        "runtime": {
+          "PMB03000Common.dll": {}
+        }
+      },
+      "PMB03000Front/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+        },
+        "runtime": {
+          "PMB03000Front.dll": {}
         }
       },
       "PMI00500Common/1.0.0": {
@@ -404,6 +419,16 @@
       "sha512": ""
     },
     "Lookup_GSModel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PMB03000Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PMB03000Front/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

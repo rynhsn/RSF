@@ -576,6 +576,13 @@ namespace GSM05000Front
                         eventArgs.Cancel = true;
                     }
                 }
+
+                var loData = (GSM05000ApprovalUserDTO)eventArgs.Data;
+                if(string.IsNullOrEmpty(loData.CUSER_ID))
+                {
+                    loException.Add(new Exception("User ID is required"));
+                    eventArgs.Cancel = true;
+                }
             }
             catch (Exception ex)
             {

@@ -577,6 +577,35 @@ namespace Lookup_GSModel
             return loResult;
         }
 
+        public async Task<GSL01500ResultDetailDTO> GSL01500GetCashDetailAsync(GSL01500ParameterDetailDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            GSL01500ResultDetailDTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GSLGenericRecord<GSL01500ResultDetailDTO>, GSL01500ParameterDetailDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicRecordLookup.GSL01500GetCashDetail),
+                    poEntity,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
         public async Task<GSL01600DTO> GSL01600GetCashFlowGroupTypeAsync(GSL01600ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -838,6 +867,35 @@ namespace Lookup_GSModel
             return loResult;
         }
 
+        public async Task<GSL02700DTO> GSL02700GetOtherUnitAsync(GSL02700ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            GSL02700DTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GSLGenericRecord<GSL02700DTO>, GSL02700ParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicRecordLookup.GSL02700GetOtherUnit),
+                    poEntity,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
         #region Not Implement
         public GSLGenericRecord<GSL00100DTO> GSL00100GetSalesTax(GSL00100ParameterDTO poEntity)
         {
@@ -948,6 +1006,14 @@ namespace Lookup_GSModel
             throw new NotImplementedException();
         }
         public GSLGenericRecord<GSL02600DTO> GSL02600GetCBAccount(GSL02600ParameterDTO poEntity)
+        {
+            throw new NotImplementedException();
+        }
+        public GSLGenericRecord<GSL01500ResultDetailDTO> GSL01500GetCashDetail(GSL01500ParameterDetailDTO poEntity)
+        {
+            throw new NotImplementedException();
+        }
+        public GSLGenericRecord<GSL02700DTO> GSL02700GetOtherUnit(GSL02700ParameterDTO poEntity)
         {
             throw new NotImplementedException();
         }

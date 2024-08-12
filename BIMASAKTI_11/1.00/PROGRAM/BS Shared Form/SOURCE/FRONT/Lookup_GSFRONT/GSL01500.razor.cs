@@ -42,7 +42,7 @@ namespace Lookup_GSFRONT
 
             try
             {
-                _viewModel.CashFlowCode = poParam;
+                _viewModel.CashFlowCode = string.IsNullOrWhiteSpace(poParam) ? "" : poParam;
 
                 await GridRef.R_RefreshGrid(null);
             }

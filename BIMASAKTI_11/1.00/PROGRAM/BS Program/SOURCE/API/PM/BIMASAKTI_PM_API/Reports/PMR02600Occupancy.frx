@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="08/08/2024 15:17:56" ReportInfo.CreatorVersion="2023.2.21.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="Data" DataType="PMR02600Common.DTOs.Print.PMR02600ReportResultDTO, PMR02600Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Label" DataType="PMR02600Common.DTOs.Print.PMR02600ReportLabelDTO, PMR02600Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="PROPERTY" DataType="System.String"/>
+          <Column Name="BUILDING" DataType="System.String"/>
+          <Column Name="CUT_OFF_DATE" DataType="System.String"/>
+          <Column Name="UNIT_ID" DataType="System.String"/>
+          <Column Name="UNIT_TYPE" DataType="System.String"/>
+          <Column Name="UNIT_DESC" DataType="System.String"/>
+          <Column Name="TENANT_ID" DataType="System.String"/>
+          <Column Name="TENANT_NAME" DataType="System.String"/>
+          <Column Name="LEASED_AREA" DataType="System.String"/>
+          <Column Name="OCCUPIABLE_AREA" DataType="System.String"/>
+          <Column Name="OCCUPANCY" DataType="System.String"/>
+          <Column Name="TOTAL_LEASE_AREA" DataType="System.String"/>
+          <Column Name="TOTAL_LEASED_AREA" DataType="System.String"/>
+          <Column Name="TOTAL_AVAILABLE" DataType="System.String"/>
+          <Column Name="S_D" DataType="System.String"/>
+        </Column>
+        <Column Name="Header" DataType="PMR02600Common.DTOs.Print.PMR02600ReportHeaderDTO, PMR02600Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="CPROPERTY" DataType="System.String"/>
+          <Column Name="CFROM_BUILDING" DataType="System.String"/>
+          <Column Name="CTO_BUILDING" DataType="System.String"/>
+          <Column Name="CPERIOD" DataType="System.String"/>
+          <Column Name="CPERIOD_DISPLAY" DataType="System.String"/>
+        </Column>
+        <BusinessObjectDataSource Name="Data" DataType="System.Collections.Generic.List`1[[PMR02600Common.DTOs.Print.PMR02600DataResultDTO, PMR02600Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CBUILDING_ID" DataType="System.String"/>
+          <Column Name="CBUILDING_NAME" DataType="System.String"/>
+          <Column Name="CFLOOR_ID" DataType="System.String"/>
+          <Column Name="CUNIT_ID" DataType="System.String"/>
+          <Column Name="CUNIT_TYPE_ID" DataType="System.String"/>
+          <Column Name="CUNIT_TYPE_NAME" DataType="System.String"/>
+          <Column Name="CLEASE_STATUS" DataType="System.String"/>
+          <Column Name="CACTUAL_START_DATE" DataType="System.String"/>
+          <Column Name="CACTUAL_END_DATE" DataType="System.String"/>
+          <Column Name="CUNIT_DESCRIPTION" DataType="System.String"/>
+          <Column Name="CTENANT_ID" DataType="System.String"/>
+          <Column Name="CTENANT_NAME" DataType="System.String"/>
+          <Column Name="NLEASED_AREA" DataType="System.Decimal"/>
+          <Column Name="NOCCUPIABLE_AREA" DataType="System.Decimal"/>
+          <Column Name="NOCCUPANCY" DataType="System.Decimal"/>
+          <Column Name="NTOTAL_LEASED_AREA" DataType="System.Decimal"/>
+          <Column Name="NTOTAL_LEASE_AREA" DataType="System.Decimal"/>
+          <Column Name="NAVAIL_AREA" DataType="System.Decimal"/>
+          <Column Name="NTOTAL_LEASE_AREA_PCT" DataType="System.Decimal"/>
+          <Column Name="NTOTAL_LEASED_AREA_PCT" DataType="System.Decimal"/>
+          <Column Name="NAVAIL_AREA_PCT" DataType="System.Decimal"/>
+        </BusinessObjectDataSource>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+      <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Page" DataType="System.String"/>
+        <Column Name="Of" DataType="System.String"/>
+        <Column Name="Print_Date" DataType="System.String"/>
+        <Column Name="Print_By" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="Picture1"/>
+      <inherited Name="Text33"/>
+      <inherited Name="Text40">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="Text36"/>
+      <inherited Name="Text38"/>
+      <inherited Name="Text34"/>
+      <inherited Name="Text37"/>
+      <inherited Name="Text39"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="81.31" Width="1047.06" Height="47.25" CanGrow="true" CanShrink="true">
+        <TextObject Name="Text41" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.PROPERTY]" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text42" Left="94.5" Top="9.45" Width="368.55" Height="18.9" Text=": [ResponseDataModel.Data.Header.CPROPERTY]" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text43" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.BUILDING]" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text44" Left="94.5" Top="28.35" Width="368.55" Height="18.9" Text=": [ResponseDataModel.Data.Header.CFROM_BUILDING] [ResponseDataModel.Data.Label.S_D] [ResponseDataModel.Data.Header.CTO_BUILDING]" Font="Arial Unicode MS, 9pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text45" Left="500.85" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.CUT_OFF_DATE]" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text46" Left="604.8" Top="28.35" Width="283.5" Height="18.9" Text=": [ResponseDataModel.Data.Header.CPERIOD_DISPLAY]" Font="Arial Unicode MS, 9pt"/>
+      </ChildBand>
+    </inherited>
+    <GroupHeaderBand Name="GroupHeader1" ZOrder="0" Top="158.89" Width="1047.06" Height="28.35" Border.Lines="Bottom" CanGrow="true" CanShrink="true" RepeatOnEveryPage="true" Condition="[ResponseDataModel.Data.Data.CBUILDING_ID]">
+      <TextObject Name="Text55" Width="396.9" Height="18.9" Text="[ResponseDataModel.Data.Label.BUILDING] : [ResponseDataModel.Data.Data.CBUILDING_NAME] - [ResponseDataModel.Data.Data.CBUILDING_ID]" Font="Arial Unicode MS, 9pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <DataHeaderBand Name="DataHeader1" Top="134.28" Width="1047.06" Height="18.9" Border.Lines="Top, Bottom" CanGrow="true" CanShrink="true" RepeatOnEveryPage="true">
+        <TextObject Name="Text54" Left="973.35" Width="75.6" Height="18.9" Text="[ResponseDataModel.Data.Label.OCCUPANCY]" Format="Percent" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text53" Left="831.6" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Label.OCCUPIABLE_AREA]" HorzAlign="Right" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text47" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.UNIT_ID]" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text48" Left="94.5" Width="132.3" Height="18.9" Text="[ResponseDataModel.Data.Label.UNIT_TYPE]" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text49" Left="226.8" Width="179.55" Height="18.9" Text="[ResponseDataModel.Data.Label.UNIT_DESC]" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text50" Left="406.35" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Label.TENANT_ID]" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text51" Left="519.75" Width="170.1" Height="18.9" Text="[ResponseDataModel.Data.Label.TENANT_NAME]" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text52" Left="689.85" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Label.LEASED_AREA]" HorzAlign="Right" Font="Arial Unicode MS, 9pt"/>
+      </DataHeaderBand>
+      <DataBand Name="Data1" Top="192.96" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Data">
+        <TextObject Name="Text56" Width="94.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.Data.CUNIT_ID]" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text57" Left="94.5" Width="132.3" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.Data.CUNIT_TYPE_NAME]" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text58" Left="226.8" Width="179.55" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.Data.CUNIT_DESCRIPTION]" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text59" Left="406.35" Width="113.4" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.Data.CTENANT_ID]" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text60" Left="519.75" Width="170.1" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.Data.CTENANT_NAME]" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text61" Left="689.85" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLEASED_AREA]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text62" Left="831.6" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NOCCUPIABLE_AREA]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text63" Left="973.35" Width="75.6" Height="18.9" Text="[ResponseDataModel.Data.Data.NOCCUPANCY]%" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 9pt" Trimming="EllipsisCharacter"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="217.57" Width="1047.06" Height="66.15" Border.Lines="Top">
+        <TextObject Name="Text64" Left="519.75" Width="170.1" Height="18.9" Text="[ResponseDataModel.Data.Label.TOTAL_LEASE_AREA]" Font="Arial, 9pt"/>
+        <TextObject Name="Text65" Left="519.75" Top="18.9" Width="170.1" Height="18.9" Text="[ResponseDataModel.Data.Label.TOTAL_LEASED_AREA]" Font="Arial, 9pt"/>
+        <TextObject Name="Text66" Left="519.75" Top="37.8" Width="170.1" Height="18.9" Text="[ResponseDataModel.Data.Label.TOTAL_AVAILABLE]" Font="Arial, 9pt"/>
+        <TextObject Name="Text67" Left="689.85" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NTOTAL_LEASE_AREA]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text68" Left="689.85" Top="18.9" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NTOTAL_LEASED_AREA]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text69" Left="831.6" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NTOTAL_LEASE_AREA_PCT]%" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text70" Left="831.6" Top="18.9" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NTOTAL_LEASED_AREA_PCT]%" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text71" Left="689.85" Top="37.8" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NAVAIL_AREA]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text72" Left="831.6" Top="37.8" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NAVAIL_AREA_PCT]%" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+  </inherited>
+</inherited>

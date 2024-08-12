@@ -8,6 +8,10 @@
         public string CTAX_ID { get; set; }
         public string CTAX_NAME { get; set; }
         public string CDESCRIPTION { get; set; }
+        public string CADDITIONAL_CHARGES_ID { get; set; }
+        public string CADDITIONAL_CHARGES_NAME { get; set; }
+        public string CDEDUCTION_CHARGES_ID { get; set; }
+        public string CDEDUCTION_CHARGES_NAME { get; set; }
         public decimal NTAX_PERCENTAGE { get; set; }
     }
 }

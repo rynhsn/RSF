@@ -140,11 +140,15 @@ mkdir .\Menu\Backup\wwwroot
 xcopy /y /e /h /r /k /d ".\Menu\BlazorMenu\BlazorMenu.csproj" ".\Menu\Backup\"
 xcopy /y /e /h /r /k /d ".\Menu\BlazorMenu\App.razor" ".\Menu\Backup\"
 xcopy /y /e /h /r /k /d ".\Menu\BlazorMenu\wwwroot\appsettings.json" ".\Menu\Backup\wwwroot\"
+xcopy /y /e /h /r /k /d ".\Menu\BlazorMenu\wwwroot\appsettings.Staging.json" ".\Menu\Backup\wwwroot\"
+xcopy /y /e /h /r /k /d ".\Menu\BlazorMenu\wwwroot\appsettings.Development.json" ".\Menu\Backup\wwwroot\"
 del /q ".\Menu\BlazorMenu\*.*"
 xcopy /y /e /h /r /k /d ".\RealtaBlazorLibrary\BlazorMenu\*.*" ".\Menu\BlazorMenu\"
 xcopy /y /e /h /r /k /d ".\Menu\Backup\BlazorMenu.csproj" ".\Menu\BlazorMenu\"
 xcopy /y /e /h /r /k /d ".\Menu\Backup\App.razor" ".\Menu\BlazorMenu\"
 xcopy /y /e /h /r /k /d ".\Menu\Backup\wwwroot\appsettings.json" ".\Menu\BlazorMenu\wwwroot\"
+xcopy /y /e /h /r /k /d ".\Menu\Backup\wwwroot\appsettings.Staging.json" ".\Menu\BlazorMenu\wwwroot\"
+xcopy /y /e /h /r /k /d ".\Menu\Backup\wwwroot\appsettings.Development.json" ".\Menu\BlazorMenu\wwwroot\"
 rmdir /s /q ".\Menu\Backup"
 @REM ubah warna tulisan menjadi hijau
 echo ---------------------------------------------------------------------------------------

@@ -19,6 +19,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Template\GL_ACCOUNT_BUDGET_UPLOAD2.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Template\GL_ACCOUNT_BUDGET_UPLOAD2.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.1" />
     <PackageReference Include="Realta.CommonCollectionNuGet" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
@@ -26,10 +36,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_GLSERVICES\Lookup_GLSERVICES.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GL\GLExcelTestService\GLExcelTestService.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLI00100Service\GLI00100Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLM00500Service\GLM00500Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLR00100Service\GLR00100Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLT00200SERVICE\GLT00200SERVICE.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\LM\PMB05000Service\PMB05000Service.csproj" />
   </ItemGroup>
 
 

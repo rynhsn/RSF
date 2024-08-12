@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Lookup_GSModel.ViewModel
 {
-    public class LookupGSL01800ViewModel
+    public class LookupGSL01800ViewModel : R_ViewModel<GSL01800TreeDTO>
     {
         private PublicLookupModel _model = new PublicLookupModel();
         private PublicLookupRecordModel _modelRecord = new PublicLookupRecordModel();
@@ -32,9 +32,9 @@ namespace Lookup_GSModel.ViewModel
                     ParentName = x.CPARENT_NAME,
                     Id = x.CCATEGORY_ID,
                     Name = x.CCATEGORY_NAME,
-                    Description = x.CCATEGORY_TYPE_DESCR,
+                    Description = x.ILEVEL_CCATEGORY_ID_CCATEGORY_NAME_DISPLAY,
                     Level = x.ILEVEL,
-                    DisplayTree = x.ILEVEL_CCATEGORY_ID_CCATEGORY_NAME_DISPLAY
+                    Note = x.CCATEGORY_TYPE_DESCR
                 }).ToList();
 
                 CategoryGrid = new ObservableCollection<GSL01800TreeDTO>(loGridData);

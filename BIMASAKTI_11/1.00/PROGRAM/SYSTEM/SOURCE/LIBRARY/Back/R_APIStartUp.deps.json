@@ -27,6 +27,8 @@
           "R_ExceptionAPIMiddleware": "1.0.0",
           "R_OpenTelemetry": "1.0.0",
           "R_ReportFastReportBack": "1.0.0",
+          "R_ReportServerClient": "1.0.0",
+          "R_ValidationAPIMiddleware": "1.0.0",
           "Serilog.AspNetCore": "8.0.0",
           "Serilog.Enrichers.CorrelationId": "3.0.1",
           "Serilog.Sinks.OpenTelemetry": "1.2.0",
@@ -663,6 +665,14 @@
             "assemblyVersion": "8.0.0.0",
             "fileVersion": "8.0.23.53103"
           }
+        }
+      },
+      "Microsoft.Extensions.Http/6.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Logging": "8.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Options": "8.0.0"
         }
       },
       "Microsoft.Extensions.Logging/8.0.0": {
@@ -2321,6 +2331,7 @@
           "R_AuthorizationBack.Abstract": "1.0.0",
           "R_CommonFrontBackAPI": "1.0.0",
           "R_ContextBackEnd": "1.0.0",
+          "R_MultiTenantDb": "1.0.0",
           "System.Configuration.ConfigurationManager": "6.0.1"
         },
         "runtime": {
@@ -2475,6 +2486,21 @@
           "R_ExceptionAPIMiddleware.dll": {}
         }
       },
+      "R_MultiTenantDb/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "6.0.0",
+          "R_CommonFrontBackAPI": "1.0.0",
+          "R_MultiTenantDb.Abstract": "1.0.0"
+        },
+        "runtime": {
+          "R_MultiTenantDb.dll": {}
+        }
+      },
+      "R_MultiTenantDb.Abstract/1.0.0": {
+        "runtime": {
+          "R_MultiTenantDb.Abstract.dll": {}
+        }
+      },
       "R_OpenTelemetry/1.0.0": {
         "runtime": {
           "R_OpenTelemetry.dll": {}
@@ -2500,12 +2526,39 @@
           "R_ReportFastReportBack.dll": {}
         }
       },
+      "R_ReportServerClient/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Http": "6.0.0",
+          "R_APICommonDTO": "1.0.0",
+          "R_CommonFrontBackAPI": "1.0.0",
+          "R_ReportServerCommon": "1.0.0"
+        },
+        "runtime": {
+          "R_ReportServerClient.dll": {}
+        }
+      },
+      "R_ReportServerCommon/1.0.0": {
+        "runtime": {
+          "R_ReportServerCommon.dll": {}
+        }
+      },
       "R_Security/1.0.0": {
         "dependencies": {
           "System.Text.Encoding.CodePages": "6.0.0"
         },
         "runtime": {
           "R_Security.dll": {}
+        }
+      },
+      "R_ValidationAPIMiddleware/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
+          "R_APICommonDTO": "1.0.0",
+          "R_ApplicationBack": "1.0.0"
+        },
+        "runtime": {
+          "R_ValidationAPIMiddleware.dll": {}
         }
       }
     }
@@ -2865,6 +2918,13 @@
       "sha512": "sha512-AG7HWwVRdCHlaA++1oKDxLsXIBxmDpMPb3VoyOoAghEWnkUvEAdYQUwnV4jJbAaa/nMYNiEh5ByoLauZBEiovg==",
       "path": "microsoft.extensions.hosting.abstractions/8.0.0",
       "hashPath": "microsoft.extensions.hosting.abstractions.8.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Http/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-15+pa2G0bAMHbHewaQIdr/y6ag2H3yh4rd9hTXavtWDzQBkvpe2RMqFg8BxDpcQWssmjmBApGPcw93QRz6YcMg==",
+      "path": "microsoft.extensions.http/6.0.0",
+      "hashPath": "microsoft.extensions.http.6.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Logging/8.0.0": {
       "type": "package",
@@ -4096,6 +4156,16 @@
       "serviceable": false,
       "sha512": ""
     },
+    "R_MultiTenantDb/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_MultiTenantDb.Abstract/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "R_OpenTelemetry/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -4111,7 +4181,22 @@
       "serviceable": false,
       "sha512": ""
     },
+    "R_ReportServerClient/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ReportServerCommon/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "R_Security/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ValidationAPIMiddleware/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

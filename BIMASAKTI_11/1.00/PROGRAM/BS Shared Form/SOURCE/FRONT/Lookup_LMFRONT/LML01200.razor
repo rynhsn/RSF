@@ -1,0 +1,50 @@
+
+@inherits R_Page
+@attribute [R_Page(Title = "Invoice Group")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupPM> _localizer
+
+
+<R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.InvoiceGroupList"
+                R_ServiceGetListRecord="@R_ServiceGetListRecordAsync"
+                R_GridType="@R_eGridType.Navigator"
+                Pageable
+                PageSize="10"
+                Height="300px"
+                Width="925px">
+            <R_GridColumns>
+                <R_GridTextColumn Width="200px"
+                                  FieldName="@nameof(LML01200DTO.CINVGRP_CODE)"
+                                  HeaderText=@_localizer["_InvGroupCode"] />
+                <R_GridTextColumn Width="200px"
+                                  FieldName="@nameof(LML01200DTO.CINVGRP_NAME)"
+                                  HeaderText=@_localizer["_InvGroupName"] />
+                <R_GridTextColumn Width="175px"
+                                  FieldName="@nameof(LML01200DTO.CINVOICE_DUE_MODE_NAME)"
+                                  HeaderText=@_localizer["_dueMode"] />
+                <R_GridTextColumn Width="225x"
+                                  FieldName="@nameof(LML01200DTO.CINVOICE_GROUP_MODE_NAME)"
+                                  HeaderText=@_localizer["_InvGroupMode"] />
+                <R_GridCheckBoxColumn Width="150px"
+                                  FieldName="@nameof(LML01200DTO.LACTIVE)"
+                                      HeaderText=@_localizer["_Active"] />
+            </R_GridColumns>
+        </R_Grid>
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout xs="2">
+            <R_Button OnClick="Button_OnClickOkAsync">
+                OK
+            </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout xs="2">
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                Cancel
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+    </R_StackLayout>

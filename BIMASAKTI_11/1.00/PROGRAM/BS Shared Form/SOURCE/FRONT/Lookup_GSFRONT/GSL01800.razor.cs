@@ -2,8 +2,10 @@
 using Lookup_GSModel;
 using Lookup_GSModel.ViewModel;
 using R_BlazorFrontEnd.Controls;
+using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Exceptions;
+using R_BlazorFrontEnd.Helpers;
 
 namespace Lookup_GSFRONT
 {
@@ -11,6 +13,7 @@ namespace Lookup_GSFRONT
     {
         private LookupGSL01800ViewModel _viewModel = new LookupGSL01800ViewModel();
         private R_TreeView<GSL01800TreeDTO> _treeRef;
+        private R_Conductor _conductorRef;
 
         protected override async Task R_Init_From_Master(object poParameter)
         {
@@ -63,7 +66,33 @@ namespace Lookup_GSFRONT
 
         //    loEx.ThrowExceptionIfErrors();
         //}
+        //private void Conductor_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
+        //{
+        //    var loEx = new R_Exception();
 
+        //    try
+        //    {
+        //        eventArgs.Result = eventArgs.Data;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        loEx.Add(ex);
+        //    }
+
+        //    loEx.ThrowExceptionIfErrors();
+        //}
+        //private void ProductCategory_ConvertToGridEntity(R_ConvertToGridEntityEventArgs eventArgs)
+        //{
+        //    var loConductorData = (GSL01800DTO)eventArgs.Data;
+        //    var loData = R_FrontUtility.ConvertObjectToObject<GSL01800TreeDTO>(loConductorData);
+        //    loData.Id = loConductorData.CCATEGORY_ID;
+        //    loData.ParentId = loConductorData.CPARENT;
+        //    loData.Description = string.Format("[{0}] {1} - {2}", loConductorData.ILEVEL, loConductorData.CCATEGORY_ID, loConductorData.CCATEGORY_NAME);
+        //    loData.Note = loConductorData.CCATEGORY_TYPE_DESCR;
+        //    loData.Level = loConductorData.ILEVEL;
+
+        //    eventArgs.GridData = loData;
+        //}
         public async Task Button_OnClickOkAsync()
         {
             var loCurrentData = (GSL01800TreeDTO)_treeRef.CurrentSelectedData;

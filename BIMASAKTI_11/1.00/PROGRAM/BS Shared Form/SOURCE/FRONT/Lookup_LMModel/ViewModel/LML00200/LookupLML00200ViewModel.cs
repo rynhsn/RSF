@@ -22,10 +22,11 @@ namespace Lookup_PMModel.ViewModel.LML00200
 
             try
             {
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCOMPANY_ID, poParam.CCOMPANY_ID);
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CUSER_ID, poParam.CUSER_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParam.CPROPERTY_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCHARGE_TYPE_ID, poParam.CCHARGE_TYPE_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTAXABLE_TYPE, poParam.CTAXABLE_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CACTIVE_TYPE, poParam.CACTIVE_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTAX_DATE, poParam.CTAX_DATE);
 
                 var loResult = await _model.LML00200GetUnitChargesListAsync();
                 UnitChargesList = new ObservableCollection<LML00200DTO>(loResult.Data);
@@ -43,11 +44,6 @@ namespace Lookup_PMModel.ViewModel.LML00200
             LML00200DTO loRtn = null;
             try
             {
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCOMPANY_ID, poParam.CCOMPANY_ID);
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CUSER_ID, poParam.CUSER_ID);
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParam.CPROPERTY_ID);
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCHARGE_TYPE_ID, poParam.CCHARGE_TYPE_ID);
-
                 var loResult = await _modelGetRecord.LML00200GetUnitChargesAsync(poParam);
                 loRtn = loResult;
             }

@@ -449,11 +449,13 @@ public partial class GSM05000 : R_Page
             { CTRANS_CODE = loData.CTRANS_CODE, CTRANSACTION_NAME = loData.CTRANSACTION_NAME };
     }
 
-    private bool _gridEnabled;
-
+    // private bool _gridEnabled;
+    private bool _isNormalMode = true;
+    
     private void SetOther(R_SetEventArgs eventArgs)
     {
-        _gridEnabled = eventArgs.Enable;
+        _isNormalMode = eventArgs.Enable;
+        // _gridEnabled = eventArgs.Enable;
     }
 
     private void BeforeCancel(R_BeforeCancelEventArgs eventArgs)

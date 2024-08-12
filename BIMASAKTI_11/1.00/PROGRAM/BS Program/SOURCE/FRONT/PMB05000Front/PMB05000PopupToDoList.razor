@@ -1,0 +1,48 @@
+﻿@page "/PMB05000PopupToDoList"
+@using PMB05000FrontResources
+@using R_BlazorFrontEnd.Interfaces
+@using PMB05000Common.DTOs
+@inherits R_Page
+@* @attribute [R_Page(Title = "Outstanding Transaction List Prior To Soft Close CB Period")] *@
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.ValidateSoftCloseList"
+                Pageable="true"
+                R_ConductorGridSource="@_conductorRef"
+                R_GridType="@R_eGridType.Batch"
+                R_ServiceGetListRecord="GetListRecord"
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false"
+                Height="400px"
+                Width="1000px"
+                PageSize="17">
+            <R_GridColumns>
+                <R_GridNumericColumn FieldName=@nameof(PMB05000ValidateSoftCloseDTO.INO) HeaderText=@_localizer["NO"] Enabled="false" Width="100px"/>
+                <R_GridTextColumn FieldName=@nameof(PMB05000ValidateSoftCloseDTO.CDEPARTMENT) HeaderText=@_localizer["DEPT"] Enabled="false" Width="150px"/>
+                <R_GridTextColumn FieldName=@nameof(PMB05000ValidateSoftCloseDTO.CTRANSACTION_NAME) HeaderText=@_localizer["TRANSACTION_TYPE"] Enabled="false" Width="200px"/>
+                <R_GridTextColumn FieldName=@nameof(PMB05000ValidateSoftCloseDTO.CREF_NO) HeaderText=@_localizer["REF_NO"] Enabled="false" Width="200px"/>
+                <R_GridDateTimePickerColumn FieldName=@nameof(PMB05000ValidateSoftCloseDTO.DREF_DATE) HeaderText=@_localizer["REF_DATE"] Enabled="false" Width="150px"/>
+                <R_GridTextColumn FieldName=@nameof(PMB05000ValidateSoftCloseDTO.CSTATUS_NAME) HeaderText=@_localizer["STATUS"] Enabled="false" Width="100px"/>
+                <R_GridTextColumn FieldName=@nameof(PMB05000ValidateSoftCloseDTO.CDESCRIPTION) HeaderText=@_localizer["DESCRIPTION"] Enabled="false" Width="300px"/>
+                <R_GridTextColumn FieldName=@nameof(PMB05000ValidateSoftCloseDTO.CSOLUTION) HeaderText=@_localizer["SOLUTION"] Enabled="false" Width="300px"/>
+
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout>
+        <R_Button Enabled="@(_viewModel.ValidateSoftCloseList.Count>0)" OnClick="OnClickSaveToExcel">
+            @_localizer["SAVE_TO_EXCEL"]
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorRef"
+             R_IsHeader/>
+

@@ -12,6 +12,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.15" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\..\BACK\Lookup_LMCOMMON\Lookup_PMCOMMON.csproj" />
 	  <ProjectReference Include="..\Lookup_LMFrontResources\Lookup_PMFrontResources.csproj" />
 	  <ProjectReference Include="..\Lookup_LMModel\Lookup_PMModel.csproj" />
@@ -30,10 +34,6 @@
 		<Reference Include="R_ContextFrontEnd">
 			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_ContextFrontEnd.dll</HintPath>
 		</Reference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.15" />
 	</ItemGroup>
 
 

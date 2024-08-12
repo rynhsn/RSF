@@ -32,7 +32,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "EXEC RSP_GS_GET_TAX_LIST  " +
@@ -72,7 +72,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "EXEC RSP_GS_GET_TAX_BY_DATE_LIST  " +
@@ -114,7 +114,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "EXEC RSP_GS_GET_WITHHOLDING_LOOKUP_LIST @CCOMPANY_ID, @CPROPERTY_ID, @CTAX_TYPE_LIST";
@@ -154,7 +154,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_CURRENCY_LIST";
@@ -193,7 +193,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_JOURNAL_GRP_LIST";
@@ -234,7 +234,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "EXEC RSP_GS_GET_GL_ACCOUNT_LIST  " +
@@ -292,7 +292,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "EXEC RSP_GS_GET_COA_LOOKUP_LIST " +
@@ -336,7 +336,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "EXEC RSP_GS_GET_GOA_COA_LIST " +
@@ -376,7 +376,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "EXEC RSP_GS_GET_GOA_LIST  " +
@@ -414,7 +414,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "EXEC RSP_GS_GET_UNIT_TYPE_CTG_LIST  " +
@@ -456,7 +456,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_DEPT_LOOKUP_LIST";
@@ -496,7 +496,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_PROPERTY_DEPT_LIST";
@@ -536,7 +536,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "EXEC RSP_GS_GET_CURRENCY_TYPE_LIST " +
@@ -576,7 +576,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "EXEC RSP_GS_GET_CENTER_LIST " +
@@ -616,7 +616,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_USER_LIST";
@@ -654,7 +654,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_LOOKUP_USER_LIST";
@@ -712,7 +712,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_CASH_BANK_LIST";
@@ -753,7 +753,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_CASH_BANK_NUMBER_LIST";
@@ -795,7 +795,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "EXEC RSP_GS_GET_OTHER_CHARGES_LIST " +
@@ -839,7 +839,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "EXEC RSP_GS_GET_CASHFLOW_GRP_LIST  " +
@@ -879,7 +879,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "EXEC RSP_GS_GET_CASHFLOW_LIST  " +
@@ -921,7 +921,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "EXEC RSP_GS_GET_CASHFLOW_GRP_LIST  " +
@@ -961,7 +961,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "EXEC RSP_GS_GET_CURRENCY_RATE_LIST " +
@@ -1005,7 +1005,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_RATETYPE_LIST";
@@ -1043,7 +1043,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_COMPANY_INFO";
@@ -1081,7 +1081,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_CATEGORY_LIST";
@@ -1128,7 +1128,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "EXEC RSP_GS_GET_LOB_LIST 1, 0, 'CODE'";
@@ -1160,7 +1160,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_COUNTRY_LIST";
@@ -1198,7 +1198,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_CITY_LIST";
@@ -1242,7 +1242,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_PAYMENT_TERM_LIST";
@@ -1282,7 +1282,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_BUILDING_LIST";
@@ -1292,6 +1292,7 @@ namespace Lookup_GSLBACK
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@LAGREEMENT", DbType.Boolean, 10, poEntity.LAGREEMENT);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
@@ -1322,7 +1323,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_BUILDING_UNIT_LIST";
@@ -1333,7 +1334,11 @@ namespace Lookup_GSLBACK
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 50, poEntity.CBUILDING_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CFLOOR_ID", DbType.String, 50, poEntity.CFLOOR_ID);
+                loDb.R_AddCommandParameter(loCmd, "@LAGREEMENT", DbType.Boolean, 10, poEntity.LAGREEMENT);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROGRAM_ID", DbType.String, 50, poEntity.CPROGRAM_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 50, poEntity.CTRANS_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 50, poEntity.CREF_NO);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
@@ -1364,7 +1369,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_BUILDING_FLOOR_LIST";
@@ -1374,7 +1379,11 @@ namespace Lookup_GSLBACK
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 50, poEntity.CBUILDING_ID);
+                loDb.R_AddCommandParameter(loCmd, "@LAGREEMENT", DbType.Boolean, 10, poEntity.LAGREEMENT);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROGRAM_ID", DbType.String, 50, poEntity.CPROGRAM_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 50, poEntity.CTRANS_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 50, poEntity.CREF_NO);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
@@ -1405,7 +1414,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_CASH_BANK_LOOKUP";
@@ -1416,6 +1425,7 @@ namespace Lookup_GSLBACK
                 loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, poEntity.CDEPT_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CCB_TYPE", DbType.String, 50, poEntity.CCB_TYPE);
                 loDb.R_AddCommandParameter(loCmd, "@CBANK_TYPE", DbType.String, 50, poEntity.CBANK_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CCURRENCY_CODE", DbType.String, 50, poEntity.CCURRENCY_CODE);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
@@ -1446,7 +1456,7 @@ namespace Lookup_GSLBACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_CB_ACCOUNT_LOOKUP";
@@ -1458,6 +1468,7 @@ namespace Lookup_GSLBACK
                 loDb.R_AddCommandParameter(loCmd, "@CCB_TYPE", DbType.String, 50, poEntity.CCB_TYPE);
                 loDb.R_AddCommandParameter(loCmd, "@CBANK_TYPE", DbType.String, 50, poEntity.CBANK_TYPE);
                 loDb.R_AddCommandParameter(loCmd, "@CCB_CODE", DbType.String, 50, poEntity.CCB_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CCURRENCY_CODE", DbType.String, 50, poEntity.CCURRENCY_CODE);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
@@ -1478,5 +1489,47 @@ namespace Lookup_GSLBACK
 
             return loResult;
         }
+        public List<GSL02700DTO> GetALLOtherUnit(GSL02700ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GetALLOtherUnit");
+            var loEx = new R_Exception();
+            List<GSL02700DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection();
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_LOOKUP_OTHER_UNIT";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 50, poEntity.CBUILDING_ID);
+                loDb.R_AddCommandParameter(loCmd, "@LEVENT", DbType.Boolean, 50, poEntity.LEVENT);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_OTHER_UNIT_LIST {@poParameter}", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSL02700DTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
     }
 }

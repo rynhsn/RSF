@@ -12,6 +12,7 @@
           "BlazorMenuCommon": "1.0.0",
           "R_SecurityTokenBack": "1.0.0",
           "R_SecurityTokenCommon": "1.0.0",
+          "R_APIBackEnd": "1.0.0.0",
           "R_APICommon": "1.0.0.0",
           "R_ApplicationBack": "1.0.0.0",
           "R_AuthenticationBack": "1.0.0.0",
@@ -35,14 +36,6 @@
         },
         "runtime": {
           "BlazorMenuBack.dll": {}
-        },
-        "resources": {
-          "id/R_APIBackEnd.resources.dll": {
-            "locale": "id"
-          },
-          "ja/R_APIBackEnd.resources.dll": {
-            "locale": "ja"
-          }
         }
       },
       "BlazorMenuCommon/1.0.0": {
@@ -81,6 +74,22 @@
           "R_SecurityTokenCommon.dll": {}
         }
       },
+      "R_APIBackEnd/1.0.0.0": {
+        "runtime": {
+          "R_APIBackEnd.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "resources": {
+          "id/R_APIBackEnd.resources.dll": {
+            "locale": "id"
+          },
+          "ja/R_APIBackEnd.resources.dll": {
+            "locale": "ja"
+          }
+        }
+      },
       "R_APICommon/1.0.0.0": {
         "runtime": {
           "R_APICommon.dll": {
@@ -113,41 +122,9 @@
           }
         }
       },
-      "R_APIBackEnd/1.0.0.0": {
-        "runtime": {
-          "R_APIBackEnd.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "resources": {
-          "id/R_APIBackEnd.resources.dll": {
-            "locale": "id"
-          },
-          "ja/R_APIBackEnd.resources.dll": {
-            "locale": "ja"
-          }
-        }
-      },
       "R_APICommonDTO/1.0.0.0": {
         "runtime": {
           "R_APICommonDTO.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "R_Security/1.0.0.0": {
-        "runtime": {
-          "R_Security.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "R_ContextBackEnd/1.0.0.0": {
-        "runtime": {
-          "R_ContextBackEnd.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -161,9 +138,41 @@
           }
         }
       },
+      "R_MultiTenantDb.Abstract/1.0.0.0": {
+        "runtime": {
+          "R_MultiTenantDb.Abstract.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_ContextBackEnd/1.0.0.0": {
+        "runtime": {
+          "R_ContextBackEnd.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "R_AuthorizationBack.Abstract/1.0.0.0": {
         "runtime": {
           "R_AuthorizationBack.Abstract.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_MultiTenantDb/1.0.0.0": {
+        "runtime": {
+          "R_MultiTenantDb.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_Security/1.0.0.0": {
+        "runtime": {
+          "R_Security.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -244,6 +253,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "R_APIBackEnd/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "R_APICommon/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -264,22 +278,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "R_APIBackEnd/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "R_APICommonDTO/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "R_Security/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "R_ContextBackEnd/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -289,7 +288,27 @@
       "serviceable": false,
       "sha512": ""
     },
+    "R_MultiTenantDb.Abstract/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ContextBackEnd/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "R_AuthorizationBack.Abstract/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_MultiTenantDb/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_Security/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

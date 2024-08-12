@@ -29,6 +29,7 @@ namespace Lookup_GSFRONT
                 if (_viewModel.CountryGeography.Count > 0)
                 {
                     GSL02000CountryDTO loParam = _viewModel.CountryGeography.FirstOrDefault();
+                    _viewModel.Country = _viewModel.CountryGeography.Where(x=> x.CCODE == loParam.CCODE).FirstOrDefault();
                     await Country_OnChange(loParam.CCODE);
                 }
 
@@ -50,7 +51,6 @@ namespace Lookup_GSFRONT
             {
                 _viewModel.CountryID = poParam;
 
-                _viewModel.Country = _viewModel.CountryGeography.Where(x=> x.CCODE == poParam).FirstOrDefault();
 
                 await _treeRef.R_RefreshTree(poParam);
             }
@@ -79,45 +79,55 @@ namespace Lookup_GSFRONT
             loEx.ThrowExceptionIfErrors();
         }
 
-        private void Tree_R_RefreshTreeViewState(R_RefreshTreeViewStateEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
+        //private void Tree_R_RefreshTreeViewState(R_RefreshTreeViewStateEventArgs eventArgs)
+        //{
+        //    var loEx = new R_Exception();
 
-            try
-            {
-                var loTreeList = (List<GSL02000CityDTO>)eventArgs.TreeViewList;
+        //    try
+        //    {
+        //        var loTreeList = (List<GSL02000CityDTO>)eventArgs.TreeViewList;
 
-                loTreeList.ForEach(x => x.LHAS_CHILD = string.IsNullOrWhiteSpace(x.CPARENT_CODE) &&
-                                    loTreeList.Where(y => y.CPARENT_CODE == x.CCODE).Count() > 0 ? true :
-                                    loTreeList.Where(y => y.CPARENT_CODE == x.CCODE).Count() > 0);
+        //        loTreeList.ForEach(x => x.LHAS_CHILD = string.IsNullOrWhiteSpace(x.CPARENT_CODE) &&
+        //                            loTreeList.Where(y => y.CPARENT_CODE == x.CCODE).Count() > 0 ? true :
+        //                            loTreeList.Where(y => y.CPARENT_CODE == x.CCODE).Count() > 0);
 
-                eventArgs.ExpandedList = loTreeList.Where(x => x.LHAS_CHILD);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
+        //        eventArgs.ExpandedList = loTreeList.Where(x => x.LHAS_CHILD);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        loEx.Add(ex);
+        //    }
 
-            loEx.ThrowExceptionIfErrors();
-        }
+        //    loEx.ThrowExceptionIfErrors();
+        //}
 
+        //private void Conductor_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
+        //{
+        //    var loEx = new R_Exception();
 
-        private void Conductor_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
+        //    try
+        //    {
+        //        eventArgs.Result = eventArgs.Data;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        loEx.Add(ex);
+        //    }
 
-            try
-            {
-                eventArgs.Result = eventArgs.Data;
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
+        //    loEx.ThrowExceptionIfErrors();
+        //}
+        //private void Geography_ConvertToGridEntity(R_ConvertToGridEntityEventArgs eventArgs)
+        //{
 
-            loEx.ThrowExceptionIfErrors();
-        }
+        //    var loConductorData = (GSL02000CityDTO)eventArgs.Data;
 
+        //    var loData = R_FrontUtility.ConvertObjectToObject<GSL02000TreeDTO>(eventArgs.Data);
+        //    loData.Description = string.Format("{0} - {1}", loConductorData.CCODE, loConductorData.CNAME);
+        //    loData.Id = loConductorData.CCODE;
+        //    loData.ParentId = loConductorData.CPARENT_CODE;
+
+        //    eventArgs.GridData = loData;
+        //}
         public async Task Button_OnClickOkAsync()
         {
             var loEx = new R_Exception();

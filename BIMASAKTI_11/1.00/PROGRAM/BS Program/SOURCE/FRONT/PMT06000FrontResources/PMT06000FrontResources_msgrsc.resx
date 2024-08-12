@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="ALL_PERIOD" xml:space="preserve">
+        <value>All Period</value><comment>All Period</comment>
+    </data>
+    <data name="SELECTED_PERIOD" xml:space="preserve">
+        <value>Selected Period</value><comment>Selected Period</comment>
+    </data>
+    <data name="REFRESH" xml:space="preserve">
+        <value>Refresh</value><comment>Refresh</comment>
+    </data>
+    <data name="PROPERTY_UPPR" xml:space="preserve">
+        <value>PROPERTY</value><comment>PROPERTY</comment>
+    </data>
+    <data name="PROPERTY" xml:space="preserve">
+        <value>Property</value><comment>Property</comment>
+    </data>
+    <data name="TENANT" xml:space="preserve">
+        <value>Tenant</value><comment>Tenant</comment>
+    </data>
+    <data name="BUILDING" xml:space="preserve">
+        <value>Building</value><comment>Building</comment>
+    </data>
+    <data name="REF_NO" xml:space="preserve">
+        <value>Ref No</value><comment>Ref No</comment>
+    </data>
+    <data name="REF_DATE" xml:space="preserve">
+        <value>Ref Date</value><comment>Ref Date</comment>
+    </data>
+    <data name="DESCRIPTION" xml:space="preserve">
+        <value>Description</value><comment>Description</comment>
+    </data>
+    <data name="AGRMT_NO" xml:space="preserve">
+        <value>Agrmt No</value><comment>Agrmt No</comment>
+    </data>
+    <data name="INVOICE_NO" xml:space="preserve">
+        <value>Invoice No</value><comment>Invoice No</comment>
+    </data>
+    <data name="INVOICE_DATE" xml:space="preserve">
+        <value>Invoice Date</value><comment>Invoice Date</comment>
+    </data>
+    <data name="TRANS_STATUS" xml:space="preserve">
+        <value>Trans Status</value><comment>Trans Status</comment>
+    </data>
+    <data name="UPDATED_BY" xml:space="preserve">
+        <value>Updated By</value><comment>Updated By</comment>
+    </data>
+    <data name="UPDATED_DATE" xml:space="preserve">
+        <value>Updated Date</value><comment>Updated Date</comment>
+    </data>
+    <data name="CREATED_BY" xml:space="preserve">
+        <value>Created By</value><comment>Created By</comment>
+    </data>
+    <data name="CREATED_DATE" xml:space="preserve">
+        <value>Created Date</value><comment>Created Date</comment>
+    </data>
+    <data name="SEQ_NO" xml:space="preserve">
+        <value>Seq No</value><comment>Seq No</comment>
+    </data>
+    <data name="SERVICE" xml:space="preserve">
+        <value>Service</value><comment>Service</comment>
+    </data>
+    <data name="DATE_IN" xml:space="preserve">
+        <value>Date In</value><comment>Date In</comment>
+    </data>
+    <data name="DATE_OUT" xml:space="preserve">
+        <value>Date Out</value><comment>Date Out</comment>
+    </data>
+    <data name="UNIT_ID" xml:space="preserve">
+        <value>Unit Id</value><comment>Unit Id</comment>
+    </data>
+    <data name="UNIT_NAME" xml:space="preserve">
+        <value>Unit Name</value><comment>Unit Name</comment>
+    </data>
+    <data name="FLOOR" xml:space="preserve">
+        <value>Floor</value><comment>Floor</comment>
+    </data>
+    <data name="SQM" xml:space="preserve">
+        <value>Sqm</value><comment>Sqm</comment>
+    </data>
+    <data name="OVERTIME_INFO" xml:space="preserve">
+        <value>Overtime Info</value><comment>Overtime Info</comment>
+    </data>
+    <data name="DRAFT_UPPR" xml:space="preserve">
+        <value>DRAFT</value><comment>DRAFT</comment>
+    </data>
+    <data name="OPEN_UPPR" xml:space="preserve">
+        <value>OPEN</value><comment>OPEN</comment>
+    </data>
+    <data name="DEPARTMENT" xml:space="preserve">
+        <value>Department</value><comment>Department</comment>
+    </data>
+    <data name="LOI_AGRMT_NO" xml:space="preserve">
+        <value>LOI/Agrmt. No</value><comment>LOI/Agrmt. No</comment>
+    </data>
+    <data name="REFERENCE_NO" xml:space="preserve">
+        <value>Reference No</value><comment>Reference No</comment>
+    </data>
+    <data name="REFERENCE_DATE" xml:space="preserve">
+        <value>Reference Date</value><comment>Reference Date</comment>
+    </data>
+    <data name="INVOICE_PERIOD" xml:space="preserve">
+        <value>Invoice Period</value><comment>Invoice Period</comment>
+    </data>
+    <data name="REQUEST_NAME" xml:space="preserve">
+        <value>Request Name</value><comment>Request Name</comment>
+    </data>
+    <data name="SUBMIT" xml:space="preserve">
+        <value>Submit</value><comment>Submit</comment>
+    </data>
+    <data name="DRAFT" xml:space="preserve">
+        <value>Draft</value><comment>Draft</comment>
+    </data>
+    <data name="UNIT" xml:space="preserve">
+        <value>Unit</value><comment>Unit</comment>
+    </data>
+    <data name="PLEASE_SELECT_PROPERTY" xml:space="preserve">
+        <value>Please select Property!</value><comment>Please select Property!</comment>
+    </data>
+    <data name="PLEASE_SELECT_DEPARTMENT" xml:space="preserve">
+        <value>Please select Department!</value><comment>Please select Department!</comment>
+    </data>
+    <data name="PLEASE_SELECT_TENANT" xml:space="preserve">
+        <value>Please select Tenant!</value><comment>Please select Tenant!</comment>
+    </data>
+    <data name="PLEASE_SELECT_BUILDING" xml:space="preserve">
+        <value>Please select Building!</value><comment>Please select Building!</comment>
+    </data>
+    <data name="REF_DATE_REQ" xml:space="preserve">
+        <value>Reference Date is required!</value><comment>Reference Date is required!</comment>
+    </data>
+    <data name="REQ_NAME_REQ" xml:space="preserve">
+        <value>Request Name is required!</value><comment>Request Name is required!</comment>
+    </data>
+    <data name="PLEASE_SELECT_INV_YEAR" xml:space="preserve">
+        <value>Please select Invoice Year!</value><comment>Please select Invoice Year!</comment>
+    </data>
+    <data name="PLEASE_SELECT_INV_MONTH" xml:space="preserve">
+        <value>Please select Invoice Month!</value><comment>Please select Invoice Month!</comment>
+    </data>
+    <data name="MSG_BEFORE_CANCEL" xml:space="preserve">
+        <value>You haven’t saved your changes. Are you sure want to cancel?</value><comment>You haven’t saved your changes. Are you sure want to cancel?</comment>
+    </data>
+    <data name="MSG_BEFORE_SUBMIT" xml:space="preserve">
+        <value>Are you sure want to submit this Overtime?</value><comment>Are you sure want to submit this Overtime?</comment>
+    </data>
+    <data name="MSG_BEFORE_REDRAFT" xml:space="preserve">
+        <value>Are you sure want to redraft this Overtime?</value><comment>Are you sure want to redraft this Overtime?</comment>
+    </data>
+    <data name="MSG_AFTER_SUBMIT" xml:space="preserve">
+        <value>Overtime Submit Successfully!</value><comment>Overtime Submit Successfully!</comment>
+    </data>
+    <data name="MSG_AFTER_REDRAFT" xml:space="preserve">
+        <value>Overtime Redraft Successfully!</value><comment>Overtime Redraft Successfully!</comment>
+    </data>
+    <data name="MSG_BEFORE_DELETE_OVT" xml:space="preserve">
+        <value>Are you sure want to delete this Overtime Entry?</value><comment>Are you sure want to delete this Overtime Entry?</comment>
+    </data>
+    <data name="MSG_AFTER_DELETE_OVT" xml:space="preserve">
+        <value>Overtime Entry Deleted Successfully!</value><comment>Overtime Entry Deleted Successfully!</comment>
+    </data>
+    <data name="MSG_BEFORE_DELETE_SVC" xml:space="preserve">
+        <value>Are you sure want to delete this Service Entry?</value><comment>Are you sure want to delete this Service Entry?</comment>
+    </data>
+    <data name="MSG_AFTER_DELETE_SVC" xml:space="preserve">
+        <value>Service Deleted Successfully!</value><comment>Service Deleted Successfully!</comment>
+    </data>
+    <data name="MSG_BEFORE_DELETE_UNIT" xml:space="preserve">
+        <value>Are you sure want to delete this Unit Entry?</value><comment>Are you sure want to delete this Unit Entry?</comment>
+    </data>
+    <data name="MSG_AFTER_DELETE_UNIT" xml:space="preserve">
+        <value>Unit Deleted Successfully!</value><comment>Unit Deleted Successfully!</comment>
+    </data>
+    <data name="PLEASE_SELECT_SERVICE" xml:space="preserve">
+        <value>Please select Service!</value><comment>Please select Service!</comment>
+    </data>
+    <data name="PLEASE_SELECT_DATE_IN" xml:space="preserve">
+        <value>Please select Date In!</value><comment>Please select Date In!</comment>
+    </data>
+    <data name="PLEASE_SELECT_DATE_OUT" xml:space="preserve">
+        <value>Please select Date Out!</value><comment>Please select Date Out!</comment>
+    </data>
+    <data name="DATE_IN_GREATER_THAN_DATE_OUT" xml:space="preserve">
+        <value>Date In must smaller than Date Out!</value><comment>Date In must smaller than Date Out!</comment>
+    </data>
+    <data name="PLEASE_SELECT_UNIT" xml:space="preserve">
+        <value>Please select Unit!</value><comment>Please select Unit!</comment>
+    </data>
+    <data name="AllPeriod" xml:space="preserve">
+        <value>All Period</value><comment>All Period</comment>
+    </data>
+    <data name="SelectPeriod" xml:space="preserve">
+        <value>Select Period</value><comment>Select Period</comment>
+    </data>
+    
+</root>

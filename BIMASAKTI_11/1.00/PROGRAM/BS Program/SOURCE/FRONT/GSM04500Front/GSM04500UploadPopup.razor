@@ -94,3 +94,23 @@
     </R_StackLayout>
 </R_StackLayout>
 
+
+<style>
+    /*the following selectors target the locked/frozen columns*/
+    /*/===/*/
+    .k-grid .k-master-row.errorDataLValidisFalse .k-grid-content-sticky,
+    .k-grid .k-master-row.errorDataLValidisFalse.k-alt .k-grid-content-sticky,
+    /*/===/*/
+    .k-grid .k-master-row.warningRefNoisHasData .k-grid-content-sticky,
+    /*/===/ */
+    .k-grid .k-master-row.warningRefNoisHasData.k-alt .k-grid-content-sticky
+    {
+        background-color: inherit;
+    }
+
+    .k-grid .k-master-row.errorDataNotValid {
+        background-color: red;
+    }
+
+</style>
+

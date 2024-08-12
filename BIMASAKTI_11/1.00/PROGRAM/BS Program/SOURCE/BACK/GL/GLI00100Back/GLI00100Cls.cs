@@ -189,7 +189,7 @@ public class GLI00100Cls
         try
         {
             loDb = new R_Db();
-            loConn = loDb.GetConnection("R_ReportConnectionString");
+            loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
             loCmd = loDb.GetCommand();
 
             lcQuery = "RSP_GL_GET_ACCOUNT_ANALYSIS";

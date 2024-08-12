@@ -1,0 +1,438 @@
+﻿@page "/PMT06000Info"
+@using PMT06000FrontResources
+@using R_BlazorFrontEnd.Interfaces
+@using PMT06000Common.DTOs
+@using R_BlazorFrontEnd.Enums
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row>
+    <R_ItemLayout col="7">
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["PROPERTY"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_ComboBox R_ConductorSource="_conductorRef"
+                            Data="@_viewModel.PropertyList"
+                            @bind-Value="@_viewModel.Data.CPROPERTY_ID"
+                            ValueField="@nameof(PMT06000PropertyDTO.CPROPERTY_ID)"
+                            TextField="@nameof(PMT06000PropertyDTO.CPROPERTY_NAME)"
+                            R_EnableAdd="true"
+                            R_EnableEdit="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label FontColor="R_eFontColor.Danger">@(_viewModel.Data.CTRANS_STATUS_DESC)</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="7">
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["DEPARTMENT"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="_viewModel.Data.CDEPT_CODE"
+                           R_ConductorSource="_conductorRef"
+                           MaxLength="20"
+                           OnLostFocus="OnLostFocusDept"
+                           R_EnableAdd="true"
+                           R_EnableEdit="false"/>
+            </R_ItemLayout>
+            <R_Lookup R_ConductorSource="_conductorRef"
+                      R_Before_Open_Lookup="BeforeOpenLookupDept"
+                      R_After_Open_Lookup="AfterOpenLookupDept"
+                      R_EnableAdd="true"
+                      R_EnableEdit="true">
+                ...
+            </R_Lookup>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="_viewModel.Data.CDEPT_NAME" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["TENANT"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="_viewModel.Data.CTENANT_ID"
+                           R_ConductorSource="_conductorRef"
+                           MaxLength="20"
+                           OnLostFocus="OnLostFocusTenant"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true"/>
+            </R_ItemLayout>
+            <R_Lookup R_ConductorSource="_conductorRef"
+                      R_Before_Open_Lookup="BeforeOpenLookupTenant"
+                      R_After_Open_Lookup="AfterOpenLookupTenant"
+                      R_EnableAdd="true"
+                      R_EnableEdit="true">
+                ...
+            </R_Lookup>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="_viewModel.Data.CTENANT_NAME" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["BUILDING"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="_viewModel.Data.CBUILDING_ID"
+                           R_ConductorSource="_conductorRef"
+                           MaxLength="20"
+                           OnLostFocus="OnLostFocusBuilding"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true"/>
+            </R_ItemLayout>
+            <R_Lookup
+                R_ConductorSource="_conductorRef"
+                R_Before_Open_Lookup="BeforeOpenLookupBuilding"
+                R_After_Open_Lookup="AfterOpenLookupBuilding"
+                R_EnableAdd="true"
+                R_EnableEdit="true">
+                ...
+            </R_Lookup>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="_viewModel.Data.CBUILDING_NAME" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["LOI_AGRMT_NO"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="_viewModel.Data.CAGREEMENT_NO"
+                           R_ConductorSource="_conductorRef"
+                           MaxLength="20"
+                           OnLostFocus="OnLostFocusRef"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true"/>
+            </R_ItemLayout>
+            <R_Lookup
+                R_ConductorSource="_conductorRef"
+                R_Before_Open_Lookup="BeforeOpenLookupRef"
+                R_After_Open_Lookup="AfterOpenLookupRef"
+                R_EnableAdd="true"
+                R_EnableEdit="true">
+                ...
+            </R_Lookup>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="_viewModel.Data.CUNIT_DESCRIPTION" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="5">
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["REFERENCE_NO"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextBox @bind-Value="_viewModel.Data.CREF_NO" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["REFERENCE_DATE"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_DatePicker @bind-Value="_viewModel.Data.DREF_DATE"
+                              R_ConductorSource="_conductorRef"
+                              R_EnableAdd="true"
+                              R_EnableEdit="true"
+                              Max="@DateTime.Today"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["INVOICE_PERIOD"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.IINV_YEAR"
+                                  R_ConductorSource="_conductorRef"
+                                  ThousandSeparator="false"
+                                  Min="_viewModel.YearRange.IMIN_YEAR"
+                                  Max="_viewModel.YearRange.IMAX_YEAR"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="3" Class="pe-1">
+                <R_ComboBox Data="@_viewModel.PeriodList"
+                            @bind-Value="@_viewModel.Data.CINV_MONTH"
+                            R_ConductorSource="_conductorRef"
+                            ValueField="@nameof(PMT06000PeriodDTO.CPERIOD_NO)"
+                            TextField="@nameof(PMT06000PeriodDTO.CPERIOD_NO)"
+                            R_EnableAdd="true"
+                            R_EnableEdit="true"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["REQUEST_NAME"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextBox @bind-Value="_viewModel.Data.CREQUEST_NAME"
+                           R_ConductorSource="_conductorRef"
+                           MaxLength="100"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-1" Spacing="3">
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["DESCRIPTION"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="10" Class="ms-2">
+        <R_TextArea @bind-Value="_viewModel.Data.CDESCRIPTION"
+                    R_ConductorSource="_conductorRef"
+                    R_EnableAdd="true"
+                    R_EnableEdit="true"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Justify="R_eJustify.SpaceBetween">
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_AddButton R_Conductor="_conductorRef"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_EditButton R_Conductor="_conductorRef"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_DeleteButton R_Conductor="_conductorRef"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button R_ConductorSource="_conductorRef"
+                  R_EnableOther="true"
+                  Enabled="@(_conductorRef.R_ConductorMode is R_eConductorMode.Normal && _viewModel.Data.CREC_ID != "" && _viewModel.Data.CTRANS_STATUS is "00" or "10")"
+                  OnClick="OnClickSubmit">
+            @(_viewModel.Data.CTRANS_STATUS == "10" ? _localizer["DRAFT"] : _localizer["SUBMIT"])
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_CancelButton R_Conductor="_conductorRef"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_SaveButton R_Conductor="_conductorRef"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_TabStrip OnActiveTabIndexChanging="OnChangeTab">
+     <R_TabStripTab @ref="_tabService" Id="@nameof(PMT06000Info)" Title="@_localizer["SERVICE"]">
+        <!-- Deposit -->
+        <R_StackLayout Row>
+        
+            <R_Grid @ref="@_gridRefService"
+                    DataSource="_viewModel.OvertimeServiceGridList"
+                    R_ConductorSource="@_conductorRefService"
+                    R_GridType="@R_eGridType.Navigator"
+                    R_ServiceGetListRecord="@ServiceGetListService"
+                    Pageable
+                    Height="185px"
+                    PageSize="6">
+                <R_GridColumns>
+                    <R_GridTextColumn Width="150px"
+                                      FieldName="@nameof(PMT06000OvtServiceGridDTO.CSEQ_NO)"
+                                      HeaderText="@_localizer["SEQ_NO"]"/>
+                    <R_GridTextColumn Width="200px"
+                                      FieldName="@nameof(PMT06000OvtServiceGridDTO.CSERVICE_DISPLAY)"
+                                      HeaderText="Service"/>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.DDATE_IN)"
+                                                HeaderText="@_localizer["DATE_IN"]"
+                                                Width="225px"/>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.DDATE_OUT)"
+                                                HeaderText="@_localizer["DATE_OUT"]"
+                                                Width="225px"/>
+                    <R_GridTextColumn Width="150px"
+                                      FieldName="@nameof(PMT06000OvtServiceGridDTO.CSERVICE_DESCR)"
+                                      HeaderText="@_localizer["DESCRIPTION"]"/>
+                </R_GridColumns>
+        
+            </R_Grid>
+        
+        </R_StackLayout>
+        
+        
+        <!-- Service Navigator -->
+        <R_StackLayout Class="mt-2">
+            <R_ItemLayout>
+                <!-- SERVICE -->
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="1">
+                        <R_Label>
+                            @_localizer["SERVICE"]
+                        </R_Label>
+                    </R_ItemLayout>
+        
+                    <R_ItemLayout col="2">
+        
+                        <R_TextBox @bind-Value="@_viewModelService.Data.CSERVICE_ID"
+                                   R_ConductorSource="@_conductorRefService"
+                                   OnLostFocus="OnLostFocusUtility"
+                                   R_EnableAdd/>
+        
+                    </R_ItemLayout>
+        
+                    <R_ItemLayout>
+        
+                        <R_Lookup R_ConductorSource="@_conductorRefService"
+                                  R_EnableAdd
+                                  R_Before_Open_Lookup="@BeforeOpenLookupUtility"
+                                  R_After_Open_Lookup="@AfterOpenLookupUtility">
+                            ...
+                        </R_Lookup>
+                    </R_ItemLayout>
+        
+                    <R_ItemLayout col="4">
+        
+                        <R_TextBox @bind-Value="@_viewModelService.Data.CSERVICE_NAME"
+                                   R_ConductorSource="@_conductorRefService"
+                                   Enabled="false"/>
+        
+                    </R_ItemLayout>
+                </R_StackLayout>
+        
+                <!-- Date In -->
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["DATE_IN"]* </R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_DateTimePicker @bind-Value="@_viewModelService.Data.DDATE_IN"
+                                          R_ConductorSource="@_conductorRefService"
+                                          R_EnableAdd
+                                          R_EnableEdit/>
+        
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1" Class="text-center">
+                        <R_Label>@_localizer["DATE_OUT"]* </R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_DateTimePicker @bind-Value="@_viewModelService.Data.DDATE_OUT"
+                                          R_ConductorSource="@_conductorRefService"
+                                          R_EnableAdd
+                                          R_EnableEdit/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+        
+        
+                <!-- Description -->
+                <R_StackLayout Row>
+                    <R_ItemLayout col="1">
+                        <R_Label>
+                            @_localizer["DESCRIPTION"]
+                        </R_Label>
+                    </R_ItemLayout>
+        
+                    <R_ItemLayout col="11">
+        
+                        <R_TextArea @bind-Value="@_viewModelService.Data.CSERVICE_DESCR"
+                                    R_ConductorSource="@_conductorRefService"
+                                    MaxLength="int.MaxValue"
+                                    R_EnableAdd
+                                    R_EnableEdit/>
+        
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        
+        
+        </R_StackLayout>
+        
+        
+        @* Button CRUD *@
+        <R_StackLayout Row Class="d-flex justify-content-between mt-2">
+        
+            <R_StackLayout Row>
+        
+                <R_ItemLayout>
+                    <R_AddButton R_Conductor="@_conductorRefService"/>
+                </R_ItemLayout>
+        
+                <R_ItemLayout>
+                    <R_EditButton R_Conductor="@_conductorRefService"/>
+                </R_ItemLayout>
+        
+                <R_ItemLayout>
+                    <R_DeleteButton R_Conductor="@_conductorRefService"/>
+                </R_ItemLayout>
+        
+            </R_StackLayout>
+        
+            <R_StackLayout Row Class="d-flex justify-content-end">
+        
+                <R_StackLayout Row>
+        
+                    <R_ItemLayout>
+                        <R_CancelButton R_Conductor="@_conductorRefService"/>
+                    </R_ItemLayout>
+        
+                    <R_ItemLayout>
+                        <R_SaveButton R_Conductor="@_conductorRefService"/>
+                    </R_ItemLayout>
+        
+                </R_StackLayout>
+        
+            </R_StackLayout>
+        
+        </R_StackLayout>
+    </R_TabStripTab>
+    <R_TabStripTab @ref="_tabUnit" Id="@nameof(PMT06000Unit)" Title="@_localizer["UNIT"]" Enabled="@(_viewModel.OvertimeServiceGridList.Count > 0)">
+        <R_TabPage @ref="_pageUnit" R_Before_Open_TabPage="BeforeOpenUnitTab"/>
+    </R_TabStripTab>
+</R_TabStrip>
+
+<R_Conductor @ref="_conductorRef"
+             R_ViewModel="_viewModel"
+             R_IsHeader
+             R_ServiceGetRecord="ServiceGetRecordOvt"
+             R_BeforeCancel="BeforeCancelOvt"
+             R_CheckAdd="CheckAddOvt"
+             R_CheckEdit="CheckEditOvt"
+             R_CheckDelete="CheckDeleteOvt"
+             R_AfterAdd="AfterAddOvt"
+             R_SetEdit="SetEditOvt"
+             R_Validation="ValidationOvt"
+             R_Saving="SavingOvt"
+             R_ServiceSave="ServiceSaveOvt"
+             R_AfterSave="AfterSaveOvt"
+             R_DisableDeleteConfirmation
+             R_BeforeDelete="BeforeDeleteOvt"
+             R_ServiceDelete="ServiceDeleteOvt"
+             R_AfterDelete="AfterDeleteOvt"
+             R_SetOther="SetOtherOvt"/>
+
+<R_Conductor @ref="@_conductorRefService"
+             R_ConductorParent="_conductorRef"
+             R_ViewModel="@_viewModelService"
+             R_Display="DisplayService"
+             R_CheckAdd="CheckAddService"
+             R_CheckEdit="CheckEditService"
+             R_CheckDelete="CheckDeleteService"
+             R_AfterAdd="AfterAddService"
+             R_ServiceGetRecord="ServiceGetRecordService"
+             R_BeforeCancel="BeforeCancelService"
+             R_DisableDeleteConfirmation
+             R_BeforeDelete="BeforeDeleteService"
+             R_AfterDelete="AfterDeleteService"
+             R_Validation="ValidationService"
+             R_Saving="SavingService"
+             R_ServiceSave="ServiceSaveService"
+             R_ServiceDelete="ServiceDeleteService"
+             />

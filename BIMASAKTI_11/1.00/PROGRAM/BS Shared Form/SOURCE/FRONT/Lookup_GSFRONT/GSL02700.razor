@@ -1,0 +1,32 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Other Unit Lookup")]
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Style="width: 800px">
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.OtherUnitGrid"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                Pageable="true">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="COTHER_UNIT_ID" HeaderText="@_localizer["_OtherUnitId"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="COTHER_UNIT_NAME" HeaderText="@_localizer["_OtherUnitName"]" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="COTHER_UNIT_TYPE_NAME" HeaderText="@_localizer["_OtherUnitType"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CBUILDING_NAME" HeaderText="@_localizer["_Building"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CFLOOR_NAME" HeaderText="@_localizer["_Floor"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CLOCATION" HeaderText="@_localizer["_Location"]" Width="200px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+            <R_Button OnClick="Button_OnClickOkAsync">
+                @_localizer["_OkBtn"]
+            </R_Button>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                @_localizer["_CancelBtn"]
+            </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>

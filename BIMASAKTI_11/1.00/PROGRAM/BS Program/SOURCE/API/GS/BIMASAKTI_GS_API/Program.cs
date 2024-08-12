@@ -26,7 +26,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.R_RegisterServices(
-    startup => { startup.R_DisableAuthorization(); }
+    startup =>
+    {
+        startup.R_DisableAuthorization();
+        startup.R_DisableReportServerClient();
+    }
     );
 
 builder.Services.AddSingleton<R_ISymmetricProvider, R_SymmetricAESProvider>();

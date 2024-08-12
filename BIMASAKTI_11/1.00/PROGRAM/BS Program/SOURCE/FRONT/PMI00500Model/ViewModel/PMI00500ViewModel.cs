@@ -23,6 +23,9 @@ namespace PMI00500Model.ViewModel
         public ObservableCollection<PMI00500DTInvoiceDTO>
             InvoiceList = new ObservableCollection<PMI00500DTInvoiceDTO>();
 
+        public PMI00500HeaderDTO HeaderEntity = new PMI00500HeaderDTO();
+        public PMI00500DTAgreementDTO AgreementEntity = new PMI00500DTAgreementDTO();
+        
         public List<PMI00500PropertyDTO> PropertyList = new List<PMI00500PropertyDTO>();
 
         #region Parameter

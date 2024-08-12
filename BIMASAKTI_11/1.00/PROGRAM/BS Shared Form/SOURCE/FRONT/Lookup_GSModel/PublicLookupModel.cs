@@ -56,8 +56,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
-
         #endregion
 
         #region GSL00110
@@ -65,7 +63,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL00110DTO>> GSL00110GetTaxByDateListAsync(GSL00110ParameterDTO poParam)
         {
             var loEx = new R_Exception();
@@ -101,7 +98,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL00200DTO>> GSL00200GetWithholdingTaxListAsync(GSL00200ParameterDTO poParameter)
         {
             var loEx = new R_Exception();
@@ -137,7 +133,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL00300DTO>> GSL00300GetCurrencyListAsync()
         {
             var loEx = new R_Exception();
@@ -170,7 +165,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL00400DTO>> GSL00400GetJournalGroupListAsync(GSL00400ParameterDTO poParam)
         {
             var loEx = new R_Exception();
@@ -206,7 +200,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL00500DTO>> GSL00500GetGLAccountListAsync(GSL00500ParameterDTO poParam)
         {
             var loEx = new R_Exception();
@@ -248,7 +241,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL00510DTO>> GSL00510GetCOAListAsync(GSL00510ParameterDTO poParam)
         {
             var loEx = new R_Exception();
@@ -284,7 +276,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL00520DTO>> GSL00520GetGOACOAListAsync(GSL00520ParameterDTO poParam)
         {
             var loEx = new R_Exception();
@@ -350,7 +341,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL00600DTO>> GSL00600GetUnitTypeCategoryListAsync(GSL00600ParameterDTO poParam)
         {
             var loEx = new R_Exception();
@@ -386,7 +376,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL00700DTO>> GSL00700GetDepartmentListAsync(GSL00700ParameterDTO poParameter)
         {
             var loEx = new R_Exception();
@@ -421,7 +410,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL00710DTO>> GSL00710GetDepartmentPropertyListAsync(GSL00710ParameterDTO poParameter)
         {
             var loEx = new R_Exception();
@@ -449,12 +437,12 @@ namespace Lookup_GSModel
             return loResult;
         }
         #endregion
+
         #region GSL00800
         public IAsyncEnumerable<GSL00800DTO> GSL00800GetCurrencyTypeList()
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL00800DTO>> GSL00800GetCurrencyTypeListAsync()
         {
             var loEx = new R_Exception();
@@ -486,7 +474,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL00900DTO>> GSL00900GetCenterListAsync()
         {
             var loEx = new R_Exception();
@@ -519,7 +506,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL01000DTO>> GSL01000GetUserListAsync()
         {
             var loEx = new R_Exception();
@@ -552,7 +538,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL01100DTO>> GSL01100GetUserApprovalListAsync(GSL01100ParameterDTO poParameter)
         {
             var loEx = new R_Exception();
@@ -588,7 +573,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL01200DTO>> GSL01200GetBankListAsync(GSL01200ParameterDTO poParameter)
         {
             var loEx = new R_Exception();
@@ -624,7 +608,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL01300DTO>> GSL01300GetBankAccountListAsync(GSL01300ParameterDTO poParameter)
         {
             var loEx = new R_Exception();
@@ -662,7 +645,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL01400DTO>> GSL01400GetOtherChargesListAsync(GSL01400ParameterDTO poParameter)
         {
             var loEx = new R_Exception();
@@ -699,7 +681,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL01500ResultDetailDTO>> GSL01500GetCashDetailListAsync(string poCashFlowGrpCode)
         {
             var loEx = new R_Exception();
@@ -727,12 +708,10 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public IAsyncEnumerable<GSL01500ResultGroupDTO> GSL01500GetCashFlowGroupList()
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL01500ResultGroupDTO>> GSL01500GetCashFlowGroupListAsync()
         {
             var loEx = new R_Exception();
@@ -765,7 +744,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL01600DTO>> GSL01600GetCashFlowGroupTypeListAsync()
         {
             var loEx = new R_Exception();
@@ -827,7 +805,6 @@ namespace Lookup_GSModel
             return loResult;
 
         }
-
         public IAsyncEnumerable<GSL01702DTO> GSL01700GetLocalAndBaseCurrencyList()
         {
             throw new NotImplementedException();
@@ -857,12 +834,10 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public IAsyncEnumerable<GSL01701DTO> GSL01700GetRateTypeList()
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL01701DTO>> GSL01700GetRateTypeListAsync()
         {
             var loEx = new R_Exception();
@@ -895,7 +870,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL01800DTO>> GSL01800GetCategoryListAsync(GSL01800DTOParameter poParameter)
         {
             var loEx = new R_Exception();
@@ -926,8 +900,6 @@ namespace Lookup_GSModel
             return loResult;
 
         }
-
-
         #endregion
 
         #region GSL01900
@@ -935,7 +907,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL01900DTO>> GSL01900GetLOBListAsync()
         {
             var loEx = new R_Exception();
@@ -1001,7 +972,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL02000CountryDTO>> GSL02000GetCountryGeographyListAsync()
         {
             var loEx = new R_Exception();
@@ -1028,6 +998,7 @@ namespace Lookup_GSModel
 
         }
         #endregion
+
         #region GSL02100
         public IAsyncEnumerable<GSL02100DTO> GSL02100GetPaymentTermList()
         {
@@ -1079,6 +1050,7 @@ namespace Lookup_GSModel
             {
                 //Set Context
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParameter.CPROPERTY_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LAGREEMENT, poParameter.LAGREEMENT);
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02200DTO>(
@@ -1114,8 +1086,12 @@ namespace Lookup_GSModel
             {
                 //Set Context
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParameter.CPROPERTY_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LAGREEMENT, poParameter.LAGREEMENT);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CBUILDING_ID, string.IsNullOrWhiteSpace(poParameter.CBUILDING_ID) ? "" : poParameter.CBUILDING_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CFLOOR_ID, string.IsNullOrWhiteSpace(poParameter.CFLOOR_ID) ? "" : poParameter.CFLOOR_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROGRAM_ID, string.IsNullOrWhiteSpace(poParameter.CPROGRAM_ID) ? "" : poParameter.CPROGRAM_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTRANS_CODE, string.IsNullOrWhiteSpace(poParameter.CTRANS_CODE) ? "" : poParameter.CTRANS_CODE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CREF_NO, string.IsNullOrWhiteSpace(poParameter.CREF_NO) ? "" : poParameter.CREF_NO);
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02300DTO>(
@@ -1142,7 +1118,6 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public async Task<List<GSL02400DTO>> GSL02400GetFloorListAsync(GSL02400ParameterDTO poParameter)
         {
             var loEx = new R_Exception();
@@ -1152,7 +1127,12 @@ namespace Lookup_GSModel
             {
                 //Set Context
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParameter.CPROPERTY_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LAGREEMENT, poParameter.LAGREEMENT);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CBUILDING_ID, string.IsNullOrWhiteSpace(poParameter.CBUILDING_ID) ? "" : poParameter.CBUILDING_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROGRAM_ID, string.IsNullOrWhiteSpace(poParameter.CPROGRAM_ID) ? "" : poParameter.CPROGRAM_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTRANS_CODE, string.IsNullOrWhiteSpace(poParameter.CTRANS_CODE) ? "" : poParameter.CTRANS_CODE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CREF_NO, string.IsNullOrWhiteSpace(poParameter.CREF_NO) ? "" : poParameter.CREF_NO);
+
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02400DTO>(
@@ -1190,6 +1170,7 @@ namespace Lookup_GSModel
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CDEPT_CODE, string.IsNullOrWhiteSpace(poParameter.CDEPT_CODE) ? "" : poParameter.CDEPT_CODE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCB_TYPE, string.IsNullOrWhiteSpace(poParameter.CCB_TYPE) ? "" : poParameter.CCB_TYPE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CBANK_TYPE, string.IsNullOrWhiteSpace(poParameter.CBANK_TYPE) ? "" : poParameter.CBANK_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCURRENCY_CODE, string.IsNullOrWhiteSpace(poParameter.CCURRENCY_CODE) ? "" : poParameter.CCURRENCY_CODE);
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02500DTO>(
@@ -1228,11 +1209,49 @@ namespace Lookup_GSModel
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCB_CODE, string.IsNullOrWhiteSpace(poParameter.CCB_CODE) ? "" : poParameter.CCB_CODE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCB_TYPE, string.IsNullOrWhiteSpace(poParameter.CCB_TYPE) ? "" : poParameter.CCB_TYPE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CBANK_TYPE, string.IsNullOrWhiteSpace(poParameter.CBANK_TYPE) ? "" : poParameter.CBANK_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCURRENCY_CODE, string.IsNullOrWhiteSpace(poParameter.CCURRENCY_CODE) ? "" : poParameter.CCURRENCY_CODE);
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02600DTO>(
                     _RequestServiceEndPoint,
                     nameof(IPublicLookup.GSL02600GetCBAccountList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+        #endregion
+
+        #region GSL02700
+        public IAsyncEnumerable<GSL02700DTO> GSL02700GetOtherUnitList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL02700DTO>> GSL02700GetOtherUnitListAsync(GSL02700ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL02700DTO> loResult = null;
+
+            try
+            {
+                //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, string.IsNullOrWhiteSpace(poParameter.CPROPERTY_ID) ? "" : poParameter.CPROPERTY_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CBUILDING_ID, string.IsNullOrWhiteSpace(poParameter.CBUILDING_ID) ? "" : poParameter.CBUILDING_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LEVENT, poParameter.LEVENT);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02700DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL02700GetOtherUnitList),
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);

@@ -25,7 +25,7 @@ namespace Lookup_GSCOMMON
         GSLGenericRecord<GSL01300DTO> GSL01300GetBankAccount(GSL01300ParameterDTO poEntity);
         GSLGenericRecord<GSL01400DTO> GSL01400GetOtherCharges(GSL01400ParameterDTO poEntity);
         //GSLGenericRecord<GSL01500ResultGroupDTO> GSL01500GetCashFlowGroup();
-        //GSLGenericRecord<GSL01500ResultDetailDTO> GSL01500GetCashDetail();
+        GSLGenericRecord<GSL01500ResultDetailDTO> GSL01500GetCashDetail(GSL01500ParameterDetailDTO poEntity);
         GSLGenericRecord<GSL01600DTO> GSL01600GetCashFlowGroupType(GSL01600ParameterDTO poEntity);
         //GSLGenericRecord<GSL01700DTO> GSL01700GetCurrencyRate();
         //GSLGenericRecord<GSL01701DTO> GSL01700GetRateType();
@@ -40,5 +40,6 @@ namespace Lookup_GSCOMMON
         GSLGenericRecord<GSL02400DTO> GSL02400GetFloor(GSL02400ParameterDTO poEntity);
         GSLGenericRecord<GSL02500DTO> GSL02500GetCB(GSL02500ParameterDTO poEntity);
         GSLGenericRecord<GSL02600DTO> GSL02600GetCBAccount(GSL02600ParameterDTO poEntity);
+        GSLGenericRecord<GSL02700DTO> GSL02700GetOtherUnit(GSL02700ParameterDTO poEntity);
     }
 }

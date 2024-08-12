@@ -35,7 +35,9 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj" />
       <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSModel\Lookup_GSModel.csproj" />
+      <ProjectReference Include="..\..\COMMON\LM\PMB03000Common\PMB03000Common.csproj" />
       <ProjectReference Include="..\..\COMMON\LM\PMI00500Common\PMI00500Common.csproj" />
+      <ProjectReference Include="..\PMB03000Front\PMB03000Front.csproj" />
       <ProjectReference Include="..\PMI00500FrontResources\PMI00500FrontResources.csproj" />
       <ProjectReference Include="..\PMI00500Model\PMI00500Model.csproj" />
     </ItemGroup>

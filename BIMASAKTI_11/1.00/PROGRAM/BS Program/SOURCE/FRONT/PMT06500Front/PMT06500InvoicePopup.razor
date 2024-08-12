@@ -1,0 +1,186 @@
+﻿@page "/PMT06000InvoicePopup"
+@using PMT06500FrontResources
+@using R_BlazorFrontEnd.Interfaces
+@using PMT06500Common.DTOs
+@using R_BlazorFrontEnd.Enums
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row>
+    <R_ItemLayout col="7">
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["PROPERTY"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="_viewModel.Data.CPROPERTY_ID"
+                           Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="_viewModel.Data.CPROPERTY_ID"
+                           Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label FontColor="R_eFontColor.Danger">@_localizer["DRAFT"]*</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["DEPARTMENT"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="_viewModel.Data.CDEPT_CODE"
+                           R_ConductorSource="_conductorRefInvoice"
+                           MaxLength="20"
+                           OnLostFocus="OnLostFocusDept"
+                           R_EnableAdd="true"
+                           R_EnableEdit="false"/>
+            </R_ItemLayout>
+            <R_Lookup R_ConductorSource="_conductorRefInvoice"
+                      R_Before_Open_Lookup="BeforeOpenLookupDept"
+                      R_After_Open_Lookup="AfterOpenLookupDept"
+                      R_EnableAdd="true"
+                      R_EnableEdit="true">
+                ...
+            </R_Lookup>
+            <R_ItemLayout col="5" Class="pe-5">
+                <R_TextBox @bind-Value="_viewModel.Data.CDEPT_NAME" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["TENANT"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="_viewModel.Data.CTENANT_ID"
+                           Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="_viewModel.Data.CTENANT_NAME" 
+                           Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["BUILDING"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="_viewModel.Data.CBUILDING_ID" 
+                           Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="_viewModel.Data.CBUILDING_NAME" 
+                           Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    
+    <R_ItemLayout col="5">
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["INVOICE_PERIOD"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextBox @bind-Value="_viewModel.Data.CINV_PRD" 
+                           Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["REFERENCE_NO"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextBox @bind-Value="_viewModel.Data.CREF_NO" 
+                           R_ConductorSource="_conductorRefInvoice"
+                           Enabled="@(_conductorRefInvoice.R_ConductorMode is R_eConductorMode.Add or R_eConductorMode.Edit && _viewModel.TransCode.LINCREMENT_FLAG == false)"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["REFERENCE_DATE"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_DatePicker @bind-Value="_viewModel.Data.DREF_DATE"
+                              R_ConductorSource="_conductorRefInvoice"
+                              R_EnableAdd="true"
+                              R_EnableEdit="true"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="mb-1">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["LOI_AGRMT_NO"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextBox @bind-Value="_viewModel.Data.CAGREEMENT_NO"
+                           Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-1" Spacing="3">
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["DESCRIPTION"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="10" Class="ms-2">
+        <R_TextArea @bind-Value="_viewModel.Data.CDESCRIPTION"
+                    R_ConductorSource="_conductorRefInvoice"
+                    R_EnableAdd="true"
+                    R_EnableEdit="true"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout>
+    <R_ItemLayout>
+        <R_GroupBox Title="@_localizer["SUMMARY"]" TitleClass="text-danger" ShowBorder Class="p-2">
+            <R_Grid @ref="_gridRefSummary"
+                    DataSource="_viewModel.SummaryGridList"
+                    R_ConductorGridSource="_conductorRefSummary"
+                    R_GridType="R_eGridType.Original"
+                    R_ServiceGetListRecord="GetSummaryListRecord"
+                    Pageable
+                    PageSize="3"
+                    AllowAddNewRow="false"
+                    AllowDeleteRow="false"
+                    AllowEditRow="false"
+                    Width="1080px"
+                    Height="225px">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(PMT06500SummaryDTO.CSERVICE)" HeaderText="@_localizer["SERVICE"]" Width="200px"/>
+                    <R_GridTextColumn FieldName="@nameof(PMT06500SummaryDTO.CUNIT_NAME)" HeaderText="@_localizer["UNIT"]" Width="150px"/>
+                    <R_GridNumericColumn FieldName="@nameof(PMT06500SummaryDTO.NRATE_HOUR)" HeaderText="@_localizer["RATE_HOURS"]" Width="100px" Decimals="2" ThousandSeparator/>
+                    <R_GridNumericColumn FieldName="@nameof(PMT06500SummaryDTO.IHOURS)" HeaderText="@_localizer["TOTAL_HOURS"]" Width="100px" Decimals="0" ThousandSeparator/>
+                    <R_GridNumericColumn FieldName="@nameof(PMT06500SummaryDTO.NTOTAL_AMOUNT)" HeaderText="@_localizer["TOTAL_AMOUNT"]" Width="100px" Decimals="2" ThousandSeparator/>
+                </R_GridColumns>
+            </R_Grid>
+        </R_GroupBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Justify="R_eJustify.FlexEnd">
+    @* <R_ItemLayout> *@
+    @*     <R_AddButton R_Conductor="_conductorRefInvoice"/> *@
+    @* </R_ItemLayout> *@
+    @* <R_ItemLayout> *@
+    @*     <R_EditButton R_Conductor="_conductorRefInvoice"/> *@
+    @* </R_ItemLayout> *@
+    <R_ItemLayout>
+        <R_Button R_ConductorSource="_conductorRefInvoice" OnClick="OnClickCancel" Enabled="_btnCancel">Cancel</R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_SaveButton R_Conductor="_conductorRefInvoice"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="_conductorRefInvoice"
+             R_ViewModel="_viewModel"
+             R_IsHeader
+             R_ServiceGetRecord="GetRecordInvoice"
+             R_AfterAdd="AfterAddInvoice"
+             R_Validation="ValidateInvoice"
+             R_ServiceSave="ServiceSaveInvoice"/>
+
+<R_ConductorGrid @ref="_conductorRefSummary"
+                 R_IsHeader/>

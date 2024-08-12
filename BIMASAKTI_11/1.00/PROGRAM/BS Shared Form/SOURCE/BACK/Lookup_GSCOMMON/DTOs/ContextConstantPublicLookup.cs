@@ -2,7 +2,9 @@
 {
     public class ContextConstantPublicLookup
     {
+        public const string CCURRENCY_CODE = "CCURRENCY_CODE";
         public const string CPROPERTY_ID = "CPROPERTY_ID";
+        public const string LAGREEMENT = "LAGREEMENT";
         public const string CTAX_TYPE_LIST = "CTAX_TYPE_LIST";
         public const string CJRNGRP_TYPE = "CJRNGRP_TYPE";
         public const string CTAX_DATE = "CTAX_DATE";
@@ -31,6 +33,8 @@
         public const string CFLOOR_ID = "CFLOOR_ID";
         public const string CPROGRAM_ID = "CPROGRAM_ID";
         public const string CPARAMETER_ID = "CPARAMETER_ID";
-
+        public const string LEVENT = "LEVENT";
+        public const string CTRANS_CODE = "CTRANS_CODE";
+        public const string CREF_NO = "CREF_NO";
     }
 }

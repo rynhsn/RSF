@@ -3916,6 +3916,32 @@
           "bin/placeholder/BaseHeaderResources.dll": {}
         }
       },
+      "GLExcelTestCommon/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GLExcelTestCommon.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLExcelTestCommon.dll": {}
+        }
+      },
+      "GLExcelTestService/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GLExcelTestCommon": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GLExcelTestService.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLExcelTestService.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "GLI00100Back/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -4158,6 +4184,46 @@
         },
         "runtime": {
           "bin/placeholder/Lookup_GLSERVICES.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "PMB05000Back/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "PMB05000Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PMB05000Back.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PMB05000Back.dll": {}
+        }
+      },
+      "PMB05000Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/PMB05000Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PMB05000Common.dll": {}
+        }
+      },
+      "PMB05000Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "PMB05000Back": "1.0.0",
+          "PMB05000Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PMB05000Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PMB05000Service.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -11732,6 +11798,16 @@
       "path": "../../../COMMON/BaseHeaderResources/BaseHeaderResources.csproj",
       "msbuildProject": "../../../COMMON/BaseHeaderResources/BaseHeaderResources.csproj"
     },
+    "GLExcelTestCommon/1.0.0": {
+      "type": "project",
+      "path": "../../../COMMON/GL/GLExcelTestCommon/GLExcelTestCommon.csproj",
+      "msbuildProject": "../../../COMMON/GL/GLExcelTestCommon/GLExcelTestCommon.csproj"
+    },
+    "GLExcelTestService/1.0.0": {
+      "type": "project",
+      "path": "../../../SERVICE/GL/GLExcelTestService/GLExcelTestService.csproj",
+      "msbuildProject": "../../../SERVICE/GL/GLExcelTestService/GLExcelTestService.csproj"
+    },
     "GLI00100Back/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GL/GLI00100Back/GLI00100Back.csproj",
@@ -11822,6 +11898,21 @@
       "path": "../../../../../BS Shared Form/SOURCE/SERVICES/Lookup_GLSERVICES/Lookup_GLSERVICES.csproj",
       "msbuildProject": "../../../../../BS Shared Form/SOURCE/SERVICES/Lookup_GLSERVICES/Lookup_GLSERVICES.csproj"
     },
+    "PMB05000Back/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/LM/PMB05000Back/PMB05000Back.csproj",
+      "msbuildProject": "../../../BACK/LM/PMB05000Back/PMB05000Back.csproj"
+    },
+    "PMB05000Common/1.0.0": {
+      "type": "project",
+      "path": "../../../COMMON/LM/PMB05000Common/PMB05000Common.csproj",
+      "msbuildProject": "../../../COMMON/LM/PMB05000Common/PMB05000Common.csproj"
+    },
+    "PMB05000Service/1.0.0": {
+      "type": "project",
+      "path": "../../../SERVICE/LM/PMB05000Service/PMB05000Service.csproj",
+      "msbuildProject": "../../../SERVICE/LM/PMB05000Service/PMB05000Service.csproj"
+    },
     "RSP_GL_BUDGET_UPLOADResources/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GL/GL_SPR/RSP_GL_BUDGET_UPLOADResources/RSP_GL_BUDGET_UPLOADResources.csproj",
@@ -11875,11 +11966,13 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "GLExcelTestService >= 1.0.0",
       "GLI00100Service >= 1.0.0",
       "GLM00500Service >= 1.0.0",
       "GLR00100Service >= 1.0.0",
       "GLT00200SERVICE >= 1.0.0",
       "Lookup_GLSERVICES >= 1.0.0",
+      "PMB05000Service >= 1.0.0",
       "Realta.BackCollectionNuGet >= 1.0.1",
       "Realta.CommonCollectionNuGet >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.2.3"
@@ -11902,6 +11995,7 @@
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
+        "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\NuGet.Config",
         "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -11919,6 +12013,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLExcelTestService\\GLExcelTestService.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLExcelTestService\\GLExcelTestService.csproj"
+            },
             "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLI00100Service\\GLI00100Service.csproj": {
               "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLI00100Service\\GLI00100Service.csproj"
             },
@@ -11930,6 +12027,9 @@
             },
             "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLT00200SERVICE\\GLT00200SERVICE.csproj": {
               "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLT00200SERVICE\\GLT00200SERVICE.csproj"
+            },
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\LM\\PMB05000Service\\PMB05000Service.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\LM\\PMB05000Service\\PMB05000Service.csproj"
             },
             "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GLSERVICES\\Lookup_GLSERVICES.csproj": {
               "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GLSERVICES\\Lookup_GLSERVICES.csproj"

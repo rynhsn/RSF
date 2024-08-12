@@ -60,11 +60,11 @@ namespace PMT03500Model.ViewModel
         public string UtilityPeriodFromDt = string.Empty;
         public string UtilityPeriodToDt = string.Empty;
 
-        public DateTime UtilityPeriodFromDtDt;
-        public DateTime UtilityPeriodToDtDt;
+        public DateTime UtilityPeriodFromDtDt = DateTime.Now;
+        public DateTime UtilityPeriodToDtDt= DateTime.Now;
         
-        public DateTime UtilityPeriodDtMin;
-        public DateTime UtilityPeriodDtMax;
+        public DateTime UtilityPeriodDtMin = DateTime.Now;
+        public DateTime UtilityPeriodDtMax = DateTime.Now;
 
         public DataSet ExcelDataSetCutOff { get; set; }
         public DataSet ExcelDataSetUtility { get; set; }

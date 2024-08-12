@@ -281,6 +281,8 @@ namespace GLR00100Front
                 loParam.CLANGUAGE_ID = _clientHelper.Culture.TwoLetterISOLanguageName;
                 loParam.CREPORT_CULTURE = _clientHelper.ReportCulture;
                 loParam.CREPORT_TYPE = _localizer["BASED_ON_TRANS_CODE"];
+                loParam.CCURRENCY_TYPE_NAME = _viewModel.RadioCurrencyType.Find(x => x.Key == loParam.CCURRENCY_TYPE).Value;
+                loParam.CTRANSACTION_NAME = _viewModel.TransCodeList?.Find(x => x.CTRANS_CODE == loParam.CTRANS_CODE).CTRANSACTION_NAME;
                 if (loParam.CPERIOD_TYPE == "P")
                 {
                     loParam.CFROM_PERIOD = _viewModel.YearPeriod + _viewModel.FromPeriod + _viewModel.SuffixPeriod;

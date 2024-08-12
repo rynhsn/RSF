@@ -1,0 +1,132 @@
+@inherits R_Page
+@attribute [R_Page(Title = "Transaction Lookup")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupPM> _localizer
+
+
+<R_StackLayout style="width: 975px; height: 400px;">
+    <R_StackLayout Row>
+
+        <R_ItemLayout col="2">
+            <R_Label>
+                @_localizer["_transType"]
+            </R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox Enabled="false"
+                       @bind-Value="@_viewModelLML00900._Parameter.CTRANS_CODE">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="9">
+                    <R_TextBox Enabled="false"
+                        @bind-Value="@_viewModelLML00900._Parameter.CTRANS_NAME">>
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="3" Class="text-center">
+                    <R_Label>
+                        @_localizer["_period"]
+                    </R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_RadioGroup Data="@_viewModelLML00900.Period"
+                          ValueField="@nameof(PeriodDTO.CCODE)"
+                          TextField="@nameof(PeriodDTO.CNAME)"
+                          Value="_viewModelLML00900.PeriodValue"
+                          ValueChanged="@((string value) => IsPeriodAll(value))"
+                          >
+            </R_RadioGroup>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_StackLayout Row>
+                <R_ItemLayout col="5">
+                    <R_NumericTextBox ThousandSeparator="false"
+                                      Min="_viewModelLML00900._GetInitialProcess.IMIN_YEAR"
+                                      Max="@_viewModelLML00900._GetInitialProcess.IMAX_YEAR"
+                                      @bind-Value="_viewModelLML00900.PeriodYear"
+                                      Enabled="@_viewModelLML00900._enableYearMonthField">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="5">
+                    <R_DropDownList Data="@_viewModelLML00900.GetPeriodMonth"
+                                    ValueField="@nameof(MonthDTO.Id)"
+                                    TextField="@nameof( MonthDTO.Id)"
+                                    Value="_viewModelLML00900.PeriodMonth"
+                                    ValueChanged="@((string value) => ChangePeriodMonth(value))"
+                                    Enabled="@_viewModelLML00900._enableYearMonthField">
+                    </R_DropDownList>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Button
+                OnClick="@BtnRefresh">
+                @_localizer["_refresh"]
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout>
+        <R_StackLayout Row>
+            <R_Grid @ref="@GridRef"
+                    DataSource="_viewModelLML00900.TransactionList"
+                    R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                    R_GridType="@R_eGridType.Navigator"
+                    Pageable
+                    PageSize="10"
+                    Height="350px"
+                    Width="975px">
+                <R_GridColumns>
+                    <R_GridTextColumn Width="225px"
+                                      FieldName="@nameof(LML00900FrontDTO.CUSTOMER)"
+                                      HeaderText=@_localizer["_cust"] />
+                    <R_GridTextColumn Width="150px"
+                                      FieldName="@nameof(LML00900FrontDTO.CDEPT_CODE)"
+                                      HeaderText=@_localizer["_dept."] />
+                    <R_GridTextColumn Width="175px"
+                                      FieldName="@nameof(LML00900FrontDTO.CREF_NO)"
+                                      HeaderText=@_localizer["_refNo"] />
+                    <R_GridDatePickerColumn Width="200px"
+                                            FieldName="@nameof(LML00900FrontDTO.DREF_DATE)"
+                                            HeaderText=@_localizer["_refDate"] />
+                    <R_GridTextColumn Width="175px"
+                                      FieldName="@nameof(LML00900FrontDTO.CDOC_NO)"
+                                      HeaderText=@_localizer["_docNo"] />
+                    <R_GridDatePickerColumn Width="200px"
+                                            FieldName="@nameof(LML00900FrontDTO.DDOC_DATE)"
+                                            HeaderText=@_localizer["_docDate"] />
+                    <R_GridDatePickerColumn Width="200px"
+                                            FieldName="@nameof(LML00900FrontDTO.DDUE_DATE)"
+                                            HeaderText=@_localizer["_dueDate"] />
+                    <R_GridTextColumn Width="150px"
+                                      FieldName="@nameof(LML00900FrontDTO.CCURRENCY_CODE)"
+                                      HeaderText=@_localizer["_curr"] />
+                    <R_GridNumericColumn Width="250px"
+                                         FieldName="@nameof(LML00900FrontDTO.NTOTAL_REMAINING)"
+                                         HeaderText=@_localizer["_remainingAmount"] />
+                    <R_GridTextColumn Width="250px"
+                                      FieldName="@nameof(LML00900FrontDTO.CTRANS_DESC)"
+                                      HeaderText=@_localizer["_desc"] />
+                </R_GridColumns>
+            </R_Grid>
+            </R_StackLayout>
+
+            <R_StackLayout Row Class="justify-content-end">
+            <R_ItemLayout xs="2">
+                <R_Button Enabled="@_viewModelLML00900._btnOk" OnClick="Button_OnClickOkAsync">
+                    OK
+                </R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout xs="2">
+                <R_Button OnClick="Button_OnClickCloseAsync">
+                    Cancel
+                </R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+        </R_StackLayout>
+        </R_StackLayout>

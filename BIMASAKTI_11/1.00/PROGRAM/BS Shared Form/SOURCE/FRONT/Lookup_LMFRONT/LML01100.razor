@@ -1,0 +1,40 @@
+@using Lookup_PMCOMMON.DTOs.LML01100;
+@inherits R_Page
+@attribute [R_Page(Title = "Term and Condition")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupPM> _localizer
+
+<R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.TermNConditionList"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                R_GridType="@R_eGridType.Navigator"
+                Pageable
+                PageSize="10"
+                Height="300px"
+                Width="925px">
+            <R_GridColumns>
+                <R_GridTextColumn Width="225px"
+                                  FieldName="@nameof(LML01100DTO.CTC_CODE)"
+                                  HeaderText=@_localizer["_TermNConditionCode"] />
+                <R_GridTextColumn Width="225px"
+                                  FieldName="@nameof(LML01100DTO.CTC_DESCRIPTION)"
+                                  HeaderText=@_localizer["_TermNConditionName"] />
+            </R_GridColumns>
+        </R_Grid>
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout xs="2">
+            <R_Button OnClick="Button_OnClickOkAsync">
+                OK
+            </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout xs="2">
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                Cancel
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+    </R_StackLayout>

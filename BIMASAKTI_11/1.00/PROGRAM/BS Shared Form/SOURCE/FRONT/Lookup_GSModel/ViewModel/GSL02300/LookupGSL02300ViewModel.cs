@@ -3,6 +3,7 @@ using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Lookup_GSModel.ViewModel
@@ -21,6 +22,13 @@ namespace Lookup_GSModel.ViewModel
             try
             {
                 var loResult = await _model.GSL02300GetBuildingUnitListAsync(poParameter);
+
+                if (string.IsNullOrWhiteSpace(poParameter.CREMOVE_DATA_UNIT_ID_SEPARATOR) == false)
+                {
+                    var itemsToRemove = poParameter.CREMOVE_DATA_UNIT_ID_SEPARATOR.Split(',').ToList();
+
+                    loResult.RemoveAll(item => itemsToRemove.Contains(item.CUNIT_ID));
+                }
 
                 BuildingUnitGrid = new ObservableCollection<GSL02300DTO>(loResult);
             }
