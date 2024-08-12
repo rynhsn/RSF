@@ -66,14 +66,14 @@ namespace TXB00200Model.ViewModel
             var loEx = new R_Exception();
             try
             {
-                var loParam = new PMB05000PeriodParam
+                var loParam = new TXB00200SoftCloseParam()
                 {
-                    CCURRENT_SOFT_PERIOD = SystemParam.ISOFT_PERIOD_YY + SystemParam.CSOFT_PERIOD_MM
+                    CPROPERTY_ID = SelectedPropertyId,
                 };
                 
                 var loResult =
-                    await _model.GetAsync<PMB05000SingleDTO<PMB05000PeriodParam>, PMB05000PeriodParam>(
-                        nameof(IPMB05000.PMB05000UpdateSoftPeriod), loParam);
+                    await _model.GetAsync<TXB00200ListDTO<TXB00200SoftCloseParam>, TXB00200SoftCloseParam>(
+                        nameof(ITXB00200.TXB00200ProcessSoftClose), loParam);
             }
             catch (Exception ex)
             {

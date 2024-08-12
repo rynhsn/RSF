@@ -88,14 +88,14 @@ public class TXB00200Controller : ControllerBase, ITXB00200
     }
 
     [HttpPost]
-    public TXB00200ListDTO<TXB00200PropertyDTO> TXB00200ProcessSoftClose(TXB00200SoftCloseParam poParam)
+    public TXB00200ListDTO<TXB00200SoftCloseParam> TXB00200ProcessSoftClose(TXB00200SoftCloseParam poParam)
     {
         using var loActivity = _activitySource.StartActivity(nameof(TXB00200ProcessSoftClose));
         _logger.LogInfo("Start - Process Soft Close");
         var loEx = new R_Exception();
         var loCls = new TXB00200Cls();
         var loDbParams = new TXB00200ParameterDb();
-        var loReturn = new TXB00200ListDTO<TXB00200PropertyDTO>();
+        var loReturn = new TXB00200ListDTO<TXB00200SoftCloseParam>();
 
         try
         {

@@ -39,7 +39,7 @@ namespace TXB00200Model
             throw new NotImplementedException();
         }
 
-        public TXB00200ListDTO<TXB00200PropertyDTO> TXB00200ProcessSoftClose(TXB00200SoftCloseParam poParam)
+        public TXB00200ListDTO<TXB00200SoftCloseParam> TXB00200ProcessSoftClose(TXB00200SoftCloseParam poParam)
         {
             throw new NotImplementedException();
         }
