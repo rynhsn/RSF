@@ -15,24 +15,24 @@
                 R_ServiceGetListRecord="GetInvoiceListRecord"
                 R_Display="DisplayInvoice"
                 Pageable
-                PageSize="3"
+                PageSize="7"
                 AllowAddNewRow="false"
                 AllowDeleteRow="false"
                 AllowEditRow="false"
                 Width="100%"
                 Height="225px">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="@nameof(PMT06500InvoiceDTO.CTRANS_STATUS_DESC)" HeaderText="@_localizer["STATUS"]" Width="200px"/>
+                <R_GridTextColumn FieldName="@nameof(PMT06500InvoiceDTO.CTRANS_STATUS_DESC)" HeaderText="@_localizer["STATUS"]" Width="100px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT06500InvoiceDTO.CDEPT_NAME)" HeaderText="@_localizer["DEPARTMENT"]" Width="200px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT06500InvoiceDTO.CREF_NO)" HeaderText="@_localizer["REF_NO"]" Width="200px"/>
-                <R_GridTextColumn FieldName="@nameof(PMT06500InvoiceDTO.CINV_PRD)" HeaderText="@_localizer["INVOICE_PERIOD"]" Width="200px"/>
+                <R_GridTextColumn FieldName="@nameof(PMT06500InvoiceDTO.CPERIOD_DISPLAY)" HeaderText="@_localizer["INVOICE_PERIOD"]" Width="140px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT06500InvoiceDTO.CTENANT_NAME)" HeaderText="@_localizer["TENANT"]" Width="200px"/>
-                <R_GridTextColumn FieldName="@nameof(PMT06500InvoiceDTO.CBUILDING_NAME)" HeaderText="@_localizer["BUILDING"]" Width="200px"/>
+                <R_GridTextColumn FieldName="@nameof(PMT06500InvoiceDTO.CBUILDING_NAME)" HeaderText="@_localizer["BUILDING"]" Width="180px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT06500InvoiceDTO.CAGREEMENT_NO)" HeaderText="@_localizer["LOI_AGRMT_NO"]" Width="200px"/>
-                <R_GridTextColumn FieldName="@nameof(PMT06500InvoiceDTO.CUPDATE_BY)" HeaderText="@_localizer["UPDATED_BY"]" Width="200px"/>
-                <R_GridDatePickerColumn FieldName="@nameof(PMT06500InvoiceDTO.DUPDATE_DATE)" HeaderText="@_localizer["UPDATED_DATE"]" Width="200px"/>
-                <R_GridTextColumn FieldName="@nameof(PMT06500InvoiceDTO.CCREATE_BY)" HeaderText="@_localizer["CREATED_BY"]" Width="200px"/>
-                <R_GridDatePickerColumn FieldName="@nameof(PMT06500InvoiceDTO.DCREATE_DATE)" HeaderText="@_localizer["CREATED_DATE"]" Width="200px"/>
+                <R_GridTextColumn FieldName="@nameof(PMT06500InvoiceDTO.CUPDATE_BY)" HeaderText="@_localizer["UPDATED_BY"]" Width="120px"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(PMT06500InvoiceDTO.DUPDATE_DATE)" HeaderText="@_localizer["UPDATED_DATE"]" Width="180px"/>
+                <R_GridTextColumn FieldName="@nameof(PMT06500InvoiceDTO.CCREATE_BY)" HeaderText="@_localizer["CREATED_BY"]" Width="120px"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(PMT06500InvoiceDTO.DCREATE_DATE)" HeaderText="@_localizer["CREATED_DATE"]" Width="180px"/>
             </R_GridColumns>
         </R_Grid>
     </R_ItemLayout>
@@ -65,18 +65,18 @@
                     R_GridType="R_eGridType.Original"
                     R_ServiceGetListRecord="GetSummaryListRecord"
                     Pageable
-                    PageSize="3"
+                    PageSize="7"
                     AllowAddNewRow="false"
                     AllowDeleteRow="false"
                     AllowEditRow="false"
                     Width="80%"
                     Height="225px">
                 <R_GridColumns>
-                    <R_GridTextColumn FieldName="@nameof(PMT06500SummaryDTO.CSERVICE)" HeaderText="@_localizer["SERVICE"]" Width="200px"/>
+                    <R_GridTextColumn FieldName="@nameof(PMT06500SummaryDTO.CSERVICE)" HeaderText="@_localizer["SERVICE"]" Width="150px"/>
                     <R_GridTextColumn FieldName="@nameof(PMT06500SummaryDTO.CUNIT_NAME)" HeaderText="@_localizer["UNIT"]" Width="150px"/>
-                    <R_GridNumericColumn FieldName="@nameof(PMT06500SummaryDTO.NRATE_HOUR)" HeaderText="@_localizer["RATE_HOURS"]" Width="100px" Decimals="2" ThousandSeparator/>
-                    <R_GridNumericColumn FieldName="@nameof(PMT06500SummaryDTO.IHOURS)" HeaderText="@_localizer["TOTAL_HOURS"]" Width="100px" Decimals="0" ThousandSeparator/>
-                    <R_GridNumericColumn FieldName="@nameof(PMT06500SummaryDTO.NTOTAL_AMOUNT)" HeaderText="@_localizer["TOTAL_AMOUNT"]" Width="100px" Decimals="2" ThousandSeparator/>
+                    <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT06500SummaryDTO.NRATE_HOUR)" HeaderText="@_localizer["RATE_HOURS"]" Width="100px" Decimals="2" ThousandSeparator/>
+                    <R_GridNumericColumn TValue="Int32" FieldName="@nameof(PMT06500SummaryDTO.IHOURS)" HeaderText="@_localizer["TOTAL_HOURS"]" Width="100px" Decimals="0" ThousandSeparator/>
+                    <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT06500SummaryDTO.NAMOUNT)" HeaderText="@_localizer["TOTAL_AMOUNT"]" Width="100px" Decimals="2" ThousandSeparator/>
                 </R_GridColumns>
             </R_Grid>
         </R_GroupBox>
@@ -86,4 +86,5 @@
 <R_ConductorGrid @ref="_conductorRefInvoice"
                  R_IsHeader/>
 
-<R_ConductorGrid @ref="_conductorRefSummary"/>
+<R_ConductorGrid @ref="_conductorRefSummary"
+                 R_ConductorParent="_conductorRefInvoice"/>

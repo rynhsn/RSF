@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GSM02500COMMON.DTOs.GSM02541
 {
-    public class UploadUnitPromotionParameterDTO
+    public class UploadOtherUnitParameterDTO
     {
         public SelectedPropertyDTO PropertyData { get; set; } = new SelectedPropertyDTO();
     }

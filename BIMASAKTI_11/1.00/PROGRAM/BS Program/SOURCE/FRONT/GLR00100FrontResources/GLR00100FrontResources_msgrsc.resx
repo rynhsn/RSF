@@ -66,4 +66,29 @@
     <data name="REF_NO" xml:space="preserve">
         <value>Reference No.</value>
     </data>
+
+    <!-- Period -->
+    <data name="Period" xml:space="preserve">
+        <value>Period</value>
+    </data>
+    <!-- Date -->
+    <data name="Date" xml:space="preserve">
+        <value>Date</value>
+    </data>
+    <!-- LocalCurrency -->
+    <data name="LocalCurrency" xml:space="preserve">
+        <value>Local Currency</value>
+    </data>
+    <!-- BaseCurrency -->
+    <data name="BaseCurrency" xml:space="preserve">
+        <value>Base Currency</value>
+    </data>
+    <!-- TransactionCurrency -->
+    <data name="TransactionCurrency" xml:space="preserve">
+        <value>Transaction Currency</value>
+    </data>
+    <!-- ReferenceNo -->
+    <data name="ReferenceNo" xml:space="preserve">
+        <value>Reference No.</value>
+    </data>    
 </root>

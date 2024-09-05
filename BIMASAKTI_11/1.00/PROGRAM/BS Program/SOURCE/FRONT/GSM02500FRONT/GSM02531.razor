@@ -1,4 +1,5 @@
 ﻿@inherits R_Page
+@attribute [R_Page(Title = "Utilities")]
 @using GSM02500COMMON.DTOs.GSM02500;
 @using GSM02500COMMON.DTOs.GSM02530;
 @using GSM02500COMMON.DTOs;
@@ -51,15 +52,15 @@
                         R_GridType="@R_eGridType.Navigator"
                         R_ServiceGetListRecord="@Grid_R_ServiceGetUtilitiesListRecord">
                     <R_GridColumns>
-                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.CSEQUENCE)" HeaderText="@_localizer["_SeqNo"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.CSEQUENCE)" HeaderText="@_localizer["_SeqNo"]" Width="100px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.CMETER_NO)" HeaderText="@_localizer["_MeterNo"]" Width="150px"></R_GridTextColumn>
-                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.CALIAS_METER_NO)" HeaderText="@_localizer["_BASAliasMeterNo"]" Width="200px"></R_GridTextColumn>
-                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.NCALCULATION_FACTOR)" HeaderText="@_localizer["_CalculationFactor"]" Width="200px"></R_GridTextColumn>
-                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.NCAPACITY)" HeaderText="@_localizer["_KVA"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.CALIAS_METER_NO)" HeaderText="@_localizer["_BASAliasMeterNo"]" Width="175px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.NCALCULATION_FACTOR)" HeaderText="@_localizer["_CalculationFactor"]" Width="175px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.NCAPACITY)" HeaderText="@_localizer["_KVA"]" Width="100px"></R_GridTextColumn>
                         <R_GridCheckBoxColumn FieldName="@nameof(GSM02531UtilityDTO.LACTIVE)" HeaderText="@_localizer["_Active"]" Width="100px"></R_GridCheckBoxColumn>
-                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="125px"></R_GridTextColumn>
                         <R_GridDateTimePickerColumn FieldName="@nameof(GSM02531UtilityDTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
-                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02531UtilityDTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="125px"></R_GridTextColumn>
                         <R_GridDateTimePickerColumn FieldName="@nameof(GSM02531UtilityDTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
                     </R_GridColumns>
                 </R_Grid>
@@ -80,7 +81,7 @@
             <R_ItemLayout col="5">
             </R_ItemLayout>
 
-            <R_ItemLayout Style="15px">
+            <R_ItemLayout Style="width: 15px">
                 <R_CheckBox @bind-Value="@loUtilitiesViewModel.Data.LACTIVE"
                             R_ConductorSource="@_conductorUtilitiesRef"
                             Enabled="false">
@@ -121,7 +122,7 @@
         
         <R_StackLayout Row="true">
             <R_ItemLayout col="3">
-                <R_Label>@_localizer["_BASAliasMeterNo"]*</R_Label>
+                <R_Label>@_localizer["_BASAliasMeterNo"]</R_Label>
             </R_ItemLayout>
 
             <R_ItemLayout col="3">
@@ -149,7 +150,7 @@
 
         <R_StackLayout Row="true">
             <R_ItemLayout col="3">
-                <R_Label>@_localizer["_Capacity(Electricity)"]</R_Label>
+                <R_Label>@loLabel</R_Label>
             </R_ItemLayout>
 
             <R_ItemLayout col="3">
@@ -159,7 +160,7 @@
                                   R_EnableEdit="true">
                 </R_NumericTextBox>
             </R_ItemLayout>
-            <R_ItemLayout col="1">
+            <R_ItemLayout col="1" hidden="@IsKVAHidden">
                 <R_Label>@_localizer["_KVA"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
@@ -170,7 +171,7 @@
             </R_ItemLayout>
 
             <R_ItemLayout col="3">
-                <R_NumericTextBox @bind-Value="@loUtilitiesViewModel.Data.IMETER_MAX_COUNT"
+                <R_NumericTextBox @bind-Value="@loUtilitiesViewModel.Data.IMETER_MAX_RESET"
                                   R_ConductorSource="@_conductorUtilitiesRef"
                                   R_EnableAdd="true"
                                   R_EnableEdit="true">

@@ -1,11 +1,8 @@
 ﻿using Lookup_GLCOMMON.DTOs.GLL00100;
-using Lookup_GLCOMMON.DTOs.GLL00110;
 using R_BlazorFrontEnd.Exceptions;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Lookup_GLModel.ViewModel.GLL00100

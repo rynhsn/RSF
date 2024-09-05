@@ -1,6 +1,7 @@
 ﻿using BlazorClientHelper;
 using GFF00900COMMON.DTOs;
 using GSM02500COMMON.DTOs;
+using GSM02500COMMON.DTOs.GSM02502Charge;
 using GSM02500COMMON.DTOs.GSM02510;
 using GSM02500COMMON.DTOs.GSM02520;
 using GSM02500COMMON.DTOs.GSM02530;
@@ -49,6 +50,10 @@ namespace GSM02500FRONT
         private string loUtilitiesLabel = "";
 
         private R_TextBox _meterNoRef;
+
+        private string loLabel = "";
+
+        private bool IsKVAHidden = false;
 
         [Inject] IClientHelper _clientHelper { get; set; }
 
@@ -121,6 +126,7 @@ namespace GSM02500FRONT
 
             try
             {
+                loLabel = _localizer["_Capacity(Electricity)"];
                 loUtilitiesLabel = _localizer["_Activate"];
                 loUtilitiesViewModel.loUploadUnitUtilityParameter = (UploadUnitUtilityParameterDTO)poParameter;
 
@@ -175,7 +181,8 @@ namespace GSM02500FRONT
                 BuildingData = loUtilitiesViewModel.loUploadUnitUtilityParameter.BuildingData,
                 FloorData = loUtilitiesViewModel.loUploadUnitUtilityParameter.FloorData,
                 UnitData = loUtilitiesViewModel.loUploadUnitUtilityParameter.UnitData,
-                SelectedUtilityTypeId = loUtilitiesViewModel.loUtilityType.CCODE
+                SelectedUtilityTypeId = loUtilitiesViewModel.loUtilityType.CCODE,
+                LFLAG = true
             };
             eventArgs.TargetPageType = typeof(UploadUnitUtility);
         }
@@ -200,6 +207,16 @@ namespace GSM02500FRONT
             {
                 var loParam = (GSM02531UtilityTypeDTO)_gridUtilityTypeRef.GetCurrentData();
                 loUtilitiesViewModel.loUtilityType = loParam;
+                if (loParam.CCODE == "03" || loParam.CCODE == "04")
+                {
+                    loLabel = _localizer["_PipeSize"];
+                    IsKVAHidden = true;
+                }
+                else
+                {
+                    loLabel = _localizer["_Capacity(Electricity)"];
+                    IsKVAHidden = false;
+                }
                 await _gridUtilitiesRef.R_RefreshGrid(null);
                 if (loUtilitiesViewModel.loUtilityList.Count() == 0)
                 {
@@ -238,7 +255,31 @@ namespace GSM02500FRONT
 
         private async Task Grid_AfterAddUtilities(R_AfterAddEventArgs eventArgs)
         {
-            await _meterNoRef.FocusAsync();
+            R_Exception loEx = new R_Exception();
+
+            try
+            {
+                GSM02531UtilityDetailDTO loData = (GSM02531UtilityDetailDTO)eventArgs.Data;
+                await _meterNoRef.FocusAsync();
+                string loNewSequence = "";
+                if (loUtilitiesViewModel.loUtilityList.Count() == 0)
+                {
+                    loNewSequence = "001";
+                }
+                else
+                {
+                    GSM02531UtilityDTO loLastData = loUtilitiesViewModel.loUtilityList.OrderBy(s => int.Parse(s.CSEQUENCE)).Last();
+                    loNewSequence = (int.Parse(loLastData.CSEQUENCE) + 1).ToString("D3");
+                }
+
+                loData.CSEQUENCE = loNewSequence;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
         }
 
         private async Task Grid_R_ServiceGetUtilityTypeListRecord(R_ServiceGetListRecordEventArgs eventArgs)
@@ -317,18 +358,8 @@ namespace GSM02500FRONT
             loException.ThrowExceptionIfErrors();
         }
 
-        private void Grid_SavingUtilities(R_SavingEventArgs eventArgs)
+        private async Task Grid_SavingUtilities(R_SavingEventArgs eventArgs)
         {
-            R_Exception loException = new R_Exception();
-            try
-            {
-                loUtilitiesViewModel.UtilitiesValidation((GSM02531UtilityDetailDTO)eventArgs.Data);
-            }
-            catch (Exception ex)
-            {
-                loException.Add(ex);
-            }
-            loException.ThrowExceptionIfErrors();
         }
 
         private async Task Grid_ServiceSaveUtilities(R_ServiceSaveEventArgs eventArgs)
@@ -377,6 +408,13 @@ namespace GSM02500FRONT
             try
             {
                 loData = (GSM02531UtilityDetailDTO)eventArgs.Data;
+
+                loUtilitiesViewModel.UtilitiesValidation(loData);
+                if (loException.HasError)
+                {
+                    goto EndBlock;
+                }
+
                 if (loData.LACTIVE == true && _conductorUtilitiesRef.R_ConductorMode == R_eConductorMode.Add)
                 {
                     var loValidateViewModel = new GFF00900Model.ViewModel.GFF00900ViewModel();
@@ -406,6 +444,7 @@ namespace GSM02500FRONT
             {
                 loException.Add(ex);
             }
+        EndBlock:
             loException.ThrowExceptionIfErrors();
         }
 

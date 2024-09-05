@@ -24,6 +24,7 @@ public partial class PMT06500InvoicePopup : R_Page
     private R_Grid<PMT06500SummaryDTO> _gridRefSummary;
     private bool _btnCancel = true;
     private bool _txtRefNo = false;
+    private string _visible = "d-block";
 
     protected override async Task R_Init_From_Master(object poParam)
     {
@@ -32,25 +33,24 @@ public partial class PMT06500InvoicePopup : R_Page
         try
         {
             _viewModel.InvoicePopupParam = (PMT06500InvoicePopupParam)poParam;
-            _viewModel.SelectedPropertyId = _viewModel.InvoicePopupParam.oInvoice.CPROPERTY_ID;
-            _viewModel.SelectedPeriod = _viewModel.InvoicePopupParam.oInvoice.CINV_PRD;
-            _viewModel.SelectedAgreementNo = _viewModel.InvoicePopupParam.oInvoice.CAGREEMENT_NO;
+            _viewModel.SelectedPropertyId = _viewModel.InvoicePopupParam.OINVOICE.CPROPERTY_ID;
+            _viewModel.SelectedPeriod = _viewModel.InvoicePopupParam.OINVOICE.CINV_PRD;
+            _viewModel.SelectedAgreementNo = _viewModel.InvoicePopupParam.OINVOICE.CAGREEMENT_NO;
 
             await _viewModel.GetTransCode();
             _txtRefNo = !_viewModel.TransCode.LINCREMENT_FLAG;
 
-            await _gridRefSummary.R_RefreshGrid(null);
-
-            switch (_viewModel.InvoicePopupParam.eMode)
+            switch (_viewModel.InvoicePopupParam.EMODE)
             {
                 case R_eConductorMode.Add:
+                    _visible = "d-none";
                     await _conductorRefInvoice.Add();
                     break;
                 case R_eConductorMode.Edit:
                     await _conductorRefInvoice.Edit();
                     break;
                 case R_eConductorMode.Normal:
-                    await _conductorRefInvoice.R_GetEntity(_viewModel.InvoicePopupParam.oInvoice);
+                    await _conductorRefInvoice.R_GetEntity(null);
                     _btnCancel = false;
                     break;
             }
@@ -69,9 +69,11 @@ public partial class PMT06500InvoicePopup : R_Page
 
         try
         {
-            var loEntity = R_FrontUtility.ConvertObjectToObject<PMT06500InvoiceDTO>(eventArgs.Data);
-            await _viewModel.GetEntity(loEntity);
+            // var loEntity = R_FrontUtility.ConvertObjectToObject<PMT06500InvoiceDTO>(eventArgs.Data);
+            await _viewModel.GetEntity();
             eventArgs.Result = _viewModel.EntityInvoice;
+            
+            await _gridRefSummary.R_RefreshGrid(null);
         }
         catch (Exception ex)
         {
@@ -178,7 +180,8 @@ public partial class PMT06500InvoicePopup : R_Page
 
         try
         {
-            await _viewModel.GetSummaryGridList();
+            await _viewModel.GetSummaryGridList(_viewModel.EntityInvoice.CREF_NO, _viewModel.EntityInvoice.CDEPT_CODE, _viewModel.EntityInvoice.CLINK_DEPT_CODE,
+                _viewModel.EntityInvoice.CLINK_TRANS_CODE, _viewModel.InvoicePopupParam.CACTION);
             eventArgs.ListEntityResult = _viewModel.SummaryGridList;
         }
         catch (Exception ex)
@@ -194,11 +197,16 @@ public partial class PMT06500InvoicePopup : R_Page
     private void AfterAddInvoice(R_AfterAddEventArgs eventArgs)
     {
         var loEntity = (PMT06500InvoiceDTO)eventArgs.Data;
-        loEntity.CPROPERTY_ID = _viewModel.InvoicePopupParam.oInvoice.CPROPERTY_ID;
-        loEntity.CTENANT_ID = _viewModel.InvoicePopupParam.oInvoice.CTENANT_ID;
-        loEntity.CBUILDING_ID = _viewModel.InvoicePopupParam.oInvoice.CBUILDING_ID;
-        loEntity.CINV_PRD = _viewModel.InvoicePopupParam.oInvoice.CINV_PRD;
-        loEntity.CAGREEMENT_NO = _viewModel.InvoicePopupParam.oInvoice.CAGREEMENT_NO;
+        loEntity.CPROPERTY_ID = _viewModel.InvoicePopupParam.OINVOICE.CPROPERTY_ID;
+        loEntity.CPROPERTY_NAME = _viewModel.InvoicePopupParam.OINVOICE.CPROPERTY_NAME;
+        loEntity.CDEPT_CODE = _viewModel.InvoicePopupParam.OINVOICE.CDEPT_CODE;
+        loEntity.CDEPT_NAME = _viewModel.InvoicePopupParam.OINVOICE.CDEPT_NAME;
+        loEntity.CTENANT_ID = _viewModel.InvoicePopupParam.OINVOICE.CTENANT_ID;
+        loEntity.CTENANT_NAME = _viewModel.InvoicePopupParam.OINVOICE.CTENANT_NAME;
+        loEntity.CBUILDING_ID = _viewModel.InvoicePopupParam.OINVOICE.CBUILDING_ID;
+        loEntity.CBUILDING_NAME = _viewModel.InvoicePopupParam.OINVOICE.CBUILDING_NAME;
+        loEntity.CINV_PRD = _viewModel.InvoicePopupParam.OINVOICE.CINV_PRD;
+        loEntity.CAGREEMENT_NO = _viewModel.InvoicePopupParam.OINVOICE.CAGREEMENT_NO;
         loEntity.DREF_DATE = DateTime.Today;
     }
 
@@ -249,7 +257,6 @@ public partial class PMT06500InvoicePopup : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
-
 
     private async Task OnClickCancel(MouseEventArgs eventArgs)
     {

@@ -42,7 +42,7 @@
                 Width="900px"
                 R_ServiceGetListRecord="@GetListRecord">
             <R_GridColumns>
-                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.NO)" HeaderText="@_localizer["LBL_NO"]" Width="75px"/>
+                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.NO)" HeaderText="@_localizer["LBL_NO"]" Width="75px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CBUILDING_ID)" Width="150px" HeaderText="@_localizer["LBL_BUILDINGID"]"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CDEPT_CODE)" Width="150px" HeaderText="@_localizer["LBL_DEPT"]"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CREF_NO)" Width="150px" HeaderText="@_localizer["LBL_AGREEMENTNO"]"/>
@@ -56,14 +56,14 @@
                 <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CSTART_DATE)" Width="150px" HeaderText="@_localizer["LBL_STARTDATE"]" TextAlignment="R_eTextAlignment.Left"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.CEND_DATE)" Width="150px" HeaderText="@_localizer["LBL_ENDDATE"]" TextAlignment="R_eTextAlignment.Left"/>
 
-                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IBLOCK1_START)" Width="150px" HeaderText="@_localizer["LBL_BLOCK1START"]" Visible="@_visibleColumnEC"/>
-                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IBLOCK2_START)" Width="150px" HeaderText="@_localizer["LBL_BLOCK2START"]" Visible="@_visibleColumnEC"/>
-                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IBLOCK1_END)" Width="150px" HeaderText="@_localizer["LBL_BLOCK1END"]" Visible="@_visibleColumnEC"/>
-                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IBLOCK2_END)" Width="150px" HeaderText="@_localizer["LBL_BLOCK2END"]" Visible="@_visibleColumnEC"/>
-                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.NBEBAN_BERSAMA)" Width="150px" HeaderText="@_localizer["LBL_BEBANBERSAMA"]" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IBLOCK1_START)" Width="150px" HeaderText="@_localizer["LBL_BLOCK1START"]" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IBLOCK2_START)" Width="150px" HeaderText="@_localizer["LBL_BLOCK2START"]" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IBLOCK1_END)" Width="150px" HeaderText="@_localizer["LBL_BLOCK1END"]" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IBLOCK2_END)" Width="150px" HeaderText="@_localizer["LBL_BLOCK2END"]" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.NBEBAN_BERSAMA)" Width="150px" HeaderText="@_localizer["LBL_BEBANBERSAMA"]" Visible="@_visibleColumnEC"/>
 
-                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IMETER_START)" HeaderText="@_localizer["LBL_METERSTART"]" Width="150px" Visible="@_visibleColumnWG"/>
-                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IMETER_END)" HeaderText="@_localizer["LBL_METEREND"]" Width="150px" Visible="@_visibleColumnWG"/>
+                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IMETER_START)" HeaderText="@_localizer["LBL_METERSTART"]" Width="150px" Visible="@_visibleColumnWG"/>
+                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.IMETER_END)" HeaderText="@_localizer["LBL_METEREND"]" Width="150px" Visible="@_visibleColumnWG"/>
 
                 <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.ErrorFlag)" HeaderText="@_localizer["VALID"]" Width="100px" Visible="@_viewModel.IsError"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.ErrorMessage)" HeaderText="@_localizer["NOTES"]" Width="300px" Visible="@_viewModel.IsError"/>

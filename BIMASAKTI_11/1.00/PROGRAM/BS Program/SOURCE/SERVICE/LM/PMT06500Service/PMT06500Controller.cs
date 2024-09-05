@@ -75,6 +75,7 @@ public class PMT06500Controller : ControllerBase, IPMT06500
             _logger.LogInfo("Set Parameter");
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
+            poParameter.Entity.CLANG_ID = R_BackGlobalVar.CULTURE;
 
             _logger.LogInfo("Save Invoice Entity");
             loRtn.data = loCls.R_Save(poParameter.Entity, poParameter.CRUDMode);
@@ -314,6 +315,11 @@ public class PMT06500Controller : ControllerBase, IPMT06500
             loDbParams.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(PMT06500ContextConstant.CPROPERTY_ID);
             loDbParams.CPERIOD = R_Utility.R_GetStreamingContext<string>(PMT06500ContextConstant.CPERIOD);
             loDbParams.CAGREEMENT_NO = R_Utility.R_GetStreamingContext<string>(PMT06500ContextConstant.CAGREEMENT_NO);
+            loDbParams.CREF_NO = R_Utility.R_GetStreamingContext<string>(PMT06500ContextConstant.CREF_NO);
+            loDbParams.CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(PMT06500ContextConstant.CDEPT_CODE);
+            loDbParams.CLINK_DEPT_CODE = R_Utility.R_GetStreamingContext<string>(PMT06500ContextConstant.CLINK_DEPT_CODE);
+            loDbParams.CLINK_TRANS_CODE = R_Utility.R_GetStreamingContext<string>(PMT06500ContextConstant.CLINK_TRANS_CODE);
+            loDbParams.CACTION = R_Utility.R_GetStreamingContext<string>(PMT06500ContextConstant.CACTION);
 
             _logger.LogInfo("Get Summary List Stream");
             loResult = loCls.GetSummaryList(loDbParams);
@@ -362,6 +368,38 @@ public class PMT06500Controller : ControllerBase, IPMT06500
         _logger.LogInfo("End - Process Submit");
         return loReturn;
     }
+    
+    [HttpPost]
+    public PMT06500SingleDTO<PMT06500InvoiceDTO> PMT06500SavingInvoice(SavingInvoiceParamDTO<PMT06500InvoiceDTO> poParameter)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(PMT06500SavingInvoice));
+        _logger.LogInfo("Start - Save Invoice Entity");
+        R_Exception loEx = new();
+        PMT06500SingleDTO<PMT06500InvoiceDTO> loRtn = null;
+
+        try
+        {
+            var loCls = new PMT06500Cls();
+            loRtn = new PMT06500SingleDTO<PMT06500InvoiceDTO>();
+
+            _logger.LogInfo("Set Parameter");
+            poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
+            // poParameter.Entity.CLANG_ID = R_BackGlobalVar.CULTURE;
+
+            _logger.LogInfo("Save Invoice Entity");
+            loCls.SavingInvoice(poParameter.Entity, poParameter.CRUDMode);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        _logger.LogInfo("End - Save Invoice Entity");
+        return loRtn;
+    }
 
     #region "Helper ListStream Functions"
 
@@ -374,4 +412,5 @@ public class PMT06500Controller : ControllerBase, IPMT06500
     }
 
     #endregion
+    
 }

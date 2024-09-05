@@ -32,7 +32,7 @@
     </R_ItemLayout>
 </R_StackLayout>
 <R_StackLayout Row="true" Class="mt-1">
-    <R_ItemLayout col="4">
+    <R_ItemLayout col="3">
         <R_Grid @ref="@_gridRefDept"
                 DataSource="@_viewModelUser.DepartmentList"
                 Pageable
@@ -52,11 +52,8 @@
             </R_GridColumns>
         </R_Grid>
 
-
-        <R_ConductorGrid @ref="@_conductorRefDept"
-                         R_IsHeader="true"/>
     </R_ItemLayout>
-    <R_ItemLayout col="8">
+    <R_ItemLayout col="9">
         <R_StackLayout Row="true" Spacing="1" Class="mb-1">
             <R_ItemLayout col="2">
                 <R_Label>@_localizer["LABEL_DEPARTMENT"]</R_Label>
@@ -97,23 +94,18 @@
                                     R_ServiceDelete="@DeleteApprover">
                                 <R_GridColumns>
                                     @* <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CSEQUENCE)" HeaderText="@_localizer["LABEL_SEQUENCE"]" Width="130px" TextAlignment="R_eTextAlignment.Left"/> *@
-                                    <R_GridNumericColumn FieldName="@nameof(GSM05000ApprovalUserDTO.ISEQUENCE)" HeaderText="@_localizer["LABEL_SEQUENCE"]" Width="130px" TextAlignment="R_eTextAlignment.Left"/>
-                                    <R_GridLookupColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CUSER_ID)" HeaderText="@_localizer["LABEL_USERID"]" R_EnableAdd Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                                    <R_GridNumericColumn TValue="int" FieldName="@nameof(GSM05000ApprovalUserDTO.ISEQUENCE)" HeaderText="@_localizer["LABEL_SEQUENCE"]" Width="130px" TextAlignment="R_eTextAlignment.Left"/>
+                                    <R_GridLookupColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CUSER_ID)" HeaderText="@_localizer["LABEL_USERID"]" R_EnableAdd Width="120px" TextAlignment="R_eTextAlignment.Left"/>
                                     <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CUSER_NAME)" HeaderText="@_localizer["LABEL_USERNAME"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
                                     <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CPOSITION)" HeaderText="@_localizer["LABEL_POSITION"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
                                     <R_GridCheckBoxColumn FieldName="@nameof(GSM05000ApprovalUserDTO.LREPLACEMENT)" HeaderText="@_localizer["LABEL_REPLACEMENT"]" R_EnableAdd R_EnableEdit Width="150px" TextAlignment="R_eTextAlignment.Center"/>
-                                    <R_GridNumericColumn FieldName="@nameof(GSM05000ApprovalUserDTO.NLIMIT_AMOUNT)" HeaderText="@_localizer["LABEL_MINLIMITAMOUNT"]" Min="0" Step="1" R_EnableAdd R_EnableEdit Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                                    <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GSM05000ApprovalUserDTO.NLIMIT_AMOUNT)" HeaderText="@_localizer["LABEL_MINLIMITAMOUNT"]" Min="0" Step="1" R_EnableAdd R_EnableEdit Width="150px" TextAlignment="R_eTextAlignment.Left"/>
                                     <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CUPDATE_BY)" HeaderText="@_localizer["LABEL_UPDATEDBY"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
                                     <R_GridDateTimePickerColumn FieldName="@nameof(GSM05000ApprovalUserDTO.DUPDATE_DATE)" HeaderText="@_localizer["LABEL_UPDATEDDATE"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
                                     <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CCREATE_BY)" HeaderText="@_localizer["LABEL_CREATEDBY"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
                                     <R_GridDateTimePickerColumn FieldName="@nameof(GSM05000ApprovalUserDTO.DCREATE_DATE)" HeaderText="@_localizer["LABEL_CREATEDDATE"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
                                 </R_GridColumns>
                             </R_Grid>
-
-                            <R_ConductorGrid @ref="@_conductorRefUser"
-                                             R_IsHeader="true"
-                                             R_SetOther="SetOtherUser"
-                                             @* R_AfterDelete="@AfterDeleteApprover" *@/>
                         </R_ItemLayout>
                         <R_ItemLayout>
                             <R_Label Class="fw-bold">@_localizer["LABEL_MINLIMITAMOUNTLOCAL"]</R_Label>
@@ -163,6 +155,7 @@
                                     R_ServiceGetRecord="GetRecordReplacement"
                                     R_Display="@DisplayReplacement"
                                     R_AfterAdd="@AfterAddReplacement"
+                                    R_Validation="@ValidationReplacement"
                                     R_Saving="@SavingReplacement"
                                     R_ServiceSave="@SaveReplacement"
                                     R_ServiceDelete="@DeleteReplacement">
@@ -177,11 +170,6 @@
                                     <R_GridDateTimePickerColumn FieldName="@nameof(GSM05000ApprovalReplacementDTO.DCREATE_DATE)" HeaderText="@_localizer["LABEL_CREATEDDATE"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
                                 </R_GridColumns>
                             </R_Grid>
-
-                            <R_ConductorGrid @ref="@_conductorRefReplacement"
-                                             @* R_ViewModel="@_viewModelReplacement" *@
-                                             R_ConductorParent="@_conductorRefUser"
-                                             R_SetOther="SetOtherReplacement"/>
                         </R_ItemLayout>
                     </R_StackLayout>
                 </R_GroupBox>

@@ -4,11 +4,11 @@ using System.Text;
 
 namespace GSM02500COMMON.DTOs.GSM02540
 {
-    public class SaveUnitPromotionTypeToExcelDTO
+    public class SaveOtherUnitTypeToExcelDTO
     {
         public int No { get; set; } = 0;
-        public string UnitPromotionTypeCode { get; set; } = "";
-        public string UnitPromotionTypeName { get; set; } = "";
+        public string OtherUnitTypeCode { get; set; } = "";
+        public string OtherUnitTypeName { get; set; } = "";
         public decimal GrossAreaSize { get; set; } = 0;
         public decimal NetAreaSize { get; set; } = 0;
         public bool Active { get; set; } = false;

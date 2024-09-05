@@ -16,7 +16,7 @@ namespace Lookup_PMFRONT
     {
         private LookupLML01200ViewModel _viewModel = new LookupLML01200ViewModel();
         private R_Grid<LML01200DTO>? GridRef;
-
+        private int _pageSize = 12;
         protected override async Task R_Init_From_Master(object poParameter)
         {
             var loEx = new R_Exception();

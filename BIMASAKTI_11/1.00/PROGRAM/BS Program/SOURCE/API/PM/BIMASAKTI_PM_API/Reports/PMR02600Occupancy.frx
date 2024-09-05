@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="08/08/2024 15:17:56" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="08/12/2024 17:07:47" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="Data" DataType="PMR02600Common.DTOs.Print.PMR02600ReportResultDTO, PMR02600Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -100,7 +100,7 @@
       </ChildBand>
     </inherited>
     <GroupHeaderBand Name="GroupHeader1" ZOrder="0" Top="158.89" Width="1047.06" Height="28.35" Border.Lines="Bottom" CanGrow="true" CanShrink="true" RepeatOnEveryPage="true" Condition="[ResponseDataModel.Data.Data.CBUILDING_ID]">
-      <TextObject Name="Text55" Width="396.9" Height="18.9" Text="[ResponseDataModel.Data.Label.BUILDING] : [ResponseDataModel.Data.Data.CBUILDING_NAME] - [ResponseDataModel.Data.Data.CBUILDING_ID]" Font="Arial Unicode MS, 9pt">
+      <TextObject Name="Text55" Width="396.9" Height="18.9" Text="[ResponseDataModel.Data.Label.BUILDING] : [ResponseDataModel.Data.Data.CBUILDING_ID] - [ResponseDataModel.Data.Data.CBUILDING_NAME]" Font="Arial Unicode MS, 9pt">
         <Formats>
           <GeneralFormat/>
           <GeneralFormat/>

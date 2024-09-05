@@ -117,7 +117,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_PROPERTY_USER_LIST " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -163,7 +163,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_LOOKUP_USER_LIST " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -229,7 +229,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_PROPERTY_USER_DETAIL " +
                     $"@CLOGIN_COMPANY_ID, " +

@@ -1,5 +1,5 @@
 ﻿@inherits R_Page
-@attribute [R_Page(Title = "Payment Term")]
+@attribute [R_Page(ResourceId = "_PaymentTerm")]
 @inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
 
 <R_StackLayout Style="width: 800px">
@@ -12,7 +12,7 @@
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CPAY_TERM_CODE" HeaderText="@_localizer["_TOPCode"]" Width="200px"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CPAY_TERM_NAME" HeaderText="@_localizer["_TOPName"]" Width="300px"></R_GridTextColumn>
-                <R_GridNumericColumn FieldName="IPAY_TERM_DAYS" HeaderText="@_localizer["_TOPDays"]" Width="100px"></R_GridNumericColumn>
+                <R_GridNumericColumn TValue="int" FieldName="IPAY_TERM_DAYS" HeaderText="@_localizer["_TOPDays"]" Width="100px"></R_GridNumericColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>

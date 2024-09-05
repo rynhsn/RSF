@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Lookup_GSModel.ViewModel
 {
-    public class LookupGSL02000ViewModel : R_ViewModel<GSL02000CityDTO>
+    public class LookupGSL02000ViewModel : R_ViewModel<GSL02000TreeDTO>
     {
         private PublicLookupModel _model = new PublicLookupModel();
 
@@ -35,14 +35,13 @@ namespace Lookup_GSModel.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-
-        public async Task GetCityGeographyList(string poParam)
+        public async Task GetCityGeographyList()
         {
             var loEx = new R_Exception();
 
             try
             {
-                var loResult = await _model.GSL02000GetCityGeographyListListAsync(poParam);
+                var loResult = await _model.GSL02000GetCityGeographyListListAsync(CountryID);
 
                 var loParentData = R_FrontUtility.ConvertObjectToObject<GSL02000CityDTO>(Country);
 
@@ -55,7 +54,7 @@ namespace Lookup_GSModel.ViewModel
                     ParentName = x.CPARENT_NAME,
                     Id = x.CCODE,
                     Name = x.CNAME,
-                    Description = x.CCODE_CNAME_DISPLAY
+                    Description = string.IsNullOrWhiteSpace(x.CCODE_CNAME_DISPLAY) ? string.Format("{0} - {1}", x.CCODE, x.CNAME) : x.CCODE_CNAME_DISPLAY,
                 }).ToList();
 
                 CityGeographyTree = loGridData;

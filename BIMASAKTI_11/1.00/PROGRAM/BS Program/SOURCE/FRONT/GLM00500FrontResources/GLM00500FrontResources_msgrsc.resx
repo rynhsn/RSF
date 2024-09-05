@@ -255,4 +255,61 @@
     <data name="MessageGenerateSuccess" xml:space="preserve">
         <value>Account Budget Generated Successfully!</value>
     </data>
+
+    <!-- Normal Account -->
+    <data name="NormalAccount" xml:space="preserve">
+        <value>Normal Account</value>
+    </data>
+    <!-- Statistic Account -->
+    <data name="StatisticAccount" xml:space="preserve">
+        <value>Statistic Account</value>
+    </data>
+    <!-- Manually -->
+    <data name="Manually" xml:space="preserve">
+        <value>Manually</value>
+    </data>
+    <!-- Monthly -->
+    <data name="Monthly" xml:space="preserve">
+        <value>Monthly</value>
+    </data>
+    <!-- Annually -->
+    <data name="Annually" xml:space="preserve">
+        <value>Annually</value>
+    </data>
+    <!-- Evenly -->
+    <data name="Evenly" xml:space="preserve">
+        <value>Evenly</value>
+    </data>
+    <!-- Budget Weighting -->
+    <data name="BudgetWeighting" xml:space="preserve">
+        <value>Budget Weighting</value>
+    </data>
+    <!-- Percentage -->
+    <data name="Percentage" xml:space="preserve">
+        <value>Percentage</value>
+    </data>
+    <!-- Value -->
+    <data name="Value" xml:space="preserve">
+        <value>Value</value>
+    </data>
+    <!-- Clear All Existing Data -->
+    <data name="ClearAllExistingData" xml:space="preserve">
+        <value>Clear All Existing Data</value>
+    </data>
+    <!-- Skip Existing Data -->
+    <data name="SkipExistingData" xml:space="preserve">
+        <value>Skip Existing Data</value>
+    </data>
+    <!-- Replace Existing Data -->
+    <data name="ReplaceExistingData" xml:space="preserve">
+        <value>Replace Existing Data</value>
+    </data>
+    <!-- Existing Budget -->
+    <data name="ExistingBudget" xml:space="preserve">
+        <value>Existing Budget</value>
+    </data>
+    <!-- Actual Value -->
+    <data name="ActualValue" xml:space="preserve">
+        <value>Actual Value</value>
+    </data>
 </root>

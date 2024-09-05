@@ -14,6 +14,8 @@ namespace PMT06500Common
         IAsyncEnumerable<PMT06500InvoiceDTO> PMT06500GetInvoiceListStream();
         IAsyncEnumerable<PMT06500SummaryDTO> PMT06500GetSummaryListStream();
         PMT06500SingleDTO<PMT06500PropertyDTO> PMT06500ProcessSubmit(PMT06500ProcessSubmitParam poParameter);
+
+        PMT06500SingleDTO<PMT06500InvoiceDTO> PMT06500SavingInvoice(SavingInvoiceParamDTO<PMT06500InvoiceDTO> poParameter);
     }
 
 }

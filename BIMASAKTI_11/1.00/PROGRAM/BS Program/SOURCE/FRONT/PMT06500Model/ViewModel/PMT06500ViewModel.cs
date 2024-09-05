@@ -136,6 +136,12 @@ namespace PMT06500Model.ViewModel
                         nameof(IPMT06500.PMT06500GetInvoiceListStream));
                 
                 InvoiceGridList = new ObservableCollection<PMT06500InvoiceDTO>(loReturn);
+                
+                foreach (var loItem in InvoiceGridList)
+                {
+                    // period display "2024-08" dari inv_period
+                    loItem.CPERIOD_DISPLAY = loItem.CINV_PRD.Substring(0, 4) + "-" + loItem.CINV_PRD.Substring(4, 2);
+                }
             }
             catch (Exception ex)
             {
@@ -145,7 +151,7 @@ namespace PMT06500Model.ViewModel
             loEx.ThrowExceptionIfErrors();
         }
         
-        public async Task GetSummaryGridList()
+        public async Task GetSummaryGridList(string pcRefNo, string pcDeptCode, string pcLinkDeptCode, string pcLinkTransCode, string pcSaveMode)
         {
             var loEx = new R_Exception();
             try
@@ -153,6 +159,11 @@ namespace PMT06500Model.ViewModel
                 R_FrontContext.R_SetStreamingContext(PMT06500ContextConstant.CPROPERTY_ID, SelectedPropertyId);
                 R_FrontContext.R_SetStreamingContext(PMT06500ContextConstant.CPERIOD, SelectedPeriod);
                 R_FrontContext.R_SetStreamingContext(PMT06500ContextConstant.CAGREEMENT_NO, SelectedAgreementNo);
+                R_FrontContext.R_SetStreamingContext(PMT06500ContextConstant.CREF_NO, pcRefNo);
+                R_FrontContext.R_SetStreamingContext(PMT06500ContextConstant.CDEPT_CODE, pcDeptCode);
+                R_FrontContext.R_SetStreamingContext(PMT06500ContextConstant.CLINK_DEPT_CODE, pcLinkDeptCode);
+                R_FrontContext.R_SetStreamingContext(PMT06500ContextConstant.CLINK_TRANS_CODE, pcLinkTransCode);
+                R_FrontContext.R_SetStreamingContext(PMT06500ContextConstant.CACTION, pcSaveMode);
                 
                 var loReturn =
                     await _model.GetListStreamAsync<PMT06500SummaryDTO>(
@@ -317,12 +328,23 @@ namespace PMT06500Model.ViewModel
     {
         public string CPROPERTY_ID { get; set; }
         public string CPERIOD { get; set; }
+        public string CLINK_DEPT_CODE { get; set; } = "";
+        public string CLINK_TRANS_CODE { get; set; } = "";
+        public string CREF_NO { get; set; } = "";
+        public string CDEPT_CODE { get; set; } = "";
+        public string CACTION { get; set; } = "";
         public PMT06500AgreementDTO OAGREEMENT { get; set; }
     }
 
     public class PMT06500InvoicePopupParam
     {
-        public R_eConductorMode eMode { get; set; }
-        public PMT06500InvoiceDTO oInvoice { get; set; } = new PMT06500InvoiceDTO();
+        public R_eConductorMode EMODE { get; set; }
+        public string CREF_NO { get; set; } = "";
+        public string CDEPT_CODE { get; set; } = "";
+        public string CLINK_DEPT_CODE { get; set; } = "";
+        public string CLINK_TRANS_CODE { get; set; } = "";
+        public string CACTION { get; set; } = "";
+        public PMT06500InvoiceDTO OINVOICE { get; set; } = new PMT06500InvoiceDTO();
+        
     }
 }

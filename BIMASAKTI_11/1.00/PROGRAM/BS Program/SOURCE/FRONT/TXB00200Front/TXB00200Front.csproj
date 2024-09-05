@@ -30,4 +30,9 @@
         </Reference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\TXB00200FrontResources\TXB00200FrontResources.csproj" />
+      <ProjectReference Include="..\TXB00200Model\TXB00200Model.csproj" />
+    </ItemGroup>
+
 </Project>

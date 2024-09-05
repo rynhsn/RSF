@@ -199,7 +199,7 @@
           "GSM02500MODEL": "1.0.0",
           "Lookup_GSFRONT": "1.0.0",
           "Lookup_PMFRONT": "1.0.0",
-          "Microsoft.AspNetCore.Components": "6.0.15"
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
         },
         "runtime": {
           "GSM02500FRONT.dll": {}
@@ -227,6 +227,7 @@
       },
       "Lookup_GSFRONT/1.0.0": {
         "dependencies": {
+          "Lookup_GSCOMMON": "1.0.0",
           "Lookup_GSModel": "1.0.0",
           "Microsoft.AspNetCore.Components.Web": "6.0.15"
         },
@@ -271,7 +272,8 @@
       },
       "Lookup_PMModel/1.0.0": {
         "dependencies": {
-          "Lookup_PMCOMMON": "1.0.0"
+          "Lookup_PMCOMMON": "1.0.0",
+          "Lookup_PMFrontResources": "1.0.0"
         },
         "runtime": {
           "Lookup_PMModel.dll": {}

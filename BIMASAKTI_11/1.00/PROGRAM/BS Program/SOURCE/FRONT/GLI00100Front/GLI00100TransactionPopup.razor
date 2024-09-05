@@ -189,15 +189,15 @@
                         <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CGLACCOUNT_NAME)" HeaderText="@_localizer["LABEL_ACCNAME"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
                         <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CCENTER)" HeaderText="@_localizer["LABEL_CENTER"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
                         <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CBDCR)" HeaderText="@_localizer["LABEL_DC"]" Width="100px" TextAlignment="R_eTextAlignment.Right"/>
-                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NDEBIT)" HeaderText="@_localizer["LABEL_DEBIT"]" Width="80px" TextAlignment="R_eTextAlignment.Right" Decimals="2" ThousandSeparator/>
-                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NCREDIT)" HeaderText="@_localizer["LABEL_CREDIT"]" Width="80px" TextAlignment="R_eTextAlignment.Right" Decimals="2" ThousandSeparator/>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GLI00100JournalGridDTO.NDEBIT)" HeaderText="@_localizer["LABEL_DEBIT"]" Width="80px" TextAlignment="R_eTextAlignment.Right" Decimals="2" ThousandSeparator/>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GLI00100JournalGridDTO.NCREDIT)" HeaderText="@_localizer["LABEL_CREDIT"]" Width="80px" TextAlignment="R_eTextAlignment.Right" Decimals="2" ThousandSeparator/>
                         <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CDETAIL_DESC)" HeaderText="@_localizer["LABEL_DESC"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
                         <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CDOCUMENT_NO)" HeaderText="@_localizer["LABEL_VOUCHERNO"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
                         <R_GridDatePickerColumn FieldName="@nameof(GLI00100JournalGridDTO.DDOCUMENT_DATE)" HeaderText="@_localizer["LABEL_VOUCHERDATE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
-                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NLDEBIT)" HeaderText="@_localizer["LABEL_DBLOCAL"]" Width="150px" TextAlignment="R_eTextAlignment.Right" ThousandSeparator/>
-                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NLCREDIT)" HeaderText="@_localizer["LABEL_CRLOCAL"]" Width="150px" TextAlignment="R_eTextAlignment.Right" ThousandSeparator/>
-                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NBDEBIT)" HeaderText="@_localizer["LABEL_DBBASE"]" Width="150px" TextAlignment="R_eTextAlignment.Right" ThousandSeparator/>
-                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NBCREDIT)" HeaderText="@_localizer["LABEL_CRBASE"]" Width="150px" TextAlignment="R_eTextAlignment.Right" ThousandSeparator/>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GLI00100JournalGridDTO.NLDEBIT)" HeaderText="@_localizer["LABEL_DBLOCAL"]" Width="150px" TextAlignment="R_eTextAlignment.Right" ThousandSeparator/>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GLI00100JournalGridDTO.NLCREDIT)" HeaderText="@_localizer["LABEL_CRLOCAL"]" Width="150px" TextAlignment="R_eTextAlignment.Right" ThousandSeparator/>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GLI00100JournalGridDTO.NBDEBIT)" HeaderText="@_localizer["LABEL_DBBASE"]" Width="150px" TextAlignment="R_eTextAlignment.Right" ThousandSeparator/>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GLI00100JournalGridDTO.NBCREDIT)" HeaderText="@_localizer["LABEL_CRBASE"]" Width="150px" TextAlignment="R_eTextAlignment.Right" ThousandSeparator/>
                     </R_GridColumns>
                 </R_Grid>
             </R_ItemLayout>

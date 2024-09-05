@@ -1,18 +1,19 @@
 ﻿@inherits R_Page
-@attribute [R_Page(Title = "Category")]
+@attribute [R_Page(ResourceId = "_Category")]
 @using Lookup_GSCOMMON.DTOs
 @inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
 
 <R_StackLayout Style="width: 800px">
     <R_StackLayout Row>
         <R_TreeView @ref="@_treeRef"
-                    DataSource="@_viewModel.CategoryGrid"
                     TextField="Description"
                     IdField="Id"
                     ParentIdField="ParentId"
                     HasChildrenField="HasChildren"
                     Height="400px"
                     R_ServiceGetListRecord="@R_ServiceGetListRecordAsync"
+                    TModel="GSL01800TreeDTO"
+                    ShowFilter="true"
                     >
         </R_TreeView>
     </R_StackLayout>
@@ -27,9 +28,9 @@
     </R_StackLayout>
 
 </R_StackLayout>
-@* 
+
 <R_Conductor @ref="@_conductorRef"
              R_ViewModel="@_viewModel"
              R_IsHeader="true"
              R_ServiceGetRecord="@Conductor_ServiceGetRecord"
-             R_ConvertToGridEntity="@ProductCategory_ConvertToGridEntity"></R_Conductor> *@
+             R_ConvertToGridEntity="@ProductCategory_ConvertToGridEntity"></R_Conductor>

@@ -27,7 +27,7 @@ namespace GSM02500FRONT
 
             try
             {
-                loUserViewModel.SELECTED_PROPERTY_ID = (string)poParameter;
+                loUserViewModel.loLookupParameter = (GetUserIdNameParameterDTO)poParameter;
                 await _gridUserRef.R_RefreshGrid(null);
             }
             catch (Exception ex)

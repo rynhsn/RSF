@@ -120,6 +120,10 @@ public class PMT06000OvertimeCls : R_BusinessObject<PMT06000OvtDTO>
             loDb.R_AddCommandParameter(loCmd, "@CTRANS_STATUS", DbType.String, 2, poNewEntity.CTRANS_STATUS);
             loDb.R_AddCommandParameter(loCmd, "@CAGREEMENT_NO", DbType.String, 30, poNewEntity.CAGREEMENT_NO);
             loDb.R_AddCommandParameter(loCmd, "@CINV_PRD", DbType.String, 6, poNewEntity.CINV_PRD);
+            //CLINK_DEPT_CODE
+            loDb.R_AddCommandParameter(loCmd, "@CLINK_DEPT_CODE", DbType.String, 6, poNewEntity.CLINK_DEPT_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CLINK_TRANS_CODE", DbType.String, 6, poNewEntity.CLINK_TRANS_CODE);
+            
             
             
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
@@ -140,7 +144,9 @@ public class PMT06000OvertimeCls : R_BusinessObject<PMT06000OvtDTO>
                         "@CDESCRIPTION" or
                         "@CTRANS_STATUS" or
                         "@CAGREEMENT_NO" or
-                        "@CINV_PRD"
+                        "@CINV_PRD" or 
+                        "@CLINK_DEPT_CODE" or
+                        "@CLINK_TRANS_CODE"
                 )
                 .Select(x => x.Value);
             

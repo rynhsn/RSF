@@ -38,5 +38,8 @@ namespace PMT06000Common.DTOs
         public DateTime DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; } = "";
         public DateTime DCREATE_DATE { get; set; }
+
+        public string CLINK_DEPT_CODE { get; set; } = "";
+        public string CLINK_TRANS_CODE { get; set; } = "";
     }
 }

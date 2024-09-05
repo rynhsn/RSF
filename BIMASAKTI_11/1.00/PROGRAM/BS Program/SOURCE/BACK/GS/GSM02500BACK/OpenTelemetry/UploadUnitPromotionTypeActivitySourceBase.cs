@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GSM02500BACK.OpenTelemetry
 {
-    public class UploadUnitPromotionTypeActivitySourceBase : R_ActivitySourceBase
+    public class UploadOtherUnitTypeActivitySourceBase : R_ActivitySourceBase
     {
     }
 }

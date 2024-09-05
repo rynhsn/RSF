@@ -51,7 +51,7 @@
         <R_Grid @ref="@_gridRefUnit"
                 DataSource="@_viewModel.OvertimeUnitGridList"
                 Pageable
-                PageSize="5"
+                @bind-PageSize="@_pageSizeUnit"
                 R_ConductorGridSource="@_conductorRefUnit"
                 R_GridType="@R_eGridType.Original"
                 R_ServiceGetListRecord="@GetOvertimeUnitListRecord"
@@ -62,19 +62,22 @@
                 R_After_Open_Grid_Lookup="AfterLookupUnit"
                 Width="100%"
                 Height="265px"
+                R_CheckGridAdd="CheckGridAdd"
+                R_CheckGridDelete="CheckGridDelete"
                 R_Validation="@Validation"
                 R_ServiceGetRecord="GetRecord"
                 R_Saving="Saving"
                 R_ServiceSave="@Save"
+                R_AfterSave="AfterSave"
                 R_BeforeDelete="@BeforeDelete"
                 R_ServiceDelete="@Delete"
                 R_AfterDelete="AfterDelete"
                 R_DisableDeleteConfirmation>
             <R_GridColumns>
-                <R_GridLookupColumn FieldName="@nameof(PMT06000OvtUnitDTO.CUNIT_ID)" HeaderText="@_localizer["UNIT_ID"]" R_EnableAdd Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridLookupColumn FieldName="@nameof(PMT06000OvtUnitDTO.CUNIT_ID)" HeaderText="@_localizer["UNIT_ID"]" R_EnableAdd Width="120px" TextAlignment="R_eTextAlignment.Left"/>
                 <R_GridTextColumn FieldName="@nameof(PMT06000OvtUnitDTO.CUNIT_NAME)" HeaderText="@_localizer["UNIT_NAME"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
                 <R_GridTextColumn FieldName="@nameof(PMT06000OvtUnitDTO.CFLOOR_ID)" HeaderText="@_localizer["FLOOR"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridNumericColumn FieldName="@nameof(PMT06000OvtUnitDTO.NGROSS_AREA_SIZE)" HeaderText="@_localizer["SQM"]" Width="150px" TextAlignment="R_eTextAlignment.Right" Decimals="2"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT06000OvtUnitDTO.NGROSS_AREA_SIZE)" HeaderText="@_localizer["SQM"]" Width="120px" TextAlignment="R_eTextAlignment.Right" Decimals="2"/>
             </R_GridColumns>
         </R_Grid>
     </R_ItemLayout>

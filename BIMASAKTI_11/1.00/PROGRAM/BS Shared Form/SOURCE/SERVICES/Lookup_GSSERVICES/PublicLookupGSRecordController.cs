@@ -944,5 +944,35 @@ namespace Lookup_GSSERVICES
             _Logger.LogInfo("End GSL02700GetOtherUnit");
             return loRtn;
         }
+
+        [HttpPost]
+        public GSLGenericRecord<GSL02800DTO> GSL02800GetOtherUnitMaster(GSL02800ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GSL02800GetOtherUnit");
+            var loEx = new R_Exception();
+            GSLGenericRecord<GSL02800DTO> loRtn = new();
+            _Logger.LogInfo("Start GSL02800GetOtherUnit");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLOtherUnit");
+                var loResult = loCls.GetALLOtherUnitMaster(poEntity);
+
+                _Logger.LogInfo("Filter Search by text GSL02800GetOtherUnit");
+                loRtn.Data = loResult.Find(x => x.COTHER_UNIT_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo("End GSL02800GetOtherUnit");
+            return loRtn;
+        }
     }
 }

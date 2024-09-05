@@ -5,6 +5,7 @@ using GSM02500COMMON.DTOs;
 using GSM02500COMMON.DTOs.GSM02540;
 using GSM02500COMMON.DTOs.GSM02550;
 using GSM02500COMMON.Loggers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using R_BackEnd;
@@ -46,14 +47,14 @@ namespace GSM02500SERVICE
             try
             {
                 _logger.LogInfo("Set Parameter || GetUserPropertyList(Controller)");
-                loParam.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 loParam.CSELECTED_PROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstant.GSM02550_PROPERTY_ID_STREAMING_CONTEXT);
+                loParam.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
 
                 _logger.LogInfo("Run GetUserPropertyList(Cls) || GetUserPropertyList(Controller)");
                 loTempRtn = loCls.GetUserPropertyList(loParam);
 
-                _logger.LogInfo("Run GetUnitPromotionStream(Controller) || GetUserPropertyList(Controller)");
-                loRtn = GetUnitPromotionStream(loTempRtn);
+                _logger.LogInfo("Run GetOtherUnitStream(Controller) || GetUserPropertyList(Controller)");
+                loRtn = GetUserPropertyStream(loTempRtn);
             }
             catch (Exception ex)
             {
@@ -65,7 +66,7 @@ namespace GSM02500SERVICE
             _logger.LogInfo("End || GetUserPropertyList(Controller)");
             return loRtn;
         }
-        private async IAsyncEnumerable<GSM02550DTO> GetUnitPromotionStream(List<GSM02550DTO> poParameter)
+        private async IAsyncEnumerable<GSM02550DTO> GetUserPropertyStream(List<GSM02550DTO> poParameter)
         {
             foreach (GSM02550DTO item in poParameter)
             {
@@ -87,8 +88,8 @@ namespace GSM02500SERVICE
             try
             {
                 _logger.LogInfo("Set Parameter || GetUserIdNameList(Controller)");
-                loParam.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 loParam.CSELECTED_PROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstant.GSM02550_PROPERTY_ID_STREAMING_CONTEXT);
+                loParam.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
 
                 _logger.LogInfo("Run GetUserIdNameList(Cls) || GetUserIdNameList(Controller)");
                 loTempRtn = loCls.GetUserIdNameList(loParam);
@@ -112,6 +113,37 @@ namespace GSM02500SERVICE
             {
                 yield return item;
             }
+        }
+
+        [HttpPost]
+        public GetUserIdNameResultDTO GetUserIdName(GetUserIdNameParameterDTO poParam)
+        {
+            using Activity activity = _activitySource.StartActivity("GetUserIdName");
+            _logger.LogInfo("Start || GetUserIdName(Controller)");
+            R_Exception loException = new R_Exception();
+            GetUserIdNameResultDTO loRtn = new GetUserIdNameResultDTO();
+            GSM02550Cls loCls = new GSM02550Cls();
+            List<GetUserIdNameDTO> loTempRtn = null;
+
+            try
+            {
+                _logger.LogInfo("Set Parameter || GetUserIdName(Controller)");
+                poParam.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+
+                _logger.LogInfo("Run GetUserIdName(Cls) || GetUserIdName(Controller)");
+                loTempRtn = loCls.GetUserIdNameList(poParam);
+
+                loRtn.Data = loTempRtn.Find(x => x.CUSER_ID.Trim().ToUpper() == poParam.CSEARCH_TEXT.ToUpper().Trim());
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+                _logger.LogError(loException);
+            }
+
+            loException.ThrowExceptionIfErrors();
+            _logger.LogInfo("End || GetUserIdNameList(Controller)");
+            return loRtn;
         }
 
         [HttpPost]

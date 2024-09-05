@@ -76,6 +76,22 @@ namespace GSM02500MODEL.View_Model
                         typeof(Resources_Dummy_Class),
                         "V010"));
                 }
+
+                llCancel = poParam.NGROSS_AREA_SIZE <= 0;
+                if (llCancel)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Resources_Dummy_Class),
+                        "V033"));
+                }
+
+                llCancel = poParam.NNET_AREA_SIZE <= 0;
+                if (llCancel)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Resources_Dummy_Class),
+                        "V034"));
+                }
             }
             catch (Exception ex)
             {

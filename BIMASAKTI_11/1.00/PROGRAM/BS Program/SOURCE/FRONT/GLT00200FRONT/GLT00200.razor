@@ -254,18 +254,18 @@
                         AllowDeleteRow="false"
                         R_ServiceGetListRecord="@Grid_R_ServiceGetImportJournalListRecord">
                     <R_GridColumns>
-                        <R_GridTextColumn FieldName="@nameof(GLT00200DetailDTO.CGLACCOUNT_NO)" HeaderText="Account No." Width="150px"></R_GridTextColumn>
-                        <R_GridTextColumn FieldName="@nameof(GLT00200DetailDTO.CGLACCOUNT_NAME)" HeaderText="Account Name" Width="200px"></R_GridTextColumn>
-                        <R_GridTextColumn FieldName="@nameof(GLT00200DetailDTO.CCENTER_CODE)" HeaderText="Center" Width="150px"></R_GridTextColumn>
-                        <R_GridTextColumn FieldName="@nameof(GLT00200DetailDTO.CDBCR)" HeaderText="D/C" Visible="@IsSingleDCAmount" Width="150px"></R_GridTextColumn>
-                        <R_GridNumericColumn FieldName="@nameof(GLT00200DetailDTO.NDEBIT)" HeaderText="Debit" Visible="@IsSeparateDCAmount" Width="150px"></R_GridNumericColumn>
-                        <R_GridNumericColumn FieldName="@nameof(GLT00200DetailDTO.NCREDIT)" HeaderText="Credit" Visible="@IsSeparateDCAmount" Width="150px"></R_GridNumericColumn>
-                        <R_GridNumericColumn FieldName="@nameof(GLT00200DetailDTO.NTRANS_AMOUNT)" HeaderText="Amount" Width="150px"></R_GridNumericColumn>
-                        <R_GridTextColumn FieldName="@nameof(GLT00200DetailDTO.CDETAIL_DESC)" HeaderText="Description" Width="250px"></R_GridTextColumn>
-                        <R_GridNumericColumn FieldName="@nameof(GLT00200DetailDTO.NLDEBIT)" HeaderText="DB (Local)" Width="150px"></R_GridNumericColumn>
-                        <R_GridNumericColumn FieldName="@nameof(GLT00200DetailDTO.NLCREDIT)" HeaderText="CR (Local)" Width="150px"></R_GridNumericColumn>
-                        <R_GridNumericColumn FieldName="@nameof(GLT00200DetailDTO.NBDEBIT)" HeaderText="DB (Base)" Width="150px"></R_GridNumericColumn>
-                        <R_GridNumericColumn FieldName="@nameof(GLT00200DetailDTO.NBCREDIT)" HeaderText="CR (Base)" Width="150px"></R_GridNumericColumn>
+                        <R_GridTextColumn FieldName="@nameof(GLT00200DetailDTO.CGLACCOUNT_NO)" HeaderText="Account No." Width="150px"/>
+                        <R_GridTextColumn FieldName="@nameof(GLT00200DetailDTO.CGLACCOUNT_NAME)" HeaderText="Account Name" Width="200px"/>
+                        <R_GridTextColumn FieldName="@nameof(GLT00200DetailDTO.CCENTER_CODE)" HeaderText="Center" Width="150px"/>
+                        <R_GridTextColumn FieldName="@nameof(GLT00200DetailDTO.CDBCR)" HeaderText="D/C" Visible="@IsSingleDCAmount" Width="150px"/>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GLT00200DetailDTO.NDEBIT)" HeaderText="Debit" Visible="@IsSeparateDCAmount" Width="150px"/>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GLT00200DetailDTO.NCREDIT)" HeaderText="Credit" Visible="@IsSeparateDCAmount" Width="150px"/>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GLT00200DetailDTO.NTRANS_AMOUNT)" HeaderText="Amount" Width="150px"/>
+                        <R_GridTextColumn FieldName="@nameof(GLT00200DetailDTO.CDETAIL_DESC)" HeaderText="Description" Width="250px"/>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GLT00200DetailDTO.NLDEBIT)" HeaderText="DB (Local)" Width="150px"/>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GLT00200DetailDTO.NLCREDIT)" HeaderText="CR (Local)" Width="150px"/>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GLT00200DetailDTO.NBDEBIT)" HeaderText="DB (Base)" Width="150px"/>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GLT00200DetailDTO.NBCREDIT)" HeaderText="CR (Base)" Width="150px"/>
                     </R_GridColumns>
                 </R_Grid>
             </R_ItemLayout>

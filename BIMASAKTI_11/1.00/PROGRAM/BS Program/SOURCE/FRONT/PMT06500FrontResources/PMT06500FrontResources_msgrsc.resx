@@ -159,6 +159,11 @@
         <value>Department</value>
         <comment>Department</comment>
     </data>
+    <!-- OVERTIME LIST -->
+    <data name="OVERTIME_LIST" xml:space="preserve">
+        <value>Overtime List</value>
+        <comment>Overtime List</comment>
+    </data>
     <!-- REF_NO -->
     <!-- <data name="REF_NO" xml:space="preserve"> -->
     <!--     <value>Ref No</value> -->
@@ -193,6 +198,11 @@
     <data name="UNIT" xml:space="preserve">
         <value>Unit</value>
         <comment>Unit</comment>
+    </data>
+    <!-- CANCEL -->
+    <data name="CANCEL" xml:space="preserve">
+        <value>Cancel</value>
+        <comment>Cancel</comment>
     </data>
     <!-- RATE_HOURS -->
     <data name="RATE_HOURS" xml:space="preserve">

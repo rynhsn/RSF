@@ -58,5 +58,41 @@ namespace TXB00200FrontResources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Process.
+        /// </summary>
+        internal static string PROCESS {
+            get {
+                return ResourceManager.GetString("PROCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PROPERTY.
+        /// </summary>
+        internal static string PROPERTY {
+            get {
+                return ResourceManager.GetString("PROPERTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Soft Close Tax Successfully.
+        /// </summary>
+        internal static string SUCCESS_SOFT_CLOSE {
+            get {
+                return ResourceManager.GetString("SUCCESS_SOFT_CLOSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Period.
+        /// </summary>
+        internal static string TAX_PERIOD {
+            get {
+                return ResourceManager.GetString("TAX_PERIOD", resourceCulture);
+            }
+        }
     }
 }

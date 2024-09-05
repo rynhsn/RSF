@@ -388,16 +388,18 @@ public partial class PMT06000Info : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private async Task OnLostFocusRef()
+    private async Task OnLostFocusAgreement()
     {
         var loEx = new R_Exception();
 
         var loLookupViewModel = new LookupLML00800ViewModel();
         try
         {
-            if (_viewModel.Data.CREF_NO == null || _viewModel.Data.CREF_NO.Trim().Length <= 0)
+            if (_viewModel.Data.CAGREEMENT_NO == null || _viewModel.Data.CAGREEMENT_NO.Trim().Length <= 0)
             {
                 _viewModel.Data.CUNIT_DESCRIPTION = "";
+                _viewModel.Data.CLINK_DEPT_CODE = "";
+                _viewModel.Data.CLINK_TRANS_CODE = "";
                 return;
             }
 
@@ -410,7 +412,7 @@ public partial class PMT06000Info : R_Page
                 CBUILDING_ID = _viewModel.Data.CBUILDING_ID,
                 CTRANS_STATUS = "30,80",
                 CAGGR_STTS = "",
-                CSEARCH_TEXT = _viewModel.Data.CREF_NO
+                CSEARCH_TEXT = _viewModel.Data.CAGREEMENT_NO
             };
 
             var loResult = await loLookupViewModel.GetAgreement(param);
@@ -420,13 +422,17 @@ public partial class PMT06000Info : R_Page
                 loEx.Add(R_FrontUtility.R_GetError(
                     typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
                     "_ErrLookup01"));
-                _viewModel.Data.CREF_NO = "";
+                _viewModel.Data.CAGREEMENT_NO = "";
                 _viewModel.Data.CUNIT_DESCRIPTION = "";
+                _viewModel.Data.CLINK_DEPT_CODE = "";
+                _viewModel.Data.CLINK_TRANS_CODE = "";
                 goto EndBlock;
             }
 
-            _viewModel.Data.CREF_NO = loResult.CREF_NO;
+            _viewModel.Data.CAGREEMENT_NO = loResult.CREF_NO;
             _viewModel.Data.CUNIT_DESCRIPTION = loResult.CUNIT_DESCRIPTION;
+            _viewModel.Data.CLINK_DEPT_CODE = loResult.CDEPT_CODE;
+            _viewModel.Data.CLINK_TRANS_CODE = loResult.CTRANS_CODE;
         }
         catch (Exception ex)
         {
@@ -475,6 +481,8 @@ public partial class PMT06000Info : R_Page
             var loTempResult = (LML00800DTO)eventArgs.Result;
             _viewModel.Data.CAGREEMENT_NO = loTempResult.CREF_NO;
             _viewModel.Data.CUNIT_DESCRIPTION = loTempResult.CUNIT_DESCRIPTION;
+            _viewModel.Data.CLINK_DEPT_CODE = loTempResult.CDEPT_CODE;
+            _viewModel.Data.CLINK_TRANS_CODE = loTempResult.CTRANS_CODE;
         }
         catch (Exception ex)
         {
@@ -756,6 +764,7 @@ public partial class PMT06000Info : R_Page
 
             await _conductorRef.R_GetEntity(_viewModel.Entity);
             await _gridRefService.R_RefreshGrid(null);
+            await _pageUnit.InvokeRefreshTabPageAsync(_viewModel.Entity);
         }
         catch (Exception ex)
         {
@@ -789,6 +798,7 @@ public partial class PMT06000Info : R_Page
     }
 
     private bool accessInfo = true;
+    private int _pageSizeService = 6;
 
     private void OnChangeTab(R_TabStripActiveTabIndexChangingEventArgs eventArgs)
     {
@@ -1089,5 +1099,22 @@ public partial class PMT06000Info : R_Page
             //ddate_in = DateTime.Now;
         loEntity.DDATE_IN = DateTime.Now;
         loEntity.DDATE_OUT = DateTime.Now;
+    }
+
+    private async Task R_TabEventCallbackAsync(object poParam)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loParam = R_FrontUtility.ConvertObjectToObject<PMT06000OvtDTO>(_viewModel.Entity);
+            await _conductorRef.R_GetEntity(loParam);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
     }
 }

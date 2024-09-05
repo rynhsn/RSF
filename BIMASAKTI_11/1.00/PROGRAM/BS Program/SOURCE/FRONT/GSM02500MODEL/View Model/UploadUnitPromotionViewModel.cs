@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using GSM02500COMMON.DTOs.GSM02541;
 using GSM02500COMMON.DTOs;
@@ -17,27 +19,27 @@ using GSM02500COMMON.DTOs.GSM02520;
 
 namespace GSM02500MODEL.View_Model
 {
-    public class UploadUnitPromotionViewModel : R_ViewModel<UploadUnitPromotionDTO>, R_IProcessProgressStatus
+    public class UploadOtherUnitViewModel : R_ViewModel<UploadOtherUnitDTO>, R_IProcessProgressStatus
     {
         public Action<R_Exception> ShowErrorAction { get; set; }
         public Action StateChangeAction { get; set; }
         public Action ShowSuccessAction { get; set; }
 
-        //private UploadUnitPromotionModel loModel = new UploadUnitPromotionModel();
+        //private UploadOtherUnitModel loModel = new UploadOtherUnitModel();
 
-        //private GSM02541Model loUnitPromotionModel = new GSM02541Model();
+        //private GSM02541Model loOtherUnitModel = new GSM02541Model();
 
-        public ObservableCollection<UploadUnitPromotionDTO> loUploadUnitPromotionDisplayList = new ObservableCollection<UploadUnitPromotionDTO>();
+        public ObservableCollection<UploadOtherUnitDTO> loUploadOtherUnitDisplayList = new ObservableCollection<UploadOtherUnitDTO>();
 
-        public List<UploadUnitPromotionDTO> loUploadUnitPromotionList = new List<UploadUnitPromotionDTO>();
+        public List<UploadOtherUnitDTO> loUploadOtherUnitList = new List<UploadOtherUnitDTO>();
 
-        //public UploadUnitPromotionResultDTO loRtn = new UploadUnitPromotionResultDTO();
+        //public UploadOtherUnitResultDTO loRtn = new UploadOtherUnitResultDTO();
 
-        public UploadUnitPromotionParameterDTO loParameter = new UploadUnitPromotionParameterDTO();
+        public UploadOtherUnitParameterDTO loParameter = new UploadOtherUnitParameterDTO();
 
-        //public List<UploadUnitPromotionErrorDTO> loErrorList = new List<UploadUnitPromotionErrorDTO>();
+        //public List<UploadOtherUnitErrorDTO> loErrorList = new List<UploadOtherUnitErrorDTO>();
         
-        //public UploadUnitPromotionErrorResultDTO loErrorRtn = new UploadUnitPromotionErrorResultDTO();
+        //public UploadOtherUnitErrorResultDTO loErrorRtn = new UploadOtherUnitErrorResultDTO();
 
         public int SumValid { get; set; }
         public int SumInvalid { get; set; }
@@ -59,19 +61,19 @@ namespace GSM02500MODEL.View_Model
         public bool IsErrorEmptyFile = false;
         public bool IsUploadSuccesful = true;
 /*
-        public async Task ValidateUploadUnitPromotion()
+        public async Task ValidateUploadOtherUnit()
         {
             R_Exception loEx = new R_Exception();
             R_BatchParameter loUploadPar;
             R_ProcessAndUploadClient loCls;
-            List<UploadUnitPromotionDTO> Bigobject;
+            List<UploadOtherUnitDTO> Bigobject;
             List<R_KeyValue> loUserParam;
 
             try
             {
                 loUserParam = new List<R_KeyValue>();
-                loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_UNIT_PROMOTION_PROPERTY_ID_CONTEXT, Value = loParameter.PropertyData.CPROPERTY_ID });
-                loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_UNIT_PROMOTION_IS_OVERWRITE_CONTEXT, Value = IsOverWrite });
+                loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_OTHER_UNIT_PROPERTY_ID_CONTEXT, Value = loParameter.PropertyData.CPROPERTY_ID });
+                loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_OTHER_UNIT_IS_OVERWRITE_CONTEXT, Value = IsOverWrite });
 
                 //Instantiate ProcessClient
                 loCls = new R_ProcessAndUploadClient(
@@ -86,10 +88,10 @@ namespace GSM02500MODEL.View_Model
                 loUploadPar.COMPANY_ID = SelectedCompanyId;
                 loUploadPar.USER_ID = SelectedUserId;
                 loUploadPar.UserParameters = loUserParam;
-                loUploadPar.ClassName = "GSM02500BACK.ValidateUploadUnitPromotionCls";
-                loUploadPar.BigObject = loUploadUnitPromotionList;
+                loUploadPar.ClassName = "GSM02500BACK.ValidateUploadOtherUnitCls";
+                loUploadPar.BigObject = loUploadOtherUnitList;
 
-                await loCls.R_BatchProcess<List<UploadUnitPromotionDTO>>(loUploadPar, 15);
+                await loCls.R_BatchProcess<List<UploadOtherUnitDTO>>(loUploadPar, 15);
 
                 VisibleError = false;
             }
@@ -99,37 +101,37 @@ namespace GSM02500MODEL.View_Model
             }
         }
 
-        public async Task GetUploadUnitPromotionListStreamAsync()
+        public async Task GetUploadOtherUnitListStreamAsync()
         {
             R_Exception loException = new R_Exception();
             try
             {*//*
-                R_FrontContext.R_SetStreamingContext(ContextConstant.UPLOAD_UNIT_PROMOTION_STREAMING_CONTEXT, loUploadUnitPromotionList);
-                loRtn = await loModel.GetUploadUnitPromotionListStreamAsync();*//*
+                R_FrontContext.R_SetStreamingContext(ContextConstant.UPLOAD_OTHER_UNIT_STREAMING_CONTEXT, loUploadOtherUnitList);
+                loRtn = await loModel.GetUploadOtherUnitListStreamAsync();*//*
 
                 GSM02541ResultDTO loResult = new GSM02541ResultDTO();
 
                 R_FrontContext.R_SetStreamingContext(ContextConstant.GSM02540_PROPERTY_ID_STREAMING_CONTEXT, loParameter.PropertyData.CPROPERTY_ID);
-                loResult = await loUnitPromotionModel.GetUnitPromotionListStreamAsync();
+                loResult = await loOtherUnitModel.GetOtherUnitListStreamAsync();
 
-                List<UploadUnitPromotionDTO> loTemp = new List<UploadUnitPromotionDTO>();
-                loTemp = loUploadUnitPromotionList.Select(x => new UploadUnitPromotionDTO()
+                List<UploadOtherUnitDTO> loTemp = new List<UploadOtherUnitDTO>();
+                loTemp = loUploadOtherUnitList.Select(x => new UploadOtherUnitDTO()
                 {
                     CompanyId = x.CompanyId,
                     PropertyId = x.PropertyId,
-                    UnitPromotionId = x.UnitPromotionId,
-                    UnitPromotionName = x.UnitPromotionName,
-                    UnitPromotionType = x.UnitPromotionType,
+                    OtherUnitId = x.OtherUnitId,
+                    OtherUnitName = x.OtherUnitName,
+                    OtherUnitType = x.OtherUnitType,
                     Building = x.Building,
                     Floor = x.Floor,
                     Location = x.Location,
                     Active = x.Active,
                     NonActiveDate = x.NonActiveDate,
                     Notes = x.Notes,
-                    Var_Exists = loResult.Data.Any(y => x.UnitPromotionId == y.CUNIT_PROMOTION_ID)
+                    Var_Exists = loResult.Data.Any(y => x.OtherUnitId == y.COTHER_UNIT_ID)
                 }).ToList();
 
-                loUploadUnitPromotionDisplayList = new ObservableCollection<UploadUnitPromotionDTO>(loTemp);
+                loUploadOtherUnitDisplayList = new ObservableCollection<UploadOtherUnitDTO>(loTemp);
             }
             catch (Exception ex)
             {
@@ -138,21 +140,21 @@ namespace GSM02500MODEL.View_Model
             loException.ThrowExceptionIfErrors();
         }
 */
-        public async Task SaveUploadUnitPromotionAsync()
+        public async Task SaveUploadOtherUnitAsync()
         {
             R_Exception loEx = new R_Exception();
             R_BatchParameter loBatchPar;
             R_ProcessAndUploadClient loCls;
             string lcGuid = "";
-            List<UploadUnitPromotionDTO> Bigobject;
+            List<UploadOtherUnitDTO> Bigobject;
             List<R_KeyValue> loUserParam;
 
             try
             {
                 loUserParam = new List<R_KeyValue>();
 
-                loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_UNIT_PROMOTION_PROPERTY_ID_CONTEXT, Value = loParameter.PropertyData.CPROPERTY_ID });
-                loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_UNIT_PROMOTION_IS_OVERWRITE_CONTEXT, Value = IsOverWrite });
+                loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_OTHER_UNIT_PROPERTY_ID_CONTEXT, Value = loParameter.PropertyData.CPROPERTY_ID });
+                loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_OTHER_UNIT_IS_OVERWRITE_CONTEXT, Value = IsOverWrite });
 
                 //Instantiate ProcessClient
                 loCls = new R_ProcessAndUploadClient(
@@ -163,21 +165,21 @@ namespace GSM02500MODEL.View_Model
                     poProcessProgressStatus: this);
 
                 //Check Data
-                if (loUploadUnitPromotionDisplayList.Count == 0)
+                if (loUploadOtherUnitDisplayList.Count == 0)
                     return;
 
-                Bigobject = loUploadUnitPromotionDisplayList.ToList<UploadUnitPromotionDTO>();
+                Bigobject = loUploadOtherUnitDisplayList.ToList<UploadOtherUnitDTO>();
 
                 //preapare Batch Parameter
                 loBatchPar = new R_BatchParameter();
 
                 loBatchPar.COMPANY_ID = SelectedCompanyId;
                 loBatchPar.USER_ID = SelectedUserId;
-                loBatchPar.ClassName = "GSM02500BACK.UploadUnitPromotionCls";
+                loBatchPar.ClassName = "GSM02500BACK.UploadOtherUnitCls";
                 loBatchPar.UserParameters = loUserParam;
                 loBatchPar.BigObject = Bigobject;
 
-                lcGuid = await loCls.R_BatchProcess<List<UploadUnitPromotionDTO>>(loBatchPar, 15);
+                lcGuid = await loCls.R_BatchProcess<List<UploadOtherUnitDTO>>(loBatchPar, 15);
             }
             catch (Exception ex)
             {
@@ -209,7 +211,7 @@ namespace GSM02500MODEL.View_Model
                     try
                     {
                         loResult = await ServiceGetError(pcKeyGuid);
-                        loUploadUnitPromotionDisplayList.ToList().ForEach(x =>
+                        loUploadOtherUnitDisplayList.ToList().ForEach(x =>
                         {
                             if (loResult.Any(y => y.SeqNo == x.No))
                             {
@@ -296,7 +298,7 @@ namespace GSM02500MODEL.View_Model
                     COMPANY_ID = SelectedCompanyId,
                     USER_ID = SelectedUserId,
                     KEY_GUID = pcKeyGuid,
-                    RESOURCE_NAME = "RSP_GS_UPLOAD_UNIT_PROMOTIONResources"
+                    RESOURCE_NAME = "RSP_GS_UPLOAD_OTHER_UNITResources"
                 };
 
                 loCls = new R_ProcessAndUploadClient(pcModuleName: "GS",

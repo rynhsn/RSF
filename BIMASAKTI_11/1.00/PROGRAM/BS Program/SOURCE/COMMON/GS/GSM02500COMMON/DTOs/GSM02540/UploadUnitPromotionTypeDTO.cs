@@ -4,13 +4,13 @@ using System.Text;
 
 namespace GSM02500COMMON.DTOs.GSM02540
 {
-    public class UploadUnitPromotionTypeDTO
+    public class UploadOtherUnitTypeDTO
     {
         public int No { get; set; } = 0;
         public string CompanyId { get; set; } = "";
         public string PropertyId { get; set; } = "";
-        public string UnitPromotionTypeCode { get; set; } = "";
-        public string UnitPromotionTypeName { get; set; } = "";
+        public string OtherUnitTypeCode { get; set; } = "";
+        public string OtherUnitTypeName { get; set; } = "";
         public decimal GrossAreaSize { get; set; } = 0;
         public decimal NetAreaSize { get; set; } = 0;
         public decimal CommonArea { get; set; } = 0;

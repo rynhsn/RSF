@@ -126,8 +126,8 @@ namespace GSM02500BACK
                     $"Description NVARCHAR(MAX), " +
                     $"Active BIT, " +
                     $"NonActiveDate NVARCHAR(8), " +
-                    $"GrossAreaSize NUMERIC(5,2), " +
-                    $"NetAreaSize NUMERIC(5,2))";
+                    $"GrossAreaSize NUMERIC(8,2), " +
+                    $"NetAreaSize NUMERIC(8,2))";
 
                 loDb.SqlExecNonQuery(lcQuery, loConn, false);
 

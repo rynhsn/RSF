@@ -35,8 +35,9 @@
                 <R_Label>@_localizer["DEPARTMENT"]*</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="3">
-                <R_TextBox @bind-Value="_viewModel.Data.CDEPT_CODE"
-                           R_ConductorSource="_conductorRef"
+                <R_TextBox
+                    R_ConductorSource="_conductorRef" 
+                    @bind-Value="_viewModel.Data.CDEPT_CODE"
                            MaxLength="20"
                            OnLostFocus="OnLostFocusDept"
                            R_EnableAdd="true"
@@ -46,7 +47,7 @@
                       R_Before_Open_Lookup="BeforeOpenLookupDept"
                       R_After_Open_Lookup="AfterOpenLookupDept"
                       R_EnableAdd="true"
-                      R_EnableEdit="true">
+                      R_EnableEdit="false">
                 ...
             </R_Lookup>
             <R_ItemLayout col="5">
@@ -110,7 +111,7 @@
                 <R_TextBox @bind-Value="_viewModel.Data.CAGREEMENT_NO"
                            R_ConductorSource="_conductorRef"
                            MaxLength="20"
-                           OnLostFocus="OnLostFocusRef"
+                           OnLostFocus="OnLostFocusAgreement"
                            R_EnableAdd="true"
                            R_EnableEdit="true"/>
             </R_ItemLayout>
@@ -244,24 +245,14 @@
                     R_GridType="@R_eGridType.Navigator"
                     R_ServiceGetListRecord="@ServiceGetListService"
                     Pageable
-                    Height="185px"
-                    PageSize="6">
+                    @bind-PageSize="@_pageSizeService"
+                    Height="185px">
                 <R_GridColumns>
-                    <R_GridTextColumn Width="150px"
-                                      FieldName="@nameof(PMT06000OvtServiceGridDTO.CSEQ_NO)"
-                                      HeaderText="@_localizer["SEQ_NO"]"/>
-                    <R_GridTextColumn Width="200px"
-                                      FieldName="@nameof(PMT06000OvtServiceGridDTO.CSERVICE_DISPLAY)"
-                                      HeaderText="Service"/>
-                    <R_GridDateTimePickerColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.DDATE_IN)"
-                                                HeaderText="@_localizer["DATE_IN"]"
-                                                Width="225px"/>
-                    <R_GridDateTimePickerColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.DDATE_OUT)"
-                                                HeaderText="@_localizer["DATE_OUT"]"
-                                                Width="225px"/>
-                    <R_GridTextColumn Width="150px"
-                                      FieldName="@nameof(PMT06000OvtServiceGridDTO.CSERVICE_DESCR)"
-                                      HeaderText="@_localizer["DESCRIPTION"]"/>
+                    <R_GridTextColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.CSEQ_NO)" HeaderText="@_localizer["SEQ_NO"]" Width="100px"/>
+                    <R_GridTextColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.CSERVICE_DISPLAY)" HeaderText="@_localizer["SERVICE"]" Width="210px"/>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.DDATE_IN)" HeaderText="@_localizer["DATE_IN"]" Width="140px"/>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.DDATE_OUT)" HeaderText="@_localizer["DATE_OUT"]" Width="140px"/>
+                    <R_GridTextColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.CSERVICE_DESCR)" HeaderText="@_localizer["DESCRIPTION"]" Width="200px"/>
                 </R_GridColumns>
         
             </R_Grid>
@@ -394,7 +385,7 @@
         </R_StackLayout>
     </R_TabStripTab>
     <R_TabStripTab @ref="_tabUnit" Id="@nameof(PMT06000Unit)" Title="@_localizer["UNIT"]" Enabled="@(_viewModel.OvertimeServiceGridList.Count > 0)">
-        <R_TabPage @ref="_pageUnit" R_Before_Open_TabPage="BeforeOpenUnitTab"/>
+        <R_TabPage @ref="_pageUnit" R_Before_Open_TabPage="BeforeOpenUnitTab" R_TabEventCallback="R_TabEventCallbackAsync"/>
     </R_TabStripTab>
 </R_TabStrip>
 

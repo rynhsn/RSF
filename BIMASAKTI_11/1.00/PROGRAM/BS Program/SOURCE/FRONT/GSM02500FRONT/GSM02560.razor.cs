@@ -1,5 +1,8 @@
 ﻿using GSM02500COMMON.DTOs.GSM02560;
 using GSM02500MODEL.View_Model;
+using Lookup_GSCOMMON.DTOs;
+using Lookup_GSFRONT;
+using Lookup_GSModel.ViewModel;
 using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
@@ -162,21 +165,72 @@ namespace GSM02500FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
+        private async Task DepartmentOnLostFocused(R_CellLostFocusedEventArgs eventArgs)
+        {
+            R_Exception loEx = new R_Exception();
+            try
+            {
+                if (eventArgs.ColumnName == nameof(GSM02560DTO.CDEPT_CODE))
+                {
+                    GSM02560DTO loGetData = (GSM02560DTO)eventArgs.CurrentRow;
+
+                    if (string.IsNullOrWhiteSpace(loGetData.CDEPT_CODE))
+                    {
+                        loGetData.CDEPT_NAME = "";
+                        goto EndBlock;
+                    }
+
+                    LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
+                    GSL00700ParameterDTO loParam = new GSL00700ParameterDTO()
+                    {
+                        CPROGRAM_ID = loViewModel.SelectedProperty.CPROPERTY_ID,
+                        CSEARCH_TEXT = loGetData.CDEPT_CODE
+                    };
+
+                    var loResult = await loLookupViewModel.GetDepartment(loParam);
+
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        loGetData.CDEPT_CODE = "";
+                        loGetData.CDEPT_NAME = "";
+                        //await GLAccount_TextBox.FocusAsync();
+                    }
+                    else
+                    {
+                        loGetData.CDEPT_CODE = loResult.CDEPT_CODE;
+                        loGetData.CDEPT_NAME = loResult.CDEPT_NAME;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            loEx.ThrowExceptionIfErrors();
+        }
+
         private void Grid_BeforeLookupDepartment(R_BeforeOpenGridLookupColumnEventArgs eventArgs)
         {
-            eventArgs.Parameter = loViewModel.SelectedProperty.CPROPERTY_ID;
-            eventArgs.TargetPageType = typeof(LookupDepartment);
+            eventArgs.Parameter = new GSL00700ParameterDTO()
+            {
+                CPROGRAM_ID = loViewModel.SelectedProperty.CPROPERTY_ID
+            };
+            eventArgs.TargetPageType = typeof(GSL00700);
         }
 
         private void Grid_AfterLookupDepartment(R_AfterOpenGridLookupColumnEventArgs eventArgs)
         {
-            var loTempResult = (GetDepartmentLookupListDTO)eventArgs.Result;
+            GSL00700DTO loTempResult = (GSL00700DTO)eventArgs.Result;
             if (loTempResult == null)
             {
                 return;
             }
 
-            var loGetData = (GSM02560DTO)eventArgs.ColumnData;
+            GSM02560DTO loGetData = (GSM02560DTO)eventArgs.ColumnData;
             loGetData.CDEPT_CODE = loTempResult.CDEPT_CODE;
             loGetData.CDEPT_NAME = loTempResult.CDEPT_NAME;
         }

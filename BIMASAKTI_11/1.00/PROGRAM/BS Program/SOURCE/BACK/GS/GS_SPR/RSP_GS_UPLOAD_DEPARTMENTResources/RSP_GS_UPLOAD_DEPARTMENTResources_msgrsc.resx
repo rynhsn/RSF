@@ -138,6 +138,9 @@
   <data name="INVALID_ACTIVE_FLAG" xml:space="preserve">
     <value>Active Flag is not valid [1/0]</value>
   </data>
+  <data name="INVALID_BRANCH_CODE" xml:space="preserve">
+    <value>Invalid Branch Code</value>
+  </data>
   <data name="INVALID_CENTER_CODE" xml:space="preserve">
     <value>Invalid Center Code</value>
   </data>

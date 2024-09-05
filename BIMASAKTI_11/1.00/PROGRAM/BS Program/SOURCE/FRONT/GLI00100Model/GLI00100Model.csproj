@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\COMMON\GL\GLI00100Common\GLI00100Common.csproj" />
+    <ProjectReference Include="..\GLI00100FrontResources\GLI00100FrontResources.csproj" />
   </ItemGroup>
 
 

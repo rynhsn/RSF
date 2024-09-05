@@ -4,8 +4,10 @@ using System.Threading.Tasks;
 using GLR00100Common;
 using GLR00100Common.DTOs;
 using GLR00100Common.Params;
+using GLR00100FrontResources;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
+using R_BlazorFrontEnd.Helpers;
 
 namespace GLR00100Model.ViewModel
 {
@@ -23,21 +25,29 @@ namespace GLR00100Model.ViewModel
 
         public List<KeyValuePair<string, string>> RadioByType = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("P", "Period"),
-            new KeyValuePair<string, string>("D", "Date")
+            // new KeyValuePair<string, string>("P", "Period"),
+            
+            new KeyValuePair<string, string>("P", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Period")),
+            // new KeyValuePair<string, string>("D", "Date")
+            new KeyValuePair<string, string>("D", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Date"))
         };
 
         public List<KeyValuePair<string, string>> RadioCurrencyType = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("L", "Local Currency"),
-            new KeyValuePair<string, string>("B", "Base Currency"),
-            new KeyValuePair<string, string>("T", "Transaction Currency")
+            // new KeyValuePair<string, string>("L", "Local Currency"),
+            new KeyValuePair<string, string>("L", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "LocalCurrency")),
+            // new KeyValuePair<string, string>("B", "Base Currency"),
+            new KeyValuePair<string, string>("B", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "BaseCurrency")),
+            // new KeyValuePair<string, string>("T", "Transaction Currency")
+            new KeyValuePair<string, string>("T", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "TransactionCurrency"))
         };
         
         public List<KeyValuePair<string, string>> RadioSortBy = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("D", "Date"),
-            new KeyValuePair<string, string>("R", "Reference No.")
+            // new KeyValuePair<string, string>("D", "Date"),
+            new KeyValuePair<string, string>("D", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Date")),
+            // new KeyValuePair<string, string>("R", "Reference No.")
+            new KeyValuePair<string, string>("R", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "ReferenceNo"))
         };
 
         public string FromPeriod;

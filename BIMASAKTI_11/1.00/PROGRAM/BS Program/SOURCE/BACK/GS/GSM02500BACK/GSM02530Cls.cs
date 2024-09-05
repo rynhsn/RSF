@@ -40,7 +40,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
                 lcQuery = $"EXEC RSP_GS_ACTIVE_INACTIVE_BUILDING_UNIT " +
                                  $"@CCOMPANY_ID, " +
                                  $"@CPROPERTY_ID, " +
@@ -187,23 +187,33 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
-
-                lcQuery = $"EXEC RSP_GS_GET_BUILDING_UNIT_LIST " +
-                                 $"@CLOGIN_COMPANY_ID, " +
-                                 $"@CSELECTED_PROPERTY_ID, " +
-                                 $"@CSELECTED_BUILDING_ID, " +
-                                 $"@CSELECTED_FLOOR_ID, " +
-                                 $"@CLOGIN_USER_ID";
-
+                loConn = loDb.GetConnection();
                 loCmd = loDb.GetCommand();
+                lcQuery = "RSP_GS_GET_BUILDING_UNIT_LIST";
                 loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
 
-                loDb.R_AddCommandParameter(loCmd, "@CLOGIN_COMPANY_ID", DbType.String, 50, poEntity.CLOGIN_COMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CSELECTED_PROPERTY_ID", DbType.String, 50, poEntity.CSELECTED_PROPERTY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CSELECTED_BUILDING_ID", DbType.String, 50, poEntity.CSELECTED_BUILDING_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CSELECTED_FLOOR_ID", DbType.String, 50, poEntity.CSELECTED_FLOOR_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CLOGIN_USER_ID", DbType.String, 50, poEntity.CLOGIN_USER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CSELECTED_PROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 50, poEntity.CSELECTED_BUILDING_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CFLOOR_ID", DbType.String, 50, poEntity.CSELECTED_FLOOR_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
+
+                //lcQuery = $"EXEC RSP_GS_GET_BUILDING_UNIT_LIST " +
+                //                 $"@CLOGIN_COMPANY_ID, " +
+                //                 $"@CSELECTED_PROPERTY_ID, " +
+                //                 $"@CSELECTED_BUILDING_ID, " +
+                //                 $"@CSELECTED_FLOOR_ID, " +
+                //                 $"@CLOGIN_USER_ID";
+
+                //loCmd = loDb.GetCommand();
+                //loCmd.CommandText = lcQuery;
+
+                //loDb.R_AddCommandParameter(loCmd, "@CLOGIN_COMPANY_ID", DbType.String, 50, poEntity.CLOGIN_COMPANY_ID);
+                //loDb.R_AddCommandParameter(loCmd, "@CSELECTED_PROPERTY_ID", DbType.String, 50, poEntity.CSELECTED_PROPERTY_ID);
+                //loDb.R_AddCommandParameter(loCmd, "@CSELECTED_BUILDING_ID", DbType.String, 50, poEntity.CSELECTED_BUILDING_ID);
+                //loDb.R_AddCommandParameter(loCmd, "@CSELECTED_FLOOR_ID", DbType.String, 50, poEntity.CSELECTED_FLOOR_ID);
+                //loDb.R_AddCommandParameter(loCmd, "@CLOGIN_USER_ID", DbType.String, 50, poEntity.CLOGIN_USER_ID);
 
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                     .Where(x =>
@@ -227,7 +237,6 @@ namespace GSM02500BACK
             return loResult;
         }
 
-
         protected override GSM02530ParameterDTO R_Display(GSM02530ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("R_Display");
@@ -240,7 +249,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_BUILDING_UNIT_DETAIL " +
                                  $"@CLOGIN_COMPANY_ID, " +

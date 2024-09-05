@@ -202,19 +202,21 @@
                         R_ServiceSave="@Grid_ServiceSaveCharge"
                         R_ServiceDelete="@Grid_ServiceDeleteCharge"
                         R_ServiceGetRecord="@Grid_ServiceGetRecordCharge"
+                        R_CellValueChanged="@Grid_CellValueChanged"
+                        R_CellLostFocused="@ChargeIdOnLostFocused"
                         R_ServiceGetListRecord="@Grid_R_ServiceGetChargeListRecord">
                         <R_GridColumns>
-                            <R_GridTextColumn FieldName=@nameof(GSM02502ChargeDTO.CSEQUENCE) HeaderText="@_localizer["_Seq"]" Width="100px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(GSM02502ChargeDTO.CSEQUENCE) HeaderText="@_localizer["_Seq"]" Width="75px"></R_GridTextColumn>
                             <R_GridComboBoxColumn Data="loChargeViewModel.loChargeTypeList" 
                                                       ValueField="@nameof(GSM02502ChargeComboboxDTO.CCODE)"
                                                       TextField="@nameof(GSM02502ChargeComboboxDTO.CDESCRIPTION)"
                                                       FieldName=@nameof(GSM02502ChargeDTO.CCHARGES_TYPE)
-                                                      HeaderText="Charge Type" Width="200px"
+                                                      HeaderText="Charge Type" Width="175px"
                                                       R_EnableAdd R_EnableEdit>
                             </R_GridComboBoxColumn>
                             <R_GridLookupColumn FieldName=@nameof(GSM02502ChargeDTO.CCHARGES_ID) HeaderText="@_localizer["_ChargeId"]" R_EnableAdd R_EnableEdit Width="200px"></R_GridLookupColumn>
-                            <R_GridNumericColumn FieldName=@nameof(GSM02502ChargeDTO.NFEE) HeaderText="@_localizer["_MonthlyFee"]" R_EnableAdd R_EnableEdit Width="150px" Arrows="false"></R_GridNumericColumn>
-                            <R_GridTextColumn FieldName=@nameof(GSM02502ChargeDTO.CDESCRIPTION) HeaderText="@_localizer["_Description"]" R_EnableAdd R_EnableEdit Width="300px"></R_GridTextColumn>
+                            <R_GridNumericColumn TValue="decimal" FieldName=@nameof(GSM02502ChargeDTO.NFEE) HeaderText="@_localizer["_MonthlyFee"]" R_EnableAdd R_EnableEdit Width="125px" Arrows="false"></R_GridNumericColumn>
+                            <R_GridTextColumn FieldName=@nameof(GSM02502ChargeDTO.CDESCRIPTION) HeaderText="@_localizer["_Description"]" R_EnableAdd R_EnableEdit Width="350px"></R_GridTextColumn>
 @*
                             <R_GridComboBoxColumn Data="loChargeViewModel.loFeeMethodList"
                                                   ValueField="@nameof(GSM02502ChargeComboboxDTO.CCODE)"
@@ -231,9 +233,9 @@
                                                       R_EnableAdd R_EnableEdit>
                             </R_GridComboBoxColumn>
 *@
-                            <R_GridTextColumn FieldName=@nameof(GSM02502ChargeDTO.CUPDATE_BY) HeaderText="@_localizer["_UpdatedBy"]" Width="150px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(GSM02502ChargeDTO.CUPDATE_BY) HeaderText="@_localizer["_UpdatedBy"]" Width="125px"></R_GridTextColumn>
                             <R_GridDateTimePickerColumn FieldName=@nameof(GSM02502ChargeDTO.DUPDATE_DATE) HeaderText="@_localizer["_UpdatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
-                            <R_GridTextColumn FieldName=@nameof(GSM02502ChargeDTO.CCREATE_BY) HeaderText="@_localizer["_CreatedBy"]" Width="150px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(GSM02502ChargeDTO.CCREATE_BY) HeaderText="@_localizer["_CreatedBy"]" Width="125px"></R_GridTextColumn>
                             <R_GridDateTimePickerColumn FieldName=@nameof(GSM02502ChargeDTO.DCREATE_DATE) HeaderText="@_localizer["_CreatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
                         </R_GridColumns>
                     </R_Grid>

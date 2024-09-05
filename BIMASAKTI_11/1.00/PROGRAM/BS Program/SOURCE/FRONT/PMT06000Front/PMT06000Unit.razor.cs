@@ -1,4 +1,5 @@
-﻿using Lookup_GSCOMMON.DTOs;
+﻿using System.Collections.ObjectModel;
+using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
 using PMT06000Common.DTOs;
 using PMT06000Common.Params;
@@ -14,12 +15,13 @@ using R_CommonFrontBackAPI;
 
 namespace PMT06000Front;
 
-public partial class PMT06000Unit : R_ITabPage
+public partial class PMT06000Unit : R_Page, R_ITabPage
 {
     private PMT06000ViewModel _viewModel = new();
     private PMT06000UnitViewModel _viewModelUnit = new();
     private R_ConductorGrid _conductorRefUnit;
     private R_Grid<PMT06000OvtUnitDTO> _gridRefUnit;
+    private int _pageSizeUnit = 5;
 
     protected override async Task R_Init_From_Master(object poParam)
     {
@@ -47,7 +49,7 @@ public partial class PMT06000Unit : R_ITabPage
         try
         {
             await _viewModel.GetOvertimeUnitGridList();
-            eventArgs.ListEntityResult = _viewModel.OvertimeUnitGridList;
+            eventArgs.ListEntityResult = _viewModel.OvertimeUnitGridList ?? new ObservableCollection<PMT06000OvtUnitDTO>();
         }
         catch (Exception ex)
         {
@@ -165,7 +167,6 @@ public partial class PMT06000Unit : R_ITabPage
 
     private async Task Delete(R_ServiceDeleteEventArgs eventArgs)
     {
-        
         var loEx = new R_Exception();
 
         try
@@ -180,7 +181,7 @@ public partial class PMT06000Unit : R_ITabPage
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     private async Task AfterDelete()
     {
         var loEx = new R_Exception();
@@ -223,6 +224,35 @@ public partial class PMT06000Unit : R_ITabPage
     public async Task RefreshTabPageAsync(object poParam)
     {
         _viewModel.Entity = (PMT06000OvtDTO)poParam;
+        CheckGridAdd(new R_CheckGridEventArgs(_viewModel.OvertimeUnitGridList, true));
         await Task.CompletedTask;
+    }
+
+    private async Task AfterSave(R_AfterSaveEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            await InvokeTabEventCallbackAsync(null);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private void CheckGridAdd(R_CheckGridEventArgs eventArgs)
+    {
+        eventArgs.Allow = _viewModel.Entity.CTRANS_STATUS == "00";
+        // eventArgs.Allow = false;
+    }
+
+    private void CheckGridDelete(R_CheckGridEventArgs eventArgs)
+    {
+        eventArgs.Allow = _viewModel.Entity.CTRANS_STATUS == "00";
+        // eventArgs.Allow = false;
     }
 }

@@ -32,4 +32,9 @@
     </ItemGroup>
 
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\COMMON\LM\PMB03000Common\PMB03000Common.csproj" />
+    </ItemGroup>
+
+
 </Project>

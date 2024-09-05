@@ -41,5 +41,6 @@ namespace Lookup_GSCOMMON
         GSLGenericRecord<GSL02500DTO> GSL02500GetCB(GSL02500ParameterDTO poEntity);
         GSLGenericRecord<GSL02600DTO> GSL02600GetCBAccount(GSL02600ParameterDTO poEntity);
         GSLGenericRecord<GSL02700DTO> GSL02700GetOtherUnit(GSL02700ParameterDTO poEntity);
+        GSLGenericRecord<GSL02800DTO> GSL02800GetOtherUnitMaster(GSL02800ParameterDTO poEntity);
     }
 }

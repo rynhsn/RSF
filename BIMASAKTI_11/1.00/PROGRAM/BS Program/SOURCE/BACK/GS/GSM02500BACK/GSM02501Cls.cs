@@ -41,7 +41,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_PROPERTY_LIST " +
                     $"@CCOMPANY_ID, " +
@@ -104,7 +104,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_PROPERTY_DETAIL " +
                     $"@CCOMPANY_ID, " +
@@ -167,7 +167,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_ACTIVE_INACTIVE_PROPERTY " +
                     $"@CCOMPANY_ID, " +
@@ -235,20 +235,20 @@ namespace GSM02500BACK
 
                 loCmd.CommandText = lcQuery;
 
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.Data.CPROPERTY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_NAME", DbType.String, 50, poEntity.Data.CPROPERTY_NAME);
-                loDb.R_AddCommandParameter(loCmd, "@CADDRESS", DbType.String, 50, poEntity.Data.CADDRESS);
-                loDb.R_AddCommandParameter(loCmd, "@CPROVINCE", DbType.String, 50, poEntity.Data.CPROVINCE);
-                loDb.R_AddCommandParameter(loCmd, "@CCITY", DbType.String, 50, poEntity.Data.CCITY);
-                loDb.R_AddCommandParameter(loCmd, "@CDISTRICT", DbType.String, 50, poEntity.Data.CDISTRICT);
-                loDb.R_AddCommandParameter(loCmd, "@CSUBDISTRICT", DbType.String, 50, poEntity.Data.CSUBDISTRICT);
-                loDb.R_AddCommandParameter(loCmd, "@CSALES_TAX_ID", DbType.String, 50, poEntity.Data.CSALES_TAX_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CCURRENCY", DbType.String, 50, poEntity.Data.CCURRENCY);
-                loDb.R_AddCommandParameter(loCmd, "@CUOM", DbType.String, 50, poEntity.Data.CUOM);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poEntity.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poEntity.Data.CPROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_NAME", DbType.String, 100, poEntity.Data.CPROPERTY_NAME);
+                loDb.R_AddCommandParameter(loCmd, "@CADDRESS", DbType.String, 255, poEntity.Data.CADDRESS);
+                loDb.R_AddCommandParameter(loCmd, "@CPROVINCE", DbType.String, 30, poEntity.Data.CPROVINCE);
+                loDb.R_AddCommandParameter(loCmd, "@CCITY", DbType.String, 30, poEntity.Data.CCITY);
+                loDb.R_AddCommandParameter(loCmd, "@CDISTRICT", DbType.String, 30, poEntity.Data.CDISTRICT);
+                loDb.R_AddCommandParameter(loCmd, "@CSUBDISTRICT", DbType.String, 30, poEntity.Data.CSUBDISTRICT);
+                loDb.R_AddCommandParameter(loCmd, "@CSALES_TAX_ID", DbType.String, 20, poEntity.Data.CSALES_TAX_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCURRENCY", DbType.String, 5, poEntity.Data.CCURRENCY);
+                loDb.R_AddCommandParameter(loCmd, "@CUOM", DbType.String, 20, poEntity.Data.CUOM);
                 loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, 1, poEntity.Data.LACTIVE);
-                loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 50, poEntity.CACTION);
-                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, poEntity.CACTION);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poEntity.CUSER_ID);
 
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                     .Where(x =>

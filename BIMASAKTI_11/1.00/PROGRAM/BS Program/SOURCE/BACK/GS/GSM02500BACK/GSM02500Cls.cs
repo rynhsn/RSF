@@ -36,7 +36,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_PROPERTY_DETAIL " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -83,7 +83,7 @@ namespace GSM02500BACK
             try
             {
                 loCmd = loDb.GetCommand();
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_BUILDING_DETAIL " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -130,7 +130,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_BUILDING_FLOOR_DETAIL " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -182,7 +182,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_UNIT_TYPE_DETAIL " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -230,7 +230,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_BUILDING_UNIT_DETAIL " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -272,6 +272,56 @@ namespace GSM02500BACK
             return loResult;
         }
 
+        public SelectedOtherUnitDTO GetSelectedOtherUnit(SelectedOtherUnitParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GetSelectedUnit");
+            R_Exception loException = new R_Exception();
+            SelectedOtherUnitDTO loResult = null;
+            R_Db loDb = new R_Db();
+            DbConnection loConn = null;
+            DbCommand loCmd = null;
+            string lcQuery;
+
+            try
+            {
+                loConn = loDb.GetConnection();
+
+                lcQuery = $"EXEC RSP_GS_GET_OTHER_UNIT_DT " +
+                    $"@CLOGIN_COMPANY_ID, " +
+                    $"@CPROPERTY_ID, " +
+                    $"@COTHER_UNIT_ID, " +
+                    $"@CLOGIN_USER_ID";
+
+                loCmd = loDb.GetCommand();
+                loCmd.CommandText = lcQuery;
+
+                loDb.R_AddCommandParameter(loCmd, "@CLOGIN_COMPANY_ID", DbType.String, 50, poEntity.CLOGIN_COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@COTHER_UNIT_ID", DbType.String, 50, poEntity.COTHER_UNIT_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CLOGIN_USER_ID", DbType.String, 50, poEntity.CLOGIN_USER_ID);
+
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                    .Where(x =>
+                    x != null && x.ParameterName.StartsWith("@"))
+                    .Select(x => x.Value);
+
+                _logger.LogDebug("EXEC RSP_GS_GET_OTHER_UNIT_DT {@Parameters} || GetSelectedUnit(Cls) ", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<SelectedOtherUnitDTO>(loDataTable).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+                _logger.LogError(loException);
+            }
+
+            loException.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
         public List<GetUnitTypeDTO> GetUnitTypeList(GetUnitTypeParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GetUnitTypeList");
@@ -284,7 +334,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_UNIT_TYPE_LIST " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -334,7 +384,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"SELECT CCODE, CDESCRIPTION FROM RFT_GET_GSB_CODE_INFO " +
                     $"('BIMASAKTI', " +
@@ -396,7 +446,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_PROPERTY_DETAIL " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -442,7 +492,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_UNIT_VIEW_LIST " +
                     $"@CLOGIN_COMPANY_ID, " +

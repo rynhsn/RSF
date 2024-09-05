@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using GSM02500COMMON.DTOs.GSM02531;
 using GSM02500COMMON.DTOs;
@@ -63,10 +65,18 @@ namespace GSM02500MODEL.View_Model
                 loUserParam = new List<R_KeyValue>();
 
                 loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_UNIT_UTILITY_PROPERTY_ID_CONTEXT, Value = loParameter.PropertyData.CPROPERTY_ID });
-                loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_UNIT_UTILITY_BUILDING_ID_CONTEXT, Value = loParameter.BuildingData.CBUILDING_ID });
-                loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_UNIT_UTILITY_FLOOR_ID_CONTEXT, Value = loParameter.FloorData.CFLOOR_ID });
-                loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_UNIT_UTILITY_UNIT_ID_CONTEXT, Value = loParameter.UnitData.CUNIT_ID });
+                if (loParameter.LFLAG)
+                {
+                    loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_UNIT_UTILITY_BUILDING_ID_CONTEXT, Value = loParameter.BuildingData.CBUILDING_ID });
+                    loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_UNIT_UTILITY_FLOOR_ID_CONTEXT, Value = loParameter.FloorData.CFLOOR_ID });
+                    loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_UNIT_UTILITY_UNIT_ID_CONTEXT, Value = loParameter.UnitData.CUNIT_ID });
+                }
+                else
+                {
+                    loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_UNIT_UTILITY_OTHER_UNIT_ID_CONTEXT, Value = loParameter.OtherUnitData.COTHER_UNIT_ID });
+                }
                 loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_UNIT_UTILITY_IS_OVERWRITE_CONTEXT, Value = IsOverWrite });
+                loUserParam.Add(new R_KeyValue() { Key = ContextConstant.UPLOAD_UNIT_UTILITY_LFLAG_CONTEXT, Value = loParameter.LFLAG });
 
                 //Instantiate ProcessClient
                 loCls = new R_ProcessAndUploadClient(

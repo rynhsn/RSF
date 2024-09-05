@@ -53,6 +53,7 @@ namespace PMB00300Model
             throw new NotImplementedException();
         }
         
+        
         public async Task<List<T>> GetListStreamAsync<T>(string pcNameOf)
         {
             var loEx = new R_Exception();

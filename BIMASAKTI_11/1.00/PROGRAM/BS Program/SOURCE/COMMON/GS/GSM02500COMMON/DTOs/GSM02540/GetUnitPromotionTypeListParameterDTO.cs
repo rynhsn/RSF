@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GSM02500COMMON.DTOs.GSM02540
 {
-    public class GetUnitPromotionTypeListParameterDTO
+    public class GetOtherUnitTypeListParameterDTO
     {
         public string CLOGIN_COMPANY_ID { get; set; } = "";
         public string CSELECTED_PROPERTY_ID { get; set; } = "";

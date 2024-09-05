@@ -1,4 +1,5 @@
 ﻿using GSM02500COMMON;
+using GSM02500COMMON.DTOs.GSM02500;
 using GSM02500COMMON.DTOs.GSM02540;
 using GSM02500COMMON.DTOs.GSM02550;
 using R_APIClient;
@@ -25,17 +26,55 @@ namespace GSM02500MODEL
         {
         }
 
+        public GetUserIdNameResultDTO GetUserIdName(GetUserIdNameParameterDTO poParam)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<GetUserIdNameDTO> GetUserIdNameAsync(GetUserIdNameParameterDTO poParam)
+        {
+            {
+                R_Exception loEx = new R_Exception();
+                GetUserIdNameResultDTO loResult = null;
+                GetUserIdNameDTO loRtn = new GetUserIdNameDTO();
+
+                try
+                {
+                    R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                    loResult = await R_HTTPClientWrapper.R_APIRequestObject<GetUserIdNameResultDTO, GetUserIdNameParameterDTO>(
+                        _RequestServiceEndPoint,
+                        nameof(IGSM02550.GetUserIdName),
+                        poParam,
+                        DEFAULT_MODULE,
+                        _SendWithContext,
+                        _SendWithToken);
+
+                    loRtn = loResult.Data;
+                }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
+
+            EndBlock:
+                loEx.ThrowExceptionIfErrors();
+
+                return loRtn;
+            }
+        }
+
         public IAsyncEnumerable<GetUserIdNameDTO> GetUserIdNameList()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<GetUserIdNameResultDTO> GetUserIdNameListStreamAsync()
+        public async Task<GetUserIdNameResultListDTO> GetUserIdNameListStreamAsync()
         {
             {
                 R_Exception loEx = new R_Exception();
                 List<GetUserIdNameDTO> loResult = null;
-                GetUserIdNameResultDTO loRtn = new GetUserIdNameResultDTO();
+                GetUserIdNameResultListDTO loRtn = new GetUserIdNameResultListDTO();
 
                 try
                 {

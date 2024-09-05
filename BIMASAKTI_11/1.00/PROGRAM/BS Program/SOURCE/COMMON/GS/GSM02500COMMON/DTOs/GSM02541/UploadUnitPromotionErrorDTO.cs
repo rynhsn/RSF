@@ -4,11 +4,11 @@ using System.Text;
 
 namespace GSM02500COMMON.DTOs.GSM02541
 {
-    public class UploadUnitPromotionErrorDTO
+    public class UploadOtherUnitErrorDTO
     {
-        public string UnitPromotionId { get; set; } = "";
-        public string UnitPromotionName { get; set; } = "";
-        public string UnitPromotionType { get; set; } = "";
+        public string OtherUnitId { get; set; } = "";
+        public string OtherUnitName { get; set; } = "";
+        public string OtherUnitType { get; set; } = "";
         public string Building { get; set; } = "";
         public string Floor { get; set; } = "";
         public string Location { get; set; } = "";

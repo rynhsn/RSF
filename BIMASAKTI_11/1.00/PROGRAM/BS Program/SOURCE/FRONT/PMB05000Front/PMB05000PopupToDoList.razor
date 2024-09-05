@@ -3,7 +3,7 @@
 @using R_BlazorFrontEnd.Interfaces
 @using PMB05000Common.DTOs
 @inherits R_Page
-@* @attribute [R_Page(Title = "Outstanding Transaction List Prior To Soft Close CB Period")] *@
+@attribute [R_Page(Title = "")]
 @inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
 <R_StackLayout Row>
@@ -21,7 +21,7 @@
                 Width="1000px"
                 PageSize="17">
             <R_GridColumns>
-                <R_GridNumericColumn FieldName=@nameof(PMB05000ValidateSoftCloseDTO.INO) HeaderText=@_localizer["NO"] Enabled="false" Width="100px"/>
+                <R_GridNumericColumn TValue="Int32" FieldName=@nameof(PMB05000ValidateSoftCloseDTO.INO) HeaderText=@_localizer["NO"] Enabled="false" Width="100px"/>
                 <R_GridTextColumn FieldName=@nameof(PMB05000ValidateSoftCloseDTO.CDEPARTMENT) HeaderText=@_localizer["DEPT"] Enabled="false" Width="150px"/>
                 <R_GridTextColumn FieldName=@nameof(PMB05000ValidateSoftCloseDTO.CTRANSACTION_NAME) HeaderText=@_localizer["TRANSACTION_TYPE"] Enabled="false" Width="200px"/>
                 <R_GridTextColumn FieldName=@nameof(PMB05000ValidateSoftCloseDTO.CREF_NO) HeaderText=@_localizer["REF_NO"] Enabled="false" Width="200px"/>

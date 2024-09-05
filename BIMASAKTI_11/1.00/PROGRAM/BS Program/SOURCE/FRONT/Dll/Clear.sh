@@ -9,9 +9,6 @@ find . -type f -name '*.pdb' -delete
 # Mendapatkan daftar file yang berawalan Blazor dan menghapusnya
 find . -type f -name 'Blazor*' -delete
 
-# Mendapatkan daftar file yang berawalan Lookup_ dan menghapusnya
-# find . -type f -name 'Lookup_*' -delete
-
 # Mendapatkan daftar file yang berawalan Microsoft dan menghapusnya
 find . -type f -name 'Microsoft*' -delete
 

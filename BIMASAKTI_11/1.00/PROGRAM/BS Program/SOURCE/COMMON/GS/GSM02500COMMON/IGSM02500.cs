@@ -15,6 +15,7 @@ namespace GSM02500COMMON
         SelectedBuildingResultDTO GetSelectedBuilding(SelectedBuildingParameterDTO poParam);
         SelectedFloorResultDTO GetSelectedFloor(SelectedFloorParameterDTO poParam);
         SelectedUnitResultDTO GetSelectedUnit(SelectedUnitParameterDTO poParam);
+        SelectedOtherUnitResultDTO GetSelectedOtherUnit(SelectedOtherUnitParameterDTO poParam);
         SelectedUnitTypeResultDTO GetSelectedUnitType(SelectedUnitTypeParameterDTO poParam);
         GetCUOMFromPropertyResultDTO GetCUOMFromProperty(GetCUOMFromPropertyParameterDTO poParam);
     }

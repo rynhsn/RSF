@@ -11,6 +11,9 @@
     <SupportedPlatform Include="browser" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.15" />
+  </ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\...\..\..\BS Shared Form\SOURCE\FRONT\GFF00900FRONT\GFF00900FRONT.csproj" />
@@ -28,12 +31,6 @@
 		<Reference Include="BlazorClientHelper">
 		  <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
 		</Reference>
-		<Reference Include="Lookup_GSCOMMON">
-			<HintPath>..\..\..\..\BS Shared Form\SOURCE\BACK\Lookup_GSCOMMON\bin\Debug\netstandard2.1\Lookup_GSCOMMON.dll</HintPath>
-		</Reference>
-		<Reference Include="Lookup_LMCOMMON">
-			<HintPath>..\..\..\..\BS Shared Form\SOURCE\BACK\Lookup_LMCOMMON\bin\Debug\netstandard2.1\Lookup_LMCOMMON.dll</HintPath>
-		</Reference>
 		<Reference Include="R_LockingFront">
 			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_LockingFront.dll</HintPath>
 		</Reference>
@@ -49,10 +46,6 @@
 		<Reference Include="R_ProcessAndUploadFront">
 		  <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_ProcessAndUploadFront.dll</HintPath>
 		</Reference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.15" />
 	</ItemGroup>
 
 </Project>

@@ -26,14 +26,13 @@ namespace Lookup_GSFRONT
             try
             {
                 await _viewModel.GetCountryGeographyList();
+                await Country_ComboBox.FocusAsync();
                 if (_viewModel.CountryGeography.Count > 0)
                 {
                     GSL02000CountryDTO loParam = _viewModel.CountryGeography.FirstOrDefault();
                     _viewModel.Country = _viewModel.CountryGeography.Where(x=> x.CCODE == loParam.CCODE).FirstOrDefault();
                     await Country_OnChange(loParam.CCODE);
                 }
-
-                await Country_ComboBox.FocusAsync();
             }
             catch (Exception ex)
             {
@@ -52,7 +51,7 @@ namespace Lookup_GSFRONT
                 _viewModel.CountryID = poParam;
 
 
-                await _treeRef.R_RefreshTree(poParam);
+                await _treeRef.R_RefreshTree(null);
             }
             catch (Exception ex)
             {
@@ -67,7 +66,7 @@ namespace Lookup_GSFRONT
 
             try
             {
-                await _viewModel.GetCityGeographyList((string)eventArgs.Parameter);
+                await _viewModel.GetCityGeographyList();
 
                 eventArgs.ListEntityResult = _viewModel.CityGeographyTree;
             }
@@ -101,33 +100,11 @@ namespace Lookup_GSFRONT
         //    loEx.ThrowExceptionIfErrors();
         //}
 
-        //private void Conductor_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
-        //{
-        //    var loEx = new R_Exception();
+        private void Conductor_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
+        {
+            eventArgs.Result = eventArgs.Data;
 
-        //    try
-        //    {
-        //        eventArgs.Result = eventArgs.Data;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        loEx.Add(ex);
-        //    }
-
-        //    loEx.ThrowExceptionIfErrors();
-        //}
-        //private void Geography_ConvertToGridEntity(R_ConvertToGridEntityEventArgs eventArgs)
-        //{
-
-        //    var loConductorData = (GSL02000CityDTO)eventArgs.Data;
-
-        //    var loData = R_FrontUtility.ConvertObjectToObject<GSL02000TreeDTO>(eventArgs.Data);
-        //    loData.Description = string.Format("{0} - {1}", loConductorData.CCODE, loConductorData.CNAME);
-        //    loData.Id = loConductorData.CCODE;
-        //    loData.ParentId = loConductorData.CPARENT_CODE;
-
-        //    eventArgs.GridData = loData;
-        //}
+        }
         public async Task Button_OnClickOkAsync()
         {
             var loEx = new R_Exception();

@@ -22,11 +22,11 @@ namespace GSM02500MODEL.View_Model
 
         private GSM02500Model loSharedModel = new GSM02500Model();
 
-        public GSM02540DetailDTO loUnitPromotionTypeDetail = null;
+        public GSM02540DetailDTO loOtherUnitTypeDetail = null;
 
-        public ObservableCollection<GSM02540DTO> loUnitPromotionTypeList = new ObservableCollection<GSM02540DTO>();
+        public ObservableCollection<GSM02540DTO> loOtherUnitTypeList = new ObservableCollection<GSM02540DTO>();
 
-        public GSM02540DTO loCurrentUnitPromotionType = null;
+        public GSM02540DTO loCurrentOtherUnitType = null;
 
         public GSM02540ResultDTO loRtn = null;
 
@@ -37,7 +37,7 @@ namespace GSM02500MODEL.View_Model
         public GetCUOMFromPropertyDTO loCUOM = new GetCUOMFromPropertyDTO();
 
 
-        public void UnitPromotionTypeValidation(GSM02540DetailDTO poParam)
+        public void OtherUnitTypeValidation(GSM02540DetailDTO poParam)
         {
             bool llCancel = false;
 
@@ -45,7 +45,7 @@ namespace GSM02500MODEL.View_Model
 
             try
             {
-                llCancel = string.IsNullOrWhiteSpace(poParam.CUNIT_PROMOTION_TYPE_ID);
+                llCancel = string.IsNullOrWhiteSpace(poParam.COTHER_UNIT_TYPE_ID);
                 if (llCancel)
                 {
                     loEx.Add(R_FrontUtility.R_GetError(
@@ -53,12 +53,28 @@ namespace GSM02500MODEL.View_Model
                         "V022"));
                 }
 
-                llCancel = string.IsNullOrWhiteSpace(poParam.CUNIT_PROMOTION_TYPE_NAME);
+                llCancel = string.IsNullOrWhiteSpace(poParam.COTHER_UNIT_TYPE_NAME);
                 if (llCancel)
                 {
                     loEx.Add(R_FrontUtility.R_GetError(
                         typeof(Resources_Dummy_Class),
                         "V023"));
+                }
+
+                llCancel = poParam.NGROSS_AREA_SIZE <= 0;
+                if (llCancel)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Resources_Dummy_Class),
+                        "V033"));
+                }
+
+                llCancel = poParam.NNET_AREA_SIZE <= 0;
+                if (llCancel)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Resources_Dummy_Class),
+                        "V034"));
                 }
             }
             catch (Exception ex)
@@ -109,14 +125,14 @@ namespace GSM02500MODEL.View_Model
             loException.ThrowExceptionIfErrors();
         }
 
-        public async Task GetUnitPromotionTypeListStreamAsync()
+        public async Task GetOtherUnitTypeListStreamAsync()
         {
             R_Exception loException = new R_Exception();
             try
             {
                 R_FrontContext.R_SetStreamingContext(ContextConstant.GSM02540_PROPERTY_ID_STREAMING_CONTEXT, SelectedProperty.CPROPERTY_ID);
-                loRtn = await loModel.GetUnitPromotionTypeListStreamAsync();
-                loUnitPromotionTypeList = new ObservableCollection<GSM02540DTO>(loRtn.Data);
+                loRtn = await loModel.GetOtherUnitTypeListStreamAsync();
+                loOtherUnitTypeList = new ObservableCollection<GSM02540DTO>(loRtn.Data);
             }
             catch (Exception ex)
             {
@@ -125,7 +141,7 @@ namespace GSM02500MODEL.View_Model
             loException.ThrowExceptionIfErrors();
         }
 
-        public async Task GetUnitPromotionTypeAsync(GSM02540DetailDTO poEntity)
+        public async Task GetOtherUnitTypeAsync(GSM02540DetailDTO poEntity)
         {
             R_Exception loEx = new R_Exception();
             GSM02540ParameterDTO loResult = null;
@@ -141,7 +157,7 @@ namespace GSM02500MODEL.View_Model
                 //R_FrontContext.R_SetContext(ContextConstant.GSM02540_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
                 loResult = await loModel.R_ServiceGetRecordAsync(loParam);
 
-                loUnitPromotionTypeDetail = loResult.Data;
+                loOtherUnitTypeDetail = loResult.Data;
             }
             catch (Exception ex)
             {
@@ -151,7 +167,7 @@ namespace GSM02500MODEL.View_Model
             loEx.ThrowExceptionIfErrors();
         }
 
-        public async Task SaveUnitPromotionTypeAsync(GSM02540DetailDTO poEntity, eCRUDMode peCRUDMode)
+        public async Task SaveOtherUnitTypeAsync(GSM02540DetailDTO poEntity, eCRUDMode peCRUDMode)
         {
             R_Exception loException = new R_Exception();
             GSM02540ParameterDTO loResult = null;
@@ -168,7 +184,7 @@ namespace GSM02500MODEL.View_Model
 
                 loResult = await loModel.R_ServiceSaveAsync(loParam, peCRUDMode);
 
-                loUnitPromotionTypeDetail = loResult.Data;
+                loOtherUnitTypeDetail = loResult.Data;
             }
             catch (Exception ex)
             {
@@ -178,7 +194,7 @@ namespace GSM02500MODEL.View_Model
             loException.ThrowExceptionIfErrors();
         }
 
-        public async Task DeleteUnitPromotionTypeAsync(GSM02540DetailDTO poEntity)
+        public async Task DeleteOtherUnitTypeAsync(GSM02540DetailDTO poEntity)
         {
             R_Exception loException = new R_Exception();
             GSM02540ParameterDTO loParam = null;
@@ -210,14 +226,14 @@ namespace GSM02500MODEL.View_Model
                 loParam = new GSM02500ActiveInactiveParameterDTO()
                 {
                     CPROPERTY_ID = SelectedProperty.CPROPERTY_ID,
-                    CUNIT_PROMOTION_TYPE_ID = loUnitPromotionTypeDetail.CUNIT_PROMOTION_TYPE_ID,
+                    COTHER_UNIT_TYPE_ID = loOtherUnitTypeDetail.COTHER_UNIT_TYPE_ID,
                     LACTIVE = SelectedActiveInactiveLACTIVE
                 };
                 //R_FrontContext.R_SetContext(ContextConstant.GSM02540_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02540_CUNIT_PROMOTION_TYPE_ID_CONTEXT, loUnitPromotionTypeDetail.CUNIT_PROMOTION_TYPE_ID);
+                //R_FrontContext.R_SetContext(ContextConstant.GSM02540_COTHER_UNIT_TYPE_ID_CONTEXT, loOtherUnitTypeDetail.COTHER_UNIT_TYPE_ID);
                 //R_FrontContext.R_SetContext(ContextConstant.GSM02540_LACTIVE_CONTEXT, SelectedActiveInactiveLACTIVE);
 
-                await loModel.RSP_GS_ACTIVE_INACTIVE_UNIT_PROMOTION_TYPEMethodAsync(loParam);
+                await loModel.RSP_GS_ACTIVE_INACTIVE_OTHER_UNIT_TYPEMethodAsync(loParam);
             }
             catch (Exception ex)
             {
@@ -227,14 +243,14 @@ namespace GSM02500MODEL.View_Model
         }
 
         #region Template
-        public async Task<TemplateUnitPromotionTypeDTO> DownloadTemplateUnitPromotionTypeAsync()
+        public async Task<TemplateOtherUnitTypeDTO> DownloadTemplateOtherUnitTypeAsync()
         {
             R_Exception loEx = new R_Exception();
-            TemplateUnitPromotionTypeDTO loResult = null;
+            TemplateOtherUnitTypeDTO loResult = null;
 
             try
             {
-                loResult = await loModel.DownloadTemplateUnitPromotionTypeAsync();
+                loResult = await loModel.DownloadTemplateOtherUnitTypeAsync();
             }
             catch (Exception ex)
             {

@@ -60,7 +60,7 @@ namespace PMT06000FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agrmt No.
+        ///   Looks up a localized string similar to Agrmt. No.
         /// </summary>
         internal static string AGRMT_NO {
             get {

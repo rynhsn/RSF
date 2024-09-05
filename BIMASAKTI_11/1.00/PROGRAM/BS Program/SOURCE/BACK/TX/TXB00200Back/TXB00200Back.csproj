@@ -23,5 +23,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\COMMON\TX\TXB00200Common\TXB00200Common.csproj" />
+      <ProjectReference Include="..\TX_SPR\RSP_TX_SOFT_CLOSE_TAXResources\RSP_TX_SOFT_CLOSE_TAXResources.csproj" />
     </ItemGroup>
 </Project>

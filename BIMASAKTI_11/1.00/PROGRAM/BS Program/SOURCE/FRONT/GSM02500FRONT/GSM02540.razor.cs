@@ -27,31 +27,32 @@ using BlazorClientHelper;
 using GSM02500COMMON.DTOs.GSM02530;
 using R_BlazorFrontEnd.Controls.Enums;
 using R_LockingFront;
+using GSM02500COMMON.DTOs.GSM02531;
 
 namespace GSM02500FRONT
 {
     public partial class GSM02540 : R_Page
     {
-        //Unit Promotion Type
+        //Other Unit Type
         [Inject] IJSRuntime JS { get; set; }
         [Inject] private R_PopupService PopupService { get; set; }
         [Inject] private R_ILocalizer<GSM02500FrontResources.Resources_Dummy_Class> _localizer { get; set; }
 
-        private GSM02540ViewModel loUnitPromotionTypeViewModel = new GSM02540ViewModel();
+        private GSM02540ViewModel loOtherUnitTypeViewModel = new GSM02540ViewModel();
 
-        private R_Conductor _conductorUnitPromotionTypeRef;
+        private R_Conductor _conductorOtherUnitTypeRef;
 
-        private R_Grid<GSM02540DTO> _gridUnitPromotionTypeRef;
+        private R_Grid<GSM02540DTO> _gridOtherUnitTypeRef;
 
-        private string loUnitPromotionTypeLabel = "";
+        private string loOtherUnitTypeLabel = "";
 
         private string lcCUOMLabel;
 
-        private R_TextBox UnitPromotionTypeIdRef;
+        private R_TextBox OtherUnitTypeIdRef;
 
-        private R_TextBox UnitPromotionTypeNameRef;
+        private R_TextBox OtherUnitTypeNameRef;
 
-        private bool IsUnitPromotionTypeListExist = false;
+        private bool IsOtherUnitTypeListExist = false;
 
         private bool _pagePropertyOnCRUDmode = false;
 
@@ -82,8 +83,8 @@ namespace GSM02500FRONT
                         Company_Id = _clientHelper.CompanyId,
                         User_Id = _clientHelper.UserId,
                         Program_Id = "GSM02500",
-                        Table_Name = "GSM_PROPERTY_UNIT_PROMOTION_TYPE",
-                        Key_Value = string.Join("|", _clientHelper.CompanyId, loUnitPromotionTypeViewModel.SelectedProperty.CPROPERTY_ID, loData.CUNIT_PROMOTION_TYPE_ID)
+                        Table_Name = "GSM_PROPERTY_OTHER_UNIT_TYPE",
+                        Key_Value = string.Join("|", _clientHelper.CompanyId, loOtherUnitTypeViewModel.SelectedProperty.CPROPERTY_ID, loData.COTHER_UNIT_TYPE_ID)
                     };
 
                     loLockResult = await loCls.R_Lock(loLockPar);
@@ -95,8 +96,8 @@ namespace GSM02500FRONT
                         Company_Id = _clientHelper.CompanyId,
                         User_Id = _clientHelper.UserId,
                         Program_Id = "GSM02500",
-                        Table_Name = "GSM_PROPERTY_UNIT_PROMOTION_TYPE",
-                        Key_Value = string.Join("|", _clientHelper.CompanyId, loUnitPromotionTypeViewModel.SelectedProperty.CPROPERTY_ID, loData.CUNIT_PROMOTION_TYPE_ID)
+                        Table_Name = "GSM_PROPERTY_OTHER_UNIT_TYPE",
+                        Key_Value = string.Join("|", _clientHelper.CompanyId, loOtherUnitTypeViewModel.SelectedProperty.CPROPERTY_ID, loData.COTHER_UNIT_TYPE_ID)
                     };
 
                     loLockResult = await loCls.R_UnLock(loUnlockPar);
@@ -122,17 +123,17 @@ namespace GSM02500FRONT
 
             try
             {
-                loUnitPromotionTypeLabel = _localizer["_Activate"];
-                loUnitPromotionTypeViewModel.SelectedProperty.CPROPERTY_ID = (string)poParameter;
+                loOtherUnitTypeLabel = _localizer["_Activate"];
+                loOtherUnitTypeViewModel.SelectedProperty.CPROPERTY_ID = (string)poParameter;
 
-                await loUnitPromotionTypeViewModel.GetSelectedPropertyAsync();
-                await loUnitPromotionTypeViewModel.GetCUOMFromPropertyAsync();
+                await loOtherUnitTypeViewModel.GetSelectedPropertyAsync();
+                await loOtherUnitTypeViewModel.GetCUOMFromPropertyAsync();
 
-                await loUnitPromotionTypeViewModel.GetUnitPromotionTypeListStreamAsync();
+                await loOtherUnitTypeViewModel.GetOtherUnitTypeListStreamAsync();
 
-                lcCUOMLabel = loUnitPromotionTypeViewModel.loCUOM.CUOM;
+                lcCUOMLabel = loOtherUnitTypeViewModel.loCUOM.CUOM;
 
-                await _gridUnitPromotionTypeRef.R_RefreshGrid(null);
+                await _gridOtherUnitTypeRef.R_RefreshGrid(null);
             }
             catch (Exception ex)
             {
@@ -144,7 +145,7 @@ namespace GSM02500FRONT
 
         private void OnActiveTabIndexChanging(R_TabStripActiveTabIndexChangingEventArgs eventArgs)
         {
-            if (_conductorUnitPromotionTypeRef.R_ConductorMode == R_eConductorMode.Add || _conductorUnitPromotionTypeRef.R_ConductorMode == R_eConductorMode.Edit)
+            if (_conductorOtherUnitTypeRef.R_ConductorMode == R_eConductorMode.Add || _conductorOtherUnitTypeRef.R_ConductorMode == R_eConductorMode.Edit)
             {
                 eventArgs.Cancel = true;
                 return;
@@ -172,16 +173,16 @@ namespace GSM02500FRONT
         private async Task OnClickTemplate()
         {
             R_Exception loException = new R_Exception();
-            var loData = new List<TemplateUnitPromotionTypeDTO>();
+            var loData = new List<TemplateOtherUnitTypeDTO>();
             try
             {
                 var loValidate = await R_MessageBox.Show("", _localizer["M001"], R_eMessageBoxButtonType.YesNo);
 
                 if (loValidate == R_eMessageBoxResult.Yes)
                 {
-                    var loByteFile = await loUnitPromotionTypeViewModel.DownloadTemplateUnitPromotionTypeAsync();
+                    var loByteFile = await loOtherUnitTypeViewModel.DownloadTemplateOtherUnitTypeAsync();
 
-                    var saveFileName = $"Unit Promotion Type.xlsx";
+                    var saveFileName = $"Other Unit Type.xlsx";
                     /*
                                         var saveFileName = $"Staff {CenterViewModel.PropertyValueContext}.xlsx";*/
 
@@ -197,11 +198,11 @@ namespace GSM02500FRONT
 
         private void Before_Open_Upload_Popup(R_BeforeOpenPopupEventArgs eventArgs)
         {
-            eventArgs.Parameter = new UploadUnitPromotionTypeParameterDTO()
+            eventArgs.Parameter = new UploadOtherUnitTypeParameterDTO()
             {
-                PropertyData = loUnitPromotionTypeViewModel.SelectedProperty
+                PropertyData = loOtherUnitTypeViewModel.SelectedProperty
             };
-            eventArgs.TargetPageType = typeof(UploadUnitPromotionType);
+            eventArgs.TargetPageType = typeof(UploadOtherUnitType);
         }
 
         private async Task After_Open_Upload_Popup(R_AfterOpenPopupEventArgs eventArgs)
@@ -212,7 +213,7 @@ namespace GSM02500FRONT
             }
             if ((bool)eventArgs.Result == true)
             {
-                await _gridUnitPromotionTypeRef.R_RefreshGrid(null);
+                await _gridOtherUnitTypeRef.R_RefreshGrid(null);
             }
         }
 
@@ -220,65 +221,77 @@ namespace GSM02500FRONT
         /*
                 private void OnActiveTabIndexChanging(R_TabStripActiveTabIndexChangingEventArgs eventArgs)
                 {
-                    if (eventArgs.TabStripTab.Id == "UP" && loUnitPromotionTypeViewModel.loUnitPromotionTypeList.Count() == 0)
+                    if (eventArgs.TabStripTab.Id == "UP" && loOtherUnitTypeViewModel.loOtherUnitTypeList.Count() == 0)
                     {
                         eventArgs.Cancel = true;
                     }
                 }*/
 
 
-        #region Unit Promotion Type
+        #region Other Unit Type
 
-        private void R_Before_OpenUnitPromotion_TabPage(R_BeforeOpenTabPageEventArgs eventArgs)
+        private void R_Before_OpenOtherUnit_TabPage(R_BeforeOpenTabPageEventArgs eventArgs)
         {
-            eventArgs.Parameter = loUnitPromotionTypeViewModel.SelectedProperty.CPROPERTY_ID;
+            eventArgs.Parameter = loOtherUnitTypeViewModel.SelectedProperty.CPROPERTY_ID;
             eventArgs.TargetPageType = typeof(GSM02541);
         }
 
-        private async Task Grid_DisplayUnitPromotionType(R_DisplayEventArgs eventArgs)
+        private void R_Before_OpenUtilities_TabPage(R_BeforeOpenTabPageEventArgs eventArgs)
+        {
+            //eventArgs.Parameter = new UploadUnitUtilityParameterDTO()
+            //{
+            //    OtherUnitData = new GSM02500COMMON.DTOs.GSM02500.SelectedOtherUnitDTO()
+            //    {
+            //        COTHER_UNIT_ID = lo
+            //    }
+            //};
+            eventArgs.TargetPageType = typeof(GSM02541);
+        }
+
+        private async Task Grid_DisplayOtherUnitType(R_DisplayEventArgs eventArgs)
         {
             if (eventArgs.ConductorMode == R_eConductorMode.Normal)
             {
                 var loParam = (GSM02540DetailDTO)eventArgs.Data;
 
-                loUnitPromotionTypeViewModel.loUnitPromotionTypeDetail = loParam;
-                loUnitPromotionTypeViewModel.SelectedActiveInactiveLACTIVE = loParam.LACTIVE;
+                loOtherUnitTypeViewModel.loOtherUnitTypeDetail = loParam;
+                loOtherUnitTypeViewModel.SelectedActiveInactiveLACTIVE = loParam.LACTIVE;
                 if (loParam.LACTIVE)
                 {
-                    loUnitPromotionTypeLabel = _localizer["_InActive"];
-                    loUnitPromotionTypeViewModel.SelectedActiveInactiveLACTIVE = false;
+                    loOtherUnitTypeLabel = _localizer["_InActive"];
+                    loOtherUnitTypeViewModel.SelectedActiveInactiveLACTIVE = false;
                 }
                 else
                 {
-                    loUnitPromotionTypeLabel = _localizer["_Activate"];
-                    loUnitPromotionTypeViewModel.SelectedActiveInactiveLACTIVE = true;
+                    loOtherUnitTypeLabel = _localizer["_Activate"];
+                    loOtherUnitTypeViewModel.SelectedActiveInactiveLACTIVE = true;
                 }
             }
             if (eventArgs.ConductorMode == R_eConductorMode.Edit)
             {
-                await UnitPromotionTypeNameRef.FocusAsync();
+                await OtherUnitTypeNameRef.FocusAsync();
             }
         }
 
 
-        private async Task Grid_R_ServiceGetUnitPromotionTypeListRecord(R_ServiceGetListRecordEventArgs eventArgs)
+        private async Task Grid_R_ServiceGetOtherUnitTypeListRecord(R_ServiceGetListRecordEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
-                await loUnitPromotionTypeViewModel.GetUnitPromotionTypeListStreamAsync();
+                await loOtherUnitTypeViewModel.GetOtherUnitTypeListStreamAsync();
 
-                if (loUnitPromotionTypeViewModel.loUnitPromotionTypeList.Count() == 0)
+                if (loOtherUnitTypeViewModel.loOtherUnitTypeList.Count() == 0)
                 {
-                    IsUnitPromotionTypeListExist = false;
+                    IsOtherUnitTypeListExist = false;
                 }
-                else if (loUnitPromotionTypeViewModel.loUnitPromotionTypeList.Count() > 0)
+                else if (loOtherUnitTypeViewModel.loOtherUnitTypeList.Count() > 0)
                 {
-                    IsUnitPromotionTypeListExist = true;
+                    IsOtherUnitTypeListExist = true;
                 }
 
-                eventArgs.ListEntityResult = loUnitPromotionTypeViewModel.loUnitPromotionTypeList;
+                eventArgs.ListEntityResult = loOtherUnitTypeViewModel.loOtherUnitTypeList;
             }
             catch (Exception ex)
             {
@@ -288,7 +301,7 @@ namespace GSM02500FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
-        private async Task Grid_ServiceGetUnitPromotionTypeRecord(R_ServiceGetRecordEventArgs eventArgs)
+        private async Task Grid_ServiceGetOtherUnitTypeRecord(R_ServiceGetRecordEventArgs eventArgs)
         {
             R_Exception loException = new R_Exception();
 
@@ -297,9 +310,9 @@ namespace GSM02500FRONT
                 GSM02540DetailDTO loParam = new GSM02540DetailDTO();
 
                 loParam = R_FrontUtility.ConvertObjectToObject<GSM02540DetailDTO>(eventArgs.Data);
-                await loUnitPromotionTypeViewModel.GetUnitPromotionTypeAsync(loParam);
+                await loOtherUnitTypeViewModel.GetOtherUnitTypeAsync(loParam);
 
-                eventArgs.Result = loUnitPromotionTypeViewModel.loUnitPromotionTypeDetail;
+                eventArgs.Result = loOtherUnitTypeViewModel.loOtherUnitTypeDetail;
             }
             catch (Exception ex)
             {
@@ -309,24 +322,23 @@ namespace GSM02500FRONT
             loException.ThrowExceptionIfErrors();
         }
 
-        private void Grid_ConvertToGridEntityUnitPromotionType(R_ConvertToGridEntityEventArgs eventArgs)
+        private void Grid_ConvertToGridEntityOtherUnitType(R_ConvertToGridEntityEventArgs eventArgs)
         {
             GSM02540DetailDTO loData = (GSM02540DetailDTO)eventArgs.Data;
             eventArgs.GridData = R_FrontUtility.ConvertObjectToObject<GSM02540DTO>(loData);
             GSM02540DTO loGridData = (GSM02540DTO)eventArgs.GridData;
-            loGridData.CUNIT_PROMOTION_TYPE_ID_NAME = loGridData.CUNIT_PROMOTION_TYPE_NAME + '(' + loGridData.CUNIT_PROMOTION_TYPE_ID + ')';
+            loGridData.COTHER_UNIT_TYPE_ID_NAME = loGridData.COTHER_UNIT_TYPE_NAME + '(' + loGridData.COTHER_UNIT_TYPE_ID + ')';
         }
-        private async Task Grid_AfterAddUnitPromotionType(R_AfterAddEventArgs eventArgs)
+        private async Task Grid_AfterAddOtherUnitType(R_AfterAddEventArgs eventArgs)
         {
-            await UnitPromotionTypeIdRef.FocusAsync();
+            await OtherUnitTypeIdRef.FocusAsync();
         }
 
-        private void Grid_SavingUnitPromotionType(R_SavingEventArgs eventArgs)
+        private void Grid_SavingOtherUnitType(R_SavingEventArgs eventArgs)
         {
             R_Exception loException = new R_Exception();
             try
             {
-                loUnitPromotionTypeViewModel.UnitPromotionTypeValidation((GSM02540DetailDTO)eventArgs.Data);
             }
             catch (Exception ex)
             {
@@ -335,26 +347,26 @@ namespace GSM02500FRONT
             loException.ThrowExceptionIfErrors();
         }
 
-        private async Task Grid_ServiceSaveUnitPromotionType(R_ServiceSaveEventArgs eventArgs)
+        private async Task Grid_ServiceSaveOtherUnitType(R_ServiceSaveEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
-                await loUnitPromotionTypeViewModel.SaveUnitPromotionTypeAsync(
+                await loOtherUnitTypeViewModel.SaveOtherUnitTypeAsync(
                     (GSM02540DetailDTO)eventArgs.Data,
                     (eCRUDMode)eventArgs.ConductorMode);
 
-                if (loUnitPromotionTypeViewModel.loUnitPromotionTypeList.Count() == 0)
+                if (loOtherUnitTypeViewModel.loOtherUnitTypeList.Count() == 0)
                 {
-                    IsUnitPromotionTypeListExist = false;
+                    IsOtherUnitTypeListExist = false;
                 }
-                else if (loUnitPromotionTypeViewModel.loUnitPromotionTypeList.Count() > 0)
+                else if (loOtherUnitTypeViewModel.loOtherUnitTypeList.Count() > 0)
                 {
-                    IsUnitPromotionTypeListExist = true;
+                    IsOtherUnitTypeListExist = true;
                 }
 
-                eventArgs.Result = loUnitPromotionTypeViewModel.loUnitPromotionTypeDetail;
+                eventArgs.Result = loOtherUnitTypeViewModel.loOtherUnitTypeDetail;
             }
             catch (Exception ex)
             {
@@ -364,38 +376,38 @@ namespace GSM02500FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
-        private async Task Grid_AfterSaveUnitPromotionType(R_AfterSaveEventArgs eventArgs)
+        private async Task Grid_AfterSaveOtherUnitType(R_AfterSaveEventArgs eventArgs)
         {
-            if (eventArgs.ConductorMode == R_eConductorMode.Edit)
-            {
-                await loUnitPromotionTypeViewModel.GetUnitPromotionTypeListStreamAsync();
+            //if (eventArgs.ConductorMode == R_eConductorMode.Edit)
+            //{
+            //    await loOtherUnitTypeViewModel.GetOtherUnitTypeListStreamAsync();
 
-                var loGridData = _gridUnitPromotionTypeRef.CurrentSelectedData;
-                loUnitPromotionTypeViewModel.loCurrentUnitPromotionType = loUnitPromotionTypeViewModel.loUnitPromotionTypeList.FirstOrDefault(x => x.CUNIT_PROMOTION_TYPE_ID == loGridData.CUNIT_PROMOTION_TYPE_ID);
-                loGridData = loUnitPromotionTypeViewModel.loCurrentUnitPromotionType;
+            //    var loGridData = _gridOtherUnitTypeRef.CurrentSelectedData;
+            //    loOtherUnitTypeViewModel.loCurrentOtherUnitType = loOtherUnitTypeViewModel.loOtherUnitTypeList.FirstOrDefault(x => x.COTHER_UNIT_TYPE_ID == loGridData.COTHER_UNIT_TYPE_ID);
+            //    loGridData = loOtherUnitTypeViewModel.loCurrentOtherUnitType;
+            //}
+        }
+
+        private void Grid_AfterDeleteOtherUnitType()
+        {
+            if (loOtherUnitTypeViewModel.loOtherUnitTypeList.Count() == 0)
+            {
+                IsOtherUnitTypeListExist = false;
+            }
+            else if (loOtherUnitTypeViewModel.loOtherUnitTypeList.Count() > 0)
+            {
+                IsOtherUnitTypeListExist = true;
             }
         }
 
-        private void Grid_AfterDeleteUnitPromotionType()
-        {
-            if (loUnitPromotionTypeViewModel.loUnitPromotionTypeList.Count() == 0)
-            {
-                IsUnitPromotionTypeListExist = false;
-            }
-            else if (loUnitPromotionTypeViewModel.loUnitPromotionTypeList.Count() > 0)
-            {
-                IsUnitPromotionTypeListExist = true;
-            }
-        }
-
-        private async Task Grid_ServiceDeleteUnitPromotionType(R_ServiceDeleteEventArgs eventArgs)
+        private async Task Grid_ServiceDeleteOtherUnitType(R_ServiceDeleteEventArgs eventArgs)
         {
             R_Exception loEx = new R_Exception();
 
             try
             {
                 GSM02540DetailDTO loData = (GSM02540DetailDTO)eventArgs.Data;
-                await loUnitPromotionTypeViewModel.DeleteUnitPromotionTypeAsync(loData);
+                await loOtherUnitTypeViewModel.DeleteOtherUnitTypeAsync(loData);
             }
             catch (Exception ex)
             {
@@ -405,7 +417,7 @@ namespace GSM02500FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
-        private async Task Grid_ValidationUnitPromotionType(R_ValidationEventArgs eventArgs)
+        private async Task Grid_ValidationOtherUnitType(R_ValidationEventArgs eventArgs)
         {
             R_Exception loException = new R_Exception();
             R_PopupResult loResult = null;
@@ -414,7 +426,10 @@ namespace GSM02500FRONT
             try
             {
                 loData = (GSM02540DetailDTO)eventArgs.Data;
-                if (loData.LACTIVE == true && _conductorUnitPromotionTypeRef.R_ConductorMode == R_eConductorMode.Add)
+
+                loOtherUnitTypeViewModel.OtherUnitTypeValidation(loData);
+
+                if (loData.LACTIVE == true && _conductorOtherUnitTypeRef.R_ConductorMode == R_eConductorMode.Add)
                 {
                     var loValidateViewModel = new GFF00900Model.ViewModel.GFF00900ViewModel();
                     loValidateViewModel.ACTIVATE_INACTIVE_ACTIVITY_CODE = "GSM02508";
@@ -446,7 +461,7 @@ namespace GSM02500FRONT
             loException.ThrowExceptionIfErrors();
         }
 
-        private async Task R_Before_Open_Popup_ActivateInactiveUnitPromotionType(R_BeforeOpenPopupEventArgs eventArgs)
+        private async Task R_Before_Open_Popup_ActivateInactiveOtherUnitType(R_BeforeOpenPopupEventArgs eventArgs)
         {
             R_Exception loException = new R_Exception();
             try
@@ -458,10 +473,10 @@ namespace GSM02500FRONT
                 //Jika Approval User ALL dan Approval Code 1, maka akan langsung menjalankan ActiveInactive
                 if (loValidateViewModel.loRspActivityValidityList.FirstOrDefault().CAPPROVAL_USER == "ALL" && loValidateViewModel.loRspActivityValidityResult.Data.FirstOrDefault().IAPPROVAL_MODE == 1)
                 {
-                    await loUnitPromotionTypeViewModel.ActiveInactiveProcessAsync();
-                    var loGetDataParam = (GSM02540DetailDTO)_conductorUnitPromotionTypeRef.R_GetCurrentData();
-                    var loHeaderData = (GSM02540DTO)_gridUnitPromotionTypeRef.GetCurrentData();
-                    await _conductorUnitPromotionTypeRef.R_GetEntity(loGetDataParam);
+                    await loOtherUnitTypeViewModel.ActiveInactiveProcessAsync();
+                    var loGetDataParam = (GSM02540DetailDTO)_conductorOtherUnitTypeRef.R_GetCurrentData();
+                    var loHeaderData = (GSM02540DTO)_gridOtherUnitTypeRef.GetCurrentData();
+                    await _conductorOtherUnitTypeRef.R_GetEntity(loGetDataParam);
                     return;
                 }
                 else //Disini Approval Code yang didapat adalah 2, yang berarti Active Inactive akan dijalankan jika User yang diinput ada di RSP_ACTIVITY_VALIDITY
@@ -481,7 +496,7 @@ namespace GSM02500FRONT
             loException.ThrowExceptionIfErrors();
         }
 
-        private async Task R_After_Open_Popup_ActivateInactiveUnitPromotionType(R_AfterOpenPopupEventArgs eventArgs)
+        private async Task R_After_Open_Popup_ActivateInactiveOtherUnitType(R_AfterOpenPopupEventArgs eventArgs)
         {
             R_Exception loException = new R_Exception();
             try
@@ -493,10 +508,10 @@ namespace GSM02500FRONT
                 bool result = (bool)eventArgs.Result;
                 if (result == true)
                 {
-                    await loUnitPromotionTypeViewModel.ActiveInactiveProcessAsync();
-                    var loGetDataParam = (GSM02540DetailDTO)_conductorUnitPromotionTypeRef.R_GetCurrentData();
-                    var loHeaderData = (GSM02540DTO)_gridUnitPromotionTypeRef.GetCurrentData();
-                    await _conductorUnitPromotionTypeRef.R_GetEntity(loGetDataParam);
+                    await loOtherUnitTypeViewModel.ActiveInactiveProcessAsync();
+                    var loGetDataParam = (GSM02540DetailDTO)_conductorOtherUnitTypeRef.R_GetCurrentData();
+                    var loHeaderData = (GSM02540DTO)_gridOtherUnitTypeRef.GetCurrentData();
+                    await _conductorOtherUnitTypeRef.R_GetEntity(loGetDataParam);
                 }
             }
             catch (Exception ex)
@@ -505,6 +520,7 @@ namespace GSM02500FRONT
             }
             loException.ThrowExceptionIfErrors();
         }
+
         #endregion
 
     }

@@ -16,9 +16,11 @@ namespace GSM02500MODEL.View_Model
 
         public ObservableCollection<GetUserIdNameDTO> loUserList = new ObservableCollection<GetUserIdNameDTO>();
 
-        public GetUserIdNameResultDTO loUserRtn = null;
+        public GetUserIdNameResultListDTO loUserRtn = null;
 
-        public string SELECTED_PROPERTY_ID = "";
+        //public string SELECTED_PROPERTY_ID = "";
+
+        public GetUserIdNameParameterDTO loLookupParameter = null;
 
 
         public async Task GetUserIdNameListStreamAsync()
@@ -26,7 +28,7 @@ namespace GSM02500MODEL.View_Model
             R_Exception loException = new R_Exception();
             try
             {
-                R_FrontContext.R_SetStreamingContext(ContextConstant.GSM02550_PROPERTY_ID_STREAMING_CONTEXT, SELECTED_PROPERTY_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstant.GSM02550_LOOKUP_USER_STREAMING_CONTEXT, loLookupParameter.CSELECTED_PROPERTY_ID);
                 loUserRtn = await loModel.GetUserIdNameListStreamAsync();
                 loUserList = new ObservableCollection<GetUserIdNameDTO>(loUserRtn.Data);
             }

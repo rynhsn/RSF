@@ -106,6 +106,24 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bank.
+        /// </summary>
+        internal static string _Bank {
+            get {
+                return ResourceManager.GetString("_Bank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank Account.
+        /// </summary>
+        internal static string _BankAccount {
+            get {
+                return ResourceManager.GetString("_BankAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bank Code.
         /// </summary>
         internal static string _BankCode {
@@ -178,6 +196,15 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Building Unit.
+        /// </summary>
+        internal static string _BuildingUnit {
+            get {
+                return ResourceManager.GetString("_BuildingUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string _CancelBtn {
@@ -187,11 +214,47 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cash &amp; Bank.
+        /// </summary>
+        internal static string _CashAndBank {
+            get {
+                return ResourceManager.GetString("_CashAndBank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cash &amp; Bank Account.
+        /// </summary>
+        internal static string _CashAndBankAccount {
+            get {
+                return ResourceManager.GetString("_CashAndBankAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cash Flow Code.
         /// </summary>
         internal static string _CashFlowCode {
             get {
                 return ResourceManager.GetString("_CashFlowCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Flow Group.
+        /// </summary>
+        internal static string _CashFlowGroup {
+            get {
+                return ResourceManager.GetString("_CashFlowGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Flow Group Type.
+        /// </summary>
+        internal static string _CashFlowGroupType {
+            get {
+                return ResourceManager.GetString("_CashFlowGroupType", resourceCulture);
             }
         }
         
@@ -250,6 +313,24 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        internal static string _Category {
+            get {
+                return ResourceManager.GetString("_Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Center.
+        /// </summary>
+        internal static string _Center {
+            get {
+                return ResourceManager.GetString("_Center", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Center Code.
         /// </summary>
         internal static string _CenterCode {
@@ -291,6 +372,24 @@ namespace Lookup_GSFrontResources {
         internal static string _ChargesName {
             get {
                 return ResourceManager.GetString("_ChargesName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to COA.
+        /// </summary>
+        internal static string _COA {
+            get {
+                return ResourceManager.GetString("_COA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to COA by GOA.
+        /// </summary>
+        internal static string _COAbyGOA {
+            get {
+                return ResourceManager.GetString("_COAbyGOA", resourceCulture);
             }
         }
         
@@ -349,6 +448,24 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Currency Rate.
+        /// </summary>
+        internal static string _CurrencyRate {
+            get {
+                return ResourceManager.GetString("_CurrencyRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency Rate Type.
+        /// </summary>
+        internal static string _CurrencyRateType {
+            get {
+                return ResourceManager.GetString("_CurrencyRateType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Currency Name.
         /// </summary>
         internal static string _CurrName {
@@ -376,11 +493,29 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Departement.
+        ///   Looks up a localized string similar to Department.
         /// </summary>
         internal static string _Departement {
             get {
                 return ResourceManager.GetString("_Departement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department.
+        /// </summary>
+        internal static string _Department {
+            get {
+                return ResourceManager.GetString("_Department", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department Property.
+        /// </summary>
+        internal static string _DepartmentProperty {
+            get {
+                return ResourceManager.GetString("_DepartmentProperty", resourceCulture);
             }
         }
         
@@ -457,11 +592,29 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Geography.
+        /// </summary>
+        internal static string _Geography {
+            get {
+                return ResourceManager.GetString("_Geography", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GL Account.
         /// </summary>
         internal static string _GLAccount {
             get {
                 return ResourceManager.GetString("_GLAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GOA.
+        /// </summary>
+        internal static string _GOA {
+            get {
+                return ResourceManager.GetString("_GOA", resourceCulture);
             }
         }
         
@@ -493,6 +646,15 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Journal Group.
+        /// </summary>
+        internal static string _JournalGroup {
+            get {
+                return ResourceManager.GetString("_JournalGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Journal Group Code.
         /// </summary>
         internal static string _JrnlGrpCode {
@@ -507,6 +669,15 @@ namespace Lookup_GSFrontResources {
         internal static string _JrnlGrpName {
             get {
                 return ResourceManager.GetString("_JrnlGrpName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LOB.
+        /// </summary>
+        internal static string _LOB {
+            get {
+                return ResourceManager.GetString("_LOB", resourceCulture);
             }
         }
         
@@ -592,11 +763,38 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other Charges.
+        /// </summary>
+        internal static string _OtherCharges {
+            get {
+                return ResourceManager.GetString("_OtherCharges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other Unit.
+        /// </summary>
+        internal static string _OtherUnit {
+            get {
+                return ResourceManager.GetString("_OtherUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Other Unit Id.
         /// </summary>
         internal static string _OtherUnitId {
             get {
                 return ResourceManager.GetString("_OtherUnitId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other Unit Master.
+        /// </summary>
+        internal static string _OtherUnitMaster {
+            get {
+                return ResourceManager.GetString("_OtherUnitMaster", resourceCulture);
             }
         }
         
@@ -615,6 +813,15 @@ namespace Lookup_GSFrontResources {
         internal static string _OtherUnitType {
             get {
                 return ResourceManager.GetString("_OtherUnitType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Term.
+        /// </summary>
+        internal static string _PaymentTerm {
+            get {
+                return ResourceManager.GetString("_PaymentTerm", resourceCulture);
             }
         }
         
@@ -673,6 +880,15 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sales Tax.
+        /// </summary>
+        internal static string _SalesTax {
+            get {
+                return ResourceManager.GetString("_SalesTax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sequence.
         /// </summary>
         internal static string _Seq {
@@ -696,6 +912,15 @@ namespace Lookup_GSFrontResources {
         internal static string _Symbol {
             get {
                 return ResourceManager.GetString("_Symbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax By Date.
+        /// </summary>
+        internal static string _TaxByDate {
+            get {
+                return ResourceManager.GetString("_TaxByDate", resourceCulture);
             }
         }
         
@@ -826,6 +1051,15 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unit Type Category.
+        /// </summary>
+        internal static string _UnitTypeCategory {
+            get {
+                return ResourceManager.GetString("_UnitTypeCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unit View.
         /// </summary>
         internal static string _UnitView {
@@ -871,6 +1105,24 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User.
+        /// </summary>
+        internal static string _User {
+            get {
+                return ResourceManager.GetString("_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Approval.
+        /// </summary>
+        internal static string _UserApproval {
+            get {
+                return ResourceManager.GetString("_UserApproval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Id.
         /// </summary>
         internal static string _UserId {
@@ -894,6 +1146,15 @@ namespace Lookup_GSFrontResources {
         internal static string _UserRestr {
             get {
                 return ResourceManager.GetString("_UserRestr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Withholding Tax.
+        /// </summary>
+        internal static string _WithholdingTax {
+            get {
+                return ResourceManager.GetString("_WithholdingTax", resourceCulture);
             }
         }
     }

@@ -167,7 +167,8 @@
       },
       "GLI00100Model/1.0.0": {
         "dependencies": {
-          "GLI00100Common": "1.0.0"
+          "GLI00100Common": "1.0.0",
+          "GLI00100FrontResources": "1.0.0"
         },
         "runtime": {
           "GLI00100Model.dll": {}

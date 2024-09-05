@@ -16,8 +16,9 @@ namespace TXB00200Model.ViewModel
         public List<TXB00200PropertyDTO> PropertyList = new List<TXB00200PropertyDTO>();
         public List<TXB00200PeriodDTO> PeriodList = new List<TXB00200PeriodDTO>();
         
+        public TXB00200NextPeriodDTO NextPeriod { get; set; } = new TXB00200NextPeriodDTO();
         public string SelectedPropertyId { get; set; }
-        public int SelectedYear { get; set; }
+        public int SelectedYear { get; set; } = DateTime.Now.Year;
         public string SelectedPeriodNo { get; set; }
 
         public async Task GetPropertyList()
@@ -38,6 +39,26 @@ namespace TXB00200Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
+
+        public async Task GetNextPeriod()
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loReturn =
+                    await _model.GetAsync<TXB00200SingleDTO<TXB00200NextPeriodDTO>>(
+                        nameof(ITXB00200.TXB00200GetNextPeriod));
+                NextPeriod = loReturn.Data;
+                SelectedPeriodNo = NextPeriod.CMONTH;
+                SelectedYear = int.TryParse(NextPeriod.CYEAR, out var loYear) ? loYear : DateTime.Now.Year;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
         
         public async Task GetPeriodList()
         {
@@ -50,7 +71,6 @@ namespace TXB00200Model.ViewModel
                     await _model.GetAsync<TXB00200ListDTO<TXB00200PeriodDTO>, TXB00200YearParam>(
                         nameof(ITXB00200.TXB00200GetPeriodList), loParam);
                 PeriodList = loReturn.Data;
-                SelectedPeriodNo = PeriodList[0].CPERIOD_NO;
             }
             catch (Exception ex)
             {
@@ -60,7 +80,6 @@ namespace TXB00200Model.ViewModel
             loEx.ThrowExceptionIfErrors();
         }
         
-        
         public async Task ProcessSoftPeriod()
         {
             var loEx = new R_Exception();
@@ -69,6 +88,8 @@ namespace TXB00200Model.ViewModel
                 var loParam = new TXB00200SoftCloseParam()
                 {
                     CPROPERTY_ID = SelectedPropertyId,
+                    CTAX_PERIOD_YEAR = SelectedYear.ToString(),
+                    CTAX_PERIOD_MONTH = SelectedPeriodNo
                 };
                 
                 var loResult =

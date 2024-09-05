@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\COMMON\GL\GLM00500Common\GLM00500Common.csproj" />
+    <ProjectReference Include="..\GLM00500FrontResources\GLM00500FrontResources.csproj" />
   </ItemGroup>
 
   <ItemGroup>

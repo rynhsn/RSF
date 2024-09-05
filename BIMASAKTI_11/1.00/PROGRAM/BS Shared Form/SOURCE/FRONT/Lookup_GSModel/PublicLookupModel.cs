@@ -1267,5 +1267,41 @@ namespace Lookup_GSModel
 
         }
         #endregion
+
+        #region GSL02800
+        public IAsyncEnumerable<GSL02800DTO> GSL02800GetOtherUnitMasterList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL02800DTO>> GSL02800GetOtherUnitMasterListAsync(GSL02800ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL02800DTO> loResult = null;
+
+            try
+            {
+                //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, string.IsNullOrWhiteSpace(poParameter.CPROPERTY_ID) ? "" : poParameter.CPROPERTY_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LEVENT, poParameter.LEVENT);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02800DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL02800GetOtherUnitMasterList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+        #endregion
     }
 }

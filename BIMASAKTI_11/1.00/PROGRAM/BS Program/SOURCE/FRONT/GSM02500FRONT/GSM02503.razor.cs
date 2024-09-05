@@ -225,7 +225,6 @@ namespace GSM02500FRONT
             R_Exception loException = new R_Exception();
             try
             {
-                loUnitTypeViewModel.UnitTypeValidation((GSM02503UnitTypeDetailDTO)eventArgs.Data);
             }
             catch (Exception ex)
             {
@@ -422,6 +421,13 @@ namespace GSM02500FRONT
             try
             {
                 loData = (GSM02503UnitTypeDetailDTO)eventArgs.Data;
+
+                loUnitTypeViewModel.UnitTypeValidation(loData);
+                if (loException.HasError)
+                {
+                    goto EndBlock;
+                }
+
                 if (loData.LACTIVE == true && _conductorUnitTypeRef.R_ConductorMode == R_eConductorMode.Add)
                 {
                     var loValidateViewModel = new GFF00900Model.ViewModel.GFF00900ViewModel();
@@ -451,6 +457,7 @@ namespace GSM02500FRONT
             {
                 loException.Add(ex);
             }
+            EndBlock:
             loException.ThrowExceptionIfErrors();
         }
 

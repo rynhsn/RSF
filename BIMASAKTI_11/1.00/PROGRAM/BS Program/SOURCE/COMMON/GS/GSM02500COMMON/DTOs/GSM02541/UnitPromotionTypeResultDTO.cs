@@ -5,8 +5,8 @@ using System.Text;
 
 namespace GSM02500COMMON.DTOs.GSM02541
 {
-    public class UnitPromotionTypeResultDTO : R_APIResultBaseDTO
+    public class OtherUnitTypeResultDTO : R_APIResultBaseDTO
     {
-        public List<UnitPromotionTypeDTO> Data { get; set; }
+        public List<OtherUnitTypeDTO> Data { get; set; }
     }
 }

@@ -8,6 +8,9 @@ namespace PMT06500Common.DTOs
         public string CUSER_ID { get; set; } = "";
         public string CACTION { get; set; } = "";
         public string CLANG_ID { get; set; } = "";
+
+        public string CLINK_DEPT_CODE { get; set; } = "";
+        public string CLINK_TRANS_CODE { get; set; } = "";
         public string CPROPERTY_ID { get; set; } = "";
         public string CPROPERTY_NAME { get; set; } = "";
         public string CTRANS_CODE { get; set; } = "";
@@ -16,7 +19,11 @@ namespace PMT06500Common.DTOs
         public string CTRANS_STATUS { get; set; } = "";
         public string CTRANS_STATUS_DESC { get; set; } = "";
         public string CREC_ID { get; set; } = "";
+
         public string CINV_PRD { get; set; } = "";
+
+        // buat inv prd "202408" menjadi "2024-08" di CPERIOD_DISPLAY, beri nilai default kosong
+        public string CPERIOD_DISPLAY { get; set; } = "";
         public string CPERIOD { get; set; } = "";
         public string CREF_NO { get; set; } = "";
         public string CREF_DATE { get; set; } = "";
@@ -36,14 +43,22 @@ namespace PMT06500Common.DTOs
 
     public class PMT06500SummaryDTO
     {
-        public string CUNIT_ID { get; set; }
-        public string CUNIT_NAME { get; set; }
-        public string CCHARGES_ID { get; set; }
-        public string CCHARGES_NAME { get; set; }
+        public string CUNIT_ID { get; set; } = "";
+        public string CUNIT_NAME { get; set; } = "";
+        public string CCHARGES_ID { get; set; } = "";
+        public string CCHARGES_NAME { get; set; } = "";
         public string CSERVICE => CCHARGES_ID + " - " + CCHARGES_NAME;
         public decimal NACTUAL_AREA_SIZE { get; set; }
         public decimal NRATE_HOUR { get; set; }
         public int IHOURS { get; set; }
-        public decimal NTOTAL_AMOUNT { get; set; }
+        public decimal NAMOUNT { get; set; }
+
+        
+        
+        public string CCOMPANY_ID { get; set; } = "";
+        public string CPROPERTY_ID { get; set; } = "";
+        public string CAGREEMENT_NO { get; set; } = "";
+        public string CFLOOR_ID { get; set; } = "";
+        public decimal NHOURS { get; set; }
     }
 }

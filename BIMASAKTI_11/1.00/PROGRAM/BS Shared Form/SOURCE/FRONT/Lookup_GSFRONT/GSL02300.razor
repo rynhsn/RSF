@@ -1,5 +1,5 @@
 ﻿@inherits R_Page
-@attribute [R_Page(Title = "Building Unit Lookup")]
+@attribute [R_Page(ResourceId = "_BuildingUnit")]
 @inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
 
 <R_StackLayout Style="width: 800px">
@@ -30,8 +30,8 @@
                 <R_GridTextColumn FieldName="CUNIT_ID" HeaderText="@_localizer["_UnitId"]" Width="200px"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CUNIT_NAME" HeaderText="@_localizer["_BuildingName"]" Width="300px"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CUNIT_TYPE_NAME" HeaderText="@_localizer["_UnitType"]" Width="200px"></R_GridTextColumn>
-                <R_GridNumericColumn Arrows="false" FieldName="NGROSS_AREA_SIZE" HeaderText="@_localizer["_Gross"]" Width="200px"></R_GridNumericColumn>
-                <R_GridNumericColumn Arrows="false" FieldName="NNET_AREA_SIZE" HeaderText="@_localizer["_Net"]" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn TValue="decimal" Arrows="false" FieldName="NGROSS_AREA_SIZE" HeaderText="@_localizer["_Gross"]" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn TValue="decimal" Arrows="false" FieldName="NNET_AREA_SIZE" HeaderText="@_localizer["_Net"]" Width="200px"></R_GridNumericColumn>
                 <R_GridTextColumn FieldName="CUNIT_VIEW_NAME" HeaderText="@_localizer["_UnitView"]" Width="300px"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CUNIT_CATEGORY_NAME" HeaderText="@_localizer["_UnitCategory"]" Width="200px"></R_GridTextColumn>
             </R_GridColumns>

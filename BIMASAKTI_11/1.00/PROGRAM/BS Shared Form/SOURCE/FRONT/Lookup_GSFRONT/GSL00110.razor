@@ -1,5 +1,5 @@
 ﻿@inherits R_Page
-@attribute [R_Page(Title = "Tax By Date")]
+@attribute [R_Page(ResourceId = "_TaxByDate")]
 @inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
 
 <R_StackLayout Style="width: 800px">
@@ -13,12 +13,12 @@
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CTAX_ID" HeaderText="@_localizer["_TaxId"]" Width="100px"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CTAX_NAME" HeaderText="@_localizer["_TaxName"]" Width="200px"></R_GridTextColumn>
-                <R_GridNumericColumn FieldName="NTAX_PERCENTAGE" HeaderText="@_localizer["_TaxPersen"]" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn TValue="decimal" FieldName="NTAX_PERCENTAGE" HeaderText="@_localizer["_TaxPersen"]" Width="200px"></R_GridNumericColumn>
                 <R_GridTextColumn FieldName="CROUNDING_MODE_DESCR" HeaderText="@_localizer["_RoundMode"]" Width="300px"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CTAX_DATE" HeaderText="@_localizer["_TaxDate"]" Width="200px"></R_GridTextColumn>
-                <R_GridNumericColumn FieldName="IROUNDING" ThousandSeparator="false" HeaderText="@_localizer["_RoundUnit"]" Width="200px"></R_GridNumericColumn>
-                <R_GridTextColumn FieldName="CTAXIN_GLACCOUNT_NO_CTAXIN_GLACCOUNT_NAME" HeaderText="@_localizer["_TaxGlAccountNo"]" Width="400px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CTAXOUT_GLACCOUNT_NO_CTAXOUT_GLACCOUNT_NAME" HeaderText="@_localizer["_TaxGlAccountName"]" Width="400px"></R_GridTextColumn>
+                <R_GridNumericColumn TValue="int" FieldName="IROUNDING" ThousandSeparator="false" HeaderText="@_localizer["_RoundUnit"]" Width="200px"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="CTAXIN_GLACCOUNT_NO_CTAXIN_GLACCOUNT_NAME" HeaderText="@_localizer["_TaxGlAccountNo"]" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CTAXOUT_GLACCOUNT_NO_CTAXOUT_GLACCOUNT_NAME" HeaderText="@_localizer["_TaxGlAccountName"]" Width="300px"></R_GridTextColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>

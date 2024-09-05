@@ -8,5 +8,6 @@ namespace GSM02500COMMON.DTOs.GSM02550
     {
         public string CLOGIN_COMPANY_ID { get; set; } = "";
         public string CSELECTED_PROPERTY_ID { get; set; } = "";
+        public string CSEARCH_TEXT { get; set; } = "";
     }
 }

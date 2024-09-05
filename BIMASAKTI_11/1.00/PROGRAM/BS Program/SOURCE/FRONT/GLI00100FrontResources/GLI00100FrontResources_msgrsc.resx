@@ -213,4 +213,28 @@
     <data name="LABEL_GROUPJRNLDESC" xml:space="preserve">
         <value>Journal Description</value>
     </data>
+    
+    <data name="LocalCurrency" xml:space="preserve">
+        <value>Local Currency</value>
+    </data>
+    
+    <data name="BaseCurrency" xml:space="preserve">
+        <value>Base Currency</value>
+    </data>
+    <!-- Income Statement -->
+    <data name="IncomeStatement" xml:space="preserve">
+        <value>Income Statement</value>
+    </data>
+    <!-- Balance Sheet -->
+    <data name="BalanceSheet" xml:space="preserve">
+        <value>Balance Sheet</value>
+    </data>
+    <!-- Debit -->
+    <data name="Debit" xml:space="preserve">
+        <value>Debit</value>
+    </data>
+    <!-- Credit -->
+    <data name="Credit" xml:space="preserve">
+        <value>Credit</value>
+    </data>
 </root>

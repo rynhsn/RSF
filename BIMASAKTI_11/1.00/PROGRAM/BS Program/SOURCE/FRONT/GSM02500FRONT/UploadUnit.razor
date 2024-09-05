@@ -73,14 +73,14 @@
                         AllowDeleteRow="false"
                         R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
                     <R_GridColumns>
-                        <R_GridNumericColumn FieldName=@nameof(UploadUnitDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="100px"></R_GridNumericColumn>
-                        <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.UnitId) HeaderText="@_localizer["_UnitId"]" Enabled="false" Width="150px"></R_GridTextColumn>
-                        <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.UnitName) HeaderText="@_localizer["_UnitName"]" Enabled="false" Width="200px"></R_GridTextColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridNumericColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.UnitId) HeaderText="@_localizer["_UnitId"]" Enabled="false" Width="100px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.UnitName) HeaderText="@_localizer["_UnitName"]" Enabled="false" Width="250px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.UnitType) HeaderText="@_localizer["_UnitType"]" Enabled="false" Width="150px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.UnitView) HeaderText="@_localizer["_UnitView"]" Enabled="false" Width="150px"></R_GridTextColumn>
-                        <R_GridNumericColumn FieldName=@nameof(UploadUnitDTO.GrossSize) HeaderText="@_localizer["_GrossSize"]" Enabled="false" Width="150px"></R_GridNumericColumn>
-                        <R_GridNumericColumn FieldName=@nameof(UploadUnitDTO.NetSize) HeaderText="@_localizer["_NetSize"]" Enabled="false" Width="150px"></R_GridNumericColumn>
-                        <R_GridNumericColumn FieldName=@nameof(UploadUnitDTO.CommonArea) HeaderText="@_localizer["_CommonArea"]" Enabled="false" Width="150px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitDTO.GrossSize) HeaderText="@_localizer["_GrossSize"]" Enabled="false" Width="125px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitDTO.NetSize) HeaderText="@_localizer["_NetSize"]" Enabled="false" Width="125px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitDTO.CommonArea) HeaderText="@_localizer["_CommonArea"]" Enabled="false" Width="125px"></R_GridNumericColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.UnitCategory) HeaderText="@_localizer["_UnitCategory"]" Enabled="false" Width="150px"></R_GridTextColumn>
                         <R_GridCheckBoxColumn FieldName=@nameof(UploadUnitDTO.Active) HeaderText="@_localizer["_Active"]" Enabled="false" Width="100px"></R_GridCheckBoxColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.NonActiveDate) HeaderText="@_localizer["_NonActiveDate"]" Enabled="false" Width="150px"></R_GridTextColumn>
@@ -112,6 +112,7 @@
                     </R_ItemLayout>
                     <R_ItemLayout col="2" Class="bg-success">
                         <R_NumericTextBox @bind-Value="@loUploadUnitViewModel.SumValid"
+                                                ReadOnly
                                           Arrows="false"
                                           Enabled="false">
                         </R_NumericTextBox>
@@ -121,6 +122,7 @@
                     </R_ItemLayout>
                     <R_ItemLayout col="2" Class="badge bg-danger">
                         <R_NumericTextBox @bind-Value="@loUploadUnitViewModel.SumInvalid"
+                                                ReadOnly
                                           Arrows="false"
                                           Enabled="false">
                         </R_NumericTextBox>

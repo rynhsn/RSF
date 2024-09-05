@@ -11,6 +11,8 @@ namespace GSM02500COMMON.DTOs.GSM02531
         public SelectedBuildingDTO BuildingData { get; set; } = new SelectedBuildingDTO();
         public SelectedFloorDTO FloorData { get; set; } = new SelectedFloorDTO();
         public SelectedUnitDTO UnitData { get; set; } = new SelectedUnitDTO();
+        public SelectedOtherUnitDTO OtherUnitData { get; set; } = new SelectedOtherUnitDTO();
         public string SelectedUtilityTypeId { get; set; } = "";
+        public bool LFLAG { get; set; } = false;
     }
 }

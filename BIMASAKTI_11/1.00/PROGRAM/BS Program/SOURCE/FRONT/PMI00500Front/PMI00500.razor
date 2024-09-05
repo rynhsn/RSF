@@ -79,12 +79,12 @@
                         Width="100%"
                         Height="170px">
                     <R_GridColumns>
-                        <R_GridTextColumn FieldName="@nameof(PMI00500DTAgreementDTO.CAGREEMENT_NO)" HeaderText="@_localizer["AGREEMENT_NO"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMI00500DTAgreementDTO.CAGREEMENT_NO)" HeaderText="@_localizer["AGREEMENT_NO"]" TextAlignment="R_eTextAlignment.Left" Width="140px"/>
                         <R_GridDatePickerColumn FieldName="@nameof(PMI00500DTAgreementDTO.DSTART_DATE)" HeaderText="@_localizer["START_DATE"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
                         <R_GridDatePickerColumn FieldName="@nameof(PMI00500DTAgreementDTO.DEND_DATE)" HeaderText="@_localizer["END_DATE"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
-                        <R_GridTextColumn FieldName="@nameof(PMI00500DTAgreementDTO.CUNIT)" HeaderText="@_localizer["UNIT"]" TextAlignment="R_eTextAlignment.Left" Width="50px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMI00500DTAgreementDTO.CUNIT)" HeaderText="@_localizer["UNIT"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
                         <R_GridTextColumn FieldName="@nameof(PMI00500DTAgreementDTO.CBUILDING)" HeaderText="@_localizer["BUILDING"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
-                        <R_GridTextColumn FieldName="@nameof(PMI00500DTAgreementDTO.CAGREEMENT_STATUS)" HeaderText="@_localizer["STATUS"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMI00500DTAgreementDTO.CSTATUS)" HeaderText="@_localizer["STATUS"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
                     </R_GridColumns>
                 </R_Grid>
             </R_ItemLayout>
@@ -104,10 +104,10 @@
                         Width="100%"
                         Height="170px">
                     <R_GridColumns>
-                        <R_GridTextColumn FieldName="@nameof(PMI00500DTReminderDTO.CREMINDER_NO)" HeaderText="@_localizer["REMINDER_NO"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
-                        <R_GridDatePickerColumn FieldName="@nameof(PMI00500DTReminderDTO.DREMINDER_DATE)" HeaderText="@_localizer["REMINDER_DATE"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
-                        <R_GridTextColumn FieldName="@nameof(PMI00500DTReminderDTO.CREMINDER_LEVEL)" HeaderText="@_localizer["REMINDER_LEVEL"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
-                        <R_GridTextColumn FieldName="@nameof(PMI00500DTReminderDTO.CSTATUS)" HeaderText="@_localizer["STATUS"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMI00500DTReminderDTO.CREMINDER_NO)" HeaderText="@_localizer["REMINDER_NO"]" TextAlignment="R_eTextAlignment.Left" Width="140px"/>
+                        <R_GridDatePickerColumn FieldName="@nameof(PMI00500DTReminderDTO.DREMINDER_DATE)" HeaderText="@_localizer["REMINDER_DATE"]" TextAlignment="R_eTextAlignment.Left" Width="125px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMI00500DTReminderDTO.CREMINDER_LEVEL)" HeaderText="@_localizer["REMINDER_LEVEL"]" TextAlignment="R_eTextAlignment.Left" Width="125px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMI00500DTReminderDTO.CSTATUS)" HeaderText="@_localizer["STATUS"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
                     </R_GridColumns>
                 </R_Grid>
             </R_ItemLayout>
@@ -126,11 +126,11 @@
                         Width="100%"
                         Height="170px">
                     <R_GridColumns>
-                        <R_GridTextColumn FieldName="@nameof(PMI00500DTInvoiceDTO.CINVOICE_NO)" HeaderText="@_localizer["INVOICE_NO"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMI00500DTInvoiceDTO.CINVOICE_NO)" HeaderText="@_localizer["INVOICE_NO"]" TextAlignment="R_eTextAlignment.Left" Width="140px"/>
                         <R_GridTextColumn FieldName="@nameof(PMI00500DTInvoiceDTO.CINVOICE_DESC)" HeaderText="@_localizer["INVOICE_DESC"]" TextAlignment="R_eTextAlignment.Left" Width="200px"/>
                         <R_GridDatePickerColumn FieldName="@nameof(PMI00500DTInvoiceDTO.DDUE_DATE)" HeaderText="@_localizer["DUE_DATE"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
-                        <R_GridNumericColumn FieldName="@nameof(PMI00500DTInvoiceDTO.ILATE_DAYS)" HeaderText="@_localizer["LATE_DAYS"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
-                        <R_GridNumericColumn FieldName="@nameof(PMI00500DTInvoiceDTO.NPENALTY_AMOUNT)" HeaderText="@_localizer["PENALTY_AMT"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                        <R_GridNumericColumn TValue="Int32" FieldName="@nameof(PMI00500DTInvoiceDTO.ILATE_DAYS)" HeaderText="@_localizer["LATE_DAYS"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMI00500DTInvoiceDTO.NPENALTY_AMOUNT)" HeaderText="@_localizer["PENALTY_AMT"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
                     </R_GridColumns>
                 </R_Grid>
             </R_ItemLayout>

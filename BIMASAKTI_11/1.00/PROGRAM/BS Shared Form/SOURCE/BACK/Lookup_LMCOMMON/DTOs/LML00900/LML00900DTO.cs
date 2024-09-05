@@ -45,5 +45,9 @@ namespace Lookup_PMCOMMON.DTOs
             set => _CUSTOMER = CTENANT_ID + " - " + CTENANT_NAME;
         }
         private string? _CUSTOMER;
+
+        //cr 22/08/2024
+        public decimal NWH_TAX { get; set; }
+        public decimal NWH_TAX_REMAINING { get; set; }
     }
 }

@@ -592,6 +592,29 @@ namespace GSM05000Front
             loException.ThrowExceptionIfErrors();
         }
 
+        private async Task ValidationReplacement(R_ValidationEventArgs eventArgs)
+        {
+            var loException = new R_Exception();
+            var loChoice = new R_eMessageBoxResult();
+
+            try
+            {
+                
+                var loData = (GSM05000ApprovalReplacementDTO)eventArgs.Data;
+                if(string.IsNullOrEmpty(loData.CUSER_ID))
+                {
+                    loException.Add(new Exception("User ID is required"));
+                    eventArgs.Cancel = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+
+            loException.ThrowExceptionIfErrors();
+        }
+
         private void SetOtherUser(R_SetEventArgs eventArgs)
         {
             // if (_viewModelUser.HeaderEntity.LAPPROVAL_FLAG)

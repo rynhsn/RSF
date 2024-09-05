@@ -1275,5 +1275,40 @@ namespace Lookup_GSSERVICES
 
             return loRtn;
         }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL02800DTO> GSL02800GetOtherUnitMasterList()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL02800GetOtherUnitList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL02800DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL02800GetOtherUnitList");
+
+            try
+            {
+                var poParameter = new GSL02800ParameterDTO();
+
+                _Logger.LogInfo("Set Param GSL02800GetOtherUnitList");
+                var loCls = new PublicLookupCls();
+                poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
+                poParameter.LEVENT = R_Utility.R_GetStreamingContext<bool>(ContextConstantPublicLookup.LEVENT);
+
+                _Logger.LogInfo("Call Back Method GetALLOtherUnit");
+                var loResult = loCls.GetALLOtherUnitMaster(poParameter);
+
+                _Logger.LogInfo("Call Stream Method Data GSL02800GetOtherUnitList");
+                loRtn = GetStream<GSL02800DTO>(loResult);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL02800GetOtherUnitList");
+
+            return loRtn;
+        }
     }
 }

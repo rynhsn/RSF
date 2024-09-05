@@ -40,13 +40,15 @@
                         AllowDeleteRow="false"
                         R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
                     <R_GridColumns>
-                        <R_GridNumericColumn FieldName=@nameof(UploadUnitTypeDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="100px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitTypeDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridNumericColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadUnitTypeDTO.UnitTypeCode) HeaderText="@_localizer["_UnitTypeCode"]" Enabled="false" Width="150px"></R_GridTextColumn>
-                        <R_GridTextColumn FieldName=@nameof(UploadUnitTypeDTO.UnitTypeName) HeaderText="@_localizer["_UnitTypeName"]" Enabled="false" Width="200px"></R_GridTextColumn>
-                        <R_GridTextColumn FieldName=@nameof(UploadUnitTypeDTO.UnitTypeCtg) HeaderText="@_localizer["_UnitTypeCategory"]" Enabled="false" Width="150px"></R_GridTextColumn>
-                        <R_GridTextColumn FieldName=@nameof(UploadUnitTypeDTO.Description) HeaderText="@_localizer["_Description"]" Enabled="false" Width="250px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitTypeDTO.UnitTypeName) HeaderText="@_localizer["_UnitTypeName"]" Enabled="false" Width="250px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitTypeDTO.UnitTypeCtg) HeaderText="@_localizer["_UnitTypeCategory"]" Enabled="false" Width="175px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitTypeDTO.Description) HeaderText="@_localizer["_Description"]" Enabled="false" Width="350px"></R_GridTextColumn>
                         <R_GridCheckBoxColumn FieldName=@nameof(UploadUnitTypeDTO.Active) HeaderText="@_localizer["_Active"]" Enabled="false" Width="100px"></R_GridCheckBoxColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadUnitTypeDTO.NonActiveDate) HeaderText="@_localizer["_NonActiveDate"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitTypeDTO.GrossAreaSize) HeaderText="@_localizer["_GrossAreaSize"]" Enabled="false" Width="150px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitTypeDTO.NetAreaSize) HeaderText="@_localizer["_NetAreaSize"]" Enabled="false" Width="150px"></R_GridNumericColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadUnitTypeDTO.Valid) HeaderText="@_localizer["_Valid"]" Enabled="false" Width="100px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadUnitTypeDTO.Notes) HeaderText="@_localizer["_Notes"]" Enabled="false" Width="250px"></R_GridTextColumn>
                     </R_GridColumns>
@@ -75,6 +77,7 @@
                     </R_ItemLayout>
                     <R_ItemLayout col="2" Class="bg-success">
                         <R_NumericTextBox @bind-Value="@loUploadUnitTypeViewModel.SumValid"
+                                        ReadOnly
                                           Arrows="false"
                                           Enabled="false">
                         </R_NumericTextBox>
@@ -84,6 +87,7 @@
                     </R_ItemLayout>
                     <R_ItemLayout col="2" Class="badge bg-danger">
                         <R_NumericTextBox @bind-Value="@loUploadUnitTypeViewModel.SumInvalid"
+                                                ReadOnly
                                           Arrows="false"
                                           Enabled="false">
                         </R_NumericTextBox>

@@ -35,6 +35,7 @@
                 AllowEditRow="false"
                 AllowDeleteRow="true"
                 Height="410px"
+                R_CellLostFocused="@UserOnLostFocused"
                 R_After_Open_Grid_Lookup="@Grid_AfterlookUpUser"
                 R_Before_Open_Grid_Lookup="@Grid_BeforelookUpUser"
                 R_Display="@Grid_Display"
@@ -47,12 +48,13 @@
             <R_GridColumns>
                 <R_GridLookupColumn FieldName=@nameof(GSM02550DTO.CUSER_ID)
                                     R_EnableAdd
+                                    Width="150px"
                                     HeaderText="@_localizer["_UserId"]">
                 </R_GridLookupColumn>
-                <R_GridTextColumn FieldName=@nameof(GSM02550DTO.CUSER_NAME) @ref="@UserPropertyNameRef" HeaderText="@_localizer["_UserName"]"></R_GridTextColumn>
-                <R_GridNumericColumn FieldName=@nameof(GSM02550DTO.IUSER_LEVEL) HeaderText="@_localizer["_UserLevel"]" R_EnableAdd></R_GridNumericColumn>
-                <R_GridTextColumn FieldName=@nameof(GSM02550DTO.CCREATE_BY) HeaderText="@_localizer["_CreatedBy"]"></R_GridTextColumn>
-                <R_GridDateTimePickerColumn FieldName=@nameof(GSM02550DTO.DCREATE_DATE) HeaderText="@_localizer["_CreatedDate"]"></R_GridDateTimePickerColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM02550DTO.CUSER_NAME) @ref="@UserPropertyNameRef" Width="350px" HeaderText="@_localizer["_UserName"]"></R_GridTextColumn>
+                <R_GridNumericColumn TValue="decimal" FieldName=@nameof(GSM02550DTO.IUSER_LEVEL) Width="150px" HeaderText="@_localizer["_UserLevel"]" R_EnableAdd></R_GridNumericColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM02550DTO.CCREATE_BY) Width="125px" HeaderText="@_localizer["_CreatedBy"]"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName=@nameof(GSM02550DTO.DCREATE_DATE) Width="200px" HeaderText="@_localizer["_CreatedDate"]"></R_GridDateTimePickerColumn>
             </R_GridColumns>
         </R_Grid>
     </R_ItemLayout>

@@ -30,6 +30,7 @@ using R_BlazorFrontEnd.Controls.Enums;
 using R_LockingFront;
 using Lookup_PMModel.ViewModel.LML00400;
 using Lookup_PMCOMMON.DTOs;
+using Lookup_PMModel.ViewModel.LML00200;
 
 namespace GSM02500FRONT
 {
@@ -75,6 +76,8 @@ namespace GSM02500FRONT
         private bool IsGridUnitTypeCategoryEnabled = true;
 
         private bool _gridEnabled = true;
+
+        private string CCHARGES_TYPE_ID = "";
 
         [Inject] IClientHelper _clientHelper { get; set; }
 
@@ -645,26 +648,93 @@ namespace GSM02500FRONT
 
         private void Grid_R_Before_Open_ChargeId_Lookup(R_BeforeOpenGridLookupColumnEventArgs eventArgs)
         {
-            LML00400ParameterDTO loParam = new LML00400ParameterDTO()
+            R_Exception loEx = new R_Exception();
+            try
             {
-                CPROPERTY_ID = loChargeViewModel.loTabParameter.CPROPERTY_ID,
-                CCHARGE_TYPE_ID = loChargeViewModel.Data.CCHARGES_TYPE,
-                CCOMPANY_ID = _clientHelper.CompanyId,
-                CUSER_ID = _clientHelper.UserId
-            };
-            eventArgs.Parameter = loParam;
-            eventArgs.TargetPageType = typeof(Lookup_PMFRONT.LML00400);
+                if (string.IsNullOrWhiteSpace(CCHARGES_TYPE_ID))
+                {
+                    return;
+                }
+                LML00200ParameterDTO loParam = new LML00200ParameterDTO()
+                {
+                    CPROPERTY_ID = loChargeViewModel.loTabParameter.CPROPERTY_ID,
+                    CCHARGE_TYPE_ID = CCHARGES_TYPE_ID,
+                    CCOMPANY_ID = _clientHelper.CompanyId,
+                    CUSER_ID = _clientHelper.UserId
+                };
+                eventArgs.Parameter = loParam;
+                eventArgs.TargetPageType = typeof(Lookup_PMFRONT.LML00200);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            R_DisplayException(loEx);
+        }
+
+        private void Grid_CellValueChanged(R_CellValueChangedEventArgs eventArgs)
+        {
+            if (eventArgs.ColumnName == nameof(GSM02502ChargeDTO.CCHARGES_TYPE))
+            {
+                CCHARGES_TYPE_ID = (string)eventArgs.Value;
+            }
+        }
+
+        private async Task ChargeIdOnLostFocused(R_CellLostFocusedEventArgs eventArgs)
+        {
+            R_Exception loEx = new R_Exception();
+            try
+            {
+                GSM02502ChargeDTO loGetData = (GSM02502ChargeDTO)eventArgs.CurrentRow;
+
+                if (string.IsNullOrWhiteSpace(CCHARGES_TYPE_ID))
+                {
+                    loGetData.CCHARGES_ID = "";
+                    return;
+                }
+
+                LookupLML00200ViewModel loLookupViewModel = new LookupLML00200ViewModel();
+                LML00200ParameterDTO loParam = new LML00200ParameterDTO()
+                {
+                    CPROPERTY_ID = loChargeViewModel.loTabParameter.CPROPERTY_ID,
+                    CCHARGE_TYPE_ID = CCHARGES_TYPE_ID,
+                    CCOMPANY_ID = _clientHelper.CompanyId,
+                    CUSER_ID = _clientHelper.UserId,
+                    CSEARCH_TEXT = loGetData.CCHARGES_ID
+                };
+
+                var loResult = await loLookupViewModel.GetUnitCharges(loParam);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                            "_ErrLookup01"));
+                    loGetData.CCHARGES_ID = "";
+                    //await GLAccount_TextBox.FocusAsync();
+                }
+                else
+                {
+                    loGetData.CCHARGES_ID = loResult.CCHARGES_ID;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            loEx.ThrowExceptionIfErrors();
         }
 
         private void Grid_R_After_Open_ChargeId_Lookup(R_AfterOpenGridLookupColumnEventArgs eventArgs)
         {
-            var loTempResult = (LML00400DTO)eventArgs.Result;
+            LML00200DTO loTempResult = (LML00200DTO)eventArgs.Result;
             if (loTempResult == null)
             {
                 return;
             }
 
-            var loGetData = (GSM02502ChargeDTO)eventArgs.ColumnData;
+            GSM02502ChargeDTO loGetData = (GSM02502ChargeDTO)eventArgs.ColumnData;
             loGetData.CCHARGES_ID = loTempResult.CCHARGES_ID;
         }
         #endregion
@@ -674,6 +744,7 @@ namespace GSM02500FRONT
         {
             if (eventArgs.ConductorMode == R_eConductorMode.Normal)
             {
+                CCHARGES_TYPE_ID = "";
                 var loParam = (GSM02502ChargeDTO)eventArgs.Data;
                 loChargeViewModel.loCharge = loParam;
             }
@@ -685,6 +756,7 @@ namespace GSM02500FRONT
 
             try
             {
+                GSM02502ChargeDTO loData = (GSM02502ChargeDTO)eventArgs.Data;
                 await _unitTypeCategoryIdRef.FocusAsync();
                 string loNewSequence = "";
                 if (loChargeViewModel.loChargeList.Count() == 0)
@@ -697,8 +769,12 @@ namespace GSM02500FRONT
                     loNewSequence = (int.Parse(loLastData.CSEQUENCE) + 1).ToString("D3");
                 }
 
-                GSM02502ChargeDTO loData = (GSM02502ChargeDTO)eventArgs.Data;
                 loData.CSEQUENCE = loNewSequence;
+                if (loChargeViewModel.loChargeTypeList.Count() > 0)
+                {
+                    loData.CCHARGES_TYPE = loChargeViewModel.loChargeTypeList.FirstOrDefault().CCODE;
+                    CCHARGES_TYPE_ID = loData.CCHARGES_TYPE;
+                }
             }
             catch (Exception ex)
             {

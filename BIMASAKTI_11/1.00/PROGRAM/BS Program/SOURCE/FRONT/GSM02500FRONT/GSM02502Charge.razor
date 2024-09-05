@@ -31,7 +31,7 @@
                                                 R_EnableAdd R_EnableEdit>
             </R_GridComboBoxColumn>
             <R_GridLookupColumn FieldName=@nameof(GSM02502ChargeDTO.CCHARGES_ID) HeaderText="@_localizer["_ChargeId"]" R_EnableAdd R_EnableEdit Width="200px"></R_GridLookupColumn>
-            <R_GridNumericColumn FieldName=@nameof(GSM02502ChargeDTO.NFEE) HeaderText="@_localizer["_MonthlyFee"]" R_EnableAdd R_EnableEdit Width="150px" Arrows="false"></R_GridNumericColumn>
+            <R_GridNumericColumn TValue="decimal" FieldName=@nameof(GSM02502ChargeDTO.NFEE) HeaderText="@_localizer["_MonthlyFee"]" R_EnableAdd R_EnableEdit Width="150px" Arrows="false"></R_GridNumericColumn>
             <R_GridTextColumn FieldName=@nameof(GSM02502ChargeDTO.CDESCRIPTION) HeaderText="@_localizer["_Description"]" R_EnableAdd R_EnableEdit Width="300px"></R_GridTextColumn>
             @*
             <R_GridComboBoxColumn Data="loChargeViewModel.loFeeMethodList"

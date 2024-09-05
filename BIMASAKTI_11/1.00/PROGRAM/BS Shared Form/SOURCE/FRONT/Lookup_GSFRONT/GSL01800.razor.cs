@@ -66,33 +66,33 @@ namespace Lookup_GSFRONT
 
         //    loEx.ThrowExceptionIfErrors();
         //}
-        //private void Conductor_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
-        //{
-        //    var loEx = new R_Exception();
+        private void Conductor_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
 
-        //    try
-        //    {
-        //        eventArgs.Result = eventArgs.Data;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        loEx.Add(ex);
-        //    }
+            try
+            {
+                eventArgs.Result = eventArgs.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
 
-        //    loEx.ThrowExceptionIfErrors();
-        //}
-        //private void ProductCategory_ConvertToGridEntity(R_ConvertToGridEntityEventArgs eventArgs)
-        //{
-        //    var loConductorData = (GSL01800DTO)eventArgs.Data;
-        //    var loData = R_FrontUtility.ConvertObjectToObject<GSL01800TreeDTO>(loConductorData);
-        //    loData.Id = loConductorData.CCATEGORY_ID;
-        //    loData.ParentId = loConductorData.CPARENT;
-        //    loData.Description = string.Format("[{0}] {1} - {2}", loConductorData.ILEVEL, loConductorData.CCATEGORY_ID, loConductorData.CCATEGORY_NAME);
-        //    loData.Note = loConductorData.CCATEGORY_TYPE_DESCR;
-        //    loData.Level = loConductorData.ILEVEL;
+            loEx.ThrowExceptionIfErrors();
+        }
+        private void ProductCategory_ConvertToGridEntity(R_ConvertToGridEntityEventArgs eventArgs)
+        {
+            var loConductorData = (GSL01800DTO)eventArgs.Data;
+            var loData = R_FrontUtility.ConvertObjectToObject<GSL01800TreeDTO>(loConductorData);
+            loData.Id = loConductorData.CCATEGORY_ID;
+            loData.ParentId = loConductorData.CPARENT;
+            loData.Description = string.Format("[{0}] {1} - {2}", loConductorData.ILEVEL, loConductorData.CCATEGORY_ID, loConductorData.CCATEGORY_NAME);
+            loData.Note = loConductorData.CCATEGORY_TYPE_DESCR;
+            loData.Level = loConductorData.ILEVEL;
 
-        //    eventArgs.GridData = loData;
-        //}
+            eventArgs.GridData = loData;
+        }
         public async Task Button_OnClickOkAsync()
         {
             var loCurrentData = (GSL01800TreeDTO)_treeRef.CurrentSelectedData;

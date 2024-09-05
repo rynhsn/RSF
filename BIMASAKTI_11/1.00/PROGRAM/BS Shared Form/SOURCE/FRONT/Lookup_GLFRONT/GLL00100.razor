@@ -1,5 +1,5 @@
 @inherits R_Page
-@attribute [R_Page(Title = "Reference No. Lookup")]
+@attribute [R_Page(Title = "BRANCH LOOKUP")]
 @inject R_ILocalizer<Resources_GLLookup_Class> _localizer
 
 
@@ -40,6 +40,7 @@
 
             <R_GridNumericColumn Width="200px"
                                  FieldName="@nameof(GLL00100DTO.NTRANS_AMOUNT)"
+                                 TValue="decimal"
                                  HeaderText=@_localizer["_Amount"] />
 
             <R_GridTextColumn Width="200px"

@@ -43,5 +43,8 @@ namespace Lookup_PMCOMMON.DTOs
         public decimal NTAX_BASE_RATE { get; set; }
         public decimal NTAX_CURRENCY_RATE { get; set; }
         public string? CUSTOMER { get; set; }
+        //cr 22/08/2024
+        public decimal NWH_TAX { get; set; }
+        public decimal NWH_TAX_REMAINING { get; set; }
     }
 }

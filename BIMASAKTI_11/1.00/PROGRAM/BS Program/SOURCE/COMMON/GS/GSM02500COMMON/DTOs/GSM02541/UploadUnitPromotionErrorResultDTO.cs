@@ -5,8 +5,8 @@ using System.Text;
 
 namespace GSM02500COMMON.DTOs.GSM02541
 {
-    public class UploadUnitPromotionErrorResultDTO : R_APIResultBaseDTO
+    public class UploadOtherUnitErrorResultDTO : R_APIResultBaseDTO
     {
-        public List<UploadUnitPromotionErrorDTO> Data { get; set; }
+        public List<UploadOtherUnitErrorDTO> Data { get; set; }
     }
 }

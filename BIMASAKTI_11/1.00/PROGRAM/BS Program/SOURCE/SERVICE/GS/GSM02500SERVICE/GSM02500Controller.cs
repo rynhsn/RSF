@@ -193,6 +193,42 @@ namespace GSM02500SERVICE
             return loRtn;
         }
 
+
+        [HttpPost]
+        public SelectedOtherUnitResultDTO GetSelectedOtherUnit(SelectedOtherUnitParameterDTO poParam)
+        {
+            using Activity activity = _activitySource.StartActivity("GetSelectedOtherUnit");
+            _logger.LogInfo("Start || GetSelectedOtherUnit(Controller)");
+            R_Exception loException = new R_Exception();
+            SelectedOtherUnitResultDTO loRtn = new SelectedOtherUnitResultDTO();
+
+            try
+            {
+                _logger.LogInfo("Set Parameter || GetSelectedOtherUnit(Controller)");
+                GSM02500Cls loReusableCls = new GSM02500Cls();
+
+                poParam.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParam.CLOGIN_USER_ID = R_BackGlobalVar.USER_ID;
+                //loParam.CSELECTED_PROPERTY_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02500_PROPERTY_ID_CONTEXT);
+                //loParam.CSELECTED_BUILDING_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02500_BUILDING_ID_CONTEXT);
+                //loParam.CSELECTED_FLOOR_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02500_FLOOR_ID_CONTEXT);
+                //lcTemp = R_Utility.R_GetContext<string>(ContextConstant.GSM02500_OtherUnit_ID_CONTEXT);
+                //loParam.Data = new SelectedOtherUnitDTO() { COtherUnit_ID = lcTemp };
+
+                _logger.LogInfo("Set GetSelectedOtherUnit(Cls) || GetSelectedOtherUnit(Controller)");
+                loRtn.Data = loReusableCls.GetSelectedOtherUnit(poParam);
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+                _logger.LogError(loException);
+            }
+
+            loException.ThrowExceptionIfErrors();
+            _logger.LogInfo("End || GetSelectedOtherUnit(Controller)");
+            return loRtn;
+        }
+
         [HttpPost]
         public SelectedUnitTypeResultDTO GetSelectedUnitType(SelectedUnitTypeParameterDTO poParam)
         {

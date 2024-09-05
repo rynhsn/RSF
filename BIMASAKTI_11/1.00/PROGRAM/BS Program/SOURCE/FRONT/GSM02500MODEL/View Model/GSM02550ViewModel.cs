@@ -74,6 +74,23 @@ namespace GSM02500MODEL.View_Model
             loException.ThrowExceptionIfErrors();
         }
 
+        public async Task<GetUserIdNameDTO> GetUserIdNameAsync(GetUserIdNameParameterDTO poParam)
+        {
+            R_Exception loEx = new R_Exception();
+            GetUserIdNameDTO loResult = null;
+
+            try
+            {
+                loResult = await loModel.GetUserIdNameAsync(poParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
 
         public async Task GetUserPropertyTypeListStreamAsync()
         {

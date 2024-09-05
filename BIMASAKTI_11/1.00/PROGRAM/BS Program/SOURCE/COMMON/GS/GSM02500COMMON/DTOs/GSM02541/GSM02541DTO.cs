@@ -6,9 +6,9 @@ namespace GSM02500COMMON.DTOs.GSM02541
 {
     public class GSM02541DTO
     {
-        public string CUNIT_PROMOTION_ID { get; set; }
-        public string CUNIT_PROMOTION_NAME { get; set; }
-        public string CUNIT_PROMOTION_TYPE_NAME { get; set; }
+        public string COTHER_UNIT_ID { get; set; }
+        public string COTHER_UNIT_NAME { get; set; }
+        public string COTHER_UNIT_TYPE_NAME { get; set; }
         public string CBUILDING_NAME { get; set; }
         public string CFLOOR_NAME { get; set; }
         public string CLOCATION { get; set; }

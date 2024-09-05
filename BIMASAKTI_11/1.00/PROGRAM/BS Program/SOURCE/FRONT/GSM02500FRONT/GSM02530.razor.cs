@@ -259,11 +259,8 @@ namespace GSM02500FRONT
             GSM02530DetailDTO loAddField = (GSM02530DetailDTO)eventArgs.Data;
             loAddField.DCREATE_DATE = DateTime.Now;
             loAddField.DUPDATE_DATE = DateTime.Now;
-
-            if (loUnitInfoViewModel.loUnitCategoryList.Count() > 0)
-            {
-                loAddField.CUNIT_CATEGORY_ID = loUnitInfoViewModel.loUnitCategoryList.FirstOrDefault().CCODE;
-            }
+            loAddField.CUNIT_TYPE_ID = loUnitInfoViewModel.loTabParameter.CDEFAULT_UNIT_TYPE;
+            loAddField.CUNIT_CATEGORY_ID = loUnitInfoViewModel.loTabParameter.CDEFAULT_UNIT_CATEGORY;
             IsActiveInactiveEnable = false;
         }
 
@@ -375,7 +372,6 @@ namespace GSM02500FRONT
             R_Exception loException = new R_Exception();
             try
             {
-                loUnitInfoViewModel.UnitInfoValidation((GSM02530DetailDTO)eventArgs.Data);
             }
             catch (Exception ex)
             {
@@ -425,6 +421,13 @@ namespace GSM02500FRONT
             try
             {
                 loData = (GSM02530DetailDTO)eventArgs.Data;
+
+                loUnitInfoViewModel.UnitInfoValidation(loData);
+                if (loException.HasError)
+                {
+                    goto EndBlock;
+                }
+
                 if (loData.LACTIVE == true && _conductorUnitInfoRef.R_ConductorMode == R_eConductorMode.Add)
                 {
                     var loValidateViewModel = new GFF00900Model.ViewModel.GFF00900ViewModel();
@@ -454,6 +457,7 @@ namespace GSM02500FRONT
             {
                 loException.Add(ex);
             }
+            EndBlock:
             loException.ThrowExceptionIfErrors();
         }
 

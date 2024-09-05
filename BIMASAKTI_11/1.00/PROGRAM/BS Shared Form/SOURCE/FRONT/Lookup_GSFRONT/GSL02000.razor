@@ -1,5 +1,5 @@
 ﻿@inherits R_Page
-@attribute [R_Page(Title = "Geography")]
+@attribute [R_Page(ResourceId = "_Geography")]
 @using Lookup_GSCOMMON.DTOs
 @inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
 
@@ -21,17 +21,22 @@
         </R_ItemLayout>
     </R_StackLayout>
 
-    <R_StackLayout Row>
-        <R_TreeView @ref="@_treeRef"
-                    DataSource="@_viewModel.CityGeographyTree"
-                    TextField="Description"
-                    IdField="Id"
-                    ParentIdField="ParentId"
-                    HasChildrenField="HasChildren"
-                    Height="400px"
-                    R_ServiceGetListRecord="@R_ServiceGetListRecordAsync"
-                    >
-        </R_TreeView>
+    <R_StackLayout Spacing="3">
+        <R_StackLayout Row>
+            <R_TreeView @ref="@_treeRef"
+                        R_ConductorSource="@_conductorRef"
+                        TextField="Description"
+                        IdField="Id"
+                        ParentIdField="ParentId"
+                        HasChildrenField="HasChildren"
+                        Height="400px"
+                        R_ServiceGetListRecord="@R_ServiceGetListRecordAsync"
+                        AfterAddBehaviour="R_eTreeviewAfterAddBehaviour.OnParentNode"
+                        TModel="GSL02000TreeDTO"
+                        ShowFilter="true"
+                        >
+            </R_TreeView>
+        </R_StackLayout>
     </R_StackLayout>
 
     <R_StackLayout Row Class="justify-content-end">
@@ -44,3 +49,8 @@
     </R_StackLayout>
 
 </R_StackLayout>
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Conductor_ServiceGetRecord"
+             ></R_Conductor>

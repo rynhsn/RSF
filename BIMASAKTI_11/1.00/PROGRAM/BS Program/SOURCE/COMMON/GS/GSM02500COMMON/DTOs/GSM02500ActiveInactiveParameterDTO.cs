@@ -17,7 +17,7 @@ namespace GSM02500COMMON.DTOs
         public string CUNIT_ID { get; set; } = "";
         public string CUTILITIES_TYPE { get; set; } = "";
         public string CSEQUENCE { get; set; } = "";
-        public string CUNIT_PROMOTION_TYPE_ID { get; set; } = "";
-        public string CUNIT_PROMOTION_ID { get; set; } = "";
+        public string COTHER_UNIT_TYPE_ID { get; set; } = "";
+        public string COTHER_UNIT_ID { get; set; } = "";
     }
 }

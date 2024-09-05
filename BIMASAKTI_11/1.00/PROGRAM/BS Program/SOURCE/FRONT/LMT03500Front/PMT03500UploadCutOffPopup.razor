@@ -42,7 +42,7 @@
                 Width="900px"
                 R_ServiceGetListRecord="@GetListRecord">
             <R_GridColumns>
-                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadCutOffErrorValidateDTO.NO)" HeaderText="@_localizer["LBL_NO"]" Width="75px"/>
+                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UploadCutOffErrorValidateDTO.NO)" HeaderText="@_localizer["LBL_NO"]" Width="75px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UploadCutOffErrorValidateDTO.CBUILDING_ID)" Width="150px" HeaderText="@_localizer["LBL_BUILDINGID"]"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UploadCutOffErrorValidateDTO.CDEPT_CODE)" Width="150px" HeaderText="@_localizer["LBL_DEPT"]"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UploadCutOffErrorValidateDTO.CREF_NO)" Width="150px" HeaderText="@_localizer["LBL_AGREEMENTNO"]"/>
@@ -56,10 +56,10 @@
                 <R_GridTextColumn FieldName="@nameof(PMT03500UploadCutOffErrorValidateDTO.CSTART_DATE)" Width="150px" HeaderText="@_localizer["LBL_STARTDATE"]" TextAlignment="R_eTextAlignment.Left"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UploadCutOffErrorValidateDTO.CEND_DATE)" Width="150px" HeaderText="@_localizer["LBL_ENDDATE"]" TextAlignment="R_eTextAlignment.Left"/>
 
-                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadCutOffErrorValidateDTO.IBLOCK1_START)" Width="150px" HeaderText="@_localizer["LBL_BLOCK1START"]" Visible="@_visibleColumnEC"/>
-                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadCutOffErrorValidateDTO.IBLOCK2_START)" Width="150px" HeaderText="@_localizer["LBL_BLOCK2START"]" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UploadCutOffErrorValidateDTO.IBLOCK1_START)" Width="150px" HeaderText="@_localizer["LBL_BLOCK1START"]" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UploadCutOffErrorValidateDTO.IBLOCK2_START)" Width="150px" HeaderText="@_localizer["LBL_BLOCK2START"]" Visible="@_visibleColumnEC"/>
 
-                <R_GridNumericColumn FieldName="@nameof(PMT03500UploadCutOffErrorValidateDTO.IMETER_START)" HeaderText="@_localizer["LBL_METERSTART"]" Width="150px" Visible="@_visibleColumnWG"/>
+                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UploadCutOffErrorValidateDTO.IMETER_START)" HeaderText="@_localizer["LBL_METERSTART"]" Width="150px" Visible="@_visibleColumnWG"/>
 
                 <R_GridTextColumn FieldName="@nameof(PMT03500UploadCutOffErrorValidateDTO.ErrorFlag)" HeaderText="@_localizer["VALID"]" Width="100px" Visible="@_viewModel.IsError"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UploadCutOffErrorValidateDTO.ErrorMessage)" HeaderText="@_localizer["NOTES"]" Width="300px" Visible="@_viewModel.IsError"/>

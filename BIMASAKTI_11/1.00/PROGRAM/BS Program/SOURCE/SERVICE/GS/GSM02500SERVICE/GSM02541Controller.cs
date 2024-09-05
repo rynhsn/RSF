@@ -30,32 +30,32 @@ namespace GSM02500SERVICE
         {
             LoggerGSM02541.R_InitializeLogger(logger);
             _logger = LoggerGSM02541.R_GetInstanceLogger();
-            _activitySource = GSM02540UnitPromotionActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GSM02540Controller));
+            _activitySource = GSM02540OtherUnitActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GSM02540Controller));
         }
 
         [HttpPost]
-        public IAsyncEnumerable<GSM02541DTO> GetUnitPromotionList()
+        public IAsyncEnumerable<GSM02541DTO> GetOtherUnitList()
         {
-            using Activity activity = _activitySource.StartActivity("GetUnitPromotionList");
-            _logger.LogInfo("Start || GetUnitPromotionList(Controller)");
+            using Activity activity = _activitySource.StartActivity("GetOtherUnitList");
+            _logger.LogInfo("Start || GetOtherUnitList(Controller)");
             R_Exception loException = new R_Exception();
             IAsyncEnumerable<GSM02541DTO> loRtn = null;
-            GetUnitPromotionListParameterDTO loParam = new GetUnitPromotionListParameterDTO();
-            GSM02540UnitPromotionCls loCls = new GSM02540UnitPromotionCls();
+            GetOtherUnitListParameterDTO loParam = new GetOtherUnitListParameterDTO();
+            GSM02540OtherUnitCls loCls = new GSM02540OtherUnitCls();
             List<GSM02541DTO> loTempRtn = null;
 
             try
             {
-                _logger.LogInfo("Set Parameter || GetUnitPromotionList(Controller)");
+                _logger.LogInfo("Set Parameter || GetOtherUnitList(Controller)");
                 loParam.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 loParam.CSELECTED_PROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstant.GSM02540_PROPERTY_ID_STREAMING_CONTEXT);
                 loParam.CLOGIN_USER_ID = R_BackGlobalVar.USER_ID;
 
-                _logger.LogInfo("Run GetUnitPromotionList(Cls) || GetUnitPromotionList(Controller)");
-                loTempRtn = loCls.GetUnitPromotionList(loParam);
+                _logger.LogInfo("Run GetOtherUnitList(Cls) || GetOtherUnitList(Controller)");
+                loTempRtn = loCls.GetOtherUnitList(loParam);
 
-                _logger.LogInfo("Run GetUnitPromotionStream(Controller) || GetUnitPromotionList(Controller)");
-                loRtn = GetUnitPromotionStream(loTempRtn);
+                _logger.LogInfo("Run GetOtherUnitStream(Controller) || GetOtherUnitList(Controller)");
+                loRtn = GetOtherUnitStream(loTempRtn);
             }
             catch (Exception ex)
             {
@@ -64,10 +64,10 @@ namespace GSM02500SERVICE
             }
 
             loException.ThrowExceptionIfErrors();
-            _logger.LogInfo("End || GetUnitPromotionList(Controller)");
+            _logger.LogInfo("End || GetOtherUnitList(Controller)");
             return loRtn;
         }
-        private async IAsyncEnumerable<GSM02541DTO> GetUnitPromotionStream(List<GSM02541DTO> poParameter)
+        private async IAsyncEnumerable<GSM02541DTO> GetOtherUnitStream(List<GSM02541DTO> poParameter)
         {
             foreach (GSM02541DTO item in poParameter)
             {
@@ -76,18 +76,18 @@ namespace GSM02500SERVICE
         }
 
         [HttpPost]
-        public TemplateUnitPromotionDTO DownloadTemplateUnitPromotion()
+        public TemplateOtherUnitDTO DownloadTemplateOtherUnit()
         {
-            using Activity activity = _activitySource.StartActivity("DownloadTemplateUnitPromotion");
-            _logger.LogInfo("Start || DownloadTemplateUnitPromotion(Controller)");
+            using Activity activity = _activitySource.StartActivity("DownloadTemplateOtherUnit");
+            _logger.LogInfo("Start || DownloadTemplateOtherUnit(Controller)");
             R_Exception loException = new R_Exception();
-            TemplateUnitPromotionDTO loRtn = new TemplateUnitPromotionDTO();
+            TemplateOtherUnitDTO loRtn = new TemplateOtherUnitDTO();
 
             try
             {
-                _logger.LogInfo("Read File || DownloadTemplateUnitPromotion(Controller)");
+                _logger.LogInfo("Read File || DownloadTemplateOtherUnit(Controller)");
                 var loAsm = Assembly.Load("BIMASAKTI_GS_API");
-                var lcResourceFile = "BIMASAKTI_GS_API.Template.Unit Promotion.xlsx";
+                var lcResourceFile = "BIMASAKTI_GS_API.Template.Other Unit.xlsx";
 
                 using (Stream resFilestream = loAsm.GetManifestResourceStream(lcResourceFile))
                 {
@@ -105,33 +105,33 @@ namespace GSM02500SERVICE
             }
 
             loException.ThrowExceptionIfErrors();
-            _logger.LogInfo("End || DownloadTemplateUnitPromotion(Controller)");
+            _logger.LogInfo("End || DownloadTemplateOtherUnit(Controller)");
             return loRtn;
         }
 
         [HttpPost]
-        public IAsyncEnumerable<UnitPromotionTypeDTO> GetUnitPromotionTypeList()
+        public IAsyncEnumerable<OtherUnitTypeDTO> GetOtherUnitTypeList()
         {
-            using Activity activity = _activitySource.StartActivity("GetUnitPromotionTypeList");
-            _logger.LogInfo("Start || GetUnitPromotionTypeList(Controller)");
+            using Activity activity = _activitySource.StartActivity("GetOtherUnitTypeList");
+            _logger.LogInfo("Start || GetOtherUnitTypeList(Controller)");
             R_Exception loException = new R_Exception();
-            IAsyncEnumerable<UnitPromotionTypeDTO> loRtn = null;
-            UnitPromotionTypeParameterDTO loParam = new UnitPromotionTypeParameterDTO();
-            GSM02540UnitPromotionCls loCls = new GSM02540UnitPromotionCls();
-            List<UnitPromotionTypeDTO> loTempRtn = null;
+            IAsyncEnumerable<OtherUnitTypeDTO> loRtn = null;
+            OtherUnitTypeParameterDTO loParam = new OtherUnitTypeParameterDTO();
+            GSM02540OtherUnitCls loCls = new GSM02540OtherUnitCls();
+            List<OtherUnitTypeDTO> loTempRtn = null;
 
             try
             {
-                _logger.LogInfo("Set Parameter || GetUnitPromotionTypeList(Controller)");
+                _logger.LogInfo("Set Parameter || GetOtherUnitTypeList(Controller)");
                 loParam.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 loParam.CLOGIN_USER_ID = R_BackGlobalVar.USER_ID;
                 loParam.CSELECTED_PROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstant.GSM02540_PROPERTY_ID_STREAMING_CONTEXT);
 
-                _logger.LogInfo("Run GetUnitPromotionTypeList(Cls) || GetUnitPromotionTypeList(Controller)");
-                loTempRtn = loCls.GetUnitPromotionTypeList(loParam);
+                _logger.LogInfo("Run GetOtherUnitTypeList(Cls) || GetOtherUnitTypeList(Controller)");
+                loTempRtn = loCls.GetOtherUnitTypeList(loParam);
 
-                _logger.LogInfo("Run GetUnitPromotionTypeStream(Controller) || GetUnitPromotionTypeList(Controller)");
-                loRtn = GetUnitPromotionTypeStream(loTempRtn);
+                _logger.LogInfo("Run GetOtherUnitTypeStream(Controller) || GetOtherUnitTypeList(Controller)");
+                loRtn = GetOtherUnitTypeStream(loTempRtn);
             }
             catch (Exception ex)
             {
@@ -140,12 +140,12 @@ namespace GSM02500SERVICE
             }
 
             loException.ThrowExceptionIfErrors();
-            _logger.LogInfo("End || GetUnitPromotionTypeList(Controller)");
+            _logger.LogInfo("End || GetOtherUnitTypeList(Controller)");
             return loRtn;
         }
-        private async IAsyncEnumerable<UnitPromotionTypeDTO> GetUnitPromotionTypeStream(List<UnitPromotionTypeDTO> poParameter)
+        private async IAsyncEnumerable<OtherUnitTypeDTO> GetOtherUnitTypeStream(List<OtherUnitTypeDTO> poParameter)
         {
-            foreach (UnitPromotionTypeDTO item in poParameter)
+            foreach (OtherUnitTypeDTO item in poParameter)
             {
                 yield return item;
             }
@@ -159,7 +159,7 @@ namespace GSM02500SERVICE
             R_Exception loException = new R_Exception();
             IAsyncEnumerable<BuildingDTO> loRtn = null;
             BuildingParameterDTO loParam = new BuildingParameterDTO();
-            GSM02540UnitPromotionCls loCls = new GSM02540UnitPromotionCls();
+            GSM02540OtherUnitCls loCls = new GSM02540OtherUnitCls();
             List<BuildingDTO> loTempRtn = null;
 
             try
@@ -201,7 +201,7 @@ namespace GSM02500SERVICE
             R_Exception loException = new R_Exception();
             IAsyncEnumerable<FloorDTO> loRtn = null;
             FloorParameterDTO loParam = new FloorParameterDTO();
-            GSM02540UnitPromotionCls loCls = new GSM02540UnitPromotionCls();
+            GSM02540OtherUnitCls loCls = new GSM02540OtherUnitCls();
             List<FloorDTO> loTempRtn = null;
 
             try
@@ -237,26 +237,26 @@ namespace GSM02500SERVICE
         }
 
         [HttpPost]
-        public GSM02500ActiveInactiveResultDTO RSP_GS_ACTIVE_INACTIVE_UNIT_PROMOTIONMethod(GSM02500ActiveInactiveParameterDTO poParam)
+        public GSM02500ActiveInactiveResultDTO RSP_GS_ACTIVE_INACTIVE_OTHER_UNITMethod(GSM02500ActiveInactiveParameterDTO poParam)
         {
-            using Activity activity = _activitySource.StartActivity("RSP_GS_ACTIVE_INACTIVE_UNIT_PROMOTIONMethod");
-            _logger.LogInfo("Start || RSP_GS_ACTIVE_INACTIVE_UNIT_PROMOTIONMethod(Controller)");
+            using Activity activity = _activitySource.StartActivity("RSP_GS_ACTIVE_INACTIVE_OTHER_UNITMethod");
+            _logger.LogInfo("Start || RSP_GS_ACTIVE_INACTIVE_OTHER_UNITMethod(Controller)");
             R_Exception loException = new R_Exception();
             //GSM02500ActiveInactiveParameterDTO loParam = new GSM02500ActiveInactiveParameterDTO();
             GSM02500ActiveInactiveResultDTO loRtn = new GSM02500ActiveInactiveResultDTO();
-            GSM02540UnitPromotionCls loCls = new GSM02540UnitPromotionCls();
+            GSM02540OtherUnitCls loCls = new GSM02540OtherUnitCls();
 
             try
             {
-                _logger.LogInfo("Set Parameter || RSP_GS_ACTIVE_INACTIVE_UNIT_PROMOTIONMethod(Controller)");
+                _logger.LogInfo("Set Parameter || RSP_GS_ACTIVE_INACTIVE_OTHER_UNITMethod(Controller)");
                 poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 //loParam.CPROPERTY_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02540_PROPERTY_ID_CONTEXT);
-                //loParam.CUNIT_PROMOTION_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02540_CUNIT_PROMOTION_ID_CONTEXT);
+                //loParam.COTHER_UNIT_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02540_COTHER_UNIT_ID_CONTEXT);
                 //loParam.LACTIVE = R_Utility.R_GetContext<bool>(ContextConstant.GSM02540_LACTIVE_CONTEXT);
                 poParam.CUSER_ID = R_BackGlobalVar.USER_ID;
 
-                _logger.LogInfo("Run RSP_GS_ACTIVE_INACTIVE_UNIT_PROMOTIONMethod(Cls) || RSP_GS_ACTIVE_INACTIVE_UNIT_PROMOTIONMethod(Controller)");
-                loCls.RSP_GS_ACTIVE_INACTIVE_UNIT_PROMOTIONMethod(poParam);
+                _logger.LogInfo("Run RSP_GS_ACTIVE_INACTIVE_OTHER_UNITMethod(Cls) || RSP_GS_ACTIVE_INACTIVE_OTHER_UNITMethod(Controller)");
+                loCls.RSP_GS_ACTIVE_INACTIVE_OTHER_UNITMethod(poParam);
             }
             catch (Exception ex)
             {
@@ -265,7 +265,7 @@ namespace GSM02500SERVICE
             }
 
             loException.ThrowExceptionIfErrors();
-            _logger.LogInfo("End || RSP_GS_ACTIVE_INACTIVE_UNIT_PROMOTIONMethod(Controller)");
+            _logger.LogInfo("End || RSP_GS_ACTIVE_INACTIVE_OTHER_UNITMethod(Controller)");
             return loRtn;
         }
 
@@ -276,7 +276,7 @@ namespace GSM02500SERVICE
             _logger.LogInfo("Start || R_ServiceDelete(Controller)");
             R_Exception loException = new R_Exception();
             R_ServiceDeleteResultDTO loRtn = new R_ServiceDeleteResultDTO();
-            GSM02540UnitPromotionCls loCls = new GSM02540UnitPromotionCls();
+            GSM02540OtherUnitCls loCls = new GSM02540OtherUnitCls();
 
             try
             {
@@ -312,7 +312,7 @@ namespace GSM02500SERVICE
             try
             {
                 _logger.LogInfo("Set Parameter || R_ServiceGetRecord(Controller)");
-                GSM02540UnitPromotionCls loCls = new GSM02540UnitPromotionCls();
+                GSM02540OtherUnitCls loCls = new GSM02540OtherUnitCls();
 
                 //loParam.Data = poParameter.Entity;
                 poParameter.Entity.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
@@ -340,7 +340,7 @@ namespace GSM02500SERVICE
             _logger.LogInfo("Start || R_ServiceSave(Controller)");
             R_Exception loException = new R_Exception();
             R_ServiceSaveResultDTO<GSM02541ParameterDTO> loRtn = new R_ServiceSaveResultDTO<GSM02541ParameterDTO>();
-            GSM02540UnitPromotionCls loCls = new GSM02540UnitPromotionCls();
+            GSM02540OtherUnitCls loCls = new GSM02540OtherUnitCls();
 
             try
             {

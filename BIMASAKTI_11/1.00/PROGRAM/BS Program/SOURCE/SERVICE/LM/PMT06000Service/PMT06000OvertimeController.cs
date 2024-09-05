@@ -74,6 +74,7 @@ public class PMT06000OvertimeController : ControllerBase, IPMT06000Overtime
             _logger.LogInfo("Set Parameter");
             poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
+            poParameter.Entity.CLANG_ID = R_BackGlobalVar.CULTURE;
 
             _logger.LogInfo("Save Ovt Entity");
             loRtn.data = loCls.R_Save(poParameter.Entity, poParameter.CRUDMode);

@@ -1,5 +1,5 @@
 ﻿@inherits R_Page
-@attribute [R_Page(Title = "Currency Rate")]
+@attribute [R_Page(ResourceId = "_CurrencyRate")]
 @using Lookup_GSCOMMON.DTOs
 @inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
 
@@ -44,10 +44,10 @@
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CCURRENCY_CODE" HeaderText="@_localizer["_CurrCode"]" Width="100px"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CCURRENCY_NAME" HeaderText="@_localizer["_CurrName"]" Width="300px"></R_GridTextColumn>
-                <R_GridNumericColumn FieldName="NLBASE_RATE_AMOUNT" HeaderText="@_localizer["_LocCurrBaseRate"]" Width="200px"></R_GridNumericColumn>
-                <R_GridNumericColumn FieldName="NLCURRENCY_RATE_AMOUNT" HeaderText="@_localizer["_LocCurrRate"]" Width="200px"></R_GridNumericColumn>
-                <R_GridNumericColumn FieldName="NBBASE_RATE_AMOUNT" HeaderText="@_localizer["_BaseCurrBaseRate"]" Width="200px"></R_GridNumericColumn>
-                <R_GridNumericColumn FieldName="NBCURRENCY_RATE_AMOUNT" HeaderText="@_localizer["_BaseCurrRate"]" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn TValue="decimal" FieldName="NLBASE_RATE_AMOUNT" HeaderText="@_localizer["_LocCurrBaseRate"]" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn TValue="decimal" FieldName="NLCURRENCY_RATE_AMOUNT" HeaderText="@_localizer["_LocCurrRate"]" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn TValue="decimal" FieldName="NBBASE_RATE_AMOUNT" HeaderText="@_localizer["_BaseCurrBaseRate"]" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn TValue="decimal" FieldName="NBCURRENCY_RATE_AMOUNT" HeaderText="@_localizer["_BaseCurrRate"]" Width="200px"></R_GridNumericColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>

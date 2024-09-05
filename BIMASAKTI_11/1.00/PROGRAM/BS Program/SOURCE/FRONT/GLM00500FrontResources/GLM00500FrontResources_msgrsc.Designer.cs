@@ -60,11 +60,47 @@ namespace GLM00500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actual Value.
+        /// </summary>
+        internal static string ActualValue {
+            get {
+                return ResourceManager.GetString("ActualValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Annually.
+        /// </summary>
+        internal static string Annually {
+            get {
+                return ResourceManager.GetString("Annually", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Budget Weighting.
+        /// </summary>
+        internal static string BudgetWeighting {
+            get {
+                return ResourceManager.GetString("BudgetWeighting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure want to cancel selected Budget?.
         /// </summary>
         internal static string CancelBudget {
             get {
                 return ResourceManager.GetString("CancelBudget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear All Existing Data.
+        /// </summary>
+        internal static string ClearAllExistingData {
+            get {
+                return ResourceManager.GetString("ClearAllExistingData", resourceCulture);
             }
         }
         
@@ -101,6 +137,15 @@ namespace GLM00500FrontResources {
         internal static string ErrorLabel {
             get {
                 return ResourceManager.GetString("ErrorLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Evenly.
+        /// </summary>
+        internal static string Evenly {
+            get {
+                return ResourceManager.GetString("Evenly", resourceCulture);
             }
         }
         
@@ -173,6 +218,15 @@ namespace GLM00500FrontResources {
         internal static string Exception08 {
             get {
                 return ResourceManager.GetString("Exception08", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Existing Budget.
+        /// </summary>
+        internal static string ExistingBudget {
+            get {
+                return ResourceManager.GetString("ExistingBudget", resourceCulture);
             }
         }
         
@@ -708,11 +762,74 @@ namespace GLM00500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manually.
+        /// </summary>
+        internal static string Manually {
+            get {
+                return ResourceManager.GetString("Manually", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Budget Generated Successfully!.
         /// </summary>
         internal static string MessageGenerateSuccess {
             get {
                 return ResourceManager.GetString("MessageGenerateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monthly.
+        /// </summary>
+        internal static string Monthly {
+            get {
+                return ResourceManager.GetString("Monthly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal Account.
+        /// </summary>
+        internal static string NormalAccount {
+            get {
+                return ResourceManager.GetString("NormalAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Percentage.
+        /// </summary>
+        internal static string Percentage {
+            get {
+                return ResourceManager.GetString("Percentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace Existing Data.
+        /// </summary>
+        internal static string ReplaceExistingData {
+            get {
+                return ResourceManager.GetString("ReplaceExistingData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip Existing Data.
+        /// </summary>
+        internal static string SkipExistingData {
+            get {
+                return ResourceManager.GetString("SkipExistingData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistic Account.
+        /// </summary>
+        internal static string StatisticAccount {
+            get {
+                return ResourceManager.GetString("StatisticAccount", resourceCulture);
             }
         }
         
@@ -767,6 +884,15 @@ namespace GLM00500FrontResources {
         internal static string TITLE_DETAIL {
             get {
                 return ResourceManager.GetString("TITLE_DETAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        internal static string Value {
+            get {
+                return ResourceManager.GetString("Value", resourceCulture);
             }
         }
     }

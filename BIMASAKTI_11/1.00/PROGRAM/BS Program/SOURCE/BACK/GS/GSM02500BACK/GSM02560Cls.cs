@@ -113,7 +113,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_PROPERTY_DEPT_LIST " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -161,7 +161,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_DEPT_LOOKUP_LIST  " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -209,7 +209,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_PROPERTY_DEPT_DETAIL " +
                     $"@CLOGIN_COMPANY_ID, " +

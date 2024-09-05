@@ -132,6 +132,12 @@
   <data name="_AdditionalCharges" xml:space="preserve">
     <value>Additional Charges</value>
   </data>
+  <data name="_Bank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="_BankAccount" xml:space="preserve">
+    <value>Bank Account</value>
+  </data>
   <data name="_BankCode" xml:space="preserve">
     <value>Bank Code</value>
   </data>
@@ -156,11 +162,26 @@
   <data name="_BuildingName" xml:space="preserve">
     <value>Building Name</value>
   </data>
+  <data name="_BuildingUnit" xml:space="preserve">
+    <value>Building Unit</value>
+  </data>
   <data name="_CancelBtn" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="_CashAndBank" xml:space="preserve">
+    <value>Cash &amp; Bank</value>
+  </data>
+  <data name="_CashAndBankAccount" xml:space="preserve">
+    <value>Cash &amp; Bank Account</value>
+  </data>
   <data name="_CashFlowCode" xml:space="preserve">
     <value>Cash Flow Code</value>
+  </data>
+  <data name="_CashFlowGroup" xml:space="preserve">
+    <value>Cash Flow Group</value>
+  </data>
+  <data name="_CashFlowGroupType" xml:space="preserve">
+    <value>Cash Flow Group Type</value>
   </data>
   <data name="_CashFlowGrp" xml:space="preserve">
     <value>Cash Flow Group</value>
@@ -180,6 +201,12 @@
   <data name="_CashFlowType" xml:space="preserve">
     <value>Cash Flow Type</value>
   </data>
+  <data name="_Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="_Center" xml:space="preserve">
+    <value>Center</value>
+  </data>
   <data name="_CenterCode" xml:space="preserve">
     <value>Center Code</value>
   </data>
@@ -194,6 +221,12 @@
   </data>
   <data name="_ChargesName" xml:space="preserve">
     <value>Charges Name</value>
+  </data>
+  <data name="_COA" xml:space="preserve">
+    <value>COA</value>
+  </data>
+  <data name="_COAbyGOA" xml:space="preserve">
+    <value>COA by GOA</value>
   </data>
   <data name="_Code" xml:space="preserve">
     <value>Code</value>
@@ -213,6 +246,12 @@
   <data name="_Currency" xml:space="preserve">
     <value>Currency</value>
   </data>
+  <data name="_CurrencyRate" xml:space="preserve">
+    <value>Currency Rate</value>
+  </data>
+  <data name="_CurrencyRateType" xml:space="preserve">
+    <value>Currency Rate Type</value>
+  </data>
   <data name="_CurrName" xml:space="preserve">
     <value>Currency Name</value>
   </data>
@@ -223,7 +262,13 @@
     <value>Deducation Charges</value>
   </data>
   <data name="_Departement" xml:space="preserve">
-    <value>Departement</value>
+    <value>Department</value>
+  </data>
+  <data name="_Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_DepartmentProperty" xml:space="preserve">
+    <value>Department Property</value>
   </data>
   <data name="_DeptCode" xml:space="preserve">
     <value>Department Code</value>
@@ -249,8 +294,14 @@
   <data name="_FloorName" xml:space="preserve">
     <value>Floor Name</value>
   </data>
+  <data name="_Geography" xml:space="preserve">
+    <value>Geography</value>
+  </data>
   <data name="_GLAccount" xml:space="preserve">
     <value>GL Account</value>
+  </data>
+  <data name="_GOA" xml:space="preserve">
+    <value>GOA</value>
   </data>
   <data name="_GOACode" xml:space="preserve">
     <value>Group of Account</value>
@@ -261,11 +312,17 @@
   <data name="_Gross" xml:space="preserve">
     <value>Gross</value>
   </data>
+  <data name="_JournalGroup" xml:space="preserve">
+    <value>Journal Group</value>
+  </data>
   <data name="_JrnlGrpCode" xml:space="preserve">
     <value>Journal Group Code</value>
   </data>
   <data name="_JrnlGrpName" xml:space="preserve">
     <value>Journal Group Name</value>
+  </data>
+  <data name="_LOB" xml:space="preserve">
+    <value>LOB</value>
   </data>
   <data name="_LOBCode" xml:space="preserve">
     <value>LOB Code</value>
@@ -294,14 +351,26 @@
   <data name="_OkBtn" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="_OtherCharges" xml:space="preserve">
+    <value>Other Charges</value>
+  </data>
+  <data name="_OtherUnit" xml:space="preserve">
+    <value>Other Unit</value>
+  </data>
   <data name="_OtherUnitId" xml:space="preserve">
     <value>Other Unit Id</value>
+  </data>
+  <data name="_OtherUnitMaster" xml:space="preserve">
+    <value>Other Unit Master</value>
   </data>
   <data name="_OtherUnitName" xml:space="preserve">
     <value>Other Unit Name</value>
   </data>
   <data name="_OtherUnitType" xml:space="preserve">
     <value>Other Unit Type</value>
+  </data>
+  <data name="_PaymentTerm" xml:space="preserve">
+    <value>Payment Term</value>
   </data>
   <data name="_RateDate" xml:space="preserve">
     <value>Rate Date</value>
@@ -321,6 +390,9 @@
   <data name="_RoundUnit" xml:space="preserve">
     <value>Rounding Unit</value>
   </data>
+  <data name="_SalesTax" xml:space="preserve">
+    <value>Sales Tax</value>
+  </data>
   <data name="_Seq" xml:space="preserve">
     <value>Sequence</value>
   </data>
@@ -329,6 +401,9 @@
   </data>
   <data name="_Symbol" xml:space="preserve">
     <value>Symbol</value>
+  </data>
+  <data name="_TaxByDate" xml:space="preserve">
+    <value>Tax By Date</value>
   </data>
   <data name="_TaxDate" xml:space="preserve">
     <value>Tax Date</value>
@@ -372,6 +447,9 @@
   <data name="_UnitType" xml:space="preserve">
     <value>Unit Type</value>
   </data>
+  <data name="_UnitTypeCategory" xml:space="preserve">
+    <value>Unit Type Category</value>
+  </data>
   <data name="_UnitView" xml:space="preserve">
     <value>Unit View</value>
   </data>
@@ -387,6 +465,12 @@
   <data name="_UpdateDate" xml:space="preserve">
     <value>Updated Date</value>
   </data>
+  <data name="_User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="_UserApproval" xml:space="preserve">
+    <value>User Approval</value>
+  </data>
   <data name="_UserId" xml:space="preserve">
     <value>User Id</value>
   </data>
@@ -395,5 +479,8 @@
   </data>
   <data name="_UserRestr" xml:space="preserve">
     <value>User Restriction</value>
+  </data>
+  <data name="_WithholdingTax" xml:space="preserve">
+    <value>Withholding Tax</value>
   </data>
 </root>

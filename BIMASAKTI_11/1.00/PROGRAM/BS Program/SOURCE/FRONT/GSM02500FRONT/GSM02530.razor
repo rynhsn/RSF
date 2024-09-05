@@ -77,18 +77,18 @@
                         Height="130px"
                         R_ServiceGetListRecord="@Grid_R_ServiceGetUnitInfoListRecord">
                     <R_GridColumns>
-                        <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CUNIT_ID)" HeaderText="@_localizer["_UnitId"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CUNIT_ID)" HeaderText="@_localizer["_UnitId"]" Width="100px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CUNIT_NAME)" HeaderText="@_localizer["_UnitName"]" Width="200px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CUNIT_TYPE_NAME)" HeaderText="@_localizer["_UnitType"]" Width="150px"></R_GridTextColumn>
-                        <R_GridTextColumn FieldName="@nameof(GSM02530DTO.NGROSS_AREA_SIZE)" HeaderText="@_localizer["_Gross"]" Width="150px"></R_GridTextColumn>
-                        <R_GridTextColumn FieldName="@nameof(GSM02530DTO.NNET_AREA_SIZE)" HeaderText="@_localizer["_Net"]" Width="150px"></R_GridTextColumn>
-                        <R_GridTextColumn FieldName="@nameof(GSM02530DTO.NACTUAL_AREA_SIZE)" HeaderText="@_localizer["_Actual"]" Width="150px"></R_GridTextColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GSM02530DTO.NGROSS_AREA_SIZE)" HeaderText="@_localizer["_Gross"]" Width="100px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GSM02530DTO.NNET_AREA_SIZE)" HeaderText="@_localizer["_Net"]" Width="100px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GSM02530DTO.NACTUAL_AREA_SIZE)" HeaderText="@_localizer["_Actual"]" Width="100px"></R_GridNumericColumn>
                         <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CUNIT_VIEW_NAME)" HeaderText="@_localizer["_UnitView"]" Width="150px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CUNIT_CATEGORY_NAME)" HeaderText="@_localizer["_UnitCategory"]" Width="150px"></R_GridTextColumn>
                         <R_GridCheckBoxColumn FieldName="@nameof(GSM02530DTO.LACTIVE)" HeaderText="@_localizer["_Active"]" Width="100px"></R_GridCheckBoxColumn>
-                        <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="125px"></R_GridTextColumn>
                         <R_GridDateTimePickerColumn FieldName="@nameof(GSM02530DTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
-                        <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="125px"></R_GridTextColumn>
                         <R_GridDateTimePickerColumn FieldName="@nameof(GSM02530DTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
                     </R_GridColumns>
                 </R_Grid>
@@ -119,7 +119,7 @@
 
             <R_ItemLayout col="1">
             </R_ItemLayout>
-            <R_ItemLayout Style="15px">
+            <R_ItemLayout Style="width: 15px">
                 <R_CheckBox @bind-Value="@loUnitInfoViewModel.Data.LACTIVE"
                             R_ConductorSource="@_conductorUnitInfoRef"
                             Enabled="false">

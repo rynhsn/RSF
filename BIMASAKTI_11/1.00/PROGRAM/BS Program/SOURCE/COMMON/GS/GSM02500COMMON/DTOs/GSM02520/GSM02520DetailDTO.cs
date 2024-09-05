@@ -17,6 +17,8 @@ namespace GSM02500COMMON.DTOs.GSM02520
         public decimal NTOTAL_UNIT_SPACE { get; set; } = 0;
         public decimal NTOTAL_EMPTY_SPACE { get; set; } = 0;
         public bool LACTIVE { get; set; } = true;
+        public decimal NOCCUPIABLE_AREA_SIZE { get; set; } = 0;
+        public decimal NTOTAL_OCCUPIABLE { get; set; } = 0;
         public string CUPDATE_BY { get; set; } = "";
         public DateTime? DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; } = "";

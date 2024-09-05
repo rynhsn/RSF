@@ -160,6 +160,7 @@
       },
       "Lookup_GSFRONT/1.0.0": {
         "dependencies": {
+          "Lookup_GSCOMMON": "1.0.0",
           "Lookup_GSModel": "1.0.0",
           "Microsoft.AspNetCore.Components.Web": "6.0.15"
         },
@@ -188,7 +189,8 @@
       },
       "PMB03000Front/1.0.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+          "Microsoft.AspNetCore.Components.Web": "6.0.15",
+          "PMB03000Common": "1.0.0"
         },
         "runtime": {
           "PMB03000Front.dll": {}

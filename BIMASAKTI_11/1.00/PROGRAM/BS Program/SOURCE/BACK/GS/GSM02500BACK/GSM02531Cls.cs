@@ -37,7 +37,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
                 lcQuery = $"EXEC RSP_GS_ACTIVE_INACTIVE_BUILDING_UNIT_UTILITIES " +
                                  $"@CCOMPANY_ID, " +
                                  $"@CPROPERTY_ID, " +
@@ -107,7 +107,7 @@ namespace GSM02500BACK
                                  $"@CALIAS_METER_NO, " +
                                  $"@NCALCULATION_FACTOR, " +
                                  $"@NCAPACITY, " +
-                                 $"@IMETER_MAX_COUNT, " +
+                                 $"@IMETER_MAX_RESET, " +
                                  $"@LACTIVE, " +
                                  $"@CACTION, " +
                                  $"@CLOGIN_USER_ID";
@@ -125,7 +125,7 @@ namespace GSM02500BACK
                 loDb.R_AddCommandParameter(loCmd, "@CALIAS_METER_NO", DbType.String, 50, poEntity.Data.CALIAS_METER_NO);
                 loDb.R_AddCommandParameter(loCmd, "@NCALCULATION_FACTOR", DbType.Decimal, 10, poEntity.Data.NCALCULATION_FACTOR);
                 loDb.R_AddCommandParameter(loCmd, "@NCAPACITY", DbType.Decimal, 10, poEntity.Data.NCAPACITY);
-                loDb.R_AddCommandParameter(loCmd, "@IMETER_MAX_COUNT", DbType.Int32, 10, poEntity.Data.IMETER_MAX_COUNT);
+                loDb.R_AddCommandParameter(loCmd, "@IMETER_MAX_RESET", DbType.Int32, 10, poEntity.Data.IMETER_MAX_RESET);
                 loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, 10, poEntity.Data.LACTIVE);
                 loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 50, poEntity.CACTION);
                 loDb.R_AddCommandParameter(loCmd, "@CLOGIN_USER_ID", DbType.String, 50, poEntity.CLOGIN_USER_ID);
@@ -186,14 +186,14 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"SELECT CCODE, CDESCRIPTION " +
                     $"FROM RFT_GET_GSB_CODE_INFO " +
                     $"('BIMASAKTI', " +
                     $"@CLOGIN_COMPANY_ID, " +
                     $"'_BS_UTILITY_CHARGES_TYPE', " +
-                    $"'', " +
+                    $"'01,02,03,04', " +
                     $"@CLOGIN_LANGUAGE_ID)";
                 loCmd = loDb.GetCommand();
                 loCmd.CommandText = lcQuery;
@@ -248,7 +248,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_BUILDING_UTILITIES_LIST " +
                                  $"@CLOGIN_COMPANY_ID, " +
@@ -304,7 +304,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
                 lcQuery = $"EXEC RSP_GS_GET_BUILDING_UTILITIES_DETAIL " +
                                  $"@CLOGIN_COMPANY_ID, " +
                                  $"@CSELECTED_PROPERTY_ID, " +

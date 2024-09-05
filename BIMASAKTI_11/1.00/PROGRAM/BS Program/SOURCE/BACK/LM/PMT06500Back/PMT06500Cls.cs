@@ -50,19 +50,11 @@ public class PMT06500Cls : R_BusinessObject<PMT06500InvoiceDTO>
                 .Where(x =>
                     x.ParameterName is
                         "@CCOMPANY_ID" or
-                        "@CPROPERTY_ID" or
                         "@CDEPT_CODE" or
                         "@CTRANS_CODE" or
                         "@CREF_NO" or
-                        "@CREF_DATE" or
-                        "@CTENANT_ID" or
-                        "@CBUILDING_ID" or
-                        "@CAGREEMENT_NO" or
-                        "@CDESCRIPTION" or
-                        "@CPERIOD" or
-                        "@CUSER_ID" or
                         "@CREC_ID" or
-                        "@CACTION"
+                        "@CLANG_ID"
                 )
                 .Select(x => x.Value);
 
@@ -84,6 +76,7 @@ public class PMT06500Cls : R_BusinessObject<PMT06500InvoiceDTO>
         return loRtn;
     }
 
+    //Gak dipake
     protected override void R_Saving(PMT06500InvoiceDTO poNewEntity, eCRUDMode poCRUDMode)
     {
         using var loActivity = _activitySource.StartActivity(nameof(R_Saving));
@@ -122,6 +115,8 @@ public class PMT06500Cls : R_BusinessObject<PMT06500InvoiceDTO>
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poNewEntity.CUSER_ID);
             loDb.R_AddCommandParameter(loCmd, "@CREC_ID", DbType.String, 50, poNewEntity.CREC_ID);
             loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, poNewEntity.CACTION);
+            loDb.R_AddCommandParameter(loCmd, "@CLINK_DEPT_CODE", DbType.String, 20, poNewEntity.CLINK_DEPT_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CLINK_TRANS_CODE", DbType.String, 10, poNewEntity.CLINK_TRANS_CODE);
 
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x =>
@@ -139,7 +134,9 @@ public class PMT06500Cls : R_BusinessObject<PMT06500InvoiceDTO>
                         "@CPERIOD" or
                         "@CUSER_ID" or
                         "@CREC_ID" or
-                        "@CACTION"
+                        "@CACTION" or 
+                        "@CLINK_DEPT_CODE" or
+                        "@CLINK_TRANS_CODE"
                 )
                 .Select(x => x.Value);
 
@@ -181,8 +178,7 @@ public class PMT06500Cls : R_BusinessObject<PMT06500InvoiceDTO>
         EndBlock:
         loEx.ThrowExceptionIfErrors();
     }
-
-
+    
     protected override void R_Deleting(PMT06500InvoiceDTO poEntity)
     {
         using var loActivity = _activitySource.StartActivity(nameof(R_Deleting));
@@ -542,6 +538,11 @@ public class PMT06500Cls : R_BusinessObject<PMT06500InvoiceDTO>
             loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParam.CPROPERTY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CPERIOD", DbType.String, 6, poParam.CPERIOD);
             loDb.R_AddCommandParameter(loCmd, "@CAGREEMENT_NO", DbType.String, 30, poParam.CAGREEMENT_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CLINK_DEPT_CODE", DbType.String, 30, poParam.CLINK_DEPT_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CLINK_TRANS_CODE", DbType.String, 20, poParam.CLINK_TRANS_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 30, poParam.CREF_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 20, poParam.CDEPT_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, poParam.CACTION);
 
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x =>
@@ -549,7 +550,12 @@ public class PMT06500Cls : R_BusinessObject<PMT06500InvoiceDTO>
                         "@CCOMPANY_ID" or
                         "@CPROPERTY_ID" or
                         "@CPERIOD" or
-                        "@CAGREEMENT_NO"
+                        "@CAGREEMENT_NO" or
+                        "@CLINK_DEPT_CODE" or
+                        "@CLINK_TRANS_CODE" or
+                        "@CREF_NO" or
+                        "@CDEPT_CODE" or
+                        "@CACTION"
                 )
                 .Select(x => x.Value);
 
@@ -641,6 +647,108 @@ public class PMT06500Cls : R_BusinessObject<PMT06500InvoiceDTO>
             }
         }
 
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    public void SavingInvoice(PMT06500InvoiceDTO poNewEntity, eCRUDMode poCRUDMode)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(SavingInvoice));
+        R_Exception loEx = new();
+        string lcQuery;
+        R_Db loDb;
+        DbCommand loCmd;
+        DbConnection loConn = null;
+        PMT06500InvoiceDTO loResult = null;
+
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection();
+            loCmd = loDb.GetCommand();
+
+            R_ExternalException.R_SP_Init_Exception(loConn);
+
+            poNewEntity.CACTION = poCRUDMode == eCRUDMode.AddMode ? "NEW" : "EDIT";
+
+            lcQuery = "RSP_PM_MAINTAIN_OVT_INVOICE";
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
+
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poNewEntity.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poNewEntity.CPROPERTY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 20, poNewEntity.CDEPT_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 6, poNewEntity.CTRANS_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 30, poNewEntity.CREF_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CREF_DATE", DbType.String, 8, poNewEntity.CREF_DATE);
+            loDb.R_AddCommandParameter(loCmd, "@CTENANT_ID", DbType.String, 20, poNewEntity.CTENANT_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 20, poNewEntity.CBUILDING_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CAGREEMENT_NO", DbType.String, 30, poNewEntity.CAGREEMENT_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CDESCRIPTION", DbType.String, 255, poNewEntity.CDESCRIPTION);
+            loDb.R_AddCommandParameter(loCmd, "@CPERIOD", DbType.String, 6, poNewEntity.CPERIOD);
+            loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poNewEntity.CUSER_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CREC_ID", DbType.String, 50, poNewEntity.CREC_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, poNewEntity.CACTION);
+            loDb.R_AddCommandParameter(loCmd, "@CLINK_DEPT_CODE", DbType.String, 20, poNewEntity.CLINK_DEPT_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CLINK_TRANS_CODE", DbType.String, 10, poNewEntity.CLINK_TRANS_CODE);
+
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
+                        "@CPROPERTY_ID" or
+                        "@CDEPT_CODE" or
+                        "@CTRANS_CODE" or
+                        "@CREF_NO" or
+                        "@CREF_DATE" or
+                        "@CTENANT_ID" or
+                        "@CBUILDING_ID" or
+                        "@CAGREEMENT_NO" or
+                        "@CDESCRIPTION" or
+                        "@CPERIOD" or
+                        "@CUSER_ID" or
+                        "@CREC_ID" or
+                        "@CACTION" or 
+                        "@CLINK_DEPT_CODE" or
+                        "@CLINK_TRANS_CODE"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
+            try
+            {
+                loDb.SqlExecNonQuery(loConn, loCmd, false);
+                // loResult = R_Utility.R_ConvertTo<PMT06500InvoiceDTO>(loReturn).FirstOrDefault();
+                // poNewEntity.CREC_ID = loResult?.CREC_ID;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        finally
+        {
+            if (loConn != null)
+            {
+                if (loConn.State != ConnectionState.Closed)
+                {
+                    loConn.Close();
+                }
+
+                loConn.Dispose();
+            }
+        }
+
+        EndBlock:
         loEx.ThrowExceptionIfErrors();
     }
 }

@@ -8,6 +8,7 @@ using R_APIClient;
 using R_APICommonDTO;
 using R_BlazorFrontEnd.Exceptions;
 using R_BusinessObjectFront;
+using R_CommonFrontBackAPI;
 
 namespace PMT06500Model
 {
@@ -57,6 +58,11 @@ namespace PMT06500Model
         }
 
         public PMT06500SingleDTO<PMT06500PropertyDTO> PMT06500ProcessSubmit(PMT06500ProcessSubmitParam poParameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PMT06500SingleDTO<PMT06500InvoiceDTO> PMT06500SavingInvoice(SavingInvoiceParamDTO<PMT06500InvoiceDTO> poParameter)
         {
             throw new NotImplementedException();
         }

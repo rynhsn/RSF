@@ -162,7 +162,8 @@
       },
       "GLR00100Model/1.0.0": {
         "dependencies": {
-          "GLR00100Common": "1.0.0"
+          "GLR00100Common": "1.0.0",
+          "GLR00100FrontResources": "1.0.0"
         },
         "runtime": {
           "GLR00100Model.dll": {}
@@ -204,6 +205,7 @@
       },
       "Lookup_GSFRONT/1.0.0": {
         "dependencies": {
+          "Lookup_GSCOMMON": "1.0.0",
           "Lookup_GSModel": "1.0.0",
           "Microsoft.AspNetCore.Components.Web": "6.0.15"
         },

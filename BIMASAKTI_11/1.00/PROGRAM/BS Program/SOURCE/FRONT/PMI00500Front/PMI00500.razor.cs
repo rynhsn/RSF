@@ -8,6 +8,7 @@ using PMI00500Model.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
+using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 
@@ -111,9 +112,10 @@ public partial class PMI00500 : R_Page
 
             _viewModel.CDEPT_CODE = loResult.CDEPT_CODE;
             _viewModel.CDEPT_NAME = loResult.CDEPT_NAME;
+            
             await _gridRefHeader.R_RefreshGrid(null);
-            await _gridRefAgreement.R_RefreshGrid(null);
-            await _gridRefReminder.R_RefreshGrid(null);
+            // await _gridRefAgreement.R_RefreshGrid(null);
+            // await _gridRefReminder.R_RefreshGrid(null);
         }
         catch (Exception ex)
         {
@@ -145,8 +147,8 @@ public partial class PMI00500 : R_Page
             _viewModel.CDEPT_CODE = loTempResult.CDEPT_CODE;
             _viewModel.CDEPT_NAME = loTempResult.CDEPT_NAME;
             await _gridRefHeader.R_RefreshGrid(null);
-            await _gridRefAgreement.R_RefreshGrid(null);
-            await _gridRefReminder.R_RefreshGrid(null);
+            // await _gridRefAgreement.R_RefreshGrid(null);
+            // await _gridRefReminder.R_RefreshGrid(null);
         }
         catch (Exception ex)
         {
@@ -163,6 +165,17 @@ public partial class PMI00500 : R_Page
         {
             await _viewModel.GetHeaderList();
             eventArgs.ListEntityResult = _viewModel.HeaderList;
+            if(_viewModel.HeaderList.Count() == 0)
+            {
+                _viewModel.AgreementList.Clear();
+                _viewModel.ReminderList.Clear();
+                _viewModel.InvoiceList.Clear();
+            }
+            else
+            {
+                await GetHeaderRecord(new R_ServiceGetRecordEventArgs(_viewModel.HeaderEntity,
+                    _viewModel.HeaderEntity));
+            }
         }
         catch (Exception ex)
         {
@@ -199,6 +212,16 @@ public partial class PMI00500 : R_Page
         {
             await _viewModel.GetDTAgreementList();
             eventArgs.ListEntityResult = _viewModel.AgreementList;
+            
+            if(_viewModel.AgreementList.Count() == 0)
+            {
+                _viewModel.ReminderList.Clear();
+                _viewModel.InvoiceList.Clear();
+            }
+            else
+            {
+                await DisplayDTAgreement(new R_DisplayEventArgs(_viewModel.AgreementEntity, R_eConductorMode.Normal));
+            }
         }
         catch (Exception ex)
         {
@@ -233,6 +256,15 @@ public partial class PMI00500 : R_Page
         {
             await _viewModel.GetDTReminderList();
             eventArgs.ListEntityResult = _viewModel.ReminderList;
+            
+            if(_viewModel.ReminderList.Count() == 0)
+            {
+                _viewModel.InvoiceList.Clear();
+            }
+            else
+            {
+                await DisplayDTReminder(new R_DisplayEventArgs(_viewModel.ReminderEntity, R_eConductorMode.Normal));
+            }
         }
         catch (Exception ex)
         {
@@ -247,8 +279,8 @@ public partial class PMI00500 : R_Page
         var loEx = new R_Exception();
         try
         {
-            var loData = (PMI00500DTReminderDTO)eventArgs.Data;
-            _viewModel.CREMINDER_NO = loData.CREMINDER_NO;
+            _viewModel.ReminderEntity = (PMI00500DTReminderDTO)eventArgs.Data;
+            _viewModel.CREMINDER_NO = _viewModel.ReminderEntity.CREMINDER_NO;
             await _gridRefInvoice.R_RefreshGrid(null);
         }
         catch (Exception ex)

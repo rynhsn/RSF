@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GLM00500Common;
 using GLM00500Common.DTOs;
+using GLM00500FrontResources;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
@@ -34,8 +35,10 @@ namespace GLM00500Model.ViewModel
 
         public List<KeyValuePair<string, string>> CGLACCOUNT_TYPE { get; } = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("N", "Normal Account"),
-            new KeyValuePair<string, string>("S", "Statistic Account")
+            // new KeyValuePair<string, string>("N", "Normal Account"),
+            new KeyValuePair<string, string>("N", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "NormalAccount")),
+            // new KeyValuePair<string, string>("S", "Statistic Account")
+            new KeyValuePair<string, string>("S", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "StatisticAccount"))
         };
 
         //list 01 - 12
@@ -57,15 +60,20 @@ namespace GLM00500Model.ViewModel
 
         public List<KeyValuePair<string, string>> CINPUT_METHOD { get; } = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("MN", "Manually"),
-            new KeyValuePair<string, string>("MO", "Monthly"),
-            new KeyValuePair<string, string>("AN", "Annually")
+            // new KeyValuePair<string, string>("MN", "Manually"),
+            new KeyValuePair<string, string>("MN", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Manually")),
+            // new KeyValuePair<string, string>("MO", "Monthly"),
+            new KeyValuePair<string, string>("MO", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Monthly")),
+            // new KeyValuePair<string, string>("AN", "Annually")
+            new KeyValuePair<string, string>("AN", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Annually"))
         };
 
         public List<KeyValuePair<string, string>> CDIST_METHOD { get; } = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("EV", "Evenly"),
-            new KeyValuePair<string, string>("BW", "Budget Weighting")
+            // new KeyValuePair<string, string>("EV", "Evenly"),
+            new KeyValuePair<string, string>("EV", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Evenly")),
+            // new KeyValuePair<string, string>("BW", "Budget Weighting")
+            new KeyValuePair<string, string>("BW", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "BudgetWeighting"))
         };
 
         #region popup generate
@@ -78,21 +86,28 @@ namespace GLM00500Model.ViewModel
 
         public List<KeyValuePair<string, string>> CBY { get; } = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("P", "Percentage"),
-            new KeyValuePair<string, string>("V", "Value")
+            // new KeyValuePair<string, string>("P", "Percentage"),
+            new KeyValuePair<string, string>("P", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Percentage")),
+            // new KeyValuePair<string, string>("V", "Value")
+            new KeyValuePair<string, string>("V", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Value"))
         };
 
         public List<KeyValuePair<string, string>> CUPDATE_METHOD { get; } = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("C", "Clear All Existing Data"),
-            new KeyValuePair<string, string>("S", "Skip Existing Data"),
-            new KeyValuePair<string, string>("R", "Replace Existing Data")
+            // new KeyValuePair<string, string>("C", "Clear All Existing Data"),
+            new KeyValuePair<string, string>("C", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "ClearAllExistingData")),
+            // new KeyValuePair<string, string>("S", "Skip Existing Data"),
+            new KeyValuePair<string, string>("S", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "SkipExistingData")),
+            // new KeyValuePair<string, string>("R", "Replace Existing Data")
+            new KeyValuePair<string, string>("R", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "ReplaceExistingData"))
         };
 
         public List<KeyValuePair<string, string>> CBASED_ON { get; } = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("EB", "Existing Budget"),
-            new KeyValuePair<string, string>("AV", "Actual Value")
+            // new KeyValuePair<string, string>("EB", "Existing Budget"),
+            new KeyValuePair<string, string>("EB", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "ExistingBudget")),
+            // new KeyValuePair<string, string>("AV", "Actual Value")
+            new KeyValuePair<string, string>("AV", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "ActualValue"))
         };
 
         #endregion

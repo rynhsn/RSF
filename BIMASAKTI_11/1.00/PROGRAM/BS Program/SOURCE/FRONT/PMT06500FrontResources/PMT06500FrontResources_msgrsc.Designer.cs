@@ -78,6 +78,15 @@ namespace PMT06500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string CANCEL {
+            get {
+                return ResourceManager.GetString("CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created By.
         /// </summary>
         internal static string CREATED_BY {
@@ -281,6 +290,15 @@ namespace PMT06500FrontResources {
         internal static string MSG_SELECT_DEPT {
             get {
                 return ResourceManager.GetString("MSG_SELECT_DEPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overtime List.
+        /// </summary>
+        internal static string OVERTIME_LIST {
+            get {
+                return ResourceManager.GetString("OVERTIME_LIST", resourceCulture);
             }
         }
         

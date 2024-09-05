@@ -519,6 +519,8 @@ namespace GSM02500FRONT
         private void R_Before_OpenUnit_Detail(R_BeforeOpenDetailEventArgs eventArgs)
         {
             loTabParameter.CSELECTED_FLOOR_ID = loViewModel.loFloorDetail.CFLOOR_ID;
+            loTabParameter.CDEFAULT_UNIT_TYPE = loViewModel.loFloorDetail.CDEFAULT_UNIT_TYPE_ID;
+            loTabParameter.CDEFAULT_UNIT_CATEGORY = loViewModel.loFloorDetail.CDEFAULT_UNIT_CATEGORY_ID;
             eventArgs.Parameter = loTabParameter;
             if (loViewModel.loFloorList.Count() > 0)
             {

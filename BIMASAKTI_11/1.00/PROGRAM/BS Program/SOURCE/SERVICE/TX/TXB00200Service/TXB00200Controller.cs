@@ -57,6 +57,36 @@ public class TXB00200Controller : ControllerBase, ITXB00200
     }
 
     [HttpPost]
+    public TXB00200SingleDTO<TXB00200NextPeriodDTO> TXB00200GetNextPeriod()
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(TXB00200GetNextPeriod));
+
+        _logger.LogInfo("Start - Get Next period");
+        var loEx = new R_Exception();
+        var loCls = new TXB00200Cls();
+        var loDbParams = new TXB00200ParameterDb();
+        var loReturn = new TXB00200SingleDTO<TXB00200NextPeriodDTO>();
+
+        try
+        {
+            _logger.LogInfo("Set Parameter");
+            loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+
+            _logger.LogInfo("Get Next period");
+            loReturn.Data = loCls.GetNextPeriod(loDbParams);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        _logger.LogInfo("End - Get Next period");
+        return loReturn;
+    }
+
+    [HttpPost]
     public TXB00200ListDTO<TXB00200PeriodDTO> TXB00200GetPeriodList(TXB00200YearParam poParam)
     {
         using var loActivity = _activitySource.StartActivity(nameof(TXB00200GetPeriodList));

@@ -9,7 +9,7 @@
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
                 R_GridType="@R_eGridType.Navigator"
                 Pageable
-                PageSize="5"
+                @bind-PageSize="@_pageSize"
                 Height="300px"
                 Width="1100px">
             <R_GridColumns>
@@ -17,7 +17,7 @@
                                   HeaderText="Tenant Id"
                                   Width="150px">
                 </R_GridTextColumn>
-                <R_GridTextColumn Width="250px"
+                <R_GridTextColumn Width="220px"
                                   FieldName="@nameof(LML00600DTO.CTENANT_NAME)"
                                   HeaderText=@_localizer["_TenantName"]></R_GridTextColumn>
                 <R_GridTextColumn Width="150px"

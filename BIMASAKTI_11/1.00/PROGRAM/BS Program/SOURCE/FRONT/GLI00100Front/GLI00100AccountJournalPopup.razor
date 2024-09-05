@@ -131,8 +131,8 @@
                         <R_GridDatePickerColumn FieldName="@nameof(GLI00100TransactionGridDTO.DREF_DATE)" HeaderText="@_localizer["LABEL_REFDATE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
                         <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CREF_NO)" HeaderText="@_localizer["LABEL_REFNO"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
                         <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CTRANSACTION_NAME)" HeaderText="@_localizer["LABEL_TRXTYPE"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
-                        <R_GridNumericColumn FieldName="@nameof(GLI00100TransactionGridDTO.NDEBIT)" HeaderText="@_localizer["LABEL_DEBIT"]" Width="100px" TextAlignment="R_eTextAlignment.Right" Decimals="2" ThousandSeparator/>
-                        <R_GridNumericColumn FieldName="@nameof(GLI00100TransactionGridDTO.NCREDIT)" HeaderText="@_localizer["LABEL_CREDIT"]" Width="100px" TextAlignment="R_eTextAlignment.Right" Decimals="2" ThousandSeparator/>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GLI00100TransactionGridDTO.NDEBIT)" HeaderText="@_localizer["LABEL_DEBIT"]" Width="100px" TextAlignment="R_eTextAlignment.Right" decimals="2" ThousandSeparator/>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GLI00100TransactionGridDTO.NCREDIT)" HeaderText="@_localizer["LABEL_CREDIT"]" Width="100px" TextAlignment="R_eTextAlignment.Right" Decimals="2" ThousandSeparator/>
                         <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CDOCUMENT_NO)" HeaderText="@_localizer["LABEL_VOUCHERNO"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
                         <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CDETAIL_DESC)" HeaderText="@_localizer["LABEL_DESC"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
                     </R_GridColumns>

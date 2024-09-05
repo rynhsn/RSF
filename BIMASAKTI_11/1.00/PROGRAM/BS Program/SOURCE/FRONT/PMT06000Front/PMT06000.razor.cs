@@ -4,6 +4,7 @@ using PMT06000Model.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
+using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 
@@ -20,6 +21,9 @@ public partial class PMT06000 : R_Page
 
     private R_ConductorGrid _conductorRefUnit;
     private R_Grid<PMT06000OvtUnitDTO> _gridRefUnit;
+    private int _pageSizeOvt = 9;
+    private int _pageSizeService = 5;
+    private int _pageSizeUnit = 5;
 
     protected override async Task R_Init_From_Master(object poParam)
     {
@@ -56,10 +60,13 @@ public partial class PMT06000 : R_Page
             eventArgs.ListEntityResult = _viewModel.OvertimeGridList;
             if (_viewModel.OvertimeGridList.Count == 0)
             {
-                _viewModel.Entity = new PMT06000OvtDTO();
-                _viewModel.EntityService = new PMT06000OvtServiceDTO();
-                await _gridRefService.R_RefreshGrid(null);
-                await _gridRefOvertime.R_RefreshGrid(null);
+                // _viewModel.Entity = new PMT06000OvtDTO();
+                // _viewModel.EntityService = new PMT06000OvtServiceDTO();
+                _viewModel.OvertimeServiceGridList.Clear();
+                _viewModel.OvertimeUnitGridList.Clear();
+            }else
+            {
+                await _conductorRefOvertime.R_GetEntity(_viewModel.Entity);
             }
         }
         catch (Exception ex)
@@ -78,7 +85,7 @@ public partial class PMT06000 : R_Page
         {
             _viewModel.Entity = R_FrontUtility.ConvertObjectToObject<PMT06000OvtDTO>(eventArgs.Data);
             eventArgs.Result = _viewModel.Entity;
-            await _gridRefService.R_RefreshGrid(null);  
+            await _gridRefService.R_RefreshGrid(null);
         }
         catch (Exception ex)
         {
@@ -98,7 +105,12 @@ public partial class PMT06000 : R_Page
             eventArgs.ListEntityResult = _viewModel.OvertimeServiceGridList;
             if (_viewModel.OvertimeServiceGridList.Count == 0)
             {
+                // _viewModel.EntityService = new PMT06000OvtServiceDTO();
                 _viewModel.OvertimeUnitGridList.Clear();
+            }
+            else
+            {
+                await DisplayService(new R_DisplayEventArgs(_viewModel.EntityService, R_eConductorMode.Normal));
             }
         }
         catch (Exception ex)
@@ -128,13 +140,48 @@ public partial class PMT06000 : R_Page
 
     private void InstatiateTabInfo(R_InstantiateDockEventArgs eventArgs)
     {
-        var loParam = new PMT06000ParameterDTO
-        {
-            CREC_ID = _viewModel.Entity.CREC_ID,
-            isCaller = false
-        };
+        // var loParam = new PMT06000ParameterDTO
+        // {
+        //     CREC_ID = _viewModel.Entity.CREC_ID,
+        //     isCaller = false
+        // };
+        var loParam = R_FrontUtility.ConvertObjectToObject<PMT06000ParameterDTO>(_viewModel.Entity);
+        loParam.isCaller = false;
         eventArgs.Parameter = loParam;
         eventArgs.TargetPageType = typeof(PMT06000Info);
+    }
+
+    private async Task AfterOpenInfo(R_AfterOpenPredefinedDockEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            _viewModel.OvertimeGridList.Clear();
+            _viewModel.OvertimeServiceGridList.Clear();
+            _viewModel.OvertimeUnitGridList.Clear();
+
+            // var lolo = _viewModel.Entity;
+            // await _conductorRefOvertime.R_SetCurrentData(null);
+
+            await _gridRefOvertime.R_RefreshGrid(null);
+            // await _conductorRefOvertime.R_GetEntity(_viewModel.Data);
+            // //
+            // await _gridRefService.R_RefreshGrid(null);
+            // await _conductorRefService.R_GetEntity(_viewModel.EntityService);
+            //
+            // await _gridRefUnit.R_RefreshGrid(null);
+
+            // _gridRefOvertime.GetCurrentData();
+            // await _gridRefOvertime.R_SelectCurrentDataAsync(_viewModel.OvertimeGridList[0]);
+            // await _gridRefOvertime.R_SelectCurrentDataAsync(_viewModel.Entity);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
     }
 
     private async Task DisplayService(R_DisplayEventArgs eventArgs)
@@ -161,6 +208,9 @@ public partial class PMT06000 : R_Page
         try
         {
             await _gridRefOvertime.R_RefreshGrid(null);
+            // await _gridRefOvertime.R_RefreshGrid(null);
+            // await _gridRefService.R_RefreshGrid(null);
+            // await _gridRefUnit.R_RefreshGrid(null);
         }
         catch (Exception ex)
         {
@@ -169,19 +219,6 @@ public partial class PMT06000 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
-
-    private async Task AfterOpenUnit(R_AfterOpenPredefinedDockEventArgs eventArgs)
-    {var loEx = new R_Exception();
-
-        try
-        {
-            await _gridRefOvertime.R_RefreshGrid(null);
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-
-        loEx.ThrowExceptionIfErrors();
-    }
+    
+    
 }

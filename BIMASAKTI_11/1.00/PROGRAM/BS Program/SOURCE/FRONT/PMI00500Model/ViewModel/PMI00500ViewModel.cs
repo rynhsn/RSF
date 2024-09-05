@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using PMI00500Common;
 using PMI00500Common.DTOs;
@@ -25,6 +26,7 @@ namespace PMI00500Model.ViewModel
 
         public PMI00500HeaderDTO HeaderEntity = new PMI00500HeaderDTO();
         public PMI00500DTAgreementDTO AgreementEntity = new PMI00500DTAgreementDTO();
+        public PMI00500DTReminderDTO ReminderEntity = new PMI00500DTReminderDTO();
         
         public List<PMI00500PropertyDTO> PropertyList = new List<PMI00500PropertyDTO>();
 
@@ -107,6 +109,21 @@ namespace PMI00500Model.ViewModel
                 var loReturn = await _model.GetListStreamAsync<PMI00500DTAgreementDTO>(nameof(IPMI00500
                     .PMI00500GetDTAgreementListStream));
                 
+                loReturn.ForEach(loItem =>
+                {
+                    loItem.DSTART_DATE = DateTime.TryParseExact(loItem.CSTART_DATE, "yyyyMMdd",
+                        CultureInfo.InvariantCulture,
+                        DateTimeStyles.AssumeUniversal, out var ldStartDate)
+                        ? ldStartDate
+                        : (DateTime?)null;
+
+                    loItem.DEND_DATE = DateTime.TryParseExact(loItem.CEND_DATE, "yyyyMMdd",
+                        CultureInfo.InvariantCulture,
+                        DateTimeStyles.AssumeUniversal, out var ldEndDate)
+                        ? ldEndDate
+                        : (DateTime?)null;
+                });
+                
                 AgreementList = new ObservableCollection<PMI00500DTAgreementDTO>(loReturn);
                 
                 //buat dummy data untuk headerList, 50 data
@@ -181,6 +198,15 @@ namespace PMI00500Model.ViewModel
                 
                 var loReturn = await _model.GetListStreamAsync<PMI00500DTInvoiceDTO>(nameof(IPMI00500
                     .PMI00500GetDTInvoiceListStream));
+                
+                loReturn.ForEach(loItem =>
+                {
+                    loItem.DDUE_DATE = DateTime.TryParseExact(loItem.CDUE_DATE, "yyyyMMdd",
+                        CultureInfo.InvariantCulture,
+                        DateTimeStyles.AssumeUniversal, out var ldStartDate)
+                        ? ldStartDate
+                        : (DateTime?)null;
+                });
                 
                 InvoiceList = new ObservableCollection<PMI00500DTInvoiceDTO>(loReturn);
                 

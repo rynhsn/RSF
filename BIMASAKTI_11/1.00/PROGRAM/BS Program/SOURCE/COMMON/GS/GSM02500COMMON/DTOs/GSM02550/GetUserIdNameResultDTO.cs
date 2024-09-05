@@ -7,6 +7,6 @@ namespace GSM02500COMMON.DTOs.GSM02550
 {
     public class GetUserIdNameResultDTO : R_APIResultBaseDTO
     {
-        public List<GetUserIdNameDTO> Data { get; set; }
+        public GetUserIdNameDTO Data { get; set; }
     }
 }

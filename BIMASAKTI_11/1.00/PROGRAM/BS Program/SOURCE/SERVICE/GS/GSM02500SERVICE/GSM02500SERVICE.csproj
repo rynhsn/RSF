@@ -6,7 +6,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\BACK\GS\GSM02500BACK\GSM02500BACK.csproj" />
 		<ProjectReference Include="..\..\..\BACK\GS\GS_SPR\RSP_GS_MAINTAIN_BUILDING_FLOORResources\RSP_GS_MAINTAIN_BUILDING_FLOORResources.csproj" />

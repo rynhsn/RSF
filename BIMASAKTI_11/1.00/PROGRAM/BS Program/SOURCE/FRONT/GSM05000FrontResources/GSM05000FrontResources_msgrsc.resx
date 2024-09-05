@@ -210,4 +210,7 @@
     <data name="LABEL_NEXTNUMBER" xml:space="preserve">
         <value>Next No.</value><comment>Next No.</comment>
     </data>
+    <data name="BTN_OK" xml:space="preserve">
+        <value>Ok</value><comment>Ok</comment>
+    </data>
 </root>

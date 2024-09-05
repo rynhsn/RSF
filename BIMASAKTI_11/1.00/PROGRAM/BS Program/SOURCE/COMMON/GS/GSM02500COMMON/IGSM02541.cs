@@ -10,11 +10,11 @@ namespace GSM02500COMMON
 {
     public interface IGSM02541 : R_IServiceCRUDBase<GSM02541ParameterDTO>
     {
-        IAsyncEnumerable<GSM02541DTO> GetUnitPromotionList();
-        IAsyncEnumerable<UnitPromotionTypeDTO> GetUnitPromotionTypeList();
+        IAsyncEnumerable<GSM02541DTO> GetOtherUnitList();
+        IAsyncEnumerable<OtherUnitTypeDTO> GetOtherUnitTypeList();
         IAsyncEnumerable<BuildingDTO> GetBuildingList();
         IAsyncEnumerable<FloorDTO> GetFloorList();
-        GSM02500ActiveInactiveResultDTO RSP_GS_ACTIVE_INACTIVE_UNIT_PROMOTIONMethod(GSM02500ActiveInactiveParameterDTO poParam);
-        TemplateUnitPromotionDTO DownloadTemplateUnitPromotion();
+        GSM02500ActiveInactiveResultDTO RSP_GS_ACTIVE_INACTIVE_OTHER_UNITMethod(GSM02500ActiveInactiveParameterDTO poParam);
+        TemplateOtherUnitDTO DownloadTemplateOtherUnit();
     }
 }

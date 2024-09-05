@@ -29,20 +29,20 @@
                 Width="1070px"
                 Height="540px">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcDTO.CBUILDING_NAME)" HeaderText="@_localizer["BUILDING_NAME"]" TextAlignment="R_eTextAlignment.Left" Width="200px"/>
-                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcDTO.CFLOOR_NAME)" HeaderText="@_localizer["FLOOR"]" TextAlignment="R_eTextAlignment.Left" Width="200px"/>
-                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcDTO.CUNIT_NAME)" HeaderText="@_localizer["UNIT_ID"]" TextAlignment="R_eTextAlignment.Left" Width="200px"/>
-                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcDTO.CTENANT_NAME)" HeaderText="@_localizer["TENANT"]" TextAlignment="R_eTextAlignment.Left" Width="200px"/>
-                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcDTO.CDEPT_NAME)" HeaderText="@_localizer["DEPARTMENT"]" TextAlignment="R_eTextAlignment.Left" Width="200px"/>
+                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcDTO.CBUILDING_NAME)" HeaderText="@_localizer["BUILDING_NAME"]" TextAlignment="R_eTextAlignment.Left" Width="170px"/>
+                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcDTO.CFLOOR_NAME)" HeaderText="@_localizer["FLOOR"]" TextAlignment="R_eTextAlignment.Left" Width="120px"/>
+                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcDTO.CUNIT_NAME)" HeaderText="@_localizer["UNIT_ID"]" TextAlignment="R_eTextAlignment.Left" Width="120px"/>
+                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcDTO.CTENANT_NAME)" HeaderText="@_localizer["TENANT"]" TextAlignment="R_eTextAlignment.Left" Width="120px"/>
+                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcDTO.CDEPT_NAME)" HeaderText="@_localizer["DEPARTMENT"]" TextAlignment="R_eTextAlignment.Left" Width="170px"/>
                 <R_GridTextColumn FieldName="@nameof(PMB00300RecalcDTO.CREF_NO)" HeaderText="@_localizer["LOI_REF_NO"]" TextAlignment="R_eTextAlignment.Left" Width="200px"/>
-                <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcDTO.DHO_ACTUAL_DATE)" HeaderText="@_localizer["HO_DATE"]" Width="200px"/>
-                <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcDTO.NGROSS_AREA_SIZE)" HeaderText="@_localizer["GROSS_WIDTH"]" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcDTO.NNET_AREA_SIZE)" HeaderText="@_localizer["NET_WIDTH"]" Width="150px"/>
-                <R_GridNumericColumn FieldName="@nameof(PMB00300RecalcDTO.NACTUAL_AREA_SIZE)" HeaderText="@_localizer["ACTUAL_WIDTH"]" Width="150px"/>
+                <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcDTO.DHO_ACTUAL_DATE)" HeaderText="@_localizer["HO_DATE"]" Width="150px"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMB00300RecalcDTO.NGROSS_AREA_SIZE)" HeaderText="@_localizer["GROSS_WIDTH"]" Width="140px"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMB00300RecalcDTO.NNET_AREA_SIZE)" HeaderText="@_localizer["NET_WIDTH"]" Width="140px"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMB00300RecalcDTO.NACTUAL_AREA_SIZE)" HeaderText="@_localizer["ACTUAL_WIDTH"]" Width="140px"/>
                 <R_GridTextColumn FieldName="@nameof(PMB00300RecalcDTO.CUPDATE_BY)" HeaderText="@_localizer["UPDATED_BY"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
-                <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcDTO.DUPDATE_DATE)" HeaderText="@_localizer["UPDATED_DATE"]" Width="200px"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(PMB00300RecalcDTO.DUPDATE_DATE)" HeaderText="@_localizer["UPDATED_DATE"]" Width="180px"/>
                 <R_GridTextColumn FieldName="@nameof(PMB00300RecalcDTO.CCREATE_BY)" HeaderText="@_localizer["CREATED_BY"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
-                <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcDTO.DCREATE_DATE)" HeaderText="@_localizer["CREATED_DATE"]" Width="200px"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(PMB00300RecalcDTO.DCREATE_DATE)" HeaderText="@_localizer["CREATED_DATE"]" Width="180px"/>
             </R_GridColumns>
         </R_Grid>
     </R_ItemLayout>

@@ -106,18 +106,55 @@
                             R_EnableAdd="true" R_EnableEdit="true"></R_TextArea>
             </R_ItemLayout>
         </R_StackLayout>
+
         <R_StackLayout Row="true">
             <R_ItemLayout col="2">
                 <R_Label>@_localizer["_TotalFloorSpace"]</R_Label>
             </R_ItemLayout>
 
             <R_ItemLayout col="3">
-                <R_NumericTextBox Value="@loViewModel.Data.NGROSS_AREA_SIZE"
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.NGROSS_AREA_SIZE"
                                   R_ConductorSource="@_conductorRef"
                                   R_EnableAdd="true" R_EnableEdit="true">
                 </R_NumericTextBox>
             </R_ItemLayout>
-            <R_Label FontStyle="R_eFontStyle.Italic">@lcCUOMLabel</R_Label>
+
+            <R_ItemLayout col="1">
+                <R_Label FontStyle="R_eFontStyle.Italic">@lcCUOMLabel</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_OccupiableArea"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.NOCCUPIABLE_AREA_SIZE"
+                                  R_ConductorSource="@_conductorRef"
+                                  R_EnableAdd="true" R_EnableEdit="true">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label FontStyle="R_eFontStyle.Italic">@lcCUOMLabel</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="6">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2" Class="ms-2">
+                <R_Label>@_localizer["_CommonArea"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.NTOTAL_OCCUPIABLE"
+                                  R_ConductorSource="@_conductorRef"
+                                  Enabled="false">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label FontStyle="R_eFontStyle.Italic">@lcCUOMLabel</R_Label>
+            </R_ItemLayout>
         </R_StackLayout>
 
         <R_StackLayout Row="true">
@@ -233,6 +270,7 @@
             <R_ItemLayout col="4">
                 <R_DateTimePicker @bind-Value="@loViewModel.Data.DUPDATE_DATE"
                                   R_ConductorSource="@_conductorRef"
+                                  ShowPickerButton="false"
                                   Enabled="false"></R_DateTimePicker>
             </R_ItemLayout>
         </R_StackLayout>
@@ -254,6 +292,7 @@
             <R_ItemLayout col="4">
                 <R_DateTimePicker @bind-Value="@loViewModel.Data.DCREATE_DATE"
                                   R_ConductorSource="@_conductorRef"
+                                  ShowPickerButton="false"
                                   Enabled="false"></R_DateTimePicker>
             </R_ItemLayout>
         </R_StackLayout>

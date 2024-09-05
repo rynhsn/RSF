@@ -4006,21 +4006,21 @@
           "RSP_GS_MAINTAIN_BUILDINGResources": "1.0.0",
           "RSP_GS_MAINTAIN_BUILDING_FLOORResources": "1.0.0",
           "RSP_GS_MAINTAIN_BUILDING_UNITResources": "1.0.0",
+          "RSP_GS_MAINTAIN_OTHER_UNITResources": "1.0.0",
+          "RSP_GS_MAINTAIN_OTHER_UNIT_TYPEResources": "1.0.0",
           "RSP_GS_MAINTAIN_PROPERTYResources": "1.0.0",
           "RSP_GS_MAINTAIN_PROPERTY_DEPTResources": "1.0.0",
           "RSP_GS_MAINTAIN_PROPERTY_USERResources": "1.0.0",
-          "RSP_GS_MAINTAIN_UNIT_PROMOTIONResources": "1.0.0",
-          "RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources": "1.0.0",
           "RSP_GS_MAINTAIN_UNIT_TYPEResources": "1.0.0",
           "RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYResources": "1.0.0",
           "RSP_GS_MAINTAIN_UNIT_VIEWResources": "1.0.0",
           "RSP_GS_UPLOAD_BUILDING_UNITResources": "1.0.0",
           "RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources": "1.0.0",
+          "RSP_GS_UPLOAD_OTHER_UNITResources": "1.0.0",
+          "RSP_GS_UPLOAD_OTHER_UNIT_TYPEResources": "1.0.0",
           "RSP_GS_UPLOAD_PROPERTY_FLOORResources": "1.0.0",
           "RSP_GS_UPLOAD_PROPERTY_UNIT_TYPEResources": "1.0.0",
           "RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources": "1.0.0",
-          "RSP_GS_UPLOAD_UNIT_PROMOTIONResources": "1.0.0",
-          "RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources": "1.0.0",
           "System.Data.SqlClient": "4.8.5"
         },
         "compile": {
@@ -4252,6 +4252,26 @@
           "bin/placeholder/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.dll": {}
         }
       },
+      "RSP_GS_MAINTAIN_OTHER_UNITResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_OTHER_UNITResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_OTHER_UNITResources.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_OTHER_UNIT_TYPEResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_OTHER_UNIT_TYPEResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_OTHER_UNIT_TYPEResources.dll": {}
+        }
+      },
       "RSP_GS_MAINTAIN_PROPERTYResources/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -4310,26 +4330,6 @@
         },
         "runtime": {
           "bin/placeholder/RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.dll": {}
-        }
-      },
-      "RSP_GS_MAINTAIN_UNIT_PROMOTIONResources/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
-        "compile": {
-          "bin/placeholder/RSP_GS_MAINTAIN_UNIT_PROMOTIONResources.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/RSP_GS_MAINTAIN_UNIT_PROMOTIONResources.dll": {}
-        }
-      },
-      "RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
-        "compile": {
-          "bin/placeholder/RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources.dll": {}
         }
       },
       "RSP_GS_MAINTAIN_UNIT_TYPEResources/1.0.0": {
@@ -4392,6 +4392,26 @@
           "bin/placeholder/RSP_GS_UPLOAD_JOURNAL_GROUPResources.dll": {}
         }
       },
+      "RSP_GS_UPLOAD_OTHER_UNITResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_UPLOAD_OTHER_UNITResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_UPLOAD_OTHER_UNITResources.dll": {}
+        }
+      },
+      "RSP_GS_UPLOAD_OTHER_UNIT_TYPEResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_UPLOAD_OTHER_UNIT_TYPEResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_UPLOAD_OTHER_UNIT_TYPEResources.dll": {}
+        }
+      },
       "RSP_GS_UPLOAD_PROPERTY_FLOORResources/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -4420,26 +4440,6 @@
         },
         "runtime": {
           "bin/placeholder/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources.dll": {}
-        }
-      },
-      "RSP_GS_UPLOAD_UNIT_PROMOTIONResources/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
-        "compile": {
-          "bin/placeholder/RSP_GS_UPLOAD_UNIT_PROMOTIONResources.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/RSP_GS_UPLOAD_UNIT_PROMOTIONResources.dll": {}
-        }
-      },
-      "RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
-        "compile": {
-          "bin/placeholder/RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources.dll": {}
         }
       },
       "RSP_GS_VALIDATE_USER_ACT_APPRResources/1.0.0": {
@@ -12040,6 +12040,16 @@
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.csproj"
     },
+    "RSP_GS_MAINTAIN_OTHER_UNITResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_OTHER_UNITResources/RSP_GS_MAINTAIN_OTHER_UNITResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_OTHER_UNITResources/RSP_GS_MAINTAIN_OTHER_UNITResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_OTHER_UNIT_TYPEResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_OTHER_UNIT_TYPEResources/RSP_GS_MAINTAIN_OTHER_UNIT_TYPEResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_OTHER_UNIT_TYPEResources/RSP_GS_MAINTAIN_OTHER_UNIT_TYPEResources.csproj"
+    },
     "RSP_GS_MAINTAIN_PROPERTYResources/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_PROPERTYResources/RSP_GS_MAINTAIN_PROPERTYResources.csproj",
@@ -12069,16 +12079,6 @@
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources/RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources/RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.csproj"
-    },
-    "RSP_GS_MAINTAIN_UNIT_PROMOTIONResources/1.0.0": {
-      "type": "project",
-      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_UNIT_PROMOTIONResources/RSP_GS_MAINTAIN_UNIT_PROMOTIONResources.csproj",
-      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_UNIT_PROMOTIONResources/RSP_GS_MAINTAIN_UNIT_PROMOTIONResources.csproj"
-    },
-    "RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources/1.0.0": {
-      "type": "project",
-      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources/RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources.csproj",
-      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources/RSP_GS_MAINTAIN_UNIT_PROMOTION_TYPEResources.csproj"
     },
     "RSP_GS_MAINTAIN_UNIT_TYPEResources/1.0.0": {
       "type": "project",
@@ -12110,6 +12110,16 @@
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_JOURNAL_GROUPResources/RSP_GS_UPLOAD_JOURNAL_GROUPResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_JOURNAL_GROUPResources/RSP_GS_UPLOAD_JOURNAL_GROUPResources.csproj"
     },
+    "RSP_GS_UPLOAD_OTHER_UNITResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_OTHER_UNITResources/RSP_GS_UPLOAD_OTHER_UNITResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_OTHER_UNITResources/RSP_GS_UPLOAD_OTHER_UNITResources.csproj"
+    },
+    "RSP_GS_UPLOAD_OTHER_UNIT_TYPEResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_OTHER_UNIT_TYPEResources/RSP_GS_UPLOAD_OTHER_UNIT_TYPEResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_OTHER_UNIT_TYPEResources/RSP_GS_UPLOAD_OTHER_UNIT_TYPEResources.csproj"
+    },
     "RSP_GS_UPLOAD_PROPERTY_FLOORResources/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_PROPERTY_FLOORResources/RSP_GS_UPLOAD_PROPERTY_FLOORResources.csproj",
@@ -12124,16 +12134,6 @@
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources/RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources.csproj"
-    },
-    "RSP_GS_UPLOAD_UNIT_PROMOTIONResources/1.0.0": {
-      "type": "project",
-      "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_UNIT_PROMOTIONResources/RSP_GS_UPLOAD_UNIT_PROMOTIONResources.csproj",
-      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_UNIT_PROMOTIONResources/RSP_GS_UPLOAD_UNIT_PROMOTIONResources.csproj"
-    },
-    "RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources/1.0.0": {
-      "type": "project",
-      "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources/RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources.csproj",
-      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources/RSP_GS_UPLOAD_UNIT_PROMOTION_TYPEResources.csproj"
     },
     "RSP_GS_VALIDATE_USER_ACT_APPRResources/1.0.0": {
       "type": "project",

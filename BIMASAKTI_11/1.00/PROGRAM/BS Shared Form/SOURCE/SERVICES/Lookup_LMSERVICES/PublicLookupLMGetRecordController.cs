@@ -1,6 +1,7 @@
 ﻿using Lookup_PMBACK;
 using Lookup_PMCOMMON;
 using Lookup_PMCOMMON.DTOs;
+using Lookup_PMCOMMON.DTOs.GET_USER_PARAM_DETAIL;
 using Lookup_PMCOMMON.DTOs.LML01000;
 using Lookup_PMCOMMON.DTOs.LML01100;
 using Lookup_PMCOMMON.DTOs.LML01300;
@@ -423,6 +424,36 @@ namespace Lookup_PMSERVICES
 #pragma warning disable CS8601 // Possible null reference assignment.
                 loReturn.Data = loTempList.Find(x => x.CREF_NO!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
+
+            }
+            catch (Exception ex)
+            {
+
+                loEx.Add(ex);
+                _loggerLookup.LogError(loEx);
+            }
+            loEx.ThrowExceptionIfErrors();
+            _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
+            return loReturn;
+        }
+        [HttpPost]
+        public LMLGenericRecord<GET_USER_PARAM_DETAILDTO> UserParamDetail(GET_USER_PARAM_DETAILParameterDTO poParam)
+        {
+            string lcMethodName = nameof(UserParamDetail);
+            using Activity activity = _activitySource.StartActivity(lcMethodName)!;
+            _loggerLookup.LogInfo(string.Format("START process method {0} on Controller", lcMethodName));
+
+            var loEx = new R_Exception();
+            LMLGenericRecord<GET_USER_PARAM_DETAILDTO> loReturn = new();
+            try
+            {
+                var loCls = new PublicLookupLMCls();
+                poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParam.CUSER_ID = R_BackGlobalVar.USER_ID;
+                _loggerLookup.LogInfo($"Call method {0}", lcMethodName);
+                var loTemp = loCls.GetUserParamDetailDb(poParam);
+
+                loReturn.Data = loTemp;
 
             }
             catch (Exception ex)

@@ -1,5 +1,5 @@
 ﻿@inherits R_Page
-@attribute [R_Page(Title = "Department")]
+@attribute [R_Page(ResourceId = "_Department")]
 @inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
 
 <R_StackLayout Style="width: 800px">
@@ -11,10 +11,10 @@
                 Height="300px"
                 Pageable="true">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="CDEPT_CODE" HeaderText="@_localizer["_DeptCode"]" Width="100px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CDEPT_NAME" HeaderText="@_localizer["_DeptName"]" Width="300px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CCENTER_CODE" HeaderText="@_localizer["_CenterCode"]" Width="100px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="CCENTER_NAME" HeaderText="@_localizer["_CenterName"]" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CDEPT_CODE" HeaderText="@_localizer["_DeptCode"]" Width="160px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CDEPT_NAME" HeaderText="@_localizer["_DeptName"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCENTER_CODE" HeaderText="@_localizer["_CenterCode"]" Width="140px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCENTER_NAME" HeaderText="@_localizer["_CenterName"]" Width="200px"></R_GridTextColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>

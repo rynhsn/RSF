@@ -96,6 +96,15 @@ namespace GSM05000FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        internal static string BTN_OK {
+            get {
+                return ResourceManager.GetString("BTN_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Process.
         /// </summary>
         internal static string BTN_PROCESS {

@@ -142,7 +142,9 @@ public partial class PMT06500Invoice : R_Page
 
         try
         {
-            await _viewModel.GetSummaryGridList();
+            await _viewModel.GetSummaryGridList(_viewModel.EntityInvoice.CREF_NO, _viewModel.EntityInvoice.CDEPT_CODE,
+                _viewModel.InvoicePageParam.CLINK_DEPT_CODE, _viewModel.InvoicePageParam.CLINK_TRANS_CODE,
+                _viewModel.InvoicePageParam.CACTION);
             eventArgs.ListEntityResult = _viewModel.SummaryGridList;
         }
         catch (Exception ex)
@@ -159,10 +161,17 @@ public partial class PMT06500Invoice : R_Page
     {
         var loParam = new PMT06500InvoicePopupParam
         {
-            eMode = R_eConductorMode.Edit,
-            oInvoice = _viewModel.EntityInvoice
+            EMODE = R_eConductorMode.Edit,
+            CREF_NO = _viewModel.InvoicePageParam.CREF_NO,
+            CDEPT_CODE = _viewModel.InvoicePageParam.CDEPT_CODE,
+            CLINK_DEPT_CODE = _viewModel.InvoicePageParam.CLINK_DEPT_CODE,
+            CLINK_TRANS_CODE = _viewModel.InvoicePageParam.CLINK_TRANS_CODE,
+            CACTION = "EDIT",
+            OINVOICE = _viewModel.EntityInvoice
         };
         eventArgs.Parameter = loParam;
+        eventArgs.PageTitle = "Invoice Detail";
+        eventArgs.FormAccess = R_eFormAccess.Update.ToDescription();
         eventArgs.TargetPageType = typeof(PMT06500InvoicePopup);
     }
 
@@ -187,14 +196,20 @@ public partial class PMT06500Invoice : R_Page
     {
         var loParam = new PMT06500InvoicePopupParam
         {
-            eMode = R_eConductorMode.Normal,
-            oInvoice = _viewModel.EntityInvoice
+            EMODE = R_eConductorMode.Normal,
+            CREF_NO = _viewModel.InvoicePageParam.CREF_NO,
+            CDEPT_CODE = _viewModel.InvoicePageParam.CDEPT_CODE,
+            CLINK_DEPT_CODE = _viewModel.InvoicePageParam.CLINK_DEPT_CODE,
+            CLINK_TRANS_CODE = _viewModel.InvoicePageParam.CLINK_TRANS_CODE,
+            CACTION = "EDIT",
+            OINVOICE = _viewModel.EntityInvoice
         };
         eventArgs.Parameter = loParam;
         eventArgs.FormAccess = R_eFormAccess.View.ToDescription();
+        eventArgs.PageTitle = "Invoice Detail";
         eventArgs.TargetPageType = typeof(PMT06500InvoicePopup);
     }
-    
+
     private async Task OnClickSubmit()
     {
         var loEx = new R_Exception();

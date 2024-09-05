@@ -3,7 +3,6 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
         <Nullable>enable</Nullable>
-        <Configurations>Debug;Release;X;Report</Configurations>
     </PropertyGroup>
 
     <ItemGroup>

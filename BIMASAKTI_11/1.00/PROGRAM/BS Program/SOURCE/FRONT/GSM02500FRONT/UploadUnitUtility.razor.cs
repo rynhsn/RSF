@@ -96,25 +96,68 @@ namespace GSM02500FRONT
 
                 loExtract = new List<UploadUnitUtilityExcelDTO>(loResult);
 
-                loUploadUnitUtilityViewModel.loUploadUnitUtilityList = loExtract.Select((x, i) => new UploadUnitUtilityDTO
+                //loUploadUnitUtilityViewModel.loUploadUnitUtilityList = loExtract.Select((x, i) => new UploadUnitUtilityDTO
+                //{
+                //    No = i + 1,
+                //    UtilityType = x.UtilityType,
+                //    SeqNo = x.SeqNo,
+                //    MeterNo = x.MeterNo,
+                //    AliasMeterNo = x.AliasMeterNo,
+                //    CalculationFactor = x.CalculationFactor,
+                //    Capacity = x.Capacity,
+                //    MaxResetValue = x.MaxResetValue,
+                //    Active = x.Active,
+                //    NonActiveDate = x.NonActiveDate,
+                //    Notes = "",
+                //    CompanyId = loUploadUnitUtilityViewModel.SelectedCompanyId,
+                //    PropertyId = loUploadUnitUtilityViewModel.loParameter.PropertyData.CPROPERTY_ID,
+                //    BuildingId = loUploadUnitUtilityViewModel.loParameter.BuildingData.CBUILDING_ID,
+                //    FloorId = loUploadUnitUtilityViewModel.loParameter.FloorData.CFLOOR_ID,
+                //    UnitId = loUploadUnitUtilityViewModel.loParameter.UnitData.CUNIT_ID,
+                //    OtherUnitId = loUploadUnitUtilityViewModel.loParameter.OtherUnitData.COTHER_UNIT_ID
+                //}).ToList();
+                if (loUploadUnitUtilityViewModel.loParameter.LFLAG)
                 {
-                    No = i + 1,
-                    UtilityType = x.UtilityType,
-                    SeqNo = x.SeqNo,
-                    MeterNo = x.MeterNo,
-                    AliasMeterNo = x.AliasMeterNo,
-                    CalculationFactor = x.CalculationFactor,
-                    Capacity = x.Capacity,
-                    MaxResetValue = x.MaxResetValue,
-                    Active = x.Active,
-                    NonActiveDate = x.NonActiveDate,
-                    Notes = "",
-                    CompanyId = loUploadUnitUtilityViewModel.SelectedCompanyId,
-                    PropertyId = loUploadUnitUtilityViewModel.loParameter.PropertyData.CPROPERTY_ID,
-                    BuildingId = loUploadUnitUtilityViewModel.loParameter.BuildingData.CBUILDING_ID,
-                    FloorId = loUploadUnitUtilityViewModel.loParameter.FloorData.CFLOOR_ID,
-                    UnitId = loUploadUnitUtilityViewModel.loParameter.UnitData.CUNIT_ID
-                }).ToList();
+                    loUploadUnitUtilityViewModel.loUploadUnitUtilityList = loExtract.Select((x, i) => new UploadUnitUtilityDTO
+                    {
+                        No = i + 1,
+                        UtilityType = x.UtilityType,
+                        SeqNo = x.SeqNo,
+                        MeterNo = x.MeterNo,
+                        AliasMeterNo = x.AliasMeterNo,
+                        CalculationFactor = x.CalculationFactor,
+                        Capacity = x.Capacity,
+                        MaxResetValue = x.MaxResetValue,
+                        Active = x.Active,
+                        NonActiveDate = x.NonActiveDate,
+                        Notes = "",
+                        CompanyId = loUploadUnitUtilityViewModel.SelectedCompanyId,
+                        PropertyId = loUploadUnitUtilityViewModel.loParameter.PropertyData.CPROPERTY_ID,
+                        BuildingId = loUploadUnitUtilityViewModel.loParameter.BuildingData.CBUILDING_ID,
+                        FloorId = loUploadUnitUtilityViewModel.loParameter.FloorData.CFLOOR_ID,
+                        UnitId = loUploadUnitUtilityViewModel.loParameter.UnitData.CUNIT_ID
+                    }).ToList();
+                }
+                else
+                {
+                    loUploadUnitUtilityViewModel.loUploadUnitUtilityList = loExtract.Select((x, i) => new UploadUnitUtilityDTO
+                    {
+                        No = i + 1,
+                        UtilityType = x.UtilityType,
+                        SeqNo = x.SeqNo,
+                        MeterNo = x.MeterNo,
+                        AliasMeterNo = x.AliasMeterNo,
+                        CalculationFactor = x.CalculationFactor,
+                        Capacity = x.Capacity,
+                        MaxResetValue = x.MaxResetValue,
+                        Active = x.Active,
+                        NonActiveDate = x.NonActiveDate,
+                        Notes = "",
+                        CompanyId = loUploadUnitUtilityViewModel.SelectedCompanyId,
+                        PropertyId = loUploadUnitUtilityViewModel.loParameter.PropertyData.CPROPERTY_ID,
+                        OtherUnitId = loUploadUnitUtilityViewModel.loParameter.OtherUnitData.COTHER_UNIT_ID
+                    }).ToList();
+                }
                 loUploadUnitUtilityViewModel.loUploadUnitUtilityDisplayList = new ObservableCollection<UploadUnitUtilityDTO>(loUploadUnitUtilityViewModel.loUploadUnitUtilityList);
             }
             catch (Exception ex)

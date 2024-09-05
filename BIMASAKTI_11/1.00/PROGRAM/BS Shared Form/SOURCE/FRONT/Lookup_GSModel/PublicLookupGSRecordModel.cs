@@ -896,6 +896,35 @@ namespace Lookup_GSModel
             return loResult;
         }
 
+        public async Task<GSL02800DTO> GSL02800GetOtherUnitMasterAsync(GSL02800ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            GSL02800DTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GSLGenericRecord<GSL02800DTO>, GSL02800ParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicRecordLookup.GSL02800GetOtherUnitMaster),
+                    poEntity,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
         #region Not Implement
         public GSLGenericRecord<GSL00100DTO> GSL00100GetSalesTax(GSL00100ParameterDTO poEntity)
         {
@@ -1014,6 +1043,10 @@ namespace Lookup_GSModel
             throw new NotImplementedException();
         }
         public GSLGenericRecord<GSL02700DTO> GSL02700GetOtherUnit(GSL02700ParameterDTO poEntity)
+        {
+            throw new NotImplementedException();
+        }
+        public GSLGenericRecord<GSL02800DTO> GSL02800GetOtherUnitMaster(GSL02800ParameterDTO poEntity)
         {
             throw new NotImplementedException();
         }

@@ -44,7 +44,7 @@
                 Width="1000px"
                 Height="270px">
             <R_GridColumns>
-                <R_GridNumericColumn FieldName="@nameof(GSM04500UploadFromSystemDTO.No)" HeaderText="@_localizer["LBL_NO"]" Width="30px" Filterable="false" TextAlignment="R_eTextAlignment.Center"/>
+                <R_GridNumericColumn TValue="Int32" FieldName="@nameof(GSM04500UploadFromSystemDTO.No)" HeaderText="@_localizer["LBL_NO"]" Width="30px" Filterable="false" TextAlignment="R_eTextAlignment.Center"/>
                 <R_GridTextColumn FieldName="@nameof(GSM04500UploadFromSystemDTO.JournalGroup)" HeaderText="@_localizer["LBL_JRNLGRP"]" Width="100px"/>
                 <R_GridTextColumn FieldName="@nameof(GSM04500UploadFromSystemDTO.JournalGroupName)" HeaderText="@_localizer["LBL_JRNLGRPNAME"]" Width="150px"/>
                 <R_GridCheckBoxColumn FieldName="@nameof(GSM04500UploadFromSystemDTO.EnableAccrual)" HeaderText="@_localizer["LBL_ENACCRUAL"]" Width="150px" Visible="@(_viewModel.Param.CJRNGRP_TYPE is "10" or "11" or "40")"/>

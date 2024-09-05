@@ -761,10 +761,10 @@ namespace Lookup_GSLBACK
                 loCmd.CommandType = CommandType.StoredProcedure;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CBANK_TYPE", DbType.String, 50, poEntity.CBANK_TYPE);
                 loDb.R_AddCommandParameter(loCmd, "@CCB_CODE", DbType.String, 50, poEntity.CCB_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, poEntity.CDEPT_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, poEntity.CDEPT_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CBANK_TYPE", DbType.String, 50, poEntity.CBANK_TYPE);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
@@ -1205,8 +1205,8 @@ namespace Lookup_GSLBACK
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
-                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CCOUNTRY_ID", DbType.String, 50, poParam.CCOUNTRY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
@@ -1489,6 +1489,7 @@ namespace Lookup_GSLBACK
 
             return loResult;
         }
+
         public List<GSL02700DTO> GetALLOtherUnit(GSL02700ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GetALLOtherUnit");
@@ -1514,7 +1515,7 @@ namespace Lookup_GSLBACK
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
              .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _Logger.LogDebug("EXEC RSP_GS_GET_OTHER_UNIT_LIST {@poParameter}", loDbParam);
+                _Logger.LogDebug("EXEC RSP_GS_LOOKUP_OTHER_UNIT {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -1531,5 +1532,45 @@ namespace Lookup_GSLBACK
             return loResult;
         }
 
+        public List<GSL02800DTO> GetALLOtherUnitMaster(GSL02800ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GetALLOtherUnitMaster");
+            var loEx = new R_Exception();
+            List<GSL02800DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection();
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_GET_OTHER_UNIT_LIST";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@LEVENT", DbType.Boolean, 50, poEntity.LEVENT);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_OTHER_UNIT_LIST {@poParameter}", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSL02800DTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
     }
 }

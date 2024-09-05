@@ -35,7 +35,7 @@
                 Height="350px"
                 R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="@nameof(GSM02510DTO.CBUILDING_NAME)" HeaderText="@_localizer["_UnitTypeCategory"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM02510DTO.CBUILDING_NAME)" HeaderText="@_localizer["_Building"]"></R_GridTextColumn>
             </R_GridColumns>
         </R_Grid>
     </R_ItemLayout>
@@ -100,6 +100,7 @@
             <R_ItemLayout col="3">
                 <R_NumericTextBox @bind-Value="@loViewModel.Data.NTOTAL_FLOOR"
                                   R_ConductorSource="@_conductorRef"
+                                  Decimals="0"
                                   Enabled="false">
                 </R_NumericTextBox>
             </R_ItemLayout>
@@ -113,6 +114,7 @@
             <R_ItemLayout col="3">
                 <R_NumericTextBox @bind-Value="@loViewModel.Data.NTOTAL_ACTIVE_FLOOR"
                                   R_ConductorSource="@_conductorRef"
+                                  Decimals="0"
                                   Enabled="false">
                 </R_NumericTextBox>
             </R_ItemLayout>
@@ -126,6 +128,7 @@
             <R_ItemLayout col="3">
                 <R_NumericTextBox @bind-Value="@loViewModel.Data.NTOTAL_UNIT"
                                   R_ConductorSource="@_conductorRef"
+                                  Decimals="0"
                                   Enabled="false">
                 </R_NumericTextBox>
             </R_ItemLayout>
@@ -139,6 +142,7 @@
             <R_ItemLayout col="3">
                 <R_NumericTextBox @bind-Value="@loViewModel.Data.NTOTAL_ACTIVE_UNIT"
                                   R_ConductorSource="@_conductorRef"
+                                  Decimals="0"
                                   Enabled="false">
                 </R_NumericTextBox>
             </R_ItemLayout>
@@ -161,6 +165,7 @@
             <R_ItemLayout col="4">
                 <R_DateTimePicker @bind-Value="@loViewModel.Data.DUPDATE_DATE"
                                   R_ConductorSource="@_conductorRef"
+                                  ShowPickerButton="false"
                                   Enabled="false"></R_DateTimePicker>
             </R_ItemLayout>
         </R_StackLayout>
@@ -182,6 +187,7 @@
             <R_ItemLayout col="4">
                 <R_DateTimePicker @bind-Value="@loViewModel.Data.DCREATE_DATE"
                                   R_ConductorSource="@_conductorRef"
+                                  ShowPickerButton="false"
                               Enabled="false"></R_DateTimePicker>
             </R_ItemLayout>
         </R_StackLayout>

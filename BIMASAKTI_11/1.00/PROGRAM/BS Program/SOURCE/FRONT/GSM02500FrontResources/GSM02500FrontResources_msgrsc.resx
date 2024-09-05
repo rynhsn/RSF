@@ -546,4 +546,43 @@
   <data name="_ViewName" xml:space="preserve">
     <value>View Name</value>
   </data>
+  <data name="V030" xml:space="preserve">
+    <value>Calculation Factor must be greater than 0!</value>
+  </data>
+  <data name="V031" xml:space="preserve">
+    <value>Capacity (Electricity) must be greater than 0!</value>
+  </data>
+  <data name="V032" xml:space="preserve">
+    <value>Max Reset Value must be greater than 0!</value>
+  </data>
+  <data name="V033" xml:space="preserve">
+    <value>Gross Area Size must be greater than 0!</value>
+  </data>
+  <data name="V034" xml:space="preserve">
+    <value>Net Area Size must be greater than 0!</value>
+  </data>
+  <data name="V035" xml:space="preserve">
+    <value>Gross Size must be greater than 0!</value>
+  </data>
+  <data name="V036" xml:space="preserve">
+    <value>Net Size must be greater than 0!</value>
+  </data>
+  <data name="_Event" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="_ErrLookup01" xml:space="preserve">
+    <value>Not found data by search text!!</value>
+  </data>
+  <data name="_TotalRows" xml:space="preserve">
+    <value>Total Row(s)</value>
+  </data>
+  <data name="_OccupiableArea" xml:space="preserve">
+    <value>Occupiable Area</value>
+  </data>
+  <data name="_FloorId" xml:space="preserve">
+    <value>Floor Id</value>
+  </data>
+  <data name="_PipeSize" xml:space="preserve">
+    <value>Pipe Size</value>
+  </data>
 </root>

@@ -49,7 +49,7 @@
         <value>Description</value><comment>Description</comment>
     </data>
     <data name="AGRMT_NO" xml:space="preserve">
-        <value>Agrmt No</value><comment>Agrmt No</comment>
+        <value>Agrmt. No</value><comment>Agrmt. No</comment>
     </data>
     <data name="INVOICE_NO" xml:space="preserve">
         <value>Invoice No</value><comment>Invoice No</comment>

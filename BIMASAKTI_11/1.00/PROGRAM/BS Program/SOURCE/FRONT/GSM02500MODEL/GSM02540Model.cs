@@ -27,22 +27,22 @@ namespace GSM02500MODEL
         {
         }
 
-        public TemplateUnitPromotionTypeDTO DownloadTemplateUnitPromotionType()
+        public TemplateOtherUnitTypeDTO DownloadTemplateOtherUnitType()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<TemplateUnitPromotionTypeDTO> DownloadTemplateUnitPromotionTypeAsync()
+        public async Task<TemplateOtherUnitTypeDTO> DownloadTemplateOtherUnitTypeAsync()
         {
             R_Exception loEx = new R_Exception();
-            TemplateUnitPromotionTypeDTO loResult = new TemplateUnitPromotionTypeDTO();
+            TemplateOtherUnitTypeDTO loResult = new TemplateOtherUnitTypeDTO();
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
-                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<TemplateUnitPromotionTypeDTO>(
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<TemplateOtherUnitTypeDTO>(
                     _RequestServiceEndPoint,
-                    nameof(IGSM02540.DownloadTemplateUnitPromotionType),
+                    nameof(IGSM02540.DownloadTemplateOtherUnitType),
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
@@ -59,12 +59,12 @@ namespace GSM02500MODEL
             return loResult;
         }
 
-        public IAsyncEnumerable<GSM02540DTO> GetUnitPromotionTypeList()
+        public IAsyncEnumerable<GSM02540DTO> GetOtherUnitTypeList()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<GSM02540ResultDTO> GetUnitPromotionTypeListStreamAsync()
+        public async Task<GSM02540ResultDTO> GetOtherUnitTypeListStreamAsync()
         {
             {
                 R_Exception loEx = new R_Exception();
@@ -77,7 +77,7 @@ namespace GSM02500MODEL
 
                     loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSM02540DTO>(
                         _RequestServiceEndPoint,
-                        nameof(IGSM02540.GetUnitPromotionTypeList),
+                        nameof(IGSM02540.GetOtherUnitTypeList),
                         DEFAULT_MODULE,
                         _SendWithContext,
                         _SendWithToken);
@@ -96,12 +96,12 @@ namespace GSM02500MODEL
             }
         }
 
-        public GSM02500ActiveInactiveResultDTO RSP_GS_ACTIVE_INACTIVE_UNIT_PROMOTION_TYPEMethod(GSM02500ActiveInactiveParameterDTO poParam)
+        public GSM02500ActiveInactiveResultDTO RSP_GS_ACTIVE_INACTIVE_OTHER_UNIT_TYPEMethod(GSM02500ActiveInactiveParameterDTO poParam)
         {
             throw new NotImplementedException();
         }
 
-        public async Task RSP_GS_ACTIVE_INACTIVE_UNIT_PROMOTION_TYPEMethodAsync(GSM02500ActiveInactiveParameterDTO poParam)
+        public async Task RSP_GS_ACTIVE_INACTIVE_OTHER_UNIT_TYPEMethodAsync(GSM02500ActiveInactiveParameterDTO poParam)
         {
             R_Exception loEx = new R_Exception();
             GSM02500ActiveInactiveResultDTO loRtn = new GSM02500ActiveInactiveResultDTO();
@@ -112,7 +112,7 @@ namespace GSM02500MODEL
 
                 loRtn = await R_HTTPClientWrapper.R_APIRequestObject<GSM02500ActiveInactiveResultDTO, GSM02500ActiveInactiveParameterDTO> (
                     _RequestServiceEndPoint,
-                    nameof(IGSM02540.RSP_GS_ACTIVE_INACTIVE_UNIT_PROMOTION_TYPEMethod),
+                    nameof(IGSM02540.RSP_GS_ACTIVE_INACTIVE_OTHER_UNIT_TYPEMethod),
                     poParam,
                     DEFAULT_MODULE,
                     _SendWithContext,

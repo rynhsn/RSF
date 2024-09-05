@@ -21,7 +21,8 @@
 
                 <R_ItemLayout col="9">
                     <R_TextBox Enabled="false"
-                        @bind-Value="@_viewModelLML00900._Parameter.CTRANS_NAME">>
+                               @bind-Value="@_viewModelLML00900._Parameter.CTRANS_NAME">
+                        >
                     </R_TextBox>
                 </R_ItemLayout>
                 <R_ItemLayout col="3" Class="text-center">
@@ -36,8 +37,7 @@
                           ValueField="@nameof(PeriodDTO.CCODE)"
                           TextField="@nameof(PeriodDTO.CNAME)"
                           Value="_viewModelLML00900.PeriodValue"
-                          ValueChanged="@((string value) => IsPeriodAll(value))"
-                          >
+                          ValueChanged="@((string value) => IsPeriodAll(value))">
             </R_RadioGroup>
         </R_ItemLayout>
 
@@ -64,8 +64,7 @@
             </R_StackLayout>
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_Button
-                OnClick="@BtnRefresh">
+            <R_Button OnClick="@BtnRefresh">
                 @_localizer["_refresh"]
             </R_Button>
         </R_ItemLayout>
@@ -78,7 +77,7 @@
                     R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
                     R_GridType="@R_eGridType.Navigator"
                     Pageable
-                    PageSize="10"
+                    @bind-PageSize="@_pageSize"
                     Height="350px"
                     Width="975px">
                 <R_GridColumns>
@@ -108,15 +107,16 @@
                                       HeaderText=@_localizer["_curr"] />
                     <R_GridNumericColumn Width="250px"
                                          FieldName="@nameof(LML00900FrontDTO.NTOTAL_REMAINING)"
+                                         TValue="decimal"
                                          HeaderText=@_localizer["_remainingAmount"] />
                     <R_GridTextColumn Width="250px"
                                       FieldName="@nameof(LML00900FrontDTO.CTRANS_DESC)"
                                       HeaderText=@_localizer["_desc"] />
                 </R_GridColumns>
             </R_Grid>
-            </R_StackLayout>
+        </R_StackLayout>
 
-            <R_StackLayout Row Class="justify-content-end">
+        <R_StackLayout Row Class="justify-content-end">
             <R_ItemLayout xs="2">
                 <R_Button Enabled="@_viewModelLML00900._btnOk" OnClick="Button_OnClickOkAsync">
                     OK
@@ -128,5 +128,5 @@
                 </R_Button>
             </R_ItemLayout>
         </R_StackLayout>
-        </R_StackLayout>
-        </R_StackLayout>
+    </R_StackLayout>
+</R_StackLayout>

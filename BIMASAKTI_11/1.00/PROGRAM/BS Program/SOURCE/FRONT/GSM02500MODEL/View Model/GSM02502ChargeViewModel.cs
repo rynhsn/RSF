@@ -54,7 +54,7 @@ namespace GSM02500MODEL.View_Model
             R_Exception loException = new R_Exception();
             try
             {
-                R_FrontContext.R_SetStreamingContext(ContextConstant.GSM02502_CHARGE_COMBOBOX_CLASS_ID_STREAMING_CONTEXT, "_BS_UTILITY_CHARGES_TYPE");
+                R_FrontContext.R_SetStreamingContext(ContextConstant.GSM02502_CHARGE_COMBOBOX_CLASS_ID_STREAMING_CONTEXT, "_BS_UNIT_CHARGES_TYPE");
 
                 loChargeTypeRtn = await loModel.GetChargeComboBoxListStreamAsync();
                 loChargeTypeList = loChargeTypeRtn.Data;

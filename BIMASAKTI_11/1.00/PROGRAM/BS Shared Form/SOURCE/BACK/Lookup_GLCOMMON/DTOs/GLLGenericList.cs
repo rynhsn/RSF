@@ -5,6 +5,6 @@ namespace Lookup_GLCOMMON.DTOs
 {
     public class GLLGenericList<T> : R_APIResultBaseDTO
     {
-        public List<T>? Data { get; set; }
+        public List<T>? Data { get; set; }  
     }
 }

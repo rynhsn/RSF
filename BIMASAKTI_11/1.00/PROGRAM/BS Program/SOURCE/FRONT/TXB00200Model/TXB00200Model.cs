@@ -34,6 +34,11 @@ namespace TXB00200Model
             throw new NotImplementedException();
         }
 
+        public TXB00200SingleDTO<TXB00200NextPeriodDTO> TXB00200GetNextPeriod()
+        {
+            throw new NotImplementedException();
+        }
+
         public TXB00200ListDTO<TXB00200PeriodDTO> TXB00200GetPeriodList(TXB00200YearParam poParam)
         {
             throw new NotImplementedException();

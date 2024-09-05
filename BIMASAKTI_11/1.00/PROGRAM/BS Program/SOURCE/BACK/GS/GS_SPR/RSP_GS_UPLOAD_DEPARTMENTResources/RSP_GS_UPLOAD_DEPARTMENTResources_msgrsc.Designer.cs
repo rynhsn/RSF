@@ -124,6 +124,15 @@ namespace RSP_GS_UPLOAD_DEPARTMENTResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Branch Code.
+        /// </summary>
+        internal static string INVALID_BRANCH_CODE {
+            get {
+                return ResourceManager.GetString("INVALID_BRANCH_CODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Center Code.
         /// </summary>
         internal static string INVALID_CENTER_CODE {

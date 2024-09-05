@@ -41,7 +41,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_BUILDING_FLOOR_LIST " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -90,7 +90,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
                 lcQuery = $"EXEC RSP_GS_ACTIVE_INACTIVE_FLOOR " +
                                  $"@CCOMPANY_ID, " +
                                  $"@CPROPERTY_ID, " +
@@ -154,6 +154,7 @@ namespace GSM02500BACK
                                  $"@CDEFAULT_UNIT_CATEGORY_ID, " +
                                  $"@LACTIVE, " +
                                  $"@NGROSS_AREA_SIZE, " +
+                                 $"@NOCCUPIABLE_AREA_SIZE, " +
                                  $"@CACTION, " +
                                  $"@CUSER_LOGIN_ID";
 
@@ -168,7 +169,8 @@ namespace GSM02500BACK
                 loDb.R_AddCommandParameter(loCmd, "@CDEFAULT_UNIT_TYPE_ID", DbType.String, 50, poEntity.Data.CDEFAULT_UNIT_TYPE_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CDEFAULT_UNIT_CATEGORY_ID", DbType.String, 50, poEntity.Data.CDEFAULT_UNIT_CATEGORY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, 10, poEntity.Data.LACTIVE);
-                loDb.R_AddCommandParameter(loCmd, "@NGROSS_AREA_SIZE", DbType.String, 50, poEntity.Data.NGROSS_AREA_SIZE);
+                loDb.R_AddCommandParameter(loCmd, "@NGROSS_AREA_SIZE", DbType.Int32, 50, poEntity.Data.NGROSS_AREA_SIZE);
+                loDb.R_AddCommandParameter(loCmd, "@NOCCUPIABLE_AREA_SIZE", DbType.Int32, 50, poEntity.Data.NOCCUPIABLE_AREA_SIZE);
                 loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 50, poEntity.CACTION);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 50, poEntity.CLOGIN_USER_ID);
 
@@ -228,7 +230,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loConn = loDb.GetConnection();
 
                 lcQuery = $"EXEC RSP_GS_GET_BUILDING_FLOOR_DETAIL " +
                                  $"@CLOGIN_COMPANY_ID, " +

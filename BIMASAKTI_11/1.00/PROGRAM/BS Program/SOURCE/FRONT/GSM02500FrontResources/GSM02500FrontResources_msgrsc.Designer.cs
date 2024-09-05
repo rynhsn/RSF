@@ -295,6 +295,24 @@ namespace GSM02500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not found data by search text!!.
+        /// </summary>
+        internal static string _ErrLookup01 {
+            get {
+                return ResourceManager.GetString("_ErrLookup01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event.
+        /// </summary>
+        internal static string _Event {
+            get {
+                return ResourceManager.GetString("_Event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Floor.
         /// </summary>
         internal static string _Floor {
@@ -318,6 +336,15 @@ namespace GSM02500FrontResources {
         internal static string _FloorCode {
             get {
                 return ResourceManager.GetString("_FloorCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Floor Id.
+        /// </summary>
+        internal static string _FloorId {
+            get {
+                return ResourceManager.GetString("_FloorId", resourceCulture);
             }
         }
         
@@ -529,6 +556,15 @@ namespace GSM02500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Occupiable Area.
+        /// </summary>
+        internal static string _OccupiableArea {
+            get {
+                return ResourceManager.GetString("_OccupiableArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         internal static string _Ok {
@@ -606,6 +642,15 @@ namespace GSM02500FrontResources {
         internal static string _PF {
             get {
                 return ResourceManager.GetString("_PF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pipe Size.
+        /// </summary>
+        internal static string _PipeSize {
+            get {
+                return ResourceManager.GetString("_PipeSize", resourceCulture);
             }
         }
         
@@ -768,6 +813,15 @@ namespace GSM02500FrontResources {
         internal static string _TotalFloorSpace {
             get {
                 return ResourceManager.GetString("_TotalFloorSpace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Row(s).
+        /// </summary>
+        internal static string _TotalRows {
+            get {
+                return ResourceManager.GetString("_TotalRows", resourceCulture);
             }
         }
         
@@ -1344,6 +1398,69 @@ namespace GSM02500FrontResources {
         internal static string V029 {
             get {
                 return ResourceManager.GetString("V029", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calculation Factor must be greater than 0!.
+        /// </summary>
+        internal static string V030 {
+            get {
+                return ResourceManager.GetString("V030", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Capacity (Electricity) must be greater than 0!.
+        /// </summary>
+        internal static string V031 {
+            get {
+                return ResourceManager.GetString("V031", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Reset Value must be greater than 0!.
+        /// </summary>
+        internal static string V032 {
+            get {
+                return ResourceManager.GetString("V032", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gross Area Size must be greater than 0!.
+        /// </summary>
+        internal static string V033 {
+            get {
+                return ResourceManager.GetString("V033", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Net Area Size must be greater than 0!.
+        /// </summary>
+        internal static string V034 {
+            get {
+                return ResourceManager.GetString("V034", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gross Size must be greater than 0!.
+        /// </summary>
+        internal static string V035 {
+            get {
+                return ResourceManager.GetString("V035", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Net Size must be greater than 0!.
+        /// </summary>
+        internal static string V036 {
+            get {
+                return ResourceManager.GetString("V036", resourceCulture);
             }
         }
     }

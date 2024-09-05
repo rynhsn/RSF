@@ -165,9 +165,59 @@ namespace GSM02500FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
+        private async Task UserOnLostFocused(R_CellLostFocusedEventArgs eventArgs)
+        {
+            R_Exception loEx = new R_Exception();
+            try
+            {
+                if (eventArgs.ColumnName == nameof(GSM02550DTO.CUSER_ID))
+                {
+                    GSM02550DTO loGetData = (GSM02550DTO)eventArgs.CurrentRow;
+
+                    if (string.IsNullOrWhiteSpace(loGetData.CUSER_ID))
+                    {
+                        loGetData.CUSER_NAME = "";
+                        goto EndBlock;
+                    }
+
+                    GetUserIdNameParameterDTO loParam = new GetUserIdNameParameterDTO()
+                    {
+                        CSELECTED_PROPERTY_ID = loViewModel.SelectedProperty.CPROPERTY_ID,
+                        CSEARCH_TEXT = loGetData.CUSER_ID
+                    };
+
+                    GetUserIdNameDTO loResult = await loViewModel.GetUserIdNameAsync(loParam);
+
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(GSM02500FrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        loGetData.CUSER_ID = "";
+                        loGetData.CUSER_NAME = "";
+                        //await GLAccount_TextBox.FocusAsync();
+                    }
+                    else
+                    {
+                        loGetData.CUSER_ID = loResult.CUSER_ID;
+                        loGetData.CUSER_NAME = loResult.CUSER_NAME;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            loEx.ThrowExceptionIfErrors();
+        }
+
         private void Grid_BeforelookUpUser(R_BeforeOpenGridLookupColumnEventArgs eventArgs)
         {
-            eventArgs.Parameter = loViewModel.SelectedProperty.CPROPERTY_ID;
+            eventArgs.Parameter = new GetUserIdNameParameterDTO()
+            {
+                CSELECTED_PROPERTY_ID = loViewModel.SelectedProperty.CPROPERTY_ID
+            };
             eventArgs.TargetPageType = typeof(LookUpUser);
         }
 

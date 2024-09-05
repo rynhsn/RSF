@@ -10,6 +10,8 @@ namespace PMT06500Common.DTOs
         public string CTRANS_CODE { get; set; } = "";
         public string CDEPT_CODE { get; set; } = "";
         public string CDEPT_NAME { get; set; } = "";
+        public string CLINK_DEPT_CODE { get; set; } = "";
+        public string CLINK_TRANS_CODE { get; set; } = "";
         public string CTENANT_ID { get; set; } = "";
         public string CTENANT_NAME { get; set; } = "";
         public string CREC_ID { get; set; } = "";

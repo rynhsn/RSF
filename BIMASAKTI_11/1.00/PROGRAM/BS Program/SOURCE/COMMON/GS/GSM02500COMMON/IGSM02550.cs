@@ -10,5 +10,6 @@ namespace GSM02500COMMON
     {
         IAsyncEnumerable<GSM02550DTO> GetUserPropertyList();
         IAsyncEnumerable<GetUserIdNameDTO> GetUserIdNameList();
+        GetUserIdNameResultDTO GetUserIdName(GetUserIdNameParameterDTO poParam);
     }
 }

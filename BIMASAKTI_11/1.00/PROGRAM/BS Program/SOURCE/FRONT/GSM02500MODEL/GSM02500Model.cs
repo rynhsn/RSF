@@ -284,9 +284,44 @@ namespace GSM02500MODEL
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
 
-                loResult = await R_HTTPClientWrapper.R_APIRequestObject<SelectedUnitResultDTO, SelectedUnitParameterDTO> (
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<SelectedUnitResultDTO, SelectedUnitParameterDTO>(
                     _RequestServiceEndPoint,
                     nameof(IGSM02500.GetSelectedUnit),
+                    poParam,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+                loRtn = loResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+        EndBlock:
+            loEx.ThrowExceptionIfErrors();
+
+            return loRtn;
+        }
+
+        public SelectedOtherUnitResultDTO GetSelectedOtherUnit(SelectedOtherUnitParameterDTO poParam)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<SelectedOtherUnitDTO> GetSelectedOtherUnitAsync(SelectedOtherUnitParameterDTO poParam)
+        {
+            R_Exception loEx = new R_Exception();
+            SelectedOtherUnitResultDTO loResult = null;
+            SelectedOtherUnitDTO loRtn = new SelectedOtherUnitDTO();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<SelectedOtherUnitResultDTO, SelectedOtherUnitParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGSM02500.GetSelectedOtherUnit),
                     poParam,
                     DEFAULT_MODULE,
                     _SendWithContext,
