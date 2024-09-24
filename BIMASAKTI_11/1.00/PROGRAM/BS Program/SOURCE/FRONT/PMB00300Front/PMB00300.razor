@@ -15,10 +15,13 @@
                     TextField="@nameof(PMB00300PropertyDTO.CPROPERTY_NAME)"
                     ValueChanged="@((string? value) => OnChangeProperty(value))"/>
     </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_Button OnClick="OnClickRefresh">@_localizer["REFRESH"]</R_Button>
+    </R_ItemLayout>
 </R_StackLayout>
 
 <R_StackLayout Row>
-    <R_ItemLayout>
+    <R_ItemLayout col="12">
         <R_Grid @ref="_gridRef"
                 DataSource="_viewModel.GridList"
                 R_ConductorSource="_conductorRef"
@@ -26,7 +29,7 @@
                 R_ServiceGetListRecord="GetListRecord"
                 Pageable
                 PageSize="23"
-                Width="1070px"
+                Width="100%"
                 Height="540px">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="@nameof(PMB00300RecalcDTO.CBUILDING_NAME)" HeaderText="@_localizer["BUILDING_NAME"]" TextAlignment="R_eTextAlignment.Left" Width="170px"/>

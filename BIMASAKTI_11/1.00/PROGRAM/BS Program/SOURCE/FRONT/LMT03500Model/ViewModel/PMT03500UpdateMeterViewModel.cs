@@ -138,7 +138,7 @@ namespace PMT03500Model.ViewModel
                             nameof(IPMT03500UpdateMeter.PMT03500GetUtilityMeterDetail), loParam);
                 Entity = loReturn.Data;
 
-                if (Entity.CSTART_INV_PRD != null)
+                if (!string.IsNullOrEmpty(Entity.CSTART_INV_PRD))
                 {
                     CSTART_INV_PRD_YEAR = Entity.CSTART_INV_PRD.Substring(0, 4);
                     CSTART_INV_PRD_MONTH = Entity.CSTART_INV_PRD.Substring(4, 2);

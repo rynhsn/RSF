@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Blazored.LocalStorage" Version="4.2.0" />
+    <PackageReference Include="BlazorXTabs" Version="2.0.0" />
     <PackageReference Include="EPPlus" Version="6.2.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.14" />
@@ -94,7 +95,6 @@
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLI00100Front\GLI00100Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLM00500Front\GLM00500Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLR00100Front\GLR00100Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLT00200FRONT\GLT00200FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM02000Front\GSM02000Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM04500Front\GSM04500Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM05000Front\GSM05000Front.csproj" />

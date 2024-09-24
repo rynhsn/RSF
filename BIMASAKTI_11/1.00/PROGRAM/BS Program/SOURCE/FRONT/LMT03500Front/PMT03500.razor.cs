@@ -45,7 +45,7 @@ public partial class PMT03500 : R_Page
 
     private bool _hasDetail;
     private bool _enabledBtn = true;
-    
+
     private string _flagPropertyUtility;
 
     private R_TabPage _pageCO { get; set; }
@@ -102,8 +102,10 @@ public partial class PMT03500 : R_Page
         {
             await _viewModel.Init();
             await _viewModelUtility.Init(_viewModel.Property);
-            await _gridRefBuilding.R_RefreshGrid(null);
-
+            if (_viewModel.PropertyList.Count > 0)
+            {
+                await _gridRefBuilding.R_RefreshGrid(null);
+            }
 
             _viewModelUpload.StateChangeAction = StateChangeInvoke;
             _viewModelUpload.DisplayErrorAction = DisplayErrorInvoke;
@@ -416,7 +418,6 @@ public partial class PMT03500 : R_Page
 
             _hasDetail = loData.CSTATUS.Length > 0 && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit;
 
-
             _viewModelUtility.EntityUtility = loData;
             _viewModelUtility.EntityUtility.CPROPERTY_ID = _viewModel.PropertyId;
 
@@ -480,7 +481,8 @@ public partial class PMT03500 : R_Page
             // await _viewModelUtility.SaveBatch((List<PMT03500UtilityUsageDTO>)eventArgs.Data, ClientHelper.CompanyId, ClientHelper.UserId);
             var loTempDataList = (List<PMT03500UtilityUsageDTO>)eventArgs.Data;
             var loDataList =
-                R_FrontUtility.ConvertCollectionToCollection<PMT03500UploadUtilityErrorValidateDTO>(loTempDataList);
+                R_FrontUtility.ConvertCollectionToCollection<PMT03500UploadUtilityErrorValidateDTO>(loTempDataList
+                    .Where(x => x.LSELECTED).ToList());
 
             var loUtilityType = loTempDataList.FirstOrDefault().CUTILITY_TYPE;
             _viewModelUpload.CompanyId = ClientHelper.CompanyId;

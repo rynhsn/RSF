@@ -6,11 +6,14 @@ using PMT06500Common.DTOs;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using RSP_PM_MAINTAIN_OVT_INVOICEResources;
 
 namespace PMT06500Back;
 
 public class PMT06500Cls : R_BusinessObject<PMT06500InvoiceDTO>
 {
+    Resources_Dummy_Class _resources = new();
+    
     private LoggerPMT06500 _logger;
     private readonly ActivitySource _activitySource;
 

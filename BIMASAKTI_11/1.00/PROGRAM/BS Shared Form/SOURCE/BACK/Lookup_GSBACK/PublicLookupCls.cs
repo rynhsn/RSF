@@ -1339,6 +1339,7 @@ namespace Lookup_GSLBACK
                 loDb.R_AddCommandParameter(loCmd, "@CPROGRAM_ID", DbType.String, 50, poEntity.CPROGRAM_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 50, poEntity.CTRANS_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 50, poEntity.CREF_NO);
+                loDb.R_AddCommandParameter(loCmd, "@CUNIT_CATEGORY_LIST", DbType.String, int.MaxValue, poEntity.CUNIT_CATEGORY_LIST);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()

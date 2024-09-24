@@ -16,7 +16,7 @@ namespace PMT03500Model.ViewModel
         public List<PMT03500TransCodeDTO> TransCodeList = new List<PMT03500TransCodeDTO>();
         public PMT03500PropertyDTO Property = new PMT03500PropertyDTO();
 
-        public string PropertyId = string.Empty;
+        public string PropertyId = "";
         public string TransCodeId = string.Empty;
 
         public async Task Init()
@@ -35,7 +35,7 @@ namespace PMT03500Model.ViewModel
                     await _model.GetAsync<PMT03500ListDTO<PMT03500PropertyDTO>>(
                         nameof(IPMT03500Init.PMT03500GetPropertyList));
                 PropertyList = loReturn.Data;
-                PropertyId = PropertyList[0].CPROPERTY_ID;
+                PropertyId = PropertyList.Count > 0 ? PropertyList[0].CPROPERTY_ID : "";
             }
             catch (Exception ex)
             {

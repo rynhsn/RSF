@@ -22,6 +22,7 @@ namespace PMB00300Model.ViewModel
             new ObservableCollection<PMB00300RecalcRuleDTO>();
 
         public PMB00300RecalcDTO Header = new PMB00300RecalcDTO();
+        public PMB00300RecalcChargesDTO ChargesEntity = new PMB00300RecalcChargesDTO();
 
         public async Task GetRecalcChargesList()
         {
@@ -96,11 +97,12 @@ namespace PMB00300Model.ViewModel
             {
                 R_FrontContext.R_SetStreamingContext(PMB00300ContextConstant.CPROPERTY_ID, Header.CPROPERTY_ID);
                 R_FrontContext.R_SetStreamingContext(PMB00300ContextConstant.CDEPT_CODE, Header.CDEPT_CODE);
-                R_FrontContext.R_SetStreamingContext(PMB00300ContextConstant.CTRANS_CODE, "802041");
+                R_FrontContext.R_SetStreamingContext(PMB00300ContextConstant.CTRANS_CODE, Header.CTRANS_CODE);
                 R_FrontContext.R_SetStreamingContext(PMB00300ContextConstant.CREF_NO, Header.CREF_NO);
                 R_FrontContext.R_SetStreamingContext(PMB00300ContextConstant.CBUILDING_ID, Header.CBUILDING_ID);
                 R_FrontContext.R_SetStreamingContext(PMB00300ContextConstant.CFLOOR_ID, Header.CFLOOR_ID);
                 R_FrontContext.R_SetStreamingContext(PMB00300ContextConstant.CUNIT_ID, Header.CUNIT_ID);
+                R_FrontContext.R_SetStreamingContext(PMB00300ContextConstant.CCHARGES_ID, ChargesEntity.CCHARGES_ID);
 
                 var loReturn =
                     await _model.GetListStreamAsync<PMB00300RecalcRuleDTO>(
@@ -140,6 +142,11 @@ namespace PMB00300Model.ViewModel
                         DateTimeStyles.AssumeUniversal, out var ldEndDate)
                         ? ldEndDate
                         : (DateTime?)null;
+                    
+                    if (!string.IsNullOrEmpty(loItem.CPERIOD))
+                    {
+                        loItem.CPERIOD_DISPLAY = loItem.CPERIOD.Substring(0, 4) + "-" + loItem.CPERIOD.Substring(4, 2);;
+                    }
                 });
 
 

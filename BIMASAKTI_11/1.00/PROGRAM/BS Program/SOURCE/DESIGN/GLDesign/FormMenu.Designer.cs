@@ -1,4 +1,4 @@
-﻿namespace GSDesign
+﻿namespace GLDesign
 {
     partial class FormMenu
     {

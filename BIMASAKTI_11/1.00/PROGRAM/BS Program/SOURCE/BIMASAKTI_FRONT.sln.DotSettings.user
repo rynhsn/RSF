@@ -17,6 +17,7 @@
   &lt;Assembly Path="D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Controls.dll" /&gt;&#xD;
   &lt;Assembly Path="D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\Menu\BlazorClientHelper\bin\Debug\net6.0\BlazorClientHelper.dll" /&gt;&#xD;
   &lt;Assembly Path="D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\SYSTEM\SOURCE\LIBRARY\Front\R_APIClient.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\riyan.codeid\.nuget\packages\blazorxtabs\2.0.0\lib\net6.0\BlazorXTabs.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FCBB00200_002FCBB00200FrontResources_002FCBB00200FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	

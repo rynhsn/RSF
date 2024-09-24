@@ -360,11 +360,11 @@
   <data name="_OtherUnitId" xml:space="preserve">
     <value>Other Unit Id</value>
   </data>
-  <data name="_OtherUnitMaster" xml:space="preserve">
-    <value>Other Unit Master</value>
-  </data>
   <data name="_OtherUnitName" xml:space="preserve">
     <value>Other Unit Name</value>
+  </data>
+  <data name="_OtherUnitReport" xml:space="preserve">
+    <value>Other Unit Report</value>
   </data>
   <data name="_OtherUnitType" xml:space="preserve">
     <value>Other Unit Type</value>

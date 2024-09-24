@@ -18,6 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <data name="REFRESH" xml:space="preserve">
+        <value>Refresh</value>
+        <comment>Refresh</comment>
+    </data>
     <data name="PROPERTY" xml:space="preserve">
         <value>Property</value>
         <comment>Property</comment>
@@ -83,8 +87,8 @@
         <comment>View</comment>
     </data>
     <data name="MSG" xml:space="preserve">
-        <value>Massage</value>
-        <comment>Massage</comment>
+        <value>Message</value>
+        <comment>Message</comment>
     </data>
     <data name="NO_DATA_FOUND" xml:space="preserve">
         <value>No Data Found!</value>
@@ -159,6 +163,10 @@
     <data name="BASE_RENT" xml:space="preserve">
         <value>Base Rent</value>
         <comment>Base Rent</comment>
+    </data>
+    <data name="BASE_AMOUNT" xml:space="preserve">
+        <value>Base Amount</value>
+        <comment>Base Amount</comment>
     </data>
     <data name="MONTHLY_AMOUNT" xml:space="preserve">
         <value>Monthly Amount</value>

@@ -11,6 +11,7 @@
         public string CREF_NO { get; set; } = "";
         public string CSEARCH_TEXT { get; set; }
         public string CREMOVE_DATA_UNIT_ID_SEPARATOR { get; set; } = "";
+        public string CUNIT_CATEGORY_LIST { get; set; } = "";
     }
 
 }

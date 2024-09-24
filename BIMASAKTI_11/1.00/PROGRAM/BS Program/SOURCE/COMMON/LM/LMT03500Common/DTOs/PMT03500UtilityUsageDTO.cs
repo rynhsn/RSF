@@ -22,6 +22,7 @@ namespace PMT03500Common.DTOs
         public string CINV_PRD { get; set; }
         public string CUTILITY_TYPE { get; set; }
         public string CUTILITY_PRD { get; set; }
+        public string CUTILITY_PRD_DISPLAY { get; set; }
         public string CSTART_DATE { get; set; }
         public string CEND_DATE { get; set; }
 

@@ -40,7 +40,7 @@
             <R_ItemLayout col="5">
                 <R_StackLayout Row>
                     <R_ItemLayout col="6">
-                        <R_Label>@_localizer["GROSS_SIZE"] Size</R_Label>
+                        <R_Label>@_localizer["GROSS_SIZE"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="5">
                         <R_NumericTextBox Value="@_viewModel.Header.NGROSS_AREA_SIZE" Arrows="false" TextAlignment="R_eTextAlignment.Right" Enabled="false"/>
@@ -48,7 +48,7 @@
                 </R_StackLayout>
                 <R_StackLayout Row>
                     <R_ItemLayout col="6">
-                        <R_Label>@_localizer["NET_SIZE"] Size</R_Label>
+                        <R_Label>@_localizer["NET_SIZE"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="5">
                         <R_NumericTextBox Value="@_viewModel.Header.NNET_AREA_SIZE" Arrows="false" TextAlignment="R_eTextAlignment.Right" Enabled="false"/>
@@ -56,10 +56,10 @@
                 </R_StackLayout>
                 <R_StackLayout Row>
                     <R_ItemLayout col="6">
-                        <R_Label>@_localizer["ACTUAL_SIZE"] Size</R_Label>
+                        <R_Label>@_localizer["ACTUAL_SIZE"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="5">
-                        <R_NumericTextBox Value="@_viewModel.Header.NACTUAL_AREA_SIZE" Arrows="false" TextAlignment="R_eTextAlignment.Right" Enabled/>
+                        <R_NumericTextBox Value="@_viewModel.Header.NACTUAL_AREA_SIZE" Arrows="false" TextAlignment="R_eTextAlignment.Right" Enabled="false"/>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>
@@ -67,7 +67,7 @@
                 <R_GroupBox ShowBorder Title="Hand Over" Class="p-1">
                     <R_StackLayout Row>
                         <R_ItemLayout col="5">
-                            <R_Label>@_localizer["PLAN_DATE"] Date</R_Label>
+                            <R_Label>@_localizer["PLAN_DATE"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout>
                             <R_DateInput Value="@_viewModel.Header.DHO_PLAN_DATE" Enabled="false"/>
@@ -75,7 +75,7 @@
                     </R_StackLayout>
                     <R_StackLayout Row>
                         <R_ItemLayout col="5">
-                            <R_Label>@_localizer["ACTUAL_DATE"] Date</R_Label>
+                            <R_Label>@_localizer["ACTUAL_DATE"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout>
                             <R_DateInput Value="@_viewModel.Header.DHO_ACTUAL_DATE" Enabled="false"/>
@@ -127,6 +127,7 @@
                 R_ConductorGridSource="_conductorRefCharges"
                 R_GridType="R_eGridType.Original"
                 R_ServiceGetListRecord="GetChargesListRecord"
+                R_Display="DisplayChargesList"
                 AllowAddNewRow="false"
                 AllowEditRow="false"
                 AllowDeleteRow="false"
@@ -142,7 +143,7 @@
                 <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcChargesDTO.DEND_DATE)" HeaderText="@_localizer["END_DATE"]" Width="120px"/>
                 <R_GridNumericColumn TValue="Int32" FieldName="@nameof(PMB00300RecalcChargesDTO.IINTERVAL)" HeaderText="@_localizer["INTERVAL"]" Width="100px"/>
                 <R_GridTextColumn FieldName="@nameof(PMB00300RecalcChargesDTO.CPERIOD_MODE_DESCRIPTION)" HeaderText="@_localizer["PERIOD_MODE"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
-                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMB00300RecalcChargesDTO.NBASE_AMOUNT)" HeaderText="@_localizer["BASE_RENT"]" Width="130px"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMB00300RecalcChargesDTO.NBASE_AMOUNT)" HeaderText="@_localizer["BASE_AMOUNT"]" Width="130px"/>
                 <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMB00300RecalcChargesDTO.NMONTHLY_AMOUNT)" HeaderText="@_localizer["MONTHLY_AMOUNT"]" Width="150px"/>
                 <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMB00300RecalcChargesDTO.NTOTAL_AMOUNT)" HeaderText="@_localizer["TOTAL_AMOUNT"]" Width="150px"/>
                 <R_GridTextColumn FieldName="@nameof(PMB00300RecalcChargesDTO.CUPDATE_BY)" HeaderText="@_localizer["UPDATED_BY"]" TextAlignment="R_eTextAlignment.Left" Width="120px"/>
@@ -173,7 +174,7 @@
                 <R_GridTextColumn FieldName="@nameof(PMB00300RecalcRuleDTO.CSEQ_NO)" HeaderText="@_localizer["SEQ_NO"]" Width="100px" TextAlignment="R_eTextAlignment.Left"/>
                 <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcRuleDTO.DSTART_DATE)" HeaderText="@_localizer["START_DATE"]" Width="120px"/>
                 <R_GridDatePickerColumn FieldName="@nameof(PMB00300RecalcRuleDTO.DEND_DATE)" HeaderText="@_localizer["END_DATE"]" Width="120px"/>
-                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcRuleDTO.CPERIOD)" HeaderText="@_localizer["PERIOD"]" Width="120px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(PMB00300RecalcRuleDTO.CPERIOD_DISPLAY)" HeaderText="@_localizer["PERIOD"]" Width="120px" TextAlignment="R_eTextAlignment.Left"/>
                 <R_GridMultiHeaderColumn HeaderText="@_localizer["BEFORE"]">
                     <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMB00300RecalcRuleDTO.NAMOUNT_BEFORE)" HeaderText="@_localizer["AMOUNT"]" Width="130px"/>
                     <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMB00300RecalcRuleDTO.NTAX_AMOUNT_BEFORE)" HeaderText="@_localizer["TAX_AMOUNT"]" Width="130px"/>
@@ -201,9 +202,7 @@
 
 
 <R_ConductorGrid @ref="@_conductorRefCharges"
-             R_ViewModel="_viewModel"
-            R_IsHeader/>
+                 R_IsHeader/>
 
 <R_ConductorGrid @ref="@_conductorRefRule"
-            R_ConductorParent="@_conductorRefCharges"/>
-
+                 R_ConductorParent="@_conductorRefCharges"/>

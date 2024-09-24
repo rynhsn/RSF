@@ -17,18 +17,18 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
     RSP_PM_UPLOAD_UTILITY_USAGE_WGResources.Resources_Dummy_Class _rscUploadWG = new();
 
     private readonly ActivitySource _activitySource;
-    private LoggerPMT03500 _loggerPMT03500;
+    private LoggerPMT03500 _logger;
 
     public PMT03500UploadUtilityCls()
     {
-        _loggerPMT03500 = LoggerPMT03500.R_GetInstanceLogger();
+        _logger = LoggerPMT03500.R_GetInstanceLogger();
         _activitySource = R_OpenTelemetry.R_LibraryActivity.R_GetInstanceActivitySource();
     }
 
     public void R_BatchProcess(R_BatchProcessPar poBatchProcessPar)
     {
         using var Activity = _activitySource.StartActivity(nameof(R_BatchProcess));
-        _loggerPMT03500.LogInfo(string.Format("START process method {0} on Cls", nameof(R_BatchProcess)));
+        _logger.LogInfo(string.Format("START process method {0} on Cls", nameof(R_BatchProcess)));
         R_Exception loException = new R_Exception();
         var loDb = new R_Db();
 
@@ -40,25 +40,27 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
                 goto EndBlock;
             }
 
+            _logger.LogInfo("Start Batch Process");
             var loTask = Task.Run(() => { _batchProcess(poBatchProcessPar); });
 
-            while (!loTask.IsCompleted)
-            {
-                Thread.Sleep(100);
-            }
+            // while (!loTask.IsCompleted)
+            // {
+            //     Thread.Sleep(100);
+            // }
 
-            if (loTask.IsFaulted)
-            {
-                loException.Add(loTask.Exception.InnerException != null
-                    ? loTask.Exception.InnerException
-                    : loTask.Exception);
-
-                goto EndBlock;
-            }
+            // if (loTask.IsFaulted)
+            // {
+            //     loException.Add(loTask.Exception.InnerException != null
+            //         ? loTask.Exception.InnerException
+            //         : loTask.Exception);
+            //
+            //     goto EndBlock;
+            // }
         }
         catch (Exception ex)
         {
             loException.Add(ex);
+            _logger.LogError(loException);
         }
 
         EndBlock:
@@ -86,8 +88,10 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
 
             loTempObject = R_NetCoreUtility.R_DeserializeObjectFromByte<List<PMT03500UploadUtilityErrorValidateDTO>>(poBatchProcessPar.BigObject);
 
+            _logger.LogInfo("Get User Parameters");
             var loUtilityType = poBatchProcessPar.UserParameters
                 .Where((x) => x.Key.Equals(PMT03500ContextConstant.CUTILITY_TYPE)).FirstOrDefault().Value;
+            
             var loProperty = poBatchProcessPar.UserParameters
                 .Where((x) => x.Key.Equals(PMT03500ContextConstant.CPROPERTY_ID)).FirstOrDefault().Value;
 
@@ -110,6 +114,7 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
+            _logger.LogInfo("Create Temporary Table");
             lcQuery += $"CREATE TABLE #UTILITY_USAGE_{lcUtility}( " +
                         "NO             int, " +
                         "CCOMPANY_ID    varchar(8), " +
@@ -148,6 +153,9 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
                     loDb.R_BulkInsert((SqlConnection)loConn, $"#UTILITY_USAGE_WG", loObjectWG);
                     break;
             }
+            
+            _logger.LogDebug(lcQuery);
+            _logger.LogInfo("Bulk Insert Data");
 
             lcQuery = $"RSP_PM_UPLOAD_UTILITY_USAGE_{lcUtility}";
             
@@ -165,6 +173,7 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
         catch (Exception ex)
         {
             loException.Add(ex);
+            _logger.LogError(loException);
         }
         finally
         {
@@ -182,14 +191,14 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
                 loCmd = null;
             }
         }
-
+        
         if (loException.Haserror)
         {
             lcQuery = $"EXEC RSP_WriteUploadProcessStatus '{poBatchProcessPar.Key.COMPANY_ID}', " +
                       $"'{poBatchProcessPar.Key.USER_ID}', " +
                       $"'{poBatchProcessPar.Key.KEY_GUID}', " +
                       $"100, '{loException.ErrorList[0].ErrDescp}', 9";
-
+        
             loDb.SqlExecNonQuery(lcQuery);
         }
     }

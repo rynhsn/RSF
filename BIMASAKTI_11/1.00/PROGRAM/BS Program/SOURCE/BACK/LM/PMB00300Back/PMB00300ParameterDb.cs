@@ -13,4 +13,5 @@ public class PMB00300ParameterDb
     public string CUNIT_ID { get; set; } = "";
     public string CFLOOR_ID { get; set; } = "";
     public decimal NACTUAL_AREA_SIZE { get; set; }
+    public string CCHARGES_ID { get; set; } = "";
 }

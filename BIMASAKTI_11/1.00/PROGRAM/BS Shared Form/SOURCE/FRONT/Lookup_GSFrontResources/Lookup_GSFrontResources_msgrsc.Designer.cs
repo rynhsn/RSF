@@ -790,20 +790,20 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Other Unit Master.
-        /// </summary>
-        internal static string _OtherUnitMaster {
-            get {
-                return ResourceManager.GetString("_OtherUnitMaster", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Other Unit Name.
         /// </summary>
         internal static string _OtherUnitName {
             get {
                 return ResourceManager.GetString("_OtherUnitName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other Unit Report.
+        /// </summary>
+        internal static string _OtherUnitReport {
+            get {
+                return ResourceManager.GetString("_OtherUnitReport", resourceCulture);
             }
         }
         

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FastReport;
 
-namespace GSDesign
+namespace GLDesign
 {
     public partial class FormMenu : Form
     {

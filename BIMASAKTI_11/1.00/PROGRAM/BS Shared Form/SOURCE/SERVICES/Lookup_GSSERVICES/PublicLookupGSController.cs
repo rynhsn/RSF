@@ -1107,6 +1107,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CPROGRAM_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROGRAM_ID);
                 poParameter.CTRANS_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTRANS_CODE);
                 poParameter.CREF_NO = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CREF_NO);
+                poParameter.CUNIT_CATEGORY_LIST = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CUNIT_CATEGORY_LIST);
 
                 _Logger.LogInfo("Call Back Method GetALLBuilding");
                 var loResult = loCls.GetALLBuildingUnit(poParameter);

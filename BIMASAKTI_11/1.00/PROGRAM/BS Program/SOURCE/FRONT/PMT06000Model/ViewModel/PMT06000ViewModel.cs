@@ -237,7 +237,7 @@ namespace PMT06000Model.ViewModel
                     await _initModel.GetAsync<PMT06000ListDTO<PMT06000PropertyDTO>>(
                         nameof(IPMT06000Init.PMT06000GetPropertyList));
                 PropertyList = loReturn.Data;
-                SelectedPropertyId = PropertyList[0].CPROPERTY_ID;
+                SelectedPropertyId = PropertyList.Count>0? PropertyList[0].CPROPERTY_ID : SelectedPropertyId;
                 // Data.CPROPERTY_ID = SelectedPropertyId;
             }
             catch (Exception ex)

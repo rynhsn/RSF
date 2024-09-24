@@ -24,7 +24,6 @@ public partial class PMB00300ViewPopup : R_Page
         {
             _viewModel.Header = (PMB00300RecalcDTO)eventArgs;
             await _gridRefCharges.R_RefreshGrid(null);
-            await _gridRefRule.R_RefreshGrid(null);
         }
         catch (Exception ex)
         {
@@ -79,6 +78,22 @@ public partial class PMB00300ViewPopup : R_Page
             {
                 await this.Close(true, true);
             }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private async Task DisplayChargesList(R_DisplayEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            _viewModel.ChargesEntity = (PMB00300RecalcChargesDTO)eventArgs.Data;
+            await _gridRefRule.R_RefreshGrid(null);
         }
         catch (Exception ex)
         {

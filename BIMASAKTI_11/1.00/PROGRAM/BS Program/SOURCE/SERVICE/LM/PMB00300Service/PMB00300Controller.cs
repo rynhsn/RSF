@@ -151,6 +151,7 @@ public class PMB00300Controller : ControllerBase, IPMB00300
             loDbParams.CBUILDING_ID = R_Utility.R_GetStreamingContext<string>(PMB00300ContextConstant.CBUILDING_ID);
             loDbParams.CFLOOR_ID = R_Utility.R_GetStreamingContext<string>(PMB00300ContextConstant.CFLOOR_ID);
             loDbParams.CUNIT_ID = R_Utility.R_GetStreamingContext<string>(PMB00300ContextConstant.CUNIT_ID);    
+            loDbParams.CCHARGES_ID = R_Utility.R_GetStreamingContext<string>(PMB00300ContextConstant.CCHARGES_ID);    
 
             _logger.LogInfo("Get RecalcRule List Stream");
             loResult = loCls.GetRecalcRuleList(loDbParams);

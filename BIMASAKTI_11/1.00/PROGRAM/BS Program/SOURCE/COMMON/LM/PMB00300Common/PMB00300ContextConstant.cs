@@ -11,5 +11,6 @@ namespace PMB00300Common
         public const string CUNIT_ID = "CUNIT_ID";
         public const string CFLOOR_ID = "CFLOOR_ID";
         public const string NACTUAL_AREA_SIZE = "NACTUAL_AREA_SIZE";
+        public const string CCHARGES_ID = "CCHARGES_ID";
     }
 }

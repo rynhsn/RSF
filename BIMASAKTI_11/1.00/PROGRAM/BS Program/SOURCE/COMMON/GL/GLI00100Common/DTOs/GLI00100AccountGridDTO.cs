@@ -19,12 +19,12 @@ namespace GLI00100Common.DTOs
         public string CPERIOD_NO { get; set; } = "";
         public string CCURRENCY { get; set; } = "";
         public string CCURRENCY_TYPE_NAME { get; set; } = "";
-        public int NOPENING { get; set; }
-        public int NPTD_DEBIT { get; set; }
-        public int NPTD_DEBIT_ADJ { get; set; }
-        public int NPTD_CREDIT { get; set; }
-        public int NPTD_CREDIT_ADJ { get; set; }
-        public int NENDING { get; set; }
+        public decimal NOPENING { get; set; }
+        public decimal NPTD_DEBIT { get; set; }
+        public decimal NPTD_DEBIT_ADJ { get; set; }
+        public decimal NPTD_CREDIT { get; set; }
+        public decimal NPTD_CREDIT_ADJ { get; set; }
+        public decimal NENDING { get; set; }
     }
 
 
@@ -36,8 +36,8 @@ namespace GLI00100Common.DTOs
         public string CREF_NO { get; set; }
         public string CTRANSACTION_NAME { get; set; }
         public string CCENTER { get; set; }
-        public int NDEBIT { get; set; }
-        public int NCREDIT { get; set; }
+        public decimal NDEBIT { get; set; }
+        public decimal NCREDIT { get; set; }
         public string CDOCUMENT_NO { get; set; }
         public string CDETAIL_DESC { get; set; }
     }
@@ -114,16 +114,16 @@ namespace GLI00100Common.DTOs
         public string CGLACCOUNT_NAME { get; set; }
         public string CCENTER { get; set; }
         public string CBDCR { get; set; }
-        public int NDEBIT { get; set; }
-        public int NCREDIT { get; set; }
+        public decimal NDEBIT { get; set; }
+        public decimal NCREDIT { get; set; }
         public string CDETAIL_DESC { get; set; }
         public string CDOCUMENT_NO { get; set; }
         public string CDOCUMENT_DATE { get; set; }
         public DateTime DDOCUMENT_DATE { get; set; }
-        public int NLDEBIT { get; set; }
-        public int NLCREDIT { get; set; }
-        public int NBDEBIT { get; set; }
-        public int NBCREDIT { get; set; }
+        public decimal NLDEBIT { get; set; }
+        public decimal NLCREDIT { get; set; }
+        public decimal NBDEBIT { get; set; }
+        public decimal NBCREDIT { get; set; }
     }
 
     public class GLI00100PrintParamDTO

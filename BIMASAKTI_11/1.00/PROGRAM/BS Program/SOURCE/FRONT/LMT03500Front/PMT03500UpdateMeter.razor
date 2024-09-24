@@ -65,27 +65,29 @@
     </R_StackLayout>
 </R_ItemLayout>
 
-<R_ItemLayout Class="mb-3">
+<R_ItemLayout Class="mb-3" col="12">
     <R_StackLayout>
-        <R_Grid @ref="_gridRef"
-                DataSource="@_viewModel.GridList"
-                Pageable
-                R_ConductorSource="_conductorRef"
-                R_GridType="R_eGridType.Navigator"
-                R_ServiceGetListRecord="GetList"
-                Width="1080px"
-                Height="270px">
-            <R_GridColumns>
-                <R_GridTextColumn FieldName="@nameof(PMT03500UtilityMeterDTO.CUTILITY_TYPE_DESCR)" HeaderText="@_localizer["LBL_UTILITYTYPE"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
-                <R_GridTextColumn FieldName="@nameof(PMT03500UtilityMeterDTO.CCHARGES_ID)" HeaderText="@_localizer["LBL_CHARGE"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
-                <R_GridTextColumn FieldName="@nameof(PMT03500UtilityMeterDTO.CMETER_NO)" HeaderText="@_localizer["LBL_METERNO"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
-                <R_GridTextColumn FieldName="@nameof(PMT03500UtilityMeterDTO.CSTATUS_DESCR)" HeaderText="@_localizer["LBL_STATUS"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
-                <R_GridTextColumn FieldName="@nameof(PMT03500UtilityMeterDTO.CUPDATE_BY)" HeaderText="@_localizer["LBL_UPDBY"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
-                <R_GridDateTimePickerColumn FieldName="@nameof(PMT03500UtilityMeterDTO.DUPDATE_DATE)" HeaderText="@_localizer["LBL_UPDDT"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
-                <R_GridTextColumn FieldName="@nameof(PMT03500UtilityMeterDTO.CCREATE_BY)" HeaderText="@_localizer["LBL_CRTBY"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
-                <R_GridDateTimePickerColumn FieldName="@nameof(PMT03500UtilityMeterDTO.DCREATE_DATE)" HeaderText="@_localizer["LBL_CRTDT"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
-            </R_GridColumns>
-        </R_Grid>
+        <R_ItemLayout col="12">
+            <R_Grid @ref="_gridRef"
+                    DataSource="@_viewModel.GridList"
+                    Pageable
+                    R_ConductorSource="_conductorRef"
+                    R_GridType="R_eGridType.Navigator"
+                    R_ServiceGetListRecord="GetList"
+                    Width="100%"
+                    Height="270px">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(PMT03500UtilityMeterDTO.CUTILITY_TYPE_DESCR)" HeaderText="@_localizer["LBL_UTILITYTYPE"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                    <R_GridTextColumn FieldName="@nameof(PMT03500UtilityMeterDTO.CCHARGES_ID)" HeaderText="@_localizer["LBL_CHARGE"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                    <R_GridTextColumn FieldName="@nameof(PMT03500UtilityMeterDTO.CMETER_NO)" HeaderText="@_localizer["LBL_METERNO"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
+                    <R_GridTextColumn FieldName="@nameof(PMT03500UtilityMeterDTO.CSTATUS_DESCR)" HeaderText="@_localizer["LBL_STATUS"]" TextAlignment="R_eTextAlignment.Left" Width="70px"/>
+                    <R_GridTextColumn FieldName="@nameof(PMT03500UtilityMeterDTO.CUPDATE_BY)" HeaderText="@_localizer["LBL_UPDBY"]" TextAlignment="R_eTextAlignment.Left" Width="120px"/>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(PMT03500UtilityMeterDTO.DUPDATE_DATE)" HeaderText="@_localizer["LBL_UPDDT"]" TextAlignment="R_eTextAlignment.Left" Width="140px"/>
+                    <R_GridTextColumn FieldName="@nameof(PMT03500UtilityMeterDTO.CCREATE_BY)" HeaderText="@_localizer["LBL_CRTBY"]" TextAlignment="R_eTextAlignment.Left" Width="120px"/>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(PMT03500UtilityMeterDTO.DCREATE_DATE)" HeaderText="@_localizer["LBL_CRTDT"]" TextAlignment="R_eTextAlignment.Left" Width="140px"/>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
     </R_StackLayout>
 </R_ItemLayout>
 

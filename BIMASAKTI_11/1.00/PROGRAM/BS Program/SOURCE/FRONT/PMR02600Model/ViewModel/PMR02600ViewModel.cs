@@ -15,12 +15,12 @@ namespace PMR02600Model.ViewModel
         private PMR02600Model _model = new PMR02600Model();
         public List<PMR02600PropertyDTO> PropertyList = new List<PMR02600PropertyDTO>();
         public PMR02600ReportParam ReportParam = new PMR02600ReportParam();
-        
+
         public async Task Init()
         {
             await GetPropertyList();
         }
-        
+
         public async Task GetPropertyList()
         {
             var loEx = new R_Exception();
@@ -30,7 +30,7 @@ namespace PMR02600Model.ViewModel
                     await _model.GetAsync<PMR02600ListDTO<PMR02600PropertyDTO>>(
                         nameof(IPMR02600.PMR02600GetPropertyList));
                 PropertyList = loReturn.Data;
-                ReportParam.CPROPERTY = PropertyList[0].CPROPERTY_ID;
+                ReportParam.CPROPERTY = PropertyList.Count > 0 ? PropertyList[0].CPROPERTY_ID : ReportParam.CPROPERTY ;
             }
             catch (Exception ex)
             {

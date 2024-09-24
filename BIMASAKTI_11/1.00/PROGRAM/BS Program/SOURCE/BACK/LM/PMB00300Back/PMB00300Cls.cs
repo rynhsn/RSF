@@ -193,6 +193,7 @@ public class PMB00300Cls
             loDb.R_AddCommandParameter(loCmd, "@CFLOOR_ID", DbType.String, 20, poParam.CFLOOR_ID);
             loDb.R_AddCommandParameter(loCmd, "@CUNIT_ID", DbType.String, 20, poParam.CUNIT_ID);
             loDb.R_AddCommandParameter(loCmd, "@CLANG_ID", DbType.String, 3, poParam.CLANG_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CCHARGES_ID", DbType.String, 20, poParam.CCHARGES_ID);
 
 
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
@@ -206,7 +207,8 @@ public class PMB00300Cls
                         "@CBUILDING_ID" or
                         "@CFLOOR_ID" or
                         "@CUNIT_ID" or
-                        "@CLANG_ID"
+                        "@CLANG_ID" or
+                        "@CCHARGES_ID"
                 )
                 .Select(x => x.Value);
 
@@ -230,7 +232,7 @@ public class PMB00300Cls
 
     public void RecalcBillingRuleProcess(PMB00300ParameterDb poParam)
     {
-        using var loActivity = _activitySource.StartActivity(nameof(GetRecalcRuleList));
+        using var loActivity = _activitySource.StartActivity(nameof(RecalcBillingRuleProcess));
         R_Exception loEx = new();
         // List<PMB00300RecalcRuleDTO> loRtn = null;
         R_Db loDb;

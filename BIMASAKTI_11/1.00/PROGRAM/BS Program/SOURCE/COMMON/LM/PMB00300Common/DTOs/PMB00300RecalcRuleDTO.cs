@@ -11,6 +11,7 @@ namespace PMB00300Common.DTOs
         public DateTime? DEND_DATE { get; set; }
         
         public string CPERIOD { get; set; } = "";
+        public string CPERIOD_DISPLAY { get; set; } = "";
         public decimal NAMOUNT_BEFORE { get; set; }
         public decimal NTAX_AMOUNT_BEFORE { get; set; }
         public decimal NAFTER_TAX_AMOUNT_BEFORE { get; set; }

@@ -9,6 +9,7 @@
         public const string CJRNGRP_TYPE = "CJRNGRP_TYPE";
         public const string CTAX_DATE = "CTAX_DATE";
         public const string CPROGRAM_CODE = "CPROGRAM_CODE";
+        public const string CUNIT_CATEGORY_LIST = "CUNIT_CATEGORY_LIST";
         public const string CBSIS = "CBSIS";
         public const string CDBCR = "CDBCR";
         public const string LCENTER_RESTR = "LCENTER_RESTR";

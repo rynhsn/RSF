@@ -77,10 +77,10 @@ public partial class GLI00100 : R_Page
         var loLookupViewModel = new LookupGSL00900ViewModel();
         try
         {
-            if (_viewModel.CenterCode.Trim().Length <= 0)
+            if (string.IsNullOrEmpty(_viewModel.CenterCode))
             {
                 _viewModel.CenterName = "";
-                goto EndBlock;
+                return;
             }
 
             var param = new GSL00900ParameterDTO
@@ -100,6 +100,7 @@ public partial class GLI00100 : R_Page
                 goto EndBlock;
             }
 
+            _viewModel.CenterCode = loResult.CCENTER_CODE;
             _viewModel.CenterName = loResult.CCENTER_NAME;
         }
         catch (Exception ex)

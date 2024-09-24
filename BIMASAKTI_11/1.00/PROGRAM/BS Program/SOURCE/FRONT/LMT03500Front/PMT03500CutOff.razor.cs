@@ -78,7 +78,11 @@ public partial class PMT03500CutOff : R_ITabPage
         {
             // await _viewModel.Init();
             await _viewModelUtility.Init(eventArgs);
-            await _gridRefBuilding.R_RefreshGrid(null);
+
+            if (_viewModelUtility.Property != null)
+            {
+                await _gridRefBuilding.R_RefreshGrid(null);
+            }
             // _viewModelUtility.ActionDataSetExcel = ActionFuncDataSetExcel;
 
             _viewModelUpload.StateChangeAction = StateChangeInvoke;

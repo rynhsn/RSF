@@ -1092,6 +1092,7 @@ namespace Lookup_GSModel
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROGRAM_ID, string.IsNullOrWhiteSpace(poParameter.CPROGRAM_ID) ? "" : poParameter.CPROGRAM_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTRANS_CODE, string.IsNullOrWhiteSpace(poParameter.CTRANS_CODE) ? "" : poParameter.CTRANS_CODE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CREF_NO, string.IsNullOrWhiteSpace(poParameter.CREF_NO) ? "" : poParameter.CREF_NO);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CUNIT_CATEGORY_LIST, string.IsNullOrWhiteSpace(poParameter.CUNIT_CATEGORY_LIST) ? "" : poParameter.CUNIT_CATEGORY_LIST);
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02300DTO>(

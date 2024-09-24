@@ -16,18 +16,18 @@ public class PMT03500UploadCutOffCls : R_IBatchProcess
     RSP_PM_UPLOAD_UTILITY_CUTOFF_WGResources.Resources_Dummy_Class _rscUploadWG = new();
 
     private readonly ActivitySource _activitySource;
-    private LoggerPMT03500 _loggerPMT03500;
+    private readonly LoggerPMT03500 _logger;
 
     public PMT03500UploadCutOffCls()
     {
-        _loggerPMT03500 = LoggerPMT03500.R_GetInstanceLogger();
+        _logger = LoggerPMT03500.R_GetInstanceLogger();
         _activitySource = R_OpenTelemetry.R_LibraryActivity.R_GetInstanceActivitySource();
     }
 
     public void R_BatchProcess(R_BatchProcessPar poBatchProcessPar)
     {
         using var Activity = _activitySource.StartActivity(nameof(R_BatchProcess));
-        _loggerPMT03500.LogInfo(string.Format("START process method {0} on Cls", nameof(R_BatchProcess)));
+        _logger.LogInfo(string.Format("START process method {0} on Cls", nameof(R_BatchProcess)));
         R_Exception loException = new R_Exception();
         var loDb = new R_Db();
 
@@ -41,23 +41,24 @@ public class PMT03500UploadCutOffCls : R_IBatchProcess
 
             var loTask = Task.Run(() => { _batchProcess(poBatchProcessPar); });
 
-            while (!loTask.IsCompleted)
-            {
-                Thread.Sleep(100);
-            }
-
-            if (loTask.IsFaulted)
-            {
-                loException.Add(loTask.Exception.InnerException != null
-                    ? loTask.Exception.InnerException
-                    : loTask.Exception);
-
-                goto EndBlock;
-            }
+            // while (!loTask.IsCompleted)
+            // {
+            //     Thread.Sleep(100);
+            // }
+            //
+            // if (loTask.IsFaulted)
+            // {
+            //     loException.Add(loTask.Exception.InnerException != null
+            //         ? loTask.Exception.InnerException
+            //         : loTask.Exception);
+            //
+            //     goto EndBlock;
+            // }
         }
         catch (Exception ex)
         {
             loException.Add(ex);
+            _logger.LogError(loException);
         }
 
         EndBlock:
@@ -83,16 +84,18 @@ public class PMT03500UploadCutOffCls : R_IBatchProcess
         {
             await Task.Delay(1000);
 
-            loTempObject = R_NetCoreUtility.R_DeserializeObjectFromByte<List<PMT03500UploadCutOffErrorValidateDTO>>(poBatchProcessPar.BigObject);
+            loTempObject =
+                R_NetCoreUtility.R_DeserializeObjectFromByte<List<PMT03500UploadCutOffErrorValidateDTO>>(
+                    poBatchProcessPar.BigObject);
 
             var loUtilityType = poBatchProcessPar.UserParameters
                 .Where((x) => x.Key.Equals(PMT03500ContextConstant.CUTILITY_TYPE)).FirstOrDefault().Value;
             var loProperty = poBatchProcessPar.UserParameters
                 .Where((x) => x.Key.Equals(PMT03500ContextConstant.CPROPERTY_ID)).FirstOrDefault().Value;
-            
+
             var lcProperty = ((System.Text.Json.JsonElement)loProperty).GetString();
             var lcUtility = ((System.Text.Json.JsonElement)loUtilityType).GetString();
-            
+
             if (lcUtility == "EC")
             {
                 loObjectEC = R_Utility
@@ -105,7 +108,7 @@ public class PMT03500UploadCutOffCls : R_IBatchProcess
                     .R_ConvertCollectionToCollection<PMT03500UploadCutOffErrorValidateDTO,
                         PMT03500UploadCutOffRequestWGDTO>(loTempObject);
             }
-            
+
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
@@ -134,14 +137,14 @@ public class PMT03500UploadCutOffCls : R_IBatchProcess
                 case "EC":
                     lcQuery += "IBLOCK1_START   int, " +
                                "IBLOCK2_START   int);";
-                               // "IBLOCK1_END 	int, " +
-                               // "IBLOCK2_END 	int);";
+                    // "IBLOCK1_END 	int, " +
+                    // "IBLOCK2_END 	int);";
                     loDb.SqlExecNonQuery(lcQuery, loConn, false);
                     loDb.R_BulkInsert((SqlConnection)loConn, $"#UTILITY_USAGE_EC", loObjectEC);
                     break;
                 case "WG":
                     lcQuery += "IMETER_START 	int);";
-                               // "IMETER_END 	    int);";
+                    // "IMETER_END 	    int);";
                     loDb.SqlExecNonQuery(lcQuery, loConn, false);
                     loDb.R_BulkInsert((SqlConnection)loConn, $"#UTILITY_USAGE_WG", loObjectWG);
                     break;
@@ -162,6 +165,7 @@ public class PMT03500UploadCutOffCls : R_IBatchProcess
         catch (Exception ex)
         {
             loException.Add(ex);
+            _logger.LogError(loException);
         }
         finally
         {
@@ -179,14 +183,14 @@ public class PMT03500UploadCutOffCls : R_IBatchProcess
                 loCmd = null;
             }
         }
-
+        
         if (loException.Haserror)
         {
             lcQuery = $"EXEC RSP_WriteUploadProcessStatus '{poBatchProcessPar.Key.COMPANY_ID}', " +
                       $"'{poBatchProcessPar.Key.USER_ID}', " +
                       $"'{poBatchProcessPar.Key.KEY_GUID}', " +
                       $"100, '{loException.ErrorList[0].ErrDescp}', 9";
-
+        
             loDb.SqlExecNonQuery(lcQuery);
         }
     }

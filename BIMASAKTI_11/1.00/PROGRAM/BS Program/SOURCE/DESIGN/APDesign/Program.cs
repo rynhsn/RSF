@@ -1,4 +1,4 @@
-namespace GSDesign;
+namespace APDesign;
 
 static class Program
 {

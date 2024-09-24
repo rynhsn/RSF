@@ -391,6 +391,7 @@ public class PMT03500UtilityUsageCls
                         "@CBUILDING_ID" or
                         "@CCHARGES_TYPE" or
                         "@CCHARGES_ID" or
+                        "@CCHARGES_SEQ_NO" or
                         "@CSEQ_NO" or
                         "@CINV_PRD" or
                         "@CUSER_ID"

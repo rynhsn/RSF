@@ -80,7 +80,7 @@
             <R_ItemLayout col="4">
                 <R_Label>@(_localizer["LBL_INVPERIOD"] + "*")</R_Label>
             </R_ItemLayout>
-            <R_ItemLayout col="5">
+            <R_ItemLayout col="6">
                 <R_StackLayout Row>
                     <R_ItemLayout col="7">
                         <R_ComboBox Data="@_viewModelUtility.InvYearList"
@@ -183,7 +183,7 @@
                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CFLOOR_ID)" HeaderText="@_localizer["LBL_FLOORID"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUNIT_ID)" HeaderText="@_localizer["LBL_UNITID"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CMETER_NO)" HeaderText="@_localizer["LBL_METERNO"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
-                <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUTILITY_PRD)" HeaderText="@_localizer["LBL_UTILITYPERIOD"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUTILITY_PRD_DISPLAY)" HeaderText="@_localizer["LBL_UTILITYPERIOD"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
                 <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DSTART_DATE)" HeaderText="@_localizer["LBL_STARTDATE"]" Width="150px" R_EnableEdit Min="@(_viewModelUtility.UtilityPeriodFromDtDt)" Max="@(_viewModelUtility.UtilityPeriodToDtDt)"/>
                 <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DEND_DATE)" HeaderText="@_localizer["LBL_ENDDATE"]" Width="150px" R_EnableEdit Min="@(_viewModelUtility.UtilityPeriodFromDtDt)" Max="@(_viewModelUtility.UtilityPeriodToDtDt)"/>
                 @* <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DSTART_DATE)" HeaderText="@_localizer["LBL_STARTDATE"]" Width="150px" R_EnableEdit/> *@
@@ -207,9 +207,9 @@
 
                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CSTATUS)" HeaderText="@_localizer["LBL_STATUS"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUPDATE_BY)" HeaderText="@_localizer["LBL_UPDBY"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
-                <R_GridDateTimePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DUPDATE_DATE)" HeaderText="@_localizer["LBL_UPDDT"]" Width="150px"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DUPDATE_DATE)" HeaderText="@_localizer["LBL_UPDDT"]" Width="180px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CCREATE_BY)" HeaderText="@_localizer["LBL_CRTBY"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
-                <R_GridDateTimePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DCREATE_DATE)" HeaderText="@_localizer["LBL_CRTDT"]" Width="150px"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DCREATE_DATE)" HeaderText="@_localizer["LBL_CRTDT"]" Width="180px"/>
             </R_GridColumns>
         </R_Grid>
 

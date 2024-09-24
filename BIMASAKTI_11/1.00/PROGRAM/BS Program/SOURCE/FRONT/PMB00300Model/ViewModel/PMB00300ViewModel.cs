@@ -29,7 +29,7 @@ namespace PMB00300Model.ViewModel
                     await _model.GetAsync<PMB00300ListDTO<PMB00300PropertyDTO>>(
                         nameof(IPMB00300.PMB00300GetPropertyList));
                 PropertyList = loReturn.Data;
-                Property.CPROPERTY_ID = PropertyList[0].CPROPERTY_ID;
+                Property.CPROPERTY_ID = PropertyList.Count > 0 ? PropertyList[0].CPROPERTY_ID : Property.CPROPERTY_ID;
             }
             catch (Exception ex)
             {

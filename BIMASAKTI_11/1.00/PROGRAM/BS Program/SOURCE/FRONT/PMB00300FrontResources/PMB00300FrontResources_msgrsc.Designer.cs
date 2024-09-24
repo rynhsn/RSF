@@ -114,6 +114,15 @@ namespace PMB00300FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Base Amount.
+        /// </summary>
+        internal static string BASE_AMOUNT {
+            get {
+                return ResourceManager.GetString("BASE_AMOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Base Rent.
         /// </summary>
         internal static string BASE_RENT {
@@ -285,7 +294,7 @@ namespace PMB00300FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Massage.
+        ///   Looks up a localized string similar to Message.
         /// </summary>
         internal static string MSG {
             get {
@@ -362,6 +371,15 @@ namespace PMB00300FrontResources {
         internal static string PROPERTY {
             get {
                 return ResourceManager.GetString("PROPERTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string REFRESH {
+            get {
+                return ResourceManager.GetString("REFRESH", resourceCulture);
             }
         }
         

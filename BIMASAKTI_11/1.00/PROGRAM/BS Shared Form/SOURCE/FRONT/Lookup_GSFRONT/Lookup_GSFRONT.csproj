@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BACK\Lookup_GSCOMMON\Lookup_GSCOMMON.csproj" />
     <ProjectReference Include="..\Lookup_GSModel\Lookup_GSModel.csproj" />
   </ItemGroup>
 

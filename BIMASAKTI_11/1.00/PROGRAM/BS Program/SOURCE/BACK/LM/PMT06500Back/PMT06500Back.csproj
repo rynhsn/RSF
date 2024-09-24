@@ -23,5 +23,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\COMMON\LM\PMT06500Common\PMT06500Common.csproj" />
+      <ProjectReference Include="..\LM_SPR\RSP_PM_MAINTAIN_OVT_INVOICEResources\RSP_PM_MAINTAIN_OVT_INVOICEResources.csproj" />
     </ItemGroup>
 </Project>

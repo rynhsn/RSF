@@ -15,17 +15,17 @@ public class PMT03500UndoUtilityCls : R_IBatchProcess
     RSP_PM_UPLOAD_UTILITY_USAGE_ECResources.Resources_Dummy_Class _rscUpload = new();
     
     private readonly ActivitySource _activitySource;
-    private LoggerPMT03500 _loggerPMT03500;
+    private LoggerPMT03500 _logger;
 
     public PMT03500UndoUtilityCls()
     {
-        _loggerPMT03500 = LoggerPMT03500.R_GetInstanceLogger();
+        _logger = LoggerPMT03500.R_GetInstanceLogger();
         _activitySource = R_OpenTelemetry.R_LibraryActivity.R_GetInstanceActivitySource();
     }
     public void R_BatchProcess(R_BatchProcessPar poBatchProcessPar)
     {
         using var Activity = _activitySource.StartActivity(nameof(R_BatchProcess));
-        _loggerPMT03500.LogInfo(string.Format("START process method {0} on Cls", nameof(R_BatchProcess)));
+        _logger.LogInfo(string.Format("START process method {0} on Cls", nameof(R_BatchProcess)));
         R_Exception loException = new R_Exception();
         var loDb = new R_Db();
 
@@ -39,19 +39,19 @@ public class PMT03500UndoUtilityCls : R_IBatchProcess
 
             var loTask = Task.Run(() => { _batchProcess(poBatchProcessPar); });
 
-            while (!loTask.IsCompleted)
-            {
-                Thread.Sleep(100);
-            }
-
-            if (loTask.IsFaulted)
-            {
-                loException.Add(loTask.Exception.InnerException != null
-                    ? loTask.Exception.InnerException
-                    : loTask.Exception);
-
-                goto EndBlock;
-            }
+            // while (!loTask.IsCompleted)
+            // {
+            //     Thread.Sleep(100);
+            // }
+            //
+            // if (loTask.IsFaulted)
+            // {
+            //     loException.Add(loTask.Exception.InnerException != null
+            //         ? loTask.Exception.InnerException
+            //         : loTask.Exception);
+            //
+            //     goto EndBlock;
+            // }
         }
         catch (Exception ex)
         {

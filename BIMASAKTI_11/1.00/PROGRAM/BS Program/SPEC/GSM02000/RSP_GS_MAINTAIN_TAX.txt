@@ -7,5 +7,5 @@
 2007	= Tax Name cannot be greater than 100 character!
 2008	= Tax In GL Account cannot be empty!
 2009	= Tax Out GL Account cannot be empty!
-
+2010	= Deduction Tax Id cannot be empty!
 

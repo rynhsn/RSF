@@ -50,7 +50,7 @@ namespace PMI00500Model.ViewModel
                     await _model.GetAsync<PMI00500ListDTO<PMI00500PropertyDTO>>(
                         nameof(IPMI00500.PMI00500GetPropertyList));
                 PropertyList = loReturn.Data;
-                CPROPERTY_ID = PropertyList[0].CPROPERTY_ID;
+                CPROPERTY_ID = PropertyList.Count > 0 ? PropertyList[0].CPROPERTY_ID : CPROPERTY_ID;
             }
             catch (Exception ex)
             {

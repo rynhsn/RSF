@@ -26,7 +26,7 @@ public partial class CBB00200 : R_Page
             if (_viewModel.SystemParam.LPRD_END_FLAG)
             {
                 await R_MessageBox.Show("Message", @_localizer["MSG_CONFLICT"]);
-                await CloseProgram();
+                await CloseProgramAsync();
             }
         }
         catch (Exception ex)

@@ -1,4 +1,5 @@
-﻿using PMB00300Common.DTOs;
+﻿using Microsoft.AspNetCore.Components.Web;
+using PMB00300Common.DTOs;
 using PMB00300Model.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
@@ -99,6 +100,21 @@ public partial class PMB00300
         {
             if (eventArgs.Success && (bool)eventArgs.Result) await _gridRef.R_RefreshGrid(null); 
 
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private async Task OnClickRefresh()
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            await _gridRef.R_RefreshGrid(null);
         }
         catch (Exception ex)
         {

@@ -41,24 +41,24 @@ namespace PMT03500Model.ViewModel
         public List<PMT03500PeriodDTO> UtilityPeriodList = new List<PMT03500PeriodDTO>();
         // public LIst<>
 
-        // public string PropertyId = string.Empty;
-        public string TransCodeId = string.Empty;
+        // public string PropertyId = "";
+        public string TransCodeId = "";
 
-        public string UtilityTypeId = string.Empty;
+        public string UtilityTypeId = "";
         public EPMT03500UtilityUsageType UtilityType;
 
-        public string FloorId = string.Empty;
+        public string FloorId = "";
         public bool AllFloor = false;
 
-        public string InvPeriodYear = string.Empty;
-        public string InvPeriodNo = string.Empty;
+        public string InvPeriodYear = "";
+        public string InvPeriodNo = "";
         public bool Invoiced = false;
 
-        public string UtilityPeriodYear = string.Empty;
-        public string UtilityPeriodNo = string.Empty;
+        public string UtilityPeriodYear = "";
+        public string UtilityPeriodNo = "";
 
-        public string UtilityPeriodFromDt = string.Empty;
-        public string UtilityPeriodToDt = string.Empty;
+        public string UtilityPeriodFromDt = "";
+        public string UtilityPeriodToDt = "";
 
         public DateTime UtilityPeriodFromDtDt = DateTime.Now;
         public DateTime UtilityPeriodToDtDt= DateTime.Now;
@@ -102,6 +102,7 @@ namespace PMT03500Model.ViewModel
             {
                 // R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, PropertyId);
                 R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, Property.CPROPERTY_ID);
+                // R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, "");
                 var loReturn = await _model.GetListStreamAsync<PMT03500BuildingDTO>(nameof(IPMT03500UtilityUsage
                     .PMT03500GetBuildingListStream));
 
@@ -184,7 +185,16 @@ namespace PMT03500Model.ViewModel
                     .ToList();
                 loReturn.Select(x =>
                     x.DEND_DATE = DateTime.ParseExact(x.CEND_DATE, "yyyyMMdd", CultureInfo.InvariantCulture)).ToList();
-
+                
+                foreach (var loItem in loReturn)
+                {
+                    if (!string.IsNullOrEmpty(loItem.CUTILITY_PRD))
+                    {
+                        loItem.CUTILITY_PRD_DISPLAY = loItem.CUTILITY_PRD.Substring(0, 4) + "-" + loItem.CUTILITY_PRD.Substring(4, 2);
+                    }
+                }
+                
+                
                 GridUtilityUsageList = new ObservableCollection<PMT03500UtilityUsageDTO>(loReturn);
                 GridUtilityUsageListTemp = loReturn;
 

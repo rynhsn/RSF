@@ -21,7 +21,8 @@
       },
       "PMT06500Back/1.0.0": {
         "dependencies": {
-          "PMT06500Common": "1.0.0"
+          "PMT06500Common": "1.0.0",
+          "RSP_PM_MAINTAIN_OVT_INVOICEResources": "1.0.0"
         },
         "runtime": {
           "PMT06500Back.dll": {}
@@ -30,6 +31,11 @@
       "PMT06500Common/1.0.0": {
         "runtime": {
           "PMT06500Common.dll": {}
+        }
+      },
+      "RSP_PM_MAINTAIN_OVT_INVOICEResources/1.0.0": {
+        "runtime": {
+          "RSP_PM_MAINTAIN_OVT_INVOICEResources.dll": {}
         }
       },
       "R_APIBackEnd/1.0.0.0": {
@@ -142,6 +148,11 @@
       "sha512": ""
     },
     "PMT06500Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_PM_MAINTAIN_OVT_INVOICEResources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
