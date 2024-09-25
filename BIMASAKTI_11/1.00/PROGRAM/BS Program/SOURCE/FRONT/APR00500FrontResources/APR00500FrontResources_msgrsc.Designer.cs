@@ -58,5 +58,158 @@ namespace APR00500FrontResources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to and.
+        /// </summary>
+        internal static string AND {
+            get {
+                return ResourceManager.GetString("AND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to between.
+        /// </summary>
+        internal static string BETWEEN {
+            get {
+                return ResourceManager.GetString("BETWEEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        internal static string CURRENCY {
+            get {
+                return ResourceManager.GetString("CURRENCY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cut Off Date.
+        /// </summary>
+        internal static string CUT_OFF_DATE {
+            get {
+                return ResourceManager.GetString("CUT_OFF_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Days Late.
+        /// </summary>
+        internal static string DAYS_LATE {
+            get {
+                return ResourceManager.GetString("DAYS_LATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department.
+        /// </summary>
+        internal static string DEPARTMENT {
+            get {
+                return ResourceManager.GetString("DEPARTMENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Due Date.
+        /// </summary>
+        internal static string DUE_DATE {
+            get {
+                return ResourceManager.GetString("DUE_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Period.
+        /// </summary>
+        internal static string PERIOD {
+            get {
+                return ResourceManager.GetString("PERIOD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print.
+        /// </summary>
+        internal static string PRINT {
+            get {
+                return ResourceManager.GetString("PRINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property.
+        /// </summary>
+        internal static string PROPERTY {
+            get {
+                return ResourceManager.GetString("PROPERTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Date.
+        /// </summary>
+        internal static string REFERENCE_DATE {
+            get {
+                return ResourceManager.GetString("REFERENCE_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference No.
+        /// </summary>
+        internal static string REFERENCE_NO {
+            get {
+                return ResourceManager.GetString("REFERENCE_NO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remaining Amt.
+        /// </summary>
+        internal static string REMAINING_AMOUNT {
+            get {
+                return ResourceManager.GetString("REMAINING_AMOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save As.
+        /// </summary>
+        internal static string SAVE_AS {
+            get {
+                return ResourceManager.GetString("SAVE_AS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supplier.
+        /// </summary>
+        internal static string SUPPLIER {
+            get {
+                return ResourceManager.GetString("SUPPLIER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To.
+        /// </summary>
+        internal static string TO {
+            get {
+                return ResourceManager.GetString("TO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Amount.
+        /// </summary>
+        internal static string TOTAL_AMOUNT {
+            get {
+                return ResourceManager.GetString("TOTAL_AMOUNT", resourceCulture);
+            }
+        }
     }
 }

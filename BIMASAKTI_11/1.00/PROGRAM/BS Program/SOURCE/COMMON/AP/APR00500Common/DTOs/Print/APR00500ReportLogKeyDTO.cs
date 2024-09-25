@@ -1,7 +1,7 @@
 using APR00500Common.Params;
 using R_CommonFrontBackAPI.Log;
 
-namespace APR00500Common.DTOs
+namespace APR00500Common.DTOs.Print
 {
     public class APR00500ReportLogKeyDTO
     {

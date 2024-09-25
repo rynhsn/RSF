@@ -1,6 +1,6 @@
 namespace APR00500Common.DTOs
 {
-    public class APR00500PeriodDtDTO
+    public class APR00500PeriodDTO
     {
         public string CCYEAR { get; set; } = "";
         public string CPERIOD_NO { get; set; } = "";

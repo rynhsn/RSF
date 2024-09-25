@@ -1,6 +1,17 @@
 ﻿@page "/APR00500"
-<h3>APR00500</h3>
+@using APR00500Common.DTOs
+@using APR00500FrontResources
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
-@code {
-    
-}
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["PROPERTY"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@_viewModel.PropertyList"
+                    @bind-Value="@_viewModel.ReportParam.CPROPERTY_ID"
+                    ValueField="@nameof(APR00500PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(APR00500PropertyDTO.CPROPERTY_NAME)"/>
+    </R_ItemLayout>
+</R_StackLayout>

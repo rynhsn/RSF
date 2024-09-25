@@ -1,4 +1,4 @@
-namespace APR00500Common.Params
+namespace APR00500Common.DTOs.Print
 {
     public class APR00500ReportParam
     {

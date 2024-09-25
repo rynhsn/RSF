@@ -31,4 +31,8 @@
     <Folder Include="Reports\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SERVICE\AP\APR00500Service\APR00500Service.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,6 @@
 namespace APR00500Common.DTOs
 {
-    public class APR00500TransCodeInitDTO
+    public class APR00500TransCodeInfoDTO
     {
         // public string CTRANS_CODE { get; set; } = "";
         public string CTRANSACTION_NAME { get; set; } = "";
