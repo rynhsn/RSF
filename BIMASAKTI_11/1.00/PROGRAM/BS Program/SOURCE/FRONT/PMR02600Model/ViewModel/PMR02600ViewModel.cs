@@ -16,6 +16,8 @@ namespace PMR02600Model.ViewModel
         public List<PMR02600PropertyDTO> PropertyList = new List<PMR02600PropertyDTO>();
         public PMR02600ReportParam ReportParam = new PMR02600ReportParam();
 
+        public List<string> FileType = new List<string> { "XLSX", "XLS", "CSV" };
+
         public async Task Init()
         {
             await GetPropertyList();

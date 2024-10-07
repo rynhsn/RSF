@@ -144,4 +144,7 @@
   <data name="2009" xml:space="preserve">
     <value>Tax Out GL Account cannot be empty!</value>
   </data>
+  <data name="2010" xml:space="preserve">
+    <value>Deduction Tax Id cannot be empty!</value>
+  </data>
 </root>

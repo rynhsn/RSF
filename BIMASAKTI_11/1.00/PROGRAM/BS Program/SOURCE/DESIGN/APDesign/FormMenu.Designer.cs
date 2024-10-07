@@ -29,11 +29,32 @@ partial class FormMenu
     /// </summary>
     private void InitializeComponent()
     {
-        this.components = new System.ComponentModel.Container();
-        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(800, 450);
-        this.Text = "FormMenu";
+        APR00500_Button = new Button();
+        SuspendLayout();
+        // 
+        // APR00500_Button
+        // 
+        APR00500_Button.Location = new Point(12, 12);
+        APR00500_Button.Name = "APR00500_Button";
+        APR00500_Button.Size = new Size(75, 23);
+        APR00500_Button.TabIndex = 0;
+        APR00500_Button.Text = "APR00500";
+        APR00500_Button.UseVisualStyleBackColor = true;
+        APR00500_Button.Click += APR00500_Button_Click;
+        // 
+        // FormMenu
+        // 
+        AutoScaleDimensions = new SizeF(7F, 15F);
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(270, 49);
+        Controls.Add(APR00500_Button);
+        Name = "FormMenu";
+        Text = "Form Menu AP Report";
+        Load += FormMenu_Load;
+        ResumeLayout(false);
     }
 
     #endregion
+
+    private Button APR00500_Button;
 }

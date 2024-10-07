@@ -10,6 +10,6 @@ namespace APR00500Common
         APR00500SingleDTO<APR00500SystemParamDTO> APR00500GetSystemParam();
         APR00500SingleDTO<APR00500TransCodeInfoDTO> APR00500GetTransCodeInfo();
         APR00500ListDTO<APR00500PeriodDTO> APR00500GetPeriodList(APR00500PeriodParam poParam);
-        APR00500ListDTO<APR00500FunctDTO> APR00500GetCodeInfoList();
+        // APR00500ListDTO<APR00500FunctDTO> APR00500GetCodeInfoList();
     }
 }

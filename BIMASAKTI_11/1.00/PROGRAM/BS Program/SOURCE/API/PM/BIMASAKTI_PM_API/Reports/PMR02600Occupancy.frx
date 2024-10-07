@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="08/12/2024 17:07:47" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="10/02/2024 17:14:06" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="Data" DataType="PMR02600Common.DTOs.Print.PMR02600ReportResultDTO, PMR02600Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -27,6 +27,7 @@
           <Column Name="CTO_BUILDING" DataType="System.String"/>
           <Column Name="CPERIOD" DataType="System.String"/>
           <Column Name="CPERIOD_DISPLAY" DataType="System.String"/>
+          <Column Name="DPERIOD" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
         </Column>
         <BusinessObjectDataSource Name="Data" DataType="System.Collections.Generic.List`1[[PMR02600Common.DTOs.Print.PMR02600DataResultDTO, PMR02600Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
           <Column Name="CBUILDING_ID" DataType="System.String"/>
@@ -96,7 +97,7 @@
           </Formats>
         </TextObject>
         <TextObject Name="Text45" Left="500.85" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.CUT_OFF_DATE]" Font="Arial Unicode MS, 9pt"/>
-        <TextObject Name="Text46" Left="604.8" Top="28.35" Width="283.5" Height="18.9" Text=": [ResponseDataModel.Data.Header.CPERIOD_DISPLAY]" Font="Arial Unicode MS, 9pt"/>
+        <TextObject Name="Text46" Left="604.8" Top="28.35" Width="283.5" Height="18.9" Text=": [ResponseDataModel.Data.Header.DPERIOD]" Format="Date" Format.Format="MMMM dd, yyyy" Font="Arial Unicode MS, 9pt"/>
       </ChildBand>
     </inherited>
     <GroupHeaderBand Name="GroupHeader1" ZOrder="0" Top="158.89" Width="1047.06" Height="28.35" Border.Lines="Bottom" CanGrow="true" CanShrink="true" RepeatOnEveryPage="true" Condition="[ResponseDataModel.Data.Data.CBUILDING_ID]">

@@ -71,6 +71,8 @@ public partial class PMT06500Invoice : R_Page
         try
         {
             _viewModel.EntityInvoice = (PMT06500InvoiceDTO)eventArgs.Data;
+            // await _conductorRefInvoice.R_GetEntity(_viewModel.EntityInvoice);
+            await _viewModel.GetInvoiceRecord(_viewModel.EntityInvoice);
 
             _viewModel.SelectedPropertyId = _viewModel.EntityInvoice.CPROPERTY_ID;
             _viewModel.SelectedPeriod = _viewModel.EntityInvoice.CINV_PRD;
@@ -85,24 +87,24 @@ public partial class PMT06500Invoice : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private void GetRecordInvoice(R_ServiceGetRecordEventArgs eventArgs)
-    {
-        var loEx = new R_Exception();
-
-        try
-        {
-            _viewModel.EntityInvoice = R_FrontUtility.ConvertObjectToObject<PMT06500InvoiceDTO>(eventArgs.Data);
-            eventArgs.Result = _viewModel.EntityInvoice;
-
-            // await _gridRefSummary.R_RefreshGrid(null);
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-
-        loEx.ThrowExceptionIfErrors();
-    }
+    // private void GetRecordInvoice(R_ServiceGetRecordEventArgs eventArgs)
+    // {
+    //     var loEx = new R_Exception();
+    //
+    //     try
+    //     {
+    //         _viewModel.EntityInvoice = R_FrontUtility.ConvertObjectToObject<PMT06500InvoiceDTO>(eventArgs.Data);
+    //         eventArgs.Result = _viewModel.GetInvoiceRecord(_viewModel.EntityInvoice);
+    //
+    //         // await _gridRefSummary.R_RefreshGrid(null);
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         loEx.Add(ex);
+    //     }
+    //
+    //     loEx.ThrowExceptionIfErrors();
+    // }
 
     private async Task DeleteInvoice()
     {
@@ -143,7 +145,7 @@ public partial class PMT06500Invoice : R_Page
         try
         {
             await _viewModel.GetSummaryGridList(_viewModel.EntityInvoice.CREF_NO, _viewModel.EntityInvoice.CDEPT_CODE,
-                _viewModel.InvoicePageParam.CLINK_DEPT_CODE, _viewModel.InvoicePageParam.CLINK_TRANS_CODE,
+                _viewModel.EntityInvoice.CLINK_DEPT_CODE, _viewModel.EntityInvoice.CLINK_TRANS_CODE,
                 _viewModel.InvoicePageParam.CACTION);
             eventArgs.ListEntityResult = _viewModel.SummaryGridList;
         }

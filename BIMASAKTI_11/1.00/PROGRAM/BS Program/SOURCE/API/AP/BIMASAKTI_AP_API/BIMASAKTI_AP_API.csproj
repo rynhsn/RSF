@@ -32,7 +32,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_APSERVICES\Lookup_APSERVICES.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\AP\APR00500Service\APR00500Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Reports\APR00500InvoiceList.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

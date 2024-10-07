@@ -10,6 +10,7 @@ using PMR02600Common;
 using PMR02600Common.DTOs.Print;
 using PMR02600Common.Params;
 using PMR02600Service.DTOs;
+using R_BackEnd;
 using R_Cache;
 using R_Common;
 using R_CommonFrontBackAPI;
@@ -34,6 +35,7 @@ public class PMR02600PrintController : R_ReportControllerBase
         _ReportCls = new R_ReportFastReportBackClass();
         _ReportCls.R_InstantiateMainReportWithFileName += _ReportCls_R_InstantiateMainReportWithFileName;
         _ReportCls.R_GetMainDataAndName += _ReportCls_R_GetMainDataAndName;
+        _ReportCls.R_SetNumberAndDateFormat += _ReportCls_R_SetNumberAndDateFormat;
     }
 
     private void _ReportCls_R_InstantiateMainReportWithFileName(ref string pcfiletemplate)
@@ -47,6 +49,14 @@ public class PMR02600PrintController : R_ReportControllerBase
         pcDataSourceName = "ResponseDataModel";
     }
 
+    private void _ReportCls_R_SetNumberAndDateFormat(ref R_ReportFormatDTO poReportFormat)
+    {
+        poReportFormat.DecimalSeparator = R_BackGlobalVar.REPORT_FORMAT_DECIMAL_SEPARATOR;
+        poReportFormat.GroupSeparator = R_BackGlobalVar.REPORT_FORMAT_GROUP_SEPARATOR;
+        poReportFormat.DecimalPlaces = R_BackGlobalVar.REPORT_FORMAT_DECIMAL_PLACES;
+        poReportFormat.ShortDate = R_BackGlobalVar.REPORT_FORMAT_SHORT_DATE;
+        poReportFormat.ShortTime = R_BackGlobalVar.REPORT_FORMAT_SHORT_TIME;
+    }
 
     [HttpPost]
     public R_DownloadFileResultDTO ActivityReportPost(PMR02600ReportParam poParam)
@@ -99,7 +109,17 @@ public class PMR02600PrintController : R_ReportControllerBase
             R_NetCoreLogUtility.R_SetNetCoreLogKey(loResultGUID.poLogKey);
 
             _Parameter = loResultGUID.poParam;
-            loRtn = new FileStreamResult(_ReportCls.R_GetStreamReport(), R_ReportUtility.GetMimeType(R_FileType.PDF));
+            
+            if (_Parameter.LIS_PRINT)
+            {
+                loRtn = new FileStreamResult(_ReportCls.R_GetStreamReport(peExport: R_FileType.PDF), R_ReportUtility.GetMimeType(R_FileType.PDF));
+            }
+            else
+            {
+                var loFileType = (R_FileType)Enum.Parse(typeof(R_FileType), _Parameter.CREPORT_FILETYPE);
+                loRtn = File(_ReportCls.R_GetStreamReport(peExport: loFileType), R_ReportUtility.GetMimeType(loFileType), $"{_Parameter.CREPORT_FILENAME}.{_Parameter.CREPORT_FILETYPE}");
+
+            }
         }
         catch (Exception ex)
         {
@@ -164,6 +184,10 @@ public class PMR02600PrintController : R_ReportControllerBase
                 CPROPERTY_ID = poParam.CPROPERTY,
                 CFROM_BUILDING = poParam.CFROM_BUILDING,
                 CTO_BUILDING = poParam.CTO_BUILDING,
+                // DCUT_OFF_DATE = DateTime.TryParseExact(poParam.CPERIOD, "yyyyMMdd",
+                //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var cutOfDate)
+                //     ? cutOfDate
+                //     : (DateTime?)null,
                 CCUT_OFF_DATE = poParam.CPERIOD,
             };
 
@@ -175,10 +199,14 @@ public class PMR02600PrintController : R_ReportControllerBase
                 CPROPERTY = poParam.CPROPERTY_NAME + $"({poParam.CPROPERTY})",
                 CFROM_BUILDING = poParam.CFROM_BUILDING_NAME + $"({poParam.CFROM_BUILDING})",
                 CTO_BUILDING = poParam.CTO_BUILDING_NAME + $"({poParam.CTO_BUILDING})",
-                CPERIOD_DISPLAY = DateTime.TryParseExact(poParam.CPERIOD, "yyyyMMdd",
-                    CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
-                    ? refDate.ToString("dd MMM yyyy")
-                    : null
+                DPERIOD = DateTime.TryParseExact(poParam.CPERIOD, "yyyyMMdd",
+                    CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var period)
+                    ? period
+                    : (DateTime?)null,
+                // CPERIOD_DISPLAY = DateTime.TryParseExact(poParam.CPERIOD, "yyyyMMdd",
+                //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
+                //     ? refDate.ToString("dd MMM yyyy")
+                //     : null
             };
 
             loRtn.Data = loData;

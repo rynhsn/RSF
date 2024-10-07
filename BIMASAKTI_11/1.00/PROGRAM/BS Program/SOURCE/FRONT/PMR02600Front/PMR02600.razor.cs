@@ -19,7 +19,7 @@ public partial class PMR02600
 
     [Inject] private R_IReport _reportService { get; set; }
     [Inject] private IClientHelper _clientHelper { get; set; }
-    
+
     protected override async Task R_Init_From_Master(object poParam)
     {
         var loEx = new R_Exception();
@@ -45,7 +45,8 @@ public partial class PMR02600
         var loLookupViewModel = new LookupGSL02200ViewModel();
         try
         {
-            if (_viewModel.ReportParam.CFROM_BUILDING == null || _viewModel.ReportParam.CFROM_BUILDING.Trim().Length <= 0)
+            if (_viewModel.ReportParam.CFROM_BUILDING == null ||
+                _viewModel.ReportParam.CFROM_BUILDING.Trim().Length <= 0)
             {
                 _viewModel.ReportParam.CFROM_BUILDING_NAME = "";
                 return;
@@ -102,7 +103,7 @@ public partial class PMR02600
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     private void AfterOpenLookupFromBuilding(R_AfterOpenLookupEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -122,10 +123,10 @@ public partial class PMR02600
 
         loEx.ThrowExceptionIfErrors();
     }
-     
+
     #endregion
-    
-    
+
+
     #region Lookup To Building
 
     private async Task OnLostFocusToBuilding()
@@ -192,7 +193,7 @@ public partial class PMR02600
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     private void AfterOpenLookupToBuilding(R_AfterOpenLookupEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -212,8 +213,48 @@ public partial class PMR02600
 
         loEx.ThrowExceptionIfErrors();
     }
-     
+
     #endregion
+
+    private void _validateDataBeforePrint()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var PropertyIsNull = string.IsNullOrEmpty(_viewModel.ReportParam.CPROPERTY);
+            var BuildingIsNull = string.IsNullOrEmpty(_viewModel.ReportParam.CFROM_BUILDING) ||
+                                 string.IsNullOrEmpty(_viewModel.ReportParam.CTO_BUILDING);
+            var PeriodIsNull = _viewModel.ReportParam.DPERIOD == null;
+
+            if (PropertyIsNull)
+            {
+                loEx.Add("Error", _localizer["PLEASESELECTPROPERTY"]);
+            }
+
+            if (BuildingIsNull)
+            {
+                loEx.Add("Error", _localizer["PLEASESELECTBUILDING"]);
+            }
+
+            if (PeriodIsNull)
+            {
+                loEx.Add("Error", _localizer["PLEASESELECTCUTOFFDATE"]);
+            }
+            
+            _viewModel.ReportParam.CPROPERTY_NAME = _viewModel.PropertyList
+                ?.Find(x => x.CPROPERTY_ID == _viewModel.ReportParam.CPROPERTY)
+                .CPROPERTY_NAME;
+            _viewModel.ReportParam.CPERIOD = _viewModel.ReportParam.DPERIOD?.ToString("yyyyMMdd");
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        EndBlock:
+        loEx.ThrowExceptionIfErrors();
+    }
 
     private async Task OnClickPrint(MouseEventArgs eventArgs)
     {
@@ -221,33 +262,17 @@ public partial class PMR02600
 
         try
         {
-            var PropertyIsNull = string.IsNullOrEmpty(_viewModel.ReportParam.CPROPERTY);
-            var BuildingIsNull = string.IsNullOrEmpty(_viewModel.ReportParam.CFROM_BUILDING) || string.IsNullOrEmpty(_viewModel.ReportParam.CTO_BUILDING);
-            var PeriodIsNull = _viewModel.ReportParam.DPERIOD == null;
-
-            if (PropertyIsNull)
-            {
-                loEx.Add("Error", _localizer["PLEASESELECTPROPERTY"]);
-            }
+            _validateDataBeforePrint();
             
-            if (BuildingIsNull)
-            {
-                loEx.Add("Error", _localizer["PLEASESELECTBUILDING"]);
-            }
-            
-            if (PeriodIsNull)
-            {
-                loEx.Add("Error", _localizer["PLEASESELECTCUTOFFDATE"]);
-            }
-
             if (!loEx.HasError)
             {
                 var loParam = _viewModel.ReportParam;
-                loParam.CPROPERTY_NAME = _viewModel.PropertyList?.Find(x => x.CPROPERTY_ID == loParam.CPROPERTY).CPROPERTY_NAME;
-                loParam.CPERIOD = loParam.DPERIOD?.ToString("yyyyMMdd");
                 loParam.CCOMPANY_ID = _clientHelper.CompanyId;
                 loParam.CUSER_ID = _clientHelper.UserId;
                 loParam.CLANG_ID = _clientHelper.CultureUI.TwoLetterISOLanguageName;
+                loParam.LIS_PRINT = true;
+                loParam.CREPORT_FILENAME = "";
+                loParam.CREPORT_FILETYPE = "";
                 await _reportService.GetReport(
                     "R_DefaultServiceUrlPM",
                     "PM",
@@ -262,6 +287,28 @@ public partial class PMR02600
             loEx.Add(ex);
         }
 
+        loEx.ThrowExceptionIfErrors();
+    }
+
+
+    private void BeforeOpenPopupSaveAs(R_BeforeOpenLookupEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            _validateDataBeforePrint();
+
+            var loParam = _viewModel.ReportParam;
+            eventArgs.Parameter = loParam;
+            eventArgs.PageTitle = _localizer["SAVE_AS"];
+            eventArgs.TargetPageType = typeof(PMR02600PopupSaveAs);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        EndBlock:
         loEx.ThrowExceptionIfErrors();
     }
 }

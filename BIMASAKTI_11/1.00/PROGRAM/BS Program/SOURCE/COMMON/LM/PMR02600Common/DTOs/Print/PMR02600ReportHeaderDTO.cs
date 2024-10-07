@@ -64,6 +64,7 @@ namespace PMR02600Common.DTOs.Print
         public string CTO_BUILDING { get; set; } = "";
         public string CPERIOD { get; set; } = "";
         public string CPERIOD_DISPLAY { get; set; } = "";
+        public DateTime? DPERIOD { get; set; }
     }
 
     public class PMR02600ReportWithBaseHeaderDTO : BaseHeaderReportCOMMON.BaseHeaderResult

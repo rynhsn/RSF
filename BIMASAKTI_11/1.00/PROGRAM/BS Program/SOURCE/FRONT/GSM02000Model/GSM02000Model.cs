@@ -33,10 +33,22 @@ namespace GSM02000Model
         {
             throw new NotImplementedException();
         }
+
+        public IAsyncEnumerable<GSM02000DeductionGridDTO> GetAllDeductionStream()
+        {
+            throw new NotImplementedException();
+        }
+
         public GSM02000ListDTO<GSM02000RoundingDTO> GetAllRounding()
         {
             throw new NotImplementedException();
         }
+
+        public GSM02000ListDTO<GSM02000PropertyDTO> GetAllProperty()
+        {
+            throw new NotImplementedException();
+        }
+
         public GSM02000ActiveInactiveDTO SetActiveInactive(GSM02000ActiveInactiveParamsDTO poParams)
         {
             throw new NotImplementedException();
@@ -72,6 +84,36 @@ namespace GSM02000Model
         }
 
         #endregion
+        
+        #region GetAllDeductionStreamAsync
+
+        public async Task<List<GSM02000DeductionGridDTO>> GetAllDeductionStreamAsync()
+        {
+            var loEx = new R_Exception();
+            List<GSM02000DeductionGridDTO> loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSM02000DeductionGridDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGSM02000.GetAllDeductionStream),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken,
+                    null);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        #endregion
 
         #region GetRoundingMode
 
@@ -86,6 +128,35 @@ namespace GSM02000Model
                 loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM02000ListDTO<GSM02000RoundingDTO>>(
                     _RequestServiceEndPoint,
                     nameof(IGSM02000.GetAllRounding),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        #endregion
+        
+        #region GetProperty
+
+        public async Task<GSM02000ListDTO<GSM02000PropertyDTO>> GetPropertyAsync()
+        {
+            var loEx = new R_Exception();
+            GSM02000ListDTO<GSM02000PropertyDTO> loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM02000ListDTO<GSM02000PropertyDTO>>(
+                    _RequestServiceEndPoint,
+                    nameof(IGSM02000.GetAllProperty),
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);

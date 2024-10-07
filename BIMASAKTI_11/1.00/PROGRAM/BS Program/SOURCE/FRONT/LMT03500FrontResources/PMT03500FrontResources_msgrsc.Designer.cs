@@ -834,6 +834,15 @@ namespace PMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unit Description.
+        /// </summary>
+        internal static string LBL_UNITDESCRIPTION {
+            get {
+                return ResourceManager.GetString("LBL_UNITDESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unit Id.
         /// </summary>
         internal static string LBL_UNITID {

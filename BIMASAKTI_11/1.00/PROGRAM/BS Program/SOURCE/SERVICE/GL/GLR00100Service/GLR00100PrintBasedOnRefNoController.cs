@@ -36,6 +36,7 @@ public class GLR00100PrintBasedOnRefNoController : R_ReportControllerBase
         _ReportCls = new R_ReportFastReportBackClass();
         _ReportCls.R_InstantiateMainReportWithFileName += _ReportCls_R_InstantiateMainReportWithFileName;
         _ReportCls.R_GetMainDataAndName += _ReportCls_R_GetMainDataAndName;
+        _ReportCls.R_SetNumberAndDateFormat += _ReportCls_R_SetNumberAndDateFormat;
     }
 
     private void _ReportCls_R_InstantiateMainReportWithFileName(ref string pcfiletemplate)
@@ -47,6 +48,16 @@ public class GLR00100PrintBasedOnRefNoController : R_ReportControllerBase
     {
         poData.Add(GeneratePrint(_Parameter));
         pcDataSourceName = "ResponseDataModel";
+    }
+    
+    
+    private void _ReportCls_R_SetNumberAndDateFormat(ref R_ReportFormatDTO poReportFormat)
+    {
+        poReportFormat.DecimalSeparator = R_BackGlobalVar.REPORT_FORMAT_DECIMAL_SEPARATOR;
+        poReportFormat.GroupSeparator = R_BackGlobalVar.REPORT_FORMAT_GROUP_SEPARATOR;
+        poReportFormat.DecimalPlaces = R_BackGlobalVar.REPORT_FORMAT_DECIMAL_PLACES;
+        poReportFormat.ShortDate = R_BackGlobalVar.REPORT_FORMAT_SHORT_DATE;
+        poReportFormat.ShortTime = R_BackGlobalVar.REPORT_FORMAT_SHORT_TIME;
     }
 
     [HttpPost]
@@ -100,7 +111,18 @@ public class GLR00100PrintBasedOnRefNoController : R_ReportControllerBase
             R_NetCoreLogUtility.R_SetNetCoreLogKey(loResultGUID.poLogKey);
 
             _Parameter = loResultGUID.poParam;
-            loRtn = new FileStreamResult(_ReportCls.R_GetStreamReport(), R_ReportUtility.GetMimeType(R_FileType.PDF));
+            
+            if (_Parameter.LIS_PRINT)
+            {
+                loRtn = new FileStreamResult(_ReportCls.R_GetStreamReport(peExport: R_FileType.PDF),
+                    R_ReportUtility.GetMimeType(R_FileType.PDF));
+            }
+            else
+            {
+                var loFileType = (R_FileType)Enum.Parse(typeof(R_FileType), _Parameter.CREPORT_FILETYPE);
+                loRtn = File(_ReportCls.R_GetStreamReport(peExport: loFileType), R_ReportUtility.GetMimeType(loFileType), $"{_Parameter.CREPORT_FILENAME}.{_Parameter.CREPORT_FILETYPE}");
+
+            }
         }
         catch (Exception ex)
         {
@@ -113,6 +135,7 @@ public class GLR00100PrintBasedOnRefNoController : R_ReportControllerBase
         return loRtn;
     }
 
+    
     private GLR00100ReportWithBaseHeaderDTO GeneratePrint(GLR00100ReportParam poParam)
     {
         using var loActivity = _activitySource.StartActivity(nameof(GeneratePrint));
@@ -197,25 +220,35 @@ public class GLR00100PrintBasedOnRefNoController : R_ReportControllerBase
             if (string.IsNullOrWhiteSpace(loData.Header.CFROM_PERIOD))
             {
                 
-                loData.Header.CFROM_PERIOD = DateTime.ParseExact(poParam.CFROM_PERIOD, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
+                loData.Header.CFROM_PERIOD ??= DateTime.ParseExact(poParam.CFROM_PERIOD, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
             }
             
             if (string.IsNullOrWhiteSpace(loData.Header.CTO_PERIOD))
             {
-                loData.Header.CTO_PERIOD = DateTime.ParseExact(poParam.CTO_PERIOD, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
+                loData.Header.CTO_PERIOD ??= DateTime.ParseExact(poParam.CTO_PERIOD, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
             }
             
             //looping dan ubah ref date menjadi dd-MM-yyyy
             foreach (var item in loData.Data)
             {
-                item.CREF_DATE_DISPLAY = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
+                // item.CREF_DATE_DISPLAY = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
+                //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
+                //     ? refDate.ToString("dd-MMM-yyyy")
+                //     : null;
+                // item.CDOC_DATE_DISPLAY = DateTime.TryParseExact(item.CDOC_DATE, "yyyyMMdd",
+                //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var docDate)
+                //     ? docDate.ToString("dd-MMM-yyyy")
+                //     : null;
+                
+                item.DREF_DATE = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
                     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
-                    ? refDate.ToString("dd-MMM-yyyy")
-                    : null;
-                item.CDOC_DATE_DISPLAY = DateTime.TryParseExact(item.CDOC_DATE, "yyyyMMdd",
+                    ? refDate
+                    : (DateTime?)null;
+                
+                item.DDOC_DATE = DateTime.TryParseExact(item.CDOC_DATE, "yyyyMMdd",
                     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var docDate)
-                    ? docDate.ToString("dd-MMM-yyyy")
-                    : null;
+                    ? docDate
+                    : (DateTime?)null;
             }
 
             loData.SubData = loCls.BasedOnRefNoSubReportDb(loDbParam);

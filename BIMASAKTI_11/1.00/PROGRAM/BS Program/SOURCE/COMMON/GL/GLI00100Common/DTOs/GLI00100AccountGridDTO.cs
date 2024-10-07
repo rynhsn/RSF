@@ -113,7 +113,7 @@ namespace GLI00100Common.DTOs
         public string CGLACCOUNT_NO { get; set; }
         public string CGLACCOUNT_NAME { get; set; }
         public string CCENTER { get; set; }
-        public string CBDCR { get; set; }
+        public string CDBCR { get; set; }
         public decimal NDEBIT { get; set; }
         public decimal NCREDIT { get; set; }
         public string CDETAIL_DESC { get; set; }

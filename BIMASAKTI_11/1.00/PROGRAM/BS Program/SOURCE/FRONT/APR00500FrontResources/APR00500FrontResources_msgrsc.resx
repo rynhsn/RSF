@@ -23,7 +23,7 @@
             PublicKeyToken=b77a5c561934e089
         </value>
     </resheader>
-    
+
     <data name="PROPERTY" xml:space="preserve">
         <value>Property</value>
         <comment>Property</comment>
@@ -84,6 +84,98 @@
         <value>and</value>
         <comment>and</comment>
     </data>
+    <data name="ERR_PROPERTY_EMPTY" xml:space="preserve">
+        <value>Please select property !</value>
+        <comment>Please select property !</comment>
+    </data>
+    <data name="ERR_DEPT_EMPTY" xml:space="preserve">
+        <value>Please select Department !</value>
+        <comment>Please select Department !</comment>
+    </data>
+    <data name="ERR_SUPPL_EMPTY" xml:space="preserve">
+        <value>Please select Supplier !</value>
+        <comment>Please select Supplier !</comment>
+    </data>
+
+    <!-- ERR_CUTOFF_EMPTY -->
+    <data name="ERR_CUTOFF_EMPTY" xml:space="preserve">
+        <value>Please select Cut Off Date !</value>
+        <comment>Please select Cut Off Date !</comment>
+    </data>
+
+    <!-- ERR_FROMPERIOD_EMPTY -->
+    <data name="ERR_FROMPERIOD_EMPTY" xml:space="preserve">
+        <value>Please select From Period !</value>
+        <comment>Please select From Period !</comment>
+    </data>
+
+    <!-- ERR_TOPERIOD_EMPTY -->
+    <data name="ERR_TOPERIOD_EMPTY" xml:space="preserve">
+        <value>Please select To Period !</value>
+        <comment>Please select To Period !</comment>
+    </data>
+
+    <!-- ERR_FROMREFDATE_EMPTY -->
+    <data name="ERR_FROMREFDATE_EMPTY" xml:space="preserve">
+        <value>Please select From Reference Date !</value>
+        <comment>Please select From Reference Date !</comment>
+    </data>
+
+    <!-- ERR_TOREFDATE_EMPTY -->
+    <data name="ERR_TOREFDATE_EMPTY" xml:space="preserve">
+        <value>Please select To Reference Date !</value>
+        <comment>Please select To Reference Date !</comment>
+    </data>
+
+    <!-- ERR_FROMDUEDATE_EMPTY -->
+    <data name="ERR_FROMDUEDATE_EMPTY" xml:space="preserve">
+        <value>Please select From Due Date !</value>
+        <comment>Please select From Due Date !</comment>
+    </data>
+
+    <!-- ERR_TODUEDATE_EMPTY -->
+    <data name="ERR_TODUEDATE_EMPTY" xml:space="preserve">
+        <value>Please select To Due Date !</value>
+        <comment>Please select To Due Date !</comment>
+    </data>
+
+    <!-- ERR_FROMREFNO_EMPTY -->
+    <data name="ERR_FROMREFNO_EMPTY" xml:space="preserve">
+        <value>Please select From Reference No !</value>
+        <comment>Please select From Reference No !</comment>
+    </data>
+
+    <!-- ERR_TOREFNO_EMPTY -->
+    <data name="ERR_TOREFNO_EMPTY" xml:space="preserve">
+        <value>Please select To Reference No !</value>
+        <comment>Please select To Reference No !</comment>
+    </data>
+
+    <!-- ERR_CURRENCY_EMPTY -->
+    <data name="ERR_CURRENCY_EMPTY" xml:space="preserve">
+        <value>Please select Currency !</value>
+        <comment>Please select Currency !</comment>
+    </data>
+
+    <!-- ERR_FROMPERIOD_GREATERTHAN_TOPERIOD -->
+    <data name="ERR_FROMPERIOD_GREATERTHAN_TOPERIOD" xml:space="preserve">
+        <value>To Period cannot be early than From Period !</value>
+        <comment>From Period should be less than To Period !</comment>
+    </data>
+    
+    <!-- ERR_FROMREFDATE_GREATERTHAN_TOREFDATE -->
+    <data name="ERR_FROMREFDATE_GREATERTHAN_TOREFDATE" xml:space="preserve">
+        <value>To Reference Date cannot be early than From Reference Date !</value>
+        <comment>From Reference Date should be less than To Reference Date !</comment>
+    </data>
+    
+    <!-- ERR_FROMDUEDATE_GREATERTHAN_TODUEDATE -->
+    <data name="ERR_FROMDUEDATE_GREATERTHAN_TODUEDATE" xml:space="preserve">
+        <value>To Due Date cannot be early than From Due Date !</value>
+        <comment>From Due Date should be less than To Due Date !</comment>
+    </data>
+
+    <!-- Report Button -->
     <data name="PRINT" xml:space="preserve">
         <value>Print</value>
         <comment>Print</comment>
@@ -92,5 +184,12 @@
         <value>Save As</value>
         <comment>Save As</comment>
     </data>
-
+    <data name="CANCEL" xml:space="preserve">
+        <value>Cancel</value>
+        <comment>Cancel</comment>
+    </data>
+    <data name="SAVE" xml:space="preserve">
+        <value>Save</value>
+        <comment>Save</comment>
+    </data>
 </root>

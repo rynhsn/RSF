@@ -26,6 +26,9 @@ public partial class GSM02000 : R_Page
     private GSM02000ViewModel _viewModel = new();
     private R_Conductor _conductorRef;
     private R_Grid<GSM02000GridDTO> _gridRef = new();
+
+    private R_ConductorGrid _conductorDeductionRef;
+    private R_Grid<GSM02000DeductionGridDTO> _gridDeductionRef = new();
     private string loLabel;
 
     // private R_ILocalizer<Resources_Dummy_Class> _localizer;
@@ -40,9 +43,10 @@ public partial class GSM02000 : R_Page
         try
         {
             loLabel = _localizer["BTN_ACTIVATE"];
-            await _gridRef.R_RefreshGrid(null);
             // await _gridRef.AutoFitAllColumnsAsync();
             await _viewModel.GetRoundingMode();
+            await _viewModel.GetProperty();
+            await _gridRef.R_RefreshGrid(null);
         }
         catch (Exception ex)
         {
@@ -109,6 +113,8 @@ public partial class GSM02000 : R_Page
 
             await _viewModel.GetEntity(loParam);
             eventArgs.Result = _viewModel.Entity;
+
+            await _gridDeductionRef.R_RefreshGrid(null);
         }
         catch (Exception ex)
         {
@@ -125,6 +131,7 @@ public partial class GSM02000 : R_Page
         try
         {
             var loParam = R_FrontUtility.ConvertObjectToObject<GSM02000DTO>(eventArgs.Data);
+            loParam.ODEDUCTION_LIST = _gridDeductionRef.DataSource.ToList();
             await _viewModel.SaveEntity(loParam, (eCRUDMode)eventArgs.ConductorMode);
 
             eventArgs.Result = _viewModel.Entity;
@@ -144,6 +151,7 @@ public partial class GSM02000 : R_Page
         try
         {
             var loParam = (GSM02000DTO)eventArgs.Data;
+            loParam.ODEDUCTION_LIST = _gridDeductionRef.DataSource.ToList();
             // loParam.CDESCRIPTION ??= String.Empty;
             // loParam.CTAXIN_GLACCOUNT_NO ??= String.Empty;
             // loParam.CTAXOUT_GLACCOUNT_NO ??= String.Empty;
@@ -179,8 +187,9 @@ public partial class GSM02000 : R_Page
     private R_Button R_ActiveInActiveBtn;
     public R_Lookup R_LookupBtnIn;
     private R_Lookup R_LookupBtnOut;
+    private R_Lookup R_LookupBtnDeduction;
 
-    
+
     private R_TextBox _textTaxIn;
 
     private async Task OnLostFocusGLAccountIn()
@@ -190,12 +199,12 @@ public partial class GSM02000 : R_Page
         LookupGSL00500ViewModel loLookupViewModel = new LookupGSL00500ViewModel();
         try
         {
-            if (_viewModel.Data.CTAXIN_GLACCOUNT_NO.Length <= 0)
+            if (string.IsNullOrEmpty(_viewModel.Data.CTAXIN_GLACCOUNT_NO))
             {
                 _viewModel.Data.CTAXIN_GLACCOUNT_NAME = "";
                 goto EndBlock;
             }
-            
+
             var param = new GSL00500ParameterDTO
             {
                 CPROPERTY_ID = "",
@@ -270,39 +279,39 @@ public partial class GSM02000 : R_Page
         LookupGSL00500ViewModel loLookupViewModel = new LookupGSL00500ViewModel();
         try
         {
-            if (_viewModel.Data.CTAXOUT_GLACCOUNT_NO.Length <= 0)
+            if (string.IsNullOrEmpty(_viewModel.Data.CTAXOUT_GLACCOUNT_NO))
             {
                 _viewModel.Data.CTAXOUT_GLACCOUNT_NAME = "";
                 goto EndBlock;
             }
 
             var param = new GSL00500ParameterDTO
-                {
-                    CPROPERTY_ID = "",
-                    CPROGRAM_CODE = "GSM02000",
-                    CBSIS = "",
-                    CDBCR = "",
-                    LCENTER_RESTR = false,
-                    LUSER_RESTR = false,
-                    CCENTER_CODE = "",
-                    CUSER_LANGUAGE = _clientHelper.CultureUI.TwoLetterISOLanguageName,
-                    CSEARCH_TEXT = _viewModel.Data.CTAXOUT_GLACCOUNT_NO
-                };
+            {
+                CPROPERTY_ID = "",
+                CPROGRAM_CODE = "GSM02000",
+                CBSIS = "",
+                CDBCR = "",
+                LCENTER_RESTR = false,
+                LUSER_RESTR = false,
+                CCENTER_CODE = "",
+                CUSER_LANGUAGE = _clientHelper.CultureUI.TwoLetterISOLanguageName,
+                CSEARCH_TEXT = _viewModel.Data.CTAXOUT_GLACCOUNT_NO
+            };
 
-                var loResult = await loLookupViewModel.GetGLAccount(param);
+            var loResult = await loLookupViewModel.GetGLAccount(param);
 
-                if (loResult == null)
-                {
-                    loEx.Add(
-                        R_FrontUtility.R_GetError(
+            if (loResult == null)
+            {
+                loEx.Add(
+                    R_FrontUtility.R_GetError(
                         typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
                         "_ErrLookup01"));
-                    _viewModel.Data.CTAXOUT_GLACCOUNT_NO = "";
-                    _viewModel.Data.CTAXOUT_GLACCOUNT_NAME = "";
-                    goto EndBlock;
-                }
+                _viewModel.Data.CTAXOUT_GLACCOUNT_NO = "";
+                _viewModel.Data.CTAXOUT_GLACCOUNT_NAME = "";
+                goto EndBlock;
+            }
 
-                _viewModel.Data.CTAXOUT_GLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
+            _viewModel.Data.CTAXOUT_GLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
         }
         catch (Exception ex)
         {
@@ -341,20 +350,84 @@ public partial class GSM02000 : R_Page
         loGetData.CTAXOUT_GLACCOUNT_NAME = loTempResult?.CGLACCOUNT_NAME;
     }
 
+    // private async Task OnLostFocusDeduction()
+    // {
+    //     var loEx = new R_Exception();
+    //
+    //     LookupGSL01400ViewModel loLookupViewModel = new LookupGSL01400ViewModel();
+    //     try
+    //     {
+    //         if (string.IsNullOrEmpty(_viewModel.Data.CDEDUCTION_TAX_ID))
+    //         {
+    //             _viewModel.Data.CDEDUCTION_TAX_NAME = "";
+    //             goto EndBlock;
+    //         }
+    //
+    //         var param = new GSL01400ParameterDTO
+    //             {
+    //                 CPROPERTY_ID = "",
+    //                 CCHARGES_TYPE_ID = "D",
+    //                 CSEARCH_TEXT = _viewModel.Data.CDEDUCTION_TAX_ID
+    //             };
+    //
+    //             var loResult = await loLookupViewModel.GetOtherCharges(param);
+    //
+    //             if (loResult == null)
+    //             {
+    //                 loEx.Add(
+    //                     R_FrontUtility.R_GetError(
+    //                     typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+    //                     "_ErrLookup01"));
+    //                 _viewModel.Data.CDEDUCTION_TAX_ID = "";
+    //                 _viewModel.Data.CDEDUCTION_TAX_NAME = "";
+    //                 goto EndBlock;
+    //             }
+    //
+    //             _viewModel.Data.CDEDUCTION_TAX_NAME = loResult.CCHARGES_NAME;
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         loEx.Add(ex);
+    //     }
+    //
+    //     EndBlock:
+    //     R_DisplayException(loEx);
+    // }
+    //
+    // private void BeforeOpenLookupDeduction(R_BeforeOpenLookupEventArgs eventArgs)
+    // {
+    //     var param = new GSL01400ParameterDTO
+    //     {
+    //         CPROPERTY_ID = "",
+    //         CCHARGES_TYPE_ID = "D",
+    //     };
+    //     eventArgs.Parameter = param;
+    //     eventArgs.TargetPageType = typeof(GSL01400);
+    // }
+    //
+    // private void AfterOpenLookupDeduction(R_AfterOpenLookupEventArgs eventArgs)
+    // {
+    //     var loTempResult = (GSL01400DTO)eventArgs.Result;
+    //     if (loTempResult == null)
+    //         return;
+    //
+    //     var loGetData = (GSM02000DTO)_conductorRef.R_GetCurrentData();
+    //     loGetData.CDEDUCTION_TAX_ID = loTempResult.CCHARGES_ID;
+    //     loGetData.CDEDUCTION_TAX_NAME = loTempResult?.CCHARGES_NAME;
+    // }
+
     private void R_SetAdd(R_SetEventArgs eventArgs)
     {
-        if (R_LookupBtnOut != null)
-            R_LookupBtnOut.Enabled = eventArgs.Enable;
-        if (R_LookupBtnIn != null)
-            R_LookupBtnIn.Enabled = eventArgs.Enable;
+        if (R_LookupBtnOut != null) R_LookupBtnOut.Enabled = eventArgs.Enable;
+        if (R_LookupBtnIn != null) R_LookupBtnIn.Enabled = eventArgs.Enable;
+        if (R_LookupBtnDeduction != null) R_LookupBtnDeduction.Enabled = eventArgs.Enable;
     }
 
     private void R_SetEdit(R_SetEventArgs eventArgs)
     {
-        if (R_LookupBtnOut != null)
-            R_LookupBtnOut.Enabled = eventArgs.Enable;
-        if (R_LookupBtnIn != null)
-            R_LookupBtnIn.Enabled = eventArgs.Enable;
+        if (R_LookupBtnOut != null) R_LookupBtnOut.Enabled = eventArgs.Enable;
+        if (R_LookupBtnIn != null) R_LookupBtnIn.Enabled = eventArgs.Enable;
+        if (R_LookupBtnDeduction != null) R_LookupBtnDeduction.Enabled = eventArgs.Enable;
     }
 
     #endregion
@@ -478,26 +551,6 @@ public partial class GSM02000 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private Task Saving(R_SavingEventArgs eventArgs)
-    {
-        var loEx = new R_Exception();
-
-        try
-        {
-            var loParam = R_FrontUtility.ConvertObjectToObject<GSM02000DTO>(eventArgs.Data);
-            //cek apakah cdescription null maka akan diberikan string kosong
-            // if (string.IsNullOrEmpty(loParam.CDESCRIPTION))
-            //     loParam.CDESCRIPTION = string.Empty;
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-
-        loEx.ThrowExceptionIfErrors();
-        return Task.CompletedTask;
-    }
-
     private void ChangeRoundingMode(object obj)
     {
         if ((string)obj == "03")
@@ -513,6 +566,7 @@ public partial class GSM02000 : R_Page
         loData.CROUNDING_MODE = "01";
         // loData.CROUNDING_MODE = _viewModel.RoundingModeList.FirstOrDefault().CCODE;
         // eventArgs.Data = tes;
+        _gridDeductionRef.DataSource.Clear();
     }
 
     private void Validate(GSM02000DTO poParam)
@@ -560,6 +614,7 @@ public partial class GSM02000 : R_Page
     }
 
     private bool _gridEnabled;
+    private bool _gridDeductionEnabled;
 
     private void SetOther(R_SetEventArgs eventArgs)
     {
@@ -628,4 +683,166 @@ public partial class GSM02000 : R_Page
     }
 
     #endregion
+
+    #region Deduction
+
+    private async Task GetListDeduction(R_ServiceGetListRecordEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            await _viewModel.GetDeductionGridList();
+            eventArgs.ListEntityResult = _viewModel.DeductionGridList;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private void BeforeLookupDeduction(R_BeforeOpenGridLookupColumnEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loEntity = (GSM02000DeductionGridDTO)_conductorDeductionRef.R_GetCurrentData();
+            eventArgs.Parameter = new GSL01400ParameterDTO()
+            {
+                CPROPERTY_ID = loEntity.CPROPERTY_ID,
+                CCHARGES_TYPE_ID = "D"
+            };
+            eventArgs.TargetPageType = typeof(GSL01400);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private void AfterLookupDeduction(R_AfterOpenGridLookupColumnEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            var loTempResult = (GSL01400DTO)eventArgs.Result;
+            var loGetData = (GSM02000DeductionGridDTO)eventArgs.ColumnData;
+            if (loTempResult == null)
+                return;
+
+            loGetData.CDEDUCTION_TAX_ID = loTempResult.CCHARGES_ID;
+            loGetData.CDEDUCTION_TAX_NAME = loTempResult.CCHARGES_NAME;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private void PropertyCellValueChanged(R_CellValueChangedEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            if (eventArgs.ColumnName == "CPROPERTY_ID")
+            {
+                var loData = (GSM02000DeductionGridDTO)eventArgs.CurrentRow;
+                var loCode = eventArgs.Value.ToString();
+                loData.CPROPERTY_NAME = _viewModel.PropertyList.FirstOrDefault(x => x.CPROPERTY_ID == loCode)?.CPROPERTY_NAME;
+                
+                var loDeductionColumn = _gridDeductionRef.Columns.FirstOrDefault(x =>
+                    x.Name == nameof(GSM02000DeductionGridDTO.CDEDUCTION_TAX_ID));
+                loDeductionColumn.Enabled = !string.IsNullOrEmpty(loCode);
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private void DeductionValidate(R_ValidationEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loData = (GSM02000DeductionGridDTO)eventArgs.Data;
+            if (string.IsNullOrEmpty(loData.CPROPERTY_ID))
+            {
+                loEx.Add("Err09", _localizer["Err09"]);
+            }
+
+            if (string.IsNullOrEmpty(loData.CDEDUCTION_TAX_ID))
+            {
+                loEx.Add("Err10", _localizer["Err10"]);
+            }
+            
+            //cek apakah data yang dimasukkan sekarang sudah ada di grid
+            if (_gridDeductionRef.DataSource.Any(x => x.CPROPERTY_ID == loData.CPROPERTY_ID && x.CDEDUCTION_TAX_ID == loData.CDEDUCTION_TAX_ID))
+            {
+                loEx.Add("Err11", _localizer["Err11"]);
+            }
+            
+            if(loEx.HasError) eventArgs.Cancel = true;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+    #endregion
+
+    private void DeductionGetRecord(R_ServiceGetRecordEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loParam = R_FrontUtility.ConvertObjectToObject<GSM02000DeductionGridDTO>(eventArgs.Data);
+            var loData = _viewModel.DeductionGridList.FirstOrDefault(x => x.CPROPERTY_ID == loParam.CPROPERTY_ID && x.CDEDUCTION_TAX_ID == loParam.CDEDUCTION_TAX_ID);
+            eventArgs.Result = loData;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private void DeductionDelete(R_ServiceDeleteEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loParam = (GSM02000DeductionGridDTO)eventArgs.Data;
+            _viewModel.DeductionGridList.Remove(loParam);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private async Task BeforeCancel(R_BeforeCancelEventArgs eventArgs)
+    {
+
+        await _gridDeductionRef.R_RefreshGrid(null);
+    }
 }

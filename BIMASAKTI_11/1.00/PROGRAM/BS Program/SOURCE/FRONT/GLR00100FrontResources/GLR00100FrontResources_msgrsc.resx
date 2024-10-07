@@ -90,5 +90,19 @@
     <!-- ReferenceNo -->
     <data name="ReferenceNo" xml:space="preserve">
         <value>Reference No.</value>
-    </data>    
+    </data>
+
+
+    <data name="SAVE_AS" xml:space="preserve">
+        <value>Save As</value>
+        <comment>Save As</comment>
+    </data>
+    <data name="CANCEL" xml:space="preserve">
+        <value>Cancel</value>
+        <comment>Cancel</comment>
+    </data>
+    <data name="SAVE" xml:space="preserve">
+        <value>Save</value>
+        <comment>Save</comment>
+    </data>
 </root>

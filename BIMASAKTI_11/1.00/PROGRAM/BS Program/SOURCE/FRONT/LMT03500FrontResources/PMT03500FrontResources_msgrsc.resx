@@ -131,6 +131,9 @@
     <data name="LBL_AVGBLOCK2USAGE" xml:space="preserve">
         <value>Avg Block II Usage</value>
     </data>
+    <data name="LBL_UNITDESCRIPTION" xml:space="preserve">
+        <value>Unit Description</value>
+    </data>
     <data name="LBL_STATUS" xml:space="preserve">
         <value>Status</value>
     </data>

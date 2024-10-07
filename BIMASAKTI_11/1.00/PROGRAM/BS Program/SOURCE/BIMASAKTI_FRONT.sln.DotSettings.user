@@ -20,6 +20,7 @@
   &lt;Assembly Path="C:\Users\riyan.codeid\.nuget\packages\blazorxtabs\2.0.0\lib\net6.0\BlazorXTabs.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FAP_002FAPR00500_002FAPR00500FrontResources_002FAPR00500FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FCBB00200_002FCBB00200FrontResources_002FCBB00200FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGLI00100_002FGLI00100FrontResources_002FGLI00100FrontResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
@@ -28,8 +29,11 @@
 	
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGSM05000_002FGSM05000FrontResources_002FGSM05000FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGS_002FGSM02000_002FGSM02000FrontResources_002FGSM02000FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLMT03500_002FLMT03500FrontResources_002FLMT03500FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLookup_002FAP_002FLookup_005FAPFrontResources_002FLookupAPFrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLookup_002FGS_002FLookup_005FGSFrontResources_002FLookup_005FGSFrontResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLookup_002FLookup_005FGSFrontResources_002FLookup_005FGSFrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
@@ -59,6 +63,7 @@
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/ShowOnlyStringResources/@EntryValue">False</s:Boolean>
 	
 	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=12aae2aa_002D3b3f_002D4a75_002D8c20_002Df418c67fa3d1_0023LMM01500Front/@EntryIndexedValue">True</s:Boolean>
+	
 	
 	
 	

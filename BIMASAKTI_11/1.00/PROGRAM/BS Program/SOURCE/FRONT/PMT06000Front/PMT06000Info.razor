@@ -15,11 +15,12 @@
             <R_ItemLayout col="4">
                 <R_ComboBox R_ConductorSource="_conductorRef"
                             Data="@_viewModel.PropertyList"
-                            @bind-Value="@_viewModel.Data.CPROPERTY_ID"
+                            Value="@_viewModel.Data.CPROPERTY_ID"
                             ValueField="@nameof(PMT06000PropertyDTO.CPROPERTY_ID)"
                             TextField="@nameof(PMT06000PropertyDTO.CPROPERTY_NAME)"
                             R_EnableAdd="true"
-                            R_EnableEdit="false"/>
+                            R_EnableEdit="false"
+                            ValueChanged="@((string? value) => OnChangeProperty(value))"/>
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Label FontColor="R_eFontColor.Danger">@(_viewModel.Data.CTRANS_STATUS_DESC)</R_Label>
@@ -36,12 +37,12 @@
             </R_ItemLayout>
             <R_ItemLayout col="3">
                 <R_TextBox
-                    R_ConductorSource="_conductorRef" 
+                    R_ConductorSource="_conductorRef"
                     @bind-Value="_viewModel.Data.CDEPT_CODE"
-                           MaxLength="20"
-                           OnLostFocus="OnLostFocusDept"
-                           R_EnableAdd="true"
-                           R_EnableEdit="false"/>
+                    MaxLength="20"
+                    OnLostFocus="OnLostFocusDept"
+                    R_EnableAdd="true"
+                    R_EnableEdit="false"/>
             </R_ItemLayout>
             <R_Lookup R_ConductorSource="_conductorRef"
                       R_Before_Open_Lookup="BeforeOpenLookupDept"
@@ -112,6 +113,7 @@
                            R_ConductorSource="_conductorRef"
                            MaxLength="20"
                            OnLostFocus="OnLostFocusAgreement"
+                           Enabled="@((_viewModel.Data.CPROPERTY_ID != "" && _viewModel.Data.CDEPT_CODE != "" && _viewModel.Data.CTENANT_ID != "" && _viewModel.Data.CBUILDING_ID != "") && (_conductorRef.R_ConductorMode is R_eConductorMode.Add or R_eConductorMode.Edit))"
                            R_EnableAdd="true"
                            R_EnableEdit="true"/>
             </R_ItemLayout>
@@ -119,6 +121,7 @@
                 R_ConductorSource="_conductorRef"
                 R_Before_Open_Lookup="BeforeOpenLookupRef"
                 R_After_Open_Lookup="AfterOpenLookupRef"
+                Enabled="@((_viewModel.Data.CPROPERTY_ID != "" && _viewModel.Data.CDEPT_CODE != "" && _viewModel.Data.CTENANT_ID != "" && _viewModel.Data.CBUILDING_ID != "") && (_conductorRef.R_ConductorMode is R_eConductorMode.Add or R_eConductorMode.Edit))"
                 R_EnableAdd="true"
                 R_EnableEdit="true">
                 ...
@@ -234,11 +237,11 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_TabStrip OnActiveTabIndexChanging="OnChangeTab">
-     <R_TabStripTab @ref="_tabService" Id="@nameof(PMT06000Info)" Title="@_localizer["SERVICE"]">
+<R_TabStrip @ref="_tabMain" OnActiveTabIndexChanging="OnChangeTab">
+    <R_TabStripTab @ref="_tabService" Id="@nameof(PMT06000Info)" Title="@_localizer["SERVICE"]">
         <!-- Deposit -->
         <R_StackLayout Row>
-        
+
             <R_Grid @ref="@_gridRefService"
                     DataSource="_viewModel.OvertimeServiceGridList"
                     R_ConductorSource="@_conductorRefService"
@@ -254,12 +257,12 @@
                     <R_GridDateTimePickerColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.DDATE_OUT)" HeaderText="@_localizer["DATE_OUT"]" Width="140px"/>
                     <R_GridTextColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.CSERVICE_DESCR)" HeaderText="@_localizer["DESCRIPTION"]" Width="200px"/>
                 </R_GridColumns>
-        
+
             </R_Grid>
-        
+
         </R_StackLayout>
-        
-        
+
+
         <!-- Service Navigator -->
         <R_StackLayout Class="mt-2">
             <R_ItemLayout>
@@ -270,18 +273,18 @@
                             @_localizer["SERVICE"]
                         </R_Label>
                     </R_ItemLayout>
-        
+
                     <R_ItemLayout col="2">
-        
+
                         <R_TextBox @bind-Value="@_viewModelService.Data.CSERVICE_ID"
                                    R_ConductorSource="@_conductorRefService"
                                    OnLostFocus="OnLostFocusUtility"
                                    R_EnableAdd/>
-        
+
                     </R_ItemLayout>
-        
+
                     <R_ItemLayout>
-        
+
                         <R_Lookup R_ConductorSource="@_conductorRefService"
                                   R_EnableAdd
                                   R_Before_Open_Lookup="@BeforeOpenLookupUtility"
@@ -289,16 +292,16 @@
                             ...
                         </R_Lookup>
                     </R_ItemLayout>
-        
+
                     <R_ItemLayout col="4">
-        
+
                         <R_TextBox @bind-Value="@_viewModelService.Data.CSERVICE_NAME"
                                    R_ConductorSource="@_conductorRefService"
                                    Enabled="false"/>
-        
+
                     </R_ItemLayout>
                 </R_StackLayout>
-        
+
                 <!-- Date In -->
                 <R_StackLayout Row Class="mb-1">
                     <R_ItemLayout col="1">
@@ -309,7 +312,7 @@
                                           R_ConductorSource="@_conductorRefService"
                                           R_EnableAdd
                                           R_EnableEdit/>
-        
+
                     </R_ItemLayout>
                     <R_ItemLayout col="1" Class="text-center">
                         <R_Label>@_localizer["DATE_OUT"]* </R_Label>
@@ -321,8 +324,8 @@
                                           R_EnableEdit/>
                     </R_ItemLayout>
                 </R_StackLayout>
-        
-        
+
+
                 <!-- Description -->
                 <R_StackLayout Row>
                     <R_ItemLayout col="1">
@@ -330,58 +333,58 @@
                             @_localizer["DESCRIPTION"]
                         </R_Label>
                     </R_ItemLayout>
-        
+
                     <R_ItemLayout col="11">
-        
+
                         <R_TextArea @bind-Value="@_viewModelService.Data.CSERVICE_DESCR"
                                     R_ConductorSource="@_conductorRefService"
                                     MaxLength="int.MaxValue"
                                     R_EnableAdd
                                     R_EnableEdit/>
-        
+
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>
-        
-        
+
+
         </R_StackLayout>
-        
-        
+
+
         @* Button CRUD *@
         <R_StackLayout Row Class="d-flex justify-content-between mt-2">
-        
+
             <R_StackLayout Row>
-        
+
                 <R_ItemLayout>
                     <R_AddButton R_Conductor="@_conductorRefService"/>
                 </R_ItemLayout>
-        
+
                 <R_ItemLayout>
                     <R_EditButton R_Conductor="@_conductorRefService"/>
                 </R_ItemLayout>
-        
+
                 <R_ItemLayout>
                     <R_DeleteButton R_Conductor="@_conductorRefService"/>
                 </R_ItemLayout>
-        
+
             </R_StackLayout>
-        
+
             <R_StackLayout Row Class="d-flex justify-content-end">
-        
+
                 <R_StackLayout Row>
-        
+
                     <R_ItemLayout>
                         <R_CancelButton R_Conductor="@_conductorRefService"/>
                     </R_ItemLayout>
-        
+
                     <R_ItemLayout>
                         <R_SaveButton R_Conductor="@_conductorRefService"/>
                     </R_ItemLayout>
-        
+
                 </R_StackLayout>
-        
+
             </R_StackLayout>
-        
+
         </R_StackLayout>
     </R_TabStripTab>
     <R_TabStripTab @ref="_tabUnit" Id="@nameof(PMT06000Unit)" Title="@_localizer["UNIT"]" Enabled="@(_viewModel.OvertimeServiceGridList.Count > 0)">
@@ -425,5 +428,4 @@
              R_Validation="ValidationService"
              R_Saving="SavingService"
              R_ServiceSave="ServiceSaveService"
-             R_ServiceDelete="ServiceDeleteService"
-             />
+             R_ServiceDelete="ServiceDeleteService"/>

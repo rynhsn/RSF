@@ -13,7 +13,7 @@
                 <R_Label>@_localizer["TRANS_CODE"]</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="4" Class="me-2">
-                <R_ComboBox @ref="ComboTransCode" 
+                <R_ComboBox @ref="ComboTransCode"
                             Data="_viewModel.TransCodeList"
                             @bind-Value="_viewModel.ReportParam.CTRANS_CODE"
                             ValueField="@nameof(GLR00100TransCodeDTO.CTRANS_CODE)"
@@ -128,7 +128,7 @@
                                   Layout="R_eRadioGroupLayout.Vertical"/>
                 </R_GroupBox>
             </R_ItemLayout>
-            
+
             <R_ItemLayout col="4">
                 <R_GroupBox Title="@_localizer["SORT_BY"]" TitleClass="text-danger" ShowBorder Class="p-2 h-100">
                     <R_RadioGroup Data="@_viewModel.RadioSortBy"
@@ -139,8 +139,8 @@
                                   Layout="R_eRadioGroupLayout.Vertical"/>
                 </R_GroupBox>
             </R_ItemLayout>
-            
-            
+
+
             <R_ItemLayout col="4">
                 <R_GroupBox Title="@_localizer["PRINT_TOTAL_BY"]" TitleClass="text-danger" ShowBorder Class="p-2 h-100">
                     <R_StackLayout>
@@ -159,7 +159,15 @@
     </R_ItemLayout>
 
     <R_ItemLayout>
-        <R_Button OnClick="OnClickPrint">@_localizer["PRINT"]</R_Button>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Button OnClick="OnClickPrint">@_localizer["PRINT"]</R_Button>
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="BeforeOpenPopupSaveAs">@_localizer["SAVE_AS"]</R_Lookup>
+            </R_ItemLayout>
+        </R_StackLayout>
     </R_ItemLayout>
 </R_StackLayout>
 

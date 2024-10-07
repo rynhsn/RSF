@@ -17,5 +17,11 @@ namespace PMR02600Common.Params
         public string CLANG_ID { get; set; } = ""; 
         
         public string CREPORT_CULTURE { get; set; } = "";
+        
+        
+
+        public string CREPORT_FILETYPE { get; set; } = "";
+        public string CREPORT_FILENAME { get; set; } = "";
+        public bool LIS_PRINT { get; set; } = true;
     }
 }

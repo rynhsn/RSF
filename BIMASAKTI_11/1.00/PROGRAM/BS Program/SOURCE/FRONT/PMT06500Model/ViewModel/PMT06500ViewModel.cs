@@ -161,6 +161,21 @@ namespace PMT06500Model.ViewModel
             loEx.ThrowExceptionIfErrors();
         }
 
+        public async Task GetInvoiceRecord(PMT06500InvoiceDTO poParam)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                EntityInvoice = await _model.R_ServiceGetRecordAsync(poParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
         public async Task GetSummaryGridList(string pcRefNo, string pcDeptCode, string pcLinkDeptCode,
             string pcLinkTransCode, string pcSaveMode)
         {

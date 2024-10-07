@@ -4,6 +4,7 @@ using PMT06000Model.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
+using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
@@ -22,8 +23,8 @@ public partial class PMT06000 : R_Page
     private R_ConductorGrid _conductorRefUnit;
     private R_Grid<PMT06000OvtUnitDTO> _gridRefUnit;
     private int _pageSizeOvt = 9;
-    private int _pageSizeService = 5;
-    private int _pageSizeUnit = 5;
+    private int _pageSizeService = 8;
+    private int _pageSizeUnit = 8;
 
     protected override async Task R_Init_From_Master(object poParam)
     {
@@ -211,6 +212,45 @@ public partial class PMT06000 : R_Page
             // await _gridRefOvertime.R_RefreshGrid(null);
             // await _gridRefService.R_RefreshGrid(null);
             // await _gridRefUnit.R_RefreshGrid(null);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+    
+    private async Task OnClickSubmit()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var leMsg = await R_MessageBox.Show("",
+                _viewModel.Data.CTRANS_STATUS switch
+                {
+                    "00" => _localizer["MSG_BEFORE_SUBMIT"],
+                    "10" => _localizer["MSG_BEFORE_REDRAFT"],
+                    _ => ""
+                }, R_eMessageBoxButtonType.YesNo);
+
+            if (leMsg == R_eMessageBoxResult.No)
+            {
+                return;
+            }
+
+            await _viewModel.ProcessSubmit();
+
+            var leMsgAfter = await R_MessageBox.Show("",
+                _viewModel.Data.CTRANS_STATUS switch
+                {
+                    "00" => _localizer["MSG_AFTER_SUBMIT"],
+                    "10" => _localizer["MSG_AFTER_REDRAFT"],
+                    _ => ""
+                });
+
+            await _gridRefOvertime.R_RefreshGrid(null);
         }
         catch (Exception ex)
         {

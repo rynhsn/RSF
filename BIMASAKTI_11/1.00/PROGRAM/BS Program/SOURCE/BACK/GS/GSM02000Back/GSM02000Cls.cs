@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using GSM02000Common;
 using GSM02000Common.DTOs;
@@ -60,6 +61,15 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
             loRtn = R_Utility.R_ConvertTo<GSM02000DTO>(loDataTable).FirstOrDefault();
+
+            // var loParam = new GSM02000ParameterDb
+            // {
+            //     CCOMPANY_ID = poEntity.CCOMPANY_ID,
+            //     CTAX_ID = poEntity.CTAX_ID,
+            //     CUSER_ID = poEntity.CUSER_ID
+            // };
+            //
+            // if (loRtn != null) loRtn.ODEDUCTION_LIST = DeductionListDb(loParam);
         }
         catch (Exception ex)
         {
@@ -79,7 +89,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
         R_Exception loEx = new();
         string lcQuery;
         R_Db loDb;
-        DbCommand loCmd;
+        DbCommand loCmd = null;
         DbConnection loConn = null;
         string lcAction = "";
         
@@ -100,6 +110,18 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
                 lcAction = "EDIT";
             }
             
+            var loListTempTable =
+                R_Utility.R_ConvertCollectionToCollection<GSM02000DeductionGridDTO, GSM02000DeductionBatchDTO>(poNewEntity.ODEDUCTION_LIST);
+
+            _logger.LogInfo("Start Bulk Insert");
+            lcQuery = "CREATE TABLE #DEDUCTION_TAX ( CPROPERTY_ID VARCHAR(20), CDEDUCTION_TAX_ID VARCHAR(20) ) ";
+
+            _logger.LogInfo("Create Temp Table and Will be Deleted if success");
+            loDb.SqlExecNonQuery(lcQuery, loConn, false);
+            _logger.LogInfo("End Bulk Insert");
+
+            loDb.R_BulkInsert<GSM02000DeductionBatchDTO>((SqlConnection)loConn, "#DEDUCTION_TAX", loListTempTable);
+            
             lcQuery = "RSP_GS_MAINTAIN_TAX";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
@@ -116,6 +138,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, 1, poNewEntity.LACTIVE);
             loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, lcAction);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poNewEntity.CUSER_ID);
+            loDb.R_AddCommandParameter(loCmd, "@cDEDUCTION_TAX_ID", DbType.String, 20, poNewEntity.CDEDUCTION_TAX_ID);
             
             
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
@@ -131,7 +154,8 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
                         "@CTAXOUT_GLACCOUNT_NO" or 
                         "@LACTIVE" or 
                         "@CACTION" or 
-                        "@CUSER_ID"
+                        "@CUSER_ID" or
+                        "@cDEDUCTION_TAX_ID"
                 )
                 .Select(x => x.Value);
             
@@ -165,6 +189,12 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
                 }
 
                 loConn.Dispose();
+            }
+            
+            if (loCmd != null)
+            {
+                loCmd.Dispose();
+                loCmd = null;
             }
         }
 
@@ -205,6 +235,7 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             loDb.R_AddCommandParameter(loCmd, "@CTAXIN_GLACCOUNT_NO", DbType.String, 20, poEntity.CTAXIN_GLACCOUNT_NO);
             loDb.R_AddCommandParameter(loCmd, "@CTAXOUT_GLACCOUNT_NO", DbType.String, 60, poEntity.CTAXOUT_GLACCOUNT_NO);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+            loDb.R_AddCommandParameter(loCmd, "@cDEDUCTION_TAX_ID", DbType.String, 20, poEntity.CDEDUCTION_TAX_ID);
 
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x =>
@@ -219,7 +250,8 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
                         "@IROUNDING" or 
                         "@CTAXIN_GLACCOUNT_NO" or 
                         "@CTAXOUT_GLACCOUNT_NO" or 
-                        "@CUSER_ID"
+                        "@CUSER_ID" or
+                        "@cDEDUCTION_TAX_ID"
                 )
                 .Select(x => x.Value);
             
@@ -294,6 +326,102 @@ public class GSM02000Cls : R_BusinessObject<GSM02000DTO>
             
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
             loRtn = R_Utility.R_ConvertTo<GSM02000GridDTO>(loDataTable).ToList();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);            
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return loRtn;
+    }
+    
+    public List<GSM02000DeductionGridDTO> DeductionListDb(GSM02000ParameterDb poParameter)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(DeductionListDb));
+        R_Exception loEx = new();
+        List<GSM02000DeductionGridDTO> loRtn = null;
+        R_Db loDb;
+        DbConnection loConn;
+        DbCommand loCmd;
+        string lcQuery;
+
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection();
+            loCmd = loDb.GetCommand();
+
+            lcQuery = "RSP_GS_GET_TAX_DEDUCTION_LIST";
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
+
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 20, poParameter.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CTAX_ID", DbType.String, 20, poParameter.CTAX_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParameter.CUSER_ID);
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
+                        "@CTAX_ID" or
+                        "@CUSER_ID"
+                )
+                .Select(x => x.Value);
+            
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+            loRtn = R_Utility.R_ConvertTo<GSM02000DeductionGridDTO>(loDataTable).ToList();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);            
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return loRtn;
+    }
+    
+    public List<GSM02000PropertyDTO> PropertyListDb(GSM02000ParameterDb poParameter)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(PropertyListDb));
+        R_Exception loEx = new();
+        List<GSM02000PropertyDTO> loRtn = null;
+        R_Db loDb;
+        DbConnection loConn;
+        DbCommand loCmd;
+        string lcQuery;
+
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection();
+            loCmd = loDb.GetCommand();
+
+            lcQuery = "RSP_GS_GET_PROPERTY_LIST";
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
+
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 20, poParameter.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 20, poParameter.CUSER_ID);
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
+                        "@CUSER_ID"
+                )
+                .Select(x => x.Value);
+            
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+            loRtn = R_Utility.R_ConvertTo<GSM02000PropertyDTO>(loDataTable).ToList();
         }
         catch (Exception ex)
         {

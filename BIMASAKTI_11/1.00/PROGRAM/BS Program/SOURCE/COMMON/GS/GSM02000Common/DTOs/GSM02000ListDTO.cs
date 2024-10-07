@@ -21,9 +21,31 @@ namespace GSM02000Common.DTOs
         public string CTAXOUT_GLACCOUNT_NO { get; set; }
         public string CTAXIN_GLACCOUNT_NAME { get; set; }
         public string CTAXOUT_GLACCOUNT_NAME { get; set; }
+        
+        public string CDEDUCTION_TAX_NAME { get; set; }
         public string CUPDATE_BY { get; set; }
         public DateTime DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; }
         public DateTime DCREATE_DATE { get; set; }
+    }
+    
+    public class GSM02000DeductionGridDTO
+    {
+        public string CPROPERTY_ID { get; set; }
+        public string? CPROPERTY_NAME { get; set; }
+        public string CDEDUCTION_TAX_ID { get; set; }
+        public string CDEDUCTION_TAX_NAME { get; set; }
+    }
+
+    public class GSM02000DeductionBatchDTO
+    {
+        public string CPROPERTY_ID { get; set; }
+        public string CDEDUCTION_TAX_ID { get; set; }
+    }
+
+    public class GSM02000PropertyDTO
+    {
+        public string? CPROPERTY_ID { get; set; }
+        public string? CPROPERTY_NAME { get; set; }
     }
 }

@@ -60,6 +60,15 @@ namespace PMR02600FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string CANCEL {
+            get {
+                return ResourceManager.GetString("CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cut Off Date.
         /// </summary>
         internal static string CUTOFFDATE {
@@ -119,6 +128,24 @@ namespace PMR02600FrontResources {
         internal static string PROPERTY {
             get {
                 return ResourceManager.GetString("PROPERTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string SAVE {
+            get {
+                return ResourceManager.GetString("SAVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save As.
+        /// </summary>
+        internal static string SAVE_AS {
+            get {
+                return ResourceManager.GetString("SAVE_AS", resourceCulture);
             }
         }
         

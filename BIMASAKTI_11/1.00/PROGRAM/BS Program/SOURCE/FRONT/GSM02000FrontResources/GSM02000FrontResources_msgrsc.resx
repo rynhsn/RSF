@@ -31,10 +31,10 @@
         <value>Rounding Unit</value>
     </data>
     <data name="LABEL_TAXIN" xml:space="preserve">
-        <value>Tax In GL Account*</value>
+        <value>Tax In GL Account</value>
     </data>
     <data name="LABEL_TAXOUT" xml:space="preserve">
-        <value>Tax Out GL Account*</value>
+        <value>Tax Out GL Account</value>
     </data>
     <data name="LABEL_UPDATEDBY" xml:space="preserve">
         <value>Updated By</value>
@@ -72,6 +72,18 @@
     <data name="LABEL_TAXPCT" xml:space="preserve">
         <value>Tax %*</value>
     </data>
+    <data name="LABEL_DEDUCTIONTAXID" xml:space="preserve">
+        <value>Deduction Tax Id</value>
+    </data>
+    <data name="LABEL_DEDUCTIONTAXNAME" xml:space="preserve">
+        <value>Deduction Tax Name</value>
+    </data>
+    <data name="LABEL_PROPERTYID" xml:space="preserve">
+        <value>Property Id</value>
+    </data>
+    <data name="LABEL_PROPERTYNAME" xml:space="preserve">
+        <value>Property Name</value>
+    </data>
     <data name="Err05" xml:space="preserve">
         <value>Tax Date is required</value>
     </data>
@@ -90,4 +102,16 @@
     <data name="Err08" xml:space="preserve">
         <value>Tax Out GL Account is required</value>
     </data>
+    <data name="Err09" xml:space="preserve">
+        <value>Property is required</value>
+    </data>
+    <data name="Err10" xml:space="preserve">
+        <value>Deduction Tax is required</value>
+    </data>
+    <data name="Err11" xml:space="preserve">
+        <value>Deduction Tax already exists</value>
+    </data>
+    <!-- <data name="Err12" xml:space="preserve"> -->
+    <!--     <value>Deduction list is empty</value> -->
+    <!-- </data> -->
 </root>

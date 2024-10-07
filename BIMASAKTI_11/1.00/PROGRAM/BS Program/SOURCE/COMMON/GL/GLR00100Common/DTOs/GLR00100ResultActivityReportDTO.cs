@@ -1,3 +1,5 @@
+using System;
+
 namespace GLR00100Common.DTOs
 {
     public class GLR00100ResultActivityReportDTO
@@ -6,11 +8,13 @@ namespace GLR00100Common.DTOs
         public string CREF_PRD { get; set; }
         public string CREF_DATE { get; set; }
         public string CREF_DATE_DISPLAY { get; set; }
+        public DateTime? DREF_DATE { get; set; }
         public string CDEPT_CODE { get; set; }
         public string CDEPT_NAME { get; set; }
         public string CDOC_NO { get; set; }
         public string CDOC_DATE { get; set; }
         public string CDOC_DATE_DISPLAY { get; set; }
+        public DateTime? DDOC_DATE { get; set; }
         public string CTRANS_DESC { get; set; }
         public string CSTATUS { get; set; }
         public string CSTATUS_NAME { get; set; }

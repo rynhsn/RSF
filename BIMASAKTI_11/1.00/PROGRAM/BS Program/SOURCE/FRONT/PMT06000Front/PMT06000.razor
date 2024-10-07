@@ -27,9 +27,9 @@
                       Enabled/>
     </R_ItemLayout>
     <R_ItemLayout col="1">
-        <R_NumericTextBox @bind-Value="_viewModel.SelectedYear" 
-                          Min="_viewModel.YearRange.IMIN_YEAR" 
-                          Max="_viewModel.YearRange.IMAX_YEAR" 
+        <R_NumericTextBox @bind-Value="_viewModel.SelectedYear"
+                          Min="_viewModel.YearRange.IMIN_YEAR"
+                          Max="_viewModel.YearRange.IMAX_YEAR"
                           ThousandSeparator="false"
                           Enabled="@(_viewModel.SelectedPeriodType == "S")"/>
     </R_ItemLayout>
@@ -46,7 +46,7 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_StackLayout Class="mb-3">
+<R_StackLayout>
     <R_ItemLayout>
         <R_Grid @ref="_gridRefOvertime"
                 DataSource="_viewModel.OvertimeGridList"
@@ -58,6 +58,7 @@
                 Width="100%"
                 Height="260px">
             <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(PMT06000OvtGridDTO.CTRANS_STATUS_DESC)" HeaderText="@_localizer["TRANS_STATUS"]" Width="120px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT06000OvtGridDTO.CTENANT_DISPLAY)" HeaderText="@_localizer["TENANT"]" Width="150px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT06000OvtGridDTO.CBUILDING_NAME)" HeaderText="@_localizer["BUILDING"]" Width="150px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT06000OvtGridDTO.CREF_NO)" HeaderText="@_localizer["REF_NO"]" Width="200px"/>
@@ -67,13 +68,21 @@
                 <R_GridTextColumn FieldName="@nameof(PMT06000OvtGridDTO.CAGREEMENT_NO)" HeaderText="@_localizer["AGRMT_NO"]" Width="200px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT06000OvtGridDTO.CINVOICE_NO)" HeaderText="@_localizer["INVOICE_NO"]" Width="200px"/>
                 <R_GridDatePickerColumn FieldName="@nameof(PMT06000OvtGridDTO.DINVOICE_DATE)" HeaderText="@_localizer["INVOICE_DATE"]" Width="120px"/>
-                <R_GridTextColumn FieldName="@nameof(PMT06000OvtGridDTO.CTRANS_STATUS_DESC)" HeaderText="@_localizer["TRANS_STATUS"]" Width="120px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT06000OvtGridDTO.CUPDATE_BY)" HeaderText="@_localizer["UPDATED_BY"]" Width="120px"/>
                 <R_GridDateTimePickerColumn FieldName="@nameof(PMT06000OvtGridDTO.DUPDATE_DATE)" HeaderText="@_localizer["UPDATED_DATE"]" Width="150px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT06000OvtGridDTO.CCREATE_BY)" HeaderText="@_localizer["CREATED_BY"]" Width="120px"/>
                 <R_GridDateTimePickerColumn FieldName="@nameof(PMT06000OvtGridDTO.DCREATE_DATE)" HeaderText="@_localizer["CREATED_DATE"]" Width="150px"/>
             </R_GridColumns>
         </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout AlignItems="R_eAlignItems.End" Class="mb-3">
+    <R_ItemLayout>
+        <R_Button Enabled="@(_viewModel.OvertimeGridList.Count > 0 && _viewModel.Data.CTRANS_STATUS is "00" or "10")"
+                  OnClick="OnClickSubmit">
+            @(_viewModel.Data.CTRANS_STATUS == "10" ? _localizer["DRAFT"] : _localizer["SUBMIT"])
+        </R_Button>
     </R_ItemLayout>
 </R_StackLayout>
 
@@ -90,7 +99,7 @@
                 AllowDeleteRow="false"
                 AllowEditRow="false"
                 Width="100%"
-                Height="260px"
+                Height="250px"
                 R_Display="DisplayService">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.CSEQ_NO)" HeaderText="@_localizer["SEQ_NO"]" Width="100px"/>
@@ -101,7 +110,7 @@
             </R_GridColumns>
         </R_Grid>
     </R_ItemLayout>
-    
+
     <R_ItemLayout col="6">
         <R_Grid @ref="_gridRefUnit"
                 DataSource="_viewModel.OvertimeUnitGridList"
@@ -111,10 +120,10 @@
                 Pageable
                 @bind-PageSize="@_pageSizeUnit"
                 AllowAddNewRow="false"
-                AllowDeleteRow="false"  
+                AllowDeleteRow="false"
                 AllowEditRow="false"
                 Width="100%"
-                Height="260px">
+                Height="250px">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="@nameof(PMT06000OvtUnitDTO.CUNIT_ID)" HeaderText="@_localizer["UNIT_ID"]" Width="120px"/>
                 <R_GridTextColumn FieldName="@nameof(PMT06000OvtUnitDTO.CUNIT_NAME)" HeaderText="@_localizer["UNIT_NAME"]" Width="200px"/>

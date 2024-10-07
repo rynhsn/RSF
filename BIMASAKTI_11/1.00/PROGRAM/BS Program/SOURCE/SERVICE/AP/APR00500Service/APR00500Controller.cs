@@ -175,35 +175,37 @@ public class APR00500Controller : ControllerBase, IAPR00500
         _logger.LogInfo("End - Get Period List");
         return loReturn;
     }
-
-    [HttpPost]
-    public APR00500ListDTO<APR00500FunctDTO> APR00500GetCodeInfoList()
-    {
-        using var loActivity = _activitySource.StartActivity(nameof(APR00500GetCodeInfoList));
-        _logger.LogInfo("Start - Get Code Info List");
-
-        var loEx = new R_Exception();
-        var loCls = new APR00500Cls();
-        var loDbParams = new APR00500ParameterDb();
-        var loReturn = new APR00500ListDTO<APR00500FunctDTO>();
-
-        try
-        {
-            _logger.LogInfo("Set Parameter");
-            loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-            loDbParams.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
-
-            _logger.LogInfo("Get Code Info List");
-            loReturn.Data = loCls.GetCodeInfoList(loDbParams);
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-            _logger.LogError(loEx);
-        }
-
-        loEx.ThrowExceptionIfErrors();
-        _logger.LogInfo("End - Get Code Info List");
-        return loReturn;
-    }
+    
+    #region GetCodeInfoList
+    // [HttpPost]
+    // public APR00500ListDTO<APR00500FunctDTO> APR00500GetCodeInfoList()
+    // {
+    //     using var loActivity = _activitySource.StartActivity(nameof(APR00500GetCodeInfoList));
+    //     _logger.LogInfo("Start - Get Code Info List");
+    //
+    //     var loEx = new R_Exception();
+    //     var loCls = new APR00500Cls();
+    //     var loDbParams = new APR00500ParameterDb();
+    //     var loReturn = new APR00500ListDTO<APR00500FunctDTO>();
+    //
+    //     try
+    //     {
+    //         _logger.LogInfo("Set Parameter");
+    //         loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+    //         loDbParams.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
+    //
+    //         _logger.LogInfo("Get Code Info List");
+    //         loReturn.Data = loCls.GetCodeInfoList(loDbParams);
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         loEx.Add(ex);
+    //         _logger.LogError(loEx);
+    //     }
+    //
+    //     loEx.ThrowExceptionIfErrors();
+    //     _logger.LogInfo("End - Get Code Info List");
+    //     return loReturn;
+    // }
+    #endregion
 }

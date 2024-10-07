@@ -51,11 +51,11 @@ namespace PMT03500Common.DTOs
         public int IMETER_USAGE { get; set; }
         public int IAVG_METER_USAGE { get; set; }
         public int ITOTAL_AMOUNT { get; set; }
-        public string CSTATUS { get; set; }
 
         #endregion
-
         
+        public string CUNIT_DESCRIPTION { get; set; }
+        public string CSTATUS { get; set; }
         public string CCREATE_BY { get; set; }
         public DateTime DCREATE_DATE { get; set; }
         public string CUPDATE_BY { get; set; }

@@ -114,7 +114,7 @@ namespace GLR00100Front
             loEx.ThrowExceptionIfErrors();
         }
 
-        private async Task<bool> HasTransCode()
+        private async Task<bool> _validateDataBeforePrint()
         {
             var loEx = new R_Exception();
             var loReturn = true;
@@ -128,13 +128,27 @@ namespace GLR00100Front
                     await ComboTransCode.FocusAsync();
                     loReturn = false;
                 }
+                
+                _viewModel.ReportParam.CREPORT_TYPE = _localizer["BASED_ON_TRANS_CODE"];
+                _viewModel.ReportParam.CCURRENCY_TYPE_NAME = _viewModel.RadioCurrencyType.Find(x => x.Key == _viewModel.ReportParam.CCURRENCY_TYPE).Value;
+                _viewModel.ReportParam.CTRANSACTION_NAME = _viewModel.TransCodeList?.Find(x => x.CTRANS_CODE == _viewModel.ReportParam.CTRANS_CODE).CTRANSACTION_NAME;
+                if (_viewModel.ReportParam.CPERIOD_TYPE == "P")
+                {
+                    _viewModel.ReportParam.CFROM_PERIOD = _viewModel.YearPeriod + _viewModel.FromPeriod + _viewModel.SuffixPeriod;
+                    _viewModel.ReportParam.CTO_PERIOD = _viewModel.YearPeriod + _viewModel.ToPeriod + _viewModel.SuffixPeriod;
+                }
+                else
+                {
+                    _viewModel.ReportParam.CFROM_PERIOD = _viewModel.DateFrom?.ToString("yyyyMMdd");
+                    _viewModel.ReportParam.CTO_PERIOD = _viewModel.DateTo?.ToString("yyyyMMdd");
+                }
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
             }
 
-            R_DisplayException(loEx);
+            loEx.ThrowExceptionIfErrors();
             return loReturn;
         }
 
@@ -273,27 +287,16 @@ namespace GLR00100Front
                 //     return;
                 // }
 
-                if (!await HasTransCode()) return;
+                if (!await _validateDataBeforePrint()) return;
 
                 var loParam = _viewModel.ReportParam;
                 loParam.CCOMPANY_ID = _clientHelper.CompanyId;
                 loParam.CUSER_ID = _clientHelper.UserId;
                 loParam.CLANGUAGE_ID = _clientHelper.Culture.TwoLetterISOLanguageName;
                 loParam.CREPORT_CULTURE = _clientHelper.ReportCulture;
-                loParam.CREPORT_TYPE = _localizer["BASED_ON_TRANS_CODE"];
-                loParam.CCURRENCY_TYPE_NAME = _viewModel.RadioCurrencyType.Find(x => x.Key == loParam.CCURRENCY_TYPE).Value;
-                loParam.CTRANSACTION_NAME = _viewModel.TransCodeList?.Find(x => x.CTRANS_CODE == loParam.CTRANS_CODE).CTRANSACTION_NAME;
-                if (loParam.CPERIOD_TYPE == "P")
-                {
-                    loParam.CFROM_PERIOD = _viewModel.YearPeriod + _viewModel.FromPeriod + _viewModel.SuffixPeriod;
-                    loParam.CTO_PERIOD = _viewModel.YearPeriod + _viewModel.ToPeriod + _viewModel.SuffixPeriod;
-                }
-                else
-                {
-                    loParam.CFROM_PERIOD = _viewModel.DateFrom?.ToString("yyyyMMdd");
-                    loParam.CTO_PERIOD = _viewModel.DateTo?.ToString("yyyyMMdd");
-                }
-
+                loParam.LIS_PRINT = true;
+                loParam.CREPORT_FILENAME = "";
+                loParam.CREPORT_FILETYPE = "";
                 await _reportService.GetReport(
                     "R_DefaultServiceUrlGL",
                     "GL",
@@ -307,6 +310,28 @@ namespace GLR00100Front
                 loEx.Add(ex);
             }
 
+            loEx.ThrowExceptionIfErrors();
+        }
+        
+        private async Task BeforeOpenPopupSaveAs(R_BeforeOpenLookupEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                
+                if (!await _validateDataBeforePrint()) return;
+
+                var loParam = _viewModel.ReportParam;
+                eventArgs.Parameter = loParam;
+                eventArgs.PageTitle = _localizer["SAVE_AS"];
+                eventArgs.TargetPageType = typeof(GLR00100PopupSaveAs);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            EndBlock:
             loEx.ThrowExceptionIfErrors();
         }
 

@@ -49,6 +49,8 @@ namespace GLR00100Model.ViewModel
             // new KeyValuePair<string, string>("R", "Reference No.")
             new KeyValuePair<string, string>("R", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "ReferenceNo"))
         };
+        
+        public List<string> FileType = new List<string> { "XLSX", "XLS", "CSV" };
 
         public string FromPeriod;
         public string ToPeriod;

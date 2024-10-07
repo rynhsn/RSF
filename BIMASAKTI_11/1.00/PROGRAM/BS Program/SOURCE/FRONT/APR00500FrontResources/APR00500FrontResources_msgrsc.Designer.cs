@@ -78,6 +78,15 @@ namespace APR00500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string CANCEL {
+            get {
+                return ResourceManager.GetString("CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Currency.
         /// </summary>
         internal static string CURRENCY {
@@ -119,6 +128,150 @@ namespace APR00500FrontResources {
         internal static string DUE_DATE {
             get {
                 return ResourceManager.GetString("DUE_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select Currency !.
+        /// </summary>
+        internal static string ERR_CURRENCY_EMPTY {
+            get {
+                return ResourceManager.GetString("ERR_CURRENCY_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select Cut Off Date !.
+        /// </summary>
+        internal static string ERR_CUTOFF_EMPTY {
+            get {
+                return ResourceManager.GetString("ERR_CUTOFF_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select Department !.
+        /// </summary>
+        internal static string ERR_DEPT_EMPTY {
+            get {
+                return ResourceManager.GetString("ERR_DEPT_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select From Due Date !.
+        /// </summary>
+        internal static string ERR_FROMDUEDATE_EMPTY {
+            get {
+                return ResourceManager.GetString("ERR_FROMDUEDATE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Due Date cannot be early than From Due Date !.
+        /// </summary>
+        internal static string ERR_FROMDUEDATE_GREATERTHAN_TODUEDATE {
+            get {
+                return ResourceManager.GetString("ERR_FROMDUEDATE_GREATERTHAN_TODUEDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select From Period !.
+        /// </summary>
+        internal static string ERR_FROMPERIOD_EMPTY {
+            get {
+                return ResourceManager.GetString("ERR_FROMPERIOD_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Period cannot be early than From Period !.
+        /// </summary>
+        internal static string ERR_FROMPERIOD_GREATERTHAN_TOPERIOD {
+            get {
+                return ResourceManager.GetString("ERR_FROMPERIOD_GREATERTHAN_TOPERIOD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select From Reference Date !.
+        /// </summary>
+        internal static string ERR_FROMREFDATE_EMPTY {
+            get {
+                return ResourceManager.GetString("ERR_FROMREFDATE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Reference Date cannot be early than From Reference Date !.
+        /// </summary>
+        internal static string ERR_FROMREFDATE_GREATERTHAN_TOREFDATE {
+            get {
+                return ResourceManager.GetString("ERR_FROMREFDATE_GREATERTHAN_TOREFDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select From Reference No !.
+        /// </summary>
+        internal static string ERR_FROMREFNO_EMPTY {
+            get {
+                return ResourceManager.GetString("ERR_FROMREFNO_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select property !.
+        /// </summary>
+        internal static string ERR_PROPERTY_EMPTY {
+            get {
+                return ResourceManager.GetString("ERR_PROPERTY_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select Supplier !.
+        /// </summary>
+        internal static string ERR_SUPPL_EMPTY {
+            get {
+                return ResourceManager.GetString("ERR_SUPPL_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select To Due Date !.
+        /// </summary>
+        internal static string ERR_TODUEDATE_EMPTY {
+            get {
+                return ResourceManager.GetString("ERR_TODUEDATE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select To Period !.
+        /// </summary>
+        internal static string ERR_TOPERIOD_EMPTY {
+            get {
+                return ResourceManager.GetString("ERR_TOPERIOD_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select To Reference Date !.
+        /// </summary>
+        internal static string ERR_TOREFDATE_EMPTY {
+            get {
+                return ResourceManager.GetString("ERR_TOREFDATE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select To Reference No !.
+        /// </summary>
+        internal static string ERR_TOREFNO_EMPTY {
+            get {
+                return ResourceManager.GetString("ERR_TOREFNO_EMPTY", resourceCulture);
             }
         }
         
@@ -173,6 +326,15 @@ namespace APR00500FrontResources {
         internal static string REMAINING_AMOUNT {
             get {
                 return ResourceManager.GetString("REMAINING_AMOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string SAVE {
+            get {
+                return ResourceManager.GetString("SAVE", resourceCulture);
             }
         }
         

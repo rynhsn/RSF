@@ -1,4 +1,5 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace GSM02000Common.DTOs
 {
     public class GSM02000DTO
@@ -17,7 +18,12 @@ namespace GSM02000Common.DTOs
         public string CTAXIN_GLACCOUNT_NAME { get; set; } = "";
         public string CTAXOUT_GLACCOUNT_NO { get; set; } = "";
         public string CTAXOUT_GLACCOUNT_NAME { get; set; } = "";
+        
+        public string CDEDUCTION_TAX_ID { get; set; } = "";
+        public string CDEDUCTION_TAX_NAME { get; set; } = "";
         public string CCOMPANY_ID { get; set; }
         public string CUSER_ID { get; set; }
+        
+        public List<GSM02000DeductionGridDTO> ODEDUCTION_LIST { get; set; } = new List<GSM02000DeductionGridDTO>();
     }
 }

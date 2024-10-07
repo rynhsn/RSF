@@ -150,6 +150,33 @@ namespace GLI00100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Property is required.
+        /// </summary>
+        internal static string Err09 {
+            get {
+                return ResourceManager.GetString("Err09", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deduction Tax is required.
+        /// </summary>
+        internal static string Err10 {
+            get {
+                return ResourceManager.GetString("Err10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deduction Tax already exists.
+        /// </summary>
+        internal static string Err11 {
+            get {
+                return ResourceManager.GetString("Err11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active.
         /// </summary>
         internal static string LABEL_ACTIVE {
@@ -177,11 +204,47 @@ namespace GLI00100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deduction Tax Id.
+        /// </summary>
+        internal static string LABEL_DEDUCTIONTAXID {
+            get {
+                return ResourceManager.GetString("LABEL_DEDUCTIONTAXID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deduction Tax Name.
+        /// </summary>
+        internal static string LABEL_DEDUCTIONTAXNAME {
+            get {
+                return ResourceManager.GetString("LABEL_DEDUCTIONTAXNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         internal static string LABEL_DESCRIPTION {
             get {
                 return ResourceManager.GetString("LABEL_DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property Id.
+        /// </summary>
+        internal static string LABEL_PROPERTYID {
+            get {
+                return ResourceManager.GetString("LABEL_PROPERTYID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property Name.
+        /// </summary>
+        internal static string LABEL_PROPERTYNAME {
+            get {
+                return ResourceManager.GetString("LABEL_PROPERTYNAME", resourceCulture);
             }
         }
         
@@ -222,7 +285,7 @@ namespace GLI00100FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tax In GL Account*.
+        ///   Looks up a localized string similar to Tax In GL Account.
         /// </summary>
         internal static string LABEL_TAXIN {
             get {
@@ -240,7 +303,7 @@ namespace GLI00100FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tax Out GL Account*.
+        ///   Looks up a localized string similar to Tax Out GL Account.
         /// </summary>
         internal static string LABEL_TAXOUT {
             get {

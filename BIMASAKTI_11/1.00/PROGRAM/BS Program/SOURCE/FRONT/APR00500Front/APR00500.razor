@@ -5,13 +5,308 @@
 @inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
 <R_StackLayout Row Class="mb-1">
-    <R_ItemLayout col="1">
+    <R_ItemLayout col="2">
         <R_Label>@_localizer["PROPERTY"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="3">
         <R_ComboBox Data="@_viewModel.PropertyList"
                     @bind-Value="@_viewModel.ReportParam.CPROPERTY_ID"
                     ValueField="@nameof(APR00500PropertyDTO.CPROPERTY_ID)"
-                    TextField="@nameof(APR00500PropertyDTO.CPROPERTY_NAME)"/>
+                    TextField="@nameof(APR00500PropertyDTO.CPROPERTY_NAME)"
+                    Enabled/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["CUT_OFF_DATE"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_DatePicker @bind-Value="@_viewModel.ReportParam.DCUT_OFF_DATE"
+                      Enabled/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["PERIOD"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_NumericTextBox @bind-Value="@_viewModel.ReportParam.IFROM_PERIOD_YY"
+                          Arrows
+                          Step="1"
+                          Min="@_viewModel.YearRange.IMIN_YEAR"
+                          Max="@_viewModel.YearRange.IMAX_YEAR"
+                          ThousandSeparator="false"
+                          Enabled/>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_ComboBox Data="_viewModel.PeriodListFrom"
+                    @bind-Value="_viewModel.ReportParam.CFROM_PERIOD_MM"
+                    TextField="@nameof(APR00500PeriodDTO.CPERIOD_NO)"
+                    ValueField="@nameof(APR00500PeriodDTO.CPERIOD_NO)"
+                    Enabled/>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Label>@_localizer["TO"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_NumericTextBox @bind-Value="@_viewModel.ReportParam.ITO_PERIOD_YY"
+                          Arrows
+                          Step="1"
+                          Min="@_viewModel.YearRange.IMIN_YEAR"
+                          Max="@_viewModel.YearRange.IMAX_YEAR"
+                          ThousandSeparator="false"
+                          Enabled/>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_ComboBox Data="_viewModel.PeriodListTo"
+                    @bind-Value="_viewModel.ReportParam.CTO_PERIOD_MM"
+                    TextField="@nameof(APR00500PeriodDTO.CPERIOD_NO)"
+                    ValueField="@nameof(APR00500PeriodDTO.CPERIOD_NO)"
+                    Enabled/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["DEPARTMENT"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CheckBox @bind-Value="_viewModel.CheckDept"/>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CDEPT_CODE" OnLostFocus="OnLostFocusDept" Enabled="@_viewModel.CheckDept"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="BeforeLookupDept" R_After_Open_Lookup="AfterLookupDept" Enabled="@_viewModel.CheckDept">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CDEPT_NAME" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["REFERENCE_DATE"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CheckBox @bind-Value="_viewModel.CheckRefDate"/>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_DatePicker @bind-Value="@_viewModel.ReportParam.DFROM_REFERENCE_DATE"
+                      Enabled="@_viewModel.CheckRefDate"/>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Label>@_localizer["TO"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2" Class="pe-3">
+        <R_DatePicker @bind-Value="@_viewModel.ReportParam.DTO_REFERENCE_DATE"
+                      Enabled="@_viewModel.CheckRefDate"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["DUE_DATE"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CheckBox @bind-Value="_viewModel.CheckDueDate"/>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_DatePicker @bind-Value="@_viewModel.ReportParam.DFROM_DUE_DATE"
+                      Enabled="@_viewModel.CheckDueDate"/>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Label>@_localizer["TO"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2" Class="pe-3">
+        <R_DatePicker @bind-Value="@_viewModel.ReportParam.DTO_DUE_DATE"
+                      Enabled="@_viewModel.CheckDueDate"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["SUPPLIER"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CheckBox @bind-Value="_viewModel.CheckSupplier"/>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CSUPPLIER_ID" OnLostFocus="OnLostFocusSupplier" Enabled="@_viewModel.CheckSupplier"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="BeforeLookupSupplier" R_After_Open_Lookup="AfterLookupSupplier" Enabled="@_viewModel.CheckSupplier">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CSUPPLIER_NAME" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["REFERENCE_NO"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CheckBox @bind-Value="_viewModel.CheckRefNo"/>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_REFERENCE_NO" OnLostFocus="OnLostFocusFromRefNo" Enabled="@_viewModel.CheckRefNo"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="BeforeLookupFromRefNo" R_After_Open_Lookup="AfterLookupFromRefNo" Enabled="@_viewModel.CheckRefNo">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@_localizer["TO"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_REFERENCE_NO" OnLostFocus="OnLostFocusToRefNo" Enabled="@_viewModel.CheckRefNo"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="BeforeLookupToRefNo" R_After_Open_Lookup="AfterLookupToRefNo" Enabled="@_viewModel.CheckRefNo">...</R_Lookup>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["CURRENCY"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CheckBox @bind-Value="_viewModel.CheckCurrency"/>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CCURRENCY" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="BeforeLookupCurrency" R_After_Open_Lookup="AfterLookupCurrency" Enabled="@_viewModel.CheckCurrency">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CCURRENCY_NAME" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["TOTAL_AMOUNT"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CheckBox @bind-Value="_viewModel.CheckTotalAmt"/>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Label>@_localizer["BETWEEN"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.ReportParam.NFROM_TOTAL_AMOUNT"
+                                  Arrows
+                                  Step="1"
+                                  Decimals="2"
+                                  Enabled="@_viewModel.CheckTotalAmt"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@_localizer["TO"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.ReportParam.NTO_TOTAL_AMOUNT"
+                                  Arrows
+                                  Step="1"
+                                  Decimals="2"
+                                  Enabled="@_viewModel.CheckTotalAmt"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["REMAINING_AMOUNT"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CheckBox @bind-Value="_viewModel.CheckRemainingAmt"/>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Label>@_localizer["BETWEEN"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.ReportParam.NFROM_REMAINING_AMOUNT"
+                                  Arrows
+                                  Step="1"
+                                  Decimals="2"
+                                  Enabled="@_viewModel.CheckRemainingAmt"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@_localizer["TO"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.ReportParam.NTO_REMAINING_AMOUNT"
+                                  Arrows
+                                  Step="1"
+                                  Decimals="2"
+                                  Enabled="@_viewModel.CheckRemainingAmt"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["DAYS_LATE"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CheckBox @bind-Value="_viewModel.CheckDaysLate"/>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Label>@_localizer["BETWEEN"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.ReportParam.IFROM_DAYS_LATE"
+                                  Arrows
+                                  Step="1"
+                                  Decimals="0"
+                                  Enabled="@_viewModel.CheckDaysLate"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@_localizer["TO"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.ReportParam.ITO_DAYS_LATE"
+                                  Arrows
+                                  Step="1"
+                                  Decimals="0"
+                                  Enabled="@_viewModel.CheckDaysLate"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Class="mt-2" Row>
+    <R_ItemLayout>
+        <R_Button OnClick="OnClickPrint">@_localizer["PRINT"]</R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_Before_Open_Lookup="BeforeOpenPopupSaveAs">@_localizer["SAVE_AS"]</R_Lookup>
     </R_ItemLayout>
 </R_StackLayout>

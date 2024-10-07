@@ -226,6 +226,9 @@ public partial class PMT06000Info : R_Page
             if (_viewModel.Data.CTENANT_ID == null || _viewModel.Data.CTENANT_ID.Trim().Length <= 0)
             {
                 _viewModel.Data.CTENANT_NAME = "";
+
+                _viewModel.Data.CAGREEMENT_NO = "";
+                _viewModel.Data.CUNIT_DESCRIPTION = "";
                 return;
             }
 
@@ -245,11 +248,17 @@ public partial class PMT06000Info : R_Page
                     "_ErrLookup01"));
                 _viewModel.Data.CTENANT_ID = "";
                 _viewModel.Data.CTENANT_NAME = "";
+
+                _viewModel.Data.CAGREEMENT_NO = "";
+                _viewModel.Data.CUNIT_DESCRIPTION = "";
                 goto EndBlock;
             }
 
             _viewModel.Data.CTENANT_ID = loResult.CTENANT_ID;
             _viewModel.Data.CTENANT_NAME = loResult.CTENANT_NAME;
+
+            _viewModel.Data.CAGREEMENT_NO = "";
+            _viewModel.Data.CUNIT_DESCRIPTION = "";
         }
         catch (Exception ex)
         {
@@ -292,8 +301,13 @@ public partial class PMT06000Info : R_Page
             if (eventArgs.Result == null) return;
 
             var loTempResult = (LML00600DTO)eventArgs.Result;
+
+            if (loTempResult.CTENANT_ID == _viewModel.Data.CTENANT_ID) return;
+
             _viewModel.Data.CTENANT_ID = loTempResult.CTENANT_ID;
             _viewModel.Data.CTENANT_NAME = loTempResult.CTENANT_NAME;
+            _viewModel.Data.CAGREEMENT_NO = "";
+            _viewModel.Data.CUNIT_DESCRIPTION = "";
         }
         catch (Exception ex)
         {
@@ -313,6 +327,9 @@ public partial class PMT06000Info : R_Page
             if (_viewModel.Data.CBUILDING_ID == null || _viewModel.Data.CBUILDING_ID.Trim().Length <= 0)
             {
                 _viewModel.Data.CBUILDING_NAME = "";
+
+                _viewModel.Data.CAGREEMENT_NO = "";
+                _viewModel.Data.CUNIT_DESCRIPTION = "";
                 return;
             }
 
@@ -331,11 +348,17 @@ public partial class PMT06000Info : R_Page
                     "_ErrLookup01"));
                 _viewModel.Data.CBUILDING_ID = "";
                 _viewModel.Data.CBUILDING_NAME = "";
+
+                _viewModel.Data.CAGREEMENT_NO = "";
+                _viewModel.Data.CUNIT_DESCRIPTION = "";
                 goto EndBlock;
             }
 
             _viewModel.Data.CBUILDING_ID = loResult.CBUILDING_ID;
             _viewModel.Data.CBUILDING_NAME = loResult.CBUILDING_NAME;
+
+            _viewModel.Data.CAGREEMENT_NO = "";
+            _viewModel.Data.CUNIT_DESCRIPTION = "";
         }
         catch (Exception ex)
         {
@@ -377,8 +400,13 @@ public partial class PMT06000Info : R_Page
             if (eventArgs.Result == null) return;
 
             var loTempResult = (GSL02200DTO)eventArgs.Result;
+
+            if (loTempResult.CBUILDING_ID == _viewModel.Data.CBUILDING_ID) return;
+
             _viewModel.Data.CBUILDING_ID = loTempResult.CBUILDING_ID;
             _viewModel.Data.CBUILDING_NAME = loTempResult.CBUILDING_NAME;
+            _viewModel.Data.CAGREEMENT_NO = "";
+            _viewModel.Data.CUNIT_DESCRIPTION = "";
         }
         catch (Exception ex)
         {
@@ -495,7 +523,7 @@ public partial class PMT06000Info : R_Page
     #endregion
 
     #region CRUD Detail
-    
+
     private R_TabPage _pageUnit { get; set; } = new();
 
     private async Task ServiceGetRecordOvt(R_ServiceGetRecordEventArgs eventArgs)
@@ -657,7 +685,7 @@ public partial class PMT06000Info : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private async Task AfterAddOvt(R_AfterAddEventArgs eventArgs)
+    private void AfterAddOvt(R_AfterAddEventArgs eventArgs)
     {
         var loEx = new R_Exception();
 
@@ -671,7 +699,15 @@ public partial class PMT06000Info : R_Page
             loEntity.DREF_DATE = DateTime.Today;
 
             // await _gridRefService.R_RefreshGrid(null);
-             _viewModel.OvertimeServiceGridList.Clear();
+            if (_viewModel.OvertimeServiceGridList.Count > 0)
+            {
+                _viewModel.OvertimeServiceGridList.Clear();
+                _viewModelService.Data.CSERVICE_ID = "";
+                _viewModelService.Data.CSERVICE_NAME = "";
+                _viewModelService.Data.DDATE_IN = null;
+                _viewModelService.Data.DDATE_OUT = null;
+                _viewModelService.Data.CSERVICE_DESCR = "";
+            }
         }
         catch (Exception ex)
         {
@@ -703,6 +739,10 @@ public partial class PMT06000Info : R_Page
         if (leMsg == R_eMessageBoxResult.Yes)
         {
             await _gridRefService.R_RefreshGrid(null);
+            if (_viewModel.OvertimeServiceGridList.Count > 0)
+            {
+                await _conductorRefService.R_SetCurrentData(_viewModelService.Entity);
+            }
         }
     }
 
@@ -721,6 +761,7 @@ public partial class PMT06000Info : R_Page
         eventArgs.Allow = _viewModel.Data.CTRANS_STATUS == "00";
     }
 
+    private R_TabStrip _tabMain = new();
     private R_TabStripTab _tabUnit = new();
     private R_TabStripTab _tabService = new();
 
@@ -905,6 +946,7 @@ public partial class PMT06000Info : R_Page
     #endregion
 
     #region CRUD Service
+
     private void CheckAddService(R_CheckAddEventArgs eventArgs)
     {
         eventArgs.Allow = _viewModel.Entity.CTRANS_STATUS == "00";
@@ -1096,7 +1138,7 @@ public partial class PMT06000Info : R_Page
     private void AfterAddService(R_AfterAddEventArgs eventArgs)
     {
         var loEntity = (PMT06000OvtServiceDTO)eventArgs.Data;
-            //ddate_in = DateTime.Now;
+        //ddate_in = DateTime.Now;
         loEntity.DDATE_IN = DateTime.Now;
         loEntity.DDATE_OUT = DateTime.Now;
     }
@@ -1109,6 +1151,10 @@ public partial class PMT06000Info : R_Page
         {
             var loParam = R_FrontUtility.ConvertObjectToObject<PMT06000OvtDTO>(_viewModel.Entity);
             await _conductorRef.R_GetEntity(loParam);
+            if (_tabMain.ActiveTab.Id == nameof(PMT06000Unit))
+            {
+                await _pageUnit.InvokeRefreshTabPageAsync(_viewModel.Entity);
+            }
         }
         catch (Exception ex)
         {
@@ -1116,5 +1162,22 @@ public partial class PMT06000Info : R_Page
         }
 
         loEx.ThrowExceptionIfErrors();
+    }
+
+    private void OnChangeProperty(string? value)
+    {
+        if (_viewModel.Data.CPROPERTY_ID == value) return;
+        _viewModel.Data.CPROPERTY_ID = value;
+        _viewModel.Data.CDEPT_CODE = "";
+        _viewModel.Data.CDEPT_NAME = "";
+
+        _viewModel.Data.CTENANT_ID = "";
+        _viewModel.Data.CTENANT_NAME = "";
+
+        _viewModel.Data.CBUILDING_ID = "";
+        _viewModel.Data.CBUILDING_NAME = "";
+
+        _viewModel.Data.CAGREEMENT_NO = "";
+        _viewModel.Data.CUNIT_DESCRIPTION = "";
     }
 }

@@ -27,6 +27,11 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_APFrontResources\Lookup_APFrontResources.csproj" />
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_APFRONT\Lookup_APFRONT.csproj" />
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_APModel\Lookup_APModel.csproj" />
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj" />
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSModel\Lookup_GSModel.csproj" />
         <ProjectReference Include="..\APR00500FrontResources\APR00500FrontResources.csproj" />
         <ProjectReference Include="..\APR00500Model\APR00500Model.csproj" />
     </ItemGroup>
