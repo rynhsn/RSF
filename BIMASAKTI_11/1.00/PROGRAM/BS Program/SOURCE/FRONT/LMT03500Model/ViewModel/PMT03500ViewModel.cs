@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PMT03500Common;
 using PMT03500Common.DTOs;
+using PMT03500Common.Params;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
 
@@ -62,5 +63,11 @@ namespace PMT03500Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
+    }
+
+    public class PMT03500UpdateMeterParameter
+    {
+        public string CPROPETY_ID { get; set; }
+        public bool LOTHER_UNIT { get; set; }
     }
 }

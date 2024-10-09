@@ -38,10 +38,10 @@
                     <R_Label>@_localizer["LBL_UNITID"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
-                    <R_TextBox @bind-Value="@_viewModel.Header.CUNIT_ID" Enabled="@(_viewModel.Header.CBUILDING_ID is not (null or ""))" OnLostFocus="OnLostFocusLookupUnit"/>
+                    <R_TextBox @bind-Value="@_viewModel.Header.CUNIT_ID" Enabled="@(_viewModel.LOTHER_UNIT || _viewModel.Header.CBUILDING_ID is not (null or ""))" OnLostFocus="OnLostFocusLookupUnit"/>
                 </R_ItemLayout>
                 <R_ItemLayout>
-                    <R_Lookup R_Before_Open_Lookup="BeforeLookupBuildingUnit" R_After_Open_Lookup="AfterLookupBuildingUnit" Enabled="@(_viewModel.Header.CBUILDING_ID is not (null or ""))">...</R_Lookup>
+                    <R_Lookup R_Before_Open_Lookup="BeforeLookupBuildingUnit" R_After_Open_Lookup="AfterLookupBuildingUnit" Enabled="@(_viewModel.LOTHER_UNIT || _viewModel.Header.CBUILDING_ID is not (null or ""))">...</R_Lookup>
                 </R_ItemLayout>
                 <R_ItemLayout col="5">
                     <R_TextBox @bind-Value="@_viewModel.Header.CUNIT_NAME" Enabled="false"/>

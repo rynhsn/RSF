@@ -21,6 +21,7 @@ namespace Lookup_GSCOMMON.DTOs
         public decimal NACTUAL_AREA_SIZE { get; set; }
         public decimal NNET_AREA_SIZE { get; set; }
         public string CLEASE_STATUS { get; set; }
+        public string CLEASE_STATUS_DESC { get; set; }
         public string CTENANT_NAME { get; set; }
         public int ITOTAL_LOO { get; set; }
         public string CAGREEMENT_NO { get; set; }

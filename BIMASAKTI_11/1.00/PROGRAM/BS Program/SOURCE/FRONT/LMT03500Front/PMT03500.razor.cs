@@ -37,6 +37,8 @@ public partial class PMT03500 : R_Page
 
     private R_TabStrip _tabStripRef;
     private R_TabStrip _tabStripUtilityRef;
+    private R_ComboBox<PMT03500YearDTO, string> _comboUtilityPrdRef;
+    private R_ComboBox<PMT03500PropertyDTO, string> _comboPropertyRef;
 
     private string _dataLabel = "";
     private string _display = "d-none";
@@ -83,14 +85,14 @@ public partial class PMT03500 : R_Page
     public async Task ShowSuccessUpdateInvoke()
     {
         _enabledBtn = true;
-        await R_MessageBox.Show("", "Update Successfully", R_eMessageBoxButtonType.OK);
+        await R_MessageBox.Show("", _localizer["UPDATE_SUCCESSFULLY"], R_eMessageBoxButtonType.OK);
         await _gridRefUtility.R_RefreshGrid(null);
     }
 
     public async Task ShowSuccessUndoInvoke()
     {
         _enabledBtn = true;
-        await R_MessageBox.Show("", "Undo Successfully", R_eMessageBoxButtonType.OK);
+        await R_MessageBox.Show("", _localizer["UNDO_SUCCESSFULLY"], R_eMessageBoxButtonType.OK);
         await _gridRefUtility.R_RefreshGrid(null);
     }
 
@@ -202,13 +204,24 @@ public partial class PMT03500 : R_Page
             {
                 case eParamType.Property:
                     _viewModel.PropertyId = (string)value;
+                    if (string.IsNullOrEmpty(_viewModel.PropertyId))
+                    {
+                        await _comboPropertyRef.FocusAsync();
+                        return;
+                    }
                     // _viewModelUtility.PropertyId = (string)value;
                     _viewModelUtility.Property =
                         _viewModel.PropertyList.FirstOrDefault(x => x.CPROPERTY_ID == _viewModel.PropertyId);
-
+                    
+                    await _viewModelUtility.GetSystemParam();
+                    _viewModelUtility.SetParameterHeader();
+                    
                     switch (_tabStripRef.ActiveTab.Id)
                     {
                         case "Utility" when _tabStripUtilityRef.ActiveTab.Id == "GI":
+                            /*
+                             * Disini method untuk set period dari system param
+                             */
                             await _gridRefBuilding.R_RefreshGrid(null);
                             break;
                         case "CutOff":
@@ -216,14 +229,19 @@ public partial class PMT03500 : R_Page
                             await _pageCO.InvokeRefreshTabPageAsync(_viewModelUtility.Property);
                             break;
                         case "UpdateMeter":
-                            await _pageMN.InvokeRefreshTabPageAsync(_viewModelUtility.Property?.CPROPERTY_ID);
-                            // await _pageMN.InvokeRefreshTabPageAsync(_viewModelUtility.Property);
+                            var loMnParam = new PMT03500UpdateMeterParameter
+                            {
+                                CPROPETY_ID = _viewModelUtility.Property?.CPROPERTY_ID,
+                                LOTHER_UNIT = _viewModelUtility.LOTHER_UNIT
+                            };
+                            await _pageMN.InvokeRefreshTabPageAsync(loMnParam);
                             break;
                     }
 
                     break;
                 case eParamType.UtilityType:
                     _viewModelUtility.UtilityTypeId = (string)value;
+                    _viewModelUtility.SetParameterHeader();
                     break;
                 case eParamType.Floor:
                     _viewModelUtility.FloorId = (string)value;
@@ -260,6 +278,14 @@ public partial class PMT03500 : R_Page
 
         try
         {
+            if (int.Parse(_viewModelUtility.InvPeriodYear + _viewModelUtility.InvPeriodNo) <
+                int.Parse(_viewModelUtility.UtilityPeriodYear + _viewModelUtility.UtilityPeriodNo))
+            {
+                await R_MessageBox.Show("", _localizer["UTILITY_PERIOD_GREATER_THAN_INVOICE_PERIOD"]);
+                await _comboUtilityPrdRef.FocusAsync();
+                return;
+            }
+
             if (_viewModelUtility.UtilityTypeId is "01" or "02")
             {
                 _viewModelUtility.UtilityType = EPMT03500UtilityUsageType.EC;
@@ -313,8 +339,11 @@ public partial class PMT03500 : R_Page
     private void BeforeTabUpdateMeter(R_BeforeOpenTabPageEventArgs eventArgs)
     {
         eventArgs.TargetPageType = typeof(PMT03500UpdateMeter);
-        eventArgs.Parameter = _viewModel.PropertyId;
-        // eventArgs.Parameter = _viewModelUtility.Property;
+        eventArgs.Parameter = new PMT03500UpdateMeterParameter
+        {
+            CPROPETY_ID = _viewModel.PropertyId,
+            LOTHER_UNIT = _viewModelUtility.LOTHER_UNIT
+        };
     }
 
     private void BeforeTabDetail(R_BeforeOpenTabPageEventArgs eventArgs)
@@ -456,12 +485,24 @@ public partial class PMT03500 : R_Page
             var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
             if (loData.DSTART_DATE > loData.DEND_DATE)
             {
-                loEx.Add("Invalid Date", "Start Date must be less than End Date");
+                loEx.Add(_localizer["INVALID_DATE"], _localizer["START_DATE_LESS_THAN_END_DATE"]);
                 eventArgs.Cancel = loEx.HasError;
             }
 
             loData.CSTART_DATE = loData.DSTART_DATE?.ToString("yyyyMMdd");
             loData.CEND_DATE = loData.DEND_DATE?.ToString("yyyyMMdd");
+            
+            //proses untuk merubah state LSELECTED
+            var llStartDate = loData.DSTART_DATE !=  _viewModelUtility.EntityUtility.DSTART_DATE;
+            var llEndDate = loData.DEND_DATE != _viewModelUtility.EntityUtility.DEND_DATE;
+            var llBlock1End = loData.IBLOCK1_END != _viewModelUtility.EntityUtility.IBLOCK1_END;
+            var llBlock2End = loData.IBLOCK2_END != _viewModelUtility.EntityUtility.IBLOCK2_END;
+            var llBebanBersama = loData.NBEBAN_BERSAMA != _viewModelUtility.EntityUtility.NBEBAN_BERSAMA;
+            var llMeterEnd = loData.IMETER_END != _viewModelUtility.EntityUtility.IMETER_END;
+            if (llStartDate || llEndDate || llBlock1End || llBlock2End || llBebanBersama || llMeterEnd)
+            {
+                loData.LSELECTED = true;
+            }
         }
         catch (Exception ex)
         {
@@ -556,5 +597,11 @@ public partial class PMT03500 : R_Page
 
             eventArgs.RowClass = "myCustomRowFormatting";
         }
+    }
+
+    private void InstanceOtherUnitDock(R_InstantiateDockEventArgs eventArgs)
+    {
+        eventArgs.TargetPageType = typeof(PMT03500OtherUnit);
+        eventArgs.Parameter = "";
     }
 }

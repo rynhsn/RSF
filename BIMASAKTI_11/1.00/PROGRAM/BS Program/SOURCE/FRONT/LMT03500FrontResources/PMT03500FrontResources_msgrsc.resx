@@ -35,6 +35,13 @@
     <data name="LBL_NO" xml:space="preserve">
         <value>No</value>
     </data>
+    <data name="RADIO_ALLBUILDING" xml:space="preserve">
+        <value>All Building</value>
+    </data>
+    <data name="RADIO_BUILDING" xml:space="preserve">
+        <value>Building</value>
+    </data>
+    
     <data name="LBL_BUILDING" xml:space="preserve">
         <value>Building</value>
     </data>
@@ -59,8 +66,11 @@
     <data name="LBL_UTILITYPERIOD" xml:space="preserve">
         <value>Utility Period</value>
     </data>
-    <data name="LBL_ALLFLOOR" xml:space="preserve">
+    <data name="RADIO_ALLFLOOR" xml:space="preserve">
         <value>All Floor</value>
+    </data>
+    <data name="RADIO_FLOOR" xml:space="preserve">
+        <value>Floor</value>
     </data>
     <data name="LBL_INVOICED" xml:space="preserve">
         <value>Invoiced</value>
@@ -96,7 +106,10 @@
         <value>Unit Name</value>
     </data>
     <data name="LBL_METERNO" xml:space="preserve">
-        <value>Meter No</value>
+        <value>Meter No.</value>
+    </data>
+    <data name="LBL_BASMETERNO" xml:space="preserve">
+        <value>BAS Alias Meter No.</value>
     </data>
     <data name="LBL_STARTDATE" xml:space="preserve">
         <value>Start Date</value>
@@ -358,6 +371,63 @@
     <data name="LBL_MINIMUM_CHARGE" xml:space="preserve">
         <value>Minimum Charge</value>
     </data>
+    
+    <!-- other unit -->
+    <data name="OTHER_UNIT" xml:space="preserve">
+        <value>Other Unit</value>
+        <comment>Other Unit</comment>
+    </data>
+    
+    <!-- utility period tidak boleh lebih besar dari invoice period -->
+    <data name="UTILITY_PERIOD_GREATER_THAN_INVOICE_PERIOD" xml:space="preserve">
+        <value>Utility Period cannot be greater than Invoice Period</value>
+        <comment>Utility Period cannot be greater than Invoice Period</comment>
+    </data>
 
+    <!-- Invalid Date -->
+    <data name="INVALID_DATE" xml:space="preserve">
+        <value>Invalid Date</value>
+        <comment>Invalid Date</comment>
+    </data>
+    <!-- Start Date must be less than End Date -->
+    <data name="START_DATE_LESS_THAN_END_DATE" xml:space="preserve">
+        <value>Start Date must be less than End Date</value>
+        <comment>Start Date must be less than End Date</comment>
+    </data>
 
+    <!-- Update Successfully -->
+    <data name="UPDATE_SUCCESSFULLY" xml:space="preserve">
+        <value>Update Successfully</value>
+        <comment>Update Successfully</comment>
+    </data>
+
+    <!-- Undo Successfully -->
+    <data name="UNDO_SUCCESSFULLY" xml:space="preserve">
+        <value>Undo Successfully</value>
+        <comment>Undo Successfully</comment>
+    </data>
+
+    <!-- INVALID_MAX_RESET -->
+    <data name="INVALID_MAX_RESET" xml:space="preserve">
+        <value>Invalid Max Reset</value>
+        <comment>Invalid Max Reset</comment>
+    </data>
+
+    <!-- BLOCK1_START_GREATER_THAN_MAX_RESET -->
+    <data name="BLOCK1_START_GREATER_THAN_MAX_RESET" xml:space="preserve">
+        <value>Block I Start cannot be greater than Max Reset</value>
+        <comment>Block I Start cannot be greater than Max Reset</comment>
+    </data>
+    
+    <!-- BLOCK2_START_GREATER_THAN_MAX_RESET -->
+    <data name="BLOCK2_START_GREATER_THAN_MAX_RESET" xml:space="preserve">
+        <value>Block II Start cannot be greater than Max Reset</value>
+        <comment>Block II Start cannot be greater than Max Reset</comment>
+    </data>
+    
+    <!-- METER_START_GREATER_THAN_MAX_RESET -->
+    <data name="METER_START_GREATER_THAN_MAX_RESET" xml:space="preserve">
+        <value>Meter Start cannot be greater than Max Reset</value>
+        <comment>Meter Start cannot be greater than Max Reset</comment>
+    </data>
 </root>

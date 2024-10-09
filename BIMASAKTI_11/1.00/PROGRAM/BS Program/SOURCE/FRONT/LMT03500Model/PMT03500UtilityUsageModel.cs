@@ -28,6 +28,11 @@ namespace PMT03500Model
         {
         }
 
+        public PMT03500SingleDTO<PMT03500SystemParamDTO> PMT03500GetSystemParam(PMT03500SystemParamParameter poParam)
+        {
+            throw new NotImplementedException();
+        }
+
         public IAsyncEnumerable<PMT03500BuildingDTO> PMT03500GetBuildingListStream()
         {
             throw new NotImplementedException();

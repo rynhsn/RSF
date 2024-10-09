@@ -1089,6 +1089,8 @@ namespace Lookup_GSModel
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LAGREEMENT, poParameter.LAGREEMENT);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CBUILDING_ID, string.IsNullOrWhiteSpace(poParameter.CBUILDING_ID) ? "" : poParameter.CBUILDING_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CFLOOR_ID, string.IsNullOrWhiteSpace(poParameter.CFLOOR_ID) ? "" : poParameter.CFLOOR_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CLEASE_STATUS_LIST, string.IsNullOrWhiteSpace(poParameter.CLEASE_STATUS_LIST) ? "" : poParameter.CLEASE_STATUS_LIST);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CUNIT_TYPE_ID, string.IsNullOrWhiteSpace(poParameter.CUNIT_TYPE_ID) ? "" : poParameter.CUNIT_TYPE_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROGRAM_ID, string.IsNullOrWhiteSpace(poParameter.CPROGRAM_ID) ? "" : poParameter.CPROGRAM_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTRANS_CODE, string.IsNullOrWhiteSpace(poParameter.CTRANS_CODE) ? "" : poParameter.CTRANS_CODE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CREF_NO, string.IsNullOrWhiteSpace(poParameter.CREF_NO) ? "" : poParameter.CREF_NO);
@@ -1248,6 +1250,11 @@ namespace Lookup_GSModel
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, string.IsNullOrWhiteSpace(poParameter.CPROPERTY_ID) ? "" : poParameter.CPROPERTY_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CBUILDING_ID, string.IsNullOrWhiteSpace(poParameter.CBUILDING_ID) ? "" : poParameter.CBUILDING_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LEVENT, poParameter.LEVENT);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LAGREEMENT, poParameter.LAGREEMENT);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CDEPT_CODE, string.IsNullOrWhiteSpace(poParameter.CDEPT_CODE) ? "" : poParameter.CDEPT_CODE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTRANS_CODE, string.IsNullOrWhiteSpace(poParameter.CTRANS_CODE) ? "" : poParameter.CTRANS_CODE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CREF_NO, string.IsNullOrWhiteSpace(poParameter.CREF_NO) ? "" : poParameter.CREF_NO);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CLEASE_STATUS_LIST, string.IsNullOrWhiteSpace(poParameter.CLEASE_STATUS_LIST) ? "" : poParameter.CLEASE_STATUS_LIST);
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02700DTO>(

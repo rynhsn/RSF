@@ -290,7 +290,8 @@
       },
       "PMT03500Model/1.0.0": {
         "dependencies": {
-          "PMT03500Common": "1.0.0"
+          "PMT03500Common": "1.0.0",
+          "PMT03500FrontResources": "1.0.0"
         },
         "runtime": {
           "PMT03500Model.dll": {}

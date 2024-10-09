@@ -62,6 +62,46 @@ namespace Lookup_GSFRONT
 
         #region Floor
 
+        private async Task Floor_OnLostFocus()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (string.IsNullOrWhiteSpace(_Parameter.CFLOOR_ID) == false)
+                {
+                    GSL02400ParameterDTO loParam = R_FrontUtility.ConvertObjectToObject<GSL02400ParameterDTO>(_Parameter);
+                    loParam.CSEARCH_TEXT = _Parameter.CFLOOR_ID;
+
+                    LookupGSL02400ViewModel loLookupViewModel = new LookupGSL02400ViewModel();
+
+                    var loResult = await loLookupViewModel.GetFloor(loParam);
+
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        _FloorName = "";
+                        goto EndBlock;
+                    }
+                    _Parameter.CFLOOR_ID = loResult.CFLOOR_ID;
+                    _FloorName = loResult.CFLOOR_NAME;
+
+                    await GridRef.R_RefreshGrid(null);
+                }
+                else
+                {
+                    _FloorName = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
+        }
         private void R_Before_Open_LookupFloor(R_BeforeOpenLookupEventArgs eventArgs)
         {
 

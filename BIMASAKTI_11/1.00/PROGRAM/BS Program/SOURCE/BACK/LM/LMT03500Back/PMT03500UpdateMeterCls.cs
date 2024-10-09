@@ -302,6 +302,7 @@ public class PMT03500UpdateMeterCls
             loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParam.CPROPERTY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 20, poParam.CBUILDING_ID);
             loDb.R_AddCommandParameter(loCmd, "@CUNIT_ID", DbType.String, 20, poParam.CUNIT_ID);
+            loDb.R_AddCommandParameter(loCmd, "@LOTHER_UNIT", DbType.Boolean, 1, poParam.LOTHER_UNIT);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParam.CUSER_ID);
 
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
@@ -311,6 +312,7 @@ public class PMT03500UpdateMeterCls
                         "@CPROPERTY_ID" or
                         "@CBUILDING_ID" or
                         "@CUNIT_ID" or
+                        "@LOTHER_UNIT" or
                         "@CUSER_ID"
                 ).Select(x => x.Value);
 

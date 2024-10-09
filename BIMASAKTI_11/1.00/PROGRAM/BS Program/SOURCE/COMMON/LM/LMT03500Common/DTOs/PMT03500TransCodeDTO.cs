@@ -43,21 +43,66 @@ namespace PMT03500Common.DTOs
 
     public class PMT03500RateWGListDTO
     {
-        public string CCOMPANY_ID {get; set;}
-        public string CPROPERTY_ID {get; set;}
-        public string CCHARGES_TYPE {get; set;}
-        public string CCHARGES_ID {get; set;}
-        public int IUP_TO_USAGE {get; set;}
-        public string CUSAGE_DESC {get; set;}
-        public decimal NUSAGE_CHARGE {get; set;}
-        public decimal NBUY_USAGE_CHARGE {get; set;}
-        public string CCREATE_BY {get; set;}
-        public DateTime DCREATE_DATE {get; set;}
-        public string CUPDATE_BY {get; set;}
-        public DateTime DUPDATE_DATE {get; set;}
-        
-        public int IMIN_USAGE {get; set;}
-        public decimal NUSAGE {get; set;}
-        public decimal NSUB_TOTAL_ROW {get; set;}
+        public string CCOMPANY_ID { get; set; }
+        public string CPROPERTY_ID { get; set; }
+        public string CCHARGES_TYPE { get; set; }
+        public string CCHARGES_ID { get; set; }
+        public int IUP_TO_USAGE { get; set; }
+        public string CUSAGE_DESC { get; set; }
+        public decimal NUSAGE_CHARGE { get; set; }
+        public decimal NBUY_USAGE_CHARGE { get; set; }
+        public string CCREATE_BY { get; set; }
+        public DateTime DCREATE_DATE { get; set; }
+        public string CUPDATE_BY { get; set; }
+        public DateTime DUPDATE_DATE { get; set; }
+
+        public int IMIN_USAGE { get; set; }
+        public decimal NUSAGE { get; set; }
+        public decimal NSUB_TOTAL_ROW { get; set; }
+    }
+
+    public class PMT03500SystemParamDTO
+    {
+        public string CDEPT_CODE { get; set; } = "";
+        public string CDEPT_NAME { get; set; } = "";
+        public string CCUR_RATETYPE_CODE { get; set; } = "";
+        public string CCUR_RATETYPE_DESCRIPTION { get; set; } = "";
+        public string CTAX_RATETYPE_CODE { get; set; } = "";
+        public string CTAX_RATETYPE_DESCRIPTION { get; set; } = "";
+        public bool LBACKDATE { get; set; }
+        public bool LGLLINK { get; set; }
+        public string CSOFT_PERIOD { get; set; } = "";
+        public string CSOFT_PERIOD_YY { get; set; } = "";
+        public string CSOFT_PERIOD_MM { get; set; } = "";
+        public string CLSOFT_END_BY { get; set; } = "";
+        public DateTime? DLSOFT_END_DATE { get; set; }
+        public string CCURRENT_PERIOD { get; set; } = "";
+        public string CCURRENT_PERIOD_YY { get; set; } = "";
+        public string CCURRENT_PERIOD_MM { get; set; } = "";
+        public bool LPRD_END_FLAG { get; set; }
+        public string CPCPRD_END_BY { get; set; } = "";
+        public string CLPRD_END_BY { get; set; } = "";
+        public DateTime? DLPRD_END_DATE { get; set; }
+        public string CCREATE_BY { get; set; } = "";
+        public DateTime? DCREATE_DATE { get; set; }
+        public string CUPDATE_BY { get; set; } = "";
+        public DateTime? DUPDATE_DATE { get; set; }
+        public bool LALLOW_EDIT_GLLINK { get; set; }
+        public string CWHT_MODE { get; set; } = "";
+        public decimal NRECEIPT_CR_ADJ_AMT { get; set; }
+        public decimal NRECEIPT_DB_ADJ_AMT { get; set; }
+        public string CRECEIPT_CR_ADJ_CHARGES_ID { get; set; } = "";
+        public string CRECEIPT_DB_ADJ_CHARGES_ID { get; set; } = "";
+        public bool LINV_PROCESS_FLAG { get; set; }
+        public string CELECTRIC_PERIOD { get; set; } = "";
+        public string CELECTRIC_DATE { get; set; } = "";
+        public bool LELECTRIC_END_MONTH { get; set; }
+        public string CWATER_PERIOD { get; set; } = "";
+        public string CWATER_DATE { get; set; } = "";
+        public bool LWATER_END_MONTH { get; set; }
+        public string CGAS_PERIOD { get; set; } = "";
+        public string CGAS_DATE { get; set; } = "";
+        public bool LGAS_END_MONTH { get; set; }
+        public string CCURRENCY { get; set; } = "";
     }
 }

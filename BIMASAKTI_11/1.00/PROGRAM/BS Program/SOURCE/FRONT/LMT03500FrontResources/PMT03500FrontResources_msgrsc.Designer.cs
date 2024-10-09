@@ -69,6 +69,42 @@ namespace PMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Block I Start cannot be greater than Max Reset.
+        /// </summary>
+        internal static string BLOCK1_START_GREATER_THAN_MAX_RESET {
+            get {
+                return ResourceManager.GetString("BLOCK1_START_GREATER_THAN_MAX_RESET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Block II Start cannot be greater than Max Reset.
+        /// </summary>
+        internal static string BLOCK2_START_GREATER_THAN_MAX_RESET {
+            get {
+                return ResourceManager.GetString("BLOCK2_START_GREATER_THAN_MAX_RESET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Date.
+        /// </summary>
+        internal static string INVALID_DATE {
+            get {
+                return ResourceManager.GetString("INVALID_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Max Reset.
+        /// </summary>
+        internal static string INVALID_MAX_RESET {
+            get {
+                return ResourceManager.GetString("INVALID_MAX_RESET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         internal static string LBL_ADD {
@@ -114,15 +150,6 @@ namespace PMT03500FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All Floor.
-        /// </summary>
-        internal static string LBL_ALLFLOOR {
-            get {
-                return ResourceManager.GetString("LBL_ALLFLOOR", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Avg Block I Usage.
         /// </summary>
         internal static string LBL_AVGBLOCK1USAGE {
@@ -146,6 +173,15 @@ namespace PMT03500FrontResources {
         internal static string LBL_AVGMETERUSAGE {
             get {
                 return ResourceManager.GetString("LBL_AVGMETERUSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BAS Alias Meter No..
+        /// </summary>
+        internal static string LBL_BASMETERNO {
+            get {
+                return ResourceManager.GetString("LBL_BASMETERNO", resourceCulture);
             }
         }
         
@@ -510,7 +546,7 @@ namespace PMT03500FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Meter No.
+        ///   Looks up a localized string similar to Meter No..
         /// </summary>
         internal static string LBL_METERNO {
             get {
@@ -996,6 +1032,69 @@ namespace PMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Meter Start cannot be greater than Max Reset.
+        /// </summary>
+        internal static string METER_START_GREATER_THAN_MAX_RESET {
+            get {
+                return ResourceManager.GetString("METER_START_GREATER_THAN_MAX_RESET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other Unit.
+        /// </summary>
+        internal static string OTHER_UNIT {
+            get {
+                return ResourceManager.GetString("OTHER_UNIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Building.
+        /// </summary>
+        internal static string RADIO_ALLBUILDING {
+            get {
+                return ResourceManager.GetString("RADIO_ALLBUILDING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Floor.
+        /// </summary>
+        internal static string RADIO_ALLFLOOR {
+            get {
+                return ResourceManager.GetString("RADIO_ALLFLOOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building.
+        /// </summary>
+        internal static string RADIO_BUILDING {
+            get {
+                return ResourceManager.GetString("RADIO_BUILDING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Floor.
+        /// </summary>
+        internal static string RADIO_FLOOR {
+            get {
+                return ResourceManager.GetString("RADIO_FLOOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Date must be less than End Date.
+        /// </summary>
+        internal static string START_DATE_LESS_THAN_END_DATE {
+            get {
+                return ResourceManager.GetString("START_DATE_LESS_THAN_END_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Meter No.
         /// </summary>
         internal static string TAB_CHANGEMETER {
@@ -1046,6 +1145,33 @@ namespace PMT03500FrontResources {
         internal static string TAB_UTILITYUSAGE {
             get {
                 return ResourceManager.GetString("TAB_UTILITYUSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo Successfully.
+        /// </summary>
+        internal static string UNDO_SUCCESSFULLY {
+            get {
+                return ResourceManager.GetString("UNDO_SUCCESSFULLY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Successfully.
+        /// </summary>
+        internal static string UPDATE_SUCCESSFULLY {
+            get {
+                return ResourceManager.GetString("UPDATE_SUCCESSFULLY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utility Period cannot be greater than Invoice Period.
+        /// </summary>
+        internal static string UTILITY_PERIOD_GREATER_THAN_INVOICE_PERIOD {
+            get {
+                return ResourceManager.GetString("UTILITY_PERIOD_GREATER_THAN_INVOICE_PERIOD", resourceCulture);
             }
         }
     }

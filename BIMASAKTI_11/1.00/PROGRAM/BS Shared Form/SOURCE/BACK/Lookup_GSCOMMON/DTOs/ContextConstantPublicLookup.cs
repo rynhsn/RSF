@@ -37,5 +37,7 @@
         public const string LEVENT = "LEVENT";
         public const string CTRANS_CODE = "CTRANS_CODE";
         public const string CREF_NO = "CREF_NO";
+        public const string CUNIT_TYPE_ID = "CUNIT_TYPE_ID";
+        public const string CLEASE_STATUS_LIST = "CLEASE_STATUS_LIST";
     }
 }

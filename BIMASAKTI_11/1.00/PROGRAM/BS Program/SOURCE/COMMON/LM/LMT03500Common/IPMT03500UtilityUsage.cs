@@ -6,6 +6,7 @@ namespace PMT03500Common
 {
     public interface IPMT03500UtilityUsage
     {
+        PMT03500SingleDTO<PMT03500SystemParamDTO> PMT03500GetSystemParam(PMT03500SystemParamParameter poParam);
         IAsyncEnumerable<PMT03500BuildingDTO> PMT03500GetBuildingListStream();
         PMT03500SingleDTO<PMT03500BuildingDTO> PMT03500GetBuildingRecord(PMT03500SearchTextDTO poText);
         IAsyncEnumerable<PMT03500UtilityUsageDTO> PMT03500GetUtilityUsageListStream();

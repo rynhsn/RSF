@@ -8,7 +8,7 @@
             <R_Label>@_localizer["_Floor"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="3">
-            <R_TextBox @ref="@_FloorCode" @bind-Value="@_Parameter.CFLOOR_ID" Enabled="true"></R_TextBox>
+            <R_TextBox @ref="@_FloorCode" @bind-Value="@_Parameter.CFLOOR_ID" OnLostFocus="@Floor_OnLostFocus" Enabled="true"></R_TextBox>
         </R_ItemLayout>
         <R_ItemLayout col="0">
             <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupFloor"

@@ -1334,8 +1334,10 @@ namespace Lookup_GSLBACK
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 50, poEntity.CBUILDING_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CFLOOR_ID", DbType.String, 50, poEntity.CFLOOR_ID);
-                loDb.R_AddCommandParameter(loCmd, "@LAGREEMENT", DbType.Boolean, 10, poEntity.LAGREEMENT);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@LAGREEMENT", DbType.Boolean, 10, poEntity.LAGREEMENT);
+                loDb.R_AddCommandParameter(loCmd, "@CUNIT_TYPE_ID", DbType.String, int.MaxValue, poEntity.CUNIT_TYPE_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CLEASE_STATUS_LIST", DbType.String, int.MaxValue, poEntity.CLEASE_STATUS_LIST);
                 loDb.R_AddCommandParameter(loCmd, "@CPROGRAM_ID", DbType.String, 50, poEntity.CPROGRAM_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 50, poEntity.CTRANS_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 50, poEntity.CREF_NO);
@@ -1380,8 +1382,8 @@ namespace Lookup_GSLBACK
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 50, poEntity.CBUILDING_ID);
-                loDb.R_AddCommandParameter(loCmd, "@LAGREEMENT", DbType.Boolean, 10, poEntity.LAGREEMENT);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@LAGREEMENT", DbType.Boolean, 10, poEntity.LAGREEMENT);
                 loDb.R_AddCommandParameter(loCmd, "@CPROGRAM_ID", DbType.String, 50, poEntity.CPROGRAM_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 50, poEntity.CTRANS_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 50, poEntity.CREF_NO);
@@ -1511,6 +1513,11 @@ namespace Lookup_GSLBACK
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 50, poEntity.CBUILDING_ID);
                 loDb.R_AddCommandParameter(loCmd, "@LEVENT", DbType.Boolean, 50, poEntity.LEVENT);
+                loDb.R_AddCommandParameter(loCmd, "@LAGREEMENT", DbType.Boolean, 50, poEntity.LAGREEMENT);
+                loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, poEntity.CDEPT_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 50, poEntity.CTRANS_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 50, poEntity.CREF_NO);
+                loDb.R_AddCommandParameter(loCmd, "@CLEASE_STATUS_LIST", DbType.String, int.MaxValue, poEntity.CLEASE_STATUS_LIST);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
 
                 //Debug Logs

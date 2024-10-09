@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using PMT03500Common;
 using PMT03500Common.DTOs;
 using PMT03500Common.Params;
+using PMT03500FrontResources;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
@@ -31,6 +32,7 @@ namespace PMT03500Model.ViewModel
         public PMT03500BuildingDTO Entity = new PMT03500BuildingDTO();
         public PMT03500UtilityUsageDTO EntityUtility = new PMT03500UtilityUsageDTO();
         public PMT03500PropertyDTO Property = new PMT03500PropertyDTO();
+        public PMT03500SystemParamDTO SystemParam = new PMT03500SystemParamDTO();
 
         public List<PMT03500FunctDTO> UtilityTypeList = new List<PMT03500FunctDTO>();
         public List<PMT03500FloorDTO> FloorList = new List<PMT03500FloorDTO>();
@@ -39,9 +41,7 @@ namespace PMT03500Model.ViewModel
         public List<PMT03500YearDTO> UtilityYearList = new List<PMT03500YearDTO>();
 
         public List<PMT03500PeriodDTO> UtilityPeriodList = new List<PMT03500PeriodDTO>();
-        // public LIst<>
 
-        // public string PropertyId = "";
         public string TransCodeId = "";
 
         public string UtilityTypeId = "";
@@ -61,8 +61,8 @@ namespace PMT03500Model.ViewModel
         public string UtilityPeriodToDt = "";
 
         public DateTime UtilityPeriodFromDtDt = DateTime.Now;
-        public DateTime UtilityPeriodToDtDt= DateTime.Now;
-        
+        public DateTime UtilityPeriodToDtDt = DateTime.Now;
+
         public DateTime UtilityPeriodDtMin = DateTime.Now;
         public DateTime UtilityPeriodDtMax = DateTime.Now;
 
@@ -70,6 +70,9 @@ namespace PMT03500Model.ViewModel
         public DataSet ExcelDataSetUtility { get; set; }
 
         // public Func<Task> ActionDataSetExcel { get; set; }
+
+        public bool LOTHER_UNIT { get; set; } = false;
+
         public async Task Init(object poParam)
         {
             var loEx = new R_Exception();
@@ -79,13 +82,31 @@ namespace PMT03500Model.ViewModel
                 // PropertyId = poParam.ToString();
                 // PropertyId = Property.CPROPERTY_ID;
                 await GetUtilityTypeList();
-                
-                
                 var lcYear = DateTime.Now.Year.ToString();
-                
                 await GetPeriodList(lcYear);
                 await GetYearList(lcYear);
                 await GetPeriod(UtilityPeriodYear, UtilityPeriodNo);
+                await GetSystemParam();
+                SetParameterHeader();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        public async Task GetSystemParam()
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loParam = new PMT03500SystemParamParameter { CPROPERTY_ID = Property.CPROPERTY_ID };
+                var loReturn =
+                    await _model.GetAsync<PMT03500SingleDTO<PMT03500SystemParamDTO>, PMT03500SystemParamParameter>(
+                        nameof(IPMT03500UtilityUsage.PMT03500GetSystemParam), loParam);
+                SystemParam = loReturn.Data;
             }
             catch (Exception ex)
             {
@@ -101,12 +122,25 @@ namespace PMT03500Model.ViewModel
             try
             {
                 // R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, PropertyId);
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, Property.CPROPERTY_ID);
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, Property.CPROPERTY_ID ?? "");
                 // R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, "");
                 var loReturn = await _model.GetListStreamAsync<PMT03500BuildingDTO>(nameof(IPMT03500UtilityUsage
                     .PMT03500GetBuildingListStream));
 
-                GridBuildingList = new ObservableCollection<PMT03500BuildingDTO>(loReturn);
+                if (!LOTHER_UNIT)
+                {
+                    GridBuildingList = new ObservableCollection<PMT03500BuildingDTO>(loReturn);
+                }
+                else
+                {
+                    BuildingList = loReturn;
+
+                    TempBuildingId = BuildingList.FirstOrDefault()?.CBUILDING_ID;
+                    Entity.CBUILDING_ID = "";
+                    FloorId = "";
+                    IsBuildingSelected = false;
+                    IsFloorSelected = false;
+                }
             }
             catch (Exception ex)
             {
@@ -138,7 +172,6 @@ namespace PMT03500Model.ViewModel
 
         public void CheckFloor(bool poCheck)
         {
-            
             if (!poCheck)
             {
                 //floorif=first data in list
@@ -149,7 +182,7 @@ namespace PMT03500Model.ViewModel
                 FloorId = "";
             }
         }
-        
+
         public async Task GetUtilityUsageList(R_IExcel poExcel = null)
         {
             var loEx = new R_Exception();
@@ -160,11 +193,11 @@ namespace PMT03500Model.ViewModel
                 UtilityPeriodToDt = UtilityPeriodToDtDt.ToString("yyyyMMdd");
 
                 // R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, PropertyId);
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, Property.CPROPERTY_ID);
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CBUILDING_ID, Entity.CBUILDING_ID);
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CUTILITY_TYPE, UtilityTypeId);
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, Property.CPROPERTY_ID ?? "");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CBUILDING_ID, Entity.CBUILDING_ID ?? "");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CUTILITY_TYPE, UtilityTypeId ?? "");
                 // R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CFLOOR_LIST, FloorId);
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CFLOOR_ID, FloorId);
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CFLOOR_ID, FloorId ?? "");
                 //LALL_FLOOR
                 // R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.LALL_FLOOR, AllFloor);
                 R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CINVOICE_PRD, InvPeriodYear + InvPeriodNo);
@@ -172,8 +205,10 @@ namespace PMT03500Model.ViewModel
                 R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CUTILITY_PRD,
                     UtilityPeriodYear + UtilityPeriodNo);
                 R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CUTILITY_PRD_FROM_DATE,
-                    UtilityPeriodFromDt);
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CUTILITY_PRD_TO_DATE, UtilityPeriodToDt);
+                    UtilityPeriodFromDt ?? "");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CUTILITY_PRD_TO_DATE,
+                    UtilityPeriodToDt ?? "");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.LOTHER_UNIT, LOTHER_UNIT);
 
                 var loReturn =
                     await _model.GetListStreamAsync<PMT03500UtilityUsageDTO>(nameof(IPMT03500UtilityUsage
@@ -185,16 +220,17 @@ namespace PMT03500Model.ViewModel
                     .ToList();
                 loReturn.Select(x =>
                     x.DEND_DATE = DateTime.ParseExact(x.CEND_DATE, "yyyyMMdd", CultureInfo.InvariantCulture)).ToList();
-                
+
                 foreach (var loItem in loReturn)
                 {
                     if (!string.IsNullOrEmpty(loItem.CUTILITY_PRD))
                     {
-                        loItem.CUTILITY_PRD_DISPLAY = loItem.CUTILITY_PRD.Substring(0, 4) + "-" + loItem.CUTILITY_PRD.Substring(4, 2);
+                        loItem.CUTILITY_PRD_DISPLAY = loItem.CUTILITY_PRD.Substring(0, 4) + "-" +
+                                                      loItem.CUTILITY_PRD.Substring(4, 2);
                     }
                 }
-                
-                
+
+
                 GridUtilityUsageList = new ObservableCollection<PMT03500UtilityUsageDTO>(loReturn);
                 GridUtilityUsageListTemp = loReturn;
 
@@ -217,37 +253,38 @@ namespace PMT03500Model.ViewModel
                 FloorId = AllFloor ? "" : FloorId;
 
                 // R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, PropertyId);
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, Property.CPROPERTY_ID);
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CBUILDING_ID, Entity.CBUILDING_ID);
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CUTILITY_TYPE, UtilityTypeId);
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CFLOOR_ID, FloorId);
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, Property.CPROPERTY_ID ?? "");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CBUILDING_ID, Entity.CBUILDING_ID ?? "");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CUTILITY_TYPE, UtilityTypeId ?? "");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CFLOOR_ID, FloorId ?? "");
                 R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CUTILITY_PRD,
                     UtilityPeriodYear + UtilityPeriodNo);
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.LOTHER_UNIT, LOTHER_UNIT);
 
                 var loReturn =
                     await _model.GetListStreamAsync<PMT03500UtilityUsageDTO>(nameof(IPMT03500UtilityUsage
                         .PMT03500GetUtilityCutOffListStream));
-                
-                
+
+
                 loReturn.ForEach(x =>
                 {
-                    if (DateTime.TryParseExact(x.CSTART_DATE, "yyyyMMdd", CultureInfo.InvariantCulture,
-                            DateTimeStyles.AssumeUniversal, out var ldStartDate))
-                    {
-                        x.DSTART_DATE = ldStartDate;
-                        // loReturn.Select(x =>
-                        //     x.DSTART_DATE =
-                        //         DateTime.ParseExact(x.CSTART_DATE, "yyyyMMdd", CultureInfo.InvariantCulture)).ToList();
-                    }
-                    else
-                    {
-                        x.DSTART_DATE = null;
-                    }
+                    x.DSTART_DATE = DateTime.TryParseExact(x.CSTART_DATE, "yyyyMMdd", CultureInfo.InvariantCulture,
+                        DateTimeStyles.AssumeUniversal, out var ldStartDate)
+                        ? ldStartDate
+                        : (DateTime?)null;
 
                     x.NO = loReturn.IndexOf(x) + 1;
                     x.CUTILITY_TYPE = x.CCHARGES_TYPE;
                 });
-                // loReturn.Select(x => x.DEND_DATE = DateTime.ParseExact(x.CEND_DATE, "yyyyMMdd", CultureInfo.InvariantCulture)).ToList();
+
+                foreach (var loItem in loReturn)
+                {
+                    if (!string.IsNullOrEmpty(loItem.CUTILITY_PRD))
+                    {
+                        loItem.CUTILITY_PRD_DISPLAY = loItem.CUTILITY_PRD.Substring(0, 4) + "-" +
+                                                      loItem.CUTILITY_PRD.Substring(4, 2);
+                    }
+                }
 
                 GridUtilityUsageList = new ObservableCollection<PMT03500UtilityUsageDTO>(loReturn);
                 GridUtilityUsageListTemp = loReturn;
@@ -296,6 +333,7 @@ namespace PMT03500Model.ViewModel
                     await _model.GetAsync<PMT03500ListDTO<PMT03500FloorDTO>, PMT03500FloorParam>(
                         nameof(IPMT03500UtilityUsage.PMT03500GetFloorList), loParam);
                 FloorList = loReturn.Data;
+                TempFloorId = LOTHER_UNIT ? FloorList.FirstOrDefault()?.CFLOOR_ID : FloorId;
                 // FloorId = FloorList.FirstOrDefault()?.CFLOOR_ID;
             }
             catch (Exception ex)
@@ -329,7 +367,7 @@ namespace PMT03500Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        
+
         public async Task GetPeriod(string pcYear, string pcPeriod)
         {
             var loEx = new R_Exception();
@@ -337,10 +375,14 @@ namespace PMT03500Model.ViewModel
             {
                 var loParam = new PMT03500PeriodParam { CYEAR = pcYear, CPERIOD_NO = pcPeriod };
 
-                var loReturn = await _model.GetAsync<PMT03500SingleDTO<PMT03500PeriodDTO>, PMT03500PeriodParam>(nameof(IPMT03500UtilityUsage.PMT03500GetPeriod), loParam);
-                
-                UtilityPeriodDtMin = DateTime.ParseExact(loReturn.Data.CSTART_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
-                UtilityPeriodDtMax = DateTime.ParseExact(loReturn.Data.CEND_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
+                var loReturn =
+                    await _model.GetAsync<PMT03500SingleDTO<PMT03500PeriodDTO>, PMT03500PeriodParam>(
+                        nameof(IPMT03500UtilityUsage.PMT03500GetPeriod), loParam);
+
+                UtilityPeriodDtMin =
+                    DateTime.ParseExact(loReturn.Data.CSTART_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
+                UtilityPeriodDtMax =
+                    DateTime.ParseExact(loReturn.Data.CEND_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
                 UtilityPeriodFromDtDt = UtilityPeriodDtMin;
                 UtilityPeriodToDtDt = UtilityPeriodDtMax;
             }
@@ -357,7 +399,7 @@ namespace PMT03500Model.ViewModel
             var loEx = new R_Exception();
             try
             {
-                var loParam = new PMT03500PeriodParam { CYEAR = pcYear};
+                var loParam = new PMT03500PeriodParam { CYEAR = pcYear };
 
                 var loReturn =
                     await _model.GetAsync<PMT03500ListDTO<PMT03500YearDTO>>(nameof(IPMT03500UtilityUsage
@@ -546,6 +588,48 @@ namespace PMT03500Model.ViewModel
             }
         }
 
+        public void SetParameterHeader()
+        {
+            if (SystemParam != null)
+            {
+                if (UtilityTypeId == "01" || UtilityTypeId == "02")
+                {
+                    // UtilityPeriodYear diisi dari 4 karaketer pertama dari property SystemParam.CELECTRIC_PERIOD
+                    UtilityPeriodYear = SystemParam.CELECTRIC_PERIOD.Substring(0, 4);
+                    UtilityPeriodNo = SystemParam.CELECTRIC_PERIOD.Substring(4, 2);
+                    InvPeriodYear = SystemParam.CELECTRIC_PERIOD.Substring(0, 4);
+                    InvPeriodNo = SystemParam.CELECTRIC_PERIOD.Substring(4, 2);
+                    if (SystemParam.LELECTRIC_END_MONTH == false)
+                    {
+                        var loDateFrom = new DateTime(int.Parse(UtilityPeriodYear), int.Parse(UtilityPeriodNo),
+                            int.Parse(SystemParam.CELECTRIC_DATE)+1);
+                        var loDateTo = loDateFrom.AddMonths(1).AddDays(-1);
+                        UtilityPeriodFromDtDt = loDateFrom;
+                        UtilityPeriodToDtDt = loDateTo;
+                        UtilityPeriodDtMin = loDateFrom.AddDays(1);
+                        UtilityPeriodDtMax = loDateTo;
+                    }
+                }
+                else
+                {
+                    UtilityPeriodYear = SystemParam.CWATER_PERIOD.Substring(0, 4);
+                    UtilityPeriodNo = SystemParam.CWATER_PERIOD.Substring(4, 2);
+                    InvPeriodYear = SystemParam.CWATER_PERIOD.Substring(0, 4);
+                    InvPeriodNo = SystemParam.CWATER_PERIOD.Substring(4, 2);
+                    if (SystemParam.LWATER_END_MONTH == false)
+                    {
+                        var loDateFrom = new DateTime(int.Parse(UtilityPeriodYear), int.Parse(UtilityPeriodNo),
+                            int.Parse(SystemParam.CWATER_DATE)+1);
+                        var loDateTo = loDateFrom.AddMonths(1).AddDays(-1);
+                        UtilityPeriodFromDtDt = loDateFrom;
+                        UtilityPeriodToDtDt = loDateTo;
+                        UtilityPeriodDtMin = loDateFrom.AddDays(1);
+                        UtilityPeriodDtMax = loDateTo;
+                    }
+                }
+            }
+        }
+
         public void ValidateDate(DateTime pdFromDate, DateTime pdToDate)
         {
             var loEx = new R_Exception();
@@ -594,6 +678,44 @@ namespace PMT03500Model.ViewModel
         //     loEx.ThrowExceptionIfErrors();
         //     await Task.CompletedTask;
         // }
+
+        #endregion
+
+
+        #region Dock Other Unit
+
+        public string TempBuildingId { get; set; }
+        public string TempFloorId { get; set; }
+
+        public bool IsBuildingSelected { get; set; }
+        public bool IsFloorSelected { get; set; }
+
+        public List<KeyValuePair<bool, string>> RADIO_BUILDING0 { get; } = new List<KeyValuePair<bool, string>>
+        {
+            new KeyValuePair<bool, string>(false,
+                R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "RADIO_ALLBUILDING"))
+        };
+
+        public List<KeyValuePair<bool, string>> RADIO_BUILDING1 { get; } = new List<KeyValuePair<bool, string>>
+        {
+            new KeyValuePair<bool, string>(true,
+                R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "RADIO_BUILDING"))
+        };
+
+        public List<KeyValuePair<bool, string>> RADIO_FLOOR0 { get; } = new List<KeyValuePair<bool, string>>
+        {
+            new KeyValuePair<bool, string>(false,
+                R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "RADIO_ALLFLOOR"))
+        };
+
+        public List<KeyValuePair<bool, string>> RADIO_FLOOR1 { get; } = new List<KeyValuePair<bool, string>>
+        {
+            new KeyValuePair<bool, string>(true,
+                R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "RADIO_FLOOR"))
+        };
+
+
+        public List<PMT03500BuildingDTO> BuildingList { get; set; } = new List<PMT03500BuildingDTO>();
 
         #endregion
     }

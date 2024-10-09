@@ -636,6 +636,7 @@ public partial class PMT06000Info : R_Page
             await _viewModel.SaveEntity(loParam, (eCRUDMode)eventArgs.ConductorMode);
 
             eventArgs.Result = _viewModel.Entity;
+            await _pageUnit.InvokeRefreshTabPageAsync(_viewModel.Entity);
         }
         catch (Exception ex)
         {

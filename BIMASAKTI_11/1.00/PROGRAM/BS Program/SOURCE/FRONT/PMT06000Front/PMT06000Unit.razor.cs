@@ -224,7 +224,8 @@ public partial class PMT06000Unit : R_Page, R_ITabPage
     public async Task RefreshTabPageAsync(object poParam)
     {
         _viewModel.Entity = (PMT06000OvtDTO)poParam;
-        CheckGridAdd(new R_CheckGridEventArgs(_viewModel.OvertimeUnitGridList, true));
+        await _gridRefUnit.R_RefreshGrid(null);
+        // CheckGridAdd(new R_CheckGridEventArgs(_viewModel.OvertimeUnitGridList, true));
         await Task.CompletedTask;
     }
 

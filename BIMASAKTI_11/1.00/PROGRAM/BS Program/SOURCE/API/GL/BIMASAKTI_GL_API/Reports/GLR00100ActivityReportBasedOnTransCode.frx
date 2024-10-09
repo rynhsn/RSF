@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\GL\BIMASAKTI_GL_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="10/03/2024 13:27:35" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\GL\BIMASAKTI_GL_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="10/09/2024 03:37:56" ReportInfo.CreatorVersion="2023.2.21.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -215,15 +215,15 @@ namespace FastReport
     </inherited>
     <DataBand Name="Data5" ZOrder="0" Top="170.65" Width="1047.06">
       <DataHeaderBand Name="DataHeader2" Top="129.52" Width="1047.06" Height="37.8" CanGrow="true" RepeatOnEveryPage="true">
-        <TextObject Name="Text157" Left="179.55" Width="151.2" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.ACTIVITY_DESC]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text157" Left="236.25" Width="113.4" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.ACTIVITY_DESC]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
         <TextObject Name="Text158" Left="472.5" Top="9.45" Width="56.7" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.MODULE]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
         <TextObject Name="Text159" Left="529.2" Top="9.45" Width="94.5" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.ACCOUNT_NAME]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
         <TextObject Name="Text160" Left="670.95" Top="9.45" Width="113.4" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.JOURNAL_DESC]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text143" Left="113.4" Width="66.15" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.DATE]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text143" Left="170.1" Width="66.15" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.DATE]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
         <TextObject Name="Text144" Left="982.8" Width="85.05" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.CREDIT]" AutoShrink="FontSize" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
         <TextObject Name="Text146" Left="-28.35" Width="37.8" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.DEPT]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text147" Left="9.45" Width="103.95" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.REF_NO]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text148" Left="330.75" Width="141.75" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.CUSTOMER_SUPPLIER]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text147" Left="9.45" Width="160.65" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.REF_NO]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text148" Left="349.65" Width="122.85" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.CUSTOMER_SUPPLIER]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
         <TextObject Name="Text149" Left="472.5" Width="56.7" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.BY]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
         <TextObject Name="Text150" Left="529.2" Width="94.5" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.ACCOUNT_NO]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
         <TextObject Name="Text151" Left="623.7" Width="47.25" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.CENTER]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
@@ -231,15 +231,15 @@ namespace FastReport
         <TextObject Name="Text153" Left="784.35" Width="75.6" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.VOUCHER_DATE]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
         <TextObject Name="Text154" Left="859.95" Width="37.8" Height="9.45" VisibleExpression="[ResponseDataModel.Data.Header.CCURRENCY_TYPE] == &quot;T&quot;" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.CURR]" AutoShrink="FontSize" Font="Arial Unicode MS, 7pt, style=Bold"/>
         <TextObject Name="Text155" Left="897.75" Width="85.05" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.DEBIT]" AutoShrink="FontSize" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text164" Left="113.4" Top="9.45" Width="66.15" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.PERIOD]" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text164" Left="170.1" Top="9.45" Width="66.15" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.PERIOD]" Font="Arial Unicode MS, 7pt, style=Bold"/>
         <LineObject Name="Line5" Left="-28.35" Width="1096.2" CanGrow="true" CanShrink="true"/>
         <LineObject Name="Line6" Left="-28.35" Top="28.35" Width="1096.2"/>
       </DataHeaderBand>
       <GroupHeaderBand Name="GroupHeader2" Top="173.98" Width="1047.06" Condition="[ResponseDataModel.Data.Data.CDEPT_CODE]">
         <GroupHeaderBand Name="GroupHeader1" Top="177.32" Width="1047.06" Condition="[ResponseDataModel.Data.Data.CREF_NO]" SortOrder="None">
           <DataBand Name="Data6" Top="180.65" Width="1047.06" Height="37.8" CanGrow="true" CanShrink="true" BeforePrintEvent="Data6_BeforePrint" AfterDataEvent="Data6_AfterData" CanBreak="true" DataSource="Data">
-            <TextObject Name="Text131" Left="9.45" Width="103.95" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.CREF_NO]" Duplicates="Hide" Font="Arial Unicode MS, 7pt"/>
-            <TextObject Name="Text132" Left="330.75" Width="141.75" Height="37.8" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.CCUST_SUPP_NAME]" Duplicates="Hide" Font="Arial Unicode MS, 7pt"/>
+            <TextObject Name="Text131" Left="9.45" Width="160.65" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.CREF_NO]" Duplicates="Hide" Font="Arial Unicode MS, 7pt"/>
+            <TextObject Name="Text132" Left="349.65" Width="122.85" Height="37.8" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.CCUST_SUPP_NAME]" Duplicates="Hide" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text133" Left="472.5" Width="56.7" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.CUPDATE_BY]" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text134" Left="623.7" Width="47.25" Height="37.8" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.CCENTER_CODE]" Duplicates="Hide" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text135" Left="529.2" Width="94.5" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.CGLACCOUNT_NO]" Duplicates="Hide" Font="Arial Unicode MS, 7pt"/>
@@ -247,12 +247,12 @@ namespace FastReport
             <TextObject Name="Text137" Left="784.35" Width="75.6" Height="37.8" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.DDOC_DATE]" Format="Date" Format.Format="MMMM dd, yyyy" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text138" Left="897.75" Width="85.05" Height="37.8" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.NDEBIT_AMOUNT]" HideZeros="true" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
             <TextObject Name="Text140" Left="859.95" Width="37.8" Height="37.8" VisibleExpression="[ResponseDataModel.Data.Header.CCURRENCY_TYPE] == &quot;T&quot;" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.CCURRENCY_CODE]" Font="Arial Unicode MS, 7pt"/>
-            <TextObject Name="Text142" Left="113.4" Width="66.15" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="12-Dec-2024&#13;&#10;" Duplicates="Hide" Format="Date" Format.Format="MMMM dd, yyyy" Font="Arial Unicode MS, 7pt"/>
-            <TextObject Name="Text125" Left="179.55" Width="151.2" Height="37.8" CanGrow="true" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.CTRANS_DESC]" Duplicates="Hide" Font="Arial Unicode MS, 7pt"/>
+            <TextObject Name="Text142" Left="170.1" Width="66.15" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="12-Dec-2024&#13;&#10;" Duplicates="Hide" Format="Date" Format.Format="MMMM dd, yyyy" Font="Arial Unicode MS, 7pt"/>
+            <TextObject Name="Text125" Left="236.25" Width="113.4" Height="37.8" CanGrow="true" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.CTRANS_DESC]" Duplicates="Hide" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text126" Left="472.5" Top="18.9" Width="56.7" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.CMODULE_ID]" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text127" Left="529.2" Top="18.9" Width="94.5" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.CGLACCOUNT_NAME]" Duplicates="Hide" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text139" Left="982.8" Width="85.05" Height="37.8" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.NCREDIT_AMOUNT]" HideZeros="true" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
-            <TextObject Name="Text129" Left="113.4" Top="18.9" Width="66.15" Height="18.9" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.CREF_PRD]" Duplicates="Hide" Font="Arial Unicode MS, 7pt"/>
+            <TextObject Name="Text129" Left="170.1" Top="18.9" Width="66.15" Height="18.9" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.CREF_PRD]" Duplicates="Hide" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text130" Left="-28.35" Width="37.8" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[ResponseDataModel.Data.Data.CDEPT_CODE]" Duplicates="Hide" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text128" Left="670.95" Top="18.9" Width="113.4" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.CDETAIL_DESC]" WordWrap="false" Font="Arial Unicode MS, 7pt"/>
             <DataFooterBand Name="DataFooter4" Top="221.78" Width="1047.06" VisibleExpression="[ResponseDataModel.Data.Header.LTOTAL_BY_REF_NO]"/>
@@ -283,7 +283,6 @@ namespace FastReport
         <TextObject Name="Text88" Left="982.8" Width="85.05" Height="18.9" Border.Lines="Top" CanBreak="false" Text="[GrandTotalAmountCredit]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Unicode MS, 7pt, style=Bold"/>
         <TextObject Name="Text84" Left="680.4" Width="160.65" Height="18.9" Border.Lines="Top" Text="[ResponseDataModel.Data.Label.GRAND_TOTAL]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt, style=Bold"/>
         <TextObject Name="Text89" Left="841.05" Width="141.75" Height="18.9" Border.Lines="Top" CanBreak="false" Text="[GrandTotalAmountDebit]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <LineObject Name="Line4" Left="-28.35" Top="18.9" Width="1096.2"/>
       </DataFooterBand>
     </DataBand>
     <DataBand Name="Data7" ZOrder="1" Top="364.63" Width="1047.06" Height="18.9" DataSource="SubData">
@@ -299,6 +298,7 @@ namespace FastReport
             <GeneralFormat/>
           </Formats>
         </TextObject>
+        <LineObject Name="Line4" Left="-28.35" Width="1096.2"/>
         <ChildBand Name="Child3" Top="342.4" Width="1047.06" Height="18.9">
           <TextObject Name="Text94" Left="-28.35" Width="113.4" Height="18.9" Border.Lines="Left, Top, Bottom" Text="[ResponseDataModel.Data.Label.ACCOUNT_NO]" VertAlign="Center" Font="Arial Unicode MS, 7pt, style=Bold"/>
           <TextObject Name="Text95" Left="85.05" Width="151.2" Height="18.9" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.ACCOUNT_NAME]" VertAlign="Center" Font="Arial Unicode MS, 7pt, style=Bold"/>

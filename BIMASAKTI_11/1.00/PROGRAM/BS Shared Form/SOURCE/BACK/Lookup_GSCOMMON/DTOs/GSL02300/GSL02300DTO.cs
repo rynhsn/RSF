@@ -23,6 +23,7 @@ namespace Lookup_GSCOMMON.DTOs
         public string CUNIT_TYPE_ID { get; set; }
         public string CUNIT_TYPE_NAME { get; set; }
         public string CLEASE_STATUS { get; set; }
+        public string CLEASE_STATUS_DESC { get; set; }
         public string CTENANT_NAME { get; set; }
         public string CSTART_DATE { get; set; }
         public string CEND_DATE { get; set; }

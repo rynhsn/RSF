@@ -21,6 +21,57 @@ public class PMT03500UtilityUsageCls
         _logger = LoggerPMT03500.R_GetInstanceLogger();
         _activitySource = PMT03500Activity.R_GetInstanceActivitySource();
     }
+    
+    public PMT03500SystemParamDTO GetSystemParam(PMT03500ParameterDb poParam)
+    {
+        using Activity loActivity = _activitySource.StartActivity(nameof(GetSystemParam));
+        R_Exception loEx = new();
+        PMT03500SystemParamDTO loRtn = null;
+        R_Db loDb;
+        DbConnection loConn;
+        DbCommand loCmd;
+        string lcQuery;
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection();
+            loCmd = loDb.GetCommand();
+
+            lcQuery = @"RSP_PM_GET_SYSTEM_PARAM";
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
+
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParam.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 8, poParam.CLANGUAGE_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParam.CPROPERTY_ID);
+
+
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
+                        "@CLANGUAGE_ID" or
+                        "@CPROPERTY_ID"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+            loRtn = R_Utility.R_ConvertTo<PMT03500SystemParamDTO>(loDataTable).FirstOrDefault();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        EndBlock:
+        loEx.ThrowExceptionIfErrors();
+
+        return loRtn;
+    }
 
     public List<PMT03500BuildingDTO> GetBuildingList(PMT03500ParameterDb poParam)
     {
@@ -118,6 +169,7 @@ public class PMT03500UtilityUsageCls
             loDb.R_AddCommandParameter(loCmd, "@CUTILITY_PRD_FROM_DATE", DbType.String, 8,
                 poParam.CUTILITY_PRD_FROM_DATE);
             loDb.R_AddCommandParameter(loCmd, "@CUTILITY_PRD_TO_DATE", DbType.String, 8, poParam.CUTILITY_PRD_TO_DATE);
+            loDb.R_AddCommandParameter(loCmd, "@LOTHER_UNIT", DbType.Boolean, 1, poParam.LOTHER_UNIT);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParam.CUSER_ID);
 
 
@@ -135,6 +187,7 @@ public class PMT03500UtilityUsageCls
                         "@CUTILITY_PRD" or
                         "@CUTILITY_PRD_FROM_DATE" or
                         "@CUTILITY_PRD_TO_DATE" or
+                        "@LOTHER_UNIT" or
                         "@CUSER_ID"
                 )
                 .Select(x => x.Value);
@@ -193,6 +246,7 @@ public class PMT03500UtilityUsageCls
             loDb.R_AddCommandParameter(loCmd, "@CUTILITY_TYPE", DbType.String, 2, poParam.CUTILITY_TYPE);
             loDb.R_AddCommandParameter(loCmd, "@CFLOOR_ID", DbType.String, 255, poParam.CFLOOR_ID);
             loDb.R_AddCommandParameter(loCmd, "@CUTILITY_PRD", DbType.String, 10, poParam.CUTILITY_PRD);
+            loDb.R_AddCommandParameter(loCmd, "@LOTHER_UNIT", DbType.Boolean, 1, poParam.LOTHER_UNIT);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParam.CUSER_ID);
 
 
@@ -205,6 +259,7 @@ public class PMT03500UtilityUsageCls
                         "@CUTILITY_TYPE" or
                         "@CFLOOR_ID" or
                         "@CUTILITY_PRD" or
+                        "@LOTHER_UNIT" or
                         "@CUSER_ID"
                 )
                 .Select(x => x.Value);

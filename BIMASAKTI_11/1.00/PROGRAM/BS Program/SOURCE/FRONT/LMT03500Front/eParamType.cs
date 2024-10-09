@@ -4,6 +4,7 @@ public enum eParamType
 {
     Property,
     UtilityType,
+    Building,
     Floor,
     InvYear,
     UtilityYear,

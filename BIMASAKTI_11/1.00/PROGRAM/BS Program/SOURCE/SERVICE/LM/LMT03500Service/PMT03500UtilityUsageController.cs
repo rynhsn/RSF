@@ -26,6 +26,38 @@ public class PMT03500UtilityUsageController : ControllerBase, IPMT03500UtilityUs
         _activitySource = PMT03500Activity.R_InitializeAndGetActivitySource(nameof(PMT03500UtilityUsageController));
     }
 
+    
+    [HttpPost]
+    public PMT03500SingleDTO<PMT03500SystemParamDTO> PMT03500GetSystemParam(PMT03500SystemParamParameter poParam)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(PMT03500GetSystemParam));
+        
+        _logger.LogInfo("Start - Get SystemParam");
+        var loEx = new R_Exception();
+        var loCls = new PMT03500UtilityUsageCls();
+        var loDbParams = new PMT03500ParameterDb();
+        var loReturn = new PMT03500SingleDTO<PMT03500SystemParamDTO>();
+
+        try
+        {
+            _logger.LogInfo("Set Parameter");
+            loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbParams.CTRANS_CODE = "";
+            
+            _logger.LogInfo("Get SystemParam");
+            loReturn.Data = loCls.GetSystemParam(loDbParams);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        _logger.LogInfo("End - Get SystemParam");
+        return loReturn;
+    }
+    
     [HttpPost]
     public IAsyncEnumerable<PMT03500BuildingDTO> PMT03500GetBuildingListStream()
     {
@@ -123,8 +155,8 @@ public class PMT03500UtilityUsageController : ControllerBase, IPMT03500UtilityUs
             loDbParams.CUTILITY_PRD = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CUTILITY_PRD);
             loDbParams.CUTILITY_PRD_FROM_DATE =
                 R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CUTILITY_PRD_FROM_DATE);
-            loDbParams.CUTILITY_PRD_TO_DATE =
-                R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CUTILITY_PRD_TO_DATE);
+            loDbParams.CUTILITY_PRD_TO_DATE = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CUTILITY_PRD_TO_DATE);
+            loDbParams.LOTHER_UNIT = R_Utility.R_GetStreamingContext<bool>(PMT03500ContextConstant.LOTHER_UNIT);
             // var leType = (EPMT03500UtilityUsageTypeDb)peType;
 
             _logger.LogInfo("Get Utility Usage List Stream");
@@ -163,6 +195,8 @@ public class PMT03500UtilityUsageController : ControllerBase, IPMT03500UtilityUs
             loDbParams.CUTILITY_TYPE = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CUTILITY_TYPE);
             loDbParams.CFLOOR_ID = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CFLOOR_ID);
             loDbParams.CUTILITY_PRD = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CUTILITY_PRD);
+            loDbParams.LOTHER_UNIT = R_Utility.R_GetStreamingContext<bool>(PMT03500ContextConstant.LOTHER_UNIT);
+            
 
             _logger.LogInfo("Get Utility CutOff List Stream");
             loResult = loCls.GetUtilityCutOffList(loDbParams);

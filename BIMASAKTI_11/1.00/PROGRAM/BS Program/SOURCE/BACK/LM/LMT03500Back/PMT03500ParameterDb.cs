@@ -43,4 +43,5 @@ public class PMT03500ParameterDb
     public int ITO_METER_NO { get; set; }
     public string CSEQ_NO { get; set; } = "";
     public string CINV_PRD { get; set; } = "";
+    public bool LOTHER_UNIT { get; set; }
 }

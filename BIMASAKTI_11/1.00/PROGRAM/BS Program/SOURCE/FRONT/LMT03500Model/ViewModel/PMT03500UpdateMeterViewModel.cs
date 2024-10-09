@@ -37,6 +37,7 @@ namespace PMT03500Model.ViewModel
         public string DisplayWG = "d-none";
         public string CSTART_INV_PRD_YEAR { get; set; }
         public string CSTART_INV_PRD_MONTH { get; set; }
+        public bool LOTHER_UNIT { get; set; } = false;
 
         public async Task Init(object poParam)
         {
@@ -62,14 +63,14 @@ namespace PMT03500Model.ViewModel
             try
             {
                 // var loParam = (PMT03500UpdateMeterHeader)poParam;
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, Header.CPROPERTY_ID);
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CBUILDING_ID, Header.CBUILDING_ID);
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, Header.CPROPERTY_ID??"");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CBUILDING_ID, Header.CBUILDING_ID??"");
 
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CDEPT_CODE, Header.CDEPT_CODE);
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CTRANS_CODE, Header.CTRANS_CODE);
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CREF_NO, Header.CREF_NO);
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CUNIT_ID, Header.CUNIT_ID);
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CFLOOR_ID, Header.CFLOOR_ID);
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CDEPT_CODE, Header.CDEPT_CODE??"");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CTRANS_CODE, Header.CTRANS_CODE??"");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CREF_NO, Header.CREF_NO??"");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CUNIT_ID, Header.CUNIT_ID??"");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CFLOOR_ID, Header.CFLOOR_ID??"");
                 // R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CTENANT_ID, "");
                 var loReturn =
                     await _model.GetListStreamAsync<PMT03500UtilityMeterDTO>(nameof(IPMT03500UpdateMeter
@@ -186,7 +187,8 @@ namespace PMT03500Model.ViewModel
                 {
                     CPROPERTY_ID = poParam.CPROPERTY_ID,
                     CBUILDING_ID = poParam.CBUILDING_ID,
-                    CUNIT_ID = poParam.CUNIT_ID
+                    CUNIT_ID = poParam.CUNIT_ID,
+                    LOTHER_UNIT = LOTHER_UNIT
                 };
 
                 var loReturn =

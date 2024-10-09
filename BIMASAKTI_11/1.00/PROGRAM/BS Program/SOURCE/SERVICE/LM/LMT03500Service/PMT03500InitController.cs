@@ -5,6 +5,7 @@ using PMT03500Common;
 using PMT03500Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PMT03500Common.Params;
 using R_BackEnd;
 using R_Common;
 
@@ -86,5 +87,4 @@ public class PMT03500InitController : ControllerBase, IPMT03500Init
         _logger.LogInfo("End - Get TransCode");
         return loReturn;
     }
-    
 }

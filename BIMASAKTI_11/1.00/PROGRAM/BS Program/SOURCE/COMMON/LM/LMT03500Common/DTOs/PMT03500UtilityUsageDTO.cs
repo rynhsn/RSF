@@ -11,7 +11,10 @@ namespace PMT03500Common.DTOs
         public string CTRANS_CODE { get; set; }
         public string CREF_NO { get; set; }
         public string CUNIT_ID { get; set; }
+        public string CUNIT_NAME { get; set; }
+        
         public string CFLOOR_ID { get; set; }
+        public string CFLOOR_NAME { get; set; }
         public string CBUILDING_ID { get; set; }
         public string CBUILDING_NAME { get; set; }
         public string CCHARGES_TYPE { get; set; }
@@ -29,6 +32,7 @@ namespace PMT03500Common.DTOs
         public DateTime? DSTART_DATE { get; set; }
         public DateTime? DEND_DATE { get; set; }
         public string CMETER_NO { get; set; }
+        public string CBASMETER_NO { get; set; }
 
         #region EC
 
@@ -54,6 +58,7 @@ namespace PMT03500Common.DTOs
 
         #endregion
         
+        public int IMETER_MAX_RESET { get; set; }
         public string CUNIT_DESCRIPTION { get; set; }
         public string CSTATUS { get; set; }
         public string CCREATE_BY { get; set; }

@@ -19,5 +19,7 @@ namespace PMT03500Common
         // public const string CTENANT_ID = "CTENANT_ID";
         public const string CREF_NO = "CREF_NO";
         public const string CUNIT_ID = "CUNIT_ID";
+        
+        public const string LOTHER_UNIT = "LOTHER_UNIT";
     }
 }
