@@ -5,6 +5,7 @@
         public const string CCURRENCY_CODE = "CCURRENCY_CODE";
         public const string CPROPERTY_ID = "CPROPERTY_ID";
         public const string LAGREEMENT = "LAGREEMENT";
+        public const string LBOTH_EVENT_CASUAL = "LBOTH_EVENT_CASUAL";
         public const string CTAX_TYPE_LIST = "CTAX_TYPE_LIST";
         public const string CJRNGRP_TYPE = "CJRNGRP_TYPE";
         public const string CTAX_DATE = "CTAX_DATE";

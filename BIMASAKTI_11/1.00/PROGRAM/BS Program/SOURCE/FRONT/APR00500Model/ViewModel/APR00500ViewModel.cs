@@ -48,6 +48,7 @@ namespace APR00500Model.ViewModel
             await GetPeriodList();
             // await GetCodeInfoList();
 
+            ReportParam.CREPORT_FILETYPE = FileType[0];
             ReportParam.DCUT_OFF_DATE = DateTime.Now;
             ReportParam.IFROM_PERIOD_YY = int.Parse(DateTime.Now.Year.ToString());
             ReportParam.CFROM_PERIOD_MM = PeriodListFrom[0].CPERIOD_NO;

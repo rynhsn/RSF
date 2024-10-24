@@ -188,6 +188,7 @@ namespace PMT03500Model.ViewModel
                     CPROPERTY_ID = poParam.CPROPERTY_ID,
                     CBUILDING_ID = poParam.CBUILDING_ID,
                     CUNIT_ID = poParam.CUNIT_ID,
+                    CFLOOR_ID = poParam.CFLOOR_ID,
                     LOTHER_UNIT = LOTHER_UNIT
                 };
 

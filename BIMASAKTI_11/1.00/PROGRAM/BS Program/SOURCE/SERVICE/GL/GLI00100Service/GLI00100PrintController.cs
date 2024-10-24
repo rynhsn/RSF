@@ -36,6 +36,7 @@ public class GLI00100PrintController : R_ReportControllerBase
         _ReportCls = new R_ReportFastReportBackClass();
         _ReportCls.R_InstantiateMainReportWithFileName += _ReportCls_R_InstantiateMainReportWithFileName;
         _ReportCls.R_GetMainDataAndName += _ReportCls_R_GetMainDataAndName;
+        _ReportCls.R_SetNumberAndDateFormat += _ReportCls_R_SetNumberAndDateFormat;
     }
 
     private void _ReportCls_R_InstantiateMainReportWithFileName(ref string pcfiletemplate)
@@ -47,6 +48,15 @@ public class GLI00100PrintController : R_ReportControllerBase
     {
         poData.Add(GeneratePrint(_Parameter));
         pcDataSourceName = "ResponseDataModel";
+    }
+    
+    private void _ReportCls_R_SetNumberAndDateFormat(ref R_ReportFormatDTO poReportFormat)
+    {
+        poReportFormat.DecimalSeparator = R_BackGlobalVar.REPORT_FORMAT_DECIMAL_SEPARATOR;
+        poReportFormat.GroupSeparator = R_BackGlobalVar.REPORT_FORMAT_GROUP_SEPARATOR;
+        poReportFormat.DecimalPlaces = R_BackGlobalVar.REPORT_FORMAT_DECIMAL_PLACES;
+        poReportFormat.ShortDate = R_BackGlobalVar.REPORT_FORMAT_SHORT_DATE;
+        poReportFormat.ShortTime = R_BackGlobalVar.REPORT_FORMAT_SHORT_TIME;
     }
 
     [HttpPost]
@@ -63,7 +73,8 @@ public class GLI00100PrintController : R_ReportControllerBase
             loCache = new GLI00100PrintLogKeyDTO
             {
                 poParam = poParam,
-                poLogKey = (R_NetCoreLogKeyDTO)R_NetCoreLogAsyncStorage.GetData(R_NetCoreLogConstant.LOG_KEY)
+                poLogKey = (R_NetCoreLogKeyDTO)R_NetCoreLogAsyncStorage.GetData(R_NetCoreLogConstant.LOG_KEY),
+                poGlobalVar = R_ReportGlobalVar.R_GetReportDTO()
             };
 
 
@@ -98,6 +109,7 @@ public class GLI00100PrintController : R_ReportControllerBase
 
             //Get Data and Set Log Key
             R_NetCoreLogUtility.R_SetNetCoreLogKey(loResultGUID.poLogKey);
+            R_ReportGlobalVar.R_SetFromReportDTO(loResultGUID.poGlobalVar);
 
             _Parameter = loResultGUID.poParam;
             loRtn = new FileStreamResult(_ReportCls.R_GetStreamReport(), R_ReportUtility.GetMimeType(R_FileType.PDF));
@@ -118,7 +130,7 @@ public class GLI00100PrintController : R_ReportControllerBase
         using var loActivity = _activitySource.StartActivity(nameof(GeneratePrint));
         var loEx = new R_Exception();
         var loRtn = new GLI00100PrintWithBaseHeaderDTO();
-        var loCultureInfo = new CultureInfo(poParam.CREPORT_CULTURE);
+        var loCultureInfo = new CultureInfo(R_BackGlobalVar.REPORT_CULTURE);
 
         try
         {
@@ -145,12 +157,16 @@ public class GLI00100PrintController : R_ReportControllerBase
 
             _logger.LogInfo("Set Base Header Data");
 
+            var lcCompany = R_BackGlobalVar.COMPANY_ID;
+            var lcUser = R_BackGlobalVar.USER_ID;
+            var lcLang = R_BackGlobalVar.CULTURE;
+            
             var loParam = new BaseHeaderDTO
             {
                 CCOMPANY_NAME = "PT Realta Chakradarma",
                 CPRINT_CODE = "GLI00100",
                 CPRINT_NAME = "Account Status Report",
-                CUSER_ID = poParam.CUSER_ID,
+                CUSER_ID = lcUser,
             };
 
             var loData = new GLI00100PrintResultDTO()
@@ -169,8 +185,8 @@ public class GLI00100PrintController : R_ReportControllerBase
             var loDbOptParam = new GLI00100AccountAnalysisParamDb();
 
             _logger.LogInfo("Set Parameter");
-            loDbParam.CCOMPANY_ID = poParam.CCOMPANY_ID;
-            loDbParam.CLANGUAGE_ID = poParam.CLANGUAGE_ID;
+            loDbParam.CCOMPANY_ID = lcCompany;
+            loDbParam.CLANGUAGE_ID = lcLang;
             loDbOptParam.CGLACCOUNT_NO = poParam.CGLACCOUNT_NO;
             loDbOptParam.CYEAR = poParam.CYEAR;
             loDbOptParam.CCURRENCY_TYPE = poParam.CCURRENCY_TYPE;

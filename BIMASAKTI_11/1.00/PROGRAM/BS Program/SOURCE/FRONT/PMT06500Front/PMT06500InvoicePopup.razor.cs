@@ -1,17 +1,21 @@
-﻿using Lookup_GSCOMMON.DTOs;
+﻿using BlazorClientHelper;
+using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
 using Lookup_GSModel.ViewModel;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using PMT06500Common.DTOs;
 using PMT06500Model.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
+using R_BlazorFrontEnd.Controls.Enums;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
+using R_LockingFront;
 
 namespace PMT06500Front;
 
@@ -25,7 +29,7 @@ public partial class PMT06500InvoicePopup : R_Page
     private bool _btnCancel = true;
     private bool _txtRefNo = false;
     private string _visible = "d-block";
-
+    
     protected override async Task R_Init_From_Master(object poParam)
     {
         var loEx = new R_Exception();

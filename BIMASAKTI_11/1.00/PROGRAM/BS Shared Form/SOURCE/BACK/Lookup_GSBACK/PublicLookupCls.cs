@@ -1513,6 +1513,7 @@ namespace Lookup_GSLBACK
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 50, poEntity.CBUILDING_ID);
                 loDb.R_AddCommandParameter(loCmd, "@LEVENT", DbType.Boolean, 50, poEntity.LEVENT);
+                loDb.R_AddCommandParameter(loCmd, "@LBOTH_EVENT_CASUAL", DbType.Boolean, 50, poEntity.LBOTH_EVENT_CASUAL);
                 loDb.R_AddCommandParameter(loCmd, "@LAGREEMENT", DbType.Boolean, 50, poEntity.LAGREEMENT);
                 loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, poEntity.CDEPT_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 50, poEntity.CTRANS_CODE);

@@ -68,6 +68,7 @@ namespace GLR00100Model.ViewModel
                 await GetSystemParam();
                 await GetPeriod();
                 await GetPeriodDTList(YearPeriod.ToString());
+                ReportParam.CREPORT_TYPE = FileType[0];
                 ReportParam.CPERIOD_TYPE = RadioByType[0].Key;
                 ReportParam.CCURRENCY_TYPE = RadioCurrencyType[0].Key;
                 

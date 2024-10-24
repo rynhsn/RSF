@@ -32,6 +32,7 @@ namespace PMR02600Model.ViewModel
                     await _model.GetAsync<PMR02600ListDTO<PMR02600PropertyDTO>>(
                         nameof(IPMR02600.PMR02600GetPropertyList));
                 PropertyList = loReturn.Data;
+                ReportParam.CREPORT_FILETYPE = FileType[0];
                 ReportParam.CPROPERTY = PropertyList.Count > 0 ? PropertyList[0].CPROPERTY_ID : ReportParam.CPROPERTY ;
             }
             catch (Exception ex)

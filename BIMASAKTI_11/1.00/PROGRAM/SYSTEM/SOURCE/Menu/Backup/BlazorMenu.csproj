@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-	<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+	  <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
   </PropertyGroup>
 
   <ItemGroup>
@@ -91,25 +91,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\CBB00200Front\CBB00200Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLI00100Front\GLI00100Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLM00500Front\GLM00500Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLR00100Front\GLR00100Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM02000Front\GSM02000Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM04500Front\GSM04500Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM05000Front\GSM05000Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\LMT03500Front\PMT03500Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB00300Front\PMB00300Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB05000Front\PMB05000Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMI00500Front\PMI00500Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMM02000Front\PMM02000Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR02600Front\PMR02600Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMT06000Front\PMT06000Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMT06500Front\PMT06500Front.csproj" />
-    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\TXB00200Front\TXB00200Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\APR00300Front\APR00300Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\APR00500Front\APR00500Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\CBB00200Front\CBB00200Front.csproj"/>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLI00100Front\GLI00100Front.csproj"/>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLM00500Front\GLM00500Front.csproj"/>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLR00100Front\GLR00100Front.csproj"/>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM02000Front\GSM02000Front.csproj"/>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM04500Front\GSM04500Front.csproj"/>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM05000Front\GSM05000Front.csproj"/>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\LMT03500Front\PMT03500Front.csproj"/>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB00300Front\PMB00300Front.csproj"/>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB05000Front\PMB05000Front.csproj"/>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMI00500Front\PMI00500Front.csproj"/>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMM02000Front\PMM02000Front.csproj"/>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR02600Front\PMR02600Front.csproj"/>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMT06000Front\PMT06000Front.csproj"/>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMT06500Front\PMT06500Front.csproj"/>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\TXB00200Front\TXB00200Front.csproj"/>
   </ItemGroup>
-
-    <!--<ItemGroup>
-	    <BlazorWebAssemblyLazyLoad Include="SAB00700Front.dll" />
-    </ItemGroup>-->
+  
 </Project>

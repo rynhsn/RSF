@@ -153,7 +153,7 @@ public partial class PMT03500OtherUnit
             var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
             _viewModelUtility.EntityUtility = loData;
             _viewModelUtility.EntityUtility.CPROPERTY_ID = _viewModel.PropertyId;
-            eventArgs.Result = _viewModelUtility.Entity;
+            eventArgs.Result = _viewModelUtility.EntityUtility;
         }
         catch (Exception ex)
         {
@@ -218,11 +218,13 @@ public partial class PMT03500OtherUnit
                     _viewModelUtility.UtilityPeriodYear = (string)value;
                     await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear,
                         _viewModelUtility.UtilityPeriodNo);
+                    _viewModelUtility.SetParameterHeader();
                     break;
                 case eParamType.UtilityPeriod:
                     _viewModelUtility.UtilityPeriodNo = (string)value;
                     await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear,
                         _viewModelUtility.UtilityPeriodNo);
+                    _viewModelUtility.SetParameterHeader();
                     break;
             }
         }
@@ -473,6 +475,13 @@ public partial class PMT03500OtherUnit
         // completed task
         loEx.ThrowExceptionIfErrors();
     }
+    
+    
+    private void BeforeEditUtility(R_BeforeEditEventArgs eventArgs)
+    {
+        var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
+        eventArgs.Cancel = loData.CSTATUS.Length > 0;
+    }
 
     private async Task SaveBatch(R_ServiceSaveBatchEventArgs eventArgs)
     {
@@ -629,4 +638,9 @@ public partial class PMT03500OtherUnit
     }
 
     #endregion
+    
+    private void CheckBoxSelectValueChanged(R_CheckBoxSelectValueChangedEventArgs eventArgs)
+    {
+        eventArgs.Enabled = true;
+    }
 }

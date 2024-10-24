@@ -6,6 +6,7 @@
         public string CBUILDING_ID { get; set; } = "";
         public bool LEVENT { get; set; }
         public bool LAGREEMENT { get; set; }
+        public bool LBOTH_EVENT_CASUAL { get; set; }
         public string CDEPT_CODE { get; set; } = "";
         public string CTRANS_CODE { get; set; } = "";
         public string CREF_NO { get; set; } = "";

@@ -181,7 +181,7 @@ namespace PMT06000Model.ViewModel
 
         public string TRANS_CODE = "802400";
 
-        public List<KeyValuePair<string, string>> RadioPeriodType = new List<KeyValuePair<string, string>>
+        public List<KeyValuePair<string, string>> RadioPeriodType = new List<KeyValuePair<string, string>>  
         {
             new KeyValuePair<string, string>("A",
                 R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "AllPeriod")),

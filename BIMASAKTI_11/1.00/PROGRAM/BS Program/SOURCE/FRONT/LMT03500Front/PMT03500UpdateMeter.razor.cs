@@ -128,6 +128,7 @@ public partial class PMT03500UpdateMeter : R_ITabPage
                 {
                     CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
                     CBUILDING_ID = _viewModel.Header.CBUILDING_ID ?? "",
+                    LBOTH_EVENT_CASUAL = true,
                     LEVENT = false,
                     LAGREEMENT = true,
                     CDEPT_CODE = "",
@@ -147,6 +148,7 @@ public partial class PMT03500UpdateMeter : R_ITabPage
                         "_ErrLookup01"));
                     _viewModel.Header.CUNIT_ID = "";
                     _viewModel.Header.CUNIT_NAME = "";
+                    _viewModel.Header.CFLOOR_ID = "";
                     _viewModel.Header.CREF_NO = "";
                     _viewModel.Header.CTENANT_ID = "";
                     _viewModel.Header.CTENANT_NAME = "";
@@ -155,45 +157,46 @@ public partial class PMT03500UpdateMeter : R_ITabPage
 
                 _viewModel.Header.CUNIT_ID = loResult.COTHER_UNIT_ID;
                 _viewModel.Header.CUNIT_NAME = loResult.COTHER_UNIT_NAME;
+                _viewModel.Header.CFLOOR_ID = loResult.CFLOOR_ID;
             }
-            else
-            {
-                var loLookupViewModel = new LookupGSL02300ViewModel();
-                if (_viewModel.Header.CUNIT_ID == null || _viewModel.Header.CUNIT_ID.Trim().Length <= 0)
-                {
-                    _viewModel.Header.CUNIT_NAME = "";
-                    return;
-                }
-
-                var param = new GSL02300ParameterDTO
-                {
-                    CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
-                    CBUILDING_ID = _viewModel.Header.CBUILDING_ID,
-                    LAGREEMENT = true,
-                    CFLOOR_ID = "",
-                    CSEARCH_TEXT = _viewModel.Header.CUNIT_ID
-                };
-
-                GSL02300DTO loResult = null;
-
-                loResult = await loLookupViewModel.GetBuildingUnit(param);
-
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                        "_ErrLookup01"));
-                    _viewModel.Header.CUNIT_ID = "";
-                    _viewModel.Header.CUNIT_NAME = "";
-                    _viewModel.Header.CREF_NO = "";
-                    _viewModel.Header.CTENANT_ID = "";
-                    _viewModel.Header.CTENANT_NAME = "";
-                    goto EndBlock;
-                }
-
-                _viewModel.Header.CUNIT_ID = loResult.CUNIT_ID;
-                _viewModel.Header.CUNIT_NAME = loResult.CUNIT_NAME;
-            }
+            // else
+            // {
+            //     var loLookupViewModel = new LookupGSL02300ViewModel();
+            //     if (_viewModel.Header.CUNIT_ID == null || _viewModel.Header.CUNIT_ID.Trim().Length <= 0)
+            //     {
+            //         _viewModel.Header.CUNIT_NAME = "";
+            //         return;
+            //     }
+            //
+            //     var param = new GSL02300ParameterDTO
+            //     {
+            //         CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
+            //         CBUILDING_ID = _viewModel.Header.CBUILDING_ID,
+            //         LAGREEMENT = true,
+            //         CFLOOR_ID = "",
+            //         CSEARCH_TEXT = _viewModel.Header.CUNIT_ID
+            //     };
+            //
+            //     GSL02300DTO loResult = null;
+            //
+            //     loResult = await loLookupViewModel.GetBuildingUnit(param);
+            //
+            //     if (loResult == null)
+            //     {
+            //         loEx.Add(R_FrontUtility.R_GetError(
+            //             typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+            //             "_ErrLookup01"));
+            //         _viewModel.Header.CUNIT_ID = "";
+            //         _viewModel.Header.CUNIT_NAME = "";
+            //         _viewModel.Header.CREF_NO = "";
+            //         _viewModel.Header.CTENANT_ID = "";
+            //         _viewModel.Header.CTENANT_NAME = "";
+            //         goto EndBlock;
+            //     }
+            //
+            //     _viewModel.Header.CUNIT_ID = loResult.CUNIT_ID;
+            //     _viewModel.Header.CUNIT_NAME = loResult.CUNIT_NAME;
+            // }
 
             await OnChangeHeader();
         }
@@ -215,6 +218,7 @@ public partial class PMT03500UpdateMeter : R_ITabPage
             {
                 CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
                 CBUILDING_ID = _viewModel.Header.CBUILDING_ID ?? "",
+                LBOTH_EVENT_CASUAL = true,
                 LEVENT = false,
                 LAGREEMENT = true,
                 CDEPT_CODE = "",
@@ -248,6 +252,7 @@ public partial class PMT03500UpdateMeter : R_ITabPage
 
                 _viewModel.Header.CUNIT_ID = loTempResult.COTHER_UNIT_ID;
                 _viewModel.Header.CUNIT_NAME = loTempResult.COTHER_UNIT_NAME;
+                _viewModel.Header.CFLOOR_ID = loTempResult.CFLOOR_ID;
             }
             else
             {
@@ -257,6 +262,7 @@ public partial class PMT03500UpdateMeter : R_ITabPage
 
                 _viewModel.Header.CUNIT_ID = loTempResult.CUNIT_ID;
                 _viewModel.Header.CUNIT_NAME = loTempResult.CUNIT_NAME;
+                _viewModel.Header.CFLOOR_ID = loTempResult.CFLOOR_ID;
             }
 
             await OnChangeHeader();

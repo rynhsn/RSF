@@ -30,11 +30,12 @@ partial class FormMenu
     private void InitializeComponent()
     {
         APR00500_Button = new Button();
+        APR00300_Button = new Button();
         SuspendLayout();
         // 
         // APR00500_Button
         // 
-        APR00500_Button.Location = new Point(12, 12);
+        APR00500_Button.Location = new Point(12, 37);
         APR00500_Button.Name = "APR00500_Button";
         APR00500_Button.Size = new Size(75, 23);
         APR00500_Button.TabIndex = 0;
@@ -42,11 +43,22 @@ partial class FormMenu
         APR00500_Button.UseVisualStyleBackColor = true;
         APR00500_Button.Click += APR00500_Button_Click;
         // 
+        // APR00300_Button
+        // 
+        APR00300_Button.Location = new Point(12, 8);
+        APR00300_Button.Name = "APR00300_Button";
+        APR00300_Button.Size = new Size(75, 23);
+        APR00300_Button.TabIndex = 1;
+        APR00300_Button.Text = "APR00300";
+        APR00300_Button.UseVisualStyleBackColor = true;
+        APR00300_Button.Click += APR00300_Button_Click;
+        // 
         // FormMenu
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(270, 49);
+        ClientSize = new Size(270, 99);
+        Controls.Add(APR00300_Button);
         Controls.Add(APR00500_Button);
         Name = "FormMenu";
         Text = "Form Menu AP Report";
@@ -57,4 +69,5 @@ partial class FormMenu
     #endregion
 
     private Button APR00500_Button;
+    private Button APR00300_Button;
 }

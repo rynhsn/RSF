@@ -185,7 +185,7 @@ public partial class PMT03500 : R_Page
             var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
             _viewModelUtility.EntityUtility = loData;
             _viewModelUtility.EntityUtility.CPROPERTY_ID = _viewModel.PropertyId;
-            eventArgs.Result = _viewModelUtility.Entity;
+            eventArgs.Result = _viewModelUtility.EntityUtility;
         }
         catch (Exception ex)
         {
@@ -209,13 +209,14 @@ public partial class PMT03500 : R_Page
                         await _comboPropertyRef.FocusAsync();
                         return;
                     }
+
                     // _viewModelUtility.PropertyId = (string)value;
                     _viewModelUtility.Property =
                         _viewModel.PropertyList.FirstOrDefault(x => x.CPROPERTY_ID == _viewModel.PropertyId);
-                    
+
                     await _viewModelUtility.GetSystemParam();
                     _viewModelUtility.SetParameterHeader();
-                    
+
                     switch (_tabStripRef.ActiveTab.Id)
                     {
                         case "Utility" when _tabStripUtilityRef.ActiveTab.Id == "GI":
@@ -254,13 +255,13 @@ public partial class PMT03500 : R_Page
                     break;
                 case eParamType.UtilityYear:
                     _viewModelUtility.UtilityPeriodYear = (string)value;
-                    await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear,
-                        _viewModelUtility.UtilityPeriodNo);
+                    await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear, _viewModelUtility.UtilityPeriodNo);
+                    _viewModelUtility.SetParameterHeader();
                     break;
                 case eParamType.UtilityPeriod:
                     _viewModelUtility.UtilityPeriodNo = (string)value;
-                    await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear,
-                        _viewModelUtility.UtilityPeriodNo);
+                    await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear, _viewModelUtility.UtilityPeriodNo);
+                    _viewModelUtility.SetParameterHeader();
                     break;
             }
         }
@@ -468,6 +469,7 @@ public partial class PMT03500 : R_Page
         {
             _enabledBtn = false;
             await _conductorRefUtility.R_SaveBatch();
+            // _enabledBtn = true;
         }
         catch (Exception ex)
         {
@@ -491,9 +493,9 @@ public partial class PMT03500 : R_Page
 
             loData.CSTART_DATE = loData.DSTART_DATE?.ToString("yyyyMMdd");
             loData.CEND_DATE = loData.DEND_DATE?.ToString("yyyyMMdd");
-            
+
             //proses untuk merubah state LSELECTED
-            var llStartDate = loData.DSTART_DATE !=  _viewModelUtility.EntityUtility.DSTART_DATE;
+            var llStartDate = loData.DSTART_DATE != _viewModelUtility.EntityUtility.DSTART_DATE;
             var llEndDate = loData.DEND_DATE != _viewModelUtility.EntityUtility.DEND_DATE;
             var llBlock1End = loData.IBLOCK1_END != _viewModelUtility.EntityUtility.IBLOCK1_END;
             var llBlock2End = loData.IBLOCK2_END != _viewModelUtility.EntityUtility.IBLOCK2_END;
@@ -554,6 +556,7 @@ public partial class PMT03500 : R_Page
         try
         {
             var loData = _viewModelUtility.GridUtilityUsageList.Where(x => x.LSELECTED).ToList();
+            
             var loParam = new PMT03500UndoParam
             {
                 CCOMPANY_ID = ClientHelper.CompanyId,
@@ -604,4 +607,16 @@ public partial class PMT03500 : R_Page
         eventArgs.TargetPageType = typeof(PMT03500OtherUnit);
         eventArgs.Parameter = "";
     }
+
+    private void BeforeEditUtility(R_BeforeEditEventArgs eventArgs)
+    {
+        var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
+        eventArgs.Cancel = loData.CSTATUS.Length > 0;
+    }
+    
+    private void CheckBoxSelectValueChanged(R_CheckBoxSelectValueChangedEventArgs eventArgs)
+    {
+        eventArgs.Enabled = true;
+    }
+
 }

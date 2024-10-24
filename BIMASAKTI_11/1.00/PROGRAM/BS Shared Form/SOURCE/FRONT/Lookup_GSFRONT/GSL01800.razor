@@ -5,6 +5,14 @@
 
 <R_StackLayout Style="width: 800px">
     <R_StackLayout Row>
+        <R_ItemLayout col="5">
+            <R_TextBox @bind-Value="@_lcSeacrhTree"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Button R_ConductorSource="@_conductorRef" OnClick="@FilterTree" Enabled="@(_viewModel.CategoryGrid.Count > 0)">@_localizer["_Filter"]</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
         <R_TreeView @ref="@_treeRef"
                     TextField="Description"
                     IdField="Id"
@@ -13,7 +21,6 @@
                     Height="400px"
                     R_ServiceGetListRecord="@R_ServiceGetListRecordAsync"
                     TModel="GSL01800TreeDTO"
-                    ShowFilter="true"
                     >
         </R_TreeView>
     </R_StackLayout>

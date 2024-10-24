@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PMT03500Common;
 using PMT03500Common.DTOs;
+using PMT03500FrontResources;
 using R_APICommonDTO;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
@@ -164,6 +165,19 @@ namespace PMT03500Model.ViewModel
 
                         CCOMPANY_ID = CompanyId
                     }).ToList();
+                    
+                    //cek apakah di loData ada start date yang lebih besar dari end date dan jika ada maka akan di set error dan property notes akan diisi
+                    foreach (var item in loData)
+                    {
+                        if (int.Parse(item.CSTART_DATE) > int.Parse(item.CEND_DATE))
+                        {
+                            IsError = true;
+                            InvalidRows++;
+                            ValidRows = loData.Count - InvalidRows;
+                            item.ErrorFlag = "N";
+                            item.ErrorMessage = R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "START_DATE_LESS_THAN_END_DATE");
+                        }
+                    }
                 }
                 else if(UploadParam.EUTILITY_TYPE == EPMT03500UtilityUsageType.WG)
                 {

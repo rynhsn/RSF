@@ -339,6 +339,15 @@ namespace PMT06000FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Overtime Request.
+        /// </summary>
+        internal static string OVERTIME_REQUEST {
+            get {
+                return ResourceManager.GetString("OVERTIME_REQUEST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select Building!.
         /// </summary>
         internal static string PLEASE_SELECT_BUILDING {

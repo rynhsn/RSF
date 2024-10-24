@@ -6,5 +6,6 @@ namespace PMT03500Common.Params
         public string CBUILDING_ID { get; set; }
         public string CUNIT_ID { get; set; }
         public bool LOTHER_UNIT { get; set; }
+        public string CFLOOR_ID { get; set; }
     }
 }

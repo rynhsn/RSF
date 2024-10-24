@@ -99,20 +99,20 @@ namespace PMR02600Common.Model
                     CPROPERTY = "Harco Mas(ASHMD)",
                     CFROM_BUILDING = "TOWER WULAN(TOWER1)",
                     CTO_BUILDING = "MULAN TOWER(TOWER2)",
-                    // CPERIOD = "20240725",
-                    DPERIOD = DateTime.TryParseExact("20240725", "yyyyMMdd",
-                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var period)
-                        ? period
-                        : (DateTime?)null,
+                    CPERIOD = "20240725"
                 },
                 Data = loCollection
             };
 
-            // loData.Header.CPERIOD_DISPLAY = DateTime.TryParseExact(loData.Header.CPERIOD, "yyyyMMdd",
-            //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
-            //     ? refDate.ToString("dd MMM yyyy")
-            //     : null;
-
+            loData.Header.CPERIOD_DISPLAY = DateTime.TryParseExact(loData.Header.CPERIOD, "yyyyMMdd",
+                CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
+                ? refDate.ToString("dd MMM yyyy")
+                : null;
+            
+            loData.Header.DPERIOD = DateTime.TryParseExact(loData.Header.CPERIOD, "yyyyMMdd",
+                CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var period)
+                ? period
+                : (DateTime?)null;
 
             return loData;
         }

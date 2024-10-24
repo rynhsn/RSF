@@ -221,15 +221,6 @@ namespace GLR00100Common.Model
 
             foreach (var item in loCollection)
             {
-                // item.CREF_DATE_DISPLAY = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
-                //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
-                //     ? refDate.ToString("dd-MMM-yyyy")
-                //     : null;
-                // item.CDOC_DATE_DISPLAY = DateTime.TryParseExact(item.CDOC_DATE, "yyyyMMdd",
-                //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var docDate)
-                //     ? docDate.ToString("dd-MMM-yyyy")
-                //     : null;
-
                 item.DREF_DATE = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
                     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
                     ? refDate
@@ -245,7 +236,7 @@ namespace GLR00100Common.Model
             {
                 Title = "Activity Report",
                 Label = new GLR00100ReportLabelDTO(),
-                Header = new GLR00100ReportHeaderBasedOnDateDTO
+                Header = new GLR00100ReportHeaderDTO
                 {
                     CFROM_DEPT_CODE = loCollection.FirstOrDefault()?.CFROM_DEPT_CODE,
                     CTO_DEPT_CODE = loCollection.FirstOrDefault()?.CTO_DEPT_CODE,
@@ -257,40 +248,35 @@ namespace GLR00100Common.Model
                     CREPORT_BASED_ON = "Based On Date"
                 },
 
-                //assign data CREF_DATE_DISPLAY dalam loCollection lalu di assign ke DATA
-                // Data = loCollection.Select(x => new GLR00100ResultActivityReportDTO
-                // {
-                //     CREF_DATE = x.CREF_DATE,
-                //     CTRANS_CODE = x.CTRANS_CODE,
-                //     CTRANSACTION_NAME = x.CTRANSACTION_NAME,
-                //     CDEPT_CODE = x.CDEPT_CODE,
-                //     CREF_NO = x.CREF_NO,
-                //     CTRANS_DESC = x.CTRANS_DESC,
-                //     CCUST_SUPP_NAME = x.CCUST_SUPP_NAME,
-                //     CUPDATE_BY = x.CUPDATE_BY,
-                //     CMODULE_ID = x.CMODULE_ID,
-                //     CGLACCOUNT_NO = x.CGLACCOUNT_NO,
-                //     CGLACCOUNT_NAME = x.CGLACCOUNT_NAME,
-                //     CCENTER_CODE = x.CCENTER_CODE,
-                //     CDOC_NO = x.CDOC_NO,
-                //     CDETAIL_DESC = x.CDETAIL_DESC,
-                //     CDOC_DATE = x.CDOC_DATE,
-                //     NDEBIT_AMOUNT = x.NDEBIT_AMOUNT,
-                //     NCREDIT_AMOUNT = x.NCREDIT_AMOUNT,
-                //     CCURRENCY_CODE = x.CCURRENCY_CODE,
-                //     CCURRENCY_TYPE_NAME = x.CCURRENCY_TYPE_NAME,
-                //     
-                //     CREF_DATE_DISPLAY = !string.IsNullOrWhiteSpace(x.CREF_DATE)
-                //         ? DateTime.ParseExact(x.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy")
-                //         :"",
-                //     CDOC_DATE_DISPLAY = !string.IsNullOrWhiteSpace(x.CDOC_DATE)
-                //         ? DateTime.ParseExact(x.CDOC_DATE, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy")
-                //         :"",
-                // }).ToList(),
                 Data = loCollection,
 
                 SubData = loSubCollection
             };
+            
+            foreach (var item in loCollection)
+            {
+                item.DREF_DATE = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
+                    CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate) ? refDate : (DateTime?)null;
+                item.DDOC_DATE = DateTime.TryParseExact(item.CDOC_DATE, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var docDate) ? docDate : (DateTime?)null;
+            }
+            
+            //grouping untuk data berdasarkan CREF_DATE
+            var loGroupDate = loCollection.GroupBy(x => x.DREF_DATE).ToList();
+            foreach (var itemDate in loGroupDate)
+            {
+                var loDataDate = new GLR00100ReportBasedOnDateSubDTO()
+                {
+                    DREF_DATE = itemDate.Key,
+                    Data = itemDate.ToList(),
+                    NTOTAL_DEBIT = itemDate.Sum(x => x.NDEBIT_AMOUNT),
+                    NTOTAL_CREDIT = itemDate.Sum(x => x.NCREDIT_AMOUNT)
+                };
+                // parse ke datetime dulu untuk DREF_DATE pada loDataDate.Data
+                
+                loData.DataByDate.Add(loDataDate);
+                loData.NGRAND_TOTAL_CREDIT += loDataDate.NTOTAL_CREDIT;
+                loData.NGRAND_TOTAL_DEBIT += loDataDate.NTOTAL_DEBIT;
+            }
 
             return loData;
         }
@@ -530,15 +516,6 @@ namespace GLR00100Common.Model
 
             foreach (var item in loCollection)
             {
-                // item.CREF_DATE_DISPLAY = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
-                //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
-                //     ? refDate.ToString("dd-MMM-yyyy")
-                //     : null;
-                // item.CDOC_DATE_DISPLAY = DateTime.TryParseExact(item.CDOC_DATE, "yyyyMMdd",
-                //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var docDate)
-                //     ? docDate.ToString("dd-MMM-yyyy")
-                //     : null;
-
                 item.DREF_DATE = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
                     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
                     ? refDate
@@ -554,7 +531,7 @@ namespace GLR00100Common.Model
             {
                 Title = "Activity Report",
                 Label = new GLR00100ReportLabelDTO(),
-                Header = new GLR00100ReportHeaderBasedOnDateDTO
+                Header = new GLR00100ReportHeaderDTO
                 {
                     CTRANS_CODE = loCollection.FirstOrDefault()?.CTRANS_CODE,
                     CTRANSACTION_NAME = loCollection.FirstOrDefault()?.CTRANSACTION_NAME,
@@ -578,7 +555,32 @@ namespace GLR00100Common.Model
 
                 SubData = loSubCollection
             };
-
+            
+            //grouping untuk data berdasarkan CREF_NO
+            var loGroupRefNo = loCollection.GroupBy(x => x.CREF_NO).ToList();
+            foreach (var itemRefNo in loGroupRefNo)
+            {
+                var loDataRefNo = new GLR00100ReportBasedOnRefNoDTO()
+                {
+                    CREF_NO = itemRefNo.Key,
+                    Data = itemRefNo.ToList(),
+                    NTOTAL_DEBIT = itemRefNo.Sum(x => x.NDEBIT_AMOUNT),
+                    NTOTAL_CREDIT = itemRefNo.Sum(x => x.NCREDIT_AMOUNT)
+                };
+                // parse ke datetime dulu untuk DREF_DATE pada loDataRefNo.Data
+                foreach (var itemData in loDataRefNo.Data)
+                {
+                    itemData.DREF_DATE = DateTime.TryParseExact(itemData.CREF_DATE, "yyyyMMdd",
+                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate) ? refDate : (DateTime?)null;
+                    itemData.DDOC_DATE = DateTime.TryParseExact(itemData.CDOC_DATE, "yyyyMMdd",
+                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var docDate) ? docDate : (DateTime?)null;
+                }
+                
+                loData.DataByRefNo.Add(loDataRefNo);
+                loData.NGRAND_TOTAL_CREDIT += loDataRefNo.NTOTAL_CREDIT;
+                loData.NGRAND_TOTAL_DEBIT += loDataRefNo.NTOTAL_DEBIT;
+            }
+            
             return loData;
         }
 
@@ -817,15 +819,6 @@ namespace GLR00100Common.Model
 
             foreach (var item in loCollection)
             {
-                // item.CREF_DATE_DISPLAY = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
-                //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
-                //     ? refDate.ToString("dd-MMM-yyyy")
-                //     : null;
-                // item.CDOC_DATE_DISPLAY = DateTime.TryParseExact(item.CDOC_DATE, "yyyyMMdd",
-                //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var docDate)
-                //     ? docDate.ToString("dd-MMM-yyyy")
-                //     : null;
-
                 item.DREF_DATE = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
                     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
                     ? refDate
@@ -841,7 +834,7 @@ namespace GLR00100Common.Model
             {
                 Title = "Activity Report",
                 Label = new GLR00100ReportLabelDTO(),
-                Header = new GLR00100ReportHeaderBasedOnDateDTO
+                Header = new GLR00100ReportHeaderDTO
                 {
                     CTRANS_CODE = loCollection.FirstOrDefault()?.CTRANS_CODE,
                     CTRANSACTION_NAME = loCollection.FirstOrDefault()?.CTRANSACTION_NAME,
@@ -859,12 +852,51 @@ namespace GLR00100Common.Model
 
 
                 //assign data CREF_DATE_DISPLAY dalam loCollection lalu di assign ke DATA
-
                 Data = loCollection,
-                // Data = loCollection,
-
                 SubData = loSubCollection
             };
+            
+            var loGroupTransCode = loCollection.GroupBy(x => x.CDEPT_CODE).ToList();
+            foreach (var item in loGroupTransCode)
+            {
+                var loGroupRefNo = item.GroupBy(x => x.CREF_NO).ToList();
+                var loGroup = new GLR00100ReportBasedOnTransCodeDTO()
+                {
+                    CDEPT_CODE = item.Key,
+                    Data = new List<GLR00100ReportBasedOnRefNoDTO>(),
+                    NTOTAL_DEBIT = item.Sum(x => x.NDEBIT_AMOUNT),
+                    NTOTAL_CREDIT = item.Sum(x => x.NCREDIT_AMOUNT)
+                };
+                
+                foreach (var itemRefNo in loGroupRefNo)
+                {
+                    var loDataRefNo = new GLR00100ReportBasedOnRefNoDTO()
+                    {
+                        CREF_NO = itemRefNo.Key,
+                        Data = itemRefNo.ToList(),
+                        NTOTAL_DEBIT = itemRefNo.Sum(x => x.NDEBIT_AMOUNT),
+                        NTOTAL_CREDIT = itemRefNo.Sum(x => x.NCREDIT_AMOUNT)
+                    };
+                    loGroup.Data.Add(loDataRefNo);
+                    // parse ke datetime dulu untuk DREF_DATE pada loDataRefNo.Data
+                    foreach (var itemData in loDataRefNo.Data)
+                    {
+                        itemData.DREF_DATE = DateTime.TryParseExact(itemData.CREF_DATE, "yyyyMMdd",
+                            CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
+                            ? refDate
+                            : (DateTime?)null;
+                        itemData.DDOC_DATE = DateTime.TryParseExact(itemData.CDOC_DATE, "yyyyMMdd",
+                            CultureInfo.InvariantCulture,
+                            DateTimeStyles.AssumeUniversal, out var docDate)
+                            ? docDate
+                            : (DateTime?)null;
+                    }
+                }
+                
+                loData.DataByTransCode.Add(loGroup);
+                loData.NGRAND_TOTAL_CREDIT += item.Sum(x => x.NCREDIT_AMOUNT);
+                loData.NGRAND_TOTAL_DEBIT += item.Sum(x => x.NDEBIT_AMOUNT);
+            }
 
             return loData;
         }

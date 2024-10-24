@@ -1251,6 +1251,7 @@ namespace Lookup_GSModel
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CBUILDING_ID, string.IsNullOrWhiteSpace(poParameter.CBUILDING_ID) ? "" : poParameter.CBUILDING_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LEVENT, poParameter.LEVENT);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LAGREEMENT, poParameter.LAGREEMENT);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LBOTH_EVENT_CASUAL, poParameter.LBOTH_EVENT_CASUAL);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CDEPT_CODE, string.IsNullOrWhiteSpace(poParameter.CDEPT_CODE) ? "" : poParameter.CDEPT_CODE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTRANS_CODE, string.IsNullOrWhiteSpace(poParameter.CTRANS_CODE) ? "" : poParameter.CTRANS_CODE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CREF_NO, string.IsNullOrWhiteSpace(poParameter.CREF_NO) ? "" : poParameter.CREF_NO);

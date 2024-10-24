@@ -1261,6 +1261,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
                 poParameter.LEVENT = R_Utility.R_GetStreamingContext<bool>(ContextConstantPublicLookup.LEVENT);
                 poParameter.LAGREEMENT = R_Utility.R_GetStreamingContext<bool>(ContextConstantPublicLookup.LAGREEMENT);
+                poParameter.LBOTH_EVENT_CASUAL = R_Utility.R_GetStreamingContext<bool>(ContextConstantPublicLookup.LBOTH_EVENT_CASUAL);
                 poParameter.CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CDEPT_CODE);
                 poParameter.CTRANS_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTRANS_CODE);
                 poParameter.CREF_NO = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CREF_NO);

@@ -247,6 +247,7 @@ public class PMT03500UpdateMeterController : ControllerBase, IPMT03500UpdateMete
             loDbParams.CPROPERTY_ID = poParam.CPROPERTY_ID;
             loDbParams.CBUILDING_ID = poParam.CBUILDING_ID;
             loDbParams.CUNIT_ID = poParam.CUNIT_ID;
+            loDbParams.CFLOOR_ID = poParam.CFLOOR_ID;
             loDbParams.LOTHER_UNIT = poParam.LOTHER_UNIT;
 
             _logger.LogInfo("Get Agreement Utilities");

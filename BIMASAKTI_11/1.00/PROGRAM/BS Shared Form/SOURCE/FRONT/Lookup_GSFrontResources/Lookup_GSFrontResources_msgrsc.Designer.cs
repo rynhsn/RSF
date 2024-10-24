@@ -565,6 +565,15 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        internal static string _Filter {
+            get {
+                return ResourceManager.GetString("_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Floor.
         /// </summary>
         internal static string _Floor {

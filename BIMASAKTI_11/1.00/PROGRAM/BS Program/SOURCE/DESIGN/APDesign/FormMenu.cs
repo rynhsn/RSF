@@ -24,4 +24,11 @@ public partial class FormMenu : Form
         loReport.Design();
     }
 
+    private void APR00300_Button_Click(object sender, EventArgs e)
+    {
+        var loData = new ArrayList();
+        loData.Add(APR00300Common.Model.APR00300ModelReportDummyData.DefaultDataWithHeader());
+        loReport.RegisterData(loData, "ResponseDataModel");
+        loReport.Design();
+    }
 }

@@ -135,4 +135,7 @@
   <data name="INVALID_UTILITY_TYPE" xml:space="preserve">
     <value>Invalid Utility Type</value>
   </data>
+    <data name="INVALID_AGREEMENT_NO" xml:space="preserve">
+        <value>Invalid Agreement No</value>
+    </data>
 </root>

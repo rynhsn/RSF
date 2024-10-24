@@ -1,4 +1,6 @@
-﻿using PMT06500Common.DTOs;
+﻿using BlazorClientHelper;
+using Microsoft.AspNetCore.Components;
+using PMT06500Common.DTOs;
 using PMT06500Model.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
@@ -10,6 +12,8 @@ using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Extensions;
 using R_BlazorFrontEnd.Helpers;
+using R_CommonFrontBackAPI;
+using R_LockingFront;
 
 namespace PMT06500Front;
 
@@ -22,6 +26,76 @@ public partial class PMT06500Invoice : R_Page
     private R_ConductorGrid _conductorRefSummary;
     private R_Grid<PMT06500SummaryDTO> _gridRefSummary;
 
+    
+    #region Locking
+
+    [Inject] private IClientHelper _clientHelper { get; set; }
+
+    private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrlPM";
+    private const string DEFAULT_MODULE_NAME = "PM";
+
+    protected override async Task<bool> R_LockUnlock(R_LockUnlockEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+        var llRtn = false;
+        R_LockingFrontResult loLockResult;
+
+        try
+        {
+            var loData = _gridRefInvoice.CurrentSelectedData;
+
+            var loCls = new R_LockingServiceClient(pcModuleName: DEFAULT_MODULE_NAME,
+                plSendWithContext: true,
+                plSendWithToken: true,
+                pcHttpClientName: DEFAULT_HTTP_NAME);
+
+            var Company_Id = _clientHelper.CompanyId;
+            var User_Id = _clientHelper.UserId;
+            var Program_Id = "PMT06500";
+            var Table_Name = "PMT_TRANS_HD";
+            var Key_Value = string.Join("|", _clientHelper.CompanyId, loData.CPROPERTY_ID, loData.CDEPT_CODE,
+                loData.CTRANS_CODE, loData.CREF_NO);
+
+            if (eventArgs.Mode == R_eLockUnlock.Lock)
+            {
+                var loLockPar = new R_ServiceLockingLockParameterDTO
+                {
+                    Company_Id = Company_Id,
+                    User_Id = User_Id,
+                    Program_Id = Program_Id,
+                    Table_Name = Table_Name,
+                    Key_Value = Key_Value
+                };
+                loLockResult = await loCls.R_Lock(loLockPar);
+            }
+            else
+            {
+                var loUnlockPar = new R_ServiceLockingUnLockParameterDTO
+                {
+                    Company_Id = Company_Id,
+                    User_Id = User_Id,
+                    Program_Id = Program_Id,
+                    Table_Name = Table_Name,
+                    Key_Value = Key_Value
+                };
+                loLockResult = await loCls.R_UnLock(loUnlockPar);
+            }
+
+            llRtn = loLockResult.IsSuccess;
+            if (loLockResult is { IsSuccess: false, Exception: not null })
+                throw loLockResult.Exception;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return llRtn;
+    }
+
+    #endregion
     protected override async Task R_Init_From_Master(object poParam)
     {
         var loEx = new R_Exception();

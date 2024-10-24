@@ -36,10 +36,15 @@ public partial class PMT06000Info : R_Page
     private R_Conductor _conductorRefService;
     private R_Grid<PMT06000OvtServiceGridDTO> _gridRefService;
 
+    private R_TabStrip _tabMain = new();
+    private R_TabStripTab _tabUnit = new();
+    private R_TabStripTab _tabService = new();
+    private R_GroupBox _groupOvtRef = new();
+    private R_GroupBox _groupServiceRef = new();
+
     #region Locking
 
     [Inject] private IClientHelper _clientHelper { get; set; }
-    [Inject] private IJSRuntime JS { get; set; }
 
     private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrlPM";
     private const string DEFAULT_MODULE_NAME = "PM";
@@ -636,7 +641,10 @@ public partial class PMT06000Info : R_Page
             await _viewModel.SaveEntity(loParam, (eCRUDMode)eventArgs.ConductorMode);
 
             eventArgs.Result = _viewModel.Entity;
-            await _pageUnit.InvokeRefreshTabPageAsync(_viewModel.Entity);
+            if (eventArgs.ConductorMode == R_eConductorMode.Edit && _tabMain.ActiveTab.Id == nameof(PMT06000Unit))
+            {
+                await _pageUnit.InvokeRefreshTabPageAsync(_viewModel.Entity);
+            }
         }
         catch (Exception ex)
         {
@@ -762,15 +770,19 @@ public partial class PMT06000Info : R_Page
         eventArgs.Allow = _viewModel.Data.CTRANS_STATUS == "00";
     }
 
-    private R_TabStrip _tabMain = new();
-    private R_TabStripTab _tabUnit = new();
-    private R_TabStripTab _tabService = new();
 
-    private void SetOtherOvt(R_SetEventArgs eventArgs)
+    private async Task SetOtherOvt(R_SetEventArgs eventArgs)
     {
         // await Task.Delay(1);
         _tabUnit.Enabled = eventArgs.Enable;
         _tabService.Enabled = eventArgs.Enable;
+        _groupServiceRef.Enabled = eventArgs.Enable;
+        
+        await InvokeTabEventCallbackAsync(new EventCallBackParam()
+        {
+            LIS_SETOTHER = true,
+            LSET_OTHER_STATE = eventArgs.Enable
+        });
     }
 
     #endregion
@@ -977,6 +989,8 @@ public partial class PMT06000Info : R_Page
         {
             await _viewModel.GetOvertimeServiceGridList();
             eventArgs.ListEntityResult = _viewModel.OvertimeServiceGridList;
+            
+            _tabUnit.Enabled = _viewModel.OvertimeServiceGridList.Count > 0;
         }
         catch (Exception ex)
         {
@@ -1134,6 +1148,18 @@ public partial class PMT06000Info : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
+    private async Task SetOtherService(R_SetEventArgs eventArgs)
+    {
+        _groupOvtRef.Enabled = eventArgs.Enable;
+        _tabUnit.Enabled = eventArgs.Enable;
+        
+        await InvokeTabEventCallbackAsync(new EventCallBackParam()
+        {
+            LIS_SETOTHER = true,
+            LSET_OTHER_STATE = eventArgs.Enable
+        });
+    }
+
     #endregion
 
     private void AfterAddService(R_AfterAddEventArgs eventArgs)
@@ -1144,17 +1170,28 @@ public partial class PMT06000Info : R_Page
         loEntity.DDATE_OUT = DateTime.Now;
     }
 
-    private async Task R_TabEventCallbackAsync(object poParam)
+    private async Task UnitTabEventCallBack(object poParam)
     {
         var loEx = new R_Exception();
 
         try
         {
-            var loParam = R_FrontUtility.ConvertObjectToObject<PMT06000OvtDTO>(_viewModel.Entity);
-            await _conductorRef.R_GetEntity(loParam);
-            if (_tabMain.ActiveTab.Id == nameof(PMT06000Unit))
+            var loParamEvent = (EventCallBackParam)poParam;
+            if (loParamEvent.LIS_SETOTHER)
             {
-                await _pageUnit.InvokeRefreshTabPageAsync(_viewModel.Entity);
+                _groupOvtRef.Enabled = loParamEvent.LSET_OTHER_STATE;
+                _tabService.Enabled = loParamEvent.LSET_OTHER_STATE;
+                
+                await InvokeTabEventCallbackAsync(loParamEvent);
+            }
+            else
+            {
+                var loParam = R_FrontUtility.ConvertObjectToObject<PMT06000OvtDTO>(_viewModel.Entity);
+                await _conductorRef.R_GetEntity(loParam);
+                if (_tabMain.ActiveTab.Id == nameof(PMT06000Unit))
+                {
+                    await _pageUnit.InvokeRefreshTabPageAsync(_viewModel.Entity);
+                }
             }
         }
         catch (Exception ex)
@@ -1181,4 +1218,10 @@ public partial class PMT06000Info : R_Page
         _viewModel.Data.CAGREEMENT_NO = "";
         _viewModel.Data.CUNIT_DESCRIPTION = "";
     }
+}
+
+public class EventCallBackParam
+{
+    public bool LIS_SETOTHER { get; set; } = false;
+    public bool LSET_OTHER_STATE { get; set; } = true;
 }

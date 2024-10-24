@@ -28,6 +28,7 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CMenuBack_005CR_005FSecurityTokenBack_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CMenuBack_005CR_005FSecurityTokenCommon_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CRealCode_005CRSF_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CBS_0020Program_005CSOURCE_005CCOMMON_005CBaseHeaderReportCOMMON_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CRealCode_005CRSF_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CBack_005CR_005FAPIBackEnd_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CRealCode_005CRSF_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CBack_005CR_005FStorageCommon_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\6.0.16\Microsoft.AspNetCore.Mvc.Core.dll" /&gt;&#xD;
@@ -73,6 +74,10 @@
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FDELETE_005FTRANS_005FPDResources_002FRSP_005FAP_005FDELETE_005FTRANS_005FPDResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FEXPENDITURE_005FUPLOADResources_002FRSP_005FAP_005FEXPENDITURE_005FUPLOADResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FGENERATE_005FPYMT_005FSCHEDResources_002FRSP_005FAP_005FGENERATE_005FPYMT_005FSCHEDResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FGENERATE_005FPYMT_005FSCHEDResources_002FRSP_005FAP_005FGENERATE_005FPYMT_005FSCHEDResources_005Fmsgrsc_005F/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FGENERATE_005FPYMT_005FSCHEDResources_002FRSP_005FAP_005FGENERATE_005FPYMT_005FSCHEDResources_005Fmsgrsc_005F/@EntryIndexRemoved">True</s:Boolean>
+	
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=SPR_002FAP_002FRSP_005FAP_005FGENERATE_005FWH_005FTAX_005FDEDUCTIONResources_002FRSP_005FAP_005FGENERATE_005FWH_005FTAX_005FDEDUCTIONResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	

@@ -25,6 +25,8 @@ public partial class PMT06000 : R_Page
     private int _pageSizeOvt = 9;
     private int _pageSizeService = 8;
     private int _pageSizeUnit = 8;
+    private R_TabStripTab _tabList = new();
+    private R_TabStripTab _tabDetail = new();
 
     protected override async Task R_Init_From_Master(object poParam)
     {
@@ -152,7 +154,7 @@ public partial class PMT06000 : R_Page
         eventArgs.TargetPageType = typeof(PMT06000Info);
     }
 
-    private async Task AfterOpenInfo(R_AfterOpenPredefinedDockEventArgs eventArgs)
+    private async Task AfterOpenInfo(R_AfterOpenTabPageEventArgs eventArgs)
     {
         var loEx = new R_Exception();
 
@@ -259,6 +261,33 @@ public partial class PMT06000 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
-    
-    
+
+
+    private void BeforeOpenInfo(R_BeforeOpenTabPageEventArgs eventArgs)
+    {
+        var loParam = R_FrontUtility.ConvertObjectToObject<PMT06000ParameterDTO>(_viewModel.Entity);
+        loParam.isCaller = false;
+        eventArgs.Parameter = loParam;
+        eventArgs.TargetPageType = typeof(PMT06000Info);
+    }
+
+    private void InfoTabEventCallBack(object poParam)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loParamEvent = (EventCallBackParam)poParam;
+            if (loParamEvent.LIS_SETOTHER)
+            {
+                _tabList.Enabled = loParamEvent.LSET_OTHER_STATE;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
 }

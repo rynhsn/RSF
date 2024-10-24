@@ -211,4 +211,9 @@
         <value>Select Period</value><comment>Select Period</comment>
     </data>
     
+    <!-- Overtime Request -->
+    <data name="OVERTIME_REQUEST" xml:space="preserve">
+        <value>Overtime Request</value><comment>Overtime Request</comment>
+    </data>
+    
 </root>

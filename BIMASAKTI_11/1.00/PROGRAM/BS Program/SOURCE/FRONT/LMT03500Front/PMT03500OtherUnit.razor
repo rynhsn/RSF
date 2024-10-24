@@ -73,7 +73,9 @@
                 <R_Label>@(_localizer["LBL_UTILITYPRDDT"] + "*")</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="4">
-                <R_DatePicker Min="_viewModelUtility.UtilityPeriodDtMin" Max="_viewModelUtility.UtilityPeriodToDtDt" @bind-Value="_viewModelUtility.UtilityPeriodFromDtDt"/>
+                <R_DatePicker @bind-Value="_viewModelUtility.UtilityPeriodFromDtDt" 
+                              Max="_viewModelUtility.UtilityPeriodToDtDt"/>
+                              @* Min="_viewModelUtility.UtilityPeriodDtMin"/>  *@
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Label>@(_localizer["LBL_TO"])</R_Label>
@@ -203,7 +205,9 @@
                 Height="320px"
                 R_Display="@DisplayUtility"
                 R_ServiceGetRecord="GetUtilityRecord"
-                R_Validation="Validation">
+                R_Validation="Validation"
+                R_BeforeEdit="BeforeEditUtility"
+                R_CheckBoxSelectValueChanged="CheckBoxSelectValueChanged">
             <R_GridColumns>
                 <R_GridCheckBoxSelectColumn FieldName="@nameof(PMT03500UtilityUsageDTO.LSELECTED)" Width="30px" ShowSelectAllHeader Filterable="false" Resizable="false"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CBUILDING_NAME)" HeaderText="@_localizer["LBL_BUILDING"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>

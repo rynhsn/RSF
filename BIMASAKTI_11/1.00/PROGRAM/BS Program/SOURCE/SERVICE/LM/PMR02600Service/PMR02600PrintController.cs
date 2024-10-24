@@ -72,7 +72,8 @@ public class PMR02600PrintController : R_ReportControllerBase
             loCache = new PMR02600ReportLogKeyDTO
             {
                 poParam = poParam,
-                poLogKey = (R_NetCoreLogKeyDTO)R_NetCoreLogAsyncStorage.GetData(R_NetCoreLogConstant.LOG_KEY)
+                poLogKey = (R_NetCoreLogKeyDTO)R_NetCoreLogAsyncStorage.GetData(R_NetCoreLogConstant.LOG_KEY),
+                poGlobalVar = R_ReportGlobalVar.R_GetReportDTO()
             };
 
 
@@ -107,6 +108,7 @@ public class PMR02600PrintController : R_ReportControllerBase
 
             //Get Data and Set Log Key
             R_NetCoreLogUtility.R_SetNetCoreLogKey(loResultGUID.poLogKey);
+            R_ReportGlobalVar.R_SetFromReportDTO(loResultGUID.poGlobalVar);
 
             _Parameter = loResultGUID.poParam;
             
@@ -137,7 +139,7 @@ public class PMR02600PrintController : R_ReportControllerBase
         using var loActivity = _activitySource.StartActivity(nameof(GeneratePrint));
         var loEx = new R_Exception();
         var loRtn = new PMR02600ReportWithBaseHeaderDTO();
-        var loCultureInfo = new CultureInfo(poParam.CREPORT_CULTURE);
+        var loCultureInfo = new CultureInfo(R_BackGlobalVar.REPORT_CULTURE);
 
         try
         {
@@ -155,16 +157,20 @@ public class PMR02600PrintController : R_ReportControllerBase
                 loCultureInfo, loLabelObject);
 
             _logger.LogInfo("Set Base Header Data");
+            
+            var lcCompany = R_BackGlobalVar.COMPANY_ID;
+            var lcUser = R_BackGlobalVar.USER_ID;
+            var lcLang = R_BackGlobalVar.CULTURE;
 
             var loCls = new PMR02600Cls();
-            var loLogo = loCls.GetBaseHeaderLogoCompany(poParam.CCOMPANY_ID);
+            var loLogo = loCls.GetBaseHeaderLogoCompany(lcCompany);
             loRtn.BaseHeaderData = new BaseHeaderDTO
             {
                 BLOGO_COMPANY = loLogo.BLOGO,
                 CCOMPANY_NAME = "PT Realta Chakradarma",
                 CPRINT_CODE = "PMR02600",
                 CPRINT_NAME = "Occupancy Report",
-                CUSER_ID = poParam.CUSER_ID,
+                CUSER_ID = lcUser,
             };
 
             var loData = new PMR02600ReportResultDTO()
@@ -178,16 +184,12 @@ public class PMR02600PrintController : R_ReportControllerBase
             _logger.LogInfo("Set Parameter");
             var loDbParam = new PMR02600ParameterDb
             {
-                CCOMPANY_ID = poParam.CCOMPANY_ID,
-                CUSER_ID = poParam.CUSER_ID,
-                CLANG_ID = poParam.CLANG_ID,
+                CCOMPANY_ID = lcCompany,
+                CUSER_ID = lcUser,
+                CLANG_ID = lcLang,
                 CPROPERTY_ID = poParam.CPROPERTY,
                 CFROM_BUILDING = poParam.CFROM_BUILDING,
                 CTO_BUILDING = poParam.CTO_BUILDING,
-                // DCUT_OFF_DATE = DateTime.TryParseExact(poParam.CPERIOD, "yyyyMMdd",
-                //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var cutOfDate)
-                //     ? cutOfDate
-                //     : (DateTime?)null,
                 CCUT_OFF_DATE = poParam.CPERIOD,
             };
 
@@ -199,14 +201,14 @@ public class PMR02600PrintController : R_ReportControllerBase
                 CPROPERTY = poParam.CPROPERTY_NAME + $"({poParam.CPROPERTY})",
                 CFROM_BUILDING = poParam.CFROM_BUILDING_NAME + $"({poParam.CFROM_BUILDING})",
                 CTO_BUILDING = poParam.CTO_BUILDING_NAME + $"({poParam.CTO_BUILDING})",
+                CPERIOD_DISPLAY = DateTime.TryParseExact(poParam.CPERIOD, "yyyyMMdd",
+                    CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
+                    ? refDate.ToString("dd MMM yyyy")
+                    : null,
                 DPERIOD = DateTime.TryParseExact(poParam.CPERIOD, "yyyyMMdd",
                     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var period)
                     ? period
-                    : (DateTime?)null,
-                // CPERIOD_DISPLAY = DateTime.TryParseExact(poParam.CPERIOD, "yyyyMMdd",
-                //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
-                //     ? refDate.ToString("dd MMM yyyy")
-                //     : null
+                    : null,
             };
 
             loRtn.Data = loData;

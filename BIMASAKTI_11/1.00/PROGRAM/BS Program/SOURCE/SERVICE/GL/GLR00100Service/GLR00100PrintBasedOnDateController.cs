@@ -73,7 +73,8 @@ public class GLR00100PrintBasedOnDateController : R_ReportControllerBase
             loCache = new GLR00100ReportLogKeyDTO
             {
                 poParam = poParam,
-                poLogKey = (R_NetCoreLogKeyDTO)R_NetCoreLogAsyncStorage.GetData(R_NetCoreLogConstant.LOG_KEY)
+                poLogKey = (R_NetCoreLogKeyDTO)R_NetCoreLogAsyncStorage.GetData(R_NetCoreLogConstant.LOG_KEY),
+                poGlobalVar = R_ReportGlobalVar.R_GetReportDTO()
             };
 
 
@@ -108,6 +109,7 @@ public class GLR00100PrintBasedOnDateController : R_ReportControllerBase
 
             //Get Data and Set Log Key
             R_NetCoreLogUtility.R_SetNetCoreLogKey(loResultGUID.poLogKey);
+            R_ReportGlobalVar.R_SetFromReportDTO(loResultGUID.poGlobalVar);
 
             _Parameter = loResultGUID.poParam;
             
@@ -139,7 +141,7 @@ public class GLR00100PrintBasedOnDateController : R_ReportControllerBase
         using var loActivity = _activitySource.StartActivity(nameof(GeneratePrint));
         var loEx = new R_Exception();
         var loRtn = new GLR00100ReportWithBaseHeaderDTO();
-        var loCultureInfo = new CultureInfo(poParam.CREPORT_CULTURE);
+        var loCultureInfo = new CultureInfo(R_BackGlobalVar.REPORT_CULTURE);
 
         try
         {
@@ -157,16 +159,20 @@ public class GLR00100PrintBasedOnDateController : R_ReportControllerBase
                 loCultureInfo, loLabelObject);
 
             _logger.LogInfo("Set Base Header Data");
+            
+            var lcCompany = R_BackGlobalVar.COMPANY_ID;
+            var lcUser = R_BackGlobalVar.USER_ID;
+            var lcLang = R_BackGlobalVar.CULTURE;
 
             var loCls = new GLR00100Cls();
-            var loLogo = loCls.GetBaseHeaderLogoCompany(poParam.CCOMPANY_ID);
+            var loLogo = loCls.GetBaseHeaderLogoCompany(lcCompany);
             loRtn.BaseHeaderData = new BaseHeaderDTO
             {
                 BLOGO_COMPANY = loLogo.BLOGO,
                 CCOMPANY_NAME = "PT Realta Chakradarma",
                 CPRINT_CODE = "GLR00100",
                 CPRINT_NAME = "Activity Report",
-                CUSER_ID = poParam.CUSER_ID,
+                CUSER_ID = lcUser,
             };
 
             var loData = new GLR00100ReportResultDTO()
@@ -181,9 +187,9 @@ public class GLR00100PrintBasedOnDateController : R_ReportControllerBase
             _logger.LogInfo("Set Parameter");
             var loDbParam = new GLR00100ParameterDb
             {
-                CCOMPANY_ID = poParam.CCOMPANY_ID,
-                CUSER_ID = poParam.CUSER_ID,
-                CLANGUAGE_ID = poParam.CLANGUAGE_ID,
+                CCOMPANY_ID = lcCompany,
+                CUSER_ID = lcUser,
+                CLANGUAGE_ID = lcLang,
                 CPERIOD_TYPE = poParam.CPERIOD_TYPE,
                 CFROM_DATE = poParam.CFROM_PERIOD,
                 CTO_DATE = poParam.CTO_PERIOD,
@@ -194,9 +200,35 @@ public class GLR00100PrintBasedOnDateController : R_ReportControllerBase
 
             _logger.LogInfo("Get Detail Activity Report");
 
-            loData.Data = loCls.BasedOnDateReportDb(loDbParam);
+            var loCollection = loCls.BasedOnDateReportDb(loDbParam);
+            
+            foreach (var item in loCollection)
+            {
+                item.DREF_DATE = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
+                    CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate) ? refDate : (DateTime?)null;
+                item.DDOC_DATE = DateTime.TryParseExact(item.CDOC_DATE, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var docDate) ? docDate : (DateTime?)null;
+            }
+            
+            //grouping untuk data berdasarkan CREF_DATE
+            var loGroupDate = loCollection.GroupBy(x => x.DREF_DATE).ToList();
+            foreach (var itemDate in loGroupDate)
+            {
+                var loDataDate = new GLR00100ReportBasedOnDateSubDTO()
+                {
+                    DREF_DATE = itemDate.Key,
+                    Data = itemDate.ToList(),
+                    NTOTAL_DEBIT = itemDate.Sum(x => x.NDEBIT_AMOUNT),
+                    NTOTAL_CREDIT = itemDate.Sum(x => x.NCREDIT_AMOUNT)
+                };
+                // parse ke datetime dulu untuk DREF_DATE pada loDataDate.Data
+                
+                
+                loData.DataByDate.Add(loDataDate);
+                loData.NGRAND_TOTAL_CREDIT += loDataDate.NTOTAL_CREDIT;
+                loData.NGRAND_TOTAL_DEBIT += loDataDate.NTOTAL_DEBIT;
+            }
 
-            loData.Header = new GLR00100ReportHeaderBasedOnDateDTO
+            loData.Header = new GLR00100ReportHeaderDTO
             {
                 CFROM_DEPT_CODE = poParam.CFROM_DEPT_CODE,
                 CTO_DEPT_CODE = poParam.CTO_DEPT_CODE,
@@ -222,14 +254,6 @@ public class GLR00100PrintBasedOnDateController : R_ReportControllerBase
             //looping dan ubah ref date menjadi dd-MM-yyyy
             foreach (var item in loData.Data)
             {
-                // item.CREF_DATE_DISPLAY = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
-                //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
-                //     ? refDate.ToString("dd-MMM-yyyy")
-                //     : null;
-                // item.CDOC_DATE_DISPLAY = DateTime.TryParseExact(item.CDOC_DATE, "yyyyMMdd",
-                //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var docDate)
-                //     ? docDate.ToString("dd-MMM-yyyy")
-                //     : null;
                 item.DREF_DATE = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
                     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
                     ? refDate

@@ -141,6 +141,12 @@ namespace Lookup_GSFRONT
         {
             await this.Close(true, null);
         }
-
+        #region Filter Treeview
+        private string _lcSeacrhTree = "";
+        private void FilterTree()
+        {
+            _treeRef.R_FilterTreeView(_lcSeacrhTree);
+        }
+        #endregion
     }
 }

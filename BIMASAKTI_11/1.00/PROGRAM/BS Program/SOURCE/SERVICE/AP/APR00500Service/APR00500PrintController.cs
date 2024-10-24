@@ -70,7 +70,8 @@ public class APR00500PrintController : R_ReportControllerBase
             loCache = new APR00500ReportLogKeyDTO
             {
                 poParam = poParam,
-                poLogKey = (R_NetCoreLogKeyDTO)R_NetCoreLogAsyncStorage.GetData(R_NetCoreLogConstant.LOG_KEY)
+                poLogKey = (R_NetCoreLogKeyDTO)R_NetCoreLogAsyncStorage.GetData(R_NetCoreLogConstant.LOG_KEY),
+                poGlobalVar = R_ReportGlobalVar.R_GetReportDTO()
             };
 
 
@@ -105,6 +106,7 @@ public class APR00500PrintController : R_ReportControllerBase
 
             //Get Data and Set Log Key
             R_NetCoreLogUtility.R_SetNetCoreLogKey(loResultGUID.poLogKey);
+            R_ReportGlobalVar.R_SetFromReportDTO(loResultGUID.poGlobalVar);
 
             _Parameter = loResultGUID.poParam;
 
@@ -141,7 +143,7 @@ public class APR00500PrintController : R_ReportControllerBase
         using var loActivity = _activitySource.StartActivity(nameof(GeneratePrint));
         var loEx = new R_Exception();
         var loRtn = new APR00500ReportWithBaseHeaderDTO();
-        var loCultureInfo = new CultureInfo(poParam.CREPORT_CULTURE);
+        var loCultureInfo = new CultureInfo(R_BackGlobalVar.REPORT_CULTURE);
 
         try
         {
@@ -159,16 +161,20 @@ public class APR00500PrintController : R_ReportControllerBase
                 loCultureInfo, loLabelObject);
 
             _logger.LogInfo("Set Base Header Data");
-
+            
+            var lcCompany = R_BackGlobalVar.COMPANY_ID;
+            var lcUser = R_BackGlobalVar.USER_ID;
+            var lcLang = R_BackGlobalVar.CULTURE;
+            
             var loCls = new APR00500Cls();
-            var loLogo = loCls.GetBaseHeaderLogoCompany(poParam.CCOMPANY_ID);
+            var loLogo = loCls.GetBaseHeaderLogoCompany(lcCompany);
             loRtn.BaseHeaderData = new BaseHeaderDTO
             {
                 BLOGO_COMPANY = loLogo.BLOGO,
                 CCOMPANY_NAME = "PT Realta Chakradarma",
                 CPRINT_CODE = "APR00500",
                 CPRINT_NAME = "AP Invoice List",
-                CUSER_ID = poParam.CUSER_ID,
+                CUSER_ID = lcUser,
             };
 
             var loData = new APR00500ReportResultDTO()
@@ -182,8 +188,8 @@ public class APR00500PrintController : R_ReportControllerBase
             _logger.LogInfo("Set Parameter");
             var loDbParam = new APR00500ParameterDb
             {
-                CCOMPANY_ID = poParam.CCOMPANY_ID,
-                CUSER_ID = poParam.CUSER_ID,
+                CCOMPANY_ID = lcCompany,
+                CUSER_ID = lcUser,
                 CPROPERTY_ID = poParam.CPROPERTY_ID,
                 CPROPERTY_NAME = poParam.CPROPERTY_NAME,
                 CCUT_OFF_DATE = poParam.CCUT_OFF_DATE,
@@ -204,7 +210,7 @@ public class APR00500PrintController : R_ReportControllerBase
                 NTO_REMAINING_AMOUNT = poParam.NTO_REMAINING_AMOUNT,
                 IFROM_DAYS_LATE = poParam.IFROM_DAYS_LATE,
                 ITO_DAYS_LATE = poParam.ITO_DAYS_LATE,
-                CLANG_ID = poParam.CLANG_ID,
+                CLANG_ID = lcLang,
             };
 
             _logger.LogInfo("Get Detail Invoice List Report");

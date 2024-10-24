@@ -135,6 +135,13 @@ echo ---------------------------------------------------------------------------
 echo ---------------------------------------------------------------------------------------
 echo Update Blazor Menu Program
 echo ---------------------------------------------------------------------------------------
+@REM jika ada folder Backup, hapus dulu
+@REM jika tidak ada folder Backup, buat folder Backup
+@REM if exist ".\Menu\Backup"
+@REM     rmdir /s /q ".\Menu\Backup"
+@REM else
+@REM     mkdir .\Menu\Backup
+@REM fi
 mkdir .\Menu\Backup
 mkdir .\Menu\Backup\wwwroot
 xcopy /y /e /h /r /k /d ".\Menu\BlazorMenu\BlazorMenu.csproj" ".\Menu\Backup\"
@@ -228,6 +235,13 @@ if "%choice%"=="y" goto update_menu_program_continue
 if "%choice%"=="n" goto menu
 
 :update_menu_program_continue
+@REM jika ada folder Backup, hapus dulu
+@REM jika tidak ada folder Backup, buat folder Backup
+@REM if exist ".\Menu\Backup"
+@REM    rmdir /s /q ".\Menu\Backup"
+@REM else
+@REM    mkdir .\Menu\Backup
+@REM fi
 mkdir .\Menu\Backup
 mkdir .\Menu\Backup\wwwroot
 xcopy /y /e /h /r /k /d ".\Menu\BlazorMenu\BlazorMenu.csproj" ".\Menu\Backup\"

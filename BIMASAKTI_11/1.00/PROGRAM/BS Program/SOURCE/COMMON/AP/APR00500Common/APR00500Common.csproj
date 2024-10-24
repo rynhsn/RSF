@@ -8,6 +8,9 @@
         <Reference Include="BaseHeaderReportCOMMON">
             <HintPath>..\..\BaseHeaderReportCOMMON.dll</HintPath>
         </Reference>
+        <Reference Include="R_APIBackEnd">
+          <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+        </Reference>
         <Reference Include="R_APICommonDTO">
             <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_APICommonDTO.dll</HintPath>
         </Reference>

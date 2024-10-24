@@ -1,4 +1,4 @@
-﻿    @page "/PMT06000Info"
+﻿@page "/PMT06000Info"
 @using PMT06000FrontResources
 @using R_BlazorFrontEnd.Interfaces
 @using PMT06000Common.DTOs
@@ -202,41 +202,42 @@
                     R_EnableEdit="true"/>
     </R_ItemLayout>
 </R_StackLayout>
-
-<R_StackLayout Row Justify="R_eJustify.SpaceBetween">
-    <R_ItemLayout>
-        <R_StackLayout Row>
-            <R_ItemLayout>
-                <R_AddButton R_Conductor="_conductorRef"/>
-            </R_ItemLayout>
-            <R_ItemLayout>
-                <R_EditButton R_Conductor="_conductorRef"/>
-            </R_ItemLayout>
-            <R_ItemLayout>
-                <R_DeleteButton R_Conductor="_conductorRef"/>
-            </R_ItemLayout>
-        </R_StackLayout>
-    </R_ItemLayout>
-    <R_ItemLayout>
-        <R_Button R_ConductorSource="_conductorRef"
-                  R_EnableOther="true"
-                  Enabled="@(_conductorRef.R_ConductorMode is R_eConductorMode.Normal && _viewModel.Data.CREC_ID != "" && _viewModel.Data.CTRANS_STATUS is "00" or "10")"
-                  OnClick="OnClickSubmit">
-            @(_viewModel.Data.CTRANS_STATUS == "10" ? _localizer["DRAFT"] : _localizer["SUBMIT"])
-        </R_Button>
-    </R_ItemLayout>
-    <R_ItemLayout>
-        <R_StackLayout Row>
-            <R_ItemLayout>
-                <R_CancelButton R_Conductor="_conductorRef"/>
-            </R_ItemLayout>
-            <R_ItemLayout>
-                <R_SaveButton R_Conductor="_conductorRef"/>
-            </R_ItemLayout>
-        </R_StackLayout>
-    </R_ItemLayout>
-</R_StackLayout>
-
+<R_GroupBox ShowBorder="false"></R_GroupBox>
+<R_GroupBox @ref="_groupOvtRef" ShowBorder="false">
+    <R_StackLayout Row Justify="R_eJustify.SpaceBetween">
+        <R_ItemLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout>
+                    <R_AddButton R_Conductor="_conductorRef"/>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_EditButton R_Conductor="_conductorRef"/>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_DeleteButton R_Conductor="_conductorRef"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Button R_ConductorSource="_conductorRef"
+                      R_EnableOther="true"
+                      Enabled="@(_conductorRef.R_ConductorMode is R_eConductorMode.Normal && _viewModel.Data.CREC_ID != "" && _viewModel.Data.CTRANS_STATUS is "00" or "10")"
+                      OnClick="OnClickSubmit">
+                @(_viewModel.Data.CTRANS_STATUS == "10" ? _localizer["DRAFT"] : _localizer["SUBMIT"])
+            </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout>
+                    <R_CancelButton R_Conductor="_conductorRef"/>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_SaveButton R_Conductor="_conductorRef"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_GroupBox>
 <R_TabStrip @ref="_tabMain" OnActiveTabIndexChanging="OnChangeTab">
     <R_TabStripTab @ref="_tabService" Id="@nameof(PMT06000Info)" Title="@_localizer["SERVICE"]">
         <!-- Deposit -->
@@ -261,7 +262,6 @@
             </R_Grid>
 
         </R_StackLayout>
-
 
         <!-- Service Navigator -->
         <R_StackLayout Class="mt-2">
@@ -349,46 +349,47 @@
 
         </R_StackLayout>
 
-
         @* Button CRUD *@
-        <R_StackLayout Row Class="d-flex justify-content-between mt-2">
-
-            <R_StackLayout Row>
-
-                <R_ItemLayout>
-                    <R_AddButton R_Conductor="@_conductorRefService"/>
-                </R_ItemLayout>
-
-                <R_ItemLayout>
-                    <R_EditButton R_Conductor="@_conductorRefService"/>
-                </R_ItemLayout>
-
-                <R_ItemLayout>
-                    <R_DeleteButton R_Conductor="@_conductorRefService"/>
-                </R_ItemLayout>
-
-            </R_StackLayout>
-
-            <R_StackLayout Row Class="d-flex justify-content-end">
+        <R_GroupBox @ref="_groupServiceRef" ShowBorder="false">
+            <R_StackLayout Row Class="d-flex justify-content-between mt-2">
 
                 <R_StackLayout Row>
 
                     <R_ItemLayout>
-                        <R_CancelButton R_Conductor="@_conductorRefService"/>
+                        <R_AddButton R_Conductor="@_conductorRefService"/>
                     </R_ItemLayout>
 
                     <R_ItemLayout>
-                        <R_SaveButton R_Conductor="@_conductorRefService"/>
+                        <R_EditButton R_Conductor="@_conductorRefService"/>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout>
+                        <R_DeleteButton R_Conductor="@_conductorRefService"/>
                     </R_ItemLayout>
 
                 </R_StackLayout>
 
-            </R_StackLayout>
+                <R_StackLayout Row Class="d-flex justify-content-end">
 
-        </R_StackLayout>
+                    <R_StackLayout Row>
+
+                        <R_ItemLayout>
+                            <R_CancelButton R_Conductor="@_conductorRefService"/>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout>
+                            <R_SaveButton R_Conductor="@_conductorRefService"/>
+                        </R_ItemLayout>
+
+                    </R_StackLayout>
+
+                </R_StackLayout>
+
+            </R_StackLayout>
+        </R_GroupBox>
     </R_TabStripTab>
-    <R_TabStripTab @ref="_tabUnit" Id="@nameof(PMT06000Unit)" Title="@_localizer["UNIT"]" Enabled="@(_viewModel.OvertimeServiceGridList.Count > 0)">
-        <R_TabPage @ref="_pageUnit" R_Before_Open_TabPage="BeforeOpenUnitTab" R_TabEventCallback="R_TabEventCallbackAsync"/>
+    <R_TabStripTab @ref="_tabUnit" Id="@nameof(PMT06000Unit)" Title="@_localizer["UNIT"]">
+        <R_TabPage @ref="_pageUnit" R_Before_Open_TabPage="BeforeOpenUnitTab" R_TabEventCallback="UnitTabEventCallBack"/>
     </R_TabStripTab>
 </R_TabStrip>
 
@@ -428,4 +429,5 @@
              R_Validation="ValidationService"
              R_Saving="SavingService"
              R_ServiceSave="ServiceSaveService"
-             R_ServiceDelete="ServiceDeleteService"/>
+             R_ServiceDelete="ServiceDeleteService"
+             R_SetOther="SetOtherService"/>

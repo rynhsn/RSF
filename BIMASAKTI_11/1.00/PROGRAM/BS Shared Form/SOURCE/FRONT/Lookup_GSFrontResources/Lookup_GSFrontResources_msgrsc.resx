@@ -285,6 +285,9 @@
   <data name="_ErrLookup01" xml:space="preserve">
     <value>Not found data by search text!!</value>
   </data>
+  <data name="_Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
   <data name="_Floor" xml:space="preserve">
     <value>Floor</value>
   </data>

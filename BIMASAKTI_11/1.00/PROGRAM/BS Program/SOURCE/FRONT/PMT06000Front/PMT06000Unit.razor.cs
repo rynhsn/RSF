@@ -235,7 +235,7 @@ public partial class PMT06000Unit : R_Page, R_ITabPage
 
         try
         {
-            await InvokeTabEventCallbackAsync(null);
+            await InvokeTabEventCallbackAsync(new EventCallBackParam());
         }
         catch (Exception ex)
         {
@@ -255,5 +255,25 @@ public partial class PMT06000Unit : R_Page, R_ITabPage
     {
         eventArgs.Allow = _viewModel.Entity.CTRANS_STATUS == "00";
         // eventArgs.Allow = false;
+    }
+
+    private async Task SetOther(R_SetEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            await InvokeTabEventCallbackAsync(new EventCallBackParam()
+            {
+                LIS_SETOTHER = true,
+                LSET_OTHER_STATE = eventArgs.Enable
+            });
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
     }
 }

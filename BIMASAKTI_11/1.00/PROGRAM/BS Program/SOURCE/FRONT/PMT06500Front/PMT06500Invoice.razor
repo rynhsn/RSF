@@ -40,7 +40,7 @@
 
 <R_StackLayout Row>
     <R_ItemLayout>
-        <R_Popup R_Before_Open_Popup="BeforeOpenPopupEditInvoice" R_After_Open_Popup="AfterOpenPopupEditInvoice" Enabled="@(_viewModel.InvoiceGridList.Count > 0)">Edit</R_Popup>
+        <R_Popup R_WithLock="true" R_Before_Open_Popup="BeforeOpenPopupEditInvoice" R_After_Open_Popup="AfterOpenPopupEditInvoice" Enabled="@(_viewModel.InvoiceGridList.Count > 0)">Edit</R_Popup>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_Button OnClick="DeleteInvoice" Enabled="@(_viewModel.InvoiceGridList.Count > 0)">Delete</R_Button>

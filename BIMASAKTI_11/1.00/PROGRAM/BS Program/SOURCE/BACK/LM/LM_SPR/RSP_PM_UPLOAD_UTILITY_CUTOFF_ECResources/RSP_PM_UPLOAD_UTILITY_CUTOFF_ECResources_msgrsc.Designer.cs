@@ -61,6 +61,15 @@ namespace RSP_PM_UPLOAD_UTILITY_CUTOFF_ECResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Agreement No.
+        /// </summary>
+        internal static string INVALID_AGREEMENT_NO {
+            get {
+                return ResourceManager.GetString("INVALID_AGREEMENT_NO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Building Id.
         /// </summary>
         internal static string INVALID_BUILDING_ID {
