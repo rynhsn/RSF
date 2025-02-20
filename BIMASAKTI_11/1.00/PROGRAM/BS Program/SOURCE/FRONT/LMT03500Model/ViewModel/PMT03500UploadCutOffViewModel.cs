@@ -128,8 +128,8 @@ namespace PMT03500Model.ViewModel
                         CUTILITY_PRD = item.UtilityPeriod,
                         CSTART_DATE = item.StartDate,
                         // CEND_DATE = item.EndDate,
-                        IBLOCK1_START = item.BlockIStart,
-                        IBLOCK2_START = item.BlockIIStart,
+                        NBLOCK1_START = item.BlockIStart,
+                        NBLOCK2_START = item.BlockIIStart,
 
                         CCOMPANY_ID = CompanyId
                     }).ToList();
@@ -154,7 +154,7 @@ namespace PMT03500Model.ViewModel
                         CUTILITY_PRD = item.UtilityPeriod,
                         CSTART_DATE = item.StartDate,
                         // CEND_DATE = item.EndDate,
-                        IMETER_START = item.MeterStart,
+                        NMETER_START = item.MeterStart,
 
                         CCOMPANY_ID = CompanyId
                     }).ToList();
@@ -211,7 +211,8 @@ namespace PMT03500Model.ViewModel
             Message = $"Process Error with GUID {pcKeyGuid}";
             ex.ErrorList.ForEach(x => loException.Add(x.ErrNo, x.ErrDescp));
 
-            DisplayErrorAction.Invoke(loException);
+            // DisplayErrorAction.Invoke(loException);
+            DisplayErrorAction(loException);
             StateChangeAction();
             await Task.CompletedTask;
         }
@@ -300,8 +301,8 @@ namespace PMT03500Model.ViewModel
                             StartDate = item.CSTART_DATE,
                             UtilityPeriod = item.CUTILITY_PRD,
                             // EndDate = item.CEND_DATE,
-                            BlockIStart = item.IBLOCK1_START,
-                            BlockIIStart = item.IBLOCK2_START,
+                            BlockIStart = item.NBLOCK1_START,
+                            BlockIIStart = item.NBLOCK2_START,
                             Valid = item.ErrorFlag,
                             Notes = item.ErrorMessage
                         }).ToList();
@@ -335,7 +336,7 @@ namespace PMT03500Model.ViewModel
                             StartDate = item.CSTART_DATE,
                             UtilityPeriod = item.CUTILITY_PRD,
                             // EndDate = item.CEND_DATE,
-                            MeterStart = item.IMETER_START,
+                            MeterStart = item.NMETER_START,
                             Valid = item.ErrorFlag,
                             Notes = item.ErrorMessage
                         }).ToList();

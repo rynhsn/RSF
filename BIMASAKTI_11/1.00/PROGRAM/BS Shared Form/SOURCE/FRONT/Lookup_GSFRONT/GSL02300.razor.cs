@@ -14,6 +14,7 @@ namespace Lookup_GSFRONT
         private GSL02300ParameterDTO _Parameter = new GSL02300ParameterDTO();
         private string _FloorName;
         private R_TextBox _FloorCode;
+        private bool EnableTexboxFloor = true;
         protected override async Task R_Init_From_Master(object poParameter)
         {
             var loEx = new R_Exception();
@@ -22,7 +23,15 @@ namespace Lookup_GSFRONT
             {
                 _Parameter = (GSL02300ParameterDTO)poParameter;
 
-                await _FloorCode.FocusAsync();
+                EnableTexboxFloor = string.IsNullOrWhiteSpace(_Parameter.CFLOOR_ID);
+                if (string.IsNullOrWhiteSpace(_Parameter.CFLOOR_ID))
+                {
+                    await _FloorCode.FocusAsync();
+                }
+                else
+                {
+                    await Floor_OnLostFocus();
+                }
             }
             catch (Exception ex)
             {

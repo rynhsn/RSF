@@ -78,6 +78,9 @@
     <data name="LBL_UTILITYPRDDT" xml:space="preserve">
         <value>Utility Period Date</value>
     </data>
+    <data name="LBL_ENDDTUTILITY" xml:space="preserve">
+        <value>End Date Utility</value>
+    </data>
     <data name="LBL_TO" xml:space="preserve">
         <value>To</value>
     </data>
@@ -292,6 +295,9 @@
     <data name="LBL_STANDING_AMOUNT" xml:space="preserve">
         <value>Standing Amount</value>
     </data>
+    <data name="LBL_MINIMUM_AMOUNT" xml:space="preserve">
+        <value>Minimum Amount</value>
+    </data>
     <data name="LBL_BLOCK_I_CHARGE" xml:space="preserve">
         <value>Block I Charge</value>
     </data>
@@ -333,14 +339,14 @@
     <data name="LBL_KVA_VALUE" xml:space="preserve">
         <value>KVA Value</value>
     </data>
-    <data name="LBL_PF" xml:space="preserve">
-        <value>PF</value>
-    </data>
+    <!-- <data name="LBL_CF" xml:space="preserve"> -->
+    <!--     <value>CF</value> -->
+    <!-- </data> -->
     <data name="LBL_USAGE" xml:space="preserve">
         <value>Usage</value>
     </data>
-    <data name="LBL_USAGE_X_PF" xml:space="preserve">
-        <value>Usage x PF</value>
+    <data name="LBL_USAGE_X_CF" xml:space="preserve">
+        <value>Usage x CF</value>
     </data>
 
     <data name="LBL_STANDING_CONSUMPTION" xml:space="preserve">

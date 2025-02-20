@@ -67,8 +67,6 @@ namespace GSM02500FRONT
 
         private R_TextBox _unitTypeCategoryNameRef;
 
-        private bool llSingleUnit = false;
-
         private bool IsTabUtilityOnCRUDMode = false;
 
         private bool IsUnitTypeCategoryListExist = false;
@@ -304,15 +302,20 @@ namespace GSM02500FRONT
             R_Exception loException = new R_Exception();
             try
             {
-                if (value != null)
+                if (string.IsNullOrWhiteSpace(value))
                 {
+                    loUnitTypeCategoryViewModel.Data.CPROPERTY_TYPE = "";
+                    loUnitTypeCategoryViewModel.Data.LSINGLE_UNIT = false;
+                }
+                else
+                {
+                    loUnitTypeCategoryViewModel.Data.CPROPERTY_TYPE = value;
                     var loCurrentData = loUnitTypeCategoryViewModel.loPropertyTypeList.Where(x => x.CPROPERTY_TYPE_CODE == value).FirstOrDefault();
                     if (loCurrentData != null)
                     {
-                        llSingleUnit = loCurrentData.LSINGLE_UNIT;
+                        loUnitTypeCategoryViewModel.Data.LSINGLE_UNIT = loCurrentData.LSINGLE_UNIT;
                     }
                 }
-                loUnitTypeCategoryViewModel.Data.CPROPERTY_TYPE = value;
             }
             catch (Exception ex)
             {
@@ -378,7 +381,7 @@ namespace GSM02500FRONT
                     await _gridUtilityRef.R_RefreshGrid(null);
                 }*/
 
-                    llSingleUnit = loParam.LSINGLE_UNIT;
+                    //loUnitTypeCategoryViewModel.Data.LSINGLE_UNIT = loParam.LSINGLE_UNIT;
 
 
                 }

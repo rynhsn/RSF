@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EMPTY_FLOOR_ID" xml:space="preserve">
+    <value>Floor Id can not be empty</value>
+  </data>
   <data name="EMPTY_NONACTIVE_DATE" xml:space="preserve">
     <value>If Active Flag = 0, Non Active Date can not be empty</value>
   </data>
@@ -126,6 +129,9 @@
   <data name="EMPTY_UNIT_NAME" xml:space="preserve">
     <value>Unit Name can not be empty</value>
   </data>
+  <data name="EXCESS_FLOOR_ID" xml:space="preserve">
+    <value>Floor Id is bigger than 20 Character</value>
+  </data>
   <data name="EXCESS_UNIT_ID" xml:space="preserve">
     <value>Unit Id is bigger than 20 Character</value>
   </data>
@@ -134,6 +140,9 @@
   </data>
   <data name="INVALID_ACTIVE_FLAG" xml:space="preserve">
     <value>Invalid Active Flag, Active Flag value is not 1 / 0</value>
+  </data>
+  <data name="INVALID_FLOOR_ID" xml:space="preserve">
+    <value>Invalid Floor Id</value>
   </data>
   <data name="INVALID_UNIT_TYPE" xml:space="preserve">
     <value>FOUND INVALID UNIT TYPE</value>

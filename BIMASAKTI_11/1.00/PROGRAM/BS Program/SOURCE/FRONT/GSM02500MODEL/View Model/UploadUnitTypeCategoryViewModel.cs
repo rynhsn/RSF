@@ -20,7 +20,7 @@ namespace GSM02500MODEL.View_Model
 {
     public class UploadUnitTypeCategoryViewModel : R_ViewModel<UploadUnitTypeCategoryDTO>, R_IProcessProgressStatus
     {
-        public Action<R_Exception> ShowErrorAction { get; set; }
+        public Action<R_APIException> ShowErrorAction { get; set; }
         public Action StateChangeAction { get; set; }
         public Action ShowSuccessAction { get; set; }
 
@@ -190,7 +190,7 @@ namespace GSM02500MODEL.View_Model
         #region Status
         public async Task ProcessComplete(string pcKeyGuid, eProcessResultMode poProcessResultMode)
         {
-            R_Exception loException = new R_Exception();
+            R_APIException loException = new R_APIException();
             List<R_ErrorStatusReturn> loResult = null;
 
             try
@@ -206,43 +206,14 @@ namespace GSM02500MODEL.View_Model
                 {
                     Message = $"Process Complete but fail with GUID {pcKeyGuid}";
 
-                    try
-                    {
-                        loResult = await ServiceGetError(pcKeyGuid);
-                        loUploadUnitTypeCategoryDisplayList.ToList().ForEach(x =>
-                        {
-                            if (loResult.Any(y => y.SeqNo == x.No))
-                            {
-                                x.Notes = loResult.Where(y => y.SeqNo == x.No).FirstOrDefault().ErrorMessage;
-                                x.Valid = "N";
-                                SumInvalid++;
-                            }
-                            else
-                            {
-                                x.Valid = "Y";
-                                SumValid++;
-                            }
-                        });
+                    loResult = await ServiceGetError(pcKeyGuid);
 
-                        if (loResult.Any(x => x.SeqNo < 0))
-                        {
-                            loResult.Where(x => x.SeqNo < 0).ToList().ForEach(x => loException.Add(x.SeqNo.ToString(), x.ErrorMessage));
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        loException.Add(ex);
-                    }
-                    if (loException.HasError)
-                    {
-                        ShowErrorAction(loException);
-                    }
                     VisibleError = true;
                 }
             }
             catch (Exception ex)
             {
-                loException.Add(ex);
+                loException.add(ex);
             }
 
             // Call Method Action StateHasChange
@@ -255,13 +226,13 @@ namespace GSM02500MODEL.View_Model
         {
             Message = string.Format("Process Error with GUID {0}", pcKeyGuid);
 
-            R_Exception loException = new R_Exception();
-            ex.ErrorList.ForEach(l =>
-            {
-                loException.Add(l.ErrNo, l.ErrDescp);
-            });
+            //R_Exception loException = new R_Exception();
+            //ex.ErrorList.ForEach(l =>
+            //{
+            //    loException.Add(l.ErrNo, l.ErrDescp);
+            //});
 
-            ShowErrorAction(loException);
+            ShowErrorAction(ex);
             StateChangeAction();
 
             await Task.CompletedTask;
@@ -282,7 +253,7 @@ namespace GSM02500MODEL.View_Model
 
         private async Task<List<R_ErrorStatusReturn>> ServiceGetError(string pcKeyGuid)
         {
-            R_Exception loException = new R_Exception();
+            R_APIException loException = new R_APIException();
 
             List<R_ErrorStatusReturn> loResultData = null;
             R_GetErrorWithMultiLanguageParameter loParameterData;
@@ -306,10 +277,33 @@ namespace GSM02500MODEL.View_Model
 
                 // Get error result
                 loResultData = await loCls.R_GetStreamErrorProcess(loParameterData);
+                loUploadUnitTypeCategoryDisplayList.ToList().ForEach(x =>
+                {
+                    if (loResultData.Any(y => y.SeqNo == x.No))
+                    {
+                        x.Notes = loResultData.Where(y => y.SeqNo == x.No).FirstOrDefault().ErrorMessage;
+                        x.Valid = "N";
+                        SumInvalid++;
+                    }
+                    else
+                    {
+                        x.Valid = "Y";
+                        SumValid++;
+                    }
+                });
+
+                if (loResultData.Any(x => x.SeqNo < 0))
+                {
+                    var loUnhandleEx = loResultData.Where(x => x.SeqNo < 0).Select(x => new R_BlazorFrontEnd.Exceptions.R_Error(x.SeqNo.ToString(), x.ErrorMessage)).ToList();
+                    var loEx = new R_Exception();
+                    loUnhandleEx.ForEach(x => loEx.Add(x));
+
+                    loException = R_FrontUtility.R_ConvertToAPIException(loEx);
+                }
             }
             catch (Exception ex)
             {
-                loException.Add(ex);
+                loException.add(ex);
             }
 
             loException.ThrowExceptionIfErrors();

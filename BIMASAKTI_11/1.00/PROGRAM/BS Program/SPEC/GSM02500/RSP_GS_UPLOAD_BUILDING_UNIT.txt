@@ -8,3 +8,6 @@ INVALID_UNIT_TYPE	= FOUND INVALID UNIT TYPE
 EXCESS_FLOOR_ID		= Floor Id is bigger than 20 Character
 EMPTY_FLOOR_ID		= Floor Id can not be empty
 INVALID_FLOOR_ID	= Invalid Floor Id
+INVALID_UNIT_CATEGORY	= Invalid Unit Category
+INVALID_STRATA_STATUS	= Invalid Strata Status
+INVALID_LEASE_STATUS	= Invalid Lease Status

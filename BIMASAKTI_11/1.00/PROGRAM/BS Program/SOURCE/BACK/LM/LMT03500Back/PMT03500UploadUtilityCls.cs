@@ -86,12 +86,14 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
         {
             await Task.Delay(1000);
 
-            loTempObject = R_NetCoreUtility.R_DeserializeObjectFromByte<List<PMT03500UploadUtilityErrorValidateDTO>>(poBatchProcessPar.BigObject);
+            loTempObject =
+                R_NetCoreUtility.R_DeserializeObjectFromByte<List<PMT03500UploadUtilityErrorValidateDTO>>(
+                    poBatchProcessPar.BigObject);
 
             _logger.LogInfo("Get User Parameters");
             var loUtilityType = poBatchProcessPar.UserParameters
                 .Where((x) => x.Key.Equals(PMT03500ContextConstant.CUTILITY_TYPE)).FirstOrDefault().Value;
-            
+
             var loProperty = poBatchProcessPar.UserParameters
                 .Where((x) => x.Key.Equals(PMT03500ContextConstant.CPROPERTY_ID)).FirstOrDefault().Value;
 
@@ -103,12 +105,24 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
                 loObjectEC = R_Utility
                     .R_ConvertCollectionToCollection<PMT03500UploadUtilityErrorValidateDTO,
                         PMT03500UploadUtilityRequestECDTO>(loTempObject);
+                foreach (var item in loObjectEC)
+                {
+                    item.CPHOTO_REC_ID_1 = "";
+                    item.CPHOTO_REC_ID_2 = "";
+                    item.CPHOTO_REC_ID_3 = "";
+                }
             }
             else if (lcUtility == "WG")
             {
                 loObjectWG = R_Utility
                     .R_ConvertCollectionToCollection<PMT03500UploadUtilityErrorValidateDTO,
                         PMT03500UploadUtilityRequestWGDTO>(loTempObject);
+                foreach (var item in loObjectWG)
+                {
+                    item.CPHOTO_REC_ID_1 = "";
+                    item.CPHOTO_REC_ID_2 = "";
+                    item.CPHOTO_REC_ID_3 = "";
+                }
             }
 
             loConn = loDb.GetConnection();
@@ -116,38 +130,41 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
 
             _logger.LogInfo("Start Create Temporary Table and Bulk Insert Data");
             lcQuery += $"CREATE TABLE #UTILITY_USAGE_{lcUtility}( " +
-                        "NO             int, " +
-                        "CCOMPANY_ID    varchar(8), " +
-                        "CPROPERTY_ID    varchar(20), " +
-                        "CDEPT_CODE      varchar(20), " +
-                        "CTRANS_CODE     varchar(10), " +
-                        "CREF_NO         varchar(30), " +
-                        "CUTILITY_TYPE   varchar(2),  " +
-                        "CUNIT_ID        varchar(20), " +
-                        "CFLOOR_ID       varchar(20), " +
-                        "CBUILDING_ID    varchar(20), " +
-                        "CCHARGES_TYPE   varchar(2),  " +
-                        "CCHARGES_ID 	varchar(20), " +
-                        "CSEQ_NO 		varchar(3),  " +
-                        "CINV_PRD    	varchar(6),  " +
-                        "CUTILITY_PRD    varchar(6),  " +
-                        "CSTART_DATE 	varchar(8),  " +
-                        "CEND_DATE   	varchar(8),  " +
-                        "CMETER_NO   	varchar(50), ";
+                       "NO             int, " +
+                       "CCOMPANY_ID    varchar(8), " +
+                       "CPROPERTY_ID    varchar(20), " +
+                       "CDEPT_CODE      varchar(20), " +
+                       "CTRANS_CODE     varchar(10), " +
+                       "CREF_NO         varchar(30), " +
+                       "CUTILITY_TYPE   varchar(2),  " +
+                       "CUNIT_ID        varchar(20), " +
+                       "CFLOOR_ID       varchar(20), " +
+                       "CBUILDING_ID    varchar(20), " +
+                       "CCHARGES_TYPE   varchar(2),  " +
+                       "CCHARGES_ID 	varchar(20), " +
+                       "CSEQ_NO 		varchar(3),  " +
+                       "CINV_PRD    	varchar(6),  " +
+                       "CUTILITY_PRD    varchar(6),  " +
+                       "CSTART_DATE 	varchar(8),  " +
+                       "CEND_DATE   	varchar(8),  " +
+                       "CMETER_NO   	varchar(50), " +
+                       "CPHOTO_REC_ID_1 varchar(50), " +
+                       "CPHOTO_REC_ID_2 varchar(50), " +
+                       "CPHOTO_REC_ID_3 varchar(50), ";
 
             switch (lcUtility)
             {
                 case "EC":
-                    lcQuery += "IBLOCK1_START   int, " +
-                               "IBLOCK2_START   int, " +
-                               "IBLOCK1_END 	int, " +
-                               "IBLOCK2_END 	int, " +
+                    lcQuery += "NBLOCK1_START   numeric(16,2), " +
+                               "NBLOCK2_START   numeric(16,2), " +
+                               "NBLOCK1_END 	numeric(16,2), " +
+                               "NBLOCK2_END 	numeric(16,2), " +
                                "NBEBAN_BERSAMA 	numeric(16,2));";
-                    
-                    
+
+
                     loDb.SqlExecNonQuery(lcQuery, loConn, false);
-                    
-                    for(var i = 0; i < loObjectEC.Count; i++)
+
+                    for (var i = 0; i < loObjectEC.Count; i++)
                     {
                         _logger.LogDebug($"INSERT INTO #UTILITY_USAGE_EC " +
                                          $"VALUES (" +
@@ -169,56 +186,62 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
                                          $"'{loObjectEC[i].CSTART_DATE}', " +
                                          $"'{loObjectEC[i].CEND_DATE}', " +
                                          $"'{loObjectEC[i].CMETER_NO}', " +
-                                         $"{loObjectEC[i].IBLOCK1_START}, " +
-                                         $"{loObjectEC[i].IBLOCK2_START}, " +
-                                         $"{loObjectEC[i].IBLOCK1_END}, " +
-                                         $"{loObjectEC[i].IBLOCK2_END}, " +
+                                         $"'{loObjectEC[i].CPHOTO_REC_ID_1}', " +
+                                         $"'{loObjectEC[i].CPHOTO_REC_ID_2}', " +
+                                         $"'{loObjectEC[i].CPHOTO_REC_ID_3}', " +
+                                         $"{loObjectEC[i].NBLOCK1_START}, " +
+                                         $"{loObjectEC[i].NBLOCK2_START}, " +
+                                         $"{loObjectEC[i].NBLOCK1_END}, " +
+                                         $"{loObjectEC[i].NBLOCK2_END}, " +
                                          $"{loObjectEC[i].NBEBAN_BERSAMA})");
                     }
-                    
+
                     loDb.R_BulkInsert((SqlConnection)loConn, $"#UTILITY_USAGE_EC", loObjectEC);
                     break;
                 case "WG":
-                    lcQuery += "IMETER_START 	int, " +
-                               "IMETER_END 	    int);";
+                    lcQuery += "NMETER_START 	numeric(16,2), " +
+                               "NMETER_END 	    numeric(16,2));";
                     loDb.SqlExecNonQuery(lcQuery, loConn, false);
-                    
-                    for(var i = 0; i < loObjectWG.Count; i++)
-                    {
-                        _logger.LogDebug($"INSERT INTO #UTILITY_USAGE_WG " +
-                                         $"VALUES (" +
-                                         $"{loObjectWG[i].NO}, " +
-                                         $"'{loObjectWG[i].CCOMPANY_ID}', " +
-                                         $"'{loObjectWG[i].CPROPERTY_ID}', " +
-                                         $"'{loObjectWG[i].CDEPT_CODE}', " +
-                                         $"'{loObjectWG[i].CTRANS_CODE}', " +
-                                         $"'{loObjectWG[i].CREF_NO}', " +
-                                         $"'{loObjectWG[i].CUTILITY_TYPE}', " +
-                                         $"'{loObjectWG[i].CUNIT_ID}', " +
-                                         $"'{loObjectWG[i].CFLOOR_ID}', " +
-                                         $"'{loObjectWG[i].CBUILDING_ID}', " +
-                                         $"'{loObjectWG[i].CCHARGES_TYPE}', " +
-                                         $"'{loObjectWG[i].CCHARGES_ID}', " +
-                                         $"'{loObjectWG[i].CSEQ_NO}', " +
-                                         $"'{loObjectWG[i].CINV_PRD}', " +
-                                         $"'{loObjectWG[i].CUTILITY_PRD}', " +
-                                         $"'{loObjectWG[i].CSTART_DATE}', " +
-                                         $"'{loObjectWG[i].CEND_DATE}', " +
-                                         $"'{loObjectWG[i].CMETER_NO}', " +
-                                         $"{loObjectWG[i].IMETER_START}, " +
-                                         $"{loObjectWG[i].IMETER_END}" +
-                                         $")");
-                    }
-                    
+
+                    // for (var i = 0; i < loObjectWG.Count; i++)
+                    // {
+                    //     _logger.LogDebug($"INSERT INTO #UTILITY_USAGE_WG " +
+                    //                      $"VALUES (" +
+                    //                      $"{loObjectWG[i].NO}, " +
+                    //                      $"'{loObjectWG[i].CCOMPANY_ID}', " +
+                    //                      $"'{loObjectWG[i].CPROPERTY_ID}', " +
+                    //                      $"'{loObjectWG[i].CDEPT_CODE}', " +
+                    //                      $"'{loObjectWG[i].CTRANS_CODE}', " +
+                    //                      $"'{loObjectWG[i].CREF_NO}', " +
+                    //                      $"'{loObjectWG[i].CUTILITY_TYPE}', " +
+                    //                      $"'{loObjectWG[i].CUNIT_ID}', " +
+                    //                      $"'{loObjectWG[i].CFLOOR_ID}', " +
+                    //                      $"'{loObjectWG[i].CBUILDING_ID}', " +
+                    //                      $"'{loObjectWG[i].CCHARGES_TYPE}', " +
+                    //                      $"'{loObjectWG[i].CCHARGES_ID}', " +
+                    //                      $"'{loObjectWG[i].CSEQ_NO}', " +
+                    //                      $"'{loObjectWG[i].CINV_PRD}', " +
+                    //                      $"'{loObjectWG[i].CUTILITY_PRD}', " +
+                    //                      $"'{loObjectWG[i].CSTART_DATE}', " +
+                    //                      $"'{loObjectWG[i].CEND_DATE}', " +
+                    //                      $"'{loObjectWG[i].CMETER_NO}', " +
+                    //                      $"'{loObjectEC[i].CPHOTO_REC_ID_1}', " +
+                    //                      $"'{loObjectEC[i].CPHOTO_REC_ID_2}', " +
+                    //                      $"'{loObjectEC[i].CPHOTO_REC_ID_3}', " +
+                    //                      $"{loObjectWG[i].NMETER_START}, " +
+                    //                      $"{loObjectWG[i].NMETER_END})");
+                    // }
+
                     loDb.R_BulkInsert((SqlConnection)loConn, $"#UTILITY_USAGE_WG", loObjectWG);
                     break;
             }
+
             _logger.LogInfo("End Create Temporary Table and Bulk Insert Data");
             _logger.LogDebug(lcQuery);
             _logger.LogInfo("Start Exec Upload Query");
-            
+
             lcQuery = $"RSP_PM_UPLOAD_UTILITY_USAGE_{lcUtility}";
-            
+
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
@@ -227,7 +250,7 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
             loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 20, "");
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 20, poBatchProcessPar.Key.USER_ID);
             loDb.R_AddCommandParameter(loCmd, "@CKEY_GUID", DbType.String, 50, poBatchProcessPar.Key.KEY_GUID);
-           
+
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x =>
                     x.ParameterName is
@@ -240,7 +263,7 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
                 .Select(x => x.Value);
             _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
             _logger.LogInfo("End Process");
-            
+
             loDb.SqlExecNonQuery(loConn, loCmd, false);
         }
         catch (Exception ex)
@@ -264,7 +287,7 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
                 loCmd = null;
             }
         }
-        
+
         if (loException.Haserror)
         {
             _logger.LogError("Exception Error", loException);
@@ -272,7 +295,7 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
                       $"'{poBatchProcessPar.Key.USER_ID}', " +
                       $"'{poBatchProcessPar.Key.KEY_GUID}', " +
                       $"100, '{loException.ErrorList[0].ErrDescp}', 9";
-        
+
             loDb.SqlExecNonQuery(lcQuery);
         }
     }

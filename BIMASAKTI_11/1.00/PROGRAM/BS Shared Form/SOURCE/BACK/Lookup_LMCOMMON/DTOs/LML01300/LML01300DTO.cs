@@ -15,5 +15,9 @@ namespace Lookup_PMCOMMON.DTOs.LML01300
         public string? CTENANT_NAME { get; set; }
         public string? CTENANT_TYPE_ID { get; set; }
         public string? CTENANT_TYPE_NAME { get; set; }
+        public string? CCHARGE_MODE { get; set; }
+        public string? CSTART_DATE { get; set; }
+        public string? CEND_DATE { get; set; }
+
     }
 }

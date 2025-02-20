@@ -27,6 +27,7 @@ namespace Lookup_PMModel.ViewModel.LML00200
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTAXABLE_TYPE, poParam.CTAXABLE_TYPE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CACTIVE_TYPE, poParam.CACTIVE_TYPE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTAX_DATE, poParam.CTAX_DATE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LACCRUAL, poParam.LACCRUAL);
 
                 var loResult = await _model.LML00200GetUnitChargesListAsync();
                 UnitChargesList = new ObservableCollection<LML00200DTO>(loResult.Data);

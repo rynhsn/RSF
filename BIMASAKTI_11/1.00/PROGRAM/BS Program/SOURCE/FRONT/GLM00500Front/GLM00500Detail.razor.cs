@@ -427,7 +427,7 @@ public partial class GLM00500Detail
         {
             _lookupCenterCode.Enabled = false;
             _fieldCenterCode.Enabled = false;
-            if ((pcCBSIS == "B" && _detailViewModel.Company.LENABLE_CENTER_BS) ||
+            if (_detailViewModel.Company.LENABLE_CENTER_BS ||
                 (pcCBSIS == "I" && _detailViewModel.Company.LENABLE_CENTER_IS))
             {
                 _lookupCenterCode.Enabled = true;
@@ -622,8 +622,19 @@ public partial class GLM00500Detail
                 loEx.Add(new Exception(_localizer["Exception04"]));
             }
 
+            // if (string.IsNullOrEmpty(loEntity.CCENTER_CODE) &&
+            //     ((loEntity.CBSIS == "B" && _detailViewModel.Company.LENABLE_CENTER_BS) ||
+            //      (loEntity.CBSIS == "I" && _detailViewModel.Company.LENABLE_CENTER_IS)))
+            
+            //untuk testing saja
+            // _detailViewModel.Company.LENABLE_CENTER_BS = false;
+            // _detailViewModel.Company.LENABLE_CENTER_IS = true;
+            // loEntity.CBSIS = "B";
+            
+            //true and (false || (false && true)) = true 
+            
             if (string.IsNullOrEmpty(loEntity.CCENTER_CODE) &&
-                ((loEntity.CBSIS == "B" && _detailViewModel.Company.LENABLE_CENTER_BS) ||
+                (_detailViewModel.Company.LENABLE_CENTER_BS ||
                  (loEntity.CBSIS == "I" && _detailViewModel.Company.LENABLE_CENTER_IS)))
             {
                 loEx.Add(new Exception($"{_localizer["Exception05"]} {loEntity.CGLACCOUNT_NO}!"));

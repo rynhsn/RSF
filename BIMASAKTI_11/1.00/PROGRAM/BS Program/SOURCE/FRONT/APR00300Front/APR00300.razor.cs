@@ -1,9 +1,10 @@
 ﻿using APR00300Common.DTOs;
 using APR00300Model.ViewModel;
 using BlazorClientHelper;
-using Lookup_APCOMMON.DTOs.APL00100;
 using Lookup_APFRONT;
-using Lookup_APModel.ViewModel.APL00100;
+using Lookup_GSCOMMON.DTOs;
+using Lookup_GSFRONT;
+using Lookup_GSModel.ViewModel;
 using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.Events;
@@ -44,7 +45,7 @@ public partial class APR00300 : R_Page
     {
         var loEx = new R_Exception();
 
-        var loLookupViewModel = new LookupAPL00100ViewModel();
+        var loLookupViewModel = new LookupGSL02900ViewModel();
         try
         {
             if (string.IsNullOrEmpty(_viewModel.ReportParam.CFROM_SUPPLIER_ID))
@@ -53,15 +54,15 @@ public partial class APR00300 : R_Page
                 return;
             }
 
-            var param = new APL00100ParameterDTO
+            var param = new GSL02900ParameterDTO
             {
-                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
-                CSEARCH_CODE = _viewModel.ReportParam.CFROM_SUPPLIER_ID
+                // CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
+                CSEARCH_TEXT = _viewModel.ReportParam.CFROM_SUPPLIER_ID
             };
 
-            APL00100DTO loResult = null;
+            GSL02900DTO loResult = null;
 
-            loResult = await loLookupViewModel.GetSuplier(param);
+            loResult = await loLookupViewModel.GetSupplier(param);
 
             if (loResult == null)
             {
@@ -87,11 +88,11 @@ public partial class APR00300 : R_Page
 
     private void BeforeLookupFromSupplier(R_BeforeOpenLookupEventArgs eventArgs)
     {
-        eventArgs.TargetPageType = typeof(APL00100);
-        eventArgs.Parameter = new APL00100ParameterDTO
-        {
-            CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID
-        };
+        eventArgs.TargetPageType = typeof(GSL02900);
+        eventArgs.Parameter = new GSL02900ParameterDTO();
+        // {
+        //     CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID
+        // };
     }
 
     private void AfterLookupFromSupplier(R_AfterOpenLookupEventArgs eventArgs)
@@ -99,7 +100,7 @@ public partial class APR00300 : R_Page
         var loEx = new R_Exception();
         try
         {
-            var loTempResult = (APL00100DTO)eventArgs.Result;
+            var loTempResult = (GSL02900DTO)eventArgs.Result;
             if (loTempResult == null)
                 return;
 
@@ -119,7 +120,7 @@ public partial class APR00300 : R_Page
     {
         var loEx = new R_Exception();
 
-        var loLookupViewModel = new LookupAPL00100ViewModel();
+        var loLookupViewModel = new LookupGSL02900ViewModel();
         try
         {
             if (string.IsNullOrEmpty(_viewModel.ReportParam.CTO_SUPPLIER_ID))
@@ -128,15 +129,15 @@ public partial class APR00300 : R_Page
                 return;
             }
 
-            var param = new APL00100ParameterDTO
+            var param = new GSL02900ParameterDTO
             {
-                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
-                CSEARCH_CODE = _viewModel.ReportParam.CTO_SUPPLIER_ID
+                // CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
+                CSEARCH_TEXT = _viewModel.ReportParam.CTO_SUPPLIER_ID
             };
 
-            APL00100DTO loResult = null;
+            GSL02900DTO loResult = null;
 
-            loResult = await loLookupViewModel.GetSuplier(param);
+            loResult = await loLookupViewModel.GetSupplier(param);
 
             if (loResult == null)
             {
@@ -162,11 +163,11 @@ public partial class APR00300 : R_Page
 
     private void BeforeLookupToSupplier(R_BeforeOpenLookupEventArgs eventArgs)
     {
-        eventArgs.TargetPageType = typeof(APL00100);
-        eventArgs.Parameter = new APL00100ParameterDTO
-        {
-            CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID
-        };
+        eventArgs.TargetPageType = typeof(GSL02900);
+        eventArgs.Parameter = new GSL02900ParameterDTO();
+        // {
+        //     CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID
+        // };
     }
 
     private void AfterLookupToSupplier(R_AfterOpenLookupEventArgs eventArgs)
@@ -174,7 +175,7 @@ public partial class APR00300 : R_Page
         var loEx = new R_Exception();
         try
         {
-            var loTempResult = (APL00100DTO)eventArgs.Result;
+            var loTempResult = (GSL02900DTO)eventArgs.Result;
             if (loTempResult == null)
                 return;
 

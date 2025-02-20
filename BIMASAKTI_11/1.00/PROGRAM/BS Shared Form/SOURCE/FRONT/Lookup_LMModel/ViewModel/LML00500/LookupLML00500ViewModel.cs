@@ -21,6 +21,7 @@ namespace Lookup_PMModel.ViewModel.LML00500
             try
             {
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParam.CPROPERTY_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LACTIVE_ONLY, true);
 
                 var loResult = await _model.LML00500GetSalesmanListAsync();
                 SalesmanList = new ObservableCollection<LML00500DTO>(loResult.Data);
@@ -38,6 +39,8 @@ namespace Lookup_PMModel.ViewModel.LML00500
             LML00500DTO loRtn = null;
             try
             {
+                poParam.LACTIVE = true;
+
                 var loResult = await _modelGetRecord.LML00500GetSalesmanAsync(poParam);
                 loRtn = loResult;
             }

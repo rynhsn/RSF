@@ -160,6 +160,15 @@ namespace GSM02500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Capacity.
+        /// </summary>
+        internal static string _Capacity {
+            get {
+                return ResourceManager.GetString("_Capacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Capacity (Electricity).
         /// </summary>
         internal static string _Capacity_Electricity_ {
@@ -448,6 +457,15 @@ namespace GSM02500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lease Status.
+        /// </summary>
+        internal static string _LeaseStatus {
+            get {
+                return ResourceManager.GetString("_LeaseStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Location.
         /// </summary>
         internal static string _Location {
@@ -637,6 +655,15 @@ namespace GSM02500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other Unit View.
+        /// </summary>
+        internal static string _OtherUnitView {
+            get {
+                return ResourceManager.GetString("_OtherUnitView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PF.
         /// </summary>
         internal static string _PF {
@@ -777,6 +804,15 @@ namespace GSM02500FrontResources {
         internal static string _sqm {
             get {
                 return ResourceManager.GetString("_sqm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strata Status.
+        /// </summary>
+        internal static string _StrataStatus {
+            get {
+                return ResourceManager.GetString("_StrataStatus", resourceCulture);
             }
         }
         
@@ -1461,6 +1497,15 @@ namespace GSM02500FrontResources {
         internal static string V036 {
             get {
                 return ResourceManager.GetString("V036", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property Id can&apos;t contain special characters.
+        /// </summary>
+        internal static string V037 {
+            get {
+                return ResourceManager.GetString("V037", resourceCulture);
             }
         }
     }

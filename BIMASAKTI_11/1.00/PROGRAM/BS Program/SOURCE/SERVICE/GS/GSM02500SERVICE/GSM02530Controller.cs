@@ -112,6 +112,46 @@ namespace GSM02500SERVICE
         }
 
 
+        [HttpPost]
+        public IAsyncEnumerable<GetStrataLeaseDTO> GetStrataLeaseList()
+        {
+            using Activity activity = _activitySource.StartActivity("GetStrataLeaseList");
+            _logger.LogInfo("Start || GetStrataLeaseList(Controller)");
+            R_Exception loException = new R_Exception();
+            IAsyncEnumerable<GetStrataLeaseDTO> loRtn = null;
+            GetStrataLeaseParameterDTO loParam = null;
+            GSM02530Cls loCls = new GSM02530Cls();
+            List<GetStrataLeaseDTO> loTempRtn = null;
+
+            try
+            {
+                _logger.LogInfo("Set Parameter || GetStrataLeaseList(Controller)");
+                loParam = R_Utility.R_GetStreamingContext<GetStrataLeaseParameterDTO>(ContextConstant.GSM02530_STRATA_LEASE_STREAMING_CONTEXT);
+                loParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                loParam.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
+
+                _logger.LogInfo("Run GetStrataLeaseList(Cls) || GetStrataLeaseList(Controller)");
+                loTempRtn = loCls.GetStrataLeaseList(loParam);
+
+                _logger.LogInfo("Run GetStrataLeaseStream(Controller) || GetStrataLeaseList(Controller)");
+                loRtn = GetStrataLeaseStream(loTempRtn);
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+
+            loException.ThrowExceptionIfErrors();
+            _logger.LogInfo("End || GetStrataLeaseList(Controller)");
+            return loRtn;
+        }
+        private async IAsyncEnumerable<GetStrataLeaseDTO> GetStrataLeaseStream(List<GetStrataLeaseDTO> poParameter)
+        {
+            foreach (GetStrataLeaseDTO item in poParameter)
+            {
+                yield return item;
+            }
+        }
 
         [HttpPost]
         public GSM02500ActiveInactiveResultDTO RSP_GS_ACTIVE_INACTIVE_BUILDING_UNITMethod(GSM02500ActiveInactiveParameterDTO poParam)

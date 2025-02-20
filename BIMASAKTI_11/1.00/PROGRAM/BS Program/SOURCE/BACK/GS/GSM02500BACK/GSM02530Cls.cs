@@ -1,5 +1,6 @@
 ﻿using GSM02500BACK.OpenTelemetry;
 using GSM02500COMMON.DTOs;
+using GSM02500COMMON.DTOs.GSM02500;
 using GSM02500COMMON.DTOs.GSM02520;
 using GSM02500COMMON.DTOs.GSM02530;
 using GSM02500COMMON.Loggers;
@@ -110,7 +111,9 @@ namespace GSM02500BACK
                                  $"@CUNIT_CATEGORY_ID, " +
                                  $"@LACTIVE, " +
                                  $"@CACTION, " +
-                                 $"@CLOGIN_USER_ID";
+                                 $"@CLOGIN_USER_ID, " +
+                                 $"@CSTRATA_STATUS, " +
+                                 $"@CLEASE_STATUS";
 
                 loCmd.CommandText = lcQuery;
 
@@ -130,6 +133,8 @@ namespace GSM02500BACK
                 loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, 10, poEntity.Data.LACTIVE);
                 loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 50, poEntity.CACTION);
                 loDb.R_AddCommandParameter(loCmd, "@CLOGIN_USER_ID", DbType.String, 50, poEntity.CLOGIN_USER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CSTRATA_STATUS", DbType.String, 50, poEntity.Data.CSTRATA_STATUS);
+                loDb.R_AddCommandParameter(loCmd, "@CLEASE_STATUS", DbType.String, 50, poEntity.Data.CLEASE_STATUS);
 
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                     .Where(x =>
@@ -225,6 +230,78 @@ namespace GSM02500BACK
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
                 loResult = R_Utility.R_ConvertTo<GSM02530DTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+                _logger.LogError(loException);
+            }
+
+            loException.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        public List<GetStrataLeaseDTO> GetStrataLeaseList(GetStrataLeaseParameterDTO poParameter)
+        {
+            using Activity activity = _activitySource.StartActivity("GetStrataLeaseList");
+            R_Exception loException = new R_Exception();
+            List<GetStrataLeaseDTO> loResult = null;
+            R_Db loDb = new R_Db();
+            DbConnection loConn = null;
+            DbCommand loCmd = null;
+            string lcQuery;
+
+            try
+            {
+                loConn = loDb.GetConnection();
+
+                lcQuery = $"SELECT CCODE, CDESCRIPTION FROM RFT_GET_GSB_CODE_INFO " +
+                    $"('BIMASAKTI', " +
+                    $"@CCOMPANY_ID, " +
+                    $"@CLASS_ID, " +
+                    $"@REC_ID_LIST, " +
+                    $"@CLANGUAGE_ID)";
+
+                loCmd = loDb.GetCommand();
+                loCmd.CommandText = lcQuery;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParameter.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CLASS_ID", DbType.String, 50, poParameter.CLASS_ID);
+                loDb.R_AddCommandParameter(loCmd, "@REC_ID_LIST", DbType.String, 50, poParameter.REC_ID_LIST);
+                loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, poParameter.CLANGUAGE_ID);
+
+                string loCompanyIdLog = "";
+                string lcClassId = "";
+                string lcRecIdList = "";
+                string loUserLanLog = "";
+                List<DbParameter> loDbParam = loCmd.Parameters.Cast<DbParameter>().ToList();
+                loDbParam.ForEach(x =>
+                {
+                    switch (x.ParameterName)
+                    {
+                        case "@CCOMPANY_ID":
+                            loCompanyIdLog = (string)x.Value;
+                            break;
+                        case "@CLASS_ID":
+                            lcClassId = (string)x.Value;
+                            break;
+                        case "@REC_ID_LIST":
+                            lcRecIdList = (string)x.Value;
+                            break;
+                        case "@CLANGUAGE_ID":
+                            loUserLanLog = (string)x.Value;
+                            break;
+                    }
+                });
+                var loDebugLogResult = string.Format("SELECT CCODE, CDESCRIPTION FROM " +
+                    "RFT_GET_GSB_CODE_INFO('BIMASAKTI', {0} , " +
+                    "{1}, {2} , {3}) || GetStrataLeaseList(Cls)", loCompanyIdLog, lcClassId, lcRecIdList, loUserLanLog);
+                _logger.LogDebug(loDebugLogResult);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GetStrataLeaseDTO>(loDataTable).ToList();
             }
             catch (Exception ex)
             {

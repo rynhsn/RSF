@@ -58,19 +58,19 @@ namespace GSM02500BACK
                     _BatchProcess(poBatchProcessPar);
                 });
 
-                while (!loTask.IsCompleted)
-                {
-                    Thread.Sleep(100);
-                }
+                //while (!loTask.IsCompleted)
+                //{
+                //    Thread.Sleep(100);
+                //}
 
-                if (loTask.IsFaulted)
-                {
-                    loException.Add(loTask.Exception.InnerException != null ?
-                        loTask.Exception.InnerException :
-                        loTask.Exception);
+                //if (loTask.IsFaulted)
+                //{
+                //    loException.Add(loTask.Exception.InnerException != null ?
+                //        loTask.Exception.InnerException :
+                //        loTask.Exception);
 
-                    goto EndBlock;
-                }
+                //    goto EndBlock;
+                //}
             }
             catch (Exception ex)
             {

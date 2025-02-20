@@ -71,16 +71,16 @@ namespace PMT03500Model.ViewModel
                     RateList[i].IMIN_USAGE = i == 0 ? 0 : RateList[i - 1].IUP_TO_USAGE + 1;
                     if (i == 0)
                     {
-                        RateList[i].NUSAGE = poEntity.IMETER_USAGE > RateList[i].IUP_TO_USAGE
+                        RateList[i].NUSAGE = poEntity.NMETER_USAGE > RateList[i].IUP_TO_USAGE
                             ? RateList[i].IUP_TO_USAGE
-                            : poEntity.IMETER_USAGE;
+                            : poEntity.NMETER_USAGE;
                     }
                     else
                     {
                         RateList[i].NUSAGE =
-                            poEntity.IMETER_USAGE - RateList[i - 1].IUP_TO_USAGE > RateList[i].IUP_TO_USAGE
+                            poEntity.NMETER_USAGE - RateList[i - 1].IUP_TO_USAGE > RateList[i].IUP_TO_USAGE
                                 ? RateList[i].IUP_TO_USAGE - RateList[i - 1].IUP_TO_USAGE
-                                : poEntity.IMETER_USAGE - RateList[i - 1].IUP_TO_USAGE;
+                                : poEntity.NMETER_USAGE - RateList[i - 1].IUP_TO_USAGE;
                     }
 
                     RateList[i].NUSAGE = Math.Max(0, RateList[i].NUSAGE);

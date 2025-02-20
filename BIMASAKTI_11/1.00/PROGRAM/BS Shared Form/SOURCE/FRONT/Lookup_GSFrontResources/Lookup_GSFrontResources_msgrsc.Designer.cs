@@ -106,6 +106,51 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        internal static string _Address {
+            get {
+                return ResourceManager.GetString("_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alias Name.
+        /// </summary>
+        internal static string _AliasName {
+            get {
+                return ResourceManager.GetString("_AliasName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Categories.
+        /// </summary>
+        internal static string _AllCategories {
+            get {
+                return ResourceManager.GetString("_AllCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allocation ID.
+        /// </summary>
+        internal static string _AllocationID {
+            get {
+                return ResourceManager.GetString("_AllocationID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allocation Name.
+        /// </summary>
+        internal static string _AllocationName {
+            get {
+                return ResourceManager.GetString("_AllocationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bank.
         /// </summary>
         internal static string _Bank {
@@ -322,6 +367,15 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CB with Account.
+        /// </summary>
+        internal static string _CBwithAccount {
+            get {
+                return ResourceManager.GetString("_CBwithAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Center.
         /// </summary>
         internal static string _Center {
@@ -372,6 +426,15 @@ namespace Lookup_GSFrontResources {
         internal static string _ChargesName {
             get {
                 return ResourceManager.GetString("_ChargesName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        internal static string _City {
+            get {
+                return ResourceManager.GetString("_City", resourceCulture);
             }
         }
         
@@ -529,6 +592,15 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dept. Mode.
+        /// </summary>
+        internal static string _DeptMode {
+            get {
+                return ResourceManager.GetString("_DeptMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Department Name.
         /// </summary>
         internal static string _DeptName {
@@ -561,6 +633,33 @@ namespace Lookup_GSFrontResources {
         internal static string _ErrLookup01 {
             get {
                 return ResourceManager.GetString("_ErrLookup01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expenditure ID.
+        /// </summary>
+        internal static string _ExpenditureID {
+            get {
+                return ResourceManager.GetString("_ExpenditureID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expenditure Lookup.
+        /// </summary>
+        internal static string _ExpenditureLookup {
+            get {
+                return ResourceManager.GetString("_ExpenditureLookup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expenditure Name.
+        /// </summary>
+        internal static string _ExpenditureName {
+            get {
+                return ResourceManager.GetString("_ExpenditureName", resourceCulture);
             }
         }
         
@@ -835,6 +934,42 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product Allocation Lookup.
+        /// </summary>
+        internal static string _ProductAllocationLookup {
+            get {
+                return ResourceManager.GetString("_ProductAllocationLookup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product ID.
+        /// </summary>
+        internal static string _ProductID {
+            get {
+                return ResourceManager.GetString("_ProductID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Lookup.
+        /// </summary>
+        internal static string _ProductLookup {
+            get {
+                return ResourceManager.GetString("_ProductLookup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Name.
+        /// </summary>
+        internal static string _ProductName {
+            get {
+                return ResourceManager.GetString("_ProductName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rate Date.
         /// </summary>
         internal static string _RateDate {
@@ -871,6 +1006,15 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string _Refresh {
+            get {
+                return ResourceManager.GetString("_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rounding Mode.
         /// </summary>
         internal static string _RoundMode {
@@ -898,11 +1042,47 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        internal static string _Search {
+            get {
+                return ResourceManager.GetString("_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Category.
+        /// </summary>
+        internal static string _SelectedCategory {
+            get {
+                return ResourceManager.GetString("_SelectedCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sequence.
         /// </summary>
         internal static string _Seq {
             get {
                 return ResourceManager.GetString("_Seq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seq. No..
+        /// </summary>
+        internal static string _SeqNo {
+            get {
+                return ResourceManager.GetString("_SeqNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show All.
+        /// </summary>
+        internal static string _ShowAll {
+            get {
+                return ResourceManager.GetString("_ShowAll", resourceCulture);
             }
         }
         
@@ -916,6 +1096,42 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Supplier ID.
+        /// </summary>
+        internal static string _SupplierID {
+            get {
+                return ResourceManager.GetString("_SupplierID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supplier Info Lookup.
+        /// </summary>
+        internal static string _SupplierInfoLookup {
+            get {
+                return ResourceManager.GetString("_SupplierInfoLookup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supplier Lookup.
+        /// </summary>
+        internal static string _SupplierLookup {
+            get {
+                return ResourceManager.GetString("_SupplierLookup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supplier Name.
+        /// </summary>
+        internal static string _SupplierName {
+            get {
+                return ResourceManager.GetString("_SupplierName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Symbol.
         /// </summary>
         internal static string _Symbol {
@@ -925,11 +1141,29 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Taxable.
+        /// </summary>
+        internal static string _Taxable {
+            get {
+                return ResourceManager.GetString("_Taxable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tax By Date.
         /// </summary>
         internal static string _TaxByDate {
             get {
                 return ResourceManager.GetString("_TaxByDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Charges.
+        /// </summary>
+        internal static string _TaxCharges {
+            get {
+                return ResourceManager.GetString("_TaxCharges", resourceCulture);
             }
         }
         
@@ -1020,6 +1254,24 @@ namespace Lookup_GSFrontResources {
         internal static string _TOPName {
             get {
                 return ResourceManager.GetString("_TOPName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        internal static string _Type {
+            get {
+                return ResourceManager.GetString("_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit.
+        /// </summary>
+        internal static string _Unit {
+            get {
+                return ResourceManager.GetString("_Unit", resourceCulture);
             }
         }
         
@@ -1164,6 +1416,42 @@ namespace Lookup_GSFrontResources {
         internal static string _WithholdingTax {
             get {
                 return ResourceManager.GetString("_WithholdingTax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please input keyword to search!.
+        /// </summary>
+        internal static string N01 {
+            get {
+                return ResourceManager.GetString("N01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum search keyword is 3 characters!.
+        /// </summary>
+        internal static string N02 {
+            get {
+                return ResourceManager.GetString("N02", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No data found!.
+        /// </summary>
+        internal static string N03 {
+            get {
+                return ResourceManager.GetString("N03", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select Category!.
+        /// </summary>
+        internal static string V01 {
+            get {
+                return ResourceManager.GetString("V01", resourceCulture);
             }
         }
     }

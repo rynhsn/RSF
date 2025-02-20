@@ -2,6 +2,7 @@
 @attribute [R_Page(Title = "Upload")]
 @using GSM02500COMMON.DTOs.GSM02520
 @using GSM02500COMMON.DTOs.GSM02530
+@using GSM02500COMMON.DTOs.GSM02531;
 
 <R_StackLayout Style="width:1000px">
 
@@ -60,8 +61,8 @@
                                 AllowDeleteRow="false"
                                 R_ServiceGetListRecord="@Grid_R_ServiceGetFloorListRecord">
                             <R_GridColumns>
-                                <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadFloorDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridNumericColumn>
-                                <R_GridTextColumn FieldName=@nameof(UploadFloorDTO.FloorCode) HeaderText="@_localizer["_FloorCode"]" Enabled="false" Width="100px"></R_GridTextColumn>
+                                <R_GridNumericColumn TValue="int" FieldName=@nameof(UploadFloorDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridNumericColumn>
+                                <R_GridTextColumn FieldName=@nameof(UploadFloorDTO.FloorCode) HeaderText="@_localizer["_FloorCode"]" Enabled="false" Width="125px"></R_GridTextColumn>
                                 <R_GridTextColumn FieldName=@nameof(UploadFloorDTO.FloorName) HeaderText="@_localizer["_FloorName"]" Enabled="false" Width="200px"></R_GridTextColumn>
                                 <R_GridTextColumn FieldName=@nameof(UploadFloorDTO.Description) HeaderText="@_localizer["_Description"]" Enabled="false" Width="350px"></R_GridTextColumn>
                                 <R_GridCheckBoxColumn FieldName=@nameof(UploadFloorDTO.Active) HeaderText="@_localizer["_Active"]" Enabled="false" Width="100px"></R_GridCheckBoxColumn>
@@ -90,7 +91,7 @@
                             AllowDeleteRow="false"
                             R_ServiceGetListRecord="@Grid_R_ServiceGetUnitListRecord">
                         <R_GridColumns>
-                            <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridNumericColumn>
+                            <R_GridNumericColumn TValue="int" FieldName=@nameof(UploadUnitDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridNumericColumn>
                             <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.FloorId) HeaderText="@_localizer["_FloorId"]" Enabled="false" Width="100px"></R_GridTextColumn>
                             <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.UnitId) HeaderText="@_localizer["_UnitId"]" Enabled="false" Width="100px"></R_GridTextColumn>
                             <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.UnitName) HeaderText="@_localizer["_UnitName"]" Enabled="false" Width="250px"></R_GridTextColumn>
@@ -98,12 +99,44 @@
                             <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.UnitView) HeaderText="@_localizer["_UnitView"]" Enabled="false" Width="150px"></R_GridTextColumn>
                             <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitDTO.GrossSize) HeaderText="@_localizer["_GrossSize"]" Enabled="false" Width="125px"></R_GridNumericColumn>
                             <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitDTO.NetSize) HeaderText="@_localizer["_NetSize"]" Enabled="false" Width="125px"></R_GridNumericColumn>
-                            <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitDTO.CommonArea) HeaderText="@_localizer["_CommonArea"]" Enabled="false" Width="125px"></R_GridNumericColumn>
                             <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.UnitCategory) HeaderText="@_localizer["_UnitCategory"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.StrataStatus) HeaderText="@_localizer["_StrataStatus"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.LeaseStatus) HeaderText="@_localizer["_LeaseStatus"]" Enabled="false" Width="150px"></R_GridTextColumn>
                             <R_GridCheckBoxColumn FieldName=@nameof(UploadUnitDTO.Active) HeaderText="@_localizer["_Active"]" Enabled="false" Width="100px"></R_GridCheckBoxColumn>
                             <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.NonActiveDate) HeaderText="@_localizer["_NonActiveDate"]" Enabled="false" Width="150px"></R_GridTextColumn>
                             <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.Valid) HeaderText="@_localizer["_Valid"]" Enabled="false" Width="75px"></R_GridTextColumn>
                             <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.Notes) HeaderText="@_localizer["_Notes"]" Enabled="false" Width="300px"></R_GridTextColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_TabStripTab>
+        <R_TabStripTab Title="@_localizer["_Utility"]" Id="Utility">
+            <R_StackLayout Row>
+                <R_ItemLayout col="12">
+                    <R_Grid @ref="@_gridUploadUnitUtilityRef"
+                            DataSource="@loUploadUnitUtilityViewModel.loUploadUnitUtilityDisplayList"
+                            Pageable="true"
+                            R_ConductorGridSource="@_conGridUploadUnitUtilityRef"
+                            R_GridType="@R_eGridType.Batch"
+                            Height="350px"
+                            AllowAddNewRow="false"
+                            AllowEditRow="false"
+                            AllowDeleteRow="false"
+                            R_ServiceGetListRecord="@Grid_R_ServiceGetUnitUtilityListRecord">
+                        <R_GridColumns>
+                            <R_GridNumericColumn TValue="int" FieldName=@nameof(UploadUnitUtilityDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridNumericColumn>
+                            <R_GridTextColumn FieldName=@nameof(UploadUnitUtilityDTO.FloorId) HeaderText="@_localizer["_FloorId"]" Enabled="false" Width="100px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(UploadUnitUtilityDTO.UnitId) HeaderText="@_localizer["_UnitId"]" Enabled="false" Width="100px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(UploadUnitUtilityDTO.UtilityType) HeaderText="@_localizer["_UtilityType"]" Enabled="false" Width="100px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(UploadUnitUtilityDTO.SeqNo) HeaderText="@_localizer["_SeqNo"]" Enabled="false" Width="100px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(UploadUnitUtilityDTO.MeterNo) HeaderText="@_localizer["_MeterNo"]" Enabled="false" Width="100px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(UploadUnitUtilityDTO.AliasMeterNo) HeaderText="@_localizer["_BASAliasMeterNo"]" Enabled="false" Width="250px"></R_GridTextColumn>
+                            <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitUtilityDTO.CalculationFactor) HeaderText="@_localizer["_CalculationFactor"]" Enabled="false" Width="150px"></R_GridNumericColumn>
+                            <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitUtilityDTO.Capacity) HeaderText="@_localizer["_Capacity"]" Enabled="false" Width="150px"></R_GridNumericColumn>
+                            <R_GridNumericColumn TValue="int" FieldName=@nameof(UploadUnitUtilityDTO.MaxResetValue) HeaderText="@_localizer["_MaxResetValue"]" Enabled="false" Width="125px"></R_GridNumericColumn>
+                            <R_GridTextColumn FieldName=@nameof(UploadUnitUtilityDTO.Valid) HeaderText="@_localizer["_Valid"]" Enabled="false" Width="75px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(UploadUnitUtilityDTO.Notes) HeaderText="@_localizer["_Notes"]" Enabled="false" Width="300px"></R_GridTextColumn>
                         </R_GridColumns>
                     </R_Grid>
                 </R_ItemLayout>
@@ -150,7 +183,7 @@
                 </R_ItemLayout>
             </R_StackLayout>
         </R_ItemLayout>
-        <R_ItemLayout col="4" hidden="@loUploadFloorViewModel.VisibleError">
+                    <R_ItemLayout col="4" hidden="@IsErrorHappened">
             <R_StackLayout Row Class="justify-content-end">
                 <R_ItemLayout>
                     <R_Button OnClick="OnCancel">
@@ -162,7 +195,7 @@
                 </R_ItemLayout>
             </R_StackLayout>
         </R_ItemLayout>
-            <R_ItemLayout col="4" hidden="@(!loUploadFloorViewModel.VisibleError)">
+            <R_ItemLayout col="4" hidden="@(!IsErrorHappened)">
             <R_StackLayout Row Class="justify-content-end">
                 <R_ItemLayout>
                     <R_Button OnClick="OnCancel">
@@ -190,4 +223,12 @@
                  R_BeforeSaveBatch="@R_BeforeSaveUnitBatch"
                  R_ServiceSaveBatch="@R_ServiceSaveUnitBatch"
                  R_AfterSaveBatch="@R_AfterSaveUnitBatch">
+</R_ConductorGrid>
+
+<R_ConductorGrid @ref="@_conGridUploadUnitUtilityRef"
+                 R_ViewModel="@loUploadUnitUtilityViewModel"
+                 R_ConductorParent="@_conGridUploadFloorRef"
+                 R_BeforeSaveBatch="@R_BeforeSaveUnitUtilityBatch"
+                 R_ServiceSaveBatch="@R_ServiceSaveUnitUtilityBatch"
+                 R_AfterSaveBatch="@R_AfterSaveUnitUtilityBatch">
 </R_ConductorGrid>

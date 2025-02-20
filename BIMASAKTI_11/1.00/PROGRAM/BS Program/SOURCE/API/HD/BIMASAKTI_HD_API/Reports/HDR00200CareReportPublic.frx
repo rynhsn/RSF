@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\HD\BIMASAKTI_HD_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="02/10/2025 15:09:35" ReportInfo.CreatorVersion="2023.2.21.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+            
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="Data" DataType="HDR00200Common.DTOs.Print.HDR00200ReportResultDTO, HDR00200Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Label" DataType="HDR00200Common.DTOs.Print.HDR00200ReportLabelDTO, HDR00200Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="Property" DataType="System.String"/>
+          <Column Name="Period" DataType="System.String"/>
+          <Column Name="Area" DataType="System.String"/>
+          <Column Name="Building" DataType="System.String"/>
+          <Column Name="Category" DataType="System.String"/>
+          <Column Name="Department" DataType="System.String"/>
+          <Column Name="Status" DataType="System.String"/>
+          <Column Name="Handover" DataType="System.String"/>
+          <Column Name="Complaint" DataType="System.String"/>
+          <Column Name="Request" DataType="System.String"/>
+          <Column Name="Inquiry" DataType="System.String"/>
+          <Column Name="Submitted" DataType="System.String"/>
+          <Column Name="Assigned" DataType="System.String"/>
+          <Column Name="OnProgress" DataType="System.String"/>
+          <Column Name="Solved" DataType="System.String"/>
+          <Column Name="Completed" DataType="System.String"/>
+          <Column Name="Confirmed" DataType="System.String"/>
+          <Column Name="Closed" DataType="System.String"/>
+          <Column Name="Cancelled" DataType="System.String"/>
+          <Column Name="Terminated" DataType="System.String"/>
+          <Column Name="Floor" DataType="System.String"/>
+          <Column Name="Unit" DataType="System.String"/>
+          <Column Name="TaskCategory" DataType="System.String"/>
+          <Column Name="Description" DataType="System.String"/>
+          <Column Name="TenantOwner" DataType="System.String"/>
+          <Column Name="Caller" DataType="System.String"/>
+          <Column Name="Solution" DataType="System.String"/>
+          <Column Name="Invoice" DataType="System.String"/>
+          <Column Name="Escalated" DataType="System.String"/>
+          <Column Name="Location" DataType="System.String"/>
+          <Column Name="CallerCategory" DataType="System.String"/>
+          <Column Name="Task" DataType="System.String"/>
+          <Column Name="Every" DataType="System.String"/>
+          <Column Name="Start" DataType="System.String"/>
+          <Column Name="End" DataType="System.String"/>
+          <Column Name="Asset" DataType="System.String"/>
+          <Column Name="TicketNoDate" DataType="System.String"/>
+          <Column Name="ChecklistStatus" DataType="System.String"/>
+          <Column Name="ChecklistNotes" DataType="System.String"/>
+          <Column Name="PlanDate" DataType="System.String"/>
+          <Column Name="ActualDate" DataType="System.String"/>
+          <Column Name="IsEscalated" DataType="System.String"/>
+          <Column Name="ClosedDate" DataType="System.String"/>
+          <Column Name="TotalCareIn" DataType="System.String"/>
+          <Column Name="TotalCareFor" DataType="System.String"/>
+          <Column Name="To" DataType="System.String"/>
+          <Column Name="HasEscalated" DataType="System.String"/>
+          <Column Name="All" DataType="System.String"/>
+          <Column Name="WithInvoice" DataType="System.String"/>
+          <Column Name="GrandTotalCareMaintenance" DataType="System.String"/>
+          <Column Name="GrandTotalCareInPrivateArea" DataType="System.String"/>
+          <Column Name="GrandTotalCareInPublicArea" DataType="System.String"/>
+          <Column Name="Open" DataType="System.String"/>
+        </Column>
+        <Column Name="Header" DataType="HDR00200Common.DTOs.Print.HDR00200ReportHeaderDTO, HDR00200Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="PropertyDisplay" DataType="System.String"/>
+          <Column Name="PeriodFrom" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+          <Column Name="PeriodTo" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+          <Column Name="AreaDisplay" DataType="System.String"/>
+          <Column Name="BuildingDisplay" DataType="System.String"/>
+          <Column Name="CategoryDisplay" DataType="System.String"/>
+          <Column Name="DepartmentDisplay" DataType="System.String"/>
+          <Column Name="CheckHandover" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CheckComplaint" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CheckRequest" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CheckInquiry" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CheckSubmitted" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CheckAssigned" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CheckOnProgress" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CheckSolved" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CheckCompleted" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CheckConfirmed" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CheckClosed" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CheckCancelled" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CheckTerminated" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CheckOpen" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="PeriodDisplay" DataType="System.String"/>
+        </Column>
+        <BusinessObjectDataSource Name="BusinessObjectDataSource2" Alias="DataPublic" DataType="System.Collections.Generic.List`1[[HDR00200Common.DTOs.Print.HDR00200GroupCarePublicDTO, HDR00200Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" PropName="DataPublic" Enabled="true">
+          <Column Name="CUNIT_LOCATION_ID" DataType="System.String"/>
+          <Column Name="CUNIT_LOCATION_NAME" DataType="System.String"/>
+          <Column Name="CBUILDING_ID" DataType="System.String"/>
+          <Column Name="CFLOOR_ID" DataType="System.String"/>
+          <BusinessObjectDataSource Name="BusinessObjectDataSource4" Alias="Data" DataType="System.Collections.Generic.List`1[[HDR00200Common.DTOs.Print.HDR00200DataResultDTO, HDR00200Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" PropName="Data" Enabled="true">
+            <Column Name="LMAINTENANCE" DataType="System.Boolean" BindableControl="CheckBox"/>
+            <Column Name="LPRIVATE" DataType="System.Boolean" BindableControl="CheckBox"/>
+            <Column Name="CBUILDING_ID" DataType="System.String"/>
+            <Column Name="CBUILDING_NAME" DataType="System.String"/>
+            <Column Name="CFLOOR_ID" DataType="System.String"/>
+            <Column Name="CFLOOR_NAME" DataType="System.String"/>
+            <Column Name="CUNIT_LOCATION_ID" DataType="System.String"/>
+            <Column Name="CUNIT_LOCATION_NAME" DataType="System.String"/>
+            <Column Name="CASSET_CODE" DataType="System.String"/>
+            <Column Name="CCARE_TICKET_NO" DataType="System.String"/>
+            <Column Name="DCARE_TICKET_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+            <Column Name="CCARE_DESCRIPTION" DataType="System.String"/>
+            <Column Name="CSTATUS" DataType="System.String"/>
+            <Column Name="CSTATUS_DESCRIPTION" DataType="System.String"/>
+            <Column Name="CSUBSTATUS" DataType="System.String"/>
+            <Column Name="CSUBSTATUS_DESCRIPTION" DataType="System.String"/>
+            <Column Name="CTENANT_OWNER_ID" DataType="System.String"/>
+            <Column Name="CTENANT_OWNER_NAME" DataType="System.String"/>
+            <Column Name="CCALLER_NAME" DataType="System.String"/>
+            <Column Name="CCALLER_PHONE" DataType="System.String"/>
+            <Column Name="CCALLER_CATEGORY" DataType="System.String"/>
+            <Column Name="CCALLER_CATEGORY_DESCRIPTION" DataType="System.String"/>
+            <Column Name="CTENANT_OR_OWNER" DataType="System.String"/>
+            <Column Name="CSOLUTION" DataType="System.String"/>
+            <Column Name="CINVOICE_REF_NO" DataType="System.String"/>
+            <Column Name="CCURRENCY_SYMBOL" DataType="System.String"/>
+            <Column Name="NTOTAL_AMOUNT" DataType="System.Decimal"/>
+            <Column Name="LESCALATED" DataType="System.Boolean" BindableControl="CheckBox"/>
+            <Column Name="DCLOSED_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+            <Column Name="CTASK_CTG_CODE" DataType="System.String"/>
+            <Column Name="CTASK_CTG_NAME" DataType="System.String"/>
+            <Column Name="CTASK_CODE" DataType="System.String"/>
+            <Column Name="CTASK_NAME" DataType="System.String"/>
+            <Column Name="IDURATION_TIME" DataType="System.Int32"/>
+            <Column Name="CDURATION_TYPE" DataType="System.String"/>
+            <Column Name="CDURATION_TYPE_DESCRIPTION" DataType="System.String"/>
+            <Column Name="CCHECKLIST_STATUS" DataType="System.String"/>
+            <Column Name="CCHECKLIST_NOTES" DataType="System.String"/>
+            <Column Name="DPLAN_START_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+            <Column Name="DPLAN_END_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+            <Column Name="DACTUAL_START_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+            <Column Name="DACTUAL_END_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+            <Column Name="CTENANT_OR_OWNER_DISPLAY" DataType="System.String"/>
+            <Column Name="CSUBSTATUS_DESCRIPTION_DISPLAY" DataType="System.String"/>
+          </BusinessObjectDataSource>
+          <Column Name="SUM_ESCALATED" DataType="System.Int32"/>
+          <Column Name="SUM_ALL" DataType="System.Int32"/>
+          <Column Name="CBUILDING_FLOOR" DataType="System.String"/>
+        </BusinessObjectDataSource>
+        <Column Name="SUM_WITH_INVOICE" DataType="System.Int32"/>
+        <Column Name="SUM_ESCALATED" DataType="System.Int32"/>
+        <Column Name="SUM_ALL" DataType="System.Int32"/>
+        <BusinessObjectDataSource Name="BusinessObjectDataSource5" Alias="DataMaintenance" Enabled="false" DataType="System.Collections.Generic.List`1[[HDR00200Common.DTOs.Print.HDR00200GroupCareMaintenanceDTO, HDR00200Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" PropName="DataMaintenance"/>
+        <BusinessObjectDataSource Name="BusinessObjectDataSource6" Alias="DataPrivate" Enabled="false" DataType="System.Collections.Generic.List`1[[HDR00200Common.DTOs.Print.HDR00200GroupCarePrivateDTO, HDR00200Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" PropName="DataPrivate"/>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+      <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Page" DataType="System.String"/>
+        <Column Name="Of" DataType="System.String"/>
+        <Column Name="Print_Date" DataType="System.String"/>
+        <Column Name="Print_By" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="Picture1"/>
+      <inherited Name="Text33"/>
+      <inherited Name="Text40">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="Text36"/>
+      <inherited Name="Text38"/>
+      <inherited Name="Text34"/>
+      <inherited Name="Text37"/>
+      <inherited Name="Text39"/>
+      <inherited Name="Text41"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="78.8" Width="1047.06" Height="85.05">
+        <TextObject Name="Text42" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Property]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text43" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Period]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text44" Top="47.25" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Area]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text47" Left="94.5" Top="47.25" Width="189" Height="18.9" Text=": [ResponseDataModel.Data.Header.AreaDisplay]" AutoWidth="true" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text48" Left="94.5" Top="28.35" Width="189" Height="18.9" Text=": [ResponseDataModel.Data.Header.PeriodDisplay]" AutoWidth="true" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text51" Left="94.5" Top="9.45" Width="189" Height="18.9" Text=": [ResponseDataModel.Data.Label.Property]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text52" Left="557.55" Top="9.45" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.Category]:" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text53" Left="642.6" Top="9.45" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.Handover]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text54" Left="718.2" Top="9.45" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.Complaint]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text55" Left="793.8" Top="9.45" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.Request]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text56" Left="869.4" Top="9.45" Width="66.15" Height="18.9" Text="[ResponseDataModel.Data.Label.Inquiry]" Font="Arial Unicode MS, 6.5pt"/>
+        <CheckBoxObject Name="CheckBox1" Left="633.15" Top="9.45" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckHandover"/>
+        <CheckBoxObject Name="CheckBox2" Left="708.75" Top="9.45" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckComplaint"/>
+        <CheckBoxObject Name="CheckBox3" Left="784.35" Top="9.45" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckRequest"/>
+        <CheckBoxObject Name="CheckBox4" Left="859.95" Top="9.45" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckInquiry"/>
+        <TextObject Name="Text57" Left="557.55" Top="37.8" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.Status]:" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text58" Left="718.2" Top="37.8" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.Submitted]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text59" Left="642.6" Top="37.8" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.Open]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text60" Left="793.8" Top="37.8" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.Assigned]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text61" Left="869.4" Top="37.8" Width="66.15" Height="18.9" Text="[ResponseDataModel.Data.Label.OnProgress]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text62" Left="954.45" Top="37.8" Width="66.15" Height="18.9" Text="[ResponseDataModel.Data.Label.Solved]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text63" Left="642.6" Top="56.7" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.Completed]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text64" Left="718.2" Top="56.7" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.Confirmed]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text65" Left="793.8" Top="56.7" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.Closed]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text66" Left="869.4" Top="56.7" Width="66.15" Height="18.9" Text="[ResponseDataModel.Data.Label.Cancelled]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text67" Left="954.45" Top="56.7" Width="66.15" Height="18.9" Text="[ResponseDataModel.Data.Label.Terminated]" Font="Arial Unicode MS, 6.5pt"/>
+        <CheckBoxObject Name="CheckBox5" Left="708.75" Top="37.8" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckSubmitted"/>
+        <CheckBoxObject Name="CheckBox6" Left="633.15" Top="37.8" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckOpen"/>
+        <CheckBoxObject Name="CheckBox7" Left="784.35" Top="37.8" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckAssigned"/>
+        <CheckBoxObject Name="CheckBox8" Left="859.95" Top="37.8" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckOnProgress"/>
+        <CheckBoxObject Name="CheckBox9" Left="945" Top="37.8" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckSolved"/>
+        <CheckBoxObject Name="CheckBox10" Left="633.15" Top="56.7" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckCompleted"/>
+        <CheckBoxObject Name="CheckBox11" Left="708.75" Top="56.7" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckConfirmed"/>
+        <CheckBoxObject Name="CheckBox12" Left="784.35" Top="56.7" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckClosed"/>
+        <CheckBoxObject Name="CheckBox13" Left="859.95" Top="56.7" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckCancelled"/>
+        <CheckBoxObject Name="CheckBox14" Left="945" Top="56.7" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckTerminated"/>
+      </ChildBand>
+    </inherited>
+    <DataBand Name="Data1" ZOrder="0" Top="198.6" Width="1047.06" DataSource="BusinessObjectDataSource2" KeepTogether="true" KeepDetail="true">
+      <TextObject Name="Text120" Top="18.9" Width="94.5" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.DataPublic.CBUILDING_FLOOR]" Font="Arial Unicode MS, 6.5pt, style=Italic"/>
+      <TextObject Name="Text119" Top="9.45" Width="94.5" Height="9.45" CanGrow="true" Text="[ResponseDataModel.Data.DataPublic.CUNIT_LOCATION_NAME]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+      <DataHeaderBand Name="DataHeader1" Top="167.05" Width="1047.06" Height="28.35" Border.Lines="Top, Bottom" CanGrow="true" RepeatOnEveryPage="true">
+        <TextObject Name="Text71" Left="94.5" Top="9.45" Width="66.15" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Asset]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+        <TextObject Name="Text72" Left="160.65" Top="9.45" Width="160.65" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.TicketNoDate]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+        <TextObject Name="Text73" Left="321.3" Top="9.45" Width="94.5" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Description]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+        <TextObject Name="Text74" Left="415.8" Top="9.45" Width="94.5" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Status]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+        <TextObject Name="Text75" Left="510.3" Top="9.45" Width="113.4" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Caller]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+        <TextObject Name="Text76" Left="623.7" Top="9.45" Width="103.95" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.CallerCategory]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+        <TextObject Name="Text77" Left="727.65" Top="9.45" Width="160.65" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Solution]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+        <TextObject Name="Text79" Left="888.3" Top="9.45" Width="66.15" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.IsEscalated]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+        <TextObject Name="Text80" Left="954.45" Top="9.45" Width="94.5" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.ClosedDate]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+        <TextObject Name="Text118" Top="9.45" Width="94.5" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Location]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataBand Name="Data2" Top="201.8" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true" CanBreak="true" DataSource="BusinessObjectDataSource4" KeepTogether="true" KeepDetail="true">
+        <TextObject Name="Text121" Left="94.5" Top="9.45" Width="66.15" Height="9.45" CanGrow="true" Text="[ResponseDataModel.Data.DataPublic.Data.CASSET_CODE]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text122" Left="160.65" Top="9.45" Width="160.65" Height="9.45" CanGrow="true" Text="[ResponseDataModel.Data.DataPublic.Data.CCARE_TICKET_NO]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text123" Left="160.65" Top="18.9" Width="56.7" Height="9.45" CanGrow="true" Text="[ResponseDataModel.Data.DataPublic.Data.DCARE_TICKET_DATE]" Format="Date" Format.Format="MMMM dd, yyyy" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text124" Left="321.3" Top="9.45" Width="94.5" Height="9.45" CanGrow="true" Text="[ResponseDataModel.Data.DataPublic.Data.CCARE_DESCRIPTION]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text125" Left="415.8" Top="9.45" Width="94.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.DataPublic.Data.CSTATUS_DESCRIPTION]&#13;&#10;[ResponseDataModel.Data.DataPublic.Data.CSUBSTATUS_DESCRIPTION_DISPLAY]" Font="Arial Unicode MS, 6.5pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text127" Left="510.3" Top="9.45" Width="113.4" Height="9.45" CanGrow="true" Text="[ResponseDataModel.Data.DataPublic.Data.CCALLER_NAME]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text128" Left="510.3" Top="18.9" Width="113.4" Height="9.45" CanGrow="true" Text="[ResponseDataModel.Data.DataPublic.Data.CCALLER_PHONE]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text129" Left="623.7" Top="9.45" Width="103.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.DataPublic.Data.CCALLER_CATEGORY_DESCRIPTION]&#13;&#10;[ResponseDataModel.Data.DataPublic.Data.CTENANT_OR_OWNER_DISPLAY]" Font="Arial Unicode MS, 6.5pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text131" Left="727.65" Top="9.45" Width="160.65" Height="9.45" CanGrow="true" Text="[ResponseDataModel.Data.DataPublic.Data.CSOLUTION]" Font="Arial Unicode MS, 6.5pt"/>
+        <CheckBoxObject Name="CheckBox15" Left="916.65" Top="9.45" Width="9.45" Height="9.45" Border.Lines="All" CanGrow="true" CanShrink="true" DataColumn="ResponseDataModel.Data.DataPublic.Data.LESCALATED"/>
+        <TextObject Name="Text132" Left="954.45" Top="9.45" Width="47.25" Height="9.45" CanGrow="true" Text="[ResponseDataModel.Data.DataPublic.Data.DCLOSED_DATE]" NullValue="-" Format="Date" Format.Format="MMMM dd, yyyy" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text143" Left="217.35" Top="18.9" Width="103.95" Height="9.45" CanGrow="true" Text="[ResponseDataModel.Data.DataPublic.Data.DCARE_TICKET_DATE]" Format="Time" Format.Format="t" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text144" Left="1001.7" Top="9.45" Width="47.25" Height="9.45" CanGrow="true" Text="[ResponseDataModel.Data.DataPublic.Data.DCLOSED_DATE]" NullValue="-" Format="Time" Format.Format="t" Font="Arial Unicode MS, 6.5pt"/>
+        <DataFooterBand Name="DataFooter2" Top="233.35" Width="1047.06" Height="37.8">
+          <TextObject Name="Text133" Left="897.75" Top="9.45" Width="47.25" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Data.DataPublic.SUM_ESCALATED]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+          <TextObject Name="Text134" Left="1001.7" Top="9.45" Width="47.25" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Data.DataPublic.SUM_ALL]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+          <TextObject Name="Text135" Left="954.45" Top="9.45" Width="47.25" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Data.Label.All]:" HorzAlign="Right" Font="Arial Unicode MS, 6.5pt"/>
+          <TextObject Name="Text136" Left="812.7" Top="9.45" Width="85.05" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Data.Label.HasEscalated]:" HorzAlign="Right" Font="Arial Unicode MS, 6.5pt"/>
+          <TextObject Name="Text137" Left="595.35" Top="9.45" Width="207.9" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Data.Label.TotalCareIn] [ResponseDataModel.Data.DataPublic.CUNIT_LOCATION_NAME]" AutoWidth="true" Font="Arial Unicode MS, 6.5pt, style=Bold">
+            <Formats>
+              <GeneralFormat/>
+              <GeneralFormat/>
+            </Formats>
+          </TextObject>
+          <LineObject Name="Line1" Left="94.5" Width="954.45" CanShrink="true"/>
+          <LineObject Name="Line2" Left="94.5" Top="37.8" Width="954.45"/>
+        </DataFooterBand>
+      </DataBand>
+      <DataFooterBand Name="DataFooter1" Top="274.35" Width="1047.06" Height="37.8">
+        <TextObject Name="Text138" Left="595.35" Top="9.45" Width="207.9" Height="18.9" Text="[ResponseDataModel.Data.Label.GrandTotalCareInPublicArea]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+        <TextObject Name="Text139" Left="897.75" Top="9.45" Width="47.25" Height="18.9" Text="[ResponseDataModel.Data.SUM_ESCALATED]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+        <TextObject Name="Text140" Left="1001.7" Top="9.45" Width="47.25" Height="18.9" Text="[ResponseDataModel.Data.SUM_ALL]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+        <TextObject Name="Text141" Left="954.45" Top="9.45" Width="47.25" Height="18.9" Text="[ResponseDataModel.Data.Label.All]:" HorzAlign="Right" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text142" Left="812.7" Top="9.45" Width="85.05" Height="18.9" Text="[ResponseDataModel.Data.Label.HasEscalated]:" HorzAlign="Right" Font="Arial Unicode MS, 6.5pt"/>
+        <LineObject Name="Line3" Top="37.8" Width="1048.95"/>
+      </DataFooterBand>
+    </DataBand>
+  </inherited>
+</inherited>

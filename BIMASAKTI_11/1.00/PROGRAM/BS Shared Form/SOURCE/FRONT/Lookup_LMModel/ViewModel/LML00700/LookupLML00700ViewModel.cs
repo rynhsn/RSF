@@ -25,6 +25,7 @@ namespace Lookup_PMModel.ViewModel.LML00700
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CUSER_ID, poParam.CUSER_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParam.CPROPERTY_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCHARGE_TYPE_ID, poParam.CCHARGES_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CINV_PRD, poParam.CINV_PRD);
 
                 var loResult = await _model.LML00700GetDiscountListAsync();
                 DiscountList = new ObservableCollection<LML00700DTO>(loResult.Data);

@@ -62,6 +62,15 @@ namespace RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Department cannot be empty.
+        /// </summary>
+        internal static string EMPTY_DEPT_CODE {
+            get {
+                return ResourceManager.GetString("EMPTY_DEPT_CODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If Active Flag = 0, Non Active Date can not be empty.
         /// </summary>
         internal static string EMPTY_NONACTIVE_DATE {
@@ -112,6 +121,15 @@ namespace RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources {
         internal static string INVALID_ACTIVE_FLAG {
             get {
                 return ResourceManager.GetString("INVALID_ACTIVE_FLAG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Department Code.
+        /// </summary>
+        internal static string INVALID_DEPT_CODE {
+            get {
+                return ResourceManager.GetString("INVALID_DEPT_CODE", resourceCulture);
             }
         }
     }

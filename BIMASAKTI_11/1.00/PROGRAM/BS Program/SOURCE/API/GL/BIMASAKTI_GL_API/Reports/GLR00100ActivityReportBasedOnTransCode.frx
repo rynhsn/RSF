@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\GL\BIMASAKTI_GL_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="10/23/2024 13:44:13" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\GL\BIMASAKTI_GL_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="10/29/2024 11:16:21" ReportInfo.CreatorVersion="2023.2.21.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,28 +18,7 @@ namespace FastReport
 {
   public class ReportScript
   {
-    string PreviousTransDesc = string.Empty;     
-
-    private void DataDetail_AfterData(object sender, EventArgs e)
-    {
-      string CurrentTransDesc = CTRANS_DESC.Text;
-      bool visible = false;
-      if(CurrentTransDesc == PreviousTransDesc)
-      {
-        visible = false;        
-      }
-      else 
-      {
-        visible = true;
-      } 
-      CCUST_SUPP_NAME.Visible = visible;
-      CUPDATE_BY.Visible = visible;
-      CMODULE_ID.Visible = visible;
-      CCENTER_CODE.Visible = visible;
-      
-      PreviousTransDesc = CurrentTransDesc;
-    }
-            
+              
   }
 }
 </ScriptText>
@@ -222,9 +201,9 @@ namespace FastReport
   </Dictionary>
   <inherited Name="Page1">
     <inherited Name="PageHeader1">
-      <inherited Name="Picture1"/>
+      <inherited Name="BaseHeaderLogo"/>
       <inherited Name="Text33"/>
-      <inherited Name="Text40">
+      <inherited Name="LabelNoPage">
         <Formats>
           <GeneralFormat/>
           <GeneralFormat/>
@@ -232,13 +211,13 @@ namespace FastReport
           <GeneralFormat/>
         </Formats>
       </inherited>
-      <inherited Name="Text36"/>
-      <inherited Name="Text38"/>
-      <inherited Name="Text34"/>
-      <inherited Name="Text37"/>
-      <inherited Name="Text39"/>
-      <inherited Name="Text41"/>
-      <ChildBand Name="Child1" ZOrder="-1" Top="79.81" Width="1047.06" Height="47.25">
+      <inherited Name="BaseHeaderDate"/>
+      <inherited Name="LabelDateTime"/>
+      <inherited Name="BaseHeaderLabel"/>
+      <inherited Name="BaseHeaderUserId"/>
+      <inherited Name="LabelUserId"/>
+      <inherited Name="BaseHeaderDateTime"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="79.6" Width="1047.06" Height="47.25">
         <TextObject Name="Text64" Left="-28.35" Top="18.9" Width="85.05" Height="18.9" Text="[ResponseDataModel.Data.Label.DEPARTMENT]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
         <TextObject Name="Text65" Left="236.25" Width="85.05" Height="18.9" Text="[ResponseDataModel.Data.Label.PERIOD]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
         <TextObject Name="Text66" Left="236.25" Top="18.9" Width="85.05" Height="18.9" Text="[ResponseDataModel.Data.Label.CURRENCY_TYPE]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
@@ -265,8 +244,8 @@ namespace FastReport
         </TextObject>
       </ChildBand>
     </inherited>
-    <DataBand Name="DataByTransCode" ZOrder="0" Top="173.28" Width="1047.06" CanShrink="true" DataSource="BusinessObjectDataSource1">
-      <DataHeaderBand Name="DataHeader1" Top="131.27" Width="1047.06" Height="37.8" RepeatOnEveryPage="true">
+    <DataBand Name="DataByTransCode" ZOrder="0" Top="172.65" Width="1047.06" CanShrink="true" DataSource="BusinessObjectDataSource1">
+      <DataHeaderBand Name="DataHeader1" Top="130.85" Width="1047.06" Height="37.8" RepeatOnEveryPage="true">
         <LineObject Name="Line6" Left="-28.35" Top="28.35" Width="1096.2"/>
         <TextObject Name="Text158" Left="472.5" Top="9.45" Width="56.7" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.MODULE]" AutoShrink="FontSize" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
         <TextObject Name="Text159" Left="529.2" Top="9.45" Width="94.5" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.ACCOUNT_NAME]" AutoShrink="FontSize" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
@@ -287,8 +266,8 @@ namespace FastReport
         <TextObject Name="Text154" Left="859.95" Width="37.8" Height="9.45" VisibleExpression="[ResponseDataModel.Data.Header.CCURRENCY_TYPE] == &quot;T&quot;" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.CURR]" AutoShrink="FontSize" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
         <TextObject Name="Text155" Left="897.75" Width="85.05" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.DEBIT]" AutoShrink="FontSize" HorzAlign="Right" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
       </DataHeaderBand>
-      <DataBand Name="DataByRefNo" Top="177.49" Width="1047.06" CanShrink="true" DataSource="Data1">
-        <DataBand Name="DataDetail" Top="181.7" Width="1047.06" Height="37.8" AfterDataEvent="DataDetail_AfterData" DataSource="Data2">
+      <DataBand Name="DataByRefNo" Top="176.65" Width="1047.06" CanShrink="true" DataSource="Data1">
+        <DataBand Name="DataDetail" Top="180.65" Width="1047.06" Height="37.8" DataSource="Data2">
           <TextObject Name="CREF_NO" Left="9.45" Width="160.65" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.Data.CREF_NO]" Duplicates="Hide" Font="Arial Unicode MS, 6.5pt"/>
           <TextObject Name="CDEPT_CODE" Left="-28.35" Width="37.8" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.CDEPT_CODE]" Duplicates="Hide" Font="Arial Unicode MS, 6.5pt"/>
           <TextObject Name="DREF_DATE" Left="170.1" Width="66.15" Height="9.45" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.Data.Data.DREF_DATE]" Duplicates="Hide" Format="Date" Format.Format="d" Font="Arial Unicode MS, 6.5pt"/>
@@ -299,14 +278,14 @@ namespace FastReport
           <TextObject Name="CMODULE_ID" Left="472.5" Top="9.45" Width="56.7" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.Data.Data.CMODULE_ID]" Duplicates="Hide" Font="Arial Unicode MS, 6.5pt"/>
           <TextObject Name="CGLACCOUNT_NO" Left="529.2" Width="94.5" Height="9.45" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.Data.Data.CGLACCOUNT_NO]" Font="Arial Unicode MS, 6.5pt"/>
           <TextObject Name="CGLACCOUNT_NAME" Left="529.2" Top="9.45" Width="94.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.Data.Data.CGLACCOUNT_NAME]" Font="Arial Unicode MS, 6.5pt"/>
-          <TextObject Name="CCENTER_CODE" Left="623.7" Width="47.25" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.Data.Data.CCENTER_CODE]" Font="Arial Unicode MS, 6.5pt"/>
+          <TextObject Name="CCENTER_CODE" Left="623.7" Width="47.25" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.Data.Data.CCENTER_CODE]" Duplicates="Hide" Font="Arial Unicode MS, 6.5pt"/>
           <TextObject Name="CDETAIL_DESC" Left="670.95" Top="9.45" Width="113.4" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.Data.Data.CDETAIL_DESC]" Font="Arial Unicode MS, 6.5pt"/>
           <TextObject Name="CDOC_NO" Left="670.95" Width="113.4" Height="9.45" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.Data.Data.CDOC_NO]" Font="Arial Unicode MS, 6.5pt"/>
           <TextObject Name="DDOC_DATE" Left="784.35" Width="75.6" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.Data.Data.DDOC_DATE]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 6.5pt"/>
           <TextObject Name="CCURRENCY_CODE" Left="859.95" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Header.CCURRENCY_TYPE] == &quot;T&quot;" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.Data.Data.CCURRENCY_CODE]" Font="Arial Unicode MS, 6.5pt"/>
           <TextObject Name="NDEBIT_AMOUNT" Left="897.75" Width="85.05" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.Data.Data.NDEBIT_AMOUNT]" HideZeros="true" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6.5pt" Trimming="EllipsisCharacter"/>
           <TextObject Name="NCREDIT_AMOUNT" Left="982.8" Width="85.05" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.Data.Data.NCREDIT_AMOUNT]" HideZeros="true" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6.5pt" Trimming="EllipsisCharacter"/>
-          <DataFooterBand Name="DataFooter6" Top="223.71" Width="1047.06" Height="28.35" CanGrow="true">
+          <DataFooterBand Name="DataFooter6" Top="222.45" Width="1047.06" Height="28.35" CanGrow="true">
             <TextObject Name="Text174" Left="841.05" Width="141.75" Height="18.9" Border.Lines="Top" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.Data.NTOTAL_DEBIT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold" Trimming="EllipsisCharacter"/>
             <TextObject Name="Text175" Left="982.8" Width="85.05" Height="18.9" Border.Lines="Top" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.Data.NTOTAL_CREDIT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold" Trimming="EllipsisCharacter"/>
             <TextObject Name="Text176" Left="670.95" Width="170.1" Height="18.9" Border.Lines="Top" CanGrow="true" Text="[ResponseDataModel.Data.Label.TOTAL] [ResponseDataModel.Data.DataByTransCode.Data.CREF_NO]" HorzAlign="Right" Font="Arial Unicode MS, 6.5pt, style=Bold">
@@ -317,7 +296,7 @@ namespace FastReport
             </TextObject>
           </DataFooterBand>
         </DataBand>
-        <DataFooterBand Name="DataFooter2" Top="256.27" Width="1047.06" Height="18.9">
+        <DataFooterBand Name="DataFooter2" Top="254.8" Width="1047.06" Height="18.9">
           <TextObject Name="Text177" Left="670.95" Width="170.1" Height="18.9" Border.Lines="Top" CanGrow="true" Text="[ResponseDataModel.Data.Label.TOTAL] [ResponseDataModel.Data.DataByTransCode.CDEPT_CODE]" HorzAlign="Right" Font="Arial Unicode MS, 6.5pt, style=Bold">
             <Formats>
               <GeneralFormat/>
@@ -328,19 +307,19 @@ namespace FastReport
           <TextObject Name="Text179" Left="982.8" Width="85.05" Height="18.9" Border.Lines="Top" CanGrow="true" Text="[ResponseDataModel.Data.DataByTransCode.NTOTAL_CREDIT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold" Trimming="EllipsisCharacter"/>
         </DataFooterBand>
       </DataBand>
-      <DataFooterBand Name="DataFooter1" Top="279.38" Width="1047.06" Height="18.9">
+      <DataFooterBand Name="DataFooter1" Top="277.7" Width="1047.06" Height="18.9">
         <TextObject Name="Text180" Left="670.95" Width="170.1" Height="18.9" Border.Lines="Top" Text="[ResponseDataModel.Data.Label.GRAND_TOTAL]" HorzAlign="Right" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
         <TextObject Name="Text181" Left="841.05" Width="141.75" Height="18.9" Border.Lines="Top" Text="[ResponseDataModel.Data.NGRAND_TOTAL_DEBIT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold" Trimming="EllipsisCharacter"/>
         <TextObject Name="Text182" Left="982.8" Width="85.05" Height="18.9" Border.Lines="Top" Text="[ResponseDataModel.Data.NGRAND_TOTAL_CREDIT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold" Trimming="EllipsisCharacter"/>
       </DataFooterBand>
     </DataBand>
-    <DataBand Name="Data7" ZOrder="1" Top="377.07" Width="1047.06" Height="18.9" DataSource="SubData">
+    <DataBand Name="Data7" ZOrder="1" Top="374.75" Width="1047.06" Height="18.9" DataSource="SubData">
       <TextObject Name="Text99" Left="-28.35" Width="113.4" Height="18.9" Border.Lines="Left" Text="[ResponseDataModel.Data.SubData.CGLACCOUNT_NO]" VertAlign="Center" Font="Arial Unicode MS, 6.5pt"/>
       <TextObject Name="Text100" Left="85.05" Width="151.2" Height="18.9" Text="[ResponseDataModel.Data.SubData.CGLACCOUNT_NAME]" VertAlign="Center" Font="Arial Unicode MS, 6.5pt"/>
       <TextObject Name="Text101" Left="236.25" Width="66.15" Height="18.9" Text="[ResponseDataModel.Data.SubData.CCENTER_CODE]" VertAlign="Center" Font="Arial Unicode MS, 6.5pt"/>
       <TextObject Name="Text169" Left="302.4" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.SubData.NTOTAL_DEBIT]" HideZeros="true" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6.5pt" Trimming="EllipsisCharacter"/>
       <TextObject Name="Text170" Left="415.8" Width="113.4" Height="18.9" Border.Lines="Right" Text="[ResponseDataModel.Data.SubData.NTOTAL_CREDIT]" HideZeros="true" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6.5pt" Trimming="EllipsisCharacter"/>
-      <DataHeaderBand Name="DataHeader3" Top="302.49" Width="1047.06" Height="47.25" RepeatOnEveryPage="true">
+      <DataHeaderBand Name="DataHeader3" Top="300.6" Width="1047.06" Height="47.25" RepeatOnEveryPage="true">
         <TextObject Name="Text93" Left="-28.35" Top="28.35" Width="311.85" Height="18.9" Text="[ResponseDataModel.Data.Label.SUMMARY_IN] [ResponseDataModel.Data.Header.CCURRENCY_TYPE_NAME]" Font="Arial Unicode MS, 6.5pt, style=Bold">
           <Formats>
             <GeneralFormat/>
@@ -348,7 +327,7 @@ namespace FastReport
           </Formats>
         </TextObject>
         <LineObject Name="Line4" Left="-28.35" Width="1096.2"/>
-        <ChildBand Name="Child3" Top="353.96" Width="1047.06" Height="18.9">
+        <ChildBand Name="Child3" Top="351.85" Width="1047.06" Height="18.9">
           <TextObject Name="Text94" Left="-28.35" Width="113.4" Height="18.9" Border.Lines="Left, Top, Bottom" Text="[ResponseDataModel.Data.Label.ACCOUNT_NO]" VertAlign="Center" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
           <TextObject Name="Text95" Left="85.05" Width="151.2" Height="18.9" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.ACCOUNT_NAME]" VertAlign="Center" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
           <TextObject Name="Text96" Left="236.25" Width="66.15" Height="18.9" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.CENTER]" VertAlign="Center" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
@@ -356,7 +335,7 @@ namespace FastReport
           <TextObject Name="Text98" Left="415.8" Width="113.4" Height="18.9" Border.Lines="Right, Top, Bottom" Text="[ResponseDataModel.Data.Label.TOTAL_CREDIT]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
         </ChildBand>
       </DataHeaderBand>
-      <DataFooterBand Name="DataFooter5" Top="400.18" Width="1047.06" Height="18.9" RepeatOnEveryPage="true">
+      <DataFooterBand Name="DataFooter5" Top="397.65" Width="1047.06" Height="18.9" RepeatOnEveryPage="true">
         <TextObject Name="Text104" Left="-28.35" Width="330.75" Height="18.9" Border.Lines="Left, Top, Bottom" Text="[ResponseDataModel.Data.Label.GRAND_TOTAL]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
         <TextObject Name="Text105" Left="302.4" Width="113.4" Height="18.9" Border.Lines="Top, Bottom" Text="[GrandTotalDebit]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
         <TextObject Name="Text106" Left="415.8" Width="113.4" Height="18.9" Border.Lines="Right, Top, Bottom" Text="[GrandTotalCredit]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6.5pt, style=Bold"/>

@@ -1,0 +1,124 @@
+﻿@page "/HDI00100History"
+
+@using HDI00100Common.DTOs
+@using HDI00100FrontResources
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_Page
+@attribute [R_Page(Title = "History")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row>
+
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["FromDate"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_DatePicker @bind-Value="_viewModel.Param.DFROM_DATE" Enabled/>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Label>@_localizer["ToDate"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_DatePicker @bind-Value="_viewModel.Param.DTO_DATE" Enabled/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_CheckBox @bind-Value="_viewModel.Param.LBUILDING" OnChanged="@OnChangedBuilding" Enabled/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@_localizer["Building"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="@_viewModel.Param.CBUILDING_ID"
+                   OnLostFocus="OnLostFocusBuilding"
+                   MaxLength="20"
+                   Enabled="@_viewModel.Param.LBUILDING"/>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_Lookup R_Before_Open_Lookup="BeforeLookupBuilding"
+                  R_After_Open_Lookup="AfterLookupBuilding"
+                  Enabled="@_viewModel.Param.LBUILDING">
+            ...
+        </R_Lookup>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="5">
+        <R_TextBox R_ConductorSource="@_conductorRef"
+                   @bind-Value="_viewModel.Param.CBUILDING_NAME"
+                   Enabled="false"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Class="mb-2" Row>
+    <R_ItemLayout col="1">
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_CheckBox @bind-Value="_viewModel.Param.LASSET" OnChanged="@OnChangedAsset" Enabled/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@_localizer["Asset"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="@_viewModel.Param.CASSET_CODE"
+                   OnLostFocus="OnLostFocusAsset"
+                   MaxLength="20"
+                   Enabled="@_viewModel.Param.LASSET"/>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_Lookup R_Before_Open_Lookup="BeforeLookupAsset"
+                  R_After_Open_Lookup="AfterLookupAsset"
+                  Enabled="@_viewModel.Param.LASSET">
+            ...
+        </R_Lookup>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="5">
+        <R_TextBox R_ConductorSource="@_conductorRef"
+                   @bind-Value="_viewModel.Param.CASSET_NAME"
+                   Enabled="false"/>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_Button OnClick="@RefreshPage">@_localizer["Find"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout>
+    <R_StackLayout>
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.GridList"
+                Pageable
+                PageSize="16"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="@ServiceGetListRecord"
+                Height="390px"
+                Width="100%">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(HDI00100TaskSchedulerDTO.CTASK_CTG_DISPLAY)" HeaderText="@_localizer["TaskCategory"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(HDI00100TaskSchedulerDTO.CTASK_DISPLAY)" HeaderText="@_localizer["TaskDetail"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(HDI00100TaskSchedulerDTO.CASSET_DISPLAY)" HeaderText="@_localizer["AssetName"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(HDI00100TaskSchedulerDTO.CBUILDING_NAME)" HeaderText="@_localizer["BuildingId"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(HDI00100TaskSchedulerDTO.CDEPT_DISPLAY)" HeaderText="@_localizer["DeptName"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(HDI00100TaskSchedulerDTO.CCALL_TYPE_DISPLAY)" HeaderText="@_localizer["SLACallType"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridDatePickerColumn FieldName="@nameof(HDI00100TaskSchedulerDTO.DSCHEDULE_DATE)" HeaderText="@_localizer["ScheduleDate"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(HDI00100TaskSchedulerDTO.CSPV_DISPLAY)" HeaderText="@_localizer["SPV"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(HDI00100TaskSchedulerDTO.CSTAFF_DISPLAY)" HeaderText="@_localizer["StaffName"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(HDI00100TaskSchedulerDTO.CUPDATE_BY)" HeaderText="@_localizer["UpdatedBy"]" Width="120px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(HDI00100TaskSchedulerDTO.DUPDATE_DATE)" HeaderText="@_localizer["UpdatedDate"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+</R_StackLayout>

@@ -238,7 +238,7 @@ public partial class PMT03500CutOff : R_ITabPage
         try
         {
             _enabledBtn = false;
-            await _conductorRefUtility.R_SaveBatch();
+            await _gridRefUtility.R_SaveBatch();
         }
         catch (Exception ex)
         {
@@ -252,6 +252,11 @@ public partial class PMT03500CutOff : R_ITabPage
     {
         _viewModelUtility.GridUtilityUsageList =
             new ObservableCollection<PMT03500UtilityUsageDTO>(_viewModelUtility.GridUtilityUsageListTemp);
+    }
+    
+    private void CheckBoxSelectValueChanged(R_CheckBoxSelectValueChangedEventArgs eventArgs)
+    {
+        eventArgs.Enabled = true;
     }
 
     private async Task SaveBatch(R_ServiceSaveBatchEventArgs eventArgs)
@@ -267,7 +272,7 @@ public partial class PMT03500CutOff : R_ITabPage
             loTempDataList.ForEach(x => { x.CSTART_DATE = x.DSTART_DATE?.ToString("yyyyMMdd"); });
 
             var loDataList =
-                R_FrontUtility.ConvertCollectionToCollection<PMT03500UploadCutOffErrorValidateDTO>(loTempDataList);
+                R_FrontUtility.ConvertCollectionToCollection<PMT03500UploadCutOffErrorValidateDTO>(loTempDataList.Where(x => x.LSELECTED).ToList());
             // var loDataList = R_FrontUtility.ConvertCollectionToCollection<PMT03500UploadUtilityErrorValidateDTO>(loTempDataList);
 
             var loUtilityType = loTempDataList.FirstOrDefault()?.CUTILITY_TYPE;
@@ -364,17 +369,17 @@ public partial class PMT03500CutOff : R_ITabPage
         try
         {
             var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
-            if (loData.IBLOCK1_START > loData.IMETER_MAX_RESET)
+            if (loData.NBLOCK1_START > loData.IMETER_MAX_RESET)
             {
                 loEx.Add(_localizer["INVALID_MAX_RESET"], _localizer["BLOCK1_START_GREATER_THAN_MAX_RESET"]);
             }
             
-            if (loData.IBLOCK2_START > loData.IMETER_MAX_RESET)
+            if (loData.NBLOCK2_START > loData.IMETER_MAX_RESET)
             {
                 loEx.Add(_localizer["INVALID_MAX_RESET"], _localizer["BLOCK2_START_GREATER_THAN_MAX_RESET"]);
             }
             
-            if (loData.IMETER_START > loData.IMETER_MAX_RESET)
+            if (loData.NMETER_START > loData.IMETER_MAX_RESET)
             {
                 loEx.Add(_localizer["INVALID_MAX_RESET"], _localizer["METER_START_GREATER_THAN_MAX_RESET"]);
             }

@@ -1,0 +1,49 @@
+﻿@page "/HDR00200PopupSaveAs"
+@using HDR00200FrontResources
+@inherits R_Page
+@attribute [R_Page(Title = "Save As")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row Justify="R_eJustify.SpaceBetween">
+    
+    <R_ItemLayout>
+        <R_StackLayout Row AlignItems="R_eAlignItems.Start">
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["SaveAs"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="6">
+                <R_TextBox @ref="_textFileName" @bind-Value="@_viewModel.ReportParam.CREPORT_FILENAME"></R_TextBox>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_ComboBox Data="@_viewModel.FileType"
+                            @bind-Value="_viewModel.ReportParam.CREPORT_FILETYPE"
+                            ValueField="Value"
+                            TextField="Text">
+                </R_ComboBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+
+    <R_ItemLayout>
+        <R_StackLayout Row AlignItems="R_eAlignItems.End">
+            <R_ItemLayout>
+                <R_Button OnClick="@OnClickSave"
+                          Enabled="@(!string.IsNullOrWhiteSpace(_viewModel.ReportParam.CREPORT_FILENAME) && !string.IsNullOrWhiteSpace(_viewModel.ReportParam.CREPORT_FILETYPE))">
+                    @_localizer["SAVE"]
+                </R_Button>
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_Button OnClick="@OnClickCancel">
+                    @_localizer["CANCEL"]
+                </R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+</R_StackLayout>

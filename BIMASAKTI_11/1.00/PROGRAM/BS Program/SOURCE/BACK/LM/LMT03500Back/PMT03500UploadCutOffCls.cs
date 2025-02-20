@@ -137,8 +137,8 @@ public class PMT03500UploadCutOffCls : R_IBatchProcess
             switch (lcUtility)
             {
                 case "EC":
-                    lcQuery += "IBLOCK1_START   int, " +
-                               "IBLOCK2_START   int);";
+                    lcQuery += "NBLOCK1_START   numeric(16,2), " +
+                               "NBLOCK2_START   numeric(16,2));";
 
                     loDb.SqlExecNonQuery(lcQuery, loConn, false);
 
@@ -164,16 +164,16 @@ public class PMT03500UploadCutOffCls : R_IBatchProcess
                                          $"'{loObjectEC[i].CSTART_DATE}', " +
                                          $"'{loObjectEC[i].CEND_DATE}', " +
                                          $"'{loObjectEC[i].CMETER_NO}', " +
-                                         $"{loObjectEC[i].IBLOCK1_START}, " +
-                                         $"{loObjectEC[i].IBLOCK2_START}" +
+                                         $"{loObjectEC[i].NBLOCK1_START}, " +
+                                         $"{loObjectEC[i].NBLOCK2_START}" +
                                          $")");
                     }
 
                     loDb.R_BulkInsert((SqlConnection)loConn, $"#UTILITY_USAGE_EC", loObjectEC);
             break;
                 case "WG":
-                    lcQuery += "IMETER_START 	int);";
-                    // "IMETER_END 	    int);";
+                    lcQuery += "NMETER_START 	numeric(16,2));";
+                    // "IMETER_END 	    numeric(16,2));";
                     loDb.SqlExecNonQuery(lcQuery, loConn, false);
 
                     for (var i = 0; i < loObjectWG.Count; i++)
@@ -198,7 +198,7 @@ public class PMT03500UploadCutOffCls : R_IBatchProcess
                                          $"'{loObjectWG[i].CSTART_DATE}', " +
                                          $"'{loObjectWG[i].CEND_DATE}', " +
                                          $"'{loObjectWG[i].CMETER_NO}', " +
-                                         $"{loObjectWG[i].IMETER_START}" +
+                                         $"{loObjectWG[i].NMETER_START}" +
                                          $")");
                     }
 

@@ -20,12 +20,8 @@ namespace Lookup_GSFRONT
             try
             {
                 await CashFlowGrpComboBox_ServiceGetListRecord(poParameter);
-                if (_viewModel.CashFlowGropList.Count > 0)
-                {
-                    var loParam = _viewModel.CashFlowGropList.FirstOrDefault();
-                    await PropertyDropdown_OnChange(loParam.CCASH_FLOW_GROUP_CODE);
-                }
 
+                await GridRef.R_RefreshGrid(null);
                 await CashFlowGrp_ComboBox.FocusAsync();
             }
             catch (Exception ex)

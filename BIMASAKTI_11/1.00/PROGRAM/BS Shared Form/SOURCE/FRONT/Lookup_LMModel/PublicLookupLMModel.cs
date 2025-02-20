@@ -9,6 +9,13 @@ using R_APIClient;
 using Lookup_PMCOMMON.DTOs.LML01000;
 using Lookup_PMCOMMON.DTOs.LML01100;
 using Lookup_PMCOMMON.DTOs.LML01300;
+using Lookup_PMCOMMON.DTOs.LML01400;
+using Lookup_PMCOMMON.DTOs.LML01500;
+using Lookup_PMCOMMON.DTOs.LML01600;
+using Lookup_PMCOMMON.DTOs.LML01700;
+using Lookup_PMCOMMON.DTOs.LML01800;
+using Lookup_PMCOMMON.DTOs.LML01900;
+using Lookup_PMCOMMON.DTOs.UtilityDTO;
 
 namespace Lookup_PMModel
 {
@@ -80,12 +87,84 @@ namespace Lookup_PMModel
         {
             throw new NotImplementedException();
         }
+        public IAsyncEnumerable<LML01300DTO> LML01300LOIAgreementList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncEnumerable<LML01400DTO> LML01400AgreementUnitChargesList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncEnumerable<LML01500DTO> LML01500SLACategoryList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncEnumerable<LML01600DTO> LML01600SLACallTypeList()
+        {
+            throw new NotImplementedException();
+        }
+        public IAsyncEnumerable<LML01700DTO> LML01700CancelReceiptFromCustomerList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncEnumerable<LML01700DTO> LML01700PrerequisiteCustReceiptList()
+        {
+            throw new NotImplementedException();
+        }
+        public IAsyncEnumerable<LML01800DTO> LML01800UnitTenantList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncEnumerable<LML01900DTO> LML01900StaffList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncEnumerable<PropertyDTO> PropertyList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncEnumerable<BuildingDTO> BuildingList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncEnumerable<FloorDTO> FloorList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncEnumerable<UnitDTO> UnitList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncEnumerable<DepartmentDTO> DepartmentList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncEnumerable<SupervisorDTO> SupervisorList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncEnumerable<StaffTypeDTO> StaffTypeList()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
 
         #region LML00200 
 
-        public async Task<LMLGenericList<LML00200DTO>> LML00200GetUnitChargesListAsync ()
+        public async Task<LMLGenericList<LML00200DTO>> LML00200GetUnitChargesListAsync()
         {
             var loEx = new R_Exception();
             LMLGenericList<LML00200DTO> loResult = new LMLGenericList<LML00200DTO>();
@@ -113,7 +192,7 @@ namespace Lookup_PMModel
 
         #region LML00300 
 
-        public async Task<LMLGenericList<LML00300DTO>> LML00300SupervisorListAsync ()
+        public async Task<LMLGenericList<LML00300DTO>> LML00300SupervisorListAsync()
         {
             var loEx = new R_Exception();
             LMLGenericList<LML00300DTO> loResult = new LMLGenericList<LML00300DTO>();
@@ -400,7 +479,186 @@ namespace Lookup_PMModel
             return loResult;
         }
         #endregion
+        #region LML01400
+        public async Task<LMLGenericList<LML01400DTO>> LML01400AgreementUnitChargesListAsync()
+        {
+            var loEx = new R_Exception();
+            LMLGenericList<LML01400DTO> loResult = new LMLGenericList<LML01400DTO>();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<LML01400DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupLM.LML01400AgreementUnitChargesList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
 
+                loResult.Data = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+        #endregion
+        #region LML01500
+        public async Task<LMLGenericList<LML01500DTO>> LML01500SLACategoryListAsync()
+        {
+            var loEx = new R_Exception();
+            LMLGenericList<LML01500DTO> loResult = new LMLGenericList<LML01500DTO>();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<LML01500DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupLM.LML01500SLACategoryList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult.Data = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+        #endregion
+        #region LML01600
+        public async Task<LMLGenericList<LML01600DTO>> LML01600SLACallTypeListAsync()
+        {
+            var loEx = new R_Exception();
+            LMLGenericList<LML01600DTO> loResult = new LMLGenericList<LML01600DTO>();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<LML01600DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupLM.LML01600SLACallTypeList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult.Data = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+        #endregion
+        #region LML01700
+        public async Task<LMLGenericList<LML01700DTO>> LML01700CancelReceiptFromCustomerAsync()
+        {
+            var loEx = new R_Exception();
+            LMLGenericList<LML01700DTO> loResult = new LMLGenericList<LML01700DTO>();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<LML01700DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupLM.LML01700CancelReceiptFromCustomerList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult.Data = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+        public async Task<LMLGenericList<LML01700DTO>> LML01700PrerequisiteCustReceiptAsync()
+        {
+            var loEx = new R_Exception();
+            LMLGenericList<LML01700DTO> loResult = new LMLGenericList<LML01700DTO>();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<LML01700DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupLM.LML01700PrerequisiteCustReceiptList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult.Data = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+        #endregion
+        #region LML01800
+        public async Task<LMLGenericList<LML01800DTO>> LML01800UnitTenantListAsync()
+        {
+            var loEx = new R_Exception();
+            LMLGenericList<LML01800DTO> loResult = new LMLGenericList<LML01800DTO>();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<LML01800DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupLM.LML01800UnitTenantList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult.Data = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+        #endregion
+        #region LML01900
+        public async Task<LMLGenericList<LML01900DTO>> LML01900StaffListAsync()
+        {
+            var loEx = new R_Exception();
+            LMLGenericList<LML01900DTO> loResult = new LMLGenericList<LML01900DTO>();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<LML01900DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupLM.LML01900StaffList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult.Data = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+        #endregion
 
         #region Utility
         public async Task<LML00900InitialProcessDTO> GetInitialProcessAsyncModel()
@@ -424,15 +682,174 @@ namespace Lookup_PMModel
             loEx.ThrowExceptionIfErrors();
             return loResult;
         }
-
-        public IAsyncEnumerable<LML01300DTO> LML01300LOIAgreementList()
+        public async Task<LMLGenericList<PropertyDTO>> PropertyListAsync()
         {
-            throw new NotImplementedException();
+            var loEx = new R_Exception();
+            LMLGenericList<PropertyDTO> loResult = new LMLGenericList<PropertyDTO>();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<PropertyDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupLM.PropertyList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult.Data = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
         }
+        public async Task<LMLGenericList<BuildingDTO>> BuildingListAsync()
+        {
+            var loEx = new R_Exception();
+            LMLGenericList<BuildingDTO> loResult = new LMLGenericList<BuildingDTO>();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<BuildingDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupLM.BuildingList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
 
+                loResult.Data = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
 
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+        public async Task<LMLGenericList<FloorDTO>> FloorListAsync()
+        {
+            var loEx = new R_Exception();
+            LMLGenericList<FloorDTO> loResult = new LMLGenericList<FloorDTO>();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<FloorDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupLM.FloorList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
 
+                loResult.Data = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
 
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+        public async Task<LMLGenericList<UnitDTO>> UnitListAsync()
+        {
+            var loEx = new R_Exception();
+            LMLGenericList<UnitDTO> loResult = new LMLGenericList<UnitDTO>();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<UnitDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupLM.UnitList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult.Data = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+        public async Task<LMLGenericList<DepartmentDTO>> DepartmentListAsync()
+        {
+            var loEx = new R_Exception();
+            LMLGenericList<DepartmentDTO> loResult = new LMLGenericList<DepartmentDTO>();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<DepartmentDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupLM.DepartmentList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult.Data = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+        public async Task<LMLGenericList<SupervisorDTO>> SupervisorListAsync()
+        {
+            var loEx = new R_Exception();
+            LMLGenericList<SupervisorDTO> loResult = new LMLGenericList<SupervisorDTO>();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<SupervisorDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupLM.SupervisorList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult.Data = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+        public async Task<LMLGenericList<StaffTypeDTO>> StaffTypeListAsync()
+        {
+            var loEx = new R_Exception();
+            LMLGenericList<StaffTypeDTO> loResult = new LMLGenericList<StaffTypeDTO>();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<StaffTypeDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupLM.StaffTypeList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult.Data = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
         #endregion
 
 

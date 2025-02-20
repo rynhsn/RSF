@@ -50,6 +50,8 @@ namespace GSM02500FRONT
 
         private string poPropertyId = "";
 
+        private string lcCUOMLabel = "";
+
         [Inject] IClientHelper _clientHelper { get; set; }
 
 
@@ -123,12 +125,19 @@ namespace GSM02500FRONT
 
                 await loOtherUnitViewModel.GetSelectedPropertyAsync();
 
+                await loOtherUnitViewModel.GetStrataLeaseListStreamAsync();
+
                 await loOtherUnitViewModel.GetBuildingListStreamAsync();
+                await loOtherUnitViewModel.GetCUOMFromPropertyAsync();
+
                 await loOtherUnitViewModel.GetOtherUnitTypeListStreamAsync();
+                await loOtherUnitViewModel.GetUnitViewListStreamAsync();
+                //await loOtherUnitViewModel.GetOtherUnitListStreamAsync();
+                //await loOtherUnitViewModel.GetUnitInfoListStreamAsync();
+                //await loOtherUnitViewModel.GetUnitCategoryListStreamAsync();
 
-                await loOtherUnitViewModel.GetOtherUnitListStreamAsync();
 
-
+                lcCUOMLabel = loOtherUnitViewModel.loCUOM.CUOM;
                 await _gridOtherUnitRef.R_RefreshGrid(null);
             }
             catch (Exception ex)
@@ -227,6 +236,13 @@ namespace GSM02500FRONT
             }
         }
 
+        private void Grid_ConvertToGridEntityOtherUnitType(R_ConvertToGridEntityEventArgs eventArgs)
+        {
+            GSM02541DetailDTO loData = (GSM02541DetailDTO)eventArgs.Data;
+            eventArgs.GridData = R_FrontUtility.ConvertObjectToObject<GSM02541DTO>(loData);
+            GSM02541DTO loGridData = (GSM02541DTO)eventArgs.GridData;
+        }
+
         private async Task Grid_R_ServiceGetOtherUnitListRecord(R_ServiceGetListRecordEventArgs eventArgs)
         {
             var loEx = new R_Exception();
@@ -305,7 +321,7 @@ namespace GSM02500FRONT
                     (eCRUDMode)eventArgs.ConductorMode);
 
                 eventArgs.Result = loOtherUnitViewModel.loOtherUnitDetail;
-                _gridOtherUnitRef.R_RefreshGrid(null);
+                //_gridOtherUnitRef.R_RefreshGrid(null);
             }
             catch (Exception ex)
             {
@@ -459,6 +475,14 @@ namespace GSM02500FRONT
             R_Exception loException = new R_Exception();
             try
             {
+                if (string.IsNullOrWhiteSpace(poParam))
+                {
+                    loOtherUnitViewModel.Data.CBUILDING_ID = "";
+                    loOtherUnitViewModel.SelectedBuildingId = "";
+                    loOtherUnitViewModel.Data.CFLOOR_ID = "";
+                    loOtherUnitViewModel.loFloorList = new List<FloorDTO>();
+                    return;
+                }
                 loOtherUnitViewModel.SelectedBuildingId = poParam;
                 await loOtherUnitViewModel.GetFloorListStreamAsync();
                 loOtherUnitViewModel.Data.CBUILDING_ID = poParam;

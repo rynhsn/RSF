@@ -70,7 +70,7 @@
         </R_StackLayout>
         <R_StackLayout Row Class="mb-1">
             <R_ItemLayout col="3">
-                <R_Label>@(_localizer["LBL_UTILITYPRDDT"] + "*")</R_Label>
+                <R_Label>@(_localizer["LBL_ENDDTUTILITY"] + "*")</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="4">
                 <R_DatePicker @bind-Value="_viewModelUtility.UtilityPeriodFromDtDt" 
@@ -81,7 +81,7 @@
                 <R_Label>@(_localizer["LBL_TO"])</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="4">
-                <R_DatePicker Min="_viewModelUtility.UtilityPeriodFromDtDt" Max="_viewModelUtility.UtilityPeriodDtMax" @bind-Value="_viewModelUtility.UtilityPeriodToDtDt"/>
+                <R_DatePicker Min="@(_viewModelUtility.UtilityPeriodFromDtDt.AddDays(1))" Max="_viewModelUtility.UtilityPeriodDtMax" @bind-Value="_viewModelUtility.UtilityPeriodToDtDt"/>
             </R_ItemLayout>
         </R_StackLayout>
     </R_ItemLayout>
@@ -94,21 +94,25 @@
                               TextField="Value"
                               ValueChanged="@((bool value) => OnChangedRadio(value, eParamType.Building))"/>
             </R_ItemLayout>
-            <R_ItemLayout col="3">
-                <R_RadioGroup Data="_viewModelUtility.RADIO_BUILDING1"
-                              Value="_viewModelUtility.IsBuildingSelected"
-                              ValueField="Key"
-                              TextField="Value"
-                              ValueChanged="@((bool value) => OnChangedRadio(value, eParamType.Building))"/>
-            </R_ItemLayout>
-            <R_ItemLayout col="6">
-                <R_ComboBox @ref="_comboBuildingRef"
-                            Data="@_viewModelUtility.BuildingList"
-                            @bind-Value="_viewModelUtility.Entity.CBUILDING_ID"
-                            ValueField="@nameof(PMT03500BuildingDTO.CBUILDING_ID)"
-                            TextField="@nameof(PMT03500BuildingDTO.CBUILDING_NAME)"
-                            Enabled="@(_viewModelUtility.IsBuildingSelected)"
-                            OnLostFocused="OnLostFocusedBuilding"/>
+            <R_ItemLayout col="7">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="4">
+                        <R_RadioGroup Data="_viewModelUtility.RADIO_BUILDING1"
+                                      Value="_viewModelUtility.IsBuildingSelected"
+                                      ValueField="Key"
+                                      TextField="Value"
+                                      ValueChanged="@((bool value) => OnChangedRadio(value, eParamType.Building))"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="8">
+                        <R_ComboBox @ref="_comboBuildingRef"
+                                    Data="@_viewModelUtility.BuildingList"
+                                    @bind-Value="_viewModelUtility.Entity.CBUILDING_ID"
+                                    ValueField="@nameof(PMT03500BuildingDTO.CBUILDING_ID)"
+                                    TextField="@nameof(PMT03500BuildingDTO.CBUILDING_NAME)"
+                                    Enabled="@(_viewModelUtility.IsBuildingSelected)"
+                                    OnLostFocused="OnLostFocusedBuilding"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
             </R_ItemLayout>
         </R_StackLayout>
 
@@ -121,22 +125,26 @@
                               ValueChanged="@((bool value) => OnChangedRadio(value, eParamType.Floor))"/>
             </R_ItemLayout>
 
-            <R_ItemLayout col="3">
-                <R_RadioGroup Data="_viewModelUtility.RADIO_FLOOR1"
-                              Value="_viewModelUtility.IsFloorSelected"
-                              ValueField="Key"
-                              TextField="Value"
-                              ValueChanged="@((bool value) => OnChangedRadio(value, eParamType.Floor))"
-                              Enabled="@(!string.IsNullOrEmpty(_viewModelUtility.Entity.CBUILDING_ID))"/>
-            </R_ItemLayout>
-            <R_ItemLayout col="6">
-                <R_ComboBox @ref="_comboFloorRef" 
-                            Data="@_viewModelUtility.FloorList"
-                            @bind-Value="_viewModelUtility.FloorId"
-                            ValueField="@nameof(PMT03500FloorDTO.CFLOOR_ID)"
-                            TextField="@nameof(PMT03500FloorDTO.CFLOOR_NAME)"
-                            Enabled="@(_viewModelUtility.IsFloorSelected)"
-                            OnLostFocused="OnLostFocusedFloor"/>
+            <R_ItemLayout col="7">
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_RadioGroup Data="_viewModelUtility.RADIO_FLOOR1"
+                                  Value="_viewModelUtility.IsFloorSelected"
+                                  ValueField="Key"
+                                  TextField="Value"
+                                  ValueChanged="@((bool value) => OnChangedRadio(value, eParamType.Floor))"
+                                  Enabled="@(!string.IsNullOrEmpty(_viewModelUtility.Entity.CBUILDING_ID))"/>
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_ComboBox @ref="_comboFloorRef" 
+                                Data="@_viewModelUtility.FloorList"
+                                @bind-Value="_viewModelUtility.FloorId"
+                                ValueField="@nameof(PMT03500FloorDTO.CFLOOR_ID)"
+                                TextField="@nameof(PMT03500FloorDTO.CFLOOR_NAME)"
+                                Enabled="@(_viewModelUtility.IsFloorSelected)"
+                                OnLostFocused="OnLostFocusedFloor"/>
+                </R_ItemLayout>
+            </R_StackLayout>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row Class="mb-1">
@@ -207,7 +215,8 @@
                 R_ServiceGetRecord="GetUtilityRecord"
                 R_Validation="Validation"
                 R_BeforeEdit="BeforeEditUtility"
-                R_CheckBoxSelectValueChanged="CheckBoxSelectValueChanged">
+                R_CheckBoxSelectValueChanged="CheckBoxSelectValueChanged"
+                R_ServiceSaveBatch="SaveBatch">
             <R_GridColumns>
                 <R_GridCheckBoxSelectColumn FieldName="@nameof(PMT03500UtilityUsageDTO.LSELECTED)" Width="30px" ShowSelectAllHeader Filterable="false" Resizable="false"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CBUILDING_NAME)" HeaderText="@_localizer["LBL_BUILDING"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
@@ -219,21 +228,21 @@
                 <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DSTART_DATE)" HeaderText="@_localizer["LBL_STARTDATE"]" Width="150px" R_EnableEdit Min="@(_viewModelUtility.UtilityPeriodFromDtDt)" Max="@(_viewModelUtility.UtilityPeriodToDtDt)"/>
                 <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DEND_DATE)" HeaderText="@_localizer["LBL_ENDDATE"]" Width="150px" R_EnableEdit Min="@(_viewModelUtility.UtilityPeriodFromDtDt)" Max="@(_viewModelUtility.UtilityPeriodToDtDt)"/>
 
-                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK1_START)" HeaderText="@_localizer["LBL_BLOCK1START"]" Width="150px" Visible="@_visibleColumnEC"/>
-                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK2_START)" HeaderText="@_localizer["LBL_BLOCK2START"]" Width="150px" Visible="@_visibleColumnEC"/>
-                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK1_END)" HeaderText="@_localizer["LBL_BLOCK1END"]" Width="150px" Visible="@_visibleColumnEC" R_EnableEdit/>
-                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK2_END)" HeaderText="@_localizer["LBL_BLOCK2END"]" Width="150px" Visible="@_visibleColumnEC" R_EnableEdit/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK1_START)" HeaderText="@_localizer["LBL_BLOCK1START"]" Width="150px" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK2_START)" HeaderText="@_localizer["LBL_BLOCK2START"]" Width="150px" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK1_END)" HeaderText="@_localizer["LBL_BLOCK1END"]" Width="150px" Visible="@_visibleColumnEC" R_EnableEdit/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK2_END)" HeaderText="@_localizer["LBL_BLOCK2END"]" Width="150px" Visible="@_visibleColumnEC" R_EnableEdit/>
                 <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NBEBAN_BERSAMA)" HeaderText="@_localizer["LBL_BEBANBERSAMA"]" Width="150px" Visible="@_visibleColumnEC" R_EnableEdit/>
-                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK1_USAGE)" HeaderText="@_localizer["LBL_BLOCK1USAGE"]" Width="150px" Visible="@_visibleColumnEC"/>
-                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UtilityUsageDTO.IBLOCK2_USAGE)" HeaderText="@_localizer["LBL_BLOCK2USAGE"]" Width="150px" Visible="@_visibleColumnEC"/>
-                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UtilityUsageDTO.IAVG_BLOCK1_USAGE)" HeaderText="@_localizer["LBL_AVGBLOCK1USAGE"]" Width="150px" Visible="@_visibleColumnEC"/>
-                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UtilityUsageDTO.IAVG_BLOCK2_USAGE)" HeaderText="@_localizer["LBL_AVGBLOCK2USAGE"]" Width="160px" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK1_USAGE)" HeaderText="@_localizer["LBL_BLOCK1USAGE"]" Width="150px" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK2_USAGE)" HeaderText="@_localizer["LBL_BLOCK2USAGE"]" Width="150px" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NAVG_BLOCK1_USAGE)" HeaderText="@_localizer["LBL_AVGBLOCK1USAGE"]" Width="150px" Visible="@_visibleColumnEC"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NAVG_BLOCK2_USAGE)" HeaderText="@_localizer["LBL_AVGBLOCK2USAGE"]" Width="160px" Visible="@_visibleColumnEC"/>
 
-                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UtilityUsageDTO.IMETER_START)" HeaderText="@_localizer["LBL_METERSTART"]" Width="150px" Visible="@_visibleColumnWG"/>
-                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UtilityUsageDTO.IMETER_END)" HeaderText="@_localizer["LBL_METEREND"]" Width="150px" Visible="@_visibleColumnWG" R_EnableEdit/>
-                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UtilityUsageDTO.IMETER_USAGE)" HeaderText="@_localizer["LBL_METERUSAGE"]" Width="150px" Visible="@_visibleColumnWG"/>
-                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UtilityUsageDTO.IAVG_METER_USAGE)" HeaderText="@_localizer["LBL_AVGMETERUSAGE"]" Width="150px" Visible="@_visibleColumnWG"/>
-                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UtilityUsageDTO.ITOTAL_AMOUNT)" HeaderText="@_localizer["LBL_TOTALAMOUNT"]" Width="150px" Visible="@_visibleColumnWG"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NMETER_START)" HeaderText="@_localizer["LBL_METERSTART"]" Width="150px" Visible="@_visibleColumnWG"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NMETER_END)" HeaderText="@_localizer["LBL_METEREND"]" Width="150px" Visible="@_visibleColumnWG" R_EnableEdit/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NMETER_USAGE)" HeaderText="@_localizer["LBL_METERUSAGE"]" Width="150px" Visible="@_visibleColumnWG"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NAVG_METER_USAGE)" HeaderText="@_localizer["LBL_AVGMETERUSAGE"]" Width="150px" Visible="@_visibleColumnWG"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NTOTAL_AMOUNT)" HeaderText="@_localizer["LBL_TOTALAMOUNT"]" Width="150px" Visible="@_visibleColumnWG"/>
 
 
                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUNIT_DESCRIPTION)" HeaderText="@_localizer["LBL_UNITDESCRIPTION"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
@@ -301,16 +310,15 @@
 </R_TabStrip>
 </R_TabStripTab>
 <R_TabStripTab Id="CutOff" Title="@_localizer["TAB_CUTOFF"]">
-    <R_TabPage @ref="_pageCO" R_Before_Open_TabPage="BeforeTabCutOff"/>
+    <R_TabPage @ref="_pageOtherCO" R_Before_Open_TabPage="BeforeTabCutOff"/>
 </R_TabStripTab>
 <R_TabStripTab Id="UpdateMeter" Title="@_localizer["TAB_UPDATEMETER"]">
-    <R_TabPage @ref="_pageMN" R_Before_Open_TabPage="BeforeTabUpdateMeter"/>
+    <R_TabPage @ref="_pageOtherMN" R_Before_Open_TabPage="BeforeTabUpdateMeter"/>
 </R_TabStripTab>
 </R_TabStrip>
 
 <R_ConductorGrid @ref="@_conductorRefUtility"
-                 R_IsHeader
-                 R_ServiceSaveBatch="SaveBatch"/>
+                 R_IsHeader/>
 
 
 <style>

@@ -23,17 +23,20 @@ namespace APR00500Common.DTOs.Print
         public string PROPERTY { get; set; } = "Property";
         public string CUT_OFF_DATE { get; set; } = "Cut Off Date";
         public string DEPT { get; set; } = "Department";
-        public string TOTAL_DEPT { get; set; } = "Total Department";
+        public string SUB_TOTAL { get; set; } = "Sub Total";
+        public string TOTAL_PRD { get; set; } = "Total Period";
         public string GRAND_TOTAL { get; set; } = "Grand Total";
         public string REF_NO { get; set; } = "Reference No";
         public string REF_DATE { get; set; } = "Reference Date";
         public string SUPPLIER { get; set; } = "Supplier";
-        public string INV_PRD { get; set; } = "Invoice Period";
+        // public string INV_PRD { get; set; } = "Invoice Period";
+        public string INVOICE_PRD { get; set; } = "Invoice Period";
         public string DUE_DATE { get; set; } = "Due Date";
         public string CURRENCY { get; set; } = "Currency";
         public string TOTAL_AMT { get; set; } = "Total Amount";
         public string DISCOUNT { get; set; } = "Discount";
         public string TAX { get; set; } = "Tax";
+        public string ADD_ON { get; set; } = "Add On";
         public string ADDITION { get; set; } = "Addition";
         public string DEDUCTION { get; set; } = "Deduction";
         public string INV_AMT { get; set; } = "Invoice Amount";
@@ -66,6 +69,7 @@ namespace APR00500Common.DTOs.Print
         public string CCURRENCY { get; set; } = "";
         public decimal NTOTAL_AMOUNT { get; set; }
         public decimal NDISCOUNT { get; set; }
+        public decimal NADD_ON { get; set; }
         public decimal NTAX { get; set; }
         public decimal NADDITION { get; set; }
         public decimal NDEDUCTION { get; set; }

@@ -26,7 +26,7 @@ namespace Lookup_GSModel.ViewModel
 
             try
             {
-                var loResult = await _model.GSL01500GetCashDetailListAsync(CashFlowCode);
+                var loResult = await _model.GSL01500GetCashDetailListAsync(string.IsNullOrWhiteSpace(CashFlowCode) ? "" : CashFlowCode);
 
                 CashFlowDetailGrid = new ObservableCollection<GSL01500ResultDetailDTO>(loResult);
             }

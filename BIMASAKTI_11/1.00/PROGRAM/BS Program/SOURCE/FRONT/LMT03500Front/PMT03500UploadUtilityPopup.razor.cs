@@ -72,7 +72,7 @@ public partial class PMT03500UploadUtilityPopup : R_Page
 
             ////Assign Company, User and others value for Parameters
             _viewModel.Init(poParameter);
-            
+
             _checkUtilityType();
 
             _viewModel.CompanyId = ClientHelper.CompanyId;
@@ -125,7 +125,8 @@ public partial class PMT03500UploadUtilityPopup : R_Page
 
                 if (_viewModel.IsError)
                 {
-                    var loResult = await R_MessageBox.Show("", "Utility Usage uploaded successfully!", R_eMessageBoxButtonType.OK);
+                    var loResult = await R_MessageBox.Show("", "Utility Usage uploaded successfully!",
+                        R_eMessageBoxButtonType.OK);
                     if (loResult == R_eMessageBoxResult.OK)
                     {
                         await Close(true, true);
@@ -198,7 +199,7 @@ public partial class PMT03500UploadUtilityPopup : R_Page
     {
         await Close(false, false);
     }
-    
+
     private void _checkUtilityType()
     {
         switch (_viewModel.UploadParam.EUTILITY_TYPE)
@@ -211,6 +212,16 @@ public partial class PMT03500UploadUtilityPopup : R_Page
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    private void RowRender(R_GridRowRenderEventArgs eventArgs)
+    {
+        var loData = (PMT03500UploadUtilityErrorValidateDTO)eventArgs.Data;
+
+        if (loData.ErrorFlag == "N")
+        {
+            eventArgs.RowClass = "errorDataLValidIsFalse";
         }
     }
 }

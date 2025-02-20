@@ -126,6 +126,8 @@ namespace GSM02500FRONT
                 loUnitInfoLabel = _localizer["_Activate"];
                 loUnitInfoViewModel.loTabParameter = (TabParameterDTO)poParameter;
 
+                await loUnitInfoViewModel.GetStrataLeaseListStreamAsync();
+
                 await loUnitInfoViewModel.GetSelectedPropertyAsync();
                 await loUnitInfoViewModel.GetSelectedBuildingAsync();
                 await loUnitInfoViewModel.GetSelectedFloorAsync();
@@ -517,6 +519,28 @@ namespace GSM02500FRONT
             loException.ThrowExceptionIfErrors();
         }
         #endregion
+
+        private async Task UnitTypeDropdown_ValueChanged(string poParam)
+        {
+            var loEx = new R_Exception();
+            GetUnitTypeDTO loTempUnitType = null;
+            try
+            {
+                loUnitInfoViewModel.Data.CUNIT_TYPE_ID = poParam;
+                loTempUnitType = loUnitInfoViewModel.loUnitTypeList.Where(x => x.CUNIT_TYPE_ID == poParam).FirstOrDefault();
+                if (loTempUnitType != null)
+                {
+                    loUnitInfoViewModel.Data.NGROSS_AREA_SIZE = loTempUnitType.NGROSS_AREA_SIZE;
+                    loUnitInfoViewModel.Data.NNET_AREA_SIZE = loTempUnitType.NNET_AREA_SIZE;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
 
     }
 }

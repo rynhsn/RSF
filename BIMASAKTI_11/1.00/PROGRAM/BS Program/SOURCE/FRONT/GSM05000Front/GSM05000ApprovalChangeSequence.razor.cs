@@ -57,15 +57,15 @@ public partial class GSM05000ApprovalChangeSequence : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private Task BeforeDrop(R_GridRowAfterDropEventArgs eventArgs)
-    {
-        return Task.CompletedTask;
-    }
-
-    private Task AfterDrop(R_GridRowBeforeDropEventArgs eventArgs)
-    {
-        return Task.CompletedTask;
-    }
+    // private Task BeforeDrop(R_GridRowAfterDropEventArgs eventArgs)
+    // {
+    //     return Task.CompletedTask;
+    // }
+    //
+    // private Task AfterDrop(R_GridRowBeforeDropEventArgs eventArgs)
+    // {
+    //     return Task.CompletedTask;
+    // }
 
     private async Task ChangedDept(object value)
     {

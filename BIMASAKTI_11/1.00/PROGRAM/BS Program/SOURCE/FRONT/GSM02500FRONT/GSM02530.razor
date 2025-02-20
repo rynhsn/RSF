@@ -119,7 +119,7 @@
 
             <R_ItemLayout col="1">
             </R_ItemLayout>
-            <R_ItemLayout Style="width: 15px">
+            <R_ItemLayout Style="15px">
                 <R_CheckBox @bind-Value="@loUnitInfoViewModel.Data.LACTIVE"
                             R_ConductorSource="@_conductorUnitInfoRef"
                             Enabled="false">
@@ -150,10 +150,12 @@
 
                 <R_ItemLayout col="2">
                     <R_DropDownList Data="@loUnitInfoViewModel.loUnitTypeList"
-                                    @bind-Value="loUnitInfoViewModel.Data.CUNIT_TYPE_ID"
+                                    Value="loUnitInfoViewModel.Data.CUNIT_TYPE_ID"
                                     ValueField="@nameof(GetUnitTypeDTO.CUNIT_TYPE_ID)"
                                     TextField="@nameof(GetUnitTypeDTO.CUNIT_TYPE_NAME)"
                                     R_ConductorSource="@_conductorUnitInfoRef"
+                                    ValueChanged="@((string value) => UnitTypeDropdown_ValueChanged(value))"
+                                    PopupMaxHeight="175px"
                                     R_EnableAdd="true" R_EnableEdit="true">
                     </R_DropDownList>
                 </R_ItemLayout>
@@ -198,6 +200,7 @@
                                     ValueField="@nameof(GetUnitViewDTO.CUNIT_VIEW_ID)"
                                     TextField="@nameof(GetUnitViewDTO.CUNIT_VIEW_NAME)"
                                     R_ConductorSource="@_conductorUnitInfoRef"
+                                    PopupMaxHeight="175px"
                                     R_EnableAdd="true" R_EnableEdit="true">
                     </R_DropDownList>
                 </R_ItemLayout>
@@ -229,6 +232,39 @@
                                     TextField="@nameof(GetUnitCategoryDTO.CDESCRIPTION)"
                                     R_ConductorSource="@_conductorUnitInfoRef"
                                     R_EnableAdd="true" R_EnableEdit="true"></R_RadioGroup>
+                </R_ItemLayout>
+            </R_StackLayout>
+            
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_StrataStatus"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_DropDownList Data="@loUnitInfoViewModel.loStrataList"
+                                    @bind-Value="loUnitInfoViewModel.Data.CSTRATA_STATUS"
+                                    ValueField="@nameof(GetStrataLeaseDTO.CCODE)"
+                                    TextField="@nameof(GetStrataLeaseDTO.CDESCRIPTION)"
+                                    R_ConductorSource="@_conductorUnitInfoRef"
+                                    Enabled="@(loUnitInfoViewModel.Data.CUNIT_CATEGORY_ID != "02" && _conductorUnitInfoRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)">
+                    </R_DropDownList>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="1">
+                    <R_Label>@_localizer["_LeaseStatus"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_DropDownList Data="@loUnitInfoViewModel.loLeaseList"
+                                    @bind-Value="loUnitInfoViewModel.Data.CLEASE_STATUS"
+                                    ValueField="@nameof(GetStrataLeaseDTO.CCODE)"
+                                    TextField="@nameof(GetStrataLeaseDTO.CDESCRIPTION)"
+                                    R_ConductorSource="@_conductorUnitInfoRef"
+                                    Enabled="@(loUnitInfoViewModel.Data.CUNIT_CATEGORY_ID != "01" && _conductorUnitInfoRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)">
+                    </R_DropDownList>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:40px">
+                    <R_Label FontStyle="R_eFontStyle.Italic">@lcCUOMLabel</R_Label>
                 </R_ItemLayout>
             </R_StackLayout>
 

@@ -1,4 +1,5 @@
-﻿using GSM02500COMMON.DTOs.GSM02500;
+﻿using GSM02500COMMON.DTOs;
+using GSM02500COMMON.DTOs.GSM02500;
 using GSM02500COMMON.DTOs.GSM02531;
 using GSM02500FRONT;
 using Lookup_GSCOMMON.DTOs;
@@ -377,28 +378,47 @@ public partial class PMT03500UpdateMeter : R_ITabPage
         try
         {
             // eventArgs.Parameter = _depositViewModel._currentDataAgreement;
-            eventArgs.Parameter = new UploadUnitUtilityParameterDTO
+            if (_viewModel.LOTHER_UNIT)
             {
-                PropertyData = new SelectedPropertyDTO
+                eventArgs.Parameter = new TabParameterDTO()
                 {
-                    CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
-                },
-                BuildingData = new SelectedBuildingDTO
+                    CSELECTED_FLOOR_ID = _viewModel.Header.CFLOOR_ID,
+                    CSELECTED_PROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
+                    CSELECTED_BUILDING_ID = _viewModel.Header.CBUILDING_ID,
+                    CSELECTED_OTHER_UNIT_ID = _viewModel.Header.CUNIT_ID,
+                    CDEFAULT_UNIT_CATEGORY = "",
+                    CDEFAULT_UNIT_TYPE = "",
+                    CSELECTED_UNIT_ID = ""
+                    // CDEFAULT_UNIT_TYPE = _viewModel.Header.CCHARGES_TYPE
+                };
+                
+                eventArgs.TargetPageType = typeof(GSM02540Utilities);
+            }
+            else
+            {
+                eventArgs.Parameter = new UploadUnitUtilityParameterDTO
                 {
-                    CBUILDING_ID = _viewModel.Header.CBUILDING_ID
-                },
-                UnitData = new SelectedUnitDTO
-                {
-                    CUNIT_ID = _viewModel.Header.CUNIT_ID,
-                    CUNIT_NAME = _viewModel.Header.CUNIT_NAME
-                },
-                FloorData = new SelectedFloorDTO
-                {
-                    CFLOOR_ID = _viewModel.Header.CFLOOR_ID
-                },
-                SelectedUtilityTypeId = _viewModel.Entity.CCHARGES_TYPE
-            };
-            eventArgs.TargetPageType = typeof(GSM02531);
+                    PropertyData = new SelectedPropertyDTO
+                    {
+                        CPROPERTY_ID = _viewModel.Header.CPROPERTY_ID,
+                    },
+                    BuildingData = new SelectedBuildingDTO
+                    {
+                        CBUILDING_ID = _viewModel.Header.CBUILDING_ID
+                    },
+                    UnitData = new SelectedUnitDTO
+                    {
+                        CUNIT_ID = _viewModel.Header.CUNIT_ID,
+                        CUNIT_NAME = _viewModel.Header.CUNIT_NAME
+                    },
+                    FloorData = new SelectedFloorDTO
+                    {
+                        CFLOOR_ID = _viewModel.Header.CFLOOR_ID
+                    },
+                    SelectedUtilityTypeId = _viewModel.Entity.CCHARGES_TYPE
+                };
+                eventArgs.TargetPageType = typeof(GSM02531);
+            }
         }
         catch (Exception ex)
         {

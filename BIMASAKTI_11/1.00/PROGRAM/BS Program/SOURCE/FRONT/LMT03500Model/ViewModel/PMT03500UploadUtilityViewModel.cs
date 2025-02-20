@@ -157,10 +157,10 @@ namespace PMT03500Model.ViewModel
                         CUTILITY_PRD = item.UtilityPeriod,
                         CSTART_DATE = item.StartDate,
                         CEND_DATE = item.EndDate,
-                        IBLOCK1_START = item.BlockIStart,
-                        IBLOCK2_START = item.BlockIIStart,
-                        IBLOCK1_END = item.BlockIEnd,
-                        IBLOCK2_END = item.BlockIIEnd,
+                        NBLOCK1_START = item.BlockIStart,
+                        NBLOCK2_START = item.BlockIIStart,
+                        NBLOCK1_END = item.BlockIEnd,
+                        NBLOCK2_END = item.BlockIIEnd,
                         NBEBAN_BERSAMA = item.BebanBersama,
 
                         CCOMPANY_ID = CompanyId
@@ -258,7 +258,8 @@ namespace PMT03500Model.ViewModel
             Message = $"Process Error with GUID {pcKeyGuid}";
             ex.ErrorList.ForEach(x => loException.Add(x.ErrNo, x.ErrDescp));
 
-            DisplayErrorAction.Invoke(loException);
+            // DisplayErrorAction.Invoke(loException);
+            DisplayErrorAction(loException);
             StateChangeAction();
             await Task.CompletedTask;
         }
@@ -348,10 +349,10 @@ namespace PMT03500Model.ViewModel
                             UtilityPeriod = item.CUTILITY_PRD,
                             StartDate = item.CSTART_DATE,
                             EndDate = item.CEND_DATE,
-                            BlockIStart = item.IBLOCK1_START,
-                            BlockIIStart = item.IBLOCK2_START,
-                            BlockIEnd = item.IBLOCK1_END,
-                            BlockIIEnd = item.IBLOCK2_END,
+                            BlockIStart = item.NBLOCK1_START,
+                            BlockIIStart = item.NBLOCK2_START,
+                            BlockIEnd = item.NBLOCK1_END,
+                            BlockIIEnd = item.NBLOCK2_END,
                             BebanBersama = item.NBEBAN_BERSAMA,
                             Valid = item.ErrorFlag,
                             Notes = item.ErrorMessage

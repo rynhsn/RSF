@@ -25,7 +25,7 @@ namespace Lookup_PMModel.ViewModel.LML01000
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParam.CPROPERTY_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CBILLING_RULE_TYPE, poParam.CBILLING_RULE_TYPE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CUNIT_TYPE_CTG_ID, poParam.CUNIT_TYPE_CTG_ID);
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LACTIVE_ONLY, poParam.LACTIVE_ONLY);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LACTIVE_ONLY, true);
 
                 var loResult = await _model.LML01000GetBillingRuleListAsync();
                 BillingRuleList = new ObservableCollection<LML01000DTO>(loResult.Data);
@@ -42,6 +42,7 @@ namespace Lookup_PMModel.ViewModel.LML01000
             LML01000DTO loRtn = null;
             try
             {
+                poParam.LACTIVE_ONLY = true;
                 var loResult = await _modelGetRecord.LML01000GetBillingRuleAsync(poParam);
                 loRtn = loResult;
             }

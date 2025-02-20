@@ -34,9 +34,9 @@
     </data>
     
     <!-- TOTAL_DEPT -->
-    <data name="TOTAL_DEPT" xml:space="preserve">
-        <value>Total Department</value><comment>Total Department</comment>
-    </data>
+    <!-- <data name="TOTAL_DEPT" xml:space="preserve"> -->
+    <!--     <value>Total Department</value><comment>Total Department</comment> -->
+    <!-- </data> -->
     
     <!-- GRAND_TOTAL -->
     <data name="GRAND_TOTAL" xml:space="preserve">
@@ -59,8 +59,18 @@
     </data>
     
     <!-- INV_PRD -->
-    <data name="INV_PRD" xml:space="preserve">
+    <data name="INVOICE_PRD" xml:space="preserve">
         <value>Invoice Period</value><comment>Invoice Period</comment>
+    </data>
+    
+    <!-- public string SUB_TOTAL { get; set; } = "Sub Total"; -->
+    <data name="SUB_TOTAL" xml:space="preserve">
+        <value>Sub Total</value><comment>Sub Total</comment>
+    </data>
+    
+    <!-- public string TOTAL_PRD { get; set; } = "Total Period"; -->
+    <data name="TOTAL_PRD" xml:space="preserve">
+        <value>Total Period</value><comment>Total Period</comment>
     </data>
     
     <!-- DUE_DATE -->
@@ -86,6 +96,11 @@
     <!-- TAX -->
     <data name="TAX" xml:space="preserve">
         <value>Tax</value><comment>Tax</comment>
+    </data>
+    
+    <!-- ADD_ON -->
+    <data name="ADD_ON" xml:space="preserve">
+        <value>Add On</value><comment>Add On</comment>
     </data>
     
     <!-- ADDITION -->

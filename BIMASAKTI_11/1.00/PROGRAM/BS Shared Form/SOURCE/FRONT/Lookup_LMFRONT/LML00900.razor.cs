@@ -114,7 +114,8 @@ namespace Lookup_PMFRONT
         public async Task Button_OnClickOkAsync()
         {
             var loData = GridRef!.GetCurrentData();
-            await Close(true, loData);
+            var loReturn = R_FrontUtility.ConvertObjectToObject<LML00900DTO>(loData);
+            await Close(true, loReturn);
         }
         public async Task Button_OnClickCloseAsync()
         {

@@ -22,6 +22,7 @@ using GSM02500COMMON.DTOs.GSM02540;
 using GSM02500COMMON.DTOs.GSM02541;
 using System.Collections.ObjectModel;
 using R_BlazorFrontEnd.Interfaces;
+using R_APICommonDTO;
 
 namespace GSM02500FRONT
 {
@@ -47,9 +48,10 @@ namespace GSM02500FRONT
             StateHasChanged();
         }
 
-        public void ShowErrorInvoke(R_Exception poException)
+        public void ShowErrorInvoke(R_APIException poException)
         {
-            this.R_DisplayException(poException);
+            var loEx = R_FrontUtility.R_ConvertFromAPIException(poException);
+            this.R_DisplayException(loEx);
         }
 
         public async Task ShowSuccessInvoke()

@@ -367,9 +367,9 @@ public class PMT03500UpdateMeterCls
             loDb.R_AddCommandParameter(loCmd, "@CSTART_DATE", DbType.String, 8, poParams.CSTART_DATE);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 8, poParams.CUSER_ID);
 
-            loDb.R_AddCommandParameter(loCmd, "@IMETER_START", DbType.Int32, 255, poParams.IMETER_START);
-            loDb.R_AddCommandParameter(loCmd, "@IBLOCK1_START", DbType.Int32, 255, poParams.IBLOCK1_START);
-            loDb.R_AddCommandParameter(loCmd, "@IBLOCK2_START", DbType.Int32, 255, poParams.IBLOCK2_START);
+            loDb.R_AddCommandParameter(loCmd, "@NMETER_START", DbType.Decimal, 255, poParams.NMETER_START);
+            loDb.R_AddCommandParameter(loCmd, "@NBLOCK1_START", DbType.Decimal, 255, poParams.NBLOCK1_START);
+            loDb.R_AddCommandParameter(loCmd, "@NBLOCK2_START", DbType.Decimal, 255, poParams.NBLOCK2_START);
             
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x =>
@@ -381,9 +381,9 @@ public class PMT03500UpdateMeterCls
                         "@CTENANT_ID" or
                         "@CUTILITY_TYPE" or
                         "@CMETER_NO" or
-                        "@IBLOCK1_START" or
-                        "@IBLOCK2_START" or
-                        "@IMETER_START" or
+                        "@NBLOCK1_START" or
+                        "@NBLOCK2_START" or
+                        "@NMETER_START" or
                         "@CSTART_INV_PRD" or
                         "@CSTART_DATE" or
                         "@CUSER_LOGIN_ID"
@@ -415,9 +415,6 @@ public class PMT03500UpdateMeterCls
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
             
-            // var loUtilityType = poParams.EUTYLITY_TYPE.ToString();
-            // lcQuery = $"RSP_PM_CHANGE_UTILITY_METER_NO_{loUtilityType}";
-            
             lcQuery = $"RSP_PM_CHANGE_UTILITY_METER_NO";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
@@ -434,113 +431,42 @@ public class PMT03500UpdateMeterCls
             loDb.R_AddCommandParameter(loCmd, "@CCHARGES_TYPE", DbType.String, 2, poParams.CCHARGES_TYPE);
             loDb.R_AddCommandParameter(loCmd, "@CCHARGES_ID", DbType.String, 20, poParams.CCHARGES_ID);
             loDb.R_AddCommandParameter(loCmd, "@CFROM_METER_NO", DbType.String, 30, poParams.CFROM_METER_NO);
-            loDb.R_AddCommandParameter(loCmd, "@IMETER_END", DbType.Int32, 255, poParams.IMETER_END);
-            loDb.R_AddCommandParameter(loCmd, "@IBLOCK1_END", DbType.Int32, 255, poParams.IBLOCK1_END);
-            loDb.R_AddCommandParameter(loCmd, "@IBLOCK2_END", DbType.Int32, 255, poParams.IBLOCK2_END);
+            loDb.R_AddCommandParameter(loCmd, "@NMETER_END", DbType.Decimal, 255, poParams.NMETER_END);
+            loDb.R_AddCommandParameter(loCmd, "@NBLOCK1_END", DbType.Decimal, 255, poParams.NBLOCK1_END);
+            loDb.R_AddCommandParameter(loCmd, "@NBLOCK2_END", DbType.Decimal, 255, poParams.NBLOCK2_END);
             loDb.R_AddCommandParameter(loCmd, "@CTO_METER_NO", DbType.String, 30, poParams.CTO_METER_NO);
-            loDb.R_AddCommandParameter(loCmd, "@IMETER_START", DbType.String, 255, poParams.IMETER_START);
-            loDb.R_AddCommandParameter(loCmd, "@IBLOCK1_START", DbType.String, 255, poParams.IBLOCK1_START);
-            loDb.R_AddCommandParameter(loCmd, "@IBLOCK2_START", DbType.String, 255, poParams.IBLOCK2_START);
+            loDb.R_AddCommandParameter(loCmd, "@NMETER_START", DbType.String, 255, poParams.NMETER_START);
+            loDb.R_AddCommandParameter(loCmd, "@NBLOCK1_START", DbType.String, 255, poParams.NBLOCK1_START);
+            loDb.R_AddCommandParameter(loCmd, "@NBLOCK2_START", DbType.String, 255, poParams.NBLOCK2_START);
             loDb.R_AddCommandParameter(loCmd, "@CSTART_INV_PRD", DbType.String, 20, poParams.CSTART_INV_PRD);
             loDb.R_AddCommandParameter(loCmd, "@CSTART_DATE", DbType.String, 20, poParams.CSTART_DATE);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParams.CUSER_ID);
 
-            // loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParams.CCOMPANY_ID);
-            // loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParams.CPROPERTY_ID);
-            // loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 30, poParams.CREF_NO);
-            // loDb.R_AddCommandParameter(loCmd, "@CUNIT_ID", DbType.String, 30, poParams.CUNIT_ID);
-            // loDb.R_AddCommandParameter(loCmd, "@CTENANT_ID", DbType.String, 30, poParams.CTENANT_ID);
-            // loDb.R_AddCommandParameter(loCmd, "@CUTILITY_TYPE", DbType.String, 30, poParams.CUTILITY_TYPE);
-            // loDb.R_AddCommandParameter(loCmd, "@IFROM_METER_NO", DbType.Int32, 255, poParams.IFROM_METER_NO);
-            // loDb.R_AddCommandParameter(loCmd, "@ITO_METER_NO", DbType.Int32, 255, poParams.ITO_METER_NO);
-            // loDb.R_AddCommandParameter(loCmd, "@CSTART_INV_PRD", DbType.String, 30, poParams.CSTART_INV_PRD);
-            // loDb.R_AddCommandParameter(loCmd, "@CSTART_DATE", DbType.String, 8, poParams.CSTART_DATE);
-            // loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 8, poParams.CUSER_ID);
-            //
-            //
-            // loDb.R_AddCommandParameter(loCmd, "@IBLOCK1_START", DbType.Int32, 255, poParams.IBLOCK1_START);
-            // loDb.R_AddCommandParameter(loCmd, "@IBLOCK2_START", DbType.Int32, 255, poParams.IBLOCK2_START);
-            // loDb.R_AddCommandParameter(loCmd, "@IBLOCK1_END", DbType.Int32, 255, poParams.IBLOCK1_END);
-            // loDb.R_AddCommandParameter(loCmd, "@IBLOCK2_END", DbType.Int32, 255, poParams.IBLOCK2_END);
-            // loDb.R_AddCommandParameter(loCmd, "@IMETER_START", DbType.Int32, 255, poParams.IMETER_START);
-            // loDb.R_AddCommandParameter(loCmd, "@IMETER_END", DbType.Int32, 255, poParams.IMETER_END);
-
-
-            // if (poParams.EUTYLITY_TYPE == EPMT03500UtilityUsageTypeDb.EC)
-            // {
-            //     loDb.R_AddCommandParameter(loCmd, "@IBLOCK1_START", DbType.Int32, 255, poParams.IBLOCK1_START);
-            //     loDb.R_AddCommandParameter(loCmd, "@IBLOCK2_START", DbType.Int32, 255, poParams.IBLOCK2_START);
-            //     loDb.R_AddCommandParameter(loCmd, "@IBLOCK1_END", DbType.Int32, 255, poParams.IBLOCK1_END);
-            //     loDb.R_AddCommandParameter(loCmd, "@IBLOCK2_END", DbType.Int32, 255, poParams.IBLOCK2_END);
-            //     
-            //     var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-            //         .Where(x =>
-            //             x.ParameterName is
-            //                 "@CCOMPANY_ID" or
-            //                 "@CPROPERTY_ID" or
-            //                 "@CREF_NO" or
-            //                 "@CUNIT_ID" or
-            //                 "@CTENANT_ID" or
-            //                 "@CUTILITY_TYPE" or
-            //                 "@IFROM_METER_NO" or
-            //                 "@ITO_METER_NO" or
-            //                 "@IBLOCK1_START" or
-            //                 "@IBLOCK2_START" or
-            //                 "@IBLOCK1_END" or
-            //                 "@IBLOCK2_END" or
-            //                 "@CSTART_INV_PRD" or
-            //                 "@CSTART_DATE" or
-            //                 "@CUSER_LOGIN_ID"
-            //         )
-            //         .Select(x => x.Value);
-            //     _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
-            // }
-            // else if(poParams.EUTYLITY_TYPE == EPMT03500UtilityUsageTypeDb.WG)
-            // {
-            //     loDb.R_AddCommandParameter(loCmd, "@IMETER_START", DbType.Int32, 255, poParams.IMETER_START);
-            //     loDb.R_AddCommandParameter(loCmd, "@IMETER_END", DbType.Int32, 255, poParams.IMETER_END);
-            //     
-            //     var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-            //         .Where(x =>
-            //             x.ParameterName is
-            //                 "@CCOMPANY_ID" or
-            //                 "@CPROPERTY_ID" or
-            //                 "@CREF_NO" or
-            //                 "@CUNIT_ID" or
-            //                 "@CTENANT_ID" or
-            //                 "@CUTILITY_TYPE" or
-            //                 "@IFROM_METER_NO" or
-            //                 "@ITO_METER_NO" or
-            //                 "@ISTART_START" or
-            //                 "@ISTART_END" or
-            //                 "@CSTART_INV_PRD" or
-            //                 "@CSTART_DATE" or
-            //                 "@CUSER_LOGIN_ID"
-            //         )
-            //         .Select(x => x.Value);
-            //     _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
-            // }
-            
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x =>
                     x.ParameterName is
                         "@CCOMPANY_ID" or
                         "@CPROPERTY_ID" or
+                        "@CDEPT_CODE" or
+                        "@CTRANS_CODE" or
                         "@CREF_NO" or
                         "@CUNIT_ID" or
+                        "@CFLOOR_ID" or
+                        "@CBUILDING_ID" or
                         "@CTENANT_ID" or
-                        "@CUTILITY_TYPE" or
-                        "@IFROM_METER_NO" or
-                        "@ITO_METER_NO" or
-                        "@IMETER_START" or
-                        "@IMETER_END" or
-                        "@IBLOCK1_START" or
-                        "@IBLOCK2_START" or
-                        "@IBLOCK1_END" or
-                        "@IBLOCK2_END" or
+                        "@CCHARGES_TYPE" or
+                        "@CCHARGES_ID" or
+                        "@CFROM_METER_NO" or
+                        "@NMETER_END" or
+                        "@NBLOCK1_END" or
+                        "@NBLOCK2_END" or
+                        "@CTO_METER_NO" or
+                        "@NMETER_START" or
+                        "@NBLOCK1_START" or
+                        "@NBLOCK2_START" or
                         "@CSTART_INV_PRD" or
                         "@CSTART_DATE" or
-                        "@CUSER_LOGIN_ID"
+                        "@CUSER_ID"
                 )
                 .Select(x => x.Value);
             _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);

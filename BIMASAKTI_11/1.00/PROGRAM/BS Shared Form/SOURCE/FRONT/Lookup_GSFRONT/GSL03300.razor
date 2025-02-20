@@ -1,0 +1,38 @@
+﻿@using Lookup_GSCOMMON.DTOs
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_TaxCharges")]
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Style="width: 800px">
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.TaxChargesGrid"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                Height="300px"
+                Pageable="true">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GSL03300DTO.CREF_TYPE_DESC)" HeaderText="@_localizer["_Type"]" Width="120px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL03300DTO.CREF_CODE)" HeaderText="@_localizer["_Code"]" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL03300DTO.CREF_DESCRIPTION)" HeaderText="@_localizer["_Desc"]" Width="180px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-between">
+        <R_ItemLayout>
+            <R_Button OnClick="OnClickRefresh">
+                @_localizer["_Refresh"]
+            </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Button OnClick="Button_OnClickOkAsync">
+                @_localizer["_OkBtn"]
+            </R_Button>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                @_localizer["_CancelBtn"]
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>

@@ -114,14 +114,14 @@
                         AllowDeleteRow="false"
                         R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
                     <R_GridColumns>
-                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitUtilityDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="int" FieldName=@nameof(UploadUnitUtilityDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridNumericColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadUnitUtilityDTO.UtilityType) HeaderText="@_localizer["_UtilityType"]" Enabled="false" Width="150px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadUnitUtilityDTO.SeqNo) HeaderText="@_localizer["_SeqNo"]" Enabled="false" Width="100px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadUnitUtilityDTO.MeterNo) HeaderText="@_localizer["_MeterNo"]" Enabled="false" Width="150px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadUnitUtilityDTO.AliasMeterNo) HeaderText="@_localizer["_BASAliasMeterNo"]" Enabled="false" Width="175px"></R_GridTextColumn>
                         <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitUtilityDTO.CalculationFactor) HeaderText="@_localizer["_CalculationFactor"]" Enabled="false" Width="175px"></R_GridNumericColumn>
                         <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitUtilityDTO.Capacity) HeaderText="@_localizer["_Capacity(Electricity)"]" Enabled="false" Width="175px"></R_GridNumericColumn>
-                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadUnitUtilityDTO.MaxResetValue) HeaderText="@_localizer["_MaxResetValue"]" Enabled="false" Width="150px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="int" FieldName=@nameof(UploadUnitUtilityDTO.MaxResetValue) HeaderText="@_localizer["_MaxResetValue"]" Enabled="false" Width="150px"></R_GridNumericColumn>
                         <R_GridCheckBoxColumn FieldName=@nameof(UploadUnitUtilityDTO.Active) HeaderText="@_localizer["_ActiveFlag"]" Enabled="false" Width="125px"></R_GridCheckBoxColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadUnitUtilityDTO.NonActiveDate) HeaderText="@_localizer["_NonActiveDate"]" Enabled="false" Width="150px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadUnitUtilityDTO.Valid) HeaderText="@_localizer["_Valid"]" Enabled="false" Width="100px"></R_GridTextColumn>

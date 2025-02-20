@@ -17,7 +17,8 @@ namespace Lookup_PMCOMMON.DTOs
         public string CTENANT_ID { get; set; } = "";
         public string CBUILDING_ID { get; set; } = "";
         public string CTRANS_STATUS { get; set; } = "";
-
+        //CR019 -- 14 Nov 2024
+        public string CUSER_ID { get; set; } = "";
         public string CSEARCH_TEXT { get; set; } = "";
     }
 }

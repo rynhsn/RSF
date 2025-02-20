@@ -47,14 +47,14 @@ public partial class PMT03500UpdateMeterPopup : R_Page
         {
             if (_viewModel.UtilityType == EPMT03500UtilityUsageType.EC)
             {
-                if (_viewModel.Entity.IBLOCK1_START < 0)
+                if (_viewModel.Entity.NBLOCK1_START < 0)
                     loEx.Add("Error", "Please fill in the Block 1 Start");
-                if (_viewModel.Entity.IBLOCK2_START < 0)
+                if (_viewModel.Entity.NBLOCK2_START < 0)
                     loEx.Add("Error", "Please fill in the Block 2 Start");
             }
             else if (_viewModel.UtilityType == EPMT03500UtilityUsageType.WG)
             {
-                if (_viewModel.Entity.IMETER_START < 0)
+                if (_viewModel.Entity.NMETER_START < 0)
                     loEx.Add("Error", "Please fill in the Meter Start");
             }
             

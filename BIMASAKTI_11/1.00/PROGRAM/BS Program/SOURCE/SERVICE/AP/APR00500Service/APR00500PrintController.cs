@@ -224,22 +224,10 @@ public class APR00500PrintController : R_ReportControllerBase
                     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var cutOfDate)
                     ? cutOfDate
                     : (DateTime?)null
-                // CCUT_OFF_DATE_DISPLAY = DateTime.TryParseExact(poParam.CCUT_OFF_DATE, "yyyyMMdd",
-                // CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var cutOfDate)
-                // ? cutOfDate.ToString("dd-MMM-yyyy")
-                // : null
             };
 
             foreach (var item in loData.Data)
             {
-                // item.CREFERENCE_DATE_DISPLAY = DateTime.TryParseExact(item.CREFERENCE_DATE, "yyyyMMdd",
-                //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
-                //     ? refDate.ToString("dd-MMM-yyyy")
-                //     : null;
-                // item.CDUE_DATE_DISPLAY = DateTime.TryParseExact(item.CDUE_DATE, "yyyyMMdd",
-                //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var dueDate)
-                //     ? dueDate.ToString("dd-MMM-yyyy")
-                //     : null;
                 item.DREFERENCE_DATE = DateTime.TryParseExact(item.CREFERENCE_DATE, "yyyyMMdd",
                     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
                     ? refDate
@@ -276,4 +264,5 @@ public class APR00500PrintController : R_ReportControllerBase
 
         return loObj;
     }
+    
 }

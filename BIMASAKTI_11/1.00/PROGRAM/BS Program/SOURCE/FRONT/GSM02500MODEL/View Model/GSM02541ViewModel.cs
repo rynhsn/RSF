@@ -1,6 +1,7 @@
 ﻿using GSM02500COMMON.DTOs;
 using GSM02500COMMON.DTOs.GSM02500;
 using GSM02500COMMON.DTOs.GSM02510;
+using GSM02500COMMON.DTOs.GSM02530;
 using GSM02500COMMON.DTOs.GSM02540;
 using GSM02500COMMON.DTOs.GSM02541;
 using GSM02500FrontResources;
@@ -19,12 +20,18 @@ namespace GSM02500MODEL.View_Model
     public class GSM02541ViewModel : R_ViewModel<GSM02541DetailDTO>
     {
         private GSM02541Model loModel = new GSM02541Model();
+        
+        private GSM02530Model loUnitModel = new GSM02530Model();
 
         private GSM02500Model loSharedModel = new GSM02500Model();
 
         public GSM02541DetailDTO loOtherUnitDetail = null;
 
         public GSM02541DTO loCurrentOtherUnit = null;
+
+        public GetCUOMFromPropertyDTO loCUOM = new GetCUOMFromPropertyDTO();
+
+        public List<GetUnitViewDTO> loOtherUnitViewList = null;
 
         public ObservableCollection<GSM02541DTO> loOtherUnitList = new ObservableCollection<GSM02541DTO>();
 
@@ -42,11 +49,72 @@ namespace GSM02500MODEL.View_Model
 
         public OtherUnitTypeResultDTO loOtherUnitTypeRtn = null;
 
+        public List<GetStrataLeaseDTO> loLeaseList = null;
+
         public bool SelectedActiveInactiveLACTIVE;
 
         public SelectedPropertyDTO SelectedProperty = new SelectedPropertyDTO();
 
         public string SelectedBuildingId;
+
+        public async Task GetStrataLeaseListStreamAsync()
+        {
+            R_Exception loException = new R_Exception();
+            GetStrataLeaseParameterDTO loParam = new GetStrataLeaseParameterDTO();
+            GetStrataLeaseResultDTO loResult = null;
+            try
+            {
+                R_FrontContext.R_SetStreamingContext(ContextConstant.GSM02530_STRATA_LEASE_STREAMING_CONTEXT, new GetStrataLeaseParameterDTO()
+                {
+                    CLASS_ID = "_BS_LEASE_STATUS",
+                    REC_ID_LIST = "01,05,06"
+                });
+                loResult = await loUnitModel.GetStrataLeaseListStreamAsync();
+                loLeaseList = loResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+            loException.ThrowExceptionIfErrors();
+        }
+
+        public async Task GetCUOMFromPropertyAsync()
+        {
+            R_Exception loException = new R_Exception();
+            GetCUOMFromPropertyParameterDTO loParam = null;
+            try
+            {
+                loParam = new GetCUOMFromPropertyParameterDTO()
+                {
+                    CSELECTED_PROPERTY_ID = SelectedProperty.CPROPERTY_ID
+                };
+                //R_FrontContext.R_SetContext(ContextConstant.GSM02500_PROPERTY_ID_CONTEXT, loTabParameter.CSELECTED_PROPERTY_ID);
+                loCUOM = await loSharedModel.GetCUOMFromPropertyAsync(loParam);
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+            loException.ThrowExceptionIfErrors();
+        }
+
+        public async Task GetUnitViewListStreamAsync()
+        {
+            R_Exception loException = new R_Exception();
+            GetUnitViewResultDTO loRtnUnitView = null;
+            try
+            {
+                R_FrontContext.R_SetStreamingContext(ContextConstant.GSM02500_PROPERTY_ID_STREAMING_CONTEXT, SelectedProperty.CPROPERTY_ID);
+                loRtnUnitView = await loSharedModel.GetUnitViewListStreamAsync();
+                loOtherUnitViewList = loRtnUnitView.Data;
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+            loException.ThrowExceptionIfErrors();
+        }
 
         public void OtherUnitValidation(GSM02541DetailDTO poParam)
         {
@@ -221,6 +289,23 @@ namespace GSM02500MODEL.View_Model
                     CSELECTED_PROPERTY_ID = SelectedProperty.CPROPERTY_ID
                 };
                 //R_FrontContext.R_SetContext(ContextConstant.GSM02540_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
+
+                if (string.IsNullOrWhiteSpace(loParam.Data.CFLOOR_ID))
+                {
+                    loParam.Data.CFLOOR_ID = "";
+                }
+                if (string.IsNullOrWhiteSpace(loParam.Data.CBUILDING_ID))
+                {
+                    loParam.Data.CBUILDING_ID = "";
+                }
+                if (string.IsNullOrWhiteSpace(loParam.Data.COTHER_UNIT_TYPE_ID))
+                {
+                    loParam.Data.COTHER_UNIT_TYPE_ID = "";
+                }
+                if (string.IsNullOrWhiteSpace(loParam.Data.CLEASE_STATUS))
+                {
+                    loParam.Data.CLEASE_STATUS = "";
+                }
 
                 loResult = await loModel.R_ServiceSaveAsync(loParam, peCRUDMode);
 

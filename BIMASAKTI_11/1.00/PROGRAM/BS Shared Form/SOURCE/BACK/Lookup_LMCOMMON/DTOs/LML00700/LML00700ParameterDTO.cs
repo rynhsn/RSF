@@ -10,6 +10,7 @@ namespace Lookup_PMCOMMON.DTOs
         public string CUSER_ID { get; set; } = "";
         public string? CPROPERTY_ID { get; set; } = "";
         public string CCHARGES_TYPE { get; set; } = "";
+        public string CINV_PRD { get; set; } = "";
         public string CSEARCH_TEXT { get; set; } = "";
     }
 }

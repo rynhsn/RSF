@@ -20,6 +20,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using R_BlazorFrontEnd.Interfaces;
+using R_APICommonDTO;
 
 namespace GSM02500FRONT
 {
@@ -45,9 +46,10 @@ namespace GSM02500FRONT
             StateHasChanged();
         }
 
-        public void ShowErrorInvoke(R_Exception poException)
+        public void ShowErrorInvoke(R_APIException poException)
         {
-            this.R_DisplayException(poException);
+            var loEx = R_FrontUtility.R_ConvertFromAPIException(poException);
+            this.R_DisplayException(loEx);
         }
 
         public async Task ShowSuccessInvoke()
@@ -59,6 +61,18 @@ namespace GSM02500FRONT
             }
         }
 
+        private void SetPercentageAndMessageInvoke(string pcMessage, int pnPercentage)
+        {
+            //lcMessage = pcMessage;
+            //lnPercentage = pnPercentage;
+        }
+
+        public void SetValidInvalidInvoke()
+        {
+            //lnValid = loUploadUnitViewModel.SumValid;
+            //lnInvalid = loUploadUnitViewModel.SumInvalid;
+            //lnTotalRow = loUploadUnitViewModel.SumList;
+        }
 
         protected override async Task R_Init_From_Master(object poParameter)
         {
@@ -71,6 +85,8 @@ namespace GSM02500FRONT
                 loUploadUnitUtilityViewModel.SelectedCompanyId = loClientHelper.CompanyId;
                 loUploadUnitUtilityViewModel.StateChangeAction = StateChangeInvoke;
                 loUploadUnitUtilityViewModel.ShowErrorAction = ShowErrorInvoke;
+                loUploadUnitUtilityViewModel.SetPercentageAndMessageAction = SetPercentageAndMessageInvoke;
+                loUploadUnitUtilityViewModel.SetValidInvalidAction = SetValidInvalidInvoke;
                 loUploadUnitUtilityViewModel.ShowSuccessAction = async () =>
                 {
                     await ShowSuccessInvoke();

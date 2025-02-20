@@ -25,6 +25,9 @@ namespace Lookup_PMCOMMON.DTOs
         public bool LTAX_EXEMPTION { get; set; }
         public string CTAX_EXEMPTION_CODE { get; set; } = "";
         public decimal NTAX_EXEMPTION_PCT { get; set; } 
+        //CR 10-02-2024
+        public bool LSPLIT_ADMIN { get; set; }
+        public bool LADMIN_FEE_TAX { get; set; }
 
 
     }

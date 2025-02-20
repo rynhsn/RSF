@@ -7,6 +7,7 @@ namespace Lookup_GSCOMMON.DTOs
         public string CCOMPANY_ID { get; set; }
         public string CPROPERTY_ID { get; set; } 
         public string CBUILDING_ID { get; set; }
+        public string CBUILDING_NAME { get; set; }
         public string CFLOOR_ID { get; set; }
         public string CFLOOR_NAME { get; set; }
         public string CUNIT_ID { get; set; }

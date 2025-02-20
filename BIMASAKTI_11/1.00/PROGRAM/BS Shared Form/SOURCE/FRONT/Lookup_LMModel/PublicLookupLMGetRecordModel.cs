@@ -4,6 +4,11 @@ using Lookup_PMCOMMON.DTOs.GET_USER_PARAM_DETAIL;
 using Lookup_PMCOMMON.DTOs.LML01000;
 using Lookup_PMCOMMON.DTOs.LML01100;
 using Lookup_PMCOMMON.DTOs.LML01300;
+using Lookup_PMCOMMON.DTOs.LML01400;
+using Lookup_PMCOMMON.DTOs.LML01500;
+using Lookup_PMCOMMON.DTOs.LML01600;
+using Lookup_PMCOMMON.DTOs.LML01800;
+using Lookup_PMCOMMON.DTOs.LML01900;
 using R_APIClient;
 using R_BlazorFrontEnd.Exceptions;
 using R_BusinessObjectFront;
@@ -91,8 +96,26 @@ namespace Lookup_PMModel
         {
             throw new NotImplementedException();
         }
-
-
+        public LMLGenericRecord<LML01400DTO> LML01400AgreementUnitCharges(LML01400ParameterDTO poParam)
+        {
+            throw new NotImplementedException();
+        }
+        public LMLGenericRecord<LML01500DTO> LML01500SLACategory(LML01500ParameterDTO poParam)
+        {
+            throw new NotImplementedException();
+        }
+        public LMLGenericRecord<LML01600DTO> LML01600SLACallType(LML01600ParameterDTO poParam)
+        {
+            throw new NotImplementedException();
+        }
+        public LMLGenericRecord<LML01800DTO> LML01800UnitTenant(LML01800ParameterDTO poParam)
+        {
+            throw new NotImplementedException();
+        }
+        public LMLGenericRecord<LML01900DTO> LML01900Staff(LML01900ParamaterDTO poParam)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
 
@@ -128,7 +151,6 @@ namespace Lookup_PMModel
             return loResult;
         }
         #endregion
-
         #region LML00300GetRecord
         public async Task<LML00300DTO> LML00300SupervisorAsync(LML00300ParameterDTO poParam)
         {
@@ -160,7 +182,6 @@ namespace Lookup_PMModel
             return loResult;
         }
         #endregion
-
         #region LML00400GetRecord
         public async Task<LML00400DTO> LML00400GetUtilityChargesAsync(LML00400ParameterDTO poParam)
         {
@@ -192,7 +213,6 @@ namespace Lookup_PMModel
             return loResult;
         }
         #endregion
-
         #region LML00500GetRecord
         public async Task<LML00500DTO> LML00500GetSalesmanAsync(LML00500ParameterDTO poParam)
         {
@@ -224,7 +244,6 @@ namespace Lookup_PMModel
             return loResult;
         }
         #endregion
-
         #region LML00600GetRecord
         public async Task<LML00600DTO> LML00600GetTenantAsync(LML00600ParameterDTO poParam)
         {
@@ -318,7 +337,6 @@ namespace Lookup_PMModel
             return loResult!;
         }
         #endregion
-
         #region LML0900GetRecord
         public async Task<LML00900DTO> LML00900GetTransactionAsync(LML00900ParameterDTO poParam)
         {
@@ -474,8 +492,160 @@ namespace Lookup_PMModel
             return loResult!;
         }
 
-
         #endregion
+        #region LML01400GetRecord       
+        public async Task<LML01400DTO> LML01400AgreementUnitChargesAsync(LML01400ParameterDTO poParam)
+        {
+
+            var loEx = new R_Exception();
+            LML01400DTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<LMLGenericRecord<LML01400DTO>, LML01400ParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGetRecordLookupLM.LML01400AgreementUnitCharges),
+                    poParam,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult!;
+        }
+        #endregion
+        #region LML01500GetRecord       
+        public async Task<LML01500DTO> LML01500SLACategoryAsync(LML01500ParameterDTO poParam)
+        {
+
+            var loEx = new R_Exception();
+            LML01500DTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<LMLGenericRecord<LML01500DTO>, LML01500ParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGetRecordLookupLM.LML01500SLACategory),
+                    poParam,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+            return loResult!;
+        }
+        #endregion
+        #region LML01600GetRecord       
+        public async Task<LML01600DTO> LML01600SLACallTypeAsync(LML01600ParameterDTO poParam)
+        {
+
+            var loEx = new R_Exception();
+            LML01600DTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<LMLGenericRecord<LML01600DTO>, LML01600ParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGetRecordLookupLM.LML01600SLACallType),
+                    poParam,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult!;
+        }
+        #endregion
+        #region LML01800GetRecord       
+        public async Task<LML01800DTO> LML01800UnitTenantAsync(LML01800ParameterDTO poParam)
+        {
+
+            var loEx = new R_Exception();
+            LML01800DTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<LMLGenericRecord<LML01800DTO>, LML01800ParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGetRecordLookupLM.LML01800UnitTenant),
+                    poParam,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult!;
+        }
+        #endregion
+        #region LML01900GetRecord       
+        public async Task<LML01900DTO> LML01900StaffAsync(LML01900ParamaterDTO poParam)
+        {
+
+            var loEx = new R_Exception();
+            LML01900DTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<LMLGenericRecord<LML01900DTO>, LML01900ParamaterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGetRecordLookupLM.LML01900Staff),
+                    poParam,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult!;
+        }
+        #endregion
+
         #region GET USER PARAM
         public async Task<GET_USER_PARAM_DETAILDTO> GetUserParamDetailAsync(GET_USER_PARAM_DETAILParameterDTO poParam)
         {

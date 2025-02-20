@@ -253,7 +253,11 @@ namespace GSM02500BACK
                                  $"@COTHER_UNIT_TYPE_ID, " +
                                  $"@CLOCATION, " +
                                  $"@CACTION, " +
-                                 $"@CLOGIN_USER_ID";
+                                 $"@CLOGIN_USER_ID, " +
+                                 $"@COTHER_UNIT_VIEW_ID, " +
+                                 $"@CLEASE_STATUS, " +
+                                 $"@NGROSS_AREA_SIZE, " +
+                                 $"@NNET_AREA_SIZE";
 
                 loCmd.CommandText = lcQuery;
 
@@ -269,6 +273,10 @@ namespace GSM02500BACK
                 loDb.R_AddCommandParameter(loCmd, "@CLOCATION", DbType.String, 50, poEntity.Data.CLOCATION);
                 loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 50, poEntity.CACTION);
                 loDb.R_AddCommandParameter(loCmd, "@CLOGIN_USER_ID", DbType.String, 50, poEntity.CLOGIN_USER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@COTHER_UNIT_VIEW_ID", DbType.String, 50, poEntity.Data.COTHER_UNIT_VIEW_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CLEASE_STATUS", DbType.String, 50, poEntity.Data.CLEASE_STATUS);
+                loDb.R_AddCommandParameter(loCmd, "@NGROSS_AREA_SIZE", DbType.String, 50, poEntity.Data.NGROSS_AREA_SIZE);
+                loDb.R_AddCommandParameter(loCmd, "@NNET_AREA_SIZE", DbType.String, 50, poEntity.Data.NNET_AREA_SIZE);
 
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                     .Where(x =>

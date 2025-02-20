@@ -126,16 +126,16 @@
   <data name="EMPTY_NONACTIVE_DATE" xml:space="preserve">
     <value>If Active Flag = 0, Non Active Date can not be empty</value>
   </data>
-  <data name="EMPTY_UNIT_PROMOTION_ID" xml:space="preserve">
+  <data name="EMPTY_OTHER_UNIT_ID" xml:space="preserve">
     <value>Other Unit Type Id can not be empty</value>
   </data>
-  <data name="EMPTY_UNIT_PROMOTION_NAME" xml:space="preserve">
+  <data name="EMPTY_OTHER_UNIT_NAME" xml:space="preserve">
     <value>Other Unit Type Name can not be empty</value>
   </data>
-  <data name="EXCESS_UNIT_PROMOTION_ID" xml:space="preserve">
+  <data name="EXCESS_OTHER_UNIT_ID" xml:space="preserve">
     <value>Other Unit Type Id is bigger than 20 Character</value>
   </data>
-  <data name="EXCESS_UNIT_PROMOTION_NAME" xml:space="preserve">
+  <data name="EXCESS_OTHER_UNIT_NAME" xml:space="preserve">
     <value>Other Unit Type Name is bigger than 100 Character</value>
   </data>
   <data name="INVALID_ACTIVE_FLAG" xml:space="preserve">
@@ -147,7 +147,7 @@
   <data name="INVALID_FLOOR_CODE" xml:space="preserve">
     <value>Invalid Floor Code</value>
   </data>
-  <data name="INVALID_UNIT_PROMOTION_TYPE" xml:space="preserve">
+  <data name="INVALID_OTHER_UNIT_TYPE" xml:space="preserve">
     <value>Invalid Other Unit Type</value>
   </data>
 </root>

@@ -57,19 +57,19 @@ namespace GSM02500BACK
                     _BatchProcess(poBatchProcessPar);
                 });
 
-                while (!loTask.IsCompleted)
-                {
-                    Thread.Sleep(100);
-                }
+                //while (!loTask.IsCompleted)
+                //{
+                //    Thread.Sleep(100);
+                //}
 
-                if (loTask.IsFaulted)
-                {
-                    loException.Add(loTask.Exception.InnerException != null ?
-                        loTask.Exception.InnerException :
-                        loTask.Exception);
+                //if (loTask.IsFaulted)
+                //{
+                //    loException.Add(loTask.Exception.InnerException != null ?
+                //        loTask.Exception.InnerException :
+                //        loTask.Exception);
 
-                    goto EndBlock;
-                }
+                //    goto EndBlock;
+                //}
             }
             catch (Exception ex)
             {
@@ -116,19 +116,19 @@ namespace GSM02500BACK
                     NonActiveDate = item.NonActiveDate
                 }).ToList();
 
-                lcQuery = $"CREATE TABLE #UNIT_PROMOTION_TYPE " +
+                lcQuery = $"CREATE TABLE #OTHER_UNIT_TYPE " +
                     $"(NO INT, " +
                     $"OtherUnitTypeCode VARCHAR(20), " +
                     $"OtherUnitTypeName NVARCHAR(100), " +
-                    $"GrossAreaSize NUMERIC(5,2), " +
-                    $"NetAreaSize NUMERIC(5,2), " +
-                    $"CommonArea NUMERIC(5,2), " +
+                    $"GrossAreaSize NUMERIC(8,2), " +
+                    $"NetAreaSize NUMERIC(8,2), " +
+                    $"CommonArea NUMERIC(8,2), " +
                     $"Active BIT, " +
                     $"NonActiveDate VARCHAR(8))";
 
                 loDb.SqlExecNonQuery(lcQuery, loConn, false);
 
-                loDb.R_BulkInsert<UploadOtherUnitTypeSaveDTO>((SqlConnection)loConn, "#UNIT_PROMOTION_TYPE", loParam);
+                loDb.R_BulkInsert<UploadOtherUnitTypeSaveDTO>((SqlConnection)loConn, "#OTHER_UNIT_TYPE", loParam);
 
                 lcQuery = $"EXEC RSP_GS_UPLOAD_OTHER_UNIT_TYPE " +
                     $"@CCOMPANY_ID, " +

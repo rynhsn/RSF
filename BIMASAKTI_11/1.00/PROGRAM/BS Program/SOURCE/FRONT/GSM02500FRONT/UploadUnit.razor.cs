@@ -22,6 +22,7 @@ using System.Collections.ObjectModel;
 using GSM02500COMMON.DTOs.GSM02530;
 using System.ComponentModel.Design;
 using R_BlazorFrontEnd.Interfaces;
+using R_APICommonDTO;
 
 namespace GSM02500FRONT
 {
@@ -51,9 +52,10 @@ namespace GSM02500FRONT
             StateHasChanged();
         }
 
-        public void ShowErrorInvoke(R_Exception poException)
+        public void ShowErrorInvoke(R_APIException poException)
         {
-            this.R_DisplayException(poException);
+            var loEx = R_FrontUtility.R_ConvertFromAPIException(poException);
+            this.R_DisplayException(loEx);
         }
 
         private void SetPercentageAndMessageInvoke(string pcMessage, int pnPercentage)
@@ -125,7 +127,8 @@ namespace GSM02500FRONT
                     UnitView = x.UnitView,
                     GrossSize = x.GrossSize,
                     NetSize = x.NetSize,
-                    CommonArea = x.CommonArea,
+                    StrataStatus = x.StrataStatus,
+                    LeaseStatus = x.LeaseStatus,
                     UnitCategory = x.UnitCategory,
                     Active = x.Active,
                     NonActiveDate = x.NonActiveDate,
@@ -176,7 +179,8 @@ namespace GSM02500FRONT
                     UnitView = x.UnitView,
                     GrossSize = x.GrossSize,
                     NetSize = x.NetSize,
-                    CommonArea = x.CommonArea,
+                    StrataStatus = x.StrataStatus,
+                    LeaseStatus = x.LeaseStatus,
                     UnitCategory = x.UnitCategory,
                     Active = x.Active,
                     NonActiveDate = x.NonActiveDate,

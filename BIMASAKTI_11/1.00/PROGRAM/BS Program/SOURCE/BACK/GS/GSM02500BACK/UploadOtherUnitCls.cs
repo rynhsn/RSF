@@ -57,19 +57,19 @@ namespace GSM02500BACK
                     _BatchProcess(poBatchProcessPar);
                 });
 
-                while (!loTask.IsCompleted)
-                {
-                    Thread.Sleep(100);
-                }
+                //while (!loTask.IsCompleted)
+                //{
+                //    Thread.Sleep(100);
+                //}
 
-                if (loTask.IsFaulted)
-                {
-                    loException.Add(loTask.Exception.InnerException != null ?
-                        loTask.Exception.InnerException :
-                        loTask.Exception);
+                //if (loTask.IsFaulted)
+                //{
+                //    loException.Add(loTask.Exception.InnerException != null ?
+                //        loTask.Exception.InnerException :
+                //        loTask.Exception);
 
-                    goto EndBlock;
-                }
+                //    goto EndBlock;
+                //}
             }
             catch (Exception ex)
             {
@@ -114,10 +114,14 @@ namespace GSM02500BACK
                     Floor = item.Floor,
                     Location = item.Location,
                     Active = item.Active,
-                    NonActiveDate = item.NonActiveDate
+                    NonActiveDate = item.NonActiveDate,
+                    OtherUnitView = item.UnitView,
+                    GrossSize = item.GrossSize,
+                    NetSize = item.NetSize,
+                    LeaseStatus = item.LeaseStatus,
                 }).ToList();
 
-                lcQuery = $"CREATE TABLE #UNIT_PROMOTION " +
+                lcQuery = $"CREATE TABLE #OTHER_UNIT " +
                     $"(NO INT, " +
                     $"OtherUnitId VARCHAR(20), " +
                     $"OtherUnitName NVARCHAR(100), " +
@@ -126,11 +130,15 @@ namespace GSM02500BACK
                     $"Floor VARCHAR(20), " +
                     $"Location VARCHAR(20), " +
                     $"Active BIT, " +
-                    $"NonActiveDate VARCHAR(8))";
+                    $"NonActiveDate VARCHAR(8), " +
+                    $"OtherUnitView VARCHAR(20), " +
+                    $"GrossSize NUMERIC(18,2), " +
+                    $"NetSize NUMERIC(18,2), " +
+                    $"LeaseStatus VARCHAR(20))";
 
                 loDb.SqlExecNonQuery(lcQuery, loConn, false);
 
-                loDb.R_BulkInsert<UploadOtherUnitSaveDTO>((SqlConnection)loConn, "#UNIT_PROMOTION", loParam);
+                loDb.R_BulkInsert<UploadOtherUnitSaveDTO>((SqlConnection)loConn, "#OTHER_UNIT", loParam);
 
                 lcQuery = $"EXEC RSP_GS_UPLOAD_OTHER_UNIT " +
                     $"@CCOMPANY_ID, " +

@@ -288,9 +288,9 @@ public class PMT03500UpdateMeterController : ControllerBase, IPMT03500UpdateMete
             loDbParams.CMETER_NO = poParam.CMETER_NO;
             loDbParams.CSTART_INV_PRD = poParam.CSTART_INV_PRD;
             loDbParams.CSTART_DATE = poParam.CSTART_DATE;
-            loDbParams.IMETER_START = poParam.IMETER_START;
-            loDbParams.IBLOCK1_START = poParam.IBLOCK1_START;
-            loDbParams.IBLOCK2_START = poParam.IBLOCK2_START;
+            loDbParams.NMETER_START = poParam.NMETER_START;
+            loDbParams.NBLOCK1_START = poParam.NBLOCK1_START;
+            loDbParams.NBLOCK2_START = poParam.NBLOCK2_START;
 
             // loDbParams.EUTYLITY_TYPE = (EPMT03500UtilityUsageTypeDb)poParam.EUTILITY_TYPE;
             //
@@ -345,13 +345,13 @@ public class PMT03500UpdateMeterController : ControllerBase, IPMT03500UpdateMete
             loDbParams.CCHARGES_TYPE = poParam.CCHARGES_TYPE;
             loDbParams.CCHARGES_ID = poParam.CCHARGES_ID;
             loDbParams.CFROM_METER_NO = poParam.CMETER_NO;
-            loDbParams.IMETER_END = poParam.IMETER_END;
-            loDbParams.IBLOCK1_END = poParam.IBLOCK1_END;
-            loDbParams.IBLOCK2_END = poParam.IBLOCK2_END;
+            loDbParams.NMETER_END = poParam.NMETER_END;
+            loDbParams.NBLOCK1_END = poParam.NBLOCK1_END;
+            loDbParams.NBLOCK2_END = poParam.NBLOCK2_END;
             loDbParams.CTO_METER_NO = poParam.CTO_METER_NO;
-            loDbParams.IMETER_START = poParam.IMETER_START;
-            loDbParams.IBLOCK1_START = poParam.IBLOCK1_START;
-            loDbParams.IBLOCK2_START = poParam.IBLOCK2_START;
+            loDbParams.NMETER_START = poParam.NMETER_START;
+            loDbParams.NBLOCK1_START = poParam.NBLOCK1_START;
+            loDbParams.NBLOCK2_START = poParam.NBLOCK2_START;
             loDbParams.CSTART_INV_PRD = poParam.CSTART_INV_PRD;
             loDbParams.CSTART_DATE = poParam.CSTART_DATE;
 

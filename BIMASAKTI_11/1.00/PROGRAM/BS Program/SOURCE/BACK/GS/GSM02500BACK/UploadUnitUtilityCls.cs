@@ -57,19 +57,19 @@ namespace GSM02500BACK
                     _BatchProcess(poBatchProcessPar);
                 });
 
-                while (!loTask.IsCompleted)
-                {
-                    Thread.Sleep(100);
-                }
+                //while (!loTask.IsCompleted)
+                //{
+                //    Thread.Sleep(100);
+                //}
 
-                if (loTask.IsFaulted)
-                {
-                    loException.Add(loTask.Exception.InnerException != null ?
-                        loTask.Exception.InnerException :
-                        loTask.Exception);
+                //if (loTask.IsFaulted)
+                //{
+                //    loException.Add(loTask.Exception.InnerException != null ?
+                //        loTask.Exception.InnerException :
+                //        loTask.Exception);
 
-                    goto EndBlock;
-                }
+                //    goto EndBlock;
+                //}
             }
             catch (Exception ex)
             {
@@ -129,6 +129,8 @@ namespace GSM02500BACK
                 loParam = loObject.Select(item => new UploadUnitUtilitySaveDTO()
                 {
                     NO = item.No,
+                    CFLOOR_ID = item.FloorId,
+                    CUNIT_ID = item.UnitId,
                     CUTILITY_TYPE = item.UtilityType,
                     CSEQUENCE = item.SeqNo,
                     CMETER_NO = item.MeterNo,   
@@ -144,6 +146,8 @@ namespace GSM02500BACK
                 {
                     lcQuery = $"CREATE TABLE #UNIT_UTILITIES " +
                         $"(NO INT, " +
+                        $"CFLOOR_ID VARCHAR(20), " +
+                        $"CUNIT_ID VARCHAR(20), " +
                         $"CUTILITY_TYPE VARCHAR(2), " +
                         $"CSEQUENCE VARCHAR(3), " +
                         $"CMETER_NO VARCHAR(50), " +

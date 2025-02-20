@@ -117,22 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EMPTY_DEPT_CODE" xml:space="preserve">
+    <value>Department cannot be empty</value>
+  </data>
   <data name="EMPTY_NON_ACTIVE_DATE" xml:space="preserve">
     <value>If Active Flag = 0, Non Active Date can not be empty</value>
   </data>
-  <data name="EMPTY_UNIT_PROMOTION_TYPE_CODE" xml:space="preserve">
+  <data name="EMPTY_OTHER_UNIT_TYPE_CODE" xml:space="preserve">
     <value>Other Unit Type Id can not be empty</value>
   </data>
-  <data name="EMPTY_UNIT_PROMOTION_TYPE_NAME" xml:space="preserve">
+  <data name="EMPTY_OTHER_UNIT_TYPE_NAME" xml:space="preserve">
     <value>Other Unit Type Name can not be empty</value>
   </data>
-  <data name="EXCESS_UNIT_PROMOTION_TYPE_CODE" xml:space="preserve">
+  <data name="EXCESS_OTHER_UNIT_TYPE_CODE" xml:space="preserve">
     <value>Other Unit Type Id is bigger than 20 Character</value>
   </data>
-  <data name="EXCESS_UNIT_PROMOTION_TYPE_NAME" xml:space="preserve">
+  <data name="EXCESS_OTHER_UNIT_TYPE_NAME" xml:space="preserve">
     <value>Other Unit Type Name is bigger than 100 Character</value>
   </data>
   <data name="INVALID_ACTIVE_FLAG" xml:space="preserve">
     <value>Invalid Active Flag, Active Flag value is not 1 / 0</value>
+  </data>
+  <data name="INVALID_DEPT_CODE" xml:space="preserve">
+    <value>Invalid Department Code</value>
   </data>
 </root>

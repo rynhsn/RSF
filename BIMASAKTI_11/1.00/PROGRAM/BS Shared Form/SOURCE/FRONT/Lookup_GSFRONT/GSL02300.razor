@@ -8,11 +8,11 @@
             <R_Label>@_localizer["_Floor"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="3">
-            <R_TextBox @ref="@_FloorCode" @bind-Value="@_Parameter.CFLOOR_ID" OnLostFocus="@Floor_OnLostFocus" Enabled="true"></R_TextBox>
+            <R_TextBox @ref="@_FloorCode" @bind-Value="@_Parameter.CFLOOR_ID" OnLostFocus="@Floor_OnLostFocus" Enabled="@(EnableTexboxFloor)"></R_TextBox>
         </R_ItemLayout>
         <R_ItemLayout col="0">
             <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupFloor"
-                      R_After_Open_Lookup="@R_After_Open_LookupFloor" Enabled="true">...</R_Lookup>
+                      R_After_Open_Lookup="@R_After_Open_LookupFloor" Enabled="EnableTexboxFloor">...</R_Lookup>
         </R_ItemLayout>
         <R_ItemLayout col="5">
             <R_TextBox @bind-Value="@_FloorName"
@@ -25,6 +25,7 @@
                 DataSource="_viewModel.BuildingUnitGrid"
                 R_GridType="@R_eGridType.Navigator"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                Height="300px"
                 Pageable="true">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CUNIT_ID" HeaderText="@_localizer["_UnitId"]" Width="200px"></R_GridTextColumn>

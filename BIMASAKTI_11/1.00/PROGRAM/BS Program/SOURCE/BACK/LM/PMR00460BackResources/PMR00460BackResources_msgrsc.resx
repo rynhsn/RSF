@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+
+    <!-- Property = "Property" -->
+    <data name="Property" xml:space="preserve">
+        <value>Property</value><comment>Property</comment>
+    </data>
+    
+    <!-- Building = "Building" -->
+    <data name="Building" xml:space="preserve">
+        <value>Building</value><comment>Building</comment>
+    </data>
+    
+    <!-- Period = "Period" -->
+    <data name="Period" xml:space="preserve">
+        <value>Period</value><comment>Period</comment>
+    </data>
+    
+    <!-- ReportType = "Report Type" -->
+    <data name="ReportType" xml:space="preserve">
+        <value>Report Type</value><comment>Report Type</comment>
+    </data>
+    
+    <!-- AgreementType = "Agreement Type" -->
+    <data name="AgreementType" xml:space="preserve">
+        <value>Agreement Type</value><comment>Agreement Type</comment>
+    </data>
+    
+    <!-- Status = "Status" -->
+    <data name="Status" xml:space="preserve">
+        <value>Status</value><comment>Status</comment>
+    </data>
+    
+    <!-- Open = "Open" -->
+    <data name="Open" xml:space="preserve">
+        <value>Open</value><comment>Open</comment>
+    </data>
+    
+    <!-- Scheduled = "Scheduled" -->
+    <data name="Scheduled" xml:space="preserve">
+        <value>Scheduled</value><comment>Scheduled</comment>
+    </data>
+    
+    <!-- Confirmed = "Confirmed" -->
+    <data name="Confirmed" xml:space="preserve">
+        <value>Confirmed</value><comment>Confirmed</comment>
+    </data>
+    
+    <!-- Closed = "Closed" -->
+    <data name="Closed" xml:space="preserve">
+        <value>Closed</value><comment>Closed</comment>
+    </data>
+    
+    <!-- Date = "Date" -->
+    <data name="Date" xml:space="preserve">
+        <value>Date</value><comment>Date</comment>
+    </data>
+    
+    
+    <!-- UnitID = "Unit ID" -->
+    <data name="UnitID" xml:space="preserve">
+        <value>Unit ID</value><comment>Unit ID</comment>
+    </data>
+    
+    <!-- Category = "Category" -->
+    <data name="Category" xml:space="preserve">
+        <value>Category</value><comment>Category</comment>
+    </data>
+    
+    <!-- LOINo = "LOI No" -->
+    <data name="LOINo" xml:space="preserve">
+        <value>LOI No</value><comment>LOI No</comment>
+    </data>
+    
+    <!-- Tenant = "Tenant" -->
+    <data name="Tenant" xml:space="preserve">
+        <value>Tenant</value><comment>Tenant</comment>
+    </data>
+    
+    <!-- TenantEmail = "Tenant Email" -->
+    <data name="TenantEmail" xml:space="preserve">
+        <value>Tenant Email</value><comment>Tenant Email</comment>
+    </data>
+    
+    <!-- HandoverBy = "Handover By" -->
+    <data name="HandoverBy" xml:space="preserve">
+        <value>Handover By</value><comment>Handover By</comment>
+    </data>
+    
+    <!-- ChecklistDescription = "Checklist Description" -->
+    <data name="ChecklistDescription" xml:space="preserve">
+        <value>Checklist Description</value><comment>Checklist Description</comment>
+    </data>
+    
+    <!-- Notes = "Notes" -->
+    <data name="Notes" xml:space="preserve">
+        <value>Notes</value><comment>Notes</comment>
+    </data>
+    
+    <!-- CareNo = "Care No." -->
+    <data name="CareNo" xml:space="preserve">
+        <value>Care No.</value><comment>Care No.</comment>
+    </data>
+    
+    <!-- Quantity = "Quantity" -->
+    <data name="Quantity" xml:space="preserve">
+        <value>Quantity</value><comment>Quantity</comment>
+    </data>
+
+    <!-- ActualQuantity = "Actual Quantity" -->
+    <data name="ActualQuantity" xml:space="preserve">
+        <value>Actual Quantity</value><comment>Actual Quantity</comment>
+    </data>
+    
+    <!-- TotalQuantity = "Total Quantity" -->
+    <data name="TotalQuantity" xml:space="preserve">
+        <value>Total Quantity</value><comment>Total Quantity</comment>
+    </data>
+    
+    <!-- OK -->
+    <data name="OK" xml:space="preserve">
+        <value>OK</value><comment>OK</comment>
+    </data>
+    
+    <!-- NOT OK -->
+    <data name="NotOK" xml:space="preserve">
+        <value>Not OK</value><comment>Not OK</comment>  
+    </data>
+</root>

@@ -106,6 +106,15 @@ namespace Lookup_PMFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        internal static string _Amount {
+            get {
+                return ResourceManager.GetString("_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Billing Rule Code.
         /// </summary>
         internal static string _BiilingRuleCode {
@@ -120,6 +129,87 @@ namespace Lookup_PMFrontResources {
         internal static string _BiilingRuleName {
             get {
                 return ResourceManager.GetString("_BiilingRuleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string _btnCancel {
+            get {
+                return ResourceManager.GetString("_btnCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string _btnSave {
+            get {
+                return ResourceManager.GetString("_btnSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building.
+        /// </summary>
+        internal static string _Building {
+            get {
+                return ResourceManager.GetString("_Building", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Call Type Id.
+        /// </summary>
+        internal static string _callTypeId {
+            get {
+                return ResourceManager.GetString("_callTypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Call Type Name.
+        /// </summary>
+        internal static string _callTypeName {
+            get {
+                return ResourceManager.GetString("_callTypeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel Receipt from Customer.
+        /// </summary>
+        internal static string _CancelReceiptFromCustomer {
+            get {
+                return ResourceManager.GetString("_CancelReceiptFromCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        internal static string _category {
+            get {
+                return ResourceManager.GetString("_category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CB Code.
+        /// </summary>
+        internal static string _CBCode {
+            get {
+                return ResourceManager.GetString("_CBCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CB Account No..
+        /// </summary>
+        internal static string _CCBAccountNo {
+            get {
+                return ResourceManager.GetString("_CCBAccountNo", resourceCulture);
             }
         }
         
@@ -160,6 +250,15 @@ namespace Lookup_PMFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LOI/Aggrement No..
+        /// </summary>
+        internal static string _CLOIAgreement {
+            get {
+                return ResourceManager.GetString("_CLOIAgreement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Curr..
         /// </summary>
         internal static string _curr {
@@ -174,6 +273,15 @@ namespace Lookup_PMFrontResources {
         internal static string _cust {
             get {
                 return ResourceManager.GetString("_cust", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer.
+        /// </summary>
+        internal static string _customer {
+            get {
+                return ResourceManager.GetString("_customer", resourceCulture);
             }
         }
         
@@ -286,6 +394,33 @@ namespace Lookup_PMFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Floor.
+        /// </summary>
+        internal static string _Floor {
+            get {
+                return ResourceManager.GetString("_Floor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include Inactive.
+        /// </summary>
+        internal static string _IncludeInactive {
+            get {
+                return ResourceManager.GetString("_IncludeInactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include Supervisor.
+        /// </summary>
+        internal static string _IncludeSupervisor {
+            get {
+                return ResourceManager.GetString("_IncludeSupervisor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inv. Group Code.
         /// </summary>
         internal static string _InvGroupCode {
@@ -313,6 +448,51 @@ namespace Lookup_PMFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save As.
+        /// </summary>
+        internal static string _labelSaveAs {
+            get {
+                return ResourceManager.GetString("_labelSaveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        internal static string _notes {
+            get {
+                return ResourceManager.GetString("_notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data Not Found!.
+        /// </summary>
+        internal static string _NotFound {
+            get {
+                return ResourceManager.GetString("_NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Owner/Tenant.
+        /// </summary>
+        internal static string _Owner_Tenant {
+            get {
+                return ResourceManager.GetString("_Owner/Tenant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parent Category.
+        /// </summary>
+        internal static string _parentCategory {
+            get {
+                return ResourceManager.GetString("_parentCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Period.
         /// </summary>
         internal static string _period {
@@ -327,6 +507,42 @@ namespace Lookup_PMFrontResources {
         internal static string _Phone {
             get {
                 return ResourceManager.GetString("_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        internal static string _Phone1 {
+            get {
+                return ResourceManager.GetString("_Phone1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position.
+        /// </summary>
+        internal static string _Position {
+            get {
+                return ResourceManager.GetString("_Position", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prerequisite Receipt(s).
+        /// </summary>
+        internal static string _prerequisiteReceipt {
+            get {
+                return ResourceManager.GetString("_prerequisiteReceipt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property.
+        /// </summary>
+        internal static string _Property {
+            get {
+                return ResourceManager.GetString("_Property", resourceCulture);
             }
         }
         
@@ -385,6 +601,24 @@ namespace Lookup_PMFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SLA Call Type.
+        /// </summary>
+        internal static string _SLACallType {
+            get {
+                return ResourceManager.GetString("_SLACallType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SLA Category.
+        /// </summary>
+        internal static string _SLACategory {
+            get {
+                return ResourceManager.GetString("_SLACategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Supervisor Id.
         /// </summary>
         internal static string _SPVId {
@@ -399,6 +633,51 @@ namespace Lookup_PMFrontResources {
         internal static string _SPVName {
             get {
                 return ResourceManager.GetString("_SPVName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Staff.
+        /// </summary>
+        internal static string _Staff {
+            get {
+                return ResourceManager.GetString("_Staff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Staff Id.
+        /// </summary>
+        internal static string _StaffId {
+            get {
+                return ResourceManager.GetString("_StaffId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Staff Name.
+        /// </summary>
+        internal static string _StaffName {
+            get {
+                return ResourceManager.GetString("_StaffName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Staff Type.
+        /// </summary>
+        internal static string _StaffType {
+            get {
+                return ResourceManager.GetString("_StaffType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supervisor.
+        /// </summary>
+        internal static string _Supervisor {
+            get {
+                return ResourceManager.GetString("_Supervisor", resourceCulture);
             }
         }
         
@@ -502,6 +781,15 @@ namespace Lookup_PMFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save As.
+        /// </summary>
+        internal static string _titleSaveAs {
+            get {
+                return ResourceManager.GetString("_titleSaveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transaction Type.
         /// </summary>
         internal static string _transType {
@@ -543,6 +831,123 @@ namespace Lookup_PMFrontResources {
         internal static string _Units {
             get {
                 return ResourceManager.GetString("_Units", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit Tenant.
+        /// </summary>
+        internal static string _UnitTenant {
+            get {
+                return ResourceManager.GetString("_UnitTenant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building is empty!.
+        /// </summary>
+        internal static string _ValidationBuilding {
+            get {
+                return ResourceManager.GetString("_ValidationBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Id is required!.
+        /// </summary>
+        internal static string _ValidationCustomer {
+            get {
+                return ResourceManager.GetString("_ValidationCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department is empty!.
+        /// </summary>
+        internal static string _ValidationDepartment {
+            get {
+                return ResourceManager.GetString("_ValidationDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Floor is empty!.
+        /// </summary>
+        internal static string _ValidationFloor {
+            get {
+                return ResourceManager.GetString("_ValidationFloor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Period Year is required!.
+        /// </summary>
+        internal static string _ValidationPeriod {
+            get {
+                return ResourceManager.GetString("_ValidationPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Period Month is required!.
+        /// </summary>
+        internal static string _ValidationPeriodMonth {
+            get {
+                return ResourceManager.GetString("_ValidationPeriodMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Receipt is not valid for Cancellation as it has prerequisite Receipt(s) required to cancel first!.
+        /// </summary>
+        internal static string _ValidationPrerequisite {
+            get {
+                return ResourceManager.GetString("_ValidationPrerequisite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property is empty!.
+        /// </summary>
+        internal static string _ValidationProperty {
+            get {
+                return ResourceManager.GetString("_ValidationProperty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Staff Type is empty!.
+        /// </summary>
+        internal static string _ValidationStaffType {
+            get {
+                return ResourceManager.GetString("_ValidationStaffType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supervisor is empty!.
+        /// </summary>
+        internal static string _ValidationSupervisor {
+            get {
+                return ResourceManager.GetString("_ValidationSupervisor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Id is required!.
+        /// </summary>
+        internal static string _ValidationTenant {
+            get {
+                return ResourceManager.GetString("_ValidationTenant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit is empty!.
+        /// </summary>
+        internal static string _ValidationUnit {
+            get {
+                return ResourceManager.GetString("_ValidationUnit", resourceCulture);
             }
         }
     }

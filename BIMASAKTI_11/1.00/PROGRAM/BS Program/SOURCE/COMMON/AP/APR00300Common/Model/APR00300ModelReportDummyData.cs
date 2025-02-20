@@ -316,7 +316,9 @@ namespace APR00300Common.Model
                 item.INVOICES.ForEach(x =>
                 {
                     x.DREF_DATE = DateTime.TryParseExact(x.CREF_DATE, "yyyyMMdd",
-                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate) ? refDate : (DateTime?)null;
+                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate) 
+                        ? refDate 
+                        : (DateTime?)null;
                 });
             }
             

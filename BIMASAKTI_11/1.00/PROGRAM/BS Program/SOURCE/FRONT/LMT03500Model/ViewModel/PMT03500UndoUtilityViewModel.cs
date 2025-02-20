@@ -106,7 +106,13 @@ namespace PMT03500Model.ViewModel
         {   
             var loException = new R_Exception();
 
-            DisplayErrorAction.Invoke(loException);
+            // DisplayErrorAction.Invoke(loException);
+            ex.ErrorList.ForEach(l =>
+            {
+                loException.Add(l.ErrNo, l.ErrDescp);
+            });
+
+            DisplayErrorAction(loException);
             StateChangeAction();
             await Task.CompletedTask;
         }

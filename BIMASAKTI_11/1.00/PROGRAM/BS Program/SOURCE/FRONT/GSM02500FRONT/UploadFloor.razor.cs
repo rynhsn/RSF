@@ -24,6 +24,8 @@ using R_BlazorFrontEnd.Enums;
 using GSM02500COMMON.DTOs.GSM02500;
 using System.Data;
 using R_BlazorFrontEnd.Interfaces;
+using GSM02500COMMON.DTOs.GSM02531;
+using R_APICommonDTO;
 
 namespace GSM02500FRONT
 {
@@ -47,6 +49,12 @@ namespace GSM02500FRONT
 
         private R_Grid<UploadUnitDTO> _gridUploadUnitRef;
 
+        private UploadUnitUtilityViewModel loUploadUnitUtilityViewModel = new UploadUnitUtilityViewModel();
+
+        private R_ConductorGrid _conGridUploadUnitUtilityRef;
+
+        private R_Grid<UploadUnitUtilityDTO> _gridUploadUnitUtilityRef;
+
         private R_TabStrip _tabStripRef;
 
         private R_eFileSelectAccept[] accepts = { R_eFileSelectAccept.Excel };
@@ -54,6 +62,8 @@ namespace GSM02500FRONT
         private bool IsProcessEnabled = false;
 
         private bool IsUploadCancel = false;
+
+        private bool IsErrorHappened = false;
 
         private int lnValid = 0;
 
@@ -70,9 +80,10 @@ namespace GSM02500FRONT
             StateHasChanged();
         }
 
-        public void ShowErrorInvoke(R_Exception poException)
+        public void ShowErrorInvoke(R_APIException poException)
         {
-            this.R_DisplayException(poException);
+            var loEx = R_FrontUtility.R_ConvertFromAPIException(poException);
+            this.R_DisplayException(loEx);
         }
 
         private void SetPercentageAndMessageInvoke(string pcMessage, int pnPercentage)
@@ -83,15 +94,54 @@ namespace GSM02500FRONT
 
         public async Task ShowSuccessInvoke()
         {
-            var loValidate = await R_MessageBox.Show("", _localizer["M002"], R_eMessageBoxButtonType.OK);
-            if (loValidate == R_eMessageBoxResult.OK)
+            if (loUploadFloorViewModel.IsUploadSuccesful && loUploadUnitViewModel.IsUploadSuccesful && loUploadUnitUtilityViewModel.IsUploadSuccesful)
             {
-                await this.Close(true, true);
+                var loValidate = await R_MessageBox.Show("", _localizer["M002"], R_eMessageBoxButtonType.OK);
+                if (loValidate == R_eMessageBoxResult.OK)
+                {
+                    await this.Close(true, true);
+                }
+            }
+            else
+            {
+                IsErrorHappened = true;
             }
         }
         public async Task StartUploadUnitInvoke()
         {
-            await _conGridUploadUnitRef.R_SaveBatch();
+            if (_gridUploadUnitRef.DataSource.Count > 0)
+            {
+                await _conGridUploadUnitRef.R_SaveBatch();
+            }
+            else
+            {
+                if (_gridUploadUnitUtilityRef.DataSource.Count > 0)
+                {
+                    await _conGridUploadUnitUtilityRef.R_SaveBatch();
+                }
+            }
+        }
+        public async Task StartUploadUnitUtilityInvoke()
+        {
+            if (_gridUploadUnitUtilityRef.DataSource.Count > 0)
+            {
+                await _conGridUploadUnitUtilityRef.R_SaveBatch();
+            }
+            else
+            {
+                if (loUploadFloorViewModel.IsUploadSuccesful && loUploadUnitViewModel.IsUploadSuccesful && loUploadUnitUtilityViewModel.IsUploadSuccesful)
+                {
+                    var loValidate = await R_MessageBox.Show("", _localizer["M002"], R_eMessageBoxButtonType.OK);
+                    if (loValidate == R_eMessageBoxResult.OK)
+                    {
+                        await this.Close(true, true);
+                    }
+                }
+                else
+                {
+                    IsErrorHappened = true;
+                }
+            }
         }
 
         public void SetValidInvalidInvoke()
@@ -116,6 +166,7 @@ namespace GSM02500FRONT
 
             try
             {
+
                 loUploadFloorViewModel.loParameter = (UploadFloorParameterDTO)poParameter;
                 loUploadFloorViewModel.SelectedUserId = loClientHelper.UserId;
                 loUploadFloorViewModel.SelectedCompanyId = loClientHelper.CompanyId;
@@ -132,7 +183,12 @@ namespace GSM02500FRONT
                 {
                     await StartUploadUnitInvoke();
                 };
+                loUploadUnitViewModel.StartUploadUnitUtilityAction = async () =>
+                {
+                    await StartUploadUnitUtilityInvoke();
+                };
 
+                loUploadUnitViewModel.IsUploadFromFloor = true;
                 loUploadUnitViewModel.SelectedUserId = loClientHelper.UserId;
                 loUploadUnitViewModel.SelectedCompanyId = loClientHelper.CompanyId;
 
@@ -145,6 +201,24 @@ namespace GSM02500FRONT
                 loUploadUnitViewModel.SetPercentageAndMessageAction = SetPercentageAndMessageInvoke;
                 loUploadUnitViewModel.SetValidInvalidAction = SetValidInvalidInvoke;
                 loUploadUnitViewModel.ShowSuccessAction = async () =>
+                {
+                    await ShowSuccessInvoke();
+                };
+
+                loUploadUnitUtilityViewModel.SelectedUserId = loClientHelper.UserId;
+                loUploadUnitUtilityViewModel.SelectedCompanyId = loClientHelper.CompanyId;
+
+                loUploadUnitUtilityViewModel.loParameter.PropertyData = loUploadFloorViewModel.loParameter.PropertyData;
+                loUploadUnitUtilityViewModel.loParameter.BuildingData = loUploadFloorViewModel.loParameter.BuildingData;
+                loUploadUnitUtilityViewModel.loParameter.FloorData = new SelectedFloorDTO();
+                loUploadUnitUtilityViewModel.loParameter.UnitData = new SelectedUnitDTO();
+                loUploadUnitUtilityViewModel.loParameter.LFLAG = true;
+
+                loUploadUnitUtilityViewModel.StateChangeAction = StateChangeInvoke;
+                loUploadUnitUtilityViewModel.ShowErrorAction = ShowErrorInvoke;
+                loUploadUnitUtilityViewModel.SetPercentageAndMessageAction = SetPercentageAndMessageInvoke;
+                loUploadUnitUtilityViewModel.SetValidInvalidAction = SetValidInvalidInvoke;
+                loUploadUnitUtilityViewModel.ShowSuccessAction = async () =>
                 {
                     await ShowSuccessInvoke();
                 };
@@ -171,12 +245,19 @@ namespace GSM02500FRONT
                 lnInvalid = loUploadUnitViewModel.SumInvalid;
                 lnTotalRow = loUploadUnitViewModel.SumList;
             }
+            else if (eventArgs.Id == "Utility")
+            {
+                lnValid = loUploadUnitUtilityViewModel.SumValid;
+                lnInvalid = loUploadUnitUtilityViewModel.SumInvalid;
+                lnTotalRow = loUploadUnitUtilityViewModel.SumList;
+            }
         }
 
 
         public void ReadExcelUnitSheetFile()
         {
-            var loEx = new R_Exception();
+            R_Exception loEx = new R_Exception();
+            R_Exception loTempEx = new R_Exception();
             List<UploadUnitExcelDTO> loExtract = new List<UploadUnitExcelDTO>();
             try
             {
@@ -196,7 +277,8 @@ namespace GSM02500FRONT
                     UnitView = x.UnitView,
                     GrossSize = x.GrossSize,
                     NetSize = x.NetSize,
-                    CommonArea = x.CommonArea,
+                    StrataStatus = x.StrataStatus,
+                    LeaseStatus = x.LeaseStatus,
                     UnitCategory = x.UnitCategory,
                     Active = x.Active,
                     NonActiveDate = x.NonActiveDate,
@@ -207,16 +289,24 @@ namespace GSM02500FRONT
             }
             catch (Exception ex)
             {
-                loEx.Add(ex);
-                var MatchingError = loEx.ErrorList.FirstOrDefault(x => x.ErrDescp == "SkipNumberOfRowsStart was out of range: 0");
-                loUploadUnitViewModel.IsErrorEmptyFile = MatchingError != null;
+                loTempEx.Add(ex);
+                if (loTempEx.ErrorList.FirstOrDefault().ErrDescp == "SkipNumberOfRowsStart was out of range: 0")
+                {
+                    loUploadUnitViewModel.IsErrorEmptyFile = true;
+                }
+                else
+                {
+                    loEx.Add(ex);
+                    loUploadUnitViewModel.IsErrorEmptyFile = false;
+                }
             }
             loEx.ThrowExceptionIfErrors();
         }
 
         public void ReadExcelFloorSheetFile()
         {
-            var loEx = new R_Exception();
+            R_Exception loEx = new R_Exception();
+            R_Exception loTempEx = new R_Exception();
             List<UploadFloorExcelDTO> loExtract = new List<UploadFloorExcelDTO>();
             try
             {
@@ -243,31 +333,86 @@ namespace GSM02500FRONT
             }
             catch (Exception ex)
             {
-                loEx.Add(ex);
-                var MatchingError = loEx.ErrorList.FirstOrDefault(x => x.ErrDescp == "SkipNumberOfRowsStart was out of range: 0");
-                loUploadFloorViewModel.IsErrorEmptyFile = MatchingError != null;
+                loTempEx.Add(ex);
+                if (loTempEx.ErrorList.FirstOrDefault().ErrDescp == "SkipNumberOfRowsStart was out of range: 0")
+                {
+                    loUploadFloorViewModel.IsErrorEmptyFile = true;
+                }
+                else
+                {
+                    loEx.Add(ex);
+                    loUploadFloorViewModel.IsErrorEmptyFile = false;
+                }
             }
             loEx.ThrowExceptionIfErrors();
         }
-/*
-        private void R_RowRender(R_GridRowRenderEventArgs eventArgs)
-        {
-            var loData = (UploadFloorDTO)eventArgs.Data;
 
-            if (loData.Var_Exists)
+        public void ReadExcelUnitUtilitySheetFile()
+        {
+            R_Exception loEx = new R_Exception();
+            R_Exception loTempEx = new R_Exception();
+            List<UploadUnitUtilityExcelDTO> loExtract = new List<UploadUnitUtilityExcelDTO>();
+            try
             {
-                eventArgs.RowStyle = new R_GridRowRenderStyle
+                var loDataSet = Excel.R_ReadFromExcel(loUploadFloorViewModel.fileByte, new string[] { "Utility" });
+
+                var loResult = R_FrontUtility.R_ConvertTo<UploadUnitUtilityExcelDTO>(loDataSet.Tables[0]);
+
+                loExtract = new List<UploadUnitUtilityExcelDTO>(loResult);
+
+                loUploadUnitUtilityViewModel.loUploadUnitUtilityList = loExtract.Select((x, i) => new UploadUnitUtilityDTO
                 {
-                    FontColor = "red"
-                };
+                    No = i + 1,
+                    FloorId = x.FloorId,
+                    UnitId = x.UnitId,
+                    UtilityType = x.UtilityType,
+                    SeqNo = x.SeqNo,
+                    MeterNo = x.MeterNo,
+                    AliasMeterNo = x.AliasMeterNo,
+                    CalculationFactor = x.CalculationFactor,
+                    Capacity = x.Capacity,
+                    MaxResetValue = x.MaxResetValue,
+                    Active = x.Active,
+                    Notes = ""
+                }).ToList();
+
+                loUploadUnitUtilityViewModel.loUploadUnitUtilityDisplayList = new ObservableCollection<UploadUnitUtilityDTO>(loUploadUnitUtilityViewModel.loUploadUnitUtilityList);
             }
-        }*/
+            catch (Exception ex)
+            {
+                loTempEx.Add(ex);
+                if (loTempEx.ErrorList.FirstOrDefault().ErrDescp == "SkipNumberOfRowsStart was out of range: 0")
+                {
+                    loUploadUnitUtilityViewModel.IsErrorEmptyFile = true;
+                }
+                else
+                {
+                    loEx.Add(ex);
+                    loUploadUnitUtilityViewModel.IsErrorEmptyFile = false;
+                }
+            }
+            loEx.ThrowExceptionIfErrors();
+        }
+        /*
+                private void R_RowRender(R_GridRowRenderEventArgs eventArgs)
+                {
+                    var loData = (UploadFloorDTO)eventArgs.Data;
+
+                    if (loData.Var_Exists)
+                    {
+                        eventArgs.RowStyle = new R_GridRowRenderStyle
+                        {
+                            FontColor = "red"
+                        };
+                    }
+                }*/
 
         private async Task OnSaveToExcel()
         {
             R_Exception loEx = new R_Exception();
             List<SaveFloorToExcelDTO> loExcelFloorList = new List<SaveFloorToExcelDTO>();
             List<SaveUnitFloorToExcelDTO> loExcelUnitList = new List<SaveUnitFloorToExcelDTO>();
+            List<SaveUnitUtilityFloorToExcelDTO> loExcelUnitUtilityList = new List<SaveUnitUtilityFloorToExcelDTO>();
             DataTable loDataTable;
             try
             {
@@ -301,7 +446,8 @@ namespace GSM02500FRONT
                     UnitView = x.UnitView,
                     GrossSize = x.GrossSize,
                     NetSize = x.NetSize,
-                    CommonArea = x.CommonArea,
+                    StrataStatus = x.StrataStatus,
+                    LeaseStatus = x.LeaseStatus,
                     UnitCategory = x.UnitCategory,
                     Active = x.Active,
                     NonActiveDate = x.NonActiveDate,
@@ -314,6 +460,27 @@ namespace GSM02500FRONT
 
                 loExcelDataSet.Tables.Add(loDataTable);
 
+                loExcelUnitUtilityList = loUploadUnitUtilityViewModel.loUploadUnitUtilityDisplayList.Select(x => new SaveUnitUtilityFloorToExcelDTO()
+                {
+                    No = x.No,
+                    FloorId = x.FloorId,
+                    UnitId = x.UnitId,
+                    UtilityType = x.UtilityType,
+                    SeqNo = x.SeqNo,
+                    MeterNo = x.MeterNo,
+                    AliasMeterNo = x.AliasMeterNo,
+                    CalculationFactor = x.CalculationFactor,
+                    Capacity = x.Capacity,
+                    MaxResetValue = x.MaxResetValue,
+                    Active = x.Active,
+                    Valid = x.Valid,
+                    Notes = x.Notes
+                }).ToList();
+
+                loDataTable = R_FrontUtility.R_ConvertTo(loExcelUnitUtilityList);
+                loDataTable.TableName = "UnitUtility";
+
+                loExcelDataSet.Tables.Add(loDataTable);
                 //export to excel
                 var loByteFile = Excel.R_WriteToExcel(loExcelDataSet);
                 var saveFileName = $"Upload Error Floor.xlsx";
@@ -334,7 +501,9 @@ namespace GSM02500FRONT
 
             try
             {
-
+                _gridUploadFloorRef.DataSource.Clear();
+                _gridUploadUnitRef.DataSource.Clear();
+                _gridUploadUnitUtilityRef.DataSource.Clear();
                 if (eventArgs.File.Name.Contains(".xlsx") == false)
                 {
                     await R_MessageBox.Show("", _localizer["M003"], R_eMessageBoxButtonType.OK);
@@ -347,13 +516,23 @@ namespace GSM02500FRONT
 
                 ReadExcelFloorSheetFile();
                 ReadExcelUnitSheetFile();
+                ReadExcelUnitUtilitySheetFile();
 
                 await _gridUploadFloorRef.R_RefreshGrid(null);
                 await _gridUploadUnitRef.R_RefreshGrid(null);
+                await _gridUploadUnitUtilityRef.R_RefreshGrid(null);
+                if (_gridUploadFloorRef.DataSource.Count > 0 || _gridUploadUnitRef.DataSource.Count > 0 || _gridUploadUnitUtilityRef.DataSource.Count > 0)
+                {
+                    IsProcessEnabled = true;
+                }
+                else
+                {
+                    IsProcessEnabled = false;
+                }
             }
             catch (Exception ex)
             {
-                if (loUploadFloorViewModel.IsErrorEmptyFile || loUploadUnitViewModel.IsErrorEmptyFile)
+                if (loUploadFloorViewModel.IsErrorEmptyFile && loUploadUnitViewModel.IsErrorEmptyFile && loUploadUnitUtilityViewModel.IsErrorEmptyFile)
                 {
                     await R_MessageBox.Show("", _localizer["M004"], R_eMessageBoxButtonType.OK);
                 }
@@ -375,17 +554,17 @@ namespace GSM02500FRONT
                 //await loUploadFloorViewModel.ValidateUploadFloor();
 
                 loUploadFloorViewModel.SumList = loUploadFloorViewModel.loUploadFloorDisplayList.Count();
-                if (loUploadFloorViewModel.SumList > 0)
-                {
-                    IsProcessEnabled = true;
-                }
-                else
-                {
-                    IsProcessEnabled = false;
-                }
+                //if (loUploadFloorViewModel.SumList > 0)
+                //{
+                //    IsProcessEnabled = true;
+                //}
+                //else
+                //{
+                //    IsProcessEnabled = false;
+                //}
 
                 eventArgs.ListEntityResult = loUploadFloorViewModel.loUploadFloorDisplayList;
-                loUploadFloorViewModel.IsUploadSuccesful = !loUploadFloorViewModel.VisibleError;
+                //loUploadFloorViewModel.IsUploadSuccesful = !loUploadFloorViewModel.VisibleError;
             }
             catch (Exception ex)
             {
@@ -404,16 +583,16 @@ namespace GSM02500FRONT
                 //await loUploadUnitViewModel.ValidateUploadUnit();
 
                 loUploadUnitViewModel.SumList = loUploadUnitViewModel.loUploadUnitDisplayList.Count();
-                if (loUploadUnitViewModel.SumList > 0)
-                {
-                    IsProcessEnabled = true;
-                }
-                else
-                {
-                    IsProcessEnabled = false;
-                }
+                //if (loUploadUnitViewModel.SumList > 0)
+                //{
+                //    IsProcessEnabled = true;
+                //}
+                //else
+                //{
+                //    IsProcessEnabled = false;
+                //}
                 eventArgs.ListEntityResult = loUploadUnitViewModel.loUploadUnitDisplayList;
-                loUploadUnitViewModel.IsUploadSuccesful = !loUploadUnitViewModel.VisibleError;
+                //loUploadUnitViewModel.IsUploadSuccesful = !loUploadUnitViewModel.VisibleError;
             }
             catch (Exception ex)
             {
@@ -423,13 +602,57 @@ namespace GSM02500FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
+        private async Task Grid_R_ServiceGetUnitUtilityListRecord(R_ServiceGetListRecordEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                //await loUploadUnitUtilityViewModel.ValidateUploadUnitUtility();
+
+                loUploadUnitUtilityViewModel.SumList = loUploadUnitUtilityViewModel.loUploadUnitUtilityDisplayList.Count();
+                //if (loUploadUnitUtilityViewModel.SumList > 0)
+                //{
+                //    IsProcessEnabled = true;
+                //}
+                //else
+                //{
+                //    IsProcessEnabled = false;
+                //}
+                eventArgs.ListEntityResult = loUploadUnitUtilityViewModel.loUploadUnitUtilityDisplayList;
+                //loUploadUnitUtilityViewModel.IsUploadSuccesful = !loUploadUnitUtilityViewModel.VisibleError;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
         private async Task OnProcess()
         {
             R_Exception loException = new R_Exception();
             try
             {
                 IsUploadCancel = false;
-                await _conGridUploadFloorRef.R_SaveBatch();
+                if (_gridUploadFloorRef.DataSource.Count > 0)
+                {
+                    await _conGridUploadFloorRef.R_SaveBatch();
+                }
+                else
+                {
+                    if (_gridUploadUnitRef.DataSource.Count > 0)
+                    {
+                        await _conGridUploadUnitRef.R_SaveBatch();
+                    }
+                    else
+                    {
+                        if (_gridUploadUnitUtilityRef.DataSource.Count > 0)
+                        {
+                            await _conGridUploadUnitUtilityRef.R_SaveBatch();
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -527,6 +750,52 @@ namespace GSM02500FRONT
         }
 
         private async Task R_AfterSaveUnitBatch(R_AfterSaveBatchEventArgs eventArgs)
+        {
+            R_Exception loEx = new R_Exception();
+
+            try
+            {
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task R_BeforeSaveUnitUtilityBatch(R_BeforeSaveBatchEventArgs events)
+        {
+            R_Exception loEx = new R_Exception();
+            try
+            {
+                events.Cancel = IsUploadCancel;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task R_ServiceSaveUnitUtilityBatch(R_ServiceSaveBatchEventArgs eventArgs)
+        {
+            R_Exception loEx = new R_Exception();
+
+            try
+            {
+                loUploadUnitUtilityViewModel.loUploadUnitUtilityList = (List<UploadUnitUtilityDTO>)eventArgs.Data;
+                await loUploadUnitUtilityViewModel.SaveUploadUnitUtilityAsync();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task R_AfterSaveUnitUtilityBatch(R_AfterSaveBatchEventArgs eventArgs)
         {
             R_Exception loEx = new R_Exception();
 

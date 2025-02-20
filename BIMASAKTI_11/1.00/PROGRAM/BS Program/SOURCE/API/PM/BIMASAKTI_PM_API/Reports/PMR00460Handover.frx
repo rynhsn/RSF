@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="12/18/2024 09:11:28" ReportInfo.CreatorVersion="2023.2.21.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+   
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="Data" DataType="PMR00460Common.DTOs.Print.PMR00460ReportResultDTO, PMR00460Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Label" DataType="PMR00460Common.DTOs.Print.PMR00460ReportLabelDTO, PMR00460Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="Property" DataType="System.String"/>
+          <Column Name="Building" DataType="System.String"/>
+          <Column Name="Period" DataType="System.String"/>
+          <Column Name="Status" DataType="System.String"/>
+          <Column Name="Open" DataType="System.String"/>
+          <Column Name="Scheduled" DataType="System.String"/>
+          <Column Name="Confirmed" DataType="System.String"/>
+          <Column Name="Closed" DataType="System.String"/>
+          <Column Name="Date" DataType="System.String"/>
+          <Column Name="UnitID" DataType="System.String"/>
+          <Column Name="Category" DataType="System.String"/>
+          <Column Name="LOINo" DataType="System.String"/>
+          <Column Name="Tenant" DataType="System.String"/>
+          <Column Name="TenantEmail" DataType="System.String"/>
+          <Column Name="HandoverBy" DataType="System.String"/>
+          <Column Name="ChecklistDescription" DataType="System.String"/>
+          <Column Name="Notes" DataType="System.String"/>
+          <Column Name="CareNo" DataType="System.String"/>
+          <Column Name="Quantity" DataType="System.String"/>
+          <Column Name="ActualQuantity" DataType="System.String"/>
+          <Column Name="TotalQuantity" DataType="System.String"/>
+          <Column Name="ReportType" DataType="System.String"/>
+          <Column Name="AgreementType" DataType="System.String"/>
+        </Column>
+        <Column Name="Header" DataType="PMR00460Common.DTOs.Print.PMR00460ReportHeaderDTO, PMR00460Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="CPROPERTY_NAME" DataType="System.String"/>
+          <Column Name="CBUILDING" DataType="System.String"/>
+          <Column Name="CPERIOD" DataType="System.String"/>
+          <Column Name="CREPORT_TYPE" DataType="System.String"/>
+          <Column Name="CREPORT_TYPE_NAME" DataType="System.String"/>
+          <Column Name="LOPEN" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LSCHEDULED" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LCONFIRMED" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LCLOSED" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CTYPE" DataType="System.String"/>
+          <Column Name="CTYPE_NAME" DataType="System.String"/>
+        </Column>
+        <BusinessObjectDataSource Name="Data" DataType="System.Collections.Generic.List`1[[PMR00460Common.DTOs.Print.PMR00460ReportDataDTO, PMR00460Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CBUILDING_ID" DataType="System.String"/>
+          <Column Name="CBUILDING_NAME" DataType="System.String"/>
+          <BusinessObjectDataSource Name="LOI" DataType="System.Collections.Generic.List`1[[PMR00460Common.DTOs.Print.PMR00460GroupBuildingDTO, PMR00460Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+            <Column Name="CREF_NO" DataType="System.String"/>
+            <BusinessObjectDataSource Name="Summary" DataType="System.Collections.Generic.List`1[[PMR00460Common.DTOs.Print.PMR00460GroupByLoiSummaryDTO, PMR00460Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+              <Column Name="CREF_NO" DataType="System.String"/>
+              <Column Name="LCHECKLIST" DataType="System.Boolean" BindableControl="CheckBox"/>
+              <Column Name="CSCHEDULE_DATE" DataType="System.String"/>
+              <Column Name="DSCHEDULE_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+              <Column Name="CUNIT_ID" DataType="System.String"/>
+              <Column Name="CUNIT_TYPE_CATEGORY" DataType="System.String"/>
+              <Column Name="CTENANT_ID" DataType="System.String"/>
+              <Column Name="CTENANT_NAME" DataType="System.String"/>
+              <Column Name="CTENANT_EMAIL" DataType="System.String"/>
+              <Column Name="CSTAFF_ID" DataType="System.String"/>
+              <Column Name="CHANDOVER_STATUS" DataType="System.String"/>
+              <Column Name="CSTAFF_NAME" DataType="System.String"/>
+            </BusinessObjectDataSource>
+            <BusinessObjectDataSource Name="Detail" DataType="System.Collections.Generic.List`1[[PMR00460Common.DTOs.Print.PMR00460GroupByLoiDetailDTO, PMR00460Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+              <Column Name="CCHECKLIST_DESCRIPTION" DataType="System.String"/>
+              <Column Name="CNOTES" DataType="System.String"/>
+              <Column Name="CCHECKLIST_STATUS" DataType="System.String"/>
+              <Column Name="CCARE_REF_NO" DataType="System.String"/>
+              <Column Name="IDEFAULT_QUANTITY" DataType="System.Int32"/>
+              <Column Name="IACTUAL_QUANTITY" DataType="System.Int32"/>
+            </BusinessObjectDataSource>
+          </BusinessObjectDataSource>
+        </BusinessObjectDataSource>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+      <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Page" DataType="System.String"/>
+        <Column Name="Of" DataType="System.String"/>
+        <Column Name="Print_Date" DataType="System.String"/>
+        <Column Name="Print_By" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+    <Total Name="TotalDefQuantity" Expression="[ResponseDataModel.Data.Data.LOI.Detail.IDEFAULT_QUANTITY]" Evaluator="Data4" PrintOn="DataFooter1"/>
+    <Total Name="TotalActQuantity" Expression="[ResponseDataModel.Data.Data.LOI.Detail.IACTUAL_QUANTITY]" Evaluator="Data4" PrintOn="DataFooter1"/>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="BaseHeaderLogo"/>
+      <inherited Name="Text33"/>
+      <inherited Name="LabelNoPage">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="BaseHeaderDate"/>
+      <inherited Name="LabelDateTime"/>
+      <inherited Name="BaseHeaderLabel"/>
+      <inherited Name="BaseHeaderUserId"/>
+      <inherited Name="LabelUserId"/>
+      <inherited Name="BaseHeaderDateTime"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="79.6" Width="1047.06" Height="122.85">
+        <TextObject Name="Text34" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Property]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text35" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Building]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text36" Top="47.25" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Period]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text37" Left="94.5" Top="9.45" Width="94.5" Height="18.9" Text=": [ResponseDataModel.Data.Header.CPROPERTY_NAME]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text38" Left="94.5" Top="28.35" Width="94.5" Height="18.9" Text=": [ResponseDataModel.Data.Header.CBUILDING]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text39" Left="94.5" Top="47.25" Width="94.5" Height="18.9" Text=": [ResponseDataModel.Data.Header.CPERIOD]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text40" Top="66.15" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.ReportType]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text41" Left="94.5" Top="66.15" Width="94.5" Height="18.9" Text=": [ResponseDataModel.Data.Header.CREPORT_TYPE_NAME]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text42" Left="727.65" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Status]:" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+        <CheckBoxObject Name="CheckBox2" Left="831.6" Top="9.45" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.LOPEN"/>
+        <CheckBoxObject Name="CheckBox3" Left="831.6" Top="28.35" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.LSCHEDULED"/>
+        <CheckBoxObject Name="CheckBox4" Left="831.6" Top="47.25" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.LCONFIRMED"/>
+        <CheckBoxObject Name="CheckBox5" Left="831.6" Top="66.15" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.LCLOSED"/>
+        <TextObject Name="Text43" Left="841.05" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Open]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text44" Left="841.05" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Scheduled]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text45" Left="841.05" Top="47.25" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Confirmed]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text46" Left="841.05" Top="66.15" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Closed]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text80" Left="94.5" Top="85.05" Width="94.5" Height="18.9" Text=": [ResponseDataModel.Data.Header.CTYPE_NAME]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text81" Top="85.05" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.AgreementType]" Font="Arial Unicode MS, 8pt"/>
+      </ChildBand>
+    </inherited>
+    <DataBand Name="Data1" ZOrder="0" Top="257.7" Width="1047.06" Height="18.9" DataSource="Data">
+      <TextObject Name="Text48" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Building]: [ResponseDataModel.Data.Data.CBUILDING_NAME]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <DataHeaderBand Name="DataHeader1" Top="206.45" Width="1047.06" Height="47.25" RepeatOnEveryPage="true">
+        <TextObject Name="Text47" Top="9.45" Width="122.85" Height="18.9" Text="[ResponseDataModel.Data.Label.Date]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text50" Left="122.85" Top="9.45" Width="103.95" Height="18.9" Text="[ResponseDataModel.Data.Label.UnitID]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text51" Left="226.8" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Category]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text52" Left="321.3" Top="9.45" Width="189" Height="18.9" Text="[ResponseDataModel.Data.Label.LOINo]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text53" Left="510.3" Top="9.45" Width="170.1" Height="18.9" Text="[ResponseDataModel.Data.Label.Tenant]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text54" Left="680.4" Top="9.45" Width="170.1" Height="18.9" Text="[ResponseDataModel.Data.Label.TenantEmail]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text55" Left="850.5" Top="9.45" Width="122.85" Height="18.9" Text="[ResponseDataModel.Data.Label.HandoverBy]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text56" Left="973.35" Top="9.45" Width="75.6" Height="18.9" Text="[ResponseDataModel.Data.Label.Status]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <LineObject Name="Line1" Top="37.8" Width="1048.95" Diagonal="true"/>
+        <LineObject Name="Line2" Left="1048.95" Width="-1048.95" Diagonal="true"/>
+      </DataHeaderBand>
+      <DataBand Name="Data2" Top="280.6" Width="1047.06" DataSource="LOI">
+        <DataBand Name="Data3" Top="284.6" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Summary">
+          <TextObject Name="Text57" Width="122.85" Height="18.9" CanGrow="true" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.LOI.Summary.DSCHEDULE_DATE]" Duplicates="Hide" Format="Date" Format.Format="d" Font="Arial Unicode MS, 8pt"/>
+          <TextObject Name="Text58" Left="122.85" Width="103.95" Height="18.9" CanGrow="true" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.LOI.Summary.CUNIT_ID]" Font="Arial Unicode MS, 8pt"/>
+          <TextObject Name="Text59" Left="226.8" Width="94.5" Height="18.9" CanGrow="true" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.LOI.Summary.CUNIT_TYPE_CATEGORY]" Font="Arial Unicode MS, 8pt"/>
+          <TextObject Name="Text60" Left="510.3" Width="170.1" Height="18.9" CanGrow="true" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.LOI.Summary.CTENANT_ID] - [ResponseDataModel.Data.Data.LOI.Summary.CTENANT_NAME]" Font="Arial Unicode MS, 8pt">
+            <Formats>
+              <GeneralFormat/>
+              <GeneralFormat/>
+            </Formats>
+          </TextObject>
+          <TextObject Name="Text61" Left="321.3" Width="189" Height="18.9" CanGrow="true" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.LOI.Summary.CREF_NO]" Font="Arial Unicode MS, 8pt"/>
+          <TextObject Name="Text62" Left="680.4" Width="170.1" Height="18.9" CanGrow="true" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.LOI.Summary.CTENANT_EMAIL]" Font="Arial Unicode MS, 8pt"/>
+          <TextObject Name="Text63" Left="850.5" Width="122.85" Height="18.9" CanGrow="true" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.LOI.Summary.CSTAFF_ID] - [ResponseDataModel.Data.Data.LOI.Summary.CSTAFF_NAME]" Font="Arial Unicode MS, 8pt">
+            <Formats>
+              <GeneralFormat/>
+              <GeneralFormat/>
+            </Formats>
+          </TextObject>
+          <TextObject Name="Text64" Left="973.35" Width="75.6" Height="18.9" CanGrow="true" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.LOI.Summary.CHANDOVER_STATUS]" Duplicates="Hide" Font="Arial Unicode MS, 8pt"/>
+        </DataBand>
+        <DataBand Name="Data4" Top="349.3" Width="1047.06" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Header.CREPORT_TYPE]==&quot;D&quot;" CanGrow="true" CanShrink="true" DataSource="Detail">
+          <TextObject Name="Text71" Left="122.85" Width="198.45" Height="18.9" Text="[ResponseDataModel.Data.Data.LOI.Detail.CCHECKLIST_DESCRIPTION]" Font="Arial Unicode MS, 8pt"/>
+          <TextObject Name="Text72" Left="321.3" Width="264.6" Height="18.9" Text="[ResponseDataModel.Data.Data.LOI.Detail.CNOTES]" Font="Arial Unicode MS, 8pt"/>
+          <TextObject Name="Text73" Left="585.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Data.LOI.Detail.CCHECKLIST_STATUS]" Font="Arial Unicode MS, 8pt"/>
+          <TextObject Name="Text74" Left="680.4" Width="179.55" Height="18.9" Text="[ResponseDataModel.Data.Data.LOI.Detail.CCARE_REF_NO]" Font="Arial Unicode MS, 8pt"/>
+          <TextObject Name="Text75" Left="859.95" Width="94.5" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Data.LOI.Detail.IDEFAULT_QUANTITY]&gt;0" CanGrow="true" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.LOI.Detail.IDEFAULT_QUANTITY]" HorzAlign="Right" Font="Arial Unicode MS, 8pt">
+            <Formats>
+              <NumberFormat UseLocale="false" DecimalDigits="0" NegativePattern="1"/>
+              <GeneralFormat/>
+            </Formats>
+          </TextObject>
+          <TextObject Name="Text76" Left="954.45" Width="94.5" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Data.LOI.Detail.IACTUAL_QUANTITY]&gt;0" Text="[ResponseDataModel.Data.Data.LOI.Detail.IACTUAL_QUANTITY]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+          <TextObject Name="stripDef" Left="916.65" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Data.LOI.Detail.IDEFAULT_QUANTITY]==0" CanGrow="true" CanShrink="true" CanBreak="false" Text="-" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+          <TextObject Name="stripAct" Left="1001.7" Width="47.25" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Data.LOI.Detail.IACTUAL_QUANTITY]==0" CanGrow="true" CanShrink="true" CanBreak="false" Text="-" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+          <DataHeaderBand Name="DataHeader2" Top="307.5" Width="1047.06" Height="37.8" VisibleExpression="[ResponseDataModel.Data.Header.CREPORT_TYPE]==&quot;D&quot;">
+            <TextObject Name="Text65" Left="122.85" Top="18.9" Width="198.45" Height="18.9" Text="[ResponseDataModel.Data.Label.ChecklistDescription]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+            <TextObject Name="Text66" Left="321.3" Top="18.9" Width="264.6" Height="18.9" Text="[ResponseDataModel.Data.Label.Notes]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+            <TextObject Name="Text67" Left="680.4" Top="18.9" Width="179.55" Height="18.9" Text="[ResponseDataModel.Data.Label.CareNo]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+            <TextObject Name="Text68" Left="859.95" Top="18.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Quantity]" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+            <TextObject Name="Text69" Left="954.45" Top="18.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.ActualQuantity]" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+            <TextObject Name="Text70" Left="585.9" Top="18.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Status]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+            <LineObject Name="Line3" Left="122.85" Top="9.45" Width="926.1"/>
+            <LineObject Name="Line4" Left="122.85" Top="37.8" Width="926.1"/>
+          </DataHeaderBand>
+          <DataFooterBand Name="DataFooter1" Top="372.2" Width="1047.06" Height="31.88" VisibleExpression="[ResponseDataModel.Data.Header.CREPORT_TYPE]==&quot;D&quot;">
+            <TextObject Name="Text77" Left="680.4" Width="179.55" Height="18.9" Border.Lines="Top" Text="[ResponseDataModel.Data.Label.TotalQuantity]" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+            <TextObject Name="Text78" Left="859.95" Width="94.5" Height="18.9" Border.Lines="Top" Text="[TotalDefQuantity]" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+            <TextObject Name="Text79" Left="954.45" Width="94.5" Height="18.9" Border.Lines="Top" Text="[TotalActQuantity]" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+            <LineObject Name="Line5" Left="126.62" Top="22.43" Width="926.1"/>
+          </DataFooterBand>
+        </DataBand>
+      </DataBand>
+    </DataBand>
+  </inherited>
+</inherited>

@@ -6,6 +6,8 @@ namespace GSM02500COMMON.DTOs.GSM02531
 {
     public class UploadUnitUtilityExcelDTO
     {
+        public string FloorId { get; set; } = "";
+        public string UnitId { get; set; } = "";
         public string UtilityType { get; set; } = "";
         public string SeqNo { get; set; } = "";
         public string MeterNo { get; set; } = "";

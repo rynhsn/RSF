@@ -10,6 +10,8 @@ namespace Lookup_PMCOMMON.DTOs.LML01300
         public string CPROPERTY_ID { get; set; } = "";
         public string CDEPT_CODE { get; set; } = "";
         public string CLANGUAGE_ID { get; set; } = "";
+        public string CLEASE_MODE { get; set; } = "";
+        public string CTENANT_ID { get; set; } = "";
         public string CSEARCH_TEXT { get; set; } = "";
     }
 }

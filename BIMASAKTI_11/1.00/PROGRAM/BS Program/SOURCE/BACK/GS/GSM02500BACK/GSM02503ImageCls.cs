@@ -320,7 +320,6 @@ namespace GSM02500BACK
             loEx.ThrowExceptionIfErrors();
         }
 
-
         protected override GSM02503ImageParameterDTO R_Display(GSM02503ImageParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("R_Display");

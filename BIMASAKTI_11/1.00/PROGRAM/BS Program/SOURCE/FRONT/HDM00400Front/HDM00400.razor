@@ -1,0 +1,225 @@
+﻿@page "/HDM00400"
+@using HDM00400Common.DTOs
+@using HDM00400FrontResources
+@using R_BlazorFrontEnd.Enums
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_Page
+@attribute [R_Page(Title = "Public Location")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout Class="me-1">
+        <R_Label>@_localizer["PROPERTY"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox @ref="_comboPropertyRef"
+                    R_ConductorSource="_conductorRef"
+                    Data="@_viewModel.PropertyList"
+                    Value="@_viewModel.SelectedProperty"
+                    ValueField="@nameof(HDM00400PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(HDM00400PropertyDTO.CPROPERTY_NAME)"
+                    R_EnableOther
+                    ValueChanged="@((string value) => ValueChangedProperty(value))"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Class="border-top my-3"/>
+
+
+<R_StackLayout Spacing="3" Class="mb-2">
+    <R_StackLayout>
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.GridList"
+                Pageable
+                PageSize="16"
+                R_ConductorSource="@_conductorRef"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="@ServiceGetListRecord"
+                Height="390px"
+                Width="100%">
+            <R_GridColumns>
+                <R_GridCheckBoxColumn FieldName="@nameof(HDM00400PublicLocationDTO.LACTIVE)" HeaderText="@_localizer["Active"]" Width="100px" TextAlignment="R_eTextAlignment.Center"/>
+                <R_GridTextColumn FieldName="@nameof(HDM00400PublicLocationDTO.CPUBLIC_LOC_ID)" HeaderText="@_localizer["PublicLocationId"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(HDM00400PublicLocationDTO.CPUBLIC_LOC_NAME)" HeaderText="@_localizer["PublicLocationName"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(HDM00400PublicLocationDTO.CBUILDING_NAME)" HeaderText="@_localizer["Building"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(HDM00400PublicLocationDTO.CFLOOR_NAME)" HeaderText="@_localizer["Floor"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(HDM00400PublicLocationDTO.CUPDATE_BY)" HeaderText="@_localizer["UpdatedBy"]" Width="120px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(HDM00400PublicLocationDTO.DUPDATE_DATE)" HeaderText="@_localizer["UpdatedDate"]" Width="180px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(HDM00400PublicLocationDTO.CCREATE_BY)" HeaderText="@_localizer["CreatedBy"]" Width="120px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(HDM00400PublicLocationDTO.DCREATE_DATE)" HeaderText="@_localizer["CreatedDate"]" Width="180px" TextAlignment="R_eTextAlignment.Left"/>
+
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout Class="mb-1">
+    <R_ItemLayout col="10">
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["PublicLocation"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @ref="_publicLocIdRef"
+                           @bind-Value="@_viewModel.Data.CPUBLIC_LOC_ID"
+                           R_ConductorSource="@_conductorRef"
+                           R_EnableAdd="true"
+                           R_EnableEdit="false"
+                           MaxLength="20"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @ref="_publicLocNameRef"
+                           @bind-Value="@_viewModel.Data.CPUBLIC_LOC_NAME"
+                           R_ConductorSource="@_conductorRef"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true"
+                           MaxLength="100"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_CheckBox @bind-Value="@_viewModel.Data.LACTIVE"
+                            R_ConductorSource="@_conductorRef"
+                            Enabled="false"/>
+                <R_Label>@_localizer["Active"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["BuildingId"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox R_ConductorSource="@_conductorRef"
+                           @bind-Value="@_viewModel.Data.CBUILDING_ID"
+                           OnLostFocus="OnLostFocusBuilding"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true"
+                           MaxLength="20"/>
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_Lookup R_ConductorSource="@_conductorRef"
+                          R_Before_Open_Lookup="BeforeLookupBuilding"
+                          R_After_Open_Lookup="AfterLookupBuilding"
+                          R_EnableAdd="true"
+                          R_EnableEdit="true">
+                    ...
+                </R_Lookup>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="5">
+                <R_TextBox R_ConductorSource="@_conductorRef"
+                           @bind-Value="_viewModel.Data.CBUILDING_NAME"
+                           Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["FloorId"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox R_ConductorSource="@_conductorRef"
+                           @bind-Value="@_viewModel.Data.CFLOOR_ID"
+                           OnLostFocus="OnLostFocusFloor"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true"
+                           MaxLength="20"/>
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_Lookup R_ConductorSource="@_conductorRef"
+                          R_Before_Open_Lookup="BeforeLookupFloor"
+                          R_After_Open_Lookup="AfterLookupFloor"
+                          R_EnableAdd="true"
+                          R_EnableEdit="true">
+                    ...
+                </R_Lookup>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="5">
+                <R_TextBox R_ConductorSource="@_conductorRef"
+                           @bind-Value="_viewModel.Data.CFLOOR_NAME"
+                           Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["Description"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="9">
+                <R_TextArea R_ConductorSource="@_conductorRef"
+                            @bind-Value="@_viewModel.Data.CLOCATION_DESCR"
+                            R_EnableAdd="true"
+                            R_EnableEdit="true"
+                            MaxLength="255"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Class="border-top my-3"/>
+
+<R_StackLayout Row="true" Spacing="5" Class="justify-content-between">
+    <R_StackLayout Row>
+        <R_ItemLayout>
+            <R_AddButton R_Conductor="@_conductorRef"/>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_EditButton R_Conductor="@_conductorRef"/>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_DeleteButton R_Conductor="@_conductorRef"/>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout>
+            <R_Button
+                OnClick="DownloadTemplate"
+                R_ConductorSource="_conductorRef"
+                R_EnableOther>
+                @_localizer["Template"]
+            </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Popup R_ConductorSource="_conductorRef"
+                     R_Before_Open_Popup="BeforeOpenUpload"
+                     R_After_Open_Popup="AfterOpenUpload"
+                     R_EnableOther>
+                @_localizer["Upload"]
+            </R_Popup>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Popup R_ConductorSource="_conductorRef"
+                     R_EnableOther="true"
+                     R_After_Open_Popup="@AfterOpenActiveInactive"
+                     R_Before_Open_Popup="@BeforeOpenActiveInactive">
+                @(_viewModel.Data.LACTIVE ? _localizer["Inactivate"] : _localizer["Activate"])
+            </R_Popup>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout>
+            <R_CancelButton R_Conductor="@_conductorRef"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="me-2">
+            <R_SaveButton R_Conductor="@_conductorRef"/>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader
+             R_SetOther="@SetOther"
+             R_AfterAdd="@AfterAdd"
+             R_BeforeEdit="@BeforeEdit"
+             R_ServiceGetRecord="@ServiceGetRecord"
+             R_ServiceSave="@ServiceSave"
+             R_ServiceDelete="@ServiceDelete"/>

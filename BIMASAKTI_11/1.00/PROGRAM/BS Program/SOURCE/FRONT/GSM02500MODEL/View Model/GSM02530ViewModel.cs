@@ -52,6 +52,41 @@ namespace GSM02500MODEL.View_Model
 
         public TabParameterDTO loTabParameter = new TabParameterDTO();
 
+        public List<GetStrataLeaseDTO> loStrataList = null;
+
+        public List<GetStrataLeaseDTO> loLeaseList = null;
+
+
+        public async Task GetStrataLeaseListStreamAsync()
+        {
+            R_Exception loException = new R_Exception();
+            GetStrataLeaseParameterDTO loParam = new GetStrataLeaseParameterDTO();
+            GetStrataLeaseResultDTO loResult = null;
+            try
+            {
+                R_FrontContext.R_SetStreamingContext(ContextConstant.GSM02530_STRATA_LEASE_STREAMING_CONTEXT, new GetStrataLeaseParameterDTO()
+                {
+                    CLASS_ID = "_BS_STRATA_STATUS",
+                    REC_ID_LIST = "01,04,05"
+                });
+                loResult = await loModel.GetStrataLeaseListStreamAsync();
+                loStrataList = loResult.Data;
+
+                R_FrontContext.R_SetStreamingContext(ContextConstant.GSM02530_STRATA_LEASE_STREAMING_CONTEXT, new GetStrataLeaseParameterDTO()
+                {
+                    CLASS_ID = "_BS_LEASE_STATUS",
+                    REC_ID_LIST = "01,05,06"
+                });
+                loResult = await loModel.GetStrataLeaseListStreamAsync();
+                loLeaseList = loResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+            loException.ThrowExceptionIfErrors();
+        }
+
 
         public void UnitInfoValidation(GSM02530DetailDTO poParam)
         {

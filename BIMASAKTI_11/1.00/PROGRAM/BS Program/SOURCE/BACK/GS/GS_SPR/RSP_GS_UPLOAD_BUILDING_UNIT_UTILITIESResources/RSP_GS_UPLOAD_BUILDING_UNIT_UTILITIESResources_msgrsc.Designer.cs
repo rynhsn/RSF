@@ -62,6 +62,15 @@ namespace RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Empty Floor Id.
+        /// </summary>
+        internal static string EMPTY_FLOOR_ID {
+            get {
+                return ResourceManager.GetString("EMPTY_FLOOR_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If Active Flag = 0, Non Active Date can not be empty.
         /// </summary>
         internal static string EMPTY_NON_ACTIVE_DATE {
@@ -71,11 +80,38 @@ namespace RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Empty Unit Id.
+        /// </summary>
+        internal static string EMPTY_UNIT_ID {
+            get {
+                return ResourceManager.GetString("EMPTY_UNIT_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active Flag is not valid [1/0].
         /// </summary>
         internal static string INVALID_ACTIVE_FLAG {
             get {
                 return ResourceManager.GetString("INVALID_ACTIVE_FLAG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Floor Id.
+        /// </summary>
+        internal static string INVALID_FLOOR_ID {
+            get {
+                return ResourceManager.GetString("INVALID_FLOOR_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Unit Id.
+        /// </summary>
+        internal static string INVALID_UNIT_ID {
+            get {
+                return ResourceManager.GetString("INVALID_UNIT_ID", resourceCulture);
             }
         }
         

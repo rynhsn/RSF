@@ -60,6 +60,15 @@ namespace APR00500BackResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add On.
+        /// </summary>
+        internal static string ADD_ON {
+            get {
+                return ResourceManager.GetString("ADD_ON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Addition.
         /// </summary>
         internal static string ADDITION {
@@ -152,9 +161,9 @@ namespace APR00500BackResources {
         /// <summary>
         ///   Looks up a localized string similar to Invoice Period.
         /// </summary>
-        internal static string INV_PRD {
+        internal static string INVOICE_PRD {
             get {
-                return ResourceManager.GetString("INV_PRD", resourceCulture);
+                return ResourceManager.GetString("INVOICE_PRD", resourceCulture);
             }
         }
         
@@ -195,6 +204,15 @@ namespace APR00500BackResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sub Total.
+        /// </summary>
+        internal static string SUB_TOTAL {
+            get {
+                return ResourceManager.GetString("SUB_TOTAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Supplier.
         /// </summary>
         internal static string SUPPLIER {
@@ -222,11 +240,11 @@ namespace APR00500BackResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total Department.
+        ///   Looks up a localized string similar to Total Period.
         /// </summary>
-        internal static string TOTAL_DEPT {
+        internal static string TOTAL_PRD {
             get {
-                return ResourceManager.GetString("TOTAL_DEPT", resourceCulture);
+                return ResourceManager.GetString("TOTAL_PRD", resourceCulture);
             }
         }
         

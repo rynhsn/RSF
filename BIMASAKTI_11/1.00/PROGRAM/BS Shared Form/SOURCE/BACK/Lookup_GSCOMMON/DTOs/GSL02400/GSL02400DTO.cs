@@ -8,6 +8,8 @@ namespace Lookup_GSCOMMON.DTOs
         public string CPROPERTY_ID { get; set; } 
         public string CFLOOR_ID { get; set; }
         public string CFLOOR_NAME { get; set; }
+        public string CBUILDING_ID { get; set; }
+        public string CBUILDING_NAME { get; set; }
         public bool LACTIVE { get; set; }
         public string CCREATE_BY { get; set; }
         public DateTime? DCREATE_DATE { get; set; }

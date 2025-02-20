@@ -31,15 +31,15 @@ public class PMT03500ParameterDb
     public string CCHARGES_TYPE { get; set; } = "";
     public string CCHARGES_ID { get; set; } = "";
     public string CMETER_NO { get; set; } = "";
-    public int IMETER_START { get; set; }
-    public int IBLOCK1_START { get; set; }
-    public int IBLOCK2_START { get; set; }
-    public int IBLOCK1_END { get; set; }
-    public int IBLOCK2_END { get; set; }
+    public decimal NMETER_START { get; set; }
+    public decimal NBLOCK1_START { get; set; }
+    public decimal NBLOCK2_START { get; set; }
+    public decimal NBLOCK1_END { get; set; }
+    public decimal NBLOCK2_END { get; set; }
     public string CSTART_INV_PRD { get; set; } = "";
     public string CSTART_DATE { get; set; } = "";
     public int IFROM_METER_NO { get; set; }
-    public int IMETER_END { get; set; }
+    public decimal NMETER_END { get; set; }
     public int ITO_METER_NO { get; set; }
     public string CSEQ_NO { get; set; } = "";
     public string CINV_PRD { get; set; } = "";

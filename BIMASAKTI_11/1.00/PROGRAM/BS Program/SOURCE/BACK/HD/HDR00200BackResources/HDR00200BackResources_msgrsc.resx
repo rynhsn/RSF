@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+
+
+    <!-- public string Property { get; set; } = "Property"; -->
+    <data name="Property" xml:space="preserve">
+        <value>Property</value><comment>Property</comment>
+    </data>
+    <!-- public string Period { get; set; } = "Period"; -->
+    <data name="Period" xml:space="preserve">
+        <value>Period</value><comment>Period</comment>
+    </data>
+    
+    <!-- public string Area { get; set; } = "Area"; -->
+    <data name="Area" xml:space="preserve">
+        <value>Area</value><comment>Area</comment>
+    </data>
+    
+    <!-- public string Building { get; set; } = "Building"; -->
+    <data name="Building" xml:space="preserve">
+        <value>Building</value><comment>Building</comment>
+    </data>
+    <!-- public string Category { get; set; } = "Category"; -->
+    <data name="Category" xml:space="preserve">
+        <value>Category</value><comment>Category</comment>
+    </data>
+    
+    <!-- public string Department { get; set; } = "Department"; -->
+    <data name="Department" xml:space="preserve">
+        <value>Department</value><comment>Department</comment>
+    </data>
+    
+    <!-- public string Status { get; set; } = "Status"; -->
+    <data name="Status" xml:space="preserve">
+        <value>Status</value><comment>Status</comment>
+    </data>
+    
+    <!-- public string Handover { get; set; } = "Handover"; -->
+    <data name="Handover" xml:space="preserve">
+        <value>Handover</value><comment>Handover</comment>
+    </data>
+    
+    <!-- public string Complaint { get; set; } = "Complaint"; -->
+    <data name="Complaint" xml:space="preserve">
+        <value>Complaint</value><comment>Complaint</comment>
+    </data>
+    
+    <!-- public string Request { get; set; } = "Request"; -->
+    <data name="Request" xml:space="preserve">
+        <value>Request</value><comment>Request</comment>
+    </data>
+    
+    <!-- public string Inquiry { get; set; } = "Inquiry"; -->
+    <data name="Inquiry" xml:space="preserve">
+        <value>Inquiry</value><comment>Inquiry</comment>
+    </data>
+    
+    <!-- public string Received { get; set; } = "Received"; -->
+    <data name="Open" xml:space="preserve">
+        <value>Open</value><comment>Open</comment>
+    </data>
+    <!-- public string Submitted { get; set; } = "Submitted"; -->
+    <data name="Submitted" xml:space="preserve">
+        <value>Submitted</value><comment>Submitted</comment>
+    </data>
+    <!-- public string Assigned { get; set; } = "Assigned"; -->
+    <data name="Assigned" xml:space="preserve">
+        <value>Assigned</value><comment>Assigned</comment>
+    </data>
+    
+    <!-- public string OnProgress { get; set; } = "On Progress"; -->
+    <data name="OnProgress" xml:space="preserve">
+        <value>On Progress</value><comment>On Progress</comment>
+    </data>
+    
+    <!-- public string Solved { get; set; } = "Solved"; -->
+    <data name="Solved" xml:space="preserve">
+        <value>Solved</value><comment>Solved</comment>
+    </data>
+    
+    <!-- public string Completed { get; set; } = "Completed"; -->
+    <data name="Completed" xml:space="preserve">
+        <value>Completed</value><comment>Completed</comment>
+    </data>
+    
+    <!-- public string Confirmed { get; set; } = "Confirmed"; -->
+    <data name="Confirmed" xml:space="preserve">
+        <value>Confirmed</value><comment>Confirmed</comment>
+    </data>
+    
+    <!-- public string Closed { get; set; } = "Closed"; -->
+    <data name="Closed" xml:space="preserve">
+        <value>Closed</value><comment>Closed</comment>
+    </data>
+    
+    <!-- public string Cancelled { get; set; } = "Cancelled"; -->
+    <data name="Cancelled" xml:space="preserve">
+        <value>Cancelled</value><comment>Cancelled</comment>
+    </data>
+    
+    <!-- public string Terminated { get; set; } = "Terminated"; -->
+    <data name="Terminated" xml:space="preserve">
+        <value>Terminated</value><comment>Terminated</comment>
+    </data>
+    
+    <!-- public string Floor { get; set; } = "Floor"; -->
+    <data name="Floor" xml:space="preserve">
+        <value>Floor</value><comment>Floor</comment>
+    </data>
+    
+    <!-- public string Unit { get; set; } = "Unit"; -->
+    <data name="Unit" xml:space="preserve">
+        <value>Unit</value><comment>Unit</comment>
+    </data>
+    
+    <!-- public string Description { get; set; } = "Description"; -->
+    <data name="Description" xml:space="preserve">
+        <value>Description</value><comment>Description</comment>
+    </data>
+
+    <!-- TaskCategory -->
+    <data name="TaskCategory" xml:space="preserve">
+        <value>Task Category</value><comment>Task Category</comment>
+    </data>
+    <!-- public string TenantOwner { get; set; } = "Tenant/Owner"; -->
+    <data name="TenantOwner" xml:space="preserve">
+        <value>Tenant/Owner</value><comment>Tenant/Owner</comment>
+    </data>
+    
+    <!-- public string Caller { get; set; } = "Caller"; -->
+    <data name="Caller" xml:space="preserve">
+        <value>Caller</value><comment>Caller</comment>
+    </data>
+    
+    <!-- public string Solution { get; set; } = "Solution"; -->
+    <data name="Solution" xml:space="preserve">
+        <value>Solution</value><comment>Solution</comment>
+    </data>
+    
+    <!-- public string Invoice { get; set; } = "Invoice"; -->
+    <data name="Invoice" xml:space="preserve">
+        <value>Invoice</value><comment>Invoice</comment>
+    </data>
+    
+    <!-- public string Escalated { get; set; } = "Escalated"; -->
+    <data name="Escalated" xml:space="preserve">
+        <value>Escalated</value><comment>Escalated</comment>
+    </data>
+    
+    <!-- public string Location { get; set; } = "Location"; -->
+    <data name="Location" xml:space="preserve">
+        <value>Location</value><comment>Location</comment>
+    </data>
+    
+    <!-- public string CallerCategory { get; set; } = "Caller Category"; -->
+    <data name="CallerCategory" xml:space="preserve">
+        <value>Caller Category</value><comment>Caller Category</comment>
+    </data>
+    
+    <!-- public string Task { get; set; } = "Task"; -->
+    <data name="Task" xml:space="preserve">
+        <value>Task</value><comment>Task</comment>
+    </data>
+    <!-- Every -->
+    <data name="Every" xml:space="preserve">
+        <value>Every</value><comment>Every</comment>
+    </data>
+    <!-- Start -->
+    <!-- End -->
+    <data name="Start" xml:space="preserve">
+        <value>Start</value><comment>Start</comment>
+    </data>
+    <data name="End" xml:space="preserve">
+        <value>End</value><comment>End</comment>
+    </data>
+    <!-- public string Asset { get; set; } = "Asset"; -->
+    <data name="Asset" xml:space="preserve">
+        <value>Asset</value><comment>Asset</comment>
+    </data>
+    
+    <!-- public string TicketNoDate { get; set; } = "Ticket No. & Date"; -->
+    <data name="TicketNoDate" xml:space="preserve">
+        <value>Ticket No. &amp; Date</value><comment>Ticket No. &amp; Date</comment>
+    </data>
+    
+    <!-- public string ChecklistStatus { get; set; } = "Checklist Status"; -->
+    <data name="ChecklistStatus" xml:space="preserve">
+        <value>Checklist Status</value><comment>Checklist Status</comment>
+    </data>
+    
+    <!-- public string ChecklistNotes { get; set; } = "Checklist Notes"; -->
+    <data name="ChecklistNotes" xml:space="preserve">
+        <value>Checklist Notes</value><comment>Checklist Notes</comment>
+    </data>
+    
+    <!-- public string PlanDate { get; set; } = "Plan Date"; -->
+    <data name="PlanDate" xml:space="preserve">
+        <value>Plan Date</value><comment>Plan Date</comment>
+    </data>
+    
+    <!-- public string ActualDate { get; set; } = "Actual Date"; -->
+    <data name="ActualDate" xml:space="preserve">
+        <value>Actual Date</value><comment>Actual Date</comment>
+    </data>
+    
+    <!-- public string IsEscalated { get; set; } = "Is Escalated"; -->
+    <data name="IsEscalated" xml:space="preserve">
+        <value>Is Escalated</value><comment>Is Escalated</comment>
+    </data>
+    
+    <!-- public string ClosedDate { get; set; } = "Closed Date"; -->
+    <data name="ClosedDate" xml:space="preserve">
+        <value>Closed Date</value><comment>Closed Date</comment>
+    </data>
+
+    <!-- TotalCareIn -->
+    <data name="TotalCareIn" xml:space="preserve">
+        <value>Total CARE in</value><comment>Total CARE in</comment>
+    </data>
+    <!-- TotalCareFor -->
+    <data name="TotalCareFor" xml:space="preserve">
+        <value>Total CARE for</value><comment>Total CARE for</comment>
+    </data>
+    <!-- GrandTotalCARE -->
+    <data name="GrandTotalCare" xml:space="preserve">
+        <value>Grand Total Care</value><comment>Grand Total Care</comment>
+    </data>
+    <!-- GrandTotalCareIn -->
+    <data name="GrandTotalCareMaintenance" xml:space="preserve">
+        <value>Grand Total CARE in Maintenance</value><comment>Grand Total CARE in Maintenance</comment>
+    </data>
+    <data name="GrandTotalCareInPrivateArea" xml:space="preserve">
+        <value>Grand Total CARE in Private Area</value><comment>Grand Total CARE in Private Area</comment>
+    </data>
+    <data name="GrandTotalCareInPublicArea" xml:space="preserve">
+        <value>Grand Total CARE in Public Area</value><comment>Grand Total CARE in Public Area</comment>
+    </data>
+    
+    <!-- To -->
+    <data name="To" xml:space="preserve">
+        <value>To</value><comment>To</comment>
+    </data>
+    <!-- public string HasEscalated { get; set; } = "has escalated"; -->
+    <data name="HasEscalated" xml:space="preserve">
+        <value>has escalated</value><comment>has escalated</comment>
+    </data>
+    
+    <!-- public string All { get; set; } = "all"; -->
+    <data name="All" xml:space="preserve">
+        <value>all</value><comment>all</comment>
+    </data>
+    
+    <!-- public string WithInvoice { get; set; } = "with invoice"; -->
+    <data name="WithInvoice" xml:space="preserve">
+        <value>with invoice</value><comment>with invoice</comment>
+    </data>
+    
+    
+</root>

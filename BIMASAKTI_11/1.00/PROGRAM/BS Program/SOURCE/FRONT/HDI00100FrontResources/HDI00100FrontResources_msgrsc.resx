@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+
+
+
+    <!-- PROPERTY -->
+    <!-- Active -->
+    <!-- Year -->
+    <!-- Building -->
+    <!-- Asset -->
+    <!-- Find -->
+    <!-- TaskCategory -->
+    <!-- TaskDetail -->
+    <!-- AssetName -->
+    <!-- BuildingId -->
+    <!-- DeptName -->
+    <!-- SLACallType -->
+    <!-- ScheduleDate -->
+    <!-- SPV -->
+    <!-- StaffName -->
+    <!-- UpdatedBy -->
+    <!-- UpdatedDate -->
+    <!-- Next -->
+    <!-- History -->
+    <!-- FromDate -->
+    <!-- ToDate -->
+    
+    <data name="PROPERTY" xml:space="preserve">
+        <value>PROPERTY</value>
+    </data>
+    <data name="Active" xml:space="preserve">
+        <value>Active</value>
+    </data>
+    <data name="Year" xml:space="preserve">
+        <value>Year</value>
+    </data>
+    <data name="Building" xml:space="preserve">
+        <value>Building</value>
+    </data>
+    <data name="Asset" xml:space="preserve">
+        <value>Asset</value>
+    </data>
+    <data name="Find" xml:space="preserve">
+        <value>Find</value>
+    </data>
+    <data name="TaskCategory" xml:space="preserve">
+        <value>Task Category</value>
+    </data>
+    <data name="TaskDetail" xml:space="preserve">
+        <value>Task Detail</value>
+    </data>
+    <data name="AssetName" xml:space="preserve">
+        <value>Asset Name</value>
+    </data>
+    <data name="BuildingId" xml:space="preserve">
+        <value>Building Id</value>
+    </data>
+    <data name="DeptName" xml:space="preserve">
+        <value>Dept Name</value>
+    </data>
+    <data name="SLACallType" xml:space="preserve">
+        <value>SLA Call Type</value>
+    </data>
+    <data name="ScheduleDate" xml:space="preserve">
+        <value>Schedule Date</value>
+    </data>
+    <data name="SPV" xml:space="preserve">
+        <value>SPV</value>
+    </data>
+    <data name="StaffName" xml:space="preserve">
+        <value>Staff Name</value>
+    </data>
+    <data name="UpdatedBy" xml:space="preserve">
+        <value>Updated By</value>
+    </data>
+    <data name="UpdatedDate" xml:space="preserve">
+        <value>Updated Date</value>
+    </data>
+    <data name="Next" xml:space="preserve">
+        <value>Next</value>
+    </data>
+    <data name="History" xml:space="preserve">
+        <value>History</value>
+    </data>
+    <data name="FromDate" xml:space="preserve">
+        <value>From Date</value>
+    </data>
+    <data name="ToDate" xml:space="preserve">
+        <value>To Date</value>
+    </data>
+</root>

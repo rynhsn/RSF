@@ -43,6 +43,7 @@ public class PMT03500UtilityUsageController : ControllerBase, IPMT03500UtilityUs
             _logger.LogInfo("Set Parameter");
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbParams.CTRANS_CODE = "";
+            loDbParams.CPROPERTY_ID = poParam.CPROPERTY_ID;
             
             _logger.LogInfo("Get SystemParam");
             loReturn.Data = loCls.GetSystemParam(loDbParams);

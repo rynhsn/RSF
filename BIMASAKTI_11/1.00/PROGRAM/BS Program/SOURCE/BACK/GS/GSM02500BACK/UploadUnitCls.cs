@@ -52,19 +52,19 @@ namespace GSM02500BACK
                     _BatchProcess(poBatchProcessPar);
                 });
 
-                while (!loTask.IsCompleted)
-                {
-                    Thread.Sleep(100);
-                }
+                //while (!loTask.IsCompleted)
+                //{
+                //    Thread.Sleep(100);
+                //}
 
-                if (loTask.IsFaulted)
-                {
-                    loException.Add(loTask.Exception.InnerException != null ?
-                        loTask.Exception.InnerException :
-                        loTask.Exception);
+                //if (loTask.IsFaulted)
+                //{
+                //    loException.Add(loTask.Exception.InnerException != null ?
+                //        loTask.Exception.InnerException :
+                //        loTask.Exception);
 
-                    goto EndBlock;
-                }
+                //    goto EndBlock;
+                //}
             }
             catch (Exception ex)
             {
@@ -115,7 +115,8 @@ namespace GSM02500BACK
                         UnitView = item.UnitView,
                         GrossSize = item.GrossSize,
                         NetSize = item.NetSize,
-                        CommonArea = item.CommonArea,
+                        StrataStatus = item.StrataStatus,
+                        LeaseStatus = item.LeaseStatus,
                         UnitCategory = item.UnitCategory,
                         Active = item.Active,
                         NonActiveDate = item.NonActiveDate
@@ -133,7 +134,8 @@ namespace GSM02500BACK
                         UnitView = item.UnitView,
                         GrossSize = item.GrossSize,
                         NetSize = item.NetSize,
-                        CommonArea = item.CommonArea,
+                        StrataStatus = item.StrataStatus,
+                        LeaseStatus = item.LeaseStatus,
                         UnitCategory = item.UnitCategory,
                         Active = item.Active,
                         NonActiveDate = item.NonActiveDate
@@ -146,10 +148,12 @@ namespace GSM02500BACK
                     $"UnitName VARCHAR(100), " +
                     $"UnitType VARCHAR(20) , " +
                     $"UnitView VARCHAR(20) , " +
-                    $"GrossSize NUMERIC(5,2) , " +
-                    $"NetSize NUMERIC(5,2) , " +
-                    $"CommonArea NUMERIC(5,2) , " +
+                    $"GrossSize NUMERIC(8,2) , " +
+                    $"NetSize NUMERIC(8,2) , " +
+                    $"CommonArea NUMERIC(8,2) , " +
                     $"UnitCategory VARCHAR(2) , " +
+                    $"StrataStatus VARCHAR(2) , " +
+                    $"LeaseStatus VARCHAR(2) , " +
                     $"Active BIT , " +
                     $"NonActiveDate VARCHAR(8))";
 

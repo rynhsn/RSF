@@ -1,0 +1,3 @@
+1521= Error process, please contact your administrator!
+1522= This Building Id already assign to Department!
+

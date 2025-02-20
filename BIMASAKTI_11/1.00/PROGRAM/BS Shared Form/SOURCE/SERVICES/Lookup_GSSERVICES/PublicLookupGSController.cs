@@ -1319,5 +1319,251 @@ namespace Lookup_GSSERVICES
 
             return loRtn;
         }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL02510DTO> GSL02510GetCashBankList()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL02510GetCashBankList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL02510DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL02510GetCashBankList");
+
+            try
+            {
+                var poParameter = new GSL02510ParameterDTO();
+
+                _Logger.LogInfo("Set Param GSL02510GetCashBankList");
+                var loCls = new PublicLookupCls();
+                poParameter.CCB_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCB_TYPE);
+
+                _Logger.LogInfo("Call Back Method GetALLCashBank");
+                var loResult = loCls.GetALLCashBank(poParameter);
+
+                _Logger.LogInfo("Call Stream Method Data GSL02510GetCashBankList");
+                loRtn = GetStream<GSL02510DTO>(loResult);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL02510GetCashBankList");
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL02900DTO> GSL02900GetSupplierList()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL02900GetSupplierList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL02900DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL02900GetSupplierList");
+
+            try
+            {
+                var poParameter = new GSL02900ParameterDTO();
+
+                _Logger.LogInfo("Set Param GSL02900GetSupplierList");
+                var loCls = new PublicLookupCls();
+                poParameter.CFILTER_SP = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CFILTER_SP);
+
+                _Logger.LogInfo("Call Back Method GetALLSupplier");
+                var loResult = loCls.GetALLSupplier(poParameter);
+
+                _Logger.LogInfo("Call Stream Method Data GSL02900GetSupplierList");
+                loRtn = GetStream<GSL02900DTO>(loResult);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL02900GetSupplierList");
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL02910DTO> GSL02910GetSupplierInfoList()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL02910GetSupplierInfoList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL02910DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL02910GetSupplierInfoList");
+
+            try
+            {
+                var poParameter = new GSL02910ParameterDTO();
+
+                _Logger.LogInfo("Set Param GSL02910GetSupplierInfoList");
+                var loCls = new PublicLookupCls();
+                poParameter.CSUPPLIER_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CSUPPLIER_ID);
+
+                _Logger.LogInfo("Call Back Method GetALLSupplierInfo");
+                var loResult = loCls.GetALLSupplierInfo(poParameter);
+
+                _Logger.LogInfo("Call Stream Method Data GSL02910GetSupplierInfoList");
+                loRtn = GetStream<GSL02910DTO>(loResult);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL02910GetSupplierInfoList");
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL03000DTO> GSL03000GetProductList()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03000GetProductList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL03000DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL03000GetProductList");
+
+            try
+            {
+                var poParameter = new GSL03000ParameterDTO();
+
+                _Logger.LogInfo("Set Param GSL03000GetProductList");
+                var loCls = new PublicLookupCls();
+                poParameter.CCATEGORY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCATEGORY_ID);
+                poParameter.CTAXABLE_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTAXABLE_TYPE);
+                poParameter.CACTIVE_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CACTIVE_TYPE);
+                poParameter.CTAX_DATE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTAX_DATE);
+                poParameter.CBUYSELL = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CBUYSELL);
+
+                _Logger.LogInfo("Call Back Method GetALLProduct");
+                var loResult = loCls.GetALLProduct(poParameter);
+
+                _Logger.LogInfo("Call Stream Method Data GSL03000GetProductList");
+                loRtn = GetStream<GSL03000DTO>(loResult);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL03000GetProductList");
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL03100DTO> GSL03100GetExpenditureList()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03100GetExpenditureList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL03100DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL03100GetExpenditureList");
+
+            try
+            {
+                var poParameter = new GSL03100ParameterDTO();
+
+                _Logger.LogInfo("Set Param GSL03100GetExpenditureList");
+                var loCls = new PublicLookupCls();
+                poParameter.CCATEGORY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCATEGORY_ID);
+                poParameter.CTAXABLE_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTAXABLE_TYPE);
+                poParameter.CACTIVE_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CACTIVE_TYPE);
+                poParameter.CTAX_DATE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTAX_DATE);
+
+                _Logger.LogInfo("Call Back Method GetALLExpenditure");
+                var loResult = loCls.GetALLExpenditure(poParameter);
+
+                _Logger.LogInfo("Call Stream Method Data GSL03100GetExpenditureList");
+                loRtn = GetStream<GSL03100DTO>(loResult);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL03100GetExpenditureList");
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL03200DTO> GSL03200GetProductAllocationList()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03200GetProductAllocationList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL03200DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL03200GetProductAllocationList");
+
+            try
+            {
+                var poParameter = new GSL03200ParameterDTO();
+
+                _Logger.LogInfo("Set Param GSL03200GetProductAllocationList");
+                var loCls = new PublicLookupCls();
+                poParameter.CACTIVE_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CACTIVE_TYPE);
+
+                _Logger.LogInfo("Call Back Method GetALLProductAllocation");
+                var loResult = loCls.GetALLProductAllocation(poParameter);
+
+                _Logger.LogInfo("Call Stream Method Data GSL03200GetProductAllocationList");
+                loRtn = GetStream<GSL03200DTO>(loResult);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL03200GetProductAllocationList");
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL03300DTO> GSL03300GetTaxChargesList()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03300GetTaxChargesList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL03300DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL03300GetTaxChargesList");
+
+            try
+            {
+                var poParameter = new GSL03300ParameterDTO();
+
+                _Logger.LogInfo("Set Param GSL03300GetTaxChargesList");
+                var loCls = new PublicLookupCls();
+                poParameter.CREF_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CREF_CODE);
+                poParameter.CREF_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CREF_TYPE);
+
+                _Logger.LogInfo("Call Back Method GetALLTaxCharges");
+                var loResult = loCls.GetALLTaxCharges(poParameter);
+
+                _Logger.LogInfo("Call Stream Method Data GSL03300GetTaxChargesList");
+                loRtn = GetStream<GSL03300DTO>(loResult);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL03300GetTaxChargesList");
+
+            return loRtn;
+        }
     }
 }

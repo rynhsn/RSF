@@ -90,36 +90,36 @@ namespace RSP_GS_UPLOAD_OTHER_UNITResources {
         /// <summary>
         ///   Looks up a localized string similar to Other Unit Type Id can not be empty.
         /// </summary>
-        internal static string EMPTY_UNIT_PROMOTION_ID {
+        internal static string EMPTY_OTHER_UNIT_ID {
             get {
-                return ResourceManager.GetString("EMPTY_UNIT_PROMOTION_ID", resourceCulture);
+                return ResourceManager.GetString("EMPTY_OTHER_UNIT_ID", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Other Unit Type Name can not be empty.
         /// </summary>
-        internal static string EMPTY_UNIT_PROMOTION_NAME {
+        internal static string EMPTY_OTHER_UNIT_NAME {
             get {
-                return ResourceManager.GetString("EMPTY_UNIT_PROMOTION_NAME", resourceCulture);
+                return ResourceManager.GetString("EMPTY_OTHER_UNIT_NAME", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Other Unit Type Id is bigger than 20 Character.
         /// </summary>
-        internal static string EXCESS_UNIT_PROMOTION_ID {
+        internal static string EXCESS_OTHER_UNIT_ID {
             get {
-                return ResourceManager.GetString("EXCESS_UNIT_PROMOTION_ID", resourceCulture);
+                return ResourceManager.GetString("EXCESS_OTHER_UNIT_ID", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Other Unit Type Name is bigger than 100 Character.
         /// </summary>
-        internal static string EXCESS_UNIT_PROMOTION_NAME {
+        internal static string EXCESS_OTHER_UNIT_NAME {
             get {
-                return ResourceManager.GetString("EXCESS_UNIT_PROMOTION_NAME", resourceCulture);
+                return ResourceManager.GetString("EXCESS_OTHER_UNIT_NAME", resourceCulture);
             }
         }
         
@@ -153,9 +153,9 @@ namespace RSP_GS_UPLOAD_OTHER_UNITResources {
         /// <summary>
         ///   Looks up a localized string similar to Invalid Other Unit Type.
         /// </summary>
-        internal static string INVALID_UNIT_PROMOTION_TYPE {
+        internal static string INVALID_OTHER_UNIT_TYPE {
             get {
-                return ResourceManager.GetString("INVALID_UNIT_PROMOTION_TYPE", resourceCulture);
+                return ResourceManager.GetString("INVALID_OTHER_UNIT_TYPE", resourceCulture);
             }
         }
     }

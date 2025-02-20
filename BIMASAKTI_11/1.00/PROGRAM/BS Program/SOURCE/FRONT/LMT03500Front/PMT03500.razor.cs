@@ -214,7 +214,7 @@ public partial class PMT03500 : R_Page
                     _viewModelUtility.Property =
                         _viewModel.PropertyList.FirstOrDefault(x => x.CPROPERTY_ID == _viewModel.PropertyId);
 
-                    await _viewModelUtility.GetSystemParam();
+                    await _viewModelUtility.GetSystemParam(_viewModel.PropertyId);
                     _viewModelUtility.SetParameterHeader();
 
                     switch (_tabStripRef.ActiveTab.Id)
@@ -249,19 +249,23 @@ public partial class PMT03500 : R_Page
                     break;
                 case eParamType.InvYear:
                     _viewModelUtility.InvPeriodYear = (string)value;
+                    await _viewModelUtility.GetPeriod(_viewModelUtility.InvPeriodYear, _viewModelUtility.InvPeriodNo);
+                    _viewModelUtility.SetParameterHeader();
                     break;
                 case eParamType.InvPeriod:
                     _viewModelUtility.InvPeriodNo = (string)value;
+                    await _viewModelUtility.GetPeriod(_viewModelUtility.InvPeriodYear, _viewModelUtility.InvPeriodNo);
+                    _viewModelUtility.SetParameterHeader();
                     break;
                 case eParamType.UtilityYear:
                     _viewModelUtility.UtilityPeriodYear = (string)value;
-                    await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear, _viewModelUtility.UtilityPeriodNo);
-                    _viewModelUtility.SetParameterHeader();
+                    // await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear, _viewModelUtility.UtilityPeriodNo);
+                    // _viewModelUtility.SetParameterHeader();
                     break;
                 case eParamType.UtilityPeriod:
                     _viewModelUtility.UtilityPeriodNo = (string)value;
-                    await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear, _viewModelUtility.UtilityPeriodNo);
-                    _viewModelUtility.SetParameterHeader();
+                    // await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear, _viewModelUtility.UtilityPeriodNo);
+                    // _viewModelUtility.SetParameterHeader();
                     break;
             }
         }
@@ -468,7 +472,7 @@ public partial class PMT03500 : R_Page
         try
         {
             _enabledBtn = false;
-            await _conductorRefUtility.R_SaveBatch();
+            await _gridRefUtility.R_SaveBatch();
             // _enabledBtn = true;
         }
         catch (Exception ex)
@@ -497,10 +501,10 @@ public partial class PMT03500 : R_Page
             //proses untuk merubah state LSELECTED
             var llStartDate = loData.DSTART_DATE != _viewModelUtility.EntityUtility.DSTART_DATE;
             var llEndDate = loData.DEND_DATE != _viewModelUtility.EntityUtility.DEND_DATE;
-            var llBlock1End = loData.IBLOCK1_END != _viewModelUtility.EntityUtility.IBLOCK1_END;
-            var llBlock2End = loData.IBLOCK2_END != _viewModelUtility.EntityUtility.IBLOCK2_END;
+            var llBlock1End = loData.NBLOCK1_END != _viewModelUtility.EntityUtility.NBLOCK1_END;
+            var llBlock2End = loData.NBLOCK2_END != _viewModelUtility.EntityUtility.NBLOCK2_END;
             var llBebanBersama = loData.NBEBAN_BERSAMA != _viewModelUtility.EntityUtility.NBEBAN_BERSAMA;
-            var llMeterEnd = loData.IMETER_END != _viewModelUtility.EntityUtility.IMETER_END;
+            var llMeterEnd = loData.NMETER_END != _viewModelUtility.EntityUtility.NMETER_END;
             if (llStartDate || llEndDate || llBlock1End || llBlock2End || llBebanBersama || llMeterEnd)
             {
                 loData.LSELECTED = true;
@@ -619,4 +623,12 @@ public partial class PMT03500 : R_Page
         eventArgs.Enabled = true;
     }
 
+    private void OnClickProcess(MouseEventArgs eventArgs)
+    {
+        var loData = _gridRefUtility.DataSource;
+        foreach (var loItem in loData)
+        {
+            loItem.DEND_DATE = _viewModelUtility.UtilityPeriodToDtDt;
+        }
+    }
 }

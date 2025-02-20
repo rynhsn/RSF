@@ -447,6 +447,15 @@ namespace PMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to End Date Utility.
+        /// </summary>
+        internal static string LBL_ENDDTUTILITY {
+            get {
+                return ResourceManager.GetString("LBL_ENDDTUTILITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Equipment Maint.
         /// </summary>
         internal static string LBL_EQUIPMENT_MAINT {
@@ -573,6 +582,15 @@ namespace PMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Minimum Amount.
+        /// </summary>
+        internal static string LBL_MINIMUM_AMOUNT {
+            get {
+                return ResourceManager.GetString("LBL_MINIMUM_AMOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minimum Charge.
         /// </summary>
         internal static string LBL_MINIMUM_CHARGE {
@@ -605,15 +623,6 @@ namespace PMT03500FrontResources {
         internal static string LBL_OK {
             get {
                 return ResourceManager.GetString("LBL_OK", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to PF.
-        /// </summary>
-        internal static string LBL_PF {
-            get {
-                return ResourceManager.GetString("LBL_PF", resourceCulture);
             }
         }
         
@@ -951,11 +960,11 @@ namespace PMT03500FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Usage x PF.
+        ///   Looks up a localized string similar to Usage x CF.
         /// </summary>
-        internal static string LBL_USAGE_X_PF {
+        internal static string LBL_USAGE_X_CF {
             get {
-                return ResourceManager.GetString("LBL_USAGE_X_PF", resourceCulture);
+                return ResourceManager.GetString("LBL_USAGE_X_CF", resourceCulture);
             }
         }
         

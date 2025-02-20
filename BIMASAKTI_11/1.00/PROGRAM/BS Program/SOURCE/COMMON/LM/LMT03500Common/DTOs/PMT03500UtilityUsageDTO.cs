@@ -36,11 +36,21 @@ namespace PMT03500Common.DTOs
 
         #region EC
 
+        public decimal NBLOCK1_START { get; set; }
+        public decimal NBLOCK2_START { get; set; }
+        public decimal NBLOCK1_END { get; set; }
+        public decimal NBLOCK2_END { get; set; }
+        public decimal NBEBAN_BERSAMA { get; set; }
+        public decimal NBLOCK1_USAGE { get; set; }
+        public decimal NBLOCK2_USAGE { get; set; }
+        public decimal NAVG_BLOCK1_USAGE { get; set; }
+        public decimal NAVG_BLOCK2_USAGE { get; set; }
+        
         public int IBLOCK1_START { get; set; }
         public int IBLOCK2_START { get; set; }
         public int IBLOCK1_END { get; set; }
         public int IBLOCK2_END { get; set; }
-        public decimal NBEBAN_BERSAMA { get; set; }
+        public int IBEBAN_BERSAMA { get; set; }
         public int IBLOCK1_USAGE { get; set; }
         public int IBLOCK2_USAGE { get; set; }
         public int IAVG_BLOCK1_USAGE { get; set; }
@@ -50,6 +60,13 @@ namespace PMT03500Common.DTOs
 
         #region WG
 
+        public decimal NMETER_START { get; set; }
+        public decimal NMETER_END { get; set; }
+        public decimal NMETER_USAGE { get; set; }
+        public decimal NAVG_METER_USAGE { get; set; }
+        public decimal NTOTAL_AMOUNT { get; set; }
+        
+        
         public int IMETER_START { get; set; }
         public int IMETER_END { get; set; }
         public int IMETER_USAGE { get; set; }

@@ -62,6 +62,15 @@ namespace RSP_GS_UPLOAD_OTHER_UNIT_TYPEResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Department cannot be empty.
+        /// </summary>
+        internal static string EMPTY_DEPT_CODE {
+            get {
+                return ResourceManager.GetString("EMPTY_DEPT_CODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If Active Flag = 0, Non Active Date can not be empty.
         /// </summary>
         internal static string EMPTY_NON_ACTIVE_DATE {
@@ -73,36 +82,36 @@ namespace RSP_GS_UPLOAD_OTHER_UNIT_TYPEResources {
         /// <summary>
         ///   Looks up a localized string similar to Other Unit Type Id can not be empty.
         /// </summary>
-        internal static string EMPTY_UNIT_PROMOTION_TYPE_CODE {
+        internal static string EMPTY_OTHER_UNIT_TYPE_CODE {
             get {
-                return ResourceManager.GetString("EMPTY_UNIT_PROMOTION_TYPE_CODE", resourceCulture);
+                return ResourceManager.GetString("EMPTY_OTHER_UNIT_TYPE_CODE", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Other Unit Type Name can not be empty.
         /// </summary>
-        internal static string EMPTY_UNIT_PROMOTION_TYPE_NAME {
+        internal static string EMPTY_OTHER_UNIT_TYPE_NAME {
             get {
-                return ResourceManager.GetString("EMPTY_UNIT_PROMOTION_TYPE_NAME", resourceCulture);
+                return ResourceManager.GetString("EMPTY_OTHER_UNIT_TYPE_NAME", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Other Unit Type Id is bigger than 20 Character.
         /// </summary>
-        internal static string EXCESS_UNIT_PROMOTION_TYPE_CODE {
+        internal static string EXCESS_OTHER_UNIT_TYPE_CODE {
             get {
-                return ResourceManager.GetString("EXCESS_UNIT_PROMOTION_TYPE_CODE", resourceCulture);
+                return ResourceManager.GetString("EXCESS_OTHER_UNIT_TYPE_CODE", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Other Unit Type Name is bigger than 100 Character.
         /// </summary>
-        internal static string EXCESS_UNIT_PROMOTION_TYPE_NAME {
+        internal static string EXCESS_OTHER_UNIT_TYPE_NAME {
             get {
-                return ResourceManager.GetString("EXCESS_UNIT_PROMOTION_TYPE_NAME", resourceCulture);
+                return ResourceManager.GetString("EXCESS_OTHER_UNIT_TYPE_NAME", resourceCulture);
             }
         }
         
@@ -112,6 +121,15 @@ namespace RSP_GS_UPLOAD_OTHER_UNIT_TYPEResources {
         internal static string INVALID_ACTIVE_FLAG {
             get {
                 return ResourceManager.GetString("INVALID_ACTIVE_FLAG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Department Code.
+        /// </summary>
+        internal static string INVALID_DEPT_CODE {
+            get {
+                return ResourceManager.GetString("INVALID_DEPT_CODE", resourceCulture);
             }
         }
     }

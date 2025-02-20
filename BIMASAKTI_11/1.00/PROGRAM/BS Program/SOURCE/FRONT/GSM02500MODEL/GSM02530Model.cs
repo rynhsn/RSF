@@ -123,6 +123,41 @@ namespace GSM02500MODEL
             loEx.ThrowExceptionIfErrors();
         }
 
+        public IAsyncEnumerable<GetStrataLeaseDTO> GetStrataLeaseList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<GetStrataLeaseResultDTO> GetStrataLeaseListStreamAsync()
+        {
+            R_Exception loEx = new R_Exception();
+            List<GetStrataLeaseDTO> loResult = null;
+            GetStrataLeaseResultDTO loRtn = new GetStrataLeaseResultDTO();
+            //R_ContextHeader loContextHeader = new R_ContextHeader();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GetStrataLeaseDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGSM02530.GetStrataLeaseList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loRtn.Data = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+        EndBlock:
+            loEx.ThrowExceptionIfErrors();
+
+            return loRtn;
+        }
+
 
     }
 }

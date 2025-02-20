@@ -15,6 +15,8 @@ namespace GSM02500COMMON.DTOs.GSM02530
         public string CUNIT_VIEW_NAME { get; set; } = "";
         public string CUNIT_CATEGORY_ID { get; set; } = "";
         public string CUNIT_CATEGORY_NAME { get; set; } = "";
+        public string CSTRATA_STATUS { get; set; } = "";
+        public string CLEASE_STATUS { get; set; } = "";
         public decimal NGROSS_AREA_SIZE { get; set; } = 0;
         public decimal NCOMMON_AREA_SIZE { get; set; } = 0;
         public decimal NNET_AREA_SIZE { get; set; } = 0;

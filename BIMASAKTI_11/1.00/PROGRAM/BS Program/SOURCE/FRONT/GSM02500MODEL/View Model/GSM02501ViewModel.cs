@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace GSM02500MODEL.View_Model
@@ -44,7 +45,6 @@ namespace GSM02500MODEL.View_Model
         public void GeneralInfoValidation(GSM02501DetailDTO poParam)
         {
             bool llCancel = false;
-
             R_Exception loEx = new R_Exception();
 
             try

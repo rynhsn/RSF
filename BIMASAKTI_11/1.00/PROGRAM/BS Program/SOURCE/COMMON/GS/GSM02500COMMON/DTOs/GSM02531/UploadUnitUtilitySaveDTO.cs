@@ -7,6 +7,8 @@ namespace GSM02500COMMON.DTOs.GSM02531
     public class UploadUnitUtilitySaveDTO
     {
         public int NO { get ; set; } = 0;
+        public string CFLOOR_ID { get; set; } = "";
+        public string CUNIT_ID { get; set; } = "";
         public string CUTILITY_TYPE { get; set; } = "";
         public string CSEQUENCE { get; set; } = "";
         public string CMETER_NO { get; set; } = "";

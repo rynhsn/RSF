@@ -77,14 +77,20 @@
         <None Update="Reports\BaseHeaderLandscapeCommon.frx">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="Reports\PMR00460Handover.frx">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_LMSERVICES\Lookup_PMSERVICES.csproj"/>
+        <ProjectReference Include="..\..\..\SERVICE\LM\LMM01500SERVICE\PMM01500SERVICE.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\LMT03500Service\PMT03500Service.csproj"/>
         <ProjectReference Include="..\..\..\SERVICE\LM\PMB00300Service\PMB00300Service.csproj"/>
         <ProjectReference Include="..\..\..\SERVICE\LM\PMB05000Service\PMB05000Service.csproj"/>
         <ProjectReference Include="..\..\..\SERVICE\LM\PMI00500Service\PMI00500Service.csproj"/>
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR00460Service\PMR00460Service.csproj"/>
         <ProjectReference Include="..\..\..\SERVICE\LM\PMR02600Service\PMR02600Service.csproj"/>
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMT01300SERVICE\PMT01300SERVICE.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMT06000Service\PMT06000Service.csproj"/>
         <ProjectReference Include="..\..\..\SERVICE\LM\PMT06500Service\PMT06500Service.csproj"/>
         <ProjectReference Include="..\..\..\SERVICE\PM\PMM02000Service\PMM02000Service.csproj"/>

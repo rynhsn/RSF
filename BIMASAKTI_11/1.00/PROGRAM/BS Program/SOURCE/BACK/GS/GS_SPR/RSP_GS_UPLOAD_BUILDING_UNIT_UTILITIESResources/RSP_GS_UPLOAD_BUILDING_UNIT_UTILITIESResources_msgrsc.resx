@@ -117,11 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EMPTY_FLOOR_ID" xml:space="preserve">
+    <value>Empty Floor Id</value>
+  </data>
   <data name="EMPTY_NON_ACTIVE_DATE" xml:space="preserve">
     <value>If Active Flag = 0, Non Active Date can not be empty</value>
   </data>
+  <data name="EMPTY_UNIT_ID" xml:space="preserve">
+    <value>Empty Unit Id</value>
+  </data>
   <data name="INVALID_ACTIVE_FLAG" xml:space="preserve">
     <value>Active Flag is not valid [1/0]</value>
+  </data>
+  <data name="INVALID_FLOOR_ID" xml:space="preserve">
+    <value>Invalid Floor Id</value>
+  </data>
+  <data name="INVALID_UNIT_ID" xml:space="preserve">
+    <value>Invalid Unit Id</value>
   </data>
   <data name="INVALID_UTILITIES_TYPE" xml:space="preserve">
     <value>Invalid Utilities Type</value>

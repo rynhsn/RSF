@@ -40,5 +40,13 @@
         public const string CREF_NO = "CREF_NO";
         public const string CUNIT_TYPE_ID = "CUNIT_TYPE_ID";
         public const string CLEASE_STATUS_LIST = "CLEASE_STATUS_LIST";
+        public const string CFILTER_SP = "CFILTER_SP";
+        public const string CSUPPLIER_ID = "CSUPPLIER_ID";
+        public const string CCATEGORY_ID = "CCATEGORY_ID";
+        public const string CTAXABLE_TYPE = "CTAXABLE_TYPE";
+        public const string CACTIVE_TYPE = "CACTIVE_TYPE";
+        public const string CBUYSELL = "CBUYSELL";
+        public const string CREF_TYPE = "CREF_TYPE";
+        public const string CREF_CODE = "CREF_CODE";
     }
 }

@@ -25,6 +25,9 @@ namespace Lookup_PMCOMMON.DTOs
         public string CTAX_EXEMPTION_CODE { get; set; } = "";
         public decimal NTAX_EXEMPTION_PCT { get; set; }
         public string CUOM { get; set; } = "";
+        //CR14 --19/09/2024
+        public string CINVGRP_CODE { get; set; } = "";
+        public string CINVGRP_NAME { get; set; } = "";
 
     }
 }

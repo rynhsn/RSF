@@ -40,13 +40,16 @@
                         AllowDeleteRow="false"
                         R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
                     <R_GridColumns>
-                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadOtherUnitDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="int" FieldName=@nameof(UploadOtherUnitDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridNumericColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadOtherUnitDTO.OtherUnitId) HeaderText="@_localizer["_OtherUnitCode"]" Enabled="false" Width="150px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadOtherUnitDTO.OtherUnitName) HeaderText="@_localizer["_OtherUnitName"]" Enabled="false" Width="250px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadOtherUnitDTO.OtherUnitType) HeaderText="@_localizer["_OtherUnitType"]" Enabled="false" Width="150px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadOtherUnitDTO.Building) HeaderText="@_localizer["_Building"]" Enabled="false" Width="150px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadOtherUnitDTO.Floor) HeaderText="@_localizer["_Floor"]" Enabled="false" Width="150px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadOtherUnitDTO.Location) HeaderText="@_localizer["_Location"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadOtherUnitDTO.UnitView) HeaderText="@_localizer["_OtherUnitView"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadOtherUnitDTO.GrossSize) HeaderText="@_localizer["_GrossSize"]" Enabled="false" Width="150px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadOtherUnitDTO.NetSize) HeaderText="@_localizer["_NetSize"]" Enabled="false" Width="150px"></R_GridNumericColumn>
                         <R_GridCheckBoxColumn FieldName=@nameof(UploadOtherUnitDTO.Active) HeaderText="@_localizer["_Active"]" Enabled="false" Width="100px"></R_GridCheckBoxColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadOtherUnitDTO.NonActiveDate) HeaderText="@_localizer["_NonActiveDate"]" Enabled="false" Width="150px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadOtherUnitDTO.Valid) HeaderText="@_localizer["_Valid"]" Enabled="false" Width="100px"></R_GridTextColumn>

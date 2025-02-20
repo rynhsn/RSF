@@ -214,4 +214,14 @@ public partial class PMT03500UploadCutOffPopup : R_Page
                 throw new ArgumentOutOfRangeException();
         }
     }
+
+    private void RowRender(R_GridRowRenderEventArgs eventArgs)
+    {
+        var loData = (PMT03500UploadCutOffErrorValidateDTO)eventArgs.Data;
+
+        if (loData.ErrorFlag == "N")
+        {
+            eventArgs.RowClass = "errorDataLValidIsFalse";
+        }
+    }
 }

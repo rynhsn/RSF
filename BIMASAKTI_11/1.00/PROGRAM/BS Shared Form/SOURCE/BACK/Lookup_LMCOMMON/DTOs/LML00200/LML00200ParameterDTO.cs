@@ -9,6 +9,7 @@
         public string CTAXABLE_TYPE { get; set; } = "0";
         public string CACTIVE_TYPE { get; set; } = "0";
         public string CTAX_DATE { get; set; } = "";
+        public bool LACCRUAL { get; set; }
         public string CSEARCH_TEXT { get; set; } = "";
     }
 }

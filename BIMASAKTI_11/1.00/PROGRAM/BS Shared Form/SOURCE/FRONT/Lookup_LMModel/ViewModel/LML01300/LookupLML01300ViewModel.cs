@@ -25,6 +25,8 @@ namespace Lookup_PMModel.ViewModel.LML01300
             {
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParam.CPROPERTY_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CDEPT_CODE, poParam.CDEPT_CODE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CLEASE_MODE, poParam.CLEASE_MODE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTENANT_ID, poParam.CTENANT_ID);
 
                 var loResult = await _model.LML01300LOIAgreementListAsync();
                 GetList = new ObservableCollection<LML01300DTO>(loResult.Data);

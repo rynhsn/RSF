@@ -120,7 +120,7 @@
                     <R_ItemLayout col="4">
                         <R_StackLayout Row Class="justify-content-end">
                             <R_ItemLayout>
-                                <R_CheckBox @bind-Value="@llSingleUnit"
+                                <R_CheckBox @bind-Value="@loUnitTypeCategoryViewModel.Data.LSINGLE_UNIT"
                                             R_ConductorSource="@_conductorUnitTypeCategoryRef"
                                             Enabled="false">
                                 </R_CheckBox>
@@ -194,7 +194,7 @@
                         AllowAddNewRow="true"
                         AllowEditRow="true"
                         AllowDeleteRow="true"
-                        Height="155px"
+                        Height="200px"
                         R_After_Open_Grid_Lookup="Grid_R_After_Open_ChargeId_Lookup"
                         R_Before_Open_Grid_Lookup="Grid_R_Before_Open_ChargeId_Lookup"
                         R_Display="@Grid_DisplayCharge"

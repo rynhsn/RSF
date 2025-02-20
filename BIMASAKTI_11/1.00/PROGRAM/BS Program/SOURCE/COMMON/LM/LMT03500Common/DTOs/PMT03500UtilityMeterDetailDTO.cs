@@ -45,13 +45,17 @@ namespace PMT03500Common.DTOs
         public string CTAX_ID { get; set; }
         public string CTAX_NAME { get; set; }
         public string CMETER_NO { get; set; }
-        public int IMETER_START { get; set; }
-        public int IMETER_END { get; set; }
+        public decimal NMETER_START { get; set; }
+        public decimal NTO_METER_START { get; set; }
+        public decimal NMETER_END { get; set; }
 
-        public int IBLOCK1_START { get; set; }
-        public int IBLOCK2_START { get; set; }
-        public int IBLOCK1_END { get; set; }
-        public int IBLOCK2_END { get; set; }
+        public decimal NBLOCK1_START { get; set; }
+        public decimal NBLOCK2_START { get; set; }
+        
+        public decimal NTO_BLOCK1_START { get; set; }
+        public decimal NTO_BLOCK2_START { get; set; }
+        public decimal NBLOCK1_END { get; set; }
+        public decimal NBLOCK2_END { get; set; }
         public string CSTART_INV_PRD { get; set; }
         public string CYEAR_PERIOD { get; set; }
         public string CPERIOD_NO { get; set; }

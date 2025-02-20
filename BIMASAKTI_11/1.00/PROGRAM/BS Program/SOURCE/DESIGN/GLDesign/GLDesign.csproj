@@ -9,8 +9,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\COMMON\AP\APR00300Common\APR00300Common.csproj" />
+      <ProjectReference Include="..\..\COMMON\AP\APR00500Common\APR00500Common.csproj" />
       <ProjectReference Include="..\..\COMMON\GL\GLI00100Common\GLI00100Common.csproj" />
       <ProjectReference Include="..\..\COMMON\GL\GLR00100Common\GLR00100Common.csproj" />
+      <ProjectReference Include="..\..\COMMON\HD\HDR00200Common\HDR00200Common.csproj" />
+      <ProjectReference Include="..\..\COMMON\LM\PMR00400Common\PMR00400Common.csproj" />
+      <ProjectReference Include="..\..\COMMON\LM\PMR00460Common\PMR00460Common.csproj" />
+      <ProjectReference Include="..\..\COMMON\LM\PMR02600Common\PMR02600Common.csproj" />
     </ItemGroup>
 
     <ItemGroup>

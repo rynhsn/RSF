@@ -1,0 +1,397 @@
+﻿@inherits R_Page
+@using PMM01500COMMON
+@using PMM01500MODEL
+@inject R_ILocalizer<PMM01500FrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label Class="fw-bold" FontSize="11">@_localizer["_InvGrp"]</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@_InvPinaltyDate_viewModel.InvGrpCode"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_TextBox @bind-Value="@_InvPinaltyDate_viewModel.InvGrpName"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout>
+    
+    <R_GroupBox>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_StackLayout Row>
+                    <R_Grid @ref="@_gridRef"
+                            DataSource="@_InvPinaltyDate_viewModel.PinaltyDateGrid"
+                            R_ConductorSource="@_InvPinalty_conductorRef"
+                            Enabled="@(EnablePinaltyNormalMode)"
+                            R_GridType="@R_eGridType.Navigator"
+                            R_ServiceGetListRecord="@PinaltyDate_ServiceGetListRecord">
+                        <R_GridColumns>
+                            <R_GridDatePickerColumn FieldName="@nameof(PMM01520DTO.DPENALTY_DATE)" HeaderText="@_localizer["_Date"]"></R_GridDatePickerColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="10">
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>@(_localizer["_Date"])*</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_DatePicker @ref="@DateTime_Picker"
+                                      @bind-Value="@_InvPinaltyDate_viewModel.Data.DPENALTY_DATE"
+                                      R_ConductorSource="@_InvPinalty_conductorRef"
+                                      R_EnableAdd
+                                       />
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout col="4">
+                        <R_CheckBox @ref="@EnbalePinalty_CheckBox"
+                                    @bind-Value="@_InvPinaltyDate_viewModel.Data.LPENALTY"
+                                    R_ConductorSource="@_InvPinalty_conductorRef"
+                                    R_EnableAdd
+                                    R_EnableEdit
+                                    >
+                        </R_CheckBox>
+                        <R_Label>@_localizer["_EnablePinalty"]</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@(_localizer["_ChargesId"])*</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox @bind-Value="@_InvPinaltyDate_viewModel.Data.CPENALTY_UNIT_CHARGES_ID"
+                                   R_ConductorSource="@_InvPinalty_conductorRef"
+                                   OnLostFocus="@ChargesId_OnLostFocus"
+                                   MaxLength="20"
+                                   Enabled="@(_InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"></R_TextBox>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="4">
+                        <R_TextBox @bind-Value="@_InvPinaltyDate_viewModel.Data.CPENALTY_CHARGES_DESCR"
+                                   R_ConductorSource="@_InvPinalty_conductorRef"
+                                   Enabled="false"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="0">
+                        <R_Lookup R_ConductorSource="@_InvPinalty_conductorRef" R_Before_Open_Lookup="@Charges_OtherCharges_Before_Open_Lookup" R_After_Open_Lookup="@Charges_OtherCharges_After_Open_Lookup" Enabled="@(_InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)">...</R_Lookup>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@(_localizer["_AdditionalId"])*</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox @bind-Value="@_InvPinaltyDate_viewModel.Data.CPENALTY_ADD_ID"
+                                   R_ConductorSource="@_InvPinalty_conductorRef"
+                                   OnLostFocus="@PinaltyId_OnLostFocus"
+                                   MaxLength="20"
+                                   Enabled="@(_InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"></R_TextBox>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="4">
+                        <R_TextBox @bind-Value="@_InvPinaltyDate_viewModel.Data.CPENALTY_ADD_NAME"
+                                   R_ConductorSource="@_InvPinalty_conductorRef"
+                                   Enabled="false"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="0">
+                        <R_Lookup R_ConductorSource="@_InvPinalty_conductorRef" R_Before_Open_Lookup="@Pinalty_OtherCharges_Before_Open_Lookup" R_After_Open_Lookup="@Pinalty_OtherCharges_After_Open_Lookup" Enabled="@(_InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)">...</R_Lookup>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>@(_localizer["_PinaltyType"]) *</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 150px">
+                        <R_RadioGroup R_ConductorSource="@_InvPinalty_conductorRef"
+                                      Data="@_InvPinaltyDate_viewModel.RadioPinaltyType"
+                                      Value="@_InvPinaltyDate_viewModel.Data.CPENALTY_TYPE"
+                                      ValueField="@nameof(RadioButton.Id)"
+                                      TextField="@nameof(RadioButton.Text)"
+                                      Layout="R_eRadioGroupLayout.Vertical"
+                                      Enabled="@(_InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"
+                                       ValueChanged="@((string value) => Pinalty_RadioButtonOnChange(value))"></R_RadioGroup>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout col="11">
+                                <R_NumericTextBox @bind-Value="@_InvPinaltyDate_viewModel.Data.NPENALTY_TYPE_VALUE_MonthlyAmmount"
+                                                  R_ConductorSource="@_InvPinalty_conductorRef"
+                                                  TextAlignment="@R_eTextAlignment.Right"
+                                                  Arrows="false" Enabled="@(_InvPinaltyDate_viewModel.Data.CPENALTY_TYPE == "10" && _InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"></R_NumericTextBox>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout Style="width: 41.66666667%">
+                            </R_ItemLayout>
+                            <R_ItemLayout col="6">
+                                <R_NumericTextBox @bind-Value="@_InvPinaltyDate_viewModel.Data.NPENALTY_TYPE_VALUE_MonthlyPercentage"
+                                                  R_ConductorSource="@_InvPinalty_conductorRef"
+                                                  Min="0" Max="100"
+                                                  TextAlignment="@R_eTextAlignment.Right"
+                                                  Arrows="false" Enabled="@(_InvPinaltyDate_viewModel.Data.CPENALTY_TYPE == "11" && _InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"></R_NumericTextBox>
+                            </R_ItemLayout>
+                            <R_Label>%</R_Label>
+                        </R_StackLayout>
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout col="11">
+                                <R_NumericTextBox @bind-Value="@_InvPinaltyDate_viewModel.Data.NPENALTY_TYPE_VALUE_DailyAmmount"
+                                                  R_ConductorSource="@_InvPinalty_conductorRef"
+                                                  TextAlignment="@R_eTextAlignment.Right"
+                                                  Arrows="false" Enabled="@(_InvPinaltyDate_viewModel.Data.CPENALTY_TYPE == "20" && _InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"></R_NumericTextBox>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout Style="width: 41.66666667%">
+                            </R_ItemLayout>
+                            <R_ItemLayout col="6">
+                                <R_NumericTextBox @bind-Value="@_InvPinaltyDate_viewModel.Data.NPENALTY_TYPE_VALUE_DailyPercentage"
+                                                  R_ConductorSource="@_InvPinalty_conductorRef"
+                                                  Min="0" Max="100"
+                                                  TextAlignment="@R_eTextAlignment.Right"
+                                                  Arrows="false" Enabled="@(_InvPinaltyDate_viewModel.Data.CPENALTY_TYPE == "21" && _InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"></R_NumericTextBox>
+                            </R_ItemLayout>
+                            <R_Label>%</R_Label>
+                        </R_StackLayout>
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout col="11">
+                                <R_NumericTextBox @bind-Value="@_InvPinaltyDate_viewModel.Data.NPENALTY_TYPE_VALUE_OneTimeAmmount"
+                                                  R_ConductorSource="@_InvPinalty_conductorRef"
+                                                  TextAlignment="@R_eTextAlignment.Right"
+                                                  Arrows="false" Enabled="@(_InvPinaltyDate_viewModel.Data.CPENALTY_TYPE == "30" && _InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"></R_NumericTextBox>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout Style="width: 41.66666667%">
+                            </R_ItemLayout>
+                            <R_ItemLayout col="6">
+                                <R_NumericTextBox @bind-Value="@_InvPinaltyDate_viewModel.Data.NPENALTY_TYPE_VALUE_OneTimePercentage"
+                                                  R_ConductorSource="@_InvPinalty_conductorRef"
+                                                  Min="0" Max="100"
+                                                  TextAlignment="@R_eTextAlignment.Right"
+                                                  Arrows="false" Enabled="@(_InvPinaltyDate_viewModel.Data.CPENALTY_TYPE == "31" && _InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"></R_NumericTextBox>
+                            </R_ItemLayout>
+                            <R_Label>%</R_Label>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 399px">
+                        <R_StackLayout Row="true" Class="mb-2">
+                            <R_ItemLayout col="2">
+                                <R_Label></R_Label>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout Style="width: 6%">
+                                <R_Label></R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout >
+                                <R_Label>@(_localizer["_CalculationBaseOn"])</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="7">
+                                <R_RadioGroup Data="@_InvPinaltyDate_viewModel.RadioPinaltyTypeCalcBaseonMonth"
+                                              @bind-Value="@_InvPinaltyDate_viewModel.Data.CPENALTY_TYPE_CALC_BASEON_CalcBaseonMonth"
+                                              ValueField="@nameof(RadioButton.Id)"
+                                              TextField="@nameof(RadioButton.Text)"
+                                              R_ConductorSource="@_InvPinalty_conductorRef"
+                                              Enabled="@(_InvPinaltyDate_viewModel.Data.CPENALTY_TYPE == "11" && _InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"></R_RadioGroup>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row="true" Class="mb-2">
+                            <R_ItemLayout col="2">
+                                <R_Label></R_Label>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout Style="width: 6%">
+                                <R_Label></R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout >
+                                <R_Label>@(_localizer["_CalculationBaseOn"])</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="7">
+                                <R_RadioGroup Data="@_InvPinaltyDate_viewModel.RadioPinaltyTypeCalcBaseonDays"
+                                              @bind-Value="@_InvPinaltyDate_viewModel.Data.CPENALTY_TYPE_CALC_BASEON_CalcBaseonDays"
+                                              ValueField="@nameof(RadioButton.Id)"
+                                              TextField="@nameof(RadioButton.Text)"
+                                              R_ConductorSource="@_InvPinalty_conductorRef"
+                                              Enabled="@(_InvPinaltyDate_viewModel.Data.CPENALTY_TYPE == "21" && _InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"></R_RadioGroup>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@(_localizer["_RoundingMode"])*</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_ComboBox R_ConductorSource="@_InvPinalty_conductorRef"
+                                    Data="@_InvPinaltyDate_viewModel.RoundingModeList"
+                                    PopupMaxHeight="140px"
+                                    @bind-Value="_InvPinaltyDate_viewModel.Data.CROUNDING_MODE"
+                                    ValueField="@nameof(PMM01500UniversalDTO.CCODE)"
+                                    TextField="@nameof(PMM01500UniversalDTO.CDESCRIPTION)"
+                                    Enabled="@(_InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)">
+                        </R_ComboBox>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="2">
+                        <R_Label>@(_localizer["_RoundingUnit"])</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_ComboBox R_ConductorSource="@_InvPinalty_conductorRef"
+                                    Data="@_InvPinaltyDate_viewModel.RadioRounded"
+                                    PopupMaxHeight="140px"
+                                    @bind-Value="_InvPinaltyDate_viewModel.Data.IROUNDED"
+                                    ValueField="@nameof(RadioButtonInt.Id)"
+                                    TextField="@nameof(RadioButtonInt.Text)"
+                                    Enabled="@(_InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)">
+                        </R_ComboBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@(_localizer["_CutOfDateBy"])*</R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="8">
+                        <R_RadioGroup Data="@_InvPinaltyDate_viewModel.RadioCutOfDate"
+                                      @bind-Value="_InvPinaltyDate_viewModel.Data.CCUTOFDATE_BY"
+                                      ValueField="@nameof(RadioButton.Id)"
+                                      TextField="@nameof(RadioButton.Text)"
+                                      R_ConductorSource="@_InvPinalty_conductorRef"
+                                      Enabled="@(_InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)">
+                        </R_RadioGroup>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row><R_Label></R_Label></R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="6">
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="4">
+                                <R_Label>@(_localizer["_GracePriod"])</R_Label>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout col="4">
+                                <R_NumericTextBox @bind-Value="@_InvPinaltyDate_viewModel.Data.IGRACE_PERIOD"
+                                                  R_ConductorSource="@_InvPinalty_conductorRef"
+                                                  TextAlignment="@R_eTextAlignment.Right"
+                                                  Enabled="@(_InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"
+                                                  Arrows="false" ></R_NumericTextBox>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="3">
+                                <R_Label>@(_localizer["_Days"])</R_Label>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@(_localizer["_ExcludeSpesialDay"])</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_CheckBox R_ConductorSource="@_InvPinalty_conductorRef"
+                                    @bind-Value="@_InvPinaltyDate_viewModel.Data.LEXCLUDE_SPECIAL_DAY_HOLIDAY"
+                                    Enabled="@(_InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)">Holiday</R_CheckBox>
+                        <R_Label>@(_localizer["_Holiday"])</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_CheckBox R_ConductorSource="@_InvPinalty_conductorRef"
+                                    @bind-Value="@_InvPinaltyDate_viewModel.Data.LEXCLUDE_SPECIAL_DAY_SATURDAY"
+                                    Enabled="@(_InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"></R_CheckBox>
+                        <R_Label Class="ms-2">@(_localizer["_Saturday"])</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_CheckBox R_ConductorSource="@_InvPinalty_conductorRef"
+                                    @bind-Value="@_InvPinaltyDate_viewModel.Data.LEXCLUDE_SPECIAL_DAY_SUNDAY"
+                                    Enabled="@(_InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"></R_CheckBox>
+                        <R_Label Class="ms-2">@(_localizer["_Sunday"])</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row><R_Label></R_Label></R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_CheckBox R_ConductorSource="@_InvPinalty_conductorRef"
+                                    Value="@_InvPinaltyDate_viewModel.Data.LMIN_PENALTY_AMOUNT" ValueChanged="@((bool value) => Pinalty_OnCheckedMinAmmount(value))"
+                                    Enabled="@(_InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"></R_CheckBox>
+                        <R_Label>@(_localizer["_MinPinaltyAmount"])</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@_InvPinaltyDate_viewModel.Data.NMIN_PENALTY_AMOUNT"
+                                          R_ConductorSource="@_InvPinalty_conductorRef"
+                                          TextAlignment="@R_eTextAlignment.Right"
+                                          Arrows="false"
+                                          Enabled="@(_InvPinaltyDate_viewModel.Data.LMIN_PENALTY_AMOUNT && _InvPinaltyDate_viewModel.Data.LPENALTY && _InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal )"></R_NumericTextBox>
+                    </R_ItemLayout>
+                   
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_CheckBox R_ConductorSource="@_InvPinalty_conductorRef"
+                                    Value="@_InvPinaltyDate_viewModel.Data.LMAX_PENALTY_AMOUNT" ValueChanged="@((bool value) => Pinalty_OnCheckedMaxAmmount(value))"
+                                    Enabled="@(_InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"></R_CheckBox>
+                        <R_Label>@(_localizer["_MaxPinaltyAmount"])</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@_InvPinaltyDate_viewModel.Data.NMAX_PENALTY_AMOUNT"
+                                          R_ConductorSource="@_InvPinalty_conductorRef"
+                                          Arrows="false"
+                                          TextAlignment="@R_eTextAlignment.Right"
+                                          Enabled="@(_InvPinaltyDate_viewModel.Data.LMAX_PENALTY_AMOUNT && _InvPinaltyDate_viewModel.Data.LPENALTY && _InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal )"></R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_GroupBox>
+</R_StackLayout>
+
+
+<R_StackLayout Row="true" Class="justify-content-between mt-2">
+    <R_ItemLayout>
+        <R_AddButton R_Conductor="@_InvPinalty_conductorRef" Enabled="@(EnableHasData && EnablePinaltyNormalMode)"></R_AddButton>
+        <R_EditButton R_Conductor="@_InvPinalty_conductorRef" Enabled="@(EnableHasData && EnablePinaltyNormalMode)"></R_EditButton>
+        <R_DeleteButton R_Conductor="@_InvPinalty_conductorRef" Enabled="@(EnableHasData && EnablePinaltyNormalMode)"></R_DeleteButton>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CancelButton R_Conductor="@_InvPinalty_conductorRef"></R_CancelButton>
+        <R_SaveButton R_Conductor="@_InvPinalty_conductorRef"></R_SaveButton>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_Conductor @ref="@_InvPinalty_conductorRef"
+             R_ViewModel="@_InvPinaltyDate_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Pinalty_ServiceGetRecord"
+             R_Validation="@Pinalty_Validation"
+             R_AfterAdd="@Pinalty_AfterAdd"
+             R_Saving="@Pinalty_Saving"
+             R_ServiceSave="@Pinalty_ServiceSave"
+             R_SetOther="@Grid_R_SetOther"
+             R_Display="@Pinalty_Display"
+             R_BeforeEdit="@Pinalty_BeforeEdit"
+             R_ServiceDelete="@Pinalty_ServiceDelete"
+             >
+</R_Conductor>
+

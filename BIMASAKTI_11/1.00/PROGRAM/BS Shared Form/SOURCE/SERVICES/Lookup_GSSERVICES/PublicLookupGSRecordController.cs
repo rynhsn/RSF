@@ -974,5 +974,215 @@ namespace Lookup_GSSERVICES
             _Logger.LogInfo("End GSL02800GetOtherUnit");
             return loRtn;
         }
+
+        [HttpPost]
+        public GSLGenericRecord<GSL02510DTO> GSL02510GetCashBank(GSL02510ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GSL02510GetCashBank");
+            var loEx = new R_Exception();
+            GSLGenericRecord<GSL02510DTO> loRtn = new();
+            _Logger.LogInfo("Start GSL02510GetCashBank");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLOtherUnit");
+                var loResult = loCls.GetALLCashBank(poEntity);
+
+                _Logger.LogInfo("Filter Search by text GSL02510GetCashBank");
+                loRtn.Data = loResult.Find(x => x.CCB_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo("End GSL02510GetCashBank");
+            return loRtn;
+        }
+
+        [HttpPost]
+        public GSLGenericRecord<GSL02900DTO> GSL02900GetSupplier(GSL02900ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GSL02900GetSupplier");
+            var loEx = new R_Exception();
+            GSLGenericRecord<GSL02900DTO> loRtn = new();
+            _Logger.LogInfo("Start GSL02900GetSupplier");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLSupplier");
+                var loResult = loCls.GetALLSupplier(poEntity);
+
+                _Logger.LogInfo("Filter Search by text GSL02900GetSupplier");
+                loRtn.Data = loResult.Find(x => x.CSUPPLIER_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo("End GSL02900GetSupplier");
+            return loRtn;
+        }
+
+        [HttpPost]
+        public GSLGenericRecord<GSL02910DTO> GSL02910GetSupplierInfo(GSL02910ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GSL02910GetSupplierInfo");
+            var loEx = new R_Exception();
+            GSLGenericRecord<GSL02910DTO> loRtn = new();
+            _Logger.LogInfo("Start GSL02910GetSupplierInfo");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLSupplierInfo");
+                var loResult = loCls.GetALLSupplierInfo(poEntity);
+
+                _Logger.LogInfo("Filter Search by text GSL02910GetSupplierInfo");
+                loRtn.Data = loResult.Find(x => x.CSEQ_NO.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo("End GSL02910GetSupplierInfo");
+            return loRtn;
+        }
+
+        [HttpPost]
+        public GSLGenericRecord<GSL03000DTO> GSL03000GetProduct(GSL03000ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03000GetProduct");
+            var loEx = new R_Exception();
+            GSLGenericRecord<GSL03000DTO> loRtn = new();
+            _Logger.LogInfo("Start GSL03000GetProduct");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLProduct");
+                var loResult = loCls.GetALLProduct(poEntity);
+
+                _Logger.LogInfo("Filter Search by text GSL03000GetProduct");
+                loRtn.Data = loResult.Find(x => x.CPRODUCT_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo("End GSL03000GetProduct");
+            return loRtn;
+        }
+
+        [HttpPost]
+        public GSLGenericRecord<GSL03100DTO> GSL03100GetExpenditure(GSL03100ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03100GetExpenditure");
+            var loEx = new R_Exception();
+            GSLGenericRecord<GSL03100DTO> loRtn = new();
+            _Logger.LogInfo("Start GSL03100GetExpenditure");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLExpenditure");
+                var loResult = loCls.GetALLExpenditure(poEntity);
+
+                _Logger.LogInfo("Filter Search by text GSL03100GetExpenditure");
+                loRtn.Data = loResult.Find(x => x.CEXPENDITURE_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo("End GSL03100GetExpenditure");
+            return loRtn;
+        }
+
+        [HttpPost]
+        public GSLGenericRecord<GSL03200DTO> GSL03200GetProductAllocation(GSL03200ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03200GetProductAllocation");
+            var loEx = new R_Exception();
+            GSLGenericRecord<GSL03200DTO> loRtn = new();
+            _Logger.LogInfo("Start GSL03200GetProductAllocation");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLProductAllocation");
+                var loResult = loCls.GetALLProductAllocation(poEntity);
+
+                _Logger.LogInfo("Filter Search by text GSL03200GetProductAllocation");
+                loRtn.Data = loResult.Find(x => x.CALLOC_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo("End GSL03200GetProductAllocation");
+            return loRtn;
+        }
+
+        [HttpPost]
+        public GSLGenericRecord<GSL03300DTO> GSL03300GetTaxCharges(GSL03300ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03300GetTaxCharges");
+            var loEx = new R_Exception();
+            GSLGenericRecord<GSL03300DTO> loRtn = new();
+            _Logger.LogInfo("Start GSL03300GetTaxCharges");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLTaxCharges");
+                var loResult = loCls.GetALLTaxCharges(poEntity);
+
+                _Logger.LogInfo("Filter Search by text GSL03300GetTaxCharges");
+                loRtn.Data = loResult.Find(x => x.CREF_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo("End GSL03300GetTaxCharges");
+            return loRtn;
+        }
     }
 }

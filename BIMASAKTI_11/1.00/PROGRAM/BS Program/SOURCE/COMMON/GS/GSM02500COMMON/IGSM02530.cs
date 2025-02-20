@@ -14,5 +14,6 @@ namespace GSM02500COMMON
         IAsyncEnumerable<GSM02530DTO> GetUnitInfoList();
         GSM02500ActiveInactiveResultDTO RSP_GS_ACTIVE_INACTIVE_BUILDING_UNITMethod(GSM02500ActiveInactiveParameterDTO poParam);
         TemplateUnitDTO DownloadTemplateUnit();
+        IAsyncEnumerable<GetStrataLeaseDTO> GetStrataLeaseList();
     }
 }

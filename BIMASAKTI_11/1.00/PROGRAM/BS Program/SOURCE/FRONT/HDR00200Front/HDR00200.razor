@@ -1,0 +1,308 @@
+﻿@page "/HDR00200"
+@using HDR00200Common.DTOs
+@using HDR00200FrontResources
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout Class="me-1">
+        <R_Label>@_localizer["Property"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox @ref="_comboPropertyRef"
+                    Data="@_viewModel.PropertyList"
+                    Value="@_viewModel.ReportParam.CPROPERTY_ID"
+                    ValueField="@nameof(HDR00200PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(HDR00200PropertyDTO.CPROPERTY_NAME)"
+                    Enabled
+                    ValueChanged="@((string value) => ValueChangedProperty(value))"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+<R_ItemLayout col="7">
+    <R_StackLayout>
+        <R_ItemLayout>
+            <R_RadioGroup Data="@_viewModel.ReportTypeCare"
+                          @bind-Value="_viewModel.ReportParam.CREPORT_TYPE"
+                          ValueField="Key"
+                          TextField="Value"
+                          Enabled
+                          OnChanged="OnChangedTypeCare"/>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_GroupBox Class="p-2" Title="@_localizer["Category"]" Enabled="@(_viewModel.ReportParam.CREPORT_TYPE == "C")">
+                <R_StackLayout Row Spacing="0">
+                    <R_ItemLayout col="3">
+                        <R_CheckBox @bind-Value="_viewModel.ReportParam.LCOMPLAINT"
+                                    Enabled="true"/>
+                        <R_Label>@_localizer["Complaint"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_CheckBox @bind-Value="_viewModel.ReportParam.LREQUEST"
+                                    Enabled="true"/>
+                        <R_Label>@_localizer["Request"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_CheckBox @bind-Value="_viewModel.ReportParam.LINQUIRY"
+                                    Enabled="true"/>
+                        <R_Label>@_localizer["Inquiry"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_CheckBox @bind-Value="_viewModel.ReportParam.LHANDOVER"
+                                    Enabled="true"/>
+                        <R_Label>@_localizer["Handover"]</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_GroupBox>
+        </R_ItemLayout>
+
+        <R_ItemLayout>
+            <R_GroupBox Class="p-2" Title="@_localizer["Area"]" Enabled="@(_viewModel.ReportParam.CREPORT_TYPE == "C")">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_RadioGroup Data="@_viewModel.CodeList01"
+                                      @bind-Value="_viewModel.ReportParam.CAREA"
+                                      ValueField="@nameof(HDR00200CodeDTO.CCODE)"
+                                      TextField="@nameof(HDR00200CodeDTO.CNAME)"
+                                      Enabled/>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="9">
+                        <R_GroupBox Class="p-2" Title="@_localizer["Building"]" Enabled="@(_viewModel.ReportParam.CAREA == "01")">
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="1">
+                                    <R_Label>@_localizer["From"]</R_Label>
+                                </R_ItemLayout>
+
+
+                                <R_ItemLayout col="3">
+                                    <R_TextBox @bind-Value="@_viewModel.ReportParam.CFROM_BUILDING_ID"
+                                               OnLostFocus="OnLostFocusFromBuilding"
+                                               MaxLength="20"
+                                               Enabled/>
+                                </R_ItemLayout>
+
+                                <R_ItemLayout>
+                                    <R_Lookup R_Before_Open_Lookup="BeforeLookupFromBuilding"
+                                              R_After_Open_Lookup="AfterLookupFromBuilding"
+                                              Enabled="true">
+                                        ...
+                                    </R_Lookup>
+                                </R_ItemLayout>
+
+                                <R_ItemLayout col="7">
+                                    <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_BUILDING_NAME"
+                                               Enabled="false"/>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="1">
+                                    <R_Label>@_localizer["To"]</R_Label>
+                                </R_ItemLayout>
+
+
+                                <R_ItemLayout col="3">
+                                    <R_TextBox @bind-Value="@_viewModel.ReportParam.CTO_BUILDING_ID"
+                                               OnLostFocus="OnLostFocusToBuilding"
+                                               MaxLength="20"
+                                               Enabled/>
+                                </R_ItemLayout>
+
+                                <R_ItemLayout>
+                                    <R_Lookup R_Before_Open_Lookup="BeforeLookupToBuilding"
+                                              R_After_Open_Lookup="AfterLookupToBuilding"
+                                              Enabled="true">
+                                        ...
+                                    </R_Lookup>
+                                </R_ItemLayout>
+
+                                <R_ItemLayout col="7">
+                                    <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_BUILDING_NAME"
+                                               Enabled="false"/>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_GroupBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout>
+                    <R_ItemLayout>
+                        <R_RadioGroup Data="@_viewModel.CodeList02"
+                                      @bind-Value="_viewModel.ReportParam.CAREA"
+                                      ValueField="@nameof(HDR00200CodeDTO.CCODE)"
+                                      TextField="@nameof(HDR00200CodeDTO.CNAME)"
+                                      Enabled/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_GroupBox>
+        </R_ItemLayout>
+
+        <R_ItemLayout Class="mt-5">
+            <R_RadioGroup Data="@_viewModel.ReportTypeMaintenance"
+                          @bind-Value="_viewModel.ReportParam.CREPORT_TYPE"
+                          ValueField="Key"
+                          TextField="Value"
+                          Enabled/>
+        </R_ItemLayout>
+        <R_GroupBox Title="@_localizer["Department"]" Class="p-2" Enabled="@(_viewModel.ReportParam.CREPORT_TYPE == "M")">
+            <R_StackLayout Row>
+                <R_ItemLayout col="1">
+                    <R_Label>@_localizer["From"]</R_Label>
+                </R_ItemLayout>
+
+
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModel.ReportParam.CFROM_DEPT_CODE"
+                               OnLostFocus="OnLostFocusFromDept"
+                               MaxLength="20"
+                               Enabled/>
+                </R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_Lookup R_Before_Open_Lookup="BeforeLookupFromDept"
+                              R_After_Open_Lookup="AfterLookupFromDept"
+                              Enabled="true">
+                        ...
+                    </R_Lookup>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="7">
+                    <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_DEPT_NAME"
+                               Enabled="false"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="1">
+                    <R_Label>@_localizer["To"]</R_Label>
+                </R_ItemLayout>
+
+
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModel.ReportParam.CTO_DEPT_CODE"
+                               OnLostFocus="OnLostFocusToDept"
+                               MaxLength="20"
+                               Enabled/>
+                </R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_Lookup R_Before_Open_Lookup="BeforeLookupToDept"
+                              R_After_Open_Lookup="AfterLookupToDept"
+                              Enabled="true">
+                        ...
+                    </R_Lookup>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="7">
+                    <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_DEPT_NAME"
+                               Enabled="false"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_GroupBox>
+    </R_StackLayout>
+</R_ItemLayout>
+
+<R_ItemLayout Class="border-start mx-3"/>
+
+<R_ItemLayout col="4">
+    <R_StackLayout>
+        <R_ItemLayout>
+
+            <R_GroupBox Title="@_localizer["Period"]" Class="p-2">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["From"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="10">
+                        <R_DatePicker @bind-Value="_viewModel.ReportParam.DFROM_PERIOD" Enabled="true"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["To"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="10">
+                        <R_DatePicker @bind-Value="_viewModel.ReportParam.DTO_PERIOD" Enabled="true"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_GroupBox>
+        </R_ItemLayout>
+
+        <R_ItemLayout>
+            <R_GroupBox Title="@_localizer["Status"]" Class="p-2">
+                <R_StackLayout>
+                    <R_ItemLayout col="10">
+                        <R_CheckBox @bind-Value="_viewModel.ReportParam.LOPEN"
+                                    Enabled="true"/>
+                        <R_Label>@_localizer["Open"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="10">
+                        <R_CheckBox @bind-Value="_viewModel.ReportParam.LSUBMITTED"
+                                    Enabled="true"/>
+                        <R_Label>@_localizer["Submitted"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="10">
+                        <R_CheckBox @bind-Value="_viewModel.ReportParam.LASSIGNED"
+                                    Enabled="true"/>
+                        <R_Label>@_localizer["Assigned"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="10">
+                        <R_CheckBox @bind-Value="_viewModel.ReportParam.LON_PROGRESS"
+                                    Enabled="true"/>
+                        <R_Label>@_localizer["OnProgress"]</R_Label>
+                    </R_ItemLayout>
+                    @* Solved *@
+                    <R_ItemLayout col="10">
+                        <R_CheckBox @bind-Value="_viewModel.ReportParam.LSOLVED"
+                                    Enabled="true"/>
+                        <R_Label>@_localizer["Solved"]</R_Label>
+                    </R_ItemLayout>
+                    @* Completed *@
+                    <R_ItemLayout col="10">
+                        <R_CheckBox @bind-Value="_viewModel.ReportParam.LCOMPLETED"
+                                    Enabled="true"/>
+                        <R_Label>@_localizer["Completed"]</R_Label>
+                    </R_ItemLayout>
+                    @* Confirmed *@
+                    <R_ItemLayout col="10">
+                        <R_CheckBox @bind-Value="_viewModel.ReportParam.LCONFIRMED"
+                                    Enabled="true"/>
+                        <R_Label>@_localizer["Confirmed"]</R_Label>
+                    </R_ItemLayout>
+                    @* Closed *@
+                    <R_ItemLayout col="10">
+                        <R_CheckBox @bind-Value="_viewModel.ReportParam.LCLOSED"
+                                    Enabled="true"/>
+                        <R_Label>@_localizer["Closed"]</R_Label>
+                    </R_ItemLayout>
+                    @* Cancelled *@
+                    <R_ItemLayout col="10">
+                        <R_CheckBox @bind-Value="_viewModel.ReportParam.LCANCELLED"
+                                    Enabled="true"/>
+                        <R_Label>@_localizer["Cancelled"]</R_Label>
+                    </R_ItemLayout>
+                    @* Terminated *@
+                    <R_ItemLayout col="10">
+                        <R_CheckBox @bind-Value="_viewModel.ReportParam.LTERMINATED"
+                                    Enabled="true"/>
+                        <R_Label>@_localizer["Terminated"]</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_GroupBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Class="border-top my-3"/>
+
+<R_StackLayout Row>
+    <R_ItemLayout>
+        <R_Button OnClick="OnClickPrint">@_localizer["Print"]</R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Popup R_Before_Open_Popup="BeforeOpenPopupSaveAs">@_localizer["SaveAs"]</R_Popup>
+    </R_ItemLayout>
+</R_StackLayout>

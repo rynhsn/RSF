@@ -1,5 +1,6 @@
 2551	= Error process, please contact your administrator!
 2552	= Duplicate Unit Id!
 2553	= Cannot Delete, Unit already in used!
+2554	= Cannot Edit, Unit already in used!
 
 

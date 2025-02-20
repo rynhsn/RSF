@@ -21,5 +21,15 @@ namespace GSM02500COMMON.DTOs.GSM02541
         public DateTime? DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; } = "";
         public DateTime? DCREATE_DATE { get; set; }
+
+        //CR18
+
+        public string COTHER_UNIT_VIEW_ID { get; set; }
+        public string COTHER_UNIT_VIEW_NAME { get; set; }
+        public string CLEASE_STATUS { get; set; }
+        public decimal NGROSS_AREA_SIZE { get; set; }
+        public decimal NACTUAL_AREA_SIZE { get; set; }
+        public decimal NNET_AREA_SIZE { get; set; }
+        public string CUOM { get; set; }
     }
 }

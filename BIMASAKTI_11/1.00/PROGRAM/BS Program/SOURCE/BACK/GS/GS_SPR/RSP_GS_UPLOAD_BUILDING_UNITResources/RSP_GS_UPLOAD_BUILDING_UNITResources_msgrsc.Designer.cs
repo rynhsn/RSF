@@ -61,6 +61,15 @@ namespace RSP_GS_UPLOAD_BUILDING_UNITResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Floor Id can not be empty.
+        /// </summary>
+        internal static string EMPTY_FLOOR_ID {
+            get {
+                return ResourceManager.GetString("EMPTY_FLOOR_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If Active Flag = 0, Non Active Date can not be empty.
         /// </summary>
         internal static string EMPTY_NONACTIVE_DATE {
@@ -88,6 +97,15 @@ namespace RSP_GS_UPLOAD_BUILDING_UNITResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Floor Id is bigger than 20 Character.
+        /// </summary>
+        internal static string EXCESS_FLOOR_ID {
+            get {
+                return ResourceManager.GetString("EXCESS_FLOOR_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unit Id is bigger than 20 Character.
         /// </summary>
         internal static string EXCESS_UNIT_ID {
@@ -111,6 +129,15 @@ namespace RSP_GS_UPLOAD_BUILDING_UNITResources {
         internal static string INVALID_ACTIVE_FLAG {
             get {
                 return ResourceManager.GetString("INVALID_ACTIVE_FLAG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Floor Id.
+        /// </summary>
+        internal static string INVALID_FLOOR_ID {
+            get {
+                return ResourceManager.GetString("INVALID_FLOOR_ID", resourceCulture);
             }
         }
         

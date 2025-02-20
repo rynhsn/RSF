@@ -1193,6 +1193,42 @@ namespace Lookup_GSModel
             return loResult;
 
         }
+
+        #endregion
+
+        #region GSL02500
+        public IAsyncEnumerable<GSL02510DTO> GSL02510GetCashBankList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL02510DTO>> GSL02510GetCashBankListAsync(GSL02510ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL02510DTO> loResult = null;
+
+            try
+            {
+                //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCB_TYPE, string.IsNullOrWhiteSpace(poParameter.CCB_TYPE) ? "" : poParameter.CCB_TYPE);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02510DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL02510GetCashBankList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
         #endregion
 
         #region GSL02600
@@ -1297,6 +1333,224 @@ namespace Lookup_GSModel
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02800DTO>(
                     _RequestServiceEndPoint,
                     nameof(IPublicLookup.GSL02800GetOtherUnitMasterList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+        #endregion
+
+        #region GSL02900
+        public IAsyncEnumerable<GSL02900DTO> GSL02900GetSupplierList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL02900DTO>> GSL02900GetSupplierListAsync(GSL02900ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL02900DTO> loResult = null;
+
+            try
+            {
+                //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CFILTER_SP, string.IsNullOrWhiteSpace(poParameter.CFILTER_SP) ? "" : poParameter.CFILTER_SP);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02900DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL02900GetSupplierList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+        #endregion
+
+        #region GSL02910
+        public IAsyncEnumerable<GSL02910DTO> GSL02910GetSupplierInfoList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL02910DTO>> GSL02910GetSupplierInfoListAsync(GSL02910ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL02910DTO> loResult = null;
+
+            try
+            {
+                //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CSUPPLIER_ID, poParameter.CSUPPLIER_ID);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02910DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL02910GetSupplierInfoList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+        #endregion
+
+        #region GSL03000
+        public IAsyncEnumerable<GSL03000DTO> GSL03000GetProductList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL03000DTO>> GSL03000GetProductListAsync(GSL03000ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL03000DTO> loResult = null;
+
+            try
+            {
+                //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCATEGORY_ID, string.IsNullOrWhiteSpace(poParameter.CCATEGORY_ID) ? "" : poParameter.CCATEGORY_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTAXABLE_TYPE, string.IsNullOrWhiteSpace(poParameter.CTAXABLE_TYPE) ? "" : poParameter.CTAXABLE_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CACTIVE_TYPE, string.IsNullOrWhiteSpace(poParameter.CACTIVE_TYPE) ? "" : poParameter.CACTIVE_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTAX_DATE, string.IsNullOrWhiteSpace(poParameter.CTAX_DATE) ? "" : poParameter.CTAX_DATE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CBUYSELL, poParameter.CBUYSELL);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL03000DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL03000GetProductList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+        #endregion
+
+        #region GSL03100
+        public IAsyncEnumerable<GSL03100DTO> GSL03100GetExpenditureList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL03100DTO>> GSL03100GetExpenditureListAsync(GSL03100ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL03100DTO> loResult = null;
+
+            try
+            {
+                //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCATEGORY_ID, string.IsNullOrWhiteSpace(poParameter.CCATEGORY_ID) ? "" : poParameter.CCATEGORY_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTAXABLE_TYPE, string.IsNullOrWhiteSpace(poParameter.CTAXABLE_TYPE) ? "" : poParameter.CTAXABLE_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CACTIVE_TYPE, string.IsNullOrWhiteSpace(poParameter.CACTIVE_TYPE) ? "" : poParameter.CACTIVE_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTAX_DATE, string.IsNullOrWhiteSpace(poParameter.CTAX_DATE) ? "" : poParameter.CTAX_DATE);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL03100DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL03100GetExpenditureList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+        #endregion
+
+        #region GSL03200
+        public IAsyncEnumerable<GSL03200DTO> GSL03200GetProductAllocationList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL03200DTO>> GSL03200GetProductAllocationListAsync(GSL03200ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL03200DTO> loResult = null;
+
+            try
+            {
+                //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CACTIVE_TYPE, string.IsNullOrWhiteSpace(poParameter.CACTIVE_TYPE) ? "" : poParameter.CACTIVE_TYPE);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL03200DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL03200GetProductAllocationList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+        #endregion
+
+        #region GSL03300
+        public IAsyncEnumerable<GSL03300DTO> GSL03300GetTaxChargesList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL03300DTO>> GSL03300GetTaxChargesListAsync(GSL03300ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL03300DTO> loResult = null;
+
+            try
+            {
+                //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CREF_CODE, string.IsNullOrWhiteSpace(poParameter.CREF_CODE) ? "" : poParameter.CREF_CODE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CREF_TYPE, string.IsNullOrWhiteSpace(poParameter.CREF_TYPE) ? "" : poParameter.CREF_TYPE);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL03300DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL03300GetTaxChargesList),
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);

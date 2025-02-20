@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="N01" xml:space="preserve">
+    <value>Please input keyword to search!</value>
+  </data>
+  <data name="N02" xml:space="preserve">
+    <value>Minimum search keyword is 3 characters!</value>
+  </data>
+  <data name="N03" xml:space="preserve">
+    <value>No data found!</value>
+  </data>
+  <data name="V01" xml:space="preserve">
+    <value>Please select Category!</value>
+  </data>
   <data name="_AccountName" xml:space="preserve">
     <value>Account Name</value>
   </data>
@@ -131,6 +143,21 @@
   </data>
   <data name="_AdditionalCharges" xml:space="preserve">
     <value>Additional Charges</value>
+  </data>
+  <data name="_Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="_AliasName" xml:space="preserve">
+    <value>Alias Name</value>
+  </data>
+  <data name="_AllCategories" xml:space="preserve">
+    <value>All Categories</value>
+  </data>
+  <data name="_AllocationID" xml:space="preserve">
+    <value>Allocation ID</value>
+  </data>
+  <data name="_AllocationName" xml:space="preserve">
+    <value>Allocation Name</value>
   </data>
   <data name="_Bank" xml:space="preserve">
     <value>Bank</value>
@@ -204,6 +231,9 @@
   <data name="_Category" xml:space="preserve">
     <value>Category</value>
   </data>
+  <data name="_CBwithAccount" xml:space="preserve">
+    <value>CB with Account</value>
+  </data>
   <data name="_Center" xml:space="preserve">
     <value>Center</value>
   </data>
@@ -221,6 +251,9 @@
   </data>
   <data name="_ChargesName" xml:space="preserve">
     <value>Charges Name</value>
+  </data>
+  <data name="_City" xml:space="preserve">
+    <value>City</value>
   </data>
   <data name="_COA" xml:space="preserve">
     <value>COA</value>
@@ -273,6 +306,9 @@
   <data name="_DeptCode" xml:space="preserve">
     <value>Department Code</value>
   </data>
+  <data name="_DeptMode" xml:space="preserve">
+    <value>Dept. Mode</value>
+  </data>
   <data name="_DeptName" xml:space="preserve">
     <value>Department Name</value>
   </data>
@@ -284,6 +320,15 @@
   </data>
   <data name="_ErrLookup01" xml:space="preserve">
     <value>Not found data by search text!!</value>
+  </data>
+  <data name="_ExpenditureID" xml:space="preserve">
+    <value>Expenditure ID</value>
+  </data>
+  <data name="_ExpenditureLookup" xml:space="preserve">
+    <value>Expenditure Lookup</value>
+  </data>
+  <data name="_ExpenditureName" xml:space="preserve">
+    <value>Expenditure Name</value>
   </data>
   <data name="_Filter" xml:space="preserve">
     <value>Filter</value>
@@ -375,6 +420,18 @@
   <data name="_PaymentTerm" xml:space="preserve">
     <value>Payment Term</value>
   </data>
+  <data name="_ProductAllocationLookup" xml:space="preserve">
+    <value>Product Allocation Lookup</value>
+  </data>
+  <data name="_ProductID" xml:space="preserve">
+    <value>Product ID</value>
+  </data>
+  <data name="_ProductLookup" xml:space="preserve">
+    <value>Product Lookup</value>
+  </data>
+  <data name="_ProductName" xml:space="preserve">
+    <value>Product Name</value>
+  </data>
   <data name="_RateDate" xml:space="preserve">
     <value>Rate Date</value>
   </data>
@@ -387,6 +444,9 @@
   <data name="_RateTypeName" xml:space="preserve">
     <value>Rate Type Name</value>
   </data>
+  <data name="_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
   <data name="_RoundMode" xml:space="preserve">
     <value>Rounding Mode</value>
   </data>
@@ -396,17 +456,47 @@
   <data name="_SalesTax" xml:space="preserve">
     <value>Sales Tax</value>
   </data>
+  <data name="_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="_SelectedCategory" xml:space="preserve">
+    <value>Selected Category</value>
+  </data>
   <data name="_Seq" xml:space="preserve">
     <value>Sequence</value>
+  </data>
+  <data name="_SeqNo" xml:space="preserve">
+    <value>Seq. No.</value>
+  </data>
+  <data name="_ShowAll" xml:space="preserve">
+    <value>Show All</value>
   </data>
   <data name="_Status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="_SupplierID" xml:space="preserve">
+    <value>Supplier ID</value>
+  </data>
+  <data name="_SupplierInfoLookup" xml:space="preserve">
+    <value>Supplier Info Lookup</value>
+  </data>
+  <data name="_SupplierLookup" xml:space="preserve">
+    <value>Supplier Lookup</value>
+  </data>
+  <data name="_SupplierName" xml:space="preserve">
+    <value>Supplier Name</value>
+  </data>
   <data name="_Symbol" xml:space="preserve">
     <value>Symbol</value>
   </data>
+  <data name="_Taxable" xml:space="preserve">
+    <value>Taxable</value>
+  </data>
   <data name="_TaxByDate" xml:space="preserve">
     <value>Tax By Date</value>
+  </data>
+  <data name="_TaxCharges" xml:space="preserve">
+    <value>Tax Charges</value>
   </data>
   <data name="_TaxDate" xml:space="preserve">
     <value>Tax Date</value>
@@ -437,6 +527,12 @@
   </data>
   <data name="_TOPName" xml:space="preserve">
     <value>Term Of Payment Name</value>
+  </data>
+  <data name="_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="_Unit" xml:space="preserve">
+    <value>Unit</value>
   </data>
   <data name="_UnitCategory" xml:space="preserve">
     <value>Unit Category</value>

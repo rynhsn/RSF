@@ -53,12 +53,12 @@ public partial class PMT03500ChangeMeterPopup : R_Page
 
                 if (_viewModel.Entity.IMETER_MAX_RESET > 0)
                 {
-                    if (_viewModel.Entity.IBLOCK1_START > _viewModel.Entity.IMETER_MAX_RESET)
+                    if (_viewModel.Entity.NTO_BLOCK1_START > _viewModel.Entity.IMETER_MAX_RESET)
                     {
                         loEx.Add("Error", $"Block 1 Start cannot be greater than Meter Max Reset: {_viewModel.Entity.IMETER_MAX_RESET}");
                     }
 
-                    if (_viewModel.Entity.IBLOCK2_START > _viewModel.Entity.IMETER_MAX_RESET)
+                    if (_viewModel.Entity.NTO_BLOCK2_START > _viewModel.Entity.IMETER_MAX_RESET)
                     {
                         loEx.Add("Error", $"Block 2 Start cannot be greater than Meter Max Reset: {_viewModel.Entity.IMETER_MAX_RESET}");
                     }
@@ -67,20 +67,20 @@ public partial class PMT03500ChangeMeterPopup : R_Page
                 }
 
                 
-                if (_viewModel.Entity.IBLOCK1_END < 0)
+                if (_viewModel.Entity.NBLOCK1_END < 0)
                     loEx.Add("Error", "Please fill in the Block 1 End");
-                if (_viewModel.Entity.IBLOCK2_END < 0)
+                if (_viewModel.Entity.NBLOCK2_END < 0)
                     loEx.Add("Error", "Please fill in the Block 2 End");
-                if (_viewModel.Entity.IBLOCK1_START < 0)
+                if (_viewModel.Entity.NTO_BLOCK1_START < 0)
                     loEx.Add("Error", "Please fill in the Block 1 Start");
-                if (_viewModel.Entity.IBLOCK2_START < 0)
+                if (_viewModel.Entity.NTO_BLOCK2_START < 0)
                     loEx.Add("Error", "Please fill in the Block 2 Start");
             }
             else if (_viewModel.UtilityType == EPMT03500UtilityUsageType.WG)
             {
                 if (_viewModel.Entity.IMETER_MAX_RESET > 0)
                 {
-                    if (_viewModel.Entity.IMETER_START > _viewModel.Entity.IMETER_MAX_RESET)
+                    if (_viewModel.Entity.NTO_METER_START > _viewModel.Entity.IMETER_MAX_RESET)
                     {
                         loEx.Add("Error", $"Meter Start cannot be greater than Meter Max Reset: {_viewModel.Entity.IMETER_MAX_RESET}");
                     }
@@ -88,9 +88,9 @@ public partial class PMT03500ChangeMeterPopup : R_Page
                     return;
                 }
                 
-                if (_viewModel.Entity.IMETER_END < 0)
+                if (_viewModel.Entity.NMETER_END < 0)
                     loEx.Add("Error", "Please fill in the Meter End");
-                if (_viewModel.Entity.IMETER_START < 0)
+                if (_viewModel.Entity.NTO_METER_START < 0)
                     loEx.Add("Error", "Please fill in the Meter Start");
             }
             

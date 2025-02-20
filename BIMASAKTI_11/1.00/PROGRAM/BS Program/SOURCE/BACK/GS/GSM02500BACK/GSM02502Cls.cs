@@ -53,7 +53,7 @@ namespace GSM02500BACK
 
                 loDb.R_AddCommandParameter(loCmd, "@CLOGIN_COMPANY_ID", DbType.String, 50, poEntity.CLOGIN_COMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CLOGIN_USER_ID", DbType.String, 50, poEntity.CLOGIN_USER_ID);
-                loDb.R_AddCommandParameter(loCmd, "@LSINGLE_UNIT", DbType.Boolean, 50, true);
+                loDb.R_AddCommandParameter(loCmd, "@LSINGLE_UNIT", DbType.Boolean, 50, false);
 
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                     .Where(x =>

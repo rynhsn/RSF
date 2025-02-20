@@ -101,28 +101,28 @@
             <R_ItemLayout col="2"/>
             <R_ItemLayout col="4">
                 <R_StackLayout Row>
-                    <R_ItemLayout col="4" Class="px-2 bg-primary text-light text-end">
+                    <R_ItemLayout col="4" Class="px-2 bg-primary text-light">
                         <R_Label>@_localizer["LBL_START"]</R_Label>
                     </R_ItemLayout>
-                    <R_ItemLayout col="4" Class="px-2 bg-primary text-light text-end">
+                    <R_ItemLayout col="4" Class="px-2 bg-primary text-light">
                         <R_Label>@_localizer["LBL_END"]</R_Label>
                     </R_ItemLayout>
-                    <R_ItemLayout col="4" Class="px-2 bg-primary text-light text-end">
+                    <R_ItemLayout col="4" Class="px-2 bg-primary text-light">
                         <R_Label>@_localizer["LBL_USAGE"]</R_Label>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>
 
-            <R_ItemLayout col="4">
+            <R_ItemLayout col="4" Class="ms-2">
                 <R_StackLayout Row>
-                    <R_ItemLayout col="4" Class="px-2 bg-primary text-light text-end">
+                    <R_ItemLayout col="4" Class="px-2 bg-primary text-light">
                         <R_Label>@_localizer["LBL_KVA_VALUE"]</R_Label>
                     </R_ItemLayout>
-                    <R_ItemLayout col="4" Class="px-2 bg-primary text-light text-end">
-                        <R_Label>@_localizer["LBL_PF"]</R_Label>
+                    <R_ItemLayout col="4" Class="px-2 bg-primary text-light">
+                        <R_Label>@_localizer["LBL_CF"]</R_Label>
                     </R_ItemLayout>
-                    <R_ItemLayout col="4" Class="px-2 bg-primary text-light text-end">
-                        <R_Label>@_localizer["LBL_USAGE_X_PF"]</R_Label>
+                    <R_ItemLayout col="4" Class="px-2 bg-primary text-light">
+                        <R_Label>@_localizer["LBL_USAGE_X_CF"]</R_Label>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>
@@ -136,29 +136,65 @@
             <R_ItemLayout col="4">
                 <R_StackLayout Row>
                     <R_ItemLayout col="4" Class="text-end">
-                        <R_Label>@_viewModel.Entity.IBLOCK1_START</R_Label>
+                        @* <R_Label>@_viewModel.Entity.NBLOCK1_START</R_Label> *@
+                        <R_NumericTextBox Decimals="2"
+                                         Arrows="false"
+                                         Class="border-0"
+                                         ThousandSeparator
+                                         ReadOnly
+                                         Value="@_viewModel.Entity.NBLOCK1_START"/>
                     </R_ItemLayout>
                     <R_ItemLayout col="4" Class="text-end">
-                        <R_Label>@_viewModel.Entity.IBLOCK1_END</R_Label>
+                        @* <R_Label>@_viewModel.Entity.NBLOCK1_END</R_Label> *@
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NBLOCK1_END"/>
                     </R_ItemLayout>
                     <R_ItemLayout col="4" Class="text-end">
-                        <R_Label>@_viewModel.Entity.IBLOCK1_USAGE</R_Label>
+                        @* <R_Label>@_viewModel.Entity.NBLOCK1_USAGE</R_Label> *@
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NBLOCK1_USAGE"/>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>
 
-            <R_ItemLayout col="4">
+            <R_ItemLayout col="4" Class="ms-2">
                 <R_StackLayout Row>
                     <R_ItemLayout col="4" Class="text-end">
                         <R_Label>
-                            <R_Label>@_viewModel.Entity.NKVA</R_Label>
+                            @* <R_Label>@_viewModel.Entity.NKVA</R_Label> *@
+                            <R_NumericTextBox Decimals="2"
+                                              Arrows="false"
+                                              Class="border-0"
+                                              ThousandSeparator
+                                              ReadOnly
+                                              Value="@_viewModel.Entity.NKVA"/>
                         </R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="4" Class="text-end">
-                        <R_Label>@_viewModel.Entity.NTRANSFORMATOR_FEE</R_Label>
+                        @* <R_Label>@_viewModel.Entity.NCF</R_Label> *@
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NCF"/>
                     </R_ItemLayout>
                     <R_ItemLayout col="4" Class="text-end">
-                        <R_Label>@_viewModel.Entity.NTOTAL_BLOCK1_USAGE_PF</R_Label>
+                        @* <R_Label>@_viewModel.Entity.NBLOCK1_USAGE_CF</R_Label> *@
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NBLOCK1_USAGE_CF"/>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>
@@ -172,27 +208,63 @@
             <R_ItemLayout col="4">
                 <R_StackLayout Row>
                     <R_ItemLayout col="4" Class="text-end">
-                        <R_Label>@_viewModel.Entity.IBLOCK2_START</R_Label>
+                        @* <R_Label>@_viewModel.Entity.NBLOCK2_START</R_Label> *@
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NBLOCK2_START"/>
                     </R_ItemLayout>
                     <R_ItemLayout col="4" Class="text-end">
-                        <R_Label>@_viewModel.Entity.IBLOCK2_END</R_Label>
+                        @* <R_Label>@_viewModel.Entity.NBLOCK2_END</R_Label> *@
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NBLOCK2_END"/>
                     </R_ItemLayout>
                     <R_ItemLayout col="4" Class="text-end">
-                        <R_Label>@_viewModel.Entity.IBLOCK2_USAGE</R_Label>
+                        @* <R_Label>@_viewModel.Entity.NBLOCK2_USAGE</R_Label> *@
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NBLOCK2_USAGE"/>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>
 
-            <R_ItemLayout col="4">
+            <R_ItemLayout col="4" Class="ms-2">
                 <R_StackLayout Row>
                     <R_ItemLayout col="4" Class="text-end">
-                        <R_Label>@_viewModel.Entity.NKVA</R_Label>
+                        @* <R_Label>@_viewModel.Entity.NKVA</R_Label> *@
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NKVA"/>
                     </R_ItemLayout>
                     <R_ItemLayout col="4" Class="text-end">
-                        <R_Label>@_viewModel.Entity.NTRANSFORMATOR_FEE</R_Label>
+                        @* <R_Label>@_viewModel.Entity.NCF</R_Label> *@
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NCF"/>
                     </R_ItemLayout>
                     <R_ItemLayout col="4" Class="text-end">
-                        <R_Label>@_viewModel.Entity.NTOTAL_BLOCK2_USAGE_PF</R_Label>
+                        @* <R_Label>@_viewModel.Entity.NBLOCK2_USAGE_CF</R_Label> *@
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NBLOCK2_USAGE_CF"/>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>
@@ -203,39 +275,102 @@
 <R_ItemLayout>
 <R_GroupBox ShowBorder>
 
-<R_StackLayout Row Spacing="0">
+@* Min Amount *@
+<R_StackLayout Row Spacing="0" hidden="@(_viewModel.Entity.CRATE_TYPE != "SR")">
+    <R_ItemLayout col="2" Class="ps-2 bg-primary text-light">
+        <R_Label>@_localizer["LBL_MINIMUM_AMOUNT"]</R_Label>
+    </R_ItemLayout>
+    
+    <R_ItemLayout col="6">
+        <R_StackLayout Row Spacing="0">
+            <R_ItemLayout col="4">
+                <R_NumericTextBox Decimals="2" 
+                                  Arrows="false" 
+                                  Class="border-0"
+                                  ThousandSeparator 
+                                  ReadOnly 
+                                  Value="@Math.Round(_viewModel.Entity.NUSAGE_MIN_CHARGE * _viewModel.Entity.NKVA, 2)"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>x</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_NumericTextBox Decimals="2" 
+                                  Arrows="false" 
+                                  Class="border-0"
+                                  ThousandSeparator 
+                                  ReadOnly 
+                                  Value="@_viewModel.Entity.NBLOCK1_CHARGE"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+            
+    <R_ItemLayout col="4" Class="pe-1">
+        <R_StackLayout Row>
+            <R_ItemLayout col="6">
+                <R_StackLayout Row Spacing="0">
+                    <R_ItemLayout>
+                        <R_Label>=</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="11">
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NMIN_CHARGE_AMT"/>
+                    </R_ItemLayout>
+                </R_StackLayout> 
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Spacing="0" hidden="@(_viewModel.Entity.CRATE_TYPE != "DR")">
     <R_ItemLayout col="2" Class="ps-2 bg-primary text-light">
         <R_Label>@_localizer["LBL_STANDING_AMOUNT"]</R_Label>
     </R_ItemLayout>
-
-    <R_ItemLayout col="1"/>
-
+    
     <R_ItemLayout col="6">
-        <R_StackLayout Row Class="justify-content-between">
-            <R_ItemLayout col="2">
-                <R_StackLayout Row Class="justify-content-between">
-                    <R_ItemLayout col="8">
-                        <R_Label>@_viewModel.Entity.NSTANDING_CHARGE</R_Label>
-                    </R_ItemLayout>
+        <R_StackLayout Row Spacing="0">
+            <R_ItemLayout col="4">
+                <R_NumericTextBox Decimals="2" 
+                                  Arrows="false" 
+                                  Class="border-0"
+                                  ThousandSeparator 
+                                  ReadOnly 
+                                  Value="@_viewModel.Entity.NSTANDING_CHARGE"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>x</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_NumericTextBox Decimals="2" 
+                                  Arrows="false" 
+                                  Class="border-0"
+                                  ThousandSeparator 
+                                  ReadOnly 
+                                  Value="@_viewModel.Entity.NKVA"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+            
+    <R_ItemLayout col="4" Class="pe-1">
+        <R_StackLayout Row>
+            <R_ItemLayout col="6">
+                <R_StackLayout Row Spacing="0">
                     <R_ItemLayout>
-                        <R_Label>x</R_Label>
+                        <R_Label>=</R_Label>
                     </R_ItemLayout>
-                </R_StackLayout>
-            </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="2" Class="d-flex justify-content-start">
-                <R_Label>@_viewModel.Entity.NKVA</R_Label>
-            </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="3" Class="d-flex justify-content-end">
-                <R_Label>=</R_Label>
-            </R_ItemLayout>
-            <R_ItemLayout col="2" Class="d-flex justify-content-end">
-                <R_Label>@_viewModel.Entity.NTOTAL_STANDING_CHARGE</R_Label>
+                    <R_ItemLayout col="11">
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NSTANDING_AMT"/>
+                    </R_ItemLayout>
+                </R_StackLayout> 
             </R_ItemLayout>
         </R_StackLayout>
     </R_ItemLayout>
@@ -245,35 +380,47 @@
     <R_ItemLayout col="2" Class="ps-2 bg-primary text-light">
         <R_Label>@_localizer["LBL_BLOCK_I_CHARGE"]</R_Label>
     </R_ItemLayout>
-
-    <R_ItemLayout col="1"/>
-
+    
     <R_ItemLayout col="6">
-        <R_StackLayout Row Class="justify-content-between">
-            <R_ItemLayout col="2">
-                <R_StackLayout Row Class="justify-content-between">
-                    <R_ItemLayout col="8">
-                        <R_Label>@_viewModel.Entity.NLWBP_CHARGE</R_Label>
-                    </R_ItemLayout>
+        <R_StackLayout Row Spacing="0">
+            <R_ItemLayout col="4">
+                <R_NumericTextBox Decimals="2" 
+                                  Arrows="false" 
+                                  Class="border-0"
+                                  ThousandSeparator 
+                                  ReadOnly 
+                                  Value="@_viewModel.Entity.NBLOCK1_USAGE_CF"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>x</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_NumericTextBox Decimals="2" 
+                                  Arrows="false" 
+                                  Class="border-0"
+                                  ThousandSeparator 
+                                  ReadOnly 
+                                  Value="@_viewModel.Entity.NBLOCK1_CHARGE"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+            
+    <R_ItemLayout col="4" Class="pe-1">
+        <R_StackLayout Row>
+            <R_ItemLayout col="6">
+                <R_StackLayout Row Spacing="0">
                     <R_ItemLayout>
-                        <R_Label>x</R_Label>
+                        <R_Label>=</R_Label>
                     </R_ItemLayout>
-                </R_StackLayout>
-            </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="2" Class="d-flex justify-content-start">
-                <R_Label>@_viewModel.Entity.IBLOCK1_USAGE, 4</R_Label>
-            </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="3" Class="d-flex justify-content-end">
-                <R_Label>=</R_Label>
-            </R_ItemLayout>
-            <R_ItemLayout col="2" Class="d-flex justify-content-end">
-                <R_Label>@_viewModel.Entity.NTOTAL_BLOCK1_CHARGE</R_Label>
+                    <R_ItemLayout col="11">
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NBLOCK1_AMT"/>
+                    </R_ItemLayout>
+                </R_StackLayout> 
             </R_ItemLayout>
         </R_StackLayout>
     </R_ItemLayout>
@@ -283,43 +430,64 @@
     <R_ItemLayout col="2" Class="ps-2 bg-primary text-light">
         <R_Label>@_localizer["LBL_BLOCK_II_CHARGE"]</R_Label>
     </R_ItemLayout>
-
-    <R_ItemLayout col="1"/>
-
+    
     <R_ItemLayout col="6">
-        <R_StackLayout Row Class="justify-content-between">
-            <R_ItemLayout col="2">
-                <R_StackLayout Row Class="justify-content-between">
-                    <R_ItemLayout col="8">
-                        <R_Label>@_viewModel.Entity.NWBP_CHARGE</R_Label>
-                    </R_ItemLayout>
-                    <R_ItemLayout>
-                        <R_Label>x</R_Label>
-                    </R_ItemLayout>
-                </R_StackLayout>
+        <R_StackLayout Row Spacing="0">
+            <R_ItemLayout col="4">
+                <R_NumericTextBox Decimals="2" 
+                                  Arrows="false" 
+                                  Class="border-0"
+                                  ThousandSeparator 
+                                  ReadOnly 
+                                  Value="@_viewModel.Entity.NBLOCK2_USAGE_CF"/>
             </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="2" Class="d-flex justify-content-start">
-                <R_Label>@(_viewModel.Entity.IBLOCK2_USAGE) +</R_Label>
+            <R_ItemLayout>
+                <R_Label>x</R_Label>
             </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="3" Class="d-flex justify-content-end">
-                <R_Label>{0} =</R_Label>
+            <R_ItemLayout col="4">
+                <R_NumericTextBox Decimals="2" 
+                                  Arrows="false" 
+                                  Class="border-0"
+                                  ThousandSeparator 
+                                  ReadOnly 
+                                  Value="@_viewModel.Entity.NBLOCK2_CHARGE"/>
             </R_ItemLayout>
-            <R_ItemLayout col="2" Class="d-flex justify-content-end">
-                <R_Label>@_viewModel.Entity.NTOTAL_BLOCK2_CHARGE</R_Label>
-            </R_ItemLayout>
+            @* <R_ItemLayout> *@
+            @*     <R_Label>x</R_Label> *@
+            @* </R_ItemLayout> *@
+            @* <R_ItemLayout> *@
+            @*     <R_NumericTextBox Decimals="2" *@
+            @*                       Arrows="false" *@
+            @*                       Class="border-0" *@
+            @*                       ThousandSeparator *@
+            @*                       ReadOnly *@
+            @*                       Value="@_viewModel.Entity.NBLOCK2_CHARGE"/> *@
+            @* </R_ItemLayout> *@
         </R_StackLayout>
     </R_ItemLayout>
+            
+    <R_ItemLayout col="4" Class="pe-1">
+        <R_StackLayout Row>
+            <R_ItemLayout col="6">
+                <R_StackLayout Row Spacing="0">
+                    <R_ItemLayout>
+                        <R_Label>=</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="11">
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly 
+                                          Value="@_viewModel.Entity.NBLOCK2_AMT"/>
+                    </R_ItemLayout>
+                </R_StackLayout> 
+            </R_ItemLayout>
 
-    <R_ItemLayout col="1"/>
-
-    <R_ItemLayout col="2" Class="pe-2 d-flex justify-content-end bg-secondary text-light">
-        <R_Label>@_localizer["LBL_STANDING_CONSUMPTION"]</R_Label>
+            <R_ItemLayout col="6" Class="ps-1 bg-secondary text-light">
+                <R_Label>@_localizer["LBL_STANDING_CONSUMPTION"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
     </R_ItemLayout>
 </R_StackLayout>
 
@@ -327,121 +495,330 @@
     <R_ItemLayout col="2" Class="ps-2 bg-primary text-light">
         <R_Label>@_localizer["LBL_ADDITIONAL"]</R_Label>
     </R_ItemLayout>
-
-    <R_ItemLayout col="1"/>
-
+    
     <R_ItemLayout col="6">
-        <R_StackLayout Row Class="justify-content-between">
-            <R_ItemLayout col="2">
-                <R_StackLayout Row Class="justify-content-between">
-                    <R_ItemLayout col="8">
-                        <R_Label>{0}</R_Label>
-                    </R_ItemLayout>
-                    <R_ItemLayout>
-                        <R_Label>x</R_Label>
-                    </R_ItemLayout>
-                </R_StackLayout>
+        <R_StackLayout Row Spacing="0">
+            <R_ItemLayout col="4">
+                <R_NumericTextBox Decimals="2" 
+                                  Arrows="false" 
+                                  Class="border-0"
+                                  ThousandSeparator 
+                                  ReadOnly 
+                                  Value="@_viewModel.Entity.NKWH_USED_RATE"/>
             </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="2" Class="d-flex justify-content-start">
-                <R_Label>{0}</R_Label>
+            <R_ItemLayout>
+                <R_Label>x</R_Label>
             </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="3" Class="d-flex justify-content-end">
-                <R_Label>=</R_Label>
-            </R_ItemLayout>
-            <R_ItemLayout col="2" Class="d-flex justify-content-end">
-                <R_Label>@_viewModel.Entity.NTOTAL_ADDITIONAL</R_Label>
+            <R_ItemLayout col="4">
+                <R_NumericTextBox Decimals="2" 
+                                  Arrows="false" 
+                                  Class="border-0"
+                                  ThousandSeparator 
+                                  ReadOnly 
+                                  Value="@_viewModel.Entity.NADDITIONAL_USAGE"/>
             </R_ItemLayout>
         </R_StackLayout>
     </R_ItemLayout>
+            
+    <R_ItemLayout col="4" Class="pe-1">
+        <R_StackLayout Row>
+            <R_ItemLayout col="6">
+                <R_StackLayout Row Spacing="0">
+                    <R_ItemLayout>
+                        <R_Label>=</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="11">
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NADDITIONAL_AMT"/>
+                    </R_ItemLayout>
+                </R_StackLayout> 
+            </R_ItemLayout>
 
-    <R_ItemLayout col="1"/>
-
-    <R_ItemLayout col="2" Class="d-flex justify-content-end">
-        <R_Label>@_viewModel.Entity.NSTANDING_CONSUMPTION</R_Label>
+            <R_ItemLayout col="6">
+                <R_NumericTextBox Decimals="2"
+                                  Arrows="false"
+                                  Class="border-0"
+                                  ThousandSeparator
+                                  ReadOnly
+                                  Value="@_viewModel.Entity.NSTANDING_CONSUMP_AMT"/>
+            </R_ItemLayout>
+        </R_StackLayout>
     </R_ItemLayout>
 </R_StackLayout>
+
+@* ================================================================================================================== *@
+
+@* <R_StackLayout Row Spacing="0" hidden="@(_viewModel.Entity.CRATE_TYPE != "DR")"> *@
+@*     <R_ItemLayout col="2" Class="ps-2 bg-primary text-light"> *@
+@*         <R_Label>@_localizer["LBL_STANDING_AMOUNT"]</R_Label> *@
+@*     </R_ItemLayout> *@
+@* *@
+@*     <R_ItemLayout col="1"/> *@
+@* *@
+@*     <R_ItemLayout col="6"> *@
+@*         <R_StackLayout Row Class="justify-content-between"> *@
+@*             <R_ItemLayout col="2"> *@
+@*                 <R_StackLayout Row Class="justify-content-between"> *@
+@*                     <R_ItemLayout col="8"> *@
+@*                         $1$ <R_NumericTextBox Class="border-0" ReadOnly Value="@_viewModel.Entity.NSTANDING_CHARGE"/> #1# *@
+@*                         <R_Label>@_viewModel.Entity.NSTANDING_CHARGE</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                     <R_ItemLayout> *@
+@*                         <R_Label>x</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                 </R_StackLayout> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-start"> *@
+@*                 <R_Label>@_viewModel.Entity.NKVA</R_Label> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="3" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>=</R_Label> *@
+@*             </R_ItemLayout> *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>@_viewModel.Entity.NSTANDING_AMT</R_Label> *@
+@*                 $1$ <R_Label>@_viewModel.Entity.NTOTAL_STANDING_CHARGE</R_Label> #1# *@
+@*             </R_ItemLayout> *@
+@*         </R_StackLayout> *@
+@*     </R_ItemLayout> *@
+@* </R_StackLayout> *@
+@* *@
+@* <R_StackLayout Row Spacing="0" hidden="@(_viewModel.Entity.CRATE_TYPE != "SR")"> *@
+@*     <R_ItemLayout col="2" Class="ps-2 bg-primary text-light"> *@
+@*         <R_Label>@_localizer["LBL_MINIMUM_AMOUNT"]</R_Label> *@
+@*     </R_ItemLayout> *@
+@* *@
+@*     <R_ItemLayout col="1"/> *@
+@* *@
+@*     <R_ItemLayout col="6"> *@
+@*         <R_StackLayout Row Class="justify-content-between"> *@
+@*             <R_ItemLayout col="2"> *@
+@*                 <R_StackLayout Row Class="justify-content-between"> *@
+@*                     <R_ItemLayout col="8"> *@
+@*                         $1$ <R_NumericTextBox Class="border-0" ReadOnly Value="@_viewModel.Entity.NSTANDING_CHARGE"/> #1# *@
+@*                         <R_Label>@Math.Round(_viewModel.Entity.NUSAGE_MIN_CHARGE * _viewModel.Entity.NKVA, 2)</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                     <R_ItemLayout> *@
+@*                         <R_Label>x</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                 </R_StackLayout> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-start"> *@
+@*                 <R_Label>@_viewModel.Entity.NBLOCK1_CHARGE</R_Label> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="3" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>=</R_Label> *@
+@*             </R_ItemLayout> *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>@_viewModel.Entity.NMIN_CHARGE_AMT</R_Label> *@
+@*             </R_ItemLayout> *@
+@*         </R_StackLayout> *@
+@*     </R_ItemLayout> *@
+@* </R_StackLayout> *@
+@* *@
+@* <R_StackLayout Row Spacing="0"> *@
+@*     <R_ItemLayout col="2" Class="ps-2 bg-primary text-light"> *@
+@*         <R_Label>@_localizer["LBL_BLOCK_I_CHARGE"]</R_Label> *@
+@*     </R_ItemLayout> *@
+@* *@
+@*     <R_ItemLayout col="1"/> *@
+@* *@
+@*     <R_ItemLayout col="6"> *@
+@*         <R_StackLayout Row Class="justify-content-between"> *@
+@*             <R_ItemLayout col="2"> *@
+@*                 <R_StackLayout Row Class="justify-content-between"> *@
+@*                     <R_ItemLayout col="8"> *@
+@*                         <R_Label>@_viewModel.Entity.NBLOCK1_USAGE_CF</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                     <R_ItemLayout> *@
+@*                         <R_Label>x</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                 </R_StackLayout> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-start"> *@
+@*                 <R_Label>@_viewModel.Entity.NBLOCK1_CHARGE</R_Label> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="3" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>=</R_Label> *@
+@*             </R_ItemLayout> *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>@_viewModel.Entity.NBLOCK1_AMT</R_Label> *@
+@*             </R_ItemLayout> *@
+@*         </R_StackLayout> *@
+@*     </R_ItemLayout> *@
+@* </R_StackLayout> *@
+@* *@
+@* <R_StackLayout Row Spacing="0"> *@
+@*     <R_ItemLayout col="2" Class="ps-2 bg-primary text-light"> *@
+@*         <R_Label>@_localizer["LBL_BLOCK_II_CHARGE"]</R_Label> *@
+@*     </R_ItemLayout> *@
+@* *@
+@*     <R_ItemLayout col="1"/> *@
+@* *@
+@*     <R_ItemLayout col="6"> *@
+@*         <R_StackLayout Row Class="justify-content-between"> *@
+@*             <R_ItemLayout col="2"> *@
+@*                 <R_StackLayout Row Class="justify-content-between"> *@
+@*                     <R_ItemLayout col="8"> *@
+@*                         <R_Label>@_viewModel.Entity.NBLOCK2_USAGE_CF</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                     <R_ItemLayout> *@
+@*                         <R_Label>x</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                 </R_StackLayout> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-start"> *@
+@*                 <R_Label>@(_viewModel.Entity.NBLOCK2_CHARGE)</R_Label> *@
+@*                 $1$ +</R_Label> #1# *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="3" Class="d-flex justify-content-end"> *@
+@*                 $1$ <R_Label>{?}#1# *@
+@*                 <R_Label>=</R_Label> *@
+@*             </R_ItemLayout> *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>@_viewModel.Entity.NBLOCK2_AMT</R_Label> *@
+@*                 $1$ <R_Label>@_viewModel.Entity.NTOTAL_BLOCK2_CHARGE</R_Label> #1# *@
+@*             </R_ItemLayout> *@
+@*         </R_StackLayout> *@
+@*     </R_ItemLayout> *@
+@* *@
+@*     <R_ItemLayout col="1"/> *@
+@* *@
+@*     <R_ItemLayout col="2" Class="pe-2 d-flex justify-content-end bg-secondary text-light"> *@
+@*         <R_Label>@_localizer["LBL_STANDING_CONSUMPTION"]</R_Label> *@
+@*     </R_ItemLayout> *@
+@* </R_StackLayout> *@
+@* *@
+@* <R_StackLayout Row Spacing="0"> *@
+@*     <R_ItemLayout col="2" Class="ps-2 bg-primary text-light"> *@
+@*         <R_Label>@_localizer["LBL_ADDITIONAL"]</R_Label> *@
+@*     </R_ItemLayout> *@
+@* *@
+@*     <R_ItemLayout col="1"/> *@
+@* *@
+@*     <R_ItemLayout col="6"> *@
+@*         <R_StackLayout Row Class="justify-content-between"> *@
+@*             <R_ItemLayout col="2"> *@
+@*                 <R_StackLayout Row Class="justify-content-between"> *@
+@*                     <R_ItemLayout col="8"> *@
+@*                         <R_Label>@(_viewModel.Entity.NKWH_USED_RATE)</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                     <R_ItemLayout> *@
+@*                         <R_Label>x</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                 </R_StackLayout> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-start"> *@
+@*                 <R_Label>@(_viewModel.Entity.NADDITIONAL_USAGE)</R_Label> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="3" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>=</R_Label> *@
+@*             </R_ItemLayout> *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>@_viewModel.Entity.NADDITIONAL_AMT</R_Label> *@
+@*                 $1$ <R_Label>@_viewModel.Entity.NTOTAL_ADDITIONAL</R_Label> #1# *@
+@*             </R_ItemLayout> *@
+@*         </R_StackLayout> *@
+@*     </R_ItemLayout> *@
+@* *@
+@*     <R_ItemLayout col="1"/> *@
+@* *@
+@*     <R_ItemLayout col="2" Class="d-flex justify-content-end"> *@
+@*         <R_Label>@_viewModel.Entity.NSTANDING_CONSUMP_AMT</R_Label> *@
+@*     </R_ItemLayout> *@
+@* </R_StackLayout> *@
+
+@* ================================================================================================================== *@
+@* Retribution     *@
 
 <R_StackLayout Row Spacing="0" Class="mt-3">
     <R_ItemLayout col="2" Class="ps-2 bg-primary text-light">
         <R_Label>@_localizer["LBL_RETRIBUTION"]</R_Label>
     </R_ItemLayout>
 
-    <R_ItemLayout col="1"/>
-
     <R_ItemLayout col="6">
-        <R_StackLayout Row Class="justify-content-between">
-            <R_ItemLayout col="2">
-                <R_StackLayout Row Class="justify-content-between">
-                    <R_ItemLayout col="8">
-                        <R_Label>@(_viewModel.Entity.NRETRIBUTION_PCT) %</R_Label>
+        <R_StackLayout Row Spacing="0">
+            <R_ItemLayout col="4">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="11">
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NRETRIBUTION_PCT"/>
                     </R_ItemLayout>
                     <R_ItemLayout>
-                        <R_Label>x</R_Label>
+                        <R_Label>%</R_Label>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="2" Class="d-flex justify-content-start">
-                <R_Label>@_viewModel.Entity.NSTANDING_CONSUMPTION</R_Label>
+            <R_ItemLayout>
+                <R_Label>x</R_Label>
             </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="3" Class="d-flex justify-content-end">
-                <R_Label>=</R_Label>
-            </R_ItemLayout>
-            <R_ItemLayout col="2" Class="d-flex justify-content-end">
-                <R_Label>@_viewModel.Entity.NTOTAL_RETRIBUTION</R_Label>
-            </R_ItemLayout>
-        </R_StackLayout>
-    </R_ItemLayout>
-</R_StackLayout>
-
-<R_StackLayout Row Spacing="0">
-    <R_ItemLayout col="2" Class="ps-2 bg-primary text-light">
-        <R_Label>@_localizer["LBL_TTLB"]</R_Label>
-    </R_ItemLayout>
-
-    <R_ItemLayout col="1"/>
-
-    <R_ItemLayout col="6">
-        <R_StackLayout Row Class="justify-content-between">
-            <R_ItemLayout col="2">
-                <R_StackLayout Row Class="justify-content-between">
-                    <R_ItemLayout col="8">
-                        <R_Label>@(_viewModel.Entity.NTTLB_PCT) %</R_Label>
-                    </R_ItemLayout>
-                    <R_ItemLayout>
-                        <R_Label>x</R_Label>
-                    </R_ItemLayout>
-                </R_StackLayout>
-            </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="2" Class="d-flex justify-content-start">
-                <R_Label>@_viewModel.Entity.NSTANDING_CONSUMPTION</R_Label>
-            </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="3" Class="d-flex justify-content-end">
-                <R_Label>=</R_Label>
-            </R_ItemLayout>
-            <R_ItemLayout col="2" Class="d-flex justify-content-end">
-                <R_Label>@_viewModel.Entity.NTOTAL_TTLB</R_Label>
+            <R_ItemLayout col="4">
+                <R_NumericTextBox Decimals="2"
+                                  Arrows="false"
+                                  Class="border-0"
+                                  ThousandSeparator
+                                  ReadOnly
+                                  Value="@_viewModel.Entity.NSTANDING_CONSUMP_AMT"/>
             </R_ItemLayout>
         </R_StackLayout>
     </R_ItemLayout>
 
+    <R_ItemLayout col="4" Class="pe-1">
+        <R_StackLayout Row>
+            <R_ItemLayout col="6">
+                <R_StackLayout Row Spacing="0">
+                    <R_ItemLayout>
+                        <R_Label>=</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="11">
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NRETRIBUTION_AMT"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
 </R_StackLayout>
 
 <R_StackLayout Row Spacing="0">
@@ -449,42 +826,63 @@
         <R_Label>@_localizer["LBL_TRANSFORMATOR"]</R_Label>
     </R_ItemLayout>
 
-    <R_ItemLayout col="1"/>
-
     <R_ItemLayout col="6">
-        <R_StackLayout Row Class="justify-content-between">
-            <R_ItemLayout col="2">
-                <R_StackLayout Row Class="justify-content-between">
-                    <R_ItemLayout col="8">
-                        <R_Label>@_viewModel.Entity.NTRANSFORMATOR_FEE</R_Label>
-                    </R_ItemLayout>
+        <R_StackLayout Row Spacing="0">
+            <R_ItemLayout col="4">
+                <R_NumericTextBox Decimals="2"
+                                  Arrows="false"
+                                  Class="border-0"
+                                  ThousandSeparator
+                                  ReadOnly
+                                  Value="@_viewModel.Entity.NTRANSFORMATOR_FEE"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>x</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_NumericTextBox Decimals="2"
+                                  Arrows="false"
+                                  Class="border-0"
+                                  ThousandSeparator
+                                  ReadOnly
+                                  Value="@_viewModel.Entity.NKVA"/>
+            </R_ItemLayout>
+            @* <R_ItemLayout> *@
+            @*     <R_Label>x</R_Label> *@
+            @* </R_ItemLayout> *@
+            @* <R_ItemLayout> *@
+            @*     <R_NumericTextBox Decimals="2" *@
+            @*                       Arrows="false" *@
+            @*                       Class="border-0" *@
+            @*                       ThousandSeparator *@
+            @*                       ReadOnly *@
+            @*                       Value="@_viewModel.Entity.NBLOCK2_CHARGE"/> *@
+            @* </R_ItemLayout> *@
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="4" Class="pe-1">
+        <R_StackLayout Row>
+            <R_ItemLayout col="6">
+                <R_StackLayout Row Spacing="0">
                     <R_ItemLayout>
-                        <R_Label>x</R_Label>
+                        <R_Label>=</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="11">
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NTRANSFORMATOR_AMT"/>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>
 
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="2" Class="d-flex justify-content-start">
-                <R_Label>@_viewModel.Entity.NKVA</R_Label>
-            </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="3" Class="d-flex justify-content-end">
-                <R_Label>=</R_Label>
-            </R_ItemLayout>
-            <R_ItemLayout col="2" Class="d-flex justify-content-end">
-                <R_Label>@_viewModel.Entity.NTOTAL_TRANSFORMATOR_FEE</R_Label>
+            <R_ItemLayout col="6" Class="ps-1 bg-secondary text-light">
+                <R_Label>@_localizer["LBL_TOTAL"]</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
-    </R_ItemLayout>
-
-    <R_ItemLayout col="1"/>
-
-    <R_ItemLayout col="2" Class="pe-2 d-flex justify-content-end bg-secondary text-light">
-        <R_Label>@_localizer["LBL_TOTAL"]</R_Label>
     </R_ItemLayout>
 </R_StackLayout>
 
@@ -493,153 +891,524 @@
         <R_Label>@_localizer["LBL_BEBAN_BERSAMA"]</R_Label>
     </R_ItemLayout>
 
-    <R_ItemLayout col="1"/>
+    <R_ItemLayout col="6"/>
 
-    <R_ItemLayout col="6">
-        <R_StackLayout Row Class="justify-content-between">
-            <R_ItemLayout col="6"/>
-
-            <R_ItemLayout col="3" Class="d-flex justify-content-end">
-                <R_Label>=</R_Label>
+    <R_ItemLayout col="4" Class="pe-1">
+        <R_StackLayout Row>
+            <R_ItemLayout col="6">
+                <R_StackLayout Row Spacing="0">
+                    <R_ItemLayout>
+                        <R_Label>=</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="11">
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NBEBAN_BERSAMA"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
             </R_ItemLayout>
-            <R_ItemLayout col="2" Class="d-flex justify-content-end">
-                <R_Label>@_viewModel.Entity.IBEBAN_BERSAMA</R_Label>
+
+            <R_ItemLayout col="6">
+                <R_NumericTextBox Decimals="2"
+                                  Arrows="false"
+                                  Class="border-0"
+                                  ThousandSeparator
+                                  ReadOnly
+                                  Value="@_viewModel.Entity.NSUB_TOTAL_AMT"/>
             </R_ItemLayout>
         </R_StackLayout>
     </R_ItemLayout>
-
-    <R_ItemLayout col="1"/>
-
-    <R_ItemLayout col="2" Class="d-flex justify-content-end">
-        <R_Label>@_viewModel.Entity.NTOTAL</R_Label>
-    </R_ItemLayout>
 </R_StackLayout>
+
+@* ================================================================================================================== *@
+
+@* <R_StackLayout Row Spacing="0" Class="mt-3"> *@
+@*     <R_ItemLayout col="2" Class="ps-2 bg-primary text-light"> *@
+@*         <R_Label>@_localizer["LBL_RETRIBUTION"]</R_Label> *@
+@*     </R_ItemLayout> *@
+@* *@
+@*     <R_ItemLayout col="1"/> *@
+@* *@
+@*     <R_ItemLayout col="6"> *@
+@*         <R_StackLayout Row Class="justify-content-between"> *@
+@*             <R_ItemLayout col="2"> *@
+@*                 <R_StackLayout Row Class="justify-content-between"> *@
+@*                     <R_ItemLayout col="8"> *@
+@*                         <R_Label>@(_viewModel.Entity.NRETRIBUTION_PCT) %</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                     <R_ItemLayout> *@
+@*                         <R_Label>x</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                 </R_StackLayout> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-start"> *@
+@*                 <R_Label>@_viewModel.Entity.NSTANDING_CONSUMP_AMT</R_Label> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="3" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>=</R_Label> *@
+@*             </R_ItemLayout> *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>@_viewModel.Entity.NRETRIBUTION_AMT</R_Label> *@
+@*             </R_ItemLayout> *@
+@*         </R_StackLayout> *@
+@*     </R_ItemLayout> *@
+@* </R_StackLayout> *@
+@* *@
+@* $1$ <R_StackLayout Row Spacing="0"> #1# *@
+@* $1$     <R_ItemLayout col="2" Class="ps-2 bg-primary text-light"> #1# *@
+@* $1$         <R_Label>@_localizer["LBL_TTLB"]</R_Label> #1# *@
+@* $1$     </R_ItemLayout> #1# *@
+@* $1$ #1# *@
+@* $1$     <R_ItemLayout col="1"/> #1# *@
+@* $1$ #1# *@
+@* $1$     <R_ItemLayout col="6"> #1# *@
+@* $1$         <R_StackLayout Row Class="justify-content-between"> #1# *@
+@* $1$             <R_ItemLayout col="2"> #1# *@
+@* $1$                 <R_StackLayout Row Class="justify-content-between"> #1# *@
+@* $1$                     <R_ItemLayout col="8"> #1# *@
+@* $1$                         <R_Label>@(_viewModel.Entity.NTTLB_PCT) %</R_Label> #1# *@
+@* $1$                     </R_ItemLayout> #1# *@
+@* $1$                     <R_ItemLayout> #1# *@
+@* $1$                         <R_Label>x</R_Label> #1# *@
+@* $1$                     </R_ItemLayout> #1# *@
+@* $1$                 </R_StackLayout> #1# *@
+@* $1$             </R_ItemLayout> #1# *@
+@* $1$ #1# *@
+@* $1$             <R_ItemLayout col="1"/> #1# *@
+@* $1$ #1# *@
+@* $1$             <R_ItemLayout col="2" Class="d-flex justify-content-start"> #1# *@
+@* $1$                 <R_Label>@_viewModel.Entity.NSTANDING_CONSUMPTION</R_Label> #1# *@
+@* $1$             </R_ItemLayout> #1# *@
+@* $1$ #1# *@
+@* $1$             <R_ItemLayout col="1"/> #1# *@
+@* $1$ #1# *@
+@* $1$             <R_ItemLayout col="3" Class="d-flex justify-content-end"> #1# *@
+@* $1$                 <R_Label>=</R_Label> #1# *@
+@* $1$             </R_ItemLayout> #1# *@
+@* $1$             <R_ItemLayout col="2" Class="d-flex justify-content-end"> #1# *@
+@* $1$                 <R_Label>@_viewModel.Entity.NTOTAL_TTLB</R_Label> #1# *@
+@* $1$                 $2$ <R_Label>@_viewModel.Entity.NTOTAL_TTLB</R_Label> #2# #1# *@
+@* $1$             </R_ItemLayout> #1# *@
+@* $1$         </R_StackLayout> #1# *@
+@* $1$     </R_ItemLayout> #1# *@
+@* $1$ #1# *@
+@* $1$ </R_StackLayout> #1# *@
+@* *@
+@* <R_StackLayout Row Spacing="0"> *@
+@*     <R_ItemLayout col="2" Class="ps-2 bg-primary text-light"> *@
+@*         <R_Label>@_localizer["LBL_TRANSFORMATOR"]</R_Label> *@
+@*     </R_ItemLayout> *@
+@* *@
+@*     <R_ItemLayout col="1"/> *@
+@* *@
+@*     <R_ItemLayout col="6"> *@
+@*         <R_StackLayout Row Class="justify-content-between"> *@
+@*             <R_ItemLayout col="2"> *@
+@*                 <R_StackLayout Row Class="justify-content-between"> *@
+@*                     <R_ItemLayout col="8"> *@
+@*                         <R_Label>@_viewModel.Entity.NTRANSFORMATOR_FEE</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                     <R_ItemLayout> *@
+@*                         <R_Label>x</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                 </R_StackLayout> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-start"> *@
+@*                 <R_Label>@_viewModel.Entity.NKVA</R_Label> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="3" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>=</R_Label> *@
+@*             </R_ItemLayout> *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>@_viewModel.Entity.NTRANSFORMATOR_AMT</R_Label> *@
+@*             </R_ItemLayout> *@
+@*         </R_StackLayout> *@
+@*     </R_ItemLayout> *@
+@* *@
+@*     <R_ItemLayout col="1"/> *@
+@* *@
+@*     <R_ItemLayout col="2" Class="pe-2 d-flex justify-content-end bg-secondary text-light"> *@
+@*         <R_Label>@_localizer["LBL_TOTAL"]</R_Label> *@
+@*     </R_ItemLayout> *@
+@* </R_StackLayout> *@
+@* *@
+@* <R_StackLayout Row Spacing="0"> *@
+@*     <R_ItemLayout col="2" Class="ps-2 bg-primary text-light"> *@
+@*         <R_Label>@_localizer["LBL_BEBAN_BERSAMA"]</R_Label> *@
+@*     </R_ItemLayout> *@
+@* *@
+@*     <R_ItemLayout col="1"/> *@
+@* *@
+@*     <R_ItemLayout col="6"> *@
+@*         <R_StackLayout Row Class="justify-content-between"> *@
+@*             <R_ItemLayout col="6"/> *@
+@* *@
+@*             <R_ItemLayout col="3" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>=</R_Label> *@
+@*             </R_ItemLayout> *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>@_viewModel.Entity.NBEBAN_BERSAMA</R_Label> *@
+@*             </R_ItemLayout> *@
+@*         </R_StackLayout> *@
+@*     </R_ItemLayout> *@
+@* *@
+@*     <R_ItemLayout col="1"/> *@
+@* *@
+@*     <R_ItemLayout col="2" Class="d-flex justify-content-end"> *@
+@*         <R_Label>@_viewModel.Entity.NSUB_TOTAL_AMT</R_Label> *@
+@*     </R_ItemLayout> *@
+@* </R_StackLayout> *@
+    
+@* Admin Fee *@
 
 <R_StackLayout Row Spacing="0" Class="mt-3">
-    <R_ItemLayout col="2" Class="ps-2 bg-primary text-light">
-        <R_Label>@_localizer["LBL_VAT_NON_ADM_TAX"]</R_Label>
-    </R_ItemLayout>
+<R_ItemLayout col="2" Class="ps-2 bg-primary text-light">
+    <R_Label>@_localizer["LBL_VAT_NON_ADM_TAX"]</R_Label>
+</R_ItemLayout>
 
-    <R_ItemLayout col="1"/>
+<R_ItemLayout col="6">
+    <R_StackLayout Row Spacing="0">
+        <R_ItemLayout col="4">
+            <R_StackLayout Row>
+                <R_ItemLayout col="11">
+                    <R_NumericTextBox Decimals="2"
+                                      Arrows="false"
+                                      Class="border-0"
+                                      ThousandSeparator
+                                      ReadOnly
+                                      Value="@_viewModel.Entity.NTAX_PCT"/>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Label>%</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Label>x</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_NumericTextBox Decimals="2"
+                              Arrows="false"
+                              Class="border-0"
+                              ThousandSeparator
+                              ReadOnly
+                              Value="@_viewModel.Entity.NSUB_TOTAL_AMT"/>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_ItemLayout>
 
-    <R_ItemLayout col="6">
-        <R_StackLayout Row Class="justify-content-between">
-            <R_ItemLayout col="2">
-                <R_StackLayout Row Class="justify-content-between">
-                    <R_ItemLayout col="8">
-                        <R_Label>{0} %</R_Label>
-                    </R_ItemLayout>
-                    <R_ItemLayout>
-                        <R_Label>x</R_Label>
-                    </R_ItemLayout>
-                </R_StackLayout>
-            </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="2" Class="d-flex justify-content-start">
-                <R_Label>{0}</R_Label>
-            </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="3" Class="d-flex justify-content-end">
-                <R_Label>=</R_Label>
-            </R_ItemLayout>
-            <R_ItemLayout col="2" Class="d-flex justify-content-end">
-                <R_Label>@_viewModel.Entity.NTOTAL_VAT_NON_ADM_TAX</R_Label>
-            </R_ItemLayout>
-        </R_StackLayout>
-    </R_ItemLayout>
+<R_ItemLayout col="4" Class="pe-1">
+    <R_StackLayout Row>
+        <R_ItemLayout col="6">
+            <R_StackLayout Row Spacing="0">
+                <R_ItemLayout>
+                    <R_Label>=</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="11">
+                    <R_NumericTextBox Decimals="2"
+                                      Arrows="false"
+                                      Class="border-0"
+                                      ThousandSeparator
+                                      ReadOnly
+                                      Value="@_viewModel.Entity.NVAT_AMT"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_ItemLayout>
 </R_StackLayout>
 
 <R_StackLayout Row Spacing="0">
-    <R_ItemLayout col="2" Class="ps-2 bg-primary text-light">
-        <R_Label>@_localizer["LBL_ADMIN_FEE"]</R_Label>
-    </R_ItemLayout>
+<R_ItemLayout col="2" Class="ps-2 bg-primary text-light">
+    <R_Label>@_localizer["LBL_ADMIN_FEE"]</R_Label>
+</R_ItemLayout>
 
-    <R_ItemLayout col="1"/>
+<R_ItemLayout col="6">
+    <R_StackLayout Row Spacing="0">
+        <R_ItemLayout col="4">
+            <R_StackLayout Row>
+                <R_ItemLayout col="11">
+                    <R_NumericTextBox Decimals="2"
+                                      Arrows="false"
+                                      Class="border-0"
+                                      ThousandSeparator
+                                      ReadOnly
+                                      Value="@_viewModel.Entity.NADMIN_FEE_PCT"/>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Label>%</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Label>x</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_NumericTextBox Decimals="2"
+                              Arrows="false"
+                              Class="border-0"
+                              ThousandSeparator
+                              ReadOnly
+                              Value="@_viewModel.Entity.NSUB_TOTAL_AMT"/>
+        </R_ItemLayout>
+        @* <R_ItemLayout> *@
+        @*     <R_Label>x</R_Label> *@
+        @* </R_ItemLayout> *@
+        @* <R_ItemLayout> *@
+        @*     <R_NumericTextBox Decimals="2" *@
+        @*                       Arrows="false" *@
+        @*                       Class="border-0" *@
+        @*                       ThousandSeparator *@
+        @*                       ReadOnly *@
+        @*                       Value="@_viewModel.Entity.NBLOCK2_CHARGE"/> *@
+        @* </R_ItemLayout> *@
+    </R_StackLayout>
+</R_ItemLayout>
 
-    <R_ItemLayout col="6">
-        <R_StackLayout Row Class="justify-content-between">
-            <R_ItemLayout col="2">
-                <R_StackLayout Row Class="justify-content-between">
-                    <R_ItemLayout col="8">
-                        <R_Label>@_viewModel.Entity.NADMIN_FEE_PCT %</R_Label>
-                    </R_ItemLayout>
-                    <R_ItemLayout>
-                        <R_Label>x</R_Label>
-                    </R_ItemLayout>
-                </R_StackLayout>
-            </R_ItemLayout>
+<R_ItemLayout col="4" Class="pe-1">
+    <R_StackLayout Row>
+        <R_ItemLayout col="6">
+            <R_StackLayout Row Spacing="0">
+                <R_ItemLayout>
+                    <R_Label>=</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="11">
+                    <R_NumericTextBox Decimals="2"
+                                      Arrows="false"
+                                      Class="border-0"
+                                      ThousandSeparator
+                                      ReadOnly
+                                      Value="@_viewModel.Entity.NADMIN_FEE_AMT"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
 
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="2" Class="d-flex justify-content-start">
-                <R_Label>@_viewModel.Entity.NTOTAL +</R_Label>
-            </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="3" Class="d-flex justify-content-end">
-                <R_Label>{0} =</R_Label>
-            </R_ItemLayout>
-            <R_ItemLayout col="2" Class="d-flex justify-content-end">
-                <R_Label>@_viewModel.Entity.NTOTAL_ADMIN_FEE</R_Label>
-            </R_ItemLayout>
-        </R_StackLayout>
-    </R_ItemLayout>
-
-    <R_ItemLayout col="1"/>
-
-    <R_ItemLayout col="2" Class="pe-2 d-flex justify-content-end bg-secondary text-light">
-        <R_Label>@_localizer["LBL_TOTAL_ADM_VAT"]</R_Label>
-    </R_ItemLayout>
+        <R_ItemLayout col="6" Class="ps-1 bg-secondary text-light">
+            <R_Label>@_localizer["LBL_TOTAL_ADM_VAT"]</R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_ItemLayout>
 </R_StackLayout>
 
 <R_StackLayout Row Spacing="0">
-    <R_ItemLayout col="2" Class="ps-2 bg-primary text-light">
-        <R_Label>@_localizer["LBL_VAT_ADM_TAX"]</R_Label>
-    </R_ItemLayout>
-
-    <R_ItemLayout col="1"/>
+<R_ItemLayout col="2" Class="ps-2 bg-primary text-light">
+    <R_Label>@_localizer["LBL_VAT_ADM_TAX"]</R_Label>
+</R_ItemLayout>
 
     <R_ItemLayout col="6">
-        <R_StackLayout Row Class="justify-content-between">
-            <R_ItemLayout col="2">
-                <R_StackLayout Row Class="justify-content-between">
-                    <R_ItemLayout col="8">
-                        <R_Label>{0} %</R_Label>
+        <R_StackLayout Row Spacing="0">
+            <R_ItemLayout col="4">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="11">
+                        <R_NumericTextBox Decimals="2"
+                                          Arrows="false"
+                                          Class="border-0"
+                                          ThousandSeparator
+                                          ReadOnly
+                                          Value="@_viewModel.Entity.NTAX_PCT"/>
                     </R_ItemLayout>
                     <R_ItemLayout>
-                        <R_Label>x</R_Label>
+                        <R_Label>%</R_Label>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="2" Class="d-flex justify-content-start">
-                <R_Label>{0}</R_Label>
+            <R_ItemLayout>
+                <R_Label>x</R_Label>
             </R_ItemLayout>
-
-            <R_ItemLayout col="1"/>
-
-            <R_ItemLayout col="3" Class="d-flex justify-content-end">
-                <R_Label>=</R_Label>
+            <R_ItemLayout col="4">
+                <R_NumericTextBox Decimals="2"
+                                  Arrows="false"
+                                  Class="border-0"
+                                  ThousandSeparator
+                                  ReadOnly
+                                  Value="@_viewModel.Entity.NADMIN_FEE_AMT"/>
             </R_ItemLayout>
-            <R_ItemLayout col="2" Class="d-flex justify-content-end">
-                <R_Label>@_viewModel.Entity.NTOTAL_VAT_ADM_TAX</R_Label>
-            </R_ItemLayout>
+            @* <R_ItemLayout> *@
+            @*     <R_Label>x</R_Label> *@
+            @* </R_ItemLayout> *@
+            @* <R_ItemLayout> *@
+            @*     <R_NumericTextBox Decimals="2" *@
+            @*                       Arrows="false" *@
+            @*                       Class="border-0" *@
+            @*                       ThousandSeparator *@
+            @*                       ReadOnly *@
+            @*                       Value="@_viewModel.Entity.NBLOCK2_CHARGE"/> *@
+            @* </R_ItemLayout> *@
         </R_StackLayout>
     </R_ItemLayout>
 
-    <R_ItemLayout col="1"/>
+<R_ItemLayout col="4" Class="pe-1">
+    <R_StackLayout Row>
+        <R_ItemLayout col="6">
+            <R_StackLayout Row Spacing="0">
+                <R_ItemLayout>
+                    <R_Label>=</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="11">
+                    <R_NumericTextBox Decimals="2"
+                                      Arrows="false"
+                                      Class="border-0"
+                                      ThousandSeparator
+                                      ReadOnly
+                                      Value="@_viewModel.Entity.NADMIN_FEE_TAX_AMT"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
 
-    <R_ItemLayout col="2" Class="d-flex justify-content-end">
-        <R_Label>@_viewModel.Entity.NTOTAL_ADM_VAT</R_Label>
-    </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_NumericTextBox Decimals="2"
+                              Arrows="false"
+                              Class="border-0"
+                              ThousandSeparator
+                              ReadOnly
+                              Value="@_viewModel.Entity.NTOTAL_AMT"/>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_ItemLayout>
 </R_StackLayout>
+
+@* ================================================================================================================== *@
+    
+@* <R_StackLayout Row Spacing="0" Class="mt-3"> *@
+@*         <R_ItemLayout col="2" Class="ps-2 bg-primary text-light"> *@
+@*             <R_Label>@_localizer["LBL_VAT_NON_ADM_TAX"]</R_Label> *@
+@*         </R_ItemLayout> *@
+@* *@
+@*         <R_ItemLayout col="1"/> *@
+@* *@
+@*         <R_ItemLayout col="6"> *@
+@*             <R_StackLayout Row Class="justify-content-between"> *@
+@*                 <R_ItemLayout col="2"> *@
+@*                     <R_StackLayout Row Class="justify-content-between"> *@
+@*                         <R_ItemLayout col="8"> *@
+@*                             <R_Label>@(_viewModel.Entity.NTAX_PCT) %</R_Label> *@
+@*                         </R_ItemLayout> *@
+@*                         <R_ItemLayout> *@
+@*                             <R_Label>x</R_Label> *@
+@*                         </R_ItemLayout> *@
+@*                     </R_StackLayout> *@
+@*                 </R_ItemLayout> *@
+@* *@
+@*                 <R_ItemLayout col="1"/> *@
+@* *@
+@*                 <R_ItemLayout col="2" Class="d-flex justify-content-start"> *@
+@*                     <R_Label>@_viewModel.Entity.NSUB_TOTAL_AMT</R_Label> *@
+@*                 </R_ItemLayout> *@
+@* *@
+@*                 <R_ItemLayout col="1"/> *@
+@* *@
+@*                 <R_ItemLayout col="3" Class="d-flex justify-content-end"> *@
+@*                     <R_Label>=</R_Label> *@
+@*                 </R_ItemLayout> *@
+@*                 <R_ItemLayout col="2" Class="d-flex justify-content-end"> *@
+@*                     <R_Label>@_viewModel.Entity.NVAT_AMT</R_Label> *@
+@*                 </R_ItemLayout> *@
+@*             </R_StackLayout> *@
+@*         </R_ItemLayout> *@
+@*     </R_StackLayout> *@
+@* <R_StackLayout Row Spacing="0"> *@
+@*     <R_ItemLayout col="2" Class="ps-2 bg-primary text-light"> *@
+@*         <R_Label>@_localizer["LBL_ADMIN_FEE"]</R_Label> *@
+@*     </R_ItemLayout> *@
+@* *@
+@*     <R_ItemLayout col="1"/> *@
+@* *@
+@*     <R_ItemLayout col="6"> *@
+@*         <R_StackLayout Row Class="justify-content-between"> *@
+@*             <R_ItemLayout col="2"> *@
+@*                 <R_StackLayout Row Class="justify-content-between"> *@
+@*                     <R_ItemLayout col="8"> *@
+@*                         <R_Label>@_viewModel.Entity.NADMIN_FEE_PCT %</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                     <R_ItemLayout> *@
+@*                         <R_Label>x</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                 </R_StackLayout> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-start"> *@
+@*                 <R_Label>@_viewModel.Entity.NSUB_TOTAL_AMT</R_Label> *@
+@*                 $1$ +</R_Label> #1# *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="3" Class="d-flex justify-content-end"> *@
+@*                 $1$ <R_Label>{?}  #1# *@
+@*                 <R_Label>=</R_Label> *@
+@*             </R_ItemLayout> *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>@_viewModel.Entity.NADMIN_FEE_AMT</R_Label> *@
+@*             </R_ItemLayout> *@
+@*         </R_StackLayout> *@
+@*     </R_ItemLayout> *@
+@* *@
+@*     <R_ItemLayout col="1"/> *@
+@* *@
+@*     <R_ItemLayout col="2" Class="pe-2 d-flex justify-content-end bg-secondary text-light"> *@
+@*         <R_Label>@_localizer["LBL_TOTAL_ADM_VAT"]</R_Label> *@
+@*     </R_ItemLayout> *@
+@* </R_StackLayout> *@
+@* <R_StackLayout Row Spacing="0"> *@
+@*     <R_ItemLayout col="2" Class="ps-2 bg-primary text-light"> *@
+@*         <R_Label>@_localizer["LBL_VAT_ADM_TAX"]</R_Label> *@
+@*     </R_ItemLayout> *@
+@* *@
+@*     <R_ItemLayout col="1"/> *@
+@* *@
+@*     <R_ItemLayout col="6"> *@
+@*         <R_StackLayout Row Class="justify-content-between"> *@
+@*             <R_ItemLayout col="2"> *@
+@*                 <R_StackLayout Row Class="justify-content-between"> *@
+@*                     <R_ItemLayout col="8"> *@
+@*                         <R_Label>@_viewModel.Entity.NTAX_PCT %</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                     <R_ItemLayout> *@
+@*                         <R_Label>x</R_Label> *@
+@*                     </R_ItemLayout> *@
+@*                 </R_StackLayout> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-start"> *@
+@*                 <R_Label>@_viewModel.Entity.NADMIN_FEE_AMT</R_Label> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout col="1"/> *@
+@* *@
+@*             <R_ItemLayout col="3" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>=</R_Label> *@
+@*             </R_ItemLayout> *@
+@*             <R_ItemLayout col="2" Class="d-flex justify-content-end"> *@
+@*                 <R_Label>@_viewModel.Entity.NADMIN_FEE_TAX_AMT</R_Label> *@
+@*             </R_ItemLayout> *@
+@*         </R_StackLayout> *@
+@*     </R_ItemLayout> *@
+@* *@
+@*     <R_ItemLayout col="1"/> *@
+@* *@
+@*     <R_ItemLayout col="2" Class="d-flex justify-content-end"> *@
+@*         <R_Label>@_viewModel.Entity.NTOTAL_AMT</R_Label> *@
+@*     </R_ItemLayout> *@
+@* </R_StackLayout> *@
 
 </R_GroupBox>
 </R_ItemLayout>
@@ -673,13 +1442,13 @@
                 <R_Label>@_localizer["LBL_WATER_METER"]</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="2" Class="text-end">
-                <R_Label>@_viewModel.Entity.IMETER_START</R_Label>
+                <R_Label>@_viewModel.Entity.NMETER_START</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="2" Class="text-end">
-                <R_Label>@_viewModel.Entity.IMETER_END</R_Label>
+                <R_Label>@_viewModel.Entity.NMETER_END</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="2" Class="text-end">
-                <R_Label>@_viewModel.Entity.IMETER_USAGE</R_Label>
+                <R_Label>@_viewModel.Entity.NMETER_USAGE</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="2" Class="text-end">
                 <R_Label>@_viewModel.Entity.NCF</R_Label>
@@ -699,7 +1468,7 @@
     <R_ItemLayout col="7">
         <R_StackLayout Row>
             <R_ItemLayout col="3"/>
-            
+
 
             <R_ItemLayout col="1">
                 <R_StackLayout Row Class="justify-content-between">
@@ -742,7 +1511,7 @@
 @*     var index = 0; *@
 @* } *@
 
-@foreach(var item in _viewModel.RateList)
+@foreach (var item in _viewModel.RateList)
 {
     <R_StackLayout Row Spacing="0">
         <R_ItemLayout col="3">
@@ -807,17 +1576,17 @@
                 </R_ItemLayout>
 
                 <R_ItemLayout col="3" Class="text-end">
-                            <R_NumericTextBox Class="border-0" TextAlignment="R_eTextAlignment.Right" ReadOnly Arrows="false" Value="@item.NSUB_TOTAL_ROW" ThousandSeparator="true"/>
+                    <R_NumericTextBox Class="border-0" TextAlignment="R_eTextAlignment.Right" ReadOnly Arrows="false" Value="@item.NSUB_TOTAL_ROW" ThousandSeparator="true"/>
                     @* <R_Label>@item.NSUB_TOTAL_ROW</R_Label> *@
                     @* <R_Label>_viewModel.index++;</R_Label> *@
-                    
+
                     @* @(_viewModel.index) *@
-                    
+
                 </R_ItemLayout>
             </R_StackLayout>
         </R_ItemLayout>
-        
-        @if(_viewModel.index++ == _viewModel.RateList.Count-1)
+
+        @if (_viewModel.index++ == _viewModel.RateList.Count - 1)
         {
             <R_ItemLayout col="2" Class="pe-2 d-flex justify-content-end bg-secondary text-light">
                 <R_Label>@_localizer["LBL_STANDING_CONSUMPTION"]</R_Label>
@@ -835,7 +1604,7 @@
     <R_ItemLayout col="7">
         <R_StackLayout Row>
             <R_ItemLayout col="3"/>
-            
+
 
             <R_ItemLayout col="1">
                 <R_StackLayout Row Class="justify-content-between">
@@ -868,7 +1637,7 @@
     </R_ItemLayout>
 
     <R_ItemLayout col="2" Class="d-flex justify-content-end">
-                            <R_NumericTextBox Class="border-0" TextAlignment="R_eTextAlignment.Right" ReadOnly Arrows="false" Value="@_viewModel.NSTANDING_CONSUMPTION" ThousandSeparator="true"/>
+        <R_NumericTextBox Class="border-0" TextAlignment="R_eTextAlignment.Right" ReadOnly Arrows="false" Value="@_viewModel.NSTANDING_CONSUMPTION" ThousandSeparator="true"/>
         @* <R_Label>@_viewModel.NSTANDING_CONSUMPTION</R_Label> *@
     </R_ItemLayout>
 </R_StackLayout>
@@ -933,7 +1702,7 @@
     <R_ItemLayout col="7">
         <R_StackLayout Row>
             <R_ItemLayout col="3" Class="text-end">
-            <R_NumericTextBox Class="border-0" TextAlignment="R_eTextAlignment.Right" ReadOnly Arrows="false" Value="@_viewModel.Entity.NADMIN_FEE_PCT" ThousandSeparator="true"/>
+                <R_NumericTextBox Class="border-0" TextAlignment="R_eTextAlignment.Right" ReadOnly Arrows="false" Value="@_viewModel.Entity.NADMIN_FEE_PCT" ThousandSeparator="true"/>
                 @* <R_Label>@_viewModel.Entity.NADMIN_FEE_PCT</R_Label> *@
             </R_ItemLayout>
 
@@ -1032,7 +1801,7 @@
             </R_ItemLayout>
         </R_StackLayout>
     </R_ItemLayout>
-    
+
     <R_ItemLayout col="2" Class="d-flex justify-content-end">
         <R_NumericTextBox Class="border-0" TextAlignment="R_eTextAlignment.Right" ReadOnly Arrows="false" Value="@_viewModel.NTOTAL_ADM" ThousandSeparator="true"/>
         @* <R_Label>@_viewModel.NTOTAL_ADM</R_Label> *@

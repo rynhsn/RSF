@@ -1,9 +1,7 @@
 ﻿using APR00500Model.ViewModel;
 using BlazorClientHelper;
-using Lookup_APCOMMON.DTOs.APL00100;
 using Lookup_APCOMMON.DTOs.APL00500;
 using Lookup_APFRONT;
-using Lookup_APModel.ViewModel.APL00100;
 using Lookup_APModel.ViewModel.APL00500;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
@@ -120,7 +118,7 @@ public partial class APR00500
     {
         var loEx = new R_Exception();
 
-        var loLookupViewModel = new LookupAPL00100ViewModel();
+        var loLookupViewModel = new LookupGSL02900ViewModel();
         try
         {
             if (string.IsNullOrEmpty(_viewModel.ReportParam.CSUPPLIER_ID))
@@ -129,15 +127,15 @@ public partial class APR00500
                 return;
             }
 
-            var param = new APL00100ParameterDTO
+            var param = new GSL02900ParameterDTO
             {
-                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
-                CSEARCH_CODE = _viewModel.ReportParam.CSUPPLIER_ID
+                // CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
+                CSEARCH_TEXT = _viewModel.ReportParam.CSUPPLIER_ID
             };
 
-            APL00100DTO loResult = null;
+            GSL02900DTO loResult = null;
 
-            loResult = await loLookupViewModel.GetSuplier(param);
+            loResult = await loLookupViewModel.GetSupplier(param);
 
             if (loResult == null)
             {
@@ -163,11 +161,11 @@ public partial class APR00500
 
     private void BeforeLookupSupplier(R_BeforeOpenLookupEventArgs eventArgs)
     {
-        eventArgs.TargetPageType = typeof(APL00100);
-        eventArgs.Parameter = new APL00100ParameterDTO
-        {
-            CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID
-        };
+        eventArgs.TargetPageType = typeof(GSL02900);
+        eventArgs.Parameter = new GSL02900ParameterDTO();
+        // {
+        //     CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID
+        // };
     }
 
     private void AfterLookupSupplier(R_AfterOpenLookupEventArgs eventArgs)
@@ -175,7 +173,7 @@ public partial class APR00500
         var loEx = new R_Exception();
         try
         {
-            var loTempResult = (APL00100DTO)eventArgs.Result;
+            var loTempResult = (GSL02900DTO)eventArgs.Result;
             if (loTempResult == null)
                 return;
 
@@ -487,11 +485,29 @@ public partial class APR00500
                                                   _viewModel.ReportParam.CFROM_PERIOD_MM;
             _viewModel.ReportParam.CTO_PERIOD = _viewModel.ReportParam.ITO_PERIOD_YY +
                                                 _viewModel.ReportParam.CTO_PERIOD_MM;
-            _viewModel.ReportParam.CFROM_REFERENCE_DATE =
-                _viewModel.ReportParam.DFROM_REFERENCE_DATE?.ToString("yyyyMMdd");
-            _viewModel.ReportParam.CTO_REFERENCE_DATE = _viewModel.ReportParam.DTO_REFERENCE_DATE?.ToString("yyyyMMdd");
-            _viewModel.ReportParam.CFROM_DUE_DATE = _viewModel.ReportParam.DFROM_DUE_DATE?.ToString("yyyyMMdd");
-            _viewModel.ReportParam.CTO_DUE_DATE = _viewModel.ReportParam.DTO_DUE_DATE?.ToString("yyyyMMdd");
+
+            _viewModel.ReportParam.CDEPT_CODE = _viewModel.CheckDept ? _viewModel.ReportParam.CDEPT_CODE : "";
+
+            _viewModel.ReportParam.CFROM_REFERENCE_DATE = _viewModel.CheckRefDate
+                ? _viewModel.ReportParam.DFROM_REFERENCE_DATE?.ToString("yyyyMMdd")
+                : "";
+
+            _viewModel.ReportParam.CTO_REFERENCE_DATE = _viewModel.CheckRefDate
+                ? _viewModel.ReportParam.DTO_REFERENCE_DATE?.ToString("yyyyMMdd")
+                : "";
+
+            _viewModel.ReportParam.CFROM_DUE_DATE = _viewModel.CheckDueDate
+                ? _viewModel.ReportParam.DFROM_DUE_DATE?.ToString("yyyyMMdd")
+                : "";
+
+            _viewModel.ReportParam.CTO_DUE_DATE = _viewModel.CheckDueDate
+                ? _viewModel.ReportParam.DTO_DUE_DATE?.ToString("yyyyMMdd")
+                : "";
+            
+            _viewModel.ReportParam.CSUPPLIER_ID = _viewModel.CheckSupplier ? _viewModel.ReportParam.CSUPPLIER_ID : "";
+            _viewModel.ReportParam.CFROM_REFERENCE_NO = _viewModel.CheckRefNo ? _viewModel.ReportParam.CFROM_REFERENCE_NO : "";
+            _viewModel.ReportParam.CTO_REFERENCE_NO = _viewModel.CheckRefNo ? _viewModel.ReportParam.CTO_REFERENCE_NO : "";
+            _viewModel.ReportParam.CCURRENCY = _viewModel.CheckCurrency ? _viewModel.ReportParam.CCURRENCY : "";
 
             var propertyIsNull = string.IsNullOrEmpty(_viewModel.ReportParam.CPROPERTY_ID);
             var cutOffDateIsNull = string.IsNullOrEmpty(_viewModel.ReportParam.CCUT_OFF_DATE);
@@ -530,19 +546,24 @@ public partial class APR00500
 
             var periodFromGreaterThanTo = int.Parse(_viewModel.ReportParam.CFROM_PERIOD) >
                                           int.Parse(_viewModel.ReportParam.CTO_PERIOD);
-            var refDateFromGreaterThanTo = int.Parse(_viewModel.ReportParam.CFROM_REFERENCE_DATE) >
-                                           int.Parse(_viewModel.ReportParam.CTO_REFERENCE_DATE);
-            var dueDateFromGreaterThanTo = int.Parse(_viewModel.ReportParam.CFROM_DUE_DATE) >
-                                           int.Parse(_viewModel.ReportParam.CTO_DUE_DATE);
-            var totalAmountFromGreaterThanTo = _viewModel.ReportParam.NFROM_TOTAL_AMOUNT > _viewModel.ReportParam.NTO_TOTAL_AMOUNT;
-            var remainingAmountFromGreaterThanTo = _viewModel.ReportParam.NFROM_REMAINING_AMOUNT > _viewModel.ReportParam.NTO_REMAINING_AMOUNT;
-            var daysLateFromGreaterThanTo = _viewModel.ReportParam.IFROM_DAYS_LATE > _viewModel.ReportParam.ITO_DAYS_LATE;
+            var refDateFromGreaterThanTo = _viewModel.CheckRefDate ? int.Parse(_viewModel.ReportParam.CFROM_REFERENCE_DATE) >
+                                           int.Parse(_viewModel.ReportParam.CTO_REFERENCE_DATE) : false;
+            var dueDateFromGreaterThanTo = _viewModel.CheckDueDate ? int.Parse(_viewModel.ReportParam.CFROM_DUE_DATE) >
+                                           int.Parse(_viewModel.ReportParam.CTO_DUE_DATE) : false;
+            var totalAmountFromGreaterThanTo =
+                _viewModel.ReportParam.NFROM_TOTAL_AMOUNT > _viewModel.ReportParam.NTO_TOTAL_AMOUNT;
+            var remainingAmountFromGreaterThanTo = _viewModel.ReportParam.NFROM_REMAINING_AMOUNT >
+                                                   _viewModel.ReportParam.NTO_REMAINING_AMOUNT;
+            var daysLateFromGreaterThanTo =
+                _viewModel.ReportParam.IFROM_DAYS_LATE > _viewModel.ReportParam.ITO_DAYS_LATE;
 
             if (periodFromGreaterThanTo) loEx.Add("Error", _localizer["ERR_FROMPERIOD_GREATERTHAN_TOPERIOD"]);
             if (refDateFromGreaterThanTo) loEx.Add("Error", _localizer["ERR_FROMREFDATE_GREATERTHAN_TOREFDATE"]);
             if (dueDateFromGreaterThanTo) loEx.Add("Error", _localizer["ERR_FROMDUEDATE_GREATERTHAN_TODUEDATE"]);
-            if (totalAmountFromGreaterThanTo) loEx.Add("Error", _localizer["ERR_FROMTOTALAMOUNT_GREATERTHAN_TOTOTALAMOUNT"]);
-            if (remainingAmountFromGreaterThanTo) loEx.Add("Error", _localizer["ERR_FROMREMAININGAMOUNT_GREATERTHAN_TOREMAININGAMOUNT"]);
+            if (totalAmountFromGreaterThanTo)
+                loEx.Add("Error", _localizer["ERR_FROMTOTALAMOUNT_GREATERTHAN_TOTOTALAMOUNT"]);
+            if (remainingAmountFromGreaterThanTo)
+                loEx.Add("Error", _localizer["ERR_FROMREMAININGAMOUNT_GREATERTHAN_TOREMAININGAMOUNT"]);
             if (daysLateFromGreaterThanTo) loEx.Add("Error", _localizer["ERR_FROMDAYSLATE_GREATERTHAN_TODAYSLATE"]);
         }
         catch (Exception ex)
