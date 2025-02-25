@@ -88,7 +88,7 @@
 
         <R_StackLayout Row>
             <R_ItemLayout>
-                <R_Button Enabled="@(_viewModel.LOIGrid.Count > 0)">@_localizer["_Print"]</R_Button>
+                <R_Popup Enabled="@(_viewModel.LOIGrid.Count > 0)" R_Before_Open_Popup="@BeforeOpenPrintPopup">@_localizer["_Print"]</R_Popup>
                 <R_Button Enabled="@(_viewModel.LOIGrid.Count > 0 && EnableDraftSts)" OnClick="@SubmitProcess">@_localizer["_Submit"]</R_Button>
                 <R_Button Enabled="@(_viewModel.LOIGrid.Count > 0 && EnableOpenSts)" OnClick="@RedraftProcess">@_localizer["_Redraft"]</R_Button>
                 <R_Button Enabled="@(_viewModel.LOIGrid.Count > 0 && EnableApproveSts)" OnClick="@CancelLOIProcess">@_localizer["_CancelLOI"]</R_Button>

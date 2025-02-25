@@ -8,6 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSModel\Lookup_GSModel.csproj" />
     <ProjectReference Include="..\..\COMMON\LM\PMT01300COMMON\PMT01300COMMON.csproj" />
+    <ProjectReference Include="..\..\COMMON\LM\PMT01300ReportCommon\PMT01300ReportCommon.csproj" />
     <ProjectReference Include="..\PMT01300FrontResources\PMT01300FrontResources.csproj" />
   </ItemGroup>
 

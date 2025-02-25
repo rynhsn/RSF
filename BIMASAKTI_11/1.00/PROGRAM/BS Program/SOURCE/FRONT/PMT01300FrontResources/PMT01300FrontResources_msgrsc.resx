@@ -835,4 +835,7 @@
   <data name="_Years" xml:space="preserve">
     <value>Years</value>
   </data>
+  <data name="_LeaseTemplate" xml:space="preserve">
+    <value>Lease Template</value>
+  </data>
 </root>

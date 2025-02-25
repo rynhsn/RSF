@@ -45,6 +45,7 @@
             groupBox4 = new GroupBox();
             HDR00200 = new Button();
             Refresh = new Button();
+            PMT01300 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -174,6 +175,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(PMT01300);
             groupBox2.Controls.Add(PMR00400);
             groupBox2.Controls.Add(PMR02600);
             groupBox2.Controls.Add(PMR00460);
@@ -224,6 +226,16 @@
             Refresh.Text = "Refresh";
             Refresh.UseVisualStyleBackColor = true;
             // 
+            // PMT01300
+            // 
+            PMT01300.Location = new Point(6, 109);
+            PMT01300.Name = "PMT01300";
+            PMT01300.Size = new Size(75, 23);
+            PMT01300.TabIndex = 10;
+            PMT01300.Text = "PMT01300";
+            PMT01300.UseVisualStyleBackColor = true;
+            PMT01300.Click += PMT01300_Click;
+            // 
             // FormMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -264,5 +276,6 @@
         private GroupBox groupBox4;
         private Button HDR00200;
         private Button Refresh;
+        private Button PMT01300;
     }
 }

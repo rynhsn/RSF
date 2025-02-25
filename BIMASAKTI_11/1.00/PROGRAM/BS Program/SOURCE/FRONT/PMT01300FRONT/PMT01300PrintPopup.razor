@@ -1,0 +1,28 @@
+﻿@inherits R_Page
+@attribute [R_Page(ResourceId = "_Print")]
+
+
+<R_StackLayout Row>
+
+    <R_ItemLayout>
+        <R_Label>
+            @_localizer["_LeaseTemplate"]
+        </R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_ComboBox Data="@_viewModel.ReportTemplateList"
+                    @bind-Value="_viewModel.TemplateId"
+                    ValueField="@nameof(PMT01300ReportTemplateDTO.CTEMPLATE_ID)"
+                    TextField="@nameof(PMT01300ReportTemplateDTO.CTEMPLATE_NAME)" />
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Justify="R_eJustify.FlexEnd" AlignItems="R_eAlignItems.End">
+    <R_ItemLayout>
+        <R_Button OnClick="@OnClickOk">
+            @_localizer["_Print"]
+        </R_Button>
+    </R_ItemLayout>
+
+</R_StackLayout>

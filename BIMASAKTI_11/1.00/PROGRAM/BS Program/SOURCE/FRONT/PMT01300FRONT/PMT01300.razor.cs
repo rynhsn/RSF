@@ -21,6 +21,7 @@ using R_BlazorFrontEnd.Enums;
 using System;
 using System.Diagnostics.Tracing;
 using System.Xml.Linq;
+using PMT01300ReportCommon;
 
 namespace PMT01300FRONT
 {
@@ -665,5 +666,29 @@ namespace PMT01300FRONT
             loEx.ThrowExceptionIfErrors();
         }
         #endregion
+
+        private void BeforeOpenPrintPopup(R_BeforeOpenPopupEventArgs eventArgs)
+        {
+            var loException = new R_Exception();
+
+            try
+            {
+                var loParam = new PMT01300ReportParamDTO
+                {
+                    CPROPERTY_ID = _viewModel.PROPERTY_ID,
+                    CDEPT_CODE = _viewModel.Data.CDEPT_CODE,
+                    CREF_NO = _viewModel.Data.CREF_NO,
+                    CTRANS_CODE = _viewModel.Data.CTRANS_CODE,
+                };
+                eventArgs.Parameter = loParam;
+                eventArgs.TargetPageType = typeof(PMT01300PrintPopup);
+                eventArgs.PageTitle = _localizer["_Print"];
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+            loException.ThrowExceptionIfErrors();
+        }
     }
 }

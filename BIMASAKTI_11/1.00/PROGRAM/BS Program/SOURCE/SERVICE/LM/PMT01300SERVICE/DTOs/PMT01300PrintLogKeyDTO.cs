@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using R_BackEnd;
 
 namespace PMT01300SERVICE
 {
@@ -11,5 +12,6 @@ namespace PMT01300SERVICE
     {
         public T poParam { get; set; }
         public R_NetCoreLogKeyDTO poLogKey { get; set; }
+        public R_ReportGlobalDTO? poReportGlobal { get; set; }
     }
 }

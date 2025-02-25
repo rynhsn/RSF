@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using PMT01300ReportCommon;
 
 namespace PMT01300MODEL
 {
@@ -21,6 +22,11 @@ namespace PMT01300MODEL
         public ObservableCollection<PMT01300DTO> LOIGrid { get; set; } = new ObservableCollection<PMT01300DTO>();
         public ObservableCollection<PMT01310DTO> LOIUNITGrid { get; set; } = new ObservableCollection<PMT01310DTO>();
         public List<PMT01300PropertyDTO> PropertyList { get; set; } = new List<PMT01300PropertyDTO>();
+        #endregion
+        #region Property Print Popup
+        public List<PMT01300ReportTemplateDTO> ReportTemplateList { get; set; } = new List<PMT01300ReportTemplateDTO>();
+        public PMT01300ReportParamDTO PrintParam { get; set; } = new PMT01300ReportParamDTO();
+        public string? TemplateId { get; set; }
         #endregion
 
         #region Property ViewModel
@@ -155,5 +161,39 @@ namespace PMT01300MODEL
 
             return loResult;
         }
+        public async Task GetReportTemplateList(PMT01300ReportTemplateParamDTO poParam)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loParam = new PMT01300ReportTemplateParamDTO
+                {
+                    CPROPERTY_ID = poParam.CPROPERTY_ID
+                };
+                
+                var loResult = await _PMT01300Model.GetReportTemplateListAsync(loParam);
+                
+                if (loResult != null && loResult.Any())
+                {
+                    ReportTemplateList = loResult;
+                    TemplateId = ReportTemplateList
+                        .FirstOrDefault(x => x.LDEFAULT)
+                        ?.CTEMPLATE_ID;
+                }
+                else
+                {
+                    TemplateId = "";
+                    loEx.Add("", "Data Template Not Found");
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+        
     }
 }

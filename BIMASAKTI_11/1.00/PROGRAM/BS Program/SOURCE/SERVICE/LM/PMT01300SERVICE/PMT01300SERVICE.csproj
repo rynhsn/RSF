@@ -18,7 +18,7 @@
 
 	<ItemGroup>
 		<Reference Include="BaseHeaderReportCOMMON">
-			<HintPath>..\..\..\COMMON\BaseHeaderCOMMON\BaseHeaderReportCommonDLL\BaseHeaderReportCOMMON.dll</HintPath>
+			<HintPath>..\..\..\COMMON\BaseHeaderReportCOMMON.dll</HintPath>
 		</Reference>
 		<Reference Include="R_APIBackEnd">
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
@@ -37,6 +37,12 @@
 		</Reference>
 		<Reference Include="R_OpenTelemetry">
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ReportServerClient">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportServerClient.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ReportServerCommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportServerCommon.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 </Project>

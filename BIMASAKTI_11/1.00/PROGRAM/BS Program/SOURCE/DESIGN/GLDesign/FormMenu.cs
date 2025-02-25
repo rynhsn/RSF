@@ -106,5 +106,12 @@ namespace GLDesign
             loReport.Design();
         }
 
+        private void PMT01300_Click(object sender, EventArgs e)
+        {
+            var loData = new ArrayList();
+            loData.Add(PMT01300COMMON.Models.PMT01300ModelDummyDataReportServer.DefaultDataWithHeader());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
     }
 }

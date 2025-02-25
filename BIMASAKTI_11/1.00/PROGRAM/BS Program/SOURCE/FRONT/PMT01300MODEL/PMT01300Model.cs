@@ -158,7 +158,33 @@ namespace PMT01300MODEL
 
             return loResult;
         }
+        public async Task<List<PMT01300ReportTemplateDTO>> GetReportTemplateListAsync(PMT01300ReportTemplateParamDTO poParam)
+        {
+            var loEx = new R_Exception();
+            List<PMT01300ReportTemplateDTO> loReturn = null;
 
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loResult = await R_HTTPClientWrapper.R_APIRequestObject<PMT01300ListResult<PMT01300ReportTemplateDTO>, PMT01300ReportTemplateParamDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPMT01300.GetReportTemplateList),
+                    poParam,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+                loReturn = loResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loReturn;
+        }
+        
         #region Not Implment
         public IAsyncEnumerable<PMT01300DTO> GetLOIListStream()
         {
@@ -177,6 +203,11 @@ namespace PMT01300MODEL
             throw new NotImplementedException();
         }
         public PMT01300UploadFileDTO DownloadTemplateFile()
+        {
+            throw new NotImplementedException();
+        }
+
+        public PMT01300ListResult<PMT01300ReportTemplateDTO> GetReportTemplateList(PMT01300ReportTemplateParamDTO poParam)
         {
             throw new NotImplementedException();
         }

@@ -40,4 +40,5 @@ namespace PMT01300FRONT
         public string CBUILDING_ID { get; set; }
         public PMT01330DTO SELECTED_DATA_TAB_CHARGES { get; set; }
     }
+
 }

@@ -21,6 +21,7 @@
 	  <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj" />
 	  <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\Lookup_PMFRONT.csproj" />
 	  <ProjectReference Include="..\..\COMMON\LM\PMT01300COMMON\PMT01300COMMON.csproj" />
+	  <ProjectReference Include="..\..\COMMON\LM\PMT01300ReportCommon\PMT01300ReportCommon.csproj" />
 	  <ProjectReference Include="..\PMT01300MODEL\PMT01300MODEL.csproj" />
   </ItemGroup>
 

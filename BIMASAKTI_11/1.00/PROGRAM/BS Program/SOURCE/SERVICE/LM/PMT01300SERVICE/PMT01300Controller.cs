@@ -16,6 +16,7 @@ namespace PMT01300SERVICE
     {
         private LoggerPMT01300 _Logger;
         private readonly ActivitySource _activitySource;
+
         public PMT01300Controller(ILogger<LoggerPMT01300> logger)
         {
             //Initial and Get Logger
@@ -25,6 +26,7 @@ namespace PMT01300SERVICE
         }
 
         #region Stream Data
+
         private async IAsyncEnumerable<T> GetStreamData<T>(List<T> poParameter)
         {
             foreach (var item in poParameter)
@@ -32,6 +34,7 @@ namespace PMT01300SERVICE
                 yield return item;
             }
         }
+
         #endregion
 
         [HttpPost]
@@ -185,6 +188,58 @@ namespace PMT01300SERVICE
             _Logger.LogInfo("End DownloadTemplateFile");
 
             return loRtn;
+        }
+
+        [HttpPost]
+        public PMT01300ListResult<PMT01300ReportTemplateDTO> GetReportTemplateList(
+            PMT01300ReportTemplateParamDTO poParam)
+        {
+            string? lcMethod = nameof(GetReportTemplateList);
+            _Logger.LogInfo(string.Format("Start Method {0}", lcMethod));
+            R_Exception loException = new R_Exception();
+            List<PMT01300ReportTemplateDTO> loRtnTmp;
+            var loReturn = new PMT01300ListResult<PMT01300ReportTemplateDTO>();
+
+            try
+            {
+                _Logger.LogInfo(string.Format("initialization loDbPar in Method {0}", lcMethod));
+                var loDbParameter = new PMT01300ReportTemplateParamDTO();
+
+                _Logger.LogInfo(string.Format("Assign Data to loDbPar in Method {0}", lcMethod));
+                loDbParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                loDbParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+                loDbParameter.CPROPERTY_ID = poParam.CPROPERTY_ID;
+                loDbParameter.CPROGRAM_ID = "PMT01300";
+                loDbParameter.CTEMPLATE_ID = "";
+                
+                _Logger.LogDebug("{@ObjectParameter}", loDbParameter);
+
+                //Use Context!
+
+                _Logger.LogInfo(string.Format("initialization loCls in Method {0}", lcMethod));
+                var loCls = new PMT01300Cls();
+                _Logger.LogDebug("{@ObjectCls}", loCls);
+
+                _Logger.LogInfo(string.Format("Get Data From Back/Cls in Method {0}", lcMethod));
+                loRtnTmp = loCls.GetReportTemplate(poParameter: loDbParameter);
+                _Logger.LogDebug("{@ObjectReturnTemporary}", loRtnTmp);
+
+                loReturn.Data = loRtnTmp;
+                // _Logger.LogDebug("{@ObjectReturn}", loReturn);
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+
+            if (loException.Haserror)
+                _Logger.LogError("{@ErrorObject}", loException.Message);
+
+            loException.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo(string.Format("End Method {0}", lcMethod));
+
+            return loReturn!;
         }
     }
 }
