@@ -11,7 +11,7 @@ using TXB00200Common.Params;
 
 namespace TXB00200Model
 {
-    public class TXB00200Model : R_BusinessObjectServiceClientBase<TXB00200PropertyDTO>, ITXB00200
+    public class TXB00200Model : R_BusinessObjectServiceClientBase<TXB00200DTO>, ITXB00200
     {
     
         private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrlTX";
@@ -29,6 +29,11 @@ namespace TXB00200Model
         {
         }
 
+        public TXB00200SingleDTO<TXB00200DTO> TXB00200GetSoftClosePeriod()
+        {
+            throw new NotImplementedException();
+        }
+
         public TXB00200ListDTO<TXB00200PropertyDTO> TXB00200GetPropertyList()
         {
             throw new NotImplementedException();
@@ -39,7 +44,17 @@ namespace TXB00200Model
             throw new NotImplementedException();
         }
 
-        public TXB00200ListDTO<TXB00200PeriodDTO> TXB00200GetPeriodList(TXB00200YearParam poParam)
+        public TXB00200ListDTO<TXB00200PeriodDTO> TXB00200GetPeriodList(TXB00200PeriodParam poParam)
+        {
+            throw new NotImplementedException();
+        }
+
+        public TXB00200SingleDTO<TXB00200PeriodParam> TXB00200UpdateSoftPeriod(TXB00200PeriodParam poParams)
+        {
+            throw new NotImplementedException();
+        }
+
+        public TXB00200ListDTO<TXB00200SoftClosePeriodToDoListDTO> TXB00200SoftClosePeriodStream()
         {
             throw new NotImplementedException();
         }

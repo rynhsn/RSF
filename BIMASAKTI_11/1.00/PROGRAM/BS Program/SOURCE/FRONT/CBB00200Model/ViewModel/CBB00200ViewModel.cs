@@ -23,6 +23,8 @@ namespace CBB00200Model.ViewModel
 
         public ObservableCollection<CBB00200ClosePeriodToDoListDTO> ClosePeriodToDoList =
             new ObservableCollection<CBB00200ClosePeriodToDoListDTO>();
+        
+        public List<CBB00200ClosePeriodToDoListDTO> SoftClosePeriodErrorList = new List<CBB00200ClosePeriodToDoListDTO>();
 
         public DataSet ExcelDataSetToDoList { get; set; }
 
@@ -43,49 +45,49 @@ namespace CBB00200Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-
-        public async Task<int> ClosePeriod(string pcPeriod)
-        {
-            var loEx = new R_Exception();
-            var loReturn = 0;
-            try
-            {   
-                var loParam = new CBB00200ClosePeriodParam { CPERIOD = pcPeriod };
-                var loResult =
-                    await _model.GetAsync<CBB00200SingleDTO<CBB00200ClosePeriodResultDTO>, CBB00200ClosePeriodParam>(
-                        nameof(ICBB00200.CBB00200ClosePeriod), loParam);
-                loReturn = loResult.Data.IERROR_COUNT;
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            EndBlock:
-            loEx.ThrowExceptionIfErrors();
-            return loReturn;
-        }
-
-        public async Task GetClosePeriodToDoList(string pcPeriod)
-        {
-            var loEx = new R_Exception();
-            try
-            {
-                R_FrontContext.R_SetStreamingContext(CBB00200ContextConstant.CPERIOD, pcPeriod);
-                var loResult =
-                    await _model.GetListStreamAsync<CBB00200ClosePeriodToDoListDTO>(
-                        nameof(ICBB00200.CBB00200ClosePeriodToDoListStream));
-                ClosePeriodToDoList = new ObservableCollection<CBB00200ClosePeriodToDoListDTO>(loResult);
-
-                SetExcelDataSetToDoList();
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
+        
+        // public async Task<int> ClosePeriod(string pcPeriod)
+        // {
+        //     var loEx = new R_Exception();
+        //     var loReturn = 0;
+        //     try
+        //     {
+        //         var loParam = new CBB00200ClosePeriodParam { CPERIOD = pcPeriod };
+        //         var loResult =
+        //             await _model.GetAsync<CBB00200SingleDTO<CBB00200ClosePeriodResultDTO>, CBB00200ClosePeriodParam>(
+        //                 nameof(ICBB00200.CBB00200ClosePeriod), loParam);
+        //         loReturn = loResult.Data.IERROR_COUNT;
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         loEx.Add(ex);
+        //     }
+        //
+        //     EndBlock:
+        //     loEx.ThrowExceptionIfErrors();
+        //     return loReturn;
+        // }
+        //
+        // public async Task GetClosePeriodToDoList(string pcPeriod)
+        // {
+        //     var loEx = new R_Exception();
+        //     try
+        //     {
+        //         R_FrontContext.R_SetStreamingContext(CBB00200ContextConstant.CPERIOD, pcPeriod);
+        //         var loResult =
+        //             await _model.GetListStreamAsync<CBB00200ClosePeriodToDoListDTO>(
+        //                 nameof(ICBB00200.CBB00200ClosePeriodToDoListStream));
+        //         ClosePeriodToDoList = new ObservableCollection<CBB00200ClosePeriodToDoListDTO>(loResult);
+        //
+        //         SetExcelDataSetToDoList();
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         loEx.Add(ex);
+        //     }
+        //
+        //     loEx.ThrowExceptionIfErrors();
+        // }
 
         private void SetExcelDataSetToDoList()
         {
@@ -106,6 +108,33 @@ namespace CBB00200Model.ViewModel
 
             // Asign Dataset
             ExcelDataSetToDoList = loDataSet;
+        }
+
+        public async Task SoftClosePeriod(string pcPeriod)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                R_FrontContext.R_SetStreamingContext(CBB00200ContextConstant.CPERIOD, pcPeriod);
+                var loResult =
+                    await _model.GetListStreamAsync<CBB00200ClosePeriodToDoListDTO>(
+                        nameof(ICBB00200.CBB00200SoftClosePeriodStream));
+                SoftClosePeriodErrorList = loResult.ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        public void ValidateHasError(List<CBB00200ClosePeriodToDoListDTO> poParam)
+        {
+            SoftClosePeriodErrorList = poParam;
+            ClosePeriodToDoList = new ObservableCollection<CBB00200ClosePeriodToDoListDTO>(poParam);
+            
+            SetExcelDataSetToDoList();
         }
     }
 }

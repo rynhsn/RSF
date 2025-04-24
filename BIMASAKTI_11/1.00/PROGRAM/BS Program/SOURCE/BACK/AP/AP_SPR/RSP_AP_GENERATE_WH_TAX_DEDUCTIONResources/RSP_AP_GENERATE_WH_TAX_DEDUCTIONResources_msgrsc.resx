@@ -18,6 +18,9 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <data name="WHT_PCT_ZERO" xml:space="preserve">
+        <value>Withhodlding Tax Percentage not found for Tax ID {0}</value>
+    </data>
     <data name="ERROR_PROCESS" xml:space="preserve">
         <value>Process failed! unable to generate Withholding Tax Deduction {0}</value>
     </data>

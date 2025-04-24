@@ -1,0 +1,2 @@
+Error100=Reference No. {0} already exists!
+Error900=Process failed! unable to save Recurring Journal {0}

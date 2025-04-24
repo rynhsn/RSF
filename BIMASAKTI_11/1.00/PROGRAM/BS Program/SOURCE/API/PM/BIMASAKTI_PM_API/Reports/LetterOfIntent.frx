@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="02/19/2025 15:03:10" ReportInfo.Modified="02/25/2025 15:10:56" ReportInfo.CreatorVersion="2023.2.21.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="02/19/2025 15:03:10" ReportInfo.Modified="03/19/2025 16:21:08" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="Title" DataType="System.String"/>
@@ -200,6 +200,24 @@
         <Column Name="DACTUAL_END_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
         <Column Name="DSOLD_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
         <Column Name="CLOCATION" DataType="System.String"/>
+        <Column Name="CNAME01" DataType="System.String"/>
+        <Column Name="CNAME02" DataType="System.String"/>
+        <Column Name="CNAME03" DataType="System.String"/>
+        <Column Name="CNAME04" DataType="System.String"/>
+        <Column Name="CNAME05" DataType="System.String"/>
+        <Column Name="CNAME06" DataType="System.String"/>
+        <Column Name="CPOSITION01" DataType="System.String"/>
+        <Column Name="CPOSITION02" DataType="System.String"/>
+        <Column Name="CPOSITION03" DataType="System.String"/>
+        <Column Name="CPOSITION04" DataType="System.String"/>
+        <Column Name="CPOSITION05" DataType="System.String"/>
+        <Column Name="CPOSITION06" DataType="System.String"/>
+        <Column Name="OSIGN01" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="OSIGN02" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="OSIGN03" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="OSIGN04" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="OSIGN05" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="OSIGN06" DataType="System.Byte[]" BindableControl="Picture"/>
       </Column>
     </BusinessObjectDataSource>
   </Dictionary>
@@ -231,7 +249,7 @@
             <TextObject Name="Text3" Left="9.45" Top="18.9" Width="321.3" Height="28.35" Text="[ResponseDataModel.LabelReport.LABEL_KEPADA_YTH]," AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
             <ChildBand Name="Child4" Top="217.67" Width="718.2" Height="28.35">
               <TextObject Name="Text194" Left="9.45" Width="94.5" Height="20.9" CanShrink="true" Text="[ResponseDataModel.LabelReport.LABEL_NAMA] " Font="Arial Unicode MS, 12pt"/>
-              <TextObject Name="Text195" Left="103.95" Width="94.5" Height="20.9" CanShrink="true" Text=": [ResponseDataModel.Data.CTENANT_ATTENTION1_NAME]" AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+              <TextObject Name="Text195" Left="103.95" Width="94.5" Height="20.9" CanShrink="true" Text=": [ResponseDataModel.Data.CTENANT_NAME]" AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
               <ChildBand Name="Child5" Top="251.35" Width="718.2" Height="28.35">
                 <TextObject Name="Text196" Left="9.45" Width="94.5" Height="20.9" CanShrink="true" Text="[ResponseDataModel.LabelReport.LABEL_BRAND] " Font="Arial Unicode MS, 12pt"/>
                 <TextObject Name="Text197" Left="103.95" Width="94.5" Height="20.9" CanShrink="true" Text=": [ResponseDataModel.Data.CUNIT_DESCRIPTION]" AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
@@ -274,8 +292,8 @@
       </ChildBand>
     </DataBand>
     <DataBand Name="Data16" Top="462.9" Width="718.2" Height="47.25">
-      <TextObject Name="Text11" Left="18.9" Top="18.9" Width="255.15" Height="18.9" Text="[ResponseDataModel.LabelReport.LABEL_NAMA_BRAND_TENANT]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt, style=Bold"/>
-      <TextObject Name="Text12" Left="274.05" Top="18.9" Width="396.9" Height="18.9" Text="[ResponseDataModel.Data.CUNIT_DESCRIPTION] [ResponseDataModel.LabelReport.LABEL_NAMA_BRAND_TENANT_DESC]" AutoWidth="true" Font="Arial Unicode MS, 12pt">
+      <TextObject Name="Text11" Left="18.9" Top="18.9" Width="207.9" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_NAMA_BRAND_TENANT]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text12" Left="226.8" Top="18.9" Width="472.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.CUNIT_DESCRIPTION] [ResponseDataModel.LabelReport.LABEL_NAMA_BRAND_TENANT_DESC]" AutoWidth="true" Font="Arial Unicode MS, 12pt">
         <Formats>
           <GeneralFormat/>
           <GeneralFormat/>
@@ -575,10 +593,19 @@
         <TextObject Name="Text184" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_PENUTUP_B]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
       </ChildBand>
     </DataBand>
-    <DataBand Name="Data17" Top="2228" Width="718.2" Height="170.1" CanGrow="true">
+    <DataBand Name="Data17" Top="2228" Width="718.2" Height="198.45" CanGrow="true" CanShrink="true" DataSource="ResponseDataModel">
       <TextObject Name="Text185" Left="18.9" Top="28.35" Width="103.95" Height="28.35" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.LabelReport.LABEL_DIBUAT_OLEH]" AutoWidth="true" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
-      <TextObject Name="Text186" Left="302.4" Top="28.35" Width="103.95" Height="28.35" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.LabelReport.LABEL_MENYETUJUI]" AutoWidth="true" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
-      <TextObject Name="Text187" Left="585.9" Top="28.35" Width="103.95" Height="28.35" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.LabelReport.LABEL_MENGETAHUI]" AutoWidth="true" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+      <TextObject Name="Text186" Left="255.15" Top="28.35" Width="103.95" Height="28.35" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.LabelReport.LABEL_MENYETUJUI]" AutoWidth="true" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+      <TextObject Name="Text187" Left="491.4" Top="28.35" Width="103.95" Height="28.35" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.LabelReport.LABEL_MENGETAHUI]" AutoWidth="true" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+      <PictureObject Name="Picture1" Left="18.9" Top="56.7" Width="103.95" Height="85.05" DataColumn="ResponseDataModel.Data.OSIGN01"/>
+      <PictureObject Name="Picture2" Left="255.15" Top="56.7" Width="103.95" Height="85.05" DataColumn="ResponseDataModel.Data.OSIGN02"/>
+      <PictureObject Name="Picture3" Left="491.4" Top="56.7" Width="103.95" Height="85.05" DataColumn="ResponseDataModel.Data.OSIGN03"/>
+      <TextObject Name="Text205" Left="18.9" Top="141.75" Width="226.8" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.CNAME01]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text206" Left="18.9" Top="160.65" Width="226.8" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.CPOSITION01]" Font="Arial Unicode MS, 12pt, style=Italic"/>
+      <TextObject Name="Text207" Left="255.15" Top="160.65" Width="226.8" Height="18.9" Text="[ResponseDataModel.Data.CPOSITION02]" Font="Arial Unicode MS, 12pt, style=Italic"/>
+      <TextObject Name="Text208" Left="255.15" Top="141.75" Width="226.8" Height="18.9" Text="[ResponseDataModel.Data.CNAME02]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text209" Left="491.4" Top="141.75" Width="217.35" Height="18.9" Text="[ResponseDataModel.Data.CNAME03]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text210" Left="491.4" Top="160.65" Width="217.35" Height="18.9" Text="[ResponseDataModel.Data.CPOSITION03]" Font="Arial Unicode MS, 12pt, style=Italic"/>
     </DataBand>
   </ReportPage>
 </Report>

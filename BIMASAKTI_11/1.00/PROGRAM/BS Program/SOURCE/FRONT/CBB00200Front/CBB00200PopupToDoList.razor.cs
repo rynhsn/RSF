@@ -1,4 +1,5 @@
 using CBB00200Common.DTOs;
+using CBB00200Front.DTOs;
 using CBB00200Model.ViewModel;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -8,6 +9,7 @@ using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Exceptions;
+using R_BlazorFrontEnd.Helpers;
 
 namespace CBB00200Front;
 
@@ -27,7 +29,9 @@ public partial class CBB00200PopupToDoList : R_Page
         try
         {
             //refresh form
-            await _gridRef.R_RefreshGrid((string)eventArgs);
+            var loParam = R_FrontUtility.ConvertObjectToObject<CBB00200PopupParamDTO>(eventArgs);
+            _viewModel.ValidateHasError(loParam.SoftClosePeriodErrorList);
+            await _gridRef.R_RefreshGrid(null);
         }
         catch (Exception ex)
         {
@@ -44,8 +48,9 @@ public partial class CBB00200PopupToDoList : R_Page
 
         try
         {
-            var lcParam = (string)eventArgs.Parameter;
-            await _viewModel.GetClosePeriodToDoList(lcParam);
+            // var lcParam = (string)eventArgs.Parameter;
+            // await _viewModel.GetClosePeriodToDoList(lcParam);
+            
             eventArgs.ListEntityResult = _viewModel.ClosePeriodToDoList;
             
             if (_viewModel.ClosePeriodToDoList.Count > 0)

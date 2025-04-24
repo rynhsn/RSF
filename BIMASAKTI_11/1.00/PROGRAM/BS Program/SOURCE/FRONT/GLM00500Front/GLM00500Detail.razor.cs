@@ -283,8 +283,7 @@ public partial class GLM00500Detail
             loGetData.CGLACCOUNT_NO = loTempResult.CGLACCOUNT_NO;
             loGetData.CGLACCOUNT_NAME = loTempResult.CGLACCOUNT_NAME;
             loGetData.CBSIS = R_FrontUtility.ConvertObjectToObject<string>(loTempResult.CBSIS);
-            if ((loTempResult.CBSIS == "I" && _detailViewModel.Company.LENABLE_CENTER_IS == false) ||
-                (loTempResult.CBSIS == "B" && _detailViewModel.Company.LENABLE_CENTER_BS == false))
+            if (loTempResult.CBSIS == "B" && _detailViewModel.Company.LENABLE_CENTER_IS)
             {
                 loGetData.CCENTER_CODE = "";
                 loGetData.CCENTER_NAME = "";

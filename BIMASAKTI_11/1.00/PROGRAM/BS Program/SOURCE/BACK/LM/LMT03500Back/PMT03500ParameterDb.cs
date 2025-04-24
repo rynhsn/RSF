@@ -44,4 +44,6 @@ public class PMT03500ParameterDb
     public string CSEQ_NO { get; set; } = "";
     public string CINV_PRD { get; set; } = "";
     public bool LOTHER_UNIT { get; set; }
+    public string CFROM_PERIOD { get; set; } = "";
+    public string CTO_PERIOD { get; set; } = "";
 }

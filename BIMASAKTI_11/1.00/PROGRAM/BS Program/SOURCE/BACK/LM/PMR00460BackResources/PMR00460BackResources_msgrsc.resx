@@ -117,7 +117,7 @@
     
     <!-- CareNo = "Care No." -->
     <data name="CareNo" xml:space="preserve">
-        <value>Care No.</value><comment>Care No.</comment>
+        <value>CARE No.</value><comment>CARE No.</comment>
     </data>
     
     <!-- Quantity = "Quantity" -->

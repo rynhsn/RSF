@@ -116,13 +116,16 @@ public class APR00500PrintController : R_ReportControllerBase
             if (_Parameter.LIS_PRINT)
             {
                 _logger.LogInfo("Print AP Invoice List");
-                loRtn = new FileStreamResult(_ReportCls.R_GetStreamReport(peExport: R_FileType.PDF), R_ReportUtility.GetMimeType(R_FileType.PDF));
+                loRtn = new FileStreamResult(_ReportCls.R_GetStreamReport(peExport: R_FileType.PDF),
+                    R_ReportUtility.GetMimeType(R_FileType.PDF));
             }
             else
             {
                 _logger.LogInfo("Save As AP Invoice List");
                 var loFileType = (R_FileType)Enum.Parse(typeof(R_FileType), _Parameter.CREPORT_FILETYPE);
-                loRtn = File(_ReportCls.R_GetStreamReport(peExport: loFileType), R_ReportUtility.GetMimeType(loFileType), $"{_Parameter.CREPORT_FILENAME}.{_Parameter.CREPORT_FILETYPE}");
+                loRtn = File(_ReportCls.R_GetStreamReport(peExport: loFileType),
+                    R_ReportUtility.GetMimeType(loFileType),
+                    $"{_Parameter.CREPORT_FILENAME}.{_Parameter.CREPORT_FILETYPE}");
             }
 
             _logger.LogInfo("Finish get file");
@@ -161,17 +164,17 @@ public class APR00500PrintController : R_ReportControllerBase
                 loCultureInfo, loLabelObject);
 
             _logger.LogInfo("Set Base Header Data");
-            
+
             var lcCompany = R_BackGlobalVar.COMPANY_ID;
             var lcUser = R_BackGlobalVar.USER_ID;
             var lcLang = R_BackGlobalVar.CULTURE;
-            
+
             var loCls = new APR00500Cls();
-            var loLogo = loCls.GetBaseHeaderLogoCompany(lcCompany);
+            var loHeader = loCls.GetBaseHeaderLogoCompany(lcCompany);
             loRtn.BaseHeaderData = new BaseHeaderDTO
             {
-                BLOGO_COMPANY = loLogo.BLOGO,
-                CCOMPANY_NAME = "PT Realta Chakradarma",
+                BLOGO_COMPANY = loHeader.BLOGO,
+                CCOMPANY_NAME = loHeader.CCOMPANY_NAME ?? string.Empty,
                 CPRINT_CODE = "APR00500",
                 CPRINT_NAME = "AP Invoice List",
                 CUSER_ID = lcUser,
@@ -236,6 +239,12 @@ public class APR00500PrintController : R_ReportControllerBase
                     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var dueDate)
                     ? dueDate
                     : (DateTime?)null;
+                if (item.CTRANS_CODE is "120010" or "110040")
+                {
+                    item.NTOTAL_AMOUNT = -item.NTOTAL_AMOUNT;
+                    item.NINVOICE_AMOUNT = -item.NINVOICE_AMOUNT;
+                    item.NREMAINING = -item.NREMAINING;
+                }
             }
 
             loRtn.Data = loData;
@@ -264,5 +273,4 @@ public class APR00500PrintController : R_ReportControllerBase
 
         return loObj;
     }
-    
 }

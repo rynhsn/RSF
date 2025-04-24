@@ -33,7 +33,7 @@ namespace Lookup_GSCOMMON
         GSLGenericRecord<GSL01800DTO> GSL01800GetCategory(GSL01800DTOParameter poEntity);
         GSLGenericRecord<GSL01900DTO> GSL01900GetLOB(GSL01900ParameterDTO poEntity);
         //GSLGenericRecord<GSL02000CountryDTO> GSL02000GetCountryGeography();
-        //GSLGenericRecord<GSL02000CityDTO> GSL02000GetCityGeography();
+        GSLGenericRecord<GSL02000CityDTO> GSL02000GetCityGeography(GSL02000ParameterDTO poEntity);
         GSLGenericRecord<GSL02100DTO> GSL02100GetPaymentTerm(GSL02100ParameterDTO poEntity);
         GSLGenericRecord<GSL02200DTO> GSL02200GetBuilding(GSL02200ParameterDTO poEntity);
         GSLGenericRecord<GSL02300DTO> GSL02300GetBuildingUnit(GSL02300ParameterDTO poEntity);
@@ -49,5 +49,8 @@ namespace Lookup_GSCOMMON
         GSLGenericRecord<GSL03100DTO> GSL03100GetExpenditure(GSL03100ParameterDTO poEntity);
         GSLGenericRecord<GSL03200DTO> GSL03200GetProductAllocation(GSL03200ParameterDTO poEntity);
         GSLGenericRecord<GSL03300DTO> GSL03300GetTaxCharges(GSL03300ParameterDTO poEntity);
+        GSLGenericRecord<GSL03400DTO> GSL03400GetDigitalSign(GSL03400ParameterDTO poEntity);
+        GSLGenericRecord<GSL03500DTO> GSL03500GetWarehouse(GSL03500ParameterDTO poEntity);
+        GSLGenericRecord<GSL03600DTO> GSL03600GetCompany(GSL03600ParameterDTO poEntity);
     }
 }

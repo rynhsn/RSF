@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\AP\BIMASAKTI_AP_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="10/31/2024 13:33:00" ReportInfo.CreatorVersion="2023.2.21.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="Data" DataType="APR00500Common.DTOs.Print.APR00500ReportResultDTO, APR00500Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Label" DataType="APR00500Common.DTOs.Print.APR00500ReportLabelDTO, APR00500Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="PROPERTY" DataType="System.String"/>
+          <Column Name="CUT_OFF_DATE" DataType="System.String"/>
+          <Column Name="DEPT" DataType="System.String"/>
+          <Column Name="SUB_TOTAL" DataType="System.String"/>
+          <Column Name="TOTAL_PRD" DataType="System.String"/>
+          <Column Name="GRAND_TOTAL" DataType="System.String"/>
+          <Column Name="REF_NO" DataType="System.String"/>
+          <Column Name="REF_DATE" DataType="System.String"/>
+          <Column Name="SUPPLIER" DataType="System.String"/>
+          <Column Name="INVOICE_PRD" DataType="System.String"/>
+          <Column Name="DUE_DATE" DataType="System.String"/>
+          <Column Name="CURRENCY" DataType="System.String"/>
+          <Column Name="TOTAL_AMT" DataType="System.String"/>
+          <Column Name="DISCOUNT" DataType="System.String"/>
+          <Column Name="TAX" DataType="System.String"/>
+          <Column Name="ADD_ON" DataType="System.String"/>
+          <Column Name="ADDITION" DataType="System.String"/>
+          <Column Name="DEDUCTION" DataType="System.String"/>
+          <Column Name="INV_AMT" DataType="System.String"/>
+          <Column Name="REMAINING" DataType="System.String"/>
+          <Column Name="DAYS_LATE" DataType="System.String"/>
+          <Column Name="UNIT" DataType="System.String"/>
+        </Column>
+        <Column Name="Header" DataType="APR00500Common.DTOs.Print.APR00500ReportHeaderDTO, APR00500Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_NAME" DataType="System.String"/>
+          <Column Name="DCUT_OFF_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+          <Column Name="CCUT_OFF_DATE_DISPLAY" DataType="System.String"/>
+        </Column>
+        <BusinessObjectDataSource Name="Data" DataType="System.Collections.Generic.List`1[[APR00500Common.DTOs.Print.APR00500DataResultDTO, APR00500Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CDEPARTMENT_CODE" DataType="System.String"/>
+          <Column Name="CREFERENCE_NO" DataType="System.String"/>
+          <Column Name="CREFERENCE_DATE" DataType="System.String"/>
+          <Column Name="CREFERENCE_DATE_DISPLAY" DataType="System.String"/>
+          <Column Name="DREFERENCE_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+          <Column Name="CSUPPLIER_ID" DataType="System.String"/>
+          <Column Name="CSUPPLIER_NAME" DataType="System.String"/>
+          <Column Name="CINVOICE_PERIOD" DataType="System.String"/>
+          <Column Name="CDUE_DATE" DataType="System.String"/>
+          <Column Name="CDUE_DATE_DISPLAY" DataType="System.String"/>
+          <Column Name="DDUE_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+          <Column Name="CCURRENCY" DataType="System.String"/>
+          <Column Name="NTOTAL_AMOUNT" DataType="System.Decimal"/>
+          <Column Name="NDISCOUNT" DataType="System.Decimal"/>
+          <Column Name="NADD_ON" DataType="System.Decimal"/>
+          <Column Name="NTAX" DataType="System.Decimal"/>
+          <Column Name="NADDITION" DataType="System.Decimal"/>
+          <Column Name="NDEDUCTION" DataType="System.Decimal"/>
+          <Column Name="NINVOICE_AMOUNT" DataType="System.Decimal"/>
+          <Column Name="NREMAINING" DataType="System.Decimal"/>
+          <Column Name="IDAYS_LATE" DataType="System.Int32"/>
+          <Column Name="CUNIT" DataType="System.String"/>
+        </BusinessObjectDataSource>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+      <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Page" DataType="System.String"/>
+        <Column Name="Of" DataType="System.String"/>
+        <Column Name="Print_Date" DataType="System.String"/>
+        <Column Name="Print_By" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+    <Total Name="Total_Dept_Total_Amt" Expression="[ResponseDataModel.Data.Data.NTOTAL_AMOUNT]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Total_Dept_Dsc" Expression="[ResponseDataModel.Data.Data.NDISCOUNT]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Total_Dept_Tax" Expression="[ResponseDataModel.Data.Data.NTAX]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Total_Dept_Ad" Expression="[ResponseDataModel.Data.Data.NADDITION]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Total_Dept_De" Expression="[ResponseDataModel.Data.Data.NDEDUCTION]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Total_Dept_Inv_Amt" Expression="[ResponseDataModel.Data.Data.NINVOICE_AMOUNT]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Total_Dept_Remaining" Expression="[ResponseDataModel.Data.Data.NREMAINING]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Total_Total_Amt" Expression="[ResponseDataModel.Data.Data.NTOTAL_AMOUNT]" Evaluator="Data1"/>
+    <Total Name="Total_Dsc" Expression="[ResponseDataModel.Data.Data.NDISCOUNT]" Evaluator="Data1"/>
+    <Total Name="Total_Tax" Expression="[ResponseDataModel.Data.Data.NTAX]" Evaluator="Data1"/>
+    <Total Name="Total_Ad" Expression="[ResponseDataModel.Data.Data.NADDITION]" Evaluator="Data1"/>
+    <Total Name="Total_De" Expression="[ResponseDataModel.Data.Data.NDEDUCTION]" Evaluator="Data1"/>
+    <Total Name="Total_Inv_Amt" Expression="[ResponseDataModel.Data.Data.NINVOICE_AMOUNT]" Evaluator="Data1"/>
+    <Total Name="Total_Remaining" Expression="[ResponseDataModel.Data.Data.NREMAINING]" Evaluator="Data1"/>
+    <Total Name="Total_Dept_Add_On" Expression="[ResponseDataModel.Data.Data.NADD_ON]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="Total_Add_On" Expression="[ResponseDataModel.Data.Data.NADD_ON]" Evaluator="Data1"/>
+    <Total Name="Total_Prd_Total_Amt" Expression="[ResponseDataModel.Data.Data.NTOTAL_AMOUNT]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Total_Prd_Dsc" Expression="[ResponseDataModel.Data.Data.NDISCOUNT]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Total_Prd_Add_On" Expression="[ResponseDataModel.Data.Data.NADD_ON]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Total_Prd_Tax" Expression="[ResponseDataModel.Data.Data.NTAX]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Total_Prd_Ad" Expression="[ResponseDataModel.Data.Data.NADDITION]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Total_Prd_De" Expression="[ResponseDataModel.Data.Data.NDEDUCTION]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Total_Prd_Inv_Amt" Expression="[ResponseDataModel.Data.Data.NINVOICE_AMOUNT]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="Total_Prd_Remaining" Expression="[ResponseDataModel.Data.Data.NREMAINING]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="Picture1"/>
+      <inherited Name="Text33"/>
+      <inherited Name="Text40">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="Text36"/>
+      <inherited Name="Text38"/>
+      <inherited Name="Text34"/>
+      <inherited Name="Text37"/>
+      <inherited Name="Text39"/>
+      <inherited Name="Text41"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="79.6" Width="1047.06" Height="47.25" CanGrow="true">
+        <TextObject Name="Text42" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.CUT_OFF_DATE]" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <TextObject Name="Text43" Left="94.5" Top="9.45" Width="132.3" Height="18.9" Text=": [ResponseDataModel.Data.Header.CPROPERTY_ID] - [ResponseDataModel.Data.Header.CPROPERTY_NAME]" AutoWidth="true" Font="Arial Unicode MS, 6pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text44" Left="94.5" Top="28.35" Width="132.3" Height="18.9" Text=": [ResponseDataModel.Data.Header.DCUT_OFF_DATE]" Format="Date" Format.Format="d" AutoWidth="true" Font="Arial Unicode MS, 6pt"/>
+        <TextObject Name="Text91" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.PROPERTY]" Font="Arial Unicode MS, 6pt, style=Bold"/>
+      </ChildBand>
+    </inherited>
+    <GroupHeaderBand Name="GroupHeader1" ZOrder="0" Top="163.2" Width="1047.06" Height="9.45" CanGrow="true" CanShrink="true" CanBreak="true" Condition="[ResponseDataModel.Data.Data.CINVOICE_PERIOD]" SortOrder="None">
+      <TextObject Name="Text62" Width="66.15" Height="9.45" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.CINVOICE_PERIOD]" Duplicates="Hide" Font="Arial Unicode MS, 6pt"/>
+      <DataHeaderBand Name="DataHeader2" Top="130.85" Width="1047.06" Height="28.35" CanShrink="true" KeepWithData="true" RepeatOnEveryPage="true">
+        <TextObject Name="Text58" Left="973.35" Width="75.6" Height="28.35" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.REMAINING]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6pt"/>
+        <TextObject Name="Text46" Left="122.85" Width="103.95" Height="28.35" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.REF_NO]" VertAlign="Center" Font="Arial Unicode MS, 6pt"/>
+        <TextObject Name="Text47" Left="226.8" Width="75.6" Height="28.35" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.REF_DATE]" VertAlign="Center" Font="Arial Unicode MS, 6pt"/>
+        <TextObject Name="Text48" Left="302.4" Width="113.4" Height="28.35" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.SUPPLIER]" VertAlign="Center" Font="Arial Unicode MS, 6pt"/>
+        <TextObject Name="Text50" Left="415.8" Width="47.25" Height="28.35" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.DUE_DATE]" VertAlign="Center" Font="Arial Unicode MS, 6pt"/>
+        <TextObject Name="Text51" Left="463.05" Width="47.25" Height="28.35" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.CURRENCY]" VertAlign="Center" Font="Arial Unicode MS, 6pt"/>
+        <TextObject Name="Text52" Left="510.3" Width="66.15" Height="28.35" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.TOTAL_AMT]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6pt"/>
+        <TextObject Name="Text53" Left="576.45" Width="66.15" Height="28.35" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.DISCOUNT]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6pt"/>
+        <TextObject Name="Text54" Left="708.75" Width="66.15" Height="28.35" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.TAX]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6pt"/>
+        <TextObject Name="Text55" Left="774.9" Width="56.7" Height="28.35" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.ADDITION]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6pt"/>
+        <TextObject Name="Text56" Left="831.6" Width="66.15" Height="28.35" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.DEDUCTION]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6pt"/>
+        <TextObject Name="Text57" Left="897.75" Width="75.6" Height="28.35" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.INV_AMT]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6pt"/>
+        <TextObject Name="Text94" Left="66.15" Width="56.7" Height="28.35" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.DEPT]" VertAlign="Center" Font="Arial Unicode MS, 6pt"/>
+        <TextObject Name="Text110" Width="66.15" Height="28.35" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.INVOICE_PRD]" VertAlign="Center" Font="Arial Unicode MS, 6pt"/>
+        <TextObject Name="Text111" Left="642.6" Width="66.15" Height="28.35" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.ADD_ON]" HorzAlign="Center" VertAlign="Center" Font="Arial, 6pt"/>
+      </DataHeaderBand>
+      <GroupHeaderBand Name="GroupHeader2" Top="176.65" Width="1047.06" Condition="[ResponseDataModel.Data.Data.CDEPARTMENT_CODE]" SortOrder="None">
+        <DataBand Name="Data1" Top="180.65" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Data">
+          <TextObject Name="Text59" Left="122.85" Width="103.95" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.CREFERENCE_NO]" Font="Arial Unicode MS, 6pt"/>
+          <TextObject Name="Text60" Left="226.8" Width="75.6" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.DREFERENCE_DATE]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 6pt"/>
+          <TextObject Name="Text61" Left="302.4" Width="113.4" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.CSUPPLIER_ID] - [ResponseDataModel.Data.Data.CSUPPLIER_NAME]" Font="Arial Unicode MS, 6pt">
+            <Formats>
+              <GeneralFormat/>
+              <GeneralFormat/>
+            </Formats>
+          </TextObject>
+          <TextObject Name="Text63" Left="415.8" Width="47.25" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.DDUE_DATE]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 6pt"/>
+          <TextObject Name="Text64" Left="463.05" Width="47.25" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.CCURRENCY]" Font="Arial Unicode MS, 6pt"/>
+          <TextObject Name="Text65" Left="510.3" Width="66.15" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.NTOTAL_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text66" Left="576.45" Width="66.15" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.NDISCOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text67" Left="708.75" Width="66.15" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.NTAX]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text68" Left="774.9" Width="56.7" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.NADDITION]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text69" Left="831.6" Width="66.15" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.NDEDUCTION]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text70" Left="897.75" Width="75.6" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.NINVOICE_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text71" Left="973.35" Width="75.6" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[ResponseDataModel.Data.Data.NREMAINING]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text96" Left="66.15" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Data.CDEPARTMENT_CODE]" Duplicates="Hide" Font="Arial Unicode MS, 6pt"/>
+          <TextObject Name="Text112" Left="642.6" Width="66.15" Height="18.9" Text="[ResponseDataModel.Data.Data.NADD_ON]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 6pt" Trimming="EllipsisCharacter"/>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter2" Top="203.55" Width="1047.06" Height="18.9" CanShrink="true">
+          <TextObject Name="Text79" Left="973.35" Width="75.6" Height="18.9" CanShrink="true" GrowToBottom="true" Text="[Total_Dept_Remaining]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+          <TextObject Name="Text73" Left="463.05" Width="113.4" Height="18.9" CanShrink="true" GrowToBottom="true" Text="[Total_Dept_Total_Amt]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+          <TextObject Name="Text74" Left="576.45" Width="66.15" Height="18.9" CanShrink="true" GrowToBottom="true" Text="[Total_Dept_Dsc]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+          <TextObject Name="Text75" Left="708.75" Width="66.15" Height="18.9" CanShrink="true" GrowToBottom="true" Text="[Total_Dept_Tax]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+          <TextObject Name="Text76" Left="774.9" Width="56.7" Height="18.9" CanShrink="true" GrowToBottom="true" Text="[Total_Dept_Ad]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+          <TextObject Name="Text77" Left="831.6" Width="66.15" Height="18.9" CanShrink="true" GrowToBottom="true" Text="[Total_Dept_De]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+          <TextObject Name="Text78" Left="897.75" Width="75.6" Height="18.9" CanShrink="true" GrowToBottom="true" Text="[Total_Dept_Inv_Amt]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+          <TextObject Name="Text95" Left="642.6" Width="66.15" Height="18.9" Text="[Total_Dept_Add_On]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+          <LineObject Name="Line1" Left="66.15" Width="982.8"/>
+          <TextObject Name="Text113" Left="66.15" Width="94.5" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Data.Label.SUB_TOTAL] [ResponseDataModel.Data.Data.CDEPARTMENT_CODE]" AutoWidth="true" Font="Arial Unicode MS, 6pt, style=Bold">
+            <Formats>
+              <GeneralFormat/>
+              <GeneralFormat/>
+            </Formats>
+          </TextObject>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="226.45" Width="1047.06" Height="18.9">
+        <TextObject Name="Text98" Left="463.05" Width="113.4" Height="18.9" Text="[Total_Prd_Total_Amt]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <TextObject Name="Text99" Left="576.45" Width="66.15" Height="18.9" Text="[Total_Prd_Dsc]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <TextObject Name="Text101" Left="642.6" Width="66.15" Height="18.9" Text="[Total_Prd_Add_On]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <TextObject Name="Text103" Left="774.9" Width="56.7" Height="18.9" Text="[Total_Prd_Ad]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <TextObject Name="Text104" Left="831.6" Width="66.15" Height="18.9" Text="[Total_Prd_De]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <TextObject Name="Text105" Left="897.75" Width="75.6" Height="18.9" Text="[Total_Prd_Inv_Amt]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <TextObject Name="Text106" Left="973.35" Width="75.6" Height="18.9" Text="[Total_Prd_Remaining]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <TextObject Name="Text107" Left="708.75" Width="66.15" Height="18.9" Text="[Total_Prd_Tax]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <LineObject Name="Line4" Width="1048.95"/>
+        <TextObject Name="Text114" Width="94.5" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Data.Label.TOTAL_PRD] [ResponseDataModel.Data.Data.CINVOICE_PERIOD]" AutoWidth="true" Font="Arial Unicode MS, 6pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+      </GroupFooterBand>
+      <DataFooterBand Name="DataFooter1" Top="249.35" Width="1047.06" Height="28.35" CanShrink="true">
+        <TextObject Name="Text80" Top="9.45" Width="264.6" Height="18.9" GrowToBottom="true" Text="[ResponseDataModel.Data.Label.GRAND_TOTAL]" AutoWidth="true" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <TextObject Name="Text84" Left="463.05" Top="9.45" Width="113.4" Height="18.9" Text="[Total_Total_Amt]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <TextObject Name="Text85" Left="576.45" Top="9.45" Width="66.15" Height="18.9" Text="[Total_Dsc]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <TextObject Name="Text86" Left="708.75" Top="9.45" Width="66.15" Height="18.9" Text="[Total_Tax]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <TextObject Name="Text87" Left="774.9" Top="9.45" Width="56.7" Height="18.9" Text="[Total_Ad]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <TextObject Name="Text88" Left="831.6" Top="9.45" Width="66.15" Height="18.9" Text="[Total_De]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <TextObject Name="Text89" Left="897.75" Top="9.45" Width="75.6" Height="18.9" Text="[Total_Inv_Amt]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <TextObject Name="Text92" Left="973.35" Top="9.45" Width="75.6" Height="18.9" Text="[Total_Remaining]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <TextObject Name="Text97" Left="642.6" Top="9.45" Width="66.15" Height="18.9" Text="[Total_Add_On]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 6pt, style=Bold"/>
+        <LineObject Name="Line2" Top="9.45" Width="1048.95"/>
+        <LineObject Name="Line3" Top="28.35" Width="1048.95"/>
+      </DataFooterBand>
+    </GroupHeaderBand>
+  </inherited>
+</inherited>

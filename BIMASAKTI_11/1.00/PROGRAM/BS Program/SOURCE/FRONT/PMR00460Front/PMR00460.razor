@@ -21,7 +21,7 @@
 
 <R_StackLayout Class="mb-1">
     <R_ItemLayout>
-        <R_GroupBox Title="@_localizer["Building"]" ShowBorder Class="p-3">
+        <R_GroupBox Title="@_localizer["Building"]" ShowBorder Class="p-3" Enabled="@(_viewModel.EnableView)">
             <R_StackLayout>
                 <R_ItemLayout col="6" Class="ms-4">
                     <R_StackLayout Row>
@@ -60,7 +60,7 @@
 
 <R_StackLayout Row Class="mb-1">
     <R_ItemLayout col="7">
-        <R_GroupBox Title="@_localizer["Period"]" ShowBorder Class="p-3">
+        <R_GroupBox Title="@_localizer["Period"]" ShowBorder Class="p-3" Enabled="@(_viewModel.EnableView)">
             <R_StackLayout>
                 <R_ItemLayout Class="ms-4">
                     <R_StackLayout Row>
@@ -113,7 +113,7 @@
         </R_GroupBox>
     </R_ItemLayout>
     <R_ItemLayout col="5" Class="pe-1">
-        <R_GroupBox Title="@_localizer["Type"]" Class="p-3">
+        <R_GroupBox Title="@_localizer["Type"]" Class="p-3" Enabled="@(_viewModel.EnableView)">
             <R_StackLayout>
                 <R_ItemLayout Class="ms-4">
                     <R_StackLayout Row>
@@ -150,7 +150,7 @@
 
 <R_StackLayout>
     <R_ItemLayout>
-        <R_GroupBox Title="@_localizer["Status"]" ShowBorder Class="p-3">
+        <R_GroupBox Title="@_localizer["Status"]" ShowBorder Class="p-3" Enabled="@(_viewModel.EnableView)">
             <R_StackLayout Row Class="ms-4">
                 <R_ItemLayout col="3">
                     <R_StackLayout Row>
@@ -201,9 +201,9 @@
 
 <R_StackLayout Row>
     <R_ItemLayout>
-        <R_Button OnClick="OnClickPrint">@_localizer["Print"]</R_Button>
+        <R_Button OnClick="OnClickPrint" Enabled="@(_viewModel.EnableView)">@_localizer["Print"]</R_Button>
     </R_ItemLayout>
     <R_ItemLayout>
-        <R_Popup R_Before_Open_Popup="BeforeOpenPopupSaveAs">@_localizer["SaveAs"]</R_Popup>
+        <R_Popup R_Before_Open_Popup="BeforeOpenPopupSaveAs" Enabled="@(_viewModel.EnableView)">@_localizer["SaveAs"]</R_Popup>
     </R_ItemLayout>
 </R_StackLayout>

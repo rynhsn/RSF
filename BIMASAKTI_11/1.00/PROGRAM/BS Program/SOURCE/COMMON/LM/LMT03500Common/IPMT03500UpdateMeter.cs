@@ -10,6 +10,7 @@ namespace PMT03500Common
         IAsyncEnumerable<PMT03500UtilityMeterDTO> PMT03500GetUtilityMeterListStream();
         IAsyncEnumerable<PMT03500BuildingUnitDTO> PMT03500GetBuildingUnitListStream();
         PMT03500ListDTO<PMT03500MeterNoDTO> PMT03500GetMeterNoList(PMT03500MeterNoParam poParam);
+        PMT03500ListDTO<PMT03500PeriodRangeDTO> PMT03500GetPeriodRangeList(PMT03500PeriodRangeParam poParam);
         
         PMT03500SingleDTO<PMT03500BuildingUnitDTO> PMT03500GetBuildingUnitRecord(PMT03500SearchTextDTO poParam);
         PMT03500SingleDTO<PMT03500UtilityMeterDetailDTO> PMT03500GetUtilityMeterDetail(

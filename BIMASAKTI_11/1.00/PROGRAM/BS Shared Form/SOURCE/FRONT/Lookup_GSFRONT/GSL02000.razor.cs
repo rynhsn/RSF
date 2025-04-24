@@ -26,7 +26,6 @@ namespace Lookup_GSFRONT
             try
             {
                 await _viewModel.GetCountryGeographyList();
-                await Country_ComboBox.FocusAsync();
                 if (_viewModel.CountryGeography.Count > 0)
                 {
                     GSL02000CountryDTO loParam = _viewModel.CountryGeography.FirstOrDefault();
@@ -49,7 +48,7 @@ namespace Lookup_GSFRONT
             try
             {
                 _viewModel.CountryID = poParam;
-
+                _viewModel.Country = _viewModel.CountryGeography.Where(x => x.CCODE == poParam).FirstOrDefault();
 
                 await _treeRef.R_RefreshTree(null);
             }

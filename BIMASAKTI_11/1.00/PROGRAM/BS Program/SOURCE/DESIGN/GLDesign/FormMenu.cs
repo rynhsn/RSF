@@ -21,6 +21,23 @@ namespace GLDesign
         }
 
 
+
+        private void APR00300_Click(object sender, EventArgs e)
+        {
+            var loData = new ArrayList();
+            loData.Add(APR00300Common.Model.APR00300ModelReportDummyData.DefaultDataWithHeader());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
+
+        private void APR00500_Click(object sender, EventArgs e)
+        {
+            var loData = new ArrayList();
+            loData.Add(APR00500Common.Model.APR00500ModelReportDummyData.DefaultDataWithHeader());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
+
         private void GLI00100_Click(object sender, EventArgs e)
         {
             var loData = new ArrayList();
@@ -110,6 +127,46 @@ namespace GLDesign
         {
             var loData = new ArrayList();
             loData.Add(PMT01300COMMON.Models.PMT01300ModelDummyDataReportServer.DefaultDataWithHeader());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
+
+        private void PMB04000_Click(object sender, EventArgs e)
+        {
+            var loData = new ArrayList();
+            loData.Add(PMB04000COMMON.Print.Model.GenarateDataModel.DefaultDataWithHeader());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
+
+        private void APR00100DetailByDate_Click(object sender, EventArgs e)
+        {
+            var loData = new ArrayList();
+            loData.Add(APR00100COMMON.Model.DetailByDateDummyData.Print());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
+
+        private void APR00100SummaryByDate_Click(object sender, EventArgs e)
+        {
+            var loData = new ArrayList();
+            loData.Add(APR00100COMMON.Model.SummaryDummyByDateData.Print());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
+
+        private void APR00100DetailBySupplier_Click(object sender, EventArgs e)
+        {
+            var loData = new ArrayList();
+            loData.Add(APR00100COMMON.Model.DetailDummyData.Print());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
+
+        private void APR00100SummaryBySupplier_Click(object sender, EventArgs e)
+        {
+            var loData = new ArrayList();
+            loData.Add(APR00100COMMON.Model.SummaryDummyData.Print());
             loReport.RegisterData(loData, "ResponseDataModel");
             loReport.Design();
         }

@@ -460,6 +460,8 @@ public partial class GSM02000 : R_Page
                 };
                 eventArgs.TargetPageType = typeof(GFF00900FRONT.GFF00900);
             }
+            
+            await lockingButton(true);
         }
         catch (Exception ex)
         {
@@ -483,6 +485,8 @@ public partial class GSM02000 : R_Page
                 await _viewModel.SetActiveInactive();
                 await _gridRef.R_RefreshGrid(null);
             }
+            
+            await lockingButton(false);
         }
         catch (Exception ex)
         {
@@ -680,6 +684,52 @@ public partial class GSM02000 : R_Page
         loEx.ThrowExceptionIfErrors();
 
         return llRtn;
+    }
+    
+    
+    private async Task lockingButton(bool param = true)
+    {
+        var loEx = new R_Exception();
+        R_LockingFrontResult loLockResult = null;
+        try
+        {
+            var loData = _viewModel.Entity;
+            var loCls = new R_LockingServiceClient(pcModuleName: DEFAULT_MODULE_NAME,
+                plSendWithContext: true,
+                plSendWithToken: true,
+                pcHttpClientName: DEFAULT_HTTP_NAME);
+            if (param) // Lock
+            {
+                var loLockPar = new R_ServiceLockingLockParameterDTO
+                {
+                    Company_Id = _clientHelper.CompanyId,
+                    User_Id = _clientHelper.UserId,
+                    Program_Id = "GSM02000",
+                    Table_Name = "GSM_TAX",
+                    Key_Value = string.Join("|", _clientHelper.CompanyId, loData.CTAX_ID)
+                };
+                loLockResult = await loCls.R_Lock(loLockPar);
+            }
+            else // Unlock
+            {
+                var loUnlockPar = new R_ServiceLockingUnLockParameterDTO
+                {
+                    Company_Id = _clientHelper.CompanyId,
+                    User_Id = _clientHelper.UserId,
+                    Program_Id = "GSM02000",
+                    Table_Name = "GSM_TAX",
+                    Key_Value = string.Join("|", _clientHelper.CompanyId, loData.CTAX_ID)
+                };
+                loLockResult = await loCls.R_UnLock(loUnlockPar);
+            }
+            if (!loLockResult.IsSuccess && loLockResult.Exception != null)
+                throw loLockResult.Exception;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        loEx.ThrowExceptionIfErrors();
     }
 
     #endregion

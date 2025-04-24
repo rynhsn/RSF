@@ -24,6 +24,7 @@ public partial class PMT03500ChangeMeterPopup : R_Page
             await _viewModel.Init(loParam.CPROPERTY_ID);
             await _viewModel.GetRecord(loParam);
             await _viewModel.GetMeterNoList(loParam);
+            await _viewModel.GetPeriodRangeList();
             
             _viewModel.Entity.CBUILDING_ID = loData.CBUILDING_ID;
             _viewModel.Entity.CUNIT_NAME = loData.CUNIT_NAME;
@@ -63,7 +64,7 @@ public partial class PMT03500ChangeMeterPopup : R_Page
                         loEx.Add("Error", $"Block 2 Start cannot be greater than Meter Max Reset: {_viewModel.Entity.IMETER_MAX_RESET}");
                     }
                     
-                    return;
+                    // return;
                 }
 
                 
@@ -85,7 +86,7 @@ public partial class PMT03500ChangeMeterPopup : R_Page
                         loEx.Add("Error", $"Meter Start cannot be greater than Meter Max Reset: {_viewModel.Entity.IMETER_MAX_RESET}");
                     }
                     
-                    return;
+                    // return;
                 }
                 
                 if (_viewModel.Entity.NMETER_END < 0)
@@ -106,6 +107,7 @@ public partial class PMT03500ChangeMeterPopup : R_Page
             
             _viewModel.Entity.CSTART_INV_PRD = _viewModel.CSTART_INV_PRD_YEAR + _viewModel.CSTART_INV_PRD_MONTH;
             _viewModel.Entity.CTENANT_ID ??= "";
+            
             await _viewModel.ChangeMeterNo(_viewModel.Entity);
             var loResult = await R_MessageBox.Show("Success", "Data has been changed", R_eMessageBoxButtonType.OK);
 

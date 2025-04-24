@@ -54,7 +54,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL00110DTO> GSL00110GetTaxByDateAsync(GSL00110ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -83,7 +82,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL00200DTO> GSL00200GetWithholdingTaxAsync(GSL00200ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -112,7 +110,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL00300DTO> GSL00300GetCurrencyAsync(GSL00300ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -141,7 +138,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL00400DTO> GSL00400GetJournalGroupAsync(GSL00400ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -170,7 +166,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL00500DTO> GSL00500GetGLAccountAsync(GSL00500ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -199,7 +194,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL00510DTO> GSL00510GetCOAAsync(GSL00510ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -228,7 +222,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL00520DTO> GSL00520GetGOACOAAsync(GSL00520ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -257,7 +250,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL00550DTO> GSL00550GetGOAAsync(GSL00550ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -286,7 +278,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL00600DTO> GSL00600GetUnitTypeCategoryAsync(GSL00600ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -315,7 +306,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL00700DTO> GSL00700GetDepartmentAsync(GSL00700ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -344,7 +334,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL00710DTO> GSL00710GetDepartmentPropertyAsync(GSL00710ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -373,7 +362,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL00800DTO> GSL00800GetCurrencyTypeAsync(GSL00800ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -402,7 +390,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL00900DTO> GSL00900GetCenterAsync(GSL00900ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -431,7 +418,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL01000DTO> GSL01000GetUserAsync(GSL01000ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -460,7 +446,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL01100DTO> GSL01100GetUserApprovalAsync(GSL01100ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -489,7 +474,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL01200DTO> GSL01200GetBankAsync(GSL01200ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -518,7 +502,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL01300DTO> GSL01300GetBankAccountAsync(GSL01300ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -547,7 +530,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL01400DTO> GSL01400GetOtherChargesAsync(GSL01400ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -576,7 +558,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL01500ResultDetailDTO> GSL01500GetCashDetailAsync(GSL01500ParameterDetailDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -605,7 +586,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL01600DTO> GSL01600GetCashFlowGroupTypeAsync(GSL01600ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -634,7 +614,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL01800DTO> GSL01800GetCategoryAsync(GSL01800DTOParameter poEntity)
         {
             var loEx = new R_Exception();
@@ -663,7 +642,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL01900DTO> GSL01900GetLOBAsync(GSL01900ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -692,7 +670,34 @@ namespace Lookup_GSModel
 
             return loResult;
         }
+        public async Task<GSL02000CityDTO> GSL02000GetCityGeographyAsync(GSL02000ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            GSL02000CityDTO loResult = null;
 
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GSLGenericRecord<GSL02000CityDTO>, GSL02000ParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicRecordLookup.GSL02000GetCityGeography),
+                    poEntity,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
         public async Task<GSL02100DTO> GSL02100GetPaymentTermAsync(GSL02100ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -721,7 +726,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL02200DTO> GSL02200GetBuildingAsync(GSL02200ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -750,7 +754,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL02300DTO> GSL02300GetBuildingUnitAsync(GSL02300ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -779,7 +782,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL02400DTO> GSL02400GetFloorAsync(GSL02400ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -808,7 +810,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
         public async Task<GSL02500DTO> GSL02500GetCBAsync(GSL02500ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -1117,6 +1118,91 @@ namespace Lookup_GSModel
 
             return loResult;
         }
+        public async Task<GSL03400DTO> GSL03400GetDigitalSignAsync(GSL03400ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            GSL03400DTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GSLGenericRecord<GSL03400DTO>, GSL03400ParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicRecordLookup.GSL03400GetDigitalSign),
+                    poEntity,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+        public async Task<GSL03500DTO> GSL03500GetWarehouseAsync(GSL03500ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            GSL03500DTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GSLGenericRecord<GSL03500DTO>, GSL03500ParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicRecordLookup.GSL03500GetWarehouse),
+                    poEntity,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+        public async Task<GSL03600DTO> GSL03600GetCompanyAsync(GSL03600ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            GSL03600DTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GSLGenericRecord<GSL03600DTO>, GSL03600ParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicRecordLookup.GSL03600GetCompany),
+                    poEntity,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
         #region Not Implement
         public GSLGenericRecord<GSL00100DTO> GSL00100GetSalesTax(GSL00100ParameterDTO poEntity)
         {
@@ -1246,33 +1332,43 @@ namespace Lookup_GSModel
         {
             throw new NotImplementedException();
         }
-
         public GSLGenericRecord<GSL02900DTO> GSL02900GetSupplier(GSL02900ParameterDTO poEntity)
         {
             throw new NotImplementedException();
         }
-
         public GSLGenericRecord<GSL02910DTO> GSL02910GetSupplierInfo(GSL02910ParameterDTO poEntity)
         {
             throw new NotImplementedException();
         }
-
         public GSLGenericRecord<GSL03000DTO> GSL03000GetProduct(GSL03000ParameterDTO poEntity)
         {
             throw new NotImplementedException();
         }
-
         public GSLGenericRecord<GSL03100DTO> GSL03100GetExpenditure(GSL03100ParameterDTO poEntity)
         {
             throw new NotImplementedException();
         }
-
         public GSLGenericRecord<GSL03200DTO> GSL03200GetProductAllocation(GSL03200ParameterDTO poEntity)
         {
             throw new NotImplementedException();
         }
-
         public GSLGenericRecord<GSL03300DTO> GSL03300GetTaxCharges(GSL03300ParameterDTO poEntity)
+        {
+            throw new NotImplementedException();
+        }
+        public GSLGenericRecord<GSL02000CityDTO> GSL02000GetCityGeography(GSL02000ParameterDTO poEntity)
+        {
+            throw new NotImplementedException();
+        }
+        public GSLGenericRecord<GSL03400DTO> GSL03400GetDigitalSign(GSL03400ParameterDTO poEntity)
+        {
+            throw new NotImplementedException();
+        }
+        public GSLGenericRecord<GSL03500DTO> GSL03500GetWarehouse(GSL03500ParameterDTO poEntity)
+        {
+            throw new NotImplementedException();
+        }
+        public GSLGenericRecord<GSL03600DTO> GSL03600GetCompany(GSL03600ParameterDTO poEntity)
         {
             throw new NotImplementedException();
         }

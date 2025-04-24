@@ -68,6 +68,8 @@
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/OrderByFullPath/@EntryValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/ShowComments/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/ShowOnlyStringResources/@EntryValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=1ceaa694_002Dc824_002D4d1b_002D84cb_002D84c561ff49f1_0023PMR00400Front/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=99f28822_002Dc701_002D4c1b_002Db86e_002D01eeddeb498d_0023PMR00400Common/@EntryIndexedValue">True</s:Boolean>
 	
 	
 	

@@ -44,6 +44,11 @@ namespace PMT03500Model
             throw new NotImplementedException();
         }
 
+        public PMT03500ListDTO<PMT03500PeriodRangeDTO> PMT03500GetPeriodRangeList(PMT03500PeriodRangeParam poParam)
+        {
+            throw new NotImplementedException();
+        }
+
         public PMT03500SingleDTO<PMT03500BuildingUnitDTO> PMT03500GetBuildingUnitRecord(PMT03500SearchTextDTO poParam)
         {
             throw new NotImplementedException();

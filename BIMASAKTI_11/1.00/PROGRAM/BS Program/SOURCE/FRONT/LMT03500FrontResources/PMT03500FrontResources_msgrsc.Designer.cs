@@ -105,6 +105,24 @@ namespace PMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Start Date.
+        /// </summary>
+        internal static string INVALID_START_DATE {
+            get {
+                return ResourceManager.GetString("INVALID_START_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Utility Period.
+        /// </summary>
+        internal static string INVALID_UTILITY_PERIOD {
+            get {
+                return ResourceManager.GetString("INVALID_UTILITY_PERIOD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         internal static string LBL_ADD {
@@ -600,6 +618,15 @@ namespace PMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Month.
+        /// </summary>
+        internal static string LBL_MONTH {
+            get {
+                return ResourceManager.GetString("LBL_MONTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Month(s).
         /// </summary>
         internal static string LBL_MONTHS {
@@ -749,6 +776,15 @@ namespace PMT03500FrontResources {
         internal static string LBL_STARTDATE {
             get {
                 return ResourceManager.GetString("LBL_STARTDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Date Utility.
+        /// </summary>
+        internal static string LBL_STARTDTUTILITY {
+            get {
+                return ResourceManager.GetString("LBL_STARTDTUTILITY", resourceCulture);
             }
         }
         
@@ -1041,6 +1077,15 @@ namespace PMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Year.
+        /// </summary>
+        internal static string LBL_YEAR {
+            get {
+                return ResourceManager.GetString("LBL_YEAR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Meter Start cannot be greater than Max Reset.
         /// </summary>
         internal static string METER_START_GREATER_THAN_MAX_RESET {
@@ -1100,6 +1145,15 @@ namespace PMT03500FrontResources {
         internal static string START_DATE_LESS_THAN_END_DATE {
             get {
                 return ResourceManager.GetString("START_DATE_LESS_THAN_END_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Date must be filled.
+        /// </summary>
+        internal static string START_DATE_MUST_BE_FILLED {
+            get {
+                return ResourceManager.GetString("START_DATE_MUST_BE_FILLED", resourceCulture);
             }
         }
         
@@ -1181,6 +1235,15 @@ namespace PMT03500FrontResources {
         internal static string UTILITY_PERIOD_GREATER_THAN_INVOICE_PERIOD {
             get {
                 return ResourceManager.GetString("UTILITY_PERIOD_GREATER_THAN_INVOICE_PERIOD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utility Period must be filled.
+        /// </summary>
+        internal static string UTILITY_PERIOD_MUST_BE_FILLED {
+            get {
+                return ResourceManager.GetString("UTILITY_PERIOD_MUST_BE_FILLED", resourceCulture);
             }
         }
     }

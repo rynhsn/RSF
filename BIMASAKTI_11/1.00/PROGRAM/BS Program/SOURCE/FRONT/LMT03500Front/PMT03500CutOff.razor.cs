@@ -1,5 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using BlazorClientHelper;
+using Lookup_GSCOMMON.DTOs;
+using Lookup_GSFRONT;
+using Lookup_GSModel.ViewModel;
 using PMT03500Front;
 using PMT03500Common.DTOs;
 using PMT03500Model.ViewModel;
@@ -79,10 +82,11 @@ public partial class PMT03500CutOff : R_ITabPage
             // await _viewModel.Init();
             await _viewModelUtility.Init(eventArgs);
 
-            if (_viewModelUtility.Property != null)
-            {
-                await _gridRefBuilding.R_RefreshGrid(null);
-            }
+            // if (_viewModelUtility.Property != null)
+            // {
+            //     await _gridRefBuilding.R_RefreshGrid(null);
+            // }
+            
             // _viewModelUtility.ActionDataSetExcel = ActionFuncDataSetExcel;
 
             _viewModelUpload.StateChangeAction = StateChangeInvoke;
@@ -114,6 +118,98 @@ public partial class PMT03500CutOff : R_ITabPage
 
         loEx.ThrowExceptionIfErrors();
     }
+    
+    
+    private async Task OnLostFocusLookupBuilding()
+    {
+        var loEx = new R_Exception();
+
+        var loLookupViewModel = new LookupGSL02200ViewModel();
+        try
+        {
+            if (_viewModelUtility.Entity.CBUILDING_ID == null || _viewModelUtility.Entity.CBUILDING_ID.Trim().Length <= 0)
+            {
+                _viewModelUtility.Entity.CBUILDING_ID = "";
+                _viewModelUtility.Entity.CBUILDING_NAME = "";
+                return;
+            }
+
+            var param = new GSL02200ParameterDTO
+            {
+                CPROPERTY_ID = _viewModelUtility.Property.CPROPERTY_ID,
+                CSEARCH_TEXT = _viewModelUtility.Entity.CBUILDING_ID,
+                LAGREEMENT = true
+            };
+
+            GSL02200DTO loResult = null;
+
+            loResult = await loLookupViewModel.GetBuilding(param);
+
+            if (loResult == null)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(
+                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                    "_ErrLookup01"));
+                _viewModelUtility.Entity.CBUILDING_ID = "";
+                _viewModelUtility.Entity.CBUILDING_NAME = "";
+                goto EndBlock;
+            }
+
+            _viewModelUtility.Entity.CBUILDING_ID = loResult.CBUILDING_ID;
+            _viewModelUtility.Entity.CBUILDING_NAME = loResult.CBUILDING_NAME;
+            await _viewModelUtility.GetFloorList();
+            _viewModelUtility.CheckFloor(_viewModelUtility.AllFloor);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        EndBlock:
+        R_DisplayException(loEx);
+    }
+
+    private void BeforeLookupBuilding(R_BeforeOpenLookupEventArgs eventArgs)
+    {
+        eventArgs.TargetPageType = typeof(GSL02200);
+        eventArgs.Parameter = new GSL02200ParameterDTO
+        {
+            CPROPERTY_ID = _viewModelUtility.Property.CPROPERTY_ID,
+            // LAGREEMENT = true
+        };
+    }
+
+    private async Task AfterLookupBuilding(R_AfterOpenLookupEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            var loTempResult = (GSL02200DTO)eventArgs.Result;
+            if (loTempResult == null)
+            {
+                _viewModelUtility.Entity.CBUILDING_ID = "";
+                _viewModelUtility.Entity.CBUILDING_NAME = "";
+                _viewModelUtility.FloorId = "";
+                return;
+            }
+
+            if (loTempResult.CBUILDING_ID != _viewModelUtility.Entity.CBUILDING_ID)
+            {
+                _viewModelUtility.Entity.CBUILDING_ID = loTempResult.CBUILDING_ID;
+                _viewModelUtility.Entity.CBUILDING_NAME = loTempResult.CBUILDING_NAME;
+                
+                await _viewModelUtility.GetFloorList();
+                _viewModelUtility.CheckFloor(_viewModelUtility.AllFloor);
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
 
     private async Task GetUtilityListRecord(R_ServiceGetListRecordEventArgs eventArgs)
     {
@@ -170,11 +266,15 @@ public partial class PMT03500CutOff : R_ITabPage
                 case eParamType.Floor:
                     _viewModelUtility.FloorId = (string)value;
                     break;
-                case eParamType.UtilityYear:
-                    _viewModelUtility.UtilityPeriodYear = (string)value;
+                case eParamType.InvYear:
+                    _viewModelUtility.InvPeriodYear = (string)value;
+                    await _viewModelUtility.GetPeriod(_viewModelUtility.InvPeriodYear, _viewModelUtility.InvPeriodNo);
+                    _viewModelUtility.SetParameterHeader();
                     break;
-                case eParamType.UtilityPeriod:
-                    _viewModelUtility.UtilityPeriodNo = (string)value;
+                case eParamType.InvPeriod:
+                    _viewModelUtility.InvPeriodNo = (string)value;
+                    await _viewModelUtility.GetPeriod(_viewModelUtility.InvPeriodYear, _viewModelUtility.InvPeriodNo);
+                    _viewModelUtility.SetParameterHeader();
                     break;
             }
         }
@@ -227,7 +327,10 @@ public partial class PMT03500CutOff : R_ITabPage
     public async Task RefreshTabPageAsync(object poParam)
     {
         await _viewModelUtility.Init(poParam);
-        await _gridRefBuilding.R_RefreshGrid(null);
+        // await _gridRefBuilding.R_RefreshGrid(null);
+        _viewModelUtility.Entity.CBUILDING_ID = "";
+        _viewModelUtility.Entity.CBUILDING_NAME = "";
+        _viewModelUtility.FloorId = "";
         _display = "d-none";
     }
 
@@ -254,6 +357,15 @@ public partial class PMT03500CutOff : R_ITabPage
             new ObservableCollection<PMT03500UtilityUsageDTO>(_viewModelUtility.GridUtilityUsageListTemp);
     }
     
+    private void OnClickProcess()
+    {
+        var loData = _gridRefUtility.DataSource;
+        foreach (var loItem in loData)
+        {
+            loItem.DSTART_DATE = _viewModelUtility.UtilityPeriodFromDtDt;
+        }
+    }
+    
     private void CheckBoxSelectValueChanged(R_CheckBoxSelectValueChangedEventArgs eventArgs)
     {
         eventArgs.Enabled = true;
@@ -269,7 +381,13 @@ public partial class PMT03500CutOff : R_ITabPage
             var loTempDataList = (List<PMT03500UtilityUsageDTO>)eventArgs.Data;
 
             //ubah DSTART_DATE ke CSTART_DATE 
-            loTempDataList.ForEach(x => { x.CSTART_DATE = x.DSTART_DATE?.ToString("yyyyMMdd"); });
+            loTempDataList.ForEach(x =>
+            {
+                x.CSTART_DATE = x.DSTART_DATE?.ToString("yyyyMMdd");                
+                x.CINV_PRD = string.IsNullOrEmpty(x.CINV_PRD)
+                    ? _viewModelUtility.InvPeriodYear + _viewModelUtility.InvPeriodNo
+                    : x.CINV_PRD_YEAR + x.CINV_PRD_MONTH;
+            });
 
             var loDataList =
                 R_FrontUtility.ConvertCollectionToCollection<PMT03500UploadCutOffErrorValidateDTO>(loTempDataList.Where(x => x.LSELECTED).ToList());
@@ -284,9 +402,18 @@ public partial class PMT03500CutOff : R_ITabPage
                     ? EPMT03500UtilityUsageType.EC
                     : EPMT03500UtilityUsageType.WG;
 
+            _viewModelUpload.IsUpload = false;
+
             await _viewModelUpload.SaveBulkFile(poUploadParam: _viewModelUpload.UploadParam,
                 poDataList: loDataList.ToList());
-
+            
+            if (_viewModelUpload.IsError)
+            {
+                loEx.Add("Error", "Cut Off saved is not successfully!");
+            }
+            
+            _enabledBtn = true;
+            
             // await _gridRefUtility.R_RefreshGrid(null);
         }
         catch (Exception ex)
@@ -338,7 +465,7 @@ public partial class PMT03500CutOff : R_ITabPage
             // _tabDetail = loData.CUTILITY_TYPE is "03" or "04" && loData.CSTATUS.Length > 0;
 
             _viewModelUtility.EntityUtility = loData;
-            // _viewModelUtility.EntityUtility.CPROPERTY_ID = _viewModel.PropertyId;
+            // _viewModelUtility.EntityUtility.CPROPERTY_ID = _viewModelUtility.Property.CPROPERTY_ID;
 
             // await Task.Delay(100);
         }
@@ -384,7 +511,34 @@ public partial class PMT03500CutOff : R_ITabPage
                 loEx.Add(_localizer["INVALID_MAX_RESET"], _localizer["METER_START_GREATER_THAN_MAX_RESET"]);
             }
             
+            //validari start date
+            if (loData.DSTART_DATE == null)
+            {
+                loEx.Add(_localizer["INVALID_START_DATE"], _localizer["START_DATE_MUST_BE_FILLED"]);
+            }
+            
+            // if (string.IsNullOrEmpty(loData.CINV_PRD_YEAR) || string.IsNullOrEmpty(loData.CINV_PRD_MONTH))
+            // {
+            //     loEx.Add(_localizer["INVALID_UTILITY_PERIOD"], _localizer["UTILITY_PERIOD_MUST_BE_FILLED"]);
+            // }
+            
             eventArgs.Cancel = loEx.HasError;
+            
+            var llStartDate = loData.DSTART_DATE != _viewModelUtility.EntityUtility.DSTART_DATE;
+            // var llInvPrd = (loData.CINV_PRD_YEAR + loData.CINV_PRD_MONTH) != _viewModelUtility.EntityUtility.CINV_PRD;
+            var llBlock1Start = loData.NBLOCK1_START != _viewModelUtility.EntityUtility.NBLOCK1_START;
+            var llBlock2Start = loData.NBLOCK2_START != _viewModelUtility.EntityUtility.NBLOCK2_START;
+            var llMeterStart = loData.NMETER_START != _viewModelUtility.EntityUtility.NMETER_START;
+            if (llStartDate || 
+                // llInvPrd ||
+                llBlock1Start || 
+                llBlock2Start || 
+                llMeterStart)
+            {
+                loData.LSELECTED = true;
+                loData.CINV_PRD_YEAR = _viewModelUtility.InvPeriodYear;
+                loData.CINV_PRD_MONTH = _viewModelUtility.InvPeriodNo;
+            }
         }
         catch (Exception ex)
         {
@@ -393,4 +547,6 @@ public partial class PMT03500CutOff : R_ITabPage
 
         loEx.ThrowExceptionIfErrors();
     }
+    
+    
 }

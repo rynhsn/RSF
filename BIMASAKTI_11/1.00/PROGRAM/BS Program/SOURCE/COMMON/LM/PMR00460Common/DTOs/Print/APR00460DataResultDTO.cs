@@ -27,6 +27,7 @@ namespace PMR00460Common.DTOs.Print
         public string CCARE_REF_NO { get; set; }
         public int IDEFAULT_QUANTITY { get; set; }
         public int IACTUAL_QUANTITY { get; set; }
+        public string CUNIT { get; set; }
     }
     
     public class PMR00460ReportDataDTO
@@ -68,6 +69,8 @@ namespace PMR00460Common.DTOs.Print
         public string CCARE_REF_NO { get; set; }
         public int IDEFAULT_QUANTITY { get; set; }
         public int IACTUAL_QUANTITY { get; set; }
+        public string CQUANTITY_DISPLAY { get; set; }
+        public string CUNIT { get; set; }
     }
     
     public class PMR00460ReportHeaderDTO
@@ -108,7 +111,7 @@ namespace PMR00460Common.DTOs.Print
         public string HandoverBy { get; set; } = "Handover By";
         public string ChecklistDescription { get; set; } = "Checklist Description";
         public string Notes { get; set; } = "Notes";
-        public string CareNo { get; set; } = "Care No.";
+        public string CareNo { get; set; } = "CARE No.";
         public string Quantity { get; set; } = "Quantity";
         public string ActualQuantity { get; set; } = "Actual Quantity";
         public string TotalQuantity { get; set; } = "Total Quantity";

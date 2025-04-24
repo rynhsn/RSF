@@ -19,25 +19,26 @@ namespace PMT03500Front;
 
 public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
 {
-    
     private PMT03500ViewModel _viewModel = new();
+
     private PMT03500UploadCutOffViewModel _viewModelUpload = new();
+
     // private PMT03500UploadCutOffViewModel _viewModelUploadCutOff = new();
     private PMT03500UtilityUsageViewModel _viewModelUtility = new();
-    
+
     private R_Conductor _conductorRef;
     private R_ConductorGrid _conductorRefUtility;
     private R_Grid<PMT03500UtilityUsageDTO> _gridRefUtility = new();
-    
+
     [Inject] private IJSRuntime JS { get; set; }
     [Inject] private R_IExcel ExcelInject { get; set; }
     [Inject] IClientHelper ClientHelper { get; set; }
-    
+
     private string _dataLabel = "";
     private string _display = "d-none";
     private bool _visibleColumnEC;
     private bool _visibleColumnWG;
-    
+
     private bool _enabledBtn = true;
 
 
@@ -65,10 +66,9 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
         _enabledBtn = true;
         await R_MessageBox.Show("", _localizer["UPDATE_SUCCESSFULLY"], R_eMessageBoxButtonType.OK);
         await _gridRefUtility.R_RefreshGrid(null);
-        
     }
 
-    
+
     protected override async Task R_Init_From_Master(object eventArgs)
     {
         var loEx = new R_Exception();
@@ -112,8 +112,9 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     public int _maxValueStart = 999999;
+
     private void GetUtilityRecord(R_ServiceGetRecordEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -131,8 +132,8 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
 
         loEx.ThrowExceptionIfErrors();
     }
-    
-    private void OnChangeParam(object value, eParamType type)
+
+    private async Task OnChangeParam(object value, eParamType type)
     {
         var loEx = new R_Exception();
         try
@@ -146,11 +147,15 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
                 case eParamType.Floor:
                     _viewModelUtility.FloorId = (string)value;
                     break;
-                case eParamType.UtilityYear:
-                    _viewModelUtility.UtilityPeriodYear = (string)value;
+                case eParamType.InvYear:
+                    _viewModelUtility.InvPeriodYear = (string)value;
+                    await _viewModelUtility.GetPeriod(_viewModelUtility.InvPeriodYear, _viewModelUtility.InvPeriodNo);
+                    _viewModelUtility.SetParameterHeader();
                     break;
-                case eParamType.UtilityPeriod:
-                    _viewModelUtility.UtilityPeriodNo = (string)value;
+                case eParamType.InvPeriod:
+                    _viewModelUtility.InvPeriodNo = (string)value;
+                    await _viewModelUtility.GetPeriod(_viewModelUtility.InvPeriodYear, _viewModelUtility.InvPeriodNo);
+                    _viewModelUtility.SetParameterHeader();
                     break;
             }
         }
@@ -161,7 +166,7 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
 
         R_DisplayException(loEx);
     }
-    
+
     private async Task OnClickRefresh()
     {
         var loEx = new R_Exception();
@@ -188,7 +193,7 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
                     _display = "d-none";
                     break;
             }
-            
+
             await _gridRefUtility.R_RefreshGrid(null);
         }
         catch (Exception ex)
@@ -205,7 +210,7 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
         await _viewModelUtility.GetBuildingList();
         _display = "d-none";
     }
-    
+
     private async Task OnClickSave()
     {
         var loEx = new R_Exception();
@@ -222,12 +227,22 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     private void OnClickCancel()
     {
-        _viewModelUtility.GridUtilityUsageList = new ObservableCollection<PMT03500UtilityUsageDTO>(_viewModelUtility.GridUtilityUsageListTemp);
+        _viewModelUtility.GridUtilityUsageList =
+            new ObservableCollection<PMT03500UtilityUsageDTO>(_viewModelUtility.GridUtilityUsageListTemp);
     }
-    
+
+    private void OnClickProcess()
+    {
+        var loData = _gridRefUtility.DataSource;
+        foreach (var loItem in loData)
+        {
+            loItem.DSTART_DATE = _viewModelUtility.UtilityPeriodFromDtDt;
+        }
+    }
+
     private void CheckBoxSelectValueChanged(R_CheckBoxSelectValueChangedEventArgs eventArgs)
     {
         eventArgs.Enabled = true;
@@ -241,14 +256,19 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
         {
             // await _viewModelUtility.SaveBatch((List<PMT03500UtilityUsageDTO>)eventArgs.Data, ClientHelper.CompanyId, ClientHelper.UserId);
             var loTempDataList = (List<PMT03500UtilityUsageDTO>)eventArgs.Data;
-            
+
             //ubah DSTART_DATE ke CSTART_DATE 
             loTempDataList.ForEach(x =>
             {
                 x.CSTART_DATE = x.DSTART_DATE?.ToString("yyyyMMdd");
+                x.CINV_PRD = string.IsNullOrEmpty(x.CINV_PRD)
+                    ? _viewModelUtility.InvPeriodYear + _viewModelUtility.InvPeriodNo
+                    : x.CINV_PRD_YEAR + x.CINV_PRD_MONTH;
             });
-            
-            var loDataList = R_FrontUtility.ConvertCollectionToCollection<PMT03500UploadCutOffErrorValidateDTO>(loTempDataList.Where(x => x.LSELECTED).ToList());
+
+            var loDataList =
+                R_FrontUtility.ConvertCollectionToCollection<PMT03500UploadCutOffErrorValidateDTO>(loTempDataList
+                    .Where(x => x.LSELECTED).ToList());
             // var loDataList = R_FrontUtility.ConvertCollectionToCollection<PMT03500UploadUtilityErrorValidateDTO>(loTempDataList);
 
             var loUtilityType = loTempDataList.FirstOrDefault()?.CUTILITY_TYPE;
@@ -260,8 +280,17 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
                     ? EPMT03500UtilityUsageType.EC
                     : EPMT03500UtilityUsageType.WG;
 
+            _viewModelUpload.IsUpload = false;
+
             await _viewModelUpload.SaveBulkFile(poUploadParam: _viewModelUpload.UploadParam,
                 poDataList: loDataList.ToList());
+
+            if (_viewModelUpload.IsError)
+            {
+                loEx.Add("Error", "Cut Off saved is not successfully!");
+            }
+
+            _enabledBtn = true;
 
             // await _gridRefUtility.R_RefreshGrid(null);
         }
@@ -272,7 +301,7 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     private async Task DownloadTemplate()
     {
         var loEx = new R_Exception();
@@ -291,7 +320,7 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     private void BeforeOpenUpload(R_BeforeOpenPopupEventArgs eventArgs)
     {
         eventArgs.TargetPageType = typeof(PMT03500UploadCutOffPopup);
@@ -304,7 +333,7 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
         };
         eventArgs.Parameter = loParam;
     }
-    
+
     private void DisplayUtility(R_DisplayEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -325,14 +354,15 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
 
         loEx.ThrowExceptionIfErrors();
     }
+
     private async Task AfterOpenUpload(R_AfterOpenPopupEventArgs eventArgs)
     {
-        if(eventArgs.Success)
+        if (eventArgs.Success)
         {
             await _gridRefUtility.R_RefreshGrid(null);
         }
     }
-    
+
     private void ValidationUtility(R_ValidationEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -344,17 +374,46 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
                 loEx.Add(_localizer["INVALID_MAX_RESET"], _localizer["BLOCK1_START_GREATER_THAN_MAX_RESET"]);
                 eventArgs.Cancel = loEx.HasError;
             }
-            
+
             if (loData.NBLOCK2_START > loData.IMETER_MAX_RESET)
             {
                 loEx.Add(_localizer["INVALID_MAX_RESET"], _localizer["BLOCK2_START_GREATER_THAN_MAX_RESET"]);
                 eventArgs.Cancel = loEx.HasError;
             }
-            
+
             if (loData.NMETER_START > loData.IMETER_MAX_RESET)
             {
                 loEx.Add(_localizer["INVALID_MAX_RESET"], _localizer["METER_START_GREATER_THAN_MAX_RESET"]);
                 eventArgs.Cancel = loEx.HasError;
+            }
+
+            //validari start date
+            if (loData.DSTART_DATE == null)
+            {
+                loEx.Add(_localizer["INVALID_START_DATE"], _localizer["START_DATE_MUST_BE_FILLED"]);
+            }
+
+            // if (string.IsNullOrEmpty(loData.CINV_PRD_YEAR) || string.IsNullOrEmpty(loData.CINV_PRD_MONTH))
+            // {
+            //     loEx.Add(_localizer["INVALID_INV_PERIOD"], _localizer["INV_PERIOD_MUST_BE_FILLED"]);
+            // }
+
+            eventArgs.Cancel = loEx.HasError;
+
+            var llStartDate = loData.DSTART_DATE != _viewModelUtility.EntityUtility.DSTART_DATE;
+            // var llInvPrd = (loData.CINV_PRD_YEAR + loData.CINV_PRD_MONTH) != _viewModelUtility.EntityUtility.CINV_PRD;
+            var llBlock1Start = loData.NBLOCK1_START != _viewModelUtility.EntityUtility.NBLOCK1_START;
+            var llBlock2Start = loData.NBLOCK2_START != _viewModelUtility.EntityUtility.NBLOCK2_START;
+            var llMeterStart = loData.NMETER_START != _viewModelUtility.EntityUtility.NMETER_START;
+            if (llStartDate ||
+                // llInvPrd || 
+                llBlock1Start ||
+                llBlock2Start ||
+                llMeterStart)
+            {
+                loData.LSELECTED = true;
+                loData.CINV_PRD_YEAR = _viewModelUtility.InvPeriodYear;
+                loData.CINV_PRD_MONTH = _viewModelUtility.InvPeriodNo;
             }
         }
         catch (Exception ex)
@@ -364,7 +423,7 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     #region Other Utility dock
 
     private R_ComboBox<PMT03500BuildingDTO, string> _comboBuildingRef;
@@ -426,7 +485,7 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
             await _viewModelUtility.GetFloorList();
         }
     }
-    
+
     private async Task OnLostFocusedFloor()
     {
         var lcValue = _viewModelUtility.FloorId;
@@ -434,6 +493,7 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
         {
             await _comboFloorRef.FocusAsync();
         }
+
         await Task.CompletedTask;
     }
 

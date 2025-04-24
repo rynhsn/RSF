@@ -68,5 +68,14 @@ namespace RSP_AP_GENERATE_WH_TAX_DEDUCTIONResources {
                 return ResourceManager.GetString("ERROR_PROCESS", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Withhodlding Tax Percentage not found for Tax ID {0}.
+        /// </summary>
+        internal static string WHT_PCT_ZERO {
+            get {
+                return ResourceManager.GetString("WHT_PCT_ZERO", resourceCulture);
+            }
+        }
     }
 }

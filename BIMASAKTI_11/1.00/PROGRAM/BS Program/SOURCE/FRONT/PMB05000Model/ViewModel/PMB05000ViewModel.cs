@@ -159,7 +159,6 @@ namespace PMB05000Model.ViewModel
             loEx.ThrowExceptionIfErrors();
         }
         
-        
         private void SetExcelDataSetToDoList()
         {
             var loConvertData = ValidateSoftCloseList.Select(item => new PMB05000ExcelToDoListDTO()

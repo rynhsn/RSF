@@ -1,0 +1,72 @@
+﻿@using R_BlazorFrontEnd.Enums
+@inherits R_Page
+@attribute [R_Page(Title = "Add Pricing Rate", ResourceId = "_pageTitleAddPricingRate")]
+
+
+<R_StackLayout Row Style="width:820px">
+    <R_ItemLayout col="12">
+        <R_StackLayout Row Spacing="2">
+            <R_ItemLayout col="4">
+                <R_Label>Valid From Date</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_DatePicker Value="_viewModel_PricingRate._pricingRateDateDisplay"
+                              ValueChanged="@((DateTime? pdParam)=>
+                    PricingRateAddForm_RateDateValueChangedAsync(pdParam))" R_ConductorGridSource="@_conGridPricingRate"></R_DatePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_Grid DataSource="@_viewModel_PricingRate._pricingSaveList"
+                @ref="@_gridPricingRate"
+                Pageable="false"
+                R_ConductorGridSource="@_conGridPricingRate"
+                R_GridType="R_eGridType.Batch"
+                Height="300px"
+                AllowAddNewRow="true"
+                AllowEditRow="true"
+                AllowDeleteRow="true"
+                R_Before_Open_Grid_Lookup="@PricingRate_BeforeLookup"
+                R_After_Open_Grid_Lookup="@PricingRate_AfterLookup"
+                R_ServiceGetListRecord="@PricingRateAdd_GetListRecord"
+                R_ServiceGetRecord="@PricingRateAdd_GetRecord">
+            <R_GridColumns>
+                <R_GridLookupColumn FieldName="@nameof(PricingRateBulkSaveDTO.CCURRENCY_CODE)"
+                                    Name="@nameof(PricingRateBulkSaveDTO.CCURRENCY_CODE)"
+                                    HeaderText="@(_localizer["_col_currency_code"])"
+                                    R_EnableAdd
+                                    R_EnableEdit="true"
+                                    TextboxEnabled="false"
+                                    Width="150px"></R_GridLookupColumn>
+                <R_GridNumericColumn FieldName="@nameof(PricingRateBulkSaveDTO.NBASE_RATE_AMOUNT)"
+                                     R_EnableAdd="true"
+                                     R_EnableEdit="true"
+                                     HeaderText="@_localizer["_col_base_rate"]"
+                                     Width="150px"
+                                     TValue="decimal"
+                                     ThousandSeparator="true"
+                                     Max="999999999"
+                                     Min="0"></R_GridNumericColumn>
+
+                <R_GridNumericColumn FieldName="@nameof(PricingRateBulkSaveDTO.NCURRENCY_RATE_AMOUNT)"
+                                     R_EnableAdd="true"
+                                     R_EnableEdit="true"
+                                     HeaderText="@_localizer["_col_curr_rate"]"
+                                     Width="150px"
+                                     TValue="decimal"
+                                     ThousandSeparator="true"
+                                     Max="999999999"
+                                     Min="0"></R_GridNumericColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row Class="mt-2">
+    <R_ItemLayout col="10"></R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_Button OnClick="@PricingRateAdd_CancelAsync">Cancel</R_Button>
+        <R_Button OnClick="@PricingRateAdd_Process">Process</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+@* conductor *@
+<R_ConductorGrid @ref="@_conGridPricingRate"
+                 R_IsHeader />

@@ -293,7 +293,7 @@ namespace GSM02500FRONT
             R_Exception loException = new R_Exception();
             try
             {
-                await _conGridUploadUnitUtilityRef.R_SaveBatch();
+                await _gridUploadUnitUtilityRef.R_SaveBatch();
             }
             catch (Exception ex)
             {

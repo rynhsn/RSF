@@ -21,10 +21,10 @@ namespace Lookup_GSFRONT
 
             try
             {
-                _Parameter = (GSL02300ParameterDTO)poParameter;
-
-                EnableTexboxFloor = string.IsNullOrWhiteSpace(_Parameter.CFLOOR_ID);
-                if (string.IsNullOrWhiteSpace(_Parameter.CFLOOR_ID))
+                var loParam = (GSL02300ParameterDTO)poParameter;
+                EnableTexboxFloor = string.IsNullOrWhiteSpace(loParam.CFLOOR_ID);
+                _Parameter = loParam;
+                if (string.IsNullOrWhiteSpace(loParam.CFLOOR_ID))
                 {
                     await _FloorCode.FocusAsync();
                 }

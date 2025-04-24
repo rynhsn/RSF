@@ -117,7 +117,7 @@ namespace PMT01300COMMON.Models
                     NLINE_TAXABLE_AMOUNT = 400m + i,
                     NTAX_AMOUNT = 410m + i,
                     NOTHER_TAX_AMOUNT = 420m + i,
-                    CJRN_ID = $"JRN_ID{i}"
+                    CJRN_ID = $"JRN_ID{i}",
                 });
             }
             for (int i = 1; i <= 5; i++)

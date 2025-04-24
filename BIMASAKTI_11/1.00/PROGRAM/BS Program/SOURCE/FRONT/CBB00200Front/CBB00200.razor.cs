@@ -1,4 +1,5 @@
 using CBB00200Common.DTOs;
+using CBB00200Front.DTOs;
 using CBB00200Model.ViewModel;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -49,7 +50,7 @@ public partial class CBB00200 : R_Page
                 await R_MessageBox.Show("Message", @_localizer["MSG_CONFLICT"]);
                 return;
             }
-
+            
             if (int.Parse(_viewModel.SystemParam.CCURRENT_PERIOD) >= int.Parse(_viewModel.SystemParam.CSOFT_PERIOD))
             {
                 await R_MessageBox.Show("Message", @_localizer["MSG_REQUIRE"]);
@@ -60,10 +61,22 @@ public partial class CBB00200 : R_Page
                 await R_MessageBox.Show("Message", @_localizer["MSG_CONFIRM"], R_eMessageBoxButtonType.YesNo);
             if (leAnswer == R_eMessageBoxResult.No) return;
 
-            var loResult = await _viewModel.ClosePeriod(_viewModel.SystemParam.CCURRENT_PERIOD);
+            // var loResult = await _viewModel.ClosePeriod(_viewModel.SystemParam.CCURRENT_PERIOD);
+            await _viewModel.SoftClosePeriod(_viewModel.SystemParam.CCURRENT_PERIOD);
 
-            if (loResult > 0) await PopupService.Show(typeof(CBB00200PopupToDoList), _viewModel.SystemParam.CCURRENT_PERIOD);
-            else await R_MessageBox.Show("Message", @_localizer["MSG_SUCCESS"]);
+            if (_viewModel.SoftClosePeriodErrorList.Count > 0)
+            {
+                CBB00200PopupParamDTO loParam = new()
+                {
+                    SoftClosePeriodErrorList = _viewModel.SoftClosePeriodErrorList
+                };
+                
+                await PopupService.Show(typeof(CBB00200PopupToDoList), loParam);
+            }
+            else
+            {
+                await R_MessageBox.Show("Message", @_localizer["MSG_SUCCESS"]);
+            }
 
             await _viewModel.GetSystemParam();
         }

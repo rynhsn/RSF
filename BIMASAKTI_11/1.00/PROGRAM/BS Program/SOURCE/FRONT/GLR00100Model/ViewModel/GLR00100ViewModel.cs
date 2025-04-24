@@ -147,8 +147,11 @@ namespace GLR00100Model.ViewModel
                 var loResult =
                     await _model.GetAsync<GLR00100ListDTO<GLR00100PeriodDTDTO>, GLR00100PeriodDTParam>(
                         nameof(IGLR00100.GLR00100GetPeriodList), loParam);
+                loResult.Data.Add(new GLR00100PeriodDTDTO { CPERIOD_NO = "99", CPERIOD_DISPLAY =  R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Closing")});
                 PeriodListFrom = loResult.Data;
                 PeriodListTo = loResult.Data;
+                
+                //tambahkan CPERIOD_NO = "99" dan CPERIOD_DISPLAY = "Closing" di index terakhir
                 FromPeriod = PeriodListFrom[0].CPERIOD_NO;
                 ToPeriod = PeriodListTo[0].CPERIOD_NO;
             }

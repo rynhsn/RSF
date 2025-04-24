@@ -25,6 +25,9 @@ namespace PMT03500Common.DTOs
         public string CINV_PRD { get; set; }
         public string CUTILITY_TYPE { get; set; }
         public string CUTILITY_PRD { get; set; }
+        
+        public string CINV_PRD_YEAR { get; set; }
+        public string CINV_PRD_MONTH { get; set; }
         public string CUTILITY_PRD_DISPLAY { get; set; }
         public string CSTART_DATE { get; set; }
         public string CEND_DATE { get; set; }
@@ -82,6 +85,8 @@ namespace PMT03500Common.DTOs
         public DateTime DCREATE_DATE { get; set; }
         public string CUPDATE_BY { get; set; }
         public DateTime DUPDATE_DATE { get; set; }
+        
+        public bool LDISABLED_START_DATE { get; set; }
 
         public bool LSELECTED { get; set; }
 

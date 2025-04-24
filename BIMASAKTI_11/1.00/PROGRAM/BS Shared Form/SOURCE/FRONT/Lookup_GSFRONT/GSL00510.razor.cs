@@ -19,8 +19,7 @@ namespace Lookup_GSFRONT
             {
                 var loParam = (GSL00510ParameterDTO)poParameter;
                 _viewModel.COAParameter = loParam;
-
-                await GridRef.R_RefreshGrid(null);
+                await OnChangeInactiveCOA(loParam.LINACTIVE_COA);
             }
             catch (Exception ex)
             {
@@ -54,7 +53,7 @@ namespace Lookup_GSFRONT
 
             try
             {
-                _viewModel.Inactive_Coa = poParam;
+                _viewModel.COAParameter.LINACTIVE_COA = poParam;
 
                 await GridRef.R_RefreshGrid(null);
             }

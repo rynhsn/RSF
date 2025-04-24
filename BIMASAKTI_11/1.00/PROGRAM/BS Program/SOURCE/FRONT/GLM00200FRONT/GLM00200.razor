@@ -1,0 +1,156 @@
+﻿@page "/GLM00200"
+@using R_BlazorFrontEnd.Controls.Tab
+@inherits R_Page
+
+<R_TabStrip @ref="@_tabStrip_Recurring">
+    <R_TabStripTab Title="@_localizer["_pageTitleReccuringList"]" id="@nameof(GLM00200)">
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout>
+                <R_Label>@_localizer["_lbl_dept"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="_journalVM.RecurringJrnListSearchParam.CDEPT_CODE"
+                           CharacterCasing="R_eCharacterCasing.Upper"
+                           OnLostFocus="@OnLostFocus_LookupDept" MaxLength="20"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="Dept_Before_Open_Lookup"
+                          R_After_Open_Lookup="Dept_After_Open_Lookup">
+                    ...
+                </R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_TextBox @bind-Value="_journalVM.RecurringJrnListSearchParam.CDEPT_NAME " Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@_localizer["_lbl_NextJournalPeriod"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_NumericTextBox @bind-Value="@_journalVM.RecurringJrnListSearchParam.CPERIOD_YYYY"
+                                  TValue="int"
+                                  ThousandSeparator=false
+                                  Min="_journalVM.MinYear"
+                                  Max="_journalVM.MaxYear"
+                                  Arrows="true" />
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_ComboBox @bind-Value="@_journalVM.RecurringJrnListSearchParam.CPERIOD_MM"
+                            Data="_journalVM.PeriodMonthList"
+                            ValueField="Key"
+                            TextField="Value"></R_ComboBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@_localizer["_lbl_Status"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_ComboBox @bind-Value="@_journalVM.RecurringJrnListSearchParam.CSTATUS"
+                            Data="_journalVM.StatusList"
+                            ValueField="@nameof(StatusDTO.CCODE)"
+                            TextField="@nameof(StatusDTO.CNAME)"></R_ComboBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_TextBox @bind-Value="_journalVM.RecurringJrnListSearchParam.CSEARCH_TEXT" MaxLength="20"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Button OnClick="SearchWithFilterAsync">@_localizer["_btn_search"]</R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Button OnClick="SearchAllAsync">@_localizer["_btn_showAll"]</R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_Grid @ref="@_gridJournal"
+                DataSource="@_journalVM.RecurringJrnList"
+                Pageable
+                R_ConductorGridSource="_conJournal"
+                R_GridType="R_eGridType.Original" R_ServiceGetListRecord="JournalGrid_ServiceGetListRecord"
+                AllowAddNewRow="false"
+                AllowDeleteRow="false"
+                AllowEditRow="false" Height="220px"
+                R_ServiceGetRecord="JournalGrid_ServiceGetRecord"
+                R_Display="JournalGrid_Display">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(JournalDTO.CREF_NO)" HeaderText="@_localizer["_col_ReferenceNo"]" Width="150px"></R_GridTextColumn>
+                <R_GridNumericColumn ThousandSeparator="false"
+                                     TValue="int"
+                                     FieldName="@nameof(JournalDTO.IFREQUENCY)"
+                                     HeaderText="@_localizer["_col_Freq"]"
+                                     Width="100px"></R_GridNumericColumn>
+                <R_GridNumericColumn TValue="int"
+                                     ThousandSeparator="false"
+                                     FieldName="@nameof(JournalDTO.IPERIOD)"
+                                     HeaderText="@_localizer["_col_Intv"]"
+                                     Width="150px"></R_GridNumericColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(JournalDTO.DSTART_DATE)" HeaderText="@_localizer["_col_StartDate"]" Width="150px"></R_GridDatePickerColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(JournalDTO.DNEXT_DATE)" HeaderText="@_localizer["_col_NextDate"]" Width="150px"></R_GridDatePickerColumn>
+                <R_GridTextColumn FieldName="@nameof(JournalDTO.CTRANS_DESC)" HeaderText="@_localizer["_col_Description"]" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(JournalDTO.CCURRENCY_CODE)" HeaderText="@_localizer["_col_Currency"]" Width="100px"></R_GridTextColumn>
+                <R_GridNumericColumn FieldName="@nameof(JournalDTO.NTRANS_AMOUNT)"
+                                     TValue="decimal"
+                                     HeaderText="@_localizer["_col_Amount"]"
+                                     Width="100px"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="@nameof(JournalDTO.CSTATUS_NAME)" HeaderText="@_localizer["_col_Status"]" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(JournalDTO.CDOC_NO)" HeaderText="@_localizer["_col_DocumentNo"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(JournalDTO.CDOC_DATE)" HeaderText="@_localizer["_col_DocumentDate"]" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(JournalDTO.CUPDATE_BY)" HeaderText="@_localizer["_col_UpdatedBy"]" Width="130px"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(JournalDTO.DUPDATE_DATE)" HeaderText="@_localizer["_col_UpdatedDate"]" Width="150px"></R_GridDatePickerColumn>
+                <R_GridTextColumn FieldName="@nameof(JournalDTO.CCREATE_BY)" HeaderText="@_localizer["_col_CreatedBy"]" Width="130px"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(JournalDTO.DCREATE_DATE)" HeaderText="@_localizer["_col_CreatedDate"]" Width="150px"></R_GridDatePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+
+        <R_Grid Class="mt-3" @ref="@_gridJournalDet"
+                DataSource="@_journalVM.RecurringJrnDtList"
+                Pageable
+                R_GridType="R_eGridType.Navigator"
+                R_ServiceGetListRecord="JournalDetGrid_ServiceGetListRecord"
+                Height="220px">
+            <R_GridColumns>
+                <R_GridNumericColumn FieldName="@nameof(JournalDetailGridDTO.INO)" TValue="int" HeaderText="@_localizer["_col_No"]" Width="100px"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="@nameof(JournalDetailGridDTO.CGLACCOUNT_NO)" HeaderText="@_localizer["_col_AccountNo"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(JournalDetailGridDTO.CGLACCOUNT_NAME)" HeaderText="@_localizer["_col_AccountName"]" Width="250px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(JournalDetailGridDTO.CCENTER_NAME)" HeaderText="@_localizer["_col_Center"]" Width="120px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(JournalDetailGridDTO.CDBCR)" HeaderText="@_localizer["_col_DC"]" Width="100px"></R_GridTextColumn>
+                <R_GridNumericColumn FieldName="@nameof(JournalDetailGridDTO.NDEBIT)" TValue="decimal" HeaderText="@_localizer["_col_Debit"]" Width="120px"></R_GridNumericColumn>
+                <R_GridNumericColumn FieldName="@nameof(JournalDetailGridDTO.NCREDIT)" TValue="decimal" HeaderText="@_localizer["_col_Credit"]" Width="120px"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="@nameof(JournalDetailGridDTO.CDETAIL_DESC)" HeaderText="@_localizer["_col_Description"]" Width="250px"></R_GridTextColumn>
+                <R_GridNumericColumn FieldName="@nameof(JournalDetailGridDTO.NLDEBIT)" TValue="decimal" HeaderText="@_localizer["_col_DBLocal"]" Width="150px"></R_GridNumericColumn>
+                <R_GridNumericColumn FieldName="@nameof(JournalDetailGridDTO.NLCREDIT)" TValue="decimal" HeaderText="@_localizer["_col_CRLocal"]" Width="150px"></R_GridNumericColumn>
+                <R_GridNumericColumn FieldName="@nameof(JournalDetailGridDTO.NBDEBIT)" TValue="decimal" HeaderText="@_localizer["_col_DBBase"]" Width="150px"></R_GridNumericColumn>
+                <R_GridNumericColumn FieldName="@nameof(JournalDetailGridDTO.NBCREDIT)" TValue="decimal" HeaderText="@_localizer["_col_CRBase"]" Width="150px"></R_GridNumericColumn>
+            </R_GridColumns>
+        </R_Grid>
+
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Button OnClick="@BtnJournal_Approve" Enabled="@(_journalVM.RecurringJrnRecord.CSTATUS == "10" && _journalVM.InitDataRecord.GSM_TRANSACTION_CODE.LAPPROVAL_FLAG == true)">@_localizer["_btn_Approve"]</R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Button OnClick="@BtnJournal_Commit" Enabled="@(_journalVM.RecurringJrnRecord.CSTATUS == "20" || _journalVM.RecurringJrnRecord.CSTATUS == "80")">@lcCommitLabel</R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ms-4">
+                <R_Popup>@_localizer["_btn_Upload"]</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Button OnClick="@TemplateBtn_OnClick">@_localizer["_btn_Template"]</R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_ConductorGrid @ref="_conJournal"
+                         R_IsHeader>
+        </R_ConductorGrid>
+    </R_TabStripTab>
+    <R_TabStripTab Title="@_localizer["_tabtitle_RecurringEntry"]" Id="@nameof(GLM00210)">
+        <R_TabPage @ref="@_tabPage_RecurringEntry"
+                   R_Before_Open_TabPage="@BeforeOpenTabPage_RecurringEntry">
+        </R_TabPage>
+    </R_TabStripTab>
+    <R_TabStripTab Title="@_localizer["_col_ActualJournalList"]" Id="@nameof(GLM00220)">
+        <R_TabPage @ref="@_tabPage_RecurringActualJournal"
+                   R_Before_Open_TabPage="@BeforeOpenTabPage_RecurringActualJournal">
+        </R_TabPage>
+    </R_TabStripTab>
+</R_TabStrip>
+
+

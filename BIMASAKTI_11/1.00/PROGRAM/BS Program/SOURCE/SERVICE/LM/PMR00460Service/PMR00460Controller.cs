@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using PMR00460Back;
 using PMR00460Common;
 using PMR00460Common.DTOs;
+using PMR00460Common.Params;
 using R_BackEnd;
 using R_Common;
 
@@ -103,5 +104,43 @@ public class PMR00460Controller : ControllerBase, IPMR00460
         loEx.ThrowExceptionIfErrors(); // Throw exception if there are errors
         _logger.LogInfo("End - Get Year Range"); // Log information that the process of getting year range has ended
         return loReturn; // Return the year range
+    }
+
+    /*
+     * Get Default Param
+     * Digunakan untuk mendapatkan parameter default
+     * kemudian dikirim sebagai response ke client dalam bentuk PMR00460SingleDTO
+     */
+    [HttpPost] // Attribute to specify that the method will be called when the HTTP POST request is received
+    public PMR00460SingleDTO<PMR00460DefaultParamDTO> PMR00460GetDefaultParam(PMR00460DefaultParamParam poParam)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(PMR00460GetDefaultParam)); // Start activity
+
+        _logger.LogInfo("Start - Get Default Param"); // Log information that the process of getting default parameter has started
+
+        var loEx = new R_Exception(); // Create new exception object
+        var loDbParams = new PMR00460ParameterDb(); // Create new instance of PMR00460ParameterDb
+        var loCls = new PMR00460Cls(); // Create new instance of PMR00460Cls
+        var loReturn = new PMR00460SingleDTO<PMR00460DefaultParamDTO>(); // Create new instance of PMR00460SingleDTO
+
+        try // Try to execute the following code
+        {
+            _logger.LogInfo("Set Parameter"); // Log information that the parameter is being set
+            loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID; // Set company ID from global variable
+            loDbParams.CUSER_ID = R_BackGlobalVar.USER_ID; // Set user ID from global variable
+            loDbParams.CPROPERTY_ID = poParam.CPROPERTY_ID; // Set property ID from parameter
+
+            _logger.LogInfo("Get Default Param"); // Log information that the default parameter is being retrieved
+            loReturn.Data = loCls.GetDefaultParam(loDbParams); // Get default parameter
+        }
+        catch (Exception ex) // If an exception occurs
+        {
+            loEx.Add(ex); // Add the exception to the exception object
+            _logger.LogError(loEx); // Log the exception
+        }
+
+        loEx.ThrowExceptionIfErrors(); // Throw exception if there are errors
+        _logger.LogInfo("End - Get Default Param"); // Log information that the process of getting default parameter has ended
+        return loReturn; // Return the default parameter
     }
 }

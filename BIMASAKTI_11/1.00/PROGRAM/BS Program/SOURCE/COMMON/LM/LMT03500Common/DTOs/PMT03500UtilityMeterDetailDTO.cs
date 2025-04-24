@@ -59,8 +59,9 @@ namespace PMT03500Common.DTOs
         public string CSTART_INV_PRD { get; set; }
         public string CYEAR_PERIOD { get; set; }
         public string CPERIOD_NO { get; set; }
-        // public string CSTATUS { get; set; }
+        public string CSTATUS { get; set; }
         public string CSTATUS_DESCR { get; set; }
+        public string CSTATUS_USAGE { get; set; }
         // public string CACTIVE_BY { get; set; }
         // public DateTime DACTIVE_DATE { get; set; }
         // public string CINACTIVE_BY { get; set; }

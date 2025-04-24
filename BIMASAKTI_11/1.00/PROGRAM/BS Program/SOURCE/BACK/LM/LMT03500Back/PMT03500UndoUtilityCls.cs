@@ -118,8 +118,32 @@ public class PMT03500UndoUtilityCls : R_IBatchProcess
                        $"CINV_PRD			VARCHAR(6), " +
                        $"CMETER_NO			VARCHAR(50)" +
                        $");";
+            
+            _logger.LogDebug(lcQuery);
+            
+            for (var i = 0; i < loObject.Count; i++)
+            {
+                _logger.LogDebug($"INSERT INTO #UNDO_UTILITY_USAGE " +
+                                 $"VALUES (" +
+                                 $"{loObject[i].NO}, " +
+                                 $"'{loObject[i].CCOMPANY_ID}', " +
+                                 $"'{loObject[i].CPROPERTY_ID}', " +
+                                 $"'{loObject[i].CDEPT_CODE}', " +
+                                 $"'{loObject[i].CTRANS_CODE}', " +
+                                 $"'{loObject[i].CREF_NO}', " +
+                                 $"'{loObject[i].CUNIT_ID}', " +
+                                 $"'{loObject[i].CFLOOR_ID}', " +
+                                 $"'{loObject[i].CBUILDING_ID}', " +
+                                 $"'{loObject[i].CCHARGES_TYPE}', " +
+                                 $"'{loObject[i].CCHARGES_ID}', " +
+                                 $"'{loObject[i].CSEQ_NO}', " +
+                                 $"'{loObject[i].CINV_PRD}', " +
+                                 $"'{loObject[i].CMETER_NO}')");
+            }
+            
             loDb.SqlExecNonQuery(lcQuery, loConn, false);
             loDb.R_BulkInsert((SqlConnection)loConn, $"#UNDO_UTILITY_USAGE", loObject);
+            
 
             lcQuery = $"RSP_PM_UNDO_UTILITY_USAGE";
             loCmd.CommandType = CommandType.StoredProcedure;
@@ -133,7 +157,24 @@ public class PMT03500UndoUtilityCls : R_IBatchProcess
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 20, poBatchProcessPar.Key.USER_ID);
             loDb.R_AddCommandParameter(loCmd, "@CKEY_GUID", DbType.String, 50, poBatchProcessPar.Key.KEY_GUID);
 
+            
             loDb.SqlExecNonQuery(loConn, loCmd, false);
+            
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
+                        "@CPROPERTY_ID" or
+                        "@CBUILDING_ID" or
+                        "@CCHARGES_TYPE" or
+                        "@CINV_PRD" or
+                        "@CUSER_ID" or
+                        "@CKEY_GUID"
+                )
+                .Select(x => x.Value);
+            _logger.LogInfo("End Process");
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
         }
         catch (Exception ex)
         {

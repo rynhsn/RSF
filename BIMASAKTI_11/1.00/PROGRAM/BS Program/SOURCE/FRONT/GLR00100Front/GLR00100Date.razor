@@ -69,7 +69,7 @@
                             <R_ComboBox Data="_viewModel.PeriodListFrom"
                                         @bind-Value="_viewModel.FromPeriod"
                                         ValueField="@nameof(GLR00100PeriodDTDTO.CPERIOD_NO)"
-                                        TextField="@nameof(GLR00100PeriodDTDTO.CPERIOD_NO)"
+                                        TextField="@nameof(GLR00100PeriodDTDTO.CPERIOD_DISPLAY)"
                                         Enabled="@(_viewModel.ReportParam.CPERIOD_TYPE == "P")"
                                         OnChanged="@CheckPeriodFrom"/>
                         </R_ItemLayout>
@@ -80,7 +80,7 @@
                             <R_ComboBox Data="_viewModel.PeriodListTo"
                                         @bind-Value="_viewModel.ToPeriod"
                                         ValueField="@nameof(GLR00100PeriodDTDTO.CPERIOD_NO)"
-                                        TextField="@nameof(GLR00100PeriodDTDTO.CPERIOD_NO)"
+                                        TextField="@nameof(GLR00100PeriodDTDTO.CPERIOD_DISPLAY)"
                                         Enabled="@(_viewModel.ReportParam.CPERIOD_TYPE == "P")"
                                         OnChanged="@CheckPeriodTo"/>
                         </R_ItemLayout>

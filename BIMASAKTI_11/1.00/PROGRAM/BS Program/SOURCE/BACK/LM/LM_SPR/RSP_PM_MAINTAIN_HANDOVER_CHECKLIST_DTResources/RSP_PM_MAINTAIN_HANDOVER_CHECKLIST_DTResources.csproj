@@ -5,19 +5,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Update="RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources_msgrsc.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources_msgrsc.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources_msgrsc.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources_msgrsc.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-
 </Project>

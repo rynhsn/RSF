@@ -89,6 +89,26 @@ namespace PMT01300ReportCommon
         public string? CUNIT_NAME { get; set; }
         public string? CFLOOR_NAME { get; set; }
         public string? CLOCATION { get; set; }
+        
+        
+        public string? CNAME01 { get; set; }
+        public string? CNAME02 { get; set; }
+        public string? CNAME03 { get; set; }
+        public string? CNAME04 { get; set; }
+        public string? CNAME05 { get; set; }
+        public string? CNAME06 { get; set; }
+        public string? CPOSITION01 { get; set; }
+        public string? CPOSITION02 { get; set; }
+        public string? CPOSITION03 { get; set; }
+        public string? CPOSITION04 { get; set; }
+        public string? CPOSITION05 { get; set; }
+        public string? CPOSITION06 { get; set; }
+        public byte[]? OSIGN01 { get; set; }
+        public byte[]? OSIGN02 { get; set; }
+        public byte[]? OSIGN03 { get; set; }
+        public byte[]? OSIGN04 { get; set; }
+        public byte[]? OSIGN05 { get; set; }
+        public byte[]? OSIGN06 { get; set; }
 
 
         private string? _CREF_DATE;

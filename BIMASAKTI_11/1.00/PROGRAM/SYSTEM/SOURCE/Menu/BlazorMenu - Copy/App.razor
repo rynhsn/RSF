@@ -1,0 +1,59 @@
+﻿@using System.Reflection
+
+<R_BasicRouter AppAssembly="@typeof(Program).Assembly"
+               AdditionalAssemblies="@lazyLoadedAssemblies">
+    <Found Context="routeData">
+        <CascadingAuthenticationState>
+            <MenuTabsRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        </CascadingAuthenticationState>
+    </Found>
+    <NotFound>
+        <CascadingAuthenticationState>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </CascadingAuthenticationState>
+    </NotFound>
+</R_BasicRouter>
+
+@code {
+    private List<Assembly> lazyLoadedAssemblies = new()
+    {
+        typeof(BlazorMenu.Components.Pages.Content.Home).Assembly,
+    typeof(APR00300Front.APR00300).Assembly,
+    typeof(APR00500Front.APR00500).Assembly,
+
+    typeof(BMM00500FRONT.BMM00500).Assembly,
+
+    typeof(CBB00200Front.CBB00200).Assembly,
+
+    typeof(GSM02000Front.GSM02000).Assembly,
+    typeof(GSM05000Front.GSM05000).Assembly,
+
+    typeof(GLM00500Front.GLM00500).Assembly,
+    typeof(GLI00100Front.GLI00100).Assembly,
+    typeof(GLR00100Front.GLR00100).Assembly,
+
+    typeof(HDM00400Front.HDM00400).Assembly,
+    typeof(HDI00100Front.HDI00100).Assembly,
+    typeof(HDR00200Front.HDR00200).Assembly,
+
+    typeof(ICI00200Front.ICI00200).Assembly,
+
+    typeof(PMB00300Front.PMB00300).Assembly,
+    typeof(PMB03000Front.PMB03000).Assembly,
+    typeof(PMB04000FRONT.PMB04000).Assembly,
+    typeof(PMB05000Front.PMB05000).Assembly,
+    typeof(PMI00500Front.PMI00500).Assembly,
+    typeof(PMM01500FRONT.PMM01500).Assembly,
+    typeof(PMT03500Front.PMT03500).Assembly,
+    typeof(PMT06000Front.PMT06000).Assembly,
+    typeof(PMT06500Front.PMT06500).Assembly,
+    typeof(PMT01300FRONT.PMT01300).Assembly,
+    typeof(PMR02600Front.PMR02600).Assembly,
+    typeof(PMR00460Front.PMR00460).Assembly,
+
+    typeof(TXB00200Front.TXB00200).Assembly,
+
+    };
+}

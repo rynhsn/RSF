@@ -39,13 +39,15 @@ namespace PMT03500Model.ViewModel
         public Action<R_Exception> DisplayErrorAction { get; set; }
 
         public bool FileHasData = false;
+        public bool IsUpload = true;
 
         public void Init(object poParam)
         {
             UploadParam = (PMT03500UploadParam)poParam;
         }
 
-        public async Task SaveBulkFile(PMT03500UploadParam poUploadParam, List<PMT03500UploadUtilityErrorValidateDTO> poDataList)
+        public async Task SaveBulkFile(PMT03500UploadParam poUploadParam,
+            List<PMT03500UploadUtilityErrorValidateDTO> poDataList)
         {
             var loEx = new R_Exception();
             R_BatchParameter loBatchPar;
@@ -60,7 +62,10 @@ namespace PMT03500Model.ViewModel
                 loBatchParUserParameters.Add(new R_KeyValue
                     { Key = PMT03500ContextConstant.CPROPERTY_ID, Value = poUploadParam.CPROPERTY_ID });
                 loBatchParUserParameters.Add(new R_KeyValue
-                    { Key = PMT03500ContextConstant.CUTILITY_TYPE, Value = poUploadParam.EUTILITY_TYPE == EPMT03500UtilityUsageType.EC ? "EC" : "WG" });
+                {
+                    Key = PMT03500ContextConstant.CUTILITY_TYPE,
+                    Value = poUploadParam.EUTILITY_TYPE == EPMT03500UtilityUsageType.EC ? "EC" : "WG"
+                });
 
                 //Instantiate ProcessClient
                 loCls = new R_ProcessAndUploadClient(
@@ -137,7 +142,7 @@ namespace PMT03500Model.ViewModel
 
                 var loData = new List<PMT03500UploadUtilityErrorValidateDTO>();
 
-                if(UploadParam.EUTILITY_TYPE == EPMT03500UtilityUsageType.EC)
+                if (UploadParam.EUTILITY_TYPE == EPMT03500UtilityUsageType.EC)
                 {
                     loData = poEntity.Select((item, i) => new PMT03500UploadUtilityErrorValidateDTO
                     {
@@ -165,7 +170,7 @@ namespace PMT03500Model.ViewModel
 
                         CCOMPANY_ID = CompanyId
                     }).ToList();
-                    
+
                     //cek apakah di loData ada start date yang lebih besar dari end date dan jika ada maka akan di set error dan property notes akan diisi
                     foreach (var item in loData)
                     {
@@ -175,11 +180,12 @@ namespace PMT03500Model.ViewModel
                             InvalidRows++;
                             ValidRows = loData.Count - InvalidRows;
                             item.ErrorFlag = "N";
-                            item.ErrorMessage = R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "START_DATE_LESS_THAN_END_DATE");
+                            item.ErrorMessage = R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class),
+                                "START_DATE_LESS_THAN_END_DATE");
                         }
                     }
                 }
-                else if(UploadParam.EUTILITY_TYPE == EPMT03500UtilityUsageType.WG)
+                else if (UploadParam.EUTILITY_TYPE == EPMT03500UtilityUsageType.WG)
                 {
                     loData = poEntity.Select((item, i) => new PMT03500UploadUtilityErrorValidateDTO
                     {
@@ -205,8 +211,8 @@ namespace PMT03500Model.ViewModel
                         CCOMPANY_ID = CompanyId
                     }).ToList();
                 }
-                
-                
+
+
                 TotalRows = loData.Count;
                 GridListUpload = new ObservableCollection<PMT03500UploadUtilityErrorValidateDTO>(loData);
                 await Task.CompletedTask;
@@ -313,97 +319,106 @@ namespace PMT03500Model.ViewModel
                 }
                 else
                 {
-                    // Display Error Handle if get seq
-                    GridListUpload.ToList().ForEach(x =>
+                    if (!IsUpload)
                     {
-                        //Assign ErrorMessage, ErrorFlag and Set Valid And Invalid Data
-                        if (loResultData.Any(y => y.SeqNo == x.NO))
-                        {
-                            x.ErrorMessage = loResultData.Where(y => y.SeqNo == x.NO).FirstOrDefault().ErrorMessage;
-                            x.ErrorFlag = "N";
-                            InvalidRows++;
-                        }
-                        else
-                        {
-                            x.ErrorFlag = "Y";
-                            ValidRows++;
-                        }
-                    });
-
-                    if (UploadParam.EUTILITY_TYPE == EPMT03500UtilityUsageType.EC)
-                    {
-                        var loConvertData = GridListUpload.Select(item => new PMT03500UploadUtilityExcelECDTO
-                        {
-                            DisplaySeq = item.NO.ToString(),
-                            BuildingId = item.CBUILDING_ID,
-                            Department = item.CDEPT_CODE,
-                            AgreementNo = item.CREF_NO,
-                            UtilityType = item.CUTILITY_TYPE,
-                            FloorId = item.CFLOOR_ID,
-                            UnitId = item.CUNIT_ID,
-                            ChargesType = item.CCHARGES_TYPE,
-                            ChargesId = item.CCHARGES_ID,
-                            MeterNo = item.CMETER_NO,
-                            SeqNo = item.CSEQ_NO,
-                            InvoicePeriod = item.CINV_PRD,
-                            UtilityPeriod = item.CUTILITY_PRD,
-                            StartDate = item.CSTART_DATE,
-                            EndDate = item.CEND_DATE,
-                            BlockIStart = item.NBLOCK1_START,
-                            BlockIIStart = item.NBLOCK2_START,
-                            BlockIEnd = item.NBLOCK1_END,
-                            BlockIIEnd = item.NBLOCK2_END,
-                            BebanBersama = item.NBEBAN_BERSAMA,
-                            Valid = item.ErrorFlag,
-                            Notes = item.ErrorMessage
-                        }).ToList();
-
-                        ////Set DataSetTable and get error
-                        var loDataTable = R_FrontUtility.R_ConvertTo(loConvertData);
-                        loDataTable.TableName = "UtilityUsage";
-
-                        var loDataSet = new DataSet();
-                        loDataSet.Tables.Add(loDataTable);
-                        
-                        // Asign Dataset
-                        ExcelDataSet = loDataSet;
-
-                        //// Dowload if get Error
-                        //await ActionDataSetExcel.Invoke();
+                        var loHandledEx = loResultData.Where(y => y.SeqNo > 0).Select(x =>
+                            new R_BlazorFrontEnd.Exceptions.R_Error(x.SeqNo.ToString(), x.ErrorMessage)).ToList();
+                        loHandledEx.ForEach(x => loException.Add(x));
                     }
-                    else if (UploadParam.EUTILITY_TYPE == EPMT03500UtilityUsageType.WG)
+                    else
                     {
-                        var loConvertData = GridListUpload.Select(item => new PMT03500UploadUtilityExcelWGDTO
+                        // Display Error Handle if get seq
+                        GridListUpload.ToList().ForEach(x =>
                         {
-                            DisplaySeq = item.NO.ToString(),
-                            BuildingId = item.CBUILDING_ID,
-                            Department = item.CDEPT_CODE,
-                            AgreementNo = item.CREF_NO,
-                            UtilityType = item.CUTILITY_TYPE,
-                            FloorId = item.CFLOOR_ID,
-                            UnitId = item.CUNIT_ID,
-                            ChargesType = item.CCHARGES_TYPE,
-                            ChargesId = item.CCHARGES_ID,
-                            MeterNo = item.CMETER_NO,                            
-                            SeqNo = item.CSEQ_NO,
-                            InvoicePeriod = item.CINV_PRD,
-                            UtilityPeriod = item.CUTILITY_PRD,
-                            StartDate = item.CSTART_DATE,
-                            EndDate = item.CEND_DATE,
-                            MeterStart = item.IMETER_START,
-                            MeterEnd = item.IMETER_END,
-                            Valid = item.ErrorFlag,
-                            Notes = item.ErrorMessage
-                        }).ToList();
-                        
-                        var loDataTable = R_FrontUtility.R_ConvertTo(loConvertData);
-                        loDataTable.TableName = "UtilityUsage";
+                            //Assign ErrorMessage, ErrorFlag and Set Valid And Invalid Data
+                            if (loResultData.Any(y => y.SeqNo == x.NO))
+                            {
+                                x.ErrorMessage = loResultData.Where(y => y.SeqNo == x.NO).FirstOrDefault().ErrorMessage;
+                                x.ErrorFlag = "N";
+                                InvalidRows++;
+                            }
+                            else
+                            {
+                                x.ErrorFlag = "Y";
+                                ValidRows++;
+                            }
+                        });
 
-                        var loDataSet = new DataSet();
-                        loDataSet.Tables.Add(loDataTable);
+                        if (UploadParam.EUTILITY_TYPE == EPMT03500UtilityUsageType.EC)
+                        {
+                            var loConvertData = GridListUpload.Select(item => new PMT03500UploadUtilityExcelECDTO
+                            {
+                                DisplaySeq = item.NO.ToString(),
+                                BuildingId = item.CBUILDING_ID,
+                                Department = item.CDEPT_CODE,
+                                AgreementNo = item.CREF_NO,
+                                UtilityType = item.CUTILITY_TYPE,
+                                FloorId = item.CFLOOR_ID,
+                                UnitId = item.CUNIT_ID,
+                                ChargesType = item.CCHARGES_TYPE,
+                                ChargesId = item.CCHARGES_ID,
+                                MeterNo = item.CMETER_NO,
+                                SeqNo = item.CSEQ_NO,
+                                InvoicePeriod = item.CINV_PRD,
+                                UtilityPeriod = item.CUTILITY_PRD,
+                                StartDate = item.CSTART_DATE,
+                                EndDate = item.CEND_DATE,
+                                BlockIStart = item.NBLOCK1_START,
+                                BlockIIStart = item.NBLOCK2_START,
+                                BlockIEnd = item.NBLOCK1_END,
+                                BlockIIEnd = item.NBLOCK2_END,
+                                BebanBersama = item.NBEBAN_BERSAMA,
+                                Valid = item.ErrorFlag,
+                                Notes = item.ErrorMessage
+                            }).ToList();
 
-                        // Asign Dataset
-                        ExcelDataSet = loDataSet;
+                            ////Set DataSetTable and get error
+                            var loDataTable = R_FrontUtility.R_ConvertTo(loConvertData);
+                            loDataTable.TableName = "UtilityUsage";
+
+                            var loDataSet = new DataSet();
+                            loDataSet.Tables.Add(loDataTable);
+
+                            // Asign Dataset
+                            ExcelDataSet = loDataSet;
+
+                            //// Dowload if get Error
+                            //await ActionDataSetExcel.Invoke();
+                        }
+                        else if (UploadParam.EUTILITY_TYPE == EPMT03500UtilityUsageType.WG)
+                        {
+                            var loConvertData = GridListUpload.Select(item => new PMT03500UploadUtilityExcelWGDTO
+                            {
+                                DisplaySeq = item.NO.ToString(),
+                                BuildingId = item.CBUILDING_ID,
+                                Department = item.CDEPT_CODE,
+                                AgreementNo = item.CREF_NO,
+                                UtilityType = item.CUTILITY_TYPE,
+                                FloorId = item.CFLOOR_ID,
+                                UnitId = item.CUNIT_ID,
+                                ChargesType = item.CCHARGES_TYPE,
+                                ChargesId = item.CCHARGES_ID,
+                                MeterNo = item.CMETER_NO,
+                                SeqNo = item.CSEQ_NO,
+                                InvoicePeriod = item.CINV_PRD,
+                                UtilityPeriod = item.CUTILITY_PRD,
+                                StartDate = item.CSTART_DATE,
+                                EndDate = item.CEND_DATE,
+                                MeterStart = item.IMETER_START,
+                                MeterEnd = item.IMETER_END,
+                                Valid = item.ErrorFlag,
+                                Notes = item.ErrorMessage
+                            }).ToList();
+
+                            var loDataTable = R_FrontUtility.R_ConvertTo(loConvertData);
+                            loDataTable.TableName = "UtilityUsage";
+
+                            var loDataSet = new DataSet();
+                            loDataSet.Tables.Add(loDataTable);
+
+                            // Asign Dataset
+                            ExcelDataSet = loDataSet;
+                        }
                     }
                 }
             }
@@ -417,7 +432,7 @@ namespace PMT03500Model.ViewModel
 
         #endregion
     }
-    
+
     public class PMT03500UndoParam
     {
         public string CCOMPANY_ID { get; set; }

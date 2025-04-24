@@ -111,13 +111,13 @@ namespace GSM02500FRONT
         {
             if (_gridUploadUnitRef.DataSource.Count > 0)
             {
-                await _conGridUploadUnitRef.R_SaveBatch();
+                await _gridUploadUnitRef.R_SaveBatch();
             }
             else
             {
                 if (_gridUploadUnitUtilityRef.DataSource.Count > 0)
                 {
-                    await _conGridUploadUnitUtilityRef.R_SaveBatch();
+                    await _gridUploadUnitUtilityRef.R_SaveBatch();
                 }
             }
         }
@@ -125,7 +125,7 @@ namespace GSM02500FRONT
         {
             if (_gridUploadUnitUtilityRef.DataSource.Count > 0)
             {
-                await _conGridUploadUnitUtilityRef.R_SaveBatch();
+                await _gridUploadUnitUtilityRef.R_SaveBatch();
             }
             else
             {
@@ -637,19 +637,19 @@ namespace GSM02500FRONT
                 IsUploadCancel = false;
                 if (_gridUploadFloorRef.DataSource.Count > 0)
                 {
-                    await _conGridUploadFloorRef.R_SaveBatch();
+                    await _gridUploadFloorRef.R_SaveBatch();
                 }
                 else
                 {
                     if (_gridUploadUnitRef.DataSource.Count > 0)
                     {
-                        await _conGridUploadUnitRef.R_SaveBatch();
+                        await _gridUploadUnitRef.R_SaveBatch();
                     }
                     else
                     {
                         if (_gridUploadUnitUtilityRef.DataSource.Count > 0)
                         {
-                            await _conGridUploadUnitUtilityRef.R_SaveBatch();
+                            await _gridUploadUnitUtilityRef.R_SaveBatch();
                         }
                     }
                 }

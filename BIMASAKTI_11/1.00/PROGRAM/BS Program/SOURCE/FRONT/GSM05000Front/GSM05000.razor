@@ -80,14 +80,15 @@
         <R_Label>@_localizer["LABEL_DEPTMODE"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
-        <R_ComboBox Data="@_viewModel.DelimiterListDepartment"
+        <R_ComboBox R_ConductorSource="@_conductorRef"
+                    Data="@_viewModel.DelimiterListDepartment"
                     @bind-Value="_viewModel.Data.CDEPT_DELIMITER"
                     ValueField="@nameof(GSM05000DelimiterDTO.CCODE)"
                     TextField="@nameof(GSM05000DelimiterDTO.CDESCRIPTION)"
-                    R_ConductorSource="@_conductorRef"
                     OnChanged="GetUpdateSample"
                     Enabled="@(_viewModel.Data.LDEPT_MODE && _conductorRef.R_ConductorMode == R_eConductorMode.Edit)"
-                    R_EnableEdit/>
+                    R_EnableEdit
+                    />
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_NumericTextBox @bind-Value="@_viewModel.DeptSequence"
@@ -149,24 +150,7 @@
         </R_StackLayout>
     </R_ItemLayout>
 
-    <R_ItemLayout col="2">
-        <R_ComboBox Data="@_viewModel.DelimiterListPeriodMode"
-                    @bind-Value="_viewModel.Data.CPERIOD_DELIMITER"
-                    ValueField="@nameof(GSM05000DelimiterDTO.CCODE)"
-                    TextField="@nameof(GSM05000DelimiterDTO.CDESCRIPTION)"
-                    R_ConductorSource="@_conductorRef"
-                    OnChanged="GetUpdateSample"
-                    Enabled="@(_viewModel.Data.CPERIOD_MODE != "N" && _conductorRef.R_ConductorMode == R_eConductorMode.Edit)"/>
-    </R_ItemLayout>
-
-    <R_ItemLayout col="2">
-        <R_NumericTextBox @bind-Value="@_viewModel.PeriodSequence"
-                          R_ConductorSource="@_conductorRef"
-                          Min="1"
-                          Max="4"
-                          OnLostFocused="GetUpdateSample"
-                          Enabled="@(_viewModel.Data.CPERIOD_MODE != "N" && _conductorRef.R_ConductorMode == R_eConductorMode.Edit)"/>
-    </R_ItemLayout>
+    
 </R_StackLayout>
 @* Year Format *@
 <R_StackLayout Row="true" Class="mb-1">
@@ -186,6 +170,25 @@
                               Enabled="_radioGroup"/>
             </R_ItemLayout>
         </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_ComboBox Data="@_viewModel.DelimiterListPeriodMode"
+                    @bind-Value="_viewModel.Data.CPERIOD_DELIMITER"
+                    ValueField="@nameof(GSM05000DelimiterDTO.CCODE)"
+                    TextField="@nameof(GSM05000DelimiterDTO.CDESCRIPTION)"
+                    R_ConductorSource="@_conductorRef"
+                    OnChanged="GetUpdateSample"
+                    Enabled="@(_viewModel.Data.CPERIOD_MODE != "N" && _conductorRef.R_ConductorMode == R_eConductorMode.Edit)"/>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_NumericTextBox @bind-Value="@_viewModel.PeriodSequence"
+                          R_ConductorSource="@_conductorRef"
+                          Min="1"
+                          Max="4"
+                          OnLostFocused="GetUpdateSample"
+                          Enabled="@(_viewModel.Data.CPERIOD_MODE != "N" && _conductorRef.R_ConductorMode == R_eConductorMode.Edit)"/>
     </R_ItemLayout>
 </R_StackLayout>
 @* Length of Number *@
@@ -423,8 +426,6 @@
 
 
 <R_PredefinedDock R_InstantiateDock="InstanceNumberingTab" Title="Numbering"
-                  Enabled="@(_viewModel.Entity.LINCREMENT_FLAG && _isNormalMode)"
-                  />
-<R_PredefinedDock R_InstantiateDock="InstanceApprovalTab" Title="Approval" 
-                  Enabled="@(_viewModel.Entity.LAPPROVAL_FLAG && _isNormalMode)"
-                  />
+                  Enabled="@(_viewModel.Entity.LINCREMENT_FLAG && _isNormalMode)"/>
+<R_PredefinedDock R_InstantiateDock="InstanceApprovalTab" Title="Approval"
+                  Enabled="@(_viewModel.Entity.LAPPROVAL_FLAG && _isNormalMode)"/>

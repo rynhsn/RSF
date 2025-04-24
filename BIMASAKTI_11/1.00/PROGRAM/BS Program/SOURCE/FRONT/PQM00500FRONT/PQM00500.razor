@@ -1,0 +1,116 @@
+@page "/PQM00500"
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_titleMenuUser")]
+
+@* combobox *@
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">@_localizer["_lbl_compid"].ToUpper()</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@_viewModelUserMenu.CompanyList"
+                    Value="@_viewModelUserMenu.SelectedCompanyId"
+                    ValueField="@nameof(CompanyInfoDTO.CCOMPANY_ID)"
+                    TextField="@nameof(CompanyInfoDTO.CCOMPANY_ID)"
+                    ValueChanged="@((string value) => ComboboxPropertyValueChanged(value))"
+                    Enabled="@_companyComboboxEnabled">
+        </R_ComboBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* grid menu *@
+<R_StackLayout>
+    <R_Grid DataSource="@_viewModelUserMenu.MenuList"
+            @ref="@_gridMenu"
+            R_ConductorGridSource="@_conMenu"
+            @bind-PageSize="@_pageSizeGridMenu"
+            Pageable
+            R_GridType="@R_eGridType.Original"
+            AllowAddNewRow="@false"
+            AllowEditRow="@false"
+            AllowDeleteRow="@false"
+            R_ServiceGetListRecord="@GridMenu_GetListAsync"
+            Height="@PQM00500ContextConstant.GRID_SIZEHEIGHT_MENU"
+            R_Display="@GridMenu_DisplayAsync"
+            Enabled="@_enabledGridMenu">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="@nameof(MenuDTO.CCOMPANY_ID)"
+                              HeaderText="@_localizer["_col_companyid"]"
+                              Width="110px" />
+            <R_GridTextColumn FieldName="@nameof(MenuDTO.CMENU_ID)"
+                              HeaderText="@_localizer["_col_menuid"]"
+                              Width="110px" />
+            <R_GridTextColumn FieldName="@nameof(MenuDTO.CMENU_NAME)"
+                              HeaderText="@_localizer["_col_menuname"]"
+                              Width="250px" />
+            <R_GridTextColumn FieldName="@nameof(MenuDTO.CUPDATE_BY)"
+                              HeaderText="@_localizer["_col_updatedby"]"
+                              Width="120px" />
+            <R_GridDatePickerColumn FieldName="@nameof(MenuDTO.DUPDATE_DATE)"
+                                    HeaderText="@_localizer["_col_updateddate"]"
+                                    Width="150px" />
+            <R_GridTextColumn FieldName="@nameof(MenuDTO.CCREATE_BY)"
+                              HeaderText="@_localizer["_col_createdby"]"
+                              Width="120px" />
+            <R_GridDatePickerColumn FieldName="@nameof(MenuDTO.DCREATE_DATE)"
+                                    HeaderText="@_localizer["_col_createddate"]"
+                                    Width="150px" />
+        </R_GridColumns>
+
+
+    </R_Grid>
+</R_StackLayout>
+
+@* grid user *@
+<R_StackLayout>
+    <R_Grid DataSource="@_viewModelUserMenu.UserMenuList"
+            @ref="@_gridUserMenu"
+            R_ConductorGridSource="@_conUserMenu"
+            @bind-PageSize="@_pageSizeGridMenuUser"
+            Pageable
+            Height="@PQM00500ContextConstant.GRID_SIZEHEIGHT_MENU"
+            R_GridType="@R_eGridType.Original"
+            AllowAddNewRow
+            AllowDeleteRow
+            AllowEditRow="@false"
+            R_ServiceGetListRecord="@GridMenuUser_GetListAsync"
+            R_ServiceGetRecord="@GridMenuUser_GetRecordAsync"
+            R_AfterAdd="@GridMenuUser_AfterAdd"
+            R_Saving="@GridMenuUser_SavingAsync"
+            R_ServiceSave="@GridMenuUser_SaveAsync"
+            R_ServiceDelete="@GridMenuUser_DeleteAsync"
+            R_Validation="@GridMenuUser_ValidationAsync"
+            R_Before_Open_Grid_Lookup="@GridMenuUser_BeforeOpenGridLookupColumn"
+            R_After_Open_Grid_Lookup="@GridMenuUser_AfterOpenGridLookupColumn"
+            R_CellLostFocused="@GridMenuUser_CellLostFocusedAsync">
+        <R_GridColumns>
+            <R_GridLookupColumn FieldName="@nameof(MenuUserDTO.CUSER_ID)"
+                                HeaderText="@_localizer["_col_userid"]"
+                                R_EnableAdd
+                                Width="120px"
+                                MaxLength="8"
+                                TextboxEnabled />
+            <R_GridTextColumn FieldName="@nameof(MenuUserDTO.CUSER_NAME)"
+                              HeaderText="@_localizer["_col_username"]"
+                              Width="200px" />
+            <R_GridTextColumn FieldName="@nameof(MenuDTO.CUPDATE_BY)"
+                              HeaderText="@_localizer["_col_updatedby"]"
+                              Width="130px" />
+            <R_GridDatePickerColumn FieldName="@nameof(MenuDTO.DUPDATE_DATE)"
+                                    HeaderText="@_localizer["_col_updateddate"]"
+                                    Width="150px" />
+            <R_GridTextColumn FieldName="@nameof(MenuDTO.CCREATE_BY)"
+                              HeaderText="@_localizer["_col_createdby"]"
+                              Width="130px" />
+            <R_GridDatePickerColumn FieldName="@nameof(MenuDTO.DCREATE_DATE)"
+                                    HeaderText="@_localizer["_col_createddate"]"
+                                    Width="150px" />
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_ConductorGrid R_IsHeader
+                 @ref="@_conMenu" />
+<R_ConductorGrid @ref="@_conUserMenu"
+                 R_ConductorParent="@_conMenu"
+                 R_SetOther="@GridMenuUser_SetOther" />

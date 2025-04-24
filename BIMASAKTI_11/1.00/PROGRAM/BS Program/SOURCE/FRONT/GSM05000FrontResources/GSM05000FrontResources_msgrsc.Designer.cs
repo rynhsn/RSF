@@ -240,6 +240,15 @@ namespace GSM05000FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User ID is required.
+        /// </summary>
+        internal static string ErrReqUserId {
+            get {
+                return ResourceManager.GetString("ErrReqUserId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to By Department.
         /// </summary>
         internal static string LABEL_APPROVALDEPT {

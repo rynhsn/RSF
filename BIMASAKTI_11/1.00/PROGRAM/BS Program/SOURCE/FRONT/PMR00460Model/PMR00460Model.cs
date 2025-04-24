@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using PMR00460Common;
 using PMR00460Common.DTOs;
 using PMR00460Common.DTOs.Print;
+using PMR00460Common.Params;
 using R_APIClient;
 using R_APICommonDTO;
 using R_BlazorFrontEnd.Exceptions;
@@ -32,6 +33,11 @@ namespace PMR00460Model
         }
 
         public PMR00460SingleDTO<PMR00460PeriodYearRangeDTO> PMR00460GetYearRange()
+        {
+            throw new NotImplementedException();
+        }
+
+        public PMR00460SingleDTO<PMR00460DefaultParamDTO> PMR00460GetDefaultParam(PMR00460DefaultParamParam poParam)
         {
             throw new NotImplementedException();
         }

@@ -1,0 +1,284 @@
+﻿@inherits R_Page
+@attribute [R_Page(ResourceId = "_Lease")]
+
+<R_StackLayout Style="width: 1100px">
+
+    <R_GroupBox Title="@_localizer["_CreateLease"]">
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 10%">
+                <R_Label>@_localizer["_RefNo"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @ref="@RefNo_TextBox"
+                           @bind-Value="@_viewModelProcess.LOI.CREF_NO"
+                           MaxLength="30"
+                           Enabled="@(_viewModelProcess.VAR_GSM_TRANS_CODE_LOI.LINCREMENT_FLAG == false)">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 20%">
+                <R_Label> </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 9%">
+                <R_Label>@_localizer["_RefDate"]*</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_DatePicker @ref="@RefDate_DatePicker"
+                              @bind-Value="@_viewModelProcess.LOI.DREF_DATE">
+                </R_DatePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 10%">
+                <R_Label>@_localizer["_Tenant"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModelProcess.LOI.CTENANT_ID"
+                           MaxLength="20"
+                           OnLostFocus="@(Tenant_OnLostFocus)">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_StackLayout Row Justify="R_eJustify.FlexEnd">
+                    <R_Lookup R_Before_Open_Lookup="@Tenant_Before_Open_Lookup"
+                              R_After_Open_Lookup="@Tenant_After_Open_Lookup">...</R_Lookup>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 60%">
+                <R_TextBox @bind-Value="@_viewModelProcess.LOI.CTENANT_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 10%">
+                <R_Label>@_localizer["_Building"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModelProcess.LOI.CBUILDING_ID"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 63%;">
+                <R_TextBox @bind-Value="@_viewModelProcess.LOI.CBUILDING_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 10%">
+                <R_Label>@_localizer["_PlanStartDate"]*</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_DatePicker Value="@_viewModelProcess.LOI.DSTART_DATE"
+                              ValueChanged="@((DateTime? value) => PlanStartDate_ValueChanged(value))"
+                              Enabled="@(_conductorGridChargesRef.R_ConductorMode == R_eConductorMode.Normal)">
+                </R_DatePicker>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 2.33333333%">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 6%">
+                <R_NumericTextBox Value="@_viewModelProcess.LOI.IYEARS"
+                                  ValueChanged="@((int value) => YearInt_ValueChanged(value))"
+                                  ThousandSeparator="false"
+                                  Arrows="false"
+                                  Decimals="0"
+                                  Min="0"
+                                  Max="100"
+                                  Enabled="@(_conductorGridChargesRef.R_ConductorMode == R_eConductorMode.Normal)">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@_localizer["_Year"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 2.33333333%">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 6%">
+                <R_NumericTextBox Value="@_viewModelProcess.LOI.IMONTHS"
+                                  ValueChanged="@((int value) => MonthInt_ValueChanged(value))"
+                                  Arrows="false"
+                                  Decimals="0"
+                                  Min="0"
+                                  Max="1200"
+                                  Enabled="@(_conductorGridChargesRef.R_ConductorMode == R_eConductorMode.Normal)">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@_localizer["_Month"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 1.33333333%">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 6%">
+                <R_NumericTextBox Value="@_viewModelProcess.LOI.IDAYS"
+                                  ValueChanged="@((int value) => DayInt_ValueChanged(value))"
+                                  Arrows="false"
+                                  Decimals="0"
+                                  Min="0"
+                                  Max="4380"
+                                  Enabled="@(_conductorGridChargesRef.R_ConductorMode == R_eConductorMode.Normal)">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Class="me-3">
+                <R_Label>@_localizer["_Day"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 10%;">
+                <R_Label>@_localizer["_PlanEndDate"]*</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_DatePicker Value="@_viewModelProcess.LOI.DEND_DATE"
+                              ValueChanged="@((DateTime? value) => PlanEndDate_ValueChanged(value))"
+                              Enabled="@(_conductorGridChargesRef.R_ConductorMode == R_eConductorMode.Normal)"
+                              Min="@(_viewModelProcess.LOI.DSTART_DATE != null ? _viewModelProcess.LOI.DSTART_DATE.Value : DateTime.Now.AddDays(1))">
+                </R_DatePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 10%">
+                <R_Label>@_localizer["_LeaseMode"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_ComboBox Data="@_viewModelProcess.VAR_LEASE_MODE"
+                            @bind-Value="@_viewModelProcess.LOI.CLEASE_MODE"
+                            PopupMaxHeight="140px"
+                            ValueField="@nameof(PMT00500UniversalDTO.CCODE)"
+                            TextField="@nameof(PMT00500UniversalDTO.CDESCRIPTION)">
+                </R_ComboBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 10%">
+                <R_Label>@_localizer["_UnitDescription"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 80%">
+                <R_TextBox @bind-Value="@_viewModelProcess.LOI.CUNIT_DESCRIPTION"
+                           MaxLength="255">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 10%">
+                <R_Label>@_localizer["_Note"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 80%">
+                <R_TextArea @bind-Value="@_viewModelProcess.LOI.CNOTES"
+                            MaxLength="int.MaxValue">
+                </R_TextArea>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Class="mt-2 mb-2" Row>
+            <R_ItemLayout col="12">
+                <R_Grid @ref="@_gridLOIUnitListRef"
+                        DataSource="@_viewModelUnit.LOIUNITGrid"
+                        Pageable="true"
+                        AllowDeleteRow="false"
+                        AllowEditRow="false"
+                        AllowAddNewRow="false"
+                        R_ServiceGetListRecord="@Grid_LOI_Unit_ServiceGetListRecord"
+                        R_ConductorGridSource="@_conUnitGrid"
+                        R_GridType="@R_eGridType.Batch"
+                        R_ServiceGetRecord="@Grid_ServiceGetRecord"
+                        R_CheckBoxSelectValueChanged="@Grid_Unit_CheckBoxSelectValueChanged"
+                        Enabled="@(_conductorGridChargesRef.R_ConductorMode == R_eConductorMode.Normal)"
+                        Height="190px">
+                    <R_GridColumns>
+                        <R_GridCheckBoxSelectColumn Width="70px" FieldName="@nameof(PMT00510DTO.LCHECKED)" ShowSelectAllHeader></R_GridCheckBoxSelectColumn>
+                        <R_GridTextColumn FieldName="@nameof(PMT00510DTO.CFLOOR_ID)" HeaderText="@_localizer["_Floor"]" Width="90px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(PMT00510DTO.CUNIT_ID)" HeaderText="@_localizer["_UnitId"]" Width="120px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(PMT00510DTO.CUNIT_TYPE_ID)" HeaderText="@_localizer["_UnitType"]" Width="110px"></R_GridTextColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT00510DTO.NGROSS_AREA_SIZE)" HeaderText="@_localizer["_Gross"]" Width="95px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT00510DTO.NNET_AREA_SIZE)" HeaderText="@_localizer["_Net"]" Width="95px"></R_GridNumericColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_TabStrip @ref="_tabStripRef">
+            <R_TabStripTab Title="@_localizer["_Utility"]" Id="UtilityPopup">
+                <R_StackLayout Row="true">
+                    <R_Grid @ref="@_gridAgreementUtilitiesListRef"
+                            DataSource="@_viewModelUtility.LOIUtiliesGrid"
+                            R_GridType="@R_eGridType.Batch"
+                            Pageable="true"
+                            Height="150px"
+                            AllowDeleteRow="false"
+                            AllowEditRow="false"
+                            AllowAddNewRow="false"
+                            R_ConductorGridSource="@_conductorGridUtilityRef"
+                            R_ServiceGetListRecord="@Utilities_ServiceGetListRecord"
+                            R_CheckBoxSelectValueChanged="@Grid_Utilities_CheckBoxSelectValueChanged">
+                        <R_GridColumns>
+                            <R_GridCheckBoxSelectColumn Width="70px" FieldName="@nameof(PMT00520DTO.LCHECKED)" ShowSelectAllHeader></R_GridCheckBoxSelectColumn>
+                            <R_GridTextColumn FieldName="@nameof(PMT00520DTO.CUTILITY_TYPE_DESCR)" HeaderText="@_localizer["_UtilityType"]" Width="130px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName="@nameof(PMT00520DTO.CMETER_NO)" HeaderText="@_localizer["_MeterNo"]" Width="120px"></R_GridTextColumn>
+                            <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT00520DTO.NCAPACITY)" HeaderText="@_localizer["_Capacity"]" Width="100px"></R_GridNumericColumn>
+                            <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT00520DTO.NCALCULATION_FACTOR)" HeaderText="@_localizer["_CF"]" Width="70px"></R_GridNumericColumn>
+                            <R_GridTextColumn FieldName="@nameof(PMT00520DTO.CCHARGES_ID_NAME)" HeaderText="@_localizer["_Charge"]" Width="210px"></R_GridTextColumn>
+                            <R_GridDatePickerColumn FieldName="@nameof(PMT00520DTO.DSTART_DATE)" HeaderText="@_localizer["_StartDate"]" Width="130px"></R_GridDatePickerColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+                </R_StackLayout>
+            </R_TabStripTab>
+            <R_TabStripTab Title="@_localizer["_Charges"]" Id="ChargesPopup">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="12">
+                        <R_Grid @ref="@_gridAgreementChargeListRef"
+                                DataSource="@_viewModelCharges.LOIChargeGrid"
+                                R_GridType="@R_eGridType.Batch"
+                                Pageable="true"
+                                Height="150px"
+                                AllowAddNewRow="false"
+                                AllowDeleteRow="false"
+                                AllowEditRow="true"
+                                R_ConductorGridSource="@_conductorGridChargesRef"
+                                R_ServiceGetListRecord="@Charge_Agreement_ServiceGetListRecord"
+                                R_ServiceGetRecord="@Grid_ServiceGetRecord"
+                                R_CheckBoxSelectValueChanged="@Grid_Charges_CheckBoxSelectValueChanged"
+                                R_Validation="@Charge_Validation">
+                            <R_GridColumns>
+                                <R_GridCheckBoxSelectColumn Width="70px" FieldName="@nameof(PMT00520DTO.LCHECKED)" ShowSelectAllHeader Visible="@(_viewModelProcess.LOI.CCHARGE_MODE == "02" || (_viewModelProcess.LOI.CCHARGE_MODE == "01" && CountCheckedUnit == 1))"></R_GridCheckBoxSelectColumn>
+                                <R_GridTextColumn FieldName="@nameof(PMT00530DTO.CSEQ_NO)" HeaderText="@_localizer["_SeqNo"]" Width="90px"></R_GridTextColumn>
+                                <R_GridTextColumn FieldName="@nameof(PMT00530DTO.CCHARGES_TYPE_DESCR)" HeaderText="@_localizer["_ChargeType"]" Width="120px"></R_GridTextColumn>
+                                <R_GridTextColumn FieldName="@nameof(PMT00530DTO.CCHARGES_ID_NAME)" HeaderText="@_localizer["_Charge"]" Width="165px"></R_GridTextColumn>
+                                <R_GridDatePickerColumn FieldName="@nameof(PMT00530DTO.DSTART_DATE)" HeaderText="@_localizer["_StartDate"]" Width="120px" R_EnableEdit></R_GridDatePickerColumn>
+                                <R_GridDatePickerColumn FieldName="@nameof(PMT00530DTO.DEND_DATE)" HeaderText="@_localizer["_EndDate"]" Width="120px" R_EnableEdit></R_GridDatePickerColumn>
+                                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT00530DTO.IINTERVAL)" ThousandSeparator="false" Arrows="false" HeaderText="@_localizer["_Interval"]" Width="100px"></R_GridNumericColumn>
+                                <R_GridTextColumn FieldName="@nameof(PMT00530DTO.CINVOICE_PERIOD_DESCR)" HeaderText="@_localizer["_PeriodMode"]" Width="120px"></R_GridTextColumn>
+                            </R_GridColumns>
+                        </R_Grid>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_TabStripTab>
+        </R_TabStrip>
+
+    </R_GroupBox>
+
+    <R_StackLayout Row Justify="@R_eJustify.FlexEnd" Class="mt-2">
+        <R_ItemLayout>
+            <R_Button OnClick="@Button_OnClickCloseAsync" >@_localizer["_CancelBtn"]</R_Button>
+            <R_Button OnClick="@Button_OnClickOkAsync" Enabled="@(_conductorGridChargesRef.R_ConductorMode == R_eConductorMode.Normal)">@_localizer["_ProcessBtn"]</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_ConductorGrid @ref="_conUnitGrid"
+                     R_IsHeader>
+    </R_ConductorGrid>
+    <R_ConductorGrid @ref="_conductorGridUtilityRef"
+                     R_ConductorParent="@_conUnitGrid">
+    </R_ConductorGrid>
+    <R_ConductorGrid @ref="_conductorGridChargesRef"
+                     R_ConductorParent="@_conUnitGrid">
+    </R_ConductorGrid>
+</R_StackLayout>

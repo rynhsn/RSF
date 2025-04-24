@@ -62,23 +62,23 @@
                 <R_Label>@_localizer["LBL_METEREND"]*</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="3" Class="@(_viewModel.DisplayWG)">
-                <R_NumericTextBox @bind-Value="_viewModel.Entity.NMETER_END" Enabled Min="0"/>
+                <R_NumericTextBox @bind-Value="_viewModel.Entity.NMETER_END" Enabled="@(_viewModel.Entity is { CSTATUS_USAGE: not ("01" or "02") })" Min="0"/>
             </R_ItemLayout> 
             <R_ItemLayout col="2" Class="@(_viewModel.DisplayEC + " ms-5")">
                 <R_Label>@_localizer["LBL_BLOCK1END"]*</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="3" Class="@(_viewModel.DisplayEC)">
-                <R_NumericTextBox @bind-Value="_viewModel.Entity.NBLOCK1_END" Enabled Min="0"/>
+                <R_NumericTextBox @bind-Value="_viewModel.Entity.NBLOCK1_END" Enabled="@(_viewModel.Entity is { CSTATUS_USAGE: not ("01" or "02") })" Min="0"/>
             </R_ItemLayout> 
         </R_StackLayout>
-        <R_StackLayout Class="@(_viewModel.DisplayEC)">
+        <R_StackLayout Class="@(_viewModel.DisplayEC)" Row>
             <R_ItemLayout col="2"/>
             <R_ItemLayout col="3"/>
             <R_ItemLayout col="2" Class="@(_viewModel.DisplayEC + " ms-5")">
                 <R_Label>@_localizer["LBL_BLOCK2END"]*</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="3" Class="@(_viewModel.DisplayEC)">
-                <R_NumericTextBox @bind-Value="_viewModel.Entity.NBLOCK2_END" Enabled Min="0"/>
+                <R_NumericTextBox @bind-Value="_viewModel.Entity.NBLOCK2_END" Enabled="@(_viewModel.Entity is { CSTATUS_USAGE: not ("01" or "02") })" Min="0"/>
             </R_ItemLayout> 
         </R_StackLayout>
         
@@ -132,7 +132,7 @@
                                     TextField="@nameof(PMT03500YearDTO.CYEAR)"
                                     Enabled/>
                     </R_ItemLayout>
-                    <R_ItemLayout col="5" Class="pe-1">
+                    <R_ItemLayout col="6" Class="pe-1">
                         <R_ComboBox Data="@_viewModel.StartInvMonthList"
                                     @bind-Value="_viewModel.CSTART_INV_PRD_MONTH"
                                     ValueField="@nameof(PMT03500PeriodDTO.CPERIOD_NO)"

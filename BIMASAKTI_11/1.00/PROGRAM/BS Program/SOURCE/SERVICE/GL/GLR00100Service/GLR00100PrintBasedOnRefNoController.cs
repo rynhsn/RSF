@@ -49,8 +49,8 @@ public class GLR00100PrintBasedOnRefNoController : R_ReportControllerBase
         poData.Add(GeneratePrint(_Parameter));
         pcDataSourceName = "ResponseDataModel";
     }
-    
-    
+
+
     private void _ReportCls_R_SetNumberAndDateFormat(ref R_ReportFormatDTO poReportFormat)
     {
         poReportFormat.DecimalSeparator = R_BackGlobalVar.REPORT_FORMAT_DECIMAL_SEPARATOR;
@@ -113,7 +113,7 @@ public class GLR00100PrintBasedOnRefNoController : R_ReportControllerBase
             R_ReportGlobalVar.R_SetFromReportDTO(loResultGUID.poGlobalVar);
 
             _Parameter = loResultGUID.poParam;
-            
+
             if (_Parameter.LIS_PRINT)
             {
                 loRtn = new FileStreamResult(_ReportCls.R_GetStreamReport(peExport: R_FileType.PDF),
@@ -122,8 +122,9 @@ public class GLR00100PrintBasedOnRefNoController : R_ReportControllerBase
             else
             {
                 var loFileType = (R_FileType)Enum.Parse(typeof(R_FileType), _Parameter.CREPORT_FILETYPE);
-                loRtn = File(_ReportCls.R_GetStreamReport(peExport: loFileType), R_ReportUtility.GetMimeType(loFileType), $"{_Parameter.CREPORT_FILENAME}.{_Parameter.CREPORT_FILETYPE}");
-
+                loRtn = File(_ReportCls.R_GetStreamReport(peExport: loFileType),
+                    R_ReportUtility.GetMimeType(loFileType),
+                    $"{_Parameter.CREPORT_FILENAME}.{_Parameter.CREPORT_FILETYPE}");
             }
         }
         catch (Exception ex)
@@ -137,7 +138,7 @@ public class GLR00100PrintBasedOnRefNoController : R_ReportControllerBase
         return loRtn;
     }
 
-    
+
     private GLR00100ReportWithBaseHeaderDTO GeneratePrint(GLR00100ReportParam poParam)
     {
         using var loActivity = _activitySource.StartActivity(nameof(GeneratePrint));
@@ -161,17 +162,17 @@ public class GLR00100PrintBasedOnRefNoController : R_ReportControllerBase
                 loCultureInfo, loLabelObject);
 
             _logger.LogInfo("Set Base Header Data");
-            
+
             var lcCompany = R_BackGlobalVar.COMPANY_ID;
             var lcUser = R_BackGlobalVar.USER_ID;
             var lcLang = R_BackGlobalVar.CULTURE;
 
             var loCls = new GLR00100Cls();
-            var loLogo = loCls.GetBaseHeaderLogoCompany(lcCompany);
+            var loHeader = loCls.GetBaseHeaderLogoCompany(lcCompany);
             loRtn.BaseHeaderData = new BaseHeaderDTO
             {
-                BLOGO_COMPANY = loLogo.BLOGO,
-                CCOMPANY_NAME = "PT Realta Chakradarma",
+                BLOGO_COMPANY = loHeader.BLOGO,
+                CCOMPANY_NAME = loHeader.CCOMPANY_NAME!,
                 CPRINT_CODE = "GLR00100",
                 CPRINT_NAME = "Activity Report",
                 CUSER_ID = lcUser,
@@ -206,7 +207,19 @@ public class GLR00100PrintBasedOnRefNoController : R_ReportControllerBase
             _logger.LogInfo("Get Detail Activity Report");
 
             var loCollection = loCls.BasedOnRefNoReportDb(loDbParam);
-            
+
+            var loTotalCurr = loCollection.GroupBy(x => x.CCURRENCY_CODE).ToList();
+            foreach (var itemCurr in loTotalCurr)
+            {
+                var loCurrency = new GLR00100TotalByCurrDTO()
+                {
+                    CCURRENCY_CODE = itemCurr.Key,
+                    NTOTAL_CREDIT = itemCurr.Sum(x => x.NCREDIT_AMOUNT),
+                    NTOTAL_DEBIT = itemCurr.Sum(x => x.NDEBIT_AMOUNT)
+                };
+                loData.GrandTotalByCurr.Add(loCurrency);
+            }
+
             var loGroupRefNo = loCollection.GroupBy(x => x.CREF_NO).ToList();
             foreach (var itemRefNo in loGroupRefNo)
             {
@@ -217,13 +230,30 @@ public class GLR00100PrintBasedOnRefNoController : R_ReportControllerBase
                     NTOTAL_DEBIT = itemRefNo.Sum(x => x.NDEBIT_AMOUNT),
                     NTOTAL_CREDIT = itemRefNo.Sum(x => x.NCREDIT_AMOUNT)
                 };
+
+                var loSubTotalCurrRefNo = itemRefNo.GroupBy(x => x.CCURRENCY_CODE).ToList();
+                foreach (var itemSubCurrRefNo in loSubTotalCurrRefNo)
+                {
+                    var loCurrency = new GLR00100TotalByCurrDTO()
+                    {
+                        CCURRENCY_CODE = itemSubCurrRefNo.Key,
+                        NTOTAL_CREDIT = itemSubCurrRefNo.Sum(x => x.NCREDIT_AMOUNT),
+                        NTOTAL_DEBIT = itemSubCurrRefNo.Sum(x => x.NDEBIT_AMOUNT)
+                    };
+                    loDataRefNo.SubTotalByCurr.Add(loCurrency);
+                }
+
                 // parse ke datetime dulu untuk DREF_DATE pada loDataRefNo.Data
                 foreach (var itemData in loDataRefNo.Data)
                 {
                     itemData.DREF_DATE = DateTime.TryParseExact(itemData.CREF_DATE, "yyyyMMdd",
-                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate) ? refDate : (DateTime?)null;
+                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
+                        ? refDate
+                        : (DateTime?)null;
                     itemData.DDOC_DATE = DateTime.TryParseExact(itemData.CDOC_DATE, "yyyyMMdd",
-                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var docDate) ? docDate : (DateTime?)null;
+                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var docDate)
+                        ? docDate
+                        : (DateTime?)null;
                 }
                 
                 loData.DataByRefNo.Add(loDataRefNo);
@@ -239,25 +269,25 @@ public class GLR00100PrintBasedOnRefNoController : R_ReportControllerBase
                 CTO_DEPT_CODE = poParam.CTO_DEPT_CODE,
                 CFROM_REF_NO = poParam.CFROM_REF_NO,
                 CTO_REF_NO = poParam.CTO_REF_NO,
-                CFROM_PERIOD = loData.Data.FirstOrDefault()?.CFROM_PERIOD,
-                CTO_PERIOD = loData.Data.FirstOrDefault()?.CTO_PERIOD,
+                CFROM_PERIOD = loCollection.FirstOrDefault()?.CFROM_PERIOD,
+                CTO_PERIOD = loCollection.FirstOrDefault()?.CTO_PERIOD,
                 CCURRENCY_TYPE = poParam.CCURRENCY_TYPE,
                 CCURRENCY_TYPE_NAME = poParam.CCURRENCY_TYPE_NAME,
                 CREPORT_BASED_ON = poParam.CREPORT_TYPE
             };
 
-            
-            if (string.IsNullOrWhiteSpace(loData.Header.CFROM_PERIOD))
-            {
-                
-                loData.Header.CFROM_PERIOD ??= DateTime.ParseExact(poParam.CFROM_PERIOD, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
-            }
-            
-            if (string.IsNullOrWhiteSpace(loData.Header.CTO_PERIOD))
-            {
-                loData.Header.CTO_PERIOD ??= DateTime.ParseExact(poParam.CTO_PERIOD, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
-            }
-            
+
+            // if (string.IsNullOrWhiteSpace(loData.Header.CFROM_PERIOD))
+            // {
+            //     
+            //     loData.Header.CFROM_PERIOD ??= DateTime.ParseExact(poParam.CFROM_PERIOD, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
+            // }
+            //
+            // if (string.IsNullOrWhiteSpace(loData.Header.CTO_PERIOD))
+            // {
+            //     loData.Header.CTO_PERIOD ??= DateTime.ParseExact(poParam.CTO_PERIOD, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
+            // }
+
             //looping dan ubah ref date menjadi dd-MM-yyyy
             foreach (var item in loData.Data)
             {
@@ -265,7 +295,7 @@ public class GLR00100PrintBasedOnRefNoController : R_ReportControllerBase
                     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
                     ? refDate
                     : (DateTime?)null;
-                
+
                 item.DDOC_DATE = DateTime.TryParseExact(item.CDOC_DATE, "yyyyMMdd",
                     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var docDate)
                     ? docDate

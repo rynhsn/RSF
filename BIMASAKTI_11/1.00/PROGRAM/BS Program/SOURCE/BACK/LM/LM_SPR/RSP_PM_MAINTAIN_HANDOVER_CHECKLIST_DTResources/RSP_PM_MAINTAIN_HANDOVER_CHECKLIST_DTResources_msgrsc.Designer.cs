@@ -62,7 +62,7 @@ namespace RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error process, please contact your administrator!.
+        ///   Looks up a localized string similar to  Error process, please contact your administrator!.
         /// </summary>
         internal static string _8001 {
             get {
@@ -71,7 +71,7 @@ namespace RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Checklist ID is empty!.
+        ///   Looks up a localized string similar to  Checklist ID is empty!.
         /// </summary>
         internal static string _8002 {
             get {
@@ -80,7 +80,7 @@ namespace RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Checklist Item ID is empty!.
+        ///   Looks up a localized string similar to  Checklist Item ID is empty!.
         /// </summary>
         internal static string _8003 {
             get {
@@ -89,7 +89,7 @@ namespace RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Checklist Item Name is empty!.
+        ///   Looks up a localized string similar to  Checklist Item Name is empty!.
         /// </summary>
         internal static string _8004 {
             get {
@@ -98,7 +98,7 @@ namespace RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Parent Checklist ID is empty!.
+        ///   Looks up a localized string similar to  Parent Checklist ID is empty!.
         /// </summary>
         internal static string _8005 {
             get {
@@ -107,7 +107,7 @@ namespace RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Level is empty!.
+        ///   Looks up a localized string similar to  Level is empty!.
         /// </summary>
         internal static string _8006 {
             get {
@@ -116,7 +116,7 @@ namespace RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot assign checklist item in root level!.
+        ///   Looks up a localized string similar to  Cannot assign checklist item in root level!.
         /// </summary>
         internal static string _8007 {
             get {
@@ -125,7 +125,7 @@ namespace RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Level cannot be negative!.
+        ///   Looks up a localized string similar to  Level cannot be negative!.
         /// </summary>
         internal static string _8008 {
             get {
@@ -134,7 +134,7 @@ namespace RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot add, found duplicate Checklist Item ID!.
+        ///   Looks up a localized string similar to  Cannot add, found duplicate Checklist Item ID!.
         /// </summary>
         internal static string _8009 {
             get {
@@ -143,7 +143,7 @@ namespace RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot add or edit, parent Checklist Item ID not found!.
+        ///   Looks up a localized string similar to  Cannot add or edit, parent Checklist Item ID not found!.
         /// </summary>
         internal static string _8010 {
             get {
@@ -152,7 +152,7 @@ namespace RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot delete, children is not empty!.
+        ///   Looks up a localized string similar to  Cannot delete, children is not empty!.
         /// </summary>
         internal static string _8011 {
             get {
@@ -161,7 +161,7 @@ namespace RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot add child, parent is a checklist item!.
+        ///   Looks up a localized string similar to  Cannot add child, parent is a checklist item!.
         /// </summary>
         internal static string _8012 {
             get {
@@ -170,11 +170,29 @@ namespace RSP_PM_MAINTAIN_HANDOVER_CHECKLIST_DTResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot modify &quot;Is checklist item?&quot;, checklist item already has child!.
+        ///   Looks up a localized string similar to  Cannot modify &quot;Is checklist item?&quot;, checklist item already has child!.
         /// </summary>
         internal static string _8013 {
             get {
                 return ResourceManager.GetString("8013", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Quantity is invalid!.
+        /// </summary>
+        internal static string _8014 {
+            get {
+                return ResourceManager.GetString("8014", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Unit is empty!.
+        /// </summary>
+        internal static string _8015 {
+            get {
+                return ResourceManager.GetString("8015", resourceCulture);
             }
         }
     }

@@ -96,6 +96,14 @@
           }
         }
       },
+      "R_MultiTenantDb.Abstract/1.0.0.0": {
+        "runtime": {
+          "R_MultiTenantDb.Abstract.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "R_ContextBackEnd/1.0.0.0": {
         "runtime": {
           "R_ContextBackEnd.dll": {
@@ -107,6 +115,14 @@
       "R_AuthorizationBack.Abstract/1.0.0.0": {
         "runtime": {
           "R_AuthorizationBack.Abstract.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_MultiTenantDb/1.0.0.0": {
+        "runtime": {
+          "R_MultiTenantDb.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -181,12 +197,22 @@
       "serviceable": false,
       "sha512": ""
     },
+    "R_MultiTenantDb.Abstract/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "R_ContextBackEnd/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
     "R_AuthorizationBack.Abstract/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_MultiTenantDb/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

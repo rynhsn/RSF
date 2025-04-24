@@ -123,7 +123,7 @@ public partial class PMT03500UploadUtilityPopup : R_Page
             {
                 await _viewModel.SaveBulkFile(_viewModel.UploadParam, _viewModel.GridListUpload.ToList());
 
-                if (_viewModel.IsError)
+                if (!_viewModel.IsError)
                 {
                     var loResult = await R_MessageBox.Show("", "Utility Usage uploaded successfully!",
                         R_eMessageBoxButtonType.OK);

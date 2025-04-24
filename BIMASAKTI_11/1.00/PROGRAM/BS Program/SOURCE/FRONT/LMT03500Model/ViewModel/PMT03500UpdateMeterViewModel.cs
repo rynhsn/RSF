@@ -63,14 +63,14 @@ namespace PMT03500Model.ViewModel
             try
             {
                 // var loParam = (PMT03500UpdateMeterHeader)poParam;
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, Header.CPROPERTY_ID??"");
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CBUILDING_ID, Header.CBUILDING_ID??"");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CPROPERTY_ID, Header.CPROPERTY_ID ?? "");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CBUILDING_ID, Header.CBUILDING_ID ?? "");
 
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CDEPT_CODE, Header.CDEPT_CODE??"");
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CTRANS_CODE, Header.CTRANS_CODE??"");
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CREF_NO, Header.CREF_NO??"");
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CUNIT_ID, Header.CUNIT_ID??"");
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CFLOOR_ID, Header.CFLOOR_ID??"");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CDEPT_CODE, Header.CDEPT_CODE ?? "");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CTRANS_CODE, Header.CTRANS_CODE ?? "");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CREF_NO, Header.CREF_NO ?? "");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CUNIT_ID, Header.CUNIT_ID ?? "");
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CFLOOR_ID, Header.CFLOOR_ID ?? "");
                 // R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CTENANT_ID, "");
                 var loReturn =
                     await _model.GetListStreamAsync<PMT03500UtilityMeterDTO>(nameof(IPMT03500UpdateMeter
@@ -343,6 +343,46 @@ namespace PMT03500Model.ViewModel
                     await _modelUtility.GetAsync<PMT03500ListDTO<PMT03500YearDTO>>(
                         nameof(IPMT03500UtilityUsage.PMT03500GetYearList));
                 StartInvYearList = loReturn.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        public async Task GetPeriodRangeList()
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var ldDate = DateTime.Now;
+                var loParam = new PMT03500PeriodRangeParam()
+                {
+                    CFROM_PERIOD = ldDate.ToString("yyyyMM"),
+                    CTO_PERIOD = ldDate.AddMonths(1).ToString("yyyyMM")
+                    // CFROM_PERIOD = "202410",
+                    // CTO_PERIOD = "202503"
+                };
+
+                var loReturn =
+                    await _model.GetAsync<PMT03500ListDTO<PMT03500PeriodRangeDTO>, PMT03500PeriodRangeParam>(
+                        nameof(IPMT03500UpdateMeter.PMT03500GetPeriodRangeList), loParam);
+                // ambil list dari loReturn.data.ccyear untuk dimasukkan ke StartInvYearList kemudian group by year
+                StartInvYearList = loReturn.Data.GroupBy(x => x.CCYEAR).Select(x => new PMT03500YearDTO
+                {
+                    CYEAR = x.Key
+                }).ToList();
+
+                //ambil list dari loReturn.data.cperiod_no untuk dimasukkan ke StartInvMonthList
+                StartInvMonthList = loReturn.Data.Select(x => new PMT03500PeriodDTO
+                {
+                    CPERIOD_NO = x.CPERIOD_NO
+                }).ToList();
+
+                CSTART_INV_PRD_YEAR = StartInvYearList.FirstOrDefault()?.CYEAR;
+                CSTART_INV_PRD_MONTH = StartInvMonthList.FirstOrDefault()?.CPERIOD_NO;
             }
             catch (Exception ex)
             {

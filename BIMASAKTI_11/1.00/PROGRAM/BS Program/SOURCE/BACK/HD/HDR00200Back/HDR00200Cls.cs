@@ -192,12 +192,15 @@ public class HDR00200Cls
         using var loActivity = _activitySource.StartActivity(nameof(GetBaseHeaderLogoCompany)); // Start activity
         var loEx = new R_Exception(); // Create new exception object
         HDR00200PrintBaseHeaderLogoDTO? loResult = new(); // Create new instance of return object
+        R_Db loDb = null; // Database object    
+        DbConnection loConn = null;
+        DbCommand loCmd = null;
 
         try
         {
-            var loDb = new R_Db(); // Create new instance of R_Db
-            var loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString); // Get database connection
-            var loCmd = loDb.GetCommand(); // Get database command
+            loDb = new R_Db(); // Create new instance of R_Db
+            loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString); // Get database connection
+            loCmd = loDb.GetCommand(); // Get database command
 
             var lcQuery = $"SELECT dbo.RFN_GET_COMPANY_LOGO('{pcCompanyId}') as BLOGO"; // Query to get company logo
             loCmd.CommandText = lcQuery; // Set command text to query
@@ -205,13 +208,41 @@ public class HDR00200Cls
 
             _logger.LogDebug("{pcQuery}", lcQuery); // Log the query
 
-            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true); // Execute the query
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false); // Execute the query
             loResult = R_Utility.R_ConvertTo<HDR00200PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault(); // Convert the data table to HDR00200PrintBaseHeaderLogoDTO
+        
+            lcQuery = $"SELECT CCOMPANY_NAME FROM SAM_COMPANIES WHERE CCOMPANY_ID = '{pcCompanyId}'"; // Query to get company name
+            loCmd.CommandText = lcQuery;
+            loCmd.CommandType = CommandType.Text;
+
+            //Debug Logs
+            _logger.LogDebug(string.Format("SELECT CCOMPANY_NAME FROM SAM_COMPANIES WHERE CCOMPANY_ID = '@CCOMPANY_ID'", pcCompanyId));
+            loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+            var loCompanyNameResult = R_Utility.R_ConvertTo<HDR00200PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault();
+
+            loResult!.CCOMPANY_NAME = loCompanyNameResult?.CCOMPANY_NAME;
+
         }
         catch (Exception ex)
         {
             loEx.Add(ex); // Add the exception to the exception object
             _logger.LogError(loEx); // Log the exception
+        }
+        finally
+        {
+            if (loConn != null)
+            {
+                if (loConn.State != ConnectionState.Closed)
+                    loConn.Close();
+
+                loConn.Dispose();
+                loConn = null;
+            }
+            if (loCmd != null)
+            {
+                loCmd.Dispose();
+                loCmd = null;
+            }
         }
 
         loEx.ThrowExceptionIfErrors(); // Throw exception if there are errors

@@ -5,35 +5,93 @@
 @inherits R_Page
 @inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
-<R_StackLayout Row Class="mb-1">
-    <R_ItemLayout col="1">
-        <R_Label FontColor="R_eFontColor.Danger">@_localizer["PROPERTY"]</R_Label>
+<R_StackLayout>
+    <R_ItemLayout col="5">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_Label FontColor="R_eFontColor.Danger">@_localizer["PROPERTY"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_ComboBox Data="@_viewModel.PropertyList"
+                            @bind-Value="@_viewModel.SelectedPropertyId"
+                            ValueField="@nameof(TXB00200PropertyDTO.CPROPERTY_ID)"
+                            TextField="@nameof(TXB00200PropertyDTO.CPROPERTY_NAME)"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="mt-3">
+            <R_ItemLayout col="5">
+                <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold">@_localizer["CURRENT_PERIOD"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Primary">@(_viewModel.Data.CPERIOD_YEAR + " - " + _viewModel.Data.CCURRENT_PERIOD)</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold">@_localizer["CURRENT_SOFT_PERIOD"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="_viewModel.SelectedYear"
+                                  R_ConductorSource="_conductorRef"
+                                  ThousandSeparator="false"
+                                  R_EnableEdit/>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_ComboBox Data="_viewModel.PeriodList"
+                            @bind-Value="_viewModel.SelectedPeriodNo"
+                            R_ConductorSource="_conductorRef"
+                            ValueField="@nameof(TXB00200PeriodDTO.CPERIOD_NO)"
+                            TextField="@nameof(TXB00200PeriodDTO.CPERIOD_NO)"
+                            R_EnableEdit/>
+            </R_ItemLayout>
+        </R_StackLayout>
     </R_ItemLayout>
-    <R_ItemLayout col="2">
-        <R_ComboBox Data="@_viewModel.PropertyList"
-                    @bind-Value="@_viewModel.SelectedPropertyId"
-                    ValueField="@nameof(TXB00200PropertyDTO.CPROPERTY_ID)"
-                    TextField="@nameof(TXB00200PropertyDTO.CPROPERTY_NAME)"/>
+    <R_ItemLayout col="5" Class="mt-3">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_Label>@_localizer["LAST_UPDATED_BY"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_DateTimePicker Enabled="false" Value="@_viewModel.CurrentPeriod.DSOFT_CLOSE_DATE" ShowPickerButton="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox Enabled="false" Value="@_viewModel.Data.CSOFT_CLOSE_PRD_BY"/>
+            </R_ItemLayout>
+        </R_StackLayout>
     </R_ItemLayout>
+
+    <R_ItemLayout col="5">
+        <R_StackLayout Row Justify="R_eJustify.SpaceBetween">
+            <R_ItemLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout Class="mt-3">
+                        <R_Button R_ConductorSource="_conductorRef" R_EnableOther="true" OnClick="OnClickProcess">@_localizer["PROCESS"]</R_Button>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="mt-3">
+                        <R_EditButton R_Conductor="_conductorRef"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout Class="mt-3">
+                        <R_CancelButton R_Conductor="_conductorRef"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="mt-3">
+                        <R_SaveButton R_Conductor="_conductorRef"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+
+        </R_StackLayout>
+    </R_ItemLayout>
+
 </R_StackLayout>
 
-<R_StackLayout Row Class="mb-1">
-    <R_ItemLayout col="1">
-        <R_Label>@_localizer["TAX_PERIOD"]</R_Label>
-    </R_ItemLayout>
-    <R_ItemLayout col="1">
-        <R_NumericTextBox @bind-Value="_viewModel.SelectedYear" ThousandSeparator="false" Step="1"/>
-    </R_ItemLayout>
-    <R_ItemLayout col="1">
-        <R_ComboBox Data="_viewModel.PeriodList"
-                    @bind-Value="_viewModel.SelectedPeriodNo"
-                    ValueField="@nameof(TXB00200PeriodDTO.CPERIOD_NO)"
-                    TextField="@nameof(TXB00200PeriodDTO.CPERIOD_NO)"/>
-    </R_ItemLayout>
-</R_StackLayout>
-
-<R_StackLayout Row Justify="R_eJustify.FlexStart" AlignItems="R_eAlignItems.End">
-    <R_ItemLayout col="3" >
-        <R_Button OnClick="OnClickProcess">@_localizer["PROCESS"]</R_Button>
-    </R_ItemLayout>
-</R_StackLayout>
+<R_Conductor @ref="_conductorRef"
+             R_ViewModel="_viewModel"
+             R_IsHeader="true"
+             R_Display="Display"
+             R_ServiceGetRecord="GetRecord"
+             R_ServiceSave="Saving"/>

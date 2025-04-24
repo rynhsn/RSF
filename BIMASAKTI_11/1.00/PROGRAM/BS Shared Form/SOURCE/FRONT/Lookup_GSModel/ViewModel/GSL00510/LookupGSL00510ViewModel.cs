@@ -14,7 +14,6 @@ namespace Lookup_GSModel.ViewModel
 
         public ObservableCollection<GSL00510DTO> COAGrid = new ObservableCollection<GSL00510DTO>();
         public GSL00510ParameterDTO COAParameter {  get; set; } = new GSL00510ParameterDTO();
-        public bool Inactive_Coa { get; set; } = false;
         public async Task GetCOAList()
         {
             var loEx = new R_Exception();
@@ -22,7 +21,6 @@ namespace Lookup_GSModel.ViewModel
             try
             {
                 //set Inactive COA Param
-                COAParameter.LINACTIVE_COA = Inactive_Coa;
                 var loResult = await _model.GSL00510GetCOAListAsync(COAParameter);
 
                 COAGrid = new ObservableCollection<GSL00510DTO>(loResult);
@@ -41,7 +39,6 @@ namespace Lookup_GSModel.ViewModel
             try
             {
                 //set Inactive COA Param
-                poEntity.LINACTIVE_COA = Inactive_Coa;
                 var loResult = await _modelRecord.GSL00510GetCOAAsync(poEntity);
                 loRtn = loResult;
             }

@@ -333,6 +333,57 @@ public class PMT03500UpdateMeterCls
         return loRtn;
     }
 
+    public List<PMT03500PeriodRangeDTO> GetPeriodRangeList(PMT03500ParameterDb poParam)
+    {
+        using var loScope = _activitySource.StartActivity(nameof(GetPeriodRangeList));
+        R_Exception loEx = new();
+        List<PMT03500PeriodRangeDTO> loRtn = null;
+        R_Db loDb;
+        DbConnection loConn;
+        DbCommand loCmd;
+        string lcQuery;
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection();
+            loCmd = loDb.GetCommand();
+
+            lcQuery = "RSP_GS_GET_PERIOD_DT_RANGE_LIST";
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
+
+
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParam.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CFROM_PERIOD", DbType.String, 6, poParam.CFROM_PERIOD);
+            loDb.R_AddCommandParameter(loCmd, "@CTO_PERIOD", DbType.String, 6, poParam.CTO_PERIOD);
+
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
+                        "@CFROM_PERIOD" or
+                        "@TO_PERIOD"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+            loRtn = R_Utility.R_ConvertTo<PMT03500PeriodRangeDTO>(loDataTable).ToList();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        EndBlock:
+        loEx.ThrowExceptionIfErrors();
+
+        return loRtn;
+    }
+
     public void PMT03500UpdateMeterNo(PMT03500ParameterDb poParams)
     {
         using var loScope = _activitySource.StartActivity(nameof(PMT03500UpdateMeterNo));

@@ -264,6 +264,15 @@
   <data name="_Code" xml:space="preserve">
     <value>Code</value>
   </data>
+  <data name="_Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="_CompanyId" xml:space="preserve">
+    <value>Company Id</value>
+  </data>
+  <data name="_CompanyName" xml:space="preserve">
+    <value>Company Name</value>
+  </data>
   <data name="_Country" xml:space="preserve">
     <value>Country</value>
   </data>
@@ -287,6 +296,9 @@
   </data>
   <data name="_CurrName" xml:space="preserve">
     <value>Currency Name</value>
+  </data>
+  <data name="_Date" xml:space="preserve">
+    <value>Date</value>
   </data>
   <data name="_DCDesc" xml:space="preserve">
     <value>D/C</value>
@@ -314,6 +326,9 @@
   </data>
   <data name="_Desc" xml:space="preserve">
     <value>Description</value>
+  </data>
+  <data name="_DigitalSign" xml:space="preserve">
+    <value>Digital Sign</value>
   </data>
   <data name="_EnableCOA" xml:space="preserve">
     <value>Include Inactive COA</value>
@@ -360,6 +375,9 @@
   <data name="_Gross" xml:space="preserve">
     <value>Gross</value>
   </data>
+  <data name="_IncludeInactiveWarehouse" xml:space="preserve">
+    <value>Include Inactive Warehouse</value>
+  </data>
   <data name="_JournalGroup" xml:space="preserve">
     <value>Journal Group</value>
   </data>
@@ -392,6 +410,9 @@
   </data>
   <data name="_Net" xml:space="preserve">
     <value>Net</value>
+  </data>
+  <data name="_Notes" xml:space="preserve">
+    <value>Notes</value>
   </data>
   <data name="_NotifGSL02000MustCity" xml:space="preserve">
     <value>Current Selected Data Must City</value>
@@ -470,6 +491,18 @@
   </data>
   <data name="_ShowAll" xml:space="preserve">
     <value>Show All</value>
+  </data>
+  <data name="_Signature" xml:space="preserve">
+    <value>Signature</value>
+  </data>
+  <data name="_SignId" xml:space="preserve">
+    <value>Sign Id</value>
+  </data>
+  <data name="_SignName" xml:space="preserve">
+    <value>Sign Name</value>
+  </data>
+  <data name="_SignPosition" xml:space="preserve">
+    <value>Sign Position</value>
   </data>
   <data name="_Status" xml:space="preserve">
     <value>Status</value>
@@ -578,6 +611,15 @@
   </data>
   <data name="_UserRestr" xml:space="preserve">
     <value>User Restriction</value>
+  </data>
+  <data name="_Warehouse" xml:space="preserve">
+    <value>Warehouse</value>
+  </data>
+  <data name="_WarehouseID" xml:space="preserve">
+    <value>Warehouse ID</value>
+  </data>
+  <data name="_WarehouseName" xml:space="preserve">
+    <value>Warehouse Name</value>
   </data>
   <data name="_WithholdingTax" xml:space="preserve">
     <value>Withholding Tax</value>

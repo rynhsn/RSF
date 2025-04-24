@@ -145,6 +145,40 @@ public class PMT03500UpdateMeterController : ControllerBase, IPMT03500UpdateMete
     }
     
     [HttpPost]
+    public PMT03500ListDTO<PMT03500PeriodRangeDTO> PMT03500GetPeriodRangeList(PMT03500PeriodRangeParam poParam)
+    {
+        
+        using Activity activity = _activitySource.StartActivity(nameof(PMT03500GetPeriodRangeList));
+        _logger.LogInfo("Start - GetPeriodRangeList");
+        
+        var loEx = new R_Exception();
+        PMT03500ListDTO<PMT03500PeriodRangeDTO> loReturn = new();
+        var loCls = new PMT03500UpdateMeterCls();
+        var loDbPar = new PMT03500ParameterDb();
+        
+        try
+        {
+            _logger.LogInfo("Set Parameter");
+            loDbPar.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbPar.CFROM_PERIOD = poParam.CFROM_PERIOD;
+            loDbPar.CTO_PERIOD = poParam.CTO_PERIOD;
+            
+            _logger.LogInfo("GetPeriodRangeList");
+            loReturn.Data = loCls.GetPeriodRangeList(loDbPar);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        _logger.LogInfo("End GetPeriodRangeList");
+        return loReturn;
+    }
+
+    [HttpPost]
     public PMT03500SingleDTO<PMT03500BuildingUnitDTO> PMT03500GetBuildingUnitRecord(PMT03500SearchTextDTO poParam)
     {
         using Activity activity = _activitySource.StartActivity(nameof(PMT03500GetBuildingUnitRecord));

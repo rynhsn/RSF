@@ -31,7 +31,7 @@ public partial class PMT03500OtherUnit
 
     // private R_Grid<PMT03500BuildingDTO> _gridRefBuilding = new();
     private R_Grid<PMT03500UtilityUsageDTO> _gridRefUtility = new();
-    
+
     [Inject] private IJSRuntime JS { get; set; }
     [Inject] private R_IExcel ExcelInject { get; set; }
     [Inject] IClientHelper ClientHelper { get; set; }
@@ -177,13 +177,14 @@ public partial class PMT03500OtherUnit
                         await _comboPropertyRef.FocusAsync();
                         return;
                     }
+
                     // _viewModelUtility.PropertyId = (string)value;
                     _viewModelUtility.Property =
                         _viewModel.PropertyList.FirstOrDefault(x => x.CPROPERTY_ID == _viewModel.PropertyId);
 
                     await _viewModelUtility.GetSystemParam(_viewModel.PropertyId);
                     _viewModelUtility.SetParameterHeader();
-                    
+
                     switch (_tabStripRef.ActiveTab.Id)
                     {
                         case "Utility" when _tabStripUtilityRef.ActiveTab.Id == "GI":
@@ -210,21 +211,23 @@ public partial class PMT03500OtherUnit
                     break;
                 case eParamType.InvYear:
                     _viewModelUtility.InvPeriodYear = (string)value;
+                    await _viewModelUtility.GetPeriod(_viewModelUtility.InvPeriodYear, _viewModelUtility.InvPeriodNo);
+                    _viewModelUtility.SetParameterHeader();
                     break;
                 case eParamType.InvPeriod:
                     _viewModelUtility.InvPeriodNo = (string)value;
+                    await _viewModelUtility.GetPeriod(_viewModelUtility.InvPeriodYear, _viewModelUtility.InvPeriodNo);
+                    _viewModelUtility.SetParameterHeader();
                     break;
                 case eParamType.UtilityYear:
                     _viewModelUtility.UtilityPeriodYear = (string)value;
-                    await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear,
-                        _viewModelUtility.UtilityPeriodNo);
-                    _viewModelUtility.SetParameterHeader();
+                    // await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear, _viewModelUtility.UtilityPeriodNo);
+                    // _viewModelUtility.SetParameterHeader();
                     break;
                 case eParamType.UtilityPeriod:
                     _viewModelUtility.UtilityPeriodNo = (string)value;
-                    await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear,
-                        _viewModelUtility.UtilityPeriodNo);
-                    _viewModelUtility.SetParameterHeader();
+                    // await _viewModelUtility.GetPeriod(_viewModelUtility.UtilityPeriodYear, _viewModelUtility.UtilityPeriodNo);
+                    // _viewModelUtility.SetParameterHeader();
                     break;
             }
         }
@@ -242,13 +245,14 @@ public partial class PMT03500OtherUnit
 
         try
         {
-            if(int.Parse(_viewModelUtility.InvPeriodYear + _viewModelUtility.InvPeriodNo) < int.Parse(_viewModelUtility.UtilityPeriodYear + _viewModelUtility.UtilityPeriodNo))
+            if (int.Parse(_viewModelUtility.InvPeriodYear + _viewModelUtility.InvPeriodNo) <
+                int.Parse(_viewModelUtility.UtilityPeriodYear + _viewModelUtility.UtilityPeriodNo))
             {
                 await R_MessageBox.Show("", _localizer["UTILITY_PERIOD_GREATER_THAN_INVOICE_PERIOD"]);
                 await _comboUtilityPrdRef.FocusAsync();
                 return;
             }
-            
+
             if (_viewModelUtility.UtilityTypeId is "01" or "02")
             {
                 _viewModelUtility.UtilityType = EPMT03500UtilityUsageType.EC;
@@ -373,6 +377,7 @@ public partial class PMT03500OtherUnit
     }
 
     private bool _comboProperty = true;
+
     private void OnActiveSubTab(R_TabStripActiveTabIndexChangingEventArgs eventArgs)
     {
         if (_tabStripRef.ActiveTab.Id == "Utility")
@@ -454,9 +459,9 @@ public partial class PMT03500OtherUnit
 
             loData.CSTART_DATE = loData.DSTART_DATE?.ToString("yyyyMMdd");
             loData.CEND_DATE = loData.DEND_DATE?.ToString("yyyyMMdd");
-            
+
             //proses untuk merubah state LSELECTED
-            var llStartDate = loData.DSTART_DATE !=  _viewModelUtility.EntityUtility.DSTART_DATE;
+            var llStartDate = loData.DSTART_DATE != _viewModelUtility.EntityUtility.DSTART_DATE;
             var llEndDate = loData.DEND_DATE != _viewModelUtility.EntityUtility.DEND_DATE;
             var llBlock1End = loData.NBLOCK1_END != _viewModelUtility.EntityUtility.NBLOCK1_END;
             var llBlock2End = loData.NBLOCK2_END != _viewModelUtility.EntityUtility.NBLOCK2_END;
@@ -475,12 +480,19 @@ public partial class PMT03500OtherUnit
         // completed task
         loEx.ThrowExceptionIfErrors();
     }
-    
-    
+
+
     private void BeforeEditUtility(R_BeforeEditEventArgs eventArgs)
     {
         var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
         eventArgs.Cancel = loData.CSTATUS.Length > 0;
+    }
+    
+    private void SetEdit(R_SetEditGridColumnEventArgs eventArgs)
+    {
+        var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
+        var loColumn = eventArgs.Columns.FirstOrDefault(x => x.FieldName == nameof(PMT03500UtilityUsageDTO.DSTART_DATE));
+        loColumn.Enabled = !loData.LDISABLED_START_DATE;
     }
 
     private async Task SaveBatch(R_ServiceSaveBatchEventArgs eventArgs)
@@ -504,8 +516,16 @@ public partial class PMT03500OtherUnit
                     ? EPMT03500UtilityUsageType.EC
                     : EPMT03500UtilityUsageType.WG;
 
+            _viewModelUpload.IsUpload = false;
+
             await _viewModelUpload.SaveBulkFile(poUploadParam: _viewModelUpload.UploadParam,
                 poDataList: loDataList.ToList());
+            if (_viewModelUpload.IsError)
+            {
+                loEx.Add("Error", "Utility Usage saved is not successfully!");
+            }
+
+            _enabledBtn = true;
 
             // await _gridRefUtility.R_RefreshGrid(null);
         }
@@ -626,7 +646,7 @@ public partial class PMT03500OtherUnit
             await _viewModelUtility.GetFloorList();
         }
     }
-    
+
     private async Task OnLostFocusedFloor()
     {
         var lcValue = _viewModelUtility.FloorId;
@@ -634,13 +654,24 @@ public partial class PMT03500OtherUnit
         {
             await _comboFloorRef.FocusAsync();
         }
+
         await Task.CompletedTask;
     }
 
     #endregion
-    
+
     private void CheckBoxSelectValueChanged(R_CheckBoxSelectValueChangedEventArgs eventArgs)
     {
         eventArgs.Enabled = true;
+    }
+    
+    
+    private void OnClickProcess(MouseEventArgs eventArgs)
+    {
+        var loData = _gridRefUtility.DataSource;
+        foreach (var loItem in loData)
+        {
+            loItem.DEND_DATE = _viewModelUtility.UtilityPeriodToDtDt;
+        }
     }
 }

@@ -48,5 +48,6 @@
         public const string CBUYSELL = "CBUYSELL";
         public const string CREF_TYPE = "CREF_TYPE";
         public const string CREF_CODE = "CREF_CODE";
+        public const string CSIGN_ID = "CSIGN_ID";
     }
 }

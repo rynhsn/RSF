@@ -118,42 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="8001" xml:space="preserve">
-    <value>Error process, please contact your administrator!</value>
+    <value> Error process, please contact your administrator!</value>
   </data>
   <data name="8002" xml:space="preserve">
-    <value>Checklist ID is empty!</value>
+    <value> Checklist ID is empty!</value>
   </data>
   <data name="8003" xml:space="preserve">
-    <value>Checklist Item ID is empty!</value>
+    <value> Checklist Item ID is empty!</value>
   </data>
   <data name="8004" xml:space="preserve">
-    <value>Checklist Item Name is empty!</value>
+    <value> Checklist Item Name is empty!</value>
   </data>
   <data name="8005" xml:space="preserve">
-    <value>Parent Checklist ID is empty!</value>
+    <value> Parent Checklist ID is empty!</value>
   </data>
   <data name="8006" xml:space="preserve">
-    <value>Level is empty!</value>
+    <value> Level is empty!</value>
   </data>
   <data name="8007" xml:space="preserve">
-    <value>Cannot assign checklist item in root level!</value>
+    <value> Cannot assign checklist item in root level!</value>
   </data>
   <data name="8008" xml:space="preserve">
-    <value>Level cannot be negative!</value>
+    <value> Level cannot be negative!</value>
   </data>
   <data name="8009" xml:space="preserve">
-    <value>Cannot add, found duplicate Checklist Item ID!</value>
+    <value> Cannot add, found duplicate Checklist Item ID!</value>
   </data>
   <data name="8010" xml:space="preserve">
-    <value>Cannot add or edit, parent Checklist Item ID not found!</value>
+    <value> Cannot add or edit, parent Checklist Item ID not found!</value>
   </data>
   <data name="8011" xml:space="preserve">
-    <value>Cannot delete, children is not empty!</value>
+    <value> Cannot delete, children is not empty!</value>
   </data>
   <data name="8012" xml:space="preserve">
-    <value>Cannot add child, parent is a checklist item!</value>
+    <value> Cannot add child, parent is a checklist item!</value>
   </data>
   <data name="8013" xml:space="preserve">
-    <value>Cannot modify "Is checklist item?", checklist item already has child!</value>
+    <value> Cannot modify "Is checklist item?", checklist item already has child!</value>
+  </data>
+  <data name="8014" xml:space="preserve">
+    <value> Quantity is invalid!</value>
+  </data>
+  <data name="8015" xml:space="preserve">
+    <value> Unit is empty!</value>
   </data>
 </root>

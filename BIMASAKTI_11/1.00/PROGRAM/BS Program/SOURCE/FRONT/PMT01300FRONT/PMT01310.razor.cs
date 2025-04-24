@@ -24,6 +24,7 @@ using Lookup_PMModel.ViewModel.LML01000;
 using Lookup_PMModel.ViewModel.LML01100;
 using Lookup_PMCOMMON.DTOs.LML01100;
 using Lookup_PMModel.ViewModel.LML00800;
+using PMT01300ReportCommon;
 using R_BlazorFrontEnd.Controls.MessageBox;
 
 namespace PMT01300FRONT
@@ -1529,6 +1530,32 @@ namespace PMT01300FRONT
 
         EndBlock:
             R_DisplayException(loEx);
+        }
+        #endregion
+        
+        #region Print Popup
+        private void BeforeOpenPrintPopup(R_BeforeOpenPopupEventArgs eventArgs)
+        {
+            var loException = new R_Exception();
+
+            try
+            {
+                var loParam = new PMT01300ReportParamDTO
+                {
+                    CPROPERTY_ID = PropertyID,
+                    CDEPT_CODE = _viewModel.Data.CDEPT_CODE,
+                    CREF_NO = _viewModel.Data.CREF_NO,
+                    CTRANS_CODE = _viewModel.Data.CTRANS_CODE,
+                };
+                eventArgs.Parameter = loParam;
+                eventArgs.TargetPageType = typeof(PMT01300PrintPopup);
+                eventArgs.PageTitle = _localizer["_Print"];
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+            loException.ThrowExceptionIfErrors();
         }
         #endregion
     }

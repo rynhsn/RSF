@@ -165,11 +165,11 @@ public class GLR00100PrintBasedOnDateController : R_ReportControllerBase
             var lcLang = R_BackGlobalVar.CULTURE;
 
             var loCls = new GLR00100Cls();
-            var loLogo = loCls.GetBaseHeaderLogoCompany(lcCompany);
+            var loHeader = loCls.GetBaseHeaderLogoCompany(lcCompany);
             loRtn.BaseHeaderData = new BaseHeaderDTO
             {
-                BLOGO_COMPANY = loLogo.BLOGO,
-                CCOMPANY_NAME = "PT Realta Chakradarma",
+                BLOGO_COMPANY = loHeader.BLOGO,
+                CCOMPANY_NAME = loHeader.CCOMPANY_NAME!,
                 CPRINT_CODE = "GLR00100",
                 CPRINT_NAME = "Activity Report",
                 CUSER_ID = lcUser,
@@ -202,6 +202,18 @@ public class GLR00100PrintBasedOnDateController : R_ReportControllerBase
 
             var loCollection = loCls.BasedOnDateReportDb(loDbParam);
             
+            var loTotalCurr = loCollection.GroupBy(x => x.CCURRENCY_CODE).ToList();
+            foreach (var itemCurr in loTotalCurr)
+            {
+                var loCurrency = new GLR00100TotalByCurrDTO()
+                {
+                    CCURRENCY_CODE = itemCurr.Key,
+                    NTOTAL_CREDIT = itemCurr.Sum(x => x.NCREDIT_AMOUNT),
+                    NTOTAL_DEBIT = itemCurr.Sum(x => x.NDEBIT_AMOUNT)
+                };
+                loData.GrandTotalByCurr.Add(loCurrency);
+            }
+            
             foreach (var item in loCollection)
             {
                 item.DREF_DATE = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
@@ -220,8 +232,19 @@ public class GLR00100PrintBasedOnDateController : R_ReportControllerBase
                     NTOTAL_DEBIT = itemDate.Sum(x => x.NDEBIT_AMOUNT),
                     NTOTAL_CREDIT = itemDate.Sum(x => x.NCREDIT_AMOUNT)
                 };
-                // parse ke datetime dulu untuk DREF_DATE pada loDataDate.Data
                 
+                var loSubTotalCurrDate = itemDate.GroupBy(x => x.CCURRENCY_CODE).ToList();
+                foreach (var itemSubCurrDate in loSubTotalCurrDate)
+                {
+                    var loCurrency = new GLR00100TotalByCurrDTO()
+                    {
+                        CCURRENCY_CODE = itemSubCurrDate.Key,
+                        NTOTAL_CREDIT = itemSubCurrDate.Sum(x => x.NCREDIT_AMOUNT),
+                        NTOTAL_DEBIT = itemSubCurrDate.Sum(x => x.NDEBIT_AMOUNT)
+                    };
+                    loDataDate.SubTotalByCurr.Add(loCurrency);
+                }
+                // parse ke datetime dulu untuk DREF_DATE pada loDataDate.Data
                 
                 loData.DataByDate.Add(loDataDate);
                 loData.NGRAND_TOTAL_CREDIT += loDataDate.NTOTAL_CREDIT;
@@ -232,24 +255,25 @@ public class GLR00100PrintBasedOnDateController : R_ReportControllerBase
             {
                 CFROM_DEPT_CODE = poParam.CFROM_DEPT_CODE,
                 CTO_DEPT_CODE = poParam.CTO_DEPT_CODE,
-                CFROM_PERIOD = loData.Data.FirstOrDefault()?.CFROM_PERIOD,
-                CTO_PERIOD = loData.Data.FirstOrDefault()?.CTO_PERIOD,
+                CFROM_PERIOD = loCollection.FirstOrDefault()?.CFROM_PERIOD,
+                CTO_PERIOD = loCollection.FirstOrDefault()?.CTO_PERIOD,
                 CCURRENCY_TYPE = poParam.CCURRENCY_TYPE,
                 CCURRENCY_TYPE_NAME = poParam.CCURRENCY_TYPE_NAME,
                 CREPORT_BASED_ON = poParam.CREPORT_TYPE
             };
             
-            
-            if (string.IsNullOrWhiteSpace(loData.Header.CFROM_PERIOD))
-            {
-                
-                loData.Header.CFROM_PERIOD ??= DateTime.ParseExact(poParam.CFROM_PERIOD, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
-            }
-            
-            if (string.IsNullOrWhiteSpace(loData.Header.CTO_PERIOD))
-            {
-                loData.Header.CTO_PERIOD ??= DateTime.ParseExact(poParam.CTO_PERIOD, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
-            }
+            // if (string.IsNullOrWhiteSpace(loData.Header.CFROM_PERIOD))
+            // {
+            //     
+            //     // loData.Header.CFROM_PERIOD ??= DateTime.ParseExact(poParam.CFROM_PERIOD, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
+            //     loData.Header.CFROM_PERIOD = loCollection.FirstOrDefault()?.CFROM_PERIOD;
+            // }
+            //
+            // if (string.IsNullOrWhiteSpace(loData.Header.CTO_PERIOD))
+            // {
+            //     // loData.Header.CTO_PERIOD ??= DateTime.ParseExact(poParam.CTO_PERIOD, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
+            //     loData.Header.CTO_PERIOD = loCollection.FirstOrDefault()?.CTO_PERIOD;
+            // }
             
             //looping dan ubah ref date menjadi dd-MM-yyyy
             foreach (var item in loData.Data)

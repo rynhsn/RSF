@@ -57,6 +57,10 @@ namespace PMT03500Model.ViewModel
                 if (poDataList.Count == 0)
                     return;
 
+                foreach (var item in poDataList)
+                {
+                    item.NO = poDataList.IndexOf(item) + 1;
+                }
                 // ListFromExcel = poDataList.ToList();
 
                 //preapare Batch Parameter

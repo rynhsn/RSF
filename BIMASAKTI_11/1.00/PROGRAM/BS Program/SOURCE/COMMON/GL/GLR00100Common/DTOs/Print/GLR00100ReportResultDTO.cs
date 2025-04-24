@@ -14,6 +14,7 @@ namespace GLR00100Common.DTOs.Print
         public List<GLR00100ReportBasedOnTransCodeDTO> DataByTransCode { get; set; } = new List<GLR00100ReportBasedOnTransCodeDTO>();
         public List<GLR00100ReportBasedOnRefNoDTO> DataByRefNo { get; set; } = new List<GLR00100ReportBasedOnRefNoDTO>();
         public List<GLR00100ReportBasedOnDateSubDTO> DataByDate { get; set; } = new List<GLR00100ReportBasedOnDateSubDTO>();
+        public List<GLR00100TotalByCurrDTO> GrandTotalByCurr { get; set; } = new List<GLR00100TotalByCurrDTO>();
         
         public decimal NGRAND_TOTAL_DEBIT { get; set; } = 0m;
         public decimal NGRAND_TOTAL_CREDIT { get; set; } = 0m;
@@ -24,6 +25,7 @@ namespace GLR00100Common.DTOs.Print
     {
         public string CDEPT_CODE { get; set; } = "";
         public List<GLR00100ReportBasedOnRefNoDTO> Data { get; set; } = new List<GLR00100ReportBasedOnRefNoDTO>();
+        public List<GLR00100TotalByCurrDTO> SubTotalByCurr { get; set; } = new List<GLR00100TotalByCurrDTO>();
         public decimal NTOTAL_DEBIT { get; set; } = 0m;
         public decimal NTOTAL_CREDIT { get; set; } = 0m;
     }
@@ -32,6 +34,14 @@ namespace GLR00100Common.DTOs.Print
     {
         public string CREF_NO { get; set; } = "";
         public List<GLR00100ResultActivityReportDTO> Data { get; set; } = new List<GLR00100ResultActivityReportDTO>();
+        public List<GLR00100TotalByCurrDTO> SubTotalByCurr { get; set; } = new List<GLR00100TotalByCurrDTO>();
+        public decimal NTOTAL_DEBIT { get; set; } = 0m;
+        public decimal NTOTAL_CREDIT { get; set; } = 0m;
+    }
+
+    public class GLR00100TotalByCurrDTO
+    {
+        public string CCURRENCY_CODE { get; set; } = "";
         public decimal NTOTAL_DEBIT { get; set; } = 0m;
         public decimal NTOTAL_CREDIT { get; set; } = 0m;
     }
@@ -40,6 +50,7 @@ namespace GLR00100Common.DTOs.Print
     {
         public DateTime? DREF_DATE { get; set; }
         public List<GLR00100ResultActivityReportDTO> Data { get; set; }
+        public List<GLR00100TotalByCurrDTO> SubTotalByCurr { get; set; } = new List<GLR00100TotalByCurrDTO>();
         public decimal NTOTAL_DEBIT { get; set; }
         public decimal NTOTAL_CREDIT { get; set; }
     }

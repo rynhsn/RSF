@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_APSERVICES\Lookup_APSERVICES.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\AP\APR00100SERVICE\APR00100SERVICE.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\AP\APR00300Service\APR00300Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\AP\APR00500Service\APR00500Service.csproj" />
   </ItemGroup>

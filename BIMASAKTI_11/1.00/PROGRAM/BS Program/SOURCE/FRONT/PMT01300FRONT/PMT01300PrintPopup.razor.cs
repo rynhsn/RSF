@@ -72,6 +72,17 @@ public partial class PMT01300PrintPopup : R_Page
                 .FirstOrDefault(x => x.CTEMPLATE_ID == _viewModel.TemplateId)?
                 .CFILE_NAME;
             loParameterPrint.CTITLE = "LETTER OF INTENT";
+            
+            var storageIds = new[] { nameof(PMT01300ReportTemplateDTO.CSIGN_STORAGE_ID01), nameof(PMT01300ReportTemplateDTO.CSIGN_STORAGE_ID02), nameof(PMT01300ReportTemplateDTO.CSIGN_STORAGE_ID03), nameof(PMT01300ReportTemplateDTO.CSIGN_STORAGE_ID04), nameof(PMT01300ReportTemplateDTO.CSIGN_STORAGE_ID05), nameof(PMT01300ReportTemplateDTO.CSIGN_STORAGE_ID06) };
+            var signNames = new[] { nameof(PMT01300ReportTemplateDTO.CSIGN_NAME01), nameof(PMT01300ReportTemplateDTO.CSIGN_NAME02), nameof(PMT01300ReportTemplateDTO.CSIGN_NAME03), nameof(PMT01300ReportTemplateDTO.CSIGN_NAME04), nameof(PMT01300ReportTemplateDTO.CSIGN_NAME05), nameof(PMT01300ReportTemplateDTO.CSIGN_NAME06) };
+            var signPositions = new[] { nameof(PMT01300ReportTemplateDTO.CSIGN_POSITION01), nameof(PMT01300ReportTemplateDTO.CSIGN_POSITION02), nameof(PMT01300ReportTemplateDTO.CSIGN_POSITION03), nameof(PMT01300ReportTemplateDTO.CSIGN_POSITION04), nameof(PMT01300ReportTemplateDTO.CSIGN_POSITION05), nameof(PMT01300ReportTemplateDTO.CSIGN_POSITION06) };
+
+            for (var i = 0; i < storageIds.Length; i++)
+            {
+                loParameterPrint.GetType().GetProperty(storageIds[i])!.SetValue(loParameterPrint, _viewModel.ReportTemplateList.Where(x => x.CTEMPLATE_ID == _viewModel.TemplateId).Select(x => x.GetType().GetProperty(storageIds[i])!.GetValue(x)).FirstOrDefault());
+                loParameterPrint.GetType().GetProperty(signNames[i])!.SetValue(loParameterPrint, _viewModel.ReportTemplateList.Where(x => x.CTEMPLATE_ID == _viewModel.TemplateId).Select(x => x.GetType().GetProperty(signNames[i])!.GetValue(x)).FirstOrDefault());
+                loParameterPrint.GetType().GetProperty(signPositions[i])!.SetValue(loParameterPrint, _viewModel.ReportTemplateList.Where(x => x.CTEMPLATE_ID == _viewModel.TemplateId).Select(x => x.GetType().GetProperty(signPositions[i])!.GetValue(x)).FirstOrDefault());
+            }
 
             await _reportService!.GetReport(
                 "R_DefaultServiceUrlPM",

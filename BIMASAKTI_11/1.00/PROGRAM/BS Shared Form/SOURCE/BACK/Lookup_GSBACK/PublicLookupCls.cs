@@ -3,13 +3,10 @@ using Lookup_GSCOMMON.Loggers;
 using R_BackEnd;
 using R_Common;
 using System;
-using System.Collections.Generic;
+using R_StorageCommon;
 using System.Data;
 using System.Data.Common;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lookup_GSLBACK
 {
@@ -1205,7 +1202,7 @@ namespace Lookup_GSLBACK
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
-                loDb.R_AddCommandParameter(loCmd, "@CCOUNTRY_ID", DbType.String, 50, poParam.CCOUNTRY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCOUNTRY_ID", DbType.String, 50, string.IsNullOrWhiteSpace(poParam.CCOUNTRY_ID) ? "" : poParam.CCOUNTRY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
 
                 //Debug Logs
@@ -1801,6 +1798,7 @@ namespace Lookup_GSLBACK
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CACTIVE_TYPE", DbType.String, 50, poEntity.CACTIVE_TYPE);
                 loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, R_BackGlobalVar.CULTURE);
+                loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, poEntity.CDEPT_CODE);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
@@ -1850,6 +1848,194 @@ namespace Lookup_GSLBACK
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
                 loResult = R_Utility.R_ConvertTo<GSL03300DTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+        public List<GSL03400DTO> GetALLDigitalSign()
+        {
+            using Activity activity = _activitySource.StartActivity("GetALLDigitalSign");
+            var loEx = new R_Exception();
+            List<GSL03400DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection();
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_GET_DIGITAL_SIGN";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CSIGN_ID", DbType.String, 50, "");
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_DIGITAL_SIGN {@poParameter}", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSL03400DTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+        public GSL03400DTO GetFileDigitalSign(GSL03400ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GetFileDigitalSign");
+            var loEx = new R_Exception();
+            GSL03400DTO loResult = null;
+            R_ReadResult loReadResult = null;
+            R_ReadParameter loReadParameter;
+            DbConnection loConn = null;
+            DbCommand loCmd = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                loConn = loDb.GetConnection();
+                loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_GET_DIGITAL_SIGN";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CSIGN_ID", DbType.String, 50, poEntity.CSIGN_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_DIGITAL_SIGN {@poParameter}", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+                loResult = R_Utility.R_ConvertTo<GSL03400DTO>(loDataTable).FirstOrDefault();
+
+                _Logger.LogInfo("Start Get File Storage");
+                //Get Storage
+                if (loResult != null)
+                {
+                    if (String.IsNullOrEmpty(loResult.CSTORAGE_ID) == false)
+                    {
+                        loReadParameter = new R_ReadParameter()
+                        {
+                            StorageId = loResult.CSTORAGE_ID
+                        };
+
+                        loReadResult = R_Storage.R_StorageUtility.ReadFile(loReadParameter, loConn);
+                        loResult.OSIGN_FILE = loReadResult.Data;
+                        loResult.CSIGN_FILE_NAME = loReadResult.FileName;
+                        loResult.CSIGN_FILE_EXTENSION = loReadResult.FileExtension;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+            finally
+            {
+                if (loConn != null)
+                {
+                    if (loConn.State != System.Data.ConnectionState.Closed)
+                        loConn.Close();
+
+                    loConn.Dispose();
+                    loConn = null;
+                }
+                if (loCmd != null)
+                {
+                    loCmd.Dispose();
+                    loCmd = null;
+                }
+            }
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+        public List<GSL03500DTO> GetALLWarehouse(GSL03500ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GetALLWarehouse");
+            var loEx = new R_Exception();
+            List<GSL03500DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection();
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_LOOKUP_WAREHOUSE";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CACTIVE_TYPE", DbType.String, 50, poEntity.CACTIVE_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, R_BackGlobalVar.CULTURE);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_LOOKUP_WAREHOUSE {@poParameter}", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSL03500DTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+        public List<GSL03600DTO> GetALLCompany()
+        {
+            using Activity activity = _activitySource.StartActivity("GetALLCompany");
+            var loEx = new R_Exception();
+            List<GSL03600DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection();
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_GET_LOOKUP_COMPANY";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_LOOKUP_COMPANY {@poParameter}", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSL03600DTO>(loDataTable).ToList();
             }
             catch (Exception ex)
             {

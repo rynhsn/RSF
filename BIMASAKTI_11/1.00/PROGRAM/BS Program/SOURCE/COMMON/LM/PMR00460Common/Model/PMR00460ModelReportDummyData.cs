@@ -34,7 +34,8 @@ namespace PMR00460Common.Model
                     CCARE_REF_NO = "",
                     IDEFAULT_QUANTITY = 5,
                     IACTUAL_QUANTITY = 2,
-                    LCHECKLIST = true
+                    LCHECKLIST = true,
+                    CUNIT = "Buah"
                 });
             
             loCollection.Add(
@@ -58,7 +59,8 @@ namespace PMR00460Common.Model
                     CCARE_REF_NO = "CARE-HO-202411-L1-001",
                     IDEFAULT_QUANTITY = 0,
                     IACTUAL_QUANTITY = 0,
-                    LCHECKLIST = true
+                    LCHECKLIST = true,
+                    CUNIT = "Buah"
                 });
             
             loCollection.Add(
@@ -82,7 +84,8 @@ namespace PMR00460Common.Model
                     CCARE_REF_NO = "",
                     IDEFAULT_QUANTITY = 5,
                     IACTUAL_QUANTITY = 2,
-                    LCHECKLIST = false
+                    LCHECKLIST = false,
+                    CUNIT = "Buah"
                 });
             
             loCollection.Add(
@@ -106,7 +109,8 @@ namespace PMR00460Common.Model
                     CCARE_REF_NO = "CARE-HO-202411-L1-001",
                     IDEFAULT_QUANTITY = 0,
                     IACTUAL_QUANTITY = 0,
-                    LCHECKLIST = false
+                    LCHECKLIST = false,
+                    CUNIT = "Buah"
                 });
 
             
@@ -131,7 +135,8 @@ namespace PMR00460Common.Model
                     CCARE_REF_NO = "",
                     IDEFAULT_QUANTITY = 5,
                     IACTUAL_QUANTITY = 2,
-                    LCHECKLIST = true
+                    LCHECKLIST = true,
+                    CUNIT = "Buah"
                 });
             
             loCollection.Add(
@@ -155,7 +160,8 @@ namespace PMR00460Common.Model
                     CCARE_REF_NO = "CARE-HO-202411-L1-001",
                     IDEFAULT_QUANTITY = 0,
                     IACTUAL_QUANTITY = 0,
-                    LCHECKLIST = true
+                    LCHECKLIST = true,
+                    CUNIT = "Buah"
                 });
             
             loCollection.Add(
@@ -179,7 +185,8 @@ namespace PMR00460Common.Model
                     CCARE_REF_NO = "",
                     IDEFAULT_QUANTITY = 5,
                     IACTUAL_QUANTITY = 2,
-                    LCHECKLIST = false
+                    LCHECKLIST = false,
+                    CUNIT = "Buah"
                 });
             
             loCollection.Add(
@@ -201,9 +208,10 @@ namespace PMR00460Common.Model
                     CNOTES = "Test Note",
                     LCHECKLIST_STATUS = false,
                     CCARE_REF_NO = "CARE-HO-202411-L1-001",
-                    IDEFAULT_QUANTITY = -1,
+                    IDEFAULT_QUANTITY = 0,
                     IACTUAL_QUANTITY = 0,
-                    LCHECKLIST = false
+                    LCHECKLIST = false,
+                    CUNIT = "Buah"
                 });
 
             var loResult = new List<PMR00460ReportDataDTO>();
@@ -263,7 +271,8 @@ namespace PMR00460Common.Model
                             CCHECKLIST_STATUS = item2.LCHECKLIST_STATUS ? "OK" : "Not OK",
                             CCARE_REF_NO = item2.CCARE_REF_NO,
                             IDEFAULT_QUANTITY = item2.IDEFAULT_QUANTITY,
-                            IACTUAL_QUANTITY = item2.IACTUAL_QUANTITY
+                            IACTUAL_QUANTITY = item2.IACTUAL_QUANTITY,
+                            CQUANTITY_DISPLAY = item2.IDEFAULT_QUANTITY == 0 ? "-" : item2.IACTUAL_QUANTITY + "/" + item2.IDEFAULT_QUANTITY + " " + item2.CUNIT
                         });
                     }
                     

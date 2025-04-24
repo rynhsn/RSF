@@ -55,6 +55,7 @@ namespace APR00500Common.DTOs.Print
     
     public class APR00500DataResultDTO
     {
+        public string CTRANS_CODE { get; set; } = "";
         public string CDEPARTMENT_CODE { get; set; } = "";
         public string CREFERENCE_NO { get; set; } = "";
         public string CREFERENCE_DATE { get; set; } = "";

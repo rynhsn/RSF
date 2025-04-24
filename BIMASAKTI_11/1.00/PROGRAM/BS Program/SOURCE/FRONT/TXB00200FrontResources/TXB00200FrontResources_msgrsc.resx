@@ -26,12 +26,53 @@
     <data name="TAX_PERIOD" xml:space="preserve">
         <value>Tax Period</value><comment>Tax Period</comment>
     </data>
-    <!-- Process -->
+    <data name="CURRENT_PERIOD" xml:space="preserve">
+        <value>Current Period</value><comment>Current Period</comment>
+    </data>
+    <data name="CURRENT_SOFT_PERIOD" xml:space="preserve">
+        <value>Current Soft Period</value><comment>Current Soft Period</comment>
+    </data>
     <data name="PROCESS" xml:space="preserve">
         <value>Process</value><comment>Process</comment>
     </data>
+    <data name="LAST_UPDATED_BY" xml:space="preserve">
+        <value>Last Updated By</value><comment>Last Updated By</comment>
+    </data>
     <!-- Soft Close Tax Successfully -->
     <data name="SUCCESS_SOFT_CLOSE" xml:space="preserve">
-        <value>Soft Close Tax Successfully</value><comment>Soft Close Tax Successfully</comment>
+        <value>Soft Closing Proceed Successfully</value><comment>Soft Closing Proceed Successfully</comment>
+    </data>
+
+
+    <data name="NO" xml:space="preserve">
+        <value>No.</value>
+    </data>
+    <data name="DEPT" xml:space="preserve">
+        <value>Dept</value>
+    </data>
+    <data name="MODULE" xml:space="preserve">
+        <value>Module</value>
+    </data>
+    <data name="TRANSACTION_TYPE" xml:space="preserve">
+        <value>Transaction Type</value>
+    </data>
+    <data name="REF_NO" xml:space="preserve">
+        <value>Ref No</value>
+    </data>
+    <data name="REF_DATE" xml:space="preserve">
+        <value>Ref Date</value>
+    </data>
+    <data name="STATUS" xml:space="preserve">
+        <value>Status</value>
+    </data>
+    <data name="DESCRIPTION" xml:space="preserve">
+        <value>Description</value>
+    </data>
+    <data name="SOLUTION" xml:space="preserve">
+        <value>Solution</value>
+    </data>
+    <!-- SAVE_TO_EXCEL -->
+    <data name="SAVE_TO_EXCEL" xml:space="preserve">
+        <value>Save to Excel</value>
     </data>
 </root>

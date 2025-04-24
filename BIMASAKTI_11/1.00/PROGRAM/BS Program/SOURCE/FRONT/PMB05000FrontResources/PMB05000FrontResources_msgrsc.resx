@@ -36,10 +36,12 @@
 
 
     <data name="MSG_NEW_SOFT_PERIOD_NOT_LATER_THAN_CURRENT_SOFT_PERIOD" xml:space="preserve">
-        <value>New Soft Period may not be later than Current Soft Period!</value>
+        <!-- <value>New Soft Period may not be later than Current Soft Period!</value> -->
+        <value>Changing the Soft Period cannot be done without completing the necessary closing procedures</value>
     </data>
     <data name="MSG_NEW_SOFT_PERIOD_NOT_EARLIER_THAN_CURRENT_SOFT_PERIOD" xml:space="preserve">
-        <value>New Soft Period may not be earlier than Current Soft Period!</value>
+        <!-- <value>New Soft Period may not be earlier than Current Soft Period!</value> -->
+        <value>New Soft Period may not be earlier than Current Period!</value>
     </data>
     <!-- Soft Closing process is in progress by another user! -->
     <data name="MSG_SOFT_CLOSING_PROCESS_IN_PROGRESS" xml:space="preserve">
@@ -75,11 +77,15 @@
     <data name="TRANSACTION_TYPE" xml:space="preserve">
         <value>Transaction Type</value>
     </data>
+    <!-- Module -->
+    <data name="MODULE" xml:space="preserve">
+        <value>Module</value>
+    </data>
     <data name="REF_NO" xml:space="preserve">
-        <value>Ref No</value>
+        <value>Reference No.</value>
     </data>
     <data name="REF_DATE" xml:space="preserve">
-        <value>Ref Date</value>
+        <value>Reference Date</value>
     </data>
     <data name="STATUS" xml:space="preserve">
         <value>Status</value>

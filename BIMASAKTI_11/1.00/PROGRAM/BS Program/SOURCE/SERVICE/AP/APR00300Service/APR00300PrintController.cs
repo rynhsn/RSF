@@ -167,11 +167,11 @@ public class APR00300PrintController : R_ReportControllerBase
             var lcLang = R_BackGlobalVar.CULTURE;
 
             var loCls = new APR00300Cls();
-            var loLogo = loCls.GetBaseHeaderLogoCompany(lcCompany);
+            var loHeader = loCls.GetBaseHeaderLogoCompany(lcCompany);
             loRtn.BaseHeaderData = new BaseHeaderDTO
             {
-                BLOGO_COMPANY = loLogo.BLOGO,
-                CCOMPANY_NAME = "PT Realta Chakradarma",
+                BLOGO_COMPANY = loHeader.BLOGO,
+                CCOMPANY_NAME = loHeader.CCOMPANY_NAME ?? string.Empty,
                 CPRINT_CODE = "APR00300",
                 CPRINT_NAME = "Supplier Statement",
                 CUSER_ID = lcUser
@@ -203,6 +203,15 @@ public class APR00300PrintController : R_ReportControllerBase
             _logger.LogInfo("Get Detail Invoice List Report");
 
             var loCollection = loCls.GetReportData(loDbParam);
+            //buat original dan outstanding menjadi minus jika trand code = 120010 dan 120040
+            loCollection.ForEach(x =>
+            {
+                if (x.CTRANS_CODE is "120010" or "110040")
+                {
+                    x.NORIGINAL_AMOUNT = -x.NORIGINAL_AMOUNT;
+                    x.NOUTSTANDING_AMOUNT = -x.NOUTSTANDING_AMOUNT;
+                }
+            });
             
             var loResult = new List<APR00300ReportDataDTO>();
             var loGroupSupplier = loCollection.GroupBy(x => x.CSUPPLIER_ID).ToList();

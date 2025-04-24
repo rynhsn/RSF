@@ -105,4 +105,8 @@
         <value>Save</value>
         <comment>Save</comment>
     </data>
+    <!-- Closing -->
+    <data name="Closing" xml:space="preserve">
+        <value>Closing</value>
+    </data>
 </root>

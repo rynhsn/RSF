@@ -168,11 +168,11 @@ public class PMR00460PrintController : R_ReportControllerBase
             var lcLang = R_BackGlobalVar.CULTURE;
     
             var loCls = new PMR00460Cls();
-            var loLogo = loCls.GetBaseHeaderLogoCompany(lcCompany);
+            var loHeader = loCls.GetBaseHeaderLogoCompany(lcCompany);
             loRtn.BaseHeaderData = new BaseHeaderDTO
             {
-                BLOGO_COMPANY = loLogo.BLOGO,
-                CCOMPANY_NAME = "PT Realta Chakradarma",
+                BLOGO_COMPANY = loHeader.BLOGO,
+                CCOMPANY_NAME = loHeader.CCOMPANY_NAME!,
                 CPRINT_CODE = "PMR00460",
                 CPRINT_NAME = "Handover Report",
                 CUSER_ID = lcUser
@@ -215,7 +215,9 @@ public class PMR00460PrintController : R_ReportControllerBase
             {
                 //group by ref no dan LCHECKLIST = false
                 // var loGroupLoi = item.GroupBy(x => x.CREF_NO).Where(x => x.All(y => y.LCHECKLIST == false)).ToList();
-                var loGroupLoi = item.GroupBy(x => x.CREF_NO).ToList();
+                // var loGroupLoi = item.GroupBy(x => x.CREF_NO).ToList();
+                // groupby ref no dan unit id
+                var loGroupLoi = item.GroupBy(x => new { x.CREF_NO, x.CUNIT_ID }).ToList();
                 var loGroup = new PMR00460ReportDataDTO()
                 {
                     CBUILDING_ID =item.Key,
@@ -229,7 +231,7 @@ public class PMR00460PrintController : R_ReportControllerBase
                     var loGroupLoiDetail = item1.Where(x => x.LCHECKLIST == true).ToList();
                     var loGroupByLoi = new PMR00460GroupBuildingDTO()
                     {
-                        CREF_NO = item1.Key,
+                        CREF_NO = item1.Key.CREF_NO,
                         Summary = new List<PMR00460GroupByLoiSummaryDTO>(),
                         Detail = new List<PMR00460GroupByLoiDetailDTO>()
                     };
@@ -263,10 +265,12 @@ public class PMR00460PrintController : R_ReportControllerBase
                             {
                                 CCHECKLIST_DESCRIPTION = item2.CCHECKLIST_DESCRIPTION,
                                 CNOTES = item2.CNOTES,
-                                CCHECKLIST_STATUS = item2.LCHECKLIST_STATUS ? R_Utility.R_GetMessage(typeof(PMR00460BackResources.Resources_Dummy_Class), "OK", loCultureInfo) : R_Utility.R_GetMessage(typeof(PMR00460BackResources.Resources_Dummy_Class), "Not OK", loCultureInfo),
+                                CCHECKLIST_STATUS = item2.LCHECKLIST_STATUS ? R_Utility.R_GetMessage(typeof(PMR00460BackResources.Resources_Dummy_Class), "OK", loCultureInfo) : R_Utility.R_GetMessage(typeof(PMR00460BackResources.Resources_Dummy_Class), "NotOK", loCultureInfo),
                                 CCARE_REF_NO = item2.CCARE_REF_NO,
                                 IDEFAULT_QUANTITY = item2.IDEFAULT_QUANTITY,
-                                IACTUAL_QUANTITY = item2.IACTUAL_QUANTITY
+                                IACTUAL_QUANTITY = item2.IACTUAL_QUANTITY,
+                                CQUANTITY_DISPLAY = item2.IDEFAULT_QUANTITY == 0 ? "-" : item2.IACTUAL_QUANTITY + "/" + item2.IDEFAULT_QUANTITY + " " + item2.CUNIT,
+                                CUNIT = item2.CUNIT
                             });
                         }
                     }

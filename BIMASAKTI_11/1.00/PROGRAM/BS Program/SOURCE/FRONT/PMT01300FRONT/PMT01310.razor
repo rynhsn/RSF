@@ -501,7 +501,7 @@
             <R_EditButton R_Conductor="@_conductorRef" Enabled="@(EnableNormalMode && EnableDraftSts)"></R_EditButton>
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_Button R_ConductorSource="@_conductorRef" R_EnableHasData>@_localizer["_Print"]</R_Button>
+            <R_Popup R_ConductorSource="@_conductorRef" R_Before_Open_Popup="@BeforeOpenPrintPopup" R_EnableHasData>@_localizer["_Print"]</R_Popup>
             <R_Button Enabled="@(EnableNormalMode && EnableDraftSts)" OnClick="@SubmitProcess">@_localizer["_Submit"]</R_Button>
             <R_Button Enabled="@(EnableNormalMode && EnableOpenSts)" OnClick="@RedraftProcess">@_localizer["_Redraft"]</R_Button>
             <R_Button Enabled="@(EnableNormalMode && EnableApproveSts && _viewModel.Data.DHO_ACTUAL_DATE == null)" OnClick="@CancelLOIProcess">@_localizer["_CancelLOI"]</R_Button>

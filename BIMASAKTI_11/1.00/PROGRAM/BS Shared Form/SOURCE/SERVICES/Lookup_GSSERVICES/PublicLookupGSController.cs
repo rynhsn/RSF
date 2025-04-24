@@ -1512,6 +1512,7 @@ namespace Lookup_GSSERVICES
                 _Logger.LogInfo("Set Param GSL03200GetProductAllocationList");
                 var loCls = new PublicLookupCls();
                 poParameter.CACTIVE_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CACTIVE_TYPE);
+                poParameter.CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CDEPT_CODE);
 
                 _Logger.LogInfo("Call Back Method GetALLProductAllocation");
                 var loResult = loCls.GetALLProductAllocation(poParameter);
@@ -1562,6 +1563,103 @@ namespace Lookup_GSSERVICES
 
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL03300GetTaxChargesList");
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL03400DTO> GSL03400GetDigitalSignList()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03400GetDigitalSignList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL03400DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL03400GetDigitalSignList");
+
+            try
+            {
+                _Logger.LogInfo("Set Param GSL03400GetDigitalSignList");
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLDigitalSign");
+                var loResult = loCls.GetALLDigitalSign();
+
+                _Logger.LogInfo("Call Stream Method Data GSL03400GetDigitalSignList");
+                loRtn = GetStream<GSL03400DTO>(loResult);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL03400GetDigitalSignList");
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL03500DTO> GSL03500GetWarehouseList()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03500GetWarehouseList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL03500DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL03500GetWarehouseList");
+
+            try
+            {
+                _Logger.LogInfo("Set Param GSL03500GetWarehouseList");
+                var poParameter = new GSL03500ParameterDTO();
+                poParameter.CACTIVE_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CACTIVE_TYPE);
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLWarehouse");
+                var loResult = loCls.GetALLWarehouse(poParameter);
+
+                _Logger.LogInfo("Call Stream Method Data GSL03500GetWarehouseList");
+                loRtn = GetStream<GSL03500DTO>(loResult);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL03500GetWarehouseList");
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL03600DTO> GSL03600GetCompanyList()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03600GetCompanyList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL03600DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL03600GetCompanyList");
+
+            try
+            {
+                //_Logger.LogInfo("Set Param GSL03600GetCompanyList");
+                //var poParameter = new GSL03500ParameterDTO();
+                //poParameter.CACTIVE_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CACTIVE_TYPE);
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLWarehouse");
+                var loResult = loCls.GetALLCompany();
+
+                _Logger.LogInfo("Call Stream Method Data GSL03600GetCompanyList");
+                loRtn = GetStream<GSL03600DTO>(loResult);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL03600GetCompanyList");
 
             return loRtn;
         }

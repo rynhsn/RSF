@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using PMR00460Common;
 using PMR00460Common.DTOs;
 using PMR00460Common.DTOs.Print;
+using PMR00460Common.Params;
 using PMR00460FrontResources;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
@@ -19,6 +20,8 @@ namespace PMR00460Model.ViewModel
         public PMR00460ReportParam ReportParam = new PMR00460ReportParam();
         public PMR00460PeriodYearRangeDTO YearRange = new PMR00460PeriodYearRangeDTO();
 
+        public bool EnableView = false;
+
         public KeyValuePair<string, string>[] ReportType = new KeyValuePair<string, string>[]
         {
             new KeyValuePair<string, string>("S",
@@ -28,7 +31,7 @@ namespace PMR00460Model.ViewModel
 
         public KeyValuePair<string, string>[] AgreementType =
         {
-            new KeyValuePair<string, string>("S", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Strata")),
+            // new KeyValuePair<string, string>("S", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Strata")),
             new KeyValuePair<string, string>("O", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Owner")),
             new KeyValuePair<string, string>("L", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Lease"))
         };
@@ -71,10 +74,21 @@ namespace PMR00460Model.ViewModel
             ReportParam.CFROM_PERIOD_MONTH = today.Month.ToString("00");
             ReportParam.ITO_PERIOD_YEAR = today.Year;
             ReportParam.CTO_PERIOD_MONTH = today.Month.ToString("00");
-            
-            ReportParam.CPROPERTY_ID = PropertyList[0].CPROPERTY_ID;
+
+
             ReportParam.CREPORT_TYPE = ReportType[0].Key;
-            ReportParam.CTYPE = "S";
+            ReportParam.CTYPE = "O";
+            ReportParam.LOPEN = true;
+            ReportParam.LSCHEDULED = true;
+            ReportParam.LCONFIRMED = true;
+            ReportParam.LCLOSED = true;
+
+            if (PropertyList.Count > 0)
+            {
+                ReportParam.CPROPERTY_ID = PropertyList[0].CPROPERTY_ID;
+                await GetDefaultParam();
+                EnableView = true;
+            }
         }
 
         private async Task GetPropertyList()
@@ -115,6 +129,34 @@ namespace PMR00460Model.ViewModel
             loEx.ThrowExceptionIfErrors();
         }
 
+        public async Task GetDefaultParam()
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loParam = new PMR00460DefaultParamParam
+                {
+                    CPROPERTY_ID = ReportParam.CPROPERTY_ID
+                };
+
+                var loReturn =
+                    await _model.GetAsync<PMR00460SingleDTO<PMR00460DefaultParamDTO>, PMR00460DefaultParamParam>(
+                        nameof(IPMR00460.PMR00460GetDefaultParam), loParam);
+
+                ReportParam.CFROM_BUILDING_ID = loReturn.Data.CFIRST_BUILDING_ID;
+                ReportParam.CFROM_BUILDING_NAME = loReturn.Data.CFIRST_BUILDING_NAME;
+                ReportParam.CTO_BUILDING_ID = loReturn.Data.CLAST_BUILDING_ID;
+                ReportParam.CTO_BUILDING_NAME = loReturn.Data.CLAST_BUILDING_NAME;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
         public void ValidateDataBeforePrint()
         {
             var loEx = new R_Exception();
@@ -124,28 +166,33 @@ namespace PMR00460Model.ViewModel
                 {
                     loEx.Add("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "PropertyCannotBeEmpty"));
                 }
-                
+
                 //building
                 if (string.IsNullOrEmpty(ReportParam.CFROM_BUILDING_ID))
                 {
-                    loEx.Add("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "FromBuildingCannotBeEmpty"));
+                    loEx.Add("",
+                        R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "FromBuildingCannotBeEmpty"));
                 }
-                
+
                 if (string.IsNullOrEmpty(ReportParam.CTO_BUILDING_ID))
                 {
                     loEx.Add("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "ToBuildingCannotBeEmpty"));
                 }
-                
-                if(ReportParam.LOPEN == false && ReportParam.LSCHEDULED == false && ReportParam.LCONFIRMED == false && ReportParam.LCLOSED == false)
+
+                if (ReportParam.LOPEN == false && ReportParam.LSCHEDULED == false && ReportParam.LCONFIRMED == false &&
+                    ReportParam.LCLOSED == false)
                 {
                     loEx.Add("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "PleaseSelectStatus"));
                 }
-                
-                ReportParam.CPROPERTY_NAME = PropertyList.Find(x => x.CPROPERTY_ID == ReportParam.CPROPERTY_ID).CPROPERTY_NAME;
+
+                ReportParam.CPROPERTY_NAME =
+                    PropertyList.Find(x => x.CPROPERTY_ID == ReportParam.CPROPERTY_ID).CPROPERTY_NAME;
                 ReportParam.CFROM_PERIOD = ReportParam.IFROM_PERIOD_YEAR + ReportParam.CFROM_PERIOD_MONTH;
-                ReportParam.CFROM_PERIOD_MONTH_NAME = Array.Find(PeriodList, x => x.Key == ReportParam.CFROM_PERIOD_MONTH).Value;
+                ReportParam.CFROM_PERIOD_MONTH_NAME =
+                    Array.Find(PeriodList, x => x.Key == ReportParam.CFROM_PERIOD_MONTH).Value;
                 ReportParam.CTO_PERIOD = ReportParam.ITO_PERIOD_YEAR + ReportParam.CTO_PERIOD_MONTH;
-                ReportParam.CTO_PERIOD_MONTH_NAME = Array.Find(PeriodList, x => x.Key == ReportParam.CTO_PERIOD_MONTH).Value;
+                ReportParam.CTO_PERIOD_MONTH_NAME =
+                    Array.Find(PeriodList, x => x.Key == ReportParam.CTO_PERIOD_MONTH).Value;
                 ReportParam.CREPORT_TYPE_NAME = Array.Find(ReportType, x => x.Key == ReportParam.CREPORT_TYPE).Value;
                 ReportParam.CTYPE_NAME = Array.Find(AgreementType, x => x.Key == ReportParam.CTYPE).Value;
             }

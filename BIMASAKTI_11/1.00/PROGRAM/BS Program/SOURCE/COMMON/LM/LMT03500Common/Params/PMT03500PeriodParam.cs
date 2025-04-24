@@ -12,4 +12,10 @@
         public string CCHARGE_TYPE_ID { get; set; }
         public string CCHARGES_ID { get; set; }
     }
+
+    public class PMT03500PeriodRangeParam
+    {
+        public string CFROM_PERIOD { get; set; }
+        public string CTO_PERIOD { get; set; }
+    }
 }

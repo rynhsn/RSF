@@ -112,7 +112,7 @@ namespace PMT03500Model.ViewModel
 
                 InvPeriodYear = SystemParam.CSOFT_PERIOD_YY;
                 InvPeriodNo = SystemParam.CSOFT_PERIOD_MM;
-                
+
                 if (UtilityTypeId == "01" || UtilityTypeId == "02")
                 {
                     // UtilityPeriodYear diisi dari 4 karaketer pertama dari property SystemParam.CELECTRIC_PERIOD
@@ -144,7 +144,7 @@ namespace PMT03500Model.ViewModel
                         // UtilityPeriodNo = SystemParam.CGAS_PERIOD.Substring(4, 2);
                     }
                 }
-                
+
                 // buat agar utility period year dan no nya selalu -1 bulan dari invoice period
                 // jika invoice period bulan 1, maka utility period bulan 12 tahun sebelumnya
                 if (InvPeriodNo == InvPeriodList.FirstOrDefault()?.CPERIOD_NO)
@@ -180,11 +180,11 @@ namespace PMT03500Model.ViewModel
                 if (!LOTHER_UNIT)
                 {
                     GridBuildingList = new ObservableCollection<PMT03500BuildingDTO>(loReturn);
+                    BuildingList = loReturn;
                 }
                 else
                 {
                     BuildingList = loReturn;
-
                     TempBuildingId = BuildingList.FirstOrDefault()?.CBUILDING_ID;
                     Entity.CBUILDING_ID = "";
                     FloorId = "";
@@ -307,8 +307,8 @@ namespace PMT03500Model.ViewModel
                 R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CBUILDING_ID, Entity.CBUILDING_ID ?? "");
                 R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CUTILITY_TYPE, UtilityTypeId ?? "");
                 R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CFLOOR_ID, FloorId ?? "");
-                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CUTILITY_PRD,
-                    UtilityPeriodYear + UtilityPeriodNo);
+                // R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CUTILITY_PRD, UtilityPeriodYear + UtilityPeriodNo);
+                R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.CINVOICE_PRD, InvPeriodYear + InvPeriodNo);
                 R_FrontContext.R_SetStreamingContext(PMT03500ContextConstant.LOTHER_UNIT, LOTHER_UNIT);
 
                 var loReturn =
@@ -326,6 +326,11 @@ namespace PMT03500Model.ViewModel
 
                     x.NO = loReturn.IndexOf(x) + 1;
                     x.CUTILITY_TYPE = x.CCHARGES_TYPE;
+                    if (!string.IsNullOrEmpty(x.CINV_PRD))
+                    {
+                        x.CINV_PRD_YEAR = x.CINV_PRD[..4];
+                        x.CINV_PRD_MONTH = x.CINV_PRD.Substring(4, 2);
+                    }
                 });
 
                 // foreach (var loItem in loReturn)
@@ -730,7 +735,7 @@ namespace PMT03500Model.ViewModel
                 //         UtilityPeriodDtMax = UtilityPeriodToDtDt;
                 //     }
                 // }
-                
+
                 if (UtilityTypeId == "01" || UtilityTypeId == "02")
                 {
                     // UtilityPeriodYear diisi dari 4 karaketer pertama dari property SystemParam.CELECTRIC_PERIOD
@@ -738,7 +743,7 @@ namespace PMT03500Model.ViewModel
                     // UtilityPeriodNo = SystemParam.CELECTRIC_PERIOD.Substring(4, 2);
                     // InvPeriodYear = SystemParam.CELECTRIC_PERIOD.Substring(0, 4);
                     // InvPeriodNo = SystemParam.CELECTRIC_PERIOD.Substring(4, 2);
-                    
+
                     if (SystemParam.LELECTRIC_END_MONTH == false)
                     {
                         var loDate = new DateTime(int.Parse(InvPeriodYear), int.Parse(InvPeriodNo),

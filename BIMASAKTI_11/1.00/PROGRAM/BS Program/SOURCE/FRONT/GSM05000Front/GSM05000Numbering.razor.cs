@@ -110,6 +110,7 @@ namespace GSM05000Front
 
             try
             {
+                
                 var loValidateViewModel = new GFF00900Model.ViewModel.GFF00900ViewModel();
                 loValidateViewModel.ACTIVATE_INACTIVE_ACTIVITY_CODE =
                     "GSM05001"; //Ubah Approval Code sesuai Spec masing masing

@@ -182,12 +182,15 @@ public class GLR00100Cls
         using var loActivity = _activitySource.StartActivity(nameof(GetBaseHeaderLogoCompany));
         var loEx = new R_Exception();
         GLR00100PrintBaseHeaderLogoDTO loResult = null;
+        R_Db loDb = null; // Database object    
+        DbConnection loConn = null;
+        DbCommand loCmd = null;
     
         try
         {
-            var loDb = new R_Db();
-            var loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
-            var loCmd = loDb.GetCommand();
+            loDb = new R_Db();
+            loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
+            loCmd = loDb.GetCommand();
     
     
             var lcQuery = $"SELECT dbo.RFN_GET_COMPANY_LOGO('{pcCompanyId}') as BLOGO";
@@ -196,12 +199,42 @@ public class GLR00100Cls
             
             _logger.LogDebug("{pcQuery}", lcQuery);
     
-            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
             loResult = R_Utility.R_ConvertTo<GLR00100PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault();
+            
+            //ambil company name
+            lcQuery = $"SELECT CCOMPANY_NAME FROM SAM_COMPANIES WHERE CCOMPANY_ID = '{pcCompanyId}'"; // Query to get company name
+            loCmd.CommandText = lcQuery;
+            loCmd.CommandType = CommandType.Text;
+
+            //Debug Logs
+            _logger.LogDebug(string.Format("SELECT CCOMPANY_NAME FROM SAM_COMPANIES WHERE CCOMPANY_ID = '@CCOMPANY_ID'", pcCompanyId));
+            loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+            var loCompanyNameResult = R_Utility.R_ConvertTo<GLR00100PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault();
+
+            loResult!.CCOMPANY_NAME = loCompanyNameResult?.CCOMPANY_NAME;
+
         }
         catch (Exception ex)
         {
-            loEx.Add(ex);
+            loEx.Add(ex); // Add the exception to the exception object
+            _logger.LogError(loEx); // Log the exception
+        }
+        finally
+        {
+            if (loConn != null)
+            {
+                if (loConn.State != ConnectionState.Closed)
+                    loConn.Close();
+
+                loConn.Dispose();
+                loConn = null;
+            }
+            if (loCmd != null)
+            {
+                loCmd.Dispose();
+                loCmd = null;
+            }
         }
     
         loEx.ThrowExceptionIfErrors();

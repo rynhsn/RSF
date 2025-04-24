@@ -1,5 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using BlazorClientHelper;
+using Lookup_GSCOMMON.DTOs;
+using Lookup_GSFRONT;
+using Lookup_GSModel.ViewModel;
 using PMT03500Common;
 using PMT03500Common.DTOs;
 using PMT03500Model.ViewModel;
@@ -10,6 +13,7 @@ using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
+using R_BlazorFrontEnd.Controls.Grid.Columns;
 using R_BlazorFrontEnd.Controls.Layouts;
 using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Controls.Tab;
@@ -104,10 +108,10 @@ public partial class PMT03500 : R_Page
         {
             await _viewModel.Init();
             await _viewModelUtility.Init(_viewModel.Property);
-            if (_viewModel.PropertyList.Count > 0)
-            {
-                await _gridRefBuilding.R_RefreshGrid(null);
-            }
+            // if (_viewModel.PropertyList.Count > 0)
+            // {
+            //     await _gridRefBuilding.R_RefreshGrid(null);
+            // }
 
             _viewModelUpload.StateChangeAction = StateChangeInvoke;
             _viewModelUpload.DisplayErrorAction = DisplayErrorInvoke;
@@ -142,6 +146,98 @@ public partial class PMT03500 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
+
+    private async Task OnLostFocusLookupBuilding()
+    {
+        var loEx = new R_Exception();
+
+        var loLookupViewModel = new LookupGSL02200ViewModel();
+        try
+        {
+            if (_viewModelUtility.Entity.CBUILDING_ID == null ||
+                _viewModelUtility.Entity.CBUILDING_ID.Trim().Length <= 0)
+            {
+                _viewModelUtility.Entity.CBUILDING_ID = "";
+                _viewModelUtility.Entity.CBUILDING_NAME = "";
+                return;
+            }
+
+            var param = new GSL02200ParameterDTO
+            {
+                CPROPERTY_ID = _viewModelUtility.Property.CPROPERTY_ID,
+                CSEARCH_TEXT = _viewModelUtility.Entity.CBUILDING_ID,
+                LAGREEMENT = true
+            };
+
+            GSL02200DTO loResult = null;
+
+            loResult = await loLookupViewModel.GetBuilding(param);
+
+            if (loResult == null)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(
+                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                    "_ErrLookup01"));
+                _viewModelUtility.Entity.CBUILDING_ID = "";
+                _viewModelUtility.Entity.CBUILDING_NAME = "";
+                goto EndBlock;
+            }
+
+            _viewModelUtility.Entity.CBUILDING_ID = loResult.CBUILDING_ID;
+            _viewModelUtility.Entity.CBUILDING_NAME = loResult.CBUILDING_NAME;
+            await _viewModelUtility.GetFloorList();
+            _viewModelUtility.CheckFloor(_viewModelUtility.AllFloor);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        EndBlock:
+        R_DisplayException(loEx);
+    }
+
+    private void BeforeLookupBuilding(R_BeforeOpenLookupEventArgs eventArgs)
+    {
+        eventArgs.TargetPageType = typeof(GSL02200);
+        eventArgs.Parameter = new GSL02200ParameterDTO
+        {
+            CPROPERTY_ID = _viewModelUtility.Property.CPROPERTY_ID,
+            // LAGREEMENT = true
+        };
+    }
+
+    private async Task AfterLookupBuilding(R_AfterOpenLookupEventArgs eventArgs)
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            var loTempResult = (GSL02200DTO)eventArgs.Result;
+            if (loTempResult == null)
+            {
+                _viewModelUtility.Entity.CBUILDING_ID = "";
+                _viewModelUtility.Entity.CBUILDING_NAME = "";
+                _viewModelUtility.FloorId = "";
+                return;
+            }
+
+            if (loTempResult.CBUILDING_ID != _viewModelUtility.Entity.CBUILDING_ID)
+            {
+                _viewModelUtility.Entity.CBUILDING_ID = loTempResult.CBUILDING_ID;
+                _viewModelUtility.Entity.CBUILDING_NAME = loTempResult.CBUILDING_NAME;
+
+                await _viewModelUtility.GetFloorList();
+                _viewModelUtility.CheckFloor(_viewModelUtility.AllFloor);
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
 
     private async Task GetUtilityListRecord(R_ServiceGetListRecordEventArgs eventArgs)
     {
@@ -220,10 +316,11 @@ public partial class PMT03500 : R_Page
                     switch (_tabStripRef.ActiveTab.Id)
                     {
                         case "Utility" when _tabStripUtilityRef.ActiveTab.Id == "GI":
-                            /*
-                             * Disini method untuk set period dari system param
-                             */
-                            await _gridRefBuilding.R_RefreshGrid(null);
+                            // await _gridRefBuilding.R_RefreshGrid(null);
+                            _viewModelUtility.Entity.CBUILDING_ID = "";
+                            _viewModelUtility.Entity.CBUILDING_NAME = "";
+                            _viewModelUtility.FloorId = "";
+
                             break;
                         case "CutOff":
                             // await _pageCO.InvokeRefreshTabPageAsync(_viewModel.PropertyId);
@@ -283,13 +380,13 @@ public partial class PMT03500 : R_Page
 
         try
         {
-            if (int.Parse(_viewModelUtility.InvPeriodYear + _viewModelUtility.InvPeriodNo) <
-                int.Parse(_viewModelUtility.UtilityPeriodYear + _viewModelUtility.UtilityPeriodNo))
-            {
-                await R_MessageBox.Show("", _localizer["UTILITY_PERIOD_GREATER_THAN_INVOICE_PERIOD"]);
-                await _comboUtilityPrdRef.FocusAsync();
-                return;
-            }
+            // if (int.Parse(_viewModelUtility.InvPeriodYear + _viewModelUtility.InvPeriodNo) <
+            //     int.Parse(_viewModelUtility.UtilityPeriodYear + _viewModelUtility.UtilityPeriodNo))
+            // {
+            //     await R_MessageBox.Show("", _localizer["UTILITY_PERIOD_GREATER_THAN_INVOICE_PERIOD"]);
+            //     await _comboUtilityPrdRef.FocusAsync();
+            //     return;
+            // }
 
             if (_viewModelUtility.UtilityTypeId is "01" or "02")
             {
@@ -448,14 +545,10 @@ public partial class PMT03500 : R_Page
         try
         {
             var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
-            // _tabDetail = loData.CUTILITY_TYPE is "03" or "04" && loData.CSTATUS.Length > 0;
-
             _hasDetail = loData.CSTATUS.Length > 0 && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit;
 
             _viewModelUtility.EntityUtility = loData;
             _viewModelUtility.EntityUtility.CPROPERTY_ID = _viewModel.PropertyId;
-
-            await Task.Delay(100);
         }
         catch (Exception ex)
         {
@@ -540,8 +633,17 @@ public partial class PMT03500 : R_Page
                     ? EPMT03500UtilityUsageType.EC
                     : EPMT03500UtilityUsageType.WG;
 
+            _viewModelUpload.IsUpload = false;
+
             await _viewModelUpload.SaveBulkFile(poUploadParam: _viewModelUpload.UploadParam,
                 poDataList: loDataList.ToList());
+
+            if (_viewModelUpload.IsError)
+            {
+                loEx.Add("Error", "Utility Usage saved is not successfully!");
+            }
+
+            _enabledBtn = true;
 
             // await _gridRefUtility.R_RefreshGrid(null);
         }
@@ -560,7 +662,7 @@ public partial class PMT03500 : R_Page
         try
         {
             var loData = _viewModelUtility.GridUtilityUsageList.Where(x => x.LSELECTED).ToList();
-            
+
             var loParam = new PMT03500UndoParam
             {
                 CCOMPANY_ID = ClientHelper.CompanyId,
@@ -612,12 +714,15 @@ public partial class PMT03500 : R_Page
         eventArgs.Parameter = "";
     }
 
+    // private bool _enStartDate;
+
     private void BeforeEditUtility(R_BeforeEditEventArgs eventArgs)
     {
         var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
         eventArgs.Cancel = loData.CSTATUS.Length > 0;
+        // _enStartDate = !loData.LDISABLED_START_DATE;
     }
-    
+
     private void CheckBoxSelectValueChanged(R_CheckBoxSelectValueChangedEventArgs eventArgs)
     {
         eventArgs.Enabled = true;
@@ -630,5 +735,12 @@ public partial class PMT03500 : R_Page
         {
             loItem.DEND_DATE = _viewModelUtility.UtilityPeriodToDtDt;
         }
+    }
+
+    private void SetEdit(R_SetEditGridColumnEventArgs eventArgs)
+    {
+        var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
+        var loColumn = eventArgs.Columns.FirstOrDefault(x => x.FieldName == nameof(PMT03500UtilityUsageDTO.DSTART_DATE));
+        loColumn.Enabled = !loData.LDISABLED_START_DATE;
     }
 }

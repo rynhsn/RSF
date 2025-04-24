@@ -18,7 +18,7 @@
             <R_ItemLayout col="5">
                 <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold">@_localizer["CURRENT_SOFT_PERIOD"]</R_Label>
             </R_ItemLayout>
-            <R_ItemLayout col="2">
+            <R_ItemLayout col="3">
                 <R_NumericTextBox @bind-Value="_viewModel.Data.ISOFT_PERIOD_YY" R_ConductorSource="_conductorRef" Min="_viewModel.YearRange.IMIN_YEAR" Max="_viewModel.YearRange.IMAX_YEAR" ThousandSeparator="false" R_EnableEdit/>
             </R_ItemLayout>
             <R_ItemLayout col="2">
@@ -37,7 +37,7 @@
                 <R_Label>@_localizer["LAST_UPDATED_BY"]</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="5">
-                <R_DateTimePicker Enabled="false" Value="@_viewModel.Data.DLSOFT_END_DATE"/>
+                <R_DateTimePicker Enabled="false" Value="@_viewModel.Data.DLSOFT_END_DATE" ShowPickerButton="false"/>
             </R_ItemLayout>
             <R_ItemLayout col="2">
                 <R_TextBox Enabled="false" Value="@_viewModel.Data.CLSOFT_END_BY"/>

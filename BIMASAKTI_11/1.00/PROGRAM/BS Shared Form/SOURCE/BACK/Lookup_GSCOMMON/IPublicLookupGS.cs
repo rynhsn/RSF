@@ -49,5 +49,8 @@ namespace Lookup_GSCOMMON
         IAsyncEnumerable<GSL03100DTO> GSL03100GetExpenditureList();
         IAsyncEnumerable<GSL03200DTO> GSL03200GetProductAllocationList();
         IAsyncEnumerable<GSL03300DTO> GSL03300GetTaxChargesList();
+        IAsyncEnumerable<GSL03400DTO> GSL03400GetDigitalSignList();
+        IAsyncEnumerable<GSL03500DTO> GSL03500GetWarehouseList();
+        IAsyncEnumerable<GSL03600DTO> GSL03600GetCompanyList();
     }
 }

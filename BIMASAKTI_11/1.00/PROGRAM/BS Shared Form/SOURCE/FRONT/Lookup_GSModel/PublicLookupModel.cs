@@ -949,7 +949,7 @@ namespace Lookup_GSModel
             try
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCOUNTRY_ID, poCountry);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCOUNTRY_ID, string.IsNullOrWhiteSpace(poCountry) ? "" : poCountry);
 
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02000CityDTO>(
                     _RequestServiceEndPoint,
@@ -1509,6 +1509,7 @@ namespace Lookup_GSModel
             try
             {
                 //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CDEPT_CODE, string.IsNullOrWhiteSpace(poParameter.CDEPT_CODE) ? "" : poParameter.CDEPT_CODE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CACTIVE_TYPE, string.IsNullOrWhiteSpace(poParameter.CACTIVE_TYPE) ? "" : poParameter.CACTIVE_TYPE);
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
@@ -1551,6 +1552,106 @@ namespace Lookup_GSModel
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL03300DTO>(
                     _RequestServiceEndPoint,
                     nameof(IPublicLookup.GSL03300GetTaxChargesList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+
+
+        #endregion
+
+        #region GSL03400
+        public IAsyncEnumerable<GSL03400DTO> GSL03400GetDigitalSignList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL03400DTO>> GSL03400GetDigitalSignListAsync()
+        {
+            var loEx = new R_Exception();
+            List<GSL03400DTO> loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL03400DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL03400GetDigitalSignList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+        #endregion
+
+        #region GSL03500
+        public IAsyncEnumerable<GSL03500DTO> GSL03500GetWarehouseList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL03500DTO>> GSL03500GetWarehouseListAsync(GSL03500ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL03500DTO> loResult = null;
+
+            try
+            {
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CACTIVE_TYPE, string.IsNullOrWhiteSpace(poParameter.CACTIVE_TYPE) ? "ALL" : poParameter.CACTIVE_TYPE);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL03500DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL03500GetWarehouseList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+        #endregion
+
+        #region GSL03600
+        public IAsyncEnumerable<GSL03600DTO> GSL03600GetCompanyList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL03600DTO>> GSL03600GetCompanyListAsync(GSL03600ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL03600DTO> loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL03600DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL03600GetCompanyList),
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);

@@ -194,8 +194,9 @@ public class PMT03500UtilityUsageController : ControllerBase, IPMT03500UtilityUs
             loDbParams.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CPROPERTY_ID);
             loDbParams.CBUILDING_ID = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CBUILDING_ID);
             loDbParams.CUTILITY_TYPE = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CUTILITY_TYPE);
+            loDbParams.CINVOICE_PRD = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CINVOICE_PRD);
             loDbParams.CFLOOR_ID = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CFLOOR_ID);
-            loDbParams.CUTILITY_PRD = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CUTILITY_PRD);
+            // loDbParams.CUTILITY_PRD = R_Utility.R_GetStreamingContext<string>(PMT03500ContextConstant.CUTILITY_PRD);
             loDbParams.LOTHER_UNIT = R_Utility.R_GetStreamingContext<bool>(PMT03500ContextConstant.LOTHER_UNIT);
             
 

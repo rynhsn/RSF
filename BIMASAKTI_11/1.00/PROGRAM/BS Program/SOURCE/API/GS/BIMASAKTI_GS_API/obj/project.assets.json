@@ -4069,6 +4069,60 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "GSM04000Back/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GSM04000BackResources": "1.0.0",
+          "GSM04000Common": "1.0.0",
+          "RSP_GS_MAINTAIN_DEPARTMENTResources": "1.0.0",
+          "RSP_GS_UPLOAD_DEPARTMENTResources": "1.0.0",
+          "System.Data.SqlClient": "4.8.5"
+        },
+        "compile": {
+          "bin/placeholder/GSM04000Back.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM04000Back.dll": {}
+        }
+      },
+      "GSM04000BackResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GSM04000BackResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM04000BackResources.dll": {}
+        }
+      },
+      "GSM04000Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GSM04000Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM04000Common.dll": {}
+        }
+      },
+      "GSM04000Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GSM04000Back": "1.0.0",
+          "GSM04000Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GSM04000Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM04000Service.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "GSM04500Back/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -4233,6 +4287,16 @@
           "bin/placeholder/RSP_GS_MAINTAIN_BUILDING_UNITResources.dll": {}
         }
       },
+      "RSP_GS_MAINTAIN_DEPARTMENTResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_DEPARTMENTResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_DEPARTMENTResources.dll": {}
+        }
+      },
       "RSP_GS_MAINTAIN_JOURNAL_GROUPResources/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -4381,6 +4445,16 @@
         },
         "runtime": {
           "bin/placeholder/RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources.dll": {}
+        }
+      },
+      "RSP_GS_UPLOAD_DEPARTMENTResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_UPLOAD_DEPARTMENTResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_UPLOAD_DEPARTMENTResources.dll": {}
         }
       },
       "RSP_GS_UPLOAD_JOURNAL_GROUPResources/1.0.0": {
@@ -11966,6 +12040,26 @@
       "path": "../../../SERVICE/GS/GSM02500SERVICE/GSM02500SERVICE.csproj",
       "msbuildProject": "../../../SERVICE/GS/GSM02500SERVICE/GSM02500SERVICE.csproj"
     },
+    "GSM04000Back/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GSM04000Back/GSM04000Back.csproj",
+      "msbuildProject": "../../../BACK/GS/GSM04000Back/GSM04000Back.csproj"
+    },
+    "GSM04000BackResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GSM04000BackResources/GSM04000BackResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GSM04000BackResources/GSM04000BackResources.csproj"
+    },
+    "GSM04000Common/1.0.0": {
+      "type": "project",
+      "path": "../../../COMMON/GS/GSM04000Common/GSM04000Common.csproj",
+      "msbuildProject": "../../../COMMON/GS/GSM04000Common/GSM04000Common.csproj"
+    },
+    "GSM04000Service/1.0.0": {
+      "type": "project",
+      "path": "../../../SERVICE/GS/GSM04000SERVICE/GSM04000Service.csproj",
+      "msbuildProject": "../../../SERVICE/GS/GSM04000SERVICE/GSM04000Service.csproj"
+    },
     "GSM04500Back/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/GSM04500Back/GSM04500Back.csproj",
@@ -12030,6 +12124,11 @@
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_BUILDING_UNITResources/RSP_GS_MAINTAIN_BUILDING_UNITResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_BUILDING_UNITResources/RSP_GS_MAINTAIN_BUILDING_UNITResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_DEPARTMENTResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_DEPARTMENTResources/RSP_GS_MAINTAIN_DEPARTMENTResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_DEPARTMENTResources/RSP_GS_MAINTAIN_DEPARTMENTResources.csproj"
     },
     "RSP_GS_MAINTAIN_JOURNAL_GROUPResources/1.0.0": {
       "type": "project",
@@ -12106,6 +12205,11 @@
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources/RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources/RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources.csproj"
     },
+    "RSP_GS_UPLOAD_DEPARTMENTResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_DEPARTMENTResources/RSP_GS_UPLOAD_DEPARTMENTResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_DEPARTMENTResources/RSP_GS_UPLOAD_DEPARTMENTResources.csproj"
+    },
     "RSP_GS_UPLOAD_JOURNAL_GROUPResources/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_UPLOAD_JOURNAL_GROUPResources/RSP_GS_UPLOAD_JOURNAL_GROUPResources.csproj",
@@ -12147,6 +12251,7 @@
       "GFF00900SERVICES >= 1.0.0",
       "GSM02000Service >= 1.0.0",
       "GSM02500SERVICE >= 1.0.0",
+      "GSM04000Service >= 1.0.0",
       "GSM04500Service >= 1.0.0",
       "GSM05000Service >= 1.0.0",
       "Lookup_GSSERVICES >= 1.0.0",
@@ -12195,6 +12300,9 @@
             },
             "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02500SERVICE\\GSM02500SERVICE.csproj": {
               "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02500SERVICE\\GSM02500SERVICE.csproj"
+            },
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM04000SERVICE\\GSM04000Service.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM04000SERVICE\\GSM04000Service.csproj"
             },
             "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM04500Service\\GSM04500Service.csproj": {
               "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM04500Service\\GSM04500Service.csproj"

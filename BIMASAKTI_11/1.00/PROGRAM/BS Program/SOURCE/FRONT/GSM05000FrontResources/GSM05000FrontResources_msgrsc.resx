@@ -213,4 +213,10 @@
     <data name="BTN_OK" xml:space="preserve">
         <value>Ok</value><comment>Ok</comment>
     </data>
+
+    <!-- "User ID is required" -->
+    <data name="ErrReqUserId" xml:space="preserve">
+        <value>User ID is required</value>
+        <comment>User ID is required</comment>
+    </data>
 </root>

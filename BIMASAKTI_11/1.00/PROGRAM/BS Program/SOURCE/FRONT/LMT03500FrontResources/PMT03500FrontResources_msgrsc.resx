@@ -35,6 +35,12 @@
     <data name="LBL_NO" xml:space="preserve">
         <value>No</value>
     </data>
+    <data name="LBL_YEAR" xml:space="preserve">
+        <value>Year</value>
+    </data>
+    <data name="LBL_MONTH" xml:space="preserve">
+        <value>Month</value>
+    </data>
     <data name="RADIO_ALLBUILDING" xml:space="preserve">
         <value>All Building</value>
     </data>
@@ -77,6 +83,9 @@
     </data>
     <data name="LBL_UTILITYPRDDT" xml:space="preserve">
         <value>Utility Period Date</value>
+    </data>
+    <data name="LBL_STARTDTUTILITY" xml:space="preserve">
+        <value>Start Date Utility</value>
     </data>
     <data name="LBL_ENDDTUTILITY" xml:space="preserve">
         <value>End Date Utility</value>
@@ -435,5 +444,29 @@
     <data name="METER_START_GREATER_THAN_MAX_RESET" xml:space="preserve">
         <value>Meter Start cannot be greater than Max Reset</value>
         <comment>Meter Start cannot be greater than Max Reset</comment>
+    </data>
+
+    <!-- UTILITY_PERIOD_MUST_BE_FILLED -->
+    <data name="UTILITY_PERIOD_MUST_BE_FILLED" xml:space="preserve">
+        <value>Utility Period must be filled</value>
+        <comment>Utility Period must be filled</comment>
+    </data>
+
+    <!-- INVALID_UTILITY_PERIOD -->
+    <data name="INVALID_UTILITY_PERIOD" xml:space="preserve">
+        <value>Invalid Utility Period</value>
+        <comment>Invalid Utility Period</comment>
+    </data>
+
+    <!-- INVALID_START_DATE -->
+    <data name="INVALID_START_DATE" xml:space="preserve">
+        <value>Invalid Start Date</value>
+        <comment>Invalid Start Date</comment>
+    </data>
+
+    <!-- START_DATE_MUST_BE_FILLED -->
+    <data name="START_DATE_MUST_BE_FILLED" xml:space="preserve">
+        <value>Start Date must be filled</value>
+        <comment>Start Date must be filled</comment>
     </data>
 </root>

@@ -466,6 +466,33 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Company.
+        /// </summary>
+        internal static string _Company {
+            get {
+                return ResourceManager.GetString("_Company", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company Id.
+        /// </summary>
+        internal static string _CompanyId {
+            get {
+                return ResourceManager.GetString("_CompanyId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company Name.
+        /// </summary>
+        internal static string _CompanyName {
+            get {
+                return ResourceManager.GetString("_CompanyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Country.
         /// </summary>
         internal static string _Country {
@@ -534,6 +561,15 @@ namespace Lookup_GSFrontResources {
         internal static string _CurrName {
             get {
                 return ResourceManager.GetString("_CurrName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        internal static string _Date {
+            get {
+                return ResourceManager.GetString("_Date", resourceCulture);
             }
         }
         
@@ -615,6 +651,15 @@ namespace Lookup_GSFrontResources {
         internal static string _Desc {
             get {
                 return ResourceManager.GetString("_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digital Sign.
+        /// </summary>
+        internal static string _DigitalSign {
+            get {
+                return ResourceManager.GetString("_DigitalSign", resourceCulture);
             }
         }
         
@@ -754,6 +799,15 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include Inactive Warehouse.
+        /// </summary>
+        internal static string _IncludeInactiveWarehouse {
+            get {
+                return ResourceManager.GetString("_IncludeInactiveWarehouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Journal Group.
         /// </summary>
         internal static string _JournalGroup {
@@ -849,6 +903,15 @@ namespace Lookup_GSFrontResources {
         internal static string _Net {
             get {
                 return ResourceManager.GetString("_Net", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        internal static string _Notes {
+            get {
+                return ResourceManager.GetString("_Notes", resourceCulture);
             }
         }
         
@@ -1083,6 +1146,42 @@ namespace Lookup_GSFrontResources {
         internal static string _ShowAll {
             get {
                 return ResourceManager.GetString("_ShowAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Signature.
+        /// </summary>
+        internal static string _Signature {
+            get {
+                return ResourceManager.GetString("_Signature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Id.
+        /// </summary>
+        internal static string _SignId {
+            get {
+                return ResourceManager.GetString("_SignId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Name.
+        /// </summary>
+        internal static string _SignName {
+            get {
+                return ResourceManager.GetString("_SignName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Position.
+        /// </summary>
+        internal static string _SignPosition {
+            get {
+                return ResourceManager.GetString("_SignPosition", resourceCulture);
             }
         }
         
@@ -1407,6 +1506,33 @@ namespace Lookup_GSFrontResources {
         internal static string _UserRestr {
             get {
                 return ResourceManager.GetString("_UserRestr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warehouse.
+        /// </summary>
+        internal static string _Warehouse {
+            get {
+                return ResourceManager.GetString("_Warehouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warehouse ID.
+        /// </summary>
+        internal static string _WarehouseID {
+            get {
+                return ResourceManager.GetString("_WarehouseID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warehouse Name.
+        /// </summary>
+        internal static string _WarehouseName {
+            get {
+                return ResourceManager.GetString("_WarehouseName", resourceCulture);
             }
         }
         

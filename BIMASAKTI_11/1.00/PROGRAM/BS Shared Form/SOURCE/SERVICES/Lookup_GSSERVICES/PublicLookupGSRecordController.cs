@@ -1184,5 +1184,125 @@ namespace Lookup_GSSERVICES
             _Logger.LogInfo("End GSL03300GetTaxCharges");
             return loRtn;
         }
+
+        [HttpPost]
+        public GSLGenericRecord<GSL02000CityDTO> GSL02000GetCityGeography(GSL02000ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GSL02000GetCityGeography");
+            var loEx = new R_Exception();
+            GSLGenericRecord<GSL02000CityDTO> loRtn = new();
+            _Logger.LogInfo("Start GSL02000GetCityGeography");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLCityGeography");
+                var loResult = loCls.GetALLCityGeography(new GSL02000CityDTO());
+
+                _Logger.LogInfo("Filter Search by text GSL02000GetCityGeography");
+                loRtn.Data = loResult.Find(x => x.CCODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo("End GSL02000GetCityGeography");
+            return loRtn;
+        }
+
+        [HttpPost]
+        public GSLGenericRecord<GSL03400DTO> GSL03400GetDigitalSign(GSL03400ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03400GetDigitalSign");
+            var loEx = new R_Exception();
+            GSLGenericRecord<GSL03400DTO> loRtn = new();
+            _Logger.LogInfo("Start GSL03400GetDigitalSign");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetFileDigitalSign");
+                var loResult = loCls.GetFileDigitalSign(poEntity);
+
+                _Logger.LogInfo("Filter Search by text GSL03400GetDigitalSign");
+                loRtn.Data = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo("End GSL03400GetDigitalSign");
+            return loRtn;
+        }
+
+        [HttpPost]
+        public GSLGenericRecord<GSL03500DTO> GSL03500GetWarehouse(GSL03500ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03500GetWarehouse");
+            var loEx = new R_Exception();
+            GSLGenericRecord<GSL03500DTO> loRtn = new();
+            _Logger.LogInfo("Start GSL03500GetWarehouse");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLWarehouse");
+                var loResult = loCls.GetALLWarehouse(poEntity);
+
+                _Logger.LogInfo("Filter Search by text GSL03500GetWarehouse");
+                loRtn.Data = loResult.Find(x => x.CWAREHOUSE_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo("End GSL03500GetWarehouse");
+            return loRtn;
+        }
+
+        [HttpPost]
+        public GSLGenericRecord<GSL03600DTO> GSL03600GetCompany(GSL03600ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03600GetCompany");
+            var loEx = new R_Exception();
+            GSLGenericRecord<GSL03600DTO> loRtn = new();
+            _Logger.LogInfo("Start GSL03600GetCompany");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLWarehouse");
+                var loResult = loCls.GetALLCompany();
+
+                _Logger.LogInfo("Filter Search by text GSL03600GetCompany");
+                loRtn.Data = loResult.Find(x => x.CCOMPANY_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo("End GSL03600GetCompany");
+            return loRtn;
+        }
     }
 }

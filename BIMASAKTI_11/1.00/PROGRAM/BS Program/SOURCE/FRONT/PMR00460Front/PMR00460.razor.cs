@@ -57,7 +57,7 @@ public partial class PMR00460 : R_Page
         R_DisplayException(loEx);
     }
 
-    private void ValueChangedProperty(string value)
+    private async Task ValueChangedProperty(string value)
     {
         var loEx = new R_Exception();
         try
@@ -75,6 +75,8 @@ public partial class PMR00460 : R_Page
                 _viewModel.ReportParam.CTO_BUILDING_ID = "";
                 _viewModel.ReportParam.CTO_BUILDING_NAME = "";
             }
+            
+            await _viewModel.GetDefaultParam();
         }
         catch (Exception ex)
         {

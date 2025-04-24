@@ -48,7 +48,18 @@ public partial class PMT03500UpdateMeter : R_ITabPage
         var loLookupViewModel = new LookupGSL02200ViewModel();
         try
         {
-            if (_viewModel.Header.CBUILDING_ID == null || _viewModel.Header.CBUILDING_ID.Trim().Length <= 0) return;
+            if (_viewModel.Header.CBUILDING_ID == null || _viewModel.Header.CBUILDING_ID.Trim().Length <= 0)
+            {
+                _viewModel.Header.CBUILDING_ID = "";
+                _viewModel.Header.CBUILDING_NAME = "";
+                _viewModel.Header.CUNIT_ID = "";
+                _viewModel.Header.CUNIT_NAME = "";
+                _viewModel.Header.CFLOOR_ID = "";
+                _viewModel.Header.CREF_NO = "";
+                _viewModel.Header.CTENANT_ID = "";
+                _viewModel.Header.CTENANT_NAME = "";
+                return;
+            }
 
             var param = new GSL02200ParameterDTO
             {
@@ -67,10 +78,24 @@ public partial class PMT03500UpdateMeter : R_ITabPage
                     typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
                     "_ErrLookup01"));
                 _viewModel.Header.CBUILDING_ID = "";
+                _viewModel.Header.CBUILDING_NAME = "";
+                _viewModel.Header.CUNIT_ID = "";
+                _viewModel.Header.CUNIT_NAME = "";
+                _viewModel.Header.CFLOOR_ID = "";
+                _viewModel.Header.CREF_NO = "";
+                _viewModel.Header.CTENANT_ID = "";
+                _viewModel.Header.CTENANT_NAME = "";
                 goto EndBlock;
             }
 
             _viewModel.Header.CBUILDING_ID = loResult.CBUILDING_ID;
+            _viewModel.Header.CBUILDING_NAME = loResult.CBUILDING_NAME;
+            _viewModel.Header.CUNIT_ID = "";
+            _viewModel.Header.CUNIT_NAME = "";
+            _viewModel.Header.CFLOOR_ID = "";
+            _viewModel.Header.CREF_NO = "";
+            _viewModel.Header.CTENANT_ID = "";
+            _viewModel.Header.CTENANT_NAME = "";
         }
         catch (Exception ex)
         {
@@ -98,9 +123,29 @@ public partial class PMT03500UpdateMeter : R_ITabPage
         {
             var loTempResult = (GSL02200DTO)eventArgs.Result;
             if (loTempResult == null)
+            {
+                _viewModel.Header.CBUILDING_ID = "";
+                _viewModel.Header.CBUILDING_NAME = "";
+                _viewModel.Header.CUNIT_ID = "";
+                _viewModel.Header.CUNIT_NAME = "";
+                _viewModel.Header.CFLOOR_ID = "";
+                _viewModel.Header.CREF_NO = "";
+                _viewModel.Header.CTENANT_ID = "";
+                _viewModel.Header.CTENANT_NAME = "";
                 return;
+            }
 
-            _viewModel.Header.CBUILDING_ID = loTempResult.CBUILDING_ID;
+            if (loTempResult.CBUILDING_ID != _viewModel.Header.CBUILDING_ID)
+            {
+                _viewModel.Header.CBUILDING_ID = loTempResult.CBUILDING_ID;
+                _viewModel.Header.CBUILDING_NAME = loTempResult.CBUILDING_NAME;
+                _viewModel.Header.CUNIT_ID = "";
+                _viewModel.Header.CUNIT_NAME = "";
+                _viewModel.Header.CFLOOR_ID = "";
+                _viewModel.Header.CREF_NO = "";
+                _viewModel.Header.CTENANT_ID = "";
+                _viewModel.Header.CTENANT_NAME = "";
+            }
         }
         catch (Exception ex)
         {
@@ -223,7 +268,7 @@ public partial class PMT03500UpdateMeter : R_ITabPage
                 LEVENT = false,
                 LAGREEMENT = true,
                 CDEPT_CODE = "",
-                CTRANS_CODE = "", 
+                CTRANS_CODE = "",
                 CREF_NO = ""
             };
         }
@@ -244,7 +289,6 @@ public partial class PMT03500UpdateMeter : R_ITabPage
         var loEx = new R_Exception();
         try
         {
-
             if (_viewModel.LOTHER_UNIT)
             {
                 var loTempResult = (GSL02700DTO)eventArgs.Result;
@@ -365,6 +409,7 @@ public partial class PMT03500UpdateMeter : R_ITabPage
         var loParam = R_FrontUtility.ConvertObjectToObject<PMT03500UpdateMeterParameter>(poParam);
         await _viewModel.Init(loParam.CPROPETY_ID);
         _viewModel.Header.CBUILDING_ID = "";
+        _viewModel.Header.CBUILDING_NAME = "";
         _viewModel.Header.CUNIT_ID = "";
         _viewModel.Header.CUNIT_NAME = "";
         _viewModel.Header.CREF_NO = "";
@@ -391,7 +436,7 @@ public partial class PMT03500UpdateMeter : R_ITabPage
                     CSELECTED_UNIT_ID = ""
                     // CDEFAULT_UNIT_TYPE = _viewModel.Header.CCHARGES_TYPE
                 };
-                
+
                 eventArgs.TargetPageType = typeof(GSM02540Utilities);
             }
             else

@@ -90,7 +90,7 @@ public partial class GSM05000ApprovalChangeSequence : R_Page
     
     private async Task OnClickSave()
     {
-        await _conductor.R_SaveBatch();
+        await _grid.R_SaveBatch();
         await this.Close(true, true);
     }
     

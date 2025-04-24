@@ -89,7 +89,7 @@ namespace GLR00100Common.Model
                     CDOC_DATE = "20240102",
                     NDEBIT_AMOUNT = 1800000,
                     NCREDIT_AMOUNT = 0,
-                    CCURRENCY_CODE = "IDR",
+                    CCURRENCY_CODE = "USD",
 
                     CFROM_DEPT_CODE = "ADM",
                     CTO_DEPT_CODE = "HRD",
@@ -117,7 +117,7 @@ namespace GLR00100Common.Model
                     CDOC_DATE = "20240102",
                     NDEBIT_AMOUNT = 0,
                     NCREDIT_AMOUNT = 1800000,
-                    CCURRENCY_CODE = "IDR",
+                    CCURRENCY_CODE = "USD",
 
                     CFROM_DEPT_CODE = "ADM",
                     CTO_DEPT_CODE = "HRD",
@@ -253,13 +253,30 @@ namespace GLR00100Common.Model
                 SubData = loSubCollection
             };
             
+            var loTotalCurr = loCollection.GroupBy(x => x.CCURRENCY_CODE).ToList();
+            foreach (var itemCurr in loTotalCurr)
+            {
+                var loCurrency = new GLR00100TotalByCurrDTO()
+                {
+                    CCURRENCY_CODE = itemCurr.Key,
+                    NTOTAL_CREDIT = itemCurr.Sum(x => x.NCREDIT_AMOUNT),
+                    NTOTAL_DEBIT = itemCurr.Sum(x => x.NDEBIT_AMOUNT)
+                };
+                loData.GrandTotalByCurr.Add(loCurrency);
+            }
+
             foreach (var item in loCollection)
             {
                 item.DREF_DATE = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
-                    CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate) ? refDate : (DateTime?)null;
-                item.DDOC_DATE = DateTime.TryParseExact(item.CDOC_DATE, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var docDate) ? docDate : (DateTime?)null;
+                    CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
+                    ? refDate
+                    : (DateTime?)null;
+                item.DDOC_DATE = DateTime.TryParseExact(item.CDOC_DATE, "yyyyMMdd", CultureInfo.InvariantCulture,
+                    DateTimeStyles.AssumeUniversal, out var docDate)
+                    ? docDate
+                    : (DateTime?)null;
             }
-            
+
             //grouping untuk data berdasarkan CREF_DATE
             var loGroupDate = loCollection.GroupBy(x => x.DREF_DATE).ToList();
             foreach (var itemDate in loGroupDate)
@@ -268,11 +285,24 @@ namespace GLR00100Common.Model
                 {
                     DREF_DATE = itemDate.Key,
                     Data = itemDate.ToList(),
+                    SubTotalByCurr = new List<GLR00100TotalByCurrDTO>(),
                     NTOTAL_DEBIT = itemDate.Sum(x => x.NDEBIT_AMOUNT),
                     NTOTAL_CREDIT = itemDate.Sum(x => x.NCREDIT_AMOUNT)
                 };
+
+                var loSubTotalCurrDate = itemDate.GroupBy(x => x.CCURRENCY_CODE).ToList();
+                foreach (var itemSubCurrDate in loSubTotalCurrDate)
+                {
+                    var loCurrency = new GLR00100TotalByCurrDTO()
+                    {
+                        CCURRENCY_CODE = itemSubCurrDate.Key,
+                        NTOTAL_CREDIT = itemSubCurrDate.Sum(x => x.NCREDIT_AMOUNT),
+                        NTOTAL_DEBIT = itemSubCurrDate.Sum(x => x.NDEBIT_AMOUNT)
+                    };
+                    loDataDate.SubTotalByCurr.Add(loCurrency);
+                }
                 // parse ke datetime dulu untuk DREF_DATE pada loDataDate.Data
-                
+
                 loData.DataByDate.Add(loDataDate);
                 loData.NGRAND_TOTAL_CREDIT += loDataDate.NTOTAL_CREDIT;
                 loData.NGRAND_TOTAL_DEBIT += loDataDate.NTOTAL_DEBIT;
@@ -556,6 +586,18 @@ namespace GLR00100Common.Model
                 SubData = loSubCollection
             };
             
+            var loTotalCurr = loCollection.GroupBy(x => x.CCURRENCY_CODE).ToList();
+            foreach (var itemCurr in loTotalCurr)
+            {
+                var loCurrency = new GLR00100TotalByCurrDTO()
+                {
+                    CCURRENCY_CODE = itemCurr.Key,
+                    NTOTAL_CREDIT = itemCurr.Sum(x => x.NCREDIT_AMOUNT),
+                    NTOTAL_DEBIT = itemCurr.Sum(x => x.NDEBIT_AMOUNT)
+                };
+                loData.GrandTotalByCurr.Add(loCurrency);
+            }
+
             //grouping untuk data berdasarkan CREF_NO
             var loGroupRefNo = loCollection.GroupBy(x => x.CREF_NO).ToList();
             foreach (var itemRefNo in loGroupRefNo)
@@ -565,22 +607,39 @@ namespace GLR00100Common.Model
                     CREF_NO = itemRefNo.Key,
                     Data = itemRefNo.ToList(),
                     NTOTAL_DEBIT = itemRefNo.Sum(x => x.NDEBIT_AMOUNT),
-                    NTOTAL_CREDIT = itemRefNo.Sum(x => x.NCREDIT_AMOUNT)
+                     NTOTAL_CREDIT = itemRefNo.Sum(x => x.NCREDIT_AMOUNT)
                 };
+
+                var loSubTotalCurrRefNo = itemRefNo.GroupBy(x => x.CCURRENCY_CODE).ToList();
+                foreach (var itemSubCurrRefNo in loSubTotalCurrRefNo)
+                {
+                    var loCurrency = new GLR00100TotalByCurrDTO()
+                    {
+                        CCURRENCY_CODE = itemSubCurrRefNo.Key,
+                        NTOTAL_CREDIT = itemSubCurrRefNo.Sum(x => x.NCREDIT_AMOUNT),
+                        NTOTAL_DEBIT = itemSubCurrRefNo.Sum(x => x.NDEBIT_AMOUNT)
+                    };
+                    loDataRefNo.SubTotalByCurr.Add(loCurrency);
+                }
+
                 // parse ke datetime dulu untuk DREF_DATE pada loDataRefNo.Data
                 foreach (var itemData in loDataRefNo.Data)
                 {
                     itemData.DREF_DATE = DateTime.TryParseExact(itemData.CREF_DATE, "yyyyMMdd",
-                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate) ? refDate : (DateTime?)null;
+                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
+                        ? refDate
+                        : (DateTime?)null;
                     itemData.DDOC_DATE = DateTime.TryParseExact(itemData.CDOC_DATE, "yyyyMMdd",
-                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var docDate) ? docDate : (DateTime?)null;
+                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var docDate)
+                        ? docDate
+                        : (DateTime?)null;
                 }
-                
+
                 loData.DataByRefNo.Add(loDataRefNo);
                 loData.NGRAND_TOTAL_CREDIT += loDataRefNo.NTOTAL_CREDIT;
                 loData.NGRAND_TOTAL_DEBIT += loDataRefNo.NTOTAL_DEBIT;
             }
-            
+
             return loData;
         }
 
@@ -636,7 +695,7 @@ namespace GLR00100Common.Model
                     CDOC_DATE = "20240102",
                     NDEBIT_AMOUNT = 0,
                     NCREDIT_AMOUNT = 800000,
-                    CCURRENCY_CODE = "IDR",
+                    CCURRENCY_CODE = "USD",
 
                     CFROM_DEPT_CODE = "ADM",
                     CTO_DEPT_CODE = "HRD",
@@ -668,7 +727,7 @@ namespace GLR00100Common.Model
                     CDOC_DATE = "20240102",
                     NDEBIT_AMOUNT = 1800000,
                     NCREDIT_AMOUNT = 0,
-                    CCURRENCY_CODE = "IDR",
+                    CCURRENCY_CODE = "USD",
 
                     CFROM_DEPT_CODE = "ADM",
                     CTO_DEPT_CODE = "HRD",
@@ -853,9 +912,22 @@ namespace GLR00100Common.Model
 
                 //assign data CREF_DATE_DISPLAY dalam loCollection lalu di assign ke DATA
                 Data = loCollection,
+                GrandTotalByCurr = new List<GLR00100TotalByCurrDTO>(),
                 SubData = loSubCollection
             };
             
+            var loTotalCurr = loCollection.GroupBy(x => x.CCURRENCY_CODE).ToList();
+            foreach (var itemCurr in loTotalCurr)
+            {
+                var loCurrency = new GLR00100TotalByCurrDTO()
+                {
+                    CCURRENCY_CODE = itemCurr.Key,
+                    NTOTAL_CREDIT = itemCurr.Sum(x => x.NCREDIT_AMOUNT),
+                    NTOTAL_DEBIT = itemCurr.Sum(x => x.NDEBIT_AMOUNT)
+                };
+                loData.GrandTotalByCurr.Add(loCurrency);
+            }
+
             var loGroupTransCode = loCollection.GroupBy(x => x.CDEPT_CODE).ToList();
             foreach (var item in loGroupTransCode)
             {
@@ -864,20 +936,46 @@ namespace GLR00100Common.Model
                 {
                     CDEPT_CODE = item.Key,
                     Data = new List<GLR00100ReportBasedOnRefNoDTO>(),
+                    SubTotalByCurr = new List<GLR00100TotalByCurrDTO>(),
                     NTOTAL_DEBIT = item.Sum(x => x.NDEBIT_AMOUNT),
                     NTOTAL_CREDIT = item.Sum(x => x.NCREDIT_AMOUNT)
                 };
                 
+                var loSubTotalCurrDate = item.GroupBy(x => x.CCURRENCY_CODE).ToList();
+                foreach (var itemSubCurrDate in loSubTotalCurrDate)
+                {
+                    var loCurrency = new GLR00100TotalByCurrDTO()
+                    {
+                        CCURRENCY_CODE = itemSubCurrDate.Key,
+                        NTOTAL_CREDIT = itemSubCurrDate.Sum(x => x.NCREDIT_AMOUNT),
+                        NTOTAL_DEBIT = itemSubCurrDate.Sum(x => x.NDEBIT_AMOUNT)
+                    };
+                    loGroup.SubTotalByCurr.Add(loCurrency);
+                }
+
                 foreach (var itemRefNo in loGroupRefNo)
                 {
                     var loDataRefNo = new GLR00100ReportBasedOnRefNoDTO()
                     {
                         CREF_NO = itemRefNo.Key,
                         Data = itemRefNo.ToList(),
+                        SubTotalByCurr = new List<GLR00100TotalByCurrDTO>(),
                         NTOTAL_DEBIT = itemRefNo.Sum(x => x.NDEBIT_AMOUNT),
                         NTOTAL_CREDIT = itemRefNo.Sum(x => x.NCREDIT_AMOUNT)
                     };
-                    loGroup.Data.Add(loDataRefNo);
+                    
+                    var loSubTotalCurrRefNo = itemRefNo.GroupBy(x => x.CCURRENCY_CODE).ToList();
+                    foreach (var itemSubCurrRefNo in loSubTotalCurrRefNo)
+                    {
+                        var loCurrency = new GLR00100TotalByCurrDTO()
+                        {
+                            CCURRENCY_CODE = itemSubCurrRefNo.Key,
+                            NTOTAL_CREDIT = itemSubCurrRefNo.Sum(x => x.NCREDIT_AMOUNT),
+                            NTOTAL_DEBIT = itemSubCurrRefNo.Sum(x => x.NDEBIT_AMOUNT)
+                        };
+                        loDataRefNo.SubTotalByCurr.Add(loCurrency);
+                    }
+
                     // parse ke datetime dulu untuk DREF_DATE pada loDataRefNo.Data
                     foreach (var itemData in loDataRefNo.Data)
                     {
@@ -891,8 +989,10 @@ namespace GLR00100Common.Model
                             ? docDate
                             : (DateTime?)null;
                     }
+
+                    loGroup.Data.Add(loDataRefNo);
                 }
-                
+
                 loData.DataByTransCode.Add(loGroup);
                 loData.NGRAND_TOTAL_CREDIT += item.Sum(x => x.NCREDIT_AMOUNT);
                 loData.NGRAND_TOTAL_DEBIT += item.Sum(x => x.NDEBIT_AMOUNT);

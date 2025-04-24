@@ -10,6 +10,8 @@ using System.Transactions;
 using System.Data.SqlClient;
 using System.Globalization;
 using PMT01300ReportCommon;
+using R_Storage;
+using R_StorageCommon;
 
 namespace PMT01300BACK
 {
@@ -541,8 +543,9 @@ namespace PMT01300BACK
 
             return loReturn!;
         }
-        
-        public PMT01300ReportDataDTO GetDataPrintLetterOfIntent(PMT01300ReportParamDTO poParameter, DbConnection poConnection)
+
+        public PMT01300ReportDataDTO GetDataPrintLetterOfIntent(PMT01300ReportParamDTO poParameter,
+            DbConnection poConnection)
         {
             var lcMethod = nameof(GetDataPrintLetterOfIntent);
             using Activity activity = _activitySource.StartActivity(lcMethod)!;
@@ -560,15 +563,18 @@ namespace PMT01300BACK
                 loDb = new();
                 _Logger.LogDebug("{@ObjectDb}", loDb);
 
-                _Logger.LogInfo(string.Format("Create a new command and assign it to loCommand in Method {0}", lcMethod));
+                _Logger.LogInfo(
+                    string.Format("Create a new command and assign it to loCommand in Method {0}", lcMethod));
                 loCommand = loDb.GetCommand();
                 _Logger.LogDebug("{@ObjectDb}", loCommand);
 
-                _Logger.LogInfo(string.Format("Get a database connection and assign it to loConn in Method {0}", lcMethod));
+                _Logger.LogInfo(string.Format("Get a database connection and assign it to loConn in Method {0}",
+                    lcMethod));
                 loConn = poConnection;
                 _Logger.LogDebug("{@ObjectDbConnection}", loConn);
 
-                _Logger.LogInfo(string.Format("Initialize external exceptions For Take Resource Store Procedure in Method {0}", lcMethod));
+                _Logger.LogInfo(string.Format(
+                    "Initialize external exceptions For Take Resource Store Procedure in Method {0}", lcMethod));
                 R_ExternalException.R_SP_Init_Exception(loConn);
 
                 lcQuery = "RSP_PM_PRINT_AGREEMENT";
@@ -588,10 +594,13 @@ namespace PMT01300BACK
 
                 try
                 {
-                    _Logger.LogInfo(string.Format("Execute the SQL query and store the result in loDataTable in Method {0}", lcMethod));
+                    _Logger.LogInfo(string.Format(
+                        "Execute the SQL query and store the result in loDataTable in Method {0}", lcMethod));
                     var loDataTable = loDb.SqlExecQuery(loConn, loCommand, false);
 
-                    _Logger.LogInfo(string.Format("Convert the data in loDataTable to a list objects and assign it to loRtn in Method {0}", lcMethod));
+                    _Logger.LogInfo(string.Format(
+                        "Convert the data in loDataTable to a list objects and assign it to loRtn in Method {0}",
+                        lcMethod));
                     loReturn = R_Utility.R_ConvertTo<PMT01300ReportDataDTO>(loDataTable).ToList().FirstOrDefault()!;
                     _Logger.LogDebug("{@ObjectReturn}", loReturn);
                 }
@@ -599,9 +608,9 @@ namespace PMT01300BACK
                 {
                     loException.Add(ex);
                 }
+
                 _Logger.LogInfo(string.Format("Add external exceptions to loException in Method {0}", lcMethod));
                 loException.Add(R_ExternalException.R_SP_Get_Exception(loConn));
-
             }
             catch (Exception ex)
             {
@@ -627,11 +636,10 @@ namespace PMT01300BACK
             PMT01300ReportResultDataDTO? loReturn = null;
             DbConnection? loConn = null;
             DbCommand? loCommand;
-            R_Db? loDb = new ();
+            R_Db? loDb = new();
             CultureInfo loCultureInfo = new CultureInfo(R_BackGlobalVar.REPORT_CULTURE);
             try
             {
-
                 _Logger.LogInfo("Init Cls");
                 //loCls = new PMR01600Cls();
 
@@ -642,7 +650,8 @@ namespace PMT01300BACK
                 //var DataPrint = new PMT01300ReportDataDTO();
                 // loParameterInternal.CCOMPANY_ID = poParam.CCOMPANY_ID;
 
-                _Logger.LogInfo(string.Format("Get a database connection and assign it to loConn in Method {0}", lcMethodName));
+                _Logger.LogInfo(string.Format("Get a database connection and assign it to loConn in Method {0}",
+                    lcMethodName));
                 loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
                 _Logger.LogDebug("{@ObjectDbConnection}", loConn);
 
@@ -650,7 +659,8 @@ namespace PMT01300BACK
                 var DataPrint = GetDataPrintLetterOfIntent(poParameter: poParam, poConnection: loConn);
 
                 _Logger.LogInfo("Get Label");
-                var loLabel = AssignValuesWithMessages(typeof(PMT01300BackResources.Resources_Dummy_Class), loCultureInfo, new PMT01300ReportLabelDTO());
+                var loLabel = AssignValuesWithMessages(typeof(PMT01300BackResources.Resources_Dummy_Class),
+                    loCultureInfo, new PMT01300ReportLabelDTO());
 
                 //_Logger.LogInfo("Get Label Data");
                 //var loLabelData = AssignValuesWithMessages(typeof(Resource_PMR01600_Class), loCultureInfo, new PMR01600LabelDataDTO());
@@ -664,7 +674,6 @@ namespace PMT01300BACK
 
                 //loReturn.PageHeader.BaseHeaderColumn = new PMR01600BaseHeaderColumnDTO();
                 //loReturn.PageHeader.BaseHeaderColumn = (PMR01600BaseHeaderColumnDTO)loColumnBaseHeader;
-
 
 
                 //_Logger.LogInfo("Generate Footer Data For Print");
@@ -683,18 +692,128 @@ namespace PMT01300BACK
                 loReturn.LabelReport = new PMT01300ReportLabelDTO();
                 loReturn.LabelReport = loLabel as PMT01300ReportLabelDTO;
                 loReturn.Data = new PMT01300ReportDataDTO();
-                var loDataPrint = DataPrint != null ? DataPrint : new PMT01300ReportDataDTO();
-                loReturn.Data = loDataPrint;              
+                // var loDataPrint = DataPrint != null ? DataPrint : new PMT01300ReportDataDTO();
+
+                if (DataPrint != null)
+                {
+                    #region GetOsign Byte Array
+
+                    var osign01 = !string.IsNullOrEmpty(poParam.CSIGN_STORAGE_ID01) ||
+                                  !string.IsNullOrEmpty(poParam.CSIGN_ID01)
+                        ? GetSignStorage(poParam.CSIGN_STORAGE_ID01).Data
+                        : Array.Empty<byte>();
+                    var osign02 = !string.IsNullOrEmpty(poParam.CSIGN_STORAGE_ID02) ||
+                                  !string.IsNullOrEmpty(poParam.CSIGN_ID01)
+                        ? GetSignStorage(poParam.CSIGN_STORAGE_ID02).Data
+                        : Array.Empty<byte>();
+                    var osign03 = !string.IsNullOrEmpty(poParam.CSIGN_STORAGE_ID03) ||
+                                  !string.IsNullOrEmpty(poParam.CSIGN_ID01)
+                        ? GetSignStorage(poParam.CSIGN_STORAGE_ID03).Data
+                        : Array.Empty<byte>();
+                    var osign04 = !string.IsNullOrEmpty(poParam.CSIGN_STORAGE_ID04) ||
+                                  !string.IsNullOrEmpty(poParam.CSIGN_ID01)
+                        ? GetSignStorage(poParam.CSIGN_STORAGE_ID04).Data
+                        : Array.Empty<byte>();
+                    var osign05 = !string.IsNullOrEmpty(poParam.CSIGN_STORAGE_ID05) ||
+                                  !string.IsNullOrEmpty(poParam.CSIGN_ID01)
+                        ? GetSignStorage(poParam.CSIGN_STORAGE_ID05).Data
+                        : Array.Empty<byte>();
+                    var osign06 = !string.IsNullOrEmpty(poParam.CSIGN_STORAGE_ID06) ||
+                                  !string.IsNullOrEmpty(poParam.CSIGN_ID01)
+                        ? GetSignStorage(poParam.CSIGN_STORAGE_ID06).Data
+                        : Array.Empty<byte>();
+
+                    DataPrint.CNAME01 = poParam.CSIGN_NAME01;
+                    DataPrint.CNAME02 = poParam.CSIGN_NAME02;
+                    DataPrint.CNAME03 = poParam.CSIGN_NAME03;
+                    DataPrint.CNAME04 = poParam.CSIGN_NAME04;
+                    DataPrint.CNAME05 = poParam.CSIGN_NAME05;
+                    DataPrint.CNAME06 = poParam.CSIGN_NAME06;
+                    DataPrint.CPOSITION01 = poParam.CSIGN_POSITION01;
+                    DataPrint.CPOSITION02 = poParam.CSIGN_POSITION02;
+                    DataPrint.CPOSITION03 = poParam.CSIGN_POSITION03;
+                    DataPrint.CPOSITION04 = poParam.CSIGN_POSITION04;
+                    DataPrint.CPOSITION05 = poParam.CSIGN_POSITION05;
+                    DataPrint.CPOSITION06 = poParam.CSIGN_POSITION06;
+                    DataPrint.OSIGN01 = osign01;
+                    DataPrint.OSIGN02 = osign02;
+                    DataPrint.OSIGN03 = osign03;
+                    DataPrint.OSIGN04 = osign04;
+                    DataPrint.OSIGN05 = osign05;
+                    DataPrint.OSIGN06 = osign06;
+
+                    #endregion
+
+                    loReturn.Data = DataPrint;
+                }
+                else
+                {
+                    loReturn.Data = new PMT01300ReportDataDTO();
+                }
+                // loReturn.Data = loDataPrint;              
             }
             catch (Exception ex)
             {
                 loException.Add(ex);
                 _Logger.LogError(ex, "Error in GenerateDataPrint");
             }
+
             _Logger.LogInfo("END Method GenerateDataPrint on Controller");
             loException.ThrowExceptionIfErrors();
 
             return loReturn!;
+        }
+
+        public R_ReadResult GetSignStorage(string pcGUID)
+        {
+            var lcMethodName = nameof(GetSignStorage);
+            _Logger!.LogInfo(string.Format("START process method {0} on Cls", lcMethodName));
+
+            R_Exception loException = new();
+            R_Db loDb = null;
+            DbConnection loConn = null;
+            R_ReadParameter loReadParameter;
+            R_ReadResult loReadResult = null;
+            try
+            {
+                loDb = new R_Db();
+                loConn = loDb.GetConnection();
+
+                loReadParameter = new R_ReadParameter()
+                {
+                    StorageId = pcGUID
+                };
+
+                loReadResult = R_StorageUtility.ReadFile(loReadParameter, loConn);
+                _Logger!.LogInfo(string.Format("Image with storage {0} found ", loReadParameter.StorageId));
+            }
+            catch (Exception ex)
+            {
+                // _Logger!.LogInfo(string.Format("Image with storage {0} NOT found ", loReadParameter.StorageId));
+                loException.Add(ex);
+            }
+            finally
+            {
+                if (loConn != null)
+                {
+                    if ((loConn.State == ConnectionState.Closed) == false)
+                    {
+                        loConn.Close();
+                        loConn.Dispose();
+                    }
+
+                    loConn = null;
+                }
+
+                if (loDb != null)
+                {
+                    loDb = null;
+                }
+            }
+
+            loException.ThrowExceptionIfErrors();
+            _Logger.LogInfo(string.Format("END process method {0} on Cls", lcMethodName));
+            return loReadResult;
         }
 
         #endregion
@@ -714,7 +833,8 @@ namespace PMT01300BACK
                 pcEntity += "01";
             }
 
-            if (DateTime.TryParseExact(pcEntity, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+            if (DateTime.TryParseExact(pcEntity, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None,
+                    out result))
             {
                 return result;
             }

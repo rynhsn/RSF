@@ -41,11 +41,16 @@
             APR00500 = new Button();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
+            PMB04000 = new Button();
+            PMT01300 = new Button();
             groupBox3 = new GroupBox();
+            APR00100SummaryByDate = new Button();
+            APR00100SummaryBySupplier = new Button();
+            APR00100DetailBySupplier = new Button();
+            APR00100DetailByDate = new Button();
             groupBox4 = new GroupBox();
             HDR00200 = new Button();
             Refresh = new Button();
-            PMT01300 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -175,6 +180,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(PMB04000);
             groupBox2.Controls.Add(PMT01300);
             groupBox2.Controls.Add(PMR00400);
             groupBox2.Controls.Add(PMR02600);
@@ -186,21 +192,89 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "PM Report";
             // 
+            // PMB04000
+            // 
+            PMB04000.Location = new Point(6, 138);
+            PMB04000.Name = "PMB04000";
+            PMB04000.Size = new Size(75, 23);
+            PMB04000.TabIndex = 11;
+            PMB04000.Text = "PMB04000";
+            PMB04000.UseVisualStyleBackColor = true;
+            PMB04000.Click += PMB04000_Click;
+            // 
+            // PMT01300
+            // 
+            PMT01300.Location = new Point(6, 109);
+            PMT01300.Name = "PMT01300";
+            PMT01300.Size = new Size(75, 23);
+            PMT01300.TabIndex = 10;
+            PMT01300.Text = "PMT01300";
+            PMT01300.UseVisualStyleBackColor = true;
+            PMT01300.Click += PMT01300_Click;
+            // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(APR00100SummaryByDate);
+            groupBox3.Controls.Add(APR00100SummaryBySupplier);
+            groupBox3.Controls.Add(APR00100DetailBySupplier);
+            groupBox3.Controls.Add(APR00100DetailByDate);
             groupBox3.Controls.Add(APR00300);
             groupBox3.Controls.Add(APR00500);
             groupBox3.Location = new Point(254, 12);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(87, 340);
+            groupBox3.Size = new Size(283, 340);
             groupBox3.TabIndex = 13;
             groupBox3.TabStop = false;
             groupBox3.Text = "AP Report";
             // 
+            // APR00100SummaryByDate
+            // 
+            APR00100SummaryByDate.Location = new Point(89, 51);
+            APR00100SummaryByDate.Name = "APR00100SummaryByDate";
+            APR00100SummaryByDate.Size = new Size(188, 23);
+            APR00100SummaryByDate.TabIndex = 15;
+            APR00100SummaryByDate.Text = "APR00100SummaryByDate";
+            APR00100SummaryByDate.TextAlign = ContentAlignment.MiddleLeft;
+            APR00100SummaryByDate.UseVisualStyleBackColor = true;
+            APR00100SummaryByDate.Click += APR00100SummaryByDate_Click;
+            // 
+            // APR00100SummaryBySupplier
+            // 
+            APR00100SummaryBySupplier.Location = new Point(89, 80);
+            APR00100SummaryBySupplier.Name = "APR00100SummaryBySupplier";
+            APR00100SummaryBySupplier.Size = new Size(188, 23);
+            APR00100SummaryBySupplier.TabIndex = 14;
+            APR00100SummaryBySupplier.Text = "APR00100SummaryBySupplier";
+            APR00100SummaryBySupplier.TextAlign = ContentAlignment.MiddleLeft;
+            APR00100SummaryBySupplier.UseVisualStyleBackColor = true;
+            APR00100SummaryBySupplier.Click += APR00100SummaryBySupplier_Click;
+            // 
+            // APR00100DetailBySupplier
+            // 
+            APR00100DetailBySupplier.Location = new Point(89, 106);
+            APR00100DetailBySupplier.Name = "APR00100DetailBySupplier";
+            APR00100DetailBySupplier.Size = new Size(188, 23);
+            APR00100DetailBySupplier.TabIndex = 13;
+            APR00100DetailBySupplier.Text = "APR00100DetailBySupplier";
+            APR00100DetailBySupplier.TextAlign = ContentAlignment.MiddleLeft;
+            APR00100DetailBySupplier.UseVisualStyleBackColor = true;
+            APR00100DetailBySupplier.Click += APR00100DetailBySupplier_Click;
+            // 
+            // APR00100DetailByDate
+            // 
+            APR00100DetailByDate.Location = new Point(87, 22);
+            APR00100DetailByDate.Name = "APR00100DetailByDate";
+            APR00100DetailByDate.Size = new Size(190, 23);
+            APR00100DetailByDate.TabIndex = 12;
+            APR00100DetailByDate.Text = "APR00100DetailByDate";
+            APR00100DetailByDate.TextAlign = ContentAlignment.MiddleLeft;
+            APR00100DetailByDate.UseVisualStyleBackColor = true;
+            APR00100DetailByDate.Click += APR00100DetailByDate_Click;
+            // 
             // groupBox4
             // 
             groupBox4.Controls.Add(HDR00200);
-            groupBox4.Location = new Point(347, 12);
+            groupBox4.Location = new Point(543, 12);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(87, 340);
             groupBox4.TabIndex = 14;
@@ -225,16 +299,6 @@
             Refresh.TabIndex = 15;
             Refresh.Text = "Refresh";
             Refresh.UseVisualStyleBackColor = true;
-            // 
-            // PMT01300
-            // 
-            PMT01300.Location = new Point(6, 109);
-            PMT01300.Name = "PMT01300";
-            PMT01300.Size = new Size(75, 23);
-            PMT01300.TabIndex = 10;
-            PMT01300.Text = "PMT01300";
-            PMT01300.UseVisualStyleBackColor = true;
-            PMT01300.Click += PMT01300_Click;
             // 
             // FormMenu
             // 
@@ -277,5 +341,10 @@
         private Button HDR00200;
         private Button Refresh;
         private Button PMT01300;
+        private Button PMB04000;
+        private Button APR00100SummaryByDate;
+        private Button APR00100SummaryBySupplier;
+        private Button APR00100DetailBySupplier;
+        private Button APR00100DetailByDate;
     }
 }

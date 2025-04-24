@@ -171,11 +171,11 @@ public class HDR00200PrintPrivateController : R_ReportControllerBase
             var lcLang = R_BackGlobalVar.CULTURE;
 
             var loCls = new HDR00200Cls();
-            var loLogo = loCls.GetBaseHeaderLogoCompany(lcCompany);
+            var loHeader = loCls.GetBaseHeaderLogoCompany(lcCompany);
             loRtn.BaseHeaderData = new BaseHeaderDTO
             {
-                BLOGO_COMPANY = loLogo.BLOGO,
-                CCOMPANY_NAME = "PT Realta Chakradarma",
+                BLOGO_COMPANY = loHeader.BLOGO,
+                CCOMPANY_NAME = loHeader.CCOMPANY_NAME!,
                 CPRINT_CODE = "HDR00200",
                 CPRINT_NAME = "CARE Report",
                 CUSER_ID = lcUser

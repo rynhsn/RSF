@@ -60,6 +60,69 @@ namespace TXB00200FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Period.
+        /// </summary>
+        internal static string CURRENT_PERIOD {
+            get {
+                return ResourceManager.GetString("CURRENT_PERIOD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Soft Period.
+        /// </summary>
+        internal static string CURRENT_SOFT_PERIOD {
+            get {
+                return ResourceManager.GetString("CURRENT_SOFT_PERIOD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dept.
+        /// </summary>
+        internal static string DEPT {
+            get {
+                return ResourceManager.GetString("DEPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string DESCRIPTION {
+            get {
+                return ResourceManager.GetString("DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Updated By.
+        /// </summary>
+        internal static string LAST_UPDATED_BY {
+            get {
+                return ResourceManager.GetString("LAST_UPDATED_BY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Module.
+        /// </summary>
+        internal static string MODULE {
+            get {
+                return ResourceManager.GetString("MODULE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No..
+        /// </summary>
+        internal static string NO {
+            get {
+                return ResourceManager.GetString("NO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Process.
         /// </summary>
         internal static string PROCESS {
@@ -78,7 +141,52 @@ namespace TXB00200FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Soft Close Tax Successfully.
+        ///   Looks up a localized string similar to Ref Date.
+        /// </summary>
+        internal static string REF_DATE {
+            get {
+                return ResourceManager.GetString("REF_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ref No.
+        /// </summary>
+        internal static string REF_NO {
+            get {
+                return ResourceManager.GetString("REF_NO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save to Excel.
+        /// </summary>
+        internal static string SAVE_TO_EXCEL {
+            get {
+                return ResourceManager.GetString("SAVE_TO_EXCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solution.
+        /// </summary>
+        internal static string SOLUTION {
+            get {
+                return ResourceManager.GetString("SOLUTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string STATUS {
+            get {
+                return ResourceManager.GetString("STATUS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Soft Closing Proceed Successfully.
         /// </summary>
         internal static string SUCCESS_SOFT_CLOSE {
             get {
@@ -92,6 +200,15 @@ namespace TXB00200FrontResources {
         internal static string TAX_PERIOD {
             get {
                 return ResourceManager.GetString("TAX_PERIOD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction Type.
+        /// </summary>
+        internal static string TRANSACTION_TYPE {
+            get {
+                return ResourceManager.GetString("TRANSACTION_TYPE", resourceCulture);
             }
         }
     }

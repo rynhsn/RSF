@@ -87,7 +87,7 @@ namespace PMR00460BackResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Care No..
+        ///   Looks up a localized string similar to CARE No..
         /// </summary>
         internal static string CareNo {
             get {

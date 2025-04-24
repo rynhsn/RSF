@@ -1,0 +1,37 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Print Actual Recurring Journal", ResourceId = "_pageTitlePrintPopup")]
+
+<R_StackLayout Style="width: 800px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>Departement</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="journal.CDEPT_CODE" Enabled="false"
+                   ></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="5">
+            <R_TextBox @bind-Value="journal.CDEPT_NAME" Enabled="false"
+                   ></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>Reference No.</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="7">
+            <R_TextBox @bind-Value="journal.CREF_NO" Enabled="false"
+                   ></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="9">
+            <R_Label></R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_Button @ref="@PrintBtn" OnClick="Button_OnClickOkAsync">
+                Print
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>

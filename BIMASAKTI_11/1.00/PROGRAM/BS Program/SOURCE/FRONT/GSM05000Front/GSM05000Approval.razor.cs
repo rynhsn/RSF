@@ -3,6 +3,7 @@ using GSM05000Common.DTOs;
 using GSM05000Model.ViewModel;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
+using Lookup_GSModel.ViewModel;
 using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
@@ -578,7 +579,7 @@ namespace GSM05000Front
                 }
 
                 var loData = (GSM05000ApprovalUserDTO)eventArgs.Data;
-                if(string.IsNullOrEmpty(loData.CUSER_ID))
+                if (string.IsNullOrEmpty(loData.CUSER_ID))
                 {
                     loException.Add(new Exception("User ID is required"));
                     eventArgs.Cancel = true;
@@ -599,11 +600,10 @@ namespace GSM05000Front
 
             try
             {
-                
                 var loData = (GSM05000ApprovalReplacementDTO)eventArgs.Data;
-                if(string.IsNullOrEmpty(loData.CUSER_ID))
+                if (string.IsNullOrEmpty(loData.CUSER_REPLACEMENT))
                 {
-                    loException.Add(new Exception("User ID is required"));
+                    loException.Add(new Exception(_localizer["ErrReqUserId"]));
                     eventArgs.Cancel = true;
                 }
             }
@@ -710,5 +710,56 @@ namespace GSM05000Front
 
         #endregion
         */
+
+        private async Task UserCellValueChanged(R_CellValueChangedEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (eventArgs.ColumnName == nameof(GSM05000ApprovalReplacementDTO.CUSER_REPLACEMENT))
+                {
+                    var loData = (GSM05000ApprovalReplacementDTO)eventArgs.CurrentRow;
+
+                    if (eventArgs.Value.ToString().Length > 0)
+                    {
+                        var loParam = new GSL01100ParameterDTO()
+                        {
+                            CPARAMETER_ID = _viewModelUser.HeaderEntity.CTRANS_CODE,
+                            CPROGRAM_ID = "GST00500",
+                            CSEARCH_TEXT = loData.CUSER_REPLACEMENT
+                        };
+
+                        var loLookupViewModel = new LookupGSL01100ViewModel();
+
+                        var loResult = await loLookupViewModel.GetUserApproval(loParam);
+
+                        if (loResult == null)
+                        {
+                            loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                            loData.CUSER_REPLACEMENT = "";
+                            loData.CUSER_REPLACEMENT_NAME = "";
+                            goto EndBlock;
+                        }
+                        loData.CUSER_REPLACEMENT = loResult.CUSER_ID;
+                        loData.CUSER_REPLACEMENT_NAME = loResult.CUSER_NAME;
+                    }
+                    else
+                    {
+                        loData.CUSER_REPLACEMENT = "";
+                        loData.CUSER_REPLACEMENT_NAME = "";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            EndBlock:
+            loEx.ThrowExceptionIfErrors();
+        }
     }
 }
