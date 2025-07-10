@@ -23,7 +23,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.1" />
+    <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.2" />
     <PackageReference Include="Realta.CommonCollectionNuGet" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
@@ -31,11 +31,13 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\GFF00900SERVICES\GFF00900SERVICES.csproj" />
     <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_GSSERVICES\Lookup_GSSERVICES.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GS\GSM00300SERVICE\GSM00300SERVICE.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GS\GSM02000Service\GSM02000Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GS\GSM02500SERVICE\GSM02500SERVICE.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GS\GSM04000SERVICE\GSM04000Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GS\GSM04500Service\GSM04500Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GS\GSM05000Service\GSM05000Service.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GS\GST00500Service\GST00500Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>

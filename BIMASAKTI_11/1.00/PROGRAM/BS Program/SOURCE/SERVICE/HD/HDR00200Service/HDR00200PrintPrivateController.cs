@@ -176,6 +176,7 @@ public class HDR00200PrintPrivateController : R_ReportControllerBase
             {
                 BLOGO_COMPANY = loHeader.BLOGO,
                 CCOMPANY_NAME = loHeader.CCOMPANY_NAME!,
+                DPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
                 CPRINT_CODE = "HDR00200",
                 CPRINT_NAME = "CARE Report",
                 CUSER_ID = lcUser

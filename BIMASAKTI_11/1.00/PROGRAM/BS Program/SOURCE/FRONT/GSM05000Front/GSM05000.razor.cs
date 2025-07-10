@@ -36,7 +36,7 @@ public partial class GSM05000 : R_Page
 
             var loGroupDescriptor = new List<R_GridGroupDescriptor>
             {
-                new() { FieldName = "MODULE" }
+                new() { FieldName = nameof(GSM05000GridDTO.MODULE) }
             };
             await _gridRef.R_GroupBy(loGroupDescriptor);
             await _gridRef.R_RefreshGrid(null);

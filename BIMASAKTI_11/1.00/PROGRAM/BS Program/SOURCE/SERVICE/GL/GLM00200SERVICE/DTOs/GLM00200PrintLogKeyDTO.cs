@@ -1,4 +1,5 @@
-﻿using R_CommonFrontBackAPI.Log;
+﻿using R_BackEnd;
+using R_CommonFrontBackAPI.Log;
 
 namespace GLM00200SERVICE
 {
@@ -6,5 +7,6 @@ namespace GLM00200SERVICE
     {
         public T poParam { get; set; }
         public R_NetCoreLogKeyDTO poLogKey { get; set; }
+        public R_ReportGlobalDTO poGlobalVar { get; set; }
     }
 }

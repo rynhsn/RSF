@@ -12,8 +12,12 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CFront_005CR_005FLockingFront_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CFront_005CR_005FProcessAndUploadFront_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005C4_002E_0020Work_005C1_002E_0020SOURCECODE_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CMenu_005CBlazorClientHelper_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CRealCode_005CRSF_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CBS_0020Program_005CSOURCE_005CFRONT_005CDll_005CICR00600_005CLookup_005FICCOMMON_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CRealCode_005CRSF_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CBack_005CR_005FAPIBackEnd_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CRealCode_005CRSF_005CBIMASAKTI_005F11_005C1_002E00_005CPROGRAM_005CSYSTEM_005CSOURCE_005CLIBRARY_005CFront_005CR_005FAPICommonDTO_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=616A6ED1_002DBA78_002D4853_002D9267_002D8696249E8C0A_002Fd_003AViewModel_002Ff_003AHDM00400UploadViewModel_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AObject_002Ecs_002Fl_003AC_0021_003FUsers_003Friyan_002Ecodeid_003FAppData_003FLocal_003FSymbols_003Fsrc_003Fdotnet_003Fruntime_003F1e620a42e71ca8c7efb033fd525f04be5fa701fe_003Fsrc_003Flibraries_003FSystem_002EPrivate_002ECoreLib_003Fsrc_003FSystem_003FObject_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AR_005FConductor_002Ecs_002Fl_003AC_0021_003FUsers_003Friyan_002Ecodeid_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F4a22b6ad05ae49ad9e2ed1133d70e9e6bc600_003Fce_003Fc29b1d59_003FR_005FConductor_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\SYSTEM\SOURCE\LIBRARY\Front\R_CommonFrontBackAPI.dll" /&gt;&#xD;
   &lt;Assembly Path="D:\4. Work\1. SOURCECODE\BIMASAKTI_11\1.00\PROGRAM\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Controls.dll" /&gt;&#xD;
@@ -24,6 +28,8 @@
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FAP_002FAPR00500_002FAPR00500FrontResources_002FAPR00500FrontResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FCBB00200_002FCBB00200FrontResources_002FCBB00200FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGHC_002FGL_002FGLM00200_002FGLM00200FrontResources_002FGLM00200FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGHC_002FPM_002FPMM04500_002FPMM04500FrontResources_002FPMM04500FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGLI00100_002FGLI00100FrontResources_002FGLI00100FrontResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGLM00500_002FGLM00500FrontResources_002FGLM00500FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
@@ -33,6 +39,7 @@
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGSM05000_002FGSM05000FrontResources_002FGSM05000FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FGS_002FGSM02000_002FGSM02000FrontResources_002FGSM02000FrontResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FHD_002FHDM00400_002FHDM00400FrontResources_002FHDM00400FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FIC_002FICR00100_002FICR00100FrontResources_002FICR00100FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLMT03500_002FLMT03500FrontResources_002FLMT03500FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLookup_002FAP_002FLookup_005FAPFrontResources_002FLookupAPFrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
@@ -40,10 +47,12 @@
 	
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLookup_002FLookup_005FGSFrontResources_002FLookup_005FGSFrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLookup_002FPM_002FLookup_005FPMFrontResources_002FLookup_005FPMFrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FPMT03500_002FPMT03500FrontResources_002FPMT03500FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FPM_002FPMI00500_002FPMI00500FrontResources_002FPMI00500FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FPM_002FPMM01500_002FPMM01500FrontResources_002FPMM01500FrontResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FPM_002FPMR00460_002FPMR00460FrontResources_002FPMR00460FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FPM_002FPMR03000_002FPMR03000FrontResources_002FPMR03000FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FPM_002FPMT01300_002FPMT01300FrontResources_002FPMT01300FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FPM_002FPMT03500_002FPMT03500FrontResources_002FPMT03500FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	
@@ -69,7 +78,14 @@
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/ShowComments/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/ShowOnlyStringResources/@EntryValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=1ceaa694_002Dc824_002D4d1b_002D84cb_002D84c561ff49f1_0023PMR00400Front/@EntryIndexedValue">True</s:Boolean>
+	
+	
+	
+	
+	
+	
 	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=99f28822_002Dc701_002D4c1b_002Db86e_002D01eeddeb498d_0023PMR00400Common/@EntryIndexedValue">True</s:Boolean>
+	
 	
 	
 	

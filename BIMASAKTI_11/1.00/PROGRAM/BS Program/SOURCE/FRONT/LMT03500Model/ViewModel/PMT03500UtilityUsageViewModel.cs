@@ -64,7 +64,7 @@ namespace PMT03500Model.ViewModel
         public DateTime UtilityPeriodFromDtDt = DateTime.Now;
         public DateTime UtilityPeriodToDtDt = DateTime.Now;
 
-        // public DateTime UtilityPeriodDtMin = DateTime.Now;
+        public DateTime UtilityPeriodDtMin = DateTime.Now;
         public DateTime UtilityPeriodDtMax = DateTime.Now;
 
         public DataSet ExcelDataSetCutOff { get; set; }
@@ -652,103 +652,13 @@ namespace PMT03500Model.ViewModel
         {
             if (SystemParam != null)
             {
-                // if (UtilityTypeId == "01" || UtilityTypeId == "02")
-                // {
-                //     // UtilityPeriodYear diisi dari 4 karaketer pertama dari property SystemParam.CELECTRIC_PERIOD
-                //     // UtilityPeriodYear = SystemParam.CELECTRIC_PERIOD.Substring(0, 4);
-                //     // UtilityPeriodNo = SystemParam.CELECTRIC_PERIOD.Substring(4, 2);
-                //     // InvPeriodYear = SystemParam.CELECTRIC_PERIOD.Substring(0, 4);
-                //     // InvPeriodNo = SystemParam.CELECTRIC_PERIOD.Substring(4, 2);
-                //     
-                //     if (SystemParam.LELECTRIC_END_MONTH == false)
-                //     {
-                //         var loDate = new DateTime(int.Parse(UtilityPeriodYear), int.Parse(UtilityPeriodNo),
-                //             int.Parse(SystemParam.CELECTRIC_DATE) + 1);
-                //         var loDateFrom = loDate.AddMonths(-1);
-                //         var loDateTo = loDate.AddDays(-1);
-                //         UtilityPeriodFromDtDt = loDateFrom;
-                //         UtilityPeriodToDtDt = loDateTo;
-                //         // UtilityPeriodDtMin = loDateFrom.AddDays(1);
-                //         UtilityPeriodDtMax = loDateTo;
-                //     }
-                //     else
-                //     {
-                //         UtilityPeriodFromDtDt =
-                //             DateTime.ParseExact(Period.CSTART_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
-                //         UtilityPeriodToDtDt =
-                //             DateTime.ParseExact(Period.CEND_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
-                //         // UtilityPeriodDtMin = UtilityPeriodFromDtDt;
-                //         UtilityPeriodDtMax = UtilityPeriodToDtDt;
-                //     }
-                // }
-                // else if (UtilityTypeId == "03")
-                // {
-                //     // UtilityPeriodYear = SystemParam.CWATER_PERIOD.Substring(0, 4);
-                //     // UtilityPeriodNo = SystemParam.CWATER_PERIOD.Substring(4, 2);
-                //     // InvPeriodYear = SystemParam.CWATER_PERIOD.Substring(0, 4);
-                //     // InvPeriodNo = SystemParam.CWATER_PERIOD.Substring(4, 2);
-                //     if (SystemParam.LWATER_END_MONTH == false)
-                //     {
-                //         var loDate = new DateTime(int.Parse(UtilityPeriodYear), int.Parse(UtilityPeriodNo),
-                //             int.Parse(SystemParam.CWATER_DATE) + 1);
-                //         var loDateFrom = loDate.AddMonths(-1);
-                //         var loDateTo = loDate.AddDays(-1);
-                //         UtilityPeriodFromDtDt = loDateFrom;
-                //         UtilityPeriodToDtDt = loDateTo;
-                //         // UtilityPeriodDtMin = loDateFrom.AddDays(1);
-                //         UtilityPeriodDtMax = loDateTo;
-                //     }
-                //     else
-                //     {
-                //         UtilityPeriodFromDtDt =
-                //             DateTime.ParseExact(Period.CSTART_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
-                //         UtilityPeriodToDtDt =
-                //             DateTime.ParseExact(Period.CEND_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
-                //         // UtilityPeriodDtMin = UtilityPeriodFromDtDt;
-                //         UtilityPeriodDtMax = UtilityPeriodToDtDt;
-                //     }
-                // }
-                // else if (UtilityTypeId == "04")
-                // {
-                //     // UtilityPeriodYear = SystemParam.CWATER_PERIOD.Substring(0, 4);
-                //     // UtilityPeriodNo = SystemParam.CWATER_PERIOD.Substring(4, 2);
-                //     // InvPeriodYear = SystemParam.CWATER_PERIOD.Substring(0, 4);
-                //     // InvPeriodNo = SystemParam.CWATER_PERIOD.Substring(4, 2);
-                //     if (SystemParam.LGAS_END_MONTH == false)
-                //     {
-                //         var loDate = new DateTime(int.Parse(UtilityPeriodYear), int.Parse(UtilityPeriodNo),
-                //             int.Parse(SystemParam.CGAS_DATE) + 1);
-                //         var loDateFrom = loDate.AddMonths(-1);
-                //         var loDateTo = loDate.AddDays(-1);
-                //         UtilityPeriodFromDtDt = loDateFrom;
-                //         UtilityPeriodToDtDt = loDateTo;
-                //         // UtilityPeriodDtMin = loDateFrom.AddDays(1);
-                //         UtilityPeriodDtMax = loDateTo;
-                //     }
-                //     else
-                //     {
-                //         UtilityPeriodFromDtDt =
-                //             DateTime.ParseExact(Period.CSTART_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
-                //         UtilityPeriodToDtDt =
-                //             DateTime.ParseExact(Period.CEND_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
-                //         // UtilityPeriodDtMin = UtilityPeriodFromDtDt;
-                //         UtilityPeriodDtMax = UtilityPeriodToDtDt;
-                //     }
-                // }
-
                 if (UtilityTypeId == "01" || UtilityTypeId == "02")
                 {
-                    // UtilityPeriodYear diisi dari 4 karaketer pertama dari property SystemParam.CELECTRIC_PERIOD
-                    // UtilityPeriodYear = SystemParam.CELECTRIC_PERIOD.Substring(0, 4);
-                    // UtilityPeriodNo = SystemParam.CELECTRIC_PERIOD.Substring(4, 2);
-                    // InvPeriodYear = SystemParam.CELECTRIC_PERIOD.Substring(0, 4);
-                    // InvPeriodNo = SystemParam.CELECTRIC_PERIOD.Substring(4, 2);
-
                     if (SystemParam.LELECTRIC_END_MONTH == false)
                     {
                         var loDate = new DateTime(int.Parse(InvPeriodYear), int.Parse(InvPeriodNo),
                             int.Parse(SystemParam.CELECTRIC_DATE) + 1);
-                        var loDateFrom = loDate.AddMonths(-1);
+                        var loDateFrom = loDate.AddMonths(-3);
                         var loDateTo = loDate.AddDays(-1);
                         UtilityPeriodFromDtDt = loDateFrom;
                         UtilityPeriodToDtDt = loDateTo;
@@ -767,15 +677,11 @@ namespace PMT03500Model.ViewModel
                 }
                 else if (UtilityTypeId == "03")
                 {
-                    // UtilityPeriodYear = SystemParam.CWATER_PERIOD.Substring(0, 4);
-                    // UtilityPeriodNo = SystemParam.CWATER_PERIOD.Substring(4, 2);
-                    // InvPeriodYear = SystemParam.CWATER_PERIOD.Substring(0, 4);
-                    // InvPeriodNo = SystemParam.CWATER_PERIOD.Substring(4, 2);
                     if (SystemParam.LWATER_END_MONTH == false)
                     {
                         var loDate = new DateTime(int.Parse(InvPeriodYear), int.Parse(InvPeriodNo),
                             int.Parse(SystemParam.CWATER_DATE) + 1);
-                        var loDateFrom = loDate.AddMonths(-1);
+                        var loDateFrom = loDate.AddMonths(-3);
                         var loDateTo = loDate.AddDays(-1);
                         UtilityPeriodFromDtDt = loDateFrom;
                         UtilityPeriodToDtDt = loDateTo;
@@ -794,15 +700,11 @@ namespace PMT03500Model.ViewModel
                 }
                 else if (UtilityTypeId == "04")
                 {
-                    // UtilityPeriodYear = SystemParam.CWATER_PERIOD.Substring(0, 4);
-                    // UtilityPeriodNo = SystemParam.CWATER_PERIOD.Substring(4, 2);
-                    // InvPeriodYear = SystemParam.CWATER_PERIOD.Substring(0, 4);
-                    // InvPeriodNo = SystemParam.CWATER_PERIOD.Substring(4, 2);
                     if (SystemParam.LGAS_END_MONTH == false)
                     {
                         var loDate = new DateTime(int.Parse(InvPeriodYear), int.Parse(InvPeriodNo),
                             int.Parse(SystemParam.CGAS_DATE) + 1);
-                        var loDateFrom = loDate.AddMonths(-1);
+                        var loDateFrom = loDate.AddMonths(-3);
                         var loDateTo = loDate.AddDays(-1);
                         UtilityPeriodFromDtDt = loDateFrom;
                         UtilityPeriodToDtDt = loDateTo;
@@ -819,6 +721,9 @@ namespace PMT03500Model.ViewModel
                         UtilityPeriodDtMax = UtilityPeriodToDtDt;
                     }
                 }
+                
+                // UtilityPeriodDtMin = 2 bulan sebelum UtilityPeriodToDtDt
+                UtilityPeriodDtMin = UtilityPeriodToDtDt.AddMonths(-2);
             }
         }
 

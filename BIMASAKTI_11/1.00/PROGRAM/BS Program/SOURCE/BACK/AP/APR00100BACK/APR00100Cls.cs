@@ -129,42 +129,42 @@ namespace APR00100BACK
             return loRtn;
         }
 
-        public PrintLogoResultDTO GetBaseHeaderLogoCompany(string pcCompanyId)
-        {
-            using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
-            var loEx = new R_Exception();
-            PrintLogoResultDTO loResult = null;
-
-            try
-            {
-                var loDb = new R_Db();
-                var loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
-                var loCmd = loDb.GetCommand();
-
-
-                var lcQuery = "SELECT dbo.RFN_GET_COMPANY_LOGO(@CCOMPANY_ID) as CLOGO";
-                loCmd.CommandText = lcQuery;
-                loCmd.CommandType = CommandType.Text;
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, int.MaxValue, pcCompanyId);
-
-                //Debug Logs
-                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-                .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _logger.LogDebug("SELECT dbo.RFN_GET_COMPANY_LOGO({@CCOMPANY_ID}) as CLOGO", loDbParam);
-
-                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
-                loResult = R_Utility.R_ConvertTo<PrintLogoResultDTO>(loDataTable).FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-                _logger.LogError(loEx);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-
-            return loResult;
-        }
+        // public PrintLogoResultDTO GetBaseHeaderLogoCompany(string pcCompanyId)
+        // {
+        //     using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
+        //     var loEx = new R_Exception();
+        //     PrintLogoResultDTO loResult = null;
+        //
+        //     try
+        //     {
+        //         var loDb = new R_Db();
+        //         var loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
+        //         var loCmd = loDb.GetCommand();
+        //
+        //
+        //         var lcQuery = "SELECT dbo.RFN_GET_COMPANY_LOGO(@CCOMPANY_ID) as CLOGO";
+        //         loCmd.CommandText = lcQuery;
+        //         loCmd.CommandType = CommandType.Text;
+        //         loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, int.MaxValue, pcCompanyId);
+        //
+        //         //Debug Logs
+        //         var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+        //         .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+        //         _logger.LogDebug("SELECT dbo.RFN_GET_COMPANY_LOGO({@CCOMPANY_ID}) as CLOGO", loDbParam);
+        //
+        //         var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+        //         loResult = R_Utility.R_ConvertTo<PrintLogoResultDTO>(loDataTable).FirstOrDefault();
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         loEx.Add(ex);
+        //         _logger.LogError(loEx);
+        //     }
+        //
+        //     loEx.ThrowExceptionIfErrors();
+        //
+        //     return loResult;
+        // }
 
         public HeaderPrintResult GetBaseHeaderLogoCompany()
         {
@@ -195,16 +195,17 @@ namespace APR00100BACK
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
                 loResult = R_Utility.R_ConvertTo<HeaderPrintResult>(loDataTable).FirstOrDefault();
 
-                lcQuery = "SELECT CCOMPANY_NAME FROM SAM_COMPANIES WHERE CCOMPANY_ID = @CCOMPANY_ID";
+                lcQuery = "EXEC RSP_GS_GET_COMPANY_INFO @CCOMPANY_ID";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.Text;
 
                 //Debug Logs
-                _logger.LogDebug(string.Format("SELECT CCOMPANY_NAME FROM SAM_COMPANIES WHERE CCOMPANY_ID = '@CCOMPANY_ID'", loDbParam));
+                _logger.LogDebug(lcQuery);
                 loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
                 var loCompanyNameResult = R_Utility.R_ConvertTo<HeaderPrintResult>(loDataTable).FirstOrDefault();
 
                 loResult.CCOMPANY_NAME = loCompanyNameResult.CCOMPANY_NAME;
+                loResult.CDATETIME_NOW = loCompanyNameResult.CDATETIME_NOW;
             }
             catch (Exception ex)
             {

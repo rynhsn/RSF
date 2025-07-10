@@ -8,5 +8,6 @@ namespace APR00100COMMON.DTO_s.Print
     {
         public byte[] CLOGO { get; set; }
         public string CCOMPANY_ID { get; set; }
+        public string CDATETIME_NOW { get; set; }
     }
 }

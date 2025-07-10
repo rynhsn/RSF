@@ -71,8 +71,9 @@ namespace GLM00200MODEL
                 CurrencyList.Insert(0, new CurrencyDTO { CCURRENCY_CODE = "", CCURRENCY_NAME = "" });
 
                 var loLookupDept = await _lookupGSModel.GSL00700GetDepartmentListAsync(new GSL00700ParameterDTO());
-                RecurringJrnListSearchParam.CDEPT_CODE = loLookupDept[0].CDEPT_CODE ?? "";
-                RecurringJrnListSearchParam.CDEPT_NAME = loLookupDept[0].CDEPT_NAME ?? "";
+
+                RecurringJrnListSearchParam.CDEPT_CODE = loLookupDept.Any() ? loLookupDept[0].CDEPT_CODE : "";
+                RecurringJrnListSearchParam.CDEPT_NAME = loLookupDept.Any() ? loLookupDept[0].CDEPT_NAME : "";
             }
             catch (Exception ex)
             {

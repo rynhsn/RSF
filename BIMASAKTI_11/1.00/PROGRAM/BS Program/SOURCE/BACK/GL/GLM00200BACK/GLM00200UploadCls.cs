@@ -36,17 +36,17 @@ namespace GLM00200BACK
                 _logger.LogInfo("START process method R_BatchProcess on Cls");
 
                 _logger.LogInfo("Get big object from batch process parameter");
-                var loObject=
+                var loObject =
                     R_NetCoreUtility.R_DeserializeObjectFromByte<List<RecurringUploadDTO>>(poBatchProcessPar
                         .BigObject);
-                
+
 
                 loConn = loDb.GetConnection();
 
                 R_ExternalException.R_SP_Init_Exception(loConn);
 
                 _logger.LogInfo("Create Temp Table for Recurring Upload");
-                var lcQuery =
+                var lcQuery = $"CREATE TABLE #GLM00200_RECURRING_UPLOAD( " +
                     "SEQ_NO INT" +
                     ",Department VARCHAR(20)" +
                     ",Recurring_No VARCHAR(30)" +
@@ -66,7 +66,8 @@ namespace GLM00200BACK
                     ",Debit_Amount NUMERIC(19,2)" +
                     ",Credit_Amount NUMERIC(19,2)" +
                     ",DBCR VARCHAR(1)" +
-                    ",Description NVARCHAR(200)";
+                    ",Description NVARCHAR(200)" +
+                    ")";
                 loDb.SqlExecNonQuery(lcQuery, loConn, false);
 
                 _logger.LogInfo("Bulk Insert to Temp Table for Recurring Upload");
@@ -79,7 +80,7 @@ namespace GLM00200BACK
                     .FirstOrDefault();
 
                 _logger.LogInfo("Check Error");
-                if (loCheckError.IERROR_COUNT == 0)
+                if (loCheckError.IERROR_COUNT == 0 || loCheckError!=null)
                 {
                     _logger.LogInfo("Has no error, continue to save data");
 

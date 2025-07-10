@@ -1,0 +1,1545 @@
+2025-04-24 10:26:59,192 INFO  Program - Application starting...
+2025-04-24 10:26:59,213 INFO  Program - Configuring application settings...
+2025-04-24 10:26:59,234 INFO  Program - Application configuration loaded successfully.
+2025-04-24 10:26:59,242 INFO  Program - Adding services...
+2025-04-24 10:26:59,254 INFO  Program - Services added successfully.
+2025-04-24 10:26:59,308 INFO  Program - Get data config parameter
+2025-04-24 10:26:59,310 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-24 10:26:59,332 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-24 10:26:59,420 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-24 10:26:59,428 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-24 10:26:59,428 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-24 10:26:59,428 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-24 10:26:59,428 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-24 10:26:59,428 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-24 10:26:59,430 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-24 10:26:59,433 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-24 10:26:59,727 ERROR PMA00300BACK.PMA00300Cls - Log Error R_Common.R_Exception: Exception of type 'R_Common.R_Exception' was thrown.
+   at R_Common.R_Exception.ThrowExceptionIfErrors()
+   at R_BackEnd.R_Db.SqlExecQuery(DbConnection poDbConnection, DbCommand poDbCommand, Boolean plAutoCloseConnection)
+   at PMA00300BACK.PMA00300Cls.GetDataBilling(PMA00300ParamReportDTO poParameter) 
+2025-04-24 10:26:59,728 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-24 10:26:59,728 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-24 10:26:59,728 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-24 10:26:59,728 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 10:26:59,729 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 10:26:59,800 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 10:26:59,800 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-24 10:26:59,800 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-24 10:26:59,800 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 10:26:59,801 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 10:26:59,870 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 10:26:59,870 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-24 10:26:59,875 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-24 10:26:59,875 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-24 10:26:59,876 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-24 10:26:59,880 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-24 10:26:59,880 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-24 10:26:59,881 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-24 10:26:59,881 INFO  Program - Application executed successfully.
+2025-04-24 10:37:10,385 INFO  Program - Application starting...
+2025-04-24 10:37:10,407 INFO  Program - Configuring application settings...
+2025-04-24 10:37:10,428 INFO  Program - Application configuration loaded successfully.
+2025-04-24 10:37:10,436 INFO  Program - Adding services...
+2025-04-24 10:37:10,448 INFO  Program - Services added successfully.
+2025-04-24 10:37:10,498 INFO  Program - Get data config parameter
+2025-04-24 10:37:10,501 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-24 10:37:10,523 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-24 10:37:10,613 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-24 10:37:10,621 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-24 10:37:10,621 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-24 10:37:10,621 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-24 10:37:10,621 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-24 10:37:10,621 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-24 10:37:10,623 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-24 10:37:10,625 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-24 10:37:10,905 ERROR PMA00300BACK.PMA00300Cls - Log Error R_Common.R_Exception: Exception of type 'R_Common.R_Exception' was thrown.
+   at R_Common.R_Exception.ThrowExceptionIfErrors()
+   at R_BackEnd.R_Db.SqlExecQuery(DbConnection poDbConnection, DbCommand poDbCommand, Boolean plAutoCloseConnection)
+   at PMA00300BACK.PMA00300Cls.GetDataBilling(PMA00300ParamReportDTO poParameter) 
+2025-04-24 10:37:10,905 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-24 10:37:10,905 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-24 10:37:10,905 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-24 10:37:10,906 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 10:37:10,906 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 10:37:10,976 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 10:37:10,976 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-24 10:37:10,976 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-24 10:37:10,977 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 10:37:10,977 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 10:37:11,046 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 10:37:11,046 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-24 10:37:11,052 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-24 10:37:11,052 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-24 10:37:11,053 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-24 10:37:11,057 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-24 10:37:11,057 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-24 10:37:11,057 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-24 10:37:11,057 INFO  Program - Application executed successfully.
+2025-04-24 10:54:02,037 INFO  Program - Application starting...
+2025-04-24 10:54:02,061 INFO  Program - Configuring application settings...
+2025-04-24 10:54:02,083 INFO  Program - Application configuration loaded successfully.
+2025-04-24 10:54:02,090 INFO  Program - Adding services...
+2025-04-24 10:54:02,105 INFO  Program - Services added successfully.
+2025-04-24 10:54:02,160 INFO  Program - Get data config parameter
+2025-04-24 10:54:02,161 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-24 10:54:02,185 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-24 10:54:02,272 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-24 10:54:02,280 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-24 10:54:02,280 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-24 10:54:02,280 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-24 10:54:02,280 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-24 10:54:02,280 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-24 10:54:02,282 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-24 10:54:02,284 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-24 10:54:02,559 ERROR PMA00300BACK.PMA00300Cls - Log Error R_Common.R_Exception: Exception of type 'R_Common.R_Exception' was thrown.
+   at R_Common.R_Exception.ThrowExceptionIfErrors()
+   at R_BackEnd.R_Db.SqlExecQuery(DbConnection poDbConnection, DbCommand poDbCommand, Boolean plAutoCloseConnection)
+   at PMA00300BACK.PMA00300Cls.GetDataBilling(PMA00300ParamReportDTO poParameter) 
+2025-04-24 10:54:02,559 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-24 10:54:02,559 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-24 10:54:02,560 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-24 10:54:02,560 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 10:54:02,560 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 10:54:02,633 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 10:54:02,633 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-24 10:54:02,633 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-24 10:54:02,633 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 10:54:02,633 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 10:54:02,703 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 10:54:02,703 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-24 10:54:02,708 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-24 10:54:02,708 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-24 10:54:02,709 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-24 10:54:02,712 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-24 10:54:02,713 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-24 10:54:02,713 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-24 10:54:02,713 INFO  Program - Application executed successfully.
+2025-04-24 11:54:02,087 INFO  Program - Application starting...
+2025-04-24 11:54:02,110 INFO  Program - Configuring application settings...
+2025-04-24 11:54:02,133 INFO  Program - Application configuration loaded successfully.
+2025-04-24 11:54:02,141 INFO  Program - Adding services...
+2025-04-24 11:54:02,154 INFO  Program - Services added successfully.
+2025-04-24 11:54:02,207 INFO  Program - Get data config parameter
+2025-04-24 11:54:02,209 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-24 11:54:02,233 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-24 11:54:02,326 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-24 11:54:02,334 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-24 11:54:02,335 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-24 11:54:02,335 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-24 11:54:02,335 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-24 11:54:02,335 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-24 11:54:02,336 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-24 11:54:02,339 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-24 11:54:03,108 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-24 11:54:03,111 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-24 11:54:03,111 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-24 11:54:03,111 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-24 11:54:03,112 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 11:54:03,112 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 11:54:03,258 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 11:54:03,258 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-24 11:54:03,258 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-24 11:54:03,259 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 11:54:03,259 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 11:54:03,410 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 11:54:03,410 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-24 11:54:03,418 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-24 11:54:03,419 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-24 11:54:03,420 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-24 11:54:03,424 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-24 11:54:03,424 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-24 11:54:03,424 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:03,425 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:03,425 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:03,426 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:03,430 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:03,430 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:03,431 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:03,432 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:03,482 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:05,534 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:05,534 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:05,539 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:05,540 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:05,683 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:05,683 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:05,684 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:05,685 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:05,693 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:05,693 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:05,694 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:05,706 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:05,707 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:05,707 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:05,727 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:05,755 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:05,755 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:05,756 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:05,756 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:05,765 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:05,765 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:05,765 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:05,766 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:05,766 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:05,897 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:05,897 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:05,897 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:05,897 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:05,897 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:05,897 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:05,898 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:05,898 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:05,899 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:05,899 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:05,900 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:05,907 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:05,907 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:05,907 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:05,908 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:05,909 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:05,909 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:05,909 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:05,909 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:05,918 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:05,918 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:05,918 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:05,919 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:05,921 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:06,133 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:06,133 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:06,133 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:06,133 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:06,133 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:06,134 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:06,134 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:06,134 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:06,136 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:06,136 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:06,136 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:06,144 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:06,144 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:06,145 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:06,145 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:06,146 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:06,146 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:06,146 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:06,147 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:06,156 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:06,156 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:06,156 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:06,156 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:06,157 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:06,272 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:06,272 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:06,272 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:06,272 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:06,272 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:06,272 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:06,272 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:06,273 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:06,274 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:06,275 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:06,275 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:06,282 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:06,282 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:06,282 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:06,283 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:06,284 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:06,284 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:06,284 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:06,284 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:06,288 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:06,288 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:06,288 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:06,288 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:06,289 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:06,401 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:06,401 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:06,401 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:06,401 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:06,402 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:06,402 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:06,402 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:06,402 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:06,403 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:06,403 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:06,403 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:06,408 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:06,408 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:06,409 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:06,409 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:06,410 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:06,410 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:06,410 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:06,411 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:06,415 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:06,415 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:06,415 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:06,415 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:06,415 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:06,528 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:06,528 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:06,528 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:06,528 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:06,528 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:06,529 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:06,529 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:06,529 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:06,531 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:06,531 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:06,531 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:06,570 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:06,570 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:06,571 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:06,571 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:06,573 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:06,573 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:06,573 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:06,573 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:06,577 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:06,578 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:06,578 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:06,578 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:06,578 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:06,679 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:06,679 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:06,679 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:06,679 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:06,679 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:06,680 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:06,680 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:06,680 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:06,681 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:06,681 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:06,681 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:06,687 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:06,687 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:06,687 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:06,688 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:06,689 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:06,689 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:06,689 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:06,689 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:06,698 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:06,698 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:06,698 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:06,698 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:06,698 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:06,826 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:06,826 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:06,826 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:06,826 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:06,826 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:06,827 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:06,827 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:06,827 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:06,828 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:06,829 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:06,829 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:06,851 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:06,851 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:06,851 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:06,852 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:06,877 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:06,877 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:06,877 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:06,878 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:06,887 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:06,887 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:06,887 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:06,887 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:06,887 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:06,982 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:06,982 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:06,983 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:06,983 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:06,983 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:06,983 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:06,983 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:06,983 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:06,985 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:06,985 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:06,985 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:06,993 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:06,993 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:06,993 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:06,994 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:06,995 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:06,995 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:06,995 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:06,995 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:07,005 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:07,005 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:07,005 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:07,005 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:07,006 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:07,139 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:07,139 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:07,139 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:07,140 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:07,140 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:07,140 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:07,141 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:07,141 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:07,143 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:07,143 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:07,143 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:07,183 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:07,183 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:07,183 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:07,184 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:07,185 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:07,185 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:07,185 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:07,185 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:07,195 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:07,195 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:07,195 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:07,195 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:07,195 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:07,307 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:07,307 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:07,307 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:07,307 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:07,307 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:07,308 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:07,308 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:07,308 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:07,309 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:07,310 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:07,310 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:07,317 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:07,317 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:07,317 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:07,318 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:07,330 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:07,330 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:07,330 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:07,331 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:07,335 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:07,335 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:07,335 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:07,336 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:07,336 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:07,435 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:07,435 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:07,435 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:07,435 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:07,435 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:07,436 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:07,436 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:07,436 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:07,437 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:07,437 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:07,437 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:07,443 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:07,443 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:07,443 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:07,448 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:07,556 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:07,556 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:07,556 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:07,557 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:07,563 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:07,563 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:07,563 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:07,563 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:07,563 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:07,663 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:07,663 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:07,663 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:07,663 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:07,663 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:07,663 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:07,663 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:07,663 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:07,665 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:07,665 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:07,665 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:07,671 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:07,671 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:07,671 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:07,769 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:08,138 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:08,139 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:08,139 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:08,140 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:08,145 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:08,146 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:08,146 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:08,146 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:08,146 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:08,256 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:08,256 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:08,256 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:08,256 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:08,256 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:08,256 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:08,256 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:08,257 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:08,258 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:08,258 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:08,258 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:09,186 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:09,186 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:09,187 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:09,188 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:09,190 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:09,190 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:09,190 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:09,191 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:09,195 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:09,195 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:09,196 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:09,196 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:09,196 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:09,305 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:09,305 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:09,305 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:09,305 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:09,306 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:09,306 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:09,306 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:09,306 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:09,307 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:09,308 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:09,308 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:09,314 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:09,314 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:09,314 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:09,315 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:09,326 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:09,326 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:09,326 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:09,326 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:09,329 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:09,330 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:09,330 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:09,330 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:09,330 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:09,456 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:09,456 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:09,456 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:09,456 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:09,456 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:09,457 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:09,457 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:09,457 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:09,459 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:09,459 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:09,459 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:09,465 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:09,465 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:09,465 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:09,466 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:09,467 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:09,467 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:09,467 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:09,468 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:09,472 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:09,472 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:09,472 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:09,472 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:09,472 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:09,581 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:09,581 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:09,581 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:09,581 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:09,581 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:09,581 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:09,581 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:09,581 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:09,583 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:09,583 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:09,583 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:09,588 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:09,588 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:09,588 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:09,589 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:09,590 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:09,590 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:09,590 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:09,590 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:09,594 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:09,595 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:09,595 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:09,595 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:09,595 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:09,698 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:09,698 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:09,698 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:09,698 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:09,698 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:09,698 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:09,698 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:09,699 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:09,700 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:09,700 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:09,700 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:09,744 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:09,744 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:09,745 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:09,746 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:09,748 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:09,748 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:09,749 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:09,750 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:09,754 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:09,755 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:09,755 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:09,756 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:09,758 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:09,874 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:09,874 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:09,874 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:09,874 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:09,874 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:09,875 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:09,875 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:09,875 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:09,876 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:09,876 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:09,876 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:09,882 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:09,882 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:09,882 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:09,883 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:09,884 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:09,884 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:09,884 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:09,884 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:09,888 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:09,888 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:09,889 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:09,889 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:09,889 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:09,998 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:09,998 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:09,998 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:09,998 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:09,998 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:09,999 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:09,999 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:09,999 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:10,000 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:10,000 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:10,001 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:10,006 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:10,007 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:10,007 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:10,008 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:10,008 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:10,009 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:10,009 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:10,009 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:10,013 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:10,013 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:10,013 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:10,013 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:10,013 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:10,111 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:10,111 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:10,111 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:10,111 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:10,112 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:10,112 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:10,112 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:10,112 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:10,113 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:10,113 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:10,114 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:10,119 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:10,119 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:10,120 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:10,120 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:10,121 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:10,121 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:10,121 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:10,122 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:10,126 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:10,126 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:10,126 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:10,126 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:10,126 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:10,233 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:10,233 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:10,233 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:10,233 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:10,233 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:10,233 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:10,233 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:10,234 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:10,235 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:10,235 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:10,235 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:10,274 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:10,274 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:10,274 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:10,275 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:10,276 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:10,276 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:10,277 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:10,277 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:10,281 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:10,281 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:10,281 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:10,281 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:10,281 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:10,388 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:10,389 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:10,390 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:10,390 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:10,390 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:10,390 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:10,390 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:10,391 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:10,392 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:10,392 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:10,392 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:10,398 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:10,398 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:10,399 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:10,399 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:10,400 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:10,400 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:10,400 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:10,400 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:10,405 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:10,405 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:10,405 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:10,405 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:10,405 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:10,501 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:10,501 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:10,501 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:10,501 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:10,501 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:10,501 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:10,501 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:10,501 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:10,503 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:10,503 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:10,503 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:10,508 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:10,508 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:10,509 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:10,509 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:10,510 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:10,510 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:10,510 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:10,510 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:10,515 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:10,515 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:10,516 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:10,516 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:10,516 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:10,627 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:10,627 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:10,627 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:10,627 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:10,627 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:10,627 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:10,628 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:10,628 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:10,629 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:10,629 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:10,629 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:10,635 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:10,635 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:10,635 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:10,636 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:10,637 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:10,637 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:10,637 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:10,637 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:10,640 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:10,640 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:10,640 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:10,641 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:10,641 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:10,744 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:10,744 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:10,744 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:10,744 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:10,744 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:10,745 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:10,745 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:10,745 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:10,746 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:10,746 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:10,746 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:10,794 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:10,795 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:10,796 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:10,797 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:10,799 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:10,799 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:10,799 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:10,800 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:10,804 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:10,804 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:10,805 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:10,805 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:10,806 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:10,913 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:10,914 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:10,914 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:10,914 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:10,914 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:10,914 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:10,914 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:10,914 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:10,916 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:10,916 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:10,916 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:10,922 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:10,922 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:10,922 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:10,923 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:10,924 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:10,924 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:10,924 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:10,924 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:10,928 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:10,929 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:10,929 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:10,929 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:10,929 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:11,041 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:11,041 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:11,042 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:11,042 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:11,042 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:11,042 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:11,043 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:11,043 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:11,044 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:11,044 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:11,044 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:11,050 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:11,050 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:11,050 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:11,051 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:11,051 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:11,051 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:11,052 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:11,052 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:11,056 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:11,056 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:11,056 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:11,056 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:11,056 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:11,171 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:11,171 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:11,171 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:11,171 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:11,171 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:11,171 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:11,171 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:11,172 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:11,173 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:11,173 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:11,173 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:11,179 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:11,180 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:11,180 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:11,181 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:11,182 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:11,182 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:11,182 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:11,182 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:11,186 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:11,186 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:11,186 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:11,186 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:11,187 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:11,285 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:11,285 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:11,285 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:11,285 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:11,285 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:11,285 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:11,286 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:11,286 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:11,288 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:11,288 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:11,288 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:11,327 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:11,328 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:11,328 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:11,329 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:11,330 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:11,330 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:11,330 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:11,331 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:11,335 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:11,335 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:11,335 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:11,335 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:11,336 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:11,454 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:11,454 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:11,454 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:11,454 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:11,454 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:11,455 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:11,455 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:11,455 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:11,457 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:11,457 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:11,457 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:11,464 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:11,464 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:11,465 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:11,470 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:11,501 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:11,502 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:11,502 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:11,503 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:11,508 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:11,508 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:11,509 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:11,509 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:11,510 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:11,670 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:11,670 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:11,670 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:11,670 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:11,670 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:11,670 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:11,670 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:11,671 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:11,672 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:11,672 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:11,672 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:11,678 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:11,678 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:11,678 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:11,679 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:11,680 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:11,680 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:11,680 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:11,681 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:11,685 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:11,685 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:11,685 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:11,685 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:11,685 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:11,796 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:11,796 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:11,796 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:11,796 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:11,796 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:11,796 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:11,796 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:11,797 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:11,798 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:11,798 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:11,798 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:11,804 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:11,804 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:11,805 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:11,805 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:11,806 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:11,806 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:11,807 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:11,807 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:11,814 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:11,814 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:11,814 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:11,814 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:11,815 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:11,967 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:11,967 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:11,967 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:11,967 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:11,967 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:11,967 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:11,967 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:11,968 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:11,969 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:11,969 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:11,969 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:12,002 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:12,002 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:12,002 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:12,003 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:12,004 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:12,005 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:12,005 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:12,005 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:12,009 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:12,009 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:12,010 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:12,010 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:12,010 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:12,115 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:12,115 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:12,115 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:12,115 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:12,115 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:12,115 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:12,115 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:12,115 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:12,117 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:12,117 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:12,117 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:12,123 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:12,123 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:12,123 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:12,124 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:12,125 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:12,125 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:12,125 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:12,125 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:12,129 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:12,130 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:12,130 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:12,130 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:12,130 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:12,221 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:12,221 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:12,221 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:12,221 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:12,221 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:12,221 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:12,221 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:12,221 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:12,223 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:12,223 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:12,223 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:12,228 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:12,229 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:12,229 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:12,229 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:12,230 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:12,230 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:12,230 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:12,230 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:12,233 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:12,233 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:12,233 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:12,233 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:12,233 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:12,350 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:12,350 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:12,350 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:12,350 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:12,350 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:12,350 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:12,351 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:12,351 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:12,353 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:12,353 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:12,353 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:12,359 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:12,359 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:12,359 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:12,360 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:12,360 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:12,360 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:12,360 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:12,361 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:12,364 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:12,365 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:12,365 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:12,365 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:12,365 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:12,472 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:12,472 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:12,472 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:12,472 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:12,472 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:12,473 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:12,473 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:12,473 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:12,474 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:12,474 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:12,474 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:12,519 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:12,519 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:12,519 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:12,520 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:12,522 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:12,522 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:12,522 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:12,523 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:12,527 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:12,527 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:12,527 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:12,528 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:12,528 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:12,635 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:12,635 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:12,636 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:12,636 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:12,636 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:12,636 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:12,636 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:12,636 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:12,638 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:12,638 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:12,638 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:12,643 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:12,644 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:12,644 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:12,645 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:12,645 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-24 11:54:12,646 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-24 11:54:12,646 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-24 11:54:12,646 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-24 11:54:12,650 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-24 11:54:12,650 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-24 11:54:12,650 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-24 11:54:12,650 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-24 11:54:12,650 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-24 11:54:12,757 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-24 11:54:12,758 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-24 11:54:12,758 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-24 11:54:12,758 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-24 11:54:12,758 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-24 11:54:12,758 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-24 11:54:12,758 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-24 11:54:12,758 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-24 11:54:12,760 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-24 11:54:12,760 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-24 11:54:12,760 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-24 11:54:12,765 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-24 11:54:12,765 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-24 11:54:12,765 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-24 11:54:12,766 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-24 11:54:12,766 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-24 11:54:12,767 INFO  Program - Application executed successfully.
+2025-04-24 12:54:03,120 INFO  Program - Application starting...
+2025-04-24 12:54:03,732 INFO  Program - Configuring application settings...
+2025-04-24 12:54:03,828 INFO  Program - Application configuration loaded successfully.
+2025-04-24 12:54:04,234 INFO  Program - Adding services...
+2025-04-24 12:54:04,313 INFO  Program - Services added successfully.
+2025-04-24 12:54:04,499 INFO  Program - Get data config parameter
+2025-04-24 12:54:04,569 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-24 12:54:04,731 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-24 12:54:04,852 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-24 12:54:04,918 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-24 12:54:04,919 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-24 12:54:04,919 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-24 12:54:04,919 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-24 12:54:04,919 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-24 12:54:04,921 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-24 12:54:04,924 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-24 12:54:05,235 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-24 12:54:05,236 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-24 12:54:05,236 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-24 12:54:05,236 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-24 12:54:05,236 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 12:54:05,237 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 12:54:05,310 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 12:54:05,310 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-24 12:54:05,310 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-24 12:54:05,311 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 12:54:05,312 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 12:54:05,381 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 12:54:05,381 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-24 12:54:05,386 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-24 12:54:05,386 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-24 12:54:05,387 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-24 12:54:05,391 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-24 12:54:05,391 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-24 12:54:05,391 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-24 12:54:05,391 INFO  Program - Application executed successfully.
+2025-04-24 13:54:03,180 INFO  Program - Application starting...
+2025-04-24 13:54:03,864 INFO  Program - Configuring application settings...
+2025-04-24 13:54:03,938 INFO  Program - Application configuration loaded successfully.
+2025-04-24 13:54:04,301 INFO  Program - Adding services...
+2025-04-24 13:54:04,408 INFO  Program - Services added successfully.
+2025-04-24 13:54:04,557 INFO  Program - Get data config parameter
+2025-04-24 13:54:04,636 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-24 13:54:04,779 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-24 13:54:04,902 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-24 13:54:04,962 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-24 13:54:04,962 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-24 13:54:04,962 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-24 13:54:04,962 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-24 13:54:04,963 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-24 13:54:04,965 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-24 13:54:04,967 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-24 13:54:05,239 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-24 13:54:05,240 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-24 13:54:05,240 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-24 13:54:05,240 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-24 13:54:05,241 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 13:54:05,241 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 13:54:05,313 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 13:54:05,313 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-24 13:54:05,313 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-24 13:54:05,313 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 13:54:05,314 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 13:54:05,384 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 13:54:05,385 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-24 13:54:05,390 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-24 13:54:05,390 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-24 13:54:05,391 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-24 13:54:05,395 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-24 13:54:05,395 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-24 13:54:05,396 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-24 13:54:05,396 INFO  Program - Application executed successfully.
+2025-04-24 14:54:02,094 INFO  Program - Application starting...
+2025-04-24 14:54:02,115 INFO  Program - Configuring application settings...
+2025-04-24 14:54:02,136 INFO  Program - Application configuration loaded successfully.
+2025-04-24 14:54:02,144 INFO  Program - Adding services...
+2025-04-24 14:54:02,156 INFO  Program - Services added successfully.
+2025-04-24 14:54:02,206 INFO  Program - Get data config parameter
+2025-04-24 14:54:02,208 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-24 14:54:02,232 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-24 14:54:02,324 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-24 14:54:02,332 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-24 14:54:02,332 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-24 14:54:02,332 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-24 14:54:02,333 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-24 14:54:02,333 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-24 14:54:02,334 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-24 14:54:02,337 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-24 14:54:02,605 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-24 14:54:02,606 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-24 14:54:02,606 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-24 14:54:02,606 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-24 14:54:02,607 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 14:54:02,608 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 14:54:02,678 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 14:54:02,679 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-24 14:54:02,679 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-24 14:54:02,679 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 14:54:02,680 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 14:54:02,750 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 14:54:02,751 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-24 14:54:02,756 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-24 14:54:02,756 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-24 14:54:02,757 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-24 14:54:02,761 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-24 14:54:02,762 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-24 14:54:02,763 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-24 14:54:02,763 INFO  Program - Application executed successfully.
+2025-04-24 15:54:03,161 INFO  Program - Application starting...
+2025-04-24 15:54:03,713 INFO  Program - Configuring application settings...
+2025-04-24 15:54:03,788 INFO  Program - Application configuration loaded successfully.
+2025-04-24 15:54:04,177 INFO  Program - Adding services...
+2025-04-24 15:54:04,276 INFO  Program - Services added successfully.
+2025-04-24 15:54:04,462 INFO  Program - Get data config parameter
+2025-04-24 15:54:04,555 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-24 15:54:04,738 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-24 15:54:04,850 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-24 15:54:04,914 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-24 15:54:04,914 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-24 15:54:04,915 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-24 15:54:04,915 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-24 15:54:04,915 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-24 15:54:04,918 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-24 15:54:04,920 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-24 15:54:05,195 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-24 15:54:05,195 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-24 15:54:05,195 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-24 15:54:05,196 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-24 15:54:05,196 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 15:54:05,197 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 15:54:05,268 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 15:54:05,268 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-24 15:54:05,268 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-24 15:54:05,269 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 15:54:05,269 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 15:54:05,347 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 15:54:05,348 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-24 15:54:05,353 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-24 15:54:05,354 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-24 15:54:05,354 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-24 15:54:05,358 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-24 15:54:05,358 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-24 15:54:05,358 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-24 15:54:05,358 INFO  Program - Application executed successfully.
+2025-04-24 16:54:02,110 INFO  Program - Application starting...
+2025-04-24 16:54:02,132 INFO  Program - Configuring application settings...
+2025-04-24 16:54:02,155 INFO  Program - Application configuration loaded successfully.
+2025-04-24 16:54:02,164 INFO  Program - Adding services...
+2025-04-24 16:54:02,177 INFO  Program - Services added successfully.
+2025-04-24 16:54:02,230 INFO  Program - Get data config parameter
+2025-04-24 16:54:02,232 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-24 16:54:02,256 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-24 16:54:02,342 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-24 16:54:02,350 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-24 16:54:02,350 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-24 16:54:02,350 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-24 16:54:02,350 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-24 16:54:02,350 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-24 16:54:02,353 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-24 16:54:02,356 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-24 16:54:02,624 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-24 16:54:02,624 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-24 16:54:02,624 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-24 16:54:02,625 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-24 16:54:02,626 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 16:54:02,627 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 16:54:02,706 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 16:54:02,706 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-24 16:54:02,706 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-24 16:54:02,707 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 16:54:02,707 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 16:54:02,783 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 16:54:02,784 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-24 16:54:02,795 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-24 16:54:02,795 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-24 16:54:02,796 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-24 16:54:02,800 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-24 16:54:02,801 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-24 16:54:02,801 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-24 16:54:02,801 INFO  Program - Application executed successfully.
+2025-04-24 17:54:03,129 INFO  Program - Application starting...
+2025-04-24 17:54:03,151 INFO  Program - Configuring application settings...
+2025-04-24 17:54:03,174 INFO  Program - Application configuration loaded successfully.
+2025-04-24 17:54:03,182 INFO  Program - Adding services...
+2025-04-24 17:54:03,196 INFO  Program - Services added successfully.
+2025-04-24 17:54:03,249 INFO  Program - Get data config parameter
+2025-04-24 17:54:03,251 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-24 17:54:03,274 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-24 17:54:03,367 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-24 17:54:03,375 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-24 17:54:03,375 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-24 17:54:03,375 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-24 17:54:03,375 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-24 17:54:03,375 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-24 17:54:03,377 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-24 17:54:03,380 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-24 17:54:03,682 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-24 17:54:03,952 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-24 17:54:03,952 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-24 17:54:03,952 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-24 17:54:03,953 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 17:54:03,955 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 17:54:04,027 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 17:54:04,028 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-24 17:54:04,028 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-24 17:54:04,028 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 17:54:04,028 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 17:54:04,107 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 17:54:04,107 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-24 17:54:04,112 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-24 17:54:04,112 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-24 17:54:04,113 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-24 17:54:04,118 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-24 17:54:04,118 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-24 17:54:04,118 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-24 17:54:04,118 INFO  Program - Application executed successfully.
+2025-04-24 18:54:02,098 INFO  Program - Application starting...
+2025-04-24 18:54:02,120 INFO  Program - Configuring application settings...
+2025-04-24 18:54:02,140 INFO  Program - Application configuration loaded successfully.
+2025-04-24 18:54:02,148 INFO  Program - Adding services...
+2025-04-24 18:54:02,159 INFO  Program - Services added successfully.
+2025-04-24 18:54:02,210 INFO  Program - Get data config parameter
+2025-04-24 18:54:02,212 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-24 18:54:02,234 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-24 18:54:02,321 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-24 18:54:02,330 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-24 18:54:02,330 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-24 18:54:02,330 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-24 18:54:02,331 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-24 18:54:02,331 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-24 18:54:02,332 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-24 18:54:02,335 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-24 18:54:02,600 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-24 18:54:02,600 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-24 18:54:02,600 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-24 18:54:02,600 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-24 18:54:02,600 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 18:54:02,601 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 18:54:02,673 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 18:54:02,673 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-24 18:54:02,673 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-24 18:54:02,674 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 18:54:02,674 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 18:54:02,746 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 18:54:02,746 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-24 18:54:02,756 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-24 18:54:02,757 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-24 18:54:02,758 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-24 18:54:02,763 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-24 18:54:02,763 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-24 18:54:02,763 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-24 18:54:02,763 INFO  Program - Application executed successfully.
+2025-04-24 19:54:08,050 INFO  Program - Application starting...
+2025-04-24 19:54:08,086 INFO  Program - Configuring application settings...
+2025-04-24 19:54:08,122 INFO  Program - Application configuration loaded successfully.
+2025-04-24 19:54:08,625 INFO  Program - Adding services...
+2025-04-24 19:54:08,646 INFO  Program - Services added successfully.
+2025-04-24 19:54:08,738 INFO  Program - Get data config parameter
+2025-04-24 19:54:08,741 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-24 19:54:08,784 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-24 19:54:08,911 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-24 19:54:08,924 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-24 19:54:08,924 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-24 19:54:08,924 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-24 19:54:08,925 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-24 19:54:08,925 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-24 19:54:08,928 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-24 19:54:08,931 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-24 19:54:09,201 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-24 19:54:09,202 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-24 19:54:09,202 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-24 19:54:09,202 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-24 19:54:09,203 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 19:54:09,204 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 19:54:09,277 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 19:54:09,277 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-24 19:54:09,277 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-24 19:54:09,278 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 19:54:09,279 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 19:54:09,348 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 19:54:09,348 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-24 19:54:09,358 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-24 19:54:09,358 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-24 19:54:09,359 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-24 19:54:09,365 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-24 19:54:09,366 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-24 19:54:09,366 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-24 19:54:09,366 INFO  Program - Application executed successfully.
+2025-04-24 20:54:02,075 INFO  Program - Application starting...
+2025-04-24 20:54:02,095 INFO  Program - Configuring application settings...
+2025-04-24 20:54:02,114 INFO  Program - Application configuration loaded successfully.
+2025-04-24 20:54:02,121 INFO  Program - Adding services...
+2025-04-24 20:54:02,133 INFO  Program - Services added successfully.
+2025-04-24 20:54:02,190 INFO  Program - Get data config parameter
+2025-04-24 20:54:02,193 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-24 20:54:02,217 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-24 20:54:02,308 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-24 20:54:02,316 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-24 20:54:02,316 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-24 20:54:02,316 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-24 20:54:02,316 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-24 20:54:02,316 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-24 20:54:02,318 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-24 20:54:02,321 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-24 20:54:02,588 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-24 20:54:02,588 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-24 20:54:02,588 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-24 20:54:02,588 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-24 20:54:02,589 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 20:54:02,589 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 20:54:02,660 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 20:54:02,660 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-24 20:54:02,660 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-24 20:54:02,661 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 20:54:02,661 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 20:54:02,731 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 20:54:02,731 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-24 20:54:02,735 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-24 20:54:02,736 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-24 20:54:02,736 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-24 20:54:02,741 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-24 20:54:02,741 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-24 20:54:02,741 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-24 20:54:02,742 INFO  Program - Application executed successfully.
+2025-04-24 21:54:02,108 INFO  Program - Application starting...
+2025-04-24 21:54:02,132 INFO  Program - Configuring application settings...
+2025-04-24 21:54:02,153 INFO  Program - Application configuration loaded successfully.
+2025-04-24 21:54:02,161 INFO  Program - Adding services...
+2025-04-24 21:54:02,174 INFO  Program - Services added successfully.
+2025-04-24 21:54:02,228 INFO  Program - Get data config parameter
+2025-04-24 21:54:02,230 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-24 21:54:02,254 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-24 21:54:02,347 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-24 21:54:02,355 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-24 21:54:02,355 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-24 21:54:02,355 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-24 21:54:02,355 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-24 21:54:02,356 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-24 21:54:02,358 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-24 21:54:02,360 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-24 21:54:02,621 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-24 21:54:02,621 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-24 21:54:02,622 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-24 21:54:02,622 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-24 21:54:02,622 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 21:54:02,623 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 21:54:02,692 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 21:54:02,693 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-24 21:54:02,693 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-24 21:54:02,693 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 21:54:02,694 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 21:54:02,768 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 21:54:02,768 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-24 21:54:02,778 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-24 21:54:02,779 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-24 21:54:02,780 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-24 21:54:02,785 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-24 21:54:02,785 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-24 21:54:02,785 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-24 21:54:02,785 INFO  Program - Application executed successfully.
+2025-04-24 22:54:02,087 INFO  Program - Application starting...
+2025-04-24 22:54:02,116 INFO  Program - Configuring application settings...
+2025-04-24 22:54:02,138 INFO  Program - Application configuration loaded successfully.
+2025-04-24 22:54:02,146 INFO  Program - Adding services...
+2025-04-24 22:54:02,158 INFO  Program - Services added successfully.
+2025-04-24 22:54:02,212 INFO  Program - Get data config parameter
+2025-04-24 22:54:02,214 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-24 22:54:02,237 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-24 22:54:02,323 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-24 22:54:02,334 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-24 22:54:02,335 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-24 22:54:02,335 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-24 22:54:02,335 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-24 22:54:02,335 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-24 22:54:02,339 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-24 22:54:02,344 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-24 22:54:02,618 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-24 22:54:02,618 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-24 22:54:02,618 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-24 22:54:02,618 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-24 22:54:02,619 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 22:54:02,619 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 22:54:02,691 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 22:54:02,691 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-24 22:54:02,691 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-24 22:54:02,692 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 22:54:02,692 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 22:54:02,766 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 22:54:02,767 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-24 22:54:02,776 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-24 22:54:02,776 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-24 22:54:02,777 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-24 22:54:02,782 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-24 22:54:02,783 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-24 22:54:02,783 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-24 22:54:02,783 INFO  Program - Application executed successfully.
+2025-04-24 23:54:02,107 INFO  Program - Application starting...
+2025-04-24 23:54:02,129 INFO  Program - Configuring application settings...
+2025-04-24 23:54:02,152 INFO  Program - Application configuration loaded successfully.
+2025-04-24 23:54:02,160 INFO  Program - Adding services...
+2025-04-24 23:54:02,173 INFO  Program - Services added successfully.
+2025-04-24 23:54:02,226 INFO  Program - Get data config parameter
+2025-04-24 23:54:02,228 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-24 23:54:02,252 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-24 23:54:02,345 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-24 23:54:02,353 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-24 23:54:02,354 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-24 23:54:02,354 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-24 23:54:02,354 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-24 23:54:02,354 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-24 23:54:02,356 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-24 23:54:02,359 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-24 23:54:02,627 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-24 23:54:02,628 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-24 23:54:02,628 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-24 23:54:02,628 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-24 23:54:02,628 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 23:54:02,629 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 23:54:02,700 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 23:54:02,700 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-24 23:54:02,701 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-24 23:54:02,701 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-24 23:54:02,702 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-24 23:54:02,773 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-24 23:54:02,773 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-24 23:54:02,779 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-24 23:54:02,780 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-24 23:54:02,780 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-24 23:54:02,784 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-24 23:54:02,785 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-24 23:54:02,785 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-24 23:54:02,785 INFO  Program - Application executed successfully.

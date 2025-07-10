@@ -35,6 +35,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\COMMON\LM\LMT03500Common\PMT03500Common.csproj" />
+      <ProjectReference Include="..\LM_SPR\RSP_PM_UNDO_UTILITY_USAGEResources\RSP_PM_UNDO_UTILITY_USAGEResources.csproj" />
       <ProjectReference Include="..\LM_SPR\RSP_PM_UPLOAD_UTILITY_CUTOFF_ECResources\RSP_PM_UPLOAD_UTILITY_CUTOFF_ECResources.csproj" />
       <ProjectReference Include="..\LM_SPR\RSP_PM_UPLOAD_UTILITY_CUTOFF_WGResources\RSP_PM_UPLOAD_UTILITY_CUTOFF_WGResources.csproj" />
       <ProjectReference Include="..\LM_SPR\RSP_PM_UPLOAD_UTILITY_USAGE_ECResources\RSP_PM_UPLOAD_UTILITY_USAGE_ECResources.csproj" />

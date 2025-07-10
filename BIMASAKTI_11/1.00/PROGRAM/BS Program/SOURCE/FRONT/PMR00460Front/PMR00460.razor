@@ -1,6 +1,7 @@
 ﻿@page "/PMR00460"
 @using PMR00460Common.DTOs
 @using PMR00460FrontResources
+@using R_BlazorFrontEnd.Controls.DataControls
 @inherits R_Page
 @inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
@@ -201,7 +202,7 @@
 
 <R_StackLayout Row>
     <R_ItemLayout>
-        <R_Button OnClick="OnClickPrint" Enabled="@(_viewModel.EnableView)">@_localizer["Print"]</R_Button>
+        <R_PrintButton OnClick="OnClickPrint" Enabled="@(_viewModel.EnableView)">@_localizer["Print"]</R_PrintButton>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_Popup R_Before_Open_Popup="BeforeOpenPopupSaveAs" Enabled="@(_viewModel.EnableView)">@_localizer["SaveAs"]</R_Popup>

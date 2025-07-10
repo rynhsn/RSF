@@ -201,7 +201,7 @@ namespace PMT01300BACK
 
                     if (loTempResult != null)
                     {
-                        poNewEntity.CSEQ_NO = loTempResult.CSEQ_NO;
+                        poNewEntity.CSEQ_NO = string.IsNullOrEmpty(loTempResult.CSEQ_NO) ? poNewEntity.CSEQ_NO : loTempResult.CSEQ_NO;
                     }
                 }
                 catch (Exception ex)

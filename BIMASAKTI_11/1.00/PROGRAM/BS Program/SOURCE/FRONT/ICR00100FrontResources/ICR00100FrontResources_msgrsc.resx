@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+
+    <!-- Print Mode -->
+    <!-- <data name="PrintMode" xml:space="preserve"> -->
+    <!--     <value>Print Mode</value> -->
+    <!--     <comment>Print Mode</comment> -->
+    <!-- </data> -->
+    
+    <!-- Property -->
+    <data name="Property" xml:space="preserve">
+        <value>Property</value>
+        <comment>Property</comment>
+    </data>
+
+    <data name="ByQtyUnit" xml:space="preserve">
+        <value>By Quantity Unit</value>
+        <comment>By Quantity Unit</comment>
+    </data>
+
+    <!-- ByUnit1 -->
+    <data name="ByUnit1" xml:space="preserve">
+        <value>By Unit 1</value>
+        <comment>By Unit 1</comment>
+    </data>
+
+    <!-- Period -->
+    <data name="Period" xml:space="preserve">
+        <value>Period</value>
+        <comment>Period</comment>
+    </data>
+
+    <!-- Date -->
+    <data name="Date" xml:space="preserve">
+        <value>Date</value>
+        <comment>Date</comment>
+    </data>
+
+    <!-- Date From -->
+    <data name="DateFrom" xml:space="preserve">
+        <value>Date From</value>
+        <comment>Date From</comment>
+    </data>
+
+    <!-- From -->
+    <!-- <data name="From" xml:space="preserve"> -->
+    <!--     <value>From</value> -->
+    <!--     <comment>From</comment> -->
+    <!-- </data> -->
+
+    <!-- To -->
+    <data name="To" xml:space="preserve">
+        <value>To</value>
+        <comment>To</comment>
+    </data>
+
+    <!-- Warehouse -->
+    <data name="Warehouse" xml:space="preserve">
+        <value>Warehouse</value>
+        <comment>Warehouse</comment>
+    </data>
+
+    <!-- Department -->
+    <data name="Department" xml:space="preserve">
+        <value>Department</value>
+        <comment>Department</comment>
+    </data>
+
+    <!-- Include Future Transactions -->
+    <data name="IncludeFutureTransactions" xml:space="preserve">
+        <value>Include Future Transactions</value>
+        <comment>Include Future Transactions</comment>
+    </data>
+
+    <!-- Supress Mode -->
+    <!-- <data name="SupressMode" xml:space="preserve"> -->
+    <!--     <value>Suppress Mode</value> -->
+    <!--     <comment>Suppress Mode</comment> -->
+    <!-- </data> -->
+
+    <!-- SelectedBy -->
+    <!-- <data name="SelectedBy" xml:space="preserve"> -->
+    <!--     <value>Selected By</value> -->
+    <!--     <comment>Selected By</comment> -->
+    <!-- </data> -->
+
+    <!-- FilterBy -->
+    <data name="FilterBy" xml:space="preserve">
+        <value>Filter By</value>
+        <comment>Filter By</comment>
+    </data>
+
+    <!-- Product -->
+    <data name="Product" xml:space="preserve">
+        <value>Product</value>
+        <comment>Product</comment>
+    </data>
+
+    <!-- Attribute -->
+    <!-- <data name="Attribute" xml:space="preserve"> -->
+    <!--     <value>Attribute</value> -->
+    <!--     <comment>Attribute</comment> -->
+    <!-- </data> -->
+
+    <!-- Category -->
+    <data name="Category" xml:space="preserve">
+        <value>Category</value>
+        <comment>Category</comment>
+    </data>
+
+    <!-- JournalGroup -->
+    <data name="JournalGroup" xml:space="preserve">
+        <value>Journal Group</value>
+        <comment>Journal Group</comment>
+    </data>
+    
+    <data name="QTY" xml:space="preserve">
+        <value>QTY</value>
+        <comment>QTY</comment>
+    </data>
+    <data name="UNIT1" xml:space="preserve">
+        <value>UNIT1</value>
+        <comment>UNIT1</comment>
+    </data>
+    <data name="PERIOD" xml:space="preserve">
+        <value>PERIOD</value>
+        <comment>PERIOD</comment>
+    </data>
+    <data name="DATE" xml:space="preserve">
+        <value>DATE</value>
+        <comment>DATE</comment>
+    </data>
+    <data name="PROD" xml:space="preserve">
+        <value>PROD</value>
+        <comment>PROD</comment>
+    </data>
+    <data name="CATEGORY" xml:space="preserve">
+        <value>CATEGORY</value>
+        <comment>CATEGORY</comment>
+    </data>
+    <data name="JOURNAL" xml:space="preserve">
+        <value>JOURNAL</value>
+        <comment>JOURNAL</comment>
+    </data>
+    
+    <!-- Option Print -->
+    <data name="OptionPrint" xml:space="preserve">
+        <value>Option Print</value>
+        <comment>Option Print</comment>
+    </data>
+
+    <!-- Include RV and GR Replacement -->
+    <data name="IncludeRVandGRReplacement" xml:space="preserve">
+        <value>Include RV and GR Replacement</value>
+        <comment>Include RV and GR Replacement</comment>
+    </data>
+
+    <!-- Include Transaction Description -->
+    <data name="IncludeTransactionDescription" xml:space="preserve">
+        <value>Include Transaction Description</value>
+        <comment>Include Transaction Description</comment>
+    </data>
+
+    <!-- Supress Total Quantity -->
+    <data name="SupressTotalQuantity" xml:space="preserve">
+        <value>Suppress Total Quantity</value>
+        <comment>Suppress Total Quantity</comment>
+    </data>
+
+    <!-- Print -->
+    <data name="Print" xml:space="preserve">
+        <value>Print</value>
+        <comment>Print</comment>
+    </data>
+
+    <!-- Save As -->
+    <data name="SaveAs" xml:space="preserve">
+        <value>Save As</value>
+        <comment>Save As</comment>
+    </data>
+
+    <!-- Cancel -->
+    <data name="Cancel" xml:space="preserve">
+        <value>Cancel</value>
+        <comment>Cancel</comment>
+    </data>
+
+    <!-- Save -->
+    <data name="Save" xml:space="preserve">
+        <value>Save</value>
+        <comment>Save</comment>
+    </data>
+
+    <!-- Print All Transactions -->
+    <!-- <data name="PrintAllTransactions" xml:space="preserve"> -->
+    <!--     <value>Print All Transactions</value> -->
+    <!--     <comment>Print All Transactions</comment> -->
+    <!-- </data> -->
+
+    <!-- Suppress Non Active Transactions with Zero Balance -->
+    <!-- <data name="SuppressNonActiveTransactionsWithZeroBalance" xml:space="preserve"> -->
+    <!--     <value>Suppress Non Active Transactions with Zero Balance</value> -->
+    <!--     <comment>Suppress Non Active Transactions with Zero Balance</comment> -->
+    <!-- </data> -->
+
+    <!-- Suppress Non Active Transactions -->
+    <!-- <data name="SuppressNonActiveTransactions" xml:space="preserve"> -->
+    <!--     <value>Suppress Non Active Transactions</value> -->
+    <!--     <comment>Suppress Non Active Transactions</comment> -->
+    <!-- </data> -->
+
+    <!-- From Product cannot be empty. -->
+    <data name="FromProductCannotBeEmpty" xml:space="preserve">
+        <value>From Product cannot be empty.</value>
+        <comment>From Product cannot be empty.</comment>
+    </data>
+
+    <!-- To Product cannot be empty. -->
+    <data name="ToProductCannotBeEmpty" xml:space="preserve">
+        <value>To Product cannot be empty.</value>
+        <comment>To Product cannot be empty.</comment>
+    </data>
+    
+    <!-- Category cannot be empty. -->
+    <data name="CategoryCannotBeEmpty" xml:space="preserve">
+        <value>Category cannot be empty.</value>
+        <comment>Category cannot be empty.</comment>
+    </data>
+    
+    <!-- Journal Group cannot be empty. -->
+    <data name="JournalGroupCannotBeEmpty" xml:space="preserve">
+        <value>Journal Group cannot be empty.</value>
+        <comment>Journal Group cannot be empty.</comment>
+    </data>
+    
+    <!-- Warehouse cannot be empty. -->
+    <data name="WarehouseCannotBeEmpty" xml:space="preserve">
+        <value>Warehouse cannot be empty.</value>
+        <comment>Warehouse cannot be empty.</comment>
+    </data>
+    
+    <!-- Department cannot be empty. -->
+    <data name="DepartmentCannotBeEmpty" xml:space="preserve">
+        <value>Department cannot be empty.</value>
+        <comment>Department cannot be empty.</comment>
+    </data>
+    
+    <!-- PropertyCannotBeEmpty -->
+    <data name="PropertyCannotBeEmpty" xml:space="preserve">
+        <value>Property cannot be empty.</value>
+        <comment>Property cannot be empty.</comment>
+    </data>
+</root>

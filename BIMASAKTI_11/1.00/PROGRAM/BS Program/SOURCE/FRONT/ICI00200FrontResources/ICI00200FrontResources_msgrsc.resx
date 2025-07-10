@@ -168,12 +168,6 @@
         <comment>Department</comment>
     </data>
     
-    <!-- Warehouse -->
-    <data name="Warehouse" xml:space="preserve">
-        <value>Warehouse</value>
-        <comment>Warehouse</comment>
-    </data>
-    
     <!-- Last Info -->
     <data name="LastInfo" xml:space="preserve">
         <value>Last Info</value>

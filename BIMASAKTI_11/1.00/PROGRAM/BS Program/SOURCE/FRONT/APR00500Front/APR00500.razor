@@ -1,6 +1,7 @@
 ﻿@page "/APR00500"
 @using APR00500Common.DTOs
 @using APR00500FrontResources
+@using R_BlazorFrontEnd.Controls.DataControls
 @inherits R_Page
 @inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
@@ -304,7 +305,7 @@
 
 <R_StackLayout Class="mt-2" Row>
     <R_ItemLayout>
-        <R_Button OnClick="OnClickPrint">@_localizer["PRINT"]</R_Button>
+        <R_PrintButton OnClick="OnClickPrint">@_localizer["PRINT"]</R_PrintButton>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_Lookup R_Before_Open_Lookup="BeforeOpenPopupSaveAs">@_localizer["SAVE_AS"]</R_Lookup>

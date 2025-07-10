@@ -1,6 +1,7 @@
-﻿@using Lookup_GSCOMMON.DTOs;
-@using R_BlazorFrontEnd.Enums
+﻿@using GLM00200FrontResources
+@using Lookup_GSCOMMON.DTOs;
 @inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
 
 
@@ -14,20 +15,20 @@
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_TextBox @bind-Value="_journalVM.Data.CDEPT_CODE"
-                               R_ConductorSource="_conJournalNavigator"
+                               R_ConductorSource="@_conJournalNavigator"
                                Enabled="@(_conJournalNavigator.R_ConductorMode==R_eConductorMode.Add)"
                                CharacterCasing="R_eCharacterCasing.Upper"
-                               MaxLength="5" @ref="_txt_CDEPT_CODE"
+                               MaxLength="5" @ref="@_txt_CDEPT_CODE"
                                OnLostFocus="@OnLostFocus_LookupDept" />
                 </R_ItemLayout>
                 <R_ItemLayout Class="col d-flex justify-content-center">
                     <R_Lookup R_Before_Open_Lookup="@Dept_Before_Open_Lookup"
                               R_After_Open_Lookup="@Dept_After_Open_Lookup"
-                              R_ConductorSource="_conJournalNavigator" R_EnableAdd R_EnableEdit>...</R_Lookup>
+                              R_ConductorSource="@_conJournalNavigator" R_EnableAdd R_EnableEdit>...</R_Lookup>
                 </R_ItemLayout>
                 <R_ItemLayout col="6">
-                    <R_TextBox @bind-value="_journalVM.Data.CDEPT_NAME"
-                               R_ConductorSource="_conJournalNavigator"
+                    <R_TextBox @bind-value="@_journalVM.Data.CDEPT_NAME"
+                               R_ConductorSource="@_conJournalNavigator"
                                Enabled="false"
                                CharacterCasing="R_eCharacterCasing.Upper" />
                 </R_ItemLayout>
@@ -48,7 +49,7 @@
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
                     <R_DatePicker @bind-Value="_journalVM.RefDate"
-                                  R_ConductorSource="_conJournalNavigator"
+                                  R_ConductorSource="@_conJournalNavigator"
                                   R_EnableAdd R_EnableEdit />
                 </R_ItemLayout>
             </R_StackLayout>
@@ -59,8 +60,8 @@
                     <R_Label>@_localizer["_txt_DocumentNo"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="4">
-                    <R_TextBox @bind-Value="@_journalVM.Data.CDOC_NO"
-                               R_ConductorSource="_conJournalNavigator"
+                    <R_TextBox @bind-Value="_journalVM.Data.CDOC_NO"
+                               R_ConductorSource="@_conJournalNavigator"
                                MaxLength="30"
                                R_EnableAdd
                                R_EnableEdit />
@@ -70,7 +71,7 @@
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
                     <R_DatePicker @bind-Value="_journalVM.DocDate"
-                                  R_ConductorSource="_conJournalNavigator"
+                                  R_ConductorSource="@_conJournalNavigator"
                                   R_EnableAdd R_EnableEdit />
                 </R_ItemLayout>
             </R_StackLayout>
@@ -81,9 +82,9 @@
                     <R_Label>@_localizer["_txt_Frequency"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
-                    <R_NumericTextBox @bind-Value="@_journalVM.Data.IFREQUENCY"
+                    <R_NumericTextBox @bind-Value="_journalVM.Data.IFREQUENCY"
                                       TValue="int"
-                                      R_ConductorSource="_conJournalNavigator"
+                                      R_ConductorSource="@_conJournalNavigator"
                                       Min="2"
                                       Max="99"
                                       R_EnableAdd="true"
@@ -93,9 +94,9 @@
                     <R_Label>@_localizer["_txt_Applied"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
-                    <R_NumericTextBox @bind-Value="@_journalVM.Data.IAPPLIED"
+                    <R_NumericTextBox @bind-Value="_journalVM.Data.IAPPLIED"
                                       TValue="int"
-                                      R_ConductorSource="_conJournalNavigator"
+                                      R_ConductorSource="@_conJournalNavigator"
                                       Enabled="false"
                                       Arrows="false" />
                 </R_ItemLayout>
@@ -107,9 +108,9 @@
                     <R_Label>@_localizer["_txt_Interval"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
-                    <R_NumericTextBox @bind-Value="@_journalVM.Data.IPERIOD"
+                    <R_NumericTextBox @bind-Value="_journalVM.Data.IPERIOD"
                                       TValue="int"
-                                      R_ConductorSource="_conJournalNavigator"
+                                      R_ConductorSource="@_conJournalNavigator"
                                       Min="1"
                                       Max="99"
                                       R_EnableAdd
@@ -127,7 +128,7 @@
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_DatePicker @bind-Value="_journalVM.StartDate"
-                                  R_ConductorSource="_conJournalNavigator"
+                                  R_ConductorSource="@_conJournalNavigator"
                                   OnLostFocused="@OnChangedStartDate"
                                   R_EnableAdd
                                   R_EnableEdit />
@@ -138,7 +139,7 @@
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_DatePicker @bind-Value="_journalVM.NextDate"
-                                  R_ConductorSource="_conJournalNavigator"
+                                  R_ConductorSource="@_conJournalNavigator"
                                   Enabled="false" />
                 </R_ItemLayout>
                 <R_ItemLayout Class="col ps-2">
@@ -146,7 +147,7 @@
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_DatePicker @bind-Value="_journalVM.LastDate"
-                                  R_ConductorSource="_conJournalNavigator"
+                                  R_ConductorSource="@_conJournalNavigator"
                                   Enabled="false" />
                 </R_ItemLayout>
             </R_StackLayout>
@@ -158,7 +159,7 @@
                 </R_ItemLayout>
                 <R_ItemLayout col="9" Class="mt-1">
                     <R_TextArea @bind-value="@_journalVM.Data.CTRANS_DESC"
-                                R_ConductorSource="_conJournalNavigator"
+                                R_ConductorSource="@_conJournalNavigator"
                                 MaxLength="200"
                                 R_EnableAdd R_EnableEdit />
                 </R_ItemLayout>
@@ -171,7 +172,7 @@
                 </R_ItemLayout>
                 <R_ItemLayout col="4">
                     <R_TextBox @bind-Value="_journalVM.Data.CSTATUS_NAME"
-                               R_ConductorSource="_conJournalNavigator"
+                               R_ConductorSource="@_conJournalNavigator"
                                Enabled="false" />
                 </R_ItemLayout>
             </R_StackLayout>
@@ -187,8 +188,8 @@
                 </R_ItemLayout>
                 <R_ItemLayout col="6">
                     <R_ComboBox Value="@_journalVM.Data.CCURRENCY_CODE"
-                                Data="_journalVM.CURRENCY_LIST"
-                                R_ConductorSource="_conJournalNavigator"
+                                Data="@_journalVM.CURRENCY_LIST"
+                                R_ConductorSource="@_conJournalNavigator"
                                 R_EnableAdd="true"
                                 R_EnableEdit="true"
                                 ValueField="@nameof(CurrencyDTO.CCURRENCY_CODE)"
@@ -228,7 +229,7 @@
                 <R_ItemLayout col="2">
                     <R_NumericTextBox @bind-Value="_journalVM.Data.NLBASE_RATE"
                                       TValue="decimal"
-                                      R_ConductorSource="_conJournalNavigator"
+                                      R_ConductorSource="@_conJournalNavigator"
                                       Arrows="false"
                                       Enabled="_conJournalNavigator.R_ConductorMode != R_eConductorMode.Normal && _journalVM.GSM_COMPANY.CLOCAL_CURRENCY_CODE!=_journalVM.Data.CCURRENCY_CODE"
                                       Decimals="6"
@@ -236,14 +237,14 @@
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_TextBox @bind-Value="_journalVM.Data.CCURRENCY_CODE"
-                               R_ConductorSource="_conJournalNavigator"
+                               R_ConductorSource="@_conJournalNavigator"
                                Enabled="false" />
                 </R_ItemLayout>
 
                 <R_ItemLayout col="2">
                     <R_NumericTextBox @bind-Value="_journalVM.Data.NLCURRENCY_RATE"
                                       TValue="decimal"
-                                      R_ConductorSource="_conJournalNavigator"
+                                      R_ConductorSource="@_conJournalNavigator"
                                       Arrows="false"
                                       Enabled="_conJournalNavigator.R_ConductorMode != R_eConductorMode.Normal && _journalVM.GSM_COMPANY.CLOCAL_CURRENCY_CODE!=_journalVM.Data.CCURRENCY_CODE"
                                       Decimals="6"
@@ -252,7 +253,7 @@
 
                 <R_ItemLayout col="2">
                     <R_TextBox @bind-Value="_journalVM.GSM_COMPANY.CLOCAL_CURRENCY_CODE"
-                               R_ConductorSource="_conJournalNavigator"
+                               R_ConductorSource="@_conJournalNavigator"
                                Enabled="false" />
                 </R_ItemLayout>
             </R_StackLayout>
@@ -265,7 +266,7 @@
                 <R_ItemLayout col="2">
                     <R_NumericTextBox @bind-Value="_journalVM.Data.NBBASE_RATE"
                                       TValue="decimal"
-                                      R_ConductorSource="_conJournalNavigator"
+                                      R_ConductorSource="@_conJournalNavigator"
                                       Arrows="false"
                                       Enabled="_conJournalNavigator.R_ConductorMode != R_eConductorMode.Normal && _journalVM.GSM_COMPANY.CBASE_CURRENCY_CODE!=_journalVM.Data.CCURRENCY_CODE"
                                       Decimals="6"
@@ -273,14 +274,14 @@
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_TextBox @bind-Value="_journalVM.Data.CCURRENCY_CODE"
-                               R_ConductorSource="_conJournalNavigator"
+                               R_ConductorSource="@_conJournalNavigator"
                                Enabled="false" />
                 </R_ItemLayout>
 
                 <R_ItemLayout col="2">
                     <R_NumericTextBox @bind-Value="_journalVM.Data.NBCURRENCY_RATE"
                                       TValue="decimal"
-                                      R_ConductorSource="_conJournalNavigator"
+                                      R_ConductorSource="@_conJournalNavigator"
                                       Arrows="false"
                                       Enabled="_conJournalNavigator.R_ConductorMode != R_eConductorMode.Normal && _journalVM.GSM_COMPANY.CBASE_CURRENCY_CODE!=_journalVM.Data.CCURRENCY_CODE"
                                       Decimals="6"
@@ -289,7 +290,7 @@
 
                 <R_ItemLayout col="2">
                     <R_TextBox @bind-Value="_journalVM.GSM_COMPANY.CBASE_CURRENCY_CODE"
-                               R_ConductorSource="_conJournalNavigator"
+                               R_ConductorSource="@_conJournalNavigator"
                                Enabled="false" />
                 </R_ItemLayout>
             </R_StackLayout>
@@ -305,7 +306,7 @@
                         <R_ItemLayout col="7">
                             <R_NumericTextBox @bind-Value="_journalVM.Data.NPRELIST_AMOUNT"
                                               TValue="decimal"
-                                              R_ConductorSource="_conJournalNavigator"
+                                              R_ConductorSource="@_conJournalNavigator"
                                               Arrows="false"
                                               R_EnableAdd
                                               R_EnableEdit
@@ -321,7 +322,7 @@
                         <R_ItemLayout col="7">
                             <R_NumericTextBox @bind-Value="_journalVM.Data.NDEBIT_AMOUNT"
                                               TValue="decimal"
-                                              R_ConductorSource="_conJournalNavigator"
+                                              R_ConductorSource="@_conJournalNavigator"
                                               Arrows="false"
                                               Enabled="false"
                                               Min="0" />
@@ -336,7 +337,7 @@
                         <R_ItemLayout col="7">
                             <R_NumericTextBox @bind-Value="_journalVM.Data.NCREDIT_AMOUNT"
                                               TValue="decimal"
-                                              R_ConductorSource="_conJournalNavigator"
+                                              R_ConductorSource="@_conJournalNavigator"
                                               Arrows="false"
                                               Enabled="false"
                                               Min="0" />
@@ -351,11 +352,11 @@
                         </R_ItemLayout>
                         <R_ItemLayout col="2">
                             <R_TextBox @bind-Value="_journalVM.Data.CUPDATE_BY"
-                                       R_ConductorSource="_conJournalNavigator"
+                                       R_ConductorSource="@_conJournalNavigator"
                                        Enabled="false" />
                         </R_ItemLayout>
                         <R_ItemLayout col="6">
-                            <R_DateTimePicker @bind-Value="_journalVM.Data.DUPDATE_DATE" R_ConductorSource="_conJournalNavigator" Enabled="false"></R_DateTimePicker>
+                            <R_DateTimePicker @bind-Value="_journalVM.Data.DUPDATE_DATE" R_ConductorSource="@_conJournalNavigator" Enabled="false"></R_DateTimePicker>
                         </R_ItemLayout>
                     </R_StackLayout>
 
@@ -366,12 +367,12 @@
                         </R_ItemLayout>
                         <R_ItemLayout col="2">
                             <R_TextBox @bind-Value="_journalVM.Data.CCREATE_BY"
-                                       R_ConductorSource="_conJournalNavigator"
+                                       R_ConductorSource="@_conJournalNavigator"
                                        Enabled="false" />
                         </R_ItemLayout>
                         <R_ItemLayout col="6">
                             <R_DateTimePicker @bind-Value="_journalVM.Data.DCREATE_DATE"
-                                              R_ConductorSource="_conJournalNavigator"
+                                              R_ConductorSource="@_conJournalNavigator"
                                               Enabled="false" />
                         </R_ItemLayout>
                     </R_StackLayout>
@@ -398,7 +399,7 @@
             <R_SaveButton R_Conductor="@_conJournalNavigator">@_localizer["_btn_Save"]</R_SaveButton>
         </R_ItemLayout>
         <R_ItemLayout col="1">
-            <R_Popup R_ConductorSource="@_conJournalNavigator" R_EnableHasData R_Before_Open_Popup="@PrintBtn_Before_Open_Popup">@_localizer["_btn_Print"]</R_Popup>
+            <R_PrintButton R_PrintMode="R_ePrintMode.Popup" R_Conductor="@_conJournalNavigator" R_Before_Open_Popup="@PrintBtn_Before_Open_Popup">@_localizer["_btn_Print"]</R_PrintButton> @* tadinya ada enable has data *@
         </R_ItemLayout>
         <R_ItemLayout col="2">
         </R_ItemLayout>
@@ -467,8 +468,8 @@
     </R_Grid>
 </R_GroupBox>
 
-<R_Conductor @ref="_conJournalNavigator"
-             R_ViewModel="_journalVM"
+<R_Conductor @ref="@_conJournalNavigator"
+             R_ViewModel="@_journalVM"
              R_IsHeader
              R_ServiceGetRecord="JournalForm_GetRecord"
              R_Display="JournalForm_Display"

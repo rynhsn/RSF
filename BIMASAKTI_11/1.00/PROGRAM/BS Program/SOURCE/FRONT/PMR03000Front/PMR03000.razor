@@ -1,0 +1,135 @@
+﻿@page "/PMR03000"
+@using PMR03000Common.DTOs
+@using PMR03000FrontResources
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row
+               Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label FontColor="R_eFontColor.Danger"
+                 FontStyle="R_eFontStyle.Bold">
+            @_localizer["PROPERTY"]
+        </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@_viewModel.PropertyList"
+                    Value="@_viewModel.ReportParam.CPROPERTY_ID"
+                    ValueField="@nameof(PMR03000PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(PMR03000PropertyDTO.CPROPERTY_NAME)"
+                    ValueChanged="@((string value) => _valueChangedProperty(value))"
+                    Enabled/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row
+               Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>
+            @_localizer["Period"]*
+        </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_NumericTextBox @bind-Value="_viewModel.ReportParam.IPERIOD_YEAR"
+                          Step="1"
+                          Decimals="0"
+                          ThousandSeparator="false"
+                          Arrows
+                          Enabled/>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1">
+        <R_ComboBox Data="_viewModel.PeriodRange"
+                    @bind-Value="_viewModel.ReportParam.CPERIOD_MONTH"
+                    ValueField="@nameof(PMR03000PeriodDTO.CPERIOD_NO)"
+                    TextField="@nameof(PMR03000PeriodDTO.CPERIOD_NO)"
+                    Enabled/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row
+               Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["FromCustomer"]*</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_TENANT"
+                   MaxLength="20"
+                   OnLostFocus="OnLostFocusFromCustomer"/>
+    </R_ItemLayout>
+    <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupFromCustomer"
+              R_After_Open_Lookup="AfterOpenLookupFromCustomer">
+        ...
+    </R_Lookup>
+    <R_ItemLayout col="3">
+        <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_TENANT_NAME"
+                   Enabled="false"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row
+               Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["ToCustomer"]*</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_TENANT"
+                   MaxLength="20"
+                   OnLostFocus="OnLostFocusToCustomer"/>
+    </R_ItemLayout>
+    <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupToCustomer"
+              R_After_Open_Lookup="AfterOpenLookupToCustomer">
+        ...
+    </R_Lookup>
+    <R_ItemLayout col="3">
+        <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_TENANT_NAME"
+                   Enabled="false"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row
+               Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>
+            @_localizer["InvoiceMessage"]
+        </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_TextArea @bind-Value="_viewModel.ReportParam.CINVOICE_MSG"
+                    Height="5vw"
+                    Enabled/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row
+               Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>
+            @_localizer["TemplateName"]
+        </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@_viewModel.ReportTemplateList"
+                    Value="@_viewModel.ReportParam.ReportTemplate.CTEMPLATE_ID"
+                    ValueField="@nameof(PMR03000ReportTemplateDTO.CTEMPLATE_ID)"
+                    TextField="@nameof(PMR03000ReportTemplateDTO.CTEMPLATE_NAME)"
+                    ValueChanged="@((string value) => _valueChangedTemplate(value))"
+                    Enabled/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* hr line *@
+<R_StackLayout Class="border-top ps-1 my-3"></R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_PrintButton OnClick="@Print">@_localizer["Print"]</R_PrintButton>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Button OnClick="@SendEmail">@_localizer["SendEmail"]</R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>

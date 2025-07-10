@@ -1,0 +1,501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="M001" xml:space="preserve">
+    <value>Reinvitation Successful</value>
+  </data>
+  <data name="V001" xml:space="preserve">
+    <value>Please fill Date and Time!</value>
+  </data>
+  <data name="V003" xml:space="preserve">
+    <value>Please fill Confirmed HO Date!</value>
+  </data>
+  <data name="V004" xml:space="preserve">
+    <value>HO Date and Time cannot be before today!</value>
+  </data>
+  <data name="V006" xml:space="preserve">
+    <value>Email Address is empty, please edit tenant info!</value>
+  </data>
+  <data name="V007" xml:space="preserve">
+    <value>At least 1 Employee with Employee Type “TR” must be assigned!</value>
+  </data>
+  <data name="V008" xml:space="preserve">
+    <value>Please fill HO Date and Time!</value>
+  </data>
+  <data name="V009" xml:space="preserve">
+    <value>Please fill Rescheduled HO Time!</value>
+  </data>
+  <data name="V010" xml:space="preserve">
+    <value>Please fill Reschedule Reason!</value>
+  </data>
+  <data name="V011" xml:space="preserve">
+    <value>Please fill Actual HO Date!</value>
+  </data>
+  <data name="V012" xml:space="preserve">
+    <value>Please fill all Actual Size Column!</value>
+  </data>
+  <data name="V013" xml:space="preserve">
+    <value>Please fill all Start Year Column!</value>
+  </data>
+  <data name="V014" xml:space="preserve">
+    <value>Please fill all Start Month Column!</value>
+  </data>
+  <data name="V015" xml:space="preserve">
+    <value>Meter Start cannot be negative!</value>
+  </data>
+  <data name="V016" xml:space="preserve">
+    <value>Block1 Start cannot be negative!</value>
+  </data>
+  <data name="V017" xml:space="preserve">
+    <value>Block2 Start cannot be negative!</value>
+  </data>
+  <data name="V018" xml:space="preserve">
+    <value>Must check at least one of the checkbox!</value>
+  </data>
+  <data name="_ActualHODate" xml:space="preserve">
+    <value>Actual HO Date</value>
+  </data>
+  <data name="_ActualQuantity" xml:space="preserve">
+    <value>Actual Quantity</value>
+  </data>
+  <data name="_ActualSize" xml:space="preserve">
+    <value>Actual Size</value>
+  </data>
+  <data name="_April" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="_Assign" xml:space="preserve">
+    <value>Assign</value>
+  </data>
+  <data name="_AssignedEmployee" xml:space="preserve">
+    <value>ASSIGNED EMPLOYEE</value>
+  </data>
+  <data name="_AssignedEmployee1" xml:space="preserve">
+    <value>Assigned Employee</value>
+  </data>
+  <data name="_AssignEmployee" xml:space="preserve">
+    <value>Assign Employee</value>
+  </data>
+  <data name="_Assignment" xml:space="preserve">
+    <value>Assignment</value>
+  </data>
+  <data name="_August" xml:space="preserve">
+    <value>August</value>
+  </data>
+  <data name="_Block1Start" xml:space="preserve">
+    <value>Block1 Start</value>
+  </data>
+  <data name="_Block2Start" xml:space="preserve">
+    <value>Block2 Start</value>
+  </data>
+  <data name="_Building" xml:space="preserve">
+    <value>Building</value>
+  </data>
+  <data name="_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="_Capacity" xml:space="preserve">
+    <value>Capacity</value>
+  </data>
+  <data name="_CARENo" xml:space="preserve">
+    <value>CARE No.</value>
+  </data>
+  <data name="_CF" xml:space="preserve">
+    <value>CF</value>
+  </data>
+  <data name="_Charge" xml:space="preserve">
+    <value>Charge</value>
+  </data>
+  <data name="_Checklist" xml:space="preserve">
+    <value>Checklist</value>
+  </data>
+  <data name="_ChecklistDescription" xml:space="preserve">
+    <value>Checklist Description</value>
+  </data>
+  <data name="_City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="_Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="_Confirmed" xml:space="preserve">
+    <value>Confirmed</value>
+  </data>
+  <data name="_ConfirmedBy" xml:space="preserve">
+    <value>Confirmed By</value>
+  </data>
+  <data name="_ConfirmedDate" xml:space="preserve">
+    <value>Confirmed Date</value>
+  </data>
+  <data name="_ConfirmedHODate" xml:space="preserve">
+    <value>Confirmed HO Date</value>
+  </data>
+  <data name="_ConfirmedHOTime" xml:space="preserve">
+    <value>Confirmed HO Time</value>
+  </data>
+  <data name="_ConfirmSchedule" xml:space="preserve">
+    <value>Confirm Schedule</value>
+  </data>
+  <data name="_CreatedDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="_December" xml:space="preserve">
+    <value>December</value>
+  </data>
+  <data name="_Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_EditTenantInfo" xml:space="preserve">
+    <value>Edit Tenant Info</value>
+  </data>
+  <data name="_EmailAddress" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="_EmployeeID" xml:space="preserve">
+    <value>Employee ID</value>
+  </data>
+  <data name="_EmployeeName" xml:space="preserve">
+    <value>Employee Name</value>
+  </data>
+  <data name="_EmployeeType" xml:space="preserve">
+    <value>Employee Type</value>
+  </data>
+  <data name="_ExpiryDate" xml:space="preserve">
+    <value>Expiry Date</value>
+  </data>
+  <data name="_February" xml:space="preserve">
+    <value>February</value>
+  </data>
+  <data name="_Floor" xml:space="preserve">
+    <value>Floor</value>
+  </data>
+  <data name="_FloorId" xml:space="preserve">
+    <value>Floor Id</value>
+  </data>
+  <data name="_ForceHO" xml:space="preserve">
+    <value>Force HO</value>
+  </data>
+  <data name="_From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="_GrossSize" xml:space="preserve">
+    <value>Gross Size</value>
+  </data>
+  <data name="_Handover" xml:space="preserve">
+    <value>Handover</value>
+  </data>
+  <data name="_HandoverDate" xml:space="preserve">
+    <value>Handover Date</value>
+  </data>
+  <data name="_History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="_HODate" xml:space="preserve">
+    <value>HO Date</value>
+  </data>
+  <data name="_HODateAndTime" xml:space="preserve">
+    <value>HO Date And Time</value>
+  </data>
+  <data name="_HOTime" xml:space="preserve">
+    <value>HO Time</value>
+  </data>
+  <data name="_IncludePrintAssignmentChecklist" xml:space="preserve">
+    <value>Include Print Assignment &amp; Checklist</value>
+  </data>
+  <data name="_Information" xml:space="preserve">
+    <value>Information needs to be updated</value>
+  </data>
+  <data name="_IsForced" xml:space="preserve">
+    <value>Is Forced</value>
+  </data>
+  <data name="_January" xml:space="preserve">
+    <value>January</value>
+  </data>
+  <data name="_July" xml:space="preserve">
+    <value>July</value>
+  </data>
+  <data name="_June" xml:space="preserve">
+    <value>June</value>
+  </data>
+  <data name="_Lease" xml:space="preserve">
+    <value>Lease</value>
+  </data>
+  <data name="_ListOfEmployee" xml:space="preserve">
+    <value>LIST OF EMPLOYEE</value>
+  </data>
+  <data name="_March" xml:space="preserve">
+    <value>March</value>
+  </data>
+  <data name="_May" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="_MeterNo" xml:space="preserve">
+    <value>Meter No.</value>
+  </data>
+  <data name="_MeterStart" xml:space="preserve">
+    <value>Meter Start</value>
+  </data>
+  <data name="_NetSize" xml:space="preserve">
+    <value>Net Size</value>
+  </data>
+  <data name="_NewHODateAndTime" xml:space="preserve">
+    <value>New HO Date And Time</value>
+  </data>
+  <data name="_Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="_November" xml:space="preserve">
+    <value>November</value>
+  </data>
+  <data name="_October" xml:space="preserve">
+    <value>October</value>
+  </data>
+  <data name="_OldHODateAndTime" xml:space="preserve">
+    <value>Old HO Date And Time</value>
+  </data>
+  <data name="_Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="_Owner" xml:space="preserve">
+    <value>Owner</value>
+  </data>
+  <data name="_PhoneNo" xml:space="preserve">
+    <value>Phone No.</value>
+  </data>
+  <data name="_PlanHODate" xml:space="preserve">
+    <value>Plan HO Date</value>
+  </data>
+  <data name="_PrintAssignmentChecklist" xml:space="preserve">
+    <value>Print Assignment &amp; Checklist</value>
+  </data>
+  <data name="_PrintCount" xml:space="preserve">
+    <value>Print Count</value>
+  </data>
+  <data name="_PrintMessage" xml:space="preserve">
+    <value>What do you want to print?</value>
+  </data>
+  <data name="_Property" xml:space="preserve">
+    <value>Property</value>
+  </data>
+  <data name="_Quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="_Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="_RefDate" xml:space="preserve">
+    <value>Ref Date</value>
+  </data>
+  <data name="_RefNo" xml:space="preserve">
+    <value>Ref No.</value>
+  </data>
+  <data name="_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="_ReinvitationCount" xml:space="preserve">
+    <value>Reinvitation Count</value>
+  </data>
+  <data name="_Reinvite" xml:space="preserve">
+    <value>Reinvite</value>
+  </data>
+  <data name="_Reschedule" xml:space="preserve">
+    <value>Reschedule</value>
+  </data>
+  <data name="_RescheduledBy" xml:space="preserve">
+    <value>Rescheduled By</value>
+  </data>
+  <data name="_RescheduledDate" xml:space="preserve">
+    <value>Rescheduled Date</value>
+  </data>
+  <data name="_RescheduledHODate" xml:space="preserve">
+    <value>Rescheduled HO Date</value>
+  </data>
+  <data name="_RescheduledHOTime" xml:space="preserve">
+    <value>Rescheduled HO Time</value>
+  </data>
+  <data name="_RescheduledTime" xml:space="preserve">
+    <value>Rescheduled Time</value>
+  </data>
+  <data name="_RescheduleReason" xml:space="preserve">
+    <value>Reschedule Reason</value>
+  </data>
+  <data name="_Schedule" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="_Scheduled" xml:space="preserve">
+    <value>Scheduled</value>
+  </data>
+  <data name="_ScheduledDate" xml:space="preserve">
+    <value>Scheduled Date</value>
+  </data>
+  <data name="_ScheduledHODate" xml:space="preserve">
+    <value>Scheduled HO Date</value>
+  </data>
+  <data name="_ScheduledHOTime" xml:space="preserve">
+    <value>Scheduled HO Time</value>
+  </data>
+  <data name="_ScheduledTime" xml:space="preserve">
+    <value>Scheduled Time</value>
+  </data>
+  <data name="_September" xml:space="preserve">
+    <value>September</value>
+  </data>
+  <data name="_StartMonth" xml:space="preserve">
+    <value>Start Month</value>
+  </data>
+  <data name="_StartYear" xml:space="preserve">
+    <value>Start Year</value>
+  </data>
+  <data name="_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="_Strata" xml:space="preserve">
+    <value>Strata</value>
+  </data>
+  <data name="_Tenant" xml:space="preserve">
+    <value>Tenant</value>
+  </data>
+  <data name="_To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="_Unit" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="_UnitId" xml:space="preserve">
+    <value>Unit Id</value>
+  </data>
+  <data name="_UnitTypeCategory" xml:space="preserve">
+    <value>Unit Type Category</value>
+  </data>
+  <data name="_UtilityType" xml:space="preserve">
+    <value>Utility Type</value>
+  </data>
+  <data name="_ViewChecklist" xml:space="preserve">
+    <value>View Checklist</value>
+  </data>
+  <data name="_Warning" xml:space="preserve">
+    <value>WARNING : New rescheduled date is earlier than the last scheduled date</value>
+  </data>
+</root>

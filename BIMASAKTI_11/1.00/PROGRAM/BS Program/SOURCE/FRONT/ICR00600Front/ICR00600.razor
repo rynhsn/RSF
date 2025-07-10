@@ -1,0 +1,124 @@
+﻿@page "/ICR00600"
+
+@using ICR00600Common.DTOs
+@using ICR00600FrontResources
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["Property"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@_viewModel.PropertyList"
+                    @bind-Value="@_viewModel.ReportParam.CPROPERTY_ID"
+                    ValueField="@nameof(ICR00600PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(ICR00600PropertyDTO.CPROPERTY_NAME)"
+                    Enabled/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_CheckBox @bind-Value="@_viewModel.ReportParam.LDEPT"
+                            Enabled/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@_localizer["Department"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="_viewModel.ReportParam.CDEPT_CODE"
+                   OnLostFocus="OnLostFocusDept"
+                   Enabled="@_viewModel.ReportParam.LDEPT"/>
+    </R_ItemLayout>
+    <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupDept"
+              R_After_Open_Lookup="AfterOpenLookupDept"
+              Enabled="@_viewModel.ReportParam.LDEPT">
+        ...
+    </R_Lookup>
+    <R_ItemLayout col="3">
+        <R_TextBox @bind-Value="_viewModel.ReportParam.CDEPT_NAME"
+                   Enabled="false"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["Period"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_NumericTextBox @bind-Value="@_viewModel.ReportParam.IPERIOD_YEAR"
+                          Arrows
+                          Step="1"
+                          Min="@_viewModel.PeriodYearRange.IMIN_YEAR"
+                          Max="@_viewModel.PeriodYearRange.IMAX_YEAR"
+                          ThousandSeparator="false"
+                          Enabled/>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_DropDownList Data="_viewModel.PeriodList"
+                        @bind-Value="_viewModel.ReportParam.CPERIOD_MONTH"
+                        TextField="@nameof(ICR00600PeriodDTO.CPERIOD_NO)"
+                        ValueField="@nameof(ICR00600PeriodDTO.CPERIOD_NO)"
+                        Enabled/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_ItemLayout>
+            <R_Label>@_localizer["ReferenceNo"]</R_Label>
+        </R_ItemLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_REF_NO"
+                   OnLostFocus="OnLostFocusFromRefNo"
+                   Enabled/>
+    </R_ItemLayout>
+    <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupFromRefNo"
+              R_After_Open_Lookup="AfterOpenLookupFromRefNo"
+              Enabled>
+        ...
+    </R_Lookup>
+    <R_ItemLayout>
+        <R_ItemLayout>
+            <R_Label>@_localizer["To"]</R_Label>
+        </R_ItemLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_REF_NO"
+                   OnLostFocus="OnLostFocusToRefNo"
+                   Enabled/>
+    </R_ItemLayout>
+    <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupToRefNo"
+              R_After_Open_Lookup="AfterOpenLookupToRefNo"
+              Enabled>
+        ...
+    </R_Lookup>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["OptionPrint"] </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_RadioGroup Data="@_viewModel.OptionPrintType"
+                      @bind-Value="_viewModel.ReportParam.COPTION_PRINT"
+                      ValueField="Key"
+                      TextField="Value"
+                      Enabled/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout>  
+        <R_PrintButton OnClick="OnClickPrint">@_localizer["Print"]</R_PrintButton>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Popup R_Before_Open_Popup="BeforeOpenPopupSaveAs">@_localizer["SaveAs"]</R_Popup>
+    </R_ItemLayout>
+</R_StackLayout>

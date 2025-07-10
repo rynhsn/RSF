@@ -17,14 +17,13 @@ using System.Xml.Linq;
 
 namespace GLM00200FRONT
 {
-    public partial class GLM00220 : R_Page
+    public partial class GLM00220 : R_Page //actual journal list
     {
-        private GLM00203ViewModel _journalVM = new GLM00203ViewModel();
+        private GLM00203ViewModel _journalVM = new();
         private R_Grid<JournalDetailActualGridDTO> _gridJournalDet;
         private R_Conductor _conJournalNavigator;
         private R_ConductorGrid _conJournalDetail;
         [Inject] IClientHelper _clientHelper { get; set; }
-        [Inject] R_ILocalizer<Resources_Dummy_Class> _localizer { get; set; }
 
         protected override async Task R_Init_From_Master(object poParameter)
         {
@@ -187,7 +186,7 @@ namespace GLM00200FRONT
             {
                 var loParam = (JournalDTO)_conJournalNavigator.R_GetCurrentData();
                 eventArgs.Parameter = loParam;
-                eventArgs.TargetPageType = typeof(GLM00200PrintPopup);
+                eventArgs.TargetPageType = typeof(GLM00201);
                 eventArgs.PageTitle = _localizer["_pageTitlePrintPopup"];
 
             }

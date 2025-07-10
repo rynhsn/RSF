@@ -69,7 +69,8 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_GroupBox Enabled="_viewModel.Data.LINCREMENT_FLAG" ShowBorder="false" Class="px-2 mb-3">
+@* <R_GroupBox Enabled="_viewModel.Data.LINCREMENT_FLAG" ShowBorder="false" Class="px-2 mb-3"> *@
+<R_GroupBox Enabled="@(_viewModel.Data.LINCREMENT_FLAG && _conductorRef.R_ConductorMode != R_eConductorMode.Normal)" R_ConductorSource="@_conductorRef" ShowBorder="false" Class="px-2 mb-3">
 @* By Department *@
 <R_StackLayout Row="true" Spacing="1" Class="mb-1">
     <R_ItemLayout col="6">
@@ -316,7 +317,8 @@
 </R_StackLayout>
 @* End::Using Approval *@
 
-<R_GroupBox Enabled="_viewModel.Data.LAPPROVAL_FLAG" ShowBorder="false" Width="630px" Class="px-2 mb-3">
+@* <R_GroupBox Enabled="_viewModel.Data.LAPPROVAL_FLAG" ShowBorder="false" Width="630px" Class="px-2 mb-3"> *@
+    <R_GroupBox Enabled="@(_viewModel.Data.LINCREMENT_FLAG && _conductorRef.R_ConductorMode != R_eConductorMode.Normal)" R_ConductorSource="@_conductorRef" ShowBorder="false"  Width="630px" Class="px-2 mb-3">
     @* Use 3rd party *@
     <R_StackLayout Row="true">
         <R_ItemLayout col="6">

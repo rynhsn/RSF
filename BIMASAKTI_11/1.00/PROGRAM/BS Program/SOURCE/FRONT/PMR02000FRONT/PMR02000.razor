@@ -1,0 +1,416 @@
+﻿@page "/PMR02000"
+@using PMR02000COMMON.DTO_s
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_pageTitle", Title = "User Activity")]
+
+
+@* property *@
+<R_StackLayout Row Class="ps-4">
+    <R_ItemLayout col="1">
+        <R_Label>
+            @_localizer["_label_Property"]
+        </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_ComboBox Data="@_viewModel.properties"
+                    Value="@_viewModel.ReportParam.CPROPERTY_ID"
+                    ValueField="@nameof(PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(PropertyDTO.CPROPERTY_NAME)"
+                    ValueChanged="@((string value) => ComboboxPropertyValueChanged(value))"
+                    TabIndex="0">
+        </R_ComboBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="7" />
+</R_StackLayout>
+
+@* hr line *@
+<R_StackLayout Class="border-top ps-1 my-3"></R_StackLayout>
+
+@* column *@
+<R_StackLayout Row Class="ps-4">
+
+    @* first col DATA BASED ON *@
+    <R_ItemLayout>
+
+        @* @* label *@
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">@_localizer["_label_DataBasedOn"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* basedon cust *@
+        <R_StackLayout>
+            <R_ItemLayout col="5">
+                <R_RadioGroup Data="@_viewModel._radioDataBasedOnCustomer"
+                              @bind-Value="@_viewModel._dataBasedOn"
+                              ValueField="@nameof(GeneralTypeDTO.CTYPE_CODE)"
+                              TextField="@nameof(GeneralTypeDTO.CTYPE_NAME)"
+                              Layout="R_eRadioGroupLayout.Vertical"
+                              LabelPosition="R_eRadioGroupLabelPosition.After"
+                              OnChanged="OnLostFocus_DataBasedOn">
+                </R_RadioGroup>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="px-5">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_label_From"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @ref="@txtFromCustomer"
+                           @bind-Value="_viewModel.ReportParam.CFROM_CUSTOMER_ID"
+                           CharacterCasing="R_eCharacterCasing.Upper"
+                           MaxLength="int.MaxValue"
+                           OnLostFocus="OnLostFocus_LookupFromTenant"
+                           Enabled="@(_viewModel._dataBasedOn=="C")" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupFromTenant"
+                          R_After_Open_Lookup="@AfterOpen_lookupFromTenant"
+                          Enabled="@(_viewModel._dataBasedOn=="C")">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_CUSTOMER_NAME"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="px-5">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_label_To"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @ref="@txtToCustomer"
+                           @bind-Value="_viewModel.ReportParam.CTO_CUSTOMER_ID"
+                           CharacterCasing="R_eCharacterCasing.Upper"
+                           MaxLength="int.MaxValue"
+                           OnLostFocus="OnLostFocus_LookupToTenant"
+                           Enabled="@(_viewModel._dataBasedOn=="C")" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupToTenant"
+                          R_After_Open_Lookup="@AfterOpen_lookupToTenantAsync"
+                          Enabled="@(_viewModel._dataBasedOn=="C")">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_CUSTOMER_NAME"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* basedon jrn *@
+        <R_StackLayout>
+            <R_ItemLayout col="5">
+                <R_RadioGroup Data="@_viewModel._radioDataBasedOnJrnGrp"
+                              @bind-Value="@_viewModel._dataBasedOn"
+                              ValueField="@nameof(GeneralTypeDTO.CTYPE_CODE)"
+                              TextField="@nameof(GeneralTypeDTO.CTYPE_NAME)"
+                              Layout="R_eRadioGroupLayout.Vertical"
+                              LabelPosition="R_eRadioGroupLabelPosition.After"
+                              OnChanged="OnLostFocus_DataBasedOn">
+                </R_RadioGroup>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="px-5">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_label_From"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_JRNGRP_CODE"
+                           CharacterCasing="R_eCharacterCasing.Upper"
+                           MaxLength="int.MaxValue"
+                           OnLostFocus="OnLostFocus_LookupFromJrnGrp"
+                           Enabled="@(_viewModel._dataBasedOn=="J")" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupFromJrnGrp"
+                          R_After_Open_Lookup="@AfterOpen_lookupFromJrnGrpAsync"
+                          Enabled="@(_viewModel._dataBasedOn=="J")">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_JRNGRP_NAME"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="px-5">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_label_To"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_JRNGRP_CODE"
+                           CharacterCasing="R_eCharacterCasing.Upper"
+                           MaxLength="int.MaxValue"
+                           OnLostFocus="OnLostFocus_LookupToJrnGrp"
+                           Enabled="@(_viewModel._dataBasedOn=="J")" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupToJrnGrp"
+                          R_After_Open_Lookup="@AfterOpen_lookupToJrnGrpAsync"
+                          Enabled="@(_viewModel._dataBasedOn=="J")">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_JRNGRP_NAME"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_ItemLayout>
+
+    @* vr line *@
+    <R_ItemLayout Class="border-start border-translucent ps-4" />
+
+    @* second col PERIOD*@
+    <R_ItemLayout>
+        @* period *@
+        <R_Label Class="pt-2" FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">@_localizer["_label_Period"]</R_Label>
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox Arrows="true"
+                                  TValue="int"
+                                  @bind-Value="@_viewModel._YearPeriod"
+                                  Max="@_viewModel._PeriodYear.IMAX_YEAR"
+                                  Min="@_viewModel._PeriodYear.IMIN_YEAR"
+                                  ThousandSeparator="false" />
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_ComboBox @bind-Value="@_viewModel._MonthPeriod"
+                            Data="_viewModel._monthList"
+                            ValueField="@nameof(GeneralTypeDTO.CTYPE_CODE)"
+                            TextField="@nameof(GeneralTypeDTO.CTYPE_NAME)" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* remaining based on *@
+        <R_StackLayout Class="mt-2">
+            <R_ItemLayout>
+                <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">@_localizer["_label_RemainingBasedOn"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout>
+            <R_ItemLayout>
+                <R_RadioGroup Data="@_viewModel._radioRemainingDataBasedOnC"
+                              @bind-Value="@_viewModel.ReportParam.CREMAINING_BASED_ON"
+                              ValueField="@nameof(GeneralTypeDTO.CTYPE_CODE)"
+                              TextField="@nameof(GeneralTypeDTO.CTYPE_NAME)"
+                              Layout="R_eRadioGroupLayout.Vertical"
+                              LabelPosition="R_eRadioGroupLabelPosition.After" />
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="ms-4">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_label_CutOffDate"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_DatePicker @bind-Value="@_viewModel._dateCutOff"
+                              Enabled="@(_viewModel.ReportParam.CREMAINING_BASED_ON=="C")"></R_DatePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout>
+            <R_ItemLayout>
+                <R_RadioGroup Data="@_viewModel._radioRemainingDataBasedOnL"
+                              @bind-Value="@_viewModel.ReportParam.CREMAINING_BASED_ON"
+                              ValueField="@nameof(GeneralTypeDTO.CTYPE_CODE)"
+                              TextField="@nameof(GeneralTypeDTO.CTYPE_NAME)"
+                              Layout="R_eRadioGroupLayout.Vertical"
+                              LabelPosition="R_eRadioGroupLabelPosition.After" />
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+@* hr line *@
+<R_StackLayout Class="border-top ps-1 my-3"></R_StackLayout>
+
+@* column *@
+<R_StackLayout Row Class="ps-4">
+
+    @* first col *@
+    <R_ItemLayout col="1">
+
+        @* @* label *@
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">@_localizer["_label_ReportType"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* report type *@
+        <R_StackLayout>
+            <R_ItemLayout col="12">
+                <R_RadioGroup Data="@_viewModel._radioReportType"
+                              @bind-Value="@_viewModel.ReportParam.CREPORT_TYPE"
+                              ValueField="@nameof(GeneralTypeDTO.CTYPE_CODE)"
+                              TextField="@nameof(GeneralTypeDTO.CTYPE_NAME)"
+                              Layout="R_eRadioGroupLayout.Vertical"
+                              LabelPosition="R_eRadioGroupLabelPosition.After">
+                </R_RadioGroup>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_ItemLayout> @* endfirstcol *@
+
+    @* vr line *@
+    <R_ItemLayout Class="border-start border-translucent ps-4" />
+
+    @* second col *@
+    <R_ItemLayout col="2">
+
+        @* label *@
+        <R_StackLayout>
+            <R_ItemLayout>
+                <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">
+                    @_localizer["_label_CurrencyType"]
+                </R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* currency type *@
+        <R_StackLayout>
+            <R_ItemLayout col="12">
+                <R_RadioGroup Data="@_viewModel._radioCurrencyType"
+                              @bind-Value="@_viewModel.ReportParam.CCURRENCY_TYPE_CODE"
+                              ValueField="@nameof(GeneralTypeDTO.CTYPE_CODE)"
+                              TextField="@nameof(GeneralTypeDTO.CTYPE_NAME)"
+                              Layout="R_eRadioGroupLayout.Vertical"
+                              LabelPosition="R_eRadioGroupLabelPosition.After">
+                </R_RadioGroup>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_ItemLayout> @* end second col *@
+
+    @* vr line *@
+    <R_ItemLayout Class="border-start border-translucent ps-4" />
+
+    @* third col *@
+    <R_ItemLayout>
+
+        @* label *@
+        <R_StackLayout>
+            <R_ItemLayout col="12">
+                <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">@_localizer["_label_Filter"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* chekbox dept *@
+        <R_StackLayout Row Class="pt-2">
+            <R_ItemLayout>
+                <R_CheckBox @bind-Value="@_viewModel._enableFilterDept" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>
+                    @_localizer["_checkBox_Dept"]
+                </R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* Dept from lookup*@
+        <R_StackLayout Row Class="px-5">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_label_From"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="@_viewModel.ReportParam.CFR_DEPT_CODE"
+                           Enabled="@_viewModel._enableFilterDept"
+                           CharacterCasing="R_eCharacterCasing.Upper"
+                           MaxLength="int.MaxValue"
+                           OnLostFocus="OnLostFocus_LookupFromDept" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupFromDept"
+                          R_After_Open_Lookup="@AfterOpen_lookupFromDeptAsync"
+                          Enabled="@_viewModel._enableFilterDept">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CFR_DEPT_NAME"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* Dept to lookup*@
+        <R_StackLayout Row Class="px-5">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_label_To"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_DEPT_CODE"
+                           Enabled="@_viewModel._enableFilterDept"
+                           CharacterCasing="R_eCharacterCasing.Upper"
+                           MaxLength="int.MaxValue"
+                           OnLostFocus="OnLostFocus_LookupToDept" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupToDept"
+                          R_After_Open_Lookup="@AfterOpen_lookupToDeptAsync"
+                          Enabled="@_viewModel._enableFilterDept">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox @bind-Value="@_viewModel.ReportParam.CTO_DEPT_NAME"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* chekbox trans type *@
+        <R_StackLayout Row Class="pt-2">
+            <R_ItemLayout>
+                <R_CheckBox @bind-Value="@_viewModel._enableFilterTransType" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>
+                    @_localizer["_checkBox_TransType"]
+                </R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* combo trans type *@
+        <R_StackLayout Row Class="pt-2">
+            <R_ItemLayout col="5">
+                <R_ComboBox Data="@_viewModel._transTypeList"
+                            @bind-Value="@_viewModel.ReportParam.CTRANS_CODE"
+                            ValueField="@nameof(TransactionTypeDTO.CTRANS_CODE)"
+                            TextField="@nameof(TransactionTypeDTO.CTRANS_CODE_NAME)"
+                            Enabled="@_viewModel._enableFilterTransType">
+                </R_ComboBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* chekbox cust ctg *@
+        <R_StackLayout Row Class="pt-2">
+            <R_ItemLayout>
+                <R_CheckBox @bind-Value="@_viewModel._enableFilterCustCtg" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>
+                    @_localizer["_checkBox_CustCtg"]
+                </R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* combo cust ctg*@
+        <R_StackLayout Class="pt-2">
+            <R_ItemLayout col="5">
+                <R_ComboBox Data="@_viewModel._categoryTypeList"
+                            @bind-Value="@_viewModel.ReportParam.CTENANT_CATEGORY_ID"
+                            ValueField="@nameof(CategoryTypeDTO.CCATEGORY_ID)"
+                            TextField="@nameof(CategoryTypeDTO.CCATEGORY_NAME)"
+                            Enabled="@_viewModel._enableFilterCustCtg">
+                </R_ComboBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_ItemLayout> @* end third col *@
+
+</R_StackLayout>
+
+@* hr line *@
+<R_StackLayout Class="border-top ps-1 my-3"></R_StackLayout>
+
+@* print *@
+<R_StackLayout Row Class="ps-4">
+    <R_ItemLayout>
+        <R_PrintButton OnClick="@OnclickBtn_Print">@_localizer["_btn_Print"]</R_PrintButton>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Popup R_Before_Open_Popup="@BeforeOpen_PopupSaveAsAsync" R_After_Open_Popup="@AfterOpen_PopupSaveAs">@_localizer["_btn_save"]</R_Popup>
+    </R_ItemLayout>
+</R_StackLayout>

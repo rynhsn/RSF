@@ -24,4 +24,13 @@ namespace PMR02600Common.Params
         public string CREPORT_FILENAME { get; set; } = "";
         public bool LIS_PRINT { get; set; } = true;
     }
+    
+    public class PMT01300ReportTemplateParam
+    {
+        // public string? CCOMPANY_ID { get; set; }
+        public string? CPROPERTY_ID { get; set; }
+        // public string? CPROGRAM_ID { get; set; }
+        // public string? CTEMPLATE_ID { get; set; }
+        // public string? CUSER_ID { get; set; }
+    }
 }

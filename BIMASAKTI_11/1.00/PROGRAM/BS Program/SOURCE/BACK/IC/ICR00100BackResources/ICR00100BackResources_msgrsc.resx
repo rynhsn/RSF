@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+
+
+    <data name="PROPERTY" xml:space="preserve">
+        <value>Property</value>
+        <comment>Property</comment>
+    </data>
+    <data name="PERIOD" xml:space="preserve">
+        <value>Period</value>
+        <comment>Period</comment>
+    </data>
+    <data name="DATE" xml:space="preserve">
+        <value>Date</value>
+        <comment>Date</comment>
+    </data>
+    <data name="TO" xml:space="preserve">
+        <value>To</value>
+        <comment>To</comment>
+    </data>
+    <data name="WAREHOUSE" xml:space="preserve">
+        <value>Warehouse</value>
+        <comment>Warehouse</comment>
+    </data>
+    <data name="DEPARTMENT" xml:space="preserve">
+        <value>Department</value>
+        <comment>Department</comment>
+    </data>
+    <data name="INC_FUTURE_TRANSACTION" xml:space="preserve">
+        <value>Include Future Transaction</value>
+        <comment>Include Future Transaction</comment>
+    </data>
+    <data name="SUPRESS_MODE" xml:space="preserve">
+        <value>Supress Mode</value>
+        <comment>Supress Mode</comment>
+    </data>
+    <data name="SELECTED_BY" xml:space="preserve">
+        <value>Selected By</value>
+        <comment>Selected By</comment>
+    </data>
+    <!-- Filter By -->
+    <data name="FILTER_BY" xml:space="preserve">
+        <value>Filter By</value>
+        <comment>Filter By</comment>
+    </data>
+    <!-- Product -->
+    <data name="PRODUCT" xml:space="preserve">
+        <value>Product</value>
+        <comment>Product</comment>
+    </data>
+    <!-- Option Print -->
+    <data name="OPTION_PRINT" xml:space="preserve">
+        <value>Option Print</value>
+        <comment>Option Print</comment>
+    </data>
+    <data name="PRODUCT_ID" xml:space="preserve">
+        <value>Product Id</value>
+        <comment>Product Id</comment>
+    </data>
+    <data name="PRODUCT_NAME" xml:space="preserve">
+        <value>Product Name</value>
+        <comment>Product Name</comment>
+    </data>
+    <data name="BEGINNING" xml:space="preserve">
+        <value>Beginning</value>
+        <comment>Beginning</comment>
+    </data>
+    <data name="QTY" xml:space="preserve">
+        <value>Qty</value>
+        <comment>Qty</comment>
+    </data>
+    <data name="UNIT" xml:space="preserve">
+        <value>Unit</value>
+        <comment>Unit</comment>
+    </data>
+    <data name="TRANSACTION" xml:space="preserve">
+        <value>Transaction</value>
+        <comment>Transaction</comment>
+    </data>
+    <data name="TRANSACTION_NAME" xml:space="preserve">
+        <value>Transaction Name</value>
+        <comment>Transaction Name</comment>
+    </data>
+    <data name="REF_DATE" xml:space="preserve">
+        <value>Ref Date</value>
+        <comment>Ref Date</comment>
+    </data>
+    <data name="REF_NO" xml:space="preserve">
+        <value>Ref No</value>
+        <comment>Ref No</comment>
+    </data>
+    <data name="REFERENCE_NO" xml:space="preserve">
+        <value>Reference No</value>
+        <comment>Reference No</comment>
+    </data>
+    <data name="MOD_ID" xml:space="preserve">
+        <value>Mod ID</value>
+        <comment>Mod ID</comment>
+    </data>
+    <data name="DOC_NO" xml:space="preserve">
+        <value>Doc No</value>
+        <comment>Doc No</comment>
+    </data>
+    <data name="DOCUMENT_NO" xml:space="preserve">
+        <value>Document No</value>
+        <comment>Document No</comment>
+    </data>
+    <data name="DOC_DATE" xml:space="preserve">
+        <value>Doc Date</value>
+        <comment>Doc Date</comment>
+    </data>
+    <data name="IN" xml:space="preserve">
+        <value>In</value>
+        <comment>In</comment>
+    </data>
+    <data name="OUT" xml:space="preserve">
+        <value>Out</value>
+        <comment>Out</comment>
+    </data>
+    <data name="BALANCE" xml:space="preserve">
+        <value>Balance</value>
+        <comment>Balance</comment>
+    </data>
+    <data name="ATTRIBUTE_DATA" xml:space="preserve">
+        <value>Attribute Data</value>
+        <comment>Attribute Data</comment>
+    </data>
+    <data name="DEPT_CODE" xml:space="preserve">
+        <value>Dept Code</value>
+        <comment>Dept Code</comment>
+    </data>
+    <data name="QTY_BEGINNING" xml:space="preserve">
+        <value>Qty Beginning</value>
+        <comment>Qty Beginning</comment>
+    </data>
+    <data name="QTY_IN" xml:space="preserve">
+        <value>Qty In</value>
+        <comment>Qty In</comment>
+    </data>
+    <data name="VALUE_IN" xml:space="preserve">
+        <value>Value In</value>
+        <comment>Value In</comment>
+    </data>
+    <data name="QTY_OUT" xml:space="preserve">
+        <value>Qty Out</value>
+        <comment>Qty Out</comment>
+    </data>
+    <data name="QTY_BALANCE" xml:space="preserve">
+        <value>Qty Balance</value>
+        <comment>Qty Balance</comment>
+    </data>
+</root>

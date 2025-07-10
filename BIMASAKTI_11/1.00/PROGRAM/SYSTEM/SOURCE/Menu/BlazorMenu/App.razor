@@ -1,53 +1,5 @@
 ﻿@using System.Reflection
 @using R_BlazorFrontEnd.Tenant;
-@* *@
-@* @if (_environment.IsDevelopment) *@
-@* { *@
-@*     <R_BasicRouter AppAssembly="@typeof(Program).Assembly" *@
-@*             AdditionalAssemblies="@lazyLoadedAssemblies"> *@
-@*         <Found Context="routeData"> *@
-@*             <CascadingAuthenticationState> *@
-@*                 <MenuTabsRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" /> *@
-@*             </CascadingAuthenticationState> *@
-@*         </Found> *@
-@*         <NotFound> *@
-@*             <CascadingAuthenticationState> *@
-@*                 <LayoutView Layout="@typeof(MainLayout)"> *@
-@*                     <p>Sorry, there's nothing at this address.</p> *@
-@*                 </LayoutView> *@
-@*             </CascadingAuthenticationState> *@
-@*         </NotFound> *@
-@*     </R_BasicRouter> *@
-@* } *@
-@* else *@
-@* { *@
-@*     <R_TenantRouter AppAssembly="@typeof(Program).Assembly" *@
-@*                     AdditionalAssemblies="@lazyLoadedAssemblies"> *@
-@*         <Found Context="routeData"> *@
-@*             <CascadingAuthenticationState> *@
-@*                 <MenuTabsRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" /> *@
-@*             </CascadingAuthenticationState> *@
-@*         </Found> *@
-@*         <NotFound> *@
-@*             <CascadingAuthenticationState> *@
-@*                 <LayoutView Layout="@typeof(MainLayout)"> *@
-@*                     <p>Sorry, there's nothing at this address.</p> *@
-@*                 </LayoutView> *@
-@*             </CascadingAuthenticationState> *@
-@*         </NotFound> *@
-@*         <NoTenant Context="message"> *@
-@*             <LayoutView Layout="@typeof(NoTenantLayout)"> *@
-@*                 <p>@message</p> *@
-@*             </LayoutView> *@
-@*         </NoTenant> *@
-@*         <ApiError Context="message"> *@
-@*             <LayoutView Layout="@typeof(NoTenantLayout)"> *@
-@*                 <p>@message</p> *@
-@*             </LayoutView> *@
-@*         </ApiError> *@
-@*     </R_TenantRouter> *@
-@* } *@
-
 
 <R_BasicRouter AppAssembly="@typeof(Program).Assembly"
                AdditionalAssemblies="@lazyLoadedAssemblies">
@@ -71,26 +23,32 @@
     private List<Assembly> lazyLoadedAssemblies = new()
     {
         typeof(BlazorMenu.Components.Pages.Content.Home).Assembly,
+
+        typeof(APR00100FRONT.APR00100).Assembly,
         typeof(APR00300Front.APR00300).Assembly,
         typeof(APR00500Front.APR00500).Assembly,
-        
+
         typeof(BMM00500FRONT.BMM00500).Assembly,
-        
+
         typeof(CBB00200Front.CBB00200).Assembly,
-        
+
         typeof(GSM02000Front.GSM02000).Assembly,
         typeof(GSM05000Front.GSM05000).Assembly,
-        
+
         typeof(GLM00500Front.GLM00500).Assembly,
         typeof(GLI00100Front.GLI00100).Assembly,
         typeof(GLR00100Front.GLR00100).Assembly,
-        
+
         typeof(HDM00400Front.HDM00400).Assembly,
         typeof(HDI00100Front.HDI00100).Assembly,
         typeof(HDR00200Front.HDR00200).Assembly,
-        
+
+        typeof(ICB00100Front.ICB00100).Assembly,
+        typeof(ICB00300Front.ICB00300).Assembly,
         typeof(ICI00200Front.ICI00200).Assembly,
-        
+        typeof(ICR00100Front.ICR00100).Assembly,
+        typeof(ICR00600Front.ICR00600).Assembly,
+
         typeof(PMB00300Front.PMB00300).Assembly,
         typeof(PMB03000Front.PMB03000).Assembly,
         typeof(PMB04000FRONT.PMB04000).Assembly,
@@ -102,12 +60,25 @@
         typeof(PMT06500Front.PMT06500).Assembly,
         typeof(PMT01300FRONT.PMT01300).Assembly,
         typeof(PMR02600Front.PMR02600).Assembly,
+        typeof(PMR03000Front.PMR03000).Assembly,
         typeof(PMR00460Front.PMR00460).Assembly,
-        
+
         typeof(TXB00200Front.TXB00200).Assembly,
-        
+
         #region GHC
+        typeof(GSM00300FRONT.GSM00300).Assembly,
         typeof(GSM04000Front.GSM04000).Assembly,
+        typeof(HDM00600FRONT.HDM00600).Assembly,
+        typeof(PMM04500FRONT.PMM04500).Assembly,
+        typeof(PMM04500FRONT.PMM04500).Assembly,
+        typeof(PMM00100FRONT.PMM00100).Assembly,
+        //typeof(GLM00200FRONT.GLM00200).Assembly,
         #endregion
+
+        #region HMC
+        typeof(ICT00900FRONT.ICT00900).Assembly,
+        typeof(GST00500Front.GST00500).Assembly,
+        #endregion
+
     };
 }

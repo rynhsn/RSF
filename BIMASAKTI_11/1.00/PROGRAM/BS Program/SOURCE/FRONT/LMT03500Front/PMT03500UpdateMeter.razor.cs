@@ -476,6 +476,7 @@ public partial class PMT03500UpdateMeter : R_ITabPage
     private void BeforeOpenUpdate(R_BeforeOpenPopupEventArgs eventArgs)
     {
         eventArgs.TargetPageType = typeof(PMT03500UpdateMeterPopup);
+        
         _viewModel.Data.CUNIT_NAME = _viewModel.Header.CUNIT_NAME;
         _viewModel.Data.CTENANT_ID = _viewModel.Header.CTENANT_ID;
         _viewModel.Data.CTENANT_NAME = _viewModel.Header.CTENANT_NAME;

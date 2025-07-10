@@ -1,0 +1,106 @@
+@page "/ICT00900"
+@inherits R_Page
+@attribute [R_Page(ResourceId = "AdjustmentList")]
+@inject R_ILocalizer<Resources_ICT00900_Class> _localizer
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label FontStyle="R_eFontStyle.Bold"
+                 FontColor="R_eFontColor.Danger">
+            @_localizer["_Property"]
+        </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@_viewModel.PropertyList"
+                    Value="_viewModel.PropertyValue.CPROPERTY_ID"
+                    ValueField="@nameof(PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(PropertyDTO.CPROPERTY_NAME)"
+                    ValueChanged="@((string value) => PropertyDropdown_OnChange(value))"
+                    Enabled="@_enabaledProperty">
+        </R_ComboBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_TabStrip @ref="_tabAdjustmentList" Class="mt-1" OnActiveTabIndexChanging="@TabChangingAsync">
+    <R_TabStripTab Title="@_localizer["_TabAdjustmentList"]" Id="TabAdjustment">
+        <R_StackLayout>
+            <R_Grid @ref="@_gridAdjustment"
+                    DataSource="_viewModel.CostAdjustmentList"
+                    R_ConductorGridSource="@_conductorAdj"
+                    R_GridType="R_eGridType.Original"
+                    R_ServiceGetListRecord="GetListAdjustment"
+                    R_Display="@R_DisplayAsync"
+                    Pageable
+                    AllowDeleteRow="false"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    Height="550px"
+                    @bind-PageSize="@_pageSize"
+                    Enabled="@_enableTabAdjDetail">
+                
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(ICT00900AdjustmentDTO.CTRANS_STATUS_DESCR)"
+                                      HeaderText=@_localizer["_Status"] Width="150px" />
+                    <R_GridTextColumn FieldName="@nameof(ICT00900AdjustmentDTO.CREF_NO)"
+                                      HeaderText=@_localizer["_RefNo"] Width="150px" />
+                    <R_GridDatePickerColumn FieldName="@nameof(ICT00900AdjustmentDTO.DREF_DATE)"
+                                            HeaderText=@_localizer["_RefDate"] Width="120px" />
+                    <R_GridTextColumn FieldName="@nameof(ICT00900AdjustmentDTO.CDEPT_NAME)"
+                                      HeaderText=@_localizer["_Departement"] Width="150px" />
+                    <R_GridTextColumn FieldName="@nameof(ICT00900AdjustmentDTO.CPRODUCT_NAME)"
+                                      HeaderText=@_localizer["_Product"] Width="200px" />
+                    <R_GridTextColumn FieldName="@nameof(ICT00900AdjustmentDTO.CADJUST_METHOD)"
+                                      HeaderText=@_localizer["_AdjMethod"] Width="170px" />
+                    <R_GridNumericColumn FieldName="@nameof(ICT00900AdjustmentDTO.NADJUST_AMOUNT)"
+                                         TValue="decimal"
+                                         HeaderText=@_localizer["_AdjAmount"] Width="150px" />
+
+                    <R_GridTextColumn FieldName="@nameof(ICT00900AdjustmentDTO.CALLOC_NAME)"
+                                      HeaderText=@_localizer["_Allocation"] Width="150px" />
+                    <R_GridTextColumn FieldName="@nameof(ICT00900AdjustmentDTO.CUPDATE_BY)"
+                                      HeaderText=@_localizer["_UpdatedBy"] Width="150px">
+                    </R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(ICT00900AdjustmentDTO.DUPDATE_DATE)"
+                                                HeaderText=@_localizer["_UpdatedDate"] Width="180px">
+                    </R_GridDateTimePickerColumn>
+                    <R_GridTextColumn FieldName="@nameof(ICT00900AdjustmentDTO.CCREATE_BY)"
+                                      HeaderText=@_localizer["_CreateBy"] Width="150px">
+                    </R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(ICT00900AdjustmentDTO.DCREATE_DATE)"
+                                                HeaderText=@_localizer["_CreateDate"] Width="180px">
+                    </R_GridDateTimePickerColumn>
+                </R_GridColumns>
+            </R_Grid>
+
+
+            <R_StackLayout Row Class="d-flex justify-content-center">
+                <R_ItemLayout>
+                    <R_Button R_Conductor="@_conductorAdj"
+                              Enabled="@(_viewModel.lControlCRUDMode && _viewModel.lControlButtonSubmit)"
+                              OnClick="@SubmitBtn">
+                        @_localizer["_Submit"]
+                    </R_Button>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Button R_Conductor="@_conductorAdj"
+                              Enabled="@(_viewModel.lControlCRUDMode && _viewModel.lControlButtonRedraft)"
+                              OnClick="@RedraftBtn">
+                        @_localizer["_Redraft"]
+                    </R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_StackLayout>
+    </R_TabStripTab>
+
+    <R_TabStripTab Title="@_localizer["_TabAdjustmentDetail"]" Id="TabAdjustmentDetail"
+                   Enabled="@_enableTabAdjDetail">
+        <R_TabPage @ref="@_tabAdjustmentDetail"
+                   R_Before_Open_TabPage="Before_Open_AdjustmentDetaill"
+                   R_TabEventCallback="@R_TabEventCallback">
+        </R_TabPage>
+    </R_TabStripTab>
+</R_TabStrip>
+
+<R_ConductorGrid @ref="@_conductorAdj"
+                 R_SetOther="@SetOther"
+                      R_IsHeader />

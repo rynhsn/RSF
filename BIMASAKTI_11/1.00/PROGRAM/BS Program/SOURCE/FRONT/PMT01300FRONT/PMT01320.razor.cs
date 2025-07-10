@@ -350,6 +350,11 @@ namespace PMT01300FRONT
             var loParam = R_FrontUtility.ConvertObjectToObject<GSL02300ParameterDTO>(_viewModelHeader.LOI);
             loParam.CUNIT_CATEGORY_LIST = "02,03";
             loParam.CLEASE_STATUS_LIST = "01,02";
+            if (_gridLOIUnitListRef.DataSource.Count > 0)
+            {
+                loParam.CUNIT_TYPE_ID = _gridLOIUnitListRef.DataSource[0].CUNIT_TYPE_ID;
+            }
+            loParam.CPROGRAM_ID = "";
             var loListDataSeparator = _gridLOIUnitListRef.DataSource.Select(x => x.CUNIT_ID);
             loParam.CREMOVE_DATA_UNIT_ID_SEPARATOR = string.Join(",", loListDataSeparator);
 
@@ -392,6 +397,7 @@ namespace PMT01300FRONT
                         loParam.CUNIT_CATEGORY_LIST = "02,03";
                         var loListDataSeparator = _gridLOIUnitListRef.DataSource.Select(x => x.CUNIT_ID);
                         loParam.CREMOVE_DATA_UNIT_ID_SEPARATOR = string.Join(",", loListDataSeparator);
+                        //loParam.CPROGRAM_ID =  "PMT01300";
                         loParam.CLEASE_STATUS_LIST = "01,02";
                         loParam.CSEARCH_TEXT = loIdValue;
 

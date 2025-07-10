@@ -161,9 +161,13 @@ public class GLI00100PrintController : R_ReportControllerBase
             var lcUser = R_BackGlobalVar.USER_ID;
             var lcLang = R_BackGlobalVar.CULTURE;
             
+            var loCls = new GLI00100Cls();
+            var loBaseHeader = loCls.GetBaseHeaderLogoCompany(lcCompany);
             var loParam = new BaseHeaderDTO
             {
-                CCOMPANY_NAME = "PT Realta Chakradarma",
+                BLOGO_COMPANY = loBaseHeader.BLOGO,
+                CCOMPANY_NAME = loBaseHeader.CCOMPANY_NAME!,
+                DPRINT_DATE_COMPANY = DateTime.ParseExact(loBaseHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
                 CPRINT_CODE = "GLI00100",
                 CPRINT_NAME = "Account Status Report",
                 CUSER_ID = lcUser,
@@ -180,7 +184,6 @@ public class GLI00100PrintController : R_ReportControllerBase
                 Data = new GLI00100AccountAnalysisDTO()
             };
 
-            var loCls = new GLI00100Cls();
             var loDbParam = new GLI00100ParameterDb();
             var loDbOptParam = new GLI00100AccountAnalysisParamDb();
 

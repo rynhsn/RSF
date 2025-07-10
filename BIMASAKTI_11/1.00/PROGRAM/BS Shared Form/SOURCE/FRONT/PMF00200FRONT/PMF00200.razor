@@ -1,0 +1,193 @@
+﻿@page "/PMF00200"
+@attribute [R_Page(ResourceId = "_TitleNameProgram")]
+@inherits R_Page
+
+<R_StackLayout Style="width: 900px">
+
+    <R_StackLayout Class="border">
+        <R_StackLayout Row AlignItems="@R_eAlignItems.Center" Class="border-bottom">
+            <R_ItemLayout col="12">
+                <h4 class="fw-bolder">@(_TitleName)</h4>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label FontStyle="@R_eFontStyle.Bold">@_localizer["_ReferenceNo"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label> : </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_Label>@_viewModel.HeaderDisplay.CREF_NO</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label FontStyle="@R_eFontStyle.Bold">@_localizer["_Date"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label> : </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_Label>@_viewModel.HeaderDisplay.CREF_DATE_DISPLAY</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label FontStyle="@R_eFontStyle.Bold">@_localizer["_Customer"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label> : </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_Label>@_viewModel.HeaderDisplay.CCUST_SUPP_ID - @_viewModel.HeaderDisplay.CCUST_SUPP_NAME</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label FontStyle="@R_eFontStyle.Bold">@_localizer["_Email"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label> : </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_Label>@_viewModel.HeaderDisplay.CEMAIL</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label FontStyle="@R_eFontStyle.Bold">@_localizer["_CashBank"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label> : </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_Label>@_viewModel.HeaderDisplay.CCB_CODE - @_viewModel.HeaderDisplay.CCB_NAME (@_viewModel.HeaderDisplay.CCB_ACCOUNT_NO)</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label FontStyle="@R_eFontStyle.Bold">@_localizer["_Department"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label> : </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_Label>@_viewModel.HeaderDisplay.CDEPT_NAME (@_viewModel.HeaderDisplay.CDEPT_CODE)</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label FontStyle="@R_eFontStyle.Bold">@_localizer["_DocumentNo"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label> : </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_Label>@_viewModel.HeaderDisplay.CDOC_NO</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label FontStyle="@R_eFontStyle.Bold">@_localizer["_Date"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label> : </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_Label>@_viewModel.HeaderDisplay.CDOC_DATE_DISPLAY</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row hidden="@(_InputParameter.PARAM_RECEIPT_TYPE != "CQ")">
+            <R_ItemLayout col="2">
+                <R_Label FontStyle="@R_eFontStyle.Bold">@_localizer["_ChequeGiroNo"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label> : </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_Label>@_viewModel.HeaderDisplay.CCHEQUE_NO</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label FontStyle="@R_eFontStyle.Bold">@_localizer["_Date"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label> : </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_Label>@_viewModel.HeaderDisplay.CCHEQUE_DATE_DISPLAY</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label FontStyle="@R_eFontStyle.Bold">@_localizer["_CashBank"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label> : </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_viewModel.HeaderDisplay.CCURRENCY_CODE </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_Label>@_viewModel.HeaderDisplay.NTRANS_AMOUNT</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>   </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="9">
+                <R_Label>@_viewModel.HeaderDisplay.CAMOUNT_WORDS</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label FontStyle="@R_eFontStyle.Bold">@_localizer["_Description"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label> : </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_Label>@_viewModel.HeaderDisplay.CTRANS_DESC</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="5">
+            <R_GroupBox Title="@_localizer["_PrintOptions"]" TitleClass="text-danger">
+                <R_StackLayout Row>
+                    <R_RadioGroup Data="@_PrintOptionList"
+                                  @bind-Value="@_InputParameter.PRINT_OPTION"
+                                  ValueField="Key"
+                                  TextField="Value"
+                                  Layout="R_eRadioGroupLayout.Horizontal"></R_RadioGroup>
+                </R_StackLayout>
+            </R_GroupBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="5">
+            <R_GroupBox Title="@_localizer["_ReceiptTemplate"]" TitleClass="text-danger">
+                <R_StackLayout Row>
+                    <R_ComboBox Data="@_viewModel.VAR_REPORT_TEMPLATE_LIST"
+                                  @bind-Value="@_InputParameter.RECEIPT_TEMPLATE"
+                                  ValueField="@nameof(PMF00200ReportTemplateDTO.CTEMPLATE_ID)"
+                                  TextField="@nameof(PMF00200ReportTemplateDTO.CTEMPLATE_NAME)"
+                                  ></R_ComboBox>
+                </R_StackLayout>
+            </R_GroupBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout>
+            <R_Button OnClick="@PrintBtn_OnClick">@_localizer["_Print"]</R_Button>
+            <R_Button OnClick="@SendEmailBtn_OnClick" Enabled="@(string.IsNullOrWhiteSpace(_viewModel.HeaderDisplay.CEMAIL) == false)">@_localizer["_EmailtoCustomer"]</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>

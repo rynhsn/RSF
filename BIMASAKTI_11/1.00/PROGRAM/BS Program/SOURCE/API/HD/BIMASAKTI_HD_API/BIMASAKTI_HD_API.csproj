@@ -9,7 +9,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.1" />
+		<PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.2" />
 		<PackageReference Include="Realta.CommonCollectionNuGet" Version="1.0.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
 	</ItemGroup>
@@ -88,6 +88,7 @@
 	  <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_HDSERVICES\Lookup_HDSERVICES.csproj" />
 	  <ProjectReference Include="..\..\..\SERVICE\HD\HDI00100Service\HDI00100Service.csproj" />
 	  <ProjectReference Include="..\..\..\SERVICE\HD\HDM00400Service\HDM00400Service.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\HD\HDM00600SERVICE\HDM00600SERVICE.csproj" />
 	  <ProjectReference Include="..\..\..\SERVICE\HD\HDR00200Service\HDR00200Service.csproj" />
 	</ItemGroup>
 

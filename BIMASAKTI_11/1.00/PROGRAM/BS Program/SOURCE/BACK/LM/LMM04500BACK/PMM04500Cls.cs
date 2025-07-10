@@ -63,6 +63,7 @@ namespace PMM04500BACK
                 loEx.Add(ex);
                 ShowLogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             return loRtn;
         }
@@ -88,12 +89,14 @@ namespace PMM04500BACK
 
                 loDB.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, int.MaxValue, poEntity.CCOMPANY_ID);
                 loDB.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, int.MaxValue, poEntity.CPROPERTY_ID);
-                loDB.R_AddCommandParameter(loCmd, "@CUNIT_CATEGORY_ID", DbType.String, int.MaxValue, poEntity.CUNIT_TYPE_CATEGORY_ID);
+                loDB.R_AddCommandParameter(loCmd, "@CUNIT_CATEGORY_ID", DbType.String, int.MaxValue,
+                    poEntity.CUNIT_TYPE_CATEGORY_ID);
                 loDB.R_AddCommandParameter(loCmd, "@CPRICE_TYPE", DbType.String, int.MaxValue, poEntity.CPRICE_TYPE);
                 loDB.R_AddCommandParameter(loCmd, "@LACTIVE_ONLY", DbType.Boolean, int.MaxValue, poEntity.LACTIVE);
                 loDB.R_AddCommandParameter(loCmd, "@CTYPE", DbType.String, int.MaxValue, poEntity.CTYPE);
                 loDB.R_AddCommandParameter(loCmd, "@CVALID_DATE", DbType.String, int.MaxValue, poEntity.CVALID_DATE);
-                loDB.R_AddCommandParameter(loCmd, "@CVALID_ID", DbType.String, int.MaxValue, poEntity.CVALID_INTERNAL_ID);
+                loDB.R_AddCommandParameter(loCmd, "@CVALID_ID", DbType.String, int.MaxValue,
+                    poEntity.CVALID_INTERNAL_ID);
                 loDB.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, int.MaxValue, poEntity.CUSER_ID);
 
                 ShowLogDebug(lcQuery, loCmd.Parameters);
@@ -105,6 +108,7 @@ namespace PMM04500BACK
                 loEx.Add(ex);
                 ShowLogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             return loRtn;
         }
@@ -130,7 +134,8 @@ namespace PMM04500BACK
 
                 loDB.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, int.MaxValue, poEntity.CCOMPANY_ID);
                 loDB.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, int.MaxValue, poEntity.CPROPERTY_ID);
-                loDB.R_AddCommandParameter(loCmd, "@CUNIT_CATEGORY_ID", DbType.String, int.MaxValue, poEntity.CUNIT_TYPE_CATEGORY_ID);
+                loDB.R_AddCommandParameter(loCmd, "@CUNIT_CATEGORY_ID", DbType.String, int.MaxValue,
+                    poEntity.CUNIT_TYPE_CATEGORY_ID);
                 loDB.R_AddCommandParameter(loCmd, "@CPRICE_TYPE", DbType.String, int.MaxValue, poEntity.CPRICE_TYPE);
                 loDB.R_AddCommandParameter(loCmd, "@CTYPE", DbType.String, int.MaxValue, poEntity.CTYPE);
                 loDB.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, int.MaxValue, poEntity.CUSER_ID);
@@ -144,6 +149,7 @@ namespace PMM04500BACK
                 loEx.Add(ex);
                 ShowLogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             return loRtn;
         }
@@ -158,10 +164,9 @@ namespace PMM04500BACK
             string lcQuery = "";
             try
             {
-
-
                 loCmd = loDB.GetCommand();
                 loConn = loDB.GetConnection();
+
                 R_ExternalException.R_SP_Init_Exception(loConn);
 
                 // creating temptable
@@ -183,7 +188,7 @@ namespace PMM04500BACK
                 var loConvertedData = ConvertListToBulkDTO(poParam.PRICING_LIST);
 
                 //savebulk
-                _logger.LogDebug($"INSERT INTO #PRICING {loConvertedData}");//log insert
+                _logger.LogDebug($"INSERT INTO #PRICING {loConvertedData}"); //log insert
                 loDB.R_BulkInsert<PricingDBSaveBulkDTO>((SqlConnection)loConn, "#PRICING", loConvertedData);
 
                 //exec rsp
@@ -193,22 +198,27 @@ namespace PMM04500BACK
                 loDB.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, int.MaxValue, poParam.CCOMPANY_ID);
                 loDB.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, int.MaxValue, poParam.CPROPERTY_ID);
                 loDB.R_AddCommandParameter(loCmd, "@CPRICE_TYPE", DbType.String, int.MaxValue, poParam.CPRICE_TYPE);
-                loDB.R_AddCommandParameter(loCmd, "@CUNIT_TYPE_CTG_ID", DbType.String, int.MaxValue, poParam.CUNIT_TYPE_CATEGORY_ID);
-                loDB.R_AddCommandParameter(loCmd, "@CVALID_FROM_DATE", DbType.String, int.MaxValue, poParam.CVALID_FROM_DATE);
+                loDB.R_AddCommandParameter(loCmd, "@CUNIT_TYPE_CTG_ID", DbType.String, int.MaxValue,
+                    poParam.CUNIT_TYPE_CATEGORY_ID);
+                loDB.R_AddCommandParameter(loCmd, "@CVALID_FROM_DATE", DbType.String, int.MaxValue,
+                    poParam.CVALID_FROM_DATE);
                 loDB.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, int.MaxValue, poParam.LACTIVE);
                 loDB.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, int.MaxValue, poParam.CACTION);
                 loDB.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, int.MaxValue, poParam.CUSER_ID);
+                
+                ShowLogDebug(lcQuery, loCmd.Parameters);
+                
                 try
                 {
-                    ShowLogDebug(lcQuery, loCmd.Parameters);
                     loDB.SqlExecNonQuery(loConn, loCmd, false);
                 }
                 catch (Exception ex)
                 {
                     loEx.Add(ex);
+                    _logger.LogError(loEx);
                 }
-                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
 
+                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
             }
             catch (Exception ex)
             {
@@ -222,14 +232,17 @@ namespace PMM04500BACK
                     {
                         loConn.Close();
                     }
+
                     loConn.Dispose();
                 }
+
                 if (loCmd != null)
                 {
                     loCmd.Dispose();
                     loCmd = null;
                 }
             }
+
             loEx.ThrowExceptionIfErrors();
         }
 
@@ -255,8 +268,10 @@ namespace PMM04500BACK
                 loDB.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, int.MaxValue, poParam.CCOMPANY_ID);
                 loDB.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, int.MaxValue, poParam.CPROPERTY_ID);
                 loDB.R_AddCommandParameter(loCmd, "@CPRICE_TYPE", DbType.String, int.MaxValue, poParam.CPRICE_TYPE);
-                loDB.R_AddCommandParameter(loCmd, "@CUNIT_TYPE_CATEGORY_ID", DbType.String, int.MaxValue, poParam.CUNIT_TYPE_CATEGORY_ID);
-                loDB.R_AddCommandParameter(loCmd, "@CVALID_INTERNAL_ID", DbType.String, int.MaxValue, poParam.CVALID_INTERNAL_ID);
+                loDB.R_AddCommandParameter(loCmd, "@CUNIT_TYPE_CATEGORY_ID", DbType.String, int.MaxValue,
+                    poParam.CUNIT_TYPE_CATEGORY_ID);
+                loDB.R_AddCommandParameter(loCmd, "@CVALID_INTERNAL_ID", DbType.String, int.MaxValue,
+                    poParam.CVALID_INTERNAL_ID);
                 loDB.R_AddCommandParameter(loCmd, "@CVALID_DATE", DbType.String, int.MaxValue, poParam.CVALID_DATE);
                 loDB.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, int.MaxValue, poParam.LACTIVE);
                 loDB.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, int.MaxValue, poParam.CUSER_ID);
@@ -269,6 +284,7 @@ namespace PMM04500BACK
                 {
                     loEx.Add(ex);
                 }
+
                 loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
             }
             catch (Exception ex)
@@ -283,14 +299,17 @@ namespace PMM04500BACK
                     {
                         loConn.Close();
                     }
+
                     loConn.Dispose();
                 }
+
                 if (loCmd != null)
                 {
                     loCmd.Dispose();
                     loCmd = null;
                 }
             }
+
             loEx.ThrowExceptionIfErrors();
         }
 
@@ -310,7 +329,7 @@ namespace PMM04500BACK
                 // give seq
                 loRtn = loSortedData.Select((loTemp, i) => new PricingDBSaveBulkDTO
                 {
-                    ISEQ = i + 1,//add sequence
+                    ISEQ = i + 1, //add sequence
                     CVALID_INTERNAL_ID = loTemp.CVALID_INTERNAL_ID,
                     CCHARGES_TYPE = loTemp.CCHARGES_TYPE,
                     CCHARGES_ID = loTemp.CCHARGES_ID,
@@ -325,6 +344,7 @@ namespace PMM04500BACK
             {
                 loEx.Add(ex);
             }
+
             loEx.ThrowExceptionIfErrors();
             return loRtn;
         }
@@ -348,7 +368,8 @@ namespace PMM04500BACK
 
         private void ShowLogDebug(string pcQuery, DbParameterCollection poParameters)
         {
-            var paramValues = string.Join(", ", poParameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} '{p.Value}'"));
+            var paramValues = string.Join(", ",
+                poParameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} '{p.Value}'"));
             _logger.LogDebug($"EXEC {pcQuery} {paramValues}");
         }
 

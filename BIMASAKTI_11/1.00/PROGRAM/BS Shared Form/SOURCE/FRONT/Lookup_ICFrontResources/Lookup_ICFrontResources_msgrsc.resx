@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="REQUEST_CODE" xml:space="preserve">
+        <value>Request Code</value>
+    </data>
+    <data name="REQUEST_DESCRIPTION" xml:space="preserve">
+        <value>Request Description</value>
+    </data>
+    <data name="ALLOCATION_ID" xml:space="preserve">
+        <value>Allocation ID</value>
+    </data>
+    <data name="ALLOCATION_DESCRIPTION" xml:space="preserve">
+        <value>Allocation Description</value>
+    </data>
+    <data name="WAREHOUSE_ID" xml:space="preserve">
+        <value>Warehouse ID</value>
+    </data>
+    <data name="REFERENCE_NO" xml:space="preserve">
+        <value>Reference No</value>
+    </data>
+    <data name="REFERENCE_DATE" xml:space="preserve">
+        <value>Ref. Date</value>
+    </data>
+    <data name="TYPE" xml:space="preserve">
+        <value>Type</value>
+    </data>
+    <data name="REQUEST_NAME" xml:space="preserve">
+        <value>Request Name</value>
+    </data>
+    <data name="REQUEST_WH" xml:space="preserve">
+        <value>Request WH</value>
+    </data>
+    <data name="ALLOCATION" xml:space="preserve">
+        <value>Allocation</value>
+    </data>
+    <data name="STOKE_TAKE_BY" xml:space="preserve">
+        <value>Stocktake By</value>
+    </data>
+    <data name="DESCRIPTION" xml:space="preserve">
+        <value>Description</value>
+    </data>
+    <data name="RFSH" xml:space="preserve">
+        <value>Refresh</value>
+    </data>
+    <data name="OK" xml:space="preserve">
+        <value>Ok</value>
+    </data>
+    <data name="CNCL" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="WAREHOUSE" xml:space="preserve">
+        <value>Warehouse</value>
+    </data>
+    <data name="DEPT" xml:space="preserve">
+        <value>Dept.</value>
+    </data>
+    <data name="RFRNCE" xml:space="preserve">
+        <value>Reference No.</value>
+    </data>
+</root>

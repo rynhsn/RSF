@@ -101,7 +101,8 @@ namespace Lookup_PMBACK
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 25, poEntity.CPROPERTY_ID);
-
+                loDb.R_AddCommandParameter(loCmd, "@LINCLUDE_ADMIN", DbType.Boolean, 25, poEntity.LINCLUDE_ADMIN);
+                loDb.R_AddCommandParameter(loCmd, "@LINCLUDE_MANAGEMENT", DbType.Boolean, 25, poEntity.LINCLUDE_MANAGEMENT);
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                     .Where(x => x != null && x.ParameterName.StartsWith("@"))
                     .ToDictionary(x => x.ParameterName, x => x.Value);

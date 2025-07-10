@@ -1,206 +1,337 @@
-﻿using BlazorClientHelper;
-using GSM04500Common.DTOs;
-using GSM04500Model.ViewModel;
+﻿using GSM04500Common;
+using GSM04500Model;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.JSInterop;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Controls.Tab;
+using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
-using R_BlazorFrontEnd.Helpers;
+using Microsoft.JSInterop;
+using BlazorClientHelper;
+using R_BlazorFrontEnd.Controls.Enums;
 using R_CommonFrontBackAPI;
+using R_LockingFront;
 
-namespace GSM04500Front;
-
-public partial class GSM04500 : R_Page
+namespace GSM04500Front
 {
-    
-    private GSM04500JournalGroupViewModel _viewModel = new();
-    private R_ConductorGrid _conductorRef;
-    private R_Grid<GSM04500JournalGroupDTO> _gridRef;
-
-    private R_TabStripTab _tabAccSetting;
-    private R_TabStrip _tab;
-    private bool _flagCombo;
-    [Inject] private IJSRuntime JS { get; set; }
-    [Inject] private IClientHelper _clientHelper { get; set; }
-
-    protected override async Task R_Init_From_Master(object poParam)
+    public partial class GSM04500 : R_Page
     {
-        var loEx = new R_Exception();
+        private GSM04500ViewModel journalGroupViewModel = new();
+        private R_ConductorGrid? _conJournalGroupRef;
+        private R_Grid<GSM04500DTO> _gridRef;
+        private R_Conductor _conductorRef;
 
-        try
+        private R_TabStrip _tabStrip;
+        private R_TabPage _tabPageAccountSetting;
+        [Inject] IJSRuntime JS { get; set; }
+        [Inject] IClientHelper clientHelper { get; set; }
+        protected override async Task R_Init_From_Master(object poParameter)
         {
-            await _viewModel.Init();
-            await _gridRef.R_RefreshGrid(null);
+            var loEx = new R_Exception();
+            try
+            {
+                await journalGroupViewModel.GetJournalGroupTypeList();
+                if (journalGroupViewModel._lGroupTypeExist)
+                {
+                    await _gridRef.R_RefreshGrid(null);
+                  
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
         }
-        catch (Exception ex)
+        private async Task JournalGroupDropdown_OnChange(object poParam)
         {
-            loEx.Add(ex);
-        }
+            var loEx = new R_Exception();
+            string lsJournalGrpType = (string)poParam;
+            try
+            {
+                journalGroupViewModel.JournalGroupTypeValue = lsJournalGrpType;
+                journalGroupViewModel.JournalGroupCurrent.CJRNGRP_TYPE = lsJournalGrpType;
 
-        loEx.ThrowExceptionIfErrors();
-    }
-    
-    private void Display(R_DisplayEventArgs eventArgs)
-    {
-        _viewModel.Entity = (GSM04500JournalGroupDTO)eventArgs.Data;
-    }
-    private async Task GetGridList(R_ServiceGetListRecordEventArgs eventArgs)
-    {
-        var loEx = new R_Exception();
+                await _gridRef.R_RefreshGrid(poParam);
+                journalGroupViewModel.DropdownGroupType = true;
 
-        try
-        {
-            await _viewModel.GetGridList();
-            eventArgs.ListEntityResult = _viewModel.GridList;
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
+                if (_tabStrip.ActiveTab.Id == "Tab_AccountSetting")
+                {
+                    journalGroupViewModel.DropdownGroupType = false;
+                }
 
-        loEx.ThrowExceptionIfErrors();
-    }
-    
-    private async Task GetRecord(R_ServiceGetRecordEventArgs eventArgs)
-    {
-        var loEx = new R_Exception();
-
-        try
-        {
-            var loParam = R_FrontUtility.ConvertObjectToObject<GSM04500JournalGroupDTO>(eventArgs.Data);
-
-            await _viewModel.GetEntity(loParam);
-            eventArgs.Result = _viewModel.Entity;
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            R_DisplayException(loEx);
         }
 
-        loEx.ThrowExceptionIfErrors();
-    }
-    
-    private async Task Save(R_ServiceSaveEventArgs eventArgs)
-    {
-        var loEx = new R_Exception();
-
-        try
+        #region Journal Group
+        private async Task R_ServiceGetListRecord(R_ServiceGetListRecordEventArgs eventArgs)
         {
-            var loParam = R_FrontUtility.ConvertObjectToObject<GSM04500JournalGroupDTO>(eventArgs.Data);
-            loParam.CJRNGRP_CODE ??= string.Empty;
-            loParam.CJRNGRP_NAME ??= string.Empty;
-            await _viewModel.SaveEntity(loParam, (eCRUDMode)eventArgs.ConductorMode);
-            eventArgs.Result = _viewModel.Entity;
+            var loEx = new R_Exception();
+            try
+            {
+                await journalGroupViewModel.GetAllJournalAsync();
+                eventArgs.ListEntityResult = journalGroupViewModel.JournalGroupList;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
         }
-        catch (Exception ex)
+        private async Task R_ServiceGetRecordAsync(R_ServiceGetRecordEventArgs eventArgs)
         {
-            loEx.Add(ex);
-        }
+            var loEx = new R_Exception();
 
-        loEx.ThrowExceptionIfErrors();
-    }
+            try
+            {
+                var loParam = (GSM04500DTO)eventArgs.Data;
+                eventArgs.Result = await journalGroupViewModel.GetGroupJournalOneRecord(loParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
 
-    private async Task Delete(R_ServiceDeleteEventArgs eventArgs)
-    {
-        var loEx = new R_Exception();
-
-        try
-        {
-            var loParam = R_FrontUtility.ConvertObjectToObject<GSM04500JournalGroupDTO>(eventArgs.Data);
-            await _viewModel.DeleteEntity(loParam);
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-        
-        loEx.ThrowExceptionIfErrors();
-    }
-
-    private void AfterAdd(R_AfterAddEventArgs eventArgs)
-    {
-        var loData = (GSM04500JournalGroupDTO)eventArgs.Data;
-        loData.DCREATE_DATE = DateTime.Now;
-        loData.DUPDATE_DATE = DateTime.Now;
-    }
-
-    private void SetOther(R_SetEventArgs eventArgs)
-    {
-        _tabAccSetting.Enabled = eventArgs.Enable;
-        _flagCombo = eventArgs.Enable;
-    }
-
-    private async Task OnChangeParam(object value, string type)
-    {
-        var loEx = new R_Exception();
-        var lcType = (string)value;
-        try
-        {
-            if (type == "property") _viewModel.PropertyId = lcType;
-            else if (type == "type") _viewModel.TypeCode = lcType;
-
-            await _gridRef.R_RefreshGrid(null);
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
-        
-        R_DisplayException(loEx);
-    }
-
-    private void OnChangeTab(R_TabStripActiveTabIndexChangingEventArgs eventArgs)
-    {
-        _flagCombo = eventArgs.TabStripTab.Id == "JournalGroup";
-    }
-
-    private void BeforeOpenAccSetting(R_BeforeOpenTabPageEventArgs eventArgs)
-    {
-        eventArgs.TargetPageType = typeof(GSM04500AccSetting);
-        eventArgs.Parameter = _viewModel.Entity;
-    }
-
-    private async Task DownloadTemplate()
-    {
-        var loEx = new R_Exception();
-        string loCompanyName = _clientHelper.CompanyId.ToUpper();
-
-        try
-        {
-                var loByteFile = await _viewModel.DownloadTemplate();
-                var saveFileName = $"Journal Group - {loCompanyName}.xlsx";
-                await JS.downloadFileFromStreamHandler(saveFileName, loByteFile.FileBytes);
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
+            loEx.ThrowExceptionIfErrors();
         }
 
-        R_DisplayException(loEx);
-        
-    }
-    
-    private void BeforeOpenUpload(R_BeforeOpenPopupEventArgs eventArgs)
-    {
-        eventArgs.Parameter = new GSM04500ParamDTO()
+        public async Task ServiceDelete(R_ServiceDeleteEventArgs eventArgs)
         {
-            CCOMPANY_ID = _clientHelper.CompanyId,
-            CUSER_ID = _clientHelper.UserId,
-            CPROPERTY_ID = _viewModel.PropertyId,
-            CPROPERTY_NAME = _viewModel.PropertyList.Where(x => x.CPROPERTY_ID == _viewModel.PropertyId).Select(x => x.CPROPERTY_NAME).FirstOrDefault(),
-            CJRNGRP_TYPE = _viewModel.TypeCode
-        };
-        eventArgs.TargetPageType = typeof(GSM04500UploadPopup);
-    }
+            var loEx = new R_Exception();
+            try
+            {
+                var loParam = (GSM04500DTO)eventArgs.Data;
+                await journalGroupViewModel.DeleteOneRecordJournalGroup(loParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            // R_DisplayException(loEx);
+            loEx.ThrowExceptionIfErrors();
+        }
+        public async Task AfterDelete()
+        {
+            await R_MessageBox.Show("", "Delete Success", R_eMessageBoxButtonType.OK);
+        }
+        private void AfterAdd(R_AfterAddEventArgs eventArgs)
+        {
+            R_Exception loException = new R_Exception();
+            var loData = (GSM04500DTO)eventArgs.Data;
 
-    private async Task AfterOpenUpload(R_AfterOpenPopupEventArgs eventArgs)
-    {
-        await _gridRef.R_RefreshGrid(null);
-        // await Task.CompletedTask;
+            try
+            {
+                loData.CJRNGRP_TYPE = journalGroupViewModel.JournalGroupTypeValue;
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+
+            R_DisplayException(loException);
+        }
+        private async Task ServiceSave(R_ServiceSaveEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loParam = (GSM04500DTO)eventArgs.Data;
+                await journalGroupViewModel.SaveJournalGroup(loParam, eventArgs.ConductorMode);
+
+                eventArgs.Result = journalGroupViewModel.JournalGroup;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private void Grid_Display(R_DisplayEventArgs eventArgs)
+        {
+            if (eventArgs.ConductorMode == R_eConductorMode.Normal)
+            {
+                var loParam = (GSM04500DTO)eventArgs.Data;
+                journalGroupViewModel.JournalGroupCurrent = loParam;
+            }
+        }
+
+        public void ServiceValidation(R_ValidationEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                journalGroupViewModel.ValidationFieldEmpty((GSM04500DTO)eventArgs.Data);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            eventArgs.Cancel = loEx.HasError;
+            loEx.ThrowExceptionIfErrors();
+        }
+        #endregion
+
+        #region CHANGE TAB
+        //CHANGE TAB
+        private void Before_Open_AccountSetting(R_BeforeOpenTabPageEventArgs eventArgs)
+        {
+            eventArgs.TargetPageType = typeof(GSM04500AccountSetting);
+            if (journalGroupViewModel.JournalGroupList.Count > 0)
+            {
+                eventArgs.Parameter = journalGroupViewModel.JournalGroupCurrent;
+            }
+            else
+            {
+                eventArgs.Parameter = null;
+            }
+        }
+        private void onTabChange(R_TabStripActiveTabIndexChangingEventArgs eventArgs)
+        {
+            journalGroupViewModel.DropdownGroupType = true;
+            if (eventArgs.TabStripTab.Id == "Tab_AccountSetting")
+            {
+                journalGroupViewModel.DropdownGroupType = false;
+            }
+        }
+        #endregion
+
+        #region Template
+        private async Task TemplateBtn_OnClick()
+        {
+            var loEx = new R_Exception();
+            string loCompanyName = clientHelper.CompanyId.ToUpper();
+
+            try
+            {
+                var loValidate = await R_MessageBox.Show("", "Are you sure download this template?", R_eMessageBoxButtonType.YesNo);
+
+                if (loValidate == R_eMessageBoxResult.Yes)
+                {
+                    var loByteFile = await journalGroupViewModel.DownloadTemplate();
+
+                    var saveFileName = $"Journal Group - {loCompanyName}.xlsx";
+
+                    await JS.downloadFileFromStreamHandler(saveFileName, loByteFile.FileBytes);
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
+        }
+        #endregion
+
+        #region Upload
+
+        private void Before_Open_Upload(R_BeforeOpenPopupEventArgs eventArgs)
+        {
+            var param = new GSM004500ParamDTO()
+            {
+                CCOMPANY_ID = journalGroupViewModel.JournalGroupCurrent.CCOMPANY_ID,
+                CUSER_ID = clientHelper.UserId,
+                CJRNGRP_TYPE = journalGroupViewModel.JournalGroupCurrent.CJRNGRP_TYPE
+            };
+
+            eventArgs.Parameter = param;
+            eventArgs.TargetPageType = typeof(GSM04500Upload);
+        }
+
+        private async Task After_Open_Upload(R_AfterOpenPopupEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                if (eventArgs.Success == false)
+                {
+                    return;
+                }
+                if ((bool)eventArgs.Result == true)
+                {
+                    await _gridRef.R_RefreshGrid(null);
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            R_DisplayException(loEx);
+        }
+
+        #endregion
+
+
+        #region UserLocking
+        private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrl";
+        private const string DEFAULT_MODULE_NAME = "GS";
+
+        protected override async Task<bool> R_LockUnlock(R_LockUnlockEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            var llRtn = false;
+            R_LockingFrontResult loLockResult = null;
+            try
+            {
+                var loData = (GSM04500DTO)eventArgs.Data;
+                var loCls = new R_LockingServiceClient(pcModuleName: DEFAULT_MODULE_NAME,
+                  plSendWithContext: true,
+                  plSendWithToken: true,
+                  pcHttpClientName: DEFAULT_HTTP_NAME);
+
+                if (eventArgs.Mode == R_eLockUnlock.Lock)
+                {
+                    var loLockPar = new R_ServiceLockingLockParameterDTO
+                    {
+                        Company_Id = clientHelper.CompanyId,
+                        User_Id = clientHelper.UserId,
+                        Program_Id = "GSM04500",
+                        Table_Name = "GSM_JRNGRP",
+                        Key_Value = string.Join("|", clientHelper.CompanyId, loData.CPROPERTY_ID, loData.CJRNGRP_TYPE, loData.CJRNGRP_CODE)
+                    };
+
+                    loLockResult = await loCls.R_Lock(loLockPar);
+                }
+                else
+                {
+                    var loUnlockPar = new R_ServiceLockingUnLockParameterDTO
+                    {
+                        Company_Id = clientHelper.CompanyId,
+                        User_Id = clientHelper.UserId,
+                        Program_Id = "GSM04500",
+                        Table_Name = "GSM_JRNGRP",
+                        Key_Value = string.Join("|", clientHelper.CompanyId, loData.CPROPERTY_ID, loData.CJRNGRP_TYPE, loData.CJRNGRP_CODE)
+                    };
+
+                    loLockResult = await loCls.R_UnLock(loUnlockPar);
+                }
+
+                llRtn = loLockResult.IsSuccess;
+                if (!loLockResult.IsSuccess && loLockResult.Exception != null)
+                    throw loLockResult.Exception;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return llRtn;
+        }
+
+        #endregion
     }
 }

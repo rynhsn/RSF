@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace GLM00200MODEL.ViewModels
 {
-    public class GLM00202ViewModel : R_IProcessProgressStatus
+    public class GLM00202ViewModel : R_IProcessProgressStatus //upload VM
     {
         //var
         public ObservableCollection<RecurringUploadErrorDTO> RecurringUploadErrors { get; set; } = new ObservableCollection<RecurringUploadErrorDTO>();
@@ -44,7 +44,6 @@ namespace GLM00200MODEL.ViewModels
             R_ProcessAndUploadClient loCls;
             try
             {
-                //Instantiate ProcessClient
                 loCls = new R_ProcessAndUploadClient(
                     pcModuleName: RecurringJournalContext.DEFAULT_MODULE,
                     plSendWithContext: true,
@@ -52,18 +51,8 @@ namespace GLM00200MODEL.ViewModels
                     pcHttpClientName: RecurringJournalContext.DEFAULT_HTTP_NAME,
                     poProcessProgressStatus: this);
 
-                //Set Data
                 if (RecurringUploadErrors.Count == 0)
                     return;
-
-                //var loNumberedData = new List<PricelistBatchDTO>(
-                //    loMappingData.Select((item, index) =>
-                //    {
-                //        item.NO = index + 1; // Assign row number starting from 1
-                //        return item;
-                //    }));
-
-                //preapare Batch Parameter
                 loBatchPar = new R_BatchParameter
                 {
                     COMPANY_ID = pcCompanyId,

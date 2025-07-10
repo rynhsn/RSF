@@ -1,0 +1,38 @@
+2025-05-26 23:55:03,181 INFO  Program - Application starting...
+2025-05-26 23:55:03,346 INFO  Program - Configuring application settings...
+2025-05-26 23:55:03,367 INFO  Program - Application configuration loaded successfully.
+2025-05-26 23:55:04,981 INFO  Program - Finished Configured Service at program cs
+2025-05-26 23:55:04,981 INFO  Program - Configure service Succesfully
+2025-05-26 23:55:05,086 DEBUG Program - {"CORRELATION_ID":"d87965f9-d027-44ba-9d88-0ffc35c9e48f","APPLICATION_ID":"Bimasakti","TENANT_ID":"All","COMPANY_ID":"All","PROGRAM_ID":"DatabaseAndMultiTenantConsole","USER_ID":"System","USER_NAME":"ConsoleSystem"}
+2025-05-26 23:55:05,117 INFO  Program - Try to get Args on main
+2025-05-26 23:55:05,118 INFO  Program - Get Helper MultiTenantHelper
+2025-05-26 23:55:05,192 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - START process method InjectMultiTenantConnectionString on Cls
+2025-05-26 23:55:05,373 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - Start Get connecction InjectMultiTenantConnectionString on Cls
+2025-05-26 23:55:05,373 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command Select CTENANT_ID, CCONNECTIONSTRING, CPROVIDER_NAME, CKEYWORD_FOR_PASSWORD  from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0}
+2025-05-26 23:55:05,373 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-05-26 23:55:05,709 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command select distinct  CTENANT_ID from( Select CTENANT_ID=REPLACE(REPLACE(CTENANT_ID,'_report_connectionstring',''),'_connectionstring','') from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0} ) as final
+2025-05-26 23:55:05,710 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-05-26 23:55:05,716 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - END process method InjectMultiTenantConnectionString on Cls
+2025-05-26 23:55:05,716 INFO  Program - Get Service ConsoleMain
+2025-05-26 23:55:05,717 INFO  Program - Call Method Main
+2025-05-26 23:55:05,719 INFO  HDA00100Console.ConsoleMain - START process method Main 
+2025-05-26 23:55:05,720 INFO  HDA00100Console.ConsoleMain - Multi Tenant Database Connection
+2025-05-26 23:55:05,720 INFO  HDA00100Console.ConsoleMain - Get Tenants
+2025-05-26 23:55:05,720 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-BSI
+2025-05-26 23:55:05,720 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-05-26 23:55:05,720 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-05-26 23:55:05,721 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-05-26 23:55:05,722 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-05-26 23:55:05,723 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-05-26 23:55:09,560 INFO  HDA00100Console.HDA00100Process - END process method Process_HD_SCHEDULER_ACTION on Cls
+2025-05-26 23:55:09,560 INFO  HDA00100Console.ConsoleMain - Connection name=realta-bsi_connectionstring : 
+2025-05-26 23:55:09,561 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-RCD
+2025-05-26 23:55:09,561 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-05-26 23:55:09,561 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-05-26 23:55:09,561 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-05-26 23:55:09,562 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-05-26 23:55:09,562 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-05-26 23:55:09,931 INFO  HDA00100Console.HDA00100Process - END process method Process_HD_SCHEDULER_ACTION on Cls
+2025-05-26 23:55:09,931 INFO  HDA00100Console.ConsoleMain - Connection name=realta-rcd_connectionstring : 
+2025-05-26 23:55:09,931 INFO  HDA00100Console.ConsoleMain - END process method Main 
+2025-05-26 23:55:09,932 INFO  Program - End Console Program

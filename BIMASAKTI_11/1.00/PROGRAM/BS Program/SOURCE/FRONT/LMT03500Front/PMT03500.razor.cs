@@ -9,6 +9,7 @@ using PMT03500Model.ViewModel;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
+using R_APICommonDTO;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
@@ -26,7 +27,7 @@ namespace PMT03500Front;
 public partial class PMT03500 : R_Page
 {
     private PMT03500ViewModel _viewModel = new();
-    private PMT03500UploadUtilityViewModel _viewModelUpload = new();
+    private PMT03500UploadUtilityViewModel _viewModelSave = new();
     private PMT03500UndoUtilityViewModel _viewModelUndo = new();
 
     private PMT03500UtilityUsageViewModel _viewModelUtility = new();
@@ -38,6 +39,8 @@ public partial class PMT03500 : R_Page
     [Inject] private IJSRuntime JS { get; set; }
     [Inject] private R_IExcel ExcelInject { get; set; }
     [Inject] IClientHelper ClientHelper { get; set; }
+
+    private eBatchType _batchType { get; set; } = eBatchType.Upload;
 
     private R_TabStrip _tabStripRef;
     private R_TabStrip _tabStripUtilityRef;
@@ -69,14 +72,28 @@ public partial class PMT03500 : R_Page
 
     #region HandleError
 
-    private void DisplayErrorInvoke(R_Exception poException)
+    private void DisplayErrorInvoke(R_APIException poException)
     {
-        R_DisplayException(poException);
+        var loEx = R_FrontUtility.R_ConvertFromAPIException(poException);
+        this.R_DisplayException(loEx);
     }
 
-    private void DisplayErrorUndoInvoke(R_Exception poException)
+    private void DisplayErrorUndoInvoke(R_APIException poException)
     {
-        R_DisplayException(poException);
+        // var loEx = new R_Exception(_viewModelUndo.ErrorList);
+        // if (_viewModelUndo.ErrorList.Any())
+        // {
+        //     R_DisplayException(loEx);
+        // }
+        // else
+        // {
+        //     var loEd = R_FrontUtility.ConvertObjectToObject<R_Exception>(poException);
+        //     R_DisplayException(loEd);
+        // }
+
+        var loEx = R_FrontUtility.R_ConvertFromAPIException(poException);
+        this.R_DisplayException(loEx);
+
     }
 
     #endregion
@@ -113,10 +130,10 @@ public partial class PMT03500 : R_Page
             //     await _gridRefBuilding.R_RefreshGrid(null);
             // }
 
-            _viewModelUpload.StateChangeAction = StateChangeInvoke;
-            _viewModelUpload.DisplayErrorAction = DisplayErrorInvoke;
-            _viewModelUpload.ActionDataSetExcel = ActionFuncDataSetExcel;
-            _viewModelUpload.ShowSuccessAction = async () => { await ShowSuccessUpdateInvoke(); };
+            _viewModelSave.StateChangeAction = StateChangeInvoke;
+            _viewModelSave.DisplayErrorAction = DisplayErrorInvoke;
+            _viewModelSave.ActionDataSetExcel = ActionFuncDataSetExcel;
+            _viewModelSave.ShowSuccessAction = async () => { await ShowSuccessUpdateInvoke(); };
 
             _viewModelUndo.StateChangeAction = StateChangeUndoInvoke;
             _viewModelUndo.DisplayErrorAction = DisplayErrorUndoInvoke;
@@ -127,7 +144,7 @@ public partial class PMT03500 : R_Page
             loEx.Add(ex);
         }
 
-        loEx.ThrowExceptionIfErrors();
+        R_DisplayException(loEx);
     }
 
     private async Task GetBuildingListRecord(R_ServiceGetListRecordEventArgs eventArgs)
@@ -193,7 +210,7 @@ public partial class PMT03500 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         R_DisplayException(loEx);
     }
 
@@ -416,7 +433,7 @@ public partial class PMT03500 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         loEx.ThrowExceptionIfErrors();
     }
 
@@ -539,7 +556,7 @@ public partial class PMT03500 : R_Page
         }
     }
 
-    private async Task DisplayUtility(R_DisplayEventArgs eventArgs)
+    private void DisplayUtility(R_DisplayEventArgs eventArgs)
     {
         var loEx = new R_Exception();
         try
@@ -564,6 +581,7 @@ public partial class PMT03500 : R_Page
 
         try
         {
+            _batchType = eBatchType.Upload;
             _enabledBtn = false;
             await _gridRefUtility.R_SaveBatch();
             // _enabledBtn = true;
@@ -625,20 +643,20 @@ public partial class PMT03500 : R_Page
                     .Where(x => x.LSELECTED).ToList());
 
             var loUtilityType = loTempDataList.FirstOrDefault().CUTILITY_TYPE;
-            _viewModelUpload.CompanyId = ClientHelper.CompanyId;
-            _viewModelUpload.UserId = ClientHelper.UserId;
-            _viewModelUpload.UploadParam.CPROPERTY_ID = _viewModelUtility.Property.CPROPERTY_ID;
-            _viewModelUpload.UploadParam.EUTILITY_TYPE =
+            _viewModelSave.CompanyId = ClientHelper.CompanyId;
+            _viewModelSave.UserId = ClientHelper.UserId;
+            _viewModelSave.UploadParam.CPROPERTY_ID = _viewModelUtility.Property.CPROPERTY_ID;
+            _viewModelSave.UploadParam.EUTILITY_TYPE =
                 loUtilityType is "01" or "02"
                     ? EPMT03500UtilityUsageType.EC
                     : EPMT03500UtilityUsageType.WG;
 
-            _viewModelUpload.IsUpload = false;
+            _viewModelSave.IsUpload = false;
 
-            await _viewModelUpload.SaveBulkFile(poUploadParam: _viewModelUpload.UploadParam,
+            await _viewModelSave.SaveBulkFile(poUploadParam: _viewModelSave.UploadParam,
                 poDataList: loDataList.ToList());
 
-            if (_viewModelUpload.IsError)
+            if (_viewModelSave.IsError)
             {
                 loEx.Add("Error", "Utility Usage saved is not successfully!");
             }
@@ -655,13 +673,23 @@ public partial class PMT03500 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
+    //private string _urut { get; set; }
     private async Task OnClickUndo(MouseEventArgs eventArgs)
     {
         var loEx = new R_Exception();
 
         try
         {
+            _batchType = eBatchType.Undo;
             var loData = _viewModelUtility.GridUtilityUsageList.Where(x => x.LSELECTED).ToList();
+
+            //Untuk testing
+            //ambil dari _urut lalu split tanda koma
+            //var urut = _urut.Split(",");
+            //foreach (var x in urut)
+            //{
+            //    loData.Add(_viewModelUtility.GridUtilityUsageList[int.Parse(x)]);
+            //}
 
             var loParam = new PMT03500UndoParam
             {
@@ -740,7 +768,8 @@ public partial class PMT03500 : R_Page
     private void SetEdit(R_SetEditGridColumnEventArgs eventArgs)
     {
         var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
-        var loColumn = eventArgs.Columns.FirstOrDefault(x => x.FieldName == nameof(PMT03500UtilityUsageDTO.DSTART_DATE));
+        var loColumn =
+            eventArgs.Columns.FirstOrDefault(x => x.FieldName == nameof(PMT03500UtilityUsageDTO.DSTART_DATE));
         loColumn.Enabled = !loData.LDISABLED_START_DATE;
     }
 }

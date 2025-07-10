@@ -14,7 +14,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.1" />
+		<PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -63,7 +63,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\..\SERVICE\IC\ICB00100Service\ICB00100Service.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\IC\ICB00300Service\ICB00300Service.csproj" />
 	  <ProjectReference Include="..\..\..\SERVICE\IC\ICI00200Service\ICI00200Service.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\IC\ICR00100Service\ICR00100Service.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\IC\ICR00600Service\ICR00600Service.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\IC\ICT00900SERVICE\ICT00900SERVICE.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Reports\ICR00600Stock.frx">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reports\ICR00100ProductCard.frx">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>

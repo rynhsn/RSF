@@ -188,7 +188,7 @@ namespace PMT03500Common.DTOs
 
     public class PMT03500UndoUtilityDTO
     {
-        public string NO { get; set; }
+        public int NO { get; set; }
         public string CCOMPANY_ID { get; set; }
         public string CPROPERTY_ID { get; set; }
         public string CDEPT_CODE { get; set; }

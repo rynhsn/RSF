@@ -12,6 +12,7 @@ using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
+using R_APICommonDTO;
 
 namespace PMT03500Front;
 
@@ -36,9 +37,10 @@ public partial class PMT03500UploadUtilityPopup : R_Page
 
     #region HandleError
 
-    private void DisplayErrorInvoke(R_Exception poException)
+    private void DisplayErrorInvoke(R_APIException poException)
     {
-        R_DisplayException(poException);
+        var loEx = R_FrontUtility.R_ConvertFromAPIException(poException);
+        this.R_DisplayException(loEx);
     }
 
     #endregion
@@ -123,15 +125,15 @@ public partial class PMT03500UploadUtilityPopup : R_Page
             {
                 await _viewModel.SaveBulkFile(_viewModel.UploadParam, _viewModel.GridListUpload.ToList());
 
-                if (!_viewModel.IsError)
-                {
-                    var loResult = await R_MessageBox.Show("", "Utility Usage uploaded successfully!",
-                        R_eMessageBoxButtonType.OK);
-                    if (loResult == R_eMessageBoxResult.OK)
-                    {
-                        await Close(true, true);
-                    }
-                }
+                //if (!_viewModel.IsError)
+                //{
+                //    var loResult = await R_MessageBox.Show("", "Utility Usage uploaded successfully!",
+                //        R_eMessageBoxButtonType.OK);
+                //    if (loResult == R_eMessageBoxResult.OK)
+                //    {
+                //        await Close(true, true);
+                //    }
+                //}
             }
         }
         catch (Exception ex)

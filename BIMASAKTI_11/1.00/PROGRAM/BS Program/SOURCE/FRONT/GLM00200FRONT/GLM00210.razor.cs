@@ -20,7 +20,7 @@ using R_BlazorFrontEnd.Interfaces;
 
 namespace GLM00200FRONT
 {
-    public partial class GLM00210 : R_Page
+    public partial class GLM00210 : R_Page //recurring entry
     {
         private GLM00201ViewModel _journalVM = new GLM00201ViewModel();
         private R_Grid<JournalDetailGridDTO> _gridJournalDet;
@@ -37,7 +37,6 @@ namespace GLM00200FRONT
         private bool EnableHaveRecId = false;
         #endregion
         [Inject] IClientHelper _clientHelper { get; set; }
-        [Inject] R_ILocalizer<Resources_Dummy_Class> _localizer { get; set; }
 
 
         protected override async Task R_Init_From_Master(object poParameter)
@@ -711,7 +710,7 @@ namespace GLM00200FRONT
             {
                 var loParam = (JournalDTO)_conJournalNavigator.R_GetCurrentData();
                 eventArgs.Parameter = loParam;
-                eventArgs.TargetPageType = typeof(GLM00200PrintPopup);
+                eventArgs.TargetPageType = typeof(GLM00201);
                 eventArgs.PageTitle = _localizer["_pageTitlePrintPopup"];
             }
             catch (Exception ex)

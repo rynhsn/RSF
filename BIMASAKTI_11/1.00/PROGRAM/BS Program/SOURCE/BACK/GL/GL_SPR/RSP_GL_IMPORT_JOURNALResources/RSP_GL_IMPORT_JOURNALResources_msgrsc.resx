@@ -117,7 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ACCOUNT_NO_EMPTY" xml:space="preserve">
+    <value>Account No. is mandatory</value>
+  </data>
+  <data name="ACCOUNT_NO_NOT_EXIST" xml:space="preserve">
+    <value>Account No. does not exist</value>
+  </data>
+  <data name="BASE_BASE_RATE_INVALID" xml:space="preserve">
+    <value>Invalid Base Currency Base Rate! Base Currency Base Rate must be greater than 0</value>
+  </data>
+  <data name="BASE_CURRENCY_RATE_INVALID" xml:space="preserve">
+    <value>Invalid Base Currency Rate! Base Currency  Rate must be greater than 0</value>
+  </data>
+  <data name="CENTER_CODE_EMPTY" xml:space="preserve">
+    <value>Center Code is mandatory for Account No.</value>
+  </data>
+  <data name="CENTER_CODE_NOT_EXIST" xml:space="preserve">
+    <value>Center Code does not exist</value>
+  </data>
+  <data name="CURRENCY_CODE_NOT_EXIST" xml:space="preserve">
+    <value>Currency Code does not exist</value>
+  </data>
+  <data name="DEPT_CODE_NOT_EXIST" xml:space="preserve">
+    <value>Department Code does not exist</value>
+  </data>
+  <data name="DEPT_CODE_NO_ACCESS" xml:space="preserve">
+    <value>You have no access right for department code</value>
+  </data>
+  <data name="DOC_DATE_AFTER_TODAY" xml:space="preserve">
+    <value>Invalid Document Date! Document Date cannot be after today</value>
+  </data>
+  <data name="DOC_DATE_BEFORE_SOFT_PERIOD" xml:space="preserve">
+    <value>Invalid Document Date! Document Date cannot be before Soft Period</value>
+  </data>
   <data name="Error900" xml:space="preserve">
     <value>Failed to import journal {0}</value>
+  </data>
+  <data name="JOURNAL_AMOUNT_INVALID" xml:space="preserve">
+    <value>Invalid Journal Amount! Journal Amount must be greater than 0</value>
+  </data>
+  <data name="LOCAL_BASE_RATE_INVALID" xml:space="preserve">
+    <value>Invalid Local Currency Base Rate! Local Currency Base Rate must be greater than 0</value>
+  </data>
+  <data name="LOCAL_CURRENCY_RATE_INVALID" xml:space="preserve">
+    <value>Invalid Local Currency Rate! Local Currency Rate must be greater than 0</value>
+  </data>
+  <data name="REF_DATE_AFTER_TODAY" xml:space="preserve">
+    <value>Invalid Reference Date! Reference Date cannot be after today</value>
+  </data>
+  <data name="REF_DATE_BEFORE_SOFT_PERIOD" xml:space="preserve">
+    <value>Invalid Reference Date! Reference Date cannot be before Soft Period</value>
+  </data>
+  <data name="REF_NO_ALREADY_EXIST" xml:space="preserve">
+    <value>Reference No. already exists</value>
+  </data>
+  <data name="REF_NO_EMPTY" xml:space="preserve">
+    <value>Reference No. is mandatory for Manual Numbering</value>
   </data>
 </root>

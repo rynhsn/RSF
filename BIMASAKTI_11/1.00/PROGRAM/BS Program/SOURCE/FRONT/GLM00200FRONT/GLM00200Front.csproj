@@ -1,36 +1,45 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<Nullable>disable</Nullable>
-		<ImplicitUsings>enable</ImplicitUsings>
-	</PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<SupportedPlatform Include="browser" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.36" />
-		<Reference Include="BlazorClientHelper">
-			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
-		</Reference>
-		<Reference Include="R_APICommonDTO">
-			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_APICommonDTO.dll</HintPath>
-		</Reference>
-		<Reference Include="R_BlazorFrontEnd">
-			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.dll</HintPath>
-		</Reference>
-		<Reference Include="R_BlazorFrontEnd.Controls">
-			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Controls.dll</HintPath>
-		</Reference>
-		<Reference Include="R_CommonFrontBackAPI">
-			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CommonFrontBackAPI.dll</HintPath>
-		</Reference>
-		<Reference Include="R_LockingFront">
-			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_LockingFront.dll</HintPath>
-		</Reference>
-		<ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj" />
-		<ProjectReference Include="..\..\COMMON\GL\GLM00200COMMON\GLM00200COMMON.csproj" />
-		<ProjectReference Include="..\GLM00200FrontResources\GLM00200FrontResources.csproj" />
-		<ProjectReference Include="..\GLM00200MODEL\GLM00200MODEL.csproj" />
-		<ProjectReference Include="..\GLTR00100FRONT\GLTR00100FRONT.csproj" />
-	</ItemGroup>
+
+    <ItemGroup>
+        <SupportedPlatform Include="browser"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.36"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="BlazorClientHelper">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
+        </Reference>
+        <Reference Include="R_APICommonDTO">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_APICommonDTO.dll</HintPath>
+        </Reference>
+        <Reference Include="R_BlazorFrontEnd">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.dll</HintPath>
+        </Reference>
+        <Reference Include="R_BlazorFrontEnd.Controls">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Controls.dll</HintPath>
+        </Reference>
+        <Reference Include="R_CommonFrontBackAPI">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CommonFrontBackAPI.dll</HintPath>
+        </Reference>
+        <Reference Include="R_LockingFront">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_LockingFront.dll</HintPath>
+        </Reference>
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj"/>
+        <ProjectReference Include="..\..\COMMON\GL\GLM00200COMMON\GLM00200COMMON.csproj"/>
+        <ProjectReference Include="..\GLM00200FrontResources\GLM00200FrontResources.csproj"/>
+        <ProjectReference Include="..\GLM00200MODEL\GLM00200MODEL.csproj"/>
+        <ProjectReference Include="..\GLTR00100FRONT\GLTR00100FRONT.csproj"/>
+    </ItemGroup>
+
+
 </Project>

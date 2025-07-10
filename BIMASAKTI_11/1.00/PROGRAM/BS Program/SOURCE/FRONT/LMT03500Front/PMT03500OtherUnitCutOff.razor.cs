@@ -14,6 +14,7 @@ using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Controls.Tab;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
+using R_APICommonDTO;
 
 namespace PMT03500Front;
 
@@ -49,9 +50,10 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
 
     #region HandleError
 
-    private void DisplayErrorInvoke(R_Exception poException)
+    private void DisplayErrorInvoke(R_APIException poException)
     {
-        R_DisplayException(poException);
+        var loEx = R_FrontUtility.R_ConvertFromAPIException(poException);
+        this.R_DisplayException(loEx);
     }
 
     #endregion
@@ -123,7 +125,7 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
             var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
             _viewModelUtility.EntityUtility = loData;
             _maxValueStart = loData.IMETER_MAX_RESET;
-            eventArgs.Result = _viewModelUtility.Entity;
+            eventArgs.Result = _viewModelUtility.EntityUtility;
         }
         catch (Exception ex)
         {

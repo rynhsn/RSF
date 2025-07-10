@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="MulltiTenant\**" />
+	  <EmbeddedResource Remove="MulltiTenant\**" />
+	  <None Remove="MulltiTenant\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Log\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="appsettings.json" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.2" />
+    <PackageReference Include="Realta.CommonCollectionNuget" Version="1.0.0" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Content Include="appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	
+	
+	<ItemGroup>
+		<Reference Include="R_APIBackEnd">
+		  <HintPath>..\..\..\Library\R_APIBackEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ApplicationBack">
+			<HintPath>..\..\..\Library\R_ApplicationBack.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CommonFrontBackAPI">
+			<HintPath>..\..\..\Library\R_CommonFrontBackAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="R_MultiTenantDb">
+			<HintPath>..\..\..\Library\R_MultiTenantDb.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommon">
+			<HintPath>..\..\..\Library\R_APICommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommonDTO">
+			<HintPath>..\..\..\Library\R_APICommonDTO.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CommonFrontBackAPI">
+			<HintPath>..\..\..\Library\R_CommonFrontBackAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="R_MultiTenantDb.Abstract">
+			<HintPath>..\..\..\Library\R_MultiTenantDb.Abstract.dll</HintPath>
+		</Reference>
+    <Reference Include="R_Scheduler.MultiTenantDb">
+      <HintPath>..\..\..\Library\R_Scheduler.MultiTenantDb.dll</HintPath>
+    </Reference>
+		<Reference Include="R_ReportServerClient">
+			<HintPath>..\..\..\Library\R_ReportServerClient.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

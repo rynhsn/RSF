@@ -36,7 +36,11 @@ namespace PMT03500Model.ViewModel
         public Action StateChangeAction { get; set; }
         public DataSet ExcelDataSet { get; set; }
         public Func<Task> ActionDataSetExcel { get; set; }
-        public Action<R_Exception> DisplayErrorAction { get; set; }
+        public Action<R_APIException> DisplayErrorAction { get; set; }
+
+        public List<R_BlazorFrontEnd.Exceptions.R_Error> ErrorList { get; set; } =
+            new List<R_BlazorFrontEnd.Exceptions.R_Error>();
+
 
         public bool FileHasData = false;
         public bool IsUpload = true;
@@ -242,8 +246,8 @@ namespace PMT03500Model.ViewModel
                 if (poProcessResultMode == eProcessResultMode.Fail)
                 {
                     Message = $"Process Complete but fail with GUID {pcKeyGuid}";
-                    await ServiceGetError(pcKeyGuid);
                     IsError = true;
+                    await ServiceGetError(pcKeyGuid);
                 }
             }
             catch (Exception ex)
@@ -258,14 +262,23 @@ namespace PMT03500Model.ViewModel
 
         public async Task ProcessError(string pcKeyGuid, R_APIException ex)
         {
-            //IF ERROR CONNECTION, PROGRAM WILL RUN THIS METHOD
-            var loException = new R_Exception();
+            ////IF ERROR CONNECTION, PROGRAM WILL RUN THIS METHOD
+            //var loException = new R_Exception();
+
+            //Message = $"Process Error with GUID {pcKeyGuid}";
+            //ex.ErrorList.ForEach(x => loException.Add(x.ErrNo, x.ErrDescp));
+
+            //// DisplayErrorAction.Invoke(loException);
+            //DisplayErrorAction(loException);
+            //StateChangeAction();
+            //await Task.CompletedTask;
+
 
             Message = $"Process Error with GUID {pcKeyGuid}";
-            ex.ErrorList.ForEach(x => loException.Add(x.ErrNo, x.ErrDescp));
 
-            // DisplayErrorAction.Invoke(loException);
-            DisplayErrorAction(loException);
+            //DisplayErrorAction(ex);
+
+            DisplayErrorAction.Invoke(ex);
             StateChangeAction();
             await Task.CompletedTask;
         }
@@ -274,7 +287,6 @@ namespace PMT03500Model.ViewModel
         {
             Percentage = pnProgress;
             Message = $"Process Progress {pnProgress} with status {pcStatus}";
-            Message = $"Process Progress {pnProgress} with status {pcStatus}";
 
             StateChangeAction();
             await Task.CompletedTask;
@@ -282,7 +294,7 @@ namespace PMT03500Model.ViewModel
 
         private async Task ServiceGetError(string pcKeyGuid)
         {
-            var loException = new R_Exception();
+            var loException = new R_APIException();
 
             List<R_ErrorStatusReturn> loResultData;
             R_GetErrorWithMultiLanguageParameter loParameterData;
@@ -313,17 +325,28 @@ namespace PMT03500Model.ViewModel
                 // check error if unhandle
                 if (loResultData.Any(y => y.SeqNo <= 0))
                 {
-                    var loUnhandledEx = loResultData.Where(y => y.SeqNo <= 0).Select(x =>
-                        new R_BlazorFrontEnd.Exceptions.R_Error(x.SeqNo.ToString(), x.ErrorMessage)).ToList();
-                    loUnhandledEx.ForEach(x => loException.Add(x));
+                    //var loUnhandledEx = loResultData.Where(y => y.SeqNo <= 0).Select(x => new R_BlazorFrontEnd.Exceptions.R_Error(x.SeqNo.ToString(), x.ErrorMessage)).ToList();
+                    //loUnhandledEx.ForEach(x => loException.Add(x));
+
+                    var loUnhandledEx = loResultData.Where(y => y.SeqNo <= 0).Select(x => new R_BlazorFrontEnd.Exceptions.R_Error(x.SeqNo.ToString(), x.ErrorMessage)).ToList();
+                    ErrorList = new List<R_BlazorFrontEnd.Exceptions.R_Error>(loUnhandledEx);
+
+                    var loEx = new R_Exception();
+                    loUnhandledEx.ForEach(x => loEx.Add(x));
+
+                    loException = R_FrontUtility.R_ConvertToAPIException(loEx);
                 }
                 else
                 {
                     if (!IsUpload)
                     {
-                        var loHandledEx = loResultData.Where(y => y.SeqNo > 0).Select(x =>
-                            new R_BlazorFrontEnd.Exceptions.R_Error(x.SeqNo.ToString(), x.ErrorMessage)).ToList();
-                        loHandledEx.ForEach(x => loException.Add(x));
+                        var loUnhandledEx = loResultData.Where(y => y.SeqNo > 0).Select(x => new R_BlazorFrontEnd.Exceptions.R_Error(x.SeqNo.ToString(), x.ErrorMessage)).ToList();
+                        ErrorList = new List<R_BlazorFrontEnd.Exceptions.R_Error>(loUnhandledEx);
+
+                        var loEx = new R_Exception();
+                        loUnhandledEx.ForEach(x => loEx.Add(x));
+
+                        loException = R_FrontUtility.R_ConvertToAPIException(loEx);
                     }
                     else
                     {
@@ -424,7 +447,7 @@ namespace PMT03500Model.ViewModel
             }
             catch (Exception ex)
             {
-                loException.Add(ex);
+                loException.add(ex);
             }
 
             loException.ThrowExceptionIfErrors();

@@ -61,11 +61,173 @@ namespace RSP_GL_IMPORT_JOURNALResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account No. is mandatory.
+        /// </summary>
+        internal static string ACCOUNT_NO_EMPTY {
+            get {
+                return ResourceManager.GetString("ACCOUNT_NO_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account No. does not exist.
+        /// </summary>
+        internal static string ACCOUNT_NO_NOT_EXIST {
+            get {
+                return ResourceManager.GetString("ACCOUNT_NO_NOT_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Base Currency Base Rate! Base Currency Base Rate must be greater than 0.
+        /// </summary>
+        internal static string BASE_BASE_RATE_INVALID {
+            get {
+                return ResourceManager.GetString("BASE_BASE_RATE_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Base Currency Rate! Base Currency  Rate must be greater than 0.
+        /// </summary>
+        internal static string BASE_CURRENCY_RATE_INVALID {
+            get {
+                return ResourceManager.GetString("BASE_CURRENCY_RATE_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Center Code is mandatory for Account No..
+        /// </summary>
+        internal static string CENTER_CODE_EMPTY {
+            get {
+                return ResourceManager.GetString("CENTER_CODE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Center Code does not exist.
+        /// </summary>
+        internal static string CENTER_CODE_NOT_EXIST {
+            get {
+                return ResourceManager.GetString("CENTER_CODE_NOT_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency Code does not exist.
+        /// </summary>
+        internal static string CURRENCY_CODE_NOT_EXIST {
+            get {
+                return ResourceManager.GetString("CURRENCY_CODE_NOT_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have no access right for department code.
+        /// </summary>
+        internal static string DEPT_CODE_NO_ACCESS {
+            get {
+                return ResourceManager.GetString("DEPT_CODE_NO_ACCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department Code does not exist.
+        /// </summary>
+        internal static string DEPT_CODE_NOT_EXIST {
+            get {
+                return ResourceManager.GetString("DEPT_CODE_NOT_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Document Date! Document Date cannot be after today.
+        /// </summary>
+        internal static string DOC_DATE_AFTER_TODAY {
+            get {
+                return ResourceManager.GetString("DOC_DATE_AFTER_TODAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Document Date! Document Date cannot be before Soft Period.
+        /// </summary>
+        internal static string DOC_DATE_BEFORE_SOFT_PERIOD {
+            get {
+                return ResourceManager.GetString("DOC_DATE_BEFORE_SOFT_PERIOD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to import journal {0}.
         /// </summary>
         internal static string Error900 {
             get {
                 return ResourceManager.GetString("Error900", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Journal Amount! Journal Amount must be greater than 0.
+        /// </summary>
+        internal static string JOURNAL_AMOUNT_INVALID {
+            get {
+                return ResourceManager.GetString("JOURNAL_AMOUNT_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Local Currency Base Rate! Local Currency Base Rate must be greater than 0.
+        /// </summary>
+        internal static string LOCAL_BASE_RATE_INVALID {
+            get {
+                return ResourceManager.GetString("LOCAL_BASE_RATE_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Local Currency Rate! Local Currency Rate must be greater than 0.
+        /// </summary>
+        internal static string LOCAL_CURRENCY_RATE_INVALID {
+            get {
+                return ResourceManager.GetString("LOCAL_CURRENCY_RATE_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Reference Date! Reference Date cannot be after today.
+        /// </summary>
+        internal static string REF_DATE_AFTER_TODAY {
+            get {
+                return ResourceManager.GetString("REF_DATE_AFTER_TODAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Reference Date! Reference Date cannot be before Soft Period.
+        /// </summary>
+        internal static string REF_DATE_BEFORE_SOFT_PERIOD {
+            get {
+                return ResourceManager.GetString("REF_DATE_BEFORE_SOFT_PERIOD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference No. already exists.
+        /// </summary>
+        internal static string REF_NO_ALREADY_EXIST {
+            get {
+                return ResourceManager.GetString("REF_NO_ALREADY_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference No. is mandatory for Manual Numbering.
+        /// </summary>
+        internal static string REF_NO_EMPTY {
+            get {
+                return ResourceManager.GetString("REF_NO_EMPTY", resourceCulture);
             }
         }
     }

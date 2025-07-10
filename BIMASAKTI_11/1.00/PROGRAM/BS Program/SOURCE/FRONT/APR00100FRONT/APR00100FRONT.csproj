@@ -7,6 +7,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.15"/>
+	</ItemGroup>
+	
+	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.29" />
 		<ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\BACK\Lookup_APCOMMON\Lookup_APCOMMON.csproj" />

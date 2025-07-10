@@ -170,6 +170,7 @@ public class GLR00100PrintBasedOnDateController : R_ReportControllerBase
             {
                 BLOGO_COMPANY = loHeader.BLOGO,
                 CCOMPANY_NAME = loHeader.CCOMPANY_NAME!,
+                DPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
                 CPRINT_CODE = "GLR00100",
                 CPRINT_NAME = "Activity Report",
                 CUSER_ID = lcUser,

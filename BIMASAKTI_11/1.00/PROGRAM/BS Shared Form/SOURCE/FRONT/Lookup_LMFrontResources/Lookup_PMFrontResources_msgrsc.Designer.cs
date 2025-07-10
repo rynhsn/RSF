@@ -808,6 +808,15 @@ namespace Lookup_PMFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string _Typeee {
+            get {
+                return ResourceManager.GetString("_Typeee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unit Name.
         /// </summary>
         internal static string _Unit {

@@ -1,0 +1,266 @@
+2025-04-24 10:32:00,973 INFO  Program - Application starting...
+2025-04-24 10:32:01,138 INFO  Program - Configuring application settings...
+2025-04-24 10:32:01,159 INFO  Program - Application configuration loaded successfully.
+2025-04-24 10:32:02,199 INFO  Program - Finished Configured Service at program cs
+2025-04-24 10:32:02,200 INFO  Program - Configure service Succesfully
+2025-04-24 10:32:02,322 DEBUG Program - {"CORRELATION_ID":"3a1f738a-8733-4dec-9619-9a946190753e","APPLICATION_ID":"Bimasakti","TENANT_ID":"All","COMPANY_ID":"All","PROGRAM_ID":"DatabaseAndMultiTenantConsole","USER_ID":"System","USER_NAME":"ConsoleSystem"}
+2025-04-24 10:32:02,327 INFO  Program - Try to get Args on main
+2025-04-24 10:32:02,327 INFO  Program - Get Helper MultiTenantHelper
+2025-04-24 10:32:02,403 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - START process method InjectMultiTenantConnectionString on Cls
+2025-04-24 10:32:02,554 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - Start Get connecction InjectMultiTenantConnectionString on Cls
+2025-04-24 10:32:02,554 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command Select CTENANT_ID, CCONNECTIONSTRING, CPROVIDER_NAME, CKEYWORD_FOR_PASSWORD  from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0}
+2025-04-24 10:32:02,554 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-04-24 10:32:02,967 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command select distinct  CTENANT_ID from( Select CTENANT_ID=REPLACE(REPLACE(CTENANT_ID,'_report_connectionstring',''),'_connectionstring','') from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0} ) as final
+2025-04-24 10:32:02,967 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-04-24 10:32:02,972 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - END process method InjectMultiTenantConnectionString on Cls
+2025-04-24 10:32:02,972 INFO  Program - Get Service ConsoleMain
+2025-04-24 10:32:02,972 INFO  Program - Call Method Main
+2025-04-24 10:32:02,974 INFO  HDA00100Console.ConsoleMain - START process method Main 
+2025-04-24 10:32:02,974 INFO  HDA00100Console.ConsoleMain - Multi Tenant Database Connection
+2025-04-24 10:32:02,974 INFO  HDA00100Console.ConsoleMain - Get Tenants
+2025-04-24 10:32:02,974 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-BSI
+2025-04-24 10:32:02,975 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-04-24 10:32:02,975 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-04-24 10:32:02,976 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:32:02,977 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-04-24 10:32:02,977 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-04-24 10:32:03,224 INFO  HDA00100Console.HDA00100Process - END process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:32:03,224 INFO  HDA00100Console.ConsoleMain - Connection name=realta-bsi_connectionstring : 
+2025-04-24 10:32:03,224 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-RCD
+2025-04-24 10:32:03,224 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-04-24 10:32:03,224 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-04-24 10:32:03,224 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:32:03,225 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-04-24 10:32:03,225 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-04-24 10:32:03,407 INFO  HDA00100Console.HDA00100Process - END process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:32:03,407 INFO  HDA00100Console.ConsoleMain - Connection name=realta-rcd_connectionstring : 
+2025-04-24 10:32:03,407 INFO  HDA00100Console.ConsoleMain - END process method Main 
+2025-04-24 10:32:03,407 INFO  Program - End Console Program
+2025-04-24 10:32:10,337 INFO  Program - Application starting...
+2025-04-24 10:32:10,353 INFO  Program - Configuring application settings...
+2025-04-24 10:32:10,366 INFO  Program - Application configuration loaded successfully.
+2025-04-24 10:32:10,485 INFO  Program - Finished Configured Service at program cs
+2025-04-24 10:32:10,485 INFO  Program - Configure service Succesfully
+2025-04-24 10:32:10,545 DEBUG Program - {"CORRELATION_ID":"5cbb89dd-6770-4e02-be9a-edf42f41ad94","APPLICATION_ID":"Bimasakti","TENANT_ID":"All","COMPANY_ID":"All","PROGRAM_ID":"DatabaseAndMultiTenantConsole","USER_ID":"System","USER_NAME":"ConsoleSystem"}
+2025-04-24 10:32:10,548 INFO  Program - Try to get Args on main
+2025-04-24 10:32:10,548 INFO  Program - Get Helper MultiTenantHelper
+2025-04-24 10:32:10,551 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - START process method InjectMultiTenantConnectionString on Cls
+2025-04-24 10:32:10,573 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - Start Get connecction InjectMultiTenantConnectionString on Cls
+2025-04-24 10:32:10,573 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command Select CTENANT_ID, CCONNECTIONSTRING, CPROVIDER_NAME, CKEYWORD_FOR_PASSWORD  from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0}
+2025-04-24 10:32:10,573 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-04-24 10:32:10,724 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command select distinct  CTENANT_ID from( Select CTENANT_ID=REPLACE(REPLACE(CTENANT_ID,'_report_connectionstring',''),'_connectionstring','') from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0} ) as final
+2025-04-24 10:32:10,724 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-04-24 10:32:10,728 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - END process method InjectMultiTenantConnectionString on Cls
+2025-04-24 10:32:10,728 INFO  Program - Get Service ConsoleMain
+2025-04-24 10:32:10,729 INFO  Program - Call Method Main
+2025-04-24 10:32:10,731 INFO  HDA00100Console.ConsoleMain - START process method Main 
+2025-04-24 10:32:10,731 INFO  HDA00100Console.ConsoleMain - Multi Tenant Database Connection
+2025-04-24 10:32:10,731 INFO  HDA00100Console.ConsoleMain - Get Tenants
+2025-04-24 10:32:10,731 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-BSI
+2025-04-24 10:32:10,731 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-04-24 10:32:10,731 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-04-24 10:32:10,733 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:32:10,733 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-04-24 10:32:10,733 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-04-24 10:32:10,930 INFO  HDA00100Console.HDA00100Process - END process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:32:10,930 INFO  HDA00100Console.ConsoleMain - Connection name=realta-bsi_connectionstring : 
+2025-04-24 10:32:10,931 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-RCD
+2025-04-24 10:32:10,931 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-04-24 10:32:10,931 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-04-24 10:32:10,931 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:32:10,931 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-04-24 10:32:10,931 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-04-24 10:32:11,100 INFO  HDA00100Console.HDA00100Process - END process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:32:11,100 INFO  HDA00100Console.ConsoleMain - Connection name=realta-rcd_connectionstring : 
+2025-04-24 10:32:11,101 INFO  HDA00100Console.ConsoleMain - END process method Main 
+2025-04-24 10:32:11,102 INFO  Program - End Console Program
+2025-04-24 10:35:46,772 INFO  Program - Application starting...
+2025-04-24 10:35:46,787 INFO  Program - Configuring application settings...
+2025-04-24 10:35:46,800 INFO  Program - Application configuration loaded successfully.
+2025-04-24 10:35:46,914 INFO  Program - Finished Configured Service at program cs
+2025-04-24 10:35:46,914 INFO  Program - Configure service Succesfully
+2025-04-24 10:35:46,970 DEBUG Program - {"CORRELATION_ID":"dbafde6e-2218-48b6-8283-fd4517930309","APPLICATION_ID":"Bimasakti","TENANT_ID":"All","COMPANY_ID":"All","PROGRAM_ID":"DatabaseAndMultiTenantConsole","USER_ID":"System","USER_NAME":"ConsoleSystem"}
+2025-04-24 10:35:46,973 INFO  Program - Try to get Args on main
+2025-04-24 10:35:46,973 INFO  Program - Get Helper MultiTenantHelper
+2025-04-24 10:35:46,976 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - START process method InjectMultiTenantConnectionString on Cls
+2025-04-24 10:35:46,996 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - Start Get connecction InjectMultiTenantConnectionString on Cls
+2025-04-24 10:35:46,996 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command Select CTENANT_ID, CCONNECTIONSTRING, CPROVIDER_NAME, CKEYWORD_FOR_PASSWORD  from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0}
+2025-04-24 10:35:46,996 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-04-24 10:35:47,150 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command select distinct  CTENANT_ID from( Select CTENANT_ID=REPLACE(REPLACE(CTENANT_ID,'_report_connectionstring',''),'_connectionstring','') from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0} ) as final
+2025-04-24 10:35:47,151 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-04-24 10:35:47,155 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - END process method InjectMultiTenantConnectionString on Cls
+2025-04-24 10:35:47,155 INFO  Program - Get Service ConsoleMain
+2025-04-24 10:35:47,155 INFO  Program - Call Method Main
+2025-04-24 10:35:47,157 INFO  HDA00100Console.ConsoleMain - START process method Main 
+2025-04-24 10:35:47,157 INFO  HDA00100Console.ConsoleMain - Multi Tenant Database Connection
+2025-04-24 10:35:47,157 INFO  HDA00100Console.ConsoleMain - Get Tenants
+2025-04-24 10:35:47,157 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-BSI
+2025-04-24 10:35:47,157 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-04-24 10:35:47,157 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-04-24 10:35:47,159 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:35:47,160 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-04-24 10:35:47,161 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-04-24 10:35:47,350 INFO  HDA00100Console.HDA00100Process - END process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:35:47,351 INFO  HDA00100Console.ConsoleMain - Connection name=realta-bsi_connectionstring : 
+2025-04-24 10:35:47,351 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-RCD
+2025-04-24 10:35:47,351 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-04-24 10:35:47,351 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-04-24 10:35:47,351 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:35:47,351 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-04-24 10:35:47,352 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-04-24 10:35:47,525 INFO  HDA00100Console.HDA00100Process - END process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:35:47,526 INFO  HDA00100Console.ConsoleMain - Connection name=realta-rcd_connectionstring : 
+2025-04-24 10:35:47,526 INFO  HDA00100Console.ConsoleMain - END process method Main 
+2025-04-24 10:35:47,526 INFO  Program - End Console Program
+2025-04-24 10:38:18,399 INFO  Program - Application starting...
+2025-04-24 10:38:18,416 INFO  Program - Configuring application settings...
+2025-04-24 10:38:18,430 INFO  Program - Application configuration loaded successfully.
+2025-04-24 10:38:18,549 INFO  Program - Finished Configured Service at program cs
+2025-04-24 10:38:18,549 INFO  Program - Configure service Succesfully
+2025-04-24 10:38:18,607 DEBUG Program - {"CORRELATION_ID":"af4e43ec-b1f4-4bc7-968e-b765fa1c6356","APPLICATION_ID":"Bimasakti","TENANT_ID":"All","COMPANY_ID":"All","PROGRAM_ID":"DatabaseAndMultiTenantConsole","USER_ID":"System","USER_NAME":"ConsoleSystem"}
+2025-04-24 10:38:18,609 INFO  Program - Try to get Args on main
+2025-04-24 10:38:18,609 INFO  Program - Get Helper MultiTenantHelper
+2025-04-24 10:38:18,612 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - START process method InjectMultiTenantConnectionString on Cls
+2025-04-24 10:38:18,634 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - Start Get connecction InjectMultiTenantConnectionString on Cls
+2025-04-24 10:38:18,634 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command Select CTENANT_ID, CCONNECTIONSTRING, CPROVIDER_NAME, CKEYWORD_FOR_PASSWORD  from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0}
+2025-04-24 10:38:18,634 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-04-24 10:38:18,781 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command select distinct  CTENANT_ID from( Select CTENANT_ID=REPLACE(REPLACE(CTENANT_ID,'_report_connectionstring',''),'_connectionstring','') from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0} ) as final
+2025-04-24 10:38:18,781 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-04-24 10:38:18,786 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - END process method InjectMultiTenantConnectionString on Cls
+2025-04-24 10:38:18,786 INFO  Program - Get Service ConsoleMain
+2025-04-24 10:38:18,787 INFO  Program - Call Method Main
+2025-04-24 10:38:18,789 INFO  HDA00100Console.ConsoleMain - START process method Main 
+2025-04-24 10:38:18,790 INFO  HDA00100Console.ConsoleMain - Multi Tenant Database Connection
+2025-04-24 10:38:18,790 INFO  HDA00100Console.ConsoleMain - Get Tenants
+2025-04-24 10:38:18,790 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-BSI
+2025-04-24 10:38:18,790 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-04-24 10:38:18,790 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-04-24 10:38:18,790 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:38:18,791 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-04-24 10:38:18,791 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-04-24 10:38:18,981 INFO  HDA00100Console.HDA00100Process - END process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:38:18,981 INFO  HDA00100Console.ConsoleMain - Connection name=realta-bsi_connectionstring : 
+2025-04-24 10:38:18,981 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-RCD
+2025-04-24 10:38:18,981 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-04-24 10:38:18,981 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-04-24 10:38:18,981 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:38:18,982 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-04-24 10:38:18,982 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-04-24 10:38:19,151 INFO  HDA00100Console.HDA00100Process - END process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:38:19,151 INFO  HDA00100Console.ConsoleMain - Connection name=realta-rcd_connectionstring : 
+2025-04-24 10:38:19,151 INFO  HDA00100Console.ConsoleMain - END process method Main 
+2025-04-24 10:38:19,151 INFO  Program - End Console Program
+2025-04-24 10:45:46,686 INFO  Program - Application starting...
+2025-04-24 10:45:46,701 INFO  Program - Configuring application settings...
+2025-04-24 10:45:46,714 INFO  Program - Application configuration loaded successfully.
+2025-04-24 10:45:46,824 INFO  Program - Finished Configured Service at program cs
+2025-04-24 10:45:46,824 INFO  Program - Configure service Succesfully
+2025-04-24 10:45:46,882 DEBUG Program - {"CORRELATION_ID":"d40fb0a4-cf4e-479e-b574-c8af33b37916","APPLICATION_ID":"Bimasakti","TENANT_ID":"All","COMPANY_ID":"All","PROGRAM_ID":"DatabaseAndMultiTenantConsole","USER_ID":"System","USER_NAME":"ConsoleSystem"}
+2025-04-24 10:45:46,884 INFO  Program - Try to get Args on main
+2025-04-24 10:45:46,884 INFO  Program - Get Helper MultiTenantHelper
+2025-04-24 10:45:46,889 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - START process method InjectMultiTenantConnectionString on Cls
+2025-04-24 10:45:46,912 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - Start Get connecction InjectMultiTenantConnectionString on Cls
+2025-04-24 10:45:46,912 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command Select CTENANT_ID, CCONNECTIONSTRING, CPROVIDER_NAME, CKEYWORD_FOR_PASSWORD  from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0}
+2025-04-24 10:45:46,912 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-04-24 10:45:47,087 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command select distinct  CTENANT_ID from( Select CTENANT_ID=REPLACE(REPLACE(CTENANT_ID,'_report_connectionstring',''),'_connectionstring','') from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0} ) as final
+2025-04-24 10:45:47,088 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-04-24 10:45:47,093 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - END process method InjectMultiTenantConnectionString on Cls
+2025-04-24 10:45:47,093 INFO  Program - Get Service ConsoleMain
+2025-04-24 10:45:47,093 INFO  Program - Call Method Main
+2025-04-24 10:45:47,096 INFO  HDA00100Console.ConsoleMain - START process method Main 
+2025-04-24 10:45:47,096 INFO  HDA00100Console.ConsoleMain - Multi Tenant Database Connection
+2025-04-24 10:45:47,096 INFO  HDA00100Console.ConsoleMain - Get Tenants
+2025-04-24 10:45:47,096 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-BSI
+2025-04-24 10:45:47,096 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-04-24 10:45:47,096 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-04-24 10:45:47,097 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:45:47,098 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-04-24 10:45:47,098 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-04-24 10:45:47,289 INFO  HDA00100Console.HDA00100Process - END process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:45:47,289 INFO  HDA00100Console.ConsoleMain - Connection name=realta-bsi_connectionstring : 
+2025-04-24 10:45:47,290 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-RCD
+2025-04-24 10:45:47,290 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-04-24 10:45:47,290 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-04-24 10:45:47,290 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:45:47,292 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-04-24 10:45:47,292 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-04-24 10:45:47,470 INFO  HDA00100Console.HDA00100Process - END process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:45:47,471 INFO  HDA00100Console.ConsoleMain - Connection name=realta-rcd_connectionstring : 
+2025-04-24 10:45:47,472 INFO  HDA00100Console.ConsoleMain - END process method Main 
+2025-04-24 10:45:47,472 INFO  Program - End Console Program
+2025-04-24 10:50:46,800 INFO  Program - Application starting...
+2025-04-24 10:50:46,815 INFO  Program - Configuring application settings...
+2025-04-24 10:50:46,827 INFO  Program - Application configuration loaded successfully.
+2025-04-24 10:50:46,938 INFO  Program - Finished Configured Service at program cs
+2025-04-24 10:50:46,938 INFO  Program - Configure service Succesfully
+2025-04-24 10:50:46,993 DEBUG Program - {"CORRELATION_ID":"4990b6b9-d08c-480c-bbb2-204de9414e83","APPLICATION_ID":"Bimasakti","TENANT_ID":"All","COMPANY_ID":"All","PROGRAM_ID":"DatabaseAndMultiTenantConsole","USER_ID":"System","USER_NAME":"ConsoleSystem"}
+2025-04-24 10:50:46,995 INFO  Program - Try to get Args on main
+2025-04-24 10:50:46,995 INFO  Program - Get Helper MultiTenantHelper
+2025-04-24 10:50:46,999 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - START process method InjectMultiTenantConnectionString on Cls
+2025-04-24 10:50:47,020 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - Start Get connecction InjectMultiTenantConnectionString on Cls
+2025-04-24 10:50:47,021 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command Select CTENANT_ID, CCONNECTIONSTRING, CPROVIDER_NAME, CKEYWORD_FOR_PASSWORD  from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0}
+2025-04-24 10:50:47,021 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-04-24 10:50:47,181 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command select distinct  CTENANT_ID from( Select CTENANT_ID=REPLACE(REPLACE(CTENANT_ID,'_report_connectionstring',''),'_connectionstring','') from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0} ) as final
+2025-04-24 10:50:47,181 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-04-24 10:50:47,186 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - END process method InjectMultiTenantConnectionString on Cls
+2025-04-24 10:50:47,186 INFO  Program - Get Service ConsoleMain
+2025-04-24 10:50:47,186 INFO  Program - Call Method Main
+2025-04-24 10:50:47,188 INFO  HDA00100Console.ConsoleMain - START process method Main 
+2025-04-24 10:50:47,188 INFO  HDA00100Console.ConsoleMain - Multi Tenant Database Connection
+2025-04-24 10:50:47,188 INFO  HDA00100Console.ConsoleMain - Get Tenants
+2025-04-24 10:50:47,188 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-BSI
+2025-04-24 10:50:47,188 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-04-24 10:50:47,188 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-04-24 10:50:47,189 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:50:47,190 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-04-24 10:50:47,190 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-04-24 10:50:47,400 INFO  HDA00100Console.HDA00100Process - END process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:50:47,401 INFO  HDA00100Console.ConsoleMain - Connection name=realta-bsi_connectionstring : 
+2025-04-24 10:50:47,401 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-RCD
+2025-04-24 10:50:47,401 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-04-24 10:50:47,401 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-04-24 10:50:47,401 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:50:47,401 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-04-24 10:50:47,402 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-04-24 10:50:47,570 INFO  HDA00100Console.HDA00100Process - END process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 10:50:47,570 INFO  HDA00100Console.ConsoleMain - Connection name=realta-rcd_connectionstring : 
+2025-04-24 10:50:47,570 INFO  HDA00100Console.ConsoleMain - END process method Main 
+2025-04-24 10:50:47,570 INFO  Program - End Console Program
+2025-04-24 23:55:02,920 INFO  Program - Application starting...
+2025-04-24 23:55:03,085 INFO  Program - Configuring application settings...
+2025-04-24 23:55:03,108 INFO  Program - Application configuration loaded successfully.
+2025-04-24 23:55:04,163 INFO  Program - Finished Configured Service at program cs
+2025-04-24 23:55:04,163 INFO  Program - Configure service Succesfully
+2025-04-24 23:55:04,265 DEBUG Program - {"CORRELATION_ID":"6e938c11-0f90-4bfb-a7b3-aaa0c0d6852a","APPLICATION_ID":"Bimasakti","TENANT_ID":"All","COMPANY_ID":"All","PROGRAM_ID":"DatabaseAndMultiTenantConsole","USER_ID":"System","USER_NAME":"ConsoleSystem"}
+2025-04-24 23:55:04,269 INFO  Program - Try to get Args on main
+2025-04-24 23:55:04,269 INFO  Program - Get Helper MultiTenantHelper
+2025-04-24 23:55:04,358 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - START process method InjectMultiTenantConnectionString on Cls
+2025-04-24 23:55:04,390 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - Start Get connecction InjectMultiTenantConnectionString on Cls
+2025-04-24 23:55:04,390 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command Select CTENANT_ID, CCONNECTIONSTRING, CPROVIDER_NAME, CKEYWORD_FOR_PASSWORD  from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0}
+2025-04-24 23:55:04,390 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-04-24 23:55:04,781 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command select distinct  CTENANT_ID from( Select CTENANT_ID=REPLACE(REPLACE(CTENANT_ID,'_report_connectionstring',''),'_connectionstring','') from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0} ) as final
+2025-04-24 23:55:04,782 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-04-24 23:55:04,787 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - END process method InjectMultiTenantConnectionString on Cls
+2025-04-24 23:55:04,787 INFO  Program - Get Service ConsoleMain
+2025-04-24 23:55:04,787 INFO  Program - Call Method Main
+2025-04-24 23:55:04,790 INFO  HDA00100Console.ConsoleMain - START process method Main 
+2025-04-24 23:55:04,790 INFO  HDA00100Console.ConsoleMain - Multi Tenant Database Connection
+2025-04-24 23:55:04,790 INFO  HDA00100Console.ConsoleMain - Get Tenants
+2025-04-24 23:55:04,790 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-BSI
+2025-04-24 23:55:04,790 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-04-24 23:55:04,790 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-04-24 23:55:04,792 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 23:55:04,793 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-04-24 23:55:04,793 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-04-24 23:55:04,986 INFO  HDA00100Console.HDA00100Process - END process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 23:55:04,986 INFO  HDA00100Console.ConsoleMain - Connection name=realta-bsi_connectionstring : 
+2025-04-24 23:55:04,986 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-RCD
+2025-04-24 23:55:04,987 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-04-24 23:55:04,987 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-04-24 23:55:04,987 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 23:55:04,987 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-04-24 23:55:04,987 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-04-24 23:55:05,158 INFO  HDA00100Console.HDA00100Process - END process method Process_HD_SCHEDULER_ACTION on Cls
+2025-04-24 23:55:05,158 INFO  HDA00100Console.ConsoleMain - Connection name=realta-rcd_connectionstring : 
+2025-04-24 23:55:05,159 INFO  HDA00100Console.ConsoleMain - END process method Main 
+2025-04-24 23:55:05,161 INFO  Program - End Console Program

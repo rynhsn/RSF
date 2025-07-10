@@ -202,7 +202,10 @@ namespace APR00100SERVICE
                 var loCls = new APR00100Cls();
 
                 _logger.LogInfo("Set BaseHeader Report");
-                loParam.BLOGO_COMPANY = loCls.GetBaseHeaderLogoCompany(poParam.CCOMPANY_ID).CLOGO;
+                var loBaseHeader = loCls.GetBaseHeaderLogoCompany();
+                loParam.BLOGO_COMPANY = loBaseHeader.CLOGO;
+                loParam.CCOMPANY_NAME = loBaseHeader.CCOMPANY_NAME;
+                loParam.DPRINT_DATE_COMPANY = DateTime.ParseExact(loBaseHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture);
 
                 // Create an instance 
                 ReportSummaryDataDTO loData = new ReportSummaryDataDTO()
@@ -217,6 +220,14 @@ namespace APR00100SERVICE
                 poParam.CLANG_ID = R_BackGlobalVar.CULTURE;
                 
                 var loCollection = loCls.GetSummaryData(poParam);
+                //buat ulang loCollection dimana nbegining dan nremaining  dan ntax dan gain/loss dan allocation != 0
+                loCollection = loCollection.Where(x => 
+                    x.NBEGINNING_APPLY_AMOUNT != 0 && 
+                    x.NTOTAL_REMAINING != 0 && 
+                    x.NTAXABLE_AMOUNT != 0 && 
+                    x.NGAIN_LOSS_AMOUNT != 0 && 
+                    x.NCASH_BANK_AMOUNT != 0).ToList();
+
                 loCollection.ForEach(x =>
                 {
                     if (x.CTRANS_CODE is "120010" or "110040")

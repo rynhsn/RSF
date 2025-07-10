@@ -6,6 +6,7 @@ using Microsoft.JSInterop;
 using PMT03500Common;
 using PMT03500Common.DTOs;
 using PMT03500Model.ViewModel;
+using R_APICommonDTO;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
@@ -21,7 +22,7 @@ namespace PMT03500Front;
 public partial class PMT03500OtherUnit
 {
     private PMT03500ViewModel _viewModel = new();
-    private PMT03500UploadUtilityViewModel _viewModelUpload = new();
+    private PMT03500UploadUtilityViewModel _viewModelSave = new();
     private PMT03500UndoUtilityViewModel _viewModelUndo = new();
 
     private PMT03500UtilityUsageViewModel _viewModelUtility = new();
@@ -35,6 +36,8 @@ public partial class PMT03500OtherUnit
     [Inject] private IJSRuntime JS { get; set; }
     [Inject] private R_IExcel ExcelInject { get; set; }
     [Inject] IClientHelper ClientHelper { get; set; }
+
+    private eBatchType _batchType;
 
     private R_TabStrip _tabStripRef;
     private R_TabStrip _tabStripUtilityRef;
@@ -66,14 +69,16 @@ public partial class PMT03500OtherUnit
 
     #region HandleError
 
-    private void DisplayErrorInvoke(R_Exception poException)
+    private void DisplayErrorInvoke(R_APIException poException)
     {
-        R_DisplayException(poException);
+        var loEx = R_FrontUtility.R_ConvertFromAPIException(poException);
+        this.R_DisplayException(loEx);
     }
 
-    private void DisplayErrorUndoInvoke(R_Exception poException)
+    private void DisplayErrorUndoInvoke(R_APIException poException)
     {
-        R_DisplayException(poException);
+        var loEx = new R_Exception(_viewModelUndo.ErrorList);
+        R_DisplayException(loEx);
     }
 
     #endregion
@@ -111,10 +116,10 @@ public partial class PMT03500OtherUnit
                 await _viewModelUtility.GetBuildingList();
             }
 
-            _viewModelUpload.StateChangeAction = StateChangeInvoke;
-            _viewModelUpload.DisplayErrorAction = DisplayErrorInvoke;
-            _viewModelUpload.ActionDataSetExcel = ActionFuncDataSetExcel;
-            _viewModelUpload.ShowSuccessAction = async () => { await ShowSuccessUpdateInvoke(); };
+            _viewModelSave.StateChangeAction = StateChangeInvoke;
+            _viewModelSave.DisplayErrorAction = DisplayErrorInvoke;
+            _viewModelSave.ActionDataSetExcel = ActionFuncDataSetExcel;
+            _viewModelSave.ShowSuccessAction = async () => { await ShowSuccessUpdateInvoke(); };
 
             _viewModelUndo.StateChangeAction = StateChangeUndoInvoke;
             _viewModelUndo.DisplayErrorAction = DisplayErrorUndoInvoke;
@@ -405,7 +410,7 @@ public partial class PMT03500OtherUnit
         }
     }
 
-    private async Task DisplayUtility(R_DisplayEventArgs eventArgs)
+    private void DisplayUtility(R_DisplayEventArgs eventArgs)
     {
         var loEx = new R_Exception();
         try
@@ -418,7 +423,7 @@ public partial class PMT03500OtherUnit
             _viewModelUtility.EntityUtility = loData;
             _viewModelUtility.EntityUtility.CPROPERTY_ID = _viewModel.PropertyId;
 
-            await Task.Delay(100);
+            //await Task.Delay(100);
         }
         catch (Exception ex)
         {
@@ -487,11 +492,12 @@ public partial class PMT03500OtherUnit
         var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
         eventArgs.Cancel = loData.CSTATUS.Length > 0;
     }
-    
+
     private void SetEdit(R_SetEditGridColumnEventArgs eventArgs)
     {
         var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
-        var loColumn = eventArgs.Columns.FirstOrDefault(x => x.FieldName == nameof(PMT03500UtilityUsageDTO.DSTART_DATE));
+        var loColumn =
+            eventArgs.Columns.FirstOrDefault(x => x.FieldName == nameof(PMT03500UtilityUsageDTO.DSTART_DATE));
         loColumn.Enabled = !loData.LDISABLED_START_DATE;
     }
 
@@ -508,19 +514,19 @@ public partial class PMT03500OtherUnit
                     .Where(x => x.LSELECTED).ToList());
 
             var loUtilityType = loTempDataList.FirstOrDefault().CUTILITY_TYPE;
-            _viewModelUpload.CompanyId = ClientHelper.CompanyId;
-            _viewModelUpload.UserId = ClientHelper.UserId;
-            _viewModelUpload.UploadParam.CPROPERTY_ID = _viewModelUtility.Property.CPROPERTY_ID;
-            _viewModelUpload.UploadParam.EUTILITY_TYPE =
+            _viewModelSave.CompanyId = ClientHelper.CompanyId;
+            _viewModelSave.UserId = ClientHelper.UserId;
+            _viewModelSave.UploadParam.CPROPERTY_ID = _viewModelUtility.Property.CPROPERTY_ID;
+            _viewModelSave.UploadParam.EUTILITY_TYPE =
                 loUtilityType is "01" or "02"
                     ? EPMT03500UtilityUsageType.EC
                     : EPMT03500UtilityUsageType.WG;
 
-            _viewModelUpload.IsUpload = false;
+            _viewModelSave.IsUpload = false;
 
-            await _viewModelUpload.SaveBulkFile(poUploadParam: _viewModelUpload.UploadParam,
+            await _viewModelSave.SaveBulkFile(poUploadParam: _viewModelSave.UploadParam,
                 poDataList: loDataList.ToList());
-            if (_viewModelUpload.IsError)
+            if (_viewModelSave.IsError)
             {
                 loEx.Add("Error", "Utility Usage saved is not successfully!");
             }
@@ -664,8 +670,8 @@ public partial class PMT03500OtherUnit
     {
         eventArgs.Enabled = true;
     }
-    
-    
+
+
     private void OnClickProcess(MouseEventArgs eventArgs)
     {
         var loData = _gridRefUtility.DataSource;

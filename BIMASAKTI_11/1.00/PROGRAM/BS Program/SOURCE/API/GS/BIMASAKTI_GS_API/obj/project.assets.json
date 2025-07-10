@@ -27,12 +27,12 @@
           }
         }
       },
-      "FastReport.Compat.Skia/2023.3.0": {
+      "FastReport.Compat.Skia/2025.1.0": {
         "type": "package",
         "dependencies": {
-          "FastReport.SkiaDrawing": "2023.3.1",
-          "Microsoft.CodeAnalysis.CSharp": "4.3.1",
-          "Microsoft.CodeAnalysis.VisualBasic": "4.3.1"
+          "FastReport.SkiaDrawing": "2025.1.0",
+          "Microsoft.CodeAnalysis.CSharp": "4.0.1",
+          "Microsoft.CodeAnalysis.VisualBasic": "4.0.1"
         },
         "compile": {
           "lib/net6.0/FastReport.Compat.Skia.dll": {}
@@ -41,14 +41,14 @@
           "lib/net6.0/FastReport.Compat.Skia.dll": {}
         },
         "build": {
-          "buildTransitive/netcoreapp3.0/FastReport.Compat.Skia.targets": {}
+          "buildTransitive/net6.0/FastReport.Compat.Skia.targets": {}
         }
       },
-      "FastReport.Core.Skia/2023.3.0": {
+      "FastReport.Core.Skia/2025.1.0": {
         "type": "package",
         "dependencies": {
-          "FastReport.Compat.Skia": "[2023.3.0]",
-          "FastReport.DataVisualization.Skia": "[2023.3.0]",
+          "FastReport.Compat.Skia": "2025.1.0",
+          "FastReport.DataVisualization.Skia": "2025.1.0",
           "System.Security.Cryptography.Pkcs": "4.7.0"
         },
         "compile": {
@@ -68,36 +68,35 @@
           "buildMultiTargeting/FastReport.Core.Skia.props": {}
         }
       },
-      "FastReport.DataVisualization.Skia/2023.3.0": {
+      "FastReport.DataVisualization.Skia/2025.1.0": {
         "type": "package",
         "dependencies": {
-          "FastReport.Compat.Skia": "2023.3.0"
+          "FastReport.Compat.Skia": "2025.1.0"
         },
         "compile": {
-          "lib/netcoreapp3.0/FastReport.DataVisualization.Skia.dll": {}
+          "lib/net6.0/FastReport.DataVisualization.Skia.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.0/FastReport.DataVisualization.Skia.dll": {}
+          "lib/net6.0/FastReport.DataVisualization.Skia.dll": {}
         }
       },
-      "FastReport.SkiaDrawing/2023.3.1": {
+      "FastReport.SkiaDrawing/2025.1.0": {
         "type": "package",
         "dependencies": {
-          "SkiaSharp": "2.88.3",
-          "SkiaSharp.HarfBuzz": "2.88.3"
+          "SkiaSharp": "2.88.6",
+          "SkiaSharp.HarfBuzz": "2.88.6"
         },
         "compile": {
-          "lib/netcoreapp3.0/FastReport.SkiaDrawing.dll": {}
+          "lib/net6.0/FastReport.SkiaDrawing.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.0/FastReport.SkiaDrawing.dll": {}
+          "lib/net6.0/FastReport.SkiaDrawing.dll": {}
         }
       },
-      "FastReport.Web.Skia/2023.3.0": {
+      "FastReport.Web.Skia/2025.1.0": {
         "type": "package",
         "dependencies": {
-          "FastReport.Compat.Skia": "[2023.3.0]",
-          "FastReport.Core.Skia": "2023.3.0"
+          "FastReport.Core.Skia": "2025.1.0"
         },
         "compile": {
           "lib/net6.0/FastReport.Web.dll": {
@@ -233,11 +232,11 @@
           }
         }
       },
-      "HarfBuzzSharp/2.8.2.5": {
+      "HarfBuzzSharp/7.3.0": {
         "type": "package",
         "dependencies": {
-          "HarfBuzzSharp.NativeAssets.Win32": "2.8.2.5",
-          "HarfBuzzSharp.NativeAssets.macOS": "2.8.2.5"
+          "HarfBuzzSharp.NativeAssets.Win32": "7.3.0",
+          "HarfBuzzSharp.NativeAssets.macOS": "7.3.0"
         },
         "compile": {
           "lib/net6.0/HarfBuzzSharp.dll": {
@@ -280,7 +279,7 @@
           }
         }
       },
-      "HarfBuzzSharp.NativeAssets.macOS/2.8.2.5": {
+      "HarfBuzzSharp.NativeAssets.macOS/7.3.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/_._": {}
@@ -295,7 +294,7 @@
           }
         }
       },
-      "HarfBuzzSharp.NativeAssets.Win32/2.8.2.5": {
+      "HarfBuzzSharp.NativeAssets.Win32/7.3.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/_._": {}
@@ -514,21 +513,21 @@
           }
         }
       },
-      "Microsoft.CodeAnalysis.Analyzers/3.3.3": {
+      "Microsoft.CodeAnalysis.Analyzers/3.3.2": {
         "type": "package",
         "build": {
           "build/_._": {}
         }
       },
-      "Microsoft.CodeAnalysis.Common/4.3.1": {
+      "Microsoft.CodeAnalysis.Common/4.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.CodeAnalysis.Analyzers": "3.3.3",
-          "System.Collections.Immutable": "6.0.0",
+          "Microsoft.CodeAnalysis.Analyzers": "3.3.2",
+          "System.Collections.Immutable": "5.0.0",
           "System.Memory": "4.5.4",
           "System.Reflection.Metadata": "5.0.0",
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0",
-          "System.Text.Encoding.CodePages": "6.0.0",
+          "System.Runtime.CompilerServices.Unsafe": "5.0.0",
+          "System.Text.Encoding.CodePages": "4.5.1",
           "System.Threading.Tasks.Extensions": "4.5.4"
         },
         "compile": {
@@ -583,10 +582,10 @@
           }
         }
       },
-      "Microsoft.CodeAnalysis.CSharp/4.3.1": {
+      "Microsoft.CodeAnalysis.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.CodeAnalysis.Common": "[4.3.1]"
+          "Microsoft.CodeAnalysis.Common": "[4.0.1]"
         },
         "compile": {
           "lib/netcoreapp3.1/Microsoft.CodeAnalysis.CSharp.dll": {
@@ -640,10 +639,10 @@
           }
         }
       },
-      "Microsoft.CodeAnalysis.VisualBasic/4.3.1": {
+      "Microsoft.CodeAnalysis.VisualBasic/4.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.CodeAnalysis.Common": "[4.3.1]"
+          "Microsoft.CodeAnalysis.Common": "[4.0.1]"
         },
         "compile": {
           "lib/netcoreapp3.1/Microsoft.CodeAnalysis.VisualBasic.dll": {
@@ -1193,12 +1192,12 @@
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
-            "related": ".pdb;.xml"
+            "related": ".xml"
           }
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
-            "related": ".pdb;.xml"
+            "related": ".xml"
           }
         }
       },
@@ -1505,11 +1504,11 @@
           }
         }
       },
-      "Realta.BackCollectionNuGet/1.0.1": {
+      "Realta.BackCollectionNuGet/1.0.2": {
         "type": "package",
         "dependencies": {
-          "FastReport.Core.Skia": "2023.3.0",
-          "FastReport.Web.Skia": "2023.3.0",
+          "FastReport.Core.Skia": "2025.1.0",
+          "FastReport.Web.Skia": "2025.1.0",
           "HarfBuzzSharp.NativeAssets.Linux": "2.8.2.5",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.8",
           "Microsoft.AspNetCore.Authorization.Policy": "2.2.0",
@@ -2070,11 +2069,11 @@
           }
         }
       },
-      "SkiaSharp/2.88.5": {
+      "SkiaSharp/2.88.6": {
         "type": "package",
         "dependencies": {
-          "SkiaSharp.NativeAssets.Win32": "2.88.5",
-          "SkiaSharp.NativeAssets.macOS": "2.88.5"
+          "SkiaSharp.NativeAssets.Win32": "2.88.6",
+          "SkiaSharp.NativeAssets.macOS": "2.88.6"
         },
         "compile": {
           "lib/net6.0/SkiaSharp.dll": {
@@ -2087,11 +2086,11 @@
           }
         }
       },
-      "SkiaSharp.HarfBuzz/2.88.3": {
+      "SkiaSharp.HarfBuzz/2.88.6": {
         "type": "package",
         "dependencies": {
-          "HarfBuzzSharp": "2.8.2.3",
-          "SkiaSharp": "2.88.3"
+          "HarfBuzzSharp": "7.3.0",
+          "SkiaSharp": "2.88.6"
         },
         "compile": {
           "lib/net6.0/SkiaSharp.HarfBuzz.dll": {
@@ -2134,7 +2133,7 @@
           }
         }
       },
-      "SkiaSharp.NativeAssets.macOS/2.88.5": {
+      "SkiaSharp.NativeAssets.macOS/2.88.6": {
         "type": "package",
         "compile": {
           "lib/net6.0/_._": {}
@@ -2149,7 +2148,7 @@
           }
         }
       },
-      "SkiaSharp.NativeAssets.Win32/2.88.5": {
+      "SkiaSharp.NativeAssets.Win32/2.88.6": {
         "type": "package",
         "compile": {
           "lib/net6.0/_._": {}
@@ -2361,23 +2360,17 @@
           "lib/netstandard1.3/System.Collections.Concurrent.dll": {}
         }
       },
-      "System.Collections.Immutable/6.0.0": {
+      "System.Collections.Immutable/5.0.0": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
-        },
         "compile": {
-          "lib/net6.0/System.Collections.Immutable.dll": {
+          "lib/netstandard2.0/System.Collections.Immutable.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/System.Collections.Immutable.dll": {
+          "lib/netstandard2.0/System.Collections.Immutable.dll": {
             "related": ".xml"
           }
-        },
-        "build": {
-          "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
       "System.Collections.NonGeneric/4.3.0": {
@@ -3952,6 +3945,60 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "GSM00300BACK/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GSM00300BackResources": "1.0.0",
+          "GSM00300COMMON": "1.0.0",
+          "RSP_GS_MAINTAIN_COMP_PARAMResources": "1.0.0",
+          "RSP_GS_MAINTAIN_TAX_INFOResources": "1.0.0",
+          "System.Data.SqlClient": "4.8.5"
+        },
+        "compile": {
+          "bin/placeholder/GSM00300BACK.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM00300BACK.dll": {}
+        }
+      },
+      "GSM00300BackResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GSM00300BackResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM00300BackResources.dll": {}
+        }
+      },
+      "GSM00300COMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GSM00300COMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM00300COMMON.dll": {}
+        }
+      },
+      "GSM00300SERVICE/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GSM00300BACK": "1.0.0",
+          "GSM00300COMMON": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GSM00300SERVICE.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM00300SERVICE.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "GSM02000Back/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -4208,6 +4255,47 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "GST00500Back/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GST00500Common": "1.0.0",
+          "RSP_GS_MAINTAIN_APPROVALResources": "1.0.0",
+          "System.Data.SqlClient": "4.8.5"
+        },
+        "compile": {
+          "bin/placeholder/GST00500Back.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GST00500Back.dll": {}
+        }
+      },
+      "GST00500Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GST00500Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GST00500Common.dll": {}
+        }
+      },
+      "GST00500Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GST00500Back": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GST00500Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GST00500Service.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Lookup_GSBACK/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -4257,6 +4345,16 @@
           "bin/placeholder/RSP_ACTIVITY_VALIDITYResources.dll": {}
         }
       },
+      "RSP_GS_MAINTAIN_APPROVALResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_APPROVALResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_APPROVALResources.dll": {}
+        }
+      },
       "RSP_GS_MAINTAIN_BUILDINGResources/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -4285,6 +4383,16 @@
         },
         "runtime": {
           "bin/placeholder/RSP_GS_MAINTAIN_BUILDING_UNITResources.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_COMP_PARAMResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_COMP_PARAMResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_COMP_PARAMResources.dll": {}
         }
       },
       "RSP_GS_MAINTAIN_DEPARTMENTResources/1.0.0": {
@@ -4375,6 +4483,16 @@
         },
         "runtime": {
           "bin/placeholder/RSP_GS_MAINTAIN_TAXResources.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_TAX_INFOResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_TAX_INFOResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_TAX_INFOResources.dll": {}
         }
       },
       "RSP_GS_MAINTAIN_TAX_PCTResources/1.0.0": {
@@ -4555,94 +4673,80 @@
         "readme.txt"
       ]
     },
-    "FastReport.Compat.Skia/2023.3.0": {
-      "sha512": "uWlxzRtl3kNpsYs9BjuFC0GUKBFmPuDEsH+9OEU6i/1cG3cLPPXngWFyus3r1/Tj5LZL8dZr9y16Lm72Zw6IFQ==",
+    "FastReport.Compat.Skia/2025.1.0": {
+      "sha512": "U9G0KoZ5i77sal9p0h4mryv9a0rKPHa5eXy5x2SveYn98l4GzVv3jPbw3sWztIDvwRL7VzlY5AYrHRmTSJw1iQ==",
       "type": "package",
-      "path": "fastreport.compat.skia/2023.3.0",
+      "path": "fastreport.compat.skia/2025.1.0",
       "files": [
         ".nupkg.metadata",
-        "LICENSE.md",
-        "build/netcoreapp3.0/FastReport.Compat.Skia.targets",
-        "buildTransitive/netcoreapp3.0/FastReport.Compat.Skia.targets",
-        "fastreport.compat.skia.2023.3.0.nupkg.sha512",
+        "build/net6.0/FastReport.Compat.Skia.targets",
+        "buildTransitive/net6.0/FastReport.Compat.Skia.targets",
+        "fastreport.compat.skia.2025.1.0.nupkg.sha512",
         "fastreport.compat.skia.nuspec",
         "frlogo192.png",
         "lib/net6.0/FastReport.Compat.Skia.dll",
-        "lib/netcoreapp3.0/FastReport.Compat.Skia.dll",
-        "lib/netstandard2.0/FastReport.Compat.Skia.dll",
-        "lib/netstandard2.1/FastReport.Compat.Skia.dll"
+        "license.md"
       ]
     },
-    "FastReport.Core.Skia/2023.3.0": {
-      "sha512": "QZcC6a7CEm63zRhdyF731gAeM93DgdrWi3DMiyMVbzr3BJxyRjjUC26HTRVefG18/6x2Gq+9zJOU05n7wIxulw==",
+    "FastReport.Core.Skia/2025.1.0": {
+      "sha512": "xcvg6HQ/HmME04W720rPPeh1qmoJjrmCLrlI05N+mJHtJR3JFovmXQ+2zU0D8XlD130a3mh4KumuIOGbtcnk8w==",
       "type": "package",
-      "path": "fastreport.core.skia/2023.3.0",
+      "path": "fastreport.core.skia/2025.1.0",
       "files": [
         ".nupkg.metadata",
         "build/FastReport.Core.Skia.props",
         "buildMultiTargeting/FastReport.Core.Skia.props",
         "buildTransitive/FastReport.Core.Skia.props",
-        "fastreport.core.skia.2023.3.0.nupkg.sha512",
+        "fastreport.core.skia.2025.1.0.nupkg.sha512",
         "fastreport.core.skia.nuspec",
         "frlogo192.png",
         "lib/net6.0/FastReport.dll",
         "lib/net6.0/FastReport.xml",
-        "lib/netcoreapp3.1/FastReport.dll",
-        "lib/netcoreapp3.1/FastReport.xml",
-        "lib/netstandard2.0/FastReport.dll",
-        "lib/netstandard2.0/FastReport.xml",
         "license.md"
       ]
     },
-    "FastReport.DataVisualization.Skia/2023.3.0": {
-      "sha512": "IbjgeuoNqNsu+XJlWL7z3/FnEGIMu0GtdDGjodY5fd8ijCPyPsrJMGdSC5vEPrpD9FxxrrTFTdyE5HKAZT6uSg==",
+    "FastReport.DataVisualization.Skia/2025.1.0": {
+      "sha512": "caJiyu/m1ECCdGfLz0gTUYqPPExQ8qhlZX65w37/LWErsy+DZB7K0++0ucNeTi1QUMY6/2hYt99sKT255mEWnw==",
       "type": "package",
-      "path": "fastreport.datavisualization.skia/2023.3.0",
+      "path": "fastreport.datavisualization.skia/2025.1.0",
       "files": [
         ".nupkg.metadata",
-        "LICENSE.txt",
-        "fastreport.datavisualization.skia.2023.3.0.nupkg.sha512",
+        "fastreport.datavisualization.skia.2025.1.0.nupkg.sha512",
         "fastreport.datavisualization.skia.nuspec",
         "frlogo192.png",
-        "lib/netcoreapp3.0/FastReport.DataVisualization.Skia.dll",
-        "lib/netstandard2.0/FastReport.DataVisualization.Skia.dll"
+        "lib/net6.0/FastReport.DataVisualization.Skia.dll",
+        "license.md"
       ]
     },
-    "FastReport.SkiaDrawing/2023.3.1": {
-      "sha512": "g7/ksMA5yt2uEqrBTurjWnRm19oz3J1AI9yzO5NtrI2d6GuR2jU8tNeVSDjJ5LBNQubibeHkK046hYvE2yvybg==",
+    "FastReport.SkiaDrawing/2025.1.0": {
+      "sha512": "4Ape1QIQ/hyfPq4W33BJ9qhiXhik2rVvnZZ/1cxeALkTdyWoZO0omnH6zETJdDQLIujYN2tgAarMbPKHkt+rAA==",
       "type": "package",
-      "path": "fastreport.skiadrawing/2023.3.1",
+      "path": "fastreport.skiadrawing/2025.1.0",
       "files": [
         ".nupkg.metadata",
-        "LICENSE.md",
-        "fastreport.skiadrawing.2023.3.1.nupkg.sha512",
+        "fastreport.skiadrawing.2025.1.0.nupkg.sha512",
         "fastreport.skiadrawing.nuspec",
         "frlogo192.png",
-        "lib/netcoreapp3.0/FastReport.SkiaDrawing.dll",
-        "lib/netstandard2.0/FastReport.SkiaDrawing.dll",
-        "lib/netstandard2.1/FastReport.SkiaDrawing.dll"
+        "lib/net6.0/FastReport.SkiaDrawing.dll",
+        "license.md"
       ]
     },
-    "FastReport.Web.Skia/2023.3.0": {
-      "sha512": "OQJBRGolUOd/aGQmCZJPKYykGczgzdn1995NEb5PopiJf3B1PtOK5eVYWkfxjUlN4jtVZgeEtv+P5HSTwQvGCA==",
+    "FastReport.Web.Skia/2025.1.0": {
+      "sha512": "bY0LrA0rQ39cLCseSCM9JUaK6xBzCUk38VXqcqPCDzJo3w//U23gRMNSVLr4d9bTskrJNEN2Cc9lzyUzlzfxVg==",
       "type": "package",
-      "path": "fastreport.web.skia/2023.3.0",
+      "path": "fastreport.web.skia/2025.1.0",
       "files": [
         ".nupkg.metadata",
-        "FastReport .NET-license.md",
         "build/FastReport.Web.Skia.props",
         "build/Microsoft.AspNetCore.StaticWebAssets.props",
         "buildMultiTargeting/FastReport.Web.Skia.props",
         "buildTransitive/FastReport.Web.Skia.props",
-        "fastreport.web.skia.2023.3.0.nupkg.sha512",
+        "fastreport.web.skia.2025.1.0.nupkg.sha512",
         "fastreport.web.skia.nuspec",
         "frlogo192.png",
         "lib/net6.0/FastReport.Web.dll",
         "lib/net6.0/FastReport.Web.xml",
-        "lib/netcoreapp3.1/FastReport.Web.dll",
-        "lib/netcoreapp3.1/FastReport.Web.xml",
-        "lib/netstandard2.0/FastReport.Web.dll",
-        "lib/netstandard2.0/FastReport.Web.xml",
+        "license.md",
         "staticwebassets/Resources/angle-double-left.svg",
         "staticwebassets/Resources/angle-double-right.svg",
         "staticwebassets/Resources/angle-left.svg",
@@ -4655,6 +4759,7 @@
         "staticwebassets/Resources/date-picker.svg",
         "staticwebassets/Resources/file.svg",
         "staticwebassets/Resources/magnifier.svg",
+        "staticwebassets/Resources/notification-bell.svg",
         "staticwebassets/Resources/print.svg",
         "staticwebassets/Resources/reload.svg",
         "staticwebassets/Resources/save.svg",
@@ -4842,16 +4947,16 @@
         "packageIcon.png"
       ]
     },
-    "HarfBuzzSharp/2.8.2.5": {
-      "sha512": "cw+5/IBmpX3i/cebrbZr14sP82DuXcE3lyHOOvHs9hqiOxR00O7pOpTEhFZEr4RE4WmxCdu7cZdFqqIL2ARWIA==",
+    "HarfBuzzSharp/7.3.0": {
+      "sha512": "OrQLaxtZMIeS2yHSUtsKzeSdk9CPaCpyJ/JCs+wLfRGatjE8MLUS6LGj6vdbGRxqRavcXs79C9O3oWe6FJR0JQ==",
       "type": "package",
-      "path": "harfbuzzsharp/2.8.2.5",
+      "path": "harfbuzzsharp/7.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.txt",
         "THIRD-PARTY-NOTICES.txt",
-        "harfbuzzsharp.2.8.2.5.nupkg.sha512",
+        "harfbuzzsharp.7.3.0.nupkg.sha512",
         "harfbuzzsharp.nuspec",
         "lib/monoandroid1.0/HarfBuzzSharp.dll",
         "lib/monoandroid1.0/HarfBuzzSharp.pdb",
@@ -4935,10 +5040,10 @@
         "runtimes/linux-x64/native/libHarfBuzzSharp.so"
       ]
     },
-    "HarfBuzzSharp.NativeAssets.macOS/2.8.2.5": {
-      "sha512": "nlDITOIUo9UrevzkXqeHqIS3bSzEu8n6SnZqjhEi5oI+rM/NiJ0obX7xQNu5QGWF7warmMwqNWDLqlc+vefXvQ==",
+    "HarfBuzzSharp.NativeAssets.macOS/7.3.0": {
+      "sha512": "LWcFJ39j+dN0KK8c/GJJZPPZPL9TqT2FA42/LRGqzUMmSm5LYbINOMnPvUr7RuLR6RFSmKIrgrlgObR8G5ho2A==",
       "type": "package",
-      "path": "harfbuzzsharp.nativeassets.macos/2.8.2.5",
+      "path": "harfbuzzsharp.nativeassets.macos/7.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4950,7 +5055,7 @@
         "buildTransitive/net462/HarfBuzzSharp.NativeAssets.macOS.targets",
         "buildTransitive/net6.0-macos10.15/HarfBuzzSharp.NativeAssets.macOS.targets",
         "buildTransitive/xamarinmac2.0/HarfBuzzSharp.NativeAssets.macOS.targets",
-        "harfbuzzsharp.nativeassets.macos.2.8.2.5.nupkg.sha512",
+        "harfbuzzsharp.nativeassets.macos.7.3.0.nupkg.sha512",
         "harfbuzzsharp.nativeassets.macos.nuspec",
         "lib/net462/_._",
         "lib/net6.0-macos10.15/_._",
@@ -4961,10 +5066,10 @@
         "runtimes/osx/native/libHarfBuzzSharp.dylib"
       ]
     },
-    "HarfBuzzSharp.NativeAssets.Win32/2.8.2.5": {
-      "sha512": "478O/W0P50YbRWmcgDPzkHNWmH9ak6zsjQ0XEKY8LmGNcOtH5eIvrJE720Qa7lNq/JreRH7rRlHsGbNuK1+WvA==",
+    "HarfBuzzSharp.NativeAssets.Win32/7.3.0": {
+      "sha512": "ulEewLMk+dNmbmpy15ny/YusI6JNUWqchF080TV2jgfFBXPXjWm767JleDi/S7hp8eDeEN6GYIIxpvNr5fLvIw==",
       "type": "package",
-      "path": "harfbuzzsharp.nativeassets.win32/2.8.2.5",
+      "path": "harfbuzzsharp.nativeassets.win32/7.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4972,7 +5077,7 @@
         "THIRD-PARTY-NOTICES.txt",
         "build/net462/HarfBuzzSharp.NativeAssets.Win32.targets",
         "buildTransitive/net462/HarfBuzzSharp.NativeAssets.Win32.targets",
-        "harfbuzzsharp.nativeassets.win32.2.8.2.5.nupkg.sha512",
+        "harfbuzzsharp.nativeassets.win32.7.3.0.nupkg.sha512",
         "harfbuzzsharp.nativeassets.win32.nuspec",
         "lib/net462/_._",
         "lib/net6.0/_._",
@@ -5130,15 +5235,15 @@
         "microsoft.aspnetcore.webutilities.nuspec"
       ]
     },
-    "Microsoft.CodeAnalysis.Analyzers/3.3.3": {
-      "sha512": "j/rOZtLMVJjrfLRlAMckJLPW/1rze9MT1yfWqSIbUPGRu1m1P0fuo9PmqapwsmePfGB5PJrudQLvmUOAMF0DqQ==",
+    "Microsoft.CodeAnalysis.Analyzers/3.3.2": {
+      "sha512": "7xt6zTlIEizUgEsYAIgm37EbdkiMmr6fP6J9pDoKEpiGM4pi32BCPGr/IczmSJI9Zzp0a6HOzpr9OvpMP+2veA==",
       "type": "package",
-      "path": "microsoft.codeanalysis.analyzers/3.3.3",
+      "path": "microsoft.codeanalysis.analyzers/3.3.2",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "Icon.png",
+        "EULA.rtf",
         "ThirdPartyNotices.rtf",
         "analyzers/dotnet/cs/Microsoft.CodeAnalysis.Analyzers.dll",
         "analyzers/dotnet/cs/Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
@@ -5172,156 +5277,15 @@
         "analyzers/dotnet/vb/zh-Hant/Microsoft.CodeAnalysis.Analyzers.resources.dll",
         "build/Microsoft.CodeAnalysis.Analyzers.props",
         "build/Microsoft.CodeAnalysis.Analyzers.targets",
-        "build/config/analysislevel_2_9_8_all.editorconfig",
-        "build/config/analysislevel_2_9_8_default.editorconfig",
-        "build/config/analysislevel_2_9_8_minimum.editorconfig",
-        "build/config/analysislevel_2_9_8_none.editorconfig",
-        "build/config/analysislevel_2_9_8_recommended.editorconfig",
-        "build/config/analysislevel_3_3_all.editorconfig",
-        "build/config/analysislevel_3_3_default.editorconfig",
-        "build/config/analysislevel_3_3_minimum.editorconfig",
-        "build/config/analysislevel_3_3_none.editorconfig",
-        "build/config/analysislevel_3_3_recommended.editorconfig",
-        "build/config/analysislevel_3_all.editorconfig",
-        "build/config/analysislevel_3_default.editorconfig",
-        "build/config/analysislevel_3_minimum.editorconfig",
-        "build/config/analysislevel_3_none.editorconfig",
-        "build/config/analysislevel_3_recommended.editorconfig",
-        "build/config/analysislevelcorrectness_2_9_8_all.editorconfig",
-        "build/config/analysislevelcorrectness_2_9_8_default.editorconfig",
-        "build/config/analysislevelcorrectness_2_9_8_minimum.editorconfig",
-        "build/config/analysislevelcorrectness_2_9_8_none.editorconfig",
-        "build/config/analysislevelcorrectness_2_9_8_recommended.editorconfig",
-        "build/config/analysislevelcorrectness_3_3_all.editorconfig",
-        "build/config/analysislevelcorrectness_3_3_default.editorconfig",
-        "build/config/analysislevelcorrectness_3_3_minimum.editorconfig",
-        "build/config/analysislevelcorrectness_3_3_none.editorconfig",
-        "build/config/analysislevelcorrectness_3_3_recommended.editorconfig",
-        "build/config/analysislevelcorrectness_3_all.editorconfig",
-        "build/config/analysislevelcorrectness_3_default.editorconfig",
-        "build/config/analysislevelcorrectness_3_minimum.editorconfig",
-        "build/config/analysislevelcorrectness_3_none.editorconfig",
-        "build/config/analysislevelcorrectness_3_recommended.editorconfig",
-        "build/config/analysislevellibrary_2_9_8_all.editorconfig",
-        "build/config/analysislevellibrary_2_9_8_default.editorconfig",
-        "build/config/analysislevellibrary_2_9_8_minimum.editorconfig",
-        "build/config/analysislevellibrary_2_9_8_none.editorconfig",
-        "build/config/analysislevellibrary_2_9_8_recommended.editorconfig",
-        "build/config/analysislevellibrary_3_3_all.editorconfig",
-        "build/config/analysislevellibrary_3_3_default.editorconfig",
-        "build/config/analysislevellibrary_3_3_minimum.editorconfig",
-        "build/config/analysislevellibrary_3_3_none.editorconfig",
-        "build/config/analysislevellibrary_3_3_recommended.editorconfig",
-        "build/config/analysislevellibrary_3_all.editorconfig",
-        "build/config/analysislevellibrary_3_default.editorconfig",
-        "build/config/analysislevellibrary_3_minimum.editorconfig",
-        "build/config/analysislevellibrary_3_none.editorconfig",
-        "build/config/analysislevellibrary_3_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscompatibility_2_9_8_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscompatibility_2_9_8_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscompatibility_2_9_8_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscompatibility_2_9_8_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscompatibility_2_9_8_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscompatibility_3_3_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscompatibility_3_3_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscompatibility_3_3_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscompatibility_3_3_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscompatibility_3_3_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscompatibility_3_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscompatibility_3_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscompatibility_3_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscompatibility_3_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscompatibility_3_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscorrectness_2_9_8_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscorrectness_2_9_8_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscorrectness_2_9_8_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscorrectness_2_9_8_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscorrectness_2_9_8_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscorrectness_3_3_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscorrectness_3_3_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscorrectness_3_3_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscorrectness_3_3_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscorrectness_3_3_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscorrectness_3_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscorrectness_3_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscorrectness_3_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscorrectness_3_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysiscorrectness_3_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdesign_2_9_8_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdesign_2_9_8_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdesign_2_9_8_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdesign_2_9_8_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdesign_2_9_8_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdesign_3_3_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdesign_3_3_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdesign_3_3_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdesign_3_3_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdesign_3_3_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdesign_3_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdesign_3_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdesign_3_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdesign_3_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdesign_3_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdocumentation_2_9_8_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdocumentation_2_9_8_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdocumentation_2_9_8_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdocumentation_2_9_8_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdocumentation_2_9_8_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdocumentation_3_3_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdocumentation_3_3_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdocumentation_3_3_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdocumentation_3_3_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdocumentation_3_3_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdocumentation_3_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdocumentation_3_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdocumentation_3_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdocumentation_3_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisdocumentation_3_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysislocalization_2_9_8_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysislocalization_2_9_8_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysislocalization_2_9_8_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysislocalization_2_9_8_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysislocalization_2_9_8_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysislocalization_3_3_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysislocalization_3_3_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysislocalization_3_3_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysislocalization_3_3_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysislocalization_3_3_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysislocalization_3_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysislocalization_3_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysislocalization_3_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysislocalization_3_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysislocalization_3_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisperformance_2_9_8_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisperformance_2_9_8_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisperformance_2_9_8_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisperformance_2_9_8_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisperformance_2_9_8_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisperformance_3_3_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisperformance_3_3_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisperformance_3_3_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisperformance_3_3_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisperformance_3_3_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisperformance_3_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisperformance_3_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisperformance_3_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisperformance_3_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisperformance_3_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisreleasetracking_2_9_8_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisreleasetracking_2_9_8_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisreleasetracking_2_9_8_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisreleasetracking_2_9_8_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisreleasetracking_2_9_8_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisreleasetracking_3_3_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisreleasetracking_3_3_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisreleasetracking_3_3_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisreleasetracking_3_3_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisreleasetracking_3_3_recommended.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisreleasetracking_3_all.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisreleasetracking_3_default.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisreleasetracking_3_minimum.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisreleasetracking_3_none.editorconfig",
-        "build/config/analysislevelmicrosoftcodeanalysisreleasetracking_3_recommended.editorconfig",
+        "build/config/AnalysisLevel_2_9_8_AllDisabledByDefault.editorconfig",
+        "build/config/AnalysisLevel_2_9_8_AllEnabledByDefault.editorconfig",
+        "build/config/AnalysisLevel_2_9_8_Default.editorconfig",
+        "build/config/AnalysisLevel_3_3_AllDisabledByDefault.editorconfig",
+        "build/config/AnalysisLevel_3_3_AllEnabledByDefault.editorconfig",
+        "build/config/AnalysisLevel_3_3_Default.editorconfig",
+        "build/config/AnalysisLevel_3_AllDisabledByDefault.editorconfig",
+        "build/config/AnalysisLevel_3_AllEnabledByDefault.editorconfig",
+        "build/config/AnalysisLevel_3_Default.editorconfig",
         "documentation/Analyzer Configuration.md",
         "documentation/Microsoft.CodeAnalysis.Analyzers.md",
         "documentation/Microsoft.CodeAnalysis.Analyzers.sarif",
@@ -5350,7 +5314,7 @@
         "editorconfig/MicrosoftCodeAnalysisReleaseTrackingRulesEnabled/.editorconfig",
         "editorconfig/PortedFromFxCopRulesDefault/.editorconfig",
         "editorconfig/PortedFromFxCopRulesEnabled/.editorconfig",
-        "microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
+        "microsoft.codeanalysis.analyzers.3.3.2.nupkg.sha512",
         "microsoft.codeanalysis.analyzers.nuspec",
         "rulesets/AllRulesDefault.ruleset",
         "rulesets/AllRulesDisabled.ruleset",
@@ -5381,10 +5345,10 @@
         "tools/uninstall.ps1"
       ]
     },
-    "Microsoft.CodeAnalysis.Common/4.3.1": {
-      "sha512": "wexpJffSEEwptwe6UTMxRDZCCtz+XubI4Qewl4JECnNhcQrtb0anhSUEV9Nz7WkoNfWkx1fptR8xh1egoxYrqw==",
+    "Microsoft.CodeAnalysis.Common/4.0.1": {
+      "sha512": "SMREwaVD5SzatlWhh9aahQAtSWdb63NcE//f+bQzgHSECU6xtDtaxk0kwV+asdFfr6HtW38UeO6jvqdfzudg3w==",
       "type": "package",
-      "path": "microsoft.codeanalysis.common/4.3.1",
+      "path": "microsoft.codeanalysis.common/4.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5422,14 +5386,14 @@
         "lib/netstandard2.0/tr/Microsoft.CodeAnalysis.resources.dll",
         "lib/netstandard2.0/zh-Hans/Microsoft.CodeAnalysis.resources.dll",
         "lib/netstandard2.0/zh-Hant/Microsoft.CodeAnalysis.resources.dll",
-        "microsoft.codeanalysis.common.4.3.1.nupkg.sha512",
+        "microsoft.codeanalysis.common.4.0.1.nupkg.sha512",
         "microsoft.codeanalysis.common.nuspec"
       ]
     },
-    "Microsoft.CodeAnalysis.CSharp/4.3.1": {
-      "sha512": "5C9VHvahL98tumlyaT/loB5rW+K/6q0UU7uLyT1Dv15YjZraRkqML9u2t2e8GaO7XqEOtBVqK/SlxXOPqwzxog==",
+    "Microsoft.CodeAnalysis.CSharp/4.0.1": {
+      "sha512": "Q9RxxydPpUElj/x1/qykDTUGsRoKbJG8H5XUSeMGmMu54fBiuX1xyanom9caa1oQfh5JIW1BgLxobSaWs4WyHQ==",
       "type": "package",
-      "path": "microsoft.codeanalysis.csharp/4.3.1",
+      "path": "microsoft.codeanalysis.csharp/4.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5467,14 +5431,14 @@
         "lib/netstandard2.0/tr/Microsoft.CodeAnalysis.CSharp.resources.dll",
         "lib/netstandard2.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll",
         "lib/netstandard2.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll",
-        "microsoft.codeanalysis.csharp.4.3.1.nupkg.sha512",
+        "microsoft.codeanalysis.csharp.4.0.1.nupkg.sha512",
         "microsoft.codeanalysis.csharp.nuspec"
       ]
     },
-    "Microsoft.CodeAnalysis.VisualBasic/4.3.1": {
-      "sha512": "V3yW779IRoi8skcbLYBhryviGgIgtKfkQ4EQKSLHUe6++olAT1pCuE+kbgwXxTpoHqhI4Wc1gEkjNNmgQ3MKgg==",
+    "Microsoft.CodeAnalysis.VisualBasic/4.0.1": {
+      "sha512": "o67w8S4zO7tQvB0EQeeo7i5uJCT/CrLwnLUWkkbxU2aUsZPGuRd35diuqk7e+vwnfhu27AvNJsr+1Z6EUT+fDA==",
       "type": "package",
-      "path": "microsoft.codeanalysis.visualbasic/4.3.1",
+      "path": "microsoft.codeanalysis.visualbasic/4.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5512,7 +5476,7 @@
         "lib/netstandard2.0/tr/Microsoft.CodeAnalysis.VisualBasic.resources.dll",
         "lib/netstandard2.0/zh-Hans/Microsoft.CodeAnalysis.VisualBasic.resources.dll",
         "lib/netstandard2.0/zh-Hant/Microsoft.CodeAnalysis.VisualBasic.resources.dll",
-        "microsoft.codeanalysis.visualbasic.4.3.1.nupkg.sha512",
+        "microsoft.codeanalysis.visualbasic.4.0.1.nupkg.sha512",
         "microsoft.codeanalysis.visualbasic.nuspec"
       ]
     },
@@ -6699,14 +6663,14 @@
         "pipelines.sockets.unofficial.nuspec"
       ]
     },
-    "Realta.BackCollectionNuGet/1.0.1": {
-      "sha512": "aTHGtlZHdL18qs2AozDfjc6m7Cq0XoAI0k5m/HTDyYoLFFKa8EnMzMmWYyDYWfCq/5oN+jw3Rc9AonX0tc1vFg==",
+    "Realta.BackCollectionNuGet/1.0.2": {
+      "sha512": "RZISr98YJAz566kra4dLdWwAJ1N2ATwtMLGetgCL0ll+q04k6474aILAsDuNJu1rqg2MKwU/luaOwJ9RXKzVlQ==",
       "type": "package",
-      "path": "realta.backcollectionnuget/1.0.1",
+      "path": "realta.backcollectionnuget/1.0.2",
       "files": [
         ".nupkg.metadata",
         "lib/net6.0/BackCollectionNuGet.dll",
-        "realta.backcollectionnuget.1.0.1.nupkg.sha512",
+        "realta.backcollectionnuget.1.0.2.nupkg.sha512",
         "realta.backcollectionnuget.nuspec"
       ]
     },
@@ -7388,10 +7352,10 @@
         "serilog.sinks.seq.nuspec"
       ]
     },
-    "SkiaSharp/2.88.5": {
-      "sha512": "43t9YEvcZtT+tuMN4hHH8rV8h7ttk1DRv5Tptxamy+bPuE8Up51+ME1Y1TXYAQf75686tHO488a0YKAnmJaSNg==",
+    "SkiaSharp/2.88.6": {
+      "sha512": "wdfeBAQrEQCbJIRgAiargzP1Uy+0grZiG4CSgBnhAgcJTsPzlifIaO73JRdwIlT3TyBoeU9jEqzwFUhl4hTYnQ==",
       "type": "package",
-      "path": "skiasharp/2.88.5",
+      "path": "skiasharp/2.88.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7458,14 +7422,14 @@
         "lib/xamarinwatchos1.0/SkiaSharp.dll",
         "lib/xamarinwatchos1.0/SkiaSharp.pdb",
         "lib/xamarinwatchos1.0/SkiaSharp.xml",
-        "skiasharp.2.88.5.nupkg.sha512",
+        "skiasharp.2.88.6.nupkg.sha512",
         "skiasharp.nuspec"
       ]
     },
-    "SkiaSharp.HarfBuzz/2.88.3": {
-      "sha512": "hH6v4ltTb34eqn5tx1qLSAN7O+ppZCV5DnZw0FR7RwxXYqCeQYbBNgsaPyrZ1nkvtCDD1pH79taeO6SvqG+IAg==",
+    "SkiaSharp.HarfBuzz/2.88.6": {
+      "sha512": "s5yZTHdqbXKiTL06ns6zW3asELfX60dEceA4ZdYmNlOkz/OyWDfdjHAuu4HGDA7Mxx5iaUEzDZgPkEe+OVr/jg==",
       "type": "package",
-      "path": "skiasharp.harfbuzz/2.88.3",
+      "path": "skiasharp.harfbuzz/2.88.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7473,9 +7437,6 @@
         "lib/net462/SkiaSharp.HarfBuzz.dll",
         "lib/net462/SkiaSharp.HarfBuzz.pdb",
         "lib/net462/SkiaSharp.HarfBuzz.xml",
-        "lib/net5.0/SkiaSharp.HarfBuzz.dll",
-        "lib/net5.0/SkiaSharp.HarfBuzz.pdb",
-        "lib/net5.0/SkiaSharp.HarfBuzz.xml",
         "lib/net6.0/SkiaSharp.HarfBuzz.dll",
         "lib/net6.0/SkiaSharp.HarfBuzz.pdb",
         "lib/net6.0/SkiaSharp.HarfBuzz.xml",
@@ -7491,7 +7452,7 @@
         "lib/netstandard2.1/SkiaSharp.HarfBuzz.dll",
         "lib/netstandard2.1/SkiaSharp.HarfBuzz.pdb",
         "lib/netstandard2.1/SkiaSharp.HarfBuzz.xml",
-        "skiasharp.harfbuzz.2.88.3.nupkg.sha512",
+        "skiasharp.harfbuzz.2.88.6.nupkg.sha512",
         "skiasharp.harfbuzz.nuspec"
       ]
     },
@@ -7518,10 +7479,10 @@
         "skiasharp.nativeassets.linux.nuspec"
       ]
     },
-    "SkiaSharp.NativeAssets.macOS/2.88.5": {
-      "sha512": "snAA6ghUHBeXSOEa/lbjYMUPDKdNh4YRjU+dBoU85EMDEPlAwtkM9gESTM8FKY67ozqX8tqLzad1RRDNistGsg==",
+    "SkiaSharp.NativeAssets.macOS/2.88.6": {
+      "sha512": "Sko9LFxRXSjb3OGh5/RxrVRXxYo48tr5NKuuSy6jB85GrYt8WRqVY1iLOLwtjPiVAt4cp+pyD4i30azanS64dw==",
       "type": "package",
-      "path": "skiasharp.nativeassets.macos/2.88.5",
+      "path": "skiasharp.nativeassets.macos/2.88.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7540,14 +7501,14 @@
         "lib/netstandard1.3/_._",
         "lib/xamarinmac2.0/_._",
         "runtimes/osx/native/libSkiaSharp.dylib",
-        "skiasharp.nativeassets.macos.2.88.5.nupkg.sha512",
+        "skiasharp.nativeassets.macos.2.88.6.nupkg.sha512",
         "skiasharp.nativeassets.macos.nuspec"
       ]
     },
-    "SkiaSharp.NativeAssets.Win32/2.88.5": {
-      "sha512": "U0GuMsdtdbHjVmuyTPRbb+ifaTPYBIV8WvPFx81ZHwzfL2TVe8SQjum8AMXSZDDlf90rhxOC5slzaL33uoHUhA==",
+    "SkiaSharp.NativeAssets.Win32/2.88.6": {
+      "sha512": "7TzFO0u/g2MpQsTty4fyCDdMcfcWI+aLswwfnYXr3gtNS6VLKdMXPMeKpJa3pJSLnUBN6wD0JjuCe8OoLBQ6cQ==",
       "type": "package",
-      "path": "skiasharp.nativeassets.win32/2.88.5",
+      "path": "skiasharp.nativeassets.win32/2.88.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7562,7 +7523,7 @@
         "runtimes/win-arm64/native/libSkiaSharp.dll",
         "runtimes/win-x64/native/libSkiaSharp.dll",
         "runtimes/win-x86/native/libSkiaSharp.dll",
-        "skiasharp.nativeassets.win32.2.88.5.nupkg.sha512",
+        "skiasharp.nativeassets.win32.2.88.6.nupkg.sha512",
         "skiasharp.nativeassets.win32.nuspec"
       ]
     },
@@ -7959,27 +7920,30 @@
         "system.collections.concurrent.nuspec"
       ]
     },
-    "System.Collections.Immutable/6.0.0": {
-      "sha512": "l4zZJ1WU2hqpQQHXz1rvC3etVZN+2DLmQMO79FhOTZHMn8tDRr+WU287sbomD0BETlmKDn0ygUgVy9k5xkkJdA==",
+    "System.Collections.Immutable/5.0.0": {
+      "sha512": "FXkLXiK0sVVewcso0imKQoOxjoPAj42R8HtjjbSjVPAzwDfzoyoznWxgA3c38LDbN9SJux1xXoXYAhz98j7r2g==",
       "type": "package",
-      "path": "system.collections.immutable/6.0.0",
+      "path": "system.collections.immutable/5.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "buildTransitive/netcoreapp2.0/System.Collections.Immutable.targets",
-        "buildTransitive/netcoreapp3.1/_._",
         "lib/net461/System.Collections.Immutable.dll",
         "lib/net461/System.Collections.Immutable.xml",
-        "lib/net6.0/System.Collections.Immutable.dll",
-        "lib/net6.0/System.Collections.Immutable.xml",
+        "lib/netstandard1.0/System.Collections.Immutable.dll",
+        "lib/netstandard1.0/System.Collections.Immutable.xml",
+        "lib/netstandard1.3/System.Collections.Immutable.dll",
+        "lib/netstandard1.3/System.Collections.Immutable.xml",
         "lib/netstandard2.0/System.Collections.Immutable.dll",
         "lib/netstandard2.0/System.Collections.Immutable.xml",
-        "system.collections.immutable.6.0.0.nupkg.sha512",
+        "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll",
+        "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.xml",
+        "system.collections.immutable.5.0.0.nupkg.sha512",
         "system.collections.immutable.nuspec",
-        "useSharedDesignerContext.txt"
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Collections.NonGeneric/4.3.0": {
@@ -12005,6 +11969,26 @@
       "path": "../../../../../BS Shared Form/SOURCE/SERVICES/GFF00900SERVICES/GFF00900SERVICES.csproj",
       "msbuildProject": "../../../../../BS Shared Form/SOURCE/SERVICES/GFF00900SERVICES/GFF00900SERVICES.csproj"
     },
+    "GSM00300BACK/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GSM00300BACK/GSM00300BACK.csproj",
+      "msbuildProject": "../../../BACK/GS/GSM00300BACK/GSM00300BACK.csproj"
+    },
+    "GSM00300BackResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GSM00300BackResources/GSM00300BackResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GSM00300BackResources/GSM00300BackResources.csproj"
+    },
+    "GSM00300COMMON/1.0.0": {
+      "type": "project",
+      "path": "../../../COMMON/GS/GSM00300COMMON/GSM00300COMMON.csproj",
+      "msbuildProject": "../../../COMMON/GS/GSM00300COMMON/GSM00300COMMON.csproj"
+    },
+    "GSM00300SERVICE/1.0.0": {
+      "type": "project",
+      "path": "../../../SERVICE/GS/GSM00300SERVICE/GSM00300SERVICE.csproj",
+      "msbuildProject": "../../../SERVICE/GS/GSM00300SERVICE/GSM00300SERVICE.csproj"
+    },
     "GSM02000Back/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/GSM02000Back/GSM02000Back.csproj",
@@ -12042,8 +12026,8 @@
     },
     "GSM04000Back/1.0.0": {
       "type": "project",
-      "path": "../../../BACK/GS/GSM04000Back/GSM04000Back.csproj",
-      "msbuildProject": "../../../BACK/GS/GSM04000Back/GSM04000Back.csproj"
+      "path": "../../../BACK/GS/GSM04000BACK/GSM04000Back.csproj",
+      "msbuildProject": "../../../BACK/GS/GSM04000BACK/GSM04000Back.csproj"
     },
     "GSM04000BackResources/1.0.0": {
       "type": "project",
@@ -12052,8 +12036,8 @@
     },
     "GSM04000Common/1.0.0": {
       "type": "project",
-      "path": "../../../COMMON/GS/GSM04000Common/GSM04000Common.csproj",
-      "msbuildProject": "../../../COMMON/GS/GSM04000Common/GSM04000Common.csproj"
+      "path": "../../../COMMON/GS/GSM04000COMMON/GSM04000Common.csproj",
+      "msbuildProject": "../../../COMMON/GS/GSM04000COMMON/GSM04000Common.csproj"
     },
     "GSM04000Service/1.0.0": {
       "type": "project",
@@ -12090,6 +12074,21 @@
       "path": "../../../SERVICE/GS/GSM05000Service/GSM05000Service.csproj",
       "msbuildProject": "../../../SERVICE/GS/GSM05000Service/GSM05000Service.csproj"
     },
+    "GST00500Back/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GST00500Back/GST00500Back.csproj",
+      "msbuildProject": "../../../BACK/GS/GST00500Back/GST00500Back.csproj"
+    },
+    "GST00500Common/1.0.0": {
+      "type": "project",
+      "path": "../../../COMMON/GS/GST00500Common/GST00500Common.csproj",
+      "msbuildProject": "../../../COMMON/GS/GST00500Common/GST00500Common.csproj"
+    },
+    "GST00500Service/1.0.0": {
+      "type": "project",
+      "path": "../../../SERVICE/GS/GST00500Service/GST00500Service.csproj",
+      "msbuildProject": "../../../SERVICE/GS/GST00500Service/GST00500Service.csproj"
+    },
     "Lookup_GSBACK/1.0.0": {
       "type": "project",
       "path": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GSBACK/Lookup_GSBACK.csproj",
@@ -12110,6 +12109,11 @@
       "path": "../../../BACK/GS/GS_SPR/RSP_ACTIVITY_VALIDITYResources/RSP_ACTIVITY_VALIDITYResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_ACTIVITY_VALIDITYResources/RSP_ACTIVITY_VALIDITYResources.csproj"
     },
+    "RSP_GS_MAINTAIN_APPROVALResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_APPROVALResources/RSP_GS_MAINTAIN_APPROVALResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_APPROVALResources/RSP_GS_MAINTAIN_APPROVALResources.csproj"
+    },
     "RSP_GS_MAINTAIN_BUILDINGResources/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_BUILDINGResources/RSP_GS_MAINTAIN_BUILDINGResources.csproj",
@@ -12124,6 +12128,11 @@
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_BUILDING_UNITResources/RSP_GS_MAINTAIN_BUILDING_UNITResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_BUILDING_UNITResources/RSP_GS_MAINTAIN_BUILDING_UNITResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_COMP_PARAMResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_COMP_PARAMResources/RSP_GS_MAINTAIN_COMP_PARAMResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_COMP_PARAMResources/RSP_GS_MAINTAIN_COMP_PARAMResources.csproj"
     },
     "RSP_GS_MAINTAIN_DEPARTMENTResources/1.0.0": {
       "type": "project",
@@ -12169,6 +12178,11 @@
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_TAXResources/RSP_GS_MAINTAIN_TAXResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_TAXResources/RSP_GS_MAINTAIN_TAXResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_TAX_INFOResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_TAX_INFOResources/RSP_GS_MAINTAIN_TAX_INFOResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_TAX_INFOResources/RSP_GS_MAINTAIN_TAX_INFOResources.csproj"
     },
     "RSP_GS_MAINTAIN_TAX_PCTResources/1.0.0": {
       "type": "project",
@@ -12249,13 +12263,15 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "GFF00900SERVICES >= 1.0.0",
+      "GSM00300SERVICE >= 1.0.0",
       "GSM02000Service >= 1.0.0",
       "GSM02500SERVICE >= 1.0.0",
       "GSM04000Service >= 1.0.0",
       "GSM04500Service >= 1.0.0",
       "GSM05000Service >= 1.0.0",
+      "GST00500Service >= 1.0.0",
       "Lookup_GSSERVICES >= 1.0.0",
-      "Realta.BackCollectionNuGet >= 1.0.1",
+      "Realta.BackCollectionNuGet >= 1.0.2",
       "Realta.CommonCollectionNuGet >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.2.3"
     ]
@@ -12295,6 +12311,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM00300SERVICE\\GSM00300SERVICE.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM00300SERVICE\\GSM00300SERVICE.csproj"
+            },
             "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02000Service\\GSM02000Service.csproj": {
               "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM02000Service\\GSM02000Service.csproj"
             },
@@ -12309,6 +12328,9 @@
             },
             "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Service\\GSM05000Service.csproj": {
               "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Service\\GSM05000Service.csproj"
+            },
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GST00500Service\\GST00500Service.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GST00500Service\\GST00500Service.csproj"
             },
             "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\GFF00900SERVICES\\GFF00900SERVICES.csproj": {
               "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\GFF00900SERVICES\\GFF00900SERVICES.csproj"
@@ -12331,7 +12353,7 @@
         "dependencies": {
           "Realta.BackCollectionNuGet": {
             "target": "Package",
-            "version": "[1.0.1, )"
+            "version": "[1.0.2, )"
           },
           "Realta.CommonCollectionNuGet": {
             "target": "Package",

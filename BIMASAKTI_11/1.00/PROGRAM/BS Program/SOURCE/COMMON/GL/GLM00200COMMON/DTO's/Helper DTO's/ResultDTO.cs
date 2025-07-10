@@ -27,6 +27,7 @@ namespace GLM00200COMMON
 
         public byte[] CLOGO { get; set; }
         public string CCOMPANY_NAME { get; set; }
+        public string CDATETIME_NOW { get; set; }
     }
 
 

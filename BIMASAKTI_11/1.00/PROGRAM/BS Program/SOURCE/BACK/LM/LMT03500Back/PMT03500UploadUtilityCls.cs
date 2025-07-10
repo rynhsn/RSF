@@ -290,6 +290,11 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
 
         if (loException.Haserror)
         {
+            lcQuery = string.Format("EXEC RSP_WRITEUPLOADPROCESSSTATUS '{0}', '{1}', '{2}', 100, '{3}', {4}", poBatchProcessPar.Key.COMPANY_ID, poBatchProcessPar.Key.USER_ID, poBatchProcessPar.Key.KEY_GUID, loException.ErrorList[0].ErrDescp, 9);
+            loCmd!.CommandText = lcQuery;
+            loCmd.CommandType = CommandType.Text;
+            loDb.SqlExecNonQuery(lcQuery);
+            
             _logger.LogError("Exception Error", loException);
             lcQuery = $"EXEC RSP_WriteUploadProcessStatus '{poBatchProcessPar.Key.COMPANY_ID}', " +
                       $"'{poBatchProcessPar.Key.USER_ID}', " +

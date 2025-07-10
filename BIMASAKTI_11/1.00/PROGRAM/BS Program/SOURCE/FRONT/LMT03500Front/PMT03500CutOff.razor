@@ -155,6 +155,13 @@
                         R_CheckBoxSelectValueChanged="CheckBoxSelectValueChanged"
                         R_ServiceSaveBatch="SaveBatch">
                     <R_GridColumns>
+                       
+                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CCOMPANY_ID)" Visible="false"/>
+                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CEND_DATE)" Visible="false"/>
+                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CPROPERTY_ID)" Visible="false"/>
+
+
+
                         <R_GridCheckBoxSelectColumn FieldName="@nameof(PMT03500UtilityUsageDTO.LSELECTED)" Width="30px" ShowSelectAllHeader Filterable="false" Resizable="false"/>
                         <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CFLOOR_NAME)" HeaderText="@_localizer["LBL_FLOORID"]" TextAlignment="R_eTextAlignment.Left" Width="130px"/>
                         <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUNIT_NAME)" HeaderText="@_localizer["LBL_UNITID"]" TextAlignment="R_eTextAlignment.Left" Width="130px"/>

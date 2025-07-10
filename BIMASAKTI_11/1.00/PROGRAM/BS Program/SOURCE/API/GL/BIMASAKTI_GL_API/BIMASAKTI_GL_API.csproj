@@ -10,6 +10,9 @@
 
   <ItemGroup>
     <None Remove="Template\GL_ACCOUNT_BUDGET_UPLOAD.xlsx" />
+    <None Update="Reports\GLM00200.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -29,15 +32,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.1" />
+    <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.2" />
     <PackageReference Include="Realta.CommonCollectionNuGet" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_GLSERVICES\Lookup_GLSERVICES.csproj" />
-    <ProjectReference Include="..\..\..\SERVICE\GL\GLExcelTestService\GLExcelTestService.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLI00100Service\GLI00100Service.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GL\GLM00200SERVICE\GLM00200SERVICE.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLM00500Service\GLM00500Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLR00100Service\GLR00100Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLT00200SERVICE\GLT00200SERVICE.csproj" />

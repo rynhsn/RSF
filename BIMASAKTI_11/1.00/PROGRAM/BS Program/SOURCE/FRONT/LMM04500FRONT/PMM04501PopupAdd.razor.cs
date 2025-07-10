@@ -41,11 +41,11 @@ namespace PMM04500FRONT
 
         private R_CheckBox _checkBoxActive;
 
-        private bool _enableGridAdd = true;
+        //private bool _enableGridAdd = true;
 
-        private bool _enableGridEdit = true;
+        //private bool _enableGridEdit = true;
 
-        private bool _enableGridDelete = true;
+        //private bool _enableGridDelete = true;
 
         protected override async Task R_Init_From_Master(object poParameter)
         {
@@ -62,19 +62,19 @@ namespace PMM04500FRONT
                 {
                     case "ADD":
                         _checkBoxActive.Enabled = true;
-                        _enableGridEdit = false;
-                        _enableGridDelete = false;
+                        //_enableGridEdit = false;
+                        //_enableGridDelete = false;
                         _pricingAdd_ViewModel._validId = "";
                         break;
                     case "EDIT":
-                        _enableGridDelete = false;
-                        _enableGridAdd = true;
+                        //_enableGridDelete = false;
+                        //_enableGridAdd = true;
                         _validDateForm.Enabled = false;
                         _pricingAdd_ViewModel._validId = loParam.CVALID_INTERNAL_ID;
                         break;
                     case "DELETE":
-                        _enableGridAdd = false;
-                        _enableGridEdit = false;
+                        //_enableGridAdd = false;
+                        //_enableGridEdit = false;
                         _validDateForm.Enabled = false;
                         _pricingAdd_ViewModel._validId = loParam.CVALID_INTERNAL_ID;
                         break;
@@ -309,6 +309,21 @@ namespace PMM04500FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
+        #endregion
+
+        #region CheckGrid Add/Edit/Delete
+        private void CheckGridAdd(R_CheckGridEventArgs eventArgs)
+        {
+            eventArgs.Allow = _pricingAdd_ViewModel._action is "ADD" or "EDIT";
+        }
+        private void CheckGridEdit(R_CheckGridEventArgs eventArgs)
+        {
+            eventArgs.Allow = _pricingAdd_ViewModel._action == "EDIT";
+        }
+        private void CheckGridDelete(R_CheckGridEventArgs eventArgs)
+        {
+            eventArgs.Allow = _pricingAdd_ViewModel._action == "DELETE";
+        }
         #endregion
 
     }

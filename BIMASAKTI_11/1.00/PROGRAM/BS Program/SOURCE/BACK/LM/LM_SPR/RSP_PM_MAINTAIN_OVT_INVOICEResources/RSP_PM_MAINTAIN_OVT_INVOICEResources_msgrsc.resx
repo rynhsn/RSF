@@ -122,5 +122,8 @@
   </data>
   <data name="NO_INVGRP" xml:space="preserve">
     <value>Please setting invoice group for this charges{0}!</value>
+  </data>  
+  <data name="NO_RATE" xml:space="preserve">
+    <value>Please setting rate for this charges{0}!</value>
   </data>
 </root>

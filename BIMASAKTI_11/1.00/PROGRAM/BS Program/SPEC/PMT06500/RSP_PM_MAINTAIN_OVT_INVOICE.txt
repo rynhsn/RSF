@@ -1,1 +1,3 @@
-ERROR_PROCESS=Process failed! unable to generate Overtime Invoice Plan {0}
+ERROR_PROCESS	=Process failed! unable to generate Overtime Invoice Plan {0}
+NO_INVGRP	=Please setting invoice group for this charges{0}!
+NO_RATE		=Please setting rate for this charges{0}!

@@ -12,7 +12,7 @@ namespace PMT03500Back;
 
 public class PMT03500UndoUtilityCls : R_IBatchProcess
 {
-    RSP_PM_UPLOAD_UTILITY_USAGE_ECResources.Resources_Dummy_Class _rscUpload = new();
+    RSP_PM_UNDO_UTILITY_USAGEResources.Resources_Dummy_Class _rscUndo = new();
     
     private readonly ActivitySource _activitySource;
     private LoggerPMT03500 _logger;
@@ -179,6 +179,7 @@ public class PMT03500UndoUtilityCls : R_IBatchProcess
         catch (Exception ex)
         {
             loException.Add(ex);
+            _logger.LogError(loException);
         }
         finally
         {
@@ -199,6 +200,12 @@ public class PMT03500UndoUtilityCls : R_IBatchProcess
 
         if (loException.Haserror)
         {
+            
+            lcQuery = string.Format("EXEC RSP_WRITEUPLOADPROCESSSTATUS '{0}', '{1}', '{2}', 100, '{3}', {4}", poBatchProcessPar.Key.COMPANY_ID, poBatchProcessPar.Key.USER_ID, poBatchProcessPar.Key.KEY_GUID, loException.ErrorList[0].ErrDescp, 9);
+            loCmd!.CommandText = lcQuery;
+            loCmd.CommandType = CommandType.Text;
+            loDb.SqlExecNonQuery(lcQuery);
+        
             lcQuery = $"EXEC RSP_WriteUploadProcessStatus '{poBatchProcessPar.Key.COMPANY_ID}', " +
                       $"'{poBatchProcessPar.Key.USER_ID}', " +
                       $"'{poBatchProcessPar.Key.KEY_GUID}', " +

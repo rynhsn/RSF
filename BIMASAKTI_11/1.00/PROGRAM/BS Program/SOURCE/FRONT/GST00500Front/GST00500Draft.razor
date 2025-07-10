@@ -1,0 +1,68 @@
+﻿@inherits R_Page
+@inject R_ILocalizer<Resources_GST00500_Class> _localizer
+<R_StackLayout>
+    <R_ItemLayout>
+        <R_ItemLayout Class="d-flex justify-content-end"
+                      col="12">
+            <R_Button Class="btn btn-light"
+                      OnClick="@BtnRefresh">
+                @_localizer["Refresh"]
+            </R_Button>
+        </R_ItemLayout>
+        <R_Grid @ref="@_gridDraftTransRef"
+                DataSource="_viewModelGST00500Draft.DraftTransactionList"
+                R_ConductorGridSource="@_conductorDraftTrans"
+                R_GridType="R_eGridType.Original"
+                R_ServiceGetListRecord="ServiceGetListDraftTransaction"
+                Pageable
+                PageSize="15"
+                AllowDeleteRow="false"
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                Height="450px">
+            <R_GridColumns>
+                <R_GridTextColumn Width="200px"
+                                  FieldName="@nameof(GST00500DTO.CTRANS_NAME)"
+                                  HeaderText=@_localizer["_TransName"]>
+                </R_GridTextColumn>
+                <R_GridTextColumn Width="190px"
+                                  FieldName="@nameof(GST00500DTO.CDEPT_CODE_NAME)"
+                                  HeaderText=@_localizer["_DeptCode"]>
+                </R_GridTextColumn>
+                <R_GridTextColumn Width="225px"
+                                  FieldName="@nameof(GST00500DTO.CREF_NO)"
+                                  HeaderText=@_localizer["_RefNo"]>
+                </R_GridTextColumn>
+                <R_GridDatePickerColumn Width="200px"
+                                  FieldName="@nameof(GST00500DTO.DREF_DATE)"
+                                  HeaderText=@_localizer["_RefDate"]>
+                </R_GridDatePickerColumn>
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(GST00500DTO.CUPDATE_BY)"
+                                  HeaderText=@_localizer["_UpdBy"]>
+                </R_GridTextColumn>
+                <R_GridDateTimePickerColumn Width="175px"
+                                            FieldName="@nameof(GST00500DTO.DUPDATE_DATE)"
+                                            HeaderText=@_localizer["_UpdDate"]>
+                </R_GridDateTimePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+        </R_ItemLayout>
+
+
+        <R_StackLayout Row="true" Class="d-flex justify-content-end">
+        <R_ItemLayout>
+            <R_Popup R_Before_Open_Popup="@R_Before_ServiceOpenOthersProgram"
+                     R_After_Open_Popup="@R_After_ServiceOpenOthersProgram"
+                     R_ConductorGridSource="@_conductorDraftTrans">
+                @_localizer["_BtnView"]
+            </R_Popup>
+        </R_ItemLayout>
+        </R_StackLayout>
+        </R_StackLayout>
+
+        <R_ConductorGrid @ref="@_conductorDraftTrans"
+                 R_IsHeader="true"
+                         R_ViewModel="@_viewModelGST00500Draft"
+                         R_Display="@Grid_DisplayDraft">
+        </R_ConductorGrid>

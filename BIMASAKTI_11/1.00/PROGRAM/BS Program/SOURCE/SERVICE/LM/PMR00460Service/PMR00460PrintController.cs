@@ -173,6 +173,7 @@ public class PMR00460PrintController : R_ReportControllerBase
             {
                 BLOGO_COMPANY = loHeader.BLOGO,
                 CCOMPANY_NAME = loHeader.CCOMPANY_NAME!,
+                DPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
                 CPRINT_CODE = "PMR00460",
                 CPRINT_NAME = "Handover Report",
                 CUSER_ID = lcUser

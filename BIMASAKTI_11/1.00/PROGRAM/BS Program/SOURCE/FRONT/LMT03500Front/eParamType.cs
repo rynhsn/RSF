@@ -11,3 +11,9 @@ public enum eParamType
     InvPeriod,
     UtilityPeriod
 }
+
+public enum eBatchType
+{
+    Upload,
+    Undo
+}

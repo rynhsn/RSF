@@ -28,16 +28,21 @@ namespace PMT06000Model.ViewModel
                 Entity = await _model.R_ServiceGetRecordAsync(poEntity);
                 if (Entity != null)
                 {
-                    Entity.DDATE_IN = DateTime.TryParseExact(Entity.CDATE_IN + " " + Entity.CTIME_IN, "yyyyMMdd HH:mm",
-                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var ldDateIn)
-                        ? ldDateIn
-                        : (DateTime?)null;
+                    // Entity.DDATE_IN = DateTime.TryParseExact(Entity.CDATE_IN + " " + Entity.CTIME_IN, "yyyyMMdd HH:mm",
+                    //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var ldDateIn)
+                    //     ? ldDateIn
+                    //     : (DateTime?)null;
 
-                    Entity.DDATE_OUT = DateTime.TryParseExact(Entity.CDATE_OUT + " " + Entity.CTIME_OUT,
-                        "yyyyMMdd HH:mm",
-                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var ldDateOut)
-                        ? ldDateOut
-                        : (DateTime?)null;
+                    // Entity.DDATE_IN = gabungan dari Entity.CDATE_IN (20250910) dan Entity.CTIME_IN (16:19)
+                    Entity.DDATE_IN = DateTime.ParseExact(Entity.CDATE_IN + " " + Entity.CTIME_IN, "yyyyMMdd HH:mm", CultureInfo.InvariantCulture);
+                    Entity.DDATE_OUT = DateTime.ParseExact(Entity.CDATE_OUT + " " + Entity.CTIME_OUT, "yyyyMMdd HH:mm", CultureInfo.InvariantCulture);
+                    
+                    
+                    // Entity.DDATE_OUT = DateTime.TryParseExact(Entity.CDATE_OUT + " " + Entity.CTIME_OUT,
+                    //     "yyyyMMdd HH:mm",
+                    //     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var ldDateOut)
+                    //     ? ldDateOut
+                    //     : (DateTime?)null;
                 }
                 // Entity.DDATE_IN = DateTime.ParseExact(Entity.CDATE_IN, "yyyyMMdd", CultureInfo.InvariantCulture);
                 // Entity.DDATE_OUT = DateTime.ParseExact(Entity.CDATE_OUT, "yyyyMMdd", CultureInfo.InvariantCulture);
@@ -181,7 +186,7 @@ namespace PMT06000Model.ViewModel
 
         public string TRANS_CODE = "802400";
 
-        public List<KeyValuePair<string, string>> RadioPeriodType = new List<KeyValuePair<string, string>>  
+        public List<KeyValuePair<string, string>> RadioPeriodType = new List<KeyValuePair<string, string>>
         {
             new KeyValuePair<string, string>("A",
                 R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "AllPeriod")),

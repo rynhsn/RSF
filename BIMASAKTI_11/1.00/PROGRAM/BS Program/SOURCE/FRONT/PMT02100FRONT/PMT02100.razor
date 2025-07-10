@@ -1,0 +1,136 @@
+﻿@page "/PMT02100"
+@inherits R_Page
+@attribute [R_Page(Title = "Handover Process")]
+@using PMT02100COMMON.DTOs.PMT02100
+@using PMT02100COMMON.DTOs
+@using PMT02100COMMON
+@using PMT02100MODEL
+@using PMT02100MODEL.FrontDTOs.PMT02100
+
+   
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Property"]</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="4">
+        <R_ComboBox Data="@loViewModel.loPropertyList"
+                    Value="loViewModel.loProperty.CPROPERTY_ID"
+                    ValueField="@nameof(GetPropertyListDTO.CPROPERTY_ID)"
+                    TextField="@nameof(GetPropertyListDTO.CPROPERTY_NAME)"
+                    PopupMaxHeight="150px"
+                    Enabled="@_comboboxEnabled"
+                    R_ConductorGridSource="@_conductorHandoverBuildingRef" ValueChanged="@((string value) => PropertyDropdown_ValueChanged(value))">
+        </R_ComboBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Type"]:</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_RadioGroup Data="@loViewModel.loTypeList"
+                      Value="@loViewModel.loSelectedType.CCODE"
+                      ValueField="@nameof(TypeFilterDTO.CCODE)"
+                      TextField="@nameof(TypeFilterDTO.CNAME)"
+                      Layout="R_eRadioGroupLayout.Horizontal"
+                      ValueChanged="@((string value) => TypeFilterRadioButton_ValueChanged(value))"
+                      R_ConductorGridSource="@_conductorHandoverBuildingRef"></R_RadioGroup>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_StackLayout Row Class="justify-content-end">
+            <R_ItemLayout Class="me-2">
+                <R_Button R_ConductorGridSource="@_conductorHandoverBuildingRef" OnClick="OnClickRefreshButton">@_localizer["_Refresh"]</R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_TabStrip @ref="@_TabStripRef" OnActiveTabIndexChanged="OnActiveTabIndexChanged" OnActiveTabIndexChanging="OnActiveTabIndexChanging">
+    <R_TabStripTab Title="@_localizer["_Open"]" Id="Open">
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Grid @ref="@_gridHandoverBuildingRef"
+                        DataSource="@loViewModel.loHandoverBuildingList"
+                        Pageable="true"
+                        PageSize="20"
+                        R_ConductorGridSource="@_conductorHandoverBuildingRef"
+                        R_GridType="@R_eGridType.Original"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false"
+                        AllowDeleteRow="false"
+                        Height="450px"
+                        R_Display="@Grid_Handover_Building_Display"
+                        R_ServiceGetListRecord="@Grid_Handover_Building_R_ServiceGetListRecord">
+                        <R_GridColumns>
+                            <R_GridTextColumn FieldName=@nameof(PMT02100HandoverBuildingDTO.CBUILDING_DISPLAY_NAME) HeaderText="@_localizer["_Building"]"></R_GridTextColumn>
+                        </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+            <R_ItemLayout col="9">
+                <R_Grid @ref="@_gridHandoverRef"
+                        DataSource="@loViewModel.loHandoverList"
+                        Pageable="true"
+                        PageSize="20"
+                        R_ConductorGridSource="@_conductorHandoverRef"
+                        R_GridType="@R_eGridType.Batch"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false"
+                        AllowDeleteRow="false"
+                        Height="425px"
+                        R_Display="@Grid_Handover_Display"
+                        R_CheckBoxSelectValueChanged="R_CheckBoxSelectValueChanged"
+                        R_ServiceGetListRecord="@Grid_Handover_R_ServiceGetListRecord">
+                    <R_GridColumns>
+                        <R_GridCheckBoxSelectColumn FieldName="@nameof(PMT02100HandoverDTO.LSELECTED)"
+                                                    R_EnableEdit="true"
+                                                    Width="80px"
+                                                    ShowSelectAllHeader="true" />
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CUNIT_TYPE_CATEGORY_ID) HeaderText="@_localizer["_UnitTypeCategory"]" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CUNIT_ID) HeaderText="@_localizer["_UnitId"]" Width="150px"></R_GridTextColumn>
+                        <R_GridDatePickerColumn FieldName=@nameof(PMT02100HandoverDTO.DHO_PLAN_DATE) HeaderText="@_localizer["_PlanHODate"]" Width="150px"></R_GridDatePickerColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CTENANT_DISPLAY) HeaderText="@_localizer["_Tenant"]" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CTENANT_PHONE_NO) HeaderText="@_localizer["_PhoneNo"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CTENANT_EMAIL) HeaderText="@_localizer["_EmailAddress"]" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CTENANT_CITY_DESCRIPTION) HeaderText="@_localizer["_City"]" Width="250px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CDEPT_CODE) HeaderText="@_localizer["_Department"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CREF_NO) HeaderText="@_localizer["_RefNo"]" Width="200px"></R_GridTextColumn>
+                        <R_GridDatePickerColumn FieldName=@nameof(PMT02100HandoverDTO.DREF_DATE) HeaderText="@_localizer["_RefDate"]" Width="150px"></R_GridDatePickerColumn>
+                    </R_GridColumns>
+                </R_Grid>
+
+                <R_StackLayout Row Class="justify-content-start">
+                    <R_ItemLayout>
+                        <R_Popup R_ConductorGridSource="@_conductorHandoverBuildingRef" Enabled="@(loViewModel.loHandoverList.Count > 0 && loViewModel.loHandoverList.Any(x => x.LSELECTED == true))" R_Before_Open_Popup="Before_Open_Schedule_Process_Popup" R_After_Open_Popup="After_Open_Schedule_Process_Popup">@_localizer["_Schedule"]</R_Popup>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_TabStripTab>
+        <R_TabStripTab Title="@_localizer["_Scheduled"]" Id="Scheduled">
+            <R_TabPage R_Before_Open_TabPage="Before_Open_Scheduled_TabPage"
+                       R_After_Open_TabPage="_General_After_Open_TabPage"
+                       R_TabEventCallback="@R_TabEventCallback" @ref="_tabScheduledRef">
+            </R_TabPage>    
+        </R_TabStripTab>
+        <R_TabStripTab Title="@_localizer["_Confirmed"]" Id="Confirmed">
+            <R_TabPage R_Before_Open_TabPage="Before_Open_Confirmed_TabPage" 
+                       R_TabEventCallback="@R_TabEventCallback" @ref="_tabConfirmedRef">
+            </R_TabPage>
+        </R_TabStripTab>
+        <R_TabStripTab Title="@_localizer["_History"]" Id="History">
+            <R_TabPage R_Before_Open_TabPage="Before_Open_History_TabPage" 
+                       R_TabEventCallback="@R_TabEventCallback" @ref="_tabHistoryRef">
+            </R_TabPage>
+        </R_TabStripTab>
+</R_TabStrip>
+
+<R_ConductorGrid @ref="_conductorHandoverBuildingRef"
+            R_IsHeader>
+</R_ConductorGrid>
+
+<R_ConductorGrid @ref="@_conductorHandoverRef"
+                 R_ConductorParent="@_conductorHandoverBuildingRef">
+</R_ConductorGrid>

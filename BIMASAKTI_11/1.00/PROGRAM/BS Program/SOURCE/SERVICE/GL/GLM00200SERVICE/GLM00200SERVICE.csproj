@@ -13,11 +13,12 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\BACK\GL\GLM00200BACK\GLM00200BACK.csproj" />
 		<ProjectReference Include="..\..\..\COMMON\GL\GLM00200COMMON\GLM00200COMMON.csproj" />
+		<ProjectReference Include="..\..\..\COMMON\BaseHeaderResources\BaseHeaderResources.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Reference Include="BaseHeaderReportCOMMON">
-			<HintPath>..\..\..\COMMON\BaseHeaderCOMMON\BaseHeaderReportCommonDLL\BaseHeaderReportCOMMON.dll</HintPath>
+		  <HintPath>..\..\..\COMMON\BaseHeaderReportCOMMON.dll</HintPath>
 		</Reference>
 		<Reference Include="R_APIBackEnd">
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
@@ -27,6 +28,9 @@
 		</Reference>
 		<Reference Include="R_Cache">
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_Cache.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommonDTO">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommonDTO.dll</HintPath>
 		</Reference>
 		<Reference Include="R_CommonFrontBackAPI">
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>

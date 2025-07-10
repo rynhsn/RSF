@@ -115,11 +115,29 @@ namespace GLM00200FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Process.
+        /// </summary>
+        internal static string _btn_process {
+            get {
+                return ResourceManager.GetString("_btn_process", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string _btn_Save {
             get {
                 return ResourceManager.GetString("_btn_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save To Excel.
+        /// </summary>
+        internal static string _btn_savetoexcel {
+            get {
+                return ResourceManager.GetString("_btn_savetoexcel", resourceCulture);
             }
         }
         
@@ -277,6 +295,15 @@ namespace GLM00200FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Credit Amount.
+        /// </summary>
+        internal static string _col_CreditAmount {
+            get {
+                return ResourceManager.GetString("_col_CreditAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CR (Local).
         /// </summary>
         internal static string _col_CRLocal {
@@ -291,6 +318,15 @@ namespace GLM00200FrontResources {
         internal static string _col_Currency {
             get {
                 return ResourceManager.GetString("_col_Currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency Code.
+        /// </summary>
+        internal static string _col_currencyCode {
+            get {
+                return ResourceManager.GetString("_col_currencyCode", resourceCulture);
             }
         }
         
@@ -331,11 +367,38 @@ namespace GLM00200FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Debit Amount.
+        /// </summary>
+        internal static string _col_DebitAmount {
+            get {
+                return ResourceManager.GetString("_col_DebitAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department.
+        /// </summary>
+        internal static string _col_dept {
+            get {
+                return ResourceManager.GetString("_col_dept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         internal static string _col_Description {
             get {
                 return ResourceManager.GetString("_col_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document No..
+        /// </summary>
+        internal static string _col_docNo {
+            get {
+                return ResourceManager.GetString("_col_docNo", resourceCulture);
             }
         }
         
@@ -358,11 +421,29 @@ namespace GLM00200FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fixed Rate.
+        /// </summary>
+        internal static string _col_fixedRate {
+            get {
+                return ResourceManager.GetString("_col_fixedRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Freq..
         /// </summary>
         internal static string _col_Freq {
             get {
                 return ResourceManager.GetString("_col_Freq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interval.
+        /// </summary>
+        internal static string _col_interval {
+            get {
+                return ResourceManager.GetString("_col_interval", resourceCulture);
             }
         }
         
@@ -412,11 +493,38 @@ namespace GLM00200FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recurring Name.
+        /// </summary>
+        internal static string _col_recurringName {
+            get {
+                return ResourceManager.GetString("_col_recurringName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recurring No..
+        /// </summary>
+        internal static string _col_recurringNo {
+            get {
+                return ResourceManager.GetString("_col_recurringNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reference No..
         /// </summary>
         internal static string _col_ReferenceNo {
             get {
                 return ResourceManager.GetString("_col_ReferenceNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No..
+        /// </summary>
+        internal static string _col_seqNo {
+            get {
+                return ResourceManager.GetString("_col_seqNo", resourceCulture);
             }
         }
         
@@ -466,6 +574,15 @@ namespace GLM00200FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Frequency.
+        /// </summary>
+        internal static string _col_uploadFreq {
+            get {
+                return ResourceManager.GetString("_col_uploadFreq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Journal Description.
         /// </summary>
         internal static string _grp_JournalDescription {
@@ -498,6 +615,60 @@ namespace GLM00200FrontResources {
         internal static string _lbl_Status {
             get {
                 return ResourceManager.GetString("_lbl_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Row(s).
+        /// </summary>
+        internal static string _lbl_totalRows {
+            get {
+                return ResourceManager.GetString("_lbl_totalRows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valid.
+        /// </summary>
+        internal static string _lbl_vaildupload {
+            get {
+                return ResourceManager.GetString("_lbl_vaildupload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid.
+        /// </summary>
+        internal static string _lbl_validupload {
+            get {
+                return ResourceManager.GetString("_lbl_validupload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _msg_batchComplete.
+        /// </summary>
+        internal static string _msg_batchComplete {
+            get {
+                return ResourceManager.GetString("_msg_batchComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _msg_confirmasavetoexcel.
+        /// </summary>
+        internal static string _msg_confirmasavetoexcel {
+            get {
+                return ResourceManager.GetString("_msg_confirmasavetoexcel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _msg_confirmupload.
+        /// </summary>
+        internal static string _msg_confirmupload {
+            get {
+                return ResourceManager.GetString("_msg_confirmupload", resourceCulture);
             }
         }
         
@@ -714,6 +885,15 @@ namespace GLM00200FrontResources {
         internal static string _pageTitleReccuringList {
             get {
                 return ResourceManager.GetString("_pageTitleReccuringList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload.
+        /// </summary>
+        internal static string _pageTitleRecurringUploadPopup {
+            get {
+                return ResourceManager.GetString("_pageTitleRecurringUploadPopup", resourceCulture);
             }
         }
         
@@ -1254,6 +1434,15 @@ namespace GLM00200FrontResources {
         internal static string _valSubmitClosePeriod {
             get {
                 return ResourceManager.GetString("_valSubmitClosePeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Q03.
+        /// </summary>
+        internal static string Q03 {
+            get {
+                return ResourceManager.GetString("Q03", resourceCulture);
             }
         }
     }

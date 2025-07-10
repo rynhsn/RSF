@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="GLTR00100BackResources_msgrsc.id.Designer.cs">
+      <DependentUpon>GLTR00100BackResources_msgrsc.id.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="GLTR00100BackResources_msgrsc.Designer.cs">
+      <DependentUpon>GLTR00100BackResources_msgrsc.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="GLTR00100BackResources_msgrsc.id.resx">
+      <LastGenOutput>GLTR00100BackResources_msgrsc.id.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="GLTR00100BackResources_msgrsc.resx">
+      <LastGenOutput>GLTR00100BackResources_msgrsc.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

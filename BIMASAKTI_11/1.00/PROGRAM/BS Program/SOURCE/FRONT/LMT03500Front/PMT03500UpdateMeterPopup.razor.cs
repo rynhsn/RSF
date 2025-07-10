@@ -22,9 +22,10 @@ public partial class PMT03500UpdateMeterPopup : R_Page
             var loParam = R_FrontUtility.ConvertObjectToObject<PMT03500UtilityMeterDTO>(lo);
             await _viewModel.Init(loParam.CPROPERTY_ID);
             await _viewModel.GetRecord(loParam);
-            _viewModel.Entity.CUNIT_NAME = lo.CUNIT_NAME;
-            _viewModel.Entity.CTENANT_ID = lo.CTENANT_ID;
-            _viewModel.Entity.CTENANT_NAME = lo.CTENANT_NAME;
+            _viewModel.Entity = lo;
+            // _viewModel.Entity.CUNIT_NAME = lo.CUNIT_NAME;
+            // _viewModel.Entity.CTENANT_ID = lo.CTENANT_ID;
+            // _viewModel.Entity.CTENANT_NAME = lo.CTENANT_NAME;
         }
         catch (Exception ex)
         {

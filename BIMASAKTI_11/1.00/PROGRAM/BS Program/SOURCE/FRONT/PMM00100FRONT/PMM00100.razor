@@ -1,0 +1,679 @@
+﻿@page "/PMM00100"
+@inherits R_Page
+@using PMM00100COMMON.DTO_s
+@using PMM00100COMMON.DTO_s.General
+@using PMM00100COMMON.DTO_s.Helper
+@using R_BlazorFrontEnd.Enums
+
+<R_TabStrip @ref="_tabStrip" OnActiveTabIndexChanging="@OnActiveTabIndexChanging">
+    @* system param *@
+    <R_TabStripTab Title="@_localizer["_pageTitlePMM00100"]" id="@nameof(PMM00100)">
+
+        <R_StackLayout Row Spacing="2">
+            @* grid layout *@
+            <R_ItemLayout col="3">
+                <R_Grid @ref="@_gridRef"
+                        DataSource="@_viewModel.SystemParams"
+                        R_GridType="@R_eGridType.Original"
+                        R_ServiceGetListRecord="@SysParam_GetListAsync"
+                        R_Display="@SysParam_Display"
+                        Height="590px"
+                        Enabled="@_enableHasNormalMode"
+                        Pageable
+                        @bind-PageSize="@_pageSize">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(SystemParamDTO.CPROPERTY_NAME)"
+                                          HeaderText="@_localizer["_column_property"]"
+                                          Width="150px" />
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+
+            @* form layout *@
+            <R_ItemLayout auto="false">
+
+                <R_StackLayout Justify="R_eJustify.SpaceBetween" Style="height:100%">
+                    <R_StackLayout>
+
+                        @* property *@
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="3">
+                                <R_Label>
+                                    @_localizer["_lbl_property"]
+                                </R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox Enabled="false" @bind-Value="@_viewModel.Data.CPROPERTY_ID"
+                                           R_ConductorSource="@_conRef"
+                                           R_EnableAdd
+                                           R_EnableEdit></R_TextBox>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Enabled="false" @bind-Value="@_viewModel.Data.CPROPERTY_NAME"
+                                           R_ConductorSource="@_conRef"
+                                           R_EnableAdd
+                                           R_EnableEdit></R_TextBox>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        @* period curr & soft *@
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="3">
+                                <R_Label>
+                                    @_localizer["_lbl_soft_period"]
+                                </R_Label>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout col="2">
+                                <R_NumericTextBox @bind-Value="@_viewModel.SelectedSoftPeriodYear"
+                                                  R_ConductorSource="@_conRef"
+                                                  TValue="int"
+                                                  Max="@_viewModel.PeriodYearRange.IMAX_YEAR"
+                                                  Min="@_viewModel.PeriodYearRange.IMIN_YEAR"
+                                                  ThousandSeparator="false"
+                                                  Arrows="true"
+                                                  Step="1"
+                                                  Enabled="@((_conRef.R_ConductorMode==R_eConductorMode.Edit && _viewModel.SystemParamDetail.LENABLED_PERIOD)||(_conRef.R_ConductorMode==R_eConductorMode.Add))" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="1">
+                                <R_ComboBox Data="_viewModel.PeriodDetails"
+                                            @bind-Value="@_viewModel.SelectedSoftPeriodMonth"
+                                            R_ConductorSource="@_conRef"
+                                            ValueField="@nameof(PeriodDtDTO.CPERIOD_NO)"
+                                            TextField="@nameof(PeriodDtDTO.CPERIOD_NO)"
+                                            Enabled="@((_conRef.R_ConductorMode==R_eConductorMode.Edit && _viewModel.SystemParamDetail.LENABLED_PERIOD)||(_conRef.R_ConductorMode==R_eConductorMode.Add))" />
+                            </R_ItemLayout>
+
+                            <R_ItemLayout col="2" Class="d-flex justify-content-end">
+                                <R_Label>
+                                    @_localizer["_lbl_current_period"]
+                                </R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_NumericTextBox R_ConductorSource="@_conRef"
+                                                  TValue="int"
+                                                  @bind-Value="@_viewModel.SelectedCurrentPeriodYear"
+                                                  Max="@_viewModel.PeriodYearRange.IMAX_YEAR"
+                                                  Min="@_viewModel.PeriodYearRange.IMIN_YEAR"
+                                                  ThousandSeparator="false"
+                                                  Arrows="true"
+                                                  Step="1"
+                                                  Enabled="@((_conRef.R_ConductorMode==R_eConductorMode.Edit && _viewModel.SystemParamDetail.LENABLED_PERIOD)||(_conRef.R_ConductorMode==R_eConductorMode.Add))" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="1">
+                                <R_ComboBox @bind-Value="@_viewModel.SelectedCurrentPeriodMonth"
+                                            R_ConductorSource="@_conRef"
+                                            Data="_viewModel.PeriodDetails"
+                                            ValueField="@nameof(PeriodDtDTO.CPERIOD_NO)"
+                                            TextField="@nameof(PeriodDtDTO.CPERIOD_NO)"
+                                            Enabled="@((_conRef.R_ConductorMode==R_eConductorMode.Edit && _viewModel.SystemParamDetail.LENABLED_PERIOD)||(_conRef.R_ConductorMode==R_eConductorMode.Add))" />
+                            </R_ItemLayout>
+
+                        </R_StackLayout>
+
+                        @* period inv & gllink *@
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="3">
+                                <R_Label>
+                                    @_localizer["_lbl_start_invoice_period"]
+                                </R_Label>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout col="2">
+                                <R_NumericTextBox @bind-Value="@_viewModel.SelectedInvPeriodYear"
+                                                  TValue="int"
+                                                  R_ConductorSource="@_conRef"
+                                                  Max="@_viewModel.PeriodYearRange.IMAX_YEAR"
+                                                  Min="@_viewModel.PeriodYearRange.IMIN_YEAR"
+                                                  ThousandSeparator="false"
+                                                  Arrows="true"
+                                                  Step="1"
+                                                  Enabled="@((_conRef.R_ConductorMode==R_eConductorMode.Edit && _viewModel.SystemParamDetail.LENABLED_PERIOD)||(_conRef.R_ConductorMode==R_eConductorMode.Add))" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="1">
+                                <R_ComboBox @bind-Value="@_viewModel.SelectedInvPeriodMonth"
+                                            R_ConductorSource="@_conRef"
+                                            Data="_viewModel.PeriodDetails"
+                                            ValueField="@nameof(PeriodDtDTO.CPERIOD_NO)"
+                                            TextField="@nameof(PeriodDtDTO.CPERIOD_NO)"
+                                            Enabled="@((_conRef.R_ConductorMode==R_eConductorMode.Edit && _viewModel.SystemParamDetail.LENABLED_PERIOD)||(_conRef.R_ConductorMode==R_eConductorMode.Add))" />
+                            </R_ItemLayout>
+
+                            <R_ItemLayout col="1"></R_ItemLayout>
+                            <R_ItemLayout>
+                                <R_CheckBox @bind-Value="@_viewModel.Data.LGLLINK" R_ConductorSource="@_conRef" R_EnableAdd R_EnableEdit />
+                            </R_ItemLayout>
+                            <R_ItemLayout>
+                                <R_Label FontSize="10">
+                                    @_localizer["_chk_gl_link"]
+                                </R_Label>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        @* inv mode & generate inv process *@
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="3">
+                                <R_Label>
+                                    @_localizer["_lbl_invoice_mode"]
+                                </R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="4">
+                                <R_ComboBox Data="_viewModel.GSBCodeInfos"
+                                            @bind-Value="@_viewModel.Data.CINVOICE_MODE"
+                                            ValueField="@nameof(GeneralTypeDTO.CCODE)"
+                                            TextField="@nameof(GeneralTypeDTO.CNAME)"
+                                            R_ConductorSource="@_conRef"
+                                            R_EnableAdd
+                                            R_EnableEdit />
+                            </R_ItemLayout>
+                            <R_ItemLayout Class="ms-2">
+                                <R_CheckBox @bind-Value="@_viewModel.Data.LINV_PROCESS_FLAG" R_ConductorSource="@_conRef" Enabled="false" />
+                            </R_ItemLayout>
+                            <R_ItemLayout>
+                                <R_Label FontSize="10">
+                                    @_localizer["_chk_generate_invoice_process"]
+                                </R_Label>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        @* witholding tax mode *@
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="3">
+                                <R_Label>
+                                    @_localizer["_lbl_withholding_tax_mode"]
+                                </R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout>
+                                <R_RadioGroup Data="@_viewModel.WithHoldingTaxModes"
+                                              @bind-Value="@_viewModel.Data.CWHT_MODE"
+                                              ValueField="@nameof(GeneralTypeDTO.CCODE)"
+                                              TextField="@nameof(GeneralTypeDTO.CNAME)"
+                                              Layout="R_eRadioGroupLayout.Horizontal"
+                                              LabelPosition="R_eRadioGroupLabelPosition.After"
+                                              FontSize="10"
+                                              R_ConductorSource="@_conRef"
+                                              R_EnableAdd
+                                              R_EnableEdit>
+                                </R_RadioGroup>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        @* ratetype *@
+                        <R_GroupBox Title="@_localizer["_grp_rate_type_parameter"]" Class="px-2">
+
+                            @* curr ratetype *@
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_localizer["_lbl_currency_rate_type"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_TextBox @bind-Value="_viewModel.Data.CCUR_RATETYPE_CODE"
+                                               R_ConductorSource="@_conRef"
+                                               R_EnableAdd
+                                               R_EnableEdit
+                                               CharacterCasing="R_eCharacterCasing.Upper"
+                                               MaxLength="20"
+                                               OnLostFocus="OnLostFocus_LookupCurrRatetype" />
+                                </R_ItemLayout>
+                                <R_ItemLayout>
+                                    <R_Lookup R_Before_Open_Lookup="@BeforeOpen_CurrRatetypeAsync"
+                                              R_After_Open_Lookup="@AfterOpen_CurrRatetypeAsync"
+                                              R_ConductorSource="@_conRef"
+                                              R_EnableAdd
+                                              R_EnableEdit>...</R_Lookup>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="4">
+                                    <R_TextBox @bind-Value="_viewModel.Data.CCUR_RATETYPE_DESC"
+                                               Enabled="false" />
+                                </R_ItemLayout>
+                            </R_StackLayout>
+
+                            @* tax ratetype *@
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_localizer["_lbl_tax_rate_type"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_TextBox @bind-Value="_viewModel.Data.CTAX_RATETYPE_CODE"
+                                               R_ConductorSource="@_conRef"
+                                               R_EnableAdd
+                                               R_EnableEdit
+                                               CharacterCasing="R_eCharacterCasing.Upper"
+                                               MaxLength="20"
+                                               OnLostFocus="OnLostFocus_LookupTaxRatetype" />
+                                </R_ItemLayout>
+                                <R_ItemLayout>
+                                    <R_Lookup R_Before_Open_Lookup="@BeforeOpen_TaxRatetypeAsync"
+                                              R_After_Open_Lookup="@AfterOpen_TaxRatetypeAsync"
+                                              R_ConductorSource="@_conRef"
+                                              R_EnableAdd
+                                              R_EnableEdit>...</R_Lookup>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="4">
+                                    <R_TextBox @bind-Value="_viewModel.Data.CTAX_RATETYPE_DESC"
+                                               Enabled="false" />
+                                </R_ItemLayout>
+                            </R_StackLayout>
+
+                        </R_GroupBox>
+
+                        @* receipt *@
+                        <R_GroupBox Title="@_localizer["_grp_receipt_parameter"]" Class="px-2">
+
+                            @* over receipt *@
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_localizer["_lbl_over_receipt"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_TextBox @bind-Value="_viewModel.Data.COVER_RECEIPT"
+                                               R_ConductorSource="@_conRef"
+                                               R_EnableAdd
+                                               R_EnableEdit
+                                               CharacterCasing="R_eCharacterCasing.Upper"
+                                               MaxLength="20"
+                                               OnLostFocus="OnLostFocus_LookupOverReceipt" />
+                                </R_ItemLayout>
+                                <R_ItemLayout>
+                                    <R_Lookup R_Before_Open_Lookup="@BeforeOpen_OverReceiptAsync"
+                                              R_After_Open_Lookup="@AfterOpen_OverReceiptAsync"
+                                              R_ConductorSource="@_conRef"
+                                              R_EnableAdd
+                                              R_EnableEdit>...</R_Lookup>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="4">
+                                    <R_TextBox @bind-Value="_viewModel.Data.COVER_RECEIPT_DESC"
+                                               R_ConductorSource="@_conRef"
+                                               Enabled="false" />
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_localizer["_lbl_over_tolerance_amount"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_NumericTextBox @bind-Value="_viewModel.Data.NOVER_TOLERANCE_AMOUNT"
+                                                      R_ConductorSource="@_conRef"
+                                                      TValue="decimal"
+                                                      Decimals="2"
+                                                      Arrows="true"
+                                                      Min="0"
+                                                      Max="999999999"
+                                                      R_EnableAdd
+                                                      R_EnableEdit></R_NumericTextBox>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+
+                            @* less receipt *@
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_localizer["_lbl_less_receipt"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_TextBox @bind-Value="_viewModel.Data.CLESS_RECEIPT"
+                                               R_ConductorSource="@_conRef"
+                                               R_EnableAdd
+                                               R_EnableEdit
+                                               CharacterCasing="R_eCharacterCasing.Upper"
+                                               MaxLength="20"
+                                               OnLostFocus="OnLostFocus_LookupLessReceipt" />
+                                </R_ItemLayout>
+                                <R_ItemLayout>
+                                    <R_Lookup R_ConductorSource="@_conRef"
+                                              R_Before_Open_Lookup="@BeforeOpen_LessReceiptAsync"
+                                              R_After_Open_Lookup="@AfterOpen_LessReceiptAsync"
+                                              R_EnableAdd
+                                              R_EnableEdit>...</R_Lookup>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="4">
+                                    <R_TextBox @bind-Value="_viewModel.Data.CLESS_RECEIPT_DESC"
+                                               Enabled="false" />
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_localizer["_lbl_less_tolerance_amount"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_NumericTextBox @bind-Value="_viewModel.Data.NLESS_TOLERANCE_AMOUNT"
+                                                      TValue="decimal"
+                                                      R_ConductorSource="@_conRef"
+                                                      Decimals="2"
+                                                      Arrows="true"
+                                                      Min="0"
+                                                      Max="999999999"
+                                                      R_EnableAdd
+                                                      R_EnableEdit></R_NumericTextBox>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_GroupBox>
+
+                        @* utility  *@
+                        <R_GroupBox Title="@_localizer["_grp_utility"]" Class="px-2">
+
+                            @* electricity *@
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_localizer["_lbl_electricity_start_period"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_NumericTextBox @bind-Value="@_viewModel.SelectedElectricPeriodYear"
+                                                      TValue="int"
+                                                      Max="@_viewModel.PeriodYearRange.IMAX_YEAR"
+                                                      Min="@_viewModel.PeriodYearRange.IMIN_YEAR"
+                                                      ThousandSeparator="false"
+                                                      Arrows="true"
+                                                      Step="1"
+                                                      R_ConductorSource="@_conRef"
+                                                      Enabled="@((_conRef.R_ConductorMode==R_eConductorMode.Edit && _viewModel.SystemParamDetail.LENABLED_UTILITY_PERIOD)||(_conRef.R_ConductorMode==R_eConductorMode.Add))" />
+                                </R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_ComboBox @bind-Value="@_viewModel.SelectedElectricPeriodMonth"
+                                                Data="_viewModel.PeriodDetails"
+                                                ValueField="@nameof(PeriodDtDTO.CPERIOD_NO)"
+                                                TextField="@nameof(PeriodDtDTO.CPERIOD_NO)"
+                                                R_ConductorSource="@_conRef"
+                                                Enabled="@((_conRef.R_ConductorMode==R_eConductorMode.Edit && _viewModel.SystemParamDetail.LENABLED_UTILITY_PERIOD)||(_conRef.R_ConductorMode==R_eConductorMode.Add))" />
+                                </R_ItemLayout>
+                                <R_ItemLayout Class="mx-3">
+                                    <R_Label>@_localizer["_chk_electricity_cut_off_date"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout>
+                                    <R_CheckBox @bind-Value="@_viewModel.Data.LELECTRIC_END_MONTH"
+                                                R_ConductorSource="@_conRef"
+                                                R_EnableAdd
+                                                R_EnableEdit />
+                                </R_ItemLayout>
+                                <R_ItemLayout Class="mx-2">
+                                    <R_Label FontSize="10"> @_localizer["_lbl_endofthemonth"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_NumericTextBox @bind-Value="@_viewModel.SelectedElectricCutOffDate"
+                                                      TValue="int"
+                                                      Arrows="true"
+                                                      Max="31"
+                                                      Min="1"
+                                                      Enabled="@(!_enableHasNormalMode && !_viewModel.Data.LELECTRIC_END_MONTH)"></R_NumericTextBox>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+
+                            @* water *@
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_localizer["_lbl_water_start_period"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_NumericTextBox @bind-Value="@_viewModel.SelectedWaterPeriodYear"
+                                                      TValue="int"
+                                                      Max="@_viewModel.PeriodYearRange.IMAX_YEAR"
+                                                      Min="@_viewModel.PeriodYearRange.IMIN_YEAR"
+                                                      ThousandSeparator="false"
+                                                      Arrows="true"
+                                                      Step="1"
+                                                      R_ConductorSource="@_conRef"
+                                                      Enabled="@((_conRef.R_ConductorMode==R_eConductorMode.Edit && _viewModel.SystemParamDetail.LENABLED_UTILITY_PERIOD)||(_conRef.R_ConductorMode==R_eConductorMode.Add))" />
+                                </R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_ComboBox @bind-Value="@_viewModel.SelectedWaterPeriodMonth"
+                                                R_ConductorSource="@_conRef"
+                                                Enabled="@((_conRef.R_ConductorMode==R_eConductorMode.Edit && _viewModel.SystemParamDetail.LENABLED_UTILITY_PERIOD)||(_conRef.R_ConductorMode==R_eConductorMode.Add))"
+                                                Data="_viewModel.PeriodDetails"
+                                                ValueField="@nameof(PeriodDtDTO.CPERIOD_NO)"
+                                                TextField="@nameof(PeriodDtDTO.CPERIOD_NO)" />
+                                </R_ItemLayout>
+                                <R_ItemLayout Class="mx-3">
+                                    <R_Label>@_localizer["_chk_water_cut_off_date"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout>
+                                    <R_CheckBox @bind-Value="@_viewModel.Data.LWATER_END_MONTH"
+                                                R_ConductorSource="@_conRef"
+                                                R_EnableAdd
+                                                R_EnableEdit />
+                                </R_ItemLayout>
+                                <R_ItemLayout Class="mx-2">
+                                    <R_Label FontSize="10">@_localizer["_lbl_endofthemonth"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_NumericTextBox @bind-Value="@_viewModel.SelectedWaterCutOffDate"
+                                                      TValue="int"
+                                                      Arrows="true"
+                                                      Max="31"
+                                                      Min="1"
+                                                      Enabled="@(!_enableHasNormalMode && !_viewModel.Data.LWATER_END_MONTH )"></R_NumericTextBox>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+
+                            @* gas *@
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_localizer["_lbl_gas_start_period"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_NumericTextBox @bind-Value="@_viewModel.SelectedGasPeriodYear"
+                                                      TValue="int"
+                                                      R_ConductorSource="@_conRef"
+                                                      Enabled="@((_conRef.R_ConductorMode==R_eConductorMode.Edit && _viewModel.SystemParamDetail.LENABLED_UTILITY_PERIOD)||(_conRef.R_ConductorMode==R_eConductorMode.Add))"
+                                                      Max="@_viewModel.PeriodYearRange.IMAX_YEAR"
+                                                      Min="@_viewModel.PeriodYearRange.IMIN_YEAR"
+                                                      ThousandSeparator="false"
+                                                      Arrows="true"
+                                                      Step="1" />
+                                </R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_ComboBox @bind-Value="@_viewModel.SelectedGasPeriodMonth"
+                                                R_ConductorSource="@_conRef"
+                                                Enabled="@((_conRef.R_ConductorMode==R_eConductorMode.Edit && _viewModel.SystemParamDetail.LENABLED_UTILITY_PERIOD)||(_conRef.R_ConductorMode==R_eConductorMode.Add))"
+                                                Data="_viewModel.PeriodDetails"
+                                                ValueField="@nameof(PeriodDtDTO.CPERIOD_NO)"
+                                                TextField="@nameof(PeriodDtDTO.CPERIOD_NO)" />
+                                </R_ItemLayout>
+                                <R_ItemLayout Class="mx-3">
+                                    <R_Label>@_localizer["_chk_water_cut_off_date"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout>
+                                    <R_CheckBox @bind-Value="@_viewModel.Data.LGAS_END_MONTH"
+                                                R_ConductorSource="@_conRef"
+                                                R_EnableAdd
+                                                R_EnableEdit />
+                                </R_ItemLayout>
+                                <R_ItemLayout Class="mx-2">
+                                    <R_Label FontSize="10">@_localizer["_lbl_endofthemonth"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_NumericTextBox @bind-Value="@_viewModel.SelectedGasCutOffDate"
+                                                      TValue="int"
+                                                      Arrows="true"
+                                                      Max="31"
+                                                      Min="1"
+                                                      Enabled="@(!_enableHasNormalMode && !_viewModel.Data.LGAS_END_MONTH )"></R_NumericTextBox>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+
+                        </R_GroupBox>
+
+                        @* handover *@
+                        <R_GroupBox Title="@_localizer["_grp_handover"]" Class="px-2">
+                            @* reschedule *@
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_localizer["_lbl_maxres"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_NumericTextBox @bind-Value="@_viewModel.Data.IMAX_ATTEMPTS"
+                                                      TValue="int"
+                                                      R_ConductorSource="@_conRef"
+                                                      Arrows="false"
+                                                      Min="1"
+                                                      R_EnableAdd
+                                                      R_EnableEdit></R_NumericTextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_Label>@_localizer["_lbl_attempt"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_NumericTextBox @bind-Value="@_viewModel.Data.IMAX_DAYS"
+                                                      TValue="int"
+                                                      R_ConductorSource="@_conRef"
+                                                      Arrows="false"
+                                                      Min="1"
+                                                      R_EnableAdd
+                                                      R_EnableEdit></R_NumericTextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_Label>@_localizer["_lbl_days"]</R_Label>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+
+                            @* sla *@
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_localizer["_lbl_slacallype"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_TextBox @bind-Value="_viewModel.Data.CCALL_TYPE_ID"
+                                               R_ConductorSource="@_conRef"
+                                               R_EnableAdd
+                                               R_EnableEdit
+                                               CharacterCasing="R_eCharacterCasing.Upper"
+                                               MaxLength="20"
+                                               OnLostFocus="OnLostFocus_LookupSLAType" />
+                                </R_ItemLayout>
+                                <R_ItemLayout>
+                                    <R_Lookup R_Before_Open_Lookup="@BeforeOpen_SLATypeAsync"
+                                              R_After_Open_Lookup="@AfterOpen_SLATypeAsync"
+                                              R_ConductorSource="@_conRef"
+                                              R_EnableAdd
+                                              R_EnableEdit>...</R_Lookup>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="4">
+                                    <R_TextBox @bind-Value="_viewModel.Data.CCALL_TYPE_NAME"
+                                               Enabled="false" />
+                                </R_ItemLayout>
+                            </R_StackLayout>
+
+                            @* charges taxinfo  & handover*@
+                            <R_StackLayout Row>
+
+                                @* charges & taxinfo *@
+                                @* <R_ItemLayout col="6">
+                                    <R_StackLayout Row>
+                                        <R_ItemLayout col="6">
+                                            <R_Label FontStyle="@R_eFontStyle.Bold">@_localizer["_lbl_chargesandtaxinfo"]</R_Label>
+                                        </R_ItemLayout>
+                                        <R_ItemLayout col="6">
+                                            <R_StackLayout Row>
+                                                <R_ItemLayout>
+                                                    <R_CheckBox @bind-Value="@_viewModel.Data.LALL_BUILDING"
+                                                                R_ConductorSource="@_conRef"
+                                                                R_EnableAdd
+                                                                R_EnableEdit />
+                                                </R_ItemLayout>
+                                                <R_ItemLayout>
+                                                    <R_Label FontSize="10">@_localizer["_chk_allbuilding"]</R_Label>
+                                                </R_ItemLayout>
+                                            </R_StackLayout>
+                                        </R_ItemLayout>
+                                    </R_StackLayout>
+
+                                </R_ItemLayout> *@
+
+                                @* done handover *@
+                                <R_ItemLayout col="3">
+                                    <R_Label FontStyle="@R_eFontStyle.Bold">@_localizer["_lbl_donehandover"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="4">
+                                    <R_StackLayout Row>
+                                        <R_ItemLayout>
+                                            <R_CheckBox @bind-Value="@_viewModel.Data.LDISTRIBUTE_PDF"
+                                                        R_ConductorSource="@_conRef"
+                                                        R_EnableAdd
+                                                        R_EnableEdit
+                                                        OnChanged="@OnChange_DistributePDF" />
+                                        </R_ItemLayout>
+                                        <R_ItemLayout>
+                                            <R_Label FontSize="10">@_localizer["_chk_distributepdf"]</R_Label>
+                                        </R_ItemLayout>
+                                    </R_StackLayout>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="4">
+                                    <R_StackLayout Row>
+                                        <R_ItemLayout>
+                                            <R_CheckBox @bind-Value="@_viewModel.Data.LINCLUDE_IMAGE"
+                                                        Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&_viewModel.Data.LDISTRIBUTE_PDF)" />
+                                        </R_ItemLayout>
+                                        <R_ItemLayout>
+                                            <R_Label FontSize="10">@_localizer["_chk_includeimagesinpdf"]</R_Label>
+                                        </R_ItemLayout>
+                                    </R_StackLayout>
+                                </R_ItemLayout>
+
+                            </R_StackLayout>
+
+                            @* use priorty apps *@
+                            <R_StackLayout Row>
+                                <R_ItemLayout>
+                                    <R_CheckBox @bind-Value="@_viewModel.Data.LPRIORITY"
+                                                R_ConductorSource="@_conRef"
+                                                R_EnableAdd
+                                                R_EnableEdit></R_CheckBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout><R_Label FontSize="10">@_localizer["_chk_usepriorityapp"]</R_Label></R_ItemLayout>
+                            </R_StackLayout>
+
+                        </R_GroupBox>
+                    </R_StackLayout>
+                    @* buttons *@
+                    <R_StackLayout Row Justify="R_eJustify.SpaceBetween">
+                        <R_ItemLayout>
+                            <R_StackLayout Row>
+                                <R_ItemLayout Class="@(_viewModel.IsSysParamFound?"d-none":"d-block")">
+                                    <R_AddButton R_Conductor="@_conRef"></R_AddButton>
+                                </R_ItemLayout>
+                                <R_ItemLayout Class="@(_viewModel.IsSysParamFound?"d-block":"d-none")">
+                                    <R_EditButton R_Conductor="@_conRef"></R_EditButton>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+                        <R_ItemLayout>
+                            <R_StackLayout Row>
+                                <R_ItemLayout> <R_CancelButton R_Conductor="@_conRef" /> </R_ItemLayout>
+                                <R_ItemLayout> <R_SaveButton R_Conductor="@_conRef" /> </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_StackLayout>
+
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_Conductor @ref="_conRef"
+                     R_ViewModel="@_viewModel"
+                     R_IsHeader
+                     R_ServiceGetRecord="@SysParam_GetRecordAsync"
+                     R_AfterAdd="@SysParam_AfterAdd"
+                     R_SetOther="@SysParam_SetOther"
+                     R_CheckAdd="@SysParam_CheckAdd"
+                     R_CheckEdit="@SysParam_CheckEdit"
+                     R_Validation="@SysParam_Validation"
+                     R_Saving="@SysParam_Saving"
+                     R_ServiceSave="@SysParam_SaveAsync"
+                     R_BeforeCancel="@SysParam_BeforeCancel"
+                     R_ConvertToGridEntity="@SysParam_GridToEntity"></R_Conductor>
+    </R_TabStripTab>
+
+    @* ho util building mapping *@
+    @*  <R_TabStripTab Title="@_localizer["_tab_houtillbuildingmapping"]" Id="@nameof(PMM00101)">
+        <R_TabPage @ref="@_tabPage_HoUtillBuildingMapping"
+                   R_Before_Open_TabPage="@BeforeOpenTabPage_HoUtillBuildingMapping"
+                   R_TabEventCallback="@TabEventCallback_HOUtilBuildMapping">
+        </R_TabPage>
+    </R_TabStripTab> *@
+
+    @* billing*@
+    <R_TabStripTab Title="@_localizer["_tab_billing"]" Id="@nameof(PMM00102)">
+        <R_TabPage @ref="@_tabPage_BillingParam"
+                   R_Before_Open_TabPage="@BeforeOpenTabPage_BillingSystemParam"
+                   R_TabEventCallback="@TabEventCallback_BillingSystemParam">
+        </R_TabPage>
+    </R_TabStripTab>
+</R_TabStrip>

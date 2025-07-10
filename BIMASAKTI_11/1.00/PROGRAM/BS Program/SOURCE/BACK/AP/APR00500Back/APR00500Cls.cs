@@ -328,15 +328,16 @@ public class APR00500Cls
             loResult = R_Utility.R_ConvertTo<APR00500PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault();
             
             //ambil company name
-            lcQuery = $"SELECT CCOMPANY_NAME FROM SAM_COMPANIES WHERE CCOMPANY_ID = '{pcCompanyId}'"; // Query to get company name
+            lcQuery = $"EXEC RSP_GS_GET_COMPANY_INFO '{pcCompanyId}'"; // Query to get company name
             loCmd.CommandText = lcQuery;
             loCmd.CommandType = CommandType.Text;
 
             //Debug Logs
-            _logger.LogDebug(string.Format("SELECT CCOMPANY_NAME FROM SAM_COMPANIES WHERE CCOMPANY_ID = '@CCOMPANY_ID'", pcCompanyId));
+            _logger.LogDebug(lcQuery);
             loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
             var loCompanyNameResult = R_Utility.R_ConvertTo<APR00500PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault();
-
+            
+            loResult.CDATETIME_NOW = loCompanyNameResult.CDATETIME_NOW;
             loResult!.CCOMPANY_NAME = loCompanyNameResult?.CCOMPANY_NAME;
         }
         catch (Exception ex)

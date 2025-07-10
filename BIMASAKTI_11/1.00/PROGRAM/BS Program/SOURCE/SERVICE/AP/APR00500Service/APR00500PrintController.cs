@@ -175,6 +175,7 @@ public class APR00500PrintController : R_ReportControllerBase
             {
                 BLOGO_COMPANY = loHeader.BLOGO,
                 CCOMPANY_NAME = loHeader.CCOMPANY_NAME ?? string.Empty,
+                DPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
                 CPRINT_CODE = "APR00500",
                 CPRINT_NAME = "AP Invoice List",
                 CUSER_ID = lcUser,

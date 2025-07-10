@@ -13,22 +13,16 @@ namespace GLM00200BACK
 {
     public class GLM00200GeneralCls
     {
-        private RSP_GL_SAVE_RECURRING_JRNResources.Resources_Dummy_Class _saveRecurringRsc = new();
-
-        private RSP_GL_PROCESS_RECURRINGResources.Resources_Dummy_Class _processRecurringRsc = new();
-
-        private RSP_GL_UPDATE_RECURRING_STATUSResources.Resources_Dummy_Class _updateRecurringStatusRsc = new();
-
+        //var
         private LoggerGLM00200 _logger;
-
         private readonly ActivitySource _activitySource;
 
+        //method
         public GLM00200GeneralCls()
         {
             _logger = LoggerGLM00200.R_GetInstanceLogger();
             _activitySource = GLM00200Activity.R_GetInstanceActivitySource();
         }
-
         public AllInitRecordDTO GetAllInitRecord(GeneralParamDTO poParam)
         {
             var loEx = new R_Exception();
@@ -58,7 +52,6 @@ namespace GLM00200BACK
             loEx.ThrowExceptionIfErrors();
             return loRtn;
         }
-
         private CompanyDTO GetCompanyInfoRecord(GeneralParamDTO poParam)
         {
             using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
@@ -90,7 +83,6 @@ namespace GLM00200BACK
             loException.ThrowExceptionIfErrors();
             return loResult;
         }
-
         private GLSysParamDTO GetGLSysParamRecord(GeneralParamDTO poParam)
         {
             using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
@@ -121,7 +113,6 @@ namespace GLM00200BACK
             loException.ThrowExceptionIfErrors();
             return loResult;
         }
-
         private PeriodDTInfoDTO GetPeriodDtInfoRecord(GeneralParamDTO poGeneralParam, PeriodDTInfoDTO poPeriodDtInfoParam)
         {
             using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
@@ -155,7 +146,6 @@ namespace GLM00200BACK
 
             return loResult;
         }
-
         private IUndoCommitJrnDTO GetIUndoCommitJrnRecord(GeneralParamDTO poParam)
         {
             using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
@@ -186,7 +176,6 @@ namespace GLM00200BACK
             loException.ThrowExceptionIfErrors();
             return loResult;
         }
-
         private TransCodeDTO GetTransCodeRecord(GeneralParamDTO poParam)
         {
             using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
@@ -219,7 +208,6 @@ namespace GLM00200BACK
 
             return loResult;
         }
-
         private PeriodDTO GetPeriodYearRangeRecord(GeneralParamDTO poParam)
         {
             using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
@@ -251,7 +239,6 @@ namespace GLM00200BACK
             loException.ThrowExceptionIfErrors();
             return loResult;
         }
-
         public List<StatusDTO> GetStatusList(GeneralParamDTO poParam)
         {
             using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
@@ -287,7 +274,6 @@ namespace GLM00200BACK
 
             return loResult;
         }
-
         public List<CurrencyDTO> GetCurrencyList(GeneralParamDTO poParam)
         {
             using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
@@ -322,7 +308,6 @@ namespace GLM00200BACK
             loEx.ThrowExceptionIfErrors();
             return loRtn;
         }
-
         public CurrencyRateResultDTO GetLastCurrencyRecord(CurrencyRateResultDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -359,7 +344,6 @@ namespace GLM00200BACK
 
             return loResult;
         }
-
         public TodayDTO GetTodayRecord(GeneralParamDTO poParam)
         {
             using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
@@ -388,13 +372,12 @@ namespace GLM00200BACK
             return loResult;
         }
 
-        //helper function
+        //method-helper
         private void ShowLogDebug(string pcQuery, DbParameterCollection poParam)
         {
             var paramValues = string.Join(", ", poParam.Cast<DbParameter>().Select(p => $"{p.ParameterName} '{p.Value}'"));
             _logger.LogDebug($"EXEC {pcQuery} {paramValues}");
         }
-
         private void ShowLogError(Exception ex)
         {
             _logger.LogError(ex);

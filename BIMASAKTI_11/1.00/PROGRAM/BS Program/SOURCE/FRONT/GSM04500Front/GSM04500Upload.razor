@@ -1,0 +1,103 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Upload File")]
+@inject R_ILocalizer<Resources_GSM04500_Class> _localizer
+
+<R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2" Class="d-inline">
+            <R_Label>@_localizer["_SrcFile"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_InputFile OnChange="@SourceUpload_OnChange" Accepts="@accepts"></R_InputFile>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_Grid @ref="@JournalGroup_gridRef"
+            DataSource="@_viewModel.JournalGroupValidateUploadError"
+            Pageable
+            R_GridType="@R_eGridType.Batch"
+            Height="375px"
+            Width="800px"
+            R_ServiceGetListRecord="@Upload_ServiceGetListRecord" >
+        <R_GridColumns>
+            <R_GridTextColumn FieldName=@nameof(GSM04500UploadErrorValidateDTO.No) Width="75px" HeaderText="No"></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM04500UploadErrorValidateDTO.JournalGroup) Width="150px" HeaderText="@_localizer["_JGrpCode"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM04500UploadErrorValidateDTO.JournalGroupName) Width="150px" HeaderText=@_localizer["_JGrpName"]></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM04500UploadErrorValidateDTO.EnableAccrual) Width="150px" HeaderText=@_localizer["_LAccrual"] Visible="@_viewModel.VisibleColumn_LACCRUAL"></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM04500UploadErrorValidateDTO.ErrorFlag) Width="150px" HeaderText=@_localizer["_Valid"] Visible="@_viewModel.IsError"></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM04500UploadErrorValidateDTO.ErrorMessage) Width="300px" HeaderText=@_localizer["_Notes"] Visible="@_viewModel.IsError"></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_ProgressBar Label="@_viewModel.Message" MaxValue="100" Value="@_viewModel.Percentage"></R_ProgressBar>
+    </R_ItemLayout>
+</R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="8">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_TotalRows"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="@_viewModel.SumListExcel"
+                                      TValue="int"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1" Class="ms-6">
+                    <R_Label>@_localizer["_Valid"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="@_viewModel.SumValidDataExcel"
+                                      TValue="int"
+                                      Arrows="false"
+                                            ReadOnly  Class="bg-success">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1" Class="ms-2">
+                    <R_Label>@_localizer["_Invalid"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox ReadOnly  Class="badge bg-danger"
+                                      @bind-Value="@_viewModel.SumInvalidDataExcel"
+                                      TValue="int"
+                                      Arrows="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="4" hidden="@_viewModel.IsError">
+            <R_StackLayout Row Class="justify-content-end">
+                <R_ItemLayout>
+                    <R_Button OnClick="@Button_OnClickCloseAsync">
+                        @_localizer["_Cancel"]
+                    </R_Button>
+                    <R_Button OnClick="Button_OnClickOkAsync" Enabled="@FileHasData">
+                        @_localizer["_Process"]
+                    </R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="4" hidden="@(!_viewModel.IsError)">
+            <R_StackLayout Row Class="justify-content-end">
+                <R_ItemLayout>
+                    <R_Button OnClick="@Button_OnClickCloseAsync">
+                        @_localizer["_Cancel"]
+                    </R_Button>
+                    <R_Button OnClick="@Button_OnClickSaveAsync">
+                        Save To Excel
+                    </R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+            </R_ItemLayout>
+            </R_StackLayout>
+
+</R_StackLayout>

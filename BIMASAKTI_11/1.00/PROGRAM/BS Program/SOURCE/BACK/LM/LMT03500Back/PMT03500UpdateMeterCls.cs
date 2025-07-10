@@ -401,7 +401,7 @@ public class PMT03500UpdateMeterCls
 
             // var loUtilityType = poParams.EUTYLITY_TYPE.ToString();
             // lcQuery = $"RSP_PM_UPDATE_UTILITY_METER_NO_{loUtilityType}";
-            
+
             lcQuery = $"RSP_PM_UPDATE_UTILITY_METER_NO";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
@@ -411,7 +411,11 @@ public class PMT03500UpdateMeterCls
             loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParams.CPROPERTY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 30, poParams.CREF_NO);
             loDb.R_AddCommandParameter(loCmd, "@CUNIT_ID", DbType.String, 30, poParams.CUNIT_ID);
-            loDb.R_AddCommandParameter(loCmd, "@CTENANT_ID", DbType.String, 30, poParams.CTENANT_ID);
+            // loDb.R_AddCommandParameter(loCmd, "@CTENANT_ID", DbType.String, 30, poParams.CTENANT_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 30, poParams.CDEPT_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 30, poParams.CTRANS_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CFLOOR_ID", DbType.String, 30, poParams.CFLOOR_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 30, poParams.CBUILDING_ID);
             loDb.R_AddCommandParameter(loCmd, "@CUTILITY_TYPE", DbType.String, 30, poParams.CCHARGES_TYPE);
             loDb.R_AddCommandParameter(loCmd, "@CSTART_INV_PRD", DbType.String, 30, poParams.CSTART_INV_PRD);
             loDb.R_AddCommandParameter(loCmd, "@CMETER_NO", DbType.String, 30, poParams.CMETER_NO);
@@ -421,7 +425,7 @@ public class PMT03500UpdateMeterCls
             loDb.R_AddCommandParameter(loCmd, "@NMETER_START", DbType.Decimal, 255, poParams.NMETER_START);
             loDb.R_AddCommandParameter(loCmd, "@NBLOCK1_START", DbType.Decimal, 255, poParams.NBLOCK1_START);
             loDb.R_AddCommandParameter(loCmd, "@NBLOCK2_START", DbType.Decimal, 255, poParams.NBLOCK2_START);
-            
+
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x =>
                     x.ParameterName is
@@ -429,8 +433,12 @@ public class PMT03500UpdateMeterCls
                         "@CPROPERTY_ID" or
                         "@CREF_NO" or
                         "@CUNIT_ID" or
-                        "@CTENANT_ID" or
+                        // "@CTENANT_ID" or
                         "@CUTILITY_TYPE" or
+                        "@CDEPT_CODE" or
+                        "@CTRANS_CODE" or
+                        "@CFLOOR_ID" or
+                        "@CBUILDING_ID" or
                         "@CMETER_NO" or
                         "@NBLOCK1_START" or
                         "@NBLOCK2_START" or
@@ -465,11 +473,11 @@ public class PMT03500UpdateMeterCls
             loDb = new R_Db();
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
-            
+
             lcQuery = $"RSP_PM_CHANGE_UTILITY_METER_NO";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
-            
+
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParams.CCOMPANY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParams.CPROPERTY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 20, poParams.CDEPT_CODE);

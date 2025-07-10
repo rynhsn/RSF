@@ -14,19 +14,18 @@ namespace GLM00200BACK
 {
     public class GLM00200Cls
     {
-        //var & const
+        //var
         private RSP_GL_SAVE_RECURRING_JRNResources.Resources_Dummy_Class _saveRecurringRsc = new();
         private RSP_GL_PROCESS_RECURRINGResources.Resources_Dummy_Class _processRecurringRsc = new();
-        private RSP_GL_UPDATE_RECURRING_STATUSResources.Resources_Dummy_Class _updateRecurringStatusRsc = new();
         private LoggerGLM00200 _logger;
         private readonly ActivitySource _activitySource;
+        
+        //methods
         public GLM00200Cls()
         {
             _logger = LoggerGLM00200.R_GetInstanceLogger();
             _activitySource = GLM00200Activity.R_GetInstanceActivitySource();
         }
-
-        //methods
         public JournalDTO GetRecurringJrnRecord(JournalDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
@@ -410,7 +409,7 @@ namespace GLM00200BACK
 
         }
 
-        //report
+        //methods-report
         public JournalDTO GLM00200HeaderReport(JournalDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
@@ -431,10 +430,24 @@ namespace GLM00200BACK
                 loCmd.CommandText = lcQuery;
 
                 loDB.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
-                loDB.R_AddCommandParameter(loCmd, "@CREC_ID", DbType.String, 50, poEntity.CJRN_ID);
+                loDB.R_AddCommandParameter(loCmd, "@CREC_ID", DbType.String, 50, poEntity.CREC_ID);
                 loDB.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, R_BackGlobalVar.CULTURE);
                 loDB.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
 
+                
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                    .Where(x =>
+                        x.ParameterName is
+                            "@CCOMPANY_ID" or
+                            "@CREC_ID" or
+                            "@CLANGUAGE_ID" or
+                            "@CUSER_ID"
+                    )
+                    .Select(x => x.Value);
+
+                _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
+                
                 var loRtnTemp = loDB.SqlExecQuery(loConn, loCmd, true);
                 loRtn = R_Utility.R_ConvertTo<JournalDTO>(loRtnTemp).FirstOrDefault();
             }
@@ -530,13 +543,15 @@ namespace GLM00200BACK
                 loDb = new R_Db();
                 loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
                 loCmd = loDb.GetCommand();
-                lcQuery = "SELECT CCOMPANY_NAME FROM SAM_COMPANIES WHERE CCOMPANY_ID = @CCOMPANY_ID";
+                lcQuery = $"EXEC RSP_GS_GET_COMPANY_INFO '{pcCompanyId}'";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.Text;
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 15, pcCompanyId);
                 ShowLogDebug(lcQuery, loCmd.Parameters);
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
-                loRtn = R_Utility.R_ConvertTo<UploadByte>(loDataTable).FirstOrDefault();
+                var loResult = R_Utility.R_ConvertTo<UploadByte>(loDataTable).FirstOrDefault();
+                loRtn.CCOMPANY_NAME = loResult.CCOMPANY_NAME;
+                loRtn.CDATETIME_NOW = loResult.CDATETIME_NOW;
             }
             catch (Exception ex)
             {
@@ -547,7 +562,7 @@ namespace GLM00200BACK
             return loRtn;
         }
 
-        //initial
+        //methods-initial
         public CompanyDTO GetVAR_GSM_COMPANY()
         {
             using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
@@ -732,71 +747,6 @@ namespace GLM00200BACK
             loException.ThrowExceptionIfErrors();
 
             return loResult;
-        }
-        public List<StatusDTO> GetSTATUS_DTO()
-        {
-            using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
-            R_Exception loException = new R_Exception();
-            List<StatusDTO> loResult = null;
-            try
-            {
-                R_Db loDb = new R_Db();
-                DbConnection loConn = loDb.GetConnection();
-                DbCommand loCmd = loDb.GetCommand();
-
-                string lcQuery = "RSP_GS_GET_GSB_CODE_LIST";
-                loCmd.CommandText = lcQuery;
-                loCmd.CommandType = CommandType.StoredProcedure;
-
-                loDb.R_AddCommandParameter(loCmd, "@CAPPLICATION", DbType.String, 50, "BIMASAKTI");
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CCLASS_ID", DbType.String, 50, "_GL_JOURNAL_STATUS");
-                loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, R_BackGlobalVar.CULTURE);
-
-                var loRtnTemp = loDb.SqlExecQuery(loConn, loCmd, true);
-
-                loResult = R_Utility.R_ConvertTo<StatusDTO>(loRtnTemp).ToList();
-            }
-            catch (Exception ex)
-            {
-                loException.Add(ex);
-            }
-
-            loException.ThrowExceptionIfErrors();
-
-            return loResult;
-        }
-        public List<CurrencyDTO> GetCurrency()
-        {
-            using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
-            R_Exception loEx = new R_Exception();
-            List<CurrencyDTO> loRtn = null;
-            R_Db loDB;
-            DbConnection loConn;
-            DbCommand loCmd;
-            string lcQuery;
-            try
-            {
-                loDB = new R_Db();
-                loConn = loDB.GetConnection();
-                loCmd = loDB.GetCommand();
-
-                lcQuery = "RSP_GS_GET_CURRENCY_LIST";
-                loCmd.CommandType = CommandType.StoredProcedure;
-                loCmd.CommandText = lcQuery;
-
-                loDB.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
-                loDB.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
-
-                var loRtnTemp = loDB.SqlExecQuery(loConn, loCmd, true);
-                loRtn = R_Utility.R_ConvertTo<CurrencyDTO>(loRtnTemp).ToList();
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-            loEx.ThrowExceptionIfErrors();
-            return loRtn;
         }
 
         //helper

@@ -20,6 +20,9 @@
         <Reference Include="BlazorClientHelper">
             <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
         </Reference>
+        <Reference Include="R_APICommonDTO">
+          <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_APICommonDTO.dll</HintPath>
+        </Reference>
         <Reference Include="R_BlazorFrontEnd">
             <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.dll</HintPath>
         </Reference>

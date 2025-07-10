@@ -570,7 +570,9 @@ namespace PMT01300FRONT
             loParam.CLEASE_STATUS_LIST = "01,02";
             var loListDataSeparator = _gridLOIChargeCallChargeListRef.DataSource.Select(x => x.CUNIT_ID);
             loParam.CREMOVE_DATA_UNIT_ID_SEPARATOR = string.Join(",", loListDataSeparator);
+            loParam.CPROGRAM_ID = "PMT01300";
             loParam.CFLOOR_ID = "";
+            loParam.LAGREEMENT = true;
 
             eventArgs.Parameter = loParam;
             eventArgs.TargetPageType = typeof(GSL02300);

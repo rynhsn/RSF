@@ -99,6 +99,7 @@
       "PMT03500Back/1.0.0": {
         "dependencies": {
           "PMT03500Common": "1.0.0",
+          "RSP_PM_UNDO_UTILITY_USAGEResources": "1.0.0",
           "RSP_PM_UPLOAD_UTILITY_CUTOFF_ECResources": "1.0.0",
           "RSP_PM_UPLOAD_UTILITY_CUTOFF_WGResources": "1.0.0",
           "RSP_PM_UPLOAD_UTILITY_USAGE_ECResources": "1.0.0",
@@ -112,6 +113,11 @@
       "PMT03500Common/1.0.0": {
         "runtime": {
           "PMT03500Common.dll": {}
+        }
+      },
+      "RSP_PM_UNDO_UTILITY_USAGEResources/1.0.0": {
+        "runtime": {
+          "RSP_PM_UNDO_UTILITY_USAGEResources.dll": {}
         }
       },
       "RSP_PM_UPLOAD_UTILITY_CUTOFF_ECResources/1.0.0": {
@@ -331,6 +337,11 @@
       "sha512": ""
     },
     "PMT03500Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_PM_UNDO_UTILITY_USAGEResources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

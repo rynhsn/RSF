@@ -1,5 +1,4 @@
 ﻿using GLM00200COMMON;
-using GLM00200FrontResources;
 using GLM00200MODEL;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
@@ -14,11 +13,10 @@ using R_BlazorFrontEnd.Controls.Tab;
 using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
-using R_BlazorFrontEnd.Interfaces;
 
 namespace GLM00200FRONT
 {
-    public partial class GLM00200 : R_Page
+    public partial class GLM00200 : R_Page //recurring list
     {
         private GLM00200ViewModel _journalVM = new GLM00200ViewModel();
 
@@ -37,8 +35,6 @@ namespace GLM00200FRONT
         private R_TabStrip _tabStrip_Recurring; //ref Tabstrip
 
         private R_Grid<JournalDetailGridDTO> _gridJournalDet;
-
-        [Inject] private R_ILocalizer<Resources_Dummy_Class> _localizer { get; set; }
 
         [Inject] private IJSRuntime JS { get; set; }
 
@@ -186,7 +182,7 @@ namespace GLM00200FRONT
                 _journalVM.RecurringJrnRecord = loData;
                 if (eventArgs.ConductorMode == R_eConductorMode.Normal)
                 {
-                    lcCommitLabel = loData.CSTATUS == "80" ? _localizer["_btn_UndoCommit"] :_localizer["_btn_Commit"];
+                    lcCommitLabel = loData.CSTATUS == "80" ? _localizer["_btn_UndoCommit"] : _localizer["_btn_Commit"];
                 }
                 await _gridJournalDet.R_RefreshGrid(loData);
             }
@@ -365,6 +361,38 @@ namespace GLM00200FRONT
             }
             loEx.ThrowExceptionIfErrors();
         }
+
+        private void BeforeOpenPopup_UploadReccr(R_BeforeOpenPopupEventArgs eventArgs)
+        {
+            R_Exception loEx = new();
+            try
+            {
+                eventArgs.Parameter = new object();
+                eventArgs.PageTitle = _localizer["_pageTitleRecurringUploadPopup"];
+                eventArgs.TargetPageType = typeof(GLM00202);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task AfterOpenLookup_UploadReccr(R_AfterOpenPopupEventArgs eventArgs)
+        {
+            R_Exception loEx = new R_Exception();
+            try
+            {
+                await _gridJournal.R_RefreshGrid(null);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+
+        }
+
 
         private async Task OnLostFocus_LookupDept()
         {

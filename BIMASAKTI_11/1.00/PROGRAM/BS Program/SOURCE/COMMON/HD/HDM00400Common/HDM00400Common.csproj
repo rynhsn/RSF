@@ -10,7 +10,7 @@
         <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommonDTO.dll</HintPath>
       </Reference>
       <Reference Include="R_CommonFrontBackAPI">
-        <HintPath>..\..\..\SERVICE\GS\GSM02500SERVICE\bin\Debug\net6.0\R_CommonFrontBackAPI.dll</HintPath>
+          <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
       </Reference>
     </ItemGroup>
 

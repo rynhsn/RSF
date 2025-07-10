@@ -492,9 +492,9 @@
 @* print *@
 <R_StackLayout Row Class="ps-4">
     <R_ItemLayout>
-        <R_Button OnClick="@(() => OnclickBtn_Print(null))">
+        <R_PrintButton OnClick="@(() => OnclickBtn_Print(null))">
             @_localizer["_btn_Print"]
-        </R_Button>
+        </R_PrintButton>
     </R_ItemLayout>
     <R_ItemLayout class="col-1">
         <R_Popup R_Before_Open_Popup="@BeforeOpen_PopupSaveAsAsync"
