@@ -282,6 +282,11 @@ public class PMR03000PrintController : R_ReportControllerBase
                 resultData.Datas[itemIndexes].DataUtility2 = FilteredUtilityList02;
                 resultData.Datas[itemIndexes].DataUtility3 = FilteredUtilityList03;
                 resultData.Datas[itemIndexes].DataUtility4 = FilteredUtilityList04;
+                resultData.Datas[itemIndexes].DataUnitListIsEmpty = !FilteredUnitList.Any();
+                resultData.Datas[itemIndexes].DataUtility1IsEmpty = !FilteredUtilityList01.Any();
+                resultData.Datas[itemIndexes].DataUtility2IsEmpty = !FilteredUtilityList02.Any();
+                resultData.Datas[itemIndexes].DataUtility3IsEmpty = !FilteredUtilityList03.Any();
+                resultData.Datas[itemIndexes].DataUtility4IsEmpty = !FilteredUtilityList04.Any();
 
                 itemIndexes++;
                 // loDataPrint.Data.Add(resultData);

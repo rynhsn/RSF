@@ -392,7 +392,7 @@ namespace PMM01500FRONT
                 if (eventArgs.ConductorMode == R_eConductorMode.Edit)
                 {
                     await InvGrpName_TextBox.FocusAsync();
-                    ByDeptEnalble = !loParam.LBY_DEPARTMENT;
+                    // ByDeptEnalble = !loParam.LBY_DEPARTMENT;
                 }
             }
             catch (Exception ex)
@@ -416,7 +416,7 @@ namespace PMM01500FRONT
                 loData.DCREATE_DATE = DateTime.Now;
 
                 await InvGrpId_TextBox.FocusAsync();
-                ByDeptEnalble = true;
+                // ByDeptEnalble = true;
 
                 if (_Genereal_viewModel.InvoiceTemplateList.Count > 0)
                 {
@@ -589,13 +589,13 @@ namespace PMM01500FRONT
             R_DisplayException(loEx);
         }
 
-        private bool ByDeptEnalble = false;
+        // private bool ByDeptEnalble = false;
 
         private void ByDept_OnChange(bool poParam)
         {
             _Genereal_viewModel.Data.LBY_DEPARTMENT = poParam;
 
-            ByDeptEnalble = !poParam;
+            // ByDeptEnalble = !poParam;
 
             if (poParam)
             {
@@ -664,7 +664,7 @@ namespace PMM01500FRONT
             ILimitDueDateEnable = false;
             IBeforeLimitEnable = false;
             IAfterLimitEnable = false;
-            ByDeptEnalble = false;
+            // ByDeptEnalble = false;
             GeneralButtonEnable = false;
         }
 
@@ -676,7 +676,7 @@ namespace PMM01500FRONT
             ILimitDueDateEnable = false;
             IBeforeLimitEnable = false;
             IAfterLimitEnable = false;
-            ByDeptEnalble = false;
+            // ByDeptEnalble = false;
             GeneralButtonEnable = false;
         }
 

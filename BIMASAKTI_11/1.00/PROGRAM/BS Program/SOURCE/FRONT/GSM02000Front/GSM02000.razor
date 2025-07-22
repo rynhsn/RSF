@@ -12,12 +12,12 @@
         <R_Grid @ref="@_gridRef"
                 DataSource="@_viewModel.GridList"
                 Pageable
-                PageSize="15"
+                PageSize="10"
                 R_ConductorSource="@_conductorRef"
                 R_GridType="@R_eGridType.Navigator"
                 R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord"
                 Enabled="_gridEnabled"
-                Height="390px"
+                Height="280px"
                 >
             <R_GridColumns>
                 <R_GridCheckBoxColumn FieldName="@nameof(GSM02000GridDTO.LACTIVE)" HeaderText="@_localizer["LABEL_ACTIVE"]" Width="70px" Filterable="false" TextAlignment="R_eTextAlignment.Center"/>
@@ -26,12 +26,12 @@
                 <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CROUNDING_MODE_DESCR)" HeaderText="@_localizer["LABEL_ROUNDINGMODE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
                 <R_GridNumericColumn TValue="int" FieldName="@nameof(GSM02000GridDTO.IROUNDING)" HeaderText="@_localizer["LABEL_ROUNDINGUNIT"]" Width="150px" TextAlignment="R_eTextAlignment.Right" Decimals="0"/>
                 <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CTAXIN_GLACCOUNT_NO)" HeaderText="@_localizer["LABEL_TAXIN"]" Width="170px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CTAXOUT_GLACCOUNT_NO)" HeaderText="@_localizer["LABEL_TAXOUT"]" Width="170px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CTAXOUT_GLACCOUNT_NO)" HeaderText="@_localizer["LABEL_TAXOUT"]" Width="180px" TextAlignment="R_eTextAlignment.Left"/>
                 @* <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CDEDUCTION_TAX_NAME)" HeaderText="@_localizer["LABEL_DEDUCTION"]" Width="170px" TextAlignment="R_eTextAlignment.Left"/> *@
-                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CUPDATE_BY)" HeaderText="@_localizer["LABEL_UPDATEDBY"]" Width="120px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridDateTimePickerColumn FieldName="@nameof(GSM02000GridDTO.DUPDATE_DATE)" HeaderText="@_localizer["LABEL_UPDATEDDATE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CCREATE_BY)" HeaderText="@_localizer["LABEL_CREATEDBY"]" Width="120px" TextAlignment="R_eTextAlignment.Left"/>
-                <R_GridDateTimePickerColumn FieldName="@nameof(GSM02000GridDTO.DCREATE_DATE)" HeaderText="@_localizer["LABEL_CREATEDDATE"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CUPDATE_BY)" HeaderText="@_localizer["LABEL_UPDATEDBY"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GSM02000GridDTO.DUPDATE_DATE)" HeaderText="@_localizer["LABEL_UPDATEDDATE"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(GSM02000GridDTO.CCREATE_BY)" HeaderText="@_localizer["LABEL_CREATEDBY"]" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GSM02000GridDTO.DCREATE_DATE)" HeaderText="@_localizer["LABEL_CREATEDDATE"]" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
 
             </R_GridColumns>
         </R_Grid>

@@ -344,6 +344,14 @@
           }
         }
       },
+      "BaseHeaderReportCOMMON/1.0.0.0": {
+        "runtime": {
+          "BaseHeaderReportCOMMON.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "R_ProcessAndUploadFront/1.0.0.0": {
         "runtime": {
           "R_ProcessAndUploadFront.dll": {
@@ -598,6 +606,11 @@
       "sha512": ""
     },
     "R_APIClient/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BaseHeaderReportCOMMON/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

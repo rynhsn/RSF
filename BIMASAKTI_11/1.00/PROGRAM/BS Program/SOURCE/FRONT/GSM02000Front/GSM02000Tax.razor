@@ -10,11 +10,11 @@
         <R_Grid @ref="@_gridSalesRef"
                 DataSource="@_viewModel.SalesGridList"
                 Pageable
-                PageSize="26"
+                PageSize="22"
                 R_ConductorSource="@_conductorSalesRef"
                 R_GridType="R_eGridType.Navigator"
                 R_ServiceGetListRecord="@GetSalesTaxList"
-                Height="595px"
+                Height="490px"
                 Enabled="_gridEnabled">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="@nameof(GSM02000TaxSalesDTO.CTAX_ID)" HeaderText="@_localizer["LABEL_TAXID"]" TextAlignment="R_eTextAlignment.Left" Width="100px"/>
@@ -26,7 +26,7 @@
         <R_Grid @ref="@_gridRef"
                 DataSource="@_viewModel.GridList"
                 Pageable
-                PageSize="24"
+                PageSize="21"
                 R_ConductorGridSource="@_conductorRef"
                 R_GridType="R_eGridType.Original"
                 R_ServiceGetListRecord="@GetList"
@@ -34,7 +34,7 @@
                 AllowAddNewRow
                 AllowDeleteRow
                 Width="100%"
-                Height="595px"
+                Height="490px"
                 R_ServiceGetRecord="@GetRecord"
                 R_AfterAdd="@AfterAdd"
                 R_Validation="@Validation"

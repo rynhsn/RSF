@@ -89,10 +89,15 @@ namespace PMR03000Common.DTOs.Print
         
         public List<PMR03000VADTO> VirtualAccountData { get; set; }
         public List<PMR03000DetailUnitDTO> DataUnitList { get; set; }
+        public bool DataUnitListIsEmpty { get; set; } = false;
         public List<PMR03000DetailUtilityDTO> DataUtility1 { get; set; }
+        public bool DataUtility1IsEmpty { get; set; } = false;
         public List<PMR03000DetailUtilityDTO> DataUtility2 { get; set; }
+        public bool DataUtility2IsEmpty { get; set; } = false;
         public List<PMR03000DetailUtilityDTO> DataUtility3 { get; set; }
+        public bool DataUtility3IsEmpty { get; set; } = false;
         public List<PMR03000DetailUtilityDTO> DataUtility4 { get; set; }
+        public bool DataUtility4IsEmpty { get; set; } = false;
     }
 
     public class PMR03000DetailUnitDTO

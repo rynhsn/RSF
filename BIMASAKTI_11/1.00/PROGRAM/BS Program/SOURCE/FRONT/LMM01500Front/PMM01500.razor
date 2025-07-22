@@ -247,25 +247,31 @@
                             </R_ItemLayout>
                             <R_ItemLayout col="10">
 
-                                    <R_GroupBox Title="@_localizer["_AllDept"]" Enabled="@ByDeptEnalble"  TitleClass="text-danger">
+                                    <R_GroupBox Title="@_localizer["_AllDept"]" R_ConductorSource="@_Genereal_conductorRef" Enabled="@(!_Genereal_viewModel.Data.LBY_DEPARTMENT)"  TitleClass="text-danger">
                                         <R_StackLayout Row="true">
                                             <R_ItemLayout col="3">
                                                     <R_Label>@(_localizer["_InvoiceDept"])*</R_Label>
                                             </R_ItemLayout>
                                             <R_ItemLayout col="2">
-                                            <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CINV_DEPT_CODE"
+                                                <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CINV_DEPT_CODE"
                                                            R_ConductorSource="@_Genereal_conductorRef"
                                                            OnLostFocus="@GeneralInvoiceDeptCode_OnLostFocus"
                                                            MaxLength="20"
-                                                           Enabled="@ByDeptEnalble"></R_TextBox>
+                                                           R_EnableAdd 
+                                                           R_EnableEdit/>
+                                                           @* Enabled="@ByDeptEnalble"/> *@
                                             </R_ItemLayout>
                                             <R_ItemLayout col="0">
-                                            <R_Lookup Enabled="@ByDeptEnalble" R_Before_Open_Lookup="@Invoice_Department_Before_Open_Lookup" R_After_Open_Lookup="@General_Invoice_Department_After_Open_Lookup">...</R_Lookup>
+                                                <R_Lookup R_ConductorSource="@_Genereal_conductorRef" 
+                                                          R_Before_Open_Lookup="@Invoice_Department_Before_Open_Lookup"
+                                                          R_After_Open_Lookup="@General_Invoice_Department_After_Open_Lookup"
+                                                          R_EnableAdd 
+                                                          R_EnableEdit>...</R_Lookup>
                                             </R_ItemLayout>
                                             <R_ItemLayout col="6">
                                                 <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CINV_DEPT_NAME"
                                                            R_ConductorSource="@_Genereal_conductorRef"
-                                                           Enabled="false"></R_TextBox>
+                                                           Enabled="false"/>
                                             </R_ItemLayout>
                                         </R_StackLayout>
 
@@ -312,10 +318,16 @@
                                                        R_ConductorSource="@_Genereal_conductorRef"
                                                        OnLostFocus="@GeneralDeptCode_OnLostFocus"
                                                        MaxLength="20"
-                                                       Enabled="@ByDeptEnalble"></R_TextBox>
+                                                       R_EnableAdd 
+                                                       R_EnableEdit/>
+                                                       @* Enabled="@ByDeptEnalble"/> *@
                                         </R_ItemLayout>
                                         <R_ItemLayout col="0">
-                                            <R_Lookup Enabled="@ByDeptEnalble" R_Before_Open_Lookup="@Department_Before_Open_Lookup" R_After_Open_Lookup="@General_Department_After_Open_Lookup">...</R_Lookup>
+                                            <R_Lookup R_ConductorSource="@_Genereal_conductorRef"
+                                                      R_Before_Open_Lookup="@Department_Before_Open_Lookup" 
+                                                      R_After_Open_Lookup="@General_Department_After_Open_Lookup"
+                                                      R_EnableAdd 
+                                                      R_EnableEdit>...</R_Lookup>
                                         </R_ItemLayout>
                                         <R_ItemLayout col="6">
                                             <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CDEPT_NAME"
@@ -334,10 +346,16 @@
                                                        R_ConductorSource="@_Genereal_conductorRef"
                                                        OnLostFocus="@GeneralBankCode_OnLostFocus"
                                                        MaxLength="20"
-                                                       Enabled="@ByDeptEnalble"></R_TextBox>
+                                                       R_EnableAdd 
+                                                       R_EnableEdit/>
+                                                       @* Enabled="@ByDeptEnalble"/> *@
                                         </R_ItemLayout>
                                         <R_ItemLayout col="0">
-                                            <R_Lookup Enabled="@ByDeptEnalble" R_Before_Open_Lookup="@Bank_Before_Open_Lookup" R_After_Open_Lookup="@General_Bank_After_Open_Lookup">...</R_Lookup>
+                                            <R_Lookup R_ConductorSource="@_Genereal_conductorRef"
+                                                      R_Before_Open_Lookup="@Bank_Before_Open_Lookup" 
+                                                      R_After_Open_Lookup="@General_Bank_After_Open_Lookup"
+                                                      R_EnableAdd 
+                                                      R_EnableEdit>...</R_Lookup>
                                         </R_ItemLayout>
                                         <R_ItemLayout col="6">
                                             <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CCB_NAME"

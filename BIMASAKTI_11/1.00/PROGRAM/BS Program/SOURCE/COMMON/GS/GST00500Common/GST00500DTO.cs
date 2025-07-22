@@ -14,6 +14,7 @@ namespace GST00500Common
         public string? CTRANS_STATUS_DESC { get; set; }
         public string? CDEPT_NAME { get; set; }
         public string? CDEPT_CODE { get; set; }
+        public string? CPROGRAM_ACCESS_ID { get; set; }
         public string? CREF_NO { get; set; }
         public string? CREF_DATE { get; set; }
         public DateTime? DREF_DATE { get; set; }

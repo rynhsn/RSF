@@ -117,18 +117,18 @@
     <R_StackLayout Row="true">
         <R_ItemLayout>
             <R_Button OnClick="@DownloadTemplateAsync" R_ConductorGridSource="_conGridDeptRef" R_EnableOther>
-                <R_Label>@_localizer["_btnTemplate"]</R_Label>
+                    @_localizer["_btnTemplate"]
             </R_Button>
         </R_ItemLayout>
         <R_ItemLayout>
             <R_Popup R_Before_Open_Popup="@R_Before_Open_PopupUpload" R_After_Open_Popup="@R_After_Open_PopupUpload" R_ConductorGridSource="_conGridDeptRef" R_EnableOther>
-                <R_Label>@_localizer["_pupupUpload"]</R_Label>
+                    @_localizer["_pupupUpload"]
             </R_Popup>
         </R_ItemLayout>
         <R_ItemLayout>
             <R_Popup Enabled="@_enableBtnAssignUser" R_Before_Open_Popup="@R_Before_Open_PopupAssignUserAsync" R_After_Open_Popup="@R_After_Open_PopupAssignUser" R_ConductorGridSource="_conGridDeptRef"
                      R_EnableOther>
-                <R_Label>@_localizer["_popupAssignUser"]</R_Label>
+                    @_localizer["_popupAssignUser"]
             </R_Popup>
         </R_ItemLayout>
         <R_ItemLayout>
@@ -137,8 +137,12 @@
                      R_Before_Open_Popup="R_Before_Open_Popup_ActivateInactiveAsync"
                      R_After_Open_Popup="R_After_Open_Popup_ActivateInactive"
                      R_EnableOther>
-                <R_Label>@_labelActiveInactive</R_Label>
+                @_labelActiveInactive
             </R_Popup>
+        </R_ItemLayout>
+
+        <R_ItemLayout>
+            <R_PrintButton R_Conductor="@_conductorForPrint"  OnClick="OnClickPrint">@_localizer["_btnPrint"]</R_PrintButton>
         </R_ItemLayout>
     </R_StackLayout>
 </R_StackLayout>
@@ -181,6 +185,8 @@
     </R_Grid>
 </R_StackLayout>
 
+<R_Conductor @ref="_conductorForPrint"
+             R_ViewModel="_deptViewModel"/>
 <R_ConductorGrid @ref="@_conGridDeptRef"
                  R_SetOther="DeptGrid_SetOther"
                  R_IsHeader></R_ConductorGrid>

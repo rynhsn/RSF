@@ -84,4 +84,11 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <None Update="Reports\GSM04000Department.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

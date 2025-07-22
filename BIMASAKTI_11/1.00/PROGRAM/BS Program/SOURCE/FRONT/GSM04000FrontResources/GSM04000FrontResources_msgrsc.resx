@@ -240,4 +240,8 @@
   <data name="_valSave4" xml:space="preserve">
     <value>Branch can not be empty</value>
   </data>
+  <!-- Print -->
+    <data name="_btnPrint" xml:space="preserve">
+        <value>Print</value>
+    </data>
 </root>

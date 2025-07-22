@@ -23,6 +23,7 @@ using R_CommonFrontBackAPI;
 using R_LockingFront;
 using System;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace GSM04000Front
 {
@@ -37,8 +38,11 @@ namespace GSM04000Front
         private R_Grid<UserDepartmentDTO> _gridDeptUserRef;
         private R_ConductorGrid _conGridDeptUserRef;
 
+        private R_Conductor _conductorForPrint;
+
         [Inject] R_PopupService PopupService { get; set; }
         [Inject] IClientHelper _clientHelper { get; set; }
+        [Inject] private R_IReport _reportService { get; set; }
         [Inject] private R_ILocalizer<GSM04000FrontResources.Resources_Dummy_Class> _localizer { get; set; }
 
         private string _labelActiveInactive = "";
@@ -133,9 +137,9 @@ namespace GSM04000Front
             {
                 var loData = R_FrontUtility.ConvertObjectToObject<DepartmentDTO>(_conGridDeptRef.R_GetCurrentData());
                 var loCls = new R_LockingServiceClient(pcModuleName: DEFAULT_MODULE_NAME,
-                plSendWithContext: true,
-                plSendWithToken: true,
-                pcHttpClientName: DEFAULT_HTTP_NAME);
+                    plSendWithContext: true,
+                    plSendWithToken: true,
+                    pcHttpClientName: DEFAULT_HTTP_NAME);
                 if (plLock) // Lock
                 {
                     var loLockPar = new R_ServiceLockingLockParameterDTO
@@ -145,7 +149,6 @@ namespace GSM04000Front
                         Program_Id = "GSM04000",
                         Table_Name = "GSM_DEPARTMENT",
                         Key_Value = string.Join("|", _clientHelper.CompanyId, loData.CDEPT_CODE)
-
                     };
                     loLockResult = await loCls.R_Lock(loLockPar);
                 }
@@ -158,13 +161,13 @@ namespace GSM04000Front
                         Program_Id = "GSM04000",
                         Table_Name = "GSM_DEPARTMENT",
                         Key_Value = string.Join("|", _clientHelper.CompanyId, loData.CDEPT_CODE)
-
                     };
                     loLockResult = await loCls.R_UnLock(loUnlockPar);
                 }
+
                 if (!loLockResult.IsSuccess && loLockResult.Exception != null)
                 {
-                    loEx.Add(loLockResult.Exception );
+                    loEx.Add(loLockResult.Exception);
                     //throw loLockResult.Exception;
                 }
             }
@@ -172,6 +175,7 @@ namespace GSM04000Front
             {
                 loEx.Add(ex);
             }
+
             loEx.ThrowExceptionIfErrors();
         }
 
@@ -239,7 +243,9 @@ namespace GSM04000Front
                             loValidateViewModel.ACTIVATE_INACTIVE_ACTIVITY_CODE = "GSM04001";
                             await loValidateViewModel.RSP_ACTIVITY_VALIDITYMethodAsync();
 
-                            if (loValidateViewModel.loRspActivityValidityList.FirstOrDefault().CAPPROVAL_USER == "ALL" && loValidateViewModel.loRspActivityValidityResult.Data.FirstOrDefault().IAPPROVAL_MODE == 1)
+                            if (loValidateViewModel.loRspActivityValidityList.FirstOrDefault().CAPPROVAL_USER ==
+                                "ALL" && loValidateViewModel.loRspActivityValidityResult.Data.FirstOrDefault()
+                                    .IAPPROVAL_MODE == 1)
                             {
                                 eventArgs.Cancel = false;
                             }
@@ -257,6 +263,7 @@ namespace GSM04000Front
                                 }
                             }
                         }
+
                         //~End approval
                         break;
 
@@ -269,11 +276,13 @@ namespace GSM04000Front
                             await _deptViewModel.CheckIsUserDeptExistAsync();
                             if (_deptViewModel._isUserDeptExist)
                             {
-                                var loConfirm = await R_MessageBox.Show("", _localizer["_msgConfirmation1"], R_eMessageBoxButtonType.OKCancel);
+                                var loConfirm = await R_MessageBox.Show("", _localizer["_msgConfirmation1"],
+                                    R_eMessageBoxButtonType.OKCancel);
                                 if (loConfirm == R_eMessageBoxResult.Cancel)
                                 {
                                     eventArgs.Cancel = true;
                                 }
+
                                 await _deptViewModel.DeleteAssignedUserWhenChangeEveryone();
                             }
                         }
@@ -282,23 +291,23 @@ namespace GSM04000Front
                         if (string.IsNullOrWhiteSpace(loData.CDEPT_CODE))
                         {
                             loEx.Add("", _localizer["_valSave1"]);
-
                         }
+
                         if (string.IsNullOrWhiteSpace(loData.CDEPT_NAME))
                         {
                             loEx.Add("", _localizer["_valSave2"]);
-
                         }
+
                         if (string.IsNullOrWhiteSpace(loData.CCENTER_CODE))
                         {
                             loEx.Add("", _localizer["_valSave3"]);
-
                         }
+
                         if (string.IsNullOrWhiteSpace(loData.CBRANCH_NAME))
                         {
                             loEx.Add("", _localizer["_valSave4"]);
-
                         }
+
                         break;
                 }
             }
@@ -330,6 +339,7 @@ namespace GSM04000Front
             {
                 loEx.Add(ex);
             }
+
             loEx.ThrowExceptionIfErrors();
         }
 
@@ -346,6 +356,7 @@ namespace GSM04000Front
             {
                 loEx.Add(ex);
             }
+
             loEx.ThrowExceptionIfErrors();
         }
 
@@ -411,7 +422,10 @@ namespace GSM04000Front
                         {
                             _enableBtnAssignUser = true;
                         }
-                        else { _enableBtnAssignUser = false; }
+                        else
+                        {
+                            _enableBtnAssignUser = false;
+                        }
 
                         //set deptcode to view model child
                         _deptUserViewModel._DepartmentCode = loParam.CDEPT_CODE;
@@ -422,13 +436,16 @@ namespace GSM04000Front
                         {
                             await _gridDeptUserRef.R_RefreshGrid(loParam);
                         }
+
                         break;
 
                     case R_eConductorMode.Edit:
                         if (loParam.LEVERYONE != true)
                         {
-                            await R_MessageBox.Show("", _localizer["_msgConfirmation2"], R_eMessageBoxButtonType.OKCancel);
+                            await R_MessageBox.Show("", _localizer["_msgConfirmation2"],
+                                R_eMessageBoxButtonType.OKCancel);
                         }
+
                         break;
                 }
             }
@@ -436,6 +453,7 @@ namespace GSM04000Front
             {
                 loEx.Add(ex);
             }
+
             loEx.ThrowExceptionIfErrors();
         }
 
@@ -452,6 +470,7 @@ namespace GSM04000Front
             {
                 loEx.Add(ex);
             }
+
             loEx.ThrowExceptionIfErrors();
         }
 
@@ -461,15 +480,16 @@ namespace GSM04000Front
             try
             {
                 var loData = (DepartmentDTO)eventArgs.Data;
-                loData.LACTIVE = true;//set active=true as default
-                loData.DCREATE_DATE = DateTime.Now;//set now date when adding data
-                loData.DUPDATE_DATE = DateTime.Now;//set now date when adding data
+                loData.LACTIVE = true; //set active=true as default
+                loData.DCREATE_DATE = DateTime.Now; //set now date when adding data
+                loData.DUPDATE_DATE = DateTime.Now; //set now date when adding data
                 //_enableBtnActiveInactive = false;
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
             }
+
             loEx.ThrowExceptionIfErrors();
         }
 
@@ -495,7 +515,8 @@ namespace GSM04000Front
 
                             if (loResult == null)
                             {
-                                loEx.Add(R_FrontUtility.R_GetError(typeof(Lookup_GSFrontResources.Resources_Dummy_Class), "_ErrLookup01"));
+                                loEx.Add(R_FrontUtility.R_GetError(
+                                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class), "_ErrLookup01"));
                                 loData.CCENTER_NAME = "";
                                 loData.CCENTER_CODE = "";
                             }
@@ -510,6 +531,7 @@ namespace GSM04000Front
                             loData.CCENTER_NAME = "";
                             loData.CCENTER_CODE = "";
                         }
+
                         await Task.CompletedTask;
 
                         break;
@@ -527,7 +549,8 @@ namespace GSM04000Front
 
                             if (loResult == null)
                             {
-                                loEx.Add(R_FrontUtility.R_GetError(typeof(Lookup_GSFrontResources.Resources_Dummy_Class), "_ErrLookup01"));
+                                loEx.Add(R_FrontUtility.R_GetError(
+                                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class), "_ErrLookup01"));
                                 loData.CMANAGER_CODE = "";
                                 loData.CMANAGER_NAME = "";
                             }
@@ -542,6 +565,7 @@ namespace GSM04000Front
                             loData.CMANAGER_CODE = "";
                             loData.CMANAGER_NAME = "";
                         }
+
                         await Task.CompletedTask;
 
                         break;
@@ -551,13 +575,15 @@ namespace GSM04000Front
                         {
                             var loBranchCode = eventArgs.Value.ToString();
                             LookupTXL00100ViewModel loLookupTXL00100ViewModel = new LookupTXL00100ViewModel();
-                            var loResult = await loLookupTXL00100ViewModel.TXL00100BranchLookUp(new TXL00100ParameterGetRecordDTO
-                            {
-                                CSEARCH_TEXT = loBranchCode,
-                            });
+                            var loResult = await loLookupTXL00100ViewModel.TXL00100BranchLookUp(
+                                new TXL00100ParameterGetRecordDTO
+                                {
+                                    CSEARCH_TEXT = loBranchCode,
+                                });
                             if (loResult == null)
                             {
-                                loEx.Add(R_FrontUtility.R_GetError(typeof(Lookup_TXFrontResources.Resources_TXLookup_Class), "_ErrLookup01"));
+                                loEx.Add(R_FrontUtility.R_GetError(
+                                    typeof(Lookup_TXFrontResources.Resources_TXLookup_Class), "_ErrLookup01"));
                                 loData.CBRANCH_CODE = "";
                                 loData.CBRANCH_NAME = "";
                             }
@@ -571,6 +597,7 @@ namespace GSM04000Front
                         {
                             loData.CBRANCH_CODE = loData.CBRANCH_NAME = "";
                         }
+
                         await Task.CompletedTask;
                         break;
                 }
@@ -579,6 +606,7 @@ namespace GSM04000Front
             {
                 loEx.Add(ex);
             }
+
             loEx.ThrowExceptionIfErrors();
             await Task.CompletedTask;
         }
@@ -601,7 +629,7 @@ namespace GSM04000Front
                         eventArgs.TargetPageType = typeof(GSL01000);
                         await Task.CompletedTask;
                         break;
-                    case nameof(DepartmentDTO.CBRANCH_NAME)://CR09
+                    case nameof(DepartmentDTO.CBRANCH_NAME): //CR09
                         eventArgs.TargetPageType = typeof(TXL00100);
                         await Task.CompletedTask;
                         break;
@@ -611,6 +639,7 @@ namespace GSM04000Front
             {
                 loEx.Add(ex);
             }
+
             loEx.ThrowExceptionIfErrors();
             await Task.CompletedTask;
         }
@@ -624,6 +653,7 @@ namespace GSM04000Front
                 {
                     return;
                 }
+
                 //mengambil result dari popup dan set ke data row
                 switch (eventArgs.ColumnName)
                 {
@@ -637,7 +667,7 @@ namespace GSM04000Front
                         ((DepartmentDTO)eventArgs.ColumnData).CMANAGER_CODE = loManagerLookupresult.CUSER_ID;
                         ((DepartmentDTO)eventArgs.ColumnData).CMANAGER_NAME = loManagerLookupresult.CUSER_NAME;
                         break;
-                    case nameof(DepartmentDTO.CBRANCH_NAME)://CR09
+                    case nameof(DepartmentDTO.CBRANCH_NAME): //CR09
                         var loBranchLookupresult = R_FrontUtility.ConvertObjectToObject<TXL00100DTO>(eventArgs.Result);
                         ((DepartmentDTO)eventArgs.ColumnData).CBRANCH_CODE = loBranchLookupresult.CBRANCH_CODE;
                         ((DepartmentDTO)eventArgs.ColumnData).CBRANCH_NAME = loBranchLookupresult.CBRANCH_NAME;
@@ -648,23 +678,23 @@ namespace GSM04000Front
             {
                 loEx.Add(ex);
             }
-            loEx.ThrowExceptionIfErrors();
 
+            loEx.ThrowExceptionIfErrors();
         }
 
-        #endregion//GridLookup
+        #endregion //GridLookup
 
-        #endregion//GridDept
+        #endregion //GridDept
 
         #region Template
 
         private async Task DownloadTemplateAsync()
         {
-
             var loEx = new R_Exception();
             try
             {
-                var loValidate = await R_MessageBox.Show("", "Are you sure download this template?", R_eMessageBoxButtonType.YesNo);
+                var loValidate = await R_MessageBox.Show("", "Are you sure download this template?",
+                    R_eMessageBoxButtonType.YesNo);
 
                 if (loValidate == R_eMessageBoxResult.Yes)
                 {
@@ -679,18 +709,20 @@ namespace GSM04000Front
             {
                 loEx.Add(ex);
             }
+
             loEx.ThrowExceptionIfErrors();
             R_DisplayException(loEx);
         }
 
-        #endregion//Template
+        #endregion //Template
 
         #region Upload
 
         private void R_Before_Open_PopupUpload(R_BeforeOpenPopupEventArgs eventArgs)
         {
             eventArgs.TargetPageType = typeof(GSM04000PopupUpload);
-            eventArgs.PageTitle = _localizer["_pageTitleUpload"]; ;
+            eventArgs.PageTitle = _localizer["_pageTitleUpload"];
+            ;
         }
 
         public async Task R_After_Open_PopupUpload(R_AfterOpenPopupEventArgs eventArgs)
@@ -704,11 +736,11 @@ namespace GSM04000Front
             {
                 loEx.Add(ex);
             }
-            loEx.ThrowExceptionIfErrors();
 
+            loEx.ThrowExceptionIfErrors();
         }
 
-        #endregion//Upload
+        #endregion //Upload
 
         #region Assign User
 
@@ -726,6 +758,7 @@ namespace GSM04000Front
             {
                 loEx.Add(ex);
             }
+
             loEx.ThrowExceptionIfErrors();
         }
 
@@ -740,12 +773,13 @@ namespace GSM04000Front
                     await R_MessageBox.Show("", _localizer["_msgWarning1"], R_eMessageBoxButtonType.OK);
                     goto EndBlock;
                 }
+
                 await _deptUserViewModel.AssignUserToDept(new UserDepartmentDTO()
-                {
-                    CDEPT_CODE = _deptViewModel._departmentCode,
-                    CUSER_ID = loTempResult.CUSER_ID
-                },
-                eCRUDMode.AddMode);
+                    {
+                        CDEPT_CODE = _deptViewModel._departmentCode,
+                        CUSER_ID = loTempResult.CUSER_ID
+                    },
+                    eCRUDMode.AddMode);
                 await _gridDeptUserRef.R_RefreshGrid(null);
                 await Dept_CustomLock(false);
             }
@@ -753,11 +787,12 @@ namespace GSM04000Front
             {
                 loEx.Add(ex);
             }
-        EndBlock:
+
+            EndBlock:
             loEx.ThrowExceptionIfErrors();
         }
 
-        #endregion//Assign User
+        #endregion //Assign User
 
         #region Active/Inactive
 
@@ -771,10 +806,12 @@ namespace GSM04000Front
                 {
                     ACTIVATE_INACTIVE_ACTIVITY_CODE = "GSM04001" //Uabh Approval Code sesuai Spec masing masing
                 };
-                await loValidateViewModel.RSP_ACTIVITY_VALIDITYMethodAsync(); //Jika IAPPROVAL_CODE == 3, maka akan keluar RSP_ERROR disini
+                await loValidateViewModel
+                    .RSP_ACTIVITY_VALIDITYMethodAsync(); //Jika IAPPROVAL_CODE == 3, maka akan keluar RSP_ERROR disini
 
                 //Jika Approval User ALL dan Approval Code 1, maka akan langsung menjalankan ActiveInactive
-                if (loValidateViewModel.loRspActivityValidityList.FirstOrDefault().CAPPROVAL_USER == "ALL" && loValidateViewModel.loRspActivityValidityResult.Data.FirstOrDefault().IAPPROVAL_MODE == 1)
+                if (loValidateViewModel.loRspActivityValidityList.FirstOrDefault().CAPPROVAL_USER == "ALL" &&
+                    loValidateViewModel.loRspActivityValidityResult.Data.FirstOrDefault().IAPPROVAL_MODE == 1)
                 {
                     await _deptViewModel.ActiveInactiveProcessAsync(); //Ganti jadi method ActiveInactive masing masing
                     await _gridDeptRef.R_RefreshGrid(null);
@@ -793,6 +830,7 @@ namespace GSM04000Front
             {
                 loException.Add(ex);
             }
+
             loException.ThrowExceptionIfErrors();
         }
 
@@ -806,6 +844,7 @@ namespace GSM04000Front
                 {
                     return;
                 }
+
                 bool result = (bool)eventArgs.Result;
                 if (result == true)
                 {
@@ -818,11 +857,12 @@ namespace GSM04000Front
             {
                 loException.Add(ex);
             }
+
             loException.ThrowExceptionIfErrors();
             await Dept_CustomLock(true);
         }
 
-        #endregion//Active/Inactive
+        #endregion //Active/Inactive
 
         #region DepartmentUser(CHILD)
 
@@ -839,8 +879,8 @@ namespace GSM04000Front
             {
                 loEx.Add(ex);
             }
-            loEx.ThrowExceptionIfErrors();
 
+            loEx.ThrowExceptionIfErrors();
         }
 
         private async Task DeptUserGrid_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
@@ -857,8 +897,8 @@ namespace GSM04000Front
             {
                 loEx.Add(ex);
             }
-            loEx.ThrowExceptionIfErrors();
 
+            loEx.ThrowExceptionIfErrors();
         }
 
         private async Task DeptUserGrid_ServiceDelete(R_ServiceDeleteEventArgs eventArgs)
@@ -868,16 +908,40 @@ namespace GSM04000Front
             {
                 var loData = (DepartmentDTO)eventArgs.Data;
                 await _deptUserViewModel.DeleteUserDepartment(loData);
-
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
             }
+
             loEx.ThrowExceptionIfErrors();
         }
 
-        #endregion//DepartmentUser(CHILD)
+        #endregion //DepartmentUser(CHILD)
 
+        private async Task OnClickPrint(MouseEventArgs arg)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (!loEx.HasError)
+                {
+                    await _reportService.GetReport(
+                        "R_DefaultServiceUrl",
+                        "GS",
+                        "rpt/GSM04000Print/DocumentReportPost",
+                        "rpt/GSM04000Print/DocumentReportGet"
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            EndBlock:
+            loEx.ThrowExceptionIfErrors();
+        }
     }
 }

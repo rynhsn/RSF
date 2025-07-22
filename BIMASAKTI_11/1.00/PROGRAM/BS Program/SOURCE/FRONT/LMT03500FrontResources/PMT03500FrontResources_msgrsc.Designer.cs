@@ -564,6 +564,15 @@ namespace PMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LOI/Agreement.
+        /// </summary>
+        internal static string LBL_LOIAGREEMENT {
+            get {
+                return ResourceManager.GetString("LBL_LOIAGREEMENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Meter End.
         /// </summary>
         internal static string LBL_METEREND {

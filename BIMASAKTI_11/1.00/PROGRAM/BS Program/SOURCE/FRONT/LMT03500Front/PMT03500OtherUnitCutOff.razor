@@ -116,9 +116,6 @@
                         <R_Label>@(_localizer["LBL_ENDDTUTILITY"] + "*")</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="5">
-                        @* <R_DatePicker Min="@(_viewModelUtility.UtilityPeriodFromDtDt.AddDays(1))"  *@
-                        @*               Max="_viewModelUtility.UtilityPeriodDtMax"  *@
-                        @*               @bind-Value="_viewModelUtility.UtilityPeriodToDtDt"/> *@
                         <R_DatePicker Max="_viewModelUtility.UtilityPeriodDtMax" 
                                       @bind-Value="_viewModelUtility.UtilityPeriodFromDtDt"/>
                     </R_ItemLayout>
@@ -158,7 +155,8 @@
                     <R_GridColumns>
                         <R_GridCheckBoxSelectColumn FieldName="@nameof(PMT03500UtilityUsageDTO.LSELECTED)" Width="30px" ShowSelectAllHeader Filterable="false" Resizable="false"/>
                         <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CBUILDING_NAME)" HeaderText="@_localizer["LBL_BUILDING"]" TextAlignment="R_eTextAlignment.Left" Width="130px"/>
-                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CFLOOR_NAME)" HeaderText="@_localizer["LBL_FLOORID"]" TextAlignment="R_eTextAlignment.Left" Width="130px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CREF_NO)" HeaderText="@_localizer["LBL_LOIAGREEMENT"]" TextAlignment="R_eTextAlignment.Left" Width="160px" />
+                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CFLOOR_NAME)" HeaderText="@_localizer["LBL_FLOOR"]" TextAlignment="R_eTextAlignment.Left" Width="130px"/>
                         <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUNIT_NAME)" HeaderText="@_localizer["LBL_UNITID"]" TextAlignment="R_eTextAlignment.Left" Width="130px"/>
                         <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CMETER_NO)" HeaderText="@_localizer["LBL_METERNO"]" TextAlignment="R_eTextAlignment.Left" Width="130px"/>
                         <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CBASMETER_NO)" HeaderText="@_localizer["LBL_BASMETERNO"]" TextAlignment="R_eTextAlignment.Left" Width="200px"/>

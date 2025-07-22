@@ -151,9 +151,6 @@ public class PMT03500UtilityUsageCls
                 lcQuery = "RSP_PM_GET_UTILITY_USAGE_LIST_WG";
             }
 
-            // lcQuery = peType == ELMT03500UtilityUsageTypeDb.EC
-            //     ? "RSP_LM_GET_UTILITY_USAGE_LIST_EC"
-            //     : "RSP_LM_GET_UTILITY_USAGE_LIST_WG";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 

@@ -106,7 +106,7 @@ namespace PMM01500BACK
 
             return loResult;
         }
-        
+
         protected override void R_Deleting(PMM01530DTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("R_Deleting");

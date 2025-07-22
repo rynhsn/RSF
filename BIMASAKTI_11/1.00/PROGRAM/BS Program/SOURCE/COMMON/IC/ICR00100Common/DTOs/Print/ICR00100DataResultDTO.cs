@@ -23,18 +23,18 @@ namespace ICR00100Common.DTOs.Print
         public decimal NQTY_BEGINNING { get; set; }
         public decimal NQTY_BALANCE { get; set; }
         public decimal NVALUE_BALANCE { get; set; }
-        public decimal NQTY_IN_1 { get; set; }
-        public decimal NQTY_IN_2 { get; set; }
-        public decimal NQTY_IN_3 { get; set; }
-        public decimal NQTY_OUT_1 { get; set; }
-        public decimal NQTY_OUT_2 { get; set; }
-        public decimal NQTY_OUT_3 { get; set; }
-        public decimal NQTY_BAL_1 { get; set; }
-        public decimal NQTY_BAL_2 { get; set; }
-        public decimal NQTY_BAL_3 { get; set; }
-        public decimal NQTY_BEGINNING_1 { get; set; }
-        public decimal NQTY_BEGINNING_2 { get; set; }
-        public decimal NQTY_BEGINNING_3 { get; set; }
+        public decimal NQTY_IN1 { get; set; }
+        public decimal NQTY_IN2 { get; set; }
+        public decimal NQTY_IN3 { get; set; }
+        public decimal NQTY_OUT1 { get; set; }
+        public decimal NQTY_OUT2 { get; set; }
+        public decimal NQTY_OUT3 { get; set; }
+        public decimal NQTY_BAL1 { get; set; }
+        public decimal NQTY_BAL2 { get; set; }
+        public decimal NQTY_BAL3 { get; set; }
+        public decimal NQTY_BEGINNING1 { get; set; }
+        public decimal NQTY_BEGINNING2 { get; set; }
+        public decimal NQTY_BEGINNING3 { get; set; }
         public string CUNIT1 { get; set; }
         public string CUNIT2 { get; set; }
         public string CUNIT3 { get; set; }

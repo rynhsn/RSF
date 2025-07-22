@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="05/21/2025 10:55:08" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="07/21/2025 17:16:24" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="ReportData" DataType="PMR02000COMMON.DTO_s.Print.ReportSummaryDataDTO, PMR02000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -214,43 +214,12 @@
       <inherited Name="LabelUserId"/>
       <inherited Name="BaseHeaderDateTime"/>
       <ChildBand Name="Child1" ZOrder="-1" Top="79.6" Width="1047.06" Height="113.4">
-        <TextObject Name="Text42" Left="-28.35" Top="18.9" Width="311.85" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_PROPERTY] : [ResponseDataModel.ReportData.Param.CPROPERTY_ID] - [ResponseDataModel.ReportData.Param.CPROPERTY_NAME]" Font="Arial Unicode MS, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-        <TextObject Name="Text43" Left="-28.35" Top="37.8" Width="311.85" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_DATA_BASED_ON] : [ResponseDataModel.ReportData.Param.CDATA_BASED_ON_DISPLAY]" Font="Arial Unicode MS, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-        <TextObject Name="Text44" Left="-28.35" Top="56.7" Width="311.85" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_REMAINING_BASED_ON] : [ResponseDataModel.ReportData.Param.CREMAINING_BASED_ON_DISPLAY]" Font="Arial Unicode MS, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-        <TextObject Name="Text45" Left="-28.35" Top="75.6" Width="311.85" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_CUTT_OFF_DATE] : [ResponseDataModel.ReportData.Param.DDATE_CUTOFF]" Font="Arial Unicode MS, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-        <TextObject Name="Text46" Left="283.5" Top="18.9" Width="207.9" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_PERIOD] : [ResponseDataModel.ReportData.Param.CPERIOD_DISPLAY]" Font="Arial Unicode MS, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-        <TextObject Name="Text47" Left="283.5" Top="37.8" Width="207.9" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_REPORT_TYPE] : [ResponseDataModel.ReportData.Param.CREPORT_TYPE_DISPLAY]" Font="Arial Unicode MS, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
+        <TextObject Name="Text42" Left="-28.35" Top="18.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_PROPERTY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text43" Left="-28.35" Top="37.8" Width="113.4" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_DATA_BASED_ON]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text44" Left="-28.35" Top="56.7" Width="113.4" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_REMAINING_BASED_ON]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text45" Left="-28.35" Top="75.6" Width="113.4" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_CUTT_OFF_DATE] " Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text46" Left="330.75" Top="18.9" Width="85.05" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_PERIOD]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text47" Left="330.75" Top="37.8" Width="85.05" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_REPORT_TYPE]" Font="Arial Unicode MS, 7pt"/>
         <TextObject Name="Text48" Left="604.8" Top="18.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_CURRENCY] :" Font="Arial Unicode MS, 7pt"/>
         <CheckBoxObject Name="CheckBox1" Left="614.25" Top="37.8" Width="9.45" Height="9.45" DataColumn="ResponseDataModel.ReportData.Param.IS_TRANS_CURRENCY"/>
         <CheckBoxObject Name="CheckBox2" Left="614.25" Top="56.7" Width="9.45" Height="9.45" DataColumn="ResponseDataModel.ReportData.Param.IS_LOCAL_CURRENCY"/>
@@ -268,6 +237,17 @@
         <TextObject Name="Text56" Left="897.75" Top="75.6" Width="217.35" Height="18.9" VisibleExpression="[ResponseDataModel.ReportData.Param.IS_CUSTCTG_FILTER_ENABLED]" Text="[ResponseDataModel.ReportData.Param.CUSTCTG_FILTER_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
         <TextObject Name="Text57" Left="897.75" Top="56.7" Width="217.35" Height="18.9" VisibleExpression="[ResponseDataModel.ReportData.Param.IS_TRANSTYPE_FILTER_ENABLED]" Text="[ResponseDataModel.ReportData.Param.CTRANSTYPE_FILTER_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
         <TextObject Name="Text58" Left="897.75" Top="37.8" Width="217.35" Height="18.9" VisibleExpression="[ResponseDataModel.ReportData.Param.IS_DEPT_FILTER_ENABLED]" Text="[ResponseDataModel.ReportData.Param.CDEPT_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text136" Left="85.05" Top="75.6" Width="198.45" Height="18.9" Text=": [ResponseDataModel.ReportData.Param.DDATE_CUTOFF]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text137" Left="85.05" Top="18.9" Width="198.45" Height="18.9" Text=": [ResponseDataModel.ReportData.Param.CPROPERTY_ID] - [ResponseDataModel.ReportData.Param.CPROPERTY_NAME]" Font="Arial Unicode MS, 7pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text138" Left="85.05" Top="37.8" Width="198.45" Height="18.9" Text=": [ResponseDataModel.ReportData.Param.CDATA_BASED_ON_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text139" Left="85.05" Top="56.7" Width="198.45" Height="18.9" Text=": [ResponseDataModel.ReportData.Param.CREMAINING_BASED_ON_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text140" Left="415.8" Top="18.9" Width="141.75" Height="18.9" Text=": [ResponseDataModel.ReportData.Param.CPERIOD_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text141" Left="415.8" Top="37.8" Width="141.75" Height="18.9" Text=": [ResponseDataModel.ReportData.Param.CREPORT_TYPE_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
       </ChildBand>
     </inherited>
     <DataBand Name="Data1" ZOrder="0" Top="257.7" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Data">
@@ -297,7 +277,7 @@
         <TextObject Name="Text124" Left="226.8" Top="28.35" Width="66.15" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_TRANS_TYPE]" Font="Arial Unicode MS, 7pt"/>
       </DataHeaderBand>
       <DataBand Name="Data2" Top="280.6" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true" DataSource="Customers">
-        <TextObject Name="Text65" Left="-18.9" Width="160.65" Height="18.9" Text="[ResponseDataModel.ReportData.Data.Customers.CCUSTOMER_ID] - [ResponseDataModel.ReportData.Data.Customers.CCUSTOMER_NAME]" Font="Arial Unicode MS, 7pt">
+        <TextObject Name="Text65" Left="-18.9" Width="160.65" Height="18.9" CanGrow="true" Text="[ResponseDataModel.ReportData.Data.Customers.CCUSTOMER_ID] - [ResponseDataModel.ReportData.Data.Customers.CCUSTOMER_NAME]" Font="Arial Unicode MS, 7pt">
           <Formats>
             <GeneralFormat/>
             <GeneralFormat/>

@@ -66,6 +66,9 @@
     <data name="LBL_FLOORID" xml:space="preserve">
         <value>Floor Id</value>
     </data>
+    <data name="LBL_LOIAGREEMENT" xml:space="preserve">
+        <value>LOI/Agreement</value>
+    </data>
     <data name="LBL_INVPERIOD" xml:space="preserve">
         <value>Invoice Period</value>
     </data>

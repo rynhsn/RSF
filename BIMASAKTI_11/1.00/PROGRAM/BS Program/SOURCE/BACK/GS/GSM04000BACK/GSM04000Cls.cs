@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Data.Common;
 using System.Diagnostics;
 using GSM04000Common.DTO_s;
+using GSM04000Common.DTO_s.Print;
 
 namespace GSM04000Back
 {
@@ -48,7 +49,8 @@ namespace GSM04000Back
                 loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, int.MaxValue, poEntity.CDEPT_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CDEPT_NAME", DbType.String, int.MaxValue, poEntity.CDEPT_NAME);
                 loDb.R_AddCommandParameter(loCmd, "@CCENTER_CODE", DbType.String, int.MaxValue, poEntity.CCENTER_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CMANAGER_NAME", DbType.String, int.MaxValue, poEntity.CMANAGER_NAME);
+                loDb.R_AddCommandParameter(loCmd, "@CMANAGER_NAME", DbType.String, int.MaxValue,
+                    poEntity.CMANAGER_NAME);
                 loDb.R_AddCommandParameter(loCmd, "@CBRANCH_CODE", DbType.String, int.MaxValue, poEntity.CBRANCH_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@LEVERYONE", DbType.Boolean, int.MaxValue, poEntity.LEVERYONE);
                 loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, int.MaxValue, poEntity.LACTIVE);
@@ -67,6 +69,7 @@ namespace GSM04000Back
                     loEx.Add(ex);
                     ShowLogError(loEx);
                 }
+
                 loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
             }
             catch (Exception ex)
@@ -87,7 +90,7 @@ namespace GSM04000Back
                 }
             }
 
-        EndBlock:
+            EndBlock:
             loEx.ThrowExceptionIfErrors();
         }
 
@@ -123,6 +126,7 @@ namespace GSM04000Back
                 loEx.Add(ex);
                 ShowLogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             return loRtn;
         }
@@ -161,9 +165,12 @@ namespace GSM04000Back
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, int.MaxValue, poNewEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, int.MaxValue, poNewEntity.CDEPT_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CDEPT_NAME", DbType.String, int.MaxValue, poNewEntity.CDEPT_NAME);
-                loDb.R_AddCommandParameter(loCmd, "@CCENTER_CODE", DbType.String, int.MaxValue, poNewEntity.CCENTER_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CMANAGER_NAME", DbType.String, int.MaxValue, poNewEntity.CMANAGER_NAME);
-                loDb.R_AddCommandParameter(loCmd, "@CBRANCH_CODE", DbType.String, int.MaxValue, poNewEntity.CBRANCH_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CCENTER_CODE", DbType.String, int.MaxValue,
+                    poNewEntity.CCENTER_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CMANAGER_NAME", DbType.String, int.MaxValue,
+                    poNewEntity.CMANAGER_NAME);
+                loDb.R_AddCommandParameter(loCmd, "@CBRANCH_CODE", DbType.String, int.MaxValue,
+                    poNewEntity.CBRANCH_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@LEVERYONE", DbType.Boolean, int.MaxValue, poNewEntity.LEVERYONE);
                 loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, int.MaxValue, poNewEntity.LACTIVE);
                 loDb.R_AddCommandParameter(loCmd, "@CEMAIL1", DbType.String, int.MaxValue, poNewEntity.CEMAIL1);
@@ -179,6 +186,7 @@ namespace GSM04000Back
                 {
                     loEx.Add(ex);
                 }
+
                 loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
             }
             catch (Exception ex)
@@ -199,7 +207,7 @@ namespace GSM04000Back
                 }
             }
 
-        EndBlock:
+            EndBlock:
             loEx.ThrowExceptionIfErrors();
         }
 
@@ -234,6 +242,7 @@ namespace GSM04000Back
                 loEx.Add(ex);
                 ShowLogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             return loRtn;
         }
@@ -257,7 +266,8 @@ namespace GSM04000Back
                 loCmd.CommandText = lcQuery;
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, int.MaxValue, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, int.MaxValue, poEntity.CDEPT_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, int.MaxValue, poEntity.LNEW_ACTIVE_STATUS);
+                loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, int.MaxValue,
+                    poEntity.LNEW_ACTIVE_STATUS);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, int.MaxValue, poEntity.CUSER_ID);
                 ShowLogDebug(lcQuery, loCmd.Parameters);
                 loDb.SqlExecNonQuery(loConn, loCmd, true);
@@ -267,6 +277,7 @@ namespace GSM04000Back
                 loEx.Add(ex);
                 ShowLogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
         }
 
@@ -279,7 +290,8 @@ namespace GSM04000Back
             {
                 R_Db loDb = new R_Db();
                 DbConnection loConn = loDb.GetConnection("");
-                string lcQuery = $"SELECT TOP 1 1 FROM GSM_DEPT_USER (NOLOCK) WHERE CCOMPANY_ID = @CCOMPANY_ID AND CDEPT_CODE = @CDEPT_CODE";
+                string lcQuery =
+                    $"SELECT TOP 1 1 FROM GSM_DEPT_USER (NOLOCK) WHERE CCOMPANY_ID = @CCOMPANY_ID AND CDEPT_CODE = @CDEPT_CODE";
                 DbCommand loCmd = loDb.GetCommand();
                 loCmd.CommandText = lcQuery;
 
@@ -295,7 +307,8 @@ namespace GSM04000Back
             {
                 loException.Add(ex);
             }
-        EndBlock:
+
+            EndBlock:
             loException.ThrowExceptionIfErrors();
             return loRtn;
         }
@@ -328,6 +341,7 @@ namespace GSM04000Back
                 loEx.Add(ex);
                 ShowLogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
         }
 
@@ -335,7 +349,8 @@ namespace GSM04000Back
 
         private void ShowLogDebug(string query, DbParameterCollection parameters)
         {
-            var paramValues = string.Join(", ", parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} '{p.Value}'"));
+            var paramValues = string.Join(", ",
+                parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} '{p.Value}'"));
             _logger.LogDebug($"EXEC {query} {paramValues}");
         }
 
@@ -343,5 +358,82 @@ namespace GSM04000Back
         {
             _logger.LogError(ex);
         }
+
+
+        #region Group Print Methods
+        /*
+         * Get Base Header Logo Company
+         * Digunakan untuk mendapatkan logo perusahaan
+         * kemudian dikirim sebagai response ke controller dalam bentuk GSM04000PrintBaseHeaderLogoDTO
+         */
+        public GSM04000PrintBaseHeaderLogoDTO GetBaseHeaderLogoCompany(string pcCompanyId)
+        {
+            using var loActivity = _activitySource.StartActivity(nameof(GetBaseHeaderLogoCompany)); // Start activity
+            var loEx = new R_Exception(); // Create new exception object
+            GSM04000PrintBaseHeaderLogoDTO loResult = null; // Create new instance of GSM04000PrintBaseHeaderLogoDTO
+            R_Db loDb = null; // Database object    
+            DbConnection loConn = null;
+            DbCommand loCmd = null;
+
+            try
+            {
+                loDb = new R_Db(); // Create new instance of R_Db
+                loConn = loDb.GetConnection(R_Db.eDbConnectionStringType
+                    .ReportConnectionString); // Get database connection
+                loCmd = loDb.GetCommand(); // Get database command
+
+                var lcQuery = $"SELECT dbo.RFN_GET_COMPANY_LOGO('{pcCompanyId}') as BLOGO"; // Query to get company logo
+                loCmd.CommandText = lcQuery; // Set command text to query
+                loCmd.CommandType = CommandType.Text; // Set command type to text
+
+                _logger.LogDebug("{pcQuery}", lcQuery); // Log the query
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false); // Execute the query
+                loResult = R_Utility.R_ConvertTo<GSM04000PrintBaseHeaderLogoDTO>(loDataTable)
+                    .FirstOrDefault(); // Convert the data table to GSM04000PrintBaseHeaderLogoDTO
+
+                //ambil company name
+                lcQuery = $"EXEC RSP_GS_GET_COMPANY_INFO '{pcCompanyId}'"; // Query to get company name
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.Text;
+
+                //Debug Logs
+                _logger.LogDebug(lcQuery);
+                loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+                var loCompanyNameResult =
+                    R_Utility.R_ConvertTo<GSM04000PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault();
+
+                loResult!.CCOMPANY_NAME = loCompanyNameResult?.CCOMPANY_NAME;
+                loResult.CDATETIME_NOW = loCompanyNameResult.CDATETIME_NOW;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex); // Add the exception to the exception object
+                _logger.LogError(loEx); // Log the exception
+            }
+            finally
+            {
+                if (loConn != null)
+                {
+                    if (loConn.State != ConnectionState.Closed)
+                        loConn.Close();
+
+                    loConn.Dispose();
+                    loConn = null;
+                }
+
+                if (loCmd != null)
+                {
+                    loCmd.Dispose();
+                    loCmd = null;
+                }
+            }
+
+
+            loEx.ThrowExceptionIfErrors(); // Throw exception if there are errors
+            return loResult; // Return the company logo
+        }
+
+        #endregion
     }
 }

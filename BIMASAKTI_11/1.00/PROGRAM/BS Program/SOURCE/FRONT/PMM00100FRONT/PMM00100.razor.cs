@@ -346,6 +346,8 @@ namespace PMM00100FRONT
                 loData.CGAS_DATE = !loData.LGAS_END_MONTH ? _viewModel.SelectedGasCutOffDate.ToString("D2") : "";
                 loData.LINCLUDE_IMAGE = loData.LDISTRIBUTE_PDF && loData.LINCLUDE_IMAGE;
                 loData.LALL_BUILDING = true; //CR06
+                
+                loData.COVER_RECEIPT ??= "";
             }
             catch (Exception ex)
             {

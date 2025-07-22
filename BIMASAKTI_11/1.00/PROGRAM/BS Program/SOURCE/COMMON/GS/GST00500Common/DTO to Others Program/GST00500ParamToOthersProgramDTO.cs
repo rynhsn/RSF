@@ -14,5 +14,6 @@ namespace GST00500Common
         public string CPROGRAM_ID { get; set; } = "";
         public string? CALLER_ACTION { get; set; } = "";
         public string? CTENANT_ID { get; set; } = "";
+        public string? CPROGRAM_ACCESS_ID { get; set; } = "";
     }
 }

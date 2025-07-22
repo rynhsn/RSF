@@ -1192,12 +1192,12 @@
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -3903,6 +3903,16 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
+      "BaseHeaderResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/BaseHeaderResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BaseHeaderResources.dll": {}
+        }
+      },
       "GFF00900BACK/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -4157,6 +4167,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "BaseHeaderResources": "1.0.0",
           "GSM04000Back": "1.0.0",
           "GSM04000Common": "1.0.0"
         },
@@ -11953,6 +11964,11 @@
         "system.xml.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xmldocument.nuspec"
       ]
+    },
+    "BaseHeaderResources/1.0.0": {
+      "type": "project",
+      "path": "../../../COMMON/BaseHeaderResources/BaseHeaderResources.csproj",
+      "msbuildProject": "../../../COMMON/BaseHeaderResources/BaseHeaderResources.csproj"
     },
     "GFF00900BACK/1.0.0": {
       "type": "project",
