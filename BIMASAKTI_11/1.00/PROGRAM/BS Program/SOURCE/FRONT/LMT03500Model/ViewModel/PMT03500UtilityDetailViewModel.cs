@@ -21,7 +21,7 @@ namespace PMT03500Model.ViewModel
 
         public int index = 0;
 
-        public decimal NSTANDING_CONSUMPTION = 0;
+        // public decimal NSTANDING_CONSUMPTION = 0;
         public decimal NSUBTOTAL_ADM = 0;
         public decimal NTOTAL_ADM = 0;
         public decimal NADMIN = 0;
@@ -44,18 +44,18 @@ namespace PMT03500Model.ViewModel
                     break;
             }
         }
-        
-        public async Task GetRateWGList(PMT03500UtilityUsageDTO poParam,PMT03500UtilityUsageDetailDTO poEntity)
+
+        public async Task GetRateWGList(PMT03500UtilityUsageDTO poParam, PMT03500UtilityUsageDetailDTO poEntity)
         {
             var loEx = new R_Exception();
             try
             {
                 var loParam = new PMT03500RateParam()
                 {
-                    // CPROPERTY_ID = PropertyId,
                     CPROPERTY_ID = poParam.CPROPERTY_ID,
                     CCHARGE_TYPE_ID = poParam.CCHARGES_TYPE,
-                    CCHARGES_ID = poParam.CCHARGES_ID
+                    CCHARGES_ID = poParam.CCHARGES_ID,
+                    CSTART_DATE = poEntity.CSTART_DATE,
                 };
                 var loReturn = await _model.GetAsync<PMT03500ListDTO<PMT03500RateWGListDTO>, PMT03500RateParam>(
                     nameof(IPMT03500UtilityUsage.PMT03500GetRateWGList), loParam);
@@ -64,33 +64,44 @@ namespace PMT03500Model.ViewModel
 
                 // Urutkan RateList berdasarkan IUP_TO_USAGE
                 RateList = RateList.OrderBy(x => x.IUP_TO_USAGE).ToList();
-
+                
                 // Set IMIN_USAGE
                 for (int i = 0; i < RateList.Count; i++)
                 {
-                    RateList[i].IMIN_USAGE = i == 0 ? 0 : RateList[i - 1].IUP_TO_USAGE + 1;
-                    if (i == 0)
+                    //Cek Rate List Mode SM = Single, HM = Hierarchy
+                    if (poEntity.CUSAGE_RATE_MODE == "HM")
                     {
-                        RateList[i].NUSAGE = poEntity.NMETER_USAGE > RateList[i].IUP_TO_USAGE
-                            ? RateList[i].IUP_TO_USAGE
-                            : poEntity.NMETER_USAGE;
-                    }
-                    else
-                    {
-                        RateList[i].NUSAGE =
-                            poEntity.NMETER_USAGE - RateList[i - 1].IUP_TO_USAGE > RateList[i].IUP_TO_USAGE
-                                ? RateList[i].IUP_TO_USAGE - RateList[i - 1].IUP_TO_USAGE
-                                : poEntity.NMETER_USAGE - RateList[i - 1].IUP_TO_USAGE;
-                    }
+                        RateList[i].IMIN_USAGE = i == 0 ? 0 : RateList[i - 1].IUP_TO_USAGE + 1;
 
-                    RateList[i].NUSAGE = Math.Max(0, RateList[i].NUSAGE);
-                    RateList[i].NSUB_TOTAL_ROW = RateList[i].NUSAGE_CHARGE * RateList[i].NUSAGE * poEntity.NCF;
-                    NSTANDING_CONSUMPTION += RateList[i].NSUB_TOTAL_ROW;
+                        // RateList[i].NFROM_TO =
+                        //     i == 0
+                        //         ? RateList[i].IUP_TO_USAGE - RateList[i].IMIN_USAGE
+                        //         : RateList[i].IUP_TO_USAGE - RateList[i].IMIN_USAGE - 1;
+                        if (i == 0)
+                        {
+                            RateList[i].NFROM_TO = poEntity.NUSAGE_CF > RateList[i].IUP_TO_USAGE
+                                ? RateList[i].IUP_TO_USAGE - RateList[i].IMIN_USAGE
+                                : Math.Max(0, poEntity.NUSAGE_CF - RateList[i].IMIN_USAGE);
+                        }
+                        else
+                        {
+                            RateList[i].NFROM_TO = poEntity.NUSAGE_CF > RateList[i].IUP_TO_USAGE
+                                ? RateList[i].IUP_TO_USAGE - (RateList[i].IMIN_USAGE - 1)
+                                : Math.Max(0, poEntity.NUSAGE_CF - (RateList[i].IMIN_USAGE - 1));
+                        }
+                        // RateList[i].NFROM_TO = Math.Max(0, RateList[i].NFROM_TO);
+                        // RateList[i].NSUB_TOTAL_ROW = RateList[i].NUSAGE_CHARGE * RateList[i].NFROM_TO;
+                        // NSTANDING_CONSUMPTION += RateList[i].NSUB_TOTAL_ROW;
+                    }
+                    else if (poEntity.CUSAGE_RATE_MODE == "SM")
+                    {
+                        RateList[i].NFROM_TO = poEntity.NUSAGE_CF;
+                    }
+                    RateList[i].NSUB_TOTAL_ROW = RateList[i].NUSAGE_CHARGE * RateList[i].NFROM_TO;
                 }
 
-                NSUBTOTAL_ADM = poEntity.NADMIN_FEE_PCT / 100 * NSTANDING_CONSUMPTION;
-
-                NTOTAL_ADM = NSTANDING_CONSUMPTION + NSUBTOTAL_ADM;
+                NSUBTOTAL_ADM = poEntity.NADMIN_FEE_PCT / 100 * poEntity.NSTANDING_CONSUMP_AMT;
+                NTOTAL_ADM = poEntity.NSTANDING_CONSUMP_AMT + NSUBTOTAL_ADM;
             }
             catch (Exception ex)
             {
@@ -128,7 +139,7 @@ namespace PMT03500Model.ViewModel
                         .GetAsync<PMT03500SingleDTO<PMT03500UtilityUsageDetailDTO>, PMT03500UtilityUsageDetailParam>(
                             nameof(IPMT03500UtilityUsage.PMT03500GetUtilityUsageDetail), loParam);
                 Entity = _helperGetDetail(loReturn.Data);
-                
+
                 if (Param.EUTILITY_TYPE == EPMT03500UtilityUsageType.WG)
                 {
                     await GetRateWGList(Param.OUTILITY_HEADER, Entity);

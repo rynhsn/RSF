@@ -51,9 +51,9 @@ namespace APR00500Model.ViewModel
             ReportParam.CREPORT_FILETYPE = FileType[0];
             ReportParam.DCUT_OFF_DATE = DateTime.Now;
             ReportParam.IFROM_PERIOD_YY = int.Parse(DateTime.Now.Year.ToString());
-            ReportParam.CFROM_PERIOD_MM = PeriodListFrom[0].CPERIOD_NO;
+            ReportParam.CFROM_PERIOD_MM = DateTime.Now.Month.ToString("D2");
             ReportParam.ITO_PERIOD_YY = int.Parse(DateTime.Now.Year.ToString());
-            ReportParam.CTO_PERIOD_MM = PeriodListTo[0].CPERIOD_NO;
+            ReportParam.CTO_PERIOD_MM = DateTime.Now.Month.ToString("D2");
             ReportParam.DFROM_REFERENCE_DATE = DateTime.Now;
             ReportParam.DTO_REFERENCE_DATE = DateTime.Now;
             ReportParam.DFROM_DUE_DATE = DateTime.Now;
@@ -147,8 +147,6 @@ namespace APR00500Model.ViewModel
                         nameof(IAPR00500.APR00500GetPeriodList), loParam);
                 PeriodListFrom = loResult.Data;
                 PeriodListTo = loResult.Data;
-                ReportParam.CFROM_PERIOD_MM = PeriodListFrom[0].CPERIOD_NO;
-                ReportParam.CTO_PERIOD_MM = PeriodListTo[0].CPERIOD_NO;
             }
             catch (Exception ex)
             {

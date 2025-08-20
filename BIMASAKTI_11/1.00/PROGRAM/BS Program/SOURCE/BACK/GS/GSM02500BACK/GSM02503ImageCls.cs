@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace GSM02500BACK
 {
-    public class GSM02503ImageCls : R_BusinessObject<GSM02503ImageParameterDTO>
+    public class GSM02503ImageCls : R_BusinessObjectAsync<GSM02503ImageParameterDTO>
     {
         private LoggerGSM02503Image _logger;
         private readonly ActivitySource _activitySource;
@@ -29,7 +29,7 @@ namespace GSM02500BACK
             _activitySource = GSM02503ImageActivitySourceBase.R_GetInstanceActivitySource();
         }
 
-        public ShowUnitTypeImageDTO ShowUnitTypeImage(ShowUnitTypeImageParameterDTO poEntity)
+        public async Task<ShowUnitTypeImageDTO> ShowUnitTypeImage(ShowUnitTypeImageParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("ShowUnitTypeImage");
             R_Exception loException = new R_Exception();
@@ -44,7 +44,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
 
                 lcQuery = $"EXEC RSP_GS_GET_UNIT_TYPE_IMAGE_DETAIL " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -67,7 +67,7 @@ namespace GSM02500BACK
 
                 _logger.LogDebug("EXEC RSP_GS_GET_UNIT_TYPE_IMAGE_DETAIL {@Parameters} || ShowUnitTypeImage(Cls) ", loDbParam);
 
-                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
 
                 loGetDetail = R_Utility.R_ConvertTo<GSM02503ImageDTO>(loDataTable).FirstOrDefault();
 
@@ -114,7 +114,7 @@ namespace GSM02500BACK
 
         }
 
-        private void RSP_GS_MAINTAIN_UNIT_TYPE_IMAGEMethod(GSM02503ImageParameterDTO poEntity)
+        private async Task RSP_GS_MAINTAIN_UNIT_TYPE_IMAGEMethod(GSM02503ImageParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("RSP_GS_MAINTAIN_UNIT_TYPE_IMAGEMethod");
             R_Exception loException = new R_Exception();
@@ -125,7 +125,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
                 loCmd = loDb.GetCommand();
 
                 lcQuery = $"EXEC RSP_GS_MAINTAIN_UNIT_TYPE_IMAGE " +
@@ -140,32 +140,14 @@ namespace GSM02500BACK
 
                 loCmd.CommandText = lcQuery;
 
-                //loDb.R_AddCommandParameter(loCmd, "@OIMAGE", DbType.Binary, 100, poEntity.OIMAGE);
-                /*
-                                var loPar = loCmd.CreateParameter();
-                                loPar.ParameterName = "@OIMAGE";
-                                //loPar.Value = poEntity.OIMAGE;
-
-                                loPar.Value = new SqlBinary(poEntity.OIMAGE);
-
-                                loCmd.Parameters.Add(loPar);
-
-                var loPar = loDb.GetParameter();
-                loPar.ParameterName = "@OIMAGE";
-                loPar.DbType = DbType.Binary;
-                loPar.Value = poEntity.OIMAGE == null? DBNull.Value: poEntity.OIMAGE;
-                
-                loCmd.Parameters.Add(loPar);
-                                */
-
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CLOGIN_COMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CSELECTED_PROPERTY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CUNIT_TYPE_ID", DbType.String, 50, poEntity.CUNIT_TYPE_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CIMAGE_ID", DbType.String, 50, poEntity.Data.CIMAGE_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CIMAGE_NAME", DbType.String, 50, poEntity.Data.CIMAGE_NAME);
-                loDb.R_AddCommandParameter(loCmd, "@CSTORAGE_ID", DbType.String, 50, poEntity.Data.CSTORAGE_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 50, poEntity.CACTION);
-                loDb.R_AddCommandParameter(loCmd, "@CLOGIN_USER_ID", DbType.String, 50, poEntity.CLOGIN_USER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 20, poEntity.CLOGIN_COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poEntity.CSELECTED_PROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUNIT_TYPE_ID", DbType.String, 20, poEntity.CUNIT_TYPE_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CIMAGE_ID", DbType.String, 20, poEntity.Data.CIMAGE_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CIMAGE_NAME", DbType.String, 200, poEntity.Data.CIMAGE_NAME);
+                loDb.R_AddCommandParameter(loCmd, "@CSTORAGE_ID", DbType.String, 100, poEntity.Data.CSTORAGE_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, poEntity.CACTION);
+                loDb.R_AddCommandParameter(loCmd, "@CLOGIN_USER_ID", DbType.String, 20, poEntity.CLOGIN_USER_ID);
 
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                     .Where(x =>
@@ -178,7 +160,7 @@ namespace GSM02500BACK
 
                 try
                 {
-                    loDb.SqlExecNonQuery(loConn, loCmd, false);
+                    await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
                 }
                 catch (Exception ex)
                 {
@@ -211,7 +193,7 @@ namespace GSM02500BACK
             loException.ThrowExceptionIfErrors();
         }
 
-        public List<GSM02503ImageDTO> GetUnitTypeImageList(GetUnitTypeImageListParameterDTO poEntity)
+        public async Task<List<GSM02503ImageDTO>> GetUnitTypeImageList(GetUnitTypeImageListParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GetUnitTypeImageList");
             R_Exception loException = new R_Exception();
@@ -223,7 +205,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
 
                 lcQuery = $"EXEC RSP_GS_GET_UNIT_TYPE_IMAGE_LIST " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -244,7 +226,7 @@ namespace GSM02500BACK
 
                 _logger.LogDebug("EXEC RSP_GS_GET_UNIT_TYPE_IMAGE_LIST {@Parameters} || GetUnitTypeImageList(Cls) ", loDbParam);
 
-                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
 
                 loResult = R_Utility.R_ConvertTo<GSM02503ImageDTO>(loDataTable).ToList();
             }
@@ -259,15 +241,15 @@ namespace GSM02500BACK
             return loResult;
         }
 
-        protected override void R_Deleting(GSM02503ImageParameterDTO poEntity)
+        protected override async Task R_DeletingAsync(GSM02503ImageParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("R_Deleting");
             R_Exception loException = new R_Exception();
 
             try
             {
-                DeleteStorage(poEntity.Data);
-                RSP_GS_MAINTAIN_UNIT_TYPE_IMAGEMethod(poEntity);
+                await DeleteStorage(poEntity.Data);
+                await RSP_GS_MAINTAIN_UNIT_TYPE_IMAGEMethod(poEntity);
             }
             catch (Exception ex)
             {
@@ -278,7 +260,7 @@ namespace GSM02500BACK
             loException.ThrowExceptionIfErrors();
         }
 
-        private void DeleteStorage(GSM02503ImageDTO poEntity)
+        private async Task DeleteStorage(GSM02503ImageDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("DeleteStorage");
             R_Exception loEx = new R_Exception();
@@ -288,7 +270,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
 
                 if (String.IsNullOrEmpty(poEntity.CSTORAGE_ID) == false)
                 {
@@ -320,7 +302,7 @@ namespace GSM02500BACK
             loEx.ThrowExceptionIfErrors();
         }
 
-        protected override GSM02503ImageParameterDTO R_Display(GSM02503ImageParameterDTO poEntity)
+        protected override async Task<GSM02503ImageParameterDTO> R_DisplayAsync(GSM02503ImageParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("R_Display");
             R_Exception loException = new R_Exception();
@@ -332,7 +314,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
 
                 lcQuery = $"EXEC RSP_GS_GET_UNIT_TYPE_IMAGE_DETAIL " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -355,7 +337,7 @@ namespace GSM02500BACK
 
                 _logger.LogDebug("EXEC RSP_GS_GET_UNIT_TYPE_IMAGE_DETAIL {@Parameters} || R_Display(Cls) ", loDbParam);
 
-                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
 
                 loResult.Data = R_Utility.R_ConvertTo<GSM02503ImageDTO>(loDataTable).FirstOrDefault();
             }
@@ -370,7 +352,7 @@ namespace GSM02500BACK
             return loResult;
         }
 
-        protected override void R_Saving(GSM02503ImageParameterDTO poNewEntity, eCRUDMode poCRUDMode)
+        protected override async Task R_SavingAsync(GSM02503ImageParameterDTO poNewEntity, eCRUDMode poCRUDMode)
         {
             using Activity activity = _activitySource.StartActivity("R_Saving");
             R_Exception loException = new R_Exception();
@@ -379,11 +361,11 @@ namespace GSM02500BACK
 
             try
             {
-                loStorageType = GetStorageType();
-                loStorageResult = SetStorageID(poNewEntity, loStorageType);
+                loStorageType = await GetStorageType();
+                loStorageResult = await SetStorageID(poNewEntity, loStorageType);
 
                 poNewEntity.Data.CSTORAGE_ID = loStorageResult.CSTORAGE_ID;
-                RSP_GS_MAINTAIN_UNIT_TYPE_IMAGEMethod(poNewEntity);
+                await RSP_GS_MAINTAIN_UNIT_TYPE_IMAGEMethod(poNewEntity);
             }
             catch (Exception ex)
             {
@@ -394,8 +376,7 @@ namespace GSM02500BACK
             loException.ThrowExceptionIfErrors();
         }
 
-
-        private GSM02503ImageStorageTypeDTO GetStorageType()
+        private async Task<GSM02503ImageStorageTypeDTO> GetStorageType()
         {
             using Activity activity = _activitySource.StartActivity("GetStorageType");
             var loEx = new R_Exception();
@@ -406,7 +387,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
                 loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_GS_GET_STORAGE_TYPE";
@@ -416,26 +397,56 @@ namespace GSM02500BACK
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
 
-                //Debug Logs
-                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-                .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _logger.LogDebug("EXEC RSP_GS_GET_STORAGE_TYPE {@poParameter} || GetStorageType(Cls)", loDbParam);
+                R_ExternalException.R_SP_Init_Exception(loConn);
 
-                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
-                loResult = R_Utility.R_ConvertTo<GSM02503ImageStorageTypeDTO>(loDataTable).FirstOrDefault();
+                try
+                {
+                    //Debug Logs
+                    var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                    .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                    _logger.LogDebug("EXEC RSP_GS_GET_STORAGE_TYPE {@poParameter}", loDbParam);
+
+                    var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
+                    loResult = R_Utility.R_ConvertTo<GSM02503ImageStorageTypeDTO>(loDataTable).FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
+
+                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
                 _logger.LogError(loEx);
             }
+            finally
+            {
+                if (loConn != null)
+                {
+                    if (loConn.State != System.Data.ConnectionState.Closed)
+                        loConn.Close();
 
+                    loConn.Dispose();
+                    loConn = null;
+                }
+                if (loCmd != null)
+                {
+                    loCmd.Dispose();
+                    loCmd = null;
+                }
+                if (loDb != null)
+                {
+                    loDb = null;
+                }
+            }
             loEx.ThrowExceptionIfErrors();
 
             return loResult;
         }
 
-        private GSM02503ImageDTO SetStorageID(GSM02503ImageParameterDTO poNewEntity, GSM02503ImageStorageTypeDTO poStorageType)
+        private async Task<GSM02503ImageDTO> SetStorageID(GSM02503ImageParameterDTO poNewEntity, GSM02503ImageStorageTypeDTO poStorageType)
         {
             using Activity activity = _activitySource.StartActivity("SetStorageID");
             var loEx = new R_Exception();
@@ -447,7 +458,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
                 loConnAttr = loDb.GetConnectionAttribute();
 
                 //Set Storage Type

@@ -83,11 +83,13 @@ public class PublicICLookupCls
             var lcQuery = @"RSP_IC_GET_INVENTORY_REQ_LIST";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
-            loDb.R_AddCommandParameter(loCmd,"@CCOMPANY_ID", DbType.String, 90, poParameter.CCOMPANY_ID);
-            loDb.R_AddCommandParameter(loCmd,"@CUSER_ID", DbType.String, 90, poParameter.CUSER_ID);
-            loDb.R_AddCommandParameter(loCmd,"@CPROPERTY_ID", DbType.String, 90, poParameter.CPROPERTY_ID);
-            loDb.R_AddCommandParameter(loCmd,"@CDEPT_CODE", DbType.String, 90, poParameter.CDEPT_CODE);
-            loDb.R_AddCommandParameter(loCmd,"@CALLOC_ID", DbType.String, 90, poParameter.CALLOC_ID);
+            loDb.R_AddCommandParameter(loCmd,"@CCOMPANY_ID", DbType.String, 20, poParameter.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd,"@CPROPERTY_ID", DbType.String, 20, poParameter.CPROPERTY_ID);
+            loDb.R_AddCommandParameter(loCmd,"@CDEPT_CODE", DbType.String, 20, poParameter.CDEPT_CODE);
+            loDb.R_AddCommandParameter(loCmd,"@CALLOC_ID", DbType.String, 20, poParameter.CALLOC_ID);
+            loDb.R_AddCommandParameter(loCmd,"@CUSER_ID", DbType.String, 20, poParameter.CUSER_ID);
+            loDb.R_AddCommandParameter(loCmd,"@CTRANS_CODE", DbType.String, 8, poParameter.CTRANS_CODE);
+            loDb.R_AddCommandParameter(loCmd,"@CTRANS_STATUS", DbType.String, 10,"30");
 
             //Debug Logs
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()

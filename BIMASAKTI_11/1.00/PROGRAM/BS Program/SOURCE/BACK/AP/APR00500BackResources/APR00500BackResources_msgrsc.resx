@@ -50,7 +50,7 @@
     
     <!-- REF_DATE -->
     <data name="REF_DATE" xml:space="preserve">
-        <value>Reference Date</value><comment>Reference Date</comment>
+        <value>Ref. Date</value><comment>Ref. Date</comment>
     </data>
     
     <!-- SUPPLIER -->
@@ -81,6 +81,11 @@
     <!-- CURRENCY -->
     <data name="CURRENCY" xml:space="preserve">
         <value>Currency</value><comment>Currency</comment>
+    </data>
+    
+    <!-- CURR. -->
+    <data name="CURR" xml:space="preserve">
+        <value>Curr.</value><comment>Curr.</comment>
     </data>
     
     <!-- TOTAL_AMT -->

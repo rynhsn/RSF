@@ -42,8 +42,8 @@
                 R_ServiceDelete="@Grid_ServiceDeleteUnitView"
                 R_ServiceGetListRecord="@Grid_R_ServiceGetUnitViewListRecord">
             <R_GridColumns>
-                <R_GridTextColumn FieldName=@nameof(GSM02504DTO.CUNIT_VIEW_ID) Width="100px" HeaderText="@_localizer["_ViewId"]" R_EnableAdd></R_GridTextColumn>
-                <R_GridTextColumn FieldName=@nameof(GSM02504DTO.CUNIT_VIEW_NAME) Width="250px" HeaderText="@_localizer["_ViewName"]" R_EnableAdd R_EnableEdit></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM02504DTO.CUNIT_VIEW_ID) Width="100px" HeaderText="@_localizer["_ViewId"]" MaxLength="20" R_EnableAdd></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM02504DTO.CUNIT_VIEW_NAME) Width="250px" HeaderText="@_localizer["_ViewName"]" MaxLength="200" R_EnableAdd R_EnableEdit></R_GridTextColumn>
                 <R_GridTextColumn FieldName=@nameof(GSM02504DTO.CUPDATE_BY) Width="125px" HeaderText="@_localizer["_UpdatedBy"]"></R_GridTextColumn>
                 <R_GridDateTimePickerColumn FieldName=@nameof(GSM02504DTO.DUPDATE_DATE) Width="200px" HeaderText="@_localizer["_UpdatedDate"]"></R_GridDateTimePickerColumn>
                 <R_GridTextColumn FieldName=@nameof(GSM02504DTO.CCREATE_BY) Width="125px" HeaderText="@_localizer["_CreatedBy"]"></R_GridTextColumn>

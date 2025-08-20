@@ -87,6 +87,15 @@ namespace PMR03000FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Distribute.
+        /// </summary>
+        internal static string Distribute {
+            get {
+                return ResourceManager.GetString("Distribute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to From Customer.
         /// </summary>
         internal static string FromCustomer {
@@ -150,11 +159,11 @@ namespace PMR03000FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Send Email.
+        ///   Looks up a localized string similar to Distribute Billing Statement has Successfully..
         /// </summary>
-        internal static string SendEmail {
+        internal static string SuccessDistribute {
             get {
-                return ResourceManager.GetString("SendEmail", resourceCulture);
+                return ResourceManager.GetString("SuccessDistribute", resourceCulture);
             }
         }
         

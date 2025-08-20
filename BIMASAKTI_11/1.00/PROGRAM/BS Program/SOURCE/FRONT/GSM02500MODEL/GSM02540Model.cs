@@ -96,6 +96,43 @@ namespace GSM02500MODEL
             }
         }
 
+        public IAsyncEnumerable<GetPropertyTypeDTO> GetPropertyTypeList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<GetPropertyTypeResultDTO> GetPropertyTypeListStreamAsync()
+        {
+            {
+                R_Exception loEx = new R_Exception();
+                List<GetPropertyTypeDTO> loResult = null;
+                GetPropertyTypeResultDTO loRtn = new GetPropertyTypeResultDTO();
+
+                try
+                {
+                    R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                    loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GetPropertyTypeDTO>(
+                        _RequestServiceEndPoint,
+                        nameof(IGSM02540.GetPropertyTypeList),
+                        DEFAULT_MODULE,
+                        _SendWithContext,
+                        _SendWithToken);
+
+                    loRtn.Data = loResult;
+                }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
+
+            EndBlock:
+                loEx.ThrowExceptionIfErrors();
+
+                return loRtn;
+            }
+        }
+
         public GSM02500ActiveInactiveResultDTO RSP_GS_ACTIVE_INACTIVE_OTHER_UNIT_TYPEMethod(GSM02500ActiveInactiveParameterDTO poParam)
         {
             throw new NotImplementedException();

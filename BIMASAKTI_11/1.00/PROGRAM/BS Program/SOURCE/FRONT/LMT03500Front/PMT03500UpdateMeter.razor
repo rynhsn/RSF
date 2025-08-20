@@ -262,6 +262,7 @@
             <R_Detail R_Before_Open_Detail="BeforeOpenAddMeterNo" Enabled="@(_viewModel.Header.CUNIT_ID is not (null or ""))">@_localizer["LBL_ADD"] @_localizer["LBL_METERNO"]</R_Detail>
             <R_Popup R_Before_Open_Popup="BeforeOpenUpdate" R_After_Open_Popup="AfterOpenUpdate" Enabled="@(_viewModel.GridList.Count > 0)">@_localizer["LBL_UPDATE"] @_localizer["LBL_METERNO"]</R_Popup>
             <R_Popup R_Before_Open_Popup="BeforeOpenChange" R_After_Open_Popup="AfterOpenChange" Enabled="@(_viewModel.GridList.Count > 0)">@_localizer["LBL_CHANGE"] @_localizer["LBL_METERNO"]</R_Popup>
+            <R_Button OnClick="OnClickClose" Enabled="@(_gridRef.HasData)">@_localizer["LBL_CLOSE"] @_localizer["LBL_METERNO"]</R_Button>
         </R_StackLayout>
     </R_ItemLayout>
 </R_GroupBox>

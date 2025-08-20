@@ -16,14 +16,13 @@ namespace Lookup_GSModel.ViewModel
         private PublicLookupRecordModel _modelRecord = new PublicLookupRecordModel();
 
         public ObservableCollection<GSL03600DTO> CompanyGrid = new ObservableCollection<GSL03600DTO>();
-        public GSL03600ParameterDTO CompanyParameter = new GSL03600ParameterDTO();
         public async Task GetCompanyList()
         {
             var loEx = new R_Exception();
 
             try
             {
-                var loResult = await _model.GSL03600GetCompanyListAsync(CompanyParameter);
+                var loResult = await _model.GSL03600GetCompanyListAsync();
 
                 CompanyGrid = new ObservableCollection<GSL03600DTO>(loResult);
             }

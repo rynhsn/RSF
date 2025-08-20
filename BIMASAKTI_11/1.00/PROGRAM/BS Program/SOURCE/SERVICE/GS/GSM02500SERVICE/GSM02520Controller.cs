@@ -23,7 +23,7 @@ namespace GSM02500SERVICE
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class GSM02520Controller : ControllerBase, IGSM02520
+    public class GSM02520Controller : ControllerBase, GSM02500BACK.IGSM02520
     {
         private LoggerGSM02520 _logger;
         private readonly ActivitySource _activitySource;
@@ -37,13 +37,16 @@ namespace GSM02500SERVICE
         [HttpPost]
         public IAsyncEnumerable<GSM02520DTO> GetFloorList()
         {
+            return GetFloorStream();
+        }
+        private async IAsyncEnumerable<GSM02520DTO> GetFloorStream()
+        {
             using Activity activity = _activitySource.StartActivity("GetFloorList");
             _logger.LogInfo("Start || GetFloorList(Controller)");
             R_Exception loException = new R_Exception();
-            IAsyncEnumerable<GSM02520DTO> loRtn = null;
+            List<GSM02520DTO> loRtn = null;
             GetFloorListParameterDTO loParam = new GetFloorListParameterDTO();
             GSM02520Cls loCls = new GSM02520Cls();
-            List<GSM02520DTO> loTempRtn = null;
 
             try
             {
@@ -54,10 +57,7 @@ namespace GSM02500SERVICE
                 loParam.CLOGIN_USER_ID = R_BackGlobalVar.USER_ID;
 
                 _logger.LogInfo("Run GetFloorList(Cls) || GetFloorList(Controller)");
-                loTempRtn = loCls.GetFloorList(loParam);
-
-                _logger.LogInfo("Run GetFloorStream(Controller) || GetFloorList(Controller)");
-                loRtn = GetFloorStream(loTempRtn);
+                loRtn = await loCls.GetFloorList(loParam);
             }
             catch (Exception ex)
             {
@@ -67,18 +67,15 @@ namespace GSM02500SERVICE
 
             loException.ThrowExceptionIfErrors();
             _logger.LogInfo("End || GetFloorList(Controller)");
-            return loRtn;
-        }
-        private async IAsyncEnumerable<GSM02520DTO> GetFloorStream(List<GSM02520DTO> poParameter)
-        {
-            foreach (GSM02520DTO item in poParameter)
+
+            foreach (GSM02520DTO item in loRtn)
             {
                 yield return item;
             }
         }
 
         [HttpPost]
-        public TemplateFloorDTO DownloadTemplateFloor()
+        public async Task<TemplateFloorDTO> DownloadTemplateFloor()
         {
             using Activity activity = _activitySource.StartActivity("DownloadTemplateFloor");
             _logger.LogInfo("Start || DownloadTemplateFloor(Controller)");
@@ -87,6 +84,7 @@ namespace GSM02500SERVICE
 
             try
             {
+                await Task.CompletedTask;
                 _logger.LogInfo("Read File || DownloadTemplateFloor(Controller)");
                 var loAsm = Assembly.Load("BIMASAKTI_GS_API");
                 var lcResourceFile = "BIMASAKTI_GS_API.Template.Floor.xlsx";
@@ -112,7 +110,7 @@ namespace GSM02500SERVICE
         }
 
         [HttpPost]
-        public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<GSM02520ParameterDTO> poParameter)
+        public async Task<R_ServiceDeleteResultDTO> R_ServiceDelete(R_ServiceDeleteParameterDTO<GSM02520ParameterDTO> poParameter)
         {
             using Activity activity = _activitySource.StartActivity("R_ServiceDelete");
             _logger.LogInfo("Start || R_ServiceDelete(Controller)");
@@ -123,15 +121,12 @@ namespace GSM02500SERVICE
             try
             {
                 _logger.LogInfo("Set Parameter || R_ServiceDelete(Controller)");
-                //loParam.Data = poParameter.Entity;
                 poParameter.Entity.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                //loParam.CPROPERTY_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02520_PROPERTY_ID_CONTEXT);
-                //loParam.CBUILDING_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02520_BUILDING_ID_CONTEXT);
                 poParameter.Entity.CLOGIN_USER_ID = R_BackGlobalVar.USER_ID;
                 poParameter.Entity.CACTION = "DELETE";
 
                 _logger.LogInfo("Run R_Delete(Cls) || R_ServiceDelete(Controller)");
-                loCls.R_Delete(poParameter.Entity);
+                await loCls.R_DeleteAsync(poParameter.Entity);
             }
             catch (Exception ex)
             {
@@ -145,7 +140,7 @@ namespace GSM02500SERVICE
         }
 
         [HttpPost]
-        public R_ServiceGetRecordResultDTO<GSM02520ParameterDTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GSM02520ParameterDTO> poParameter)
+        public async Task<R_ServiceGetRecordResultDTO<GSM02520ParameterDTO>> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GSM02520ParameterDTO> poParameter)
         {
             using Activity activity = _activitySource.StartActivity("R_ServiceGetRecord");
             _logger.LogInfo("Start || R_ServiceGetRecord(Controller)");
@@ -157,13 +152,10 @@ namespace GSM02500SERVICE
                 _logger.LogInfo("Set Parameter || R_ServiceGetRecord(Controller)");
                 GSM02520Cls loCls = new GSM02520Cls();
 
-                //loParam.Data = poParameter.Entity;
                 poParameter.Entity.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                //loParam.CPROPERTY_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02520_PROPERTY_ID_CONTEXT);
-                //loParam.CBUILDING_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02520_BUILDING_ID_CONTEXT);
 
                 _logger.LogInfo("Run R_GetRecord(Cls) || R_ServiceGetRecord(Controller)");
-                loRtn.data = loCls.R_GetRecord(poParameter.Entity);
+                loRtn.data = await loCls.R_GetRecordAsync(poParameter.Entity);
             }
             catch (Exception ex)
             {
@@ -177,7 +169,7 @@ namespace GSM02500SERVICE
         }
 
         [HttpPost]
-        public R_ServiceSaveResultDTO<GSM02520ParameterDTO> R_ServiceSave(R_ServiceSaveParameterDTO<GSM02520ParameterDTO> poParameter)
+        public async Task<R_ServiceSaveResultDTO<GSM02520ParameterDTO>> R_ServiceSave(R_ServiceSaveParameterDTO<GSM02520ParameterDTO> poParameter)
         {
             using Activity activity = _activitySource.StartActivity("R_ServiceSave");
             _logger.LogInfo("Start || R_ServiceSave(Controller)");
@@ -188,10 +180,7 @@ namespace GSM02500SERVICE
             try
             {
                 _logger.LogInfo("Set Parameter || R_ServiceSave(Controller)");
-                //loParam.Data = poParameter.Entity;
                 poParameter.Entity.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                //loParam.CPROPERTY_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02520_PROPERTY_ID_CONTEXT);
-                //loParam.CBUILDING_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02520_BUILDING_ID_CONTEXT);
                 poParameter.Entity.CLOGIN_USER_ID = R_BackGlobalVar.USER_ID;
 
                 _logger.LogInfo("Set Action Based On Mode || R_ServiceSave(Controller)");
@@ -205,7 +194,7 @@ namespace GSM02500SERVICE
                 }
 
                 _logger.LogInfo("Run R_Save(Cls) || R_ServiceSave(Controller)");
-                loRtn.data = loCls.R_Save(poParameter.Entity, poParameter.CRUDMode);
+                loRtn.data = await loCls.R_SaveAsync(poParameter.Entity, poParameter.CRUDMode);
             }
             catch (Exception ex)
             {
@@ -219,7 +208,7 @@ namespace GSM02500SERVICE
         }
 
         [HttpPost]
-        public GSM02500ActiveInactiveResultDTO RSP_GS_ACTIVE_INACTIVE_FLOORMethod(GSM02500ActiveInactiveParameterDTO poParam)
+        public async Task<GSM02500ActiveInactiveResultDTO> RSP_GS_ACTIVE_INACTIVE_FLOORMethod(GSM02500ActiveInactiveParameterDTO poParam)
         {
             using Activity activity = _activitySource.StartActivity("RSP_GS_ACTIVE_INACTIVE_FLOORMethod");
             _logger.LogInfo("Start || RSP_GS_ACTIVE_INACTIVE_FLOORMethod(Controller)");
@@ -231,14 +220,10 @@ namespace GSM02500SERVICE
             {
                 _logger.LogInfo("Set Parameter || RSP_GS_ACTIVE_INACTIVE_FLOORMethod(Controller)");
                 poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                //loParam.CPROPERTY_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02520_PROPERTY_ID_CONTEXT);
-                //loParam.CBUILDING_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02520_BUILDING_ID_CONTEXT);
-                //loParam.CFLOOR_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02520_FLOOR_ID_CONTEXT);
-                //loParam.LACTIVE = R_Utility.R_GetContext<bool>(ContextConstant.GSM02520_LACTIVE_CONTEXT);
                 poParam.CUSER_ID = R_BackGlobalVar.USER_ID;
 
                 _logger.LogInfo("RSP_GS_ACTIVE_INACTIVE_FLOORMethod(Cls) || RSP_GS_ACTIVE_INACTIVE_FLOORMethod(Controller)");
-                loCls.RSP_GS_ACTIVE_INACTIVE_FLOORMethod(poParam);
+                await loCls.RSP_GS_ACTIVE_INACTIVE_FLOORMethod(poParam);
             }
             catch (Exception ex)
             {

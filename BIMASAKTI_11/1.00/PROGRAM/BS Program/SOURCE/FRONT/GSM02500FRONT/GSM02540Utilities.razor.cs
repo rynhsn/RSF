@@ -128,9 +128,11 @@ namespace GSM02500FRONT
             {
                 loLabel = _localizer["_Capacity(Electricity)"];
                 loUtilitiesLabel = _localizer["_Activate"];
-                loUtilitiesViewModel.loTabParameter = (TabParameterDTO)poParameter;
+                var loParam = (TabParameterDTO)poParameter;
+                loUtilitiesViewModel.loTabParameter = loParam;
 
-                //loUtilitiesViewModel.loTabParameter.CSELECTED_OTHER_UNIT_ID = loUtilitiesViewModel.loUploadUnitUtilityParameter.OtherUnitData.COTHER_UNIT_ID;
+                loUtilitiesViewModel.SelectedProperty.CPROPERTY_ID = loParam.CSELECTED_PROPERTY_ID;
+                await loUtilitiesViewModel.GetSelectedPropertyAsync();
 
                 await loUtilitiesViewModel.GetSelectedOtherUnitAsync();
                 if (loUtilitiesViewModel.SelectedOtherUnit != null)
@@ -179,6 +181,7 @@ namespace GSM02500FRONT
         {
             eventArgs.Parameter = new UploadUnitUtilityParameterDTO()
             {
+                PropertyData = loUtilitiesViewModel.SelectedProperty,
                 OtherUnitData = loUtilitiesViewModel.SelectedOtherUnit,
                 SelectedUtilityTypeId = loUtilitiesViewModel.loUtilityType.CCODE
             };

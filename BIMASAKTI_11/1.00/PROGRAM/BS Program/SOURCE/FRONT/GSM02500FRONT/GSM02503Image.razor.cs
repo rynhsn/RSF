@@ -7,6 +7,7 @@ using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
+using R_BlazorFrontEnd.Helpers;
 using R_BlazorFrontEnd.Interfaces;
 using R_CommonFrontBackAPI;
 using System;
@@ -37,7 +38,7 @@ namespace GSM02500FRONT
 
             try
             {
-                loParameter = (ImageTabParameterDTO)poParameter;
+                loParameter = R_FrontUtility.ConvertObjectToObject<ImageTabParameterDTO>(poParameter);
 
                 loImageViewModel.SelectedProperty.CPROPERTY_ID = loParameter.CSELECTED_PROPERTY_ID;
                 loImageViewModel.SelectedUnitType.CUNIT_TYPE_ID = loParameter.CSELECTED_UNIT_TYPE_ID;

@@ -45,7 +45,7 @@ namespace ICB00100Model
                     _SendWithContext,
                     _SendWithToken);
             }
-            catch (Exception ex)
+            catch (R_Exception ex)
             {
                 loEx.Add(ex);
             }
@@ -73,7 +73,7 @@ namespace ICB00100Model
                     _SendWithToken,
                     null);
             }
-            catch (Exception ex)
+            catch (R_Exception ex)
             {
                 loEx.Add(ex);
             }
@@ -99,7 +99,7 @@ namespace ICB00100Model
                     _SendWithContext,
                     _SendWithToken);
             }
-            catch (Exception ex)
+            catch (R_Exception ex)
             {
                 loEx.Add(ex);
             }
@@ -156,7 +156,7 @@ namespace ICB00100Model
             throw new NotImplementedException();
         }
 
-        public IAsyncEnumerable<ICB00100ValidateSoftCloseDTO> ICB00100ValidateSoftPeriod()
+        public ICB00100ListDTO<ICB00100ValidateSoftCloseDTO> ICB00100ValidateSoftPeriod()
         {
             throw new NotImplementedException();
         }

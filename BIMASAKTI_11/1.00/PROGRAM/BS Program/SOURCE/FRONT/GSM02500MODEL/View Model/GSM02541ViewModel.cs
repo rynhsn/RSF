@@ -89,7 +89,7 @@ namespace GSM02500MODEL.View_Model
                 {
                     CSELECTED_PROPERTY_ID = SelectedProperty.CPROPERTY_ID
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02500_PROPERTY_ID_CONTEXT, loTabParameter.CSELECTED_PROPERTY_ID);
+                
                 loCUOM = await loSharedModel.GetCUOMFromPropertyAsync(loParam);
             }
             catch (Exception ex)
@@ -174,7 +174,7 @@ namespace GSM02500MODEL.View_Model
                 {
                     Data = SelectedProperty
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02500_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
+                
                 SelectedProperty = await loSharedModel.GetSelectedPropertyAsync(loParam);
             }
             catch (Exception ex)
@@ -262,7 +262,6 @@ namespace GSM02500MODEL.View_Model
                     Data = poEntity,
                     CSELECTED_PROPERTY_ID = SelectedProperty.CPROPERTY_ID
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02540_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
                 loResult = await loModel.R_ServiceGetRecordAsync(loParam);
 
                 loOtherUnitDetail = loResult.Data;
@@ -288,7 +287,6 @@ namespace GSM02500MODEL.View_Model
                     Data = poEntity,
                     CSELECTED_PROPERTY_ID = SelectedProperty.CPROPERTY_ID
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02540_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
 
                 if (string.IsNullOrWhiteSpace(loParam.Data.CFLOOR_ID))
                 {
@@ -331,7 +329,6 @@ namespace GSM02500MODEL.View_Model
                     Data = poEntity,
                     CSELECTED_PROPERTY_ID = SelectedProperty.CPROPERTY_ID
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02540_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
                 await loModel.R_ServiceDeleteAsync(loParam);
             }
             catch (Exception ex)
@@ -354,9 +351,6 @@ namespace GSM02500MODEL.View_Model
                     COTHER_UNIT_ID = loOtherUnitDetail.COTHER_UNIT_ID,
                     LACTIVE = SelectedActiveInactiveLACTIVE
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02540_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02540_COTHER_UNIT_ID_CONTEXT, loOtherUnitDetail.COTHER_UNIT_ID);
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02540_LACTIVE_CONTEXT, SelectedActiveInactiveLACTIVE);
 
                 await loModel.RSP_GS_ACTIVE_INACTIVE_OTHER_UNITMethodAsync(loParam);
             }

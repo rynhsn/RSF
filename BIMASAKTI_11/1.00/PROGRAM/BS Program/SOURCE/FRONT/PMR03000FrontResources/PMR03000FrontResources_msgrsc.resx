@@ -77,10 +77,10 @@
         <comment>Save</comment>
     </data>
     <!-- Send Email -->
-    <data name="SendEmail" xml:space="preserve">
-        <value>Send Email</value>
-        <comment>Send Email</comment>
-    </data>
+    <!-- <data name="SendEmail" xml:space="preserve"> -->
+    <!--     <value>Send Email</value> -->
+    <!--     <comment>Send Email</comment> -->
+    <!-- </data> -->
 
     <data name="ConfirmSendEmail" xml:space="preserve">
         <value>Are you sure want to Send Email?</value>
@@ -91,5 +91,16 @@
     <data name="Confirmation" xml:space="preserve">
         <value>Confirmation</value>
         <comment>Confirmation</comment>
+    </data>
+    
+    <!-- Distribute -->
+    <data name="Distribute" xml:space="preserve">
+        <value>Distribute</value>
+        <comment>Distribute</comment>
+    </data> 
+    <!-- SuccessDistribute -->
+    <data name="SuccessDistribute" xml:space="preserve">
+        <value>Distribute Billing Statement has Successfully.</value>
+        <comment>Distribute Billing Statement has Successfully.</comment>
     </data>
 </root>

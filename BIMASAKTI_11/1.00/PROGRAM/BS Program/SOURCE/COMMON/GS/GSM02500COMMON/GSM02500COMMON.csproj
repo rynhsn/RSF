@@ -6,6 +6,9 @@
   </PropertyGroup>
 
 	<ItemGroup>
+		<Reference Include="BaseHeaderReportCOMMON">
+			<HintPath>..\..\BaseHeaderReportCOMMON.dll</HintPath>
+		</Reference>
 		<Reference Include="R_APICommonDTO">
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommonDTO.dll</HintPath>
 		</Reference>
@@ -17,5 +20,6 @@
 	<ItemGroup>
 		<Folder Include="DTOs\GSM02501\" />
 		<Folder Include="DTOs\GSM02504\" />
+		<Folder Include="DTOs\GSM02570\" />
 	</ItemGroup>
 </Project>

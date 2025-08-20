@@ -170,5 +170,8 @@
   </data>
   <data name="1518" xml:space="preserve">
     <value> Invalid Charge Mode!</value>
+  </data>  
+  <data name="1519" xml:space="preserve">
+    <value> Ref Date cannot be earlier than Soft Period!</value>
   </data>
 </root>

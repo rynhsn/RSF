@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace GSM02500BACK
 {
-    public class GSM02502Cls : R_BusinessObject<GSM02502ParameterDTO>
+    public class GSM02502Cls : R_BusinessObjectAsync<GSM02502ParameterDTO>
     {
         RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYResources.Resources_Dummy_Class _loRsp = new RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYResources.Resources_Dummy_Class();
 
@@ -29,7 +29,7 @@ namespace GSM02500BACK
             _activitySource = GSM02502ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
-        public List<PropertyTypeDTO> GetPropertyTypeList(PropertyTypeParameterDTO poEntity)
+        public async Task<List<PropertyTypeDTO>> GetPropertyTypeList(PropertyTypeParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GetPropertyTypeList");
             R_Exception loException = new R_Exception();
@@ -41,7 +41,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
 
                 lcQuery = $"EXEC RSP_GS_GET_PROPERTY_TYPE_LIST " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -62,7 +62,7 @@ namespace GSM02500BACK
 
                 _logger.LogDebug("EXEC RSP_GS_GET_PROPERTY_TYPE_LIST {@Parameters} || GetPropertyTypeList(Cls) ", loDbParam);
 
-                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
 
                 loResult = R_Utility.R_ConvertTo<PropertyTypeDTO>(loDataTable).ToList();
             }
@@ -77,7 +77,7 @@ namespace GSM02500BACK
             return loResult;
         }
 
-        public List<GSM02502DTO> GetUnitTypeCategoryList(GetUnitTypeCategoryListDTO poEntity)
+        public async Task<List<GSM02502DTO>> GetUnitTypeCategoryList(GetUnitTypeCategoryListDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GetUnitTypeCategoryList");
             R_Exception loException = new R_Exception();
@@ -89,7 +89,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
 
                 lcQuery = $"EXEC RSP_GS_GET_UNIT_TYPE_CTG_LIST " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -110,7 +110,7 @@ namespace GSM02500BACK
 
                 _logger.LogDebug("EXEC RSP_GS_GET_UNIT_TYPE_CTG_LIST {@Parameters} || GetUnitTypeCategoryList(Cls) ", loDbParam);
 
-                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
 
                 loResult = R_Utility.R_ConvertTo<GSM02502DTO>(loDataTable).ToList();
             }
@@ -125,7 +125,7 @@ namespace GSM02500BACK
             return loResult;
         }
 
-        public void RSP_GS_ACTIVE_INACTIVE_UNIT_TYPE_CATEGORYMethod(GSM02500ActiveInactiveParameterDTO poEntity)
+        public async Task RSP_GS_ACTIVE_INACTIVE_UNIT_TYPE_CATEGORYMethod(GSM02500ActiveInactiveParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("RSP_GS_ACTIVE_INACTIVE_UNIT_TYPE_CATEGORYMethod");
             R_Exception loException = new R_Exception();
@@ -136,7 +136,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
 
                 lcQuery = $"EXEC RSP_GS_ACTIVE_INACTIVE_UNIT_TYPE_CATEGORY " +
                     $"@CCOMPANY_ID, " +
@@ -161,7 +161,7 @@ namespace GSM02500BACK
 
                 _logger.LogDebug("EXEC RSP_GS_ACTIVE_INACTIVE_UNIT_TYPE_CATEGORY {@Parameters} || RSP_GS_ACTIVE_INACTIVE_UNIT_TYPE_CATEGORYMethod(Cls) ", loDbParam);
 
-                loDb.SqlExecNonQuery(loConn, loCmd, true);
+                await loDb.SqlExecNonQueryAsync(loConn, loCmd, true);
 
             }
             catch (Exception ex)
@@ -174,7 +174,7 @@ namespace GSM02500BACK
             loException.ThrowExceptionIfErrors();
         }
 
-        private void RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYMethod(GSM02502ParameterDTO poEntity)
+        private async Task RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYMethod(GSM02502ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYMethod");
             R_Exception loException = new R_Exception();
@@ -185,7 +185,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
                 loCmd = loDb.GetCommand(); 
 
                 lcQuery = $"EXEC RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORY " +
@@ -198,20 +198,22 @@ namespace GSM02500BACK
                                  $"@CDESCRIPTION, " +
                                  $"@LACTIVE, " +
                                  $"@CACTION, " +
-                                 $"@CUSER_LOGIN_ID";
+                                 $"@CUSER_LOGIN_ID, " +
+                                 $"@CDEPT_CODE";
 
                 loCmd.CommandText = lcQuery;
 
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CLOGIN_COMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CUNIT_TYPE_CATEGORY_ID", DbType.String, 50, poEntity.Data.CUNIT_TYPE_CATEGORY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CUNIT_TYPE_CATEGORY_NAME", DbType.String, 50, poEntity.Data.CUNIT_TYPE_CATEGORY_NAME);
-                loDb.R_AddCommandParameter(loCmd, "@CDESCRIPTION", DbType.String, 50, poEntity.Data.CDESCRIPTION);
-                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_TYPE", DbType.String, 50, poEntity.Data.CPROPERTY_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 20, poEntity.CLOGIN_COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poEntity.CPROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUNIT_TYPE_CATEGORY_ID", DbType.String, 20, poEntity.Data.CUNIT_TYPE_CATEGORY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUNIT_TYPE_CATEGORY_NAME", DbType.String, 200, poEntity.Data.CUNIT_TYPE_CATEGORY_NAME);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_TYPE", DbType.String, 2, poEntity.Data.CPROPERTY_TYPE);
                 loDb.R_AddCommandParameter(loCmd, "@IINVITATION_INVOICE_PERIOD", DbType.Int32, 50, poEntity.Data.IINVITATION_INVOICE_PERIOD);
+                loDb.R_AddCommandParameter(loCmd, "@CDESCRIPTION", DbType.String, int.MaxValue, poEntity.Data.CDESCRIPTION);
                 loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, 10, poEntity.Data.LACTIVE);
-                loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 50, poEntity.CACTION);
-                loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 50, poEntity.CUSER_LOGIN_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, poEntity.CACTION);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 20, poEntity.CUSER_LOGIN_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 20, poEntity.Data.CDEPT_CODE);
 
 
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
@@ -225,7 +227,7 @@ namespace GSM02500BACK
 
                 try
                 {
-                    loDb.SqlExecNonQuery(loConn, loCmd, false);
+                    await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
                 }
                 catch (Exception ex)
                 {
@@ -258,14 +260,14 @@ namespace GSM02500BACK
             loException.ThrowExceptionIfErrors();
         }
 
-        protected override void R_Deleting(GSM02502ParameterDTO poEntity)
+        protected override async Task R_DeletingAsync(GSM02502ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("R_Deleting");
             R_Exception loException = new R_Exception();
 
             try
             {
-                RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYMethod(poEntity);
+                await RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYMethod(poEntity);
             }
             catch (Exception ex)
             {
@@ -276,7 +278,7 @@ namespace GSM02500BACK
             loException.ThrowExceptionIfErrors();
         }
 
-        protected override GSM02502ParameterDTO R_Display(GSM02502ParameterDTO poEntity)
+        protected override async Task<GSM02502ParameterDTO> R_DisplayAsync(GSM02502ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("R_Display");
             R_Exception loException = new R_Exception();
@@ -288,12 +290,13 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
 
                 lcQuery = $"EXEC RSP_GS_GET_UNIT_TYPE_CTG_DETAIL " +
                     $"@CLOGIN_COMPANY_ID, " +
                     $"@CPROPERTY_ID, " +
-                    $"@CUNIT_TYPE_CATEGORY_ID";
+                    $"@CUNIT_TYPE_CATEGORY_ID, " +
+                    $"@CUSER_ID";
 
                 loCmd = loDb.GetCommand();
                 loCmd.CommandText = lcQuery;
@@ -301,6 +304,7 @@ namespace GSM02500BACK
                 loDb.R_AddCommandParameter(loCmd, "@CLOGIN_COMPANY_ID", DbType.String, 50, poEntity.CLOGIN_COMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUNIT_TYPE_CATEGORY_ID", DbType.String, 50, poEntity.Data.CUNIT_TYPE_CATEGORY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
 
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                     .Where(x =>
@@ -309,7 +313,7 @@ namespace GSM02500BACK
 
                 _logger.LogDebug("EXEC RSP_GS_GET_UNIT_TYPE_CTG_DETAIL {@Parameters} || R_Display(Cls) ", loDbParam);
 
-                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
 
                 loResult.Data = R_Utility.R_ConvertTo<GSM02502DetailDTO>(loDataTable).FirstOrDefault();
             }
@@ -324,14 +328,14 @@ namespace GSM02500BACK
             return loResult;
         }
 
-        protected override void R_Saving(GSM02502ParameterDTO poNewEntity, eCRUDMode poCRUDMode)
+        protected override async Task R_SavingAsync(GSM02502ParameterDTO poNewEntity, eCRUDMode poCRUDMode)
         {
             using Activity activity = _activitySource.StartActivity("R_Saving");
             R_Exception loException = new R_Exception();
 
             try
             {
-                RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYMethod(poNewEntity);
+               await RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYMethod(poNewEntity);
             }
             catch (Exception ex)
             {

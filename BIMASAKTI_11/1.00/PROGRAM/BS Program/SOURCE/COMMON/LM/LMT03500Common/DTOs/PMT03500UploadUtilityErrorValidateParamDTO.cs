@@ -21,8 +21,8 @@ namespace PMT03500Common.DTOs
         public decimal BlockIEnd { get; set; }
         public decimal BlockIIEnd { get; set; }
         public decimal BebanBersama { get; set; }
-        public int MeterStart { get; set; }
-        public int MeterEnd { get; set; }
+        public decimal MeterStart { get; set; }
+        public decimal MeterEnd { get; set; }
     }
 
     public class PMT03500UploadUtilityExcelECDTO
@@ -70,8 +70,8 @@ namespace PMT03500Common.DTOs
         public string UtilityPeriod { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
-        public int MeterStart { get; set; }
-        public int MeterEnd { get; set; }
+        public decimal MeterStart { get; set; }
+        public decimal MeterEnd { get; set; }
         public string Valid { get; set; }
         public string Notes { get; set; }
     }

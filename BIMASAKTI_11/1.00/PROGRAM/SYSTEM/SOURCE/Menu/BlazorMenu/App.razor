@@ -1,5 +1,11 @@
-﻿@using System.Reflection
-@using R_BlazorFrontEnd.Tenant;
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
+@using System.Reflection
+@using R_BlazorFrontEnd.Controls.Enums
+@using R_BlazorFrontEnd.Controls.Interfaces
+@using R_BlazorFrontEnd.Helpers
+@inject LazyAssemblyLoader AssemblyLoader
 
 <R_BasicRouter AppAssembly="@typeof(Program).Assembly"
                AdditionalAssemblies="@lazyLoadedAssemblies">
@@ -23,7 +29,7 @@
     private List<Assembly> lazyLoadedAssemblies = new()
     {
         typeof(BlazorMenu.Components.Pages.Content.Home).Assembly,
-
+        
         typeof(APR00100FRONT.APR00100).Assembly,
         typeof(APR00300Front.APR00300).Assembly,
         typeof(APR00500Front.APR00500).Assembly,
@@ -80,6 +86,6 @@
         typeof(ICT00900FRONT.ICT00900).Assembly,
         typeof(GST00500Front.GST00500).Assembly,
         #endregion
-
     };
+
 }

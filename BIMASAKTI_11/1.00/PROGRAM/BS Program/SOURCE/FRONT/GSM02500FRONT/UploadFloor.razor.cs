@@ -231,6 +231,39 @@ namespace GSM02500FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
+        #region RowRender
+
+        private void R_RowRenderFloor(R_GridRowRenderEventArgs eventArgs)
+        {
+            var loData = (UploadFloorDTO)eventArgs.Data;
+
+            if (loData.Valid == "N")
+            {
+                eventArgs.RowClass = "errorDataLValidIsFalse";//"errorDataLValidisFalse";
+            }
+        }
+
+        private void R_RowRenderUnit(R_GridRowRenderEventArgs eventArgs)
+        {
+            var loData = (UploadUnitDTO)eventArgs.Data;
+
+            if (loData.Valid == "N")
+            {
+                eventArgs.RowClass = "errorDataLValidIsFalse";//"errorDataLValidisFalse";
+            }
+        }
+
+        private void R_RowRenderUtility(R_GridRowRenderEventArgs eventArgs)
+        {
+            var loData = (UploadUnitUtilityDTO)eventArgs.Data;
+
+            if (loData.Valid == "N")
+            {
+                eventArgs.RowClass = "errorDataLValidIsFalse";//"errorDataLValidisFalse";
+            }
+        }
+        #endregion
+
         private async Task OnActiveTabIndexChanged(R_TabStripTab eventArgs)
         {
             if (eventArgs.Id == "Floor")
@@ -393,19 +426,6 @@ namespace GSM02500FRONT
             }
             loEx.ThrowExceptionIfErrors();
         }
-        /*
-                private void R_RowRender(R_GridRowRenderEventArgs eventArgs)
-                {
-                    var loData = (UploadFloorDTO)eventArgs.Data;
-
-                    if (loData.Var_Exists)
-                    {
-                        eventArgs.RowStyle = new R_GridRowRenderStyle
-                        {
-                            FontColor = "red"
-                        };
-                    }
-                }*/
 
         private async Task OnSaveToExcel()
         {

@@ -64,7 +64,7 @@ namespace GSM02500MODEL.View_Model
                 {
                     Data = SelectedProperty
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02500_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
+                
                 SelectedProperty = await loSharedModel.GetSelectedPropertyAsync(loParam);
             }
             catch (Exception ex)
@@ -120,7 +120,6 @@ namespace GSM02500MODEL.View_Model
                     Data = poEntity,
                     CSELECTED_PROPERTY_ID = SelectedProperty.CPROPERTY_ID
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02550_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
                 loResult = await loModel.R_ServiceGetRecordAsync(loParam);
 
                 loUserPropertyDetail = loResult.Data;
@@ -146,7 +145,6 @@ namespace GSM02500MODEL.View_Model
                     Data = poEntity,
                     CSELECTED_PROPERTY_ID = SelectedProperty.CPROPERTY_ID
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02550_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
 
                 loResult = await loModel.R_ServiceSaveAsync(loParam, peCRUDMode);
 
@@ -172,7 +170,6 @@ namespace GSM02500MODEL.View_Model
                     Data = poEntity,
                     CSELECTED_PROPERTY_ID = SelectedProperty.CPROPERTY_ID
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02550_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
                 await loModel.R_ServiceDeleteAsync(loParam);
             }
             catch (Exception ex)

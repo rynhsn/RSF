@@ -94,25 +94,29 @@
                     <R_GridDatePickerColumn Width="200px"
                                             FieldName="@nameof(LML00900FrontDTO.DREF_DATE)"
                                             HeaderText=@_localizer["_refDate"] />
+                    <R_GridTextColumn Width="150px"
+                                      FieldName="@nameof(LML00900FrontDTO.CCURRENCY_CODE)"
+                                      HeaderText=@_localizer["_curr"] />
+                    <R_GridNumericColumn Width="250px"
+                                         FieldName="@nameof(LML00900FrontDTO.NTRANS_AMOUNT)"
+                                         TValue="decimal"
+                                         HeaderText=@_localizer["_transAmount"] />
+                    <R_GridNumericColumn Width="250px"
+                                         FieldName="@nameof(LML00900FrontDTO.NTOTAL_REMAINING)"
+                                         TValue="decimal"
+                                         HeaderText=@_localizer["_remainingAmount"] />
+                    <R_GridDatePickerColumn Width="200px"
+                                            FieldName="@nameof(LML00900FrontDTO.DDUE_DATE)"
+                                            HeaderText=@_localizer["_dueDate"] />
+                    <R_GridTextColumn Width="250px"
+                                      FieldName="@nameof(LML00900FrontDTO.CTRANS_DESC)"
+                                      HeaderText=@_localizer["_desc"] />
                     <R_GridTextColumn Width="175px"
                                       FieldName="@nameof(LML00900FrontDTO.CDOC_NO)"
                                       HeaderText=@_localizer["_docNo"] />
                     <R_GridDatePickerColumn Width="200px"
                                             FieldName="@nameof(LML00900FrontDTO.DDOC_DATE)"
                                             HeaderText=@_localizer["_docDate"] />
-                    <R_GridDatePickerColumn Width="200px"
-                                            FieldName="@nameof(LML00900FrontDTO.DDUE_DATE)"
-                                            HeaderText=@_localizer["_dueDate"] />
-                    <R_GridTextColumn Width="150px"
-                                      FieldName="@nameof(LML00900FrontDTO.CCURRENCY_CODE)"
-                                      HeaderText=@_localizer["_curr"] />
-                    <R_GridNumericColumn Width="250px"
-                                         FieldName="@nameof(LML00900FrontDTO.NTOTAL_REMAINING)"
-                                         TValue="decimal"
-                                         HeaderText=@_localizer["_remainingAmount"] />
-                    <R_GridTextColumn Width="250px"
-                                      FieldName="@nameof(LML00900FrontDTO.CTRANS_DESC)"
-                                      HeaderText=@_localizer["_desc"] />
                 </R_GridColumns>
             </R_Grid>
         </R_StackLayout>

@@ -43,21 +43,11 @@ namespace PMT03500Common.DTOs
 
     public class PMT03500RateWGListDTO
     {
-        public string CCOMPANY_ID { get; set; }
-        public string CPROPERTY_ID { get; set; }
-        public string CCHARGES_TYPE { get; set; }
-        public string CCHARGES_ID { get; set; }
         public int IUP_TO_USAGE { get; set; }
-        public string CUSAGE_DESC { get; set; }
         public decimal NUSAGE_CHARGE { get; set; }
-        public decimal NBUY_USAGE_CHARGE { get; set; }
-        public string CCREATE_BY { get; set; }
-        public DateTime DCREATE_DATE { get; set; }
-        public string CUPDATE_BY { get; set; }
-        public DateTime DUPDATE_DATE { get; set; }
 
         public int IMIN_USAGE { get; set; }
-        public decimal NUSAGE { get; set; }
+        public decimal NFROM_TO { get; set; }
         public decimal NSUB_TOTAL_ROW { get; set; }
     }
 

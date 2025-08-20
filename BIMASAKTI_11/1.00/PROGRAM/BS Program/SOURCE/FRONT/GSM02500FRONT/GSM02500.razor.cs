@@ -29,6 +29,8 @@ using BlazorClientHelper;
 using R_BlazorFrontEnd.Controls.Enums;
 using R_LockingFront;
 using Lookup_GSModel.ViewModel;
+using Microsoft.AspNetCore.Components.Forms;
+using R_BlazorFrontEnd.Controls.MessageBox;
 
 namespace GSM02500FRONT
 {
@@ -40,6 +42,9 @@ namespace GSM02500FRONT
         private R_TabStrip _TabStripRef;
 
         private bool IsFirstOpening = true;
+        [Inject] IClientHelper clientHelper { get; set; }
+        private R_eFileSelectAccept[] accepts = { R_eFileSelectAccept.Image };
+        [Inject] private R_IReport _reportService { get; set; }
 
         private TabParameterDTO loTabParameter = new TabParameterDTO();
 
@@ -64,6 +69,8 @@ namespace GSM02500FRONT
         private bool IsBuildingDetailEnabled = true;
 
         private bool IsCRUDMode = true;
+
+        private bool IsErrorEmptyFile = false;
 
         [Inject] IClientHelper _clientHelper { get; set; }
 
@@ -139,6 +146,43 @@ namespace GSM02500FRONT
                 loEx.Add(ex);
             }
 
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task OnChangeInputFile(InputFileChangeEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loByteFile = await R_FrontUtility.ConvertStreamToByteAsync(eventArgs.File.OpenReadStream());
+                string loFile = eventArgs.File.Name;
+
+                loGeneralInfoViewModel.Data.OIMAGE = loByteFile;
+                loGeneralInfoViewModel.Data.CFILE_NAME = Path.GetFileNameWithoutExtension(loFile);
+                loGeneralInfoViewModel.Data.CFILE_EXTENSION = Path.GetExtension(loFile);
+
+                //if (eventArgs.File.Name.Length > 0)
+                //{
+                //    IsFileExist = true;
+                //}
+                //else
+                //{
+                //    IsFileExist = false;
+                //}
+            }
+            catch (Exception ex)
+            {
+                if (IsErrorEmptyFile)
+                {
+                    await R_MessageBox.Show("", "File is Empty", R_eMessageBoxButtonType.OK);
+                }
+                else
+                {
+                    loEx.Add(ex);
+                }
+            }
+        B:
             loEx.ThrowExceptionIfErrors();
         }
 
@@ -634,6 +678,40 @@ namespace GSM02500FRONT
 
         }
 
+        private void PreDockGallery_InstantiateDock(R_InstantiateDockEventArgs eventArgs)
+        {
+            eventArgs.Parameter = new ImageTabParameterDTO()
+            {
+                CSELECTED_PROPERTY_ID = loGeneralInfoViewModel.loPropertyDetail.CPROPERTY_ID,
+                CSELECTED_PROPERTY_NAME = loGeneralInfoViewModel.loPropertyDetail.CPROPERTY_NAME
+            };
+
+            //loGeneralInfoViewModel.loPropertyDetail.CPROPERTY_ID;
+            if (_conductorGeneralInfoRef.R_ConductorMode == R_eConductorMode.Normal && _pagePropertyOnCRUDmode == false)
+            {
+                eventArgs.TargetPageType = typeof(GSM02570);
+            }
+        }
+
+        private void R_AfterOpenGalleryPredefinedDock(R_AfterOpenPredefinedDockEventArgs eventArgs)
+        {
+
+        }
+
+        private void PreDockOperationalHour_InstantiateDock(R_InstantiateDockEventArgs eventArgs)
+        {
+            eventArgs.Parameter = loGeneralInfoViewModel.loPropertyDetail.CPROPERTY_ID;
+            if (_conductorGeneralInfoRef.R_ConductorMode == R_eConductorMode.Normal && _pagePropertyOnCRUDmode == false)
+            {
+                eventArgs.TargetPageType = typeof(GSM02580);
+            }
+        }
+
+        private void R_AfterOpenOperationalHourPredefinedDock(R_AfterOpenPredefinedDockEventArgs eventArgs)
+        {
+
+        }
+
         #endregion
 
         private async Task Grid_AfterAddGeneralInfo(R_AfterAddEventArgs eventArgs)
@@ -664,6 +742,37 @@ namespace GSM02500FRONT
             }
         }
 
+        #region Button Process
+        private async Task OnClickPrintBtn()
+        {
+            R_Exception loEx = new R_Exception();
+            try
+            {
+
+                var loParam = R_FrontUtility.ConvertObjectToObject<GSM02500PrintParamDTO>(_conductorGeneralInfoRef.R_GetCurrentData());
+                loParam.CCOMPANY_ID = clientHelper.CompanyId;
+                loParam.CREPORT_CULTURE = clientHelper.ReportCulture;
+                loParam.CUSER_LOGIN_ID = clientHelper.UserId;
+
+                var loValidate = await R_MessageBox.Show("", _localizer["_NotifPrint"], R_eMessageBoxButtonType.YesNo);
+                if (loValidate == R_eMessageBoxResult.Yes)
+                {
+                    await _reportService.GetReport(
+                    "R_DefaultServiceUrl",
+                    "GS",
+                    "rpt/GSM02500Print/PropertyProfilePost",
+                    "rpt/GSM02500Print/AllStreamPropertyProfileGet",
+                    loParam);
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            await R_DisplayExceptionAsync(loEx);
+        }
+        #endregion
         //private async Task Grid_BeforeEditGeneralInfo(R_BeforeEditEventArgs eventArgs)
         //{
         //    IsBuildingDetailEnabled = false;

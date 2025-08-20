@@ -75,4 +75,7 @@
     <data name="RFRNCE" xml:space="preserve">
         <value>Reference No.</value>
     </data>
+    <data name="CANCEL" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
 </root>

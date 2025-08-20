@@ -103,6 +103,7 @@
             <R_ItemLayout col="2">
                 <R_TextBox @bind-Value="@loUnitInfoViewModel.Data.CUNIT_ID"
                             R_ConductorSource="@_conductorUnitInfoRef"
+                            MaxLength="20"
                             R_EnableAdd="true"
                             R_EnableEdit="false"
                             @ref="@_unitInfoIdRef">
@@ -112,6 +113,7 @@
                 <R_TextBox @bind-Value="@loUnitInfoViewModel.Data.CUNIT_NAME"
                             R_ConductorSource="@_conductorUnitInfoRef"
                             @ref="@_unitInfoNameRef"
+                            MaxLength="200"
                             R_EnableAdd="true"
                             R_EnableEdit="true">
                 </R_TextBox>

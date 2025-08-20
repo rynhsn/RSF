@@ -351,6 +351,14 @@
           }
         }
       },
+      "BaseHeaderReportCOMMON/1.0.0.0": {
+        "runtime": {
+          "BaseHeaderReportCOMMON.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "R_LockingFront/1.0.0.0": {
         "runtime": {
           "R_LockingFront.dll": {
@@ -643,6 +651,11 @@
       "sha512": ""
     },
     "R_ProcessAndUploadFront/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BaseHeaderReportCOMMON/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

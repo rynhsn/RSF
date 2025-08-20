@@ -135,10 +135,10 @@ namespace ICB00100Model.ViewModel
                 R_FrontContext.R_SetStreamingContext(ICB00100ContextConstant.CPERIOD_MONTH, SystemParam.CSOFT_PERIOD_MM);
                 
                 var loResult =
-                    await _model.GetListStreamAsync<ICB00100ValidateSoftCloseDTO>(
+                    await _model.GetAsync<ICB00100ListDTO<ICB00100ValidateSoftCloseDTO>>(
                         nameof(IICB00100.ICB00100ValidateSoftPeriod));
 
-                ValidateSoftCloseList = new ObservableCollection<ICB00100ValidateSoftCloseDTO>(loResult);
+                ValidateSoftCloseList = new ObservableCollection<ICB00100ValidateSoftCloseDTO>(loResult.Data);
                 // convert cref date ke dref date
                 foreach (var loItem in ValidateSoftCloseList)
                 {

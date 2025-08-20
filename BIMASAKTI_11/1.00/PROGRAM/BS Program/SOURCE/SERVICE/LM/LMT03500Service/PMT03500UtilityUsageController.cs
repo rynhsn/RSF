@@ -492,6 +492,7 @@ public class PMT03500UtilityUsageController : ControllerBase, IPMT03500UtilityUs
             loDbParams.CPROPERTY_ID = poParam.CPROPERTY_ID;
             loDbParams.CCHARGES_TYPE = poParam.CCHARGE_TYPE_ID;
             loDbParams.CCHARGES_ID = poParam.CCHARGES_ID;
+            loDbParams.CSTART_DATE = poParam.CSTART_DATE;
 
             _logger.LogInfo("Get Rate WG List");
             loReturn.Data = loCls.GetRateWGList(loDbParams);

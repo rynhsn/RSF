@@ -30,6 +30,7 @@ namespace Lookup_PMCOMMON
         LMLGenericRecord<LML01400DTO> LML01400AgreementUnitCharges(LML01400ParameterDTO poParam);
         LMLGenericRecord<LML01500DTO> LML01500SLACategory(LML01500ParameterDTO poParam);
         LMLGenericRecord<LML01600DTO> LML01600SLACallType(LML01600ParameterDTO poParam);
+        LMLGenericRecord<LML01700DTO> LML01700CancelReceiptFromCustomer(LML01700ParameterDTO poParam);
         LMLGenericRecord<LML01800DTO> LML01800UnitTenant(LML01800ParameterDTO poParam);
         LMLGenericRecord<LML01900DTO> LML01900Staff(LML01900ParamaterDTO poParam);
 

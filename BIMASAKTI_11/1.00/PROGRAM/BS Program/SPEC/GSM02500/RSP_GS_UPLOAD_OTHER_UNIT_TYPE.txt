@@ -4,3 +4,6 @@ EXCESS_OTHER_UNIT_TYPE_NAME	= Other Unit Type Name is bigger than 100 Character
 EMPTY_OTHER_UNIT_TYPE_NAME	= Other Unit Type Name can not be empty
 INVALID_ACTIVE_FLAG		= Invalid Active Flag, Active Flag value is not 1 / 0
 EMPTY_NON_ACTIVE_DATE		= If Active Flag = 0, Non Active Date can not be empty	
+EMPTY_DEPT_CODE			= Department cannot be empty
+INVALID_DEPT_CODE		= invalid Department Code
+INVALID_PROPERTY_TYPE		= invalid Property Type

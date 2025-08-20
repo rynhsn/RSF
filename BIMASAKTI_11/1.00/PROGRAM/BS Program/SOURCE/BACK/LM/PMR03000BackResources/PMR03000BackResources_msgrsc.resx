@@ -100,8 +100,8 @@
   <data name="Label_Parking" xml:space="preserve">
     <value>Parking</value>
   </data>
-  <data name="Label_Pemakaian" xml:space="preserve">
-    <value>Pemakaian</value>
+  <data name="Label_TotalPemakaian" xml:space="preserve">
+    <value>Total Pemakaian</value>
   </data>
   <data name="Label_PembayaranLalu" xml:space="preserve">
     <value>Pembayaran Lalu</value>
@@ -120,6 +120,12 @@
   </data>
   <data name="Label_PenggunaanListrik" xml:space="preserve">
     <value>Penggunaan Listrik</value>
+  </data>
+  <data name="Label_PenggunaanChiller" xml:space="preserve">
+    <value>Penggunaan Chiller</value>
+  </data>
+  <data name="Label_PenggunaanGas" xml:space="preserve">
+    <value>Penggunaan Gas</value>
   </data>
   <data name="Label_PPJU" xml:space="preserve">
     <value>PPJU 2.40%</value>
@@ -160,11 +166,29 @@
   <data name="Label_SubTotal" xml:space="preserve">
     <value>Sub Total</value>
   </data>
+  <data name="Label_SubTotalBiayaListrik" xml:space="preserve">
+    <value>Sub Total Biaya Listrik</value>
+  </data>
+  <data name="Label_SubTotalBiayaChiller" xml:space="preserve">
+    <value>Sub Total Biaya Chiller</value>
+  </data>
   <data name="Label_SubTotalBiayaAir" xml:space="preserve">
     <value>Sub Total Biaya Air</value>
   </data>
-  <data name="Label_SubTotalBiayaListrik" xml:space="preserve">
-    <value>Sub Total Biaya Listrik</value>
+  <data name="Label_SubTotalBiayaGas" xml:space="preserve">
+    <value>Sub Total Biaya Gas</value>
+  </data>
+  <data name="Label_TotalBiayaListrik" xml:space="preserve">
+    <value>Total Biaya Listrik</value>
+  </data>
+  <data name="Label_TotalBiayaChiller" xml:space="preserve">
+    <value>Total Biaya Chiller</value>
+  </data>
+  <data name="Label_TotalBiayaAir" xml:space="preserve">
+    <value>Total Biaya Air</value>
+  </data>
+  <data name="Label_TotalBiayaGas" xml:space="preserve">
+    <value>Total Biaya Gas</value>
   </data>
   <data name="Label_TagihanLalu" xml:space="preserve">
     <value>Tagihan Lalu</value>
@@ -187,6 +211,23 @@
   <data name="Label_Tarif" xml:space="preserve">
     <value>Tarif</value>
   </data>
+  <data name="Label_TarifPemakaian" xml:space="preserve">
+    <value>Tarif Pemakaian</value>
+  </data>
+  <data name="Label_TarifBlock1" xml:space="preserve">
+    <value>Tarif Block 1</value>
+  </data>
+  <data name="Label_TarifBlock2" xml:space="preserve">
+    <value>Tarif Block2</value>
+  </data>
+  <!-- Block 1 -->
+    <data name="Label_Block1" xml:space="preserve">
+        <value>Block 1</value>
+    </data>
+  <!-- Block 2 -->
+    <data name="Label_Block2" xml:space="preserve">
+        <value>Block 2</value>
+    </data>
   <data name="Label_Total" xml:space="preserve">
     <value>Total</value>
   </data>
@@ -205,4 +246,70 @@
   <data name="Label_Water" xml:space="preserve">
     <value>Water</value>
   </data>
+  <data name="Label_InvoiceNo" xml:space="preserve">
+    <value>Invoice No.</value>
+  </data>
+  <data name="Label_BebanBersama" xml:space="preserve">
+    <value>Beban Bersama</value>
+  </data>
+  <data name="Label_BiayaTransformator" xml:space="preserve">
+    <value>Biaya Transformator</value>
+  </data>
+  <data name="Label_BiayaAdmin" xml:space="preserve">
+    <value>Biaya Admin</value>
+  </data>
+  <data name="Label_Tax" xml:space="preserve">
+    <value>Tax</value>
+  </data>
+  <data name="Label_MaintenanceFee" xml:space="preserve">
+    <value>Maintenance Fee</value>
+  </data>
+  <data name="Label_StandingAmount" xml:space="preserve">
+    <value>Standing Amount</value>
+  </data>
+  
+  
+  <!-- Billing Statement {0} {1}-{2} -->
+  <data name="EmailSubject" xml:space="preserve">
+    <value>Billing Statement {0} {1} - {2}</value>
+  </data>
+  
+  <data name="01" xml:space="preserve">
+    <value>January</value>
+  </data>
+  <data name="02" xml:space="preserve">
+    <value>February</value>
+  </data>
+  <data name="03" xml:space="preserve">
+    <value>March</value>
+  </data>
+  <data name="04" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="05" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="06" xml:space="preserve">
+    <value>June</value>
+  </data>
+  <data name="07" xml:space="preserve">
+    <value>July</value>
+  </data>
+  <data name="08" xml:space="preserve">
+    <value>August</value>
+  </data>
+  <data name="09" xml:space="preserve">
+    <value>September</value>
+  </data>
+  <data name="10" xml:space="preserve">
+    <value>October</value>
+  </data>
+  <data name="11" xml:space="preserve">
+    <value>November</value>
+  </data>
+  <data name="12" xml:space="preserve">
+    <value>December</value>
+  </data>
+  
+  
 </root>

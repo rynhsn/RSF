@@ -403,7 +403,7 @@ namespace GST00500Front
 
                 if (!loEx.HasError)
                 {
-                    // loParameter.CCALLER_ACTION = "VIEW";       
+                    loParameter.CALLER_ACTION = "VIEW_ONLY";       
                     //AOC
                     eventArgs.PageTitle = programNamespace;
                     //DEFAULT

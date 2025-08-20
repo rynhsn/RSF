@@ -132,6 +132,27 @@
     <data name="LBL_ENDDATE" xml:space="preserve">
         <value>End Date</value>
     </data>
+    <data name="LBL_METER" xml:space="preserve">
+        <value>Meter</value>
+    </data>
+    <data name="LBL_BLOCK1" xml:space="preserve">
+        <value>Block I</value>
+    </data>
+    <data name="LBL_BLOCK2" xml:space="preserve">
+        <value>Block II</value>
+    </data>
+    <data name="LBL_USAGE" xml:space="preserve">
+        <value>Usage</value>
+    </data>
+    <data name="LBL_AVGUSAGE" xml:space="preserve">
+        <value>Avg. Usage</value>
+    </data>
+    <data name="LBL_START" xml:space="preserve">
+        <value>Start</value>
+    </data>
+    <data name="LBL_END" xml:space="preserve">
+        <value>End</value>
+    </data>
     <data name="LBL_BLOCK1START" xml:space="preserve">
         <value>Block I Start</value>
     </data>
@@ -254,6 +275,9 @@
     </data>
     <data name="LBL_CHANGE" xml:space="preserve">
         <value>Change</value>
+    </data>
+    <data name="LBL_CLOSE" xml:space="preserve">
+        <value>Close</value>
     </data>
     <data name="LBL_AGREEMENTNO" xml:space="preserve">
         <value>Agreement No</value>
@@ -383,8 +407,8 @@
     <data name="LBL_CONSUMPTION" xml:space="preserve">
         <value>Consumption</value>
     </data>
-    <data name="LBL_EQUIPMENT_MAINT" xml:space="preserve">
-        <value>Equipment Maint</value>
+    <data name="LBL_MAINTENANCE_FEE" xml:space="preserve">
+        <value>Maintenance Fee</value>
     </data>
     <data name="LBL_MINIMUM_CHARGE" xml:space="preserve">
         <value>Minimum Charge</value>

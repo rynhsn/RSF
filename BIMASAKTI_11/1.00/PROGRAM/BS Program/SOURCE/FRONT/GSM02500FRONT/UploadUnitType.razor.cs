@@ -22,6 +22,7 @@ using GSM02500COMMON.DTOs.GSM02503;
 using System.Collections.ObjectModel;
 using R_BlazorFrontEnd.Interfaces;
 using R_APICommonDTO;
+using GSM02500COMMON.DTOs.GSM02531;
 
 namespace GSM02500FRONT
 {
@@ -88,6 +89,15 @@ namespace GSM02500FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
+        private void R_RowRender(R_GridRowRenderEventArgs eventArgs)
+        {
+            var loData = (UploadUnitTypeDTO)eventArgs.Data;
+
+            if (loData.Valid == "N")
+            {
+                eventArgs.RowClass = "errorDataLValidIsFalse";//"errorDataLValidisFalse";
+            }
+        }
 
         public void ReadExcelFile()
         {

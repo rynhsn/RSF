@@ -114,6 +114,7 @@
                 <R_TextBox @bind-Value="@loUtilitiesViewModel.Data.CMETER_NO"
                            R_ConductorSource="@_conductorUtilitiesRef"
                            @ref="_meterNoRef"
+                           MaxLength="50"
                            R_EnableAdd="true"
                            R_EnableEdit="true">
                 </R_TextBox>
@@ -128,6 +129,7 @@
             <R_ItemLayout col="3">
                 <R_TextBox @bind-Value="@loUtilitiesViewModel.Data.CALIAS_METER_NO"
                            R_ConductorSource="@_conductorUtilitiesRef"
+                           MaxLength="50"
                            R_EnableAdd="true"
                            R_EnableEdit="true">
                 </R_TextBox>

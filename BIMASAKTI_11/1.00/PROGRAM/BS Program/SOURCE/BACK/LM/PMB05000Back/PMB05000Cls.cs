@@ -19,7 +19,7 @@ public class PMB05000Cls
         _activitySource = PMB05000Activity.R_GetInstanceActivitySource();
     }
 
-    public PMB05000SystemParamDTO GetSystemParam(PMB05000ParameterDb poParams)
+    public async Task<PMB05000SystemParamDTO> GetSystemParam(PMB05000ParameterDb poParams)
     {
         using var loActivity = _activitySource.StartActivity(nameof(GetSystemParam));
         R_Exception loEx = new();
@@ -32,16 +32,29 @@ public class PMB05000Cls
         try
         {
             loDb = new R_Db();
-            loConn = loDb.GetConnection();
+            loConn = await loDb.GetConnectionAsync();
             loCmd = loDb.GetCommand();
 
-            lcQuery = $"EXEC RSP_PM_GET_SYSTEM_PARAM '{poParams.CCOMPANY_ID}', '{poParams.CLANGUAGE_ID}'";
-            loCmd.CommandType = CommandType.Text;
+            lcQuery = "RSP_PM_GET_SYSTEM_PARAM";
+            loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
-            _logger.LogDebug("{pcQuery}", lcQuery);
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParams.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 8, poParams.CLANGUAGE_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParams.CPROPERTY_ID);
 
-            var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
+                        "@CLANGUAGE_ID" or
+                        "@CPROPERTY_ID"
+                )
+                .Select(x => x.Value);
+
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
+            var DataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
 
             loReturn = R_Utility.R_ConvertTo<PMB05000SystemParamDTO>(DataTable).FirstOrDefault();
         }
@@ -54,8 +67,46 @@ public class PMB05000Cls
         loEx.ThrowExceptionIfErrors();
         return loReturn;
     }
+    
+    public async Task<List<PMB05000PropertyDTO>> GetProperties(PMB05000ParameterDb poParam)
+    {
 
-    public PMB05000PeriodYearRangeDTO GetPeriod(PMB05000ParameterDb poParams)
+        using var loActivity = _activitySource.StartActivity(nameof(GetProperties));
+        R_Exception loEx = new();
+        List<PMB05000PropertyDTO> loRtn = null;
+        R_Db loDb;
+        DbConnection loConn;
+        DbCommand loCmd;
+        string lcQuery;
+        try
+        {
+            loDb = new R_Db();
+            loConn = await loDb.GetConnectionAsync();
+            loCmd = loDb.GetCommand();
+
+            lcQuery = @$"EXEC RSP_GS_GET_PROPERTY_LIST '{poParam.CCOMPANY_ID}', '{poParam.CUSER_ID}'";
+            loCmd.CommandType = CommandType.Text;
+            loCmd.CommandText = lcQuery;
+
+            _logger.LogDebug("{pcQuery}", lcQuery);
+
+            var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
+
+            loRtn = R_Utility.R_ConvertTo<PMB05000PropertyDTO>(loDataTable).ToList();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        EndBlock:
+        loEx.ThrowExceptionIfErrors();
+
+        return loRtn;
+    }
+    
+    public async Task<PMB05000PeriodYearRangeDTO> GetPeriod(PMB05000ParameterDb poParams)
     {
         using var loActivity = _activitySource.StartActivity(nameof(GetPeriod));
         R_Exception loEx = new();
@@ -68,7 +119,7 @@ public class PMB05000Cls
         try
         {
             loDb = new R_Db();
-            loConn = loDb.GetConnection();
+            loConn = await loDb.GetConnectionAsync();
             loCmd = loDb.GetCommand();
 
             lcQuery = $"EXEC RSP_GS_GET_PERIOD_YEAR_RANGE '{poParams.CCOMPANY_ID}', '', ''";
@@ -77,7 +128,7 @@ public class PMB05000Cls
 
             _logger.LogDebug("{pcQuery}", lcQuery);
 
-            var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+            var DataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
 
             loReturn = R_Utility.R_ConvertTo<PMB05000PeriodYearRangeDTO>(DataTable).FirstOrDefault();
         }
@@ -91,7 +142,7 @@ public class PMB05000Cls
         return loReturn;
     }
 
-    public void UpdateSoftClosePeriod(PMB05000ParameterDb poParams)
+    public async Task UpdateSoftClosePeriod(PMB05000ParameterDb poParams)
     {
         using var loActivity = _activitySource.StartActivity(nameof(UpdateSoftClosePeriod));
         R_Exception loEx = new();
@@ -104,7 +155,7 @@ public class PMB05000Cls
         try
         {
             loDb = new R_Db();
-            loConn = loDb.GetConnection();
+            loConn = await loDb.GetConnectionAsync();
             loCmd = loDb.GetCommand();
 
             lcQuery = $"RSP_PM_UPDATE_SOFT_PERIOD";
@@ -112,6 +163,7 @@ public class PMB05000Cls
             loCmd.CommandText = lcQuery;
 
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParams.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParams.CPROPERTY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CPERIOD", DbType.String, 6, poParams.CPERIOD);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParams.CUSER_ID);
 
@@ -119,16 +171,15 @@ public class PMB05000Cls
                 .Where(x =>
                     x.ParameterName is
                         "@CCOMPANY_ID" or
+                        "@CPROPERTY_ID" or
                         "@CPERIOD" or
                         "@CUSER_ID"
                 )
                 .Select(x => x.Value);
 
             _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
-
-
-            loDb.SqlExecNonQuery(loConn, loCmd, true);
-            // var DataTable = loDb.SqlExecNonQuery(loConn, loCmd, true);
+            await loDb.SqlExecNonQueryAsync(loConn, loCmd, true);
+            // var DataTable = await loDb.SqlExecNonQueryAsync(loConn, loCmd, true);
 
             // loReturn = R_Utility.R_ConvertTo<PMB05000PeriodYearRangeDTO>(DataTable).FirstOrDefault();
         }
@@ -141,7 +192,7 @@ public class PMB05000Cls
         loEx.ThrowExceptionIfErrors();
     }
 
-    public List<PMB05000ValidateSoftCloseDTO> ValidateSoftClosePeriod(PMB05000ParameterDb poParams)
+    public async Task<List<PMB05000ValidateSoftCloseDTO>> ValidateSoftClosePeriod(PMB05000ParameterDb poParams)
     {
         using var loActivity = _activitySource.StartActivity(nameof(ValidateSoftClosePeriod));
         R_Exception loEx = new();
@@ -154,7 +205,7 @@ public class PMB05000Cls
         try
         {
             loDb = new R_Db();
-            loConn = loDb.GetConnection();
+            loConn = await loDb.GetConnectionAsync();
             loCmd = loDb.GetCommand();
 
             lcQuery = $"RSP_PM_VALIDATE_SOFT_CLOSE";
@@ -162,6 +213,7 @@ public class PMB05000Cls
             loCmd.CommandText = lcQuery;
 
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParams.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParams.CPROPERTY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CPERIOD", DbType.String, 6, poParams.CPERIOD);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParams.CUSER_ID);
 
@@ -169,6 +221,7 @@ public class PMB05000Cls
                 .Where(x =>
                     x.ParameterName is
                         "@CCOMPANY_ID" or
+                        "@CPROPERTY_ID" or
                         "@CPERIOD" or
                         "@CUSER_ID"
                 )
@@ -177,7 +230,7 @@ public class PMB05000Cls
             _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
 
 
-            var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+            var DataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
 
             loReturn = R_Utility.R_ConvertTo<PMB05000ValidateSoftCloseDTO>(DataTable).ToList();
         }
@@ -191,7 +244,7 @@ public class PMB05000Cls
         return loReturn;
     }
 
-    public PMB05000SoftClosePeriodDTO ProcessSoftClosePeriod(PMB05000ParameterDb poParams)
+    public async Task<PMB05000SoftClosePeriodDTO> ProcessSoftClosePeriod(PMB05000ParameterDb poParams)
     {
         using var loActivity = _activitySource.StartActivity(nameof(ProcessSoftClosePeriod));
         R_Exception loEx = new();
@@ -204,7 +257,7 @@ public class PMB05000Cls
         try
         {
             loDb = new R_Db();
-            loConn = loDb.GetConnection();
+            loConn = await loDb.GetConnectionAsync();
             loCmd = loDb.GetCommand();
 
             lcQuery = $"RSP_PM_SOFT_CLOSE_PERIOD_PROCESS";
@@ -212,6 +265,7 @@ public class PMB05000Cls
             loCmd.CommandText = lcQuery;
 
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParams.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParams.CPROPERTY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CPERIOD", DbType.String, 6, poParams.CPERIOD);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParams.CUSER_ID);
 
@@ -219,6 +273,7 @@ public class PMB05000Cls
                 .Where(x =>
                     x.ParameterName is
                         "@CCOMPANY_ID" or
+                        "@CPROPERTY_ID" or
                         "@CPERIOD" or
                         "@CUSER_ID"
                 )
@@ -227,7 +282,7 @@ public class PMB05000Cls
             _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
 
 
-            var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+            var DataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
 
             loReturn = R_Utility.R_ConvertTo<PMB05000SoftClosePeriodDTO>(DataTable).FirstOrDefault();
         }

@@ -46,11 +46,14 @@ namespace Lookup_GSCOMMON
         GSLGenericRecord<GSL02900DTO> GSL02900GetSupplier(GSL02900ParameterDTO poEntity);
         GSLGenericRecord<GSL02910DTO> GSL02910GetSupplierInfo(GSL02910ParameterDTO poEntity);
         GSLGenericRecord<GSL03000DTO> GSL03000GetProduct(GSL03000ParameterDTO poEntity);
+        GSLGenericRecord<GSL03010DTO> GSL03010GetProductUnit(GSL03010ParameterDTO poEntity);
+        GSLGenericRecord<GSL03020DTO> GSL03020GetProductUOM(GSL03020ParameterDTO poEntity);
         GSLGenericRecord<GSL03100DTO> GSL03100GetExpenditure(GSL03100ParameterDTO poEntity);
         GSLGenericRecord<GSL03200DTO> GSL03200GetProductAllocation(GSL03200ParameterDTO poEntity);
         GSLGenericRecord<GSL03300DTO> GSL03300GetTaxCharges(GSL03300ParameterDTO poEntity);
         GSLGenericRecord<GSL03400DTO> GSL03400GetDigitalSign(GSL03400ParameterDTO poEntity);
         GSLGenericRecord<GSL03500DTO> GSL03500GetWarehouse(GSL03500ParameterDTO poEntity);
         GSLGenericRecord<GSL03600DTO> GSL03600GetCompany(GSL03600ParameterDTO poEntity);
+        GSLGenericRecord<GSL03700DTO> GSL03700GetMessage(GSL03700ParameterDTO poEntity);
     }
 }

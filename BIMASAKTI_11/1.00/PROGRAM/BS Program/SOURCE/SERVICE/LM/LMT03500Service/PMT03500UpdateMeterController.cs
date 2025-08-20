@@ -408,6 +408,38 @@ public class PMT03500UpdateMeterController : ControllerBase, IPMT03500UpdateMete
         return loReturn;
     }
 
+    [HttpPost]
+    public async Task<PMT03500UtilityMeterDetailDTO> PMT03500CloseMeterNo(PMT03500CloseMeterNoParam poParam)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(PMT03500CloseMeterNo));
+        _logger.LogInfo("Start - Change Meter No");
+        var loEx = new R_Exception();
+        var loCls = new PMT03500UpdateMeterCls();
+        var loDbParams = new PMT03500ParameterDb();
+        var loReturn = new PMT03500UtilityMeterDetailDTO();
+
+        try
+        {
+            _logger.LogInfo("Set Parameter");
+            loDbParams = R_Utility.R_ConvertObjectToObject<PMT03500CloseMeterNoParam,PMT03500ParameterDb>(poParam);
+            loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loDbParams.CUSER_ID = R_BackGlobalVar.USER_ID;
+            loDbParams.CUTILITY_TYPE = poParam.CCHARGES_TYPE;
+
+            _logger.LogInfo("Close Meter No");
+            loCls.PMT03500CloseMeterNo(loDbParams);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        _logger.LogInfo("End - Close Meter No");
+        return loReturn;
+    }
+
     #region "Helper ListStream Functions"
 
     private async IAsyncEnumerable<T> GetStream<T>(List<T> poParameter)

@@ -1,4 +1,5 @@
 @page "/PMB05000"
+@using PMB05000Common.DTOs
 @using PMB05000FrontResources
 @using R_BlazorFrontEnd.Interfaces
 @inherits R_Page
@@ -8,10 +9,26 @@
     <R_ItemLayout col="5">
         <R_StackLayout Row>
             <R_ItemLayout col="5">
+                <R_Label>@_localizer["PROPERTY"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_ComboBox Data="_viewModel.Properties"
+                            Value="@_viewModel.Property.CPROPERTY_ID"
+                            ValueField="@nameof(PMB05000PropertyDTO.CPROPERTY_ID)"
+                            TextField="@nameof(PMB05000PropertyDTO.CPROPERTY_NAME)"
+                            ValueChanged="@((string? value) => OnChangeProperty(value))"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="5" Class="mt-3">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
                 <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold">@_localizer["CURRENT_PERIOD"]</R_Label>
             </R_ItemLayout>
             <R_ItemLayout>
-                <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Primary">@(_viewModel.Data.CCURRENT_PERIOD_YY + " - " + _viewModel.Data.CCURRENT_PERIOD_MM)</R_Label>
+                <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold"
+                         FontColor="R_eFontColor.Primary">@(_viewModel.Data.CCURRENT_PERIOD_YY + " - " + _viewModel.Data.CCURRENT_PERIOD_MM)</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
@@ -19,14 +36,16 @@
                 <R_Label FontSize="15px" FontStyle="R_eFontStyle.Bold">@_localizer["CURRENT_SOFT_PERIOD"]</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="3">
-                <R_NumericTextBox @bind-Value="_viewModel.Data.ISOFT_PERIOD_YY" R_ConductorSource="_conductorRef" Min="_viewModel.YearRange.IMIN_YEAR" Max="_viewModel.YearRange.IMAX_YEAR" ThousandSeparator="false" R_EnableEdit/>
+                <R_NumericTextBox @bind-Value="_viewModel.Data.ISOFT_PERIOD_YY" R_ConductorSource="_conductorRef"
+                                  Min="_viewModel.YearRange.IMIN_YEAR" Max="_viewModel.YearRange.IMAX_YEAR"
+                                  ThousandSeparator="false" R_EnableEdit/>
             </R_ItemLayout>
             <R_ItemLayout col="2">
                 <R_ComboBox Data="_viewModel.ComboPeriod"
-                            @bind-Value="_viewModel.Data.CSOFT_PERIOD_MM" 
+                            @bind-Value="_viewModel.Data.CSOFT_PERIOD_MM"
                             R_ConductorSource="_conductorRef"
                             ValueField="Key"
-                            TextField="Value" 
+                            TextField="Value"
                             R_EnableEdit/>
             </R_ItemLayout>
         </R_StackLayout>
@@ -50,7 +69,8 @@
             <R_ItemLayout>
                 <R_StackLayout Row>
                     <R_ItemLayout Class="mt-3">
-                        <R_Button Enabled="@_viewModel.EnableBtn" OnClick="OnClickProcess">@_localizer["PROCESS"]</R_Button>
+                        <R_Button Enabled="@_viewModel.EnableBtn"
+                                  OnClick="OnClickProcess">@_localizer["PROCESS"]</R_Button>
                     </R_ItemLayout>
                     <R_ItemLayout Class="mt-3">
                         <R_EditButton R_Conductor="_conductorRef"/>

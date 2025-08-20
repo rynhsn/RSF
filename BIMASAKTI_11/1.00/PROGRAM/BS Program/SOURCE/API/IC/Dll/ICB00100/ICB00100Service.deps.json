@@ -23,7 +23,8 @@
         "dependencies": {
           "ICB00100BackResources": "1.0.0",
           "ICB00100Common": "1.0.0",
-          "RSP_IC_SOFT_CLOSE_PERIODResources": "1.0.0"
+          "RSP_IC_SOFT_CLOSE_PERIODResources": "1.0.0",
+          "RSP_IC_VALIDATE_SOFTCLOSE_PRDResources": "1.0.0"
         },
         "runtime": {
           "ICB00100Back.dll": {}
@@ -42,6 +43,11 @@
       "RSP_IC_SOFT_CLOSE_PERIODResources/1.0.0": {
         "runtime": {
           "RSP_IC_SOFT_CLOSE_PERIODResources.dll": {}
+        }
+      },
+      "RSP_IC_VALIDATE_SOFTCLOSE_PRDResources/1.0.0": {
+        "runtime": {
+          "RSP_IC_VALIDATE_SOFTCLOSE_PRDResources.dll": {}
         }
       },
       "R_APIBackEnd/1.0.0.0": {
@@ -164,6 +170,11 @@
       "sha512": ""
     },
     "RSP_IC_SOFT_CLOSE_PERIODResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_IC_VALIDATE_SOFTCLOSE_PRDResources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -54,6 +54,7 @@ public partial class PMT03500 : R_Page
 
     private bool _hasDetail;
     private bool _enabledBtn = true;
+    private bool _isNotInvoiced = true;
 
     private string _flagPropertyUtility;
 
@@ -427,6 +428,8 @@ public partial class PMT03500 : R_Page
             }
 
             await _gridRefUtility.R_RefreshGrid(null);
+            
+            _isNotInvoiced = !_viewModelUtility.Invoiced;
         }
         catch (Exception ex)
         {
@@ -771,5 +774,10 @@ public partial class PMT03500 : R_Page
         var loColumn =
             eventArgs.Columns.FirstOrDefault(x => x.FieldName == nameof(PMT03500UtilityUsageDTO.DSTART_DATE));
         loColumn.Enabled = !loData.LDISABLED_START_DATE;
+    }
+
+    private void CheckEditUtility(R_CheckEditEventArgs eventArgs)
+    {
+        eventArgs.Allow = !_viewModelUtility.Invoiced;
     }
 }

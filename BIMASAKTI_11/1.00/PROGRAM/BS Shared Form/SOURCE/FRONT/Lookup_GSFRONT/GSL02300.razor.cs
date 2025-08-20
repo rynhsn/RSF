@@ -80,6 +80,12 @@ namespace Lookup_GSFRONT
                 if (string.IsNullOrWhiteSpace(_Parameter.CFLOOR_ID) == false)
                 {
                     GSL02400ParameterDTO loParam = R_FrontUtility.ConvertObjectToObject<GSL02400ParameterDTO>(_Parameter);
+                    if (loParam.CPROGRAM_ID == "PMT01300")
+                    {
+                        loParam.CPROGRAM_ID = "";
+                        loParam.CREF_NO = "";
+                        loParam.CTRANS_CODE = "";
+                    }
                     loParam.CSEARCH_TEXT = _Parameter.CFLOOR_ID;
 
                     LookupGSL02400ViewModel loLookupViewModel = new LookupGSL02400ViewModel();
@@ -115,6 +121,12 @@ namespace Lookup_GSFRONT
         {
 
             GSL02400ParameterDTO loParam = R_FrontUtility.ConvertObjectToObject<GSL02400ParameterDTO>(_Parameter);
+            if (loParam.CPROGRAM_ID == "PMT01300")
+            {
+                loParam.CPROGRAM_ID = "";
+                loParam.CREF_NO = "";
+                loParam.CTRANS_CODE = "";
+            }
             eventArgs.Parameter = loParam;
             eventArgs.TargetPageType = typeof(GSL02400);
         }

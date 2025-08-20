@@ -540,4 +540,64 @@ public class PMT03500UpdateMeterCls
 
         loEx.ThrowExceptionIfErrors();
     }
+    
+    public void PMT03500CloseMeterNo(PMT03500ParameterDb poParams)
+    {
+        using var loScope = _activitySource.StartActivity(nameof(PMT03500CloseMeterNo));
+        R_Exception loEx = new R_Exception();
+        R_Db loDb;
+        DbConnection loConn;
+        DbCommand loCmd;
+        string lcQuery;
+
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection();
+            loCmd = loDb.GetCommand();
+
+            lcQuery = $"RSP_PM_CLOSE_UTILITY_METER_NO";
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
+
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParams.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParams.CPROPERTY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 20, poParams.CDEPT_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 10, poParams.CTRANS_CODE);
+            loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 30, poParams.CREF_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CUNIT_ID", DbType.String, 20, poParams.CUNIT_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CFLOOR_ID", DbType.String, 20, poParams.CFLOOR_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 20, poParams.CBUILDING_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CUTILITY_TYPE", DbType.String, 20, poParams.CUTILITY_TYPE);
+            loDb.R_AddCommandParameter(loCmd, "@CMETER_NO", DbType.String, 20, poParams.CMETER_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParams.CUSER_ID);
+
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x.ParameterName is
+                        "@CCOMPANY_ID" or
+                        "@CPROPERTY_ID" or
+                        "@CDEPT_CODE" or
+                        "@CTRANS_CODE" or
+                        "@CREF_NO" or
+                        "@CUNIT_ID" or
+                        "@CFLOOR_ID" or
+                        "@CBUILDING_ID" or
+                        "@CUTILITY_TYPE" or
+                        "@CMETER_NO" or
+                        "@CUSER_ID"
+                )
+                .Select(x => x.Value);
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
+            loDb.SqlExecQuery(loConn, loCmd, true);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
 }

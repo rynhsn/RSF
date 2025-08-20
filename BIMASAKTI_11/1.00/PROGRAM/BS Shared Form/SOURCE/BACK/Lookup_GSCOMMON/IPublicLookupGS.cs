@@ -46,11 +46,14 @@ namespace Lookup_GSCOMMON
         IAsyncEnumerable<GSL02900DTO> GSL02900GetSupplierList();
         IAsyncEnumerable<GSL02910DTO> GSL02910GetSupplierInfoList();
         IAsyncEnumerable<GSL03000DTO> GSL03000GetProductList();
+        IAsyncEnumerable<GSL03010DTO> GSL03010GetProductUnitList();
+        IAsyncEnumerable<GSL03020DTO> GSL03020GetProductUOMList();
         IAsyncEnumerable<GSL03100DTO> GSL03100GetExpenditureList();
         IAsyncEnumerable<GSL03200DTO> GSL03200GetProductAllocationList();
         IAsyncEnumerable<GSL03300DTO> GSL03300GetTaxChargesList();
         IAsyncEnumerable<GSL03400DTO> GSL03400GetDigitalSignList();
         IAsyncEnumerable<GSL03500DTO> GSL03500GetWarehouseList();
         IAsyncEnumerable<GSL03600DTO> GSL03600GetCompanyList();
+        IAsyncEnumerable<GSL03700DTO> GSL03700GetMessageList();
     }
 }

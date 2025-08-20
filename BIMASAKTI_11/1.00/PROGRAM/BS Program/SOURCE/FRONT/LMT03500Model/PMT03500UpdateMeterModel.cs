@@ -74,6 +74,11 @@ namespace PMT03500Model
             throw new NotImplementedException();
         }
 
+        public async Task<PMT03500UtilityMeterDetailDTO> PMT03500CloseMeterNo(PMT03500CloseMeterNoParam poParam)
+        {
+            throw new NotImplementedException();
+        }
+
         //Untuk fetch data streaming dari controller  
         public async Task<List<T>> GetListStreamAsync<T>(string pcNameOf)
         {
@@ -181,28 +186,5 @@ namespace PMT03500Model
             return loResult;
         }
         
-        //Untuk execute query non object (T hanya syarat untuk memenuhi generic)
-        // public async Task ExecuteAsync<T, T1>(string pcNameOf, T1 poParameter) where T : R_APIResultBaseDTO
-        // {
-        //     var loEx = new R_Exception();
-        //     // var loResult = default(T);
-        //     try
-        //     {
-        //         R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
-        //         await R_HTTPClientWrapper.R_APIRequestObject<T, T1>(
-        //                 _RequestServiceEndPoint,
-        //                 pcNameOf,
-        //                 poParameter,
-        //                 DEFAULT_MODULE,
-        //                 _SendWithContext,
-        //                 _SendWithToken);
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         loEx.Add(ex);
-        //     }
-        //
-        //     loEx.ThrowExceptionIfErrors();
-        // }
     }
 }

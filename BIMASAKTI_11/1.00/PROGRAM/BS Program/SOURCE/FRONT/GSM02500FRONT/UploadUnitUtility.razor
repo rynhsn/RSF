@@ -112,6 +112,10 @@
                         AllowAddNewRow="false"
                         AllowEditRow="false"
                         AllowDeleteRow="false"
+                        R_BeforeSaveBatch="@R_BeforeSaveBatch"
+                        R_ServiceSaveBatch="@R_ServiceSaveBatch"
+                        R_AfterSaveBatch="@R_AfterSaveBatch"
+                        R_RowRender="@((R_GridRowRenderEventArgs args)=> R_RowRender(args))"
                         R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
                     <R_GridColumns>
                         <R_GridNumericColumn TValue="int" FieldName=@nameof(UploadUnitUtilityDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridNumericColumn>
@@ -198,8 +202,22 @@
 </R_StackLayout>
 <R_ConductorGrid @ref="@_conGridUploadUnitUtilityRef"
                  R_ViewModel="@loUploadUnitUtilityViewModel"
-                 R_IsHeader
-                 R_BeforeSaveBatch="@R_BeforeSaveBatch"
-                 R_ServiceSaveBatch="@R_ServiceSaveBatch"
-                 R_AfterSaveBatch="@R_AfterSaveBatch">
+                 R_IsHeader>
 </R_ConductorGrid>
+
+<style>
+    .k-grid .k-master-row.errorDataLValidIsFalse:hover {
+        background-color: red !important;
+        color: white;
+    }
+
+    .k-grid .k-master-row.errorDataLValidIsFalse {
+        background-color: red;
+        color: white !important
+    }
+
+    .k-grid .k-table-row.k-selected.errorDataLValidIsFalse > .k-table-td {
+        color: white !important;
+    }
+
+</style>

@@ -76,7 +76,7 @@ namespace GSM02500MODEL.View_Model
                 {
                     Data = SelectedProperty
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02500_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
+                
                 SelectedProperty = await loSharedModel.GetSelectedPropertyAsync(loParam);
             }
             catch (Exception ex)
@@ -97,8 +97,7 @@ namespace GSM02500MODEL.View_Model
                     Data = SelectedUnitType,
                     CSELECTED_PROPERTY_ID = SelectedProperty.CPROPERTY_ID
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02500_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02500_UNIT_TYPE_ID_CONTEXT, SelectedUnitType.CUNIT_TYPE_ID);
+                
                 SelectedUnitType = await loSharedModel.GetSelectedUnitTypeAsync(loParam);
             }
             catch (Exception ex)

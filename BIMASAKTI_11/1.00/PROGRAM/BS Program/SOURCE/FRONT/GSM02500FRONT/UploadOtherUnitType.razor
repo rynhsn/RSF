@@ -38,11 +38,16 @@
                         AllowAddNewRow="false"
                         AllowEditRow="false"
                         AllowDeleteRow="false"
+                        R_BeforeSaveBatch="@R_BeforeSaveBatch" 
+                        R_ServiceSaveBatch="@R_ServiceSaveBatch"
+                        R_AfterSaveBatch="@R_AfterSaveBatch"
+                        R_RowRender="@((R_GridRowRenderEventArgs args)=> R_RowRender(args))"
                         R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
                     <R_GridColumns>
                         <R_GridNumericColumn TValue="int" FieldName=@nameof(UploadOtherUnitTypeDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridNumericColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadOtherUnitTypeDTO.OtherUnitTypeCode) HeaderText="@_localizer["_OtherUnitTypeCode"]" Enabled="false" Width="175px"></R_GridTextColumn>
                         <R_GridTextColumn FieldName=@nameof(UploadOtherUnitTypeDTO.OtherUnitTypeName) HeaderText="@_localizer["_OtherUnitTypeName"]" Enabled="false" Width="250px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadOtherUnitTypeDTO.DepartmentCode) HeaderText="@_localizer["_Department"]" Enabled="false" Width="150px"></R_GridTextColumn>
                         <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadOtherUnitTypeDTO.GrossAreaSize) HeaderText="@_localizer["_GrossAreaSize"]" Enabled="false" Width="150px"></R_GridNumericColumn>
                         <R_GridNumericColumn TValue="decimal" FieldName=@nameof(UploadOtherUnitTypeDTO.NetAreaSize) HeaderText="@_localizer["_NetAreaSize"]" Enabled="false" Width="150px"></R_GridNumericColumn>
                         <R_GridCheckBoxColumn FieldName=@nameof(UploadOtherUnitTypeDTO.Active) HeaderText="@_localizer["_Active"]" Enabled="false" Width="100px"></R_GridCheckBoxColumn>
@@ -122,8 +127,22 @@
 
             <R_ConductorGrid @ref="@_conGridUploadOtherUnitTypeRef"
                  R_ViewModel="@loUploadOtherUnitTypeViewModel"
-                      R_IsHeader
-                 R_BeforeSaveBatch="@R_BeforeSaveBatch"
-                 R_ServiceSaveBatch="@R_ServiceSaveBatch"
-                 R_AfterSaveBatch="@R_AfterSaveBatch">
+                      R_IsHeader>
 </R_ConductorGrid>
+
+<style>
+    .k-grid .k-master-row.errorDataLValidIsFalse:hover {
+        background-color: red !important;
+        color: white;
+    }
+
+    .k-grid .k-master-row.errorDataLValidIsFalse {
+        background-color: red;
+        color: white !important
+    }
+
+    .k-grid .k-table-row.k-selected.errorDataLValidIsFalse > .k-table-td {
+        color: white !important;
+    }
+
+</style>

@@ -13,6 +13,8 @@ namespace PMT03500Common.DTOs
         public string CUNIT_NAME { get; set; }
         public string CBUILDING_ID { get; set; }
         public string CBUILDING_NAME { get; set; }
+        public string CUSAGE_RATE_MODE { get; set; }
+        public string CUSAGE_RATE_MODE_NAME { get; set; }
         public string CFLOOR_ID { get; set; }
         public string CFLOOR_NAME { get; set; }
         public string CTENANT_ID { get; set; }
@@ -64,6 +66,7 @@ namespace PMT03500Common.DTOs
         public decimal NMETER_END { get; set; }
 
         public decimal NMETER_USAGE { get; set; }
+        public decimal NUSAGE_CF { get; set; }
 
         public decimal NMAINTENANCE_FEE { get; set; }
         public decimal NUSAGE_MIN_CHARGE_AMT { get; set; }

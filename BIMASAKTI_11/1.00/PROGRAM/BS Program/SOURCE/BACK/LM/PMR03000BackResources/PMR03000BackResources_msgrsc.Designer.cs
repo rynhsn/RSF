@@ -60,6 +60,123 @@ namespace PMR03000BackResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to January.
+        /// </summary>
+        internal static string _01 {
+            get {
+                return ResourceManager.GetString("01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to February.
+        /// </summary>
+        internal static string _02 {
+            get {
+                return ResourceManager.GetString("02", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to March.
+        /// </summary>
+        internal static string _03 {
+            get {
+                return ResourceManager.GetString("03", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to April.
+        /// </summary>
+        internal static string _04 {
+            get {
+                return ResourceManager.GetString("04", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to May.
+        /// </summary>
+        internal static string _05 {
+            get {
+                return ResourceManager.GetString("05", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to June.
+        /// </summary>
+        internal static string _06 {
+            get {
+                return ResourceManager.GetString("06", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to July.
+        /// </summary>
+        internal static string _07 {
+            get {
+                return ResourceManager.GetString("07", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to August.
+        /// </summary>
+        internal static string _08 {
+            get {
+                return ResourceManager.GetString("08", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to September.
+        /// </summary>
+        internal static string _09 {
+            get {
+                return ResourceManager.GetString("09", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to October.
+        /// </summary>
+        internal static string _10 {
+            get {
+                return ResourceManager.GetString("10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to November.
+        /// </summary>
+        internal static string _11 {
+            get {
+                return ResourceManager.GetString("11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to December.
+        /// </summary>
+        internal static string _12 {
+            get {
+                return ResourceManager.GetString("12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Billing Statement {0} {1} - {2}.
+        /// </summary>
+        internal static string EmailSubject {
+            get {
+                return ResourceManager.GetString("EmailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to General Utility.
         /// </summary>
         internal static string GeneralUtility {
@@ -87,6 +204,24 @@ namespace PMR03000BackResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Beban Bersama.
+        /// </summary>
+        internal static string Label_BebanBersama {
+            get {
+                return ResourceManager.GetString("Label_BebanBersama", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Biaya Admin.
+        /// </summary>
+        internal static string Label_BiayaAdmin {
+            get {
+                return ResourceManager.GetString("Label_BiayaAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Biaya Operasional.
         /// </summary>
         internal static string Label_BiayaOperasional {
@@ -110,6 +245,33 @@ namespace PMR03000BackResources {
         internal static string Label_BiayaTetap {
             get {
                 return ResourceManager.GetString("Label_BiayaTetap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Biaya Transformator.
+        /// </summary>
+        internal static string Label_BiayaTransformator {
+            get {
+                return ResourceManager.GetString("Label_BiayaTransformator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Block 1.
+        /// </summary>
+        internal static string Label_Block1 {
+            get {
+                return ResourceManager.GetString("Label_Block1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Block 2.
+        /// </summary>
+        internal static string Label_Block2 {
+            get {
+                return ResourceManager.GetString("Label_Block2", resourceCulture);
             }
         }
         
@@ -213,6 +375,15 @@ namespace PMR03000BackResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invoice No..
+        /// </summary>
+        internal static string Label_InvoiceNo {
+            get {
+                return ResourceManager.GetString("Label_InvoiceNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Jumlah yang harus dibayar.
         /// </summary>
         internal static string Label_JumlahYangHarusDibayar {
@@ -236,6 +407,15 @@ namespace PMR03000BackResources {
         internal static string Label_KwhYangDiperhitungkan {
             get {
                 return ResourceManager.GetString("Label_KwhYangDiperhitungkan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maintenance Fee.
+        /// </summary>
+        internal static string Label_MaintenanceFee {
+            get {
+                return ResourceManager.GetString("Label_MaintenanceFee", resourceCulture);
             }
         }
         
@@ -303,15 +483,6 @@ namespace PMR03000BackResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pemakaian.
-        /// </summary>
-        internal static string Label_Pemakaian {
-            get {
-                return ResourceManager.GetString("Label_Pemakaian", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Pembayaran Lalu.
         /// </summary>
         internal static string Label_PembayaranLalu {
@@ -353,6 +524,24 @@ namespace PMR03000BackResources {
         internal static string Label_PenggunaanAir {
             get {
                 return ResourceManager.GetString("Label_PenggunaanAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Penggunaan Chiller.
+        /// </summary>
+        internal static string Label_PenggunaanChiller {
+            get {
+                return ResourceManager.GetString("Label_PenggunaanChiller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Penggunaan Gas.
+        /// </summary>
+        internal static string Label_PenggunaanGas {
+            get {
+                return ResourceManager.GetString("Label_PenggunaanGas", resourceCulture);
             }
         }
         
@@ -474,6 +663,15 @@ namespace PMR03000BackResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Standing Amount.
+        /// </summary>
+        internal static string Label_StandingAmount {
+            get {
+                return ResourceManager.GetString("Label_StandingAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sub Total.
         /// </summary>
         internal static string Label_SubTotal {
@@ -488,6 +686,24 @@ namespace PMR03000BackResources {
         internal static string Label_SubTotalBiayaAir {
             get {
                 return ResourceManager.GetString("Label_SubTotalBiayaAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub Total Biaya Chiller.
+        /// </summary>
+        internal static string Label_SubTotalBiayaChiller {
+            get {
+                return ResourceManager.GetString("Label_SubTotalBiayaChiller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub Total Biaya Gas.
+        /// </summary>
+        internal static string Label_SubTotalBiayaGas {
+            get {
+                return ResourceManager.GetString("Label_SubTotalBiayaGas", resourceCulture);
             }
         }
         
@@ -564,11 +780,92 @@ namespace PMR03000BackResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tarif Block 1.
+        /// </summary>
+        internal static string Label_TarifBlock1 {
+            get {
+                return ResourceManager.GetString("Label_TarifBlock1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tarif Block2.
+        /// </summary>
+        internal static string Label_TarifBlock2 {
+            get {
+                return ResourceManager.GetString("Label_TarifBlock2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tarif Pemakaian.
+        /// </summary>
+        internal static string Label_TarifPemakaian {
+            get {
+                return ResourceManager.GetString("Label_TarifPemakaian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax.
+        /// </summary>
+        internal static string Label_Tax {
+            get {
+                return ResourceManager.GetString("Label_Tax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total.
         /// </summary>
         internal static string Label_Total {
             get {
                 return ResourceManager.GetString("Label_Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Biaya Air.
+        /// </summary>
+        internal static string Label_TotalBiayaAir {
+            get {
+                return ResourceManager.GetString("Label_TotalBiayaAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Biaya Chiller.
+        /// </summary>
+        internal static string Label_TotalBiayaChiller {
+            get {
+                return ResourceManager.GetString("Label_TotalBiayaChiller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Biaya Gas.
+        /// </summary>
+        internal static string Label_TotalBiayaGas {
+            get {
+                return ResourceManager.GetString("Label_TotalBiayaGas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Biaya Listrik.
+        /// </summary>
+        internal static string Label_TotalBiayaListrik {
+            get {
+                return ResourceManager.GetString("Label_TotalBiayaListrik", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Pemakaian.
+        /// </summary>
+        internal static string Label_TotalPemakaian {
+            get {
+                return ResourceManager.GetString("Label_TotalPemakaian", resourceCulture);
             }
         }
         

@@ -21,7 +21,7 @@ namespace GSM02500SERVICE
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class GSM02502UtilityController : ControllerBase, IGSM02502Utility
+    public class GSM02502UtilityController : ControllerBase, GSM02500BACK.IGSM02502Utility
     {
         private LoggerGSM02502Utility _logger;
         private readonly ActivitySource _activitySource;
@@ -35,13 +35,16 @@ namespace GSM02500SERVICE
         [HttpPost]
         public IAsyncEnumerable<GSM02502UtilityDTO> GetUtilityList()
         {
+            return GetUtilityStream();
+        }
+        private async IAsyncEnumerable<GSM02502UtilityDTO> GetUtilityStream()
+        {
             using Activity activity = _activitySource.StartActivity("GetUtilityList");
             _logger.LogInfo("Start || GetUtilityList(Controller)");
             R_Exception loException = new R_Exception();
-            IAsyncEnumerable<GSM02502UtilityDTO> loRtn = null;
+            List<GSM02502UtilityDTO> loRtn = null;
             GetUtilityListDTO loParam = new GetUtilityListDTO();
             GSM02502UtilityCls loCls = new GSM02502UtilityCls();
-            List<GSM02502UtilityDTO> loTempRtn = null;
 
             try
             {
@@ -52,10 +55,7 @@ namespace GSM02500SERVICE
                 loParam.CLOGIN_USER_ID = R_BackGlobalVar.USER_ID;
 
                 _logger.LogInfo("Run GetUtilityList(Cls) || GetUtilityList(Controller)");
-                loTempRtn = loCls.GetUtilityList(loParam);
-
-                _logger.LogInfo("Run GetUtilityStream(Controller) || GetUtilityList(Controller)");
-                loRtn = GetUtilityStream(loTempRtn);
+                loRtn = await loCls.GetUtilityList(loParam);
             }
             catch (Exception ex)
             {
@@ -65,47 +65,15 @@ namespace GSM02500SERVICE
 
             loException.ThrowExceptionIfErrors();
             _logger.LogInfo("End || GetUtilityList(Controller)");
-            return loRtn;
-        }
-        private async IAsyncEnumerable<GSM02502UtilityDTO> GetUtilityStream(List<GSM02502UtilityDTO> poParameter)
-        {
-            foreach (GSM02502UtilityDTO item in poParameter)
+
+            foreach (GSM02502UtilityDTO item in loRtn)
             {
                 yield return item;
             }
         }
-/*
-
+       
         [HttpPost]
-        public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<GSM02502UtilityDTO> poParameter)
-        {
-            R_Exception loException = new R_Exception();
-            R_ServiceDeleteResultDTO loRtn = new R_ServiceDeleteResultDTO();
-            GSM02502UtilityParameterDTO loParam = new GSM02502UtilityParameterDTO();
-            GSM02502UtilityCls loCls = new GSM02502UtilityCls();
-
-            try
-            {
-                loParam.Data = poParameter.Entity;
-                loParam.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                loParam.CSELECTED_PROPERTY_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02502_UTILITY_PROPERTY_ID_CONTEXT);
-                loParam.CSELECTED_UNIT_TYPE_CATEGORY_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02502_UTILITY_UNIT_TYPE_CATEGORY_ID_CONTEXT);
-                loParam.CLOGIN_USER_ID = R_BackGlobalVar.USER_ID;
-                loParam.CACTION = "DELETE";
-                loCls.R_Delete(loParam);
-            }
-            catch (Exception ex)
-            {
-                loException.Add(ex);
-            }
-
-            loException.ThrowExceptionIfErrors();
-
-            return loRtn;
-        }
-*/
-        [HttpPost]
-        public R_ServiceGetRecordResultDTO<GSM02502UtilityParameterDTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GSM02502UtilityParameterDTO> poParameter)
+        public async Task<R_ServiceGetRecordResultDTO<GSM02502UtilityParameterDTO>> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GSM02502UtilityParameterDTO> poParameter)
         {
             using Activity activity = _activitySource.StartActivity("R_ServiceGetRecord");
             _logger.LogInfo("Start || R_ServiceGetRecord(Controller)");
@@ -117,14 +85,11 @@ namespace GSM02500SERVICE
                 _logger.LogInfo("Set Parameter || R_ServiceGetRecord(Controller)");
                 GSM02502UtilityCls loCls = new GSM02502UtilityCls();
 
-                //loParam.Data = poParameter.Entity;
                 poParameter.Entity.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                //loParam.CSELECTED_PROPERTY_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02502_UTILITY_PROPERTY_ID_CONTEXT);
-                //loParam.CSELECTED_UNIT_TYPE_CATEGORY_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02502_UTILITY_UNIT_TYPE_CATEGORY_ID_CONTEXT);
                 poParameter.Entity.CLOGIN_USER_ID = R_BackGlobalVar.USER_ID;
 
                 _logger.LogInfo("Run R_GetRecord(Cls) || R_ServiceGetRecord(Controller)");
-                loRtn.data = loCls.R_GetRecord(poParameter.Entity);
+                loRtn.data = await loCls.R_GetRecordAsync(poParameter.Entity);
             }
             catch (Exception ex)
             {
@@ -138,7 +103,7 @@ namespace GSM02500SERVICE
         }
 
         [HttpPost]
-        public R_ServiceSaveResultDTO<GSM02502UtilityParameterDTO> R_ServiceSave(R_ServiceSaveParameterDTO<GSM02502UtilityParameterDTO> poParameter)
+        public async Task<R_ServiceSaveResultDTO<GSM02502UtilityParameterDTO>> R_ServiceSave(R_ServiceSaveParameterDTO<GSM02502UtilityParameterDTO> poParameter)
         {
             using Activity activity = _activitySource.StartActivity("R_ServiceSave");
             _logger.LogInfo("Start || R_ServiceSave(Controller)");
@@ -149,10 +114,7 @@ namespace GSM02500SERVICE
             try
             {
                 _logger.LogInfo("Set Parameter || R_ServiceSave(Controller)");
-                //loParam.Data = poParameter.Entity;
                 poParameter.Entity.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                //loParam.CSELECTED_PROPERTY_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02502_UTILITY_PROPERTY_ID_CONTEXT);
-                //loParam.CSELECTED_UNIT_TYPE_CATEGORY_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02502_UTILITY_UNIT_TYPE_CATEGORY_ID_CONTEXT);
                 poParameter.Entity.CLOGIN_USER_ID = R_BackGlobalVar.USER_ID;
 
                 _logger.LogInfo("Set Action Based On Mode || R_ServiceSave(Controller)");
@@ -166,7 +128,7 @@ namespace GSM02500SERVICE
                 }
 
                 _logger.LogInfo("Run R_Save(Cls) || R_ServiceSave(Controller)");
-                loRtn.data = loCls.R_Save(poParameter.Entity, poParameter.CRUDMode);
+                loRtn.data = await loCls.R_SaveAsync(poParameter.Entity, poParameter.CRUDMode);
             }
             catch (Exception ex)
             {
@@ -180,8 +142,7 @@ namespace GSM02500SERVICE
         }
 
         [HttpPost]
-
-        public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<GSM02502UtilityParameterDTO> poParameter)
+        public Task<R_ServiceDeleteResultDTO> R_ServiceDelete(R_ServiceDeleteParameterDTO<GSM02502UtilityParameterDTO> poParameter)
         {
             throw new NotImplementedException();
         }

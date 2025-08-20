@@ -31,22 +31,16 @@ namespace Lookup_GSSERVICES
             _activitySource = PublicLookupGSActivitySourceBase.R_InitializeAndGetActivitySource(nameof(PublicLookupGSController));
         }
 
-        #region Stream Data
-        private async IAsyncEnumerable<T> GetStream<T>(List<T> poParam)
-        {
-            foreach (var item in poParam)
-            {
-                yield return item;
-            }
-        }
-        #endregion
-
         [HttpPost]
         public IAsyncEnumerable<GSL00100DTO> GSL00100GetSalesTaxList()
         {
+            return GetGSL00100Stream();
+        }
+        private async IAsyncEnumerable<GSL00100DTO> GetGSL00100Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL00100GetSalesTaxList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL00100DTO> loRtn = null;
+            List<GSL00100DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00100GetSalesTaxList");
 
             try
@@ -55,10 +49,7 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL00100ParameterDTO();
 
                 _Logger.LogInfo("Call Back Method GetALLSalesTax");
-                var loResult = loCls.GetALLSalesTax();
-
-                _Logger.LogInfo("Call Stream Method Data GSL00100GetSalesTaxList");
-                loRtn = GetStream<GSL00100DTO>(loResult);
+                loRtn = await loCls.GetALLSalesTax();
             }
             catch (Exception ex)
             {
@@ -69,15 +60,23 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
 
             _Logger.LogInfo("End GSL00100GetSalesTaxList");
-            return loRtn;
+
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL00110DTO> GSL00110GetTaxByDateList()
         {
+            return GetGSL00110Stream();
+        }
+        private async IAsyncEnumerable<GSL00110DTO> GetGSL00110Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL00110GetTaxByDateList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL00110DTO> loRtn = null;
+            List<GSL00110DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00110GetTaxByDateList");
 
             try
@@ -89,10 +88,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CTAX_DATE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTAX_DATE);
 
                 _Logger.LogInfo("Call Back Method GetALLTaxByDate");
-                var loResult = loCls.GetALLTaxByDate(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL00110GetTaxByDateList");
-                loRtn = GetStream<GSL00110DTO>(loResult);
+                loRtn = await loCls.GetALLTaxByDate(poParameter);
             }
             catch (Exception ex)
             {
@@ -103,15 +99,23 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
 
             _Logger.LogInfo("End GSL00110GetTaxByDateList");
-            return loRtn;
+
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL00200DTO> GSL00200GetWithholdingTaxList()
         {
+            return GetGSL00200Stream();
+        }
+        private async IAsyncEnumerable<GSL00200DTO> GetGSL00200Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL00200GetWithholdingTaxList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL00200DTO> loRtn = null;
+            List<GSL00200DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00200GetWithholdingTaxList");
 
             try
@@ -124,10 +128,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CTAX_TYPE_LIST = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTAX_TYPE_LIST);
 
                 _Logger.LogInfo("Call Back Method GetALLWithholdingTax");
-                var loResult = loCls.GetALLWithholdingTax(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL00200GetWithholdingTaxList");
-                loRtn = GetStream<GSL00200DTO>(loResult);
+                loRtn = await loCls.GetALLWithholdingTax(poParameter);
             }
             catch (Exception ex)
             {
@@ -138,15 +139,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL00200GetWithholdingTaxList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL00300DTO> GSL00300GetCurrencyList()
         {
+            return GetGSL00300Stream();
+        }
+        private async IAsyncEnumerable<GSL00300DTO> GetGSL00300Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL00300GetCurrencyList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL00300DTO> loRtn = null;
+            List<GSL00300DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00300GetCurrencyList");
 
             try
@@ -155,10 +163,7 @@ namespace Lookup_GSSERVICES
                 GSL00300ParameterDTO loParam = new GSL00300ParameterDTO();
 
                 _Logger.LogInfo("Call Back Method GetALLCurrency");
-                var loResult = loCls.GetALLCurrency();
-
-                _Logger.LogInfo("Call Stream Method Data GSL00300GetCurrencyList");
-                loRtn = GetStream<GSL00300DTO>(loResult);
+                loRtn = await loCls.GetALLCurrency();
             }
             catch (Exception ex)
             {
@@ -169,31 +174,35 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL00300GetCurrencyList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL00400DTO> GSL00400GetJournalGroupList()
         {
+            return GetGSL00400Stream();
+        }
+        private async IAsyncEnumerable<GSL00400DTO> GetGSL00400Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL00400GetJournalGroupList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL00400DTO> loRtn = null;
+            List<GSL00400DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00400GetJournalGroupList");
 
             try
             {
                 var loCls = new PublicLookupCls();
-                var poParameter =  new GSL00400ParameterDTO();
+                var poParameter = new GSL00400ParameterDTO();
 
                 _Logger.LogInfo("Set Param GSL00400GetJournalGroupList");
                 poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
                 poParameter.CJRNGRP_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CJRNGRP_TYPE);
 
                 _Logger.LogInfo("Call Back Method GetALLJournalGroup");
-                var loResult = loCls.GetALLJournalGroup(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL00400GetJournalGroupList");
-                loRtn = GetStream<GSL00400DTO>(loResult);
+                loRtn = await loCls.GetALLJournalGroup(poParameter);
             }
             catch (Exception ex)
             {
@@ -204,15 +213,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL00400GetJournalGroupList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL00500DTO> GSL00500GetGLAccountList()
         {
+            return GetGSL00500Stream();
+        }
+        private async IAsyncEnumerable<GSL00500DTO> GetGSL00500Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL00500GetGLAccountList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL00500DTO> loRtn = null;
+            List<GSL00500DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00500GetGLAccountList");
 
             try
@@ -231,10 +247,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CGOA_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CGOA_CODE);
 
                 _Logger.LogInfo("Call Back Method GetALLGLAccount");
-                var loResult = loCls.GetALLGLAccount(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL00500GetGLAccountList");
-                loRtn = GetStream<GSL00500DTO>(loResult);
+                loRtn = await loCls.GetALLGLAccount(poParameter);
             }
             catch (Exception ex)
             {
@@ -245,15 +258,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL00500GetGLAccountList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL00510DTO> GSL00510GetCOAList()
         {
+            return GetGSL00510Stream();
+        }
+        private async IAsyncEnumerable<GSL00510DTO> GetGSL00510Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL00510GetCOAList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL00510DTO> loRtn = null;
+            List<GSL00510DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00510GetCOAList");
 
             try
@@ -266,10 +286,7 @@ namespace Lookup_GSSERVICES
                 poParameter.LINACTIVE_COA = R_Utility.R_GetStreamingContext<bool>(ContextConstantPublicLookup.LINACTIVE_COA);
 
                 _Logger.LogInfo("Call Back Method GetALLCOA");
-                var loResult = loCls.GetALLCOA(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL00510GetCOAList");
-                loRtn = GetStream<GSL00510DTO>(loResult);
+                loRtn = await loCls.GetALLCOA(poParameter);
             }
             catch (Exception ex)
             {
@@ -280,15 +297,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL00510GetCOAList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL00520DTO> GSL00520GetGOACOAList()
         {
+            return GetGSL00520Stream();
+        }
+        private async IAsyncEnumerable<GSL00520DTO> GetGSL00520Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL00520GetGOACOAList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL00520DTO> loRtn = null;
+            List<GSL00520DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00520GetGOACOAList");
 
             try
@@ -300,10 +324,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CGOA_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CGOA_CODE);
 
                 _Logger.LogInfo("Call Back Method GetALLGOACOA");
-                var loResult = loCls.GetALLGOACOA(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL00520GetGOACOAList");
-                loRtn = GetStream<GSL00520DTO>(loResult);
+                loRtn = await loCls.GetALLGOACOA(poParameter);
             }
             catch (Exception ex)
             {
@@ -314,15 +335,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL00520GetGOACOAList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL00550DTO> GSL00550GetGOAList()
         {
+            return GetGSL00550Stream();
+        }
+        private async IAsyncEnumerable<GSL00550DTO> GetGSL00550Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL00550GetGOAList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL00550DTO> loRtn = null;
+            List<GSL00550DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00550GetGOAList");
 
             try
@@ -333,10 +361,7 @@ namespace Lookup_GSSERVICES
                 _Logger.LogInfo("Set Param GSL00550GetGOAList");
 
                 _Logger.LogInfo("Call Back Method GetALLGOA");
-                var loResult = loCls.GetALLGOA();
-
-                _Logger.LogInfo("Call Stream Method Data GSL00550GetGOAList");
-                loRtn = GetStream<GSL00550DTO>(loResult);
+                loRtn = await loCls.GetALLGOA();
             }
             catch (Exception ex)
             {
@@ -347,16 +372,23 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL00550GetGOAList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL00600DTO> GSL00600GetUnitTypeCategoryList()
         {
+            return GetGSL00600Stream();
+        }
+        private async IAsyncEnumerable<GSL00600DTO> GetGSL00600Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL00600GetUnitTypeCategoryList");
             var loEx = new R_Exception();
             _Logger.LogInfo("Start GSL00600GetUnitTypeCategoryList");
-            IAsyncEnumerable<GSL00600DTO> loRtn = null;
+            List<GSL00600DTO> loRtn = null;
 
             try
             {
@@ -367,10 +399,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
 
                 _Logger.LogInfo("Call Back Method GetALLUnitTypeCategory");
-                var loResult = loCls.GetALLUnitTypeCategory(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL00600GetUnitTypeCategoryList");
-                loRtn = GetStream<GSL00600DTO>(loResult);
+                loRtn = await loCls.GetALLUnitTypeCategory(poParameter);
             }
             catch (Exception ex)
             {
@@ -381,15 +410,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL00600GetUnitTypeCategoryList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL00700DTO> GSL00700GetDepartmentList()
         {
+            return GetGSL00700Stream();
+        }
+        private async IAsyncEnumerable<GSL00700DTO> GetGSL00700Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL00700GetDepartmentList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL00700DTO> loRtn = null;
+            List<GSL00700DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00700GetDepartmentList");
 
             try
@@ -401,11 +437,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CPROGRAM_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROGRAM_CODE);
 
                 _Logger.LogInfo("Call Back Method GetALLDepartment");
-                var loResult = loCls.GetALLDepartment(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL00700GetDepartmentList");
-                loRtn = GetStream<GSL00700DTO>(loResult);
-
+                loRtn = await loCls.GetALLDepartment(poParameter);
             }
             catch (Exception ex)
             {
@@ -416,15 +448,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL00700GetDepartmentList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL00710DTO> GSL00710GetDepartmentPropertyList()
         {
+            return GetGSL00710Stream();
+        }
+        private async IAsyncEnumerable<GSL00710DTO> GetGSL00710Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL00710GetDepartmentPropertyList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL00710DTO> loRtn = null;
+            List<GSL00710DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00710GetDepartmentPropertyList");
 
             try
@@ -436,10 +475,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
 
                 _Logger.LogInfo("Call Back Method GetALLDepartmentProperty");
-                var loResult = loCls.GetALLDepartmentProperty(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL00710GetDepartmentPropertyList");
-                loRtn = GetStream<GSL00710DTO>(loResult);
+                loRtn = await loCls.GetALLDepartmentProperty(poParameter);
             }
             catch (Exception ex)
             {
@@ -450,15 +486,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL00710GetDepartmentPropertyList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL00800DTO> GSL00800GetCurrencyTypeList()
         {
+            return GetGSL00800Stream();
+        }
+        private async IAsyncEnumerable<GSL00800DTO> GetGSL00800Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL00800GetCurrencyTypeList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL00800DTO> loRtn = null;
+            List<GSL00800DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00800GetCurrencyTypeList");
 
             try
@@ -467,10 +510,7 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL00800ParameterDTO();
 
                 _Logger.LogInfo("Call Back Method GetALLCurrencyRateType");
-                var loResult = loCls.GetALLCurrencyRateType();
-
-                _Logger.LogInfo("Call Stream Method Data GSL00800GetCurrencyTypeList");
-                loRtn = GetStream<GSL00800DTO>(loResult);
+                loRtn = await loCls.GetALLCurrencyRateType();
             }
             catch (Exception ex)
             {
@@ -480,15 +520,22 @@ namespace Lookup_GSSERVICES
             _Logger.LogInfo("End GSL00800GetCurrencyTypeList");
             loEx.ThrowExceptionIfErrors();
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL00900DTO> GSL00900GetCenterList()
         {
+            return GetGSL00900Stream();
+        }
+        private async IAsyncEnumerable<GSL00900DTO> GetGSL00900Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL00900GetCenterList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL00900DTO> loRtn = null;
+            List<GSL00900DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00900GetCenterList");
 
             try
@@ -497,10 +544,7 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL00900ParameterDTO();
 
                 _Logger.LogInfo("Call Back Method GetALLCenter");
-                var loResult = loCls.GetALLCenter();
-
-                _Logger.LogInfo("Call Stream Method Data GSL00900GetCenterList");
-                loRtn = GetStream<GSL00900DTO>(loResult);
+                loRtn = await loCls.GetALLCenter();
             }
             catch (Exception ex)
             {
@@ -511,15 +555,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL00900GetCenterList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL01000DTO> GSL01000GetUserList()
         {
+            return GetGSL01000Stream();
+        }
+        private async IAsyncEnumerable<GSL01000DTO> GetGSL01000Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL01000GetUserList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL01000DTO> loRtn = null;
+            List<GSL01000DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01000GetUserList");
 
             try
@@ -528,10 +579,7 @@ namespace Lookup_GSSERVICES
 
                 _Logger.LogInfo("Set Param GSL01000GetUserList");
                 _Logger.LogInfo("Call Back Method GetALLUser");
-                var loResult = loCls.GetALLUser();
-
-                _Logger.LogInfo("Call Stream Method Data GSL01000GetUserList");
-                loRtn = GetStream<GSL01000DTO>(loResult);
+                loRtn = await loCls.GetALLUser();
             }
             catch (Exception ex)
             {
@@ -542,15 +590,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL01000GetUserList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL01100DTO> GSL01100GetUserApprovalList()
         {
+            return GetGSL01100Stream();
+        }
+        private async IAsyncEnumerable<GSL01100DTO> GetGSL01100Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL01100GetUserApprovalList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL01100DTO> loRtn = null;
+            List<GSL01100DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01100GetUserApprovalList");
 
             try
@@ -563,10 +618,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CPROGRAM_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROGRAM_ID);
 
                 _Logger.LogInfo("Call Back Method GetALLUserApproval");
-                var loResult = loCls.GetALLUserApproval(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL01100GetUserApprovalList");
-                loRtn = GetStream<GSL01100DTO>(loResult);
+                loRtn = await loCls.GetALLUserApproval(poParameter);
             }
             catch (Exception ex)
             {
@@ -577,15 +629,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL01100GetUserApprovalList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL01200DTO> GSL01200GetBankList()
         {
+            return GetGSL01200Stream();
+        }
+        private async IAsyncEnumerable<GSL01200DTO> GetGSL01200Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL01200GetBankList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL01200DTO> loRtn = null;
+            List<GSL01200DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01200GetBankList");
 
             try
@@ -597,10 +656,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CCB_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCB_TYPE);
 
                 _Logger.LogInfo("Call Back Method GetALLBank");
-                var loResult = loCls.GetALLBank(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL01200GetBankList");
-                loRtn = GetStream<GSL01200DTO>(loResult);
+                loRtn = await loCls.GetALLBank(poParameter);
             }
             catch (Exception ex)
             {
@@ -611,15 +667,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL01200GetBankList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
-        
+
         [HttpPost]
         public IAsyncEnumerable<GSL01300DTO> GSL01300GetBankAccountList()
         {
+            return GetGSL01300Stream();
+        }
+        private async IAsyncEnumerable<GSL01300DTO> GetGSL01300Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL01300GetBankAccountList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL01300DTO> loRtn = null;
+            List<GSL01300DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01300GetBankAccountList");
 
             try
@@ -633,10 +696,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CDEPT_CODE);
 
                 _Logger.LogInfo("Call Back Method GetALLBankAccount");
-                var loResult = loCls.GetALLBankAccount(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL01300GetBankAccountList");
-                loRtn = GetStream<GSL01300DTO>(loResult);
+                loRtn = await loCls.GetALLBankAccount(poParameter);
             }
             catch (Exception ex)
             {
@@ -647,15 +707,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL01300GetBankAccountList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL01400DTO> GSL01400GetOtherChargesList()
         {
+            return GetGSL01400Stream();
+        }
+        private async IAsyncEnumerable<GSL01400DTO> GetGSL01400Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL01400GetOtherChargesList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL01400DTO> loRtn = null;
+            List<GSL01400DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01400GetOtherChargesList");
 
             try
@@ -668,10 +735,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CCHARGES_TYPE_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCHARGES_TYPE_ID);
 
                 _Logger.LogInfo("Call Back Method GetALLOtherCharges");
-                var loResult = loCls.GetALLOtherCharges(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL01400GetOtherChargesList");
-                loRtn = GetStream<GSL01400DTO>(loResult);
+                loRtn = await loCls.GetALLOtherCharges(poParameter);
             }
             catch (Exception ex)
             {
@@ -682,15 +746,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL01400GetOtherChargesList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL01500ResultDetailDTO> GSL01500GetCashDetailList()
         {
+            return GetGSL01501Stream();
+        }
+        private async IAsyncEnumerable<GSL01500ResultDetailDTO> GetGSL01501Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL01500GetCashDetailList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL01500ResultDetailDTO> loRtn = null;
+            List<GSL01500ResultDetailDTO> loRtn = null;
             _Logger.LogInfo("Start GSL01500GetCashDetailList");
 
             try
@@ -702,10 +773,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CCASH_FLOW_GROUP_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCASH_FLOW_GROUP_CODE);
 
                 _Logger.LogInfo("Call Back Method GetALLCashFlowDetail");
-                var loResult = loCls.GetALLCashFlowDetail(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL01500GetCashDetailList");
-                loRtn = GetStream<GSL01500ResultDetailDTO>(loResult);
+                loRtn = await loCls.GetALLCashFlowDetail(poParameter);
             }
             catch (Exception ex)
             {
@@ -716,15 +784,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL01500GetCashDetailList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL01500ResultGroupDTO> GSL01500GetCashFlowGroupList()
         {
+            return GetGSL01500Stream();
+        }
+        private async IAsyncEnumerable<GSL01500ResultGroupDTO> GetGSL01500Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL01500GetCashFlowGroupList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL01500ResultGroupDTO> loRtn = null;
+            List<GSL01500ResultGroupDTO> loRtn = null;
             _Logger.LogInfo("Start GSL01500GetCashFlowGroupList");
 
             try
@@ -733,10 +808,7 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL01500ParameterGroupDTO();
 
                 _Logger.LogInfo("Call Back Method GetALLCashFlowGroup");
-                var loResult = loCls.GetALLCashFlowGroup(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL01500GetCashFlowGroupList");
-                loRtn = GetStream<GSL01500ResultGroupDTO>(loResult);
+                loRtn = await loCls.GetALLCashFlowGroup(poParameter);
             }
             catch (Exception ex)
             {
@@ -747,15 +819,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL01500GetCashFlowGroupList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL01600DTO> GSL01600GetCashFlowGroupTypeList()
         {
+            return GetGSL01600Stream();
+        }
+        private async IAsyncEnumerable<GSL01600DTO> GetGSL01600Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL01600GetCashFlowGroupTypeList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL01600DTO> loRtn = null;
+            List<GSL01600DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01600GetCashFlowGroupTypeList");
 
             try
@@ -764,11 +843,7 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL01600ParameterDTO();
 
                 _Logger.LogInfo("Call Back Method GetALLCashFlowGruopType");
-                var loResult = loCls.GetALLCashFlowGruopType();
-
-                _Logger.LogInfo("Call Stream Method Data GSL01600GetCashFlowGroupTypeList");
-                loRtn = GetStream<GSL01600DTO>(loResult);
-
+                loRtn = await loCls.GetALLCashFlowGruopType();
             }
             catch (Exception ex)
             {
@@ -779,15 +854,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL01600GetCashFlowGroupTypeList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL01700DTO> GSL01700GetCurrencyRateList()
         {
+            return GetGSL01700Stream();
+        }
+        private async IAsyncEnumerable<GSL01700DTO> GetGSL01700Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL01700GetCurrencyRateList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL01700DTO> loRtn = null;
+            List<GSL01700DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01700GetCurrencyRateList");
 
             try
@@ -802,10 +884,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CRATE_DATE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CRATE_DATE);
 
                 _Logger.LogInfo("Call Back Method GetALLCurrencyRate");
-                var loResult = loCls.GetALLCurrencyRate(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL01700GetCurrencyRateList");
-                loRtn = GetStream<GSL01700DTO>(loResult);
+                loRtn = await loCls.GetALLCurrencyRate(poParameter);
             }
             catch (Exception ex)
             {
@@ -816,15 +895,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL01700GetCurrencyRateList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
-        
+
         [HttpPost]
         public IAsyncEnumerable<GSL01701DTO> GSL01700GetRateTypeList()
         {
+            return GetGSL01701Stream();
+        }
+        private async IAsyncEnumerable<GSL01701DTO> GetGSL01701Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL01700GetRateTypeList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL01701DTO> loRtn = null;
+            List<GSL01701DTO> loRtn = null;
             var loParam = new GSL01700DTOParameter();
             _Logger.LogInfo("Start GSL01700GetRateTypeList");
 
@@ -833,10 +919,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLRateType");
-                var loResult = loCls.GetALLRateType();
-
-                _Logger.LogInfo("Call Stream Method Data GSL01700GetRateTypeList");
-                loRtn = GetStream<GSL01701DTO>(loResult);
+                loRtn = await loCls.GetALLRateType();
             }
             catch (Exception ex)
             {
@@ -847,15 +930,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL01700GetRateTypeList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL01702DTO> GSL01700GetLocalAndBaseCurrencyList()
         {
+            return GetGSL01702Stream();
+        }
+        private async IAsyncEnumerable<GSL01702DTO> GetGSL01702Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL01700GetLocalAndBaseCurrencyList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL01702DTO> loRtn = null;
+            List<GSL01702DTO> loRtn = null;
             var loParam = new GSL01700DTOParameter();
             _Logger.LogInfo("Start GSL01700GetLocalAndBaseCurrencyList");
 
@@ -864,10 +954,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLLocalAndBaseCurrency");
-                var loResult = loCls.GetALLLocalAndBaseCurrency();
-
-                _Logger.LogInfo("Call Stream Method Data GSL01700GetLocalAndBaseCurrencyList");
-                loRtn = GetStream<GSL01702DTO>(loResult);
+                loRtn = await loCls.GetALLLocalAndBaseCurrency();
             }
             catch (Exception ex)
             {
@@ -878,15 +965,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL01700GetLocalAndBaseCurrencyList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL01800DTO> GSL01800GetCategoryList()
         {
+            return GetGSL01800Stream();
+        }
+        private async IAsyncEnumerable<GSL01800DTO> GetGSL01800Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL01800GetCategoryList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL01800DTO> loRtn = null;
+            List<GSL01800DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01800GetCategoryList");
 
             try
@@ -901,10 +995,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CCATEGORY_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCATEGORY_TYPE);
 
                 _Logger.LogInfo("Call Back Method GetALLCategory");
-                var loResult = loCls.GetALLCategory(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL01800GetCategoryList");
-                loRtn = GetStream<GSL01800DTO>(loResult);
+                loRtn = await loCls.GetALLCategory(poParameter);
             }
             catch (Exception ex)
             {
@@ -915,15 +1006,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL01800GetCategoryList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL01900DTO> GSL01900GetLOBList()
         {
+            return GetGSL01900Stream();
+        }
+        private async IAsyncEnumerable<GSL01900DTO> GetGSL01900Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL01900GetLOBList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL01900DTO> loRtn = null;
+            List<GSL01900DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01900GetLOBList");
 
             try
@@ -932,10 +1030,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLLOB");
-                var loResult = loCls.GetALLLOB();
-
-                _Logger.LogInfo("Call Stream Method Data GSL01900GetLOBList");
-                loRtn = GetStream<GSL01900DTO>(loResult);
+                loRtn = await loCls.GetALLLOB();
             }
             catch (Exception ex)
             {
@@ -946,15 +1041,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL01900GetLOBList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL02000CountryDTO> GSL02000GetCountryGeographyList()
         {
+            return GetGSL0200Stream();
+        }
+        private async IAsyncEnumerable<GSL02000CountryDTO> GetGSL0200Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL02000GetCountryGeographyList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL02000CountryDTO> loRtn = null;
+            List<GSL02000CountryDTO> loRtn = null;
             _Logger.LogInfo("Start GSL02000GetCountryGeographyList");
 
             try
@@ -963,10 +1065,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLCountryGeography");
-                var loResult = loCls.GetALLCountryGeography();
-
-                _Logger.LogInfo("Call Stream Method Data GSL02000GetCountryGeographyList");
-                loRtn = GetStream<GSL02000CountryDTO>(loResult);
+                loRtn = await loCls.GetALLCountryGeography();
             }
             catch (Exception ex)
             {
@@ -977,15 +1076,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL02000GetCountryGeographyList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL02000CityDTO> GSL02000GetCityGeographyList()
         {
+            return GetGSL02000Stream();
+        }
+        private async IAsyncEnumerable<GSL02000CityDTO> GetGSL02000Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL02000GetCityGeographyList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL02000CityDTO> loRtn = null;
+            List<GSL02000CityDTO> loRtn = null;
             _Logger.LogInfo("Start GSL02000GetCityGeographyList");
 
             try
@@ -998,10 +1104,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CCOUNTRY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCOUNTRY_ID);
 
                 _Logger.LogInfo("Call Back Method GetALLCityGeography");
-                var loResult = loCls.GetALLCityGeography(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL02000GetCityGeographyList");
-                loRtn = GetStream<GSL02000CityDTO>(loResult);
+                loRtn = await loCls.GetALLCityGeography(poParameter);
             }
             catch (Exception ex)
             {
@@ -1012,15 +1115,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL02000GetCityGeographyList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL02100DTO> GSL02100GetPaymentTermList()
         {
+            return GetGSL02100Stream();
+        }
+        private async IAsyncEnumerable<GSL02100DTO> GetGSL02100Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL02100GetPaymentTermList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL02100DTO> loRtn = null;
+            List<GSL02100DTO> loRtn = null;
             _Logger.LogInfo("Start GSL02100GetPaymentTermList");
 
             try
@@ -1034,10 +1144,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
 
                 _Logger.LogInfo("Call Back Method GetALLPaymentTerm");
-                var loResult = loCls.GetALLPaymentTerm(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL02100GetPaymentTermList");
-                loRtn = GetStream<GSL02100DTO>(loResult);
+                loRtn = await loCls.GetALLPaymentTerm(poParameter);
             }
             catch (Exception ex)
             {
@@ -1048,15 +1155,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL02100GetPaymentTermList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL02200DTO> GSL02200GetBuildingList()
         {
+            return GetGSL02200Stream();
+        }
+        private async IAsyncEnumerable<GSL02200DTO> GetGSL02200Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL02200GetBuildingList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL02200DTO> loRtn = null;
+            List<GSL02200DTO> loRtn = null;
             _Logger.LogInfo("Start GSL02200GetBuildingList");
 
             try
@@ -1069,10 +1183,7 @@ namespace Lookup_GSSERVICES
                 poParameter.LAGREEMENT = R_Utility.R_GetStreamingContext<bool>(ContextConstantPublicLookup.LAGREEMENT);
 
                 _Logger.LogInfo("Call Back Method GetALLBuilding");
-                var loResult = loCls.GetALLBuilding(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL02100GetPaymentTermList");
-                loRtn = GetStream<GSL02200DTO>(loResult);
+                loRtn = await loCls.GetALLBuilding(poParameter);
             }
             catch (Exception ex)
             {
@@ -1083,15 +1194,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL02200GetBuildingList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL02300DTO> GSL02300GetBuildingUnitList()
         {
+            return GetGSL02300Stream();
+        }
+        private async IAsyncEnumerable<GSL02300DTO> GetGSL02300Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL02300GetBuildingUnitList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL02300DTO> loRtn = null;
+            List<GSL02300DTO> loRtn = null;
             _Logger.LogInfo("Start GSL02300GetBuildingUnitList");
 
             try
@@ -1110,12 +1228,10 @@ namespace Lookup_GSSERVICES
                 poParameter.CTRANS_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTRANS_CODE);
                 poParameter.CREF_NO = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CREF_NO);
                 poParameter.CUNIT_CATEGORY_LIST = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CUNIT_CATEGORY_LIST);
+                poParameter.CUNIT_TYPE_CATEGORY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CUNIT_TYPE_CATEGORY_ID);
 
                 _Logger.LogInfo("Call Back Method GetALLBuilding");
-                var loResult = loCls.GetALLBuildingUnit(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL02300GetBuildingUnitList");
-                loRtn = GetStream<GSL02300DTO>(loResult);
+                loRtn = await loCls.GetALLBuildingUnit(poParameter);
             }
             catch (Exception ex)
             {
@@ -1126,15 +1242,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL02300GetBuildingUnitList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
-        
+
         [HttpPost]
         public IAsyncEnumerable<GSL02400DTO> GSL02400GetFloorList()
         {
+            return GetGSL02400Stream();
+        }
+        private async IAsyncEnumerable<GSL02400DTO> GetGSL02400Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL02400GetFloorList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL02400DTO> loRtn = null;
+            List<GSL02400DTO> loRtn = null;
             _Logger.LogInfo("Start GSL02400GetFloorList");
 
             try
@@ -1151,10 +1274,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CREF_NO = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CREF_NO);
 
                 _Logger.LogInfo("Call Back Method GetALLFloor");
-                var loResult = loCls.GetALLFloor(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL02400GetFloorList");
-                loRtn = GetStream<GSL02400DTO>(loResult);
+                loRtn = await loCls.GetALLFloor(poParameter);
             }
             catch (Exception ex)
             {
@@ -1165,15 +1285,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL02400GetFloorList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL02500DTO> GSL02500GetCBList()
         {
+            return GetGSL02500Stream();
+        }
+        private async IAsyncEnumerable<GSL02500DTO> GetGSL02500Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL02500GetCBList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL02500DTO> loRtn = null;
+            List<GSL02500DTO> loRtn = null;
             _Logger.LogInfo("Start GSL02500GetCBList");
 
             try
@@ -1188,10 +1315,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CCURRENCY_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCURRENCY_CODE);
 
                 _Logger.LogInfo("Call Back Method GetALLCB");
-                var loResult = loCls.GetALLCB(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL02500GetCBList");
-                loRtn = GetStream<GSL02500DTO>(loResult);
+                loRtn = await loCls.GetALLCB(poParameter);
             }
             catch (Exception ex)
             {
@@ -1202,15 +1326,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL02500GetCBList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL02600DTO> GSL02600GetCBAccountList()
         {
+            return GetGSL02600Stream();
+        }
+        private async IAsyncEnumerable<GSL02600DTO> GetGSL02600Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL02600GetCBAccountList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL02600DTO> loRtn = null;
+            List<GSL02600DTO> loRtn = null;
             _Logger.LogInfo("Start GSL02600GetCBAccountList");
 
             try
@@ -1226,10 +1357,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CCURRENCY_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCURRENCY_CODE);
 
                 _Logger.LogInfo("Call Back Method GetALLCBAccount");
-                var loResult = loCls.GetALLCBAccount(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL02600GetCBAccountList");
-                loRtn = GetStream<GSL02600DTO>(loResult);
+                loRtn = await loCls.GetALLCBAccount(poParameter);
             }
             catch (Exception ex)
             {
@@ -1240,15 +1368,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL02600GetCBAccountList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL02700DTO> GSL02700GetOtherUnitList()
         {
+            return GetGSL02700Stream();
+        }
+        private async IAsyncEnumerable<GSL02700DTO> GetGSL02700Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL02700GetOtherUnitList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL02700DTO> loRtn = null;
+            List<GSL02700DTO> loRtn = null;
             _Logger.LogInfo("Start GSL02700GetOtherUnitList");
 
             try
@@ -1268,13 +1403,10 @@ namespace Lookup_GSSERVICES
                 poParameter.CLEASE_STATUS_LIST = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CLEASE_STATUS_LIST);
 
                 _Logger.LogInfo("Call Back Method GetALLOtherUnit");
-                var loResult = loCls.GetALLOtherUnit(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL02700GetOtherUnitList");
-                loRtn = GetStream<GSL02700DTO>(loResult);
+                loRtn = await loCls.GetALLOtherUnit(poParameter);
             }
             catch (Exception ex)
-            {   
+            {
                 loEx.Add(ex);
                 _Logger.LogError(loEx);
             }
@@ -1282,15 +1414,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL02700GetOtherUnitList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL02800DTO> GSL02800GetOtherUnitMasterList()
         {
+            return GetGSL02800Stream();
+        }
+        private async IAsyncEnumerable<GSL02800DTO> GetGSL02800Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL02800GetOtherUnitList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL02800DTO> loRtn = null;
+            List<GSL02800DTO> loRtn = null;
             _Logger.LogInfo("Start GSL02800GetOtherUnitList");
 
             try
@@ -1303,10 +1442,7 @@ namespace Lookup_GSSERVICES
                 poParameter.LEVENT = R_Utility.R_GetStreamingContext<bool>(ContextConstantPublicLookup.LEVENT);
 
                 _Logger.LogInfo("Call Back Method GetALLOtherUnit");
-                var loResult = loCls.GetALLOtherUnitMaster(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL02800GetOtherUnitList");
-                loRtn = GetStream<GSL02800DTO>(loResult);
+                loRtn = await loCls.GetALLOtherUnitMaster(poParameter);
             }
             catch (Exception ex)
             {
@@ -1317,15 +1453,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL02800GetOtherUnitList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL02510DTO> GSL02510GetCashBankList()
         {
+            return GetGSL02510Stream();
+        }
+        private async IAsyncEnumerable<GSL02510DTO> GetGSL02510Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL02510GetCashBankList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL02510DTO> loRtn = null;
+            List<GSL02510DTO> loRtn = null;
             _Logger.LogInfo("Start GSL02510GetCashBankList");
 
             try
@@ -1337,10 +1480,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CCB_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCB_TYPE);
 
                 _Logger.LogInfo("Call Back Method GetALLCashBank");
-                var loResult = loCls.GetALLCashBank(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL02510GetCashBankList");
-                loRtn = GetStream<GSL02510DTO>(loResult);
+                loRtn = await loCls.GetALLCashBank(poParameter);
             }
             catch (Exception ex)
             {
@@ -1351,15 +1491,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL02510GetCashBankList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL02900DTO> GSL02900GetSupplierList()
         {
+            return GetGSL02900Stream();
+        }
+        private async IAsyncEnumerable<GSL02900DTO> GetGSL02900Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL02900GetSupplierList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL02900DTO> loRtn = null;
+            List<GSL02900DTO> loRtn = null;
             _Logger.LogInfo("Start GSL02900GetSupplierList");
 
             try
@@ -1369,12 +1516,11 @@ namespace Lookup_GSSERVICES
                 _Logger.LogInfo("Set Param GSL02900GetSupplierList");
                 var loCls = new PublicLookupCls();
                 poParameter.CFILTER_SP = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CFILTER_SP);
+                poParameter.CSTATUS_LIST = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CSTATUS_LIST);
+                poParameter.CSUPPLIER_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CSUPPLIER_ID);
 
                 _Logger.LogInfo("Call Back Method GetALLSupplier");
-                var loResult = loCls.GetALLSupplier(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL02900GetSupplierList");
-                loRtn = GetStream<GSL02900DTO>(loResult);
+                loRtn = await loCls.GetALLSupplier(poParameter);
             }
             catch (Exception ex)
             {
@@ -1385,15 +1531,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL02900GetSupplierList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL02910DTO> GSL02910GetSupplierInfoList()
         {
+            return GetGSL02910Stream();
+        }
+        private async IAsyncEnumerable<GSL02910DTO> GetGSL02910Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL02910GetSupplierInfoList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL02910DTO> loRtn = null;
+            List<GSL02910DTO> loRtn = null;
             _Logger.LogInfo("Start GSL02910GetSupplierInfoList");
 
             try
@@ -1405,10 +1558,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CSUPPLIER_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CSUPPLIER_ID);
 
                 _Logger.LogInfo("Call Back Method GetALLSupplierInfo");
-                var loResult = loCls.GetALLSupplierInfo(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL02910GetSupplierInfoList");
-                loRtn = GetStream<GSL02910DTO>(loResult);
+                loRtn = await loCls.GetALLSupplierInfo(poParameter);
             }
             catch (Exception ex)
             {
@@ -1419,15 +1569,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL02910GetSupplierInfoList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL03000DTO> GSL03000GetProductList()
         {
+            return GetGSL03000Stream();
+        }
+        private async IAsyncEnumerable<GSL03000DTO> GetGSL03000Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL03000GetProductList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL03000DTO> loRtn = null;
+            List<GSL03000DTO> loRtn = null;
             _Logger.LogInfo("Start GSL03000GetProductList");
 
             try
@@ -1441,12 +1598,10 @@ namespace Lookup_GSSERVICES
                 poParameter.CACTIVE_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CACTIVE_TYPE);
                 poParameter.CTAX_DATE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTAX_DATE);
                 poParameter.CBUYSELL = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CBUYSELL);
+                poParameter.CINOUT = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CINOUT);
 
                 _Logger.LogInfo("Call Back Method GetALLProduct");
-                var loResult = loCls.GetALLProduct(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL03000GetProductList");
-                loRtn = GetStream<GSL03000DTO>(loResult);
+                loRtn = await loCls.GetALLProduct(poParameter);
             }
             catch (Exception ex)
             {
@@ -1457,15 +1612,98 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL03000GetProductList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
+        }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL03010DTO> GSL03010GetProductUnitList()
+        {
+            return GetGSL03010Stream();
+        }
+        private async IAsyncEnumerable<GSL03010DTO> GetGSL03010Stream()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03010GetProductUnitList");
+            var loEx = new R_Exception();
+            List<GSL03010DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL03010GetProductUnitList");
+
+            try
+            {
+                var poParameter = new GSL03010ParameterDTO();
+
+                _Logger.LogInfo("Set Param GSL03010GetProductUnitList");
+                var loCls = new PublicLookupCls();
+                poParameter.CPRODUCT_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPRODUCT_ID);
+
+                _Logger.LogInfo("Call Back Method GetALLProduct");
+                loRtn = await loCls.GetALLProductUnit(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL03010GetProductUnitList");
+
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
+        }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL03020DTO> GSL03020GetProductUOMList()
+        {
+            return GetGSL03020Stream();
+        }
+        private async IAsyncEnumerable<GSL03020DTO> GetGSL03020Stream()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03020GetProductUOMList");
+            var loEx = new R_Exception();
+            List<GSL03020DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL03020GetProductUOMList");
+
+            try
+            {
+                var poParameter = new GSL03020ParameterDTO();
+
+                _Logger.LogInfo("Set Param GSL03020GetProductUOMList");
+                var loCls = new PublicLookupCls();
+                poParameter.CPRODUCT_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPRODUCT_ID);
+
+                _Logger.LogInfo("Call Back Method GetALLProduct");
+                loRtn = await loCls.GetALLProductUOM(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL03020GetProductUOMList");
+
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL03100DTO> GSL03100GetExpenditureList()
         {
+            return GetGSL03100Stream();
+        }
+        private async IAsyncEnumerable<GSL03100DTO> GetGSL03100Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL03100GetExpenditureList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL03100DTO> loRtn = null;
+            List<GSL03100DTO> loRtn = null;
             _Logger.LogInfo("Start GSL03100GetExpenditureList");
 
             try
@@ -1480,10 +1718,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CTAX_DATE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTAX_DATE);
 
                 _Logger.LogInfo("Call Back Method GetALLExpenditure");
-                var loResult = loCls.GetALLExpenditure(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL03100GetExpenditureList");
-                loRtn = GetStream<GSL03100DTO>(loResult);
+                loRtn = await loCls.GetALLExpenditure(poParameter);
             }
             catch (Exception ex)
             {
@@ -1494,15 +1729,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL03100GetExpenditureList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL03200DTO> GSL03200GetProductAllocationList()
         {
+            return GetGSL03200Stream();
+        }
+        private async IAsyncEnumerable<GSL03200DTO> GetGSL03200Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL03200GetProductAllocationList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL03200DTO> loRtn = null;
+            List<GSL03200DTO> loRtn = null;
             _Logger.LogInfo("Start GSL03200GetProductAllocationList");
 
             try
@@ -1513,12 +1755,10 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
                 poParameter.CACTIVE_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CACTIVE_TYPE);
                 poParameter.CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CDEPT_CODE);
+                poParameter.CALLOC_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CALLOC_ID);
 
                 _Logger.LogInfo("Call Back Method GetALLProductAllocation");
-                var loResult = loCls.GetALLProductAllocation(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL03200GetProductAllocationList");
-                loRtn = GetStream<GSL03200DTO>(loResult);
+                loRtn = await loCls.GetALLProductAllocation(poParameter);
             }
             catch (Exception ex)
             {
@@ -1529,15 +1769,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL03200GetProductAllocationList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL03300DTO> GSL03300GetTaxChargesList()
         {
+            return GetGSL03300Stream();
+        }
+        private async IAsyncEnumerable<GSL03300DTO> GetGSL03300Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL03300GetTaxChargesList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL03300DTO> loRtn = null;
+            List<GSL03300DTO> loRtn = null;
             _Logger.LogInfo("Start GSL03300GetTaxChargesList");
 
             try
@@ -1550,10 +1797,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CREF_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CREF_TYPE);
 
                 _Logger.LogInfo("Call Back Method GetALLTaxCharges");
-                var loResult = loCls.GetALLTaxCharges(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL03300GetTaxChargesList");
-                loRtn = GetStream<GSL03300DTO>(loResult);
+                loRtn = await loCls.GetALLTaxCharges(poParameter);
             }
             catch (Exception ex)
             {
@@ -1564,15 +1808,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL03300GetTaxChargesList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL03400DTO> GSL03400GetDigitalSignList()
         {
+            return GetGSL03400Stream();
+        }
+        private async IAsyncEnumerable<GSL03400DTO> GetGSL03400Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL03400GetDigitalSignList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL03400DTO> loRtn = null;
+            List<GSL03400DTO> loRtn = null;
             _Logger.LogInfo("Start GSL03400GetDigitalSignList");
 
             try
@@ -1581,10 +1832,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLDigitalSign");
-                var loResult = loCls.GetALLDigitalSign();
-
-                _Logger.LogInfo("Call Stream Method Data GSL03400GetDigitalSignList");
-                loRtn = GetStream<GSL03400DTO>(loResult);
+                loRtn = await loCls.GetALLDigitalSign();
             }
             catch (Exception ex)
             {
@@ -1595,15 +1843,22 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL03400GetDigitalSignList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL03500DTO> GSL03500GetWarehouseList()
         {
+            return GetGSL03500Stream();
+        }
+        private async IAsyncEnumerable<GSL03500DTO> GetGSL03500Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL03500GetWarehouseList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL03500DTO> loRtn = null;
+            List<GSL03500DTO> loRtn = null;
             _Logger.LogInfo("Start GSL03500GetWarehouseList");
 
             try
@@ -1611,13 +1866,11 @@ namespace Lookup_GSSERVICES
                 _Logger.LogInfo("Set Param GSL03500GetWarehouseList");
                 var poParameter = new GSL03500ParameterDTO();
                 poParameter.CACTIVE_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CACTIVE_TYPE);
+                poParameter.CWAREHOUSE_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CWAREHOUSE_ID);
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLWarehouse");
-                var loResult = loCls.GetALLWarehouse(poParameter);
-
-                _Logger.LogInfo("Call Stream Method Data GSL03500GetWarehouseList");
-                loRtn = GetStream<GSL03500DTO>(loResult);
+                loRtn = await loCls.GetALLWarehouse(poParameter);
             }
             catch (Exception ex)
             {
@@ -1628,29 +1881,30 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL03500GetWarehouseList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL03600DTO> GSL03600GetCompanyList()
         {
+            return GetGSL03600Stream();
+        }
+        private async IAsyncEnumerable<GSL03600DTO> GetGSL03600Stream()
+        {
             using Activity activity = _activitySource.StartActivity("GSL03600GetCompanyList");
             var loEx = new R_Exception();
-            IAsyncEnumerable<GSL03600DTO> loRtn = null;
+            List<GSL03600DTO> loRtn = null;
             _Logger.LogInfo("Start GSL03600GetCompanyList");
 
             try
             {
-                //_Logger.LogInfo("Set Param GSL03600GetCompanyList");
-                //var poParameter = new GSL03500ParameterDTO();
-                //poParameter.CACTIVE_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CACTIVE_TYPE);
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLWarehouse");
-                var loResult = loCls.GetALLCompany();
-
-                _Logger.LogInfo("Call Stream Method Data GSL03600GetCompanyList");
-                loRtn = GetStream<GSL03600DTO>(loResult);
+                loRtn = await loCls.GetALLCompany();
             }
             catch (Exception ex)
             {
@@ -1661,7 +1915,47 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
             _Logger.LogInfo("End GSL03600GetCompanyList");
 
-            return loRtn;
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
         }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL03700DTO> GSL03700GetMessageList()
+        {
+            return GetGSL03700Stream();
+        }
+        private async IAsyncEnumerable<GSL03700DTO> GetGSL03700Stream()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03700GetMessageList");
+            var loEx = new R_Exception();
+            List<GSL03700DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL03700GetMessageList");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+                var loParameter = new GSL03700ParameterDTO();
+                loParameter.CMESSAGE_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CMESSAGE_TYPE);
+
+                _Logger.LogInfo("Call Back Method GetALLMessage");
+                loRtn = await loCls.GetALLMessage(loParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL03700GetMessageList");
+
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
+        }
+
     }
 }

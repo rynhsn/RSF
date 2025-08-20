@@ -9,6 +9,9 @@ namespace GSM02500COMMON.DTOs.GSM02540
         public string COTHER_UNIT_TYPE_ID { get; set; } = "";
         public string COTHER_UNIT_TYPE_NAME { get; set; } = "";
         public string CDESCRIPTION { get; set; } = "";
+        public string CDEPT_CODE { get; set; } = "";
+        public string CDEPT_NAME { get; set; } = "";
+        public string CPROPERTY_TYPE { get; set; } = "";
         public decimal NGROSS_AREA_SIZE { get; set; } = 0;
         public decimal NNET_AREA_SIZE { get; set; } = 0;
         public bool LACTIVE { get; set; } = true;
@@ -23,6 +26,8 @@ namespace GSM02500COMMON.DTOs.GSM02540
             COTHER_UNIT_TYPE_ID = "";
             COTHER_UNIT_TYPE_NAME = "";
             CDESCRIPTION = "";
+            CDEPT_CODE = "";
+            CDEPT_NAME = "";
             NGROSS_AREA_SIZE = 0;
             NNET_AREA_SIZE = 0;
             LACTIVE = true;

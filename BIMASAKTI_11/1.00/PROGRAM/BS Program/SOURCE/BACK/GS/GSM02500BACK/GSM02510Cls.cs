@@ -18,7 +18,7 @@ using GSM02500BACK.OpenTelemetry;
 
 namespace GSM02500BACK
 {
-    public class GSM02510Cls : R_BusinessObject<GSM02510ParameterDTO>
+    public class GSM02510Cls : R_BusinessObjectAsync<GSM02510ParameterDTO>
     {
         RSP_GS_MAINTAIN_BUILDINGResources.Resources_Dummy_Class _loRsp = new RSP_GS_MAINTAIN_BUILDINGResources.Resources_Dummy_Class();
 
@@ -30,7 +30,7 @@ namespace GSM02500BACK
             _activitySource = GSM02510ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
-        public List<GSM02510DTO> GetBuildingList(GetBuildingListParameterDTO poEntity)
+        public async Task<List<GSM02510DTO>> GetBuildingList(GetBuildingListParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GetBuildingList");
             R_Exception loException = new R_Exception();
@@ -42,7 +42,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
 
                 lcQuery = $"EXEC RSP_GS_GET_BUILDING_LIST " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -63,7 +63,7 @@ namespace GSM02500BACK
 
                 _logger.LogDebug("EXEC RSP_GS_GET_BUILDING_LIST {@Parameters} || GetBuildingList(Cls) ", loDbParam);
 
-                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
 
                 loResult = R_Utility.R_ConvertTo<GSM02510DTO>(loDataTable).ToList();
             }
@@ -78,7 +78,7 @@ namespace GSM02500BACK
             return loResult;
         }
 
-        public void RSP_GS_ACTIVE_INACTIVE_BUILIDNGMethod(GSM02500ActiveInactiveParameterDTO poEntity)
+        public async Task RSP_GS_ACTIVE_INACTIVE_BUILIDNGMethod(GSM02500ActiveInactiveParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("RSP_GS_ACTIVE_INACTIVE_BUILIDNGMethod");
             R_Exception loException = new R_Exception();
@@ -89,7 +89,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
 
                 lcQuery = $"EXEC RSP_GS_ACTIVE_INACTIVE_BUILDING " +
                     $"@CCOMPANY_ID, " +
@@ -114,7 +114,7 @@ namespace GSM02500BACK
 
                 _logger.LogDebug("EXEC RSP_GS_ACTIVE_INACTIVE_BUILIDNG {@Parameters} || RSP_GS_ACTIVE_INACTIVE_BUILIDNGMethod(Cls) ", loDbParam);
 
-                loDb.SqlExecNonQuery(loConn, loCmd, true);
+                await loDb.SqlExecNonQueryAsync(loConn, loCmd, true);
             }
             catch (Exception ex)
             {
@@ -126,7 +126,7 @@ namespace GSM02500BACK
             loException.ThrowExceptionIfErrors();
         }
 
-        private void RSP_GS_MAINTAIN_BUILDINGMethod(GSM02510ParameterDTO poEntity)
+        private async Task RSP_GS_MAINTAIN_BUILDINGMethod(GSM02510ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("RSP_GS_MAINTAIN_BUILDINGMethod");
             R_Exception loException = new R_Exception();
@@ -137,7 +137,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
                 loCmd = loDb.GetCommand();
 
                 lcQuery = $"EXEC RSP_GS_MAINTAIN_BUILDING " +
@@ -152,14 +152,14 @@ namespace GSM02500BACK
 
                 loCmd.CommandText = lcQuery;
 
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CLOGIN_COMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 50, poEntity.Data.CBUILDING_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CBUILDING_NAME", DbType.String, 50, poEntity.Data.CBUILDING_NAME);
-                loDb.R_AddCommandParameter(loCmd, "@CDESCRIPTION", DbType.String, 50, poEntity.Data.CDESCRIPTION);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 20, poEntity.CLOGIN_COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poEntity.CPROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 20, poEntity.Data.CBUILDING_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CBUILDING_NAME", DbType.String, 200, poEntity.Data.CBUILDING_NAME);
+                loDb.R_AddCommandParameter(loCmd, "@CDESCRIPTION", DbType.String, int.MaxValue, poEntity.Data.CDESCRIPTION);
                 loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, 10, poEntity.Data.LACTIVE);
-                loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 50, poEntity.CACTION);
-                loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 50, poEntity.CLOGIN_USER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, poEntity.CACTION);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 20, poEntity.CLOGIN_USER_ID);
 
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                     .Where(x =>
@@ -172,7 +172,7 @@ namespace GSM02500BACK
 
                 try
                 {
-                    loDb.SqlExecNonQuery(loConn, loCmd, false);
+                    await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
                 }
                 catch (Exception ex)
                 {
@@ -204,14 +204,14 @@ namespace GSM02500BACK
             }
             loException.ThrowExceptionIfErrors();
         }
-        protected override void R_Deleting(GSM02510ParameterDTO poEntity)
+        protected override async Task R_DeletingAsync(GSM02510ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("R_Deleting");
             R_Exception loException = new R_Exception();
 
             try
             {
-                RSP_GS_MAINTAIN_BUILDINGMethod(poEntity);
+                await RSP_GS_MAINTAIN_BUILDINGMethod(poEntity);
             }
             catch (Exception ex)
             {
@@ -221,8 +221,7 @@ namespace GSM02500BACK
 
             loException.ThrowExceptionIfErrors();
         }
-
-        protected override GSM02510ParameterDTO R_Display(GSM02510ParameterDTO poEntity)
+        protected override async Task<GSM02510ParameterDTO> R_DisplayAsync(GSM02510ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("R_Display");
             R_Exception loException = new R_Exception();
@@ -234,7 +233,7 @@ namespace GSM02500BACK
 
             try
             {
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
 
                 lcQuery = $"EXEC RSP_GS_GET_BUILDING_DETAIL " +
                     $"@CLOGIN_COMPANY_ID, " +
@@ -255,7 +254,7 @@ namespace GSM02500BACK
 
                 _logger.LogDebug("EXEC RSP_GS_GET_BUILDING_DETAIL {@Parameters} || R_Display(Cls) ", loDbParam);
 
-                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
 
                 loResult.Data = R_Utility.R_ConvertTo<GSM02510DetailDTO>(loDataTable).FirstOrDefault();
             }
@@ -269,15 +268,14 @@ namespace GSM02500BACK
 
             return loResult;
         }
-
-        protected override void R_Saving(GSM02510ParameterDTO poNewEntity, eCRUDMode poCRUDMode)
+        protected override async Task R_SavingAsync(GSM02510ParameterDTO poNewEntity, eCRUDMode poCRUDMode)
         {
             using Activity activity = _activitySource.StartActivity("R_Saving");
             R_Exception loException = new R_Exception();
 
             try
             {
-                RSP_GS_MAINTAIN_BUILDINGMethod(poNewEntity);
+                await RSP_GS_MAINTAIN_BUILDINGMethod(poNewEntity);
             }
             catch (Exception ex)
             {

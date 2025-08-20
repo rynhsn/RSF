@@ -27,12 +27,13 @@ namespace APR00500Common.DTOs.Print
         public string TOTAL_PRD { get; set; } = "Total Period";
         public string GRAND_TOTAL { get; set; } = "Grand Total";
         public string REF_NO { get; set; } = "Reference No";
-        public string REF_DATE { get; set; } = "Reference Date";
+        public string REF_DATE { get; set; } = "Ref. Date";
         public string SUPPLIER { get; set; } = "Supplier";
         // public string INV_PRD { get; set; } = "Invoice Period";
         public string INVOICE_PRD { get; set; } = "Invoice Period";
         public string DUE_DATE { get; set; } = "Due Date";
         public string CURRENCY { get; set; } = "Currency";
+        public string CURR { get; set; } = "Curr.";
         public string TOTAL_AMT { get; set; } = "Total Amount";
         public string DISCOUNT { get; set; } = "Discount";
         public string TAX { get; set; } = "Tax";
@@ -57,6 +58,13 @@ namespace APR00500Common.DTOs.Print
     {
         public string CTRANS_CODE { get; set; } = "";
         public string CDEPARTMENT_CODE { get; set; } = "";
+        public string CDEPARTMENT_NAME { get; set; } = "";
+        // gabung jadi code - name 
+        public string CDEPARTMENT
+        {
+            get => $"{CDEPARTMENT_CODE} - {CDEPARTMENT_NAME}";
+            set { } // setter is not used, but required for binding
+        }
         public string CREFERENCE_NO { get; set; } = "";
         public string CREFERENCE_DATE { get; set; } = "";
         public string CREFERENCE_DATE_DISPLAY { get; set; } = "";

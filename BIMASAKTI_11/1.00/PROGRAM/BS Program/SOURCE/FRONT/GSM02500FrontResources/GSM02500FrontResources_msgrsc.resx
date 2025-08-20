@@ -600,4 +600,76 @@
   <data name="V037" xml:space="preserve">
     <value>Property Id can't contain special characters</value>
   </data>
+  <data name="_Days" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="_Facility" xml:space="preserve">
+    <value>Facility</value>
+  </data>
+  <data name="_FacilityType" xml:space="preserve">
+    <value>Facility Type</value>
+  </data>
+  <data name="_Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="_Qty" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="_Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="_Gallery" xml:space="preserve">
+    <value>Gallery</value>
+  </data>
+  <data name="_CloseHour" xml:space="preserve">
+    <value>Close Hour</value>
+  </data>
+  <data name="_Day" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="_FRIDAY" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="_Information" xml:space="preserve">
+    <value>Please use the 24-hour time format for open and close hour</value>
+  </data>
+  <data name="_MONDAY" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="_Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="_OpenHour" xml:space="preserve">
+    <value>Open Hour</value>
+  </data>
+  <data name="_OperationalHour" xml:space="preserve">
+    <value>Operational Hour</value>
+  </data>
+  <data name="_SATURDAY" xml:space="preserve">
+    <value>Saturday</value>
+  </data>
+  <data name="_ShowInMobile" xml:space="preserve">
+    <value>Show operational information (Day, Hours, and Note) in Bimasakti Tenant Apps</value>
+  </data>
+  <data name="_SUNDAY" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="_THURSDAY" xml:space="preserve">
+    <value>Thursday</value>
+  </data>
+  <data name="_TUESDAY" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="_WEDNESDAY" xml:space="preserve">
+    <value>Wednesday</value>
+  </data>
+  <data name="_Logo" xml:space="preserve">
+    <value>Logo</value>
+  </data>
+  <data name="_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="_NotifPrint" xml:space="preserve">
+    <value>Are you sure want print this?</value>
+  </data>
 </root>

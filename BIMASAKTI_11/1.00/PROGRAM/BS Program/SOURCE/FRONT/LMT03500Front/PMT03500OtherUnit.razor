@@ -188,6 +188,7 @@
                                         Width="100%"
                                         Height="320px"
                                         R_Display="@DisplayUtility"
+                                        R_CheckEdit="@CheckEditUtility"
                                         R_ServiceGetRecord="GetUtilityRecord"
                                         R_Validation="Validation"
                                         R_BeforeEdit="BeforeEditUtility"
@@ -202,29 +203,91 @@
                                         <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUNIT_NAME)" HeaderText="@_localizer["LBL_UNITID"]" TextAlignment="R_eTextAlignment.Left" Width="130px" />
                                         <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CMETER_NO)" HeaderText="@_localizer["LBL_METERNO"]" TextAlignment="R_eTextAlignment.Left" Width="130px" />
                                         <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CBASMETER_NO)" HeaderText="@_localizer["LBL_BASMETERNO"]" TextAlignment="R_eTextAlignment.Left" Width="200px" />
+                                        
+                                        <R_GridMultiHeaderColumn HeaderText="@_localizer["LBL_BLOCK1"]"
+                                                                 Visible="@_visibleColumnEC">
+                                            <R_GridNumericColumn TValue="decimal"
+                                                     Min="0"
+                                                                 FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK1_START)"
+                                                                 HeaderText="@_localizer["LBL_START"]" Width="80px"/>
+                                            <R_GridNumericColumn TValue="decimal"
+                                                     Min="0"
+                                                                 FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK1_END)"
+                                                                 HeaderText="@_localizer["LBL_END"]" Width="80px" R_EnableEdit/>
+                                        </R_GridMultiHeaderColumn>
 
-                                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK1_START)" HeaderText="@_localizer["LBL_BLOCK1START"]" Width="130px" Visible="@_visibleColumnEC" />
-                                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK2_START)" HeaderText="@_localizer["LBL_BLOCK2START"]" Width="130px" Visible="@_visibleColumnEC" />
-                                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NMETER_START)" HeaderText="@_localizer["LBL_METERSTART"]" Width="130px" Visible="@_visibleColumnWG" />
-                                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK1_END)" HeaderText="@_localizer["LBL_BLOCK1END"]" Width="130px" Visible="@_visibleColumnEC" R_EnableEdit />
-                                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK2_END)" HeaderText="@_localizer["LBL_BLOCK2END"]" Width="130px" Visible="@_visibleColumnEC" R_EnableEdit />
-                                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NMETER_END)" HeaderText="@_localizer["LBL_METEREND"]" Width="130px" Visible="@_visibleColumnWG" R_EnableEdit />
-                                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NBEBAN_BERSAMA)" HeaderText="@_localizer["LBL_BEBANBERSAMA"]" Width="150px" Visible="@_visibleColumnEC" R_EnableEdit />
+                                        <R_GridMultiHeaderColumn HeaderText="@_localizer["LBL_BLOCK2"]"
+                                                                 Visible="@_visibleColumnEC">
+                                            <R_GridNumericColumn TValue="decimal"
+                                                     Min="0"
+                                                                 FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK2_START)"
+                                                                 HeaderText="@_localizer["LBL_START"]" Width="80px"/>
+                                            <R_GridNumericColumn TValue="decimal"
+                                                     Min="0"
+                                                                 FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK2_END)"
+                                                                 HeaderText="@_localizer["LBL_END"]" Width="80px" R_EnableEdit/>
+                                        </R_GridMultiHeaderColumn>
+                                        
+                                        <R_GridMultiHeaderColumn HeaderText="@_localizer["LBL_METER"]"
+                                                                 Visible="@_visibleColumnWG">
+                                            <R_GridNumericColumn TValue="decimal"
+                                                     Min="0"
+                                                                 FieldName="@nameof(PMT03500UtilityUsageDTO.NMETER_START)"
+                                                                 HeaderText="@_localizer["LBL_START"]" Width="80px"/>
+                                            <R_GridNumericColumn TValue="decimal"
+                                                     Min="0"
+                                                                 FieldName="@nameof(PMT03500UtilityUsageDTO.NMETER_END)"
+                                                                 HeaderText="@_localizer["LBL_END"]" Width="80px" R_EnableEdit/>
+                                        </R_GridMultiHeaderColumn>
+                                        
+                                        <R_GridNumericColumn TValue="decimal"
+                                                     Min="0" FieldName="@nameof(PMT03500UtilityUsageDTO.NBEBAN_BERSAMA)" HeaderText="@_localizer["LBL_BEBANBERSAMA"]" Width="150px" Visible="@_visibleColumnEC" R_EnableEdit />
                                         <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CSTATUS)" HeaderText="@_localizer["LBL_STATUS"]" TextAlignment="R_eTextAlignment.Left" Width="130px" />
 
                                         <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DSTART_DATE)" HeaderText="@_localizer["LBL_STARTDATE"]" Width="150px" R_EnableEdit Min="@(_viewModelUtility.UtilityPeriodFromDtDt)" Max="@(_viewModelUtility.UtilityPeriodToDtDt)" />
                                         <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DEND_DATE)" HeaderText="@_localizer["LBL_ENDDATE"]" Width="150px" R_EnableEdit Min="@(_viewModelUtility.UtilityPeriodFromDtDt)" Max="@(_viewModelUtility.UtilityPeriodToDtDt)" />
                                         <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUTILITY_PRD_DISPLAY)" HeaderText="@_localizer["LBL_UTILITYPERIOD"]" TextAlignment="R_eTextAlignment.Left" Width="150px" />
 
-                                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK1_USAGE)" HeaderText="@_localizer["LBL_BLOCK1USAGE"]" Width="150px" Visible="@_visibleColumnEC" />
-                                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK2_USAGE)" HeaderText="@_localizer["LBL_BLOCK2USAGE"]" Width="150px" Visible="@_visibleColumnEC" />
-                                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NMETER_USAGE)" HeaderText="@_localizer["LBL_METERUSAGE"]" Width="150px" Visible="@_visibleColumnWG" />
-                                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NAVG_BLOCK1_USAGE)" HeaderText="@_localizer["LBL_AVGBLOCK1USAGE"]" Width="150px" Visible="@_visibleColumnEC" />
-                                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NAVG_BLOCK2_USAGE)" HeaderText="@_localizer["LBL_AVGBLOCK2USAGE"]" Width="160px" Visible="@_visibleColumnEC" />
-                                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NAVG_METER_USAGE)" HeaderText="@_localizer["LBL_AVGMETERUSAGE"]" Width="150px" Visible="@_visibleColumnWG" />
+                                        
+                                        <R_GridMultiHeaderColumn HeaderText="@_localizer["LBL_USAGE"]"
+                                                                 Visible="@_visibleColumnEC">
+                                            <R_GridNumericColumn TValue="decimal"
+                                                     Min="0"
+                                                                 FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK1_USAGE)"
+                                                                 HeaderText="@_localizer["LBL_BLOCK1"]" Width="110px"/>
+                                            <R_GridNumericColumn TValue="decimal"
+                                                     Min="0"
+                                                                 FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK2_USAGE)"
+                                                                 HeaderText="@_localizer["LBL_BLOCK2"]" Width="110px"/>
+                                        </R_GridMultiHeaderColumn>
+                                        
+                                        <R_GridMultiHeaderColumn HeaderText="@_localizer["LBL_AVGUSAGE"]"
+                                                                 Visible="@_visibleColumnEC">
+                                            <R_GridNumericColumn TValue="decimal"
+                                                     Min="0"
+                                                                 FieldName="@nameof(PMT03500UtilityUsageDTO.NAVG_BLOCK1_USAGE)"
+                                                                 HeaderText="@_localizer["LBL_BLOCK1"]" Width="110px"/>
+                                            <R_GridNumericColumn TValue="decimal"
+                                                     Min="0"
+                                                                 FieldName="@nameof(PMT03500UtilityUsageDTO.NAVG_BLOCK2_USAGE)"
+                                                                 HeaderText="@_localizer["LBL_BLOCK2"]" Width="110px"/>
+                                        </R_GridMultiHeaderColumn>
+                                        
+                                        <R_GridMultiHeaderColumn HeaderText="@_localizer["LBL_METERUSAGE"]"
+                                                                 Visible="@_visibleColumnWG">
+                                            <R_GridNumericColumn TValue="decimal"
+                                                     Min="0"
+                                                                 FieldName="@nameof(PMT03500UtilityUsageDTO.NMETER_USAGE)"
+                                                                 HeaderText="@_localizer["LBL_USAGE"]" Width="110px"/>
+                                            <R_GridNumericColumn TValue="decimal"
+                                                     Min="0"
+                                                                 FieldName="@nameof(PMT03500UtilityUsageDTO.NAVG_METER_USAGE)"
+                                                                 HeaderText="@_localizer["LBL_AVGUSAGE"]" Width="130px"/>
+                                        </R_GridMultiHeaderColumn>
 
                                         <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUNIT_DESCRIPTION)" HeaderText="@_localizer["LBL_UNITDESCRIPTION"]" TextAlignment="R_eTextAlignment.Left" Width="150px" />
-                                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UtilityUsageDTO.NTOTAL_AMOUNT)" HeaderText="@_localizer["LBL_TOTALAMOUNT"]" Width="150px" Visible="@_visibleColumnWG" />
+                                        <R_GridNumericColumn TValue="decimal"
+                                                     Min="0" FieldName="@nameof(PMT03500UtilityUsageDTO.NTOTAL_AMOUNT)" HeaderText="@_localizer["LBL_TOTALAMOUNT"]" Width="150px" Visible="@_visibleColumnWG" />
 
                                         <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUPDATE_BY)" HeaderText="@_localizer["LBL_UPDBY"]" TextAlignment="R_eTextAlignment.Left" Width="150px" />
                                         <R_GridDateTimePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DUPDATE_DATE)" HeaderText="@_localizer["LBL_UPDDT"]" Width="180px" />

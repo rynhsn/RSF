@@ -166,9 +166,9 @@ namespace PMR02000BACK
                 R_Db loDb = new();
                 var loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
                 var loCmd = loDb.GetCommand();
-                var lcQuery = @"RSP_GS_GET_COMPANY_INFO";
+                var lcQuery = "SELECT CCOMPANY_NAME FROM SAM_COMPANIES WHERE CCOMPANY_ID = @CCOMPANY_ID";
                 loCmd.CommandText = lcQuery;
-                loCmd.CommandType = CommandType.StoredProcedure;
+                loCmd.CommandType = CommandType.Text;
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, int.MaxValue, pcCompanyId);
 
                 //Debug Logs

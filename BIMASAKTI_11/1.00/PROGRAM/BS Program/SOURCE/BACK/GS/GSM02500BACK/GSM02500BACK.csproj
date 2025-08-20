@@ -6,31 +6,34 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
-  </ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+	</ItemGroup>
+	
   <ItemGroup>
-	<ProjectReference Include="..\..\..\COMMON\GS\GSM02500COMMON\GSM02500COMMON.csproj" />
-    <ProjectReference Include="..\GSM02500BackResources\GSM02500BackResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_BUILDINGResources\RSP_GS_MAINTAIN_BUILDINGResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_BUILDING_FLOORResources\RSP_GS_MAINTAIN_BUILDING_FLOORResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_BUILDING_UNITResources\RSP_GS_MAINTAIN_BUILDING_UNITResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_PROPERTYResources\RSP_GS_MAINTAIN_PROPERTYResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_PROPERTY_DEPTResources\RSP_GS_MAINTAIN_PROPERTY_DEPTResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_PROPERTY_USERResources\RSP_GS_MAINTAIN_PROPERTY_USERResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_OTHER_UNITResources\RSP_GS_MAINTAIN_OTHER_UNITResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_OTHER_UNIT_TYPEResources\RSP_GS_MAINTAIN_OTHER_UNIT_TYPEResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_UNIT_TYPEResources\RSP_GS_MAINTAIN_UNIT_TYPEResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYResources\RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_UNIT_VIEWResources\RSP_GS_MAINTAIN_UNIT_VIEWResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_UPLOAD_BUILDING_UNITResources\RSP_GS_UPLOAD_BUILDING_UNITResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources\RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_UPLOAD_PROPERTY_FLOORResources\RSP_GS_UPLOAD_PROPERTY_FLOORResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_UPLOAD_PROPERTY_UNIT_TYPEResources\RSP_GS_UPLOAD_PROPERTY_UNIT_TYPEResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources\RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_UPLOAD_OTHER_UNITResources\RSP_GS_UPLOAD_OTHER_UNITResources.csproj" />
-    <ProjectReference Include="..\GS_SPR\RSP_GS_UPLOAD_OTHER_UNIT_TYPEResources\RSP_GS_UPLOAD_OTHER_UNIT_TYPEResources.csproj" />
+	  <ProjectReference Include="..\..\..\COMMON\GS\GSM02500COMMON\GSM02500COMMON.csproj" />
+	  <ProjectReference Include="..\GSM02500BackResources\GSM02500BackResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_GET_STORAGE_TYPEResources\RSP_GS_GET_STORAGE_TYPEResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_BUILDINGResources\RSP_GS_MAINTAIN_BUILDINGResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_BUILDING_FLOORResources\RSP_GS_MAINTAIN_BUILDING_FLOORResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_BUILDING_UNITResources\RSP_GS_MAINTAIN_BUILDING_UNITResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_PROPERTYResources\RSP_GS_MAINTAIN_PROPERTYResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_PROPERTY_DEPTResources\RSP_GS_MAINTAIN_PROPERTY_DEPTResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_PROPERTY_USERResources\RSP_GS_MAINTAIN_PROPERTY_USERResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_UNIT_TYPEResources\RSP_GS_MAINTAIN_UNIT_TYPEResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_UNIT_VIEWResources\RSP_GS_MAINTAIN_UNIT_VIEWResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_UPLOAD_BUILDING_UNITResources\RSP_GS_UPLOAD_BUILDING_UNITResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources\RSP_GS_UPLOAD_BUILDING_UNIT_UTILITIESResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_UPLOAD_PROPERTY_FLOORResources\RSP_GS_UPLOAD_PROPERTY_FLOORResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_UPLOAD_PROPERTY_UNIT_TYPEResources\RSP_GS_UPLOAD_PROPERTY_UNIT_TYPEResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources\RSP_GS_UPLOAD_PROPERTY_UNIT_TYPE_CTGResources.csproj" />
+
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYResources\RSP_GS_MAINTAIN_UNIT_TYPE_CATEGORYResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_UPLOAD_OTHER_UNIT_TYPEResources\RSP_GS_UPLOAD_OTHER_UNIT_TYPEResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_UPLOAD_OTHER_UNITResources\RSP_GS_UPLOAD_OTHER_UNITResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_OTHER_UNITResources\RSP_GS_MAINTAIN_OTHER_UNITResources.csproj" />
+	  <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_OTHER_UNIT_TYPEResources\RSP_GS_MAINTAIN_OTHER_UNIT_TYPEResources.csproj" />
   </ItemGroup>
 
 	<ItemGroup>

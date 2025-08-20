@@ -73,6 +73,24 @@ namespace Lookup_PMModel.ViewModel.LML01700
             }
             loEx.ThrowExceptionIfErrors();
         }
+        
+        
+        public async Task<LML01700DTO> GetCancelReceiptFromCustomer(LML01700ParameterDTO poParam)
+        {
+            var loEx = new R_Exception();
+            LML01700DTO loRtn = null;
+            try
+            {
+                LML01700DTO loResult = await _modelGetRecord.LML01700CancelReceiptFromCustomerAsync(poParam);
+                loRtn = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+            return loRtn!;
+        }
 
         public async Task GetLML01700PrerequisiteCustReceiptList(LML01700ParameterDTO poParam)
         {

@@ -3,6 +3,7 @@ using Lookup_GSModel.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Exceptions;
+using R_BlazorFrontEnd.Helpers;
 
 namespace Lookup_GSFRONT
 {
@@ -33,7 +34,7 @@ namespace Lookup_GSFRONT
 
             try
             {
-                var loParam = (GSL03600ParameterDTO)eventArgs.Parameter;
+                var loParam = R_FrontUtility.ConvertObjectToObject<GSL03600ParameterDTO>(eventArgs.Parameter);
 
                 await _viewModel.GetCompanyList();
 

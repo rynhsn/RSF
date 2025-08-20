@@ -524,4 +524,19 @@ public partial class PMT03500UpdateMeter : R_ITabPage
 
         loEx.ThrowExceptionIfErrors();
     }
+
+    private async Task OnClickClose()
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            await _viewModel.CloseMeterNo(_viewModel.Entity);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
 }

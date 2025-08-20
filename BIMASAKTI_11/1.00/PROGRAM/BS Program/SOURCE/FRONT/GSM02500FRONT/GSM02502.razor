@@ -67,6 +67,7 @@
                         <R_TextBox @bind-Value="@loUnitTypeCategoryViewModel.Data.CUNIT_TYPE_CATEGORY_ID"
                                    R_ConductorSource="@_conductorUnitTypeCategoryRef"
                                    @ref="_unitTypeCategoryIdRef"
+                                   MaxLength="20"
                                    R_EnableAdd="true"
                                    R_EnableEdit="false">
                         </R_TextBox>
@@ -75,6 +76,7 @@
                         <R_TextBox @bind-Value="@loUnitTypeCategoryViewModel.Data.CUNIT_TYPE_CATEGORY_NAME"
                                    R_ConductorSource="@_conductorUnitTypeCategoryRef"
                                    @ref="_unitTypeCategoryNameRef"
+                                   MaxLength="200"
                                    R_EnableAdd="true"
                                    R_EnableEdit="true">
                         </R_TextBox>
@@ -98,6 +100,34 @@
                         <R_TextArea @bind-Value="@loUnitTypeCategoryViewModel.Data.CDESCRIPTION"
                                     R_ConductorSource="@_conductorUnitTypeCategoryRef"
                                     R_EnableAdd="true" R_EnableEdit="true"></R_TextArea>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["_Department"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="@loUnitTypeCategoryViewModel.Data.CDEPT_CODE"
+                                   R_ConductorSource="@_conductorUnitTypeCategoryRef"
+                                   OnLostFocus="@OnLostFocusDepartment"
+                                   MaxLength="20"
+                                  R_EnableAdd
+                                  R_EnableEdit>
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 25px">
+                        <R_Lookup R_ConductorSource="@_conductorUnitTypeCategoryRef"
+                                  R_After_Open_Lookup="R_After_Open_Department_Lookup"
+                                  R_Before_Open_Lookup="R_Before_Open_Department_Lookup"
+                                  R_EnableAdd
+                                  R_EnableEdit>...</R_Lookup>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_TextBox @bind-Value="@loUnitTypeCategoryViewModel.Data.CDEPT_NAME"
+                                   R_ConductorSource="@_conductorUnitTypeCategoryRef"
+                                   Enabled="false">
+                        </R_TextBox>
                     </R_ItemLayout>
                 </R_StackLayout>
 
@@ -212,11 +242,11 @@
                                                       TextField="@nameof(GSM02502ChargeComboboxDTO.CDESCRIPTION)"
                                                       FieldName=@nameof(GSM02502ChargeDTO.CCHARGES_TYPE)
                                                       HeaderText="Charge Type" Width="175px"
-                                                      R_EnableAdd R_EnableEdit>
+                                                      R_EnableAdd>
                             </R_GridComboBoxColumn>
-                            <R_GridLookupColumn FieldName=@nameof(GSM02502ChargeDTO.CCHARGES_ID) HeaderText="@_localizer["_ChargeId"]" R_EnableAdd R_EnableEdit Width="200px"></R_GridLookupColumn>
+                            <R_GridLookupColumn FieldName=@nameof(GSM02502ChargeDTO.CCHARGES_ID) HeaderText="@_localizer["_ChargeId"]" R_EnableAdd MaxLength="20" Width="200px"></R_GridLookupColumn>
                             <R_GridNumericColumn TValue="decimal" FieldName=@nameof(GSM02502ChargeDTO.NFEE) HeaderText="@_localizer["_MonthlyFee"]" R_EnableAdd R_EnableEdit Width="125px" Arrows="false"></R_GridNumericColumn>
-                            <R_GridTextColumn FieldName=@nameof(GSM02502ChargeDTO.CDESCRIPTION) HeaderText="@_localizer["_Description"]" R_EnableAdd R_EnableEdit Width="350px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(GSM02502ChargeDTO.CDESCRIPTION) HeaderText="@_localizer["_Description"]" R_EnableAdd R_EnableEdit MaxLength="510" Width="350px"></R_GridTextColumn>
 @*
                             <R_GridComboBoxColumn Data="loChargeViewModel.loFeeMethodList"
                                                   ValueField="@nameof(GSM02502ChargeComboboxDTO.CCODE)"
@@ -243,6 +273,10 @@
             </R_TabStripTab>
                         <R_TabStripTab Title="@_localizer["_Utility"]" Id="Utility">
                 <R_TabPage R_Before_Open_TabPage="Before_Open_Utility_TabPage" @ref="@_tabPageUtility" R_TabEventCallback="@R_TabEventCallback">
+                </R_TabPage>
+            </R_TabStripTab>
+                        <R_TabStripTab Title="@_localizer["_Facility"]" Id="Facility">
+                <R_TabPage R_Before_Open_TabPage="Before_Open_Facility_TabPage" @ref="@_tabPageFacility" R_TabEventCallback="@R_TabEventCallback">
                 </R_TabPage>
             </R_TabStripTab>
             @*

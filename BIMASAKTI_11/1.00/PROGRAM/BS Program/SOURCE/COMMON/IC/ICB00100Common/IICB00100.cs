@@ -14,7 +14,7 @@ namespace ICB00100Common
         ICB00100SingleDTO<ICB00100SystemParamDTO> ICB00100GetSystemParam(ICB00100SystemParamParam poParam);
         ICB00100SingleDTO<ICB00100PeriodYearRangeDTO> ICB00100GetPeriodYearRange();
         ICB00100SingleDTO<ICB00100PeriodParam> ICB00100UpdateSoftPeriod(ICB00100PeriodParam poParams);
-        IAsyncEnumerable<ICB00100ValidateSoftCloseDTO> ICB00100ValidateSoftPeriod();
+        ICB00100ListDTO<ICB00100ValidateSoftCloseDTO> ICB00100ValidateSoftPeriod();
         ICB00100SingleDTO<ICB00100SoftClosePeriodDTO> ICB00100ProcessSoftPeriod(ICB00100PeriodParam poParams);
         
         #endregion

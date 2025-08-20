@@ -59,26 +59,5 @@ namespace GSM02500MODEL.View_Model
 
             loEx.ThrowExceptionIfErrors();
         }
-/*
-        public async Task SaveImageAsync(GSM02503ImageDTO poEntity, eCRUDMode peCRUDMode)
-        {
-            R_Exception loException = new R_Exception();
-
-            try
-            {
-                R_FrontContext.R_SetContext(ContextConstant.GSM02503_PROPERTY_ID_CONTEXT, loParameter.CSELECTED_PROPERTY_ID);
-                R_FrontContext.R_SetContext(ContextConstant.GSM02503_UNIT_TYPE_ID_CONTEXT, loParameter.CSELECTED_UNIT_TYPE_ID);
-                R_FrontContext.R_SetContext(ContextConstant.GSM02503_OIMAGE_CONTEXT, Convert.ToBase64String(loImageByte));
-                GSM02503ImageDTO loResult = await loModel.R_ServiceSaveAsync(poEntity, peCRUDMode);
-
-                loImage = loResult;
-            }
-            catch (Exception ex)
-            {
-                loException.Add(ex);
-            }
-        EndBlock:
-            loException.ThrowExceptionIfErrors();
-        }*/
     }
 }

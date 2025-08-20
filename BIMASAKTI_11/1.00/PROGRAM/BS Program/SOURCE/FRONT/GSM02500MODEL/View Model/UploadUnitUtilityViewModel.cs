@@ -125,6 +125,14 @@ namespace GSM02500MODEL.View_Model
                 {
                     Message = string.Format("Process Complete and success with GUID {0}", pcKeyGuid);
                     VisibleError = false;
+                    IsUploadSuccesful = true;
+
+                    loUploadUnitUtilityDisplayList.ToList().ForEach(x =>
+                    {
+                        x.Valid = "Y";
+                        SumValid++;
+                    });
+
                     ShowSuccessAction();
                 }
 
@@ -172,6 +180,8 @@ namespace GSM02500MODEL.View_Model
             Message = string.Format("Process Progress {0} with status {1}", pnProgress, pcStatus);
 
             // Call Method Action StateHasChange
+
+            SetPercentageAndMessageAction(Message, Percentage);
             StateChangeAction();
 
             await Task.CompletedTask;

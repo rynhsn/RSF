@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using PMT03500Common.DTOs;
 using PMT03500Common.Params;
 using R_CommonFrontBackAPI;
@@ -19,5 +20,6 @@ namespace PMT03500Common
             PMT03500AgreementUtilitiesParam poParam);
         PMT03500UtilityMeterDetailDTO PMT03500UpdateMeterNo(PMT03500UpdateChangeMeterNoParam poParam);
         PMT03500UtilityMeterDetailDTO PMT03500ChangeMeterNo(PMT03500UpdateChangeMeterNoParam poParam);
+        Task<PMT03500UtilityMeterDetailDTO> PMT03500CloseMeterNo(PMT03500CloseMeterNoParam poParam);
     }
 }

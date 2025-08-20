@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Lookup_PMCOMMON.DTOs.LML01700;
 
 namespace Lookup_PMModel
 {
@@ -108,6 +109,12 @@ namespace Lookup_PMModel
         {
             throw new NotImplementedException();
         }
+
+        public LMLGenericRecord<LML01700DTO> LML01700CancelReceiptFromCustomer(LML01700ParameterDTO poParam)
+        {
+            throw new NotImplementedException();
+        }
+
         public LMLGenericRecord<LML01800DTO> LML01800UnitTenant(LML01800ParameterDTO poParam)
         {
             throw new NotImplementedException();
@@ -582,6 +589,38 @@ namespace Lookup_PMModel
 
             return loResult!;
         }
+        #endregion
+        #region LML01700GetRecord
+        
+        public async Task<LML01700DTO> LML01700CancelReceiptFromCustomerAsync(LML01700ParameterDTO poParam)
+        {
+            var loEx = new R_Exception();
+            LML01700DTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<LMLGenericRecord<LML01700DTO>, LML01700ParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGetRecordLookupLM.LML01700CancelReceiptFromCustomer),
+                    poParam,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult!;
+        }
+        
         #endregion
         #region LML01800GetRecord       
         public async Task<LML01800DTO> LML01800UnitTenantAsync(LML01800ParameterDTO poParam)

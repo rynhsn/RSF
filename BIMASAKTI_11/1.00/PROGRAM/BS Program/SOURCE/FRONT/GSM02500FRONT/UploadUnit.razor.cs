@@ -23,6 +23,7 @@ using GSM02500COMMON.DTOs.GSM02530;
 using System.ComponentModel.Design;
 using R_BlazorFrontEnd.Interfaces;
 using R_APICommonDTO;
+using GSM02500COMMON.DTOs.GSM02531;
 
 namespace GSM02500FRONT
 {
@@ -103,6 +104,16 @@ namespace GSM02500FRONT
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+
+        private void R_RowRender(R_GridRowRenderEventArgs eventArgs)
+        {
+            var loData = (UploadUnitDTO)eventArgs.Data;
+
+            if (loData.Valid == "N")
+            {
+                eventArgs.RowClass = "errorDataLValidIsFalse";//"errorDataLValidisFalse";
+            }
         }
 
         public void ReadExcelFile()
@@ -271,7 +282,7 @@ namespace GSM02500FRONT
             R_Exception loException = new R_Exception();
             try
             {
-                // await _conGridUploadUnitRef.R_SaveBatch();
+                await _gridUploadUnitRef.R_SaveBatch();
             }
             catch (Exception ex)
             {

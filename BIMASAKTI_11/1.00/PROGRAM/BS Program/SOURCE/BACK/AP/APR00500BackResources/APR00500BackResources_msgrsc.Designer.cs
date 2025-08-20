@@ -78,6 +78,15 @@ namespace APR00500BackResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curr..
+        /// </summary>
+        internal static string CURR {
+            get {
+                return ResourceManager.GetString("CURR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Currency.
         /// </summary>
         internal static string CURRENCY {
@@ -177,7 +186,7 @@ namespace APR00500BackResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reference Date.
+        ///   Looks up a localized string similar to Ref. Date.
         /// </summary>
         internal static string REF_DATE {
             get {

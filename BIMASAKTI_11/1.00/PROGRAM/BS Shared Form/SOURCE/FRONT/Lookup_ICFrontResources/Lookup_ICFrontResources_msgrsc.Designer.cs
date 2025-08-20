@@ -89,6 +89,15 @@ namespace Lookup_ICFrontResources {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
+        internal static string CANCEL {
+            get {
+                return ResourceManager.GetString("CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
         internal static string CNCL {
             get {
                 return ResourceManager.GetString("CNCL", resourceCulture);

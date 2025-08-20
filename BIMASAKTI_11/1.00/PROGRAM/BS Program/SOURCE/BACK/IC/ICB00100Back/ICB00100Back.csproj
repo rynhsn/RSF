@@ -25,6 +25,7 @@
       <ProjectReference Include="..\..\..\COMMON\IC\ICB00100Common\ICB00100Common.csproj" />
       <ProjectReference Include="..\ICB00100BackResources\ICB00100BackResources.csproj" />
       <ProjectReference Include="..\IC_SPR\RSP_IC_SOFT_CLOSE_PERIODResources\RSP_IC_SOFT_CLOSE_PERIODResources.csproj" />
+      <ProjectReference Include="..\IC_SPR\RSP_IC_VALIDATE_SOFTCLOSE_PRDResources\RSP_IC_VALIDATE_SOFTCLOSE_PRDResources.csproj" />
     </ItemGroup>
 
 </Project>

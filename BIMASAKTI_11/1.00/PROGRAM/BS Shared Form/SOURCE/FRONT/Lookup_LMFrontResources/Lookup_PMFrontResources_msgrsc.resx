@@ -305,6 +305,9 @@
   <data name="_refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="_transAmount" xml:space="preserve">
+    <value>Trans. Amount</value>
+  </data>
   <data name="_remainingAmount" xml:space="preserve">
     <value>Remaining Amount</value>
   </data>

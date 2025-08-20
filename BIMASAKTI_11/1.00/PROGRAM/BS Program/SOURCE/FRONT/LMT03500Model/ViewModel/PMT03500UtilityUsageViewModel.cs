@@ -579,28 +579,29 @@ namespace PMT03500Model.ViewModel
             // var loDefinition = await DownloadTemplate(poExcel);
             if (UtilityType == EPMT03500UtilityUsageType.EC)
             {
-                var loConvertData = GridUtilityUsageList.Select(item => new PMT03500UtilityExcelECDTO
-                {
-                    BuildingId = item.CBUILDING_ID,
-                    Department = item.CDEPT_CODE,
-                    AgreementNo = item.CREF_NO,
-                    UtilityType = item.CUTILITY_TYPE,
-                    FloorId = item.CFLOOR_ID,
-                    UnitId = item.CUNIT_ID,
-                    ChargesType = item.CCHARGES_TYPE,
-                    ChargesId = item.CCHARGES_ID,
-                    MeterNo = item.CMETER_NO,
-                    SeqNo = item.CSEQ_NO,
-                    InvoicePeriod = item.CINV_PRD,
-                    UtilityPeriod = item.CUTILITY_PRD,
-                    StartDate = item.CSTART_DATE,
-                    EndDate = item.CEND_DATE,
-                    BlockIStart = item.NBLOCK1_START,
-                    BlockIIStart = item.NBLOCK2_START,
-                    BlockIEnd = item.NBLOCK1_END,
-                    BlockIIEnd = item.NBLOCK2_END,
-                    BebanBersama = item.NBEBAN_BERSAMA
-                }).ToList();
+                var loConvertData = GridUtilityUsageList.Where(x => string.IsNullOrEmpty(x.CSTATUS)).Select(item =>
+                    new PMT03500UtilityExcelECDTO
+                    {
+                        BuildingId = item.CBUILDING_ID,
+                        Department = item.CDEPT_CODE,
+                        AgreementNo = item.CREF_NO,
+                        UtilityType = item.CUTILITY_TYPE,
+                        FloorId = item.CFLOOR_ID,
+                        UnitId = item.CUNIT_ID,
+                        ChargesType = item.CCHARGES_TYPE,
+                        ChargesId = item.CCHARGES_ID,
+                        MeterNo = item.CMETER_NO,
+                        SeqNo = item.CSEQ_NO,
+                        InvoicePeriod = item.CINV_PRD,
+                        UtilityPeriod = item.CUTILITY_PRD,
+                        StartDate = item.CSTART_DATE,
+                        EndDate = item.CEND_DATE,
+                        BlockIStart = item.NBLOCK1_START,
+                        BlockIIStart = item.NBLOCK2_START,
+                        BlockIEnd = item.NBLOCK1_END,
+                        BlockIIEnd = item.NBLOCK2_END,
+                        BebanBersama = item.NBEBAN_BERSAMA
+                    }).ToList();
 
                 var loDataTable = R_FrontUtility.R_ConvertTo(loConvertData);
                 loDataTable.TableName = "UtilityUsage";
@@ -615,25 +616,26 @@ namespace PMT03500Model.ViewModel
             }
             else if (UtilityType == EPMT03500UtilityUsageType.WG)
             {
-                var loConvertData = GridUtilityUsageList.Select(item => new PMT03500UtilityExcelWGDTO
-                {
-                    BuildingId = item.CBUILDING_ID,
-                    Department = item.CDEPT_CODE,
-                    AgreementNo = item.CREF_NO,
-                    UtilityType = item.CUTILITY_TYPE,
-                    FloorId = item.CFLOOR_ID,
-                    UnitId = item.CUNIT_ID,
-                    ChargesType = item.CCHARGES_TYPE,
-                    ChargesId = item.CCHARGES_ID,
-                    MeterNo = item.CMETER_NO,
-                    SeqNo = item.CSEQ_NO,
-                    InvoicePeriod = item.CINV_PRD,
-                    UtilityPeriod = item.CUTILITY_PRD,
-                    StartDate = item.CSTART_DATE,
-                    EndDate = item.CEND_DATE,
-                    MeterStart = item.NMETER_START,
-                    MeterEnd = item.NMETER_END
-                }).ToList();
+                var loConvertData = GridUtilityUsageList.Where(x => string.IsNullOrEmpty(x.CSTATUS)).Select(item =>
+                    new PMT03500UtilityExcelWGDTO
+                    {
+                        BuildingId = item.CBUILDING_ID,
+                        Department = item.CDEPT_CODE,
+                        AgreementNo = item.CREF_NO,
+                        UtilityType = item.CUTILITY_TYPE,
+                        FloorId = item.CFLOOR_ID,
+                        UnitId = item.CUNIT_ID,
+                        ChargesType = item.CCHARGES_TYPE,
+                        ChargesId = item.CCHARGES_ID,
+                        MeterNo = item.CMETER_NO,
+                        SeqNo = item.CSEQ_NO,
+                        InvoicePeriod = item.CINV_PRD,
+                        UtilityPeriod = item.CUTILITY_PRD,
+                        StartDate = item.CSTART_DATE,
+                        EndDate = item.CEND_DATE,
+                        MeterStart = item.NMETER_START,
+                        MeterEnd = item.NMETER_END
+                    }).ToList();
 
                 var loDataTable = R_FrontUtility.R_ConvertTo(loConvertData);
                 loDataTable.TableName = "UtilityUsage";
@@ -652,12 +654,18 @@ namespace PMT03500Model.ViewModel
         {
             if (SystemParam != null)
             {
+                var loDate = new DateTime();
+
                 if (UtilityTypeId == "01" || UtilityTypeId == "02")
                 {
                     if (SystemParam.LELECTRIC_END_MONTH == false)
-                    {
-                        var loDate = new DateTime(int.Parse(InvPeriodYear), int.Parse(InvPeriodNo),
-                            int.Parse(SystemParam.CELECTRIC_DATE) + 1);
+                    { 
+                        
+                        var lastDay = DateTime.DaysInMonth(int.Parse(InvPeriodYear), int.Parse(InvPeriodNo));
+                        
+                        loDate = new DateTime(int.Parse(InvPeriodYear), int.Parse(InvPeriodNo),
+                            (int.Parse(SystemParam.CELECTRIC_DATE) < lastDay) ? int.Parse(SystemParam.CELECTRIC_DATE) : lastDay).AddDays(1);
+
                         var loDateFrom = loDate.AddMonths(-3);
                         var loDateTo = loDate.AddDays(-1);
                         UtilityPeriodFromDtDt = loDateFrom;
@@ -679,8 +687,11 @@ namespace PMT03500Model.ViewModel
                 {
                     if (SystemParam.LWATER_END_MONTH == false)
                     {
-                        var loDate = new DateTime(int.Parse(InvPeriodYear), int.Parse(InvPeriodNo),
-                            int.Parse(SystemParam.CWATER_DATE) + 1);
+                        
+                        var lastDay = DateTime.DaysInMonth(int.Parse(InvPeriodYear), int.Parse(InvPeriodNo));
+                        loDate = new DateTime(int.Parse(InvPeriodYear), int.Parse(InvPeriodNo),
+                            (int.Parse(SystemParam.CELECTRIC_DATE) < lastDay) ? int.Parse(SystemParam.CWATER_DATE) : lastDay).AddDays(1);
+                        
                         var loDateFrom = loDate.AddMonths(-3);
                         var loDateTo = loDate.AddDays(-1);
                         UtilityPeriodFromDtDt = loDateFrom;
@@ -702,8 +713,11 @@ namespace PMT03500Model.ViewModel
                 {
                     if (SystemParam.LGAS_END_MONTH == false)
                     {
-                        var loDate = new DateTime(int.Parse(InvPeriodYear), int.Parse(InvPeriodNo),
-                            int.Parse(SystemParam.CGAS_DATE) + 1);
+                        
+                        var lastDay = DateTime.DaysInMonth(int.Parse(InvPeriodYear), int.Parse(InvPeriodNo));
+                        loDate = new DateTime(int.Parse(InvPeriodYear), int.Parse(InvPeriodNo),
+                            (int.Parse(SystemParam.CELECTRIC_DATE) < lastDay) ? int.Parse(SystemParam.CGAS_DATE) : lastDay).AddDays(1);
+                        
                         var loDateFrom = loDate.AddMonths(-3);
                         var loDateTo = loDate.AddDays(-1);
                         UtilityPeriodFromDtDt = loDateFrom;
@@ -721,7 +735,7 @@ namespace PMT03500Model.ViewModel
                         UtilityPeriodDtMax = UtilityPeriodToDtDt;
                     }
                 }
-                
+
                 // UtilityPeriodDtMin = 2 bulan sebelum UtilityPeriodToDtDt
                 UtilityPeriodDtMin = UtilityPeriodToDtDt.AddMonths(-2);
             }

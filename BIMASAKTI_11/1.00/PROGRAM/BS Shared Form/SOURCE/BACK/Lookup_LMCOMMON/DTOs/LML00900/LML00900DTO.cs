@@ -49,5 +49,8 @@ namespace Lookup_PMCOMMON.DTOs
         //cr 22/08/2024
         public decimal NWH_TAX { get; set; }
         public decimal NWH_TAX_REMAINING { get; set; }
+        
+        //cr 25 25/07/25
+        public decimal NTRANS_AMOUNT { get; set; }
     }
 }

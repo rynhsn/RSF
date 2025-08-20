@@ -21,5 +21,25 @@ namespace Lookup_GSCOMMON.DTOs
         public string COTHER_TAX_NAME { get; set; }
         public decimal NOTHER_TAX_PCT { get; set; }
         public string CREC_ID { get; set; }
+
+        //CR23
+        public bool LACTIVE { get; set; }
+        public bool LIN { get; set; }
+        public bool LOUT { get; set; }
+        public bool LBUY { get; set; }
+        public bool LSELL { get; set; }
+        public string CTAX_CHARGES_TYPE { get; set; }
+        public string CTAX_CHARGES_ID { get; set; }
+        public string CTAX_CHARGES_NAME { get; set; }
+        public decimal NREPLACEMENT_COST { get; set; }
+        public decimal NBREPLACEMENT_COST { get; set; }
+        public string CREPLACEMENT_DATE { get; set; }
+        public DateTime? DREPLACEMENT_DATE { get; set; }
+        public decimal NQTY_OH { get; set; }
+        public decimal NVALUE_OH { get; set; }
+        public decimal NBVALUE_OH { get; set; }
+        public string CLAST_RECALC_DATE { get; set; }
+        public DateTime? DLAST_RECALC_DATE { get; set; }
+        public string CLAST_RECALC_BY { get; set; }
     }
 }

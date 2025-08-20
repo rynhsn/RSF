@@ -97,8 +97,9 @@ public class PMR03000PrintController : R_ReportControllerBase
 
         FileContentResult? loRtn = null;
         R_ReportServerCommon.R_FileType leReportOutputType;
-        var loCultureInfo = new CultureInfo(R_BackGlobalVar.REPORT_CULTURE);
+        // var loCultureInfo = new CultureInfo(R_BackGlobalVar.REPORT_CULTURE);
         string lcExtension;
+        var loData = new PMR03000ResultDataDTO();
 
         try
         {
@@ -115,8 +116,7 @@ public class PMR03000PrintController : R_ReportControllerBase
             _logger.LogInfo("Successfully retrieved data from cache, GUID: {0}", pcGuid);
 
             // Deserialize cache data
-            var loResultGUID =
-                R_NetCoreUtility.R_DeserializeObjectFromByte<PMR03000PrintLogKeyDTO<PMR03000ReportParamDTO>>(cacheData);
+            var loResultGUID = R_NetCoreUtility.R_DeserializeObjectFromByte<PMR03000PrintLogKeyDTO<PMR03000ReportParamDTO>>(cacheData);
             if (loResultGUID?.poParam == null)
             {
                 _logger.LogError("Failed to deserialize cache data or missing parameters.");
@@ -132,19 +132,10 @@ public class PMR03000PrintController : R_ReportControllerBase
 
             // Prepare Data
             var loCls = new PMR03000PrintCls();
-            var loParameterGenerateData = new PMR03000ReportParamDTO()
-            {
-                CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
-                CPROPERTY_ID = loResultGUID.poParam.CPROPERTY_ID,
-                CPERIOD = loResultGUID.poParam.CPERIOD,
-                CFROM_TENANT = loResultGUID.poParam.CFROM_TENANT,
-                CTO_TENANT = loResultGUID.poParam.CTO_TENANT,
-                CUSER_ID = R_BackGlobalVar.USER_ID,
-                CFILE_NAME = loResultGUID.poParam.CFILE_NAME,
-                CREPORT_TYPE = "S",
-                LPRINT = true
-                // CTITLE = loResultGUID.poParam.CTITLE,
-            };
+            var loParameterGenerateData = loResultGUID.poParam; 
+            loParameterGenerateData.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            loParameterGenerateData.CUSER_ID = R_BackGlobalVar.USER_ID;
+            loParameterGenerateData.LPRINT = true;
 
             // prepare report server parameters
             _logger.LogDebug("Preparing report server parameters");
@@ -164,142 +155,215 @@ public class PMR03000PrintController : R_ReportControllerBase
 
             var loReportFormat = _getReportFormat();
 
-            var loReportRule = new R_ReportServerRule(R_BackGlobalVar.TENANT_ID.ToLower(),
-                R_BackGlobalVar.COMPANY_ID.ToLower());
+            var loReportRule = new R_ReportServerRule(R_BackGlobalVar.TENANT_ID.ToLower(), R_BackGlobalVar.COMPANY_ID.ToLower());
             _logger.LogDebug("Report Server Rule initialized", loReportRule);
-            // end prepare report server parameters
+            
+            #region Generate Report Data Commented out for future reference
+            // _logger.LogInfo("Get Label");
+            // var loLabel = loCls.AssignValuesWithMessages(typeof(PMR03000BackResources.Resources_Dummy_Class),
+            //     loCultureInfo, new PMR03000ReportLabelDTO());
 
-            _logger.LogDebug("Generated parameters for data print", loParameterGenerateData);
-            _logger.LogInfo("Get Summary Data Billing for Report");
-            loParameterGenerateData.CREPORT_TYPE = "S";
-            loParameterGenerateData.CSERVICE_TYPE = "";
-            var listDataBilling = await loCls.GetDataBilling(poParameter: loParameterGenerateData);
-            _logger.LogInfo("Data Billing retrieved successfully for Report");
+            //
+            // _logger.LogInfo("Get Summary Data Billing for Report");
+            // loParameterGenerateData.CREPORT_TYPE = "S";
+            // loParameterGenerateData.CSERVICE_TYPE = "";
+            // var listDataBilling = await loCls.GetDataBilling(poParameter: loParameterGenerateData);
+            // _logger.LogInfo("Data Billing retrieved successfully for Report");
+            //
+            // _logger.LogInfo("Get Data Detail Unit");
+            // loParameterGenerateData.CREPORT_TYPE = "D";
+            // loParameterGenerateData.CSERVICE_TYPE = "UN";
+            // var listDataDetailUnit = await loCls.GetDataDetailUnitList(poParameter: loParameterGenerateData);
+            // _logger.LogInfo("Data Detail Unit Retrieved successfully for Report");
+            //
+            // _logger.LogInfo("Get Data Detail Utility");
+            // loParameterGenerateData.CREPORT_TYPE = "D";
+            // loParameterGenerateData.CSERVICE_TYPE = "UT";
+            // var listDataDetailUtility = await loCls.GetDataDetailUtilityList(poParameter: loParameterGenerateData);
+            // _logger.LogInfo("Data Detail Utility Retrieved successfully for Report");
+            //
+            // _logger.LogInfo("Get Data Logo");
+            // var oLogo = await loCls.GetLogoProperty(loParameterGenerateData);
+            // _logger.LogInfo("Company Logo Retrieved successfully for Report");
 
-            _logger.LogInfo("Get Data Detail Unit");
-            loParameterGenerateData.CREPORT_TYPE = "D";
-            loParameterGenerateData.CSERVICE_TYPE = "UN";
-            var listDataDetailUnit = await loCls.GeDataDetailUnitList(poParameter: loParameterGenerateData);
-            _logger.LogInfo("Data Detail Unit Retrieved successfully for Report");
 
-            _logger.LogInfo("Get Data Detail Utility");
-            loParameterGenerateData.CREPORT_TYPE = "D";
-            loParameterGenerateData.CSERVICE_TYPE = "UT";
-            var listDataDetailUtility = await loCls.GeDataDetailUtilityList(poParameter: loParameterGenerateData);
-            _logger.LogInfo("Data Detail Utility Retrieved successfully for Report");
+            // _logger.LogInfo("Report data formatted for print");
+            //
+            // var Header = new PMR03000BaseHeaderDTO()
+            // {
+            //     PROPERTY_NAME = loResultGUID.poParam.CPROPERTY_NAME,
+            //     CLOGO = oLogo.CLOGO
+            // };
 
-            _logger.LogInfo("Get Data Logo");
-            var oLogo = await loCls.GetLogoCompany(loParameterGenerateData);
-            _logger.LogInfo("Company Logo Retrieved successfully for Report");
-
-            _logger.LogInfo("Get Label");
-            var loLabel = loCls.AssignValuesWithMessages(typeof(PMR03000BackResources.Resources_Dummy_Class),
-                loCultureInfo,
-                new PMR03000ReportLabelDTO());
-
-            _logger.LogInfo("Report data formatted for print");
-
-            // var loDataPrint = new PMR03000ResultDataPrintDTO();
-            var loData = new PMR03000ResultDataDTO();
-            var Header = new PMR03000BaseHeaderDTO()
-            {
-                PROPERTY_NAME = loResultGUID.poParam.CPROPERTY_NAME,
-                CLOGO = oLogo.CLOGO
-            };
-
-            // loData.Label = (PMR03000ReportLabelDTO)loLabel;
-            // loData.Header = Header;
-            // loData.Label = loData.Label;
-            // loData.Header = Header;
-
+            
 
             // if (listDataBilling != null)
             // {
-
-            var resultData = new PMR03000ResultDataDTO()
-            {
-                Header = Header,
-                Label = (PMR03000ReportLabelDTO)loLabel,
-                Datas = new List<PMR03000DataReportDTO>(),
-            };
-
-            foreach (var item in listDataBilling)
-            {
-                var itemIndexes = 0;
-                // _logger.LogInfo("Assign Tenant id for param");
-                // item.CTENANT_ID = item.CTENANT_ID;
-                // Setup Report Parameters
-
-
-                _logger.LogInfo("Set Param for VA");
-                var loVAParam = new PMR03000ParameterDb()
-                {
-                    CCOMPANY_ID = item.CCOMPANY_ID,
-                    CPROPERTY_ID = item.CPROPERTY_ID,
-                    CTENANT_ID = item.CTENANT_ID,
-                    CLANG_ID = R_BackGlobalVar.REPORT_CULTURE
-                };
-
-                _logger.LogInfo("Get data VA");
-                var dataVirtualAccount = await loCls.GetVAList(loVAParam);
-
-                _logger.LogInfo("Get data Unit");
-                var FilteredUnitList = listDataDetailUnit.Where(x => x.CREF_NO == item.CREF_NO).ToList();
-
-                _logger.LogInfo("Get data Utility");
-                var filteredGroups = listDataDetailUtility
-                    .Where(x => x.CREF_NO == item.CREF_NO)
-                    .GroupBy(x => x.CCHARGES_TYPE)
-                    .ToDictionary(g => g.Key, g => g.ToList());
-
-                _logger.LogInfo("Seprated with different ChargeType");
-                var FilteredUtilityList01 =
-                    filteredGroups.GetValueOrDefault("01", new List<PMR03000DetailUtilityDTO>());
-                var FilteredUtilityList02 =
-                    filteredGroups.GetValueOrDefault("02", new List<PMR03000DetailUtilityDTO>());
-                var FilteredUtilityList03 =
-                    filteredGroups.GetValueOrDefault("03", new List<PMR03000DetailUtilityDTO>());
-                var FilteredUtilityList04 =
-                    filteredGroups.GetValueOrDefault("04", new List<PMR03000DetailUtilityDTO>());
-
-                // var resultData = new PMR03000ResultDataDTO()
-                // {
-                //     Header = Header,
-                //     Label = (PMR03000ReportLabelDTO)loLabel,
-                //     Datas = item,
-                //     VirtualAccountData = dataVirtualAccount,
-                //     DataUnitList = FilteredUnitList,
-                //     DataUtility1 = FilteredUtilityList01,
-                //     DataUtility2 = FilteredUtilityList02,
-                //     DataUtility3 = FilteredUtilityList03,
-                //     DataUtility4 = FilteredUtilityList04,
-                // };
-
-                resultData.Datas.Add(item);
-                resultData.Datas[itemIndexes].VirtualAccountData = dataVirtualAccount;
-                resultData.Datas[itemIndexes].DataUnitList = FilteredUnitList;
-                resultData.Datas[itemIndexes].DataUtility1 = FilteredUtilityList01;
-                resultData.Datas[itemIndexes].DataUtility2 = FilteredUtilityList02;
-                resultData.Datas[itemIndexes].DataUtility3 = FilteredUtilityList03;
-                resultData.Datas[itemIndexes].DataUtility4 = FilteredUtilityList04;
-                resultData.Datas[itemIndexes].DataUnitListIsEmpty = !FilteredUnitList.Any();
-                resultData.Datas[itemIndexes].DataUtility1IsEmpty = !FilteredUtilityList01.Any();
-                resultData.Datas[itemIndexes].DataUtility2IsEmpty = !FilteredUtilityList02.Any();
-                resultData.Datas[itemIndexes].DataUtility3IsEmpty = !FilteredUtilityList03.Any();
-                resultData.Datas[itemIndexes].DataUtility4IsEmpty = !FilteredUtilityList04.Any();
-
-                itemIndexes++;
-                // loDataPrint.Data.Add(resultData);
-            }
-
-            loData = resultData;
+            //     // var itemIndexes = 0;
+            //     foreach (var item in listDataBilling)
+            //     {
+            //         // _logger.LogInfo("Assign Tenant id for param");
+            //         // item.CTENANT_ID = item.CTENANT_ID;
+            //         // Setup Report Parameters
+            //
+            //         _logger.LogInfo("Set Param for VA");
+            //         var loVAParam = new PMR03000ParameterDb()
+            //         {
+            //             CCOMPANY_ID = item.CCOMPANY_ID,
+            //             CPROPERTY_ID = item.CPROPERTY_ID,
+            //             CTENANT_ID = item.CTENANT_ID,
+            //             CLANG_ID = R_BackGlobalVar.REPORT_CULTURE
+            //         };
+            //
+            //         _logger.LogInfo("Get data VA");
+            //         var dataVirtualAccount = await loCls.GetVAList(loVAParam);
+            //
+            //         _logger.LogInfo("Get data Unit");
+            //         var FilteredUnitList = (listDataDetailUnit.Any())
+            //             ? listDataDetailUnit.Where(x => x.CCUSTOMER_ID == item.CTENANT_ID).ToList()
+            //             : new List<PMR03000DetailUnitDTO>();
+            //
+            //         _logger.LogInfo("Get data Utility");
+            //         var filteredGroups = listDataDetailUtility
+            //             .Where(x => x.CCUSTOMER_ID == item.CTENANT_ID)
+            //             .GroupBy(x => x.CCHARGES_TYPE);
+            //
+            //         _logger.LogInfo("Seprated with different ChargeType");
+            //         var FilteredUtilityList01 = filteredGroups
+            //             .Where(g => g.Key == "01")
+            //             .SelectMany(g => g)
+            //             .ToList();
+            //         var FilteredUtilityList02 = filteredGroups
+            //             .Where(g => g.Key == "02")
+            //             .SelectMany(g => g)
+            //             .ToList();
+            //         var FilteredUtilityList03 = filteredGroups
+            //             .Where(g => g.Key == "03")
+            //             .SelectMany(g => g)
+            //             .ToList();
+            //         var FilteredUtilityList04 = filteredGroups
+            //             .Where(g => g.Key == "04")
+            //             .SelectMany(g => g)
+            //             .ToList();
+            //
+            //         if (FilteredUtilityList03.Any())
+            //         {
+            //             foreach (var utility in FilteredUtilityList03)
+            //             {
+            //                 var utilityRate = new PMR03000ReportParamDTO()
+            //                 {
+            //                     RateParameter = new PMR03000ReportParamRateDb()
+            //                     {
+            //                         CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
+            //                         CPROPERTY_ID = utility.CPROPERTY_ID,
+            //                         CCHARGES_TYPE = utility.CCHARGES_TYPE,
+            //                         CCHARGES_ID = utility.CCHARGES_ID,
+            //                         CUSER_ID = R_BackGlobalVar.USER_ID,
+            //                         CSTART_DATE = utility.CSTART_DATE
+            //                     }
+            //                 };
+            //                 utility.RateWGList = await loCls.GetRateWGList(utilityRate);
+            //             }
+            //         }
+            //
+            //         if (FilteredUtilityList04.Any())
+            //         {
+            //             foreach (var utility in FilteredUtilityList04)
+            //             {
+            //                 var utilityRate = new PMR03000ReportParamDTO()
+            //                 {
+            //                     RateParameter = new PMR03000ReportParamRateDb()
+            //                     {
+            //                         CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
+            //                         CPROPERTY_ID = utility.CPROPERTY_ID,
+            //                         CCHARGES_TYPE = utility.CCHARGES_TYPE,
+            //                         CCHARGES_ID = utility.CCHARGES_ID,
+            //                         CUSER_ID = R_BackGlobalVar.USER_ID,
+            //                         CSTART_DATE = utility.CSTART_DATE
+            //                     }
+            //                 };
+            //                 utility.RateWGList = await loCls.GetRateWGList(utilityRate);
+            //             }
+            //         }
+            //
+            //         resultData.Datas.Add(new PMR03000DataReportDTO
+            //         {
+            //             CCOMPANY_ID = item.CCOMPANY_ID,
+            //             CPROPERTY_ID = item.CPROPERTY_ID,
+            //             CPROPERTY_NAME = item.CPROPERTY_NAME,
+            //             CSTATEMENT_DATE = item.CSTATEMENT_DATE,
+            //             DSTATEMENT_DATE = item.DSTATEMENT_DATE,
+            //             CDUE_DATE = item.CDUE_DATE,
+            //             DDUE_DATE = item.DDUE_DATE,
+            //             CLOI_AGRMT_REC_ID = item.CLOI_AGRMT_REC_ID,
+            //             CSTORAGE_ID = item.CSTORAGE_ID,
+            //             CUSER_ID = item.CUSER_ID,
+            //             CTENANT_ID = item.CTENANT_ID,
+            //             CTENANT_NAME = item.CTENANT_NAME,
+            //             CBILLING_ADDRESS = item.CBILLING_ADDRESS,
+            //             CREF_NO = item.CREF_NO,
+            //             CBUILDING_ID = item.CBUILDING_ID,
+            //             CBUILDING_NAME = item.CBUILDING_NAME,
+            //             CUNIT_ID_LIST = item.CUNIT_ID_LIST,
+            //             CUNIT_DESCRIPTION = item.CUNIT_DESCRIPTION,
+            //             CCURRENCY = item.CCURRENCY,
+            //             CCURRENCY_CODE = item.CCURRENCY_CODE,
+            //             NPREVIOUS_BALANCE = item.NPREVIOUS_BALANCE,
+            //             NPREVIOUS_PAYMENT = item.NPREVIOUS_PAYMENT,
+            //             NCURRENT_PENALTY = item.NCURRENT_PENALTY,
+            //             NNEW_BILLING = item.NNEW_BILLING,
+            //             NNEW_BALANCE = item.NNEW_BALANCE,
+            //             NSALES = item.NSALES,
+            //             NRENT = item.NRENT,
+            //             NDEPOSIT = item.NDEPOSIT,
+            //             NREVENUE_SHARING = item.NREVENUE_SHARING,
+            //             NSERVICE_CHARGE = item.NSERVICE_CHARGE,
+            //             NSINKING_FUND = item.NSINKING_FUND,
+            //             NPROMO_LEVY = item.NPROMO_LEVY,
+            //             NGENERAL_CHARGE = item.NGENERAL_CHARGE,
+            //             NELECTRICITY = item.NELECTRICITY,
+            //             NCHILLER = item.NCHILLER,
+            //             NWATER = item.NWATER,
+            //             NGAS = item.NGAS,
+            //             NPARKING = item.NPARKING,
+            //             NOVERTIME = item.NOVERTIME,
+            //             NGENERAL_UTILITY = item.NGENERAL_UTILITY,
+            //             TMESSAGE_DESCR_RTF = loResultGUID.poParam.TMESSAGE_DESCR_RTF,
+            //             TADDITIONAL_DESCR_RTF = loResultGUID.poParam.TADDITIONAL_DESCR_RTF,
+            //
+            //             VirtualAccountData = dataVirtualAccount,
+            //             DataUnitList = FilteredUnitList,
+            //             DataUnitListIsEmpty = !FilteredUnitList.Any(),
+            //             DataUtility1 = FilteredUtilityList01,
+            //             DataUtility1IsEmpty = !FilteredUtilityList01.Any(),
+            //             DataUtility2 = FilteredUtilityList02,
+            //             DataUtility2IsEmpty = !FilteredUtilityList02.Any(),
+            //             DataUtility3 = FilteredUtilityList03,
+            //             DataUtility3IsEmpty = !FilteredUtilityList03.Any(),
+            //             DataUtility4 = FilteredUtilityList04,
+            //             DataUtility4IsEmpty = !FilteredUtilityList04.Any(),
+            //         });
+            //
+            //         // itemIndexes++;
+            //         // loDataPrint.Data.Add(resultData);
+            //     }
+            // }
+            //
+            // var resultData = new PMR03000ResultDataDTO()
+            // {
+            //     Header = Header,
+            //     Label = (PMR03000ReportLabelDTO)loLabel,
+            //     Datas = new List<PMR03000DataReportDTO>(),
+            // };
+            #endregion
+            
+            loData = await loCls.GenerateReport(loParameterGenerateData);
 
             var loParameter = new R_GenerateReportParameter()
             {
                 ReportRule = loReportRule,
                 ReportFileName = lcReportFileName,
                 ReportData = JsonSerializer.Serialize(loData),
-                // ReportData = JsonSerializer.Serialize(loData),
                 ReportDataSourceName = "ResponseDataModel",
                 ReportFormat =
                     R_Utility
@@ -320,24 +384,8 @@ public class PMR03000PrintController : R_ReportControllerBase
                 "api/ReportServer/GetReport",
                 loParameter
             );
-            
-            // Determine file type and format for response
-            loRtn = File(loRtnInByte, R_ReportUtility.GetMimeType((R_ReportFastReportBack.R_FileType)R_FileType.PDF));
 
-            //if (loResultGUID.ParameterPrint.LIS_PRINT)
-            //{
-            //}
-            //else
-            //{
-            //    _logger.LogDebug("Determined file type for response: {0}", leReportOutputType);
-
-            //    loRtn = File(
-            //        loRtnInByte,
-            //        R_ReportUtility.GetMimeType((R_ReportFastReportBack.R_FileType)leReportOutputType),
-            //        $"{loResultGUID.ParameterPrint.CREPORT_FILENAME}.{lcExtension}"
-            //    );
-            //}
-            // }
+            loRtn = File(loRtnInByte, R_ReportUtility.GetMimeType(R_FileType.PDF));
 
             EndBlock:
             _logger.LogInfo("Report file successfully generated for PrintReportGet");

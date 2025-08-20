@@ -21,6 +21,7 @@ using System.Collections.ObjectModel;
 using GSM02500COMMON.DTOs.GSM02502;
 using R_BlazorFrontEnd.Interfaces;
 using R_APICommonDTO;
+using GSM02500COMMON.DTOs.GSM02531;
 
 namespace GSM02500FRONT
 {
@@ -85,6 +86,15 @@ namespace GSM02500FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
+        private void R_RowRender(R_GridRowRenderEventArgs eventArgs)
+        {
+            var loData = (UploadUnitTypeCategoryDTO)eventArgs.Data;
+
+            if (loData.Valid == "N")
+            {
+                eventArgs.RowClass = "errorDataLValidIsFalse";//"errorDataLValidisFalse";
+            }
+        }
         public void ReadExcelFile()
         {
             var loEx = new R_Exception();
@@ -103,6 +113,9 @@ namespace GSM02500FRONT
                     UnitTypeCategoryCode = x.UnitTypeCategoryCode,
                     UnitTypeCategoryName = x.UnitTypeCategoryName,
                     Description = x.Description,
+                    DepartmentCode = x.Department,
+                    InvitationInvoicePeriod = x.InvitationInvoicePeriod,
+                    PropertyType = x.PropertyType,
                     Active = x.Active,
                     NonActiveDate = x.NonActiveDate,
                     Notes = "",
@@ -134,6 +147,9 @@ namespace GSM02500FRONT
                     UnitTypeCategoryCode = x.UnitTypeCategoryCode,
                     UnitTypeCategoryName = x.UnitTypeCategoryName,
                     Description = x.Description,
+                    DepartmentCode = x.DepartmentCode,
+                    InvitationInvoicePeriod = x.InvitationInvoicePeriod,
+                    PropertyType = x.PropertyType,
                     Active = x.Active,
                     NonActiveDate = x.NonActiveDate,
                     Valid = x.Valid,

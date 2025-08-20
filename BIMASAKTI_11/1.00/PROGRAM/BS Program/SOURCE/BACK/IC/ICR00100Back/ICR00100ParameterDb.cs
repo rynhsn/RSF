@@ -16,5 +16,6 @@ public class ICR00100ParameterDb
     public string CTO_PROD_ID { get; set; }
     public string CFILTER_DATA { get; set; }
     public string CLANG_ID { get; set; }
+    public string COPTION_PRINT { get; set; }
     public string CUSER_ID { get; set; }
 }

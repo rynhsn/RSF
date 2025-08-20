@@ -25,10 +25,9 @@ public partial class PMB05000 : R_Page
         try
         {
             //refresh form
-            await _viewModel.GetSystemParam();
-            await _viewModel.GetPeriodYearRange();
-            // await _conductorRef.R_SetCurrentData(_viewModel.SystemParam);
-            await _conductorRef.R_GetEntity(null);
+            await _viewModel.GetProperties();
+            await GetSystemParam();
+
         }
         catch (Exception ex)
         {
@@ -36,6 +35,16 @@ public partial class PMB05000 : R_Page
         }
 
         loEx.ThrowExceptionIfErrors();
+    }
+
+    public async Task GetSystemParam()
+    {
+        if (!string.IsNullOrEmpty(_viewModel.Property.CPROPERTY_ID))
+        {
+            await _viewModel.GetSystemParam();
+            await _viewModel.GetPeriodYearRange();
+            await _conductorRef.R_GetEntity(null);
+        }
     }
 
     private async Task OnClickProcess()
@@ -64,7 +73,7 @@ public partial class PMB05000 : R_Page
                 await _viewModel.ProcessSoftPeriod();
                 //msg
                 var leMsg2 = await R_MessageBox.Show("", _localizer["MSG_SOFT_CLOSING_PROCESSED_SUCCESSFULLY"]);
-                
+
                 await _viewModel.GetSystemParam();
                 await _conductorRef.R_GetEntity(null);
             }
@@ -157,6 +166,23 @@ public partial class PMB05000 : R_Page
         {
             var leMsg = await R_MessageBox.Show("", _localizer["MSG_UNSAVED_CHANGES"], R_eMessageBoxButtonType.YesNo);
             eventArgs.Cancel = leMsg == R_eMessageBoxResult.No;
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+    
+    private async Task OnChangeProperty(string? value)
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            if (string.IsNullOrEmpty(value)) return;
+            _viewModel.Property.CPROPERTY_ID = value;
+            await GetSystemParam();
         }
         catch (Exception ex)
         {

@@ -12,6 +12,7 @@
         public string CTRANS_CODE { get; set; } = "";
         public string CREF_NO { get; set; } = "";
         public string CUNIT_CATEGORY_LIST { get; set; } = "";
+        public string CUNIT_TYPE_CATEGORY_ID { get; set; } = "";
         public string CSEARCH_TEXT { get; set; }
         public string CREMOVE_DATA_UNIT_ID_SEPARATOR { get; set; } = "";
     }

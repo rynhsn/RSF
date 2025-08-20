@@ -26,7 +26,6 @@ namespace Lookup_PMCOMMON.DTOs
         public string? CTYPE { get; set; }
         public string? CTYPE_DESCR { get; set; }
         public string CTYPE_AND_DESC
-
         {
             get
             {

@@ -196,6 +196,15 @@ namespace GSM02500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close Hour.
+        /// </summary>
+        internal static string _CloseHour {
+            get {
+                return ResourceManager.GetString("_CloseHour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Common Area.
         /// </summary>
         internal static string _CommonArea {
@@ -237,6 +246,24 @@ namespace GSM02500FrontResources {
         internal static string _Date {
             get {
                 return ResourceManager.GetString("_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day.
+        /// </summary>
+        internal static string _Day {
+            get {
+                return ResourceManager.GetString("_Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Days.
+        /// </summary>
+        internal static string _Days {
+            get {
+                return ResourceManager.GetString("_Days", resourceCulture);
             }
         }
         
@@ -322,6 +349,24 @@ namespace GSM02500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Facility.
+        /// </summary>
+        internal static string _Facility {
+            get {
+                return ResourceManager.GetString("_Facility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Facility Type.
+        /// </summary>
+        internal static string _FacilityType {
+            get {
+                return ResourceManager.GetString("_FacilityType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Floor.
         /// </summary>
         internal static string _Floor {
@@ -363,6 +408,24 @@ namespace GSM02500FrontResources {
         internal static string _FloorName {
             get {
                 return ResourceManager.GetString("_FloorName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Friday.
+        /// </summary>
+        internal static string _FRIDAY {
+            get {
+                return ResourceManager.GetString("_FRIDAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gallery.
+        /// </summary>
+        internal static string _Gallery {
+            get {
+                return ResourceManager.GetString("_Gallery", resourceCulture);
             }
         }
         
@@ -430,6 +493,15 @@ namespace GSM02500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please use the 24-hour time format for open and close hour.
+        /// </summary>
+        internal static string _Information {
+            get {
+                return ResourceManager.GetString("_Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid.
         /// </summary>
         internal static string _Invalid {
@@ -475,6 +547,15 @@ namespace GSM02500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logo.
+        /// </summary>
+        internal static string _Logo {
+            get {
+                return ResourceManager.GetString("_Logo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max Reset Value.
         /// </summary>
         internal static string _MaxResetValue {
@@ -489,6 +570,24 @@ namespace GSM02500FrontResources {
         internal static string _MeterNo {
             get {
                 return ResourceManager.GetString("_MeterNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monday.
+        /// </summary>
+        internal static string _MONDAY {
+            get {
+                return ResourceManager.GetString("_MONDAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Month.
+        /// </summary>
+        internal static string _Month {
+            get {
+                return ResourceManager.GetString("_Month", resourceCulture);
             }
         }
         
@@ -565,11 +664,29 @@ namespace GSM02500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Note.
+        /// </summary>
+        internal static string _Note {
+            get {
+                return ResourceManager.GetString("_Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notes.
         /// </summary>
         internal static string _Notes {
             get {
                 return ResourceManager.GetString("_Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure want print this?.
+        /// </summary>
+        internal static string _NotifPrint {
+            get {
+                return ResourceManager.GetString("_NotifPrint", resourceCulture);
             }
         }
         
@@ -588,6 +705,24 @@ namespace GSM02500FrontResources {
         internal static string _Ok {
             get {
                 return ResourceManager.GetString("_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Hour.
+        /// </summary>
+        internal static string _OpenHour {
+            get {
+                return ResourceManager.GetString("_OpenHour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operational Hour.
+        /// </summary>
+        internal static string _OperationalHour {
+            get {
+                return ResourceManager.GetString("_OperationalHour", resourceCulture);
             }
         }
         
@@ -682,6 +817,15 @@ namespace GSM02500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Print.
+        /// </summary>
+        internal static string _Print {
+            get {
+                return ResourceManager.GetString("_Print", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Process.
         /// </summary>
         internal static string _Process {
@@ -718,11 +862,29 @@ namespace GSM02500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Qty.
+        /// </summary>
+        internal static string _Qty {
+            get {
+                return ResourceManager.GetString("_Qty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sales Tax Id.
         /// </summary>
         internal static string _SalesTaxId {
             get {
                 return ResourceManager.GetString("_SalesTaxId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saturday.
+        /// </summary>
+        internal static string _SATURDAY {
+            get {
+                return ResourceManager.GetString("_SATURDAY", resourceCulture);
             }
         }
         
@@ -768,6 +930,15 @@ namespace GSM02500FrontResources {
         internal static string _Show {
             get {
                 return ResourceManager.GetString("_Show", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show operational information (Day, Hours, and Note) in Bimasakti Tenant Apps.
+        /// </summary>
+        internal static string _ShowInMobile {
+            get {
+                return ResourceManager.GetString("_ShowInMobile", resourceCulture);
             }
         }
         
@@ -826,11 +997,29 @@ namespace GSM02500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sunday.
+        /// </summary>
+        internal static string _SUNDAY {
+            get {
+                return ResourceManager.GetString("_SUNDAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Template.
         /// </summary>
         internal static string _Template {
             get {
                 return ResourceManager.GetString("_Template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thursday.
+        /// </summary>
+        internal static string _THURSDAY {
+            get {
+                return ResourceManager.GetString("_THURSDAY", resourceCulture);
             }
         }
         
@@ -876,6 +1065,15 @@ namespace GSM02500FrontResources {
         internal static string _TotalUnitSpace {
             get {
                 return ResourceManager.GetString("_TotalUnitSpace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tuesday.
+        /// </summary>
+        internal static string _TUESDAY {
+            get {
+                return ResourceManager.GetString("_TUESDAY", resourceCulture);
             }
         }
         
@@ -1128,6 +1326,24 @@ namespace GSM02500FrontResources {
         internal static string _ViewName {
             get {
                 return ResourceManager.GetString("_ViewName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wednesday.
+        /// </summary>
+        internal static string _WEDNESDAY {
+            get {
+                return ResourceManager.GetString("_WEDNESDAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year.
+        /// </summary>
+        internal static string _Year {
+            get {
+                return ResourceManager.GetString("_Year", resourceCulture);
             }
         }
         

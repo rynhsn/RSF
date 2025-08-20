@@ -190,34 +190,34 @@ public class PMT03500UploadUtilityCls : R_IBatchProcess
                                "NMETER_END 	    numeric(16,2));";
                     loDb.SqlExecNonQuery(lcQuery, loConn, false);
 
-                    for (var i = 0; i < loObjectWG.Count; i++)
-                    {
-                        _logger.LogDebug($"INSERT INTO #UTILITY_USAGE_WG " +
-                                         $"VALUES (" +
-                                         $"{loObjectWG[i].NO}, " +
-                                         $"'{loObjectWG[i].CCOMPANY_ID}', " +
-                                         $"'{loObjectWG[i].CPROPERTY_ID}', " +
-                                         $"'{loObjectWG[i].CDEPT_CODE}', " +
-                                         $"'{loObjectWG[i].CTRANS_CODE}', " +
-                                         $"'{loObjectWG[i].CREF_NO}', " +
-                                         $"'{loObjectWG[i].CUTILITY_TYPE}', " +
-                                         $"'{loObjectWG[i].CUNIT_ID}', " +
-                                         $"'{loObjectWG[i].CFLOOR_ID}', " +
-                                         $"'{loObjectWG[i].CBUILDING_ID}', " +
-                                         $"'{loObjectWG[i].CCHARGES_TYPE}', " +
-                                         $"'{loObjectWG[i].CCHARGES_ID}', " +
-                                         $"'{loObjectWG[i].CSEQ_NO}', " +
-                                         $"'{loObjectWG[i].CINV_PRD}', " +
-                                         $"'{loObjectWG[i].CUTILITY_PRD}', " +
-                                         $"'{loObjectWG[i].CSTART_DATE}', " +
-                                         $"'{loObjectWG[i].CEND_DATE}', " +
-                                         $"'{loObjectWG[i].CMETER_NO}', " +
-                                         $"'{loObjectEC[i].CPHOTO_REC_ID_1}', " +
-                                         $"'{loObjectEC[i].CPHOTO_REC_ID_2}', " +
-                                         $"'{loObjectEC[i].CPHOTO_REC_ID_3}', " +
-                                         $"{loObjectWG[i].NMETER_START}, " +
-                                         $"{loObjectWG[i].NMETER_END})");
-                    }
+                    // for (var i = 0; i < loObjectWG.Count; i++)
+                    // {
+                    //     _logger.LogDebug($"INSERT INTO #UTILITY_USAGE_WG " +
+                    //                      $"VALUES (" +
+                    //                      $"{loObjectWG[i].NO}, " +
+                    //                      $"'{loObjectWG[i].CCOMPANY_ID}', " +
+                    //                      $"'{loObjectWG[i].CPROPERTY_ID}', " +
+                    //                      $"'{loObjectWG[i].CDEPT_CODE}', " +
+                    //                      $"'{loObjectWG[i].CTRANS_CODE}', " +
+                    //                      $"'{loObjectWG[i].CREF_NO}', " +
+                    //                      $"'{loObjectWG[i].CUTILITY_TYPE}', " +
+                    //                      $"'{loObjectWG[i].CUNIT_ID}', " +
+                    //                      $"'{loObjectWG[i].CFLOOR_ID}', " +
+                    //                      $"'{loObjectWG[i].CBUILDING_ID}', " +
+                    //                      $"'{loObjectWG[i].CCHARGES_TYPE}', " +
+                    //                      $"'{loObjectWG[i].CCHARGES_ID}', " +
+                    //                      $"'{loObjectWG[i].CSEQ_NO}', " +
+                    //                      $"'{loObjectWG[i].CINV_PRD}', " +
+                    //                      $"'{loObjectWG[i].CUTILITY_PRD}', " +
+                    //                      $"'{loObjectWG[i].CSTART_DATE}', " +
+                    //                      $"'{loObjectWG[i].CEND_DATE}', " +
+                    //                      $"'{loObjectWG[i].CMETER_NO}', " +
+                    //                      $"'{loObjectEC[i].CPHOTO_REC_ID_1}', " +
+                    //                      $"'{loObjectEC[i].CPHOTO_REC_ID_2}', " +
+                    //                      $"'{loObjectEC[i].CPHOTO_REC_ID_3}', " +
+                    //                      $"{loObjectWG[i].NMETER_START}, " +
+                    //                      $"{loObjectWG[i].NMETER_END})");
+                    // }
 
                     loDb.R_BulkInsert((SqlConnection)loConn, $"#UTILITY_USAGE_WG", loObjectWG);
                     break;

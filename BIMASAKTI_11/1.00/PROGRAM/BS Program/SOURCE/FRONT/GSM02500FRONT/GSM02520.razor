@@ -82,6 +82,7 @@
                 <R_TextBox @bind-Value="@loViewModel.Data.CFLOOR_ID"
                            R_ConductorSource="@_conductorRef"
                            @ref="_floordRef"
+                           MaxLength="20"
                            R_EnableAdd="true"
                            R_EnableEdit="false">
                 </R_TextBox>
@@ -90,6 +91,7 @@
                 <R_TextBox @bind-Value="@loViewModel.Data.CFLOOR_NAME"
                            R_ConductorSource="@_conductorRef"
                            @ref="_floorNameRef"
+                           MaxLength="200"
                            R_EnableAdd="true"
                            R_EnableEdit="true">
                 </R_TextBox>

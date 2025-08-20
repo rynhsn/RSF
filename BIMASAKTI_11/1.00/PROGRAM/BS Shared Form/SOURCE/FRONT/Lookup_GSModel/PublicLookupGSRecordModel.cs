@@ -1006,6 +1006,62 @@ namespace Lookup_GSModel
 
             return loResult;
         }
+        public async Task<GSL03010DTO> GSL03010GetProductUnitAsync(GSL03010ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            GSL03010DTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GSLGenericRecord<GSL03010DTO>, GSL03010ParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicRecordLookup.GSL03010GetProductUnit),
+                    poEntity,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+        public async Task<GSL03020DTO> GSL03020GetProductUOMAsync(GSL03020ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            GSL03020DTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GSLGenericRecord<GSL03020DTO>, GSL03020ParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicRecordLookup.GSL03020GetProductUOM),
+                    poEntity,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
         public async Task<GSL03000DTO> GSL03000GetProductAsync(GSL03000ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
@@ -1202,6 +1258,34 @@ namespace Lookup_GSModel
 
             return loResult;
         }
+        public async Task<GSL03700DTO> GSL03700GetMessageAsync(GSL03700ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            GSL03700DTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GSLGenericRecord<GSL03700DTO>, GSL03700ParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicRecordLookup.GSL03700GetMessage),
+                    poEntity,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
 
         #region Not Implement
         public GSLGenericRecord<GSL00100DTO> GSL00100GetSalesTax(GSL00100ParameterDTO poEntity)
@@ -1369,6 +1453,18 @@ namespace Lookup_GSModel
             throw new NotImplementedException();
         }
         public GSLGenericRecord<GSL03600DTO> GSL03600GetCompany(GSL03600ParameterDTO poEntity)
+        {
+            throw new NotImplementedException();
+        }
+        public GSLGenericRecord<GSL03010DTO> GSL03010GetProductUnit(GSL03010ParameterDTO poEntity)
+        {
+            throw new NotImplementedException();
+        }
+        public GSLGenericRecord<GSL03020DTO> GSL03020GetProductUOM(GSL03020ParameterDTO poEntity)
+        {
+            throw new NotImplementedException();
+        }
+        public GSLGenericRecord<GSL03700DTO> GSL03700GetMessage(GSL03700ParameterDTO poEntity)
         {
             throw new NotImplementedException();
         }

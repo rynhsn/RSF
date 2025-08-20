@@ -126,7 +126,9 @@ namespace PMR03000Common.Model
                     DSTATEMENT_DATE = DateTime.Now.Date, // Gunakan nilai default untuk tanggal
                     CDUE_DATE = DateTime.Now.ToString("yyyyMMdd"),
                     DDUE_DATE = DateTime.Now.Date, // Gunakan nilai default untuk tanggal
-
+                    
+                    
+                    
                     // SUBHEADER
                     CTENANT_ID = $"CTENANT_ID {i}",
                     CTENANT_NAME = $"CTENANT_NAME {i}",
@@ -160,10 +162,11 @@ namespace PMR03000Common.Model
                     NPARKING = 0,
                     NOVERTIME = 0,
                     NGENERAL_UTILITY = 0,
-
+                
                     VirtualAccountData = GenerateVA(),
                     DataUnitList = GenerateDataUnit(),
                     DataUtility1 = GenerateDataUtility(1),
+                    DataUtility1IsEmpty = true,
                     DataUtility2 = GenerateDataUtility(2),
                     DataUtility3 =
                         GenerateDataUtility(3), // new List<PMR03000DetailUtilityDTO>()  ,//GenerateDataUtility(3),

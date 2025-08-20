@@ -8,5 +8,7 @@ public class PMR03000ParameterDb
     public string CPROGRAM_ID { get; set; } = "";
     public string CTENANT_ID { get; set; } = "";
     public string CLANG_ID { get; set; } = "";
-    public string CTEMPLATE_ID { get; set; }= "";
+    public string CTEMPLATE_ID { get; set; } = "";
+    public string CMESSAGE_TYPE { get; set; } = "";
 }
+

@@ -1,4 +1,4 @@
-// This is a JavaScript module that is loaded on demand. It can export any number of
+﻿// This is a JavaScript module that is loaded on demand. It can export any number of
 // functions, and may import other JavaScript modules if required.
 
 export function showPrompt(message) {
@@ -13,15 +13,23 @@ export function selectText(tbId) {
 }
 
 export async function downloadFileFromStream(fileName, contentStreamReference) {
-    const arrayBuffer = await contentStreamReference.arrayBuffer();
-    const blob = new Blob([arrayBuffer]);
-    const url = URL.createObjectURL(blob);
-    const anchorElement = document.createElement('a');
-    anchorElement.href = url;
-    anchorElement.download = fileName ?? '';
-    anchorElement.click();
-    anchorElement.remove();
-    URL.revokeObjectURL(URL);
+    try {
+        const arrayBuffer = await contentStreamReference.arrayBuffer();
+        const blob = new Blob([arrayBuffer]);
+        const url = URL.createObjectURL(blob);
+
+        const anchorElement = document.createElement('a');
+        anchorElement.href = url;
+        anchorElement.download = fileName ?? '';
+        document.body.appendChild(anchorElement);
+        anchorElement.click();
+        anchorElement.remove();
+
+        URL.revokeObjectURL(url);
+    } catch (err) {
+        console.error("JS error in downloadFileFromStream", err);
+        throw err;
+    }
 }
 
 export function showBootstrapToast() {
@@ -81,6 +89,8 @@ export function tabToButton(args, id) {
 
 // Helper function to change disabled state of single element
 export function setElementEnabledState(elm, enabled) {
+    if (!elm) return;
+
     if (enabled) {
         elm.removeAttribute('disabled');
     }
@@ -92,6 +102,7 @@ export function setElementEnabledState(elm, enabled) {
 export function setElementEnabledClass(elm, enabled) {
     let element = getEnabledElement(elm);
 
+    if (element) return;
     if (enabled) {
         element.classList.remove('k-disabled');
     }
@@ -101,6 +112,8 @@ export function setElementEnabledClass(elm, enabled) {
 }
 
 export function setElementTargetable(elm, enabled) {
+    if (elm) return;
+
     if (enabled) {
         // Restore old tabindex if it was saved
         if (elm.hasAttribute('data-old-tabindex')) {
@@ -126,7 +139,7 @@ export function getEnabledElement(elm) {
 
     if (tag === 'input' && elm.type !== 'radio' && elm.type !== 'checkbox') {
         returnElement = elm.closest('.k-input');
-    } else if (tag === 'textarea' && elm.id && elm.id.startsWith('ta')) {
+    } else if (tag === 'textarea' && elm.id && elm.id.startsWith('TextArea_')) {
         returnElement = elm.closest('.k-input');
     } else {
         returnElement = elm;
@@ -139,19 +152,21 @@ export function changeAllControlStatus(elementId, status) {
     // Get DIV container to be disabled
     //const container = document.querySelector(containerClass);
     const container = document.getElementById(elementId);
+
+    if (!container) return;
     // Check if helper class is there
     //const isDisabled = container.classList.contains('disabled');
     setElementEnabledState(container, status)
 
     // Query all fields inside DIV.
-    const allFields = container.querySelectorAll('input, textarea[id^="ta"], button, select, span[id], div.k-editor');
+    const allFields = container.querySelectorAll('input, textarea[id^="TextArea_"], button, select, span[id], div.k-editor');
 
     // Iterate over all elements
     // If Parent Group Box is enabled and Current Group Box is enabled => enabled field
     // Else, disabled field
     [...allFields].forEach(elm => {
         // check all parents, not just immediate parents
-        let parent = elm.closest('div[id*="grpbox"]');
+        let parent = elm.closest('div[id*="GroupBox_"]');
         let isFieldDisabled = elm.getAttribute('aria-disabled') === 'true' ? true : false;
 
         if ([...elm.classList].some(cls => cls.startsWith('k-spinner'))) {
@@ -169,7 +184,7 @@ export function changeAllControlStatus(elementId, status) {
                 isDisabledByAncestor = true;
                 break;
             }
-            parent = parent.parentElement?.closest('div[id*="grpbox"]');
+            parent = parent.parentElement?.closest('div[id*="GroupBox_"]');
         }
 
         const enabled = status && !isDisabledByAncestor && !isFieldDisabled;
@@ -214,5 +229,84 @@ export function removeValidationMessage(inputWrapperId, iconId) {
 
     if (target && target.parentNode) {
         target.parentNode.removeChild(target);
+    }
+}
+
+
+export function adjustCustomPagerVisibility(gridId) {
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
+
+    const parent = grid.querySelector("#PagerContainer");
+    const pager = grid.querySelector("#CustomPager");
+    const info = grid.querySelector("#CustomPagerInfo");
+    const itemsPerPage = grid.querySelector("#CustomPagerItemsPerPage");
+    const buttons = grid.querySelector("#CustomPagerButtons");
+    const buttonsText = grid.querySelector("#CustomPagerButtonsText");
+
+    if (!pager || !parent) return;
+
+    // Reset all to visible first
+    if (info) info.style.display = "flex";
+    if (itemsPerPage) itemsPerPage.style.display = "flex";
+    if (buttonsText) buttonsText.style.display = "flex";
+    if (buttons) buttons.style.display = "flex";
+
+    // Measure again after reset
+    const fits = () => pager.getBoundingClientRect().width <= parent.getBoundingClientRect().width;
+
+    if (!fits() && info) {
+        info.style.display = "none";
+    }
+
+    if (!fits() && itemsPerPage) {
+        itemsPerPage.style.display = "none";
+    }
+
+    if (!fits() && buttonsText) {
+        buttonsText.style.display = "none";
+    }
+
+    if (!fits() && buttons) {
+        buttons.style.display = "none";
+    }
+}
+
+function debounce(fn, delay) {
+    let timeout;
+    return () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(fn, delay);
+    };
+}
+
+const resizeObservers = {};
+
+export function initializeCustomPagerResize(gridId) {
+    const handler = debounce(() => {
+        const grid = document.getElementById(gridId);
+
+        if (!grid) {
+            disposeCustomPagerResize(gridId);
+            return;
+        }
+
+        adjustCustomPagerVisibility(gridId);
+    }, 100);
+    const gridElement = document.getElementById(gridId);
+    if (gridElement) {
+        // Create and store ResizeObserver
+        const observer = new ResizeObserver(handler);
+        observer.observe(gridElement);
+        resizeObservers[gridId] = observer;
+        requestAnimationFrame(() => handler());
+    }
+}
+
+export function disposeCustomPagerResize(gridId) {
+    const observer = resizeObservers[gridId];
+    if (observer) {
+        observer.disconnect();
+        delete resizeObservers[gridId];
     }
 }

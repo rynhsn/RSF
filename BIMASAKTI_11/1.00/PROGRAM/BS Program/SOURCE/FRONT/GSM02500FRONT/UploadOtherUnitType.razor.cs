@@ -23,6 +23,7 @@ using GSM02500COMMON.DTOs.GSM02541;
 using System.Collections.ObjectModel;
 using R_BlazorFrontEnd.Interfaces;
 using R_APICommonDTO;
+using GSM02500COMMON.DTOs.GSM02531;
 
 namespace GSM02500FRONT
 {
@@ -87,6 +88,16 @@ namespace GSM02500FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
+        private void R_RowRender(R_GridRowRenderEventArgs eventArgs)
+        {
+            var loData = (UploadOtherUnitTypeDTO)eventArgs.Data;
+
+            if (loData.Valid == "N")
+            {
+                eventArgs.RowClass = "errorDataLValidIsFalse";//"errorDataLValidisFalse";
+            }
+        }
+
         public void ReadExcelFile()
         {
             var loEx = new R_Exception();
@@ -104,6 +115,8 @@ namespace GSM02500FRONT
                     No = i + 1,
                     OtherUnitTypeCode = x.OtherUnitTypeCode,
                     OtherUnitTypeName = x.OtherUnitTypeName,
+                    DepartmentCode = x.Department,
+                    PropertyType = x.PropertyType,
                     GrossAreaSize = x.GrossAreaSize,
                     NetAreaSize = x.NetAreaSize,
                     Active = x.Active,
@@ -137,6 +150,7 @@ namespace GSM02500FRONT
                     No = x.No,
                     OtherUnitTypeCode = x.OtherUnitTypeCode,
                     OtherUnitTypeName = x.OtherUnitTypeName,
+                    Department = x.DepartmentCode,
                     GrossAreaSize = x.GrossAreaSize,
                     NetAreaSize = x.NetAreaSize,
                     Active = x.Active,

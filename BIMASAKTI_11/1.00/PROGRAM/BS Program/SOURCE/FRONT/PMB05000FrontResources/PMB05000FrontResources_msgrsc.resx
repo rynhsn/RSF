@@ -77,15 +77,11 @@
     <data name="TRANSACTION_TYPE" xml:space="preserve">
         <value>Transaction Type</value>
     </data>
-    <!-- Module -->
-    <data name="MODULE" xml:space="preserve">
-        <value>Module</value>
-    </data>
     <data name="REF_NO" xml:space="preserve">
-        <value>Reference No.</value>
+        <value>Ref No</value>
     </data>
     <data name="REF_DATE" xml:space="preserve">
-        <value>Reference Date</value>
+        <value>Ref Date</value>
     </data>
     <data name="STATUS" xml:space="preserve">
         <value>Status</value>

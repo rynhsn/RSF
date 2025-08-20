@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using PMR03000Common;
 using PMR03000Common.DTOs;
+using PMR03000Common.DTOs.Print;
 using PMR03000Common.Params;
 using R_APIClient;
 using R_BlazorFrontEnd.Exceptions;
@@ -61,6 +62,33 @@ namespace PMR03000Model
                     .R_APIRequestObject<PMR03000ListDTO<PMR03000ReportTemplateDTO>, PMR03000ReportTemplateParam>(
                         _RequestServiceEndPoint,
                         nameof(IPMR03000.PMR03000GetReportTemplateList),
+                        poParam,
+                        DEFAULT_MODULE,
+                        _SendWithContext,
+                        _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        public async Task<PMR03000ListDTO<PMR03000MessageInfoDTO>> PMR03000GetMessageInfoList(PMR03000MessageInfoParam poParam)
+        {
+            var loEx = new R_Exception();
+            var loResult = new PMR03000ListDTO<PMR03000MessageInfoDTO>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
+                loResult = await R_HTTPClientWrapper
+                    .R_APIRequestObject<PMR03000ListDTO<PMR03000MessageInfoDTO>, PMR03000MessageInfoParam>(
+                        _RequestServiceEndPoint,
+                        nameof(IPMR03000.PMR03000GetMessageInfoList),
                         poParam,
                         DEFAULT_MODULE,
                         _SendWithContext,

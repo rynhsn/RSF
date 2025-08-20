@@ -157,8 +157,6 @@ namespace GSM02500MODEL.View_Model
                     CPROPERTY_ID = loPropertyDetail.CPROPERTY_ID,
                     LACTIVE = SelectedActiveInactiveLACTIVE
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02501_PROPERTY_ID_CONTEXT, loPropertyDetail.CPROPERTY_ID);
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02501_LACTIVE_CONTEXT, SelectedActiveInactiveLACTIVE);
 
                 await loModel.RSP_GS_ACTIVE_INACTIVE_PROPERTYMethodAsync(loParam);
             }

@@ -717,7 +717,7 @@ public class PMT03500UtilityUsageCls
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = "RSP_PM_GET_RATE_WG_LIST";
+            lcQuery = "RSP_PM_GET_UTILITY_INFO_RATE_WG";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
@@ -726,6 +726,7 @@ public class PMT03500UtilityUsageCls
             loDb.R_AddCommandParameter(loCmd, "@CCHARGE_TYPE_ID", DbType.String, 20, poParam.CCHARGES_TYPE);
             loDb.R_AddCommandParameter(loCmd, "@CCHARGES_ID", DbType.String, 20, poParam.CCHARGES_ID);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParam.CUSER_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CCHARGES_DATE", DbType.String, 8, poParam.CSTART_DATE);
 
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x =>
@@ -734,7 +735,8 @@ public class PMT03500UtilityUsageCls
                         "@CPROPERTY_ID" or
                         "@CCHARGE_TYPE_ID" or
                         "@CCHARGES_ID" or
-                        "@CUSER_ID"
+                        "@CUSER_ID" or  
+                        "@CCHARGES_DATE"
                 )
                 .Select(x => x.Value);
 

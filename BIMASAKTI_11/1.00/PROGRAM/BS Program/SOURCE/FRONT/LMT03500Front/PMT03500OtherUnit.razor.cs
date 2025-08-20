@@ -680,4 +680,9 @@ public partial class PMT03500OtherUnit
             loItem.DEND_DATE = _viewModelUtility.UtilityPeriodToDtDt;
         }
     }
+    
+    private void CheckEditUtility(R_CheckEditEventArgs eventArgs)
+    {
+        eventArgs.Allow = !_viewModelUtility.Invoiced;
+    }
 }

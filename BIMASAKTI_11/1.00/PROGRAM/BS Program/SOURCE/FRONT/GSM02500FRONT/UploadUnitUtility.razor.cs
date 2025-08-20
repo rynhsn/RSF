@@ -100,6 +100,15 @@ namespace GSM02500FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
+        private void R_RowRender(R_GridRowRenderEventArgs eventArgs)
+        {
+            var loData = (UploadUnitUtilityDTO)eventArgs.Data;
+
+            if (loData.Valid == "N")
+            {
+                eventArgs.RowClass = "errorDataLValidIsFalse";//"errorDataLValidisFalse";
+            }
+        }
         public void ReadExcelFile()
         {
             var loEx = new R_Exception();

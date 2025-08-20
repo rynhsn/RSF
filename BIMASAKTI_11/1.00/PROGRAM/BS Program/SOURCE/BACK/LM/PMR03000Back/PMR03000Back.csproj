@@ -13,11 +13,20 @@
         <Reference Include="R_APICommon">
             <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
         </Reference>
+        <Reference Include="R_APICommonDTO">
+          <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommonDTO.dll</HintPath>
+        </Reference>
         <Reference Include="R_CommonFrontBackAPI">
             <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
         </Reference>
       <Reference Include="R_OpenTelemetry">
         <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll</HintPath>
+      </Reference>
+      <Reference Include="R_Processor">
+        <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_Processor.dll</HintPath>
+      </Reference>
+      <Reference Include="R_ProcessorJob">
+        <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ProcessorJob.dll</HintPath>
       </Reference>
       <Reference Include="R_ReportServerClient">
         <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportServerClient.dll</HintPath>
@@ -36,6 +45,8 @@
     <ItemGroup>
         <ProjectReference Include="..\..\..\BACK\LM\PMR03000BackResources\PMR03000BackResources.csproj" />
       <ProjectReference Include="..\..\..\COMMON\LM\PMR03000Common\PMR03000Common.csproj" />
+      <ProjectReference Include="..\..\GS\GS_SPR\RSP_GS_GET_STORAGE_TYPEResources\RSP_GS_GET_STORAGE_TYPEResources.csproj" />
+      <ProjectReference Include="..\LM_SPR\RSP_PM_PMA00300Resources\RSP_PM_PMA00300Resources.csproj" />
     </ItemGroup>
 
 </Project>

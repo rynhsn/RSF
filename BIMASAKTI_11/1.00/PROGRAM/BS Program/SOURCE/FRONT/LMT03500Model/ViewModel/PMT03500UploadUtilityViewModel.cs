@@ -209,8 +209,8 @@ namespace PMT03500Model.ViewModel
                         CUTILITY_PRD = item.UtilityPeriod,
                         CSTART_DATE = item.StartDate,
                         CEND_DATE = item.EndDate,
-                        IMETER_START = item.MeterStart,
-                        IMETER_END = item.MeterEnd,
+                        NMETER_START = item.MeterStart,
+                        NMETER_END = item.MeterEnd,
 
                         CCOMPANY_ID = CompanyId
                     }).ToList();

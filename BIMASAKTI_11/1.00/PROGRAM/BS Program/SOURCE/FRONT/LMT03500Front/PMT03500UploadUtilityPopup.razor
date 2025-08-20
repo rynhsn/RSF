@@ -28,7 +28,7 @@
         <R_ItemLayout col="2" Class="d-inline">
             <R_Label>@_localizer["LBL_SRCFILE"]</R_Label>
         </R_ItemLayout>
-        <R_ItemLayout col="8" Class="ms-2">
+        <R_ItemLayout col="8">
             <R_InputFile OnChange="@OnChangeUploadSrc" Accepts="@_accepts"/>
         </R_ItemLayout>
     </R_StackLayout>
@@ -63,8 +63,8 @@
                 <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.NBLOCK2_END)" Width="150px" HeaderText="@_localizer["LBL_BLOCK2END"]" Visible="@_visibleColumnEC"/>
                 <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.NBEBAN_BERSAMA)" Width="150px" HeaderText="@_localizer["LBL_BEBANBERSAMA"]" Visible="@_visibleColumnEC"/>
 
-                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.NMETER_START)" HeaderText="@_localizer["LBL_METERSTART"]" Width="150px" Visible="@_visibleColumnWG"/>
-                <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.NMETER_END)" HeaderText="@_localizer["LBL_METEREND"]" Width="150px" Visible="@_visibleColumnWG"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.NMETER_START)" HeaderText="@_localizer["LBL_METERSTART"]" Width="150px" Visible="@_visibleColumnWG"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.NMETER_END)" HeaderText="@_localizer["LBL_METEREND"]" Width="150px" Visible="@_visibleColumnWG"/>
 
                 <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.ErrorFlag)" HeaderText="@_localizer["VALID"]" Width="100px" Visible="@_viewModel.IsError"/>
                 <R_GridTextColumn FieldName="@nameof(PMT03500UploadUtilityErrorValidateDTO.ErrorMessage)" HeaderText="@_localizer["NOTES"]" Width="300px" Visible="@_viewModel.IsError"/>

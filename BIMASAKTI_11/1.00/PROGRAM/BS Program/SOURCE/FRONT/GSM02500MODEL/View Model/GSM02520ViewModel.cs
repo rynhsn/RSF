@@ -87,7 +87,7 @@ namespace GSM02500MODEL.View_Model
                 {
                     CSELECTED_PROPERTY_ID = SelectedProperty.CPROPERTY_ID
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02500_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
+
                 loCUOM = await loSharedModel.GetCUOMFromPropertyAsync(loParam);
             }
             catch (Exception ex)
@@ -107,7 +107,7 @@ namespace GSM02500MODEL.View_Model
                 {
                     Data = SelectedProperty
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02500_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
+                
                 SelectedProperty = await loSharedModel.GetSelectedPropertyAsync(loParam);
             }
             catch (Exception ex)
@@ -131,8 +131,7 @@ namespace GSM02500MODEL.View_Model
                         CBUILDING_ID = SelectedBuilding.CBUILDING_ID
                     }
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02500_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02500_BUILDING_ID_CONTEXT, SelectedBuilding.CBUILDING_ID);
+                
                 SelectedBuilding = await loSharedModel.GetSelectedBuildingAsync(loParam);
             }
             catch (Exception ex)
@@ -204,8 +203,6 @@ namespace GSM02500MODEL.View_Model
                     CPROPERTY_ID = SelectedProperty.CPROPERTY_ID,
                     CBUILDING_ID = SelectedBuilding.CBUILDING_ID
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02520_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02520_BUILDING_ID_CONTEXT, SelectedBuilding.CBUILDING_ID);
                 loResult = await loModel.R_ServiceGetRecordAsync(loParam);
 
                 loFloorDetail = loResult.Data;
@@ -225,14 +222,13 @@ namespace GSM02500MODEL.View_Model
             GSM02520ParameterDTO loResult = null;
             try
             {
+                poEntity.CDEFAULT_UNIT_TYPE_ID = string.IsNullOrEmpty(poEntity.CDEFAULT_UNIT_TYPE_ID) ? "" : poEntity.CDEFAULT_UNIT_TYPE_ID;
                 loParam = new GSM02520ParameterDTO()
                 {
                     Data = poEntity,
                     CPROPERTY_ID = SelectedProperty.CPROPERTY_ID,
-                    CBUILDING_ID = SelectedBuilding.CBUILDING_ID
+                    CBUILDING_ID = SelectedBuilding.CBUILDING_ID,
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02520_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02520_BUILDING_ID_CONTEXT, SelectedBuilding.CBUILDING_ID);
                 
                 loResult = await loModel.R_ServiceSaveAsync(loParam, peCRUDMode);
 
@@ -258,8 +254,6 @@ namespace GSM02500MODEL.View_Model
                     CPROPERTY_ID = SelectedProperty.CPROPERTY_ID,
                     CBUILDING_ID = SelectedBuilding.CBUILDING_ID
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02520_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02520_BUILDING_ID_CONTEXT, SelectedBuilding.CBUILDING_ID);
                 await loModel.R_ServiceDeleteAsync(loParam);
             }
             catch (Exception ex)
@@ -283,10 +277,6 @@ namespace GSM02500MODEL.View_Model
                     CFLOOR_ID = loFloorDetail.CFLOOR_ID,
                     LACTIVE = SelectedActiveInactiveLACTIVE
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02520_PROPERTY_ID_CONTEXT, SelectedProperty.CPROPERTY_ID);
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02520_BUILDING_ID_CONTEXT, SelectedBuilding.CBUILDING_ID);
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02520_FLOOR_ID_CONTEXT, loFloorDetail.CFLOOR_ID);
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02520_LACTIVE_CONTEXT, SelectedActiveInactiveLACTIVE);
 
                 await loModel.RSP_GS_ACTIVE_INACTIVE_FLOORMethodAsync(loParam);
             }

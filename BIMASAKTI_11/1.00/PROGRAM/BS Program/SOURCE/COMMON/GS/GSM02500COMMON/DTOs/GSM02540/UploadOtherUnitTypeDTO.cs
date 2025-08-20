@@ -11,6 +11,8 @@ namespace GSM02500COMMON.DTOs.GSM02540
         public string PropertyId { get; set; } = "";
         public string OtherUnitTypeCode { get; set; } = "";
         public string OtherUnitTypeName { get; set; } = "";
+        public string DepartmentCode { get; set; } = "";
+        public string PropertyType { get; set; } = "";
         public decimal GrossAreaSize { get; set; } = 0;
         public decimal NetAreaSize { get; set; } = 0;
         public decimal CommonArea { get; set; } = 0;

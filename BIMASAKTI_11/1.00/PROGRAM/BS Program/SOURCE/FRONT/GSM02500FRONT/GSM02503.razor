@@ -33,6 +33,7 @@
                 <R_TextBox @bind-Value="@loUnitTypeViewModel.SelectedUnitTypeCategory.CUNIT_TYPE_CATEGORY_ID"
                            R_ConductorSource="@_conductorUnitTypeRef"
                            OnLostFocus="OnLostFocusUnitTypeCategory"
+                           MaxLength="20"
                            Enabled="true">
                 </R_TextBox>
             </R_ItemLayout>
@@ -91,7 +92,8 @@
                     <R_ItemLayout col="3">
                         <R_TextBox @bind-Value="@loUnitTypeViewModel.Data.CUNIT_TYPE_ID"
                                    @ref="@_unitTypeIdRef"
-                                    R_ConductorSource="@_conductorUnitTypeRef"
+                                   R_ConductorSource="@_conductorUnitTypeRef"
+                                   MaxLength="20"
                                     R_EnableAdd="true"
                                     R_EnableEdit="false">
                         </R_TextBox>
@@ -99,7 +101,8 @@
                     <R_ItemLayout col="7">
                         <R_TextBox @bind-Value="@loUnitTypeViewModel.Data.CUNIT_TYPE_NAME"
                                    @ref="@_unitTypeNameRef"
-                                    R_ConductorSource="@_conductorUnitTypeRef"
+                                   R_ConductorSource="@_conductorUnitTypeRef"
+                                   MaxLength="200"
                                     R_EnableAdd="true"
                                     R_EnableEdit="true">
                         </R_TextBox>

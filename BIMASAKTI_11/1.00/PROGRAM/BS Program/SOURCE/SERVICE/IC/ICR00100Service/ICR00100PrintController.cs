@@ -208,6 +208,7 @@ public class ICR00100PrintController : R_ReportControllerBase
                 CFROM_PROD_ID = poParam.CFROM_PROD_ID,
                 CTO_PROD_ID = poParam.CTO_PROD_ID,
                 CFILTER_DATA = poParam.CFILTER_DATA,
+                COPTION_PRINT = poParam.COPTION_PRINT,
                 CLANG_ID = lcLang,
             };
 

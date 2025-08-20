@@ -19,11 +19,4 @@ namespace PMB05000Common.DTOs
 
         public bool LSOFT_CLOSING_FLAG { get; set; } = false;
     }
-    
-    public class ICB00100TodayDTO
-    {
-        public int IYEAR { get; set; }
-        public string CMONTH { get; set; }
-        public DateTime? DTODAY { get; set; }
-    }
 }

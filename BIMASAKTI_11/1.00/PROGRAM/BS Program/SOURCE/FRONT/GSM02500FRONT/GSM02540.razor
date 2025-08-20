@@ -68,6 +68,7 @@
                         <R_TextBox @bind-Value="@loOtherUnitTypeViewModel.Data.COTHER_UNIT_TYPE_ID"
                                    @ref="@OtherUnitTypeIdRef"
                                    R_ConductorSource="@_conductorOtherUnitTypeRef"
+                                   MaxLength="20"
                                    R_EnableAdd="true"
                                    R_EnableEdit="false">
                         </R_TextBox>
@@ -76,6 +77,7 @@
                         <R_TextBox @bind-Value="@loOtherUnitTypeViewModel.Data.COTHER_UNIT_TYPE_NAME"
                                    @ref="@OtherUnitTypeNameRef"
                                    R_ConductorSource="@_conductorOtherUnitTypeRef"
+                                   MaxLength="200"
                                    R_EnableAdd="true"
                                    R_EnableEdit="true">
                         </R_TextBox>
@@ -97,6 +99,50 @@
                                     R_EnableAdd="true" R_EnableEdit="true">
                         </R_CheckBox>
                         <R_Label>@_localizer["_Event"]</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_Department"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="@loOtherUnitTypeViewModel.Data.CDEPT_CODE"
+                                   R_ConductorSource="@_conductorOtherUnitTypeRef"
+                                   OnLostFocus="@OnLostFocusDepartment"
+                                   MaxLength="20"
+                                  R_EnableAdd
+                                  R_EnableEdit>
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 25px">
+                        <R_Lookup R_ConductorSource="@_conductorOtherUnitTypeRef"
+                                  R_After_Open_Lookup="R_After_Open_Department_Lookup"
+                                  R_Before_Open_Lookup="R_Before_Open_Department_Lookup"
+                                  R_EnableAdd
+                                  R_EnableEdit>...</R_Lookup>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
+                        <R_TextBox @bind-Value="@loOtherUnitTypeViewModel.Data.CDEPT_NAME"
+                                   R_ConductorSource="@_conductorOtherUnitTypeRef"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_PropertyType"]</R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="4">
+                        <R_ComboBox Data="@loOtherUnitTypeViewModel.loPropertyTypeList"
+                                    @bind-Value="loOtherUnitTypeViewModel.Data.CPROPERTY_TYPE"
+                                    ValueField="@nameof(GetPropertyTypeDTO.CCODE)"
+                                    TextField="@nameof(GetPropertyTypeDTO.CDESCRIPTION)"
+                                    R_ConductorSource="@_conductorOtherUnitTypeRef"
+                                    R_EnableAdd="true" R_EnableEdit="true">
+                        </R_ComboBox>
                     </R_ItemLayout>
                 </R_StackLayout>
 

@@ -21,7 +21,7 @@
                 <R_TextBox R_ConductorGridSource="_conGridUploadFloorRef"
                            Enabled="false"
                            @bind-Value="loUploadFloorViewModel.loParameter.PropertyData.CPROPERTY_NAME">
-                </R_TextBox> 
+                </R_TextBox>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row>
@@ -59,6 +59,10 @@
                                 AllowAddNewRow="false"
                                 AllowEditRow="false"
                                 AllowDeleteRow="false"
+                                R_RowRender="@((R_GridRowRenderEventArgs args)=> R_RowRenderFloor(args))"
+                                R_BeforeSaveBatch="@R_BeforeSaveFloorBatch"
+                                R_ServiceSaveBatch="@R_ServiceSaveFloorBatch"
+                                R_AfterSaveBatch="@R_AfterSaveFloorBatch"
                                 R_ServiceGetListRecord="@Grid_R_ServiceGetFloorListRecord">
                             <R_GridColumns>
                                 <R_GridNumericColumn TValue="int" FieldName=@nameof(UploadFloorDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridNumericColumn>
@@ -89,6 +93,10 @@
                             AllowAddNewRow="false"
                             AllowEditRow="false"
                             AllowDeleteRow="false"
+                            R_RowRender="@((R_GridRowRenderEventArgs args)=> R_RowRenderUnit(args))"
+                            R_BeforeSaveBatch="@R_BeforeSaveUnitBatch"
+                            R_ServiceSaveBatch="@R_ServiceSaveUnitBatch"
+                            R_AfterSaveBatch="@R_AfterSaveUnitBatch"
                             R_ServiceGetListRecord="@Grid_R_ServiceGetUnitListRecord">
                         <R_GridColumns>
                             <R_GridNumericColumn TValue="int" FieldName=@nameof(UploadUnitDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridNumericColumn>
@@ -123,6 +131,10 @@
                             AllowAddNewRow="false"
                             AllowEditRow="false"
                             AllowDeleteRow="false"
+                            R_BeforeSaveBatch="@R_BeforeSaveUnitUtilityBatch"
+                            R_ServiceSaveBatch="@R_ServiceSaveUnitUtilityBatch"
+                            R_AfterSaveBatch="@R_AfterSaveUnitUtilityBatch"
+                            R_RowRender="@((R_GridRowRenderEventArgs args)=> R_RowRenderUtility(args))"
                             R_ServiceGetListRecord="@Grid_R_ServiceGetUnitUtilityListRecord">
                         <R_GridColumns>
                             <R_GridNumericColumn TValue="int" FieldName=@nameof(UploadUnitUtilityDTO.No) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridNumericColumn>
@@ -211,24 +223,32 @@
 </R_StackLayout>
 <R_ConductorGrid @ref="@_conGridUploadFloorRef"
                  R_ViewModel="@loUploadFloorViewModel"
-                 R_IsHeader
-                 R_BeforeSaveBatch="@R_BeforeSaveFloorBatch"
-                 R_ServiceSaveBatch="@R_ServiceSaveFloorBatch"
-                 R_AfterSaveBatch="@R_AfterSaveFloorBatch">
+                 R_IsHeader>
 </R_ConductorGrid>
 
 <R_ConductorGrid @ref="@_conGridUploadUnitRef"
                  R_ViewModel="@loUploadUnitViewModel"
-                 R_ConductorParent="@_conGridUploadFloorRef"
-                 R_BeforeSaveBatch="@R_BeforeSaveUnitBatch"
-                 R_ServiceSaveBatch="@R_ServiceSaveUnitBatch"
-                 R_AfterSaveBatch="@R_AfterSaveUnitBatch">
+                 R_ConductorParent="@_conGridUploadFloorRef">
 </R_ConductorGrid>
 
 <R_ConductorGrid @ref="@_conGridUploadUnitUtilityRef"
                  R_ViewModel="@loUploadUnitUtilityViewModel"
-                 R_ConductorParent="@_conGridUploadFloorRef"
-                 R_BeforeSaveBatch="@R_BeforeSaveUnitUtilityBatch"
-                 R_ServiceSaveBatch="@R_ServiceSaveUnitUtilityBatch"
-                 R_AfterSaveBatch="@R_AfterSaveUnitUtilityBatch">
+                 R_ConductorParent="@_conGridUploadFloorRef">
 </R_ConductorGrid>
+
+<style>
+    .k-grid .k-master-row.errorDataLValidIsFalse:hover {
+        background-color: red !important;
+        color: white;
+    }
+
+    .k-grid .k-master-row.errorDataLValidIsFalse {
+        background-color: red;
+        color: white !important
+    }
+
+    .k-grid .k-table-row.k-selected.errorDataLValidIsFalse > .k-table-td {
+        color: white !important;
+    }
+
+</style>

@@ -71,7 +71,6 @@ namespace GSM02500MODEL
             R_Exception loEx = new R_Exception();
             List<GSM02502ChargeDTO> loResult = null;
             GSM02502ChargeResultDTO loRtn = new GSM02502ChargeResultDTO();
-            //R_ContextHeader loContextHeader = new R_ContextHeader();
 
             try
             {

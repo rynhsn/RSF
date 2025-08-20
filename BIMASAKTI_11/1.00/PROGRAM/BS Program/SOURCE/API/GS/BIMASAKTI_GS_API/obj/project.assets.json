@@ -4061,6 +4061,7 @@
         "dependencies": {
           "GSM02500BackResources": "1.0.0",
           "GSM02500COMMON": "1.0.0",
+          "RSP_GS_GET_STORAGE_TYPEResources": "1.0.0",
           "RSP_GS_MAINTAIN_BUILDINGResources": "1.0.0",
           "RSP_GS_MAINTAIN_BUILDING_FLOORResources": "1.0.0",
           "RSP_GS_MAINTAIN_BUILDING_UNITResources": "1.0.0",
@@ -4112,7 +4113,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "BaseHeaderResources": "1.0.0",
           "GSM02500BACK": "1.0.0",
+          "GSM02500BackResources": "1.0.0",
           "GSM02500COMMON": "1.0.0",
           "RSP_GS_MAINTAIN_BUILDING_FLOORResources": "1.0.0"
         },
@@ -4354,6 +4357,16 @@
         },
         "runtime": {
           "bin/placeholder/RSP_ACTIVITY_VALIDITYResources.dll": {}
+        }
+      },
+      "RSP_GS_GET_STORAGE_TYPEResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_GET_STORAGE_TYPEResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_GET_STORAGE_TYPEResources.dll": {}
         }
       },
       "RSP_GS_MAINTAIN_APPROVALResources/1.0.0": {
@@ -12124,6 +12137,11 @@
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_ACTIVITY_VALIDITYResources/RSP_ACTIVITY_VALIDITYResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_ACTIVITY_VALIDITYResources/RSP_ACTIVITY_VALIDITYResources.csproj"
+    },
+    "RSP_GS_GET_STORAGE_TYPEResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_GET_STORAGE_TYPEResources/RSP_GS_GET_STORAGE_TYPEResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_GET_STORAGE_TYPEResources/RSP_GS_GET_STORAGE_TYPEResources.csproj"
     },
     "RSP_GS_MAINTAIN_APPROVALResources/1.0.0": {
       "type": "project",

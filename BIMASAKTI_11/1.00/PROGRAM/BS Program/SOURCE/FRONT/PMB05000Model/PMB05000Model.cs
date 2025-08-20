@@ -28,17 +28,22 @@ namespace PMB05000Model
         {
         }
 
-        public PMB05000SingleDTO<PMB05000SystemParamDTO> PMB05000GetSystemParam()
+        public Task<PMB05000ListDTO<PMB05000PropertyDTO>> PMB05000GetProperties()
         {
             throw new NotImplementedException();
         }
 
-        public PMB05000SingleDTO<PMB05000PeriodYearRangeDTO> PMB05000GetPeriod()
+        public Task<PMB05000SingleDTO<PMB05000SystemParamDTO>> PMB05000GetSystemParam(PMB05000SystemParamParam loParam)
         {
             throw new NotImplementedException();
         }
 
-        public PMB05000SingleDTO<PMB05000PeriodParam> PMB05000UpdateSoftPeriod(PMB05000PeriodParam poParams)
+        public Task<PMB05000SingleDTO<PMB05000PeriodYearRangeDTO>> PMB05000GetPeriod()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<PMB05000SingleDTO<PMB05000PeriodParam>> PMB05000UpdateSoftPeriod(PMB05000PeriodParam poParams)
         {
             throw new NotImplementedException();
         }
@@ -48,7 +53,7 @@ namespace PMB05000Model
             throw new NotImplementedException();
         }
 
-        public PMB05000SingleDTO<PMB05000SoftClosePeriodDTO> PMB05000ProcessSoftPeriod(PMB05000PeriodParam poParams)
+        public Task<PMB05000SingleDTO<PMB05000SoftClosePeriodDTO>> PMB05000ProcessSoftPeriod(PMB05000PeriodParam poParams)
         {
             throw new NotImplementedException();
         }

@@ -19,7 +19,7 @@ namespace PMT03500Front;
 public partial class PMT03500UploadUtilityPopup : R_Page
 {
     private PMT03500UploadUtilityViewModel _viewModel = new();
-    private R_Grid<PMT03500UploadUtilityErrorValidateDTO> _gridRef = new();
+    private R_Grid<PMT03500UploadUtilityErrorValidateDTO> _gridRef;
 
     private R_eFileSelectAccept[] _accepts = { R_eFileSelectAccept.Excel };
 

@@ -227,12 +227,6 @@ namespace GSM02500MODEL.View_Model
         {
             Message = string.Format("Process Error with GUID {0}", pcKeyGuid);
 
-            //R_Exception loException = new R_Exception();
-            //ex.ErrorList.ForEach(l =>
-            //{
-            //    loException.Add(l.ErrNo, l.ErrDescp);
-            //});
-
             ShowErrorAction(ex);
             StateChangeAction();
 

@@ -226,5 +226,13 @@ namespace GLDesign
             loReport.RegisterData(loData, "ResponseDataModel");
             loReport.Design();
         }
+
+        private void APR00500_Click_1(object sender, EventArgs e)
+        {
+            var loData = new ArrayList();
+            loData.Add(APR00500Common.Model.APR00500ModelReportDummyData.DefaultDataWithHeader());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
     }
 }

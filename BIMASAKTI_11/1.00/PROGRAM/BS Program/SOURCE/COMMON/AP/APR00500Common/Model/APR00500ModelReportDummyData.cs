@@ -13,6 +13,7 @@ namespace APR00500Common.Model
             var loCollection = new List<APR00500DataResultDTO>();
             // ESTENENGINEERING-ESTATE
             var department = "ESTENENGINEERING-ESTATE";
+            var departmentName = "Engineering Estate";
             var days_late = new[] { 22, 0, 12, 1, 4, 13, 0, 0, 1, 4, 13, 0, 0 };
 
             //looping sebanyak isi array days_late
@@ -22,6 +23,7 @@ namespace APR00500Common.Model
                     new APR00500DataResultDTO
                     {
                         CDEPARTMENT_CODE = department,
+                        CDEPARTMENT_NAME = departmentName,
                         CREFERENCE_NO = $"REFNO/123JJKK00",
                         CREFERENCE_DATE = "20220111",
                         CSUPPLIER_ID = "XXX",
@@ -45,6 +47,7 @@ namespace APR00500Common.Model
 
             // ESTENENGINEERING-ESTATE2
             var department2 = "ESTENENGINEERING-ESTATE2";
+            var departmentName2 = "Engineering Estate 2";
             var days_late2 = new[] { 22, 0, 12, 1, 1, 4, 13, 0, 0 };
 
             //looping sebanyak isi array days_late2
@@ -54,6 +57,7 @@ namespace APR00500Common.Model
                     new APR00500DataResultDTO
                     {
                         CDEPARTMENT_CODE = department2,
+                        CDEPARTMENT_NAME = departmentName2,
                         CREFERENCE_NO = $"REFNO/123JJKK00",
                         CREFERENCE_DATE = "20220111",
                         CSUPPLIER_ID = "XXX",
@@ -123,7 +127,7 @@ namespace APR00500Common.Model
                     : (DateTime?)null;
             }
 
-            return loData;
+            return loData; 
         }
 
         public static APR00500ReportWithBaseHeaderDTO DefaultDataWithHeader()

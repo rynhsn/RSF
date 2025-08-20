@@ -92,7 +92,7 @@ public partial class ICB00100 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     private void Validation(R_ValidationEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -100,14 +100,18 @@ public partial class ICB00100 : R_Page
         {
             var loData = (ICB00100SystemParamDTO)eventArgs.Data;
             var currentSoftPeriod = loData.ISOFT_PERIOD_YY + loData.CSOFT_PERIOD_MM;
+
             if (int.Parse(currentSoftPeriod) > int.Parse(_viewModel.SystemParam.CSOFT_PERIOD))
             {
                 loEx.Add("", _localizer["MSG_NEW_SOFT_PERIOD_NOT_LATER_THAN_CURRENT_SOFT_PERIOD"]);
             }
 
-            if (int.Parse(currentSoftPeriod) < int.Parse(_viewModel.SystemParam.CCURRENT_PERIOD))
+            if (!string.IsNullOrEmpty(_viewModel.SystemParam.CCURRENT_PERIOD.Trim()))
             {
-                loEx.Add("", _localizer["MSG_NEW_SOFT_PERIOD_NOT_EARLIER_THAN_CURRENT_SOFT_PERIOD"]);
+                if (int.Parse(currentSoftPeriod) < int.Parse(_viewModel.SystemParam.CCURRENT_PERIOD))
+                {
+                    loEx.Add("", _localizer["MSG_NEW_SOFT_PERIOD_NOT_EARLIER_THAN_CURRENT_SOFT_PERIOD"]);
+                }
             }
         }
         catch (Exception ex)
@@ -167,7 +171,7 @@ public partial class ICB00100 : R_Page
 
         loEx.ThrowExceptionIfErrors();
     }
-    
+
     private async Task BeforeCancel(R_BeforeCancelEventArgs eventArgs)
     {
         var loEx = new R_Exception();

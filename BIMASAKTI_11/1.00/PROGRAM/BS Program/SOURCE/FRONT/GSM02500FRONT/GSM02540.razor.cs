@@ -28,6 +28,8 @@ using GSM02500COMMON.DTOs.GSM02530;
 using R_BlazorFrontEnd.Controls.Enums;
 using R_LockingFront;
 using GSM02500COMMON.DTOs.GSM02531;
+using Lookup_GSModel.ViewModel;
+using Lookup_GSCOMMON.DTOs;
 
 namespace GSM02500FRONT
 {
@@ -127,6 +129,7 @@ namespace GSM02500FRONT
                 loOtherUnitTypeViewModel.SelectedProperty.CPROPERTY_ID = (string)poParameter;
 
                 await loOtherUnitTypeViewModel.GetSelectedPropertyAsync();
+                await loOtherUnitTypeViewModel.GetPropertyTypeListStreamAsync();
                 await loOtherUnitTypeViewModel.GetCUOMFromPropertyAsync();
 
                 await loOtherUnitTypeViewModel.GetOtherUnitTypeListStreamAsync();
@@ -523,5 +526,77 @@ namespace GSM02500FRONT
 
         #endregion
 
+        #region Department
+        private async Task OnLostFocusDepartment()
+        {
+            R_Exception loEx = new R_Exception();
+
+            try
+            {
+                GSM02540DetailDTO loGetData = (GSM02540DetailDTO)loOtherUnitTypeViewModel.Data;
+
+                if (string.IsNullOrWhiteSpace(loOtherUnitTypeViewModel.Data.CDEPT_CODE))
+                {
+                    loGetData.CDEPT_NAME = "";
+                    return;
+                }
+
+                LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
+                GSL00700ParameterDTO loParam = new GSL00700ParameterDTO()
+                {
+                    CCOMPANY_ID = _clientHelper.CompanyId,
+                    CUSER_ID = _clientHelper.UserId,
+                    CSEARCH_TEXT = loOtherUnitTypeViewModel.Data.CDEPT_CODE
+                };
+
+                var loResult = await loLookupViewModel.GetDepartment(loParam);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                            "_ErrLookup01"));
+                    loGetData.CDEPT_CODE = "";
+                    loGetData.CDEPT_NAME = "";
+                    //await GLAccount_TextBox.FocusAsync();
+                }
+                else
+                {
+                    loGetData.CDEPT_CODE = loResult.CDEPT_CODE;
+                    loGetData.CDEPT_NAME = loResult.CDEPT_NAME;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
+        }
+
+        private void R_Before_Open_Department_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
+        {
+            GSL00700ParameterDTO loParam = new GSL00700ParameterDTO()
+            {
+                CCOMPANY_ID = _clientHelper.CompanyId,
+                CUSER_ID = _clientHelper.UserId
+            };
+            eventArgs.Parameter = loParam;
+            eventArgs.TargetPageType = typeof(Lookup_GSFRONT.GSL00700);
+        }
+
+        private void R_After_Open_Department_Lookup(R_AfterOpenLookupEventArgs eventArgs)
+        {
+            GSL00700DTO loTempResult = (GSL00700DTO)eventArgs.Result;
+            if (loTempResult == null)
+            {
+                return;
+            }
+
+            var loGetData = (GSM02540DetailDTO)_conductorOtherUnitTypeRef.R_GetCurrentData();
+            loGetData.CDEPT_CODE = loTempResult.CDEPT_CODE;
+            loGetData.CDEPT_NAME = loTempResult.CDEPT_NAME;
+        }
+        #endregion
     }
 }

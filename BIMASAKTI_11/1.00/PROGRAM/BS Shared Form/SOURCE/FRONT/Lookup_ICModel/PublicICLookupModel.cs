@@ -67,6 +67,7 @@ namespace Lookup_ICModel
                 //context
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParam.CPROPERTY_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CDEPT_CODE, poParam.CDEPT_CODE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTRANS_CODE, poParam.CTRANS_CODE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CALLOC_ID, poParam.CALLOC_ID);
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;

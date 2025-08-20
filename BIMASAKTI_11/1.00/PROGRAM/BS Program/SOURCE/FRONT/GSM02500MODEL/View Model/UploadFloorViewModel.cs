@@ -118,7 +118,14 @@ namespace GSM02500MODEL.View_Model
                 {
                     Message = string.Format("Process Complete and success with GUID {0}", pcKeyGuid);
                     VisibleError = false;
-                    ShowSuccessAction();
+                    IsUploadSuccesful = true;
+
+                    loUploadFloorDisplayList.ToList().ForEach(x =>
+                    {
+                        x.Valid = "Y";
+                        SumValid++;
+                    });
+                    //ShowSuccessAction();
                 }
 
                 if (poProcessResultMode == eProcessResultMode.Fail)
@@ -129,6 +136,7 @@ namespace GSM02500MODEL.View_Model
 
                     VisibleError = true;
                 }
+                StartUploadUnitAction();
             }
             catch (Exception ex)
             {
@@ -153,6 +161,7 @@ namespace GSM02500MODEL.View_Model
 
             ShowErrorAction(ex);
             StateChangeAction();
+            StartUploadUnitAction();
 
             await Task.CompletedTask;
         }
@@ -165,6 +174,7 @@ namespace GSM02500MODEL.View_Model
             Message = string.Format("Process Progress {0} with status {1}", pnProgress, pcStatus);
 
             // Call Method Action StateHasChange
+            SetPercentageAndMessageAction(Message, Percentage);
             StateChangeAction();
 
             await Task.CompletedTask;

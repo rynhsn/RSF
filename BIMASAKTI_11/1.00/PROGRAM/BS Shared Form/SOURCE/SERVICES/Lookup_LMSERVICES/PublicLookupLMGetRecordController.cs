@@ -23,6 +23,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lookup_PMCOMMON.DTOs.LML01700;
 
 namespace Lookup_PMSERVICES
 {
@@ -38,7 +39,8 @@ namespace Lookup_PMSERVICES
             //Initial and Get Logger
             LoggerLookupLM.R_InitializeLogger(logger);
             _loggerLookup = LoggerLookupLM.R_GetInstanceLogger();
-            _activitySource = LookupLMActivity.R_InitializeAndGetActivitySource(nameof(PublicLookupLMGetRecordController));
+            _activitySource =
+                LookupLMActivity.R_InitializeAndGetActivitySource(nameof(PublicLookupLMGetRecordController));
         }
 
         [HttpPost]
@@ -60,20 +62,21 @@ namespace Lookup_PMSERVICES
 
                 _loggerLookup.LogInfo("Filter Search by text Unit Charges");
 #pragma warning disable CS8601 // Possible null reference assignment.
-                loReturn.Data = loTempList.Find(x => x.CCHARGES_ID!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CCHARGES_ID!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
-
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
         }
+
         [HttpPost]
         public LMLGenericRecord<LML00300DTO> LML00300Supervisor(LML00300ParameterDTO poParam)
         {
@@ -93,22 +96,23 @@ namespace Lookup_PMSERVICES
 
                 _loggerLookup.LogInfo("Filter Search by text Supervisor");
 #pragma warning disable CS8601 // Possible null reference assignment.
-                loReturn.Data = loTempList.Find(x => x.CSUPERVISOR.Equals(poParam.CSEARCH_TEXT.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CSUPERVISOR.Equals(poParam.CSEARCH_TEXT.Trim(), StringComparison.OrdinalIgnoreCase));
 
                 //    loReturn.Data = loTempList.Find(x => x.CSUPERVISOR == poParam.CSEARCH_TEXT.Trim());
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
-
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
         }
+
         [HttpPost]
         public LMLGenericRecord<LML00400DTO> LML00400UtilityCharges(LML00400ParameterDTO poParam)
         {
@@ -129,24 +133,24 @@ namespace Lookup_PMSERVICES
                 _loggerLookup.LogInfo("Filter Search by text Utility Charges");
 #pragma warning disable CS8601 // Possible null reference assignment.
 
-                loReturn.Data = loTempList.Find(x => x.CCHARGES_ID.Equals(poParam.CSEARCH_TEXT.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CCHARGES_ID.Equals(poParam.CSEARCH_TEXT.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
-
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
         }
+
         [HttpPost]
         public LMLGenericRecord<LML00500DTO> LML00500Salesman(LML00500ParameterDTO poParam)
         {
-
             string lcMethodName = nameof(LML00500Salesman);
             using Activity activity = _activitySource.StartActivity(lcMethodName);
             _loggerLookup.LogInfo(string.Format("START process method {0} on Controller", lcMethodName));
@@ -163,24 +167,24 @@ namespace Lookup_PMSERVICES
 
                 _loggerLookup.LogInfo("Filter Search by text Salesman");
 #pragma warning disable CS8601 // Possible null reference assignment.
-                loReturn.Data = loTempList.Find(x => x.CSALESMAN_ID.Equals(poParam.CSEARCH_TEXT.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CSALESMAN_ID.Equals(poParam.CSEARCH_TEXT.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
-
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
         }
+
         [HttpPost]
         public LMLGenericRecord<LML00600DTO> LML00600Tenant(LML00600ParameterDTO poParam)
         {
-
             string lcMethodName = nameof(LML00600Tenant);
             using Activity activity = _activitySource.StartActivity(lcMethodName);
             _loggerLookup.LogInfo(string.Format("START process method {0} on Controller", lcMethodName));
@@ -197,19 +201,21 @@ namespace Lookup_PMSERVICES
 
                 _loggerLookup.LogInfo("Filter Search by text Tenant");
 #pragma warning disable CS8601 // Possible null reference assignment.
-                loReturn.Data = loTempList.Find(x => x.CTENANT_ID.Equals(poParam.CSEARCH_TEXT.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CTENANT_ID.Equals(poParam.CSEARCH_TEXT.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
         }
+
         [HttpPost]
         public LMLGenericRecord<LML00700DTO> LML00700Discount(LML00700ParameterDTO poParam)
         {
@@ -229,20 +235,21 @@ namespace Lookup_PMSERVICES
 
                 _loggerLookup.LogInfo("Filter Search by text Discount");
 #pragma warning disable CS8601 // Possible null reference assignment.
-                loReturn.Data = loTempList.Find(x => x.CDISCOUNT_CODE.Equals(poParam.CSEARCH_TEXT.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CDISCOUNT_CODE.Equals(poParam.CSEARCH_TEXT.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
-
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
         }
+
         [HttpPost]
         public LMLGenericRecord<LML00800DTO> LML00800Agreement(LML00800ParameterDTO poParam)
         {
@@ -262,20 +269,21 @@ namespace Lookup_PMSERVICES
 
                 _loggerLookup.LogInfo("Filter Search by text Agreement");
 #pragma warning disable CS8601 // Possible null reference assignment.
-                loReturn.Data = loTempList.Find(x => x.CREF_NO!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CREF_NO!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
-
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
         }
+
         [HttpPost]
         public LMLGenericRecord<LML00900DTO> LML00900Transaction(LML00900ParameterDTO poParam)
         {
@@ -296,16 +304,16 @@ namespace Lookup_PMSERVICES
 
                 _loggerLookup.LogInfo("Filter Search by text Ref NO");
 #pragma warning disable CS8601 // Possible null reference assignment.
-                loReturn.Data = loTempList.Find(x => x.CREF_NO!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CREF_NO!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
-
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
@@ -330,19 +338,21 @@ namespace Lookup_PMSERVICES
 
                 _loggerLookup.LogInfo("Searching with input form user");
 #pragma warning disable CS8601 // Possible null reference assignment.
-                loReturn.Data = loTempList.Find(x => x.CBILLING_RULE_CODE!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CBILLING_RULE_CODE!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
         }
+
         [HttpPost]
         public LMLGenericRecord<LML01100DTO> LML01100TNC(LML01100ParameterDTO poParam)
         {
@@ -362,19 +372,21 @@ namespace Lookup_PMSERVICES
 
                 _loggerLookup.LogInfo("Searching with input form user");
 #pragma warning disable CS8601 // Possible null reference assignment.
-                loReturn.Data = loTempList.Find(x => x.CTC_CODE!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CTC_CODE!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
         }
+
         [HttpPost]
         public LMLGenericRecord<LML01200DTO> LML01200InvoiceGroup(LML01200ParameterDTO poParam)
         {
@@ -394,20 +406,21 @@ namespace Lookup_PMSERVICES
 
                 _loggerLookup.LogInfo("Filter Search by text InvoiceGroupCode");
 #pragma warning disable CS8601 // Possible null reference assignment.
-                loReturn.Data = loTempList.Find(x => x.CINVGRP_CODE!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CINVGRP_CODE!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
-
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
         }
+
         [HttpPost]
         public LMLGenericRecord<LML01300DTO> LML01300LOIAgreement(LML01300ParameterDTO poParam)
         {
@@ -427,20 +440,21 @@ namespace Lookup_PMSERVICES
 
                 _loggerLookup.LogInfo("Filter Search by text ID");
 #pragma warning disable CS8601 // Possible null reference assignment.
-                loReturn.Data = loTempList.Find(x => x.CREF_NO!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CREF_NO!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
-
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
         }
+
         [HttpPost]
         public LMLGenericRecord<LML01400DTO> LML01400AgreementUnitCharges(LML01400ParameterDTO poParam)
         {
@@ -460,16 +474,16 @@ namespace Lookup_PMSERVICES
 
                 _loggerLookup.LogInfo("Filter Search by ID");
 #pragma warning disable CS8601 // Possible null reference assignment.
-                loReturn.Data = loTempList.Find(x => x.CCHARGES_ID!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CCHARGES_ID!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
-
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
@@ -493,20 +507,21 @@ namespace Lookup_PMSERVICES
 
                 _loggerLookup.LogInfo("Filter Search by ID");
 #pragma warning disable CS8601 // Possible null reference assignment.
-                loReturn.Data = loTempList.Find(x => x.CCATEGORY_ID!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CCATEGORY_ID!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
-
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
         }
+
         [HttpPost]
         public LMLGenericRecord<LML01600DTO> LML01600SLACallType(LML01600ParameterDTO poParam)
         {
@@ -525,20 +540,68 @@ namespace Lookup_PMSERVICES
 
                 _loggerLookup.LogInfo("Filter Search by ID");
 #pragma warning disable CS8601 // Possible null reference assignment.
-                loReturn.Data = loTempList.Find(x => x.CCALL_TYPE_ID!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CCALL_TYPE_ID!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
-
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
         }
+
+        [HttpPost]
+        public LMLGenericRecord<LML01700DTO> LML01700CancelReceiptFromCustomer(LML01700ParameterDTO poParam)
+        {
+            string lcMethodName = nameof(LML01700CancelReceiptFromCustomer);
+            using Activity activity = _activitySource.StartActivity(lcMethodName)!;
+            _loggerLookup.LogInfo(string.Format("START process method {0} on Controller", lcMethodName));
+
+            var loEx = new R_Exception();
+            IAsyncEnumerable<LML01700DTO> loRtn = null;
+            LMLGenericRecord<LML01700DTO> loReturn = new();
+            try
+            {
+                var loCls = new PublicLookupLMCls();
+                var poParameter = new LML01700ParameterDTO();
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
+                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+                poParameter.CPERIOD = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPERIOD);
+                poParameter.CCUSTOMER_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCUSTOMER_ID);
+                poParameter.CREC_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CREC_ID);
+                poParameter.CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CDEPT_CODE);
+                poParameter.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
+                
+
+                _loggerLookup.LogInfo(string.Format("Get Parameter {0} on Controller", lcMethodName));
+                _loggerLookup.LogDebug("DbParameter {@Parameter} ", poParameter);
+                _loggerLookup.LogInfo($"Call method {0}", lcMethodName);
+
+                var loTempList = loCls.LML01700CancelReceiptFromCustomer(poParameter);
+
+                _loggerLookup.LogInfo("Filter Search by ID");
+                #pragma warning disable CS8601 // Possible null reference assignment.
+                loReturn.Data = loTempList.Find(x =>
+                    x.CREF_NO!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
+                #pragma warning restore CS8601 // Possible null reference assignment.
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _loggerLookup.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
+            return loReturn;
+        }
+
         [HttpPost]
         public LMLGenericRecord<LML01800DTO> LML01800UnitTenant(LML01800ParameterDTO poParam)
         {
@@ -560,20 +623,21 @@ namespace Lookup_PMSERVICES
 
                 _loggerLookup.LogInfo("Filter Search by ID");
 #pragma warning disable CS8601 // Possible null reference assignment.
-                loReturn.Data = loTempList.Find(x => x.CTENANT_ID!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CTENANT_ID!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
-
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
         }
+
         [HttpPost]
         public LMLGenericRecord<LML01900DTO> LML01900Staff(LML01900ParamaterDTO poParam)
         {
@@ -595,20 +659,21 @@ namespace Lookup_PMSERVICES
 
                 _loggerLookup.LogInfo("Filter Search by ID");
 #pragma warning disable CS8601 // Possible null reference assignment.
-                loReturn.Data = loTempList.Find(x => x.CSTAFF_ID!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
+                loReturn.Data = loTempList.Find(x =>
+                    x.CSTAFF_ID!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
-
             }
             catch (Exception ex)
             {
-
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
         }
+
         [HttpPost]
         public LMLGenericRecord<GET_USER_PARAM_DETAILDTO> UserParamDetail(GET_USER_PARAM_DETAILParameterDTO poParam)
         {
@@ -627,19 +692,16 @@ namespace Lookup_PMSERVICES
                 var loTemp = loCls.GetUserParamDetailDb(poParam);
 
                 loReturn.Data = loTemp;
-
             }
             catch (Exception ex)
             {
-
                 loEx.Add(ex);
                 _loggerLookup.LogError(loEx);
             }
+
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loReturn;
         }
-
-
     }
 }

@@ -106,6 +106,15 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Additional Info.
+        /// </summary>
+        internal static string _AdditionalInfo {
+            get {
+                return ResourceManager.GetString("_AdditionalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         internal static string _Address {
@@ -889,6 +898,33 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        internal static string _Message {
+            get {
+                return ResourceManager.GetString("_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message No.
+        /// </summary>
+        internal static string _MessageNo {
+            get {
+                return ResourceManager.GetString("_MessageNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message Type.
+        /// </summary>
+        internal static string _MessageType {
+            get {
+                return ResourceManager.GetString("_MessageType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string _Name {
@@ -1029,6 +1065,24 @@ namespace Lookup_GSFrontResources {
         internal static string _ProductName {
             get {
                 return ResourceManager.GetString("_ProductName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Unit.
+        /// </summary>
+        internal static string _ProductUnit {
+            get {
+                return ResourceManager.GetString("_ProductUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product UOM.
+        /// </summary>
+        internal static string _ProductUOM {
+            get {
+                return ResourceManager.GetString("_ProductUOM", resourceCulture);
             }
         }
         
@@ -1443,6 +1497,15 @@ namespace Lookup_GSFrontResources {
         internal static string _UntTypeCatName {
             get {
                 return ResourceManager.GetString("_UntTypeCatName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UOM.
+        /// </summary>
+        internal static string _UOM {
+            get {
+                return ResourceManager.GetString("_UOM", resourceCulture);
             }
         }
         

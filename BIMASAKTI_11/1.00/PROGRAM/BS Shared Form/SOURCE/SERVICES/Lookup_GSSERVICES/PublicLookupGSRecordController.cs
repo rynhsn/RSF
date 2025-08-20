@@ -18,7 +18,7 @@ namespace Lookup_GSSERVICES
 {
     [ApiController]
     [Route("api/[controller]/[action]"), AllowAnonymous]
-    public class PublicLookupGSRecordController : ControllerBase, IPublicRecordLookup
+    public class PublicLookupGSRecordController : ControllerBase, Lookup_GSLBACK.IPublicRecordLookup
     {
         private LoggerPublicLookup _Logger;
         private readonly ActivitySource _activitySource;
@@ -32,7 +32,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL00100DTO> GSL00100GetSalesTax(GSL00100ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL00100DTO>> GSL00100GetSalesTax(GSL00100ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL00100GetSalesTax");
             var loEx = new R_Exception();
@@ -44,7 +44,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLSalesTax");
-                var loResult = loCls.GetALLSalesTax();
+                var loResult = await loCls.GetALLSalesTax();
 
                 _Logger.LogInfo("Filter Search by text GSL00100GetSalesTax");
                 loRtn.Data = loResult.Find(x => x.CTAX_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -62,7 +62,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL00110DTO> GSL00110GetTaxByDate(GSL00110ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL00110DTO>> GSL00110GetTaxByDate(GSL00110ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL00110GetTaxByDate");
             var loEx = new R_Exception();
@@ -74,7 +74,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLTaxByDate");
-                var loResult = loCls.GetALLTaxByDate(poEntity);
+                var loResult = await loCls.GetALLTaxByDate(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00110GetTaxByDate");
                 loRtn.Data = loResult.Find(x => x.CTAX_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -92,7 +92,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL00200DTO> GSL00200GetWithholdingTax(GSL00200ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL00200DTO>> GSL00200GetWithholdingTax(GSL00200ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL00200GetWithholdingTax");
             var loEx = new R_Exception();
@@ -104,7 +104,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLWithholdingTax");
-                var loResult = loCls.GetALLWithholdingTax(poEntity);
+                var loResult = await loCls.GetALLWithholdingTax(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00200GetWithholdingTax");
                 loRtn.Data = loResult.Find(x => x.CTAX_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -122,7 +122,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL00300DTO> GSL00300GetCurrency(GSL00300ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL00300DTO>> GSL00300GetCurrency(GSL00300ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL00300GetCurrency");
             var loEx = new R_Exception();
@@ -134,7 +134,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLCurrency");
-                var loResult = loCls.GetALLCurrency();
+                var loResult = await loCls.GetALLCurrency();
 
                 _Logger.LogInfo("Filter Search by text GSL00300GetCurrency");
                 loRtn.Data = loResult.Find(x => x.CCURRENCY_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -152,7 +152,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL00400DTO> GSL00400GetJournalGroup(GSL00400ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL00400DTO>> GSL00400GetJournalGroup(GSL00400ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL00400GetJournalGroup");
             var loEx = new R_Exception();
@@ -164,7 +164,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLJournalGroup");
-                var loResult = loCls.GetALLJournalGroup(poEntity);
+                var loResult = await loCls.GetALLJournalGroup(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00400GetJournalGroup");
                 loRtn.Data = loResult.Find(x => x.CJRNGRP_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -182,7 +182,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL00500DTO> GSL00500GetGLAccount(GSL00500ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL00500DTO>> GSL00500GetGLAccount(GSL00500ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL00500GetGLAccount");
             var loEx = new R_Exception();
@@ -194,7 +194,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLGLAccount");
-                var loResult = loCls.GetALLGLAccount(poEntity);
+                var loResult = await loCls.GetALLGLAccount(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00500GetGLAccount");
                 loRtn.Data = loResult.Find(x => x.CGLACCOUNT_NO.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -212,7 +212,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL00510DTO> GSL00510GetCOA(GSL00510ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL00510DTO>> GSL00510GetCOA(GSL00510ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL00510GetCOA");
             var loEx = new R_Exception();
@@ -224,7 +224,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLCOA");
-                var loResult = loCls.GetALLCOA(poEntity);
+                var loResult = await loCls.GetALLCOA(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00510GetCOA");
                 loRtn.Data = loResult.Find(x => x.CGLACCOUNT_NO.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -242,7 +242,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL00520DTO> GSL00520GetGOACOA(GSL00520ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL00520DTO>> GSL00520GetGOACOA(GSL00520ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL00520GetGOACOA");
             var loEx = new R_Exception();
@@ -254,7 +254,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLGOACOA");
-                var loResult = loCls.GetALLGOACOA(poEntity);
+                var loResult = await loCls.GetALLGOACOA(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00520GetGOACOA");
                 loRtn.Data = loResult.Find(x => x.CGLACCOUNT_NO.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -272,7 +272,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL00550DTO> GSL00550GetGOA(GSL00550ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL00550DTO>> GSL00550GetGOA(GSL00550ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL00550GetGOA");
             var loEx = new R_Exception();
@@ -284,7 +284,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLGOA");
-                var loResult = loCls.GetALLGOA();
+                var loResult = await loCls.GetALLGOA();
 
                 _Logger.LogInfo("Filter Search by text GSL00550GetGOA");
                 loRtn.Data = loResult.Find(x => x.CGOA_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -302,7 +302,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL00600DTO> GSL00600GetUnitTypeCategory(GSL00600ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL00600DTO>> GSL00600GetUnitTypeCategory(GSL00600ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL00600GetUnitTypeCategory");
             var loEx = new R_Exception();
@@ -314,7 +314,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLUnitTypeCategory");
-                var loResult = loCls.GetALLUnitTypeCategory(poEntity);
+                var loResult = await loCls.GetALLUnitTypeCategory(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00600GetUnitTypeCategory");
                 loRtn.Data = loResult.Find(x => x.CUNIT_TYPE_CATEGORY_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -332,7 +332,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL00700DTO> GSL00700GetDepartment(GSL00700ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL00700DTO>> GSL00700GetDepartment(GSL00700ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL00700GetDepartment");
             var loEx = new R_Exception();
@@ -344,7 +344,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLDepartment");
-                var loResult = loCls.GetALLDepartment(poEntity);
+                var loResult = await loCls.GetALLDepartment(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00700GetDepartment");
                 loRtn.Data = loResult.Find(x => x.CDEPT_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -362,7 +362,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL00710DTO> GSL00710GetDepartmentProperty(GSL00710ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL00710DTO>> GSL00710GetDepartmentProperty(GSL00710ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL00710GetDepartmentProperty");
             var loEx = new R_Exception();
@@ -374,7 +374,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLDepartmentProperty");
-                var loResult = loCls.GetALLDepartmentProperty(poEntity);
+                var loResult = await loCls.GetALLDepartmentProperty(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00710GetDepartmentProperty");
                 loRtn.Data = loResult.Find(x => x.CDEPT_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -392,7 +392,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL00800DTO> GSL00800GetCurrencyType(GSL00800ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL00800DTO>> GSL00800GetCurrencyType(GSL00800ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL00800GetCurrencyType");
             var loEx = new R_Exception();
@@ -404,7 +404,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLCurrencyRateType");
-                var loResult = loCls.GetALLCurrencyRateType();
+                var loResult = await loCls.GetALLCurrencyRateType();
 
                 _Logger.LogInfo("Filter Search by text GSL00800GetCurrencyType");
                 loRtn.Data = loResult.Find(x => x.CRATETYPE_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -422,7 +422,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL00900DTO> GSL00900GetCenter(GSL00900ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL00900DTO>> GSL00900GetCenter(GSL00900ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL00900GetCenter");
             var loEx = new R_Exception();
@@ -434,7 +434,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLCenter");
-                var loResult = loCls.GetALLCenter();
+                var loResult = await loCls.GetALLCenter();
 
                 _Logger.LogInfo("Filter Search by text GSL00900GetCenter");
                 loRtn.Data = loResult.Find(x => x.CCENTER_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -452,7 +452,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL01000DTO> GSL01000GetUser(GSL01000ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL01000DTO>> GSL01000GetUser(GSL01000ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL01000GetUser");
             var loEx = new R_Exception();
@@ -464,7 +464,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLUser");
-                var loResult = loCls.GetALLUser();
+                var loResult = await loCls.GetALLUser();
 
                 _Logger.LogInfo("Filter Search by text GSL01000GetUser");
                 loRtn.Data = loResult.Find(x => x.CUSER_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -482,7 +482,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL01100DTO> GSL01100GetUserApproval(GSL01100ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL01100DTO>> GSL01100GetUserApproval(GSL01100ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL01100GetUserApproval");
             var loEx = new R_Exception();
@@ -494,7 +494,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLUserApproval");
-                var loResult = loCls.GetALLUserApproval(poEntity);
+                var loResult = await loCls.GetALLUserApproval(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL01100GetUserApproval");
                 loRtn.Data = loResult.Find(x => x.CUSER_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -512,7 +512,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL01200DTO> GSL01200GetBank(GSL01200ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL01200DTO>> GSL01200GetBank(GSL01200ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL01200GetBank");
             var loEx = new R_Exception();
@@ -524,7 +524,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLBank");
-                var loResult = loCls.GetALLBank(poEntity);
+                var loResult = await loCls.GetALLBank(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL01200GetBank");
                 loRtn.Data = loResult.Find(x => x.CCB_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -542,7 +542,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL01300DTO> GSL01300GetBankAccount(GSL01300ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL01300DTO>> GSL01300GetBankAccount(GSL01300ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL01300GetBankAccount");
             var loEx = new R_Exception();
@@ -554,7 +554,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLBankAccount");
-                var loResult = loCls.GetALLBankAccount(poEntity);
+                var loResult = await loCls.GetALLBankAccount(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL01300GetBankAccount");
                 loRtn.Data = loResult.Find(x => x.CCB_ACCOUNT_NO.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -572,7 +572,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL01400DTO> GSL01400GetOtherCharges(GSL01400ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL01400DTO>> GSL01400GetOtherCharges(GSL01400ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL01400GetOtherCharges");
             var loEx = new R_Exception();
@@ -584,7 +584,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLOtherCharges");
-                var loResult = loCls.GetALLOtherCharges(poEntity);
+                var loResult = await loCls.GetALLOtherCharges(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL01400GetOtherCharges");
                 loRtn.Data = loResult.Find(x => x.CCHARGES_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -602,7 +602,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL01500ResultDetailDTO> GSL01500GetCashDetail(GSL01500ParameterDetailDTO poEntity)
+        public async Task<GSLGenericRecord<GSL01500ResultDetailDTO>> GSL01500GetCashDetail(GSL01500ParameterDetailDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL01500GetCashDetail");
             var loEx = new R_Exception();
@@ -614,7 +614,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLOtherCharges");
-                var loResult = loCls.GetALLCashFlowDetail(poEntity);
+                var loResult = await loCls.GetALLCashFlowDetail(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL01500GetCashDetail");
                 loRtn.Data = loResult.Find(x => x.CCASH_FLOW_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -632,7 +632,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL01600DTO> GSL01600GetCashFlowGroupType(GSL01600ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL01600DTO>> GSL01600GetCashFlowGroupType(GSL01600ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL01600GetCashFlowGroupType");
             var loEx = new R_Exception();
@@ -644,7 +644,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLCashFlowGruopType");
-                var loResult = loCls.GetALLCashFlowGruopType();
+                var loResult = await loCls.GetALLCashFlowGruopType();
 
                 _Logger.LogInfo("Filter Search by text GSL01600GetCashFlowGroupType");
                 loRtn.Data = loResult.Find(x => x.CCASH_FLOW_GROUP_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -662,7 +662,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL01800DTO> GSL01800GetCategory(GSL01800DTOParameter poEntity)
+        public async Task<GSLGenericRecord<GSL01800DTO>> GSL01800GetCategory(GSL01800DTOParameter poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL01800GetCategory");
             var loEx = new R_Exception();
@@ -674,7 +674,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLCategory");
-                var loResult = loCls.GetALLCategory(poEntity);
+                var loResult = await loCls.GetALLCategory(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL01800GetCategory");
                 loRtn.Data = loResult.Find(x => x.CCATEGORY_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -692,7 +692,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL01900DTO> GSL01900GetLOB(GSL01900ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL01900DTO>> GSL01900GetLOB(GSL01900ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL01900GetLOB");
             var loEx = new R_Exception();
@@ -704,7 +704,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLOtherCharges");
-                var loResult = loCls.GetALLLOB();
+                var loResult = await loCls.GetALLLOB();
 
                 _Logger.LogInfo("Filter Search by text GSL01900GetLOB");
                 loRtn.Data = loResult.Find(x => x.CLOB_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -722,7 +722,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL02100DTO> GSL02100GetPaymentTerm(GSL02100ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL02100DTO>> GSL02100GetPaymentTerm(GSL02100ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL02100GetPaymentTerm");
             var loEx = new R_Exception();
@@ -734,7 +734,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLCategory");
-                var loResult = loCls.GetALLPaymentTerm(poEntity);
+                var loResult = await loCls.GetALLPaymentTerm(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL02100GetPaymentTerm");
                 loRtn.Data = loResult.Find(x => x.CPAY_TERM_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -752,7 +752,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL02200DTO> GSL02200GetBuilding(GSL02200ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL02200DTO>> GSL02200GetBuilding(GSL02200ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL02200GetBuilding");
             var loEx = new R_Exception();
@@ -764,7 +764,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLBuilding");
-                var loResult = loCls.GetALLBuilding(poEntity);
+                var loResult = await loCls.GetALLBuilding(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL02200GetBuilding");
                 loRtn.Data = loResult.Find(x => x.CBUILDING_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -782,7 +782,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL02300DTO> GSL02300GetBuildingUnit(GSL02300ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL02300DTO>> GSL02300GetBuildingUnit(GSL02300ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL02300GetBuildingUnit");
             var loEx = new R_Exception();
@@ -794,7 +794,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLBuildingUnit");
-                var loResult = loCls.GetALLBuildingUnit(poEntity);
+                var loResult = await loCls.GetALLBuildingUnit(poEntity);
 
                 if (string.IsNullOrWhiteSpace(poEntity.CREMOVE_DATA_UNIT_ID_SEPARATOR) == false)
                 {
@@ -819,7 +819,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL02400DTO> GSL02400GetFloor(GSL02400ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL02400DTO>> GSL02400GetFloor(GSL02400ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL02400GetFloor");
             var loEx = new R_Exception();
@@ -831,7 +831,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLFloor");
-                var loResult = loCls.GetALLFloor(poEntity);
+                var loResult = await loCls.GetALLFloor(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL02400GetFloor");
                 loRtn.Data = loResult.Find(x => x.CFLOOR_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -849,7 +849,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL02500DTO> GSL02500GetCB(GSL02500ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL02500DTO>> GSL02500GetCB(GSL02500ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL02500GetCB");
             var loEx = new R_Exception();
@@ -861,7 +861,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLCB");
-                var loResult = loCls.GetALLCB(poEntity);
+                var loResult = await loCls.GetALLCB(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL02500GetCB");
                 loRtn.Data = loResult.Find(x => x.CCB_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -879,7 +879,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL02600DTO> GSL02600GetCBAccount(GSL02600ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL02600DTO>> GSL02600GetCBAccount(GSL02600ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL02600GetCBAccount");
             var loEx = new R_Exception();
@@ -891,7 +891,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLCBAccount");
-                var loResult = loCls.GetALLCBAccount(poEntity);
+                var loResult = await loCls.GetALLCBAccount(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL02600GetCBAccount");
                 loRtn.Data = loResult.Find(x => x.CCB_ACCOUNT_NO.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -909,7 +909,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL02700DTO> GSL02700GetOtherUnit(GSL02700ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL02700DTO>> GSL02700GetOtherUnit(GSL02700ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL02700GetOtherUnit");
             var loEx = new R_Exception();
@@ -921,7 +921,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLOtherUnit");
-                var loResult = loCls.GetALLOtherUnit(poEntity);
+                var loResult = await loCls.GetALLOtherUnit(poEntity);
 
                 if (string.IsNullOrWhiteSpace(poEntity.CREMOVE_DATA_OTHER_UNIT_ID) == false)
                 {
@@ -946,7 +946,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL02800DTO> GSL02800GetOtherUnitMaster(GSL02800ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL02800DTO>> GSL02800GetOtherUnitMaster(GSL02800ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL02800GetOtherUnit");
             var loEx = new R_Exception();
@@ -958,7 +958,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLOtherUnit");
-                var loResult = loCls.GetALLOtherUnitMaster(poEntity);
+                var loResult = await loCls.GetALLOtherUnitMaster(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL02800GetOtherUnit");
                 loRtn.Data = loResult.Find(x => x.COTHER_UNIT_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -976,7 +976,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL02510DTO> GSL02510GetCashBank(GSL02510ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL02510DTO>> GSL02510GetCashBank(GSL02510ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL02510GetCashBank");
             var loEx = new R_Exception();
@@ -988,7 +988,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLOtherUnit");
-                var loResult = loCls.GetALLCashBank(poEntity);
+                var loResult = await loCls.GetALLCashBank(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL02510GetCashBank");
                 loRtn.Data = loResult.Find(x => x.CCB_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -1006,7 +1006,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL02900DTO> GSL02900GetSupplier(GSL02900ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL02900DTO>> GSL02900GetSupplier(GSL02900ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL02900GetSupplier");
             var loEx = new R_Exception();
@@ -1018,7 +1018,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLSupplier");
-                var loResult = loCls.GetALLSupplier(poEntity);
+                var loResult = await loCls.GetALLSupplier(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL02900GetSupplier");
                 loRtn.Data = loResult.Find(x => x.CSUPPLIER_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -1036,7 +1036,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL02910DTO> GSL02910GetSupplierInfo(GSL02910ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL02910DTO>> GSL02910GetSupplierInfo(GSL02910ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL02910GetSupplierInfo");
             var loEx = new R_Exception();
@@ -1048,7 +1048,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLSupplierInfo");
-                var loResult = loCls.GetALLSupplierInfo(poEntity);
+                var loResult = await loCls.GetALLSupplierInfo(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL02910GetSupplierInfo");
                 loRtn.Data = loResult.Find(x => x.CSEQ_NO.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -1066,7 +1066,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL03000DTO> GSL03000GetProduct(GSL03000ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL03000DTO>> GSL03000GetProduct(GSL03000ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL03000GetProduct");
             var loEx = new R_Exception();
@@ -1078,7 +1078,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLProduct");
-                var loResult = loCls.GetALLProduct(poEntity);
+                var loResult = await loCls.GetALLProduct(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL03000GetProduct");
                 loRtn.Data = loResult.Find(x => x.CPRODUCT_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -1096,7 +1096,67 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL03100DTO> GSL03100GetExpenditure(GSL03100ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL03010DTO>> GSL03010GetProductUnit(GSL03010ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03010GetProductUnit");
+            var loEx = new R_Exception();
+            GSLGenericRecord<GSL03010DTO> loRtn = new();
+            _Logger.LogInfo("Start GSL03010GetProductUnit");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLProduct");
+                var loResult = await loCls.GetALLProductUnit(poEntity);
+
+                _Logger.LogInfo("Filter Search by text GSL03010GetProductUnit");
+                loRtn.Data = loResult.Find(x => x.CPRODUCT_UNIT.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo("End GSL03010GetProductUnit");
+            return loRtn;
+        }
+
+        [HttpPost]
+        public async Task<GSLGenericRecord<GSL03020DTO>> GSL03020GetProductUOM(GSL03020ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03020GetProductUOM");
+            var loEx = new R_Exception();
+            GSLGenericRecord<GSL03020DTO> loRtn = new();
+            _Logger.LogInfo("Start GSL03020GetProductUOM");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLProduct");
+                var loResult = await loCls.GetALLProductUOM(poEntity);
+
+                _Logger.LogInfo("Filter Search by text GSL03020GetProductUOM");
+                loRtn.Data = loResult.Find(x => x.CUOM.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo("End GSL03020GetProductUOM");
+            return loRtn;
+        }
+
+        [HttpPost]
+        public async Task<GSLGenericRecord<GSL03100DTO>> GSL03100GetExpenditure(GSL03100ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL03100GetExpenditure");
             var loEx = new R_Exception();
@@ -1108,7 +1168,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLExpenditure");
-                var loResult = loCls.GetALLExpenditure(poEntity);
+                var loResult = await loCls.GetALLExpenditure(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL03100GetExpenditure");
                 loRtn.Data = loResult.Find(x => x.CEXPENDITURE_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -1126,7 +1186,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL03200DTO> GSL03200GetProductAllocation(GSL03200ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL03200DTO>> GSL03200GetProductAllocation(GSL03200ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL03200GetProductAllocation");
             var loEx = new R_Exception();
@@ -1138,7 +1198,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLProductAllocation");
-                var loResult = loCls.GetALLProductAllocation(poEntity);
+                var loResult = await loCls.GetALLProductAllocation(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL03200GetProductAllocation");
                 loRtn.Data = loResult.Find(x => x.CALLOC_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -1156,7 +1216,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL03300DTO> GSL03300GetTaxCharges(GSL03300ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL03300DTO>> GSL03300GetTaxCharges(GSL03300ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL03300GetTaxCharges");
             var loEx = new R_Exception();
@@ -1168,7 +1228,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLTaxCharges");
-                var loResult = loCls.GetALLTaxCharges(poEntity);
+                var loResult = await loCls.GetALLTaxCharges(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL03300GetTaxCharges");
                 loRtn.Data = loResult.Find(x => x.CREF_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -1186,7 +1246,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL02000CityDTO> GSL02000GetCityGeography(GSL02000ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL02000CityDTO>> GSL02000GetCityGeography(GSL02000ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL02000GetCityGeography");
             var loEx = new R_Exception();
@@ -1198,7 +1258,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLCityGeography");
-                var loResult = loCls.GetALLCityGeography(new GSL02000CityDTO());
+                var loResult = await loCls.GetALLCityGeography(new GSL02000CityDTO());
 
                 _Logger.LogInfo("Filter Search by text GSL02000GetCityGeography");
                 loRtn.Data = loResult.Find(x => x.CCODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -1216,7 +1276,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL03400DTO> GSL03400GetDigitalSign(GSL03400ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL03400DTO>> GSL03400GetDigitalSign(GSL03400ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL03400GetDigitalSign");
             var loEx = new R_Exception();
@@ -1228,7 +1288,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetFileDigitalSign");
-                var loResult = loCls.GetFileDigitalSign(poEntity);
+                var loResult = await loCls.GetFileDigitalSign(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL03400GetDigitalSign");
                 loRtn.Data = loResult;
@@ -1246,7 +1306,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL03500DTO> GSL03500GetWarehouse(GSL03500ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL03500DTO>> GSL03500GetWarehouse(GSL03500ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL03500GetWarehouse");
             var loEx = new R_Exception();
@@ -1258,7 +1318,7 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Call Back Method GetALLWarehouse");
-                var loResult = loCls.GetALLWarehouse(poEntity);
+                var loResult = await loCls.GetALLWarehouse(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL03500GetWarehouse");
                 loRtn.Data = loResult.Find(x => x.CWAREHOUSE_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -1276,7 +1336,7 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
-        public GSLGenericRecord<GSL03600DTO> GSL03600GetCompany(GSL03600ParameterDTO poEntity)
+        public async Task<GSLGenericRecord<GSL03600DTO>> GSL03600GetCompany(GSL03600ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GSL03600GetCompany");
             var loEx = new R_Exception();
@@ -1287,8 +1347,8 @@ namespace Lookup_GSSERVICES
             {
                 var loCls = new PublicLookupCls();
 
-                _Logger.LogInfo("Call Back Method GetALLWarehouse");
-                var loResult = loCls.GetALLCompany();
+                _Logger.LogInfo("Call Back Method GetALLCompany");
+                var loResult = await loCls.GetALLCompany();
 
                 _Logger.LogInfo("Filter Search by text GSL03600GetCompany");
                 loRtn.Data = loResult.Find(x => x.CCOMPANY_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
@@ -1302,6 +1362,37 @@ namespace Lookup_GSSERVICES
             loEx.ThrowExceptionIfErrors();
 
             _Logger.LogInfo("End GSL03600GetCompany");
+            return loRtn;
+        }
+
+        [HttpPost]
+        public async Task<GSLGenericRecord<GSL03700DTO>> GSL03700GetMessage(GSL03700ParameterDTO poEntity)
+        {
+
+            using Activity activity = _activitySource.StartActivity("GSL03700GetMessage");
+            var loEx = new R_Exception();
+            GSLGenericRecord<GSL03700DTO> loRtn = new();
+            _Logger.LogInfo("Start GSL03700GetMessage");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLMessage");
+                var loResult = await loCls.GetALLMessage(poEntity);
+
+                _Logger.LogInfo("Filter Search by text GSL03700GetMessage");
+                loRtn.Data = loResult.Find(x => x.CMESSAGE_NO.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo("End GSL03700GetMessage");
             return loRtn;
         }
     }

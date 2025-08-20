@@ -443,5 +443,21 @@ namespace PMT03500Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
+
+        public async Task CloseMeterNo(PMT03500UtilityMeterDetailDTO viewModelEntity)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loParam = R_FrontUtility.ConvertObjectToObject<PMT03500CloseMeterNoParam>(Entity);
+                await _model.GetAsync<PMT03500UtilityMeterDetailDTO, PMT03500CloseMeterNoParam>(nameof(IPMT03500UpdateMeter.PMT03500CloseMeterNo), loParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
     }
 }

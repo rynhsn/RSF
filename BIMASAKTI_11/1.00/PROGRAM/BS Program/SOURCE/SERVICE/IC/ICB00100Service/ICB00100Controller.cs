@@ -149,7 +149,7 @@ public class ICB00100Controller : ControllerBase, IICB00100
     }
 
     [HttpPost]
-    public IAsyncEnumerable<ICB00100ValidateSoftCloseDTO> ICB00100ValidateSoftPeriod()
+    public ICB00100ListDTO<ICB00100ValidateSoftCloseDTO> ICB00100ValidateSoftPeriod()
     {
         using var loActivity = _activitySource.StartActivity(nameof(ICB00100ValidateSoftPeriod));
         _logger.LogInfo("Start - Validate Soft Close List Stream");
@@ -157,7 +157,7 @@ public class ICB00100Controller : ControllerBase, IICB00100
         var loCls = new ICB00100Cls();
         var loDbParams = new ICB00100ParameterDb();
         List<ICB00100ValidateSoftCloseDTO> loResult;
-        IAsyncEnumerable<ICB00100ValidateSoftCloseDTO> loReturn = null;
+        ICB00100ListDTO<ICB00100ValidateSoftCloseDTO> loReturn = new ICB00100ListDTO<ICB00100ValidateSoftCloseDTO>();
 
         try
         {
@@ -170,7 +170,8 @@ public class ICB00100Controller : ControllerBase, IICB00100
 
             _logger.LogInfo("Validate Soft Close List Stream");
             loResult = loCls.ValidateSoftClosePeriod(loDbParams);
-            loReturn = GetStream(loResult);
+            // loReturn = GetStream(loResult);
+            loReturn.Data = loResult;
         }
         catch (Exception ex)
         {

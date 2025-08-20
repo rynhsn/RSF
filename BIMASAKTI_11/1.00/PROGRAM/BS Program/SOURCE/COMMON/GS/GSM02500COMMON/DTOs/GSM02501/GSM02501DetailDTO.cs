@@ -24,5 +24,12 @@ namespace GSM02500COMMON.DTOs.GSM02501
         public DateTime? DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; } = "";
         public DateTime? DCREATE_DATE { get; set; }
+
+
+        //Logo
+        public string CSTORAGE_ID { get; set; } = "";
+        public byte[] OIMAGE { get; set; }
+        public string CFILE_NAME { get; set; } = "";
+        public string CFILE_EXTENSION { get; set; } = "";
     }
 }

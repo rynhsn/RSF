@@ -82,8 +82,9 @@ public class PublicLookupICController : ControllerBase, IPublicICLookup
             poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             poParam.CUSER_ID = R_BackGlobalVar.USER_ID;
             poParam.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
-            poParam.CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CDEPT_CODE);
             poParam.CALLOC_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CALLOC_ID);
+            poParam.CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CDEPT_CODE);
+            poParam.CTRANS_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTRANS_CODE);
 
             _loggerIC.LogInfo("Call Back Method GetTaskLookup");
             var loResult = loCls.RequestNoLookup(poParam);

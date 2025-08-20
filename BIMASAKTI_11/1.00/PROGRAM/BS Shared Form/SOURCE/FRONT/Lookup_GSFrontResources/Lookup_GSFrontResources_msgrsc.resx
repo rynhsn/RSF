@@ -144,6 +144,10 @@
   <data name="_AdditionalCharges" xml:space="preserve">
     <value>Additional Charges</value>
   </data>
+  <data name="_AdditionalInfo" xml:space="preserve">
+    <value>Additional Info</value>
+    <comment>Additional Info</comment>
+  </data>
   <data name="_Address" xml:space="preserve">
     <value>Address</value>
   </data>
@@ -405,6 +409,17 @@
   <data name="_LocCurrRate" xml:space="preserve">
     <value>Local Currency Rate</value>
   </data>
+  <data name="_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="_MessageNo" xml:space="preserve">
+    <value>Message No</value>
+    <comment>Message No</comment>
+  </data>
+  <data name="_MessageType" xml:space="preserve">
+    <value>Message Type</value>
+    <comment>Message Type</comment>
+  </data>
   <data name="_Name" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -452,6 +467,12 @@
   </data>
   <data name="_ProductName" xml:space="preserve">
     <value>Product Name</value>
+  </data>
+  <data name="_ProductUnit" xml:space="preserve">
+    <value>Product Unit</value>
+  </data>
+  <data name="_ProductUOM" xml:space="preserve">
+    <value>Product UOM</value>
   </data>
   <data name="_RateDate" xml:space="preserve">
     <value>Rate Date</value>
@@ -590,6 +611,9 @@
   </data>
   <data name="_UntTypeCatName" xml:space="preserve">
     <value>Unit Type Category Name</value>
+  </data>
+  <data name="_UOM" xml:space="preserve">
+    <value>UOM</value>
   </data>
   <data name="_UpdateBy" xml:space="preserve">
     <value>Updated By</value>

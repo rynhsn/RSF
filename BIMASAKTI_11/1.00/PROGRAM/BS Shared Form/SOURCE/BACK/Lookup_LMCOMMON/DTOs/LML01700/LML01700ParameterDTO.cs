@@ -14,6 +14,7 @@ namespace Lookup_PMCOMMON.DTOs.LML01700
         public string? CRECEIPT_ID { get; set; } = "";
         public string? CREC_ID { get; set; } = "";
         public string? CDEPT_CODE { get; set; } = "";
+        public string CSEARCH_TEXT { get; set; } = "";
 
     }
 }

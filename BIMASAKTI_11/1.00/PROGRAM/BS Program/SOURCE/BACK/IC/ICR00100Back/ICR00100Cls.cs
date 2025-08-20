@@ -215,6 +215,7 @@ public class ICR00100Cls
             loDb.R_AddCommandParameter(loCmd, "@CTO_PROD_ID", DbType.String, 20, poParam.CTO_PROD_ID);
             loDb.R_AddCommandParameter(loCmd, "@CFILTER_DATA", DbType.String, 20, poParam.CFILTER_DATA);
             loDb.R_AddCommandParameter(loCmd, "@CLANG_ID", DbType.String, 3, poParam.CLANG_ID);
+            loDb.R_AddCommandParameter(loCmd, "@COPTION_PRINT", DbType.String, 3, poParam.COPTION_PRINT);
 
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x =>
@@ -232,7 +233,8 @@ public class ICR00100Cls
                         "@CFROM_PROD_ID" or
                         "@CTO_PROD_ID" or
                         "@CFILTER_DATA" or
-                        "@CLANG_ID"
+                        "@CLANG_ID" or
+                        "@COPTION_PRINT"
                 )
                 .Select(x => x.Value);
 

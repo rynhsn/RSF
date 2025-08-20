@@ -21,9 +21,12 @@ namespace PMB05000Model.ViewModel
         public PMB05000SystemParamDTO SystemParam = new PMB05000SystemParamDTO();
         public PMB05000PeriodYearRangeDTO YearRange = new PMB05000PeriodYearRangeDTO();
         public PMB05000SoftClosePeriodDTO ProcessResult = new PMB05000SoftClosePeriodDTO();
-        
-        public ObservableCollection<PMB05000ValidateSoftCloseDTO> ValidateSoftCloseList = new ObservableCollection<PMB05000ValidateSoftCloseDTO>();
-        
+        public List<PMB05000PropertyDTO> Properties = new List<PMB05000PropertyDTO>();
+
+        public ObservableCollection<PMB05000ValidateSoftCloseDTO> ValidateSoftCloseList =
+            new ObservableCollection<PMB05000ValidateSoftCloseDTO>();
+
+        public PMB05000PropertyDTO Property = new PMB05000PropertyDTO();
         public DataSet ExcelDataSetToDoList { get; set; }
 
         public List<KeyValuePair<string, string>> ComboPeriod = new List<KeyValuePair<string, string>>
@@ -44,14 +47,37 @@ namespace PMB05000Model.ViewModel
 
         public bool EnableBtn { get; set; } = true;
 
-        public async Task GetSystemParam()
+        public async Task GetProperties()
         {
             var loEx = new R_Exception();
             try
             {
                 var loResult =
-                    await _model.GetAsync<PMB05000SingleDTO<PMB05000SystemParamDTO>>(
-                        nameof(IPMB05000.PMB05000GetSystemParam));
+                    await _model.GetAsync<PMB05000ListDTO<PMB05000PropertyDTO>>(
+                        nameof(IPMB05000.PMB05000GetProperties));
+                Properties = loResult.Data;
+                Property.CPROPERTY_ID = (Properties.Count > 0) ? Properties[0].CPROPERTY_ID : string.Empty;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        public async Task GetSystemParam()
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loParam = new PMB05000SystemParamParam()
+                {
+                    CPROPERTY_ID = Property.CPROPERTY_ID
+                };
+                var loResult =
+                    await _model.GetAsync<PMB05000SingleDTO<PMB05000SystemParamDTO>, PMB05000SystemParamParam>(
+                        nameof(IPMB05000.PMB05000GetSystemParam), loParam);
                 SystemParam = loResult.Data;
                 SystemParam.ISOFT_PERIOD_YY = int.Parse(SystemParam.CSOFT_PERIOD_YY);
             }
@@ -88,9 +114,10 @@ namespace PMB05000Model.ViewModel
             {
                 var loParam = new PMB05000PeriodParam
                 {
-                    CCURRENT_SOFT_PERIOD = SystemParam.ISOFT_PERIOD_YY + SystemParam.CSOFT_PERIOD_MM
+                    CCURRENT_SOFT_PERIOD = SystemParam.ISOFT_PERIOD_YY + SystemParam.CSOFT_PERIOD_MM,
+                    CPROPERTY_ID = Property.CPROPERTY_ID
                 };
-                
+
                 var loResult =
                     await _model.GetAsync<PMB05000SingleDTO<PMB05000PeriodParam>, PMB05000PeriodParam>(
                         nameof(IPMB05000.PMB05000UpdateSoftPeriod), loParam);
@@ -108,8 +135,11 @@ namespace PMB05000Model.ViewModel
             var loEx = new R_Exception();
             try
             {
-                R_FrontContext.R_SetStreamingContext(PMB05000ContextConstant.CPERIOD, SystemParam.ISOFT_PERIOD_YY + SystemParam.CSOFT_PERIOD_MM);
-                
+                R_FrontContext.R_SetStreamingContext(PMB05000ContextConstant.CPERIOD,
+                    SystemParam.ISOFT_PERIOD_YY + SystemParam.CSOFT_PERIOD_MM);
+                R_FrontContext.R_SetStreamingContext(PMB05000ContextConstant.CPROPERTY_ID,
+                    Property.CPROPERTY_ID);
+
                 var loResult =
                     await _model.GetListStreamAsync<PMB05000ValidateSoftCloseDTO>(
                         nameof(IPMB05000.PMB05000ValidateSoftPeriod));
@@ -125,7 +155,7 @@ namespace PMB05000Model.ViewModel
                         : (DateTime?)null;
                     // loItem.DREF_DATE = DateTime.ParseExact(loItem.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
                 }
-                
+
                 SetExcelDataSetToDoList();
             }
             catch (Exception ex)
@@ -135,7 +165,7 @@ namespace PMB05000Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        
+
         public async Task ProcessSoftPeriod()
         {
             var loEx = new R_Exception();
@@ -143,9 +173,10 @@ namespace PMB05000Model.ViewModel
             {
                 var loParam = new PMB05000PeriodParam
                 {
-                    CCURRENT_SOFT_PERIOD = SystemParam.ISOFT_PERIOD_YY + SystemParam.CSOFT_PERIOD_MM
+                    CCURRENT_SOFT_PERIOD = SystemParam.ISOFT_PERIOD_YY + SystemParam.CSOFT_PERIOD_MM,
+                    CPROPERTY_ID = Property.CPROPERTY_ID
                 };
-                
+
                 var loResult =
                     await _model.GetAsync<PMB05000SingleDTO<PMB05000SoftClosePeriodDTO>, PMB05000PeriodParam>(
                         nameof(IPMB05000.PMB05000ProcessSoftPeriod), loParam);
@@ -158,7 +189,8 @@ namespace PMB05000Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        
+
+
         private void SetExcelDataSetToDoList()
         {
             var loConvertData = ValidateSoftCloseList.Select(item => new PMB05000ExcelToDoListDTO()

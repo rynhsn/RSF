@@ -175,6 +175,7 @@
             APR00500.TabIndex = 11;
             APR00500.Text = "APR00500";
             APR00500.UseVisualStyleBackColor = true;
+            APR00500.Click += APR00500_Click_1;
             // 
             // groupBox1
             // 
@@ -185,7 +186,7 @@
             groupBox1.Controls.Add(GLR00100_2);
             groupBox1.Location = new System.Drawing.Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new System.Drawing.Size(143, 340);
+            groupBox1.Size = new System.Drawing.Size(236, 340);
             groupBox1.TabIndex = 12;
             groupBox1.TabStop = false;
             groupBox1.Text = "GL Report";
@@ -210,7 +211,7 @@
             groupBox2.Controls.Add(PMR00400);
             groupBox2.Controls.Add(PMR02600);
             groupBox2.Controls.Add(PMR00460);
-            groupBox2.Location = new System.Drawing.Point(161, 12);
+            groupBox2.Location = new System.Drawing.Point(254, 12);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new System.Drawing.Size(87, 340);
             groupBox2.TabIndex = 12;
@@ -275,7 +276,7 @@
             groupBox3.Controls.Add(APR00100DetailByDate);
             groupBox3.Controls.Add(APR00300);
             groupBox3.Controls.Add(APR00500);
-            groupBox3.Location = new System.Drawing.Point(254, 12);
+            groupBox3.Location = new System.Drawing.Point(347, 12);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new System.Drawing.Size(283, 173);
             groupBox3.TabIndex = 13;
@@ -329,9 +330,9 @@
             // groupBox4
             // 
             groupBox4.Controls.Add(HDR00200);
-            groupBox4.Location = new System.Drawing.Point(543, 12);
+            groupBox4.Location = new System.Drawing.Point(636, 179);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new System.Drawing.Size(87, 173);
+            groupBox4.Size = new System.Drawing.Size(87, 62);
             groupBox4.TabIndex = 14;
             groupBox4.TabStop = false;
             groupBox4.Text = "HD Report";
@@ -391,7 +392,7 @@
             groupBox6.Controls.Add(GSM04000);
             groupBox6.Location = new System.Drawing.Point(636, 117);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new System.Drawing.Size(87, 100);
+            groupBox6.Size = new System.Drawing.Size(87, 56);
             groupBox6.TabIndex = 16;
             groupBox6.TabStop = false;
             groupBox6.Text = "GS Report";
@@ -447,11 +448,11 @@
         private Button PMR00400;
         private Button PMR00460;
         private Button APR00300;
-        private Button APR00500;
-        private GroupBox groupBox1;
+        private System.Windows.Forms.Button APR00500;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox4;
         private Button HDR00200;
         private Button Refresh;
         private Button PMT01300;

@@ -3,17 +3,11 @@ using System.Collections.Generic;
 
 namespace PMR03000Common.DTOs.Print
 {
-    public class PMR03000ResultDataPrintDTO
-    {
-        public PMR03000ReportLabelDTO Label { get; set; }
-        public PMR03000BaseHeaderDTO? Header { get; set; }
-        public List<PMR03000ResultDataDTO> Data { get; set; } = new List<PMR03000ResultDataDTO>();
-    }
-
     public class PMR03000ResultDataDTO
     {
         public PMR03000ReportLabelDTO Label { get; set; }
         public PMR03000BaseHeaderDTO? Header { get; set; }
+
         public List<PMR03000DataReportDTO> Datas { get; set; }
         // public List<PMR03000VADTO> VirtualAccountData { get; set; }
         // public List<PMR03000DetailUnitDTO> DataUnitList { get; set; }
@@ -21,6 +15,25 @@ namespace PMR03000Common.DTOs.Print
         // public List<PMR03000DetailUtilityDTO> DataUtility2 { get; set; }
         // public List<PMR03000DetailUtilityDTO> DataUtility3 { get; set; }
         // public List<PMR03000DetailUtilityDTO> DataUtility4 { get; set; }
+    }
+
+    public class PMR03000MessageInfoDTO
+    {
+        public string CCOMPANY_ID { get; set; }
+        public string CMESSAGE_TYPE { get; set; }
+        public string CMESSAGE_TYPE_DESCR { get; set; }
+        public string CMESSAGE_NO { get; set; }
+        public string TMESSAGE_DESCRIPTION { get; set; }
+        public string CADDITIONAL_DESCRIPTION { get; set; }
+        public bool LACTIVE { get; set; }
+        public string CACTIVE_BY { get; set; }
+        public DateTime DACTIVE_DATE { get; set; }
+        public string CINACTIVE_BY { get; set; }
+        public DateTime DINACTIVE_DATE { get; set; }
+        public string CCREATE_BY { get; set; }
+        public DateTime DCREATE_DATE { get; set; }
+        public string CUPDATE_BY { get; set; }
+        public DateTime DUPDATE_DATE { get; set; }
     }
 
     public class PMR03000VADTO
@@ -35,6 +48,7 @@ namespace PMR03000Common.DTOs.Print
         public byte[]? CLOGO { get; set; }
         public string PROPERTY_ID { get; set; } = "PROPERTY_ID";
         public string PROPERTY_NAME { get; set; } = "PROPERTY_NAME";
+        public string CSTORAGE_ID { get; set; } = "";
     }
 
     public class PMR03000DataReportDTO
@@ -86,7 +100,13 @@ namespace PMR03000Common.DTOs.Print
         public decimal NPARKING { get; set; }
         public decimal NOVERTIME { get; set; }
         public decimal NGENERAL_UTILITY { get; set; }
-        
+        public string CMESSAGE_NO { get; set; }
+        public string CMESSAGE_NAME { get; set; }
+        public string TMESSAGE_DESCR_RTF { get; set; }
+        public string TADDITIONAL_DESCR_RTF { get; set; }
+
+        public PMR03000MessageInfoDTO MessageInfo { get; set; }
+
         public List<PMR03000VADTO> VirtualAccountData { get; set; }
         public List<PMR03000DetailUnitDTO> DataUnitList { get; set; }
         public bool DataUnitListIsEmpty { get; set; } = false;
@@ -113,6 +133,16 @@ namespace PMR03000Common.DTOs.Print
         public decimal NFEE_AMT { get; set; }
         public decimal NCHARGE_AMOUNT { get; set; }
         public decimal NTOTAL_AMOUNT { get; set; }
+
+        // --- 25/08/2025
+        public string CINVOICE_NO { get; set; }
+        public string? CCURRENCY_CODE { get; set; }
+        public string CREF_DATE { get; set; }
+        public DateTime DREF_DATE { get; set; }
+        public bool LTAXABLE { get; set; } //filter tax & Sub Total
+        public decimal NTAX_AMT { get; set; } //TAX Amount
+        public decimal NSUB_TOTAL_AMT { get; set; } //Sub Total
+        public string CUNIT_DESCRIPTION { get; set; }
     }
 
     public class PMR03000DetailUtilityDTO
@@ -152,7 +182,46 @@ namespace PMR03000Common.DTOs.Print
         public decimal NTOTAL_AMT { get; set; } //sub total biaya air / listrik
         public decimal NMAINTENANCE_FEE { get; set; } //Biaya operasional
         public decimal CFROM_SEQ_NO { get; set; }
+
         public string CTRANS_DESC { get; set; }
+
+        // --- 25/08/2025
+        public string CINVOICE_NO { get; set; } = "";
+        public string? CCURRENCY_CODE { get; set; }
+        public string CREF_DATE { get; set; }
+        public DateTime DREF_DATE { get; set; }
+        public decimal NUSAGE_CF { get; set; } //Penggunaan air dan Gas
+        public decimal NBLOCK1_USAGE_CF { get; set; } //Penggunaan 
+        public decimal NBLOCK2_START { get; set; } //Penggunaan Awal 
+        public decimal NBLOCK2_END { get; set; } //Penggunaan Akhir 
+        public decimal NBLOCK2_USAGE { get; set; } //Penggunaan 
+        public decimal NBLOCK2_CHARGE { get; set; } //Tarif 
+        public decimal NBLOCK2_USAGE_CF { get; set; } //Penggunaan 
+        public bool LTAXABLE { get; set; } //filter tax & Sub Total
+        public decimal NTAX_AMT { get; set; } //TAX Amount
+        public decimal NUSAGE_CHARGE { get; set; } //Tarif air dan gas
+        public decimal NSTANDING_AMT { get; set; } //Standing Amount
+        public decimal NRETRIBUTION_AMT { get; set; } //PPJU
+        public decimal NTRANSFORMATOR_AMT { get; set; } //Biaya Transformator
+        public decimal NBLOCK1_BLOCK2_AMT { get; set; } //Pemakaian
+        public decimal NUSAGE_AMT { get; set; } //Pemakaian Water dan Gas
+        public string CCHARGES_ID { get; set; } //Untuk Parameter Rate
+        public string CSTART_DATE { get; set; } //Untuk Parameter Rate
+
+        public string CUNIT_DESCRIPTION { get; set; }
+        public string CUSAGE_RATE_MODE { get; set; }
+
+        public List<PMR03000RateWGListDTO> RateWGList { get; set; } = new List<PMR03000RateWGListDTO>();
+    }
+
+    public class PMR03000RateWGListDTO
+    {
+        public int IUP_TO_USAGE { get; set; }
+        public decimal NUSAGE_CHARGE { get; set; }
+
+        public int IMIN_USAGE { get; set; }
+        public decimal NFROM_TO { get; set; }
+        public decimal NSUB_TOTAL_ROW { get; set; }
     }
 
     public class PMR03000ReportLabelDTO
@@ -200,6 +269,8 @@ namespace PMR03000Common.DTOs.Print
         public string Label_Fee { get; set; } = "Fee";
         public string Label_ChargeAmount { get; set; } = "Charge Amount";
         public string Label_Total { get; set; } = "Total";
+        public string Label_TotalBiayaListrik { get; set; } = "Total Biaya Listrik";
+        public string Label_TotalBiayaChiller { get; set; } = "Total Biaya Chiller";
         public string Label_AirListrik { get; set; } = "Air, Listrik Nomor Transaksi";
         public string Label_MeterNo { get; set; } = "Meter No";
         public string Label_CalculationFactor { get; set; } = "Calculation Factor";
@@ -207,8 +278,9 @@ namespace PMR03000Common.DTOs.Print
         public string Label_MeterAwal { get; set; } = "Meter Awal";
         public string Label_MeterAkhir { get; set; } = "Meter Akhir";
         public string Label_PenggunaanListrik { get; set; } = "Penggunaan Listrik";
+        public string Label_PenggunaanChiller { get; set; } = "Penggunaan Chiller";
         public string Label_RekeningMinimum { get; set; } = "Rekening Minimum";
-        public string Label_Pemakaian { get; set; } = "Pemakaian";
+        public string Label_TotalPemakaian { get; set; } = "Total Pemakaian";
         public string Label_SubTotal { get; set; } = "Sub Total";
         public string Label_PPJU { get; set; } = "PPJU 2.40%";
         public string Label_BiayaTambahan { get; set; } = "Biaya Tambahan";
@@ -216,11 +288,29 @@ namespace PMR03000Common.DTOs.Print
         public string Label_KwhYangDiperhitungkan { get; set; } = "Kwh Yang Diperhitungkan";
         public string Label_BatasKWHMinimum { get; set; } = "Batas kwh minimum";
         public string Label_SubTotalBiayaListrik { get; set; } = "Sub Total Biaya Listrik";
+        public string Label_SubTotalBiayaChiller { get; set; } = "Sub Total Biaya Chiller";
         public string Label_PenggunaanAir { get; set; } = "Penggunaan Air";
+        public string Label_PenggunaanGas { get; set; } = "Penggunaan Gas";
         public string Label_BiayaTetap { get; set; } = "Biaya Tetap";
         public string Label_BiayaOperasional { get; set; } = "Biaya Operasional";
         public string Label_Tarif { get; set; } = "Tarif";
+        public string Label_TarifPemakaian { get; set; } = "Tarif Pemakaian";
+        public string Label_TarifBlock1 { get; set; } = "Tarif Block 1";
+        public string Label_TarifBlock2 { get; set; } = "Tarif Block 2";
         public string Label_SubTotalBiayaAir { get; set; } = "Sub Total Biaya Air";
+        public string Label_SubTotalBiayaGas { get; set; } = "Sub Total Biaya Gas";
+        public string Label_TotalBiayaAir { get; set; } = "Total Biaya Air";
+        public string Label_TotalBiayaGas { get; set; } = "Total Biaya Gas";
+
+        public string Label_InvoiceNo { get; set; } = "Invoice No.";
+        public string Label_Tax { get; set; } = "Tax";
+        public string Label_BebanBersama { get; set; } = "Beban Bersama";
+        public string Label_BiayaTransformator { get; set; } = "Biaya Transformator";
+        public string Label_BiayaAdmin { get; set; } = "Biaya Admin";
+        public string Label_MaintenanceFee { get; set; } = "Maintenance Fee";
+        public string Label_StandingAmount { get; set; } = "Standing Amount";
+        public string Label_Block1 { get; set; } = "Block 1";
+        public string Label_Block2 { get; set; } = "Block 2";
     }
 
     public class PMR03000ReportClientParameterDTO
@@ -243,7 +333,7 @@ namespace PMR03000Common.DTOs.Print
         public string CPROPERTY_ID { get; set; } = "";
         public string CLANG_ID { get; set; } = "";
         public string CTENANT_ID { get; set; } = "";
-        public string CREF_NO { get; set; } = "";
+        public string CFILE_NAME { get; set; } = "";
         public string CLOI_AGRMT_REC_ID { get; set; } = "";
         public string CREF_PRD { get; set; } = "";
         public string CSTORAGE_ID { get; set; } = "";
@@ -257,7 +347,6 @@ namespace PMR03000Common.DTOs.Print
         public string? CSTORAGE_PROVIDER_ID { get; set; }
     }
 
-
     public class PMR03000ParamSaveBillingStatement
     {
         public string CCOMPANY_ID { get; set; }
@@ -269,5 +358,54 @@ namespace PMR03000Common.DTOs.Print
         public string CDUE_DATE { get; set; }
         public string CSTORAGE_ID { get; set; }
         public string CUSER_ID { get; set; }
+    }
+
+    public class PMR03000BillingStatementDTO
+    {
+        public string CCOMPANY_ID { get; set; }
+        public string CPROPERTY_ID { get; set; }
+        public string CTENANT_ID { get; set; }
+        public string CTENANT_NAME { get; set; }
+        public string CADDRESS { get; set; }
+        public string CBILLING_EMAIL { get; set; }
+        public string CREF_NO { get; set; }
+        public string CPERIOD { get; set; }
+        public string CPERIOD_YEAR_DISPLAY { get; set; }
+        public string CPERIOD_MONTH_DISPLAY { get; set; }
+        public string CPERIOD_DISPLAY { get; set; }
+        public string CDUE_DATE { get; set; }
+        public DateTime DDUE_DATE { get; set; }
+        public string CDUE_DATE_DISPLAY { get; set; }
+        public string CBILL_DATE { get; set; }
+        public string CSTORAGE_ID { get; set; }
+        public string CUPDATE_BY { get; set; }
+        public DateTime DUPDATE_DATE { get; set; }
+        public string CCREATE_BY { get; set; }
+        public string CPROPERTY_NAME { get; set; }
+        public string CUNIT_ID { get; set; }
+        public string CUNIT_NAME { get; set; }
+        public string CCURRENCY_CODE { get; set; }
+        public decimal NTOTAL_AMT { get; set; }
+        public string CTOTAL_AMT_DISPLAY { get; set; }
+        public DateTime DCREATE_DATE { get; set; }
+    }
+
+    public class PMR03000DistributeReportDataDTO
+    {
+        //INI BUAT EMAIL
+        public string? CSTORAGE_ID { get; set; }
+        public string? CFILE_NAME { get; set; }
+        public string? CFILE_ID { get; set; }
+        public byte[]? OFILE_DATA_REPORT { get; set; }
+        public bool LDATA_READY { get; set; } // Misalnya ini untuk mengecek apakah file siap dikirim
+    }
+
+    public class PMR03000GetEmailTemplateDTO
+    {
+        public string CTEMPLATE_DESC { get; set; }
+        public string CTEMPLATE_BODY { get; set; }
+        public string CSMTP_SERVER { get; set; }
+        public string CSMTP_PORT { get; set; }
+        public string CGENERAL_EMAIL_ADDRESS { get; set; }
     }
 }

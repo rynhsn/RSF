@@ -10,6 +10,7 @@ namespace GSM02500COMMON.DTOs.GSM02502
         public string UnitTypeCategoryCode { get; set; } = "";
         public string UnitTypeCategoryName { get; set; } = "";
         public string Description { get; set; } = "";
+        public string DepartmentCode { get; set; } = "";
         public string PropertyType { get; set; } = "";
         public int InvitationInvoicePeriod { get; set; } = 0;
         public bool Active { get; set; } = false;

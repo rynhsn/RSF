@@ -43,7 +43,7 @@
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLMT03500_002FLMT03500FrontResources_002FLMT03500FrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLookup_002FAP_002FLookup_005FAPFrontResources_002FLookupAPFrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLookup_002FGS_002FLookup_005FGSFrontResources_002FLookup_005FGSFrontResources_005Fmsgrsc/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLookup_002FGS_002FLookup_005FGSFrontResources_002FLookup_005FGSFrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
 	
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FRONT_002FLookup_002FLookup_005FGSFrontResources_002FLookup_005FGSFrontResources_005Fmsgrsc/@EntryIndexedValue">True</s:Boolean>
@@ -84,7 +84,8 @@
 	
 	
 	
-	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=99f28822_002Dc701_002D4c1b_002Db86e_002D01eeddeb498d_0023PMR00400Common/@EntryIndexedValue">True</s:Boolean>
+	
+	
 	
 	
 	

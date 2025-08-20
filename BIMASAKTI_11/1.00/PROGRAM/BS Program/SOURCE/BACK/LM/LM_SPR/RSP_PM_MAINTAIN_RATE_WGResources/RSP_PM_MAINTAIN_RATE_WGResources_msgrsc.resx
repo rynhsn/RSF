@@ -126,4 +126,8 @@
   <data name="1023" xml:space="preserve">
     <value>Detail Rate cannot be empty!</value>
   </data>
+  <!-- 1024 = There's already newest charges date! -->
+    <data name="1024" xml:space="preserve">
+        <value>There's already newest charges date!</value>
+    </data>
 </root>

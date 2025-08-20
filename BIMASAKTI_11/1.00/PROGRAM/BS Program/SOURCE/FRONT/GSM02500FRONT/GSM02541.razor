@@ -56,6 +56,7 @@
             <R_ItemLayout col="2">
                 <R_TextBox @bind-Value="@loOtherUnitViewModel.Data.COTHER_UNIT_ID"
                            R_ConductorSource="@_conductorOtherUnitRef"
+                           MaxLength="20"
                            R_EnableAdd="true"
                            R_EnableEdit="false"
                            @ref="@OtherUnitIdRef">
@@ -64,6 +65,7 @@
             <R_ItemLayout col="6">
                 <R_TextBox @bind-Value="@loOtherUnitViewModel.Data.COTHER_UNIT_NAME"
                            R_ConductorSource="@_conductorOtherUnitRef"
+                           MaxLength="200"
                            R_EnableAdd="true"
                            R_EnableEdit="true"
                            @ref="@OtherUnitNameRef">
@@ -128,6 +130,7 @@
             <R_ItemLayout col="8">
                 <R_TextBox @bind-Value="@loOtherUnitViewModel.Data.CLOCATION"
                            R_ConductorSource="@_conductorOtherUnitRef"
+                           MaxLength="20"
                            R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
             </R_ItemLayout>
         </R_StackLayout>

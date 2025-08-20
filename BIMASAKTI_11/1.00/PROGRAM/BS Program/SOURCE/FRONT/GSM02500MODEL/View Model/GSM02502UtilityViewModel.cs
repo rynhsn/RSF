@@ -58,8 +58,6 @@ namespace GSM02500MODEL.View_Model
                     CSELECTED_PROPERTY_ID = SelectedProperty,
                     CSELECTED_UNIT_TYPE_CATEGORY_ID = SelectedUnitTypeCategory
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02502_UTILITY_PROPERTY_ID_CONTEXT, SelectedProperty);
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02502_UTILITY_UNIT_TYPE_CATEGORY_ID_CONTEXT, SelectedUnitTypeCategory);
                 loResult = await loModel.R_ServiceGetRecordAsync(loParam);
 
                 loUtility = loResult.Data;
@@ -85,8 +83,6 @@ namespace GSM02500MODEL.View_Model
                     CSELECTED_PROPERTY_ID = SelectedProperty,
                     CSELECTED_UNIT_TYPE_CATEGORY_ID = SelectedUnitTypeCategory
                 };
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02502_UTILITY_PROPERTY_ID_CONTEXT, SelectedProperty);
-                //R_FrontContext.R_SetContext(ContextConstant.GSM02502_UTILITY_UNIT_TYPE_CATEGORY_ID_CONTEXT, SelectedUnitTypeCategory);
                 loResult = await loModel.R_ServiceSaveAsync(loParam, peCRUDMode);
 
                 loUtility = loResult.Data;
@@ -98,22 +94,5 @@ namespace GSM02500MODEL.View_Model
         EndBlock:
             loException.ThrowExceptionIfErrors();
         }
-/*
-        public async Task DeleteUtilityAsync(GSM02502UtilityDTO poEntity)
-        {
-            R_Exception loException = new R_Exception();
-
-            try
-            {
-                R_FrontContext.R_SetContext(ContextConstant.GSM02502_UTILITY_PROPERTY_ID_CONTEXT, SelectedProperty);
-                R_FrontContext.R_SetContext(ContextConstant.GSM02502_UTILITY_UNIT_TYPE_CATEGORY_ID_CONTEXT, SelectedUnitTypeCategory);
-                await loModel.R_ServiceDeleteAsync(poEntity);
-            }
-            catch (Exception ex)
-            {
-                loException.Add(ex);
-            }
-            loException.ThrowExceptionIfErrors();
-        }*/
     }
 }

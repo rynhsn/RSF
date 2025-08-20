@@ -8,6 +8,7 @@
         public string CACTIVE_TYPE { get; set; } = "";
         public string CTAX_DATE { get; set; } = "";
         public string CBUYSELL { get; set; } = "";
+        public string CINOUT { get; set; } = "";
     }
 
 }

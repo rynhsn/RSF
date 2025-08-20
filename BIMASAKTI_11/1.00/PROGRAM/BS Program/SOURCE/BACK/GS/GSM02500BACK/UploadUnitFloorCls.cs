@@ -14,14 +14,17 @@ using GSM02500COMMON.DTOs;
 using System.Diagnostics;
 using GSM02500BACK.OpenTelemetry;
 using R_OpenTelemetry;
+using GSM02500COMMON.Loggers;
 
 namespace GSM02500BACK
 {
-    public class UploadUnitFloorCls : R_IBatchProcess
+    public class UploadUnitFloorCls : R_IBatchProcessAsync
     {
         private readonly ActivitySource _activitySource;
+        private LoggerGSM02502 _logger;
         public UploadUnitFloorCls()
         {
+            _logger = LoggerGSM02502.R_GetInstanceLogger();
             var loActivity = UploadUnitFloorActivitySourceBase.R_GetInstanceActivitySource();
             if (loActivity == null)
             {
@@ -32,51 +35,40 @@ namespace GSM02500BACK
                 _activitySource = loActivity;
             }
         }
-        public void R_BatchProcess(R_BatchProcessPar poBatchProcessPar)
+        public async Task R_BatchProcessAsync(R_BatchProcessPar poBatchProcessPar)
         {
             using Activity activity = _activitySource.StartActivity("R_BatchProcess");
             R_Exception loException = new R_Exception();
-            R_Db loDb = new R_Db();
+            var loDb = new R_Db();
 
             try
             {
+                _logger.LogInfo("Test Connection");
                 if (loDb.R_TestConnection() == false)
                 {
                     loException.Add("01", "Database Connection Failed");
                     goto EndBlock;
                 }
-
-                var loTask = Task.Run(() =>
-                {
-                    _BatchProcess(poBatchProcessPar);
-                });
-
-                //while (!loTask.IsCompleted)
-                //{
-                //    Thread.Sleep(100);
-                //}
-
-                //if (loTask.IsFaulted)
-                //{
-                //    loException.Add(loTask.Exception.InnerException != null ?
-                //        loTask.Exception.InnerException :
-                //        loTask.Exception);
-
-                //    goto EndBlock;
-                //}
+                _logger.LogInfo("Start Batch");
+                _R_BatchProcessAsync(poBatchProcessPar);
+                _logger.LogInfo("End Batch");
             }
             catch (Exception ex)
             {
                 loException.Add(ex);
             }
-
+            finally
+            {
+                if (loDb != null)
+                {
+                    loDb = null;
+                }
+            }
         EndBlock:
 
             loException.ThrowExceptionIfErrors();
         }
-
-
-        public async Task _BatchProcess(R_BatchProcessPar poBatchProcessPar)
+        private async Task _R_BatchProcessAsync(R_BatchProcessPar poBatchProcessPar)
         {
             using Activity activity = _activitySource.StartActivity("_BatchProcess");
             R_Db loDb = new R_Db();
@@ -87,8 +79,8 @@ namespace GSM02500BACK
 
             try
             {
-                await Task.Delay(100);
-                loConn = loDb.GetConnection();
+                //await Task.Delay(100);
+                loConn = await loDb.GetConnectionAsync();
                 loCmd = loDb.GetCommand();
 
                 var loObject = R_NetCoreUtility.R_DeserializeObjectFromByte<List<UploadUnitDTO>>(poBatchProcessPar.BigObject);
@@ -116,6 +108,7 @@ namespace GSM02500BACK
                     NonActiveDate = item.NonActiveDate
                 }).ToList();
 
+                _logger.LogInfo("Start Inser Bulk");
                 lcQuery = $"CREATE TABLE #UNIT(NO INT , " +
                     $"UnitId VARCHAR(20), " +
                     $"UnitName VARCHAR(100), " +
@@ -128,9 +121,10 @@ namespace GSM02500BACK
                     $"Active BIT , " +
                     $"NonActiveDate VARCHAR(8))";
 
-                loDb.SqlExecNonQuery(lcQuery, loConn, false);
+                await loDb.SqlExecNonQueryAsync(lcQuery, loConn, false);
 
-                loDb.R_BulkInsert<UploadUnitSaveDTO>((SqlConnection)loConn, "#UNIT", loParam);
+                await loDb.R_BulkInsertAsync<UploadUnitSaveDTO>((SqlConnection)loConn, "#UNIT", loParam);
+                _logger.LogInfo("End Inser Bulk");
 
                 lcQuery = $"EXEC RSP_GS_UPLOAD_BUILDING_UNIT " +
                     $"@CCOMPANY_ID, " +
@@ -148,7 +142,13 @@ namespace GSM02500BACK
                 loDb.R_AddCommandParameter(loCmd, "@KEY_GUID", DbType.String, 50, poBatchProcessPar.Key.KEY_GUID);
 
                 loCmd.CommandText = lcQuery;
-                loDb.SqlExecNonQuery(loConn, loCmd, false);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _logger.LogDebug("EXEC RSP_GS_UPLOAD_BUILDING_UNIT {@poParameter}", loDbParam);
+
+                await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
             }
             catch (Exception ex)
             {
@@ -180,14 +180,14 @@ namespace GSM02500BACK
                             $"-100, " +
                             $"'{loException.ErrorList[0].ErrDescp}');";
 
-                loDb.SqlExecNonQuery(lcQuery);
+                await loDb.SqlExecNonQueryAsync(lcQuery);
 
                 lcQuery = $"EXEC RSP_WriteUploadProcessStatus '{poBatchProcessPar.Key.COMPANY_ID}', " +
                     $"'{poBatchProcessPar.Key.USER_ID}', " +
                     $"'{poBatchProcessPar.Key.KEY_GUID}', " +
                     $"100, '{loException.ErrorList[0].ErrDescp}', 9";
 
-                loDb.SqlExecNonQuery(lcQuery);
+                await loDb.SqlExecNonQueryAsync(lcQuery);
             }
         }
     }

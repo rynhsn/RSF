@@ -3,4 +3,6 @@ EXCESS_UNIT_TYPE_CTG_CODE	= Unit Type Category Code is bigger than 20 Character
 EMPTY_UNIT_TYPE_CTG_NAME	= Unit Type Category Name cannot be empty
 EXCESS_UNIT_TYPE_CTG_NAME	= Unit Type Category Name is bigger than 20 Character
 INVALID_ACTIVE_FLAG		= Invalid Active Flag, Active Flag value is not 1 / 0
-EMPTY_NONACTIVE_DATE		= If Active Flag = 0, Non Active Date can not be empty		
+EMPTY_NONACTIVE_DATE		= If Active Flag = 0, Non Active Date can not be empty	
+EMPTY_DEPT_CODE			= Department cannot be empty
+INVALID_DEPT_CODE		= invalid Department Code	

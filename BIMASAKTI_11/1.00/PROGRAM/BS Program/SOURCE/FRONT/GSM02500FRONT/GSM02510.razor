@@ -63,6 +63,7 @@
                 <R_TextBox @bind-Value="@loViewModel.Data.CBUILDING_ID"
                            R_ConductorSource="@_conductorRef"
                            @ref="_buildingIdRef"
+                           MaxLength="20"
                            R_EnableAdd="true"
                            R_EnableEdit="false">
                 </R_TextBox>
@@ -71,6 +72,7 @@
                 <R_TextBox @bind-Value="@loViewModel.Data.CBUILDING_NAME"
                            R_ConductorSource="@_conductorRef"
                            @ref="_buildingNameRef"
+                           MaxLength="200"
                            R_EnableAdd="true"
                            R_EnableEdit="true">
                 </R_TextBox>

@@ -23,7 +23,7 @@ namespace GSM02500SERVICE
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class GSM02502Controller : ControllerBase, IGSM02502
+    public class GSM02502Controller : ControllerBase, GSM02500BACK.IGSM02502
     {
         private LoggerGSM02502 _logger;
         private readonly ActivitySource _activitySource;
@@ -37,13 +37,16 @@ namespace GSM02500SERVICE
         [HttpPost]
         public IAsyncEnumerable<PropertyTypeDTO> GetPropertyTypeList()
         {
+            return GetPropertyTypeStream();
+        }
+        private async IAsyncEnumerable<PropertyTypeDTO> GetPropertyTypeStream()
+        {
             using Activity activity = _activitySource.StartActivity("GetPropertyTypeList");
             _logger.LogInfo("Start || GetPropertyTypeList(Controller)");
             R_Exception loException = new R_Exception();
-            IAsyncEnumerable<PropertyTypeDTO> loRtn = null;
+            List<PropertyTypeDTO> loRtn = null;
             PropertyTypeParameterDTO loParam = new PropertyTypeParameterDTO();
             GSM02502Cls loCls = new GSM02502Cls();
-            List<PropertyTypeDTO> loTempRtn = null;
 
             try
             {
@@ -52,10 +55,7 @@ namespace GSM02500SERVICE
                 loParam.CLOGIN_USER_ID = R_BackGlobalVar.USER_ID;
 
                 _logger.LogInfo("Run GetPropertyTypeList(Cls) || GetPropertyTypeList(Controller)");
-                loTempRtn = loCls.GetPropertyTypeList(loParam);
-
-                _logger.LogInfo("Run GetPropertyTypeStream(Controller) || GetPropertyTypeList(Controller)");
-                loRtn = GetPropertyTypeStream(loTempRtn);
+                loRtn = await loCls.GetPropertyTypeList(loParam);
             }
             catch (Exception ex)
             {
@@ -65,11 +65,8 @@ namespace GSM02500SERVICE
 
             loException.ThrowExceptionIfErrors();
             _logger.LogInfo("End || GetPropertyTypeList(Controller)");
-            return loRtn;
-        }
-        private async IAsyncEnumerable<PropertyTypeDTO> GetPropertyTypeStream(List<PropertyTypeDTO> poParameter)
-        {
-            foreach (PropertyTypeDTO item in poParameter)
+
+            foreach (PropertyTypeDTO item in loRtn)
             {
                 yield return item;
             }
@@ -77,7 +74,7 @@ namespace GSM02500SERVICE
 
 
         [HttpPost]
-        public TemplateUnitTypeCategoryDTO DownloadTemplateUnitTypeCategory()
+        public async Task<TemplateUnitTypeCategoryDTO> DownloadTemplateUnitTypeCategory()
         {
             using Activity activity = _activitySource.StartActivity("DownloadTemplateUnitTypeCategory");
             _logger.LogInfo("Start || DownloadTemplateUnitTypeCategory(Controller)");
@@ -86,6 +83,8 @@ namespace GSM02500SERVICE
 
             try
             {
+                await Task.CompletedTask;
+
                 _logger.LogInfo("Read File || DownloadTemplateUnitTypeCategory(Controller)");
                 var loAsm = Assembly.Load("BIMASAKTI_GS_API");
                 var lcResourceFile = "BIMASAKTI_GS_API.Template.Unit Type Category.xlsx";
@@ -113,13 +112,16 @@ namespace GSM02500SERVICE
         [HttpPost]
         public IAsyncEnumerable<GSM02502DTO> GetUnitTypeCategoryList()
         {
+            return GetUnitTypeCategoryStream();
+        }
+        private async IAsyncEnumerable<GSM02502DTO> GetUnitTypeCategoryStream()
+        {
             using Activity activity = _activitySource.StartActivity("GetUnitTypeCategoryList");
             _logger.LogInfo("Start || GetUnitTypeCategoryList(Controller)");
             R_Exception loException = new R_Exception();
-            IAsyncEnumerable<GSM02502DTO> loRtn = null;
+            List<GSM02502DTO> loRtn = null;
             GetUnitTypeCategoryListDTO loParam = new GetUnitTypeCategoryListDTO();
             GSM02502Cls loCls = new GSM02502Cls();
-            List<GSM02502DTO> loTempRtn = null;
 
             try
             {
@@ -129,10 +131,7 @@ namespace GSM02500SERVICE
                 loParam.CLOGIN_USER_ID = R_BackGlobalVar.USER_ID;
 
                 _logger.LogInfo("Run GetUnitTypeCategoryList(Cls) || GetUnitTypeCategoryList(Controller)");
-                loTempRtn = loCls.GetUnitTypeCategoryList(loParam);
-
-                _logger.LogInfo("Run GetUnitTypeCategoryStream(Controller) || GetUnitTypeCategoryList(Controller)");
-                loRtn = GetUnitTypeCategoryStream(loTempRtn);
+                loRtn = await loCls.GetUnitTypeCategoryList(loParam);
             }
             catch (Exception ex)
             {
@@ -142,18 +141,15 @@ namespace GSM02500SERVICE
 
             loException.ThrowExceptionIfErrors();
             _logger.LogInfo("End || GetUnitTypeCategoryList(Controller)");
-            return loRtn;
-        }
-        private async IAsyncEnumerable<GSM02502DTO> GetUnitTypeCategoryStream(List<GSM02502DTO> poParameter)
-        {
-            foreach (GSM02502DTO item in poParameter)
+
+            foreach (GSM02502DTO item in loRtn)
             {
                 yield return item;
             }
         }
 
         [HttpPost]
-        public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<GSM02502ParameterDTO> poParameter)
+        public async Task<R_ServiceDeleteResultDTO> R_ServiceDelete(R_ServiceDeleteParameterDTO<GSM02502ParameterDTO> poParameter)
         {
             using Activity activity = _activitySource.StartActivity("R_ServiceDelete");
             _logger.LogInfo("Start || R_ServiceDelete(Controller)");
@@ -164,14 +160,12 @@ namespace GSM02500SERVICE
             try
             {
                 _logger.LogInfo("Set Parameter || R_ServiceDelete(Controller)");
-                //loParam.Data = poParameter.Entity;
                 poParameter.Entity.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                //loParam.CPROPERTY_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02502_PROPERTY_ID_CONTEXT);
                 poParameter.Entity.CUSER_LOGIN_ID = R_BackGlobalVar.USER_ID;
                 poParameter.Entity.CACTION = "DELETE";
 
                 _logger.LogInfo("Run R_Delete(Cls) || R_ServiceDelete(Controller)");
-                loCls.R_Delete(poParameter.Entity);
+                await loCls.R_DeleteAsync(poParameter.Entity);
             }
             catch (Exception ex)
             {
@@ -185,7 +179,7 @@ namespace GSM02500SERVICE
         }
 
         [HttpPost]
-        public R_ServiceGetRecordResultDTO<GSM02502ParameterDTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GSM02502ParameterDTO> poParameter)
+        public async Task<R_ServiceGetRecordResultDTO<GSM02502ParameterDTO>> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GSM02502ParameterDTO> poParameter)
         {
             using Activity activity = _activitySource.StartActivity("R_ServiceGetRecord");
             _logger.LogInfo("Start || R_ServiceGetRecord(Controller)");
@@ -197,12 +191,10 @@ namespace GSM02500SERVICE
                 _logger.LogInfo("Set Parameter || R_ServiceGetRecord(Controller)");
                 GSM02502Cls loCls = new GSM02502Cls();
 
-                //loParam.Data = poParameter.Entity;
                 poParameter.Entity.CLOGIN_COMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                //loParam.CPROPERTY_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02502_PROPERTY_ID_CONTEXT);
 
                 _logger.LogInfo("Run R_GetRecord(Cls) || R_ServiceGetRecord(Controller)");
-                loRtn.data = loCls.R_GetRecord(poParameter.Entity);
+                loRtn.data = await loCls.R_GetRecordAsync(poParameter.Entity);
             }
             catch (Exception ex)
             {
@@ -216,7 +208,7 @@ namespace GSM02500SERVICE
         }
 
         [HttpPost]
-        public R_ServiceSaveResultDTO<GSM02502ParameterDTO> R_ServiceSave(R_ServiceSaveParameterDTO<GSM02502ParameterDTO> poParameter)
+        public async Task<R_ServiceSaveResultDTO<GSM02502ParameterDTO>> R_ServiceSave(R_ServiceSaveParameterDTO<GSM02502ParameterDTO> poParameter)
         {
             using Activity activity = _activitySource.StartActivity("R_ServiceSave");
             _logger.LogInfo("Start || R_ServiceSave(Controller)");
@@ -243,7 +235,7 @@ namespace GSM02500SERVICE
                 }
 
                 _logger.LogInfo("Run R_Save(Cls) || R_ServiceSave(Controller)");
-                loRtn.data = loCls.R_Save(poParameter.Entity, poParameter.CRUDMode);
+                loRtn.data = await loCls.R_SaveAsync(poParameter.Entity, poParameter.CRUDMode);
             }
             catch (Exception ex)
             {
@@ -257,7 +249,7 @@ namespace GSM02500SERVICE
         }
 
         [HttpPost]
-        public GSM02500ActiveInactiveResultDTO RSP_GS_ACTIVE_INACTIVE_UNIT_TYPE_CATEGORYMethod(GSM02500ActiveInactiveParameterDTO poParam)
+        public async Task<GSM02500ActiveInactiveResultDTO> RSP_GS_ACTIVE_INACTIVE_UNIT_TYPE_CATEGORYMethod(GSM02500ActiveInactiveParameterDTO poParam)
         {
             using Activity activity = _activitySource.StartActivity("RSP_GS_ACTIVE_INACTIVE_UNIT_TYPE_CATEGORYMethod");
             _logger.LogInfo("Start || RSP_GS_ACTIVE_INACTIVE_UNIT_TYPE_CATEGORYMethod(Controller)");
@@ -269,13 +261,10 @@ namespace GSM02500SERVICE
             {
                 _logger.LogInfo("Set Parameter || RSP_GS_ACTIVE_INACTIVE_UNIT_TYPE_CATEGORYMethod(Controller)");
                 poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                //loParam.CPROPERTY_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02502_PROPERTY_ID_CONTEXT);
-                //loParam.CUNIT_TYPE_CATEGORY_ID = R_Utility.R_GetContext<string>(ContextConstant.GSM02502_UNIT_TYPE_CATEGORY_ID_CONTEXT);
-                //loParam.LACTIVE = R_Utility.R_GetContext<bool>(ContextConstant.GSM02502_LACTIVE_CONTEXT);
                 poParam.CUSER_ID = R_BackGlobalVar.USER_ID;
 
                 _logger.LogInfo("Run RSP_GS_ACTIVE_INACTIVE_UNIT_TYPE_CATEGORYMethod(Cls) || RSP_GS_ACTIVE_INACTIVE_UNIT_TYPE_CATEGORYMethod(Controller)");
-                loCls.RSP_GS_ACTIVE_INACTIVE_UNIT_TYPE_CATEGORYMethod(poParam);
+                await loCls.RSP_GS_ACTIVE_INACTIVE_UNIT_TYPE_CATEGORYMethod(poParam);
             }
             catch (Exception ex)
             {
