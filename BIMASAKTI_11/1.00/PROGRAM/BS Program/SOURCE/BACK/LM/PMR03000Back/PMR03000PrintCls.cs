@@ -2,6 +2,9 @@
 using System.Data.Common;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
+using System.Reflection;
+using System.Text;
 using System.Text.Json;
 using System.Transactions;
 using PMR03000Common;
@@ -16,6 +19,9 @@ using R_ReportServerClient.DTO;
 using R_ReportServerCommon;
 using R_Storage;
 using R_StorageCommon;
+using Aspose.Words;
+using FastReportDesigner.Library;
+using System.Text.RegularExpressions;
 
 namespace PMR03000Back;
 
@@ -888,6 +894,62 @@ public class PMR03000PrintCls
 
         _logger.LogInfo(string.Format("END process method {0} on Cls", lcMethodName));
     }
+    
+    public async Task UpdateDistribute(PMR03000BillingStatementDTO poParameter, DbConnection poConn)
+    {
+        string? lcMethodName = nameof(UpdateDistribute);
+        _logger!.LogInfo(string.Format("START process method {0} on Cls", lcMethodName));
+
+        R_Exception loException = new();
+        string lcQuery;
+        DbCommand loCommand = null;
+        DbConnection loConn = null;
+        R_Db loDb;
+        try
+        {
+            loDb = new();
+            loConn = poConn;
+
+            loCommand = loDb.GetCommand();
+            lcQuery = "RSP_PM_BILL_STMT_UPDATE_DISTRIBUTE";
+            loCommand.CommandText = lcQuery;
+            loCommand.CommandType = CommandType.StoredProcedure;
+
+            loDb.R_AddCommandParameter(loCommand, "@CCOMPANY_ID", DbType.String, 8, poParameter.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCommand, "@CPROPERTY_ID", DbType.String, 20, poParameter.CPROPERTY_ID);
+            loDb.R_AddCommandParameter(loCommand, "@CTENANT_ID ", DbType.String, 20, poParameter.CTENANT_ID);
+            loDb.R_AddCommandParameter(loCommand, "@CLOI_AGRMT_REC_ID", DbType.String, 50, poParameter.CAGREEMENT_ID);
+            loDb.R_AddCommandParameter(loCommand, "@CPERIOD", DbType.String, 6, poParameter.CPERIOD);
+            loDb.R_AddCommandParameter(loCommand, "@CUSER_ID", DbType.String, 8, poParameter.CUSER_ID);
+
+            var loDbParam = loCommand.Parameters.Cast<DbParameter>()
+                .Where(x => x != null && x.ParameterName.StartsWith("@"))
+                .ToDictionary(x => x.ParameterName, x => x.Value);
+            _logger!.LogInfo(string.Format("Execute query on method {0}", lcMethodName));
+            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            var loDataTable = await loDb.SqlExecNonQueryAsync(loConn, loCommand, false);
+        }
+        catch (Exception ex)
+        {
+            loException.Add(ex);
+            _logger!.LogError(string.Format("Log Error {0} ", ex));
+        }
+        finally
+        {
+            if (loCommand != null)
+            {
+                loCommand.Dispose();
+                loCommand = null;
+            }
+        }
+
+        if (loException.Haserror)
+        {
+            loException.ThrowExceptionIfErrors();
+        }
+
+        _logger.LogInfo(string.Format("END process method {0} on Cls", lcMethodName));
+    }
 
     public async Task<PMR03000ResultDataDTO> GenerateReport(PMR03000ReportParamDTO poParam)
     {
@@ -899,6 +961,21 @@ public class PMR03000PrintCls
 
         try
         {
+            //byte[]? loFileBytes = null;
+
+            //var loAsm = Assembly.GetExecutingAssembly();
+            //var lcResourceFile = "PMR03000Back.fromtoolscopied.rtf";
+            //using (Stream resFilestream = loAsm.GetManifestResourceStream(lcResourceFile))
+            //{
+            //    var ms = new MemoryStream();
+            //    resFilestream.CopyTo(ms);
+            //    var bytes = ms.ToArray();
+
+            //    loFileBytes = bytes;
+            //}
+
+            //var lcMsg = System.Text.Encoding.Default.GetString(loFileBytes);
+
             _logger.LogDebug("Generated parameters for data print", poParam);
 
             _logger.LogInfo("Get Summary Data Billing for Report");
@@ -1071,8 +1148,11 @@ public class PMR03000PrintCls
                         NPARKING = item.NPARKING,
                         NOVERTIME = item.NOVERTIME,
                         NGENERAL_UTILITY = item.NGENERAL_UTILITY,
-                        TMESSAGE_DESCR_RTF = poParam.TMESSAGE_DESCR_RTF,
-                        TADDITIONAL_DESCR_RTF = poParam.TADDITIONAL_DESCR_RTF,
+                         TMESSAGE_DESCR_RTF = @poParam.TMESSAGE_DESCR_RTF,
+                        //TMESSAGE_DESCR_RTF = lcMsg,
+                        TADDITIONAL_DESCR_RTF = @poParam.TADDITIONAL_DESCR_RTF,
+                        TMESSAGE_DESCRIPTION = @poParam.TMESSAGE_DESCRIPTION,
+                        TADDITIONAL_DESCRIPTION = @poParam.TADDITIONAL_DESCRIPTION,
 
                         VirtualAccountData = dataVirtualAccount,
                         DataUnitList = FilteredUnitList,
@@ -1393,6 +1473,9 @@ public class PMR03000DistributeReportCls : R_IBatchProcessAsync, R_IProcessJobAs
             }).ToList();
 
             await SendEmail(emailFiles, loBillingStatement, loConn);
+            
+            loBillingStatement.CUSER_ID = R_BackGlobalVar.USER_ID;
+            await loCls.UpdateDistribute(loBillingStatement, loConn);
             EndBlock:
             _logger.LogInfo("End of R_SingleProcessAsync");
         }
@@ -1822,7 +1905,7 @@ public class PMR03000DistributeReportCls : R_IBatchProcessAsync, R_IProcessJobAs
 
         string lcCmd =
             $"EXEC RSP_WriteUploadProcessStatus '{_oKey.COMPANY_ID}', '{_oKey.USER_ID}', '{_oKey.KEY_GUID}', {_GetPropCount(_nMaxData)}, 'Finish Process', {lnFlag}";
-        await loDb.SqlExecNonQueryAsync(lcCmd, loConn,false);
+        await loDb.SqlExecNonQueryAsync(lcCmd, loConn, false);
     }
 
     public async Task<string> SendEmail(List<R_EmailEngineBackObject> poDataAttachment,
@@ -1842,10 +1925,22 @@ public class PMR03000DistributeReportCls : R_IBatchProcessAsync, R_IProcessJobAs
             var loEmailTemplate = await GetEmailTemplate(poConnection);
             loEmailFiles = poDataAttachment;
 
+            if (!string.IsNullOrEmpty(poSendToData.CPERIOD))
+            {
+                poSendToData.CPERIOD_YEAR_DISPLAY = poSendToData.CPERIOD.Substring(0, 4);
+                poSendToData.CPERIOD_MONTH_DISPLAY = poSendToData.CPERIOD.Substring(4, 2);
+                
+                var lcMonthDisplay = R_Utility.R_GetMessage(typeof(PMR03000BackResources.Resources_Dummy_Class),
+                    poSendToData.CPERIOD_MONTH_DISPLAY, new CultureInfo(_cReportCulture));
+                poSendToData.CPERIOD_DISPLAY = string.Format(
+                    R_Utility.R_GetMessage(typeof(PMR03000BackResources.Resources_Dummy_Class), "PeriodDisplayFormat",
+                        new CultureInfo(_cReportCulture)), lcMonthDisplay, poSendToData.CPERIOD_YEAR_DISPLAY);
+            }
+
             poSendToData.DDUE_DATE = PMR03000PrintCls.ConvertStringToDateTimeFormat(poSendToData.CDUE_DATE);
             poSendToData.CDUE_DATE_DISPLAY = poSendToData.DDUE_DATE.ToString(_LongDate);
-            poSendToData.CTOTAL_AMT_DISPLAY = poSendToData.NTOTAL_AMT.ToString(_DecimalSeparator);
-            
+            poSendToData.CTOTAL_AMT_DISPLAY = poSendToData.NTOTAL_AMT.ToString("N2", new CultureInfo(_cReportCulture));
+
             loEmailPar = new R_EmailEngineBackCommandPar()
             {
                 COMPANY_ID = _oKey.COMPANY_ID,
@@ -1854,10 +1949,14 @@ public class PMR03000DistributeReportCls : R_IBatchProcessAsync, R_IProcessJobAs
                 Message = new R_EmailEngineMessage()
                 {
                     EMAIL_FROM = loEmailTemplate.CGENERAL_EMAIL_ADDRESS!,
-                    EMAIL_BODY = string.Format(loEmailTemplate.CTEMPLATE_BODY, poSendToData.CTENANT_NAME, poSendToData.CUNIT_NAME,
-                        poSendToData.CPERIOD, poSendToData.CCURRENCY_CODE, poSendToData.CTOTAL_AMT_DISPLAY,
+                    EMAIL_BODY = string.Format(loEmailTemplate.CTEMPLATE_BODY, poSendToData.CTENANT_NAME,
+                        poSendToData.CUNIT_NAME,
+                        poSendToData.CPERIOD_DISPLAY, poSendToData.CCURRENCY_CODE, poSendToData.CTOTAL_AMT_DISPLAY,
                         poSendToData.CDUE_DATE_DISPLAY),
-                    EMAIL_SUBJECT = string.Format(R_Utility.R_GetMessage(typeof(PMR03000BackResources.Resources_Dummy_Class), "EmailSubject", new CultureInfo(_cReportCulture)), poSendToData.CPROPERTY_NAME, poSendToData.CTENANT_ID, poSendToData.CTENANT_NAME),
+                    EMAIL_SUBJECT = string.Format(
+                        R_Utility.R_GetMessage(typeof(PMR03000BackResources.Resources_Dummy_Class), "EmailSubject",
+                            new CultureInfo(_cReportCulture)), poSendToData.CPROPERTY_NAME, poSendToData.CTENANT_ID,
+                        poSendToData.CTENANT_NAME),
                     EMAIL_TO = poSendToData.CBILLING_EMAIL!,
                     EMAIL_CC = "", //"ericsonwen123@gmail.com",//"hafizmursiddd@gmail.com", // hafiz.codeid@realta.net
                     EMAIL_BCC = "",

@@ -28,7 +28,8 @@ public partial class APR00300 : R_Page
 
         try
         {
-            await _viewModel.Init();
+            await _viewModel.Init(); 
+            await _setDefaultSupplier();
         }
         catch (Exception ex)
         {
@@ -266,4 +267,34 @@ public partial class APR00300 : R_Page
         EndBlock:
         R_DisplayException(loEx);
     }
+
+    private async Task _setDefaultSupplier()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            if (string.IsNullOrEmpty(_viewModel.ReportParam.CPROPERTY_ID)) return;
+
+            var loLookupViewModel = new LookupGSL02900ViewModel();
+
+            await loLookupViewModel.GetSupplierList();
+            if (loLookupViewModel.SupplierGrid.Count > 0)
+            {
+                _viewModel.ReportParam.CFROM_SUPPLIER_ID = loLookupViewModel.SupplierGrid.FirstOrDefault()?.CSUPPLIER_ID;
+                _viewModel.ReportParam.CFROM_SUPPLIER_NAME = loLookupViewModel.SupplierGrid.Where(x => x.CSUPPLIER_ID == _viewModel.ReportParam.CFROM_SUPPLIER_ID)
+                    .Select(x => x.CSUPPLIER_NAME).FirstOrDefault() ?? string.Empty;
+                _viewModel.ReportParam.CTO_SUPPLIER_ID = loLookupViewModel.SupplierGrid.LastOrDefault()?.CSUPPLIER_ID;
+                _viewModel.ReportParam.CTO_SUPPLIER_NAME = loLookupViewModel.SupplierGrid.Where(x => x.CSUPPLIER_ID == _viewModel.ReportParam.CTO_SUPPLIER_ID)
+                    .Select(x => x.CSUPPLIER_NAME).FirstOrDefault() ?? string.Empty;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
 }

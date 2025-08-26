@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\BIMASAKTI\Bimasakti-version\Bimasakti-version\1.00\PROGRAM\BS Program\SOURCE\API\GS\BIMASAKTI_GS_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="07/17/2025 16:38:23" ReportInfo.CreatorVersion="2023.2.21.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="PropertyProfile" DataType="GSM02500COMMON.DTOs.GSM02500ResultPrintDTO, GSM02500COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Header" DataType="System.String"/>
+        <BusinessObjectDataSource Name="Data" DataType="System.Collections.Generic.List`1[[GSM02500COMMON.DTOs.GSM02500ResultPrintSPDTO, GSM02500COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_NAME" DataType="System.String"/>
+          <Column Name="CBUILDING_ID" DataType="System.String"/>
+          <Column Name="CBUILDING_NAME" DataType="System.String"/>
+          <Column Name="CFLOOR_ID" DataType="System.String"/>
+          <Column Name="CFLOOR_NAME" DataType="System.String"/>
+          <Column Name="CUNIT_ID" DataType="System.String"/>
+          <Column Name="CUNIT_NAME" DataType="System.String"/>
+          <Column Name="LACTIVE" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CUNIT_TYPE_ID" DataType="System.String"/>
+          <Column Name="CUNIT_TYPE_NAME" DataType="System.String"/>
+          <Column Name="CUNIT_CATEGORY_ID" DataType="System.String"/>
+          <Column Name="CUNIT_CATEGORY_NAME" DataType="System.String"/>
+          <Column Name="CSTRATA_STATUS" DataType="System.String"/>
+          <Column Name="CSTRATA_STATUS_DESC" DataType="System.String"/>
+          <Column Name="CLEASE_STATUS" DataType="System.String"/>
+          <Column Name="CLEASE_STATUS_DESC" DataType="System.String"/>
+        </BusinessObjectDataSource>
+      </Column>
+      <Column Name="Column" DataType="GSM02500COMMON.DTOs.GSM02500ColumnDTO, GSM02500COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Building_Id" DataType="System.String"/>
+        <Column Name="Building_Name" DataType="System.String"/>
+        <Column Name="Floor_Id" DataType="System.String"/>
+        <Column Name="Floor_Name" DataType="System.String"/>
+        <Column Name="Unit_Id" DataType="System.String"/>
+        <Column Name="Unit_Name" DataType="System.String"/>
+        <Column Name="Unit_Type" DataType="System.String"/>
+        <Column Name="Unit_Category" DataType="System.String"/>
+        <Column Name="Lease_Status" DataType="System.String"/>
+        <Column Name="Strata_Status" DataType="System.String"/>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="DPRINT_DATE_COMPANY" DataType="System.DateTime"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+      <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Page" DataType="System.String"/>
+        <Column Name="Of" DataType="System.String"/>
+        <Column Name="Print_Date" DataType="System.String"/>
+        <Column Name="Print_By" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="BaseHeaderLogo"/>
+      <inherited Name="Text33"/>
+      <inherited Name="LabelNoPage">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="BaseHeaderDate"/>
+      <inherited Name="LabelDateTime"/>
+      <inherited Name="BaseHeaderLabel"/>
+      <inherited Name="BaseHeaderUserId"/>
+      <inherited Name="LabelUserId"/>
+      <inherited Name="BaseHeaderDateTime"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="83.6" Width="1047.06" Height="37.8">
+        <TextObject Name="Text34" Top="9.45" Width="292.95" Height="18.9" Text="[ResponseDataModel.PropertyProfile.Header]" Font="Arial, 10pt, style=Bold"/>
+      </ChildBand>
+    </inherited>
+    <DataBand Name="Data1" ZOrder="0" Top="156.3" Width="1047.06" Height="18.9" CanGrow="true" DataSource="Data">
+      <TextObject Name="Text45" Width="94.5" Height="18.9" Text="[ResponseDataModel.PropertyProfile.Data.CBUILDING_ID]" Font="Arial, 10pt"/>
+      <TextObject Name="Text46" Left="94.5" Width="113.4" Height="18.9" Text="[ResponseDataModel.PropertyProfile.Data.CBUILDING_NAME]" Font="Arial, 10pt"/>
+      <TextObject Name="Text47" Left="207.9" Width="66.15" Height="18.9" Text="[ResponseDataModel.PropertyProfile.Data.CFLOOR_ID]" Font="Arial, 10pt"/>
+      <TextObject Name="Text48" Left="274.05" Width="113.4" Height="18.9" Text="[ResponseDataModel.PropertyProfile.Data.CFLOOR_NAME]" Font="Arial, 10pt"/>
+      <TextObject Name="Text49" Left="387.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.PropertyProfile.Data.CUNIT_ID]" Font="Arial, 10pt"/>
+      <TextObject Name="Text50" Left="481.95" Width="141.75" Height="18.9" CanGrow="true" GrowToBottom="true" Text="[ResponseDataModel.PropertyProfile.Data.CUNIT_NAME]" Font="Arial, 10pt"/>
+      <TextObject Name="Text51" Left="623.7" Width="122.85" Height="18.9" GrowToBottom="true" Text="[ResponseDataModel.PropertyProfile.Data.CUNIT_TYPE_NAME]" Font="Arial, 10pt"/>
+      <TextObject Name="Text52" Left="746.55" Width="113.4" Height="18.9" Text="[ResponseDataModel.PropertyProfile.Data.CUNIT_CATEGORY_NAME]" Font="Arial, 10pt"/>
+      <TextObject Name="Text53" Left="859.95" Width="94.5" Height="18.9" Text="[ResponseDataModel.PropertyProfile.Data.CSTRATA_STATUS_DESC]" Font="Arial, 10pt"/>
+      <TextObject Name="Text54" Left="954.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.PropertyProfile.Data.CLEASE_STATUS_DESC]" Font="Arial, 10pt"/>
+      <DataHeaderBand Name="DataHeader1" Top="129.4" Width="1047.06" Height="18.9" Fill.Color="Silver" KeepWithData="true" RepeatOnEveryPage="true">
+        <TextObject Name="Text35" Width="94.5" Height="18.9" Text="[ResponseDataModel.Column.Building_Id]" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text36" Left="94.5" Width="113.4" Height="18.9" Text="[ResponseDataModel.Column.Building_Name]" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text37" Left="207.9" Width="66.15" Height="18.9" Text="[ResponseDataModel.Column.Floor_Id]" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text38" Left="274.05" Width="113.4" Height="18.9" Text="[ResponseDataModel.Column.Floor_Name]" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text39" Left="387.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Column.Unit_Id]" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text40" Left="481.95" Width="141.75" Height="18.9" Text="[ResponseDataModel.Column.Unit_Name]" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text41" Left="623.7" Width="122.85" Height="18.9" Text="[ResponseDataModel.Column.Unit_Type]" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text42" Left="746.55" Width="113.4" Height="18.9" Text="[ResponseDataModel.Column.Unit_Category]" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text43" Left="859.95" Width="94.5" Height="18.9" Text="[ResponseDataModel.Column.Lease_Status]" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text44" Left="954.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Column.Strata_Status]" Font="Arial, 10pt, style=Bold"/>
+      </DataHeaderBand>
+    </DataBand>
+  </inherited>
+</inherited>

@@ -90,7 +90,7 @@ namespace PMR03000Model.ViewModel
                 ReportTemplateList = loReturn.Data;
                 if (ReportTemplateList.Count > 0)
                 {
-                    ReportParam.ReportTemplate = ReportTemplateList[0];
+                    ReportParam.ReportTemplate = ReportTemplateList.FirstOrDefault(x => x.LDEFAULT) ?? ReportTemplateList[0];
                 }
             }
             catch (Exception ex)

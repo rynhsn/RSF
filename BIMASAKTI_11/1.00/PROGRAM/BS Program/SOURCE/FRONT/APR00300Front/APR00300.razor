@@ -6,7 +6,7 @@
 @inject R_ILocalizer<Resources_Dummy_Class> _localizer
 
 <R_StackLayout Row Class="mb-1">
-    <R_ItemLayout Class="me-1">
+    <R_ItemLayout col="1">
         <R_Label>@_localizer["PROPERTY"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="3">
@@ -101,7 +101,7 @@
                                                           ThousandSeparator="false"
                                                           Enabled="@(_viewModel.ReportParam.CDATE_BASED_ON == "P")"/>
                                     </R_ItemLayout>
-                                    <R_ItemLayout col="3">
+                                    <R_ItemLayout col="1">
                                         <R_DropDownList Data="@_viewModel.PeriodList"
                                                         @bind-Value="_viewModel.ReportParam.CFROM_MONTH"
                                                         ValueField="Key"
@@ -120,7 +120,7 @@
                                                           ThousandSeparator="false"
                                                           Enabled="@(_viewModel.ReportParam.CDATE_BASED_ON == "P")"/>
                                     </R_ItemLayout>
-                                    <R_ItemLayout col="3">
+                                    <R_ItemLayout col="1">
                                         <R_DropDownList Data="@_viewModel.PeriodList"
                                                         @bind-Value="_viewModel.ReportParam.CTO_MONTH"
                                                         ValueField="Key"

@@ -913,5 +913,14 @@ namespace PMR03000BackResources {
                 return ResourceManager.GetString("Label_Water", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}, {1}.
+        /// </summary>
+        internal static string PeriodDisplayFormat {
+            get {
+                return ResourceManager.GetString("PeriodDisplayFormat", resourceCulture);
+            }
+        }
     }
 }

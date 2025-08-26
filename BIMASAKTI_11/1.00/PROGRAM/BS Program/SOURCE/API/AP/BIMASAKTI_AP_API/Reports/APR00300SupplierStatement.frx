@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\AP\BIMASAKTI_AP_API\Reports\BaseHeaderCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="10/17/2024 16:31:03" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\AP\BIMASAKTI_AP_API\Reports\BaseHeaderCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="08/25/2025 16:10:09" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="Data" DataType="APR00300Common.DTOs.Print.APR00300ReportResultDTO, APR00300Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -114,6 +114,7 @@
         <Column Name="CCOMPANY_NAME" DataType="System.String"/>
         <Column Name="CPRINT_NAME" DataType="System.String"/>
         <Column Name="CUSER_ID" DataType="System.String"/>
+        <Column Name="DPRINT_DATE_COMPANY" DataType="System.DateTime"/>
       </Column>
       <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
         <Column Name="Page" DataType="System.String"/>
@@ -125,9 +126,9 @@
   </Dictionary>
   <inherited Name="Page1">
     <inherited Name="PageHeader1">
-      <inherited Name="Picture1"/>
+      <inherited Name="LogoCompany"/>
       <inherited Name="Text33"/>
-      <inherited Name="Text40">
+      <inherited Name="LabelNoPage">
         <Formats>
           <GeneralFormat/>
           <GeneralFormat/>
@@ -135,37 +136,37 @@
           <GeneralFormat/>
         </Formats>
       </inherited>
-      <inherited Name="Text36"/>
-      <inherited Name="Text38"/>
-      <inherited Name="Text34"/>
-      <inherited Name="Text37"/>
-      <inherited Name="Text39"/>
-      <inherited Name="Text41"/>
-      <ChildBand Name="Child1" ZOrder="-1" Top="79.81" Width="718.2" Height="47.25" CanGrow="true" CanShrink="true" CanBreak="true">
-        <TextObject Name="Text42" Top="9.45" Width="122.85" Height="18.9" Text="[ResponseDataModel.Data.Label.PROPERTY]" AutoWidth="true" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
-        <TextObject Name="Text43" Top="28.35" Width="122.85" Height="18.9" Text="[ResponseDataModel.Data.Label.STATEMENT_DATE]" AutoWidth="true" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
-        <TextObject Name="Text47" Left="122.85" Top="9.45" Width="207.9" Height="18.9" Text=": [ResponseDataModel.Data.Header.CPROPERTY_ID] - [ResponseDataModel.Data.Header.CPROPERTY_NAME]" AutoWidth="true" VertAlign="Center" Font="Arial Unicode MS, 7.5pt">
+      <inherited Name="BaseHeaderDate"/>
+      <inherited Name="LabelDate"/>
+      <inherited Name="BaseHeaderLabel"/>
+      <inherited Name="BaseHeaderUserId"/>
+      <inherited Name="LabelUserId"/>
+      <inherited Name="BaseHeaderDateTime"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="79.6" Width="718.2" Height="66.15" CanGrow="true" CanShrink="true" CanBreak="true">
+        <TextObject Name="Text42" Top="28.35" Width="122.85" Height="18.9" Text="[ResponseDataModel.Data.Label.PROPERTY]" AutoWidth="true" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
+        <TextObject Name="Text43" Top="47.25" Width="122.85" Height="18.9" Text="[ResponseDataModel.Data.Label.STATEMENT_DATE]" AutoWidth="true" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
+        <TextObject Name="Text47" Left="122.85" Top="28.35" Width="264.6" Height="18.9" Text=": [ResponseDataModel.Data.Header.CPROPERTY_ID] - [ResponseDataModel.Data.Header.CPROPERTY_NAME]" AutoWidth="true" VertAlign="Center" Font="Arial Unicode MS, 7.5pt">
           <Formats>
             <GeneralFormat/>
             <GeneralFormat/>
           </Formats>
         </TextObject>
-        <TextObject Name="Text48" Left="122.85" Top="28.35" Width="207.9" Height="18.9" Text=": [ResponseDataModel.Data.Header.DSTATEMENT_DATE]" Format="Date" Format.Format="d" AutoWidth="true" VertAlign="Center" Font="Arial Unicode MS, 7.5pt"/>
-        <CheckBoxObject Name="CheckBox1" Left="548.1" Top="9.45" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.LINCLUDE_ZERO_BALANCE"/>
-        <TextObject Name="Text45" Left="557.55" Top="9.45" Width="151.2" Height="9.45" Text="[ResponseDataModel.Data.Label.INCLUDE_ZERO_BALANCE]" VertAlign="Center" Font="Arial Unicode MS, 7.5pt"/>
-        <CheckBoxObject Name="CheckBox2" Left="548.1" Top="28.35" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.LSHOW_AGE_TOTAL"/>
-        <TextObject Name="Text46" Left="557.55" Top="28.35" Width="151.2" Height="9.45" Text="[ResponseDataModel.Data.Label.SHOW_AGE_TOTAL]" VertAlign="Center" Font="Arial Unicode MS, 7.5pt"/>
-        <ChildBand Name="Child2" Top="131.27" Width="718.2" Height="28.35" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;P&quot;">
+        <TextObject Name="Text48" Left="122.85" Top="47.25" Width="264.6" Height="18.9" Text=": [ResponseDataModel.Data.Header.DSTATEMENT_DATE]" Format="Date" Format.Format="d" AutoWidth="true" VertAlign="Center" Font="Arial Unicode MS, 7.5pt"/>
+        <CheckBoxObject Name="CheckBox1" Left="548.1" Top="28.35" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.LINCLUDE_ZERO_BALANCE"/>
+        <TextObject Name="Text45" Left="557.55" Top="28.35" Width="151.2" Height="9.45" Text="[ResponseDataModel.Data.Label.INCLUDE_ZERO_BALANCE]" VertAlign="Center" Font="Arial Unicode MS, 7.5pt"/>
+        <CheckBoxObject Name="CheckBox2" Left="548.1" Top="47.25" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.LSHOW_AGE_TOTAL"/>
+        <TextObject Name="Text46" Left="557.55" Top="47.25" Width="151.2" Height="9.45" Text="[ResponseDataModel.Data.Label.SHOW_AGE_TOTAL]" VertAlign="Center" Font="Arial Unicode MS, 7.5pt"/>
+        <ChildBand Name="Child2" Top="149.75" Width="718.2" Height="28.35" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;P&quot;">
           <TextObject Name="Text44" Width="122.85" Height="18.9" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Data.Label.PERIOD]" AutoWidth="true" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
-          <TextObject Name="Text49" Left="122.85" Width="207.9" Height="18.9" CanShrink="true" CanBreak="false" Text=": [ResponseDataModel.Data.Header.CFROM_PERIOD] - [ResponseDataModel.Data.Header.CTO_PERIOD]" HideZeros="true" AutoWidth="true" VertAlign="Center" Font="Arial Unicode MS, 7.5pt">
+          <TextObject Name="Text49" Left="122.85" Width="264.6" Height="18.9" CanShrink="true" CanBreak="false" Text=": [ResponseDataModel.Data.Header.CFROM_PERIOD] - [ResponseDataModel.Data.Header.CTO_PERIOD]" HideZeros="true" AutoWidth="true" VertAlign="Center" Font="Arial Unicode MS, 7.5pt">
             <Formats>
               <GeneralFormat/>
               <GeneralFormat/>
             </Formats>
           </TextObject>
-          <ChildBand Name="Child3" Top="163.83" Width="718.2" Height="28.35" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;C&quot;">
+          <ChildBand Name="Child3" Top="182.1" Width="718.2" Height="28.35" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;C&quot;">
             <TextObject Name="Text51" Width="122.85" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;C&quot;" Text="[ResponseDataModel.Data.Label.CUT_OFF_DATE]" AutoWidth="true" VertAlign="Center" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
-            <TextObject Name="Text52" Left="122.85" Width="207.9" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;C&quot;" Text=": [ResponseDataModel.Data.Header.DCUT_OFF_DATE]" VertAlign="Center" Font="Arial Unicode MS, 7.5pt">
+            <TextObject Name="Text52" Left="122.85" Width="264.6" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;C&quot;" Text=": [ResponseDataModel.Data.Header.DCUT_OFF_DATE]" VertAlign="Center" Font="Arial Unicode MS, 7.5pt">
               <Formats>
                 <DateFormat/>
                 <GeneralFormat/>
@@ -175,22 +176,22 @@
         </ChildBand>
       </ChildBand>
     </inherited>
-    <DataBand Name="Data4" ZOrder="0" Top="196.39" Width="718.2" Height="37.8" Border.Lines="Top" StartNewPage="true" DataSource="Data">
+    <DataBand Name="Data4" ZOrder="0" Top="214.45" Width="718.2" Height="37.8" Border.Lines="Top" StartNewPage="true" DataSource="Data">
       <TextObject Name="Text50" Top="9.45" Width="122.85" Height="18.9" Text="[ResponseDataModel.Data.Label.SUPPLIER]" AutoWidth="true" VertAlign="Center" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
-      <TextObject Name="Text84" Left="122.85" Top="9.45" Width="207.9" Height="18.9" Text=": [ResponseDataModel.Data.Data.CSUPPLIER_ID] - [ResponseDataModel.Data.Data.CSUPPLIER_NAME]" Font="Arial Unicode MS, 7.5pt">
+      <TextObject Name="Text84" Left="122.85" Top="9.45" Width="264.6" Height="18.9" Text=": [ResponseDataModel.Data.Data.CSUPPLIER_ID] - [ResponseDataModel.Data.Data.CSUPPLIER_NAME]" Font="Arial Unicode MS, 7.5pt">
         <Formats>
           <GeneralFormat/>
           <GeneralFormat/>
         </Formats>
       </TextObject>
-      <DataBand Name="Data5" Top="280.41" Width="718.2" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;C&quot;" CanGrow="true" CanShrink="true" DataSource="BusinessObjectDataSource2">
+      <DataBand Name="Data5" Top="298.05" Width="718.2" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;C&quot;" CanGrow="true" CanShrink="true" DataSource="BusinessObjectDataSource2">
         <TextObject Name="Text85" Width="141.75" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.INVOICES.CREF_NO]" Font="Arial Unicode MS, 7.5pt"/>
         <TextObject Name="Text86" Left="141.75" Width="94.5" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.INVOICES.DREF_DATE]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 7.5pt"/>
         <TextObject Name="Text87" Left="236.25" Width="189" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.INVOICES.CTRANS_DESC]" Font="Arial Unicode MS, 7.5pt"/>
         <TextObject Name="Text88" Left="425.25" Width="47.25" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.INVOICES.CCURRENCY_CODE]" Font="Arial Unicode MS, 7.5pt"/>
         <TextObject Name="Text89" Left="472.5" Width="122.85" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.INVOICES.NORIGINAL_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7.5pt" Trimming="EllipsisCharacter"/>
         <TextObject Name="Text90" Left="595.35" Width="122.85" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.INVOICES.NOUTSTANDING_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7.5pt" Trimming="EllipsisCharacter"/>
-        <DataHeaderBand Name="DataHeader2" Top="238.4" Width="718.2" Height="37.8" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;C&quot;">
+        <DataHeaderBand Name="DataHeader2" Top="256.25" Width="718.2" Height="37.8" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;C&quot;">
           <TextObject Name="Text57" Left="472.5" Width="245.7" Height="18.9" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.AMOUNT]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
           <TextObject Name="Text53" Width="141.75" Height="37.8" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.INVOICE_NO]" VertAlign="Center" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
           <TextObject Name="Text54" Left="141.75" Width="94.5" Height="37.8" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.INVOICE_DATE]" VertAlign="Center" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
@@ -200,7 +201,7 @@
           <TextObject Name="Text59" Left="595.35" Top="18.9" Width="122.85" Height="18.9" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.OUTSTANDING]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
         </DataHeaderBand>
       </DataBand>
-      <DataBand Name="Data1" Top="303.52" Width="718.2" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;C&quot;" CanGrow="true" CanShrink="true" DataSource="BusinessObjectDataSource3">
+      <DataBand Name="Data1" Top="320.95" Width="718.2" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;C&quot;" CanGrow="true" CanShrink="true" DataSource="BusinessObjectDataSource3">
         <TextObject Name="Text97" Left="425.25" Width="170.1" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.SUB_TOTAL] ([ResponseDataModel.Data.Data.CURRENCIES.CCURRENCY_CODE])" Font="Arial Unicode MS, 7.5pt, style=Bold">
           <Formats>
             <GeneralFormat/>
@@ -208,7 +209,7 @@
           </Formats>
         </TextObject>
         <TextObject Name="Text98" Left="595.35" Width="122.85" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.CURRENCIES.NSUB_TOTAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7.5pt, style=Bold" Trimming="EllipsisCharacter"/>
-        <DataFooterBand Name="DataFooter1" Top="326.63" Width="718.2" Height="66.15" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;C&quot; &amp;&amp; [ResponseDataModel.Data.Header.LSHOW_AGE_TOTAL]">
+        <DataFooterBand Name="DataFooter1" Top="343.85" Width="718.2" Height="66.15" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;C&quot; &amp;&amp; [ResponseDataModel.Data.Header.LSHOW_AGE_TOTAL]">
           <TextObject Name="Text72" Left="94.5" Top="28.35" Width="103.95" Height="18.9" Border.Lines="Top" Text="[ResponseDataModel.Data.Label.NOT_DUE]" HorzAlign="Right" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
           <TextObject Name="Text73" Left="198.45" Top="28.35" Width="103.95" Height="18.9" Border.Lines="Top" Text="[ResponseDataModel.Data.Label.CURRENT]" HorzAlign="Right" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
           <TextObject Name="Text74" Left="302.4" Top="28.35" Width="103.95" Height="18.9" Border.Lines="Top" Text="[ResponseDataModel.Data.Label.MORE_THAN_30_DAYS]" HorzAlign="Right" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
@@ -224,7 +225,7 @@
           <TextObject Name="Text95" Left="510.3" Top="47.25" Width="103.95" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.INVOICES.NAGE_MORE_THAN_90_DAYS_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7.5pt" Trimming="EllipsisCharacter"/>
         </DataFooterBand>
       </DataBand>
-      <DataBand Name="Data2" Top="396.99" Width="718.2" Height="37.8" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;P&quot;">
+      <DataBand Name="Data2" Top="414" Width="718.2" Height="37.8" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;P&quot;">
         <TextObject Name="Text115" Width="56.7" Height="37.8" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.PERIOD]" VertAlign="Center" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
         <TextObject Name="Text105" Left="472.5" Width="245.7" Height="18.9" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.AMOUNT]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
         <TextObject Name="Text106" Left="56.7" Width="151.2" Height="37.8" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.INVOICE_NO]" VertAlign="Center" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
@@ -234,8 +235,8 @@
         <TextObject Name="Text110" Left="472.5" Top="18.9" Width="122.85" Height="18.9" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.ORIGINAL]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
         <TextObject Name="Text111" Left="595.35" Top="18.9" Width="122.85" Height="18.9" Border.Lines="Top, Bottom" Text="[ResponseDataModel.Data.Label.OUTSTANDING]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
       </DataBand>
-      <DataBand Name="Data6" Top="439.01" Width="718.2" Height="9.45" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;P&quot;" CanGrow="true" CanShrink="true" DataSource="BusinessObjectDataSource1">
-        <DataBand Name="Data7" Top="452.67" Width="718.2" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;P&quot;" CanGrow="true" CanShrink="true" DataSource="INVOICES">
+      <DataBand Name="Data6" Top="455.8" Width="718.2" Height="9.45" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;P&quot;" CanGrow="true" CanShrink="true" DataSource="BusinessObjectDataSource1">
+        <DataBand Name="Data7" Top="469.25" Width="718.2" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;P&quot;" CanGrow="true" CanShrink="true" DataSource="INVOICES">
           <TextObject Name="Text114" Width="56.7" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.PERIODS.CREF_PRD]" Duplicates="Hide" Font="Arial Unicode MS, 7.5pt"/>
           <TextObject Name="Text116" Left="56.7" Width="151.2" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.PERIODS.INVOICES.CREF_NO]" Font="Arial Unicode MS, 7.5pt"/>
           <TextObject Name="Text117" Left="207.9" Width="75.6" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.PERIODS.INVOICES.DREF_DATE]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 7.5pt"/>
@@ -244,7 +245,7 @@
           <TextObject Name="Text120" Left="472.5" Width="122.85" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.PERIODS.INVOICES.NORIGINAL_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7.5pt" Trimming="EllipsisCharacter"/>
           <TextObject Name="Text121" Left="595.35" Width="122.85" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.PERIODS.INVOICES.NOUTSTANDING_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7.5pt" Trimming="EllipsisCharacter"/>
         </DataBand>
-        <DataBand Name="Data8" Top="475.78" Width="718.2" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;P&quot;" CanGrow="true" CanShrink="true" DataSource="CURRENCIES">
+        <DataBand Name="Data8" Top="492.15" Width="718.2" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;P&quot;" CanGrow="true" CanShrink="true" DataSource="CURRENCIES">
           <TextObject Name="Text122" Left="425.25" Width="94.5" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.SUB_TOTAL] ([ResponseDataModel.Data.Data.PERIODS.CURRENCIES.CCURRENCY_CODE])" Font="Arial Unicode MS, 7.5pt, style=Bold">
             <Formats>
               <GeneralFormat/>
@@ -252,7 +253,7 @@
             </Formats>
           </TextObject>
           <TextObject Name="Text123" Left="519.75" Width="198.45" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.PERIODS.CURRENCIES.NSUB_TOTAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7.5pt, style=Bold" Trimming="EllipsisCharacter"/>
-          <DataFooterBand Name="DataFooter3" Top="498.89" Width="718.2" Height="28.35" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;P&quot;" CanGrow="true">
+          <DataFooterBand Name="DataFooter3" Top="515.05" Width="718.2" Height="28.35" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;P&quot;" CanGrow="true">
             <TextObject Name="Text139" Left="283.5" Width="179.55" Height="18.9" Border.Lines="Top" Text="[ResponseDataModel.Data.Label.SUB_TOTAL_PERIOD] [ResponseDataModel.Data.Data.PERIODS.CREF_PRD]" VertAlign="Center" Font="Arial Unicode MS, 7.5pt, style=Bold">
               <Formats>
                 <GeneralFormat/>
@@ -262,10 +263,10 @@
             <TextObject Name="Text140" Left="463.05" Width="255.15" Height="18.9" Border.Lines="Top" Text="[ResponseDataModel.Data.Data.PERIODS.NSUB_TOTAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Unicode MS, 7.5pt, style=Bold" Trimming="EllipsisCharacter"/>
           </DataFooterBand>
         </DataBand>
-        <DataFooterBand Name="DataFooter2" Top="531.45" Width="718.2" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;P&quot;" CanGrow="true" CanShrink="true">
+        <DataFooterBand Name="DataFooter2" Top="547.4" Width="718.2" Height="18.9" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;P&quot;" CanGrow="true" CanShrink="true">
           <TextObject Name="Text141" Width="207.9" Height="18.9" Border.Lines="Top" Text="[ResponseDataModel.Data.Label.GRAND_TOTAL_SUPPLIER]" VertAlign="Center" Font="Arial Unicode MS, 7.5pt, style=Bold"/>
           <TextObject Name="Text142" Left="207.9" Width="510.3" Height="18.9" Border.Lines="Top" Text="[ResponseDataModel.Data.Data.NGRAND_TOTAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7.5pt, style=Bold" Trimming="EllipsisCharacter"/>
-          <ChildBand Name="Child4" Top="554.56" Width="718.2" Height="75.6" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;P&quot; &amp;&amp; [ResponseDataModel.Data.Header.LSHOW_AGE_TOTAL]">
+          <ChildBand Name="Child4" Top="570.3" Width="718.2" Height="75.6" VisibleExpression="[ResponseDataModel.Data.Header.CDATE_BASED_ON]==&quot;P&quot; &amp;&amp; [ResponseDataModel.Data.Header.LSHOW_AGE_TOTAL]">
             <TextObject Name="Text132" Left="28.35" Top="56.7" Width="94.5" Height="18.9" Border.Lines="Top" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.PERIODS.INVOICES.NAGE_NOT_DUE_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Unicode MS, 7.5pt" Trimming="EllipsisCharacter"/>
             <TextObject Name="Text133" Left="122.85" Top="56.7" Width="94.5" Height="18.9" Border.Lines="Top" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.PERIODS.INVOICES.NAGE_CURRENT_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Unicode MS, 7.5pt" Trimming="EllipsisCharacter"/>
             <TextObject Name="Text134" Left="217.35" Top="56.7" Width="94.5" Height="18.9" Border.Lines="Top" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Data.PERIODS.INVOICES.NAGE_MORE_THAN_30_DAYS_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Unicode MS, 7.5pt" Trimming="EllipsisCharacter"/>

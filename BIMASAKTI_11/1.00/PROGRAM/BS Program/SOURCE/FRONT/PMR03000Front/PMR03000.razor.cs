@@ -1,4 +1,5 @@
-﻿using BlazorClientHelper;
+﻿using System.Reflection;
+using BlazorClientHelper;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
 using Lookup_GSModel.ViewModel;
@@ -318,6 +319,8 @@ public partial class PMR03000 : R_Page
             _viewModel.ReportParam.CMESSAGE_NAME = loResult.CMESSAGE_NAME;
             _viewModel.ReportParam.TMESSAGE_DESCR_RTF = loResult.TMESSAGE_DESCR_RTF;
             _viewModel.ReportParam.TADDITIONAL_DESCR_RTF = loResult.TADDITIONAL_DESCR_RTF;
+            _viewModel.ReportParam.TMESSAGE_DESCRIPTION = loResult.TMESSAGE_DESCRIPTION;
+            _viewModel.ReportParam.TADDITIONAL_DESCRIPTION = loResult.CADDITIONAL_DESCRIPTION;
         }
         catch (Exception ex)
         {
@@ -363,6 +366,8 @@ public partial class PMR03000 : R_Page
             _viewModel.ReportParam.CMESSAGE_NAME = loTempResult.CMESSAGE_NAME;
             _viewModel.ReportParam.TMESSAGE_DESCR_RTF = loTempResult.TMESSAGE_DESCR_RTF;
             _viewModel.ReportParam.TADDITIONAL_DESCR_RTF = loTempResult.TADDITIONAL_DESCR_RTF;
+            _viewModel.ReportParam.TMESSAGE_DESCRIPTION = loTempResult.TMESSAGE_DESCRIPTION;
+            _viewModel.ReportParam.TADDITIONAL_DESCRIPTION = loTempResult.CADDITIONAL_DESCRIPTION;
         }
         catch (Exception ex)
         {
@@ -421,11 +426,11 @@ public partial class PMR03000 : R_Page
             loParameterPrint = _viewModel.ReportParam;
 
             //parameter object kaya gini gak bakal ketangkep sama controller report nya (dibiarin biar tahu aja kalo ini gak bisa)
-            loParameterPrint.ReportTemplate = _viewModel.ReportTemplateList
-                                                  .FirstOrDefault(x =>
-                                                      x.CTEMPLATE_ID == _viewModel.ReportParam.ReportTemplate
-                                                          .CTEMPLATE_ID) ??
-                                              new PMR03000ReportTemplateDTO();
+            // loParameterPrint.ReportTemplate = _viewModel.ReportTemplateList
+            //                                       .FirstOrDefault(x =>
+            //                                           x.CTEMPLATE_ID == _viewModel.ReportParam.ReportTemplate
+            //                                               .CTEMPLATE_ID) ??
+            //                                   new PMR03000ReportTemplateDTO();
             loParameterPrint.CFILE_NAME =
                 _viewModel.ReportTemplateList.FirstOrDefault(x =>
                     x.CTEMPLATE_ID == _viewModel.ReportParam.ReportTemplate.CTEMPLATE_ID)!.CFILE_NAME;
@@ -467,8 +472,7 @@ public partial class PMR03000 : R_Page
             var param = new LML00600ParameterDTO
             {
                 CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
-                CCUSTOMER_TYPE = _viewModel.CustomerType,
-                CSEARCH_TEXT = _viewModel.ReportParam.CTO_TENANT
+                CCUSTOMER_TYPE = _viewModel.CustomerType
             };
             await loLookupViewModel.GetTenantList(param);
             if (loLookupViewModel.TenantList.Count > 0)
@@ -516,6 +520,34 @@ public partial class PMR03000 : R_Page
                 _viewModel.ReportParam.TADDITIONAL_DESCR_RTF = loLookupViewModel.MessageGrid
                     .Where(x => x.CMESSAGE_NO == _viewModel.ReportParam.CMESSAGE_NO)
                     .Select(x => x.TADDITIONAL_DESCR_RTF).FirstOrDefault() ?? string.Empty;
+                _viewModel.ReportParam.TMESSAGE_DESCRIPTION = loLookupViewModel.MessageGrid
+                    .Where(x => x.CMESSAGE_NO == _viewModel.ReportParam.CMESSAGE_NO)
+                    .Select(x => x.TMESSAGE_DESCRIPTION).FirstOrDefault() ?? string.Empty;
+                _viewModel.ReportParam.TADDITIONAL_DESCRIPTION = loLookupViewModel.MessageGrid
+                    .Where(x => x.CMESSAGE_NO == _viewModel.ReportParam.CMESSAGE_NO)
+                    .Select(x => x.CADDITIONAL_DESCRIPTION).FirstOrDefault() ?? string.Empty;
+
+
+                //byte[] loFileBytes = null;
+                //var loAsm = Assembly.GetExecutingAssembly();
+                //var lcResourceFile = "PMR03000Front.Terms.rtf";
+                //using (Stream resFilestream = loAsm.GetManifestResourceStream(lcResourceFile))
+                //{
+                //    var ms = new MemoryStream();
+                //    resFilestream.CopyTo(ms);
+                //    var bytes = ms.ToArray();
+                
+                //    loFileBytes = bytes;
+                //}
+                
+                //var rtfText = @$"{System.Text.Encoding.Default.GetString(loFileBytes)}";
+                // rtfText = rtfText.Replace(@"\deflang14345", @"\deflang1033")
+                    // .Replace(@"\deflangfe14345", @"\deflangfe1033")
+                    // .Replace(@"\themelang14345", @"\themelang1033")
+                    // .Replace(@"\lang14345", @"\lang1033");
+                    
+               
+                //_viewModel.ReportParam.TMESSAGE_DESCR_RTF = rtfText;
             }
         }
         catch (Exception ex)

@@ -97,7 +97,7 @@ namespace ICR00600Model.ViewModel
                 if (loResult.Data == null) return;
 
                 PeriodList = loResult.Data;
-                ReportParam.CPERIOD_MONTH = PeriodList[0].CPERIOD_NO;
+                ReportParam.CPERIOD_MONTH = DateTime.Now.Month.ToString("D2");
             }
             catch (Exception ex)
             {

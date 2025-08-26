@@ -102,6 +102,8 @@ namespace PMR03000Common.DTOs.Print
         public decimal NGENERAL_UTILITY { get; set; }
         public string CMESSAGE_NO { get; set; }
         public string CMESSAGE_NAME { get; set; }
+        public string TMESSAGE_DESCRIPTION { get; set; }
+        public string TADDITIONAL_DESCRIPTION { get; set; }
         public string TMESSAGE_DESCR_RTF { get; set; }
         public string TADDITIONAL_DESCR_RTF { get; set; }
 
@@ -143,6 +145,8 @@ namespace PMR03000Common.DTOs.Print
         public decimal NTAX_AMT { get; set; } //TAX Amount
         public decimal NSUB_TOTAL_AMT { get; set; } //Sub Total
         public string CUNIT_DESCRIPTION { get; set; }
+        public string CCHARGES_ID { get; set; }
+        public string CCHARGES_NAME { get; set; }
     }
 
     public class PMR03000DetailUtilityDTO
@@ -210,6 +214,7 @@ namespace PMR03000Common.DTOs.Print
 
         public string CUNIT_DESCRIPTION { get; set; }
         public string CUSAGE_RATE_MODE { get; set; }
+        public string CCHARGES_NAME { get; set; }
 
         public List<PMR03000RateWGListDTO> RateWGList { get; set; } = new List<PMR03000RateWGListDTO>();
     }
@@ -374,6 +379,7 @@ namespace PMR03000Common.DTOs.Print
         public string CPERIOD_MONTH_DISPLAY { get; set; }
         public string CPERIOD_DISPLAY { get; set; }
         public string CDUE_DATE { get; set; }
+        public string CAGREEMENT_ID { get; set; }
         public DateTime DDUE_DATE { get; set; }
         public string CDUE_DATE_DISPLAY { get; set; }
         public string CBILL_DATE { get; set; }
@@ -388,6 +394,7 @@ namespace PMR03000Common.DTOs.Print
         public decimal NTOTAL_AMT { get; set; }
         public string CTOTAL_AMT_DISPLAY { get; set; }
         public DateTime DCREATE_DATE { get; set; }
+        public string CUSER_ID { get; set; }
     }
 
     public class PMR03000DistributeReportDataDTO

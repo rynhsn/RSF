@@ -1,0 +1,6 @@
+1201 = Error saving, please contact your administrator!
+1202 = Duplicate Message No!
+1203 = Message Description cannot be empty!
+
+
+

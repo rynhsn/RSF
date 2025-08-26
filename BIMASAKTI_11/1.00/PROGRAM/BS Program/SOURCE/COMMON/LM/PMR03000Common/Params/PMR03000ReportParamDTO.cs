@@ -26,6 +26,8 @@ public class PMR03000ReportParamDTO
     public bool LIS_PRINT { get; set; } = true;
     public string CMESSAGE_NO {get; set;}
     public string CMESSAGE_NAME {get; set;}
+    public string TMESSAGE_DESCRIPTION { get; set; }
+    public string TADDITIONAL_DESCRIPTION { get; set; }
     public string TMESSAGE_DESCR_RTF { get; set; }
     public string TADDITIONAL_DESCR_RTF { get; set; }
     

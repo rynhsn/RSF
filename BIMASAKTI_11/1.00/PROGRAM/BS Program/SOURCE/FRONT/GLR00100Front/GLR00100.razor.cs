@@ -33,6 +33,8 @@ namespace GLR00100Front
                 await _viewModel.Init();
                 await ComboTransCode.FocusAsync();
                 await _viewModel.GetTransCodeList();
+
+                await _setDefaultDept();
             }
             catch (Exception ex)
             {
@@ -128,14 +130,18 @@ namespace GLR00100Front
                     await ComboTransCode.FocusAsync();
                     loReturn = false;
                 }
-                
+
                 _viewModel.ReportParam.CREPORT_TYPE = _localizer["BASED_ON_TRANS_CODE"];
-                _viewModel.ReportParam.CCURRENCY_TYPE_NAME = _viewModel.RadioCurrencyType.Find(x => x.Key == _viewModel.ReportParam.CCURRENCY_TYPE).Value;
-                _viewModel.ReportParam.CTRANSACTION_NAME = _viewModel.TransCodeList?.Find(x => x.CTRANS_CODE == _viewModel.ReportParam.CTRANS_CODE).CTRANSACTION_NAME;
+                _viewModel.ReportParam.CCURRENCY_TYPE_NAME = _viewModel.RadioCurrencyType
+                    .Find(x => x.Key == _viewModel.ReportParam.CCURRENCY_TYPE).Value;
+                _viewModel.ReportParam.CTRANSACTION_NAME = _viewModel.TransCodeList
+                    ?.Find(x => x.CTRANS_CODE == _viewModel.ReportParam.CTRANS_CODE).CTRANSACTION_NAME;
                 if (_viewModel.ReportParam.CPERIOD_TYPE == "P")
                 {
-                    _viewModel.ReportParam.CFROM_PERIOD = _viewModel.YearPeriod + _viewModel.FromPeriod + _viewModel.SuffixPeriod;
-                    _viewModel.ReportParam.CTO_PERIOD = _viewModel.YearPeriod + _viewModel.ToPeriod + _viewModel.SuffixPeriod;
+                    _viewModel.ReportParam.CFROM_PERIOD =
+                        _viewModel.YearPeriod + _viewModel.FromPeriod + _viewModel.SuffixPeriod;
+                    _viewModel.ReportParam.CTO_PERIOD =
+                        _viewModel.YearPeriod + _viewModel.ToPeriod + _viewModel.SuffixPeriod;
                 }
                 else
                 {
@@ -244,26 +250,50 @@ namespace GLR00100Front
             _viewModel.ChangeByType((string)eventArgs);
         }
 
-        private void CheckPeriodFrom(object obj)
+
+        private async Task CheckPeriodFrom(string value)
         {
-            var lcData = (string)obj;
-            if (_viewModel.FromPeriod == null) return;
-            if (int.Parse(lcData) > int.Parse(_viewModel.ToPeriod))
+            var loEx = new R_Exception();
+            try
             {
-                _viewModel.ToPeriod = lcData;
+
+                if (string.IsNullOrEmpty(value)) return;
+
+                _viewModel.FromPeriod = value;
+                if (int.Parse(_viewModel.FromPeriod) > int.Parse(_viewModel.ToPeriod))
+                {
+                    _viewModel.ToPeriod = _viewModel.FromPeriod;
+                }
             }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            await R_DisplayExceptionAsync(loEx);
         }
 
-        private void CheckPeriodTo(object obj)
+        private async Task CheckPeriodTo(string value)
         {
-            var lcData = (string)obj;
-            if (_viewModel.ToPeriod == null) return;
-            if (int.Parse(lcData) < int.Parse(_viewModel.FromPeriod))
+            var loEx = new R_Exception();
+            try
             {
-                _viewModel.FromPeriod = lcData;
+                if (string.IsNullOrEmpty(value)) return;
+
+                _viewModel.ToPeriod = value;
+                if (int.Parse(_viewModel.ToPeriod) < int.Parse(_viewModel.FromPeriod))
+                {
+                    _viewModel.FromPeriod = _viewModel.ToPeriod;
+                }
             }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            await R_DisplayExceptionAsync(loEx);
         }
-        
+
         private async Task OnClickPrint()
         {
             var loEx = new R_Exception();
@@ -312,13 +342,12 @@ namespace GLR00100Front
 
             loEx.ThrowExceptionIfErrors();
         }
-        
+
         private async Task BeforeOpenPopupSaveAs(R_BeforeOpenLookupEventArgs eventArgs)
         {
             var loEx = new R_Exception();
             try
             {
-                
                 if (!await _validateDataBeforePrint()) return;
 
                 var loParam = _viewModel.ReportParam;
@@ -343,6 +372,53 @@ namespace GLR00100Front
         private void InstanceDateTab(R_InstantiateDockEventArgs eventArgs)
         {
             eventArgs.TargetPageType = typeof(GLR00100Date);
+        }
+
+        private async Task _setDefaultDept()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loLookupViewModel = new LookupGSL00700ViewModel();
+                var loParameter = new GSL00700ParameterDTO();
+
+                await loLookupViewModel.GetDepartmentList(loParameter);
+                if (loLookupViewModel.DepartmentGrid.Count > 0)
+                {
+                    _viewModel.ReportParam.CFROM_DEPT_CODE =
+                        loLookupViewModel.DepartmentGrid.FirstOrDefault()?.CDEPT_CODE;
+                    _viewModel.ReportParam.CFROM_DEPT_NAME = loLookupViewModel.DepartmentGrid
+                        .Where(x => x.CDEPT_CODE == _viewModel.ReportParam.CFROM_DEPT_CODE)
+                        .Select(x => x.CDEPT_NAME).FirstOrDefault() ?? string.Empty;
+
+                    _viewModel.ReportParam.CTO_DEPT_CODE = loLookupViewModel.DepartmentGrid.LastOrDefault()?.CDEPT_CODE;
+                    _viewModel.ReportParam.CTO_DEPT_NAME = loLookupViewModel.DepartmentGrid
+                        .Where(x => x.CDEPT_CODE == _viewModel.ReportParam.CTO_DEPT_CODE)
+                        .Select(x => x.CDEPT_NAME).LastOrDefault() ?? string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task ValueChangeTransCode(string val)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                _viewModel.ReportParam.CTRANS_CODE = string.IsNullOrEmpty(val) ? "" : val;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            
+            await R_DisplayExceptionAsync(loEx);
         }
     }
 }

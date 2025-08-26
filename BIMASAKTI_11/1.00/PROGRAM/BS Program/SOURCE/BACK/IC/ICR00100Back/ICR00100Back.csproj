@@ -7,6 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Reference Include="R_APIBackEnd">
         <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
       </Reference>

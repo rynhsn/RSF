@@ -39,6 +39,7 @@ public partial class GLR00100RefNo
             await _viewModel.Init();
             await ComboTransCode.FocusAsync();
             await _viewModel.GetTransCodeList();
+            await _setDefaultDept();
         }
         catch (Exception ex)
         {
@@ -60,6 +61,8 @@ public partial class GLR00100RefNo
                 _viewModel.ReportParam.CFROM_DEPT_CODE.Trim().Length <= 0)
             {
                 _viewModel.ReportParam.CFROM_DEPT_NAME = "";
+                _viewModel.ReportParam.CFROM_REF_NO = "";
+                _viewModel.ReportParam.CTO_REF_NO = "";
                 return;
             }
 
@@ -84,13 +87,15 @@ public partial class GLR00100RefNo
 
             _viewModel.ReportParam.CFROM_DEPT_CODE = loResult.CDEPT_CODE;
             _viewModel.ReportParam.CFROM_DEPT_NAME = loResult.CDEPT_NAME;
+
+            await _setDefaultRefNo();
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         R_DisplayException(loEx);
     }
 
@@ -111,7 +116,7 @@ public partial class GLR00100RefNo
         R_DisplayException(loEx);
     }
 
-    private void AfterLookupFromDept(R_AfterOpenLookupEventArgs eventArgs)
+    private async Task AfterLookupFromDept(R_AfterOpenLookupEventArgs eventArgs)
     {
         var loEx = new R_Exception();
         try
@@ -122,6 +127,8 @@ public partial class GLR00100RefNo
 
             _viewModel.ReportParam.CFROM_DEPT_CODE = loTempResult.CDEPT_CODE;
             _viewModel.ReportParam.CFROM_DEPT_NAME = loTempResult.CDEPT_NAME;
+
+            await _setDefaultRefNo();
         }
         catch (Exception ex)
         {
@@ -142,6 +149,8 @@ public partial class GLR00100RefNo
                 _viewModel.ReportParam.CTO_DEPT_CODE.Trim().Length <= 0)
             {
                 _viewModel.ReportParam.CTO_DEPT_NAME = "";
+                _viewModel.ReportParam.CFROM_REF_NO = "";
+                _viewModel.ReportParam.CTO_REF_NO = "";
                 return;
             }
 
@@ -166,13 +175,15 @@ public partial class GLR00100RefNo
 
             _viewModel.ReportParam.CTO_DEPT_CODE = loResult.CDEPT_CODE;
             _viewModel.ReportParam.CTO_DEPT_NAME = loResult.CDEPT_NAME;
+
+            await _setDefaultRefNo();
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         R_DisplayException(loEx);
     }
 
@@ -192,7 +203,7 @@ public partial class GLR00100RefNo
         R_DisplayException(loEx);
     }
 
-    private void AfterLookupToDept(R_AfterOpenLookupEventArgs eventArgs)
+    private async Task AfterLookupToDept(R_AfterOpenLookupEventArgs eventArgs)
     {
         var loEx = new R_Exception();
         try
@@ -203,6 +214,8 @@ public partial class GLR00100RefNo
 
             _viewModel.ReportParam.CTO_DEPT_CODE = loTempResult.CDEPT_CODE;
             _viewModel.ReportParam.CTO_DEPT_NAME = loTempResult.CDEPT_NAME;
+
+            await _setDefaultRefNo();
         }
         catch (Exception ex)
         {
@@ -226,8 +239,8 @@ public partial class GLR00100RefNo
                 await ComboTransCode.FocusAsync();
                 loReturn = false;
             }
-            
-            
+
+
             _viewModel.ReportParam.CREPORT_TYPE = _localizer["BASED_ON_REF_NO"];
             _viewModel.ReportParam.CCURRENCY_TYPE_NAME = _viewModel.RadioCurrencyType.Find(x => x.Key == _viewModel.ReportParam.CCURRENCY_TYPE).Value;
             _viewModel.ReportParam.CTRANSACTION_NAME = _viewModel.TransCodeList?.Find(x => x.CTRANS_CODE == _viewModel.ReportParam.CTRANS_CODE).CTRANSACTION_NAME;
@@ -259,7 +272,7 @@ public partial class GLR00100RefNo
         try
         {
             if (!await _validateDataBeforePrint()) return;
-            
+
             if (_viewModel.ReportParam.CFROM_REF_NO == null ||
                 _viewModel.ReportParam.CFROM_REF_NO.Trim().Length <= 0) return;
 
@@ -300,7 +313,7 @@ public partial class GLR00100RefNo
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         R_DisplayException(loEx);
     }
 
@@ -311,7 +324,7 @@ public partial class GLR00100RefNo
         try
         {
             if (!await _validateDataBeforePrint()) return;
-            
+
             var fromDate = (_viewModel.ReportParam.CPERIOD_TYPE == "P")
                 ? _viewModel.YearPeriod + _viewModel.FromPeriod
                 : _viewModel.DateFrom?.ToString("yyyyMMdd");
@@ -335,7 +348,7 @@ public partial class GLR00100RefNo
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         R_DisplayException(loEx);
     }
 
@@ -366,7 +379,7 @@ public partial class GLR00100RefNo
         try
         {
             if (!await _validateDataBeforePrint()) return;
-            
+
             if (_viewModel.ReportParam.CTO_REF_NO == null ||
                 _viewModel.ReportParam.CTO_REF_NO.Trim().Length <= 0) return;
 
@@ -407,7 +420,7 @@ public partial class GLR00100RefNo
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         R_DisplayException(loEx);
     }
 
@@ -417,7 +430,7 @@ public partial class GLR00100RefNo
         try
         {
             if (!await _validateDataBeforePrint()) return;
-            
+
             var fromDate = (_viewModel.ReportParam.CPERIOD_TYPE == "P")
                 ? _viewModel.YearPeriod + _viewModel.FromPeriod
                 : _viewModel.DateFrom?.ToString("yyyyMMdd");
@@ -441,7 +454,7 @@ public partial class GLR00100RefNo
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         R_DisplayException(loEx);
     }
 
@@ -471,8 +484,7 @@ public partial class GLR00100RefNo
         try
         {
             await _viewModel.GetPeriodDTList(eventArgs.ToString());
-
-            ResetRefNo();
+            await _setDefaultRefNo();
         }
         catch (Exception ex)
         {
@@ -482,40 +494,75 @@ public partial class GLR00100RefNo
         loEx.ThrowExceptionIfErrors();
     }
 
-    private void CheckPeriodFrom(object obj)
+    private async Task CheckPeriodFrom(string value)
     {
-        var lcData = (string)obj;
-        if (_viewModel.FromPeriod == null) return;
-        if (int.Parse(lcData) > int.Parse(_viewModel.ToPeriod))
+        var loEx = new R_Exception();
+        try
         {
-            _viewModel.ToPeriod = lcData;
+
+            if (string.IsNullOrEmpty(value)) return;
+
+            _viewModel.FromPeriod = value;
+            if (int.Parse(_viewModel.FromPeriod) > int.Parse(_viewModel.ToPeriod))
+            {
+                _viewModel.ToPeriod = _viewModel.FromPeriod;
+            }
+
+            await _setDefaultRefNo();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
         }
 
-        ResetRefNo();
+        await R_DisplayExceptionAsync(loEx);
     }
 
-    private void CheckPeriodTo(object obj)
+    private async Task CheckPeriodTo(string value)
     {
-        var lcData = (string)obj;
-        if (_viewModel.ToPeriod == null) return;
-        if (int.Parse(lcData) < int.Parse(_viewModel.FromPeriod))
+        var loEx = new R_Exception();
+        try
         {
-            _viewModel.FromPeriod = lcData;
+            if (string.IsNullOrEmpty(value)) return;
+
+            _viewModel.ToPeriod = value;
+            if (int.Parse(_viewModel.ToPeriod) < int.Parse(_viewModel.FromPeriod))
+            {
+                _viewModel.FromPeriod = _viewModel.ToPeriod;
+            }
+
+            await _setDefaultRefNo();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
         }
 
-        ResetRefNo();
+        await R_DisplayExceptionAsync(loEx);
     }
 
-    private void ResetRefNo()
-    {
-        _viewModel.ReportParam.CFROM_REF_NO = "";
-        _viewModel.ReportParam.CTO_REF_NO = "";
-    }
+    //private void ResetRefNo()
+    //{
+    //    _viewModel.ReportParam.CFROM_REF_NO = "";
+    //    _viewModel.ReportParam.CTO_REF_NO = "";
+    //}
 
-    private void OnChangeByType(object eventArgs)
+    private async Task OnChangeByType(object eventArgs)
     {
-        _viewModel.ChangeByType((string)eventArgs);
-        ResetRefNo();
+        var loEx = new R_Exception();
+
+        try
+        {
+            _viewModel.ChangeByType((string)eventArgs);
+            await _setDefaultRefNo();
+            await _setDefaultRefNo();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        await R_DisplayExceptionAsync(loEx);
     }
 
     private async Task OnClickPrint()
@@ -548,8 +595,8 @@ public partial class GLR00100RefNo
 
         loEx.ThrowExceptionIfErrors();
     }
-    
-    
+
+
     private async Task BeforeOpenPopupSaveAs(R_BeforeOpenLookupEventArgs eventArgs)
     {
         var loEx = new R_Exception();
@@ -567,7 +614,101 @@ public partial class GLR00100RefNo
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         loEx.ThrowExceptionIfErrors();
     }
+
+
+    private async Task _setDefaultDept()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loLookupViewModel = new LookupGSL00700ViewModel();
+            var loParameter = new GSL00700ParameterDTO();
+
+            await loLookupViewModel.GetDepartmentList(loParameter);
+            if (loLookupViewModel.DepartmentGrid.Count > 0)
+            {
+                _viewModel.ReportParam.CFROM_DEPT_CODE =
+                    loLookupViewModel.DepartmentGrid.FirstOrDefault()?.CDEPT_CODE;
+                _viewModel.ReportParam.CFROM_DEPT_NAME = loLookupViewModel.DepartmentGrid
+                    .Where(x => x.CDEPT_CODE == _viewModel.ReportParam.CFROM_DEPT_CODE)
+                    .Select(x => x.CDEPT_NAME).FirstOrDefault() ?? string.Empty;
+
+                _viewModel.ReportParam.CTO_DEPT_CODE = loLookupViewModel.DepartmentGrid.LastOrDefault()?.CDEPT_CODE;
+                _viewModel.ReportParam.CTO_DEPT_NAME = loLookupViewModel.DepartmentGrid
+                    .Where(x => x.CDEPT_CODE == _viewModel.ReportParam.CTO_DEPT_CODE)
+                    .Select(x => x.CDEPT_NAME).LastOrDefault() ?? string.Empty;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+
+    private async Task _setDefaultRefNo()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var fromDate = (_viewModel.ReportParam.CPERIOD_TYPE == "P")
+                ? _viewModel.YearPeriod + _viewModel.FromPeriod
+                : _viewModel.DateFrom?.ToString("yyyyMMdd");
+            var toDate = (_viewModel.ReportParam.CPERIOD_TYPE == "P")
+                ? _viewModel.YearPeriod + _viewModel.ToPeriod
+                : _viewModel.DateTo?.ToString("yyyyMMdd");
+
+            var loLookupViewModel = new LookupGLL00110ViewModel();
+            var loParameter = new GLL00110ParameterDTO()
+            {
+                CTRANS_CODE = _viewModel.ReportParam.CTRANS_CODE,
+                CFROM_DEPT_CODE = _viewModel.ReportParam.CFROM_DEPT_CODE,
+                CTO_DEPT_CODE = _viewModel.ReportParam.CTO_DEPT_CODE,
+                CFROM_DATE = fromDate,
+                CTO_DATE = toDate
+            };
+
+            await loLookupViewModel.GLL00110ReferenceNoLookUpByPeriod(loParameter);
+            if (loLookupViewModel.loList.Count > 0)
+            {
+                _viewModel.ReportParam.CFROM_REF_NO = loLookupViewModel.loList.FirstOrDefault()?.CREF_NO;
+                _viewModel.ReportParam.CTO_REF_NO = loLookupViewModel.loList.LastOrDefault()?.CREF_NO;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+
+    private async Task ValueChangeTransCode(string val)
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            if (string.IsNullOrEmpty(val)) return;
+
+            _viewModel.ReportParam.CTRANS_CODE = string.IsNullOrEmpty(val) ? "" : val;
+            await _setDefaultRefNo();
+
+
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        await R_DisplayExceptionAsync(loEx);
+    }
+
 }

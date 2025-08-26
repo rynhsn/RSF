@@ -1,0 +1,32 @@
+﻿@inherits R_Page
+@attribute [R_Page(ResourceId = "_Message")]
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
+@using Lookup_GSCOMMON.DTOs
+
+<R_StackLayout Style="width: 800px">
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.MessageGrid"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                Height="300px"
+                Pageable="true">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GSL03700DTO.CMESSAGE_NO_NAME)" HeaderText="@_localizer["_Message"]" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL03700DTO.CMESSAGE_TYPE_DESCR)" HeaderText="@_localizer["_MessageType"]" Width="120px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL03700DTO.TMESSAGE_DESCRIPTION)" HeaderText="@_localizer["_Desc"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL03700DTO.CADDITIONAL_DESCRIPTION)" HeaderText="@_localizer["_AdditionalCharges"]" Width="200px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+            <R_Button OnClick="Button_OnClickOkAsync">
+                @_localizer["_OkBtn"]
+            </R_Button>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                @_localizer["_CancelBtn"]
+            </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>

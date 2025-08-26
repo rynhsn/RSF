@@ -150,10 +150,13 @@ namespace GLR00100Model.ViewModel
                 loResult.Data.Add(new GLR00100PeriodDTDTO { CPERIOD_NO = "99", CPERIOD_DISPLAY =  R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Closing")});
                 PeriodListFrom = loResult.Data;
                 PeriodListTo = loResult.Data;
-                
+
                 //tambahkan CPERIOD_NO = "99" dan CPERIOD_DISPLAY = "Closing" di index terakhir
-                FromPeriod = PeriodListFrom[0].CPERIOD_NO;
-                ToPeriod = PeriodListTo[0].CPERIOD_NO;
+                //FromPeriod = PeriodListFrom[0].CPERIOD_NO;
+                //ToPeriod = PeriodListTo[0].CPERIOD_NO;
+
+                FromPeriod = DateTime.Now.Month.ToString("D2");
+                ToPeriod = DateTime.Now.Month.ToString("D2");
             }
             catch (Exception ex)
             {

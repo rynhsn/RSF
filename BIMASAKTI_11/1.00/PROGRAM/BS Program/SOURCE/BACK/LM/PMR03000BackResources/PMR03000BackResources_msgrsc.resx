@@ -274,6 +274,10 @@
     <value>Billing Statement {0} {1} - {2}</value>
   </data>
   
+  
+  <data name="PeriodDisplayFormat" xml:space="preserve">
+    <value>{0}, {1}</value>
+  </data>
   <data name="01" xml:space="preserve">
     <value>January</value>
   </data>

@@ -32,7 +32,7 @@ public partial class ICR00600 : R_Page
         try
         {
             await _viewModel.Init();
-            await Task.CompletedTask;
+            await _setDefaultDept();
         }
         catch (Exception ex)
         {
@@ -276,7 +276,7 @@ public partial class ICR00600 : R_Page
             CTRANS_CODE = ICR00600TransCode.CTRANS_CODE,
             CTRANS_NAME = _viewModel.TransCode.CTRANSACTION_NAME,
             CPERIOD = _viewModel.ReportParam.IPERIOD_YEAR + _viewModel.ReportParam.CPERIOD_MONTH,
-            CDEPT_CODE = _viewModel.ReportParam.CDEPT_CODE!,
+            CDEPT_CODE = (_viewModel.ReportParam.LDEPT) ? _viewModel.ReportParam.CDEPT_CODE! : "",
             CWAREHOUSE_ID = "",
             CALLOC_ID = "",
             CTRANS_STATUS = "30,80",
@@ -394,5 +394,35 @@ public partial class ICR00600 : R_Page
             .Find(x => x.Key == _viewModel.ReportParam.COPTION_PRINT).Value;
         
         _viewModel.ReportParam.CPERIOD = _viewModel.ReportParam.IPERIOD_YEAR + _viewModel.ReportParam.CPERIOD_MONTH;
+    }
+
+
+
+    private async Task _setDefaultDept()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loLookupViewModel = new LookupGSL00700ViewModel();
+            var loParameter = new GSL00700ParameterDTO();
+
+            await loLookupViewModel.GetDepartmentList(loParameter);
+            if (loLookupViewModel.DepartmentGrid.Count > 0)
+            {
+                _viewModel.ReportParam.CDEPT_CODE =
+                    loLookupViewModel.DepartmentGrid.FirstOrDefault()?.CDEPT_CODE;
+                _viewModel.ReportParam.CDEPT_NAME = loLookupViewModel.DepartmentGrid
+                    .Where(x => x.CDEPT_CODE == _viewModel.ReportParam.CDEPT_CODE)
+                    .Select(x => x.CDEPT_NAME).FirstOrDefault() ?? string.Empty;
+
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
     }
 }

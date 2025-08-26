@@ -67,22 +67,22 @@
                         </R_ItemLayout>
                         <R_ItemLayout col="2" Class="me-2">
                             <R_ComboBox Data="_viewModel.PeriodListFrom"
-                                        @bind-Value="_viewModel.FromPeriod"
+                                        Value="_viewModel.FromPeriod"
                                         ValueField="@nameof(GLR00100PeriodDTDTO.CPERIOD_NO)"
                                         TextField="@nameof(GLR00100PeriodDTDTO.CPERIOD_DISPLAY)"
                                         Enabled="@(_viewModel.ReportParam.CPERIOD_TYPE == "P")"
-                                        OnChanged="@CheckPeriodFrom"/>
+                                        ValueChanged="@((string value) => CheckPeriodFrom(value))" />
                         </R_ItemLayout>
                         <R_ItemLayout>
                             <R_Label>@_localizer["TO"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout col="2">
                             <R_ComboBox Data="_viewModel.PeriodListTo"
-                                        @bind-Value="_viewModel.ToPeriod"
+                                        Value="_viewModel.ToPeriod"
                                         ValueField="@nameof(GLR00100PeriodDTDTO.CPERIOD_NO)"
                                         TextField="@nameof(GLR00100PeriodDTDTO.CPERIOD_DISPLAY)"
                                         Enabled="@(_viewModel.ReportParam.CPERIOD_TYPE == "P")"
-                                        OnChanged="@CheckPeriodTo"/>
+                                        ValueChanged="@((string value) => CheckPeriodTo(value))" />
                         </R_ItemLayout>
                     </R_StackLayout>
                     <R_StackLayout Row>

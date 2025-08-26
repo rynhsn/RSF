@@ -1,0 +1,495 @@
+﻿@page "/GSM02580"
+@attribute [R_Page(Title = "Operational Hour")]
+@inherits R_Page
+@using GSM02500COMMON.DTOs.GSM02580
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label Class="fw-bold" FontSize="15">@_localizer["_Property"]</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@loViewModel.SelectedProperty.CPROPERTY_ID"
+                       R_ConductorSource="@_conductorRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="7">
+            <R_TextBox @bind-Value="@loViewModel.SelectedProperty.CPROPERTY_NAME"
+                       R_ConductorSource="@_conductorRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_CheckBox @bind-Value="@loViewModel.Data.LSHOW_IN_MOBILE"
+                    R_ConductorSource="@_conductorRef"
+                    Enabled="false">
+        </R_CheckBox>
+        <R_Label>@_localizer["_ShowInMobile"]</R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label FontStyle="R_eFontStyle.Bold">@_localizer["_Day"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row Class="justify-content-between">
+            <R_ItemLayout>
+                <R_Label FontStyle="R_eFontStyle.Bold">@_localizer["_OpenHour"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row Class="justify-content-between">
+            <R_ItemLayout>
+                <R_Label FontStyle="R_eFontStyle.Bold">@_localizer["_CloseHour"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_CheckBox @bind-Value="@loViewModel.Data.LMONDAY"
+                    R_ConductorSource="@_conductorRef"
+                    R_EnableAdd R_EnableEdit>
+        </R_CheckBox>
+        <R_Label>@_localizer["_MONDAY"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.IMONDAY_OPEN_H"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="23"
+                                  Format="D2"
+                                  Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LMONDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@(" : ")</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.IMONDAY_OPEN_M"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="59"
+                                  Format="D2"
+                                  Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LMONDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.IMONDAY_CLOSE_H"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="23"
+                                  Format="D2"
+                                  Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LMONDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@(" : ")</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.IMONDAY_CLOSE_M"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="59"
+                                  Format="D2"
+                                  Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LMONDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_CheckBox @bind-Value="@loViewModel.Data.LTUESDAY"
+                    R_ConductorSource="@_conductorRef"
+                    R_EnableAdd R_EnableEdit>
+        </R_CheckBox>
+        <R_Label>@_localizer["_TUESDAY"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.ITUESDAY_OPEN_H"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="23"
+                                  Format="D2"
+                                        Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LTUESDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@(" : ")</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_NumericTextBox @bind-Value="@loViewModel.Data.ITUESDAY_OPEN_M"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="59"
+                                  Format="D2"
+                                        Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LTUESDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.ITUESDAY_CLOSE_H"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="23"
+                                  Format="D2"
+                                        Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LTUESDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@(" : ")</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_NumericTextBox @bind-Value="@loViewModel.Data.ITUESDAY_CLOSE_M"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="59"
+                                  Format="D2"
+                                        Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LTUESDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_CheckBox @bind-Value="@loViewModel.Data.LWEDNESDAY"
+                    R_ConductorSource="@_conductorRef"
+                    R_EnableAdd R_EnableEdit>
+        </R_CheckBox>
+        <R_Label>@_localizer["_WEDNESDAY"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.IWEDNESDAY_OPEN_H"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="23"
+                                  Format="D2"
+                                        Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LWEDNESDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@(" : ")</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_NumericTextBox @bind-Value="@loViewModel.Data.IWEDNESDAY_OPEN_M"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="59"
+                                  Format="D2"
+                                        Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LWEDNESDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.IWEDNESDAY_CLOSE_H"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="23"
+                                  Format="D2"
+                                        Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LWEDNESDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@(" : ")</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_NumericTextBox @bind-Value="@loViewModel.Data.IWEDNESDAY_CLOSE_M"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="59"
+                                  Format="D2"
+                                        Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LWEDNESDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_CheckBox @bind-Value="@loViewModel.Data.LTHURSDAY"
+                    R_ConductorSource="@_conductorRef"
+                    R_EnableAdd R_EnableEdit>
+        </R_CheckBox>
+        <R_Label>@_localizer["_THURSDAY"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.ITHURSDAY_OPEN_H"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="23"
+                                  Format="D2"
+                                  Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LTHURSDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@(" : ")</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.ITHURSDAY_OPEN_M"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="59"
+                                  Format="D2"
+                                  Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LTHURSDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.ITHURSDAY_CLOSE_H"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="23"
+                                  Format="D2"
+                                  Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LTHURSDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@(" : ")</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.ITHURSDAY_CLOSE_M"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="59"
+                                  Format="D2"
+                                  Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LTHURSDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_CheckBox @bind-Value="@loViewModel.Data.LFRIDAY"
+                    R_ConductorSource="@_conductorRef"
+                    R_EnableAdd R_EnableEdit>
+        </R_CheckBox>
+        <R_Label>@_localizer["_FRIDAY"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.IFRIDAY_OPEN_H"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="23"
+                                  Format="D2"
+                                  Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LFRIDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@(" : ")</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.IFRIDAY_OPEN_M"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="59"
+                                  Format="D2"
+                                  Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LFRIDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.IFRIDAY_CLOSE_H"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="23"
+                                  Format="D2"
+                                  Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LFRIDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@(" : ")</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.IFRIDAY_CLOSE_M"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="59"
+                                  Format="D2"
+                                  Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LFRIDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_CheckBox @bind-Value="@loViewModel.Data.LSATURDAY"
+                    R_ConductorSource="@_conductorRef"
+                    R_EnableAdd R_EnableEdit>
+        </R_CheckBox>
+        <R_Label>@_localizer["_SATURDAY"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.ISATURDAY_OPEN_H"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="23"
+                                  Format="D2"
+                                  Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LSATURDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@(" : ")</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.ISATURDAY_OPEN_M"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="59"
+                                  Format="D2"
+                                  Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LSATURDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.ISATURDAY_CLOSE_H"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="23"
+                                  Format="D2"
+                                  Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LSATURDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@(" : ")</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.ISATURDAY_CLOSE_M"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="59"
+                                  Format="D2"
+                                  Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LSATURDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_CheckBox @bind-Value="@loViewModel.Data.LSUNDAY"
+                    R_ConductorSource="@_conductorRef"
+                    R_EnableAdd R_EnableEdit>
+        </R_CheckBox>
+        <R_Label>@_localizer["_SUNDAY"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.ISUNDAY_OPEN_H"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="23"
+                                  Format="D2"
+                                        Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LSUNDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@(" : ")</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_NumericTextBox @bind-Value="@loViewModel.Data.ISUNDAY_OPEN_M"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="59"
+                                  Format="D2"
+                                        Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LSUNDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@loViewModel.Data.ISUNDAY_CLOSE_H"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="23"
+                                  Format="D2"
+                                        Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LSUNDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@(" : ")</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_NumericTextBox @bind-Value="@loViewModel.Data.ISUNDAY_CLOSE_M"
+                                  R_ConductorSource="@_conductorRef"
+                                  Min="0"
+                                  Max="59"
+                                  Format="D2"
+                                        Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit) && loViewModel.Data.LSUNDAY)"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="11">
+        <R_Label FontStyle="R_eFontStyle.Italic">@_localizer["_Information"]</R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-2">
+    <R_ItemLayout col="1">
+        <R_Label FontStyle="R_eFontStyle.Bold">@_localizer["_Note"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="10">
+        <R_TextArea @bind-Value="@loViewModel.Data.CNOTES"
+                    R_ConductorSource="@_conductorRef"
+                    R_EnableAdd R_EnableEdit></R_TextArea>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row Class="justify-content-between">
+    <R_ItemLayout>
+        <R_AddButton R_Conductor="@_conductorRef" Enabled=@(IsButtonAddEnabled && _conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)></R_AddButton>
+        <R_EditButton R_Conductor="@_conductorRef"></R_EditButton>
+        <R_DeleteButton R_Conductor="@_conductorRef"></R_DeleteButton>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+        <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@loViewModel"
+             R_Display="@OperationalHour_Display"
+             R_ServiceSave="@OperationalHour_ServiceSave"
+             R_ServiceDelete="@OperationalHour_ServiceDelete"
+             R_AfterDelete="OperationalHour_AfterDelete"
+             R_AfterSave="OperationalHour_AfterSave"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@OperationalHour_ServiceGetRecord">
+</R_Conductor>
+
+
