@@ -1,54 +1,27 @@
-﻿@using System.Reflection
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
+@using System.Reflection
+@using R_BlazorFrontEnd.Controls.Enums
+@using R_BlazorFrontEnd.Controls.Interfaces
 @using R_BlazorFrontEnd.Helpers
-@using R_BlazorFrontEnd.Tenant
-@using BlazorMenu.Components.Resources
+@inject LazyAssemblyLoader AssemblyLoader
 
-@if (_environment.IsDevelopment)
-{
-    <R_BasicRouter AppAssembly="@typeof(Program).Assembly"
-            AdditionalAssemblies="@lazyLoadedAssemblies">
-        <Found Context="routeData">
-            <CascadingAuthenticationState>
-                <MenuTabsRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-            </CascadingAuthenticationState>
-        </Found>
-        <NotFound>
-            <CascadingAuthenticationState>
-                <LayoutView Layout="@typeof(MainLayout)">
-                    <p>@(R_FrontUtility.R_GetMessage(typeof(BlazorMenuLocalizer), "_PageNotFound", pcResourceName: "BlazorMenuResources"))</p>
-                </LayoutView>
-            </CascadingAuthenticationState>
-        </NotFound>
-    </R_BasicRouter>
-}
-else
-{
-    <R_TenantRouter AppAssembly="@typeof(Program).Assembly"
-                    AdditionalAssemblies="@lazyLoadedAssemblies">
-        <Found Context="routeData">
-            <CascadingAuthenticationState>
-                <MenuTabsRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-            </CascadingAuthenticationState>
-        </Found>
-        <NotFound>
-            <CascadingAuthenticationState>
-                <LayoutView Layout="@typeof(MainLayout)">
-                    <p>@(R_FrontUtility.R_GetMessage(typeof(BlazorMenuLocalizer), "_PageNotFound", pcResourceName: "BlazorMenuResources"))</p>
-                </LayoutView>
-            </CascadingAuthenticationState>
-        </NotFound>
-        <NoTenant Context="message">
-            <LayoutView Layout="@typeof(NoTenantLayout)">
-                <p>@message</p>
+<R_BasicRouter AppAssembly="@typeof(Program).Assembly"
+               AdditionalAssemblies="@lazyLoadedAssemblies">
+    <Found Context="routeData">
+        <CascadingAuthenticationState>
+            <MenuTabsRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        </CascadingAuthenticationState>
+    </Found>
+    <NotFound>
+        <CascadingAuthenticationState>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p>Sorry, there's nothing at this address.</p>
             </LayoutView>
-        </NoTenant>
-        <ApiError Context="message">
-            <LayoutView Layout="@typeof(NoTenantLayout)">
-                <p>@message</p>
-            </LayoutView>
-        </ApiError>
-    </R_TenantRouter>
-}
+        </CascadingAuthenticationState>
+    </NotFound>
+</R_BasicRouter>
 
 @code {
     [Inject] private R_IEnvironment _environment { get; set; }
@@ -56,7 +29,6 @@ else
     private List<Assembly> lazyLoadedAssemblies = new()
     {
         typeof(BlazorMenu.Components.Pages.Content.Home).Assembly,
-        //typeof(GSM00100Front.GSM00100).Assembly,
         
         typeof(APR00100FRONT.APR00100).Assembly,
         typeof(APR00300Front.APR00300).Assembly,
@@ -113,6 +85,12 @@ else
         #region HMC
         typeof(ICT00900FRONT.ICT00900).Assembly,
         typeof(GST00500Front.GST00500).Assembly,
+        typeof(PMM09000FRONT.PMM09000).Assembly,
+        #endregion
+
+        #region HPC
+        typeof(GSM12000FRONT.GSM12000).Assembly,
         #endregion
     };
+
 }

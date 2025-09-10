@@ -1,4 +1,5 @@
-﻿using R_CommonFrontBackAPI.Log;
+﻿using R_BackEnd;
+using R_CommonFrontBackAPI.Log;
 
 namespace GLTR00100SERVICE
 {
@@ -6,5 +7,6 @@ namespace GLTR00100SERVICE
     {
         public T poParam { get; set; }
         public R_NetCoreLogKeyDTO poLogKey { get; set; }
+        public R_ReportGlobalDTO poReportGlobal { get; set; }
     }
 }

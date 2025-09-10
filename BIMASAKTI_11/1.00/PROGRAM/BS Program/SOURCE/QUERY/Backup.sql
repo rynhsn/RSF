@@ -1,6 +1,48 @@
 delete
 from SAT_LOCKING
-where cuser_id = 'vfm'
+where cuser_id = 'rhc'
+
+begin
+    transaction
+IF (OBJECT_ID('tempdb..#__SP_ERR_Table') is null)
+    BEGIN
+        select SP_Name    = cast('' as varchar(50)),
+               Err_Code   = cast('' as varchar(20)),
+               Err_Detail = cast('' as nvarchar(max))
+        into #__SP_ERR_Table
+        where 0 = 1
+    end
+else
+    begin
+        truncate table #__SP_ERR_TABLE
+    end
+
+begin try
+    Begin
+        Transaction
+        CREATE TABLE #AMOR_SCH
+        (
+            CSEQ_NO          VARCHAR(3),
+            CCHARGES_TYPE_ID VARCHAR(2),
+            CCHARGES_ID      VARCHAR(20),
+            CSTART_DATE      VARCHAR(8),
+            CEND_DATE        VARCHAR(8),
+            NAMOUNT          NUMERIC(18, 2)
+        );
+
+        exec RSP_PM_MAINTAIN_AMORTIZATION @CACTION = 'NEW', @CAGREEMENT_NO = 'LOI-U-2025080010',
+             @CAMORTIZATION_NO = 'AMOR01',
+             @CBUILDING_ID = 'TW1', @CCHARGE_ACCRUAL = '', @CCOMPANY_ID = 'BSI', @CCUT_OF_PRD = '', @CDEPT_CODE = '00',
+             @CDESCRIPTION = 'Test', @CEND_DATE = '20260827', @CPROPERTY_ID = 'RLT', @CSTART_DATE = '20250828',
+             @CTENANT_ID = 'TN01', @CTRANS_DEPT_CODE = '00', @CUNIT_OPTION = 'U', @CUSER_ID = 'FK', @LCUT_OF_PRD = false
+    rollback
+end try
+begin catch
+    select *
+    from #__SP_ERR_TABLE --untuk tahu error code yg di raise
+end catch
+
+rollback
 
 
 EXEC RSP_PM_LOOKUP_INVOICE_GROUP
@@ -12,7 +54,6 @@ EXEC RSP_PM_LOOKUP_INVOICE_GROUP
 select *
 from PMM_INVGRP
 where CPROPERTY_ID = 'SKMJ'
-
 EXEC RSP_PM_GET_AGGREMENTNO_LIST
      @CAGGR_STTS ='',
      @CBUILDING_ID ='', @CCOMPANY_ID= 'BSI', @CDEPT_CODE= '00',
@@ -25,7 +66,8 @@ EXEC RSP_ICR00100_GET_REPORT 'BSI', 'ASHMD', 'Period', '202507', '', '', 'WR01',
 EXEC RSP_ICR00100_GET_REPORT 'BSI', 'ASHMD', 'Period', '202507', '', '', 'WR01', '', false, 'PROD', 'BH001', 'BH001',
      '', 'en'
 
-BEGIN TRANSACTION
+BEGIN
+    TRANSACTION
 ROLLBACK
 
 exec RSP_PM_GET_AGREEMENT_LIST
@@ -93,8 +135,7 @@ select *
 from SAM_COMPANIES
 where CCOMPANY_ID = 'BSI'
 
-SELECT dbo.RFN_GET_COMPANY_LOGO('BSI') as CLOGO
-exec RSP_GS_GET_APPR_TRX_LIST 'BSI', 'NNM', 'I'
+SELECT dbo.RFN_GET_COMPANY_LOGO('BSI') as CLOGO exec RSP_GS_GET_APPR_TRX_LIST 'BSI', 'NNM', 'I'
 exec RSP_GS_GET_APPR_TRX_LIST 'BSI', 'RAM', 'I'
 select *
 from GSM_TRANSACTION_CODE
@@ -139,7 +180,8 @@ exec RSP_PMR02000_GET_REPORT
      'C',
      'en'
 
-BEGIN TRANSACTION
+BEGIN
+    TRANSACTION
 CREATE TABLE #PRICING
 (
     SEQ                INT,
@@ -164,7 +206,6 @@ FROM GST_UPLOAD_ERROR_STATUS
 
 SELECT *
 FROM GST_UPLOAD_PROCESS_STATUS
-
 ROLLBACK
 
 EXEC RSP_PM_GET_UTILITY_CUTOFF_LIST_EC 'BSI', 'ASHMD', 'TW-1', '01', 'FLR01', '202408', false, 'RHC'
@@ -216,7 +257,6 @@ SELECT TOP 1 1 as LIS_PRIMARY
 FROM GSM_COMPANY (NOLOCK)
 WHERE CCOMPANY_ID <> 'BSI'
   AND LPRIMARY_ACCOUNT = 1
-
 EXEC RSP_GS_SEARCH_SUPPLIER_LOOKUP_LIST 'BSI', '', 'en', '', ''
 
 EXEC RSP_PM_GET_SYSTEM_PARAMETER_DETAIL 'BSI', 'skmj', 'RHC'
@@ -229,7 +269,8 @@ where CCOMPANY_ID = 'BSI'
 
 
 -- save pricing 
-BEGIN TRANSACTION
+BEGIN
+    TRANSACTION
 
 
 ROLLBACK
@@ -302,7 +343,6 @@ exec RSP_IC_GET_SYSTEM_PARAM 'BSI', 'ASHMD', 'en'
 update ICM_SYSTEM_PARAM
 set LSOFT_CLOSING_FLAG = 0
 where LSOFT_CLOSING_FLAG = 1
-
 exec RSP_PM_GET_TENANT_VA_LIST 'bsi', 'ashmd', 'TNT80', 'en'
 
 exec RSP_PM_GET_OVT_SUMINV_LIST 'BSI', 'ASHMD', '202409', 'LOI-U-2024090009', '00', '802061', 'OVT-2024090016INVOICE',
@@ -327,9 +367,9 @@ EXEC RSP_APR00100_GET_REPORT 'BSI', 'ASHMD', 'SP-AP', 'SP02', '', '', '1', '2025
 
 IF (OBJECT_ID('tempdb..#__SP_ERR_Table') is null)
     BEGIN
-        select SP_Name=cast('' as varchar(50)),
-               Err_Code=cast('' as varchar(20)),
-               Err_Detail=cast('' as nvarchar(max))
+        select SP_Name    = cast('' as varchar(50)),
+               Err_Code   = cast('' as varchar(20)),
+               Err_Detail = cast('' as nvarchar(max))
         into #__SP_ERR_Table
         where 0 = 1
     end
@@ -364,12 +404,14 @@ begin try
 --     rollback
 end try
 begin catch
-    select * from #__SP_ERR_TABLE --untuk tahu error code yg di raise
+    select *
+    from #__SP_ERR_TABLE --untuk tahu error code yg di raise
 end catch
 
 ---
 
-Begin Transaction
+Begin
+    Transaction
 
 EXEC RSP_GS_VALIDATE_COMP_PARAM 'bsi', 'RH'
 
@@ -400,7 +442,6 @@ WHERE CPRICE_VALID_INT_ID = '20280611001'
 SELECT *
 FROM PMM_PRICING_DT
 WHERE CVALID_INTERNAL_ID = '20280611001'
-
 rollback
 
 exec RSP_PM_GET_BILLING_STATEMENT 'BSI', 'ASHMD', 'TNT05', 'TNT05', '202410'
@@ -466,7 +507,8 @@ where LSOFT_CLOSING_FLAG = 1
 set LSOFT_CLOSING_FLAG = 0
 
 
-begin transaction
+begin
+    transaction
 exec RSP_IC_VALIDATE_SOFTCLOSE_PRD
 EXEC RSP_IC_SOFT_CLOSE_PERIOD 'bsi', 'ashmd', '2025', '03', 'rhc'
 rollback
@@ -515,7 +557,8 @@ EXEC RSP_PM_GET_UTILITY_USAGE_LIST_WG
 EXEC RSP_PM_GET_UTILITY_USAGE_LIST_EC 'BSI', 'ASHMD', 'TW-1', '01', '', '', '202508', false, '202407', '20250801',
      '20250831', false, 'RHC'
 
-begin transaction
+begin
+    transaction
 CREATE TABLE #UTILITY_USAGE_EC
 (
     NO              int,
@@ -587,15 +630,17 @@ WHERE CKEY_GUID = 'RHC'
 SELECT *
 FROM GST_UPLOAD_PROCESS_STATUS
 WHERE CKEY_GUID = 'RHC'
-
 ROLLBACK
 
-begin transaction
+begin
+    transaction
 EXEC RSP_PM_PMA00300 'BSI', 'ASHMD', '202508', 'TNT14', 'TNT14', 'S', '', true, 'RHC'
 EXEC RSP_PM_PMA00300 'BSI', 'ASHMD', '202508', 'TNT14', 'TNT14', 'D', 'UN', true, 'RHC'
 EXEC RSP_PM_PMA00300 'BSI', 'ASHMD', '202508', 'TNT14', 'TNT14', 'D', 'UT', true, 'RHC'
 rollback
-EXEC RSP_PM_SAVE_BILLING_STATEMENT @CCOMPANY_ID = 'BSI', @CPROPERTY_ID = 'ASHMD', @CTENANT_ID = 'TNT14', @CLOI_AGRMT_REC_ID = '', @CREF_PRD = '202508', @CREF_DATE = '20250806', @CDUE_DATE = '20250814', @CSTORAGE_ID = '75f1f6be45d743e98d4fd7457ad406cc', @CUSER_ID = 'RHC'
+EXEC RSP_PM_SAVE_BILLING_STATEMENT @CCOMPANY_ID = 'BSI', @CPROPERTY_ID = 'ASHMD', @CTENANT_ID = 'TNT14',
+     @CLOI_AGRMT_REC_ID = '', @CREF_PRD = '202508', @CREF_DATE = '20250806', @CDUE_DATE = '20250814',
+     @CSTORAGE_ID = '75f1f6be45d743e98d4fd7457ad406cc', @CUSER_ID = 'RHC'
 
 EXEC RSP_PM_GET_UTILITY_INFO 'BSI', 'ASHMD', '01', '802020', 'OAGR-202507-010', 'U-GF-31', 'GF', 'TW-1', '04', 'GAS',
      '004', '202508', 'VFM'
@@ -605,7 +650,8 @@ EXEC RSP_GS_GET_MESSAGE_LIST @CCOMPANY_ID = 'BSI', @CMESSAGE_TYPE = '03', @CUSER
 exec RSP_PM_GET_TENANT_VA_LIST
 exec RSP_GS_GET_EMAIL_TEMPLATE 'BSI', 'BILLING_STATEMENT_DISTRIBUTE'
 
-begin transaction
+begin
+    transaction
 create table #UTILITY_USAGE_WG
 (
     NO              int,
@@ -669,9 +715,7 @@ from GST_UPLOAD_PROCESS_STATUS
 where CKEY_GUID = 'RHC'
 
 drop table #UTILITY_USAGE_WG
-
 ROLLBACK
-
 EXEC RSP_PM_GET_UTILITY_INFO 'BSI', 'ASHMD', '01', '802020', 'LOI-U-2025070015', 'U-GF-29', 'GF', 'TW-1', '03', 'WTR01',
      '002', '202508', 'VFM'
 EXEC RSP_PM_GET_UTILITY_INFO_RATE_WG 'BSI', 'ASHMD', '04', 'GAS', 'RHC', '20250725'
@@ -680,7 +724,8 @@ EXEC RSP_PM_GET_UTILITY_INFO_RATE_WG 'BSI', 'ASHMD', '03', 'WTR01', 'VFM', '2025
 exec RSP_PM_CLOSE_UTILITY_METER_NO
 
 
-begin transaction
+begin
+    transaction
 CREATE TABLE #UNDO_UTILITY_USAGE
 (
     NO            INT,
@@ -713,7 +758,6 @@ from GST_UPLOAD_PROCESS_STATUS
 where CKEY_GUID = 'APM'
 
 drop table #UTILITY_USAGE_WG
-
 ROLLBACK
 EXEC RSP_GS_GET_PERIOD_DT_LIST 'BSI', '2025'
 exec RSP_PM_LOOKUP_CANCEL_CUST_RECEIPT @CCOMPANY_ID = 'BSI', @CCUSTOMER_ID = 'TNT05', @CDEPT_CODE = '00',
@@ -723,22 +767,22 @@ exec RSP_PM_GET_SYSTEM_PARAM
 exec RSP_PM_VALIDATE_SOFT_CLOSE
 EXEC RSP_PM_GET_UTILITY_INFO 'PPFSR', 'PPFSR', 'FRO', '802020', 'OWMG/20241200022', 'SP06C', 'L06', 'T1-SP', '03',
      'W0001', '002', '202507', 'VFM'
-
 exec RSP_GS_GET_APPR_TRX_LIST 'BSI', 'NNM', 'I'
 
-begin transaction
+begin
+    transaction
 EXEC RSP_PM_PMA00300 'BSI', 'ASHMD', '202508', 'TNT14', 'TNT14', 'S', '', true, 'RHC'
 EXEC RSP_PM_PMA00300 'BSI', 'ASHMD', '202508', 'TNT14', 'TNT14', 'D', 'UN', true, 'RHC'
 EXEC RSP_PM_PMA00300 'BSI', 'ASHMD', '202508', 'TNT14', 'TNT14', 'D', 'UT', true, 'RHC'
 rollback
 
-begin transaction
-
+begin
+    transaction
 IF (OBJECT_ID('tempdb..#__SP_ERR_Table') is null)
     BEGIN
-        select SP_Name=cast('' as varchar(50)),
-               Err_Code=cast('' as varchar(20)),
-               Err_Detail=cast('' as nvarchar(max))
+        select SP_Name    = cast('' as varchar(50)),
+               Err_Code   = cast('' as varchar(20)),
+               Err_Detail = cast('' as nvarchar(max))
         into #__SP_ERR_Table
         where 0 = 1
     end
@@ -748,19 +792,23 @@ else
     end
 
 begin try
-        Begin Transaction
-    EXEC RSP_PM_PMA00300 'BSI', 'ASHMD', '202505', 'TNT14', 'tnt14', 'S', '', true, 'VFM'
-    EXEC RSP_PM_PMA00300 'BSI', 'ASHMD', '202505', 'TNT14', 'tnt14', 'D', 'UN', true, 'VFM'
-    EXEC RSP_PM_PMA00300 'BSI', 'ASHMD', '202505', 'TNT14', 'tnt14', 'D', 'UT', true, 'VFM'
+    Begin
+        Transaction
+        EXEC RSP_PM_PMA00300 'BSI', 'ASHMD', '202505', 'TNT14', 'tnt14', 'S', '', true, 'VFM'
+        EXEC RSP_PM_PMA00300 'BSI', 'ASHMD', '202505', 'TNT14', 'tnt14', 'D', 'UN', true, 'VFM'
+        EXEC RSP_PM_PMA00300 'BSI', 'ASHMD', '202505', 'TNT14', 'tnt14', 'D', 'UT', true, 'VFM'
     rollback
 end try
 begin catch
-    select * from #__SP_ERR_TABLE --untuk tahu error code yg di raise
+    select *
+    from #__SP_ERR_TABLE --untuk tahu error code yg di raise
 end catch
 
 rollback
 
-EXEC RSP_PMR02400_GET_REPORT @CCOMPANY_ID = 'BSI', @CPROPERTY_ID = 'ASHMD', @CREPORT_OPTION = 'I', @CREPORT_TYPE = 'S', @CCUT_OFF_DATE = '20250822', @CFR_PERIOD = '202508', @CTO_PERIOD = '202508', @CCURRENCY_TYPE = 'T', @CFR_CUSTOMER = 'BLG01', @CTO_CUSTOMER = 'TNT02', @CLANGUAGE_ID = 'en'
+EXEC RSP_PMR02400_GET_REPORT @CCOMPANY_ID = 'BSI', @CPROPERTY_ID = 'ASHMD', @CREPORT_OPTION = 'I', @CREPORT_TYPE = 'S',
+     @CCUT_OFF_DATE = '20250822', @CFR_PERIOD = '202508', @CTO_PERIOD = '202508', @CCURRENCY_TYPE = 'T',
+     @CFR_CUSTOMER = 'BLG01', @CTO_CUSTOMER = 'TNT02', @CLANGUAGE_ID = 'en'
 
 exec RSP_PM_GET_UTILITY_INFO_RATE_WG 'BSI', 'ASHMD', '03', 'WTR01', 'RHC', '20250825'
 exec RSP_IC_GET_PHYSICAL_INV_COUNT_SHEET @CCOMPANY_ID = 'BSI', @CDEPT_CODE = '00', @CFILTER_BY = 'PROD',
@@ -845,7 +893,8 @@ exec RSP_PM_GET_TENANT_LIST @CCOMPANY_ID = 'BSI', @CCUSTOMER_TYPE = '01', @CPROP
 EXEC RSP_PM_GET_UTILITY_INFO_RATE_WG 'BSI', 'ASHMD', '03', 'WTR01', 'VFM', '20250825'
 EXEC RSP_PM_GET_UTILITY_USAGE_LIST_EC 'PPFSR', 'PPFSR', 'T1-SP', '01', 'L13', '', '202508', false, '202506', '20250528',
      '20250827', false, 'VFM'
-DECLARE @CPROPERTY_ID VARCHAR(20)
+DECLARE
+    @CPROPERTY_ID VARCHAR(20)
 SET @CPROPERTY_ID = (SELECT TOP 1 CPROPERTY_ID
                      FROM GSM_PROPERTY (NOLOCK)
                      WHERE CCOMPANY_ID = 'bsi'
@@ -855,7 +904,6 @@ select @CPROPERTY_ID
 SELECT CCODE, CDESCRIPTION
 
 FROM RFT_GET_GSB_CODE_INFO('BIMASAKTI', @CPROPERTY_ID, '_BS_MESSAGE_TYPE', '', 'en')
-
 EXEC RSP_GS_GET_MESSAGE_LIST 'bsi', '03', 'rhc'
 
 exec RSP_GS_GET_MESSAGE_DETAIL 'BSI', '03', 'BILLING01', 'RHC'
@@ -882,15 +930,14 @@ update ICM_SYSTEM_PARAM
 set LSOFT_CLOSING_FLAG = 0
 where CPROPERTY_ID = 'ASHMD'
   and CCOMPANY_ID = 'BSI'
-
-
 EXEC RSP_IC_GET_SYSTEM_PARAM 'BSI', 'ASHMD', 'en';
 
-IF (OBJECT_ID('tempdb..#__SP_ERR_Table') is null)
+IF
+    (OBJECT_ID('tempdb..#__SP_ERR_Table') is null)
     BEGIN
-        select SP_Name=cast('' as varchar(50)),
-               Err_Code=cast('' as varchar(20)),
-               Err_Detail=cast('' as nvarchar(max))
+        select SP_Name    = cast('' as varchar(50)),
+               Err_Code   = cast('' as varchar(20)),
+               Err_Detail = cast('' as nvarchar(max))
         into #__SP_ERR_Table
         where 0 = 1
     end
@@ -907,7 +954,8 @@ begin try
 --     rollback
 end try
 begin catch
-    select * from #__SP_ERR_TABLE --untuk tahu error code yg di raise
+    select *
+    from #__SP_ERR_TABLE --untuk tahu error code yg di raise
 end catch
 
 ---

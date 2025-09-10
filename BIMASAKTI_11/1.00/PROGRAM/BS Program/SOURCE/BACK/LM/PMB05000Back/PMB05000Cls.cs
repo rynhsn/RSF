@@ -5,6 +5,7 @@ using PMB05000Common;
 using PMB05000Common.DTOs;
 using R_BackEnd;
 using R_Common;
+using RSP_PM_SOFT_CLOSE_PERIOD_PROCESSResources;
 
 namespace PMB05000Back;
 
@@ -12,6 +13,7 @@ public class PMB05000Cls
 {
     private LoggerPMB05000 _logger;
     private readonly ActivitySource _activitySource;
+    Resources_Dummy_Class _resources = new();
 
     public PMB05000Cls()
     {
@@ -260,6 +262,8 @@ public class PMB05000Cls
             loConn = await loDb.GetConnectionAsync();
             loCmd = loDb.GetCommand();
 
+            R_ExternalException.R_SP_Init_Exception(loConn);
+
             lcQuery = $"RSP_PM_SOFT_CLOSE_PERIOD_PROCESS";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
@@ -281,10 +285,19 @@ public class PMB05000Cls
 
             _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
 
+            try
+            {
 
-            var DataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
+                var DataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
+                loReturn = R_Utility.R_ConvertTo<PMB05000SoftClosePeriodDTO>(DataTable).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
 
-            loReturn = R_Utility.R_ConvertTo<PMB05000SoftClosePeriodDTO>(DataTable).FirstOrDefault();
+            loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
         }
         catch (Exception ex)
         {

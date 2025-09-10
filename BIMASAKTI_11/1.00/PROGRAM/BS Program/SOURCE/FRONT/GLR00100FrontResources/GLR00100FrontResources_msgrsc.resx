@@ -68,13 +68,13 @@
     </data>
 
     <!-- Period -->
-    <data name="Period" xml:space="preserve">
+    <!--<data name="Period" xml:space="preserve">
         <value>Period</value>
-    </data>
+    </data>-->
     <!-- Date -->
-    <data name="Date" xml:space="preserve">
+    <!--<data name="Date" xml:space="preserve">
         <value>Date</value>
-    </data>
+    </data>-->
     <!-- LocalCurrency -->
     <data name="LocalCurrency" xml:space="preserve">
         <value>Local Currency</value>

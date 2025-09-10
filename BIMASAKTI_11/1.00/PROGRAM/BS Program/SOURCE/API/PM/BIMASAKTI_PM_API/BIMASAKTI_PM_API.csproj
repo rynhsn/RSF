@@ -93,6 +93,7 @@
         </None>
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Global_PMSERVICES\Global_PMSERVICES.csproj" />
         <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_LMSERVICES\Lookup_PMSERVICES.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\LMM01500SERVICE\PMM01500SERVICE.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\LMM04500SERVICE\PMM04500SERVICE.csproj" />
@@ -102,6 +103,8 @@
         <ProjectReference Include="..\..\..\SERVICE\LM\PMB05000Service\PMB05000Service.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMI00500Service\PMI00500Service.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMM00100SERVICE\PMM00100SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMM09000SERVICE\PMM09000SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR00210SERVICE\PMR00210SERVICE.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMR00460Service\PMR00460Service.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMR02000SERVICE\PMR02000SERVICE.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMR02600Service\PMR02600Service.csproj" />

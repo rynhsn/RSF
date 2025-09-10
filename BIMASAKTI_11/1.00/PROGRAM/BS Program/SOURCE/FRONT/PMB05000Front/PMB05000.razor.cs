@@ -66,7 +66,7 @@ public partial class PMB05000 : R_Page
                 if (_viewModel.ValidateSoftCloseList.Count > 0)
                 {
                     //buka popup
-                    var loResult = PopupService.Show(typeof(PMB05000PopupToDoList), _viewModel.SystemParam);
+                    var loResult = PopupService.Show(typeof(PMB05000PopupToDoList), _viewModel.ValidateSoftCloseList);
                     return;
                 }
 

@@ -56,5 +56,8 @@ namespace Lookup_PMCOMMON.DTOs
         public const string CCLASS_ID = "CCLASS_ID";
         public const string CSTAFF_ID = "CSTAFF_ID";
 
+        //CR 01/09/25
+        public const string LNON_ACCRUAL = "LNON_ACCRUAL";
+
     }
 }

@@ -149,8 +149,6 @@ namespace ICB00100Model.ViewModel
                         : (DateTime?)null;
                     // loItem.DREF_DATE = DateTime.ParseExact(loItem.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
                 }
-                
-                SetExcelDataSetToDoList();
             }
             catch (Exception ex)
             {
@@ -191,6 +189,7 @@ namespace ICB00100Model.ViewModel
             {
                 var loParam = new ICB00100PeriodParam
                 {
+                    CPROPERTY_ID = SelectedPropertyId,
                     CPERIOD_YEAR = Data.ISOFT_PERIOD_YY.ToString(),
                     CPERIOD_MONTH = Data.CSOFT_PERIOD_MM
                 };
@@ -207,7 +206,7 @@ namespace ICB00100Model.ViewModel
             loEx.ThrowExceptionIfErrors();
         }
         
-        private void SetExcelDataSetToDoList()
+        public void SetExcelDataSetToDoList()
         {
             var loConvertData = ValidateSoftCloseList.Select(item => new ICB00100ExcelToDoListDTO()
             {

@@ -77,5 +77,14 @@ namespace RSP_PM_MAINTAIN_OVT_INVOICEResources {
                 return ResourceManager.GetString("NO_INVGRP", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please setting rate for this charges{0}!.
+        /// </summary>
+        internal static string NO_RATE {
+            get {
+                return ResourceManager.GetString("NO_RATE", resourceCulture);
+            }
+        }
     }
 }

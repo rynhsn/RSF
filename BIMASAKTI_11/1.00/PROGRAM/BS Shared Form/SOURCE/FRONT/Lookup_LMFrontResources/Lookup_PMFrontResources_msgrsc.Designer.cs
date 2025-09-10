@@ -790,6 +790,15 @@ namespace Lookup_PMFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Trans. Amount.
+        /// </summary>
+        internal static string _transAmount {
+            get {
+                return ResourceManager.GetString("_transAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transaction Type.
         /// </summary>
         internal static string _transType {

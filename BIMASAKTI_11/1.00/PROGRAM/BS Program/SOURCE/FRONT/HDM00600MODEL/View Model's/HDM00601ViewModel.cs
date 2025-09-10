@@ -68,15 +68,14 @@ namespace HDM00600MODEL.View_Model_s
                 var loMappingData = R_FrontUtility.ConvertCollectionToCollection<PricelistBatchDTO>(_pricelist_List);
                 foreach (var loItem in loMappingData)
                 {
-                    loItem.CPRICELIST_ID.Trim();
-                    loItem.CPRICELIST_ID.Trim();
-                    loItem.CPRICELIST_NAME.Trim();
-                    loItem.CDEPT_CODE.Trim();
-                    loItem.CCHARGES_ID.Trim();
-                    loItem.CUNIT.Trim();
-                    loItem.CCURRENCY_CODE.Trim();
-                    loItem.CDESCRIPTION.Trim();
-                    loItem.CSTART_DATE.Trim();
+                    loItem.CPRICELIST_ID = loItem.CPRICELIST_ID?.Trim() ?? "";
+                    loItem.CPRICELIST_NAME = loItem.CPRICELIST_NAME?.Trim() ?? "";
+                    loItem.CDEPT_CODE = loItem.CDEPT_CODE?.Trim() ?? "";
+                    loItem.CCHARGES_ID = loItem.CCHARGES_ID?.Trim() ?? "";
+                    loItem.CUNIT = loItem.CUNIT?.Trim() ?? "";
+                    loItem.CCURRENCY_CODE = loItem.CCURRENCY_CODE?.Trim() ?? "";
+                    loItem.CDESCRIPTION = loItem.CDESCRIPTION?.Trim() ?? "";
+                    loItem.CSTART_DATE = loItem.CSTART_DATE?.Trim() ?? "";
                 }
                 var loNumberedData = new List<PricelistBatchDTO>(
                     loMappingData.Select((item, index) =>

@@ -26,18 +26,18 @@
     <R_StackLayout>
         <R_ItemLayout>
             <R_RadioGroup Data="@_viewModel.ReportTypeCare"
-                          @bind-Value="_viewModel.ReportParam.CREPORT_TYPE"
+                          Value="_viewModel.ReportParam.CREPORT_TYPE"
                           ValueField="Key"
                           TextField="Value"
                           Enabled
-                          OnChanged="OnChangedTypeCare"/>
+                          ValueChanged="@((string value) => ValueChangedTypeCare(value))"/>
         </R_ItemLayout>
         <R_ItemLayout>
             <R_GroupBox Class="p-2" Title="@_localizer["Category"]" Enabled="@(_viewModel.ReportParam.CREPORT_TYPE == "C")">
                 <R_StackLayout Row Spacing="0">
                     <R_ItemLayout col="3">
                         <R_CheckBox @bind-Value="_viewModel.ReportParam.LCOMPLAINT"
-                                    Enabled="true"/>
+                                    Enabled="true" />
                         <R_Label>@_localizer["Complaint"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
@@ -64,10 +64,11 @@
                 <R_StackLayout Row>
                     <R_ItemLayout col="3">
                         <R_RadioGroup Data="@_viewModel.CodeList01"
-                                      @bind-Value="_viewModel.ReportParam.CAREA"
+                                      Value="_viewModel.ReportParam.CAREA"
                                       ValueField="@nameof(HDR00200CodeDTO.CCODE)"
                                       TextField="@nameof(HDR00200CodeDTO.CNAME)"
-                                      Enabled/>
+                                      Enabled
+                                      ValueChanged="@((string value) => ValueChangedArea(value))" />
                     </R_ItemLayout>
                     <R_ItemLayout col="9">
                         <R_GroupBox Class="p-2" Title="@_localizer["Building"]" Enabled="@(_viewModel.ReportParam.CAREA == "01")">
@@ -130,10 +131,11 @@
                 <R_StackLayout>
                     <R_ItemLayout>
                         <R_RadioGroup Data="@_viewModel.CodeList02"
-                                      @bind-Value="_viewModel.ReportParam.CAREA"
+                                      Value="_viewModel.ReportParam.CAREA"
                                       ValueField="@nameof(HDR00200CodeDTO.CCODE)"
                                       TextField="@nameof(HDR00200CodeDTO.CNAME)"
-                                      Enabled/>
+                                      Enabled
+                                      ValueChanged="@((string value) => ValueChangedArea(value))" />
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_GroupBox>
@@ -141,10 +143,11 @@
 
         <R_ItemLayout Class="mt-5">
             <R_RadioGroup Data="@_viewModel.ReportTypeMaintenance"
-                          @bind-Value="_viewModel.ReportParam.CREPORT_TYPE"
+                          Value="_viewModel.ReportParam.CREPORT_TYPE"
                           ValueField="Key"
                           TextField="Value"
-                          Enabled/>
+                          Enabled
+                          ValueChanged="@((string value) => ValueChangedTypeCare(value))"/>
         </R_ItemLayout>
         <R_GroupBox Title="@_localizer["Department"]" Class="p-2" Enabled="@(_viewModel.ReportParam.CREPORT_TYPE == "M")">
             <R_StackLayout Row>

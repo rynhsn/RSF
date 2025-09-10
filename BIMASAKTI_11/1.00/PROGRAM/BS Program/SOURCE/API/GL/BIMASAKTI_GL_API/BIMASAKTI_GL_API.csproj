@@ -43,7 +43,9 @@
     <ProjectReference Include="..\..\..\SERVICE\GL\GLM00200SERVICE\GLM00200SERVICE.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLM00500Service\GLM00500Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLR00100Service\GLR00100Service.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GL\GLT00100SERVICE\GLT00100Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLT00200SERVICE\GLT00200SERVICE.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GL\GLTR00100SERVICE\GLTR00100SERVICE.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\LM\PMB05000Service\PMB05000Service.csproj" />
   </ItemGroup>
 

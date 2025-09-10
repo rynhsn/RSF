@@ -37,6 +37,7 @@
     <ProjectReference Include="..\..\..\SERVICE\GS\GSM04000SERVICE\GSM04000Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GS\GSM04500Service\GSM04500Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GS\GSM05000Service\GSM05000Service.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GS\GSM12000SERVICE\GSM12000SERVICE.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GS\GST00500Service\GST00500Service.csproj" />
   </ItemGroup>
 

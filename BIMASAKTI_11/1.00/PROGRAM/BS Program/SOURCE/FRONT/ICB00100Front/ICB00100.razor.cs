@@ -56,7 +56,7 @@ public partial class ICB00100 : R_Page
                 if (_viewModel.ValidateSoftCloseList.Count > 0)
                 {
                     //buka popup
-                    var loResult = PopupService.Show(typeof(ICB00100PopupToDoList), _viewModel.SystemParam);
+                    var loResult = PopupService.Show(typeof(ICB00100PopupToDoList), _viewModel.ValidateSoftCloseList);
                     return;
                 }
 

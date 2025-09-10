@@ -21,7 +21,8 @@
       },
       "PMB05000Back/1.0.0": {
         "dependencies": {
-          "PMB05000Common": "1.0.0"
+          "PMB05000Common": "1.0.0",
+          "RSP_PM_SOFT_CLOSE_PERIOD_PROCESSResources": "1.0.0"
         },
         "runtime": {
           "PMB05000Back.dll": {}
@@ -30,6 +31,11 @@
       "PMB05000Common/1.0.0": {
         "runtime": {
           "PMB05000Common.dll": {}
+        }
+      },
+      "RSP_PM_SOFT_CLOSE_PERIOD_PROCESSResources/1.0.0": {
+        "runtime": {
+          "RSP_PM_SOFT_CLOSE_PERIOD_PROCESSResources.dll": {}
         }
       },
       "R_APIBackEnd/1.0.0.0": {
@@ -142,6 +148,11 @@
       "sha512": ""
     },
     "PMB05000Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_PM_SOFT_CLOSE_PERIOD_PROCESSResources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

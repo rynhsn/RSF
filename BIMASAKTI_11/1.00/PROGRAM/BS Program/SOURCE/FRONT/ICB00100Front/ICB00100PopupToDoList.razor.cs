@@ -10,6 +10,7 @@ using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
+using System.Collections.ObjectModel;
 
 namespace ICB00100Front;
 
@@ -29,7 +30,7 @@ public partial class ICB00100PopupToDoList : R_Page
         try
         {
             //refresh form
-            _viewModel.SystemParam = (ICB00100SystemParamDTO)eventArgs;
+            _viewModel.ValidateSoftCloseList = (ObservableCollection<ICB00100ValidateSoftCloseDTO>)eventArgs;
             var leMsg = await R_MessageBox.Show("", _localizer["MSG_TODO_LIST_TO_BE_RESOLVED_BEFORE_SOFT_CLOSING"]);
             await _gridRef.R_RefreshGrid(null);
         }
@@ -47,8 +48,9 @@ public partial class ICB00100PopupToDoList : R_Page
 
         try
         {
-            await _viewModel.ValidateSoftPeriod();
+            //await _viewModel.ValidateSoftPeriod();
             eventArgs.ListEntityResult = _viewModel.ValidateSoftCloseList;
+            _viewModel.SetExcelDataSetToDoList();
         }
         catch (Exception ex)
         {

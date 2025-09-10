@@ -27,6 +27,8 @@ public partial class ICR00100 : R_Page
         try
         {
             await _viewModel.Init();
+            await _setDefaultWarehouse();
+            await _setDefaultProduct();
         }
         catch (Exception ex)
         {
@@ -60,7 +62,7 @@ public partial class ICR00100 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         loEx.ThrowExceptionIfErrors();
     }
 
@@ -71,13 +73,13 @@ public partial class ICR00100 : R_Page
         try
         {
             var isValid = ValidateBeforePrint();
-            
+
             if (!isValid)
             {
                 await R_DisplayExceptionAsync(loEx);
                 return;
             }
-            
+
             SetParamBeforePrint();
 
             if (!loEx.HasError)
@@ -103,7 +105,7 @@ public partial class ICR00100 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         loEx.ThrowExceptionIfErrors();
     }
 
@@ -211,7 +213,7 @@ public partial class ICR00100 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         await R_DisplayExceptionAsync(loEx);
     }
 
@@ -300,7 +302,7 @@ public partial class ICR00100 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         await R_DisplayExceptionAsync(loEx);
     }
 
@@ -385,7 +387,7 @@ public partial class ICR00100 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         await R_DisplayExceptionAsync(loEx);
     }
 
@@ -466,7 +468,7 @@ public partial class ICR00100 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         await R_DisplayExceptionAsync(loEx);
     }
 
@@ -552,7 +554,7 @@ public partial class ICR00100 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         await R_DisplayExceptionAsync(loEx);
     }
 
@@ -641,7 +643,7 @@ public partial class ICR00100 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         await R_DisplayExceptionAsync(loEx);
     }
 
@@ -689,29 +691,69 @@ public partial class ICR00100 : R_Page
 
     #endregion
 
-    private void ValueChangedProperty(string value)
+    private async Task ValueChangedProperty(string value)
     {
-        _viewModel.ReportParam.CPROPERTY_ID = value;
+        var loEx = new R_Exception();
+
+        try
+        {
+            _viewModel.ReportParam.CPROPERTY_ID = value;
+
+            _viewModel.ResetParam();
+            await _setDefaultWarehouse();
+            await _setDefaultProduct();
+
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
     }
 
-    private void ValueChangedFilter(string value)
+    private async Task ValueChangedFilter(string value)
     {
-        if (value == _viewModel.ReportParam.CFILTER_BY) return;
-        _viewModel.ReportParam.CFROM_PROD_ID = "";
-        _viewModel.ReportParam.CFROM_PROD_NAME = "";
-        _viewModel.ReportParam.CTO_PROD_ID = "";
-        _viewModel.ReportParam.CTO_PROD_NAME = "";
-        _viewModel.ReportParam.CFILTER_DATA = "";
-        _viewModel.ReportParam.CFILTER_DATA_NAME = "";
-        _viewModel.ReportParam.CFILTER_BY = value;
-        if (value == _localizer["PROD"])
-            _viewModel.ReportParam.CFILTER_BY_DESC = _viewModel.FilterByProduct.FirstOrDefault().Value;
-        else if (value == _localizer["CATEGORY"])
-            _viewModel.ReportParam.CFILTER_BY_DESC = _viewModel.FilterByCategory.FirstOrDefault().Value;
-        else if (value == _localizer["JOURNAL"])
-            _viewModel.ReportParam.CFILTER_BY_DESC = _viewModel.FilterByJournalGroup.FirstOrDefault().Value;
-        else
-            _viewModel.ReportParam.CFILTER_BY_DESC = "";
+        var loEx = new R_Exception();
+
+        try
+        {
+            if (value == _viewModel.ReportParam.CFILTER_BY) return;
+            _viewModel.ReportParam.CFROM_PROD_ID = "";
+            _viewModel.ReportParam.CFROM_PROD_NAME = "";
+            _viewModel.ReportParam.CTO_PROD_ID = "";
+            _viewModel.ReportParam.CTO_PROD_NAME = "";
+            _viewModel.ReportParam.CFILTER_DATA = "";
+            _viewModel.ReportParam.CFILTER_DATA_NAME = "";
+            _viewModel.ReportParam.CFILTER_DATA_CATEGORY = "";
+            _viewModel.ReportParam.CFILTER_DATA_CATEGORY_NAME = "";
+            _viewModel.ReportParam.CFILTER_DATA_JOURNAL = "";
+            _viewModel.ReportParam.CFILTER_DATA_JOURNAL_NAME = "";
+
+            _viewModel.ReportParam.CFILTER_BY = value;
+            if (value == _localizer["PROD"])
+            {
+                _viewModel.ReportParam.CFILTER_BY_DESC = _viewModel.FilterByProduct.FirstOrDefault().Value;
+                await _setDefaultProduct();
+            }
+            else if (value == _localizer["CATEGORY"])
+            {
+                _viewModel.ReportParam.CFILTER_BY_DESC = _viewModel.FilterByCategory.FirstOrDefault().Value;
+                await _setDefaultCategory();
+            }
+            else if (value == _localizer["JOURNAL"])
+            {
+                _viewModel.ReportParam.CFILTER_BY_DESC = _viewModel.FilterByJournalGroup.FirstOrDefault().Value;
+                await _setDefaultJournal();
+            }
+
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
     }
 
     private void ValueChangedDateMode(string value)
@@ -743,18 +785,18 @@ public partial class ICR00100 : R_Page
             {
                 loEx.Add("Error", _localizer["PropertyCannotBeEmpty"]);
             }
-            
+
             // if(_viewModel.ReportParam.LINC_FUTURE_TRANSACTION && string.IsNullOrEmpty(_viewModel.ReportParam.CWAREHOUSE_CODE))
-            if(string.IsNullOrEmpty(_viewModel.ReportParam.CWAREHOUSE_CODE))
+            if (string.IsNullOrEmpty(_viewModel.ReportParam.CWAREHOUSE_CODE))
             {
                 loEx.Add("Error", _localizer["WarehouseCannotBeEmpty"]);
             }
-            
+
             // if(_viewModel.ReportParam.LDEPARTMENT && string.IsNullOrEmpty(_viewModel.ReportParam.CDEPT_CODE))
             // {
             //     loEx.Add("Error", _localizer["DepartmentCannotBeEmpty"]);
             // }
-            
+
             if (_viewModel.ReportParam.CFILTER_BY == _localizer["PROD"] && string.IsNullOrEmpty(_viewModel.ReportParam.CFROM_PROD_ID))
             {
                 loEx.Add("Error", _localizer["FromProductCannotBeEmpty"]);
@@ -774,7 +816,7 @@ public partial class ICR00100 : R_Page
             {
                 loEx.Add("Error", _localizer["JournalGroupCannotBeEmpty"]);
             }
-            
+
             isValid = true;
         }
         catch (Exception ex)
@@ -784,5 +826,131 @@ public partial class ICR00100 : R_Page
 
         loEx.ThrowExceptionIfErrors();
         return isValid;
+    }
+
+
+    private async Task _setDefaultWarehouse()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loLookupViewModel = new LookupGSL03500ViewModel();
+            var loParameter = new GSL03500ParameterDTO();
+
+            await loLookupViewModel.GetWarehouseList();
+            if (loLookupViewModel.WarehouseGrid.Count > 0)
+            {
+                _viewModel.ReportParam.CWAREHOUSE_CODE =
+                    loLookupViewModel.WarehouseGrid.FirstOrDefault()?.CWAREHOUSE_ID;
+                _viewModel.ReportParam.CWAREHOUSE_NAME = loLookupViewModel.WarehouseGrid
+                    .Where(x => x.CWAREHOUSE_ID == _viewModel.ReportParam.CWAREHOUSE_CODE)
+                    .Select(x => x.CWAREHOUSE_NAME).FirstOrDefault() ?? string.Empty;
+
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private async Task _setDefaultProduct()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loLookupViewModel = new LookupGSL03000ViewModel();
+            var loParameter = new GSL03000ParameterDTO();
+
+            await loLookupViewModel.GetProductList();
+            if (loLookupViewModel.ProductGrid.Count > 0)
+            {
+                _viewModel.ReportParam.CFROM_PROD_ID =
+                    loLookupViewModel.ProductGrid.FirstOrDefault()?.CPRODUCT_ID;
+                _viewModel.ReportParam.CFROM_PROD_NAME = loLookupViewModel.ProductGrid
+                    .Where(x => x.CPRODUCT_ID == _viewModel.ReportParam.CFROM_PROD_ID)
+                    .Select(x => x.CPRODUCT_NAME).FirstOrDefault() ?? string.Empty;
+
+                _viewModel.ReportParam.CTO_PROD_ID =
+                    loLookupViewModel.ProductGrid.LastOrDefault()?.CPRODUCT_ID;
+                _viewModel.ReportParam.CTO_PROD_NAME = loLookupViewModel.ProductGrid
+                    .Where(x => x.CPRODUCT_ID == _viewModel.ReportParam.CTO_PROD_ID)
+                    .Select(x => x.CPRODUCT_NAME).FirstOrDefault() ?? string.Empty;
+
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+
+    private async Task _setDefaultCategory()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loLookupViewModel = new LookupGSL00600ViewModel();
+            var loParameter = new GSL00600ParameterDTO()
+            {
+                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID
+            };
+
+            await loLookupViewModel.GetUnitTypeCategoryList(loParameter);
+            if (loLookupViewModel.UnitTypeCategoryGrid.Count > 0)
+            {
+                _viewModel.ReportParam.CFILTER_DATA_CATEGORY =
+                    loLookupViewModel.UnitTypeCategoryGrid.FirstOrDefault()?.CUNIT_TYPE_CATEGORY_ID;
+                _viewModel.ReportParam.CWAREHOUSE_NAME = loLookupViewModel.UnitTypeCategoryGrid
+                    .Where(x => x.CUNIT_TYPE_CATEGORY_ID == _viewModel.ReportParam.CFILTER_DATA_CATEGORY)
+                    .Select(x => x.CUNIT_TYPE_CATEGORY_NAME).FirstOrDefault() ?? string.Empty;
+
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private async Task _setDefaultJournal()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            var loLookupViewModel = new LookupGSL00400ViewModel();
+            var loParameter = new GSL00400ParameterDTO()
+            {
+                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID
+            };
+
+            await loLookupViewModel.GetJournalGroupList(loParameter);
+            if (loLookupViewModel.JournalGroupGrid.Count > 0)
+            {
+                _viewModel.ReportParam.CFILTER_DATA_JOURNAL =
+                    loLookupViewModel.JournalGroupGrid.FirstOrDefault()?.CJRNGRP_CODE;
+                _viewModel.ReportParam.CFILTER_DATA_JOURNAL_NAME = loLookupViewModel.JournalGroupGrid
+                    .Where(x => x.CJRNGRP_CODE == _viewModel.ReportParam.CFILTER_DATA_JOURNAL)
+                    .Select(x => x.CJRNGRP_NAME).FirstOrDefault() ?? string.Empty;
+
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
     }
 }

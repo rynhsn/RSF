@@ -8,6 +8,7 @@ using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Exceptions;
+using System.Collections.ObjectModel;
 
 namespace PMB05000Front;
 
@@ -28,7 +29,7 @@ public partial class PMB05000PopupToDoList
         try
         {
             //refresh form
-            _viewModel.SystemParam = (PMB05000SystemParamDTO)eventArgs;
+            _viewModel.ValidateSoftCloseList = (ObservableCollection<PMB05000ValidateSoftCloseDTO>)eventArgs;
             var leMsg = await R_MessageBox.Show("", _localizer["MSG_TODO_LIST_TO_BE_RESOLVED_BEFORE_SOFT_CLOSING"]);
             await _gridRef.R_RefreshGrid(null);
         }
@@ -46,7 +47,8 @@ public partial class PMB05000PopupToDoList
 
         try
         {
-            await _viewModel.ValidateSoftPeriod();
+            //await _viewModel.ValidateSoftPeriod();
+            _viewModel.SetExcelDataSetToDoList();
             eventArgs.ListEntityResult = _viewModel.ValidateSoftCloseList;
         }
         catch (Exception ex)

@@ -18,14 +18,14 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    
-    <data name="0201" xml:space="preserve">
+
+	<!--ERROR_PROCESS = Error process, please contact your administrator!-->
+	<!--GL_NOT_BALANCE = Unable to Soft Close Period due to Unbalanced Journal found on IC Transaction! Please Contact Customer Support!-->
+	
+	<data name="ERROR_PROCESS" xml:space="preserve">
         <value>Error process, please contact your administrator!</value>
     </data>
-    <data name="0202" xml:space="preserve">
-        <value>Selected Period cannot be smaller than Current Close Period!</value>
-    </data>
-    <data name="0203" xml:space="preserve">
-        <value>Cannot Jump Period!</value>
+    <data name="GL_NOT_BALANCE" xml:space="preserve">
+        <value>Unable to Soft Close Period due to Unbalanced Journal found on IC Transaction! Please Contact Customer Support!</value>
     </data>
 </root>

@@ -1,0 +1,54 @@
+﻿@page "/GSM12000Print"
+@using GSM12000COMMON
+@using GSM12000FrontResources
+@using R_BlazorFrontEnd.Enums
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_Page
+@attribute [R_Page(Title = "Print Message Master")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+<R_StackLayout Style="width:700px">
+
+<R_StackLayout Row="true">
+    <R_ItemLayout col="2">
+        <R_Label Class="fw-bold">@_localizer["MESSAGE_NO"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@_viewModel.MessageList"
+                    Value="@_viewModel.messageNoFromValue"
+                    ValueField="@nameof(GSM12000DTO.CMESSAGE_NO)"
+                    TextField="@nameof(GSM12000DTO.CMESSAGE_NO)"
+                    ValueChanged="@((string value) => OnChangedFrom(value))"/>
+    </R_ItemLayout>
+    <R_ItemLayout>   <R_Label Class="fw-bold">@_localizer["TO"]</R_Label> </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@_viewModel.MessageList"
+                    Value="@_viewModel.messageNoToValue"
+                    ValueField="@nameof(GSM12000DTO.CMESSAGE_NO)"
+                    TextField="@nameof(GSM12000DTO.CMESSAGE_NO)"
+                    ValueChanged="@((string value) => OnChangedTO(value))"/>
+    </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout>
+        <R_StackLayout Row="true">
+            <R_ItemLayout>
+                <R_CheckBox @bind-Value="@_viewModel.activeInactiveMessage"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@_localizer["PRINT_INACTIVE_MESSAGE"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row="true">
+        <R_ItemLayout Class="mt-2">
+            <R_PrintButton OnClick="Button_OnClickProcessAsync">
+                @_localizer["PRNT"]
+            </R_PrintButton>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mt-2">
+            <R_Popup R_Before_Open_Popup="@BeforeOpen_PopupSaveAsAsync"
+                     TabIndex="8">@_localizer["_btn_save"]</R_Popup>
+        </R_ItemLayout>
+        </R_StackLayout>
+    </R_StackLayout>
+
+</R_StackLayout>

@@ -12,12 +12,12 @@
 	
   <ItemGroup>
     <ProjectReference Include="..\..\..\BACK\GL\GLTR00100BACK\GLTR00100BACK.csproj" />
-    <ProjectReference Include="..\..\..\COMMON\BaseHeaderCOMMON\BaseHeaderResources\BaseHeaderResources.csproj" />
+	  <ProjectReference Include="..\..\..\COMMON\BaseHeaderResources\BaseHeaderResources.csproj" />
   </ItemGroup>
 
 	<ItemGroup>
 		<Reference Include="BaseHeaderReportCOMMON">
-			<HintPath>..\..\..\COMMON\BaseHeaderCOMMON\BaseHeaderReportCommonDLL\BaseHeaderReportCOMMON.dll</HintPath>
+			<HintPath>..\..\..\COMMON\BaseHeaderReportCOMMON.dll</HintPath>
 		</Reference>
 		<Reference Include="R_APIBackEnd">
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>

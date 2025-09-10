@@ -32,7 +32,7 @@ namespace HDR00200Model.ViewModel
             new KeyValuePair<string, string>("M",
                 R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Maintenance"))
         };
-        
+
         public List<string> FileType = new List<string> { "XLSX", "XLS", "CSV" };
 
         public async Task Init()
@@ -69,14 +69,45 @@ namespace HDR00200Model.ViewModel
             ReportParam.LCANCELLED = true;
             ReportParam.LTERMINATED = true;
 
-            ReportParam.CFROM_BUILDING_ID = DefaultParam.CFIRST_BUILDING_ID;
-            ReportParam.CFROM_BUILDING_NAME = DefaultParam.CFIRST_BUILDING_NAME;
-            ReportParam.CTO_BUILDING_ID = DefaultParam.CLAST_BUILDING_ID;
-            ReportParam.CTO_BUILDING_NAME = DefaultParam.CLAST_BUILDING_NAME;
-            ReportParam.CFROM_DEPT_CODE = DefaultParam.CFIRST_DEPT_CODE;
-            ReportParam.CFROM_DEPT_NAME = DefaultParam.CFIRST_DEPT_NAME;
-            ReportParam.CTO_DEPT_CODE = DefaultParam.CLAST_DEPT_CODE;
-            ReportParam.CTO_DEPT_NAME = DefaultParam.CLAST_DEPT_NAME;
+            //if (ReportParam.CREPORT_TYPE == "C")
+            //{
+            //    if (ReportParam.CAREA == "01")
+            //    {
+                    ReportParam.CFROM_BUILDING_ID = DefaultParam.CFIRST_BUILDING_ID;
+                    ReportParam.CFROM_BUILDING_NAME = DefaultParam.CFIRST_BUILDING_NAME;
+                    ReportParam.CTO_BUILDING_ID = DefaultParam.CLAST_BUILDING_ID;
+                    ReportParam.CTO_BUILDING_NAME = DefaultParam.CLAST_BUILDING_NAME;
+
+                    ReportParam.CFROM_DEPT_CODE = "";
+                    ReportParam.CFROM_DEPT_NAME = "";
+                    ReportParam.CTO_DEPT_CODE = "";
+                    ReportParam.CTO_DEPT_NAME = "";
+                //}
+                //else if (ReportParam.CAREA == "02")
+                //{
+                //    ReportParam.CFROM_BUILDING_ID = "";
+                //    ReportParam.CFROM_BUILDING_NAME = "";
+                //    ReportParam.CTO_BUILDING_ID = "";
+                //    ReportParam.CTO_BUILDING_NAME = "";
+
+                //    ReportParam.CFROM_DEPT_CODE = "";
+                //    ReportParam.CFROM_DEPT_NAME = "";
+                //    ReportParam.CTO_DEPT_CODE = "";
+                //    ReportParam.CTO_DEPT_NAME = "";
+                //}
+            //}
+            //else if (ReportParam.CREPORT_TYPE == "M")
+            //{
+            //    ReportParam.CFROM_DEPT_CODE = DefaultParam.CFIRST_DEPT_CODE;
+            //    ReportParam.CFROM_DEPT_NAME = DefaultParam.CFIRST_DEPT_NAME;
+            //    ReportParam.CTO_DEPT_CODE = DefaultParam.CLAST_DEPT_CODE;
+            //    ReportParam.CTO_DEPT_NAME = DefaultParam.CLAST_DEPT_NAME;
+
+            //    ReportParam.CFROM_BUILDING_ID = "";
+            //    ReportParam.CFROM_BUILDING_NAME = "";
+            //    ReportParam.CTO_BUILDING_ID = "";
+            //    ReportParam.CTO_BUILDING_NAME = "";
+            //}
         }
 
         private async Task GetPropertyList()
@@ -219,7 +250,7 @@ namespace HDR00200Model.ViewModel
                         R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "PleaseCheckAtLeastOneStatus"));
                 }
 
-                
+
 
                 if (!loEx.HasError)
                 {
@@ -231,114 +262,114 @@ namespace HDR00200Model.ViewModel
                     ReportParam.CAREA_NAME = ReportParam.CAREA == "01"
                         ? CodeList01.Find(x => x.CCODE == "01")?.CNAME
                         : CodeList02.Find(x => x.CCODE == "02")?.CNAME;
-                    
+
                     #region set CCATEGORY and CSTATUS
 
-                // -	IF LHANDOVER 	= TRUE, 	CCATEGORY add ‘02’
-                // -	IF LCOMPLAINT 	= TRUE, 	CCATEGORY add ‘03’
-                // -	IF LREQUEST 	= TRUE, 	CCATEGORY add ‘04’
-                // -	IF LINQUIRY 	= TRUE, 	CCATEGORY add ‘05’
-                
-                // gunakan separator koma
-                
-                var loCategory = "";
-                if (ReportParam.LHANDOVER)
-                {
-                    loCategory += "02,";
-                }
-                
-                if (ReportParam.LCOMPLAINT)
-                {
-                    loCategory += "03,";
-                }
-                
-                if (ReportParam.LREQUEST)
-                {
-                    loCategory += "04,";
-                }
-                
-                if (ReportParam.LINQUIRY)
-                {
-                    loCategory += "05,";
-                }
-                
-                if (loCategory.Length > 0)
-                {
-                    ReportParam.CCATEGORY = loCategory.Substring(0, loCategory.Length - 1);
-                }
-                
-                // -	IF LSUBMITTED 	= TRUE, 	CSTATUS add ‘01’
-                // -	IF LRECEIVED 	= TRUE, 	CSTATUS add ‘02’
-                // -	IF LASSIGNED 	= TRUE, 	CSTATUS add ‘03’
-                // -	IF LON_PROGRESS 	= TRUE, 	CSTATUS add ‘04’
-                // -	IF LSOLVED 	= TRUE, 	CSTATUS add ‘05’
-                // -	IF LCOMPLETED 	= TRUE, 	CSTATUS add ‘06’
-                // -	IF LCONFIRMED 	= TRUE, 	CSTATUS add ‘07’
-                // -	IF LCLOSED 	= TRUE, 	CSTATUS add ‘08’
-                // -	IF LCANCELLED 	= TRUE, 	CSTATUS add ‘09’
-                // -	IF LTERMINATED 	= TRUE, 	CSTATUS add ‘10’
-                
-                // gunakan separator koma
-                
-                var loStatus = "";
-                if (ReportParam.LOPEN)
-                {
-                    loStatus += "01,";
-                }
-                
-                
-                if (ReportParam.LSUBMITTED)
-                {
-                    loStatus += "02,";
-                }
-                
-                if (ReportParam.LASSIGNED)
-                {
-                    loStatus += "03,";
-                }
-                
-                if (ReportParam.LON_PROGRESS)
-                {
-                    loStatus += "04,";
-                }
-                
-                if (ReportParam.LSOLVED)
-                {
-                    loStatus += "05,";
-                }
-                
-                if (ReportParam.LCOMPLETED)
-                {
-                    loStatus += "06,";
-                }
-                
-                if (ReportParam.LCONFIRMED)
-                {
-                    loStatus += "07,";
-                }
-                
-                if (ReportParam.LCLOSED)
-                {
-                    loStatus += "08,";
-                }
-                
-                if (ReportParam.LCANCELLED)
-                {
-                    loStatus += "09,";
-                }
-                
-                if (ReportParam.LTERMINATED)
-                {
-                    loStatus += "10,";
-                }
-                
-                if (loStatus.Length > 0)
-                {
-                    ReportParam.CSTATUS = loStatus.Substring(0, loStatus.Length - 1);
-                }
+                    // -	IF LHANDOVER 	= TRUE, 	CCATEGORY add ‘02’
+                    // -	IF LCOMPLAINT 	= TRUE, 	CCATEGORY add ‘03’
+                    // -	IF LREQUEST 	= TRUE, 	CCATEGORY add ‘04’
+                    // -	IF LINQUIRY 	= TRUE, 	CCATEGORY add ‘05’
 
-                #endregion
-                    
+                    // gunakan separator koma
+
+                    var loCategory = "";
+                    if (ReportParam.LHANDOVER)
+                    {
+                        loCategory += "02,";
+                    }
+
+                    if (ReportParam.LCOMPLAINT)
+                    {
+                        loCategory += "03,";
+                    }
+
+                    if (ReportParam.LREQUEST)
+                    {
+                        loCategory += "04,";
+                    }
+
+                    if (ReportParam.LINQUIRY)
+                    {
+                        loCategory += "05,";
+                    }
+
+                    if (loCategory.Length > 0)
+                    {
+                        ReportParam.CCATEGORY = loCategory.Substring(0, loCategory.Length - 1);
+                    }
+
+                    // -	IF LSUBMITTED 	= TRUE, 	CSTATUS add ‘01’
+                    // -	IF LRECEIVED 	= TRUE, 	CSTATUS add ‘02’
+                    // -	IF LASSIGNED 	= TRUE, 	CSTATUS add ‘03’
+                    // -	IF LON_PROGRESS 	= TRUE, 	CSTATUS add ‘04’
+                    // -	IF LSOLVED 	= TRUE, 	CSTATUS add ‘05’
+                    // -	IF LCOMPLETED 	= TRUE, 	CSTATUS add ‘06’
+                    // -	IF LCONFIRMED 	= TRUE, 	CSTATUS add ‘07’
+                    // -	IF LCLOSED 	= TRUE, 	CSTATUS add ‘08’
+                    // -	IF LCANCELLED 	= TRUE, 	CSTATUS add ‘09’
+                    // -	IF LTERMINATED 	= TRUE, 	CSTATUS add ‘10’
+
+                    // gunakan separator koma
+
+                    var loStatus = "";
+                    if (ReportParam.LOPEN)
+                    {
+                        loStatus += "01,";
+                    }
+
+
+                    if (ReportParam.LSUBMITTED)
+                    {
+                        loStatus += "02,";
+                    }
+
+                    if (ReportParam.LASSIGNED)
+                    {
+                        loStatus += "03,";
+                    }
+
+                    if (ReportParam.LON_PROGRESS)
+                    {
+                        loStatus += "04,";
+                    }
+
+                    if (ReportParam.LSOLVED)
+                    {
+                        loStatus += "05,";
+                    }
+
+                    if (ReportParam.LCOMPLETED)
+                    {
+                        loStatus += "06,";
+                    }
+
+                    if (ReportParam.LCONFIRMED)
+                    {
+                        loStatus += "07,";
+                    }
+
+                    if (ReportParam.LCLOSED)
+                    {
+                        loStatus += "08,";
+                    }
+
+                    if (ReportParam.LCANCELLED)
+                    {
+                        loStatus += "09,";
+                    }
+
+                    if (ReportParam.LTERMINATED)
+                    {
+                        loStatus += "10,";
+                    }
+
+                    if (loStatus.Length > 0)
+                    {
+                        ReportParam.CSTATUS = loStatus.Substring(0, loStatus.Length - 1);
+                    }
+
+                    #endregion
+
                     // var categoryMap = new Dictionary<bool, string>
                     // {
                     //     { ReportParam.LHANDOVER, "02" },

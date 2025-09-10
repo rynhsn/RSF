@@ -88,6 +88,15 @@ namespace GLTR00100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Print Journal Transaction.
+        /// </summary>
+        internal static string _PrintJournalTransaction {
+            get {
+                return ResourceManager.GetString("_PrintJournalTransaction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reference No..
         /// </summary>
         internal static string _RefNo {

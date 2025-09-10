@@ -77,7 +77,8 @@ namespace GLTR00100SERVICE
                 loCache = new GLTR00100PrintLogKeyDTO<GLTR00100PrintParamDTO>
                 {
                     poParam = poParameter,
-                    poLogKey = (R_NetCoreLogKeyDTO)R_NetCoreLogAsyncStorage.GetData(R_NetCoreLogConstant.LOG_KEY)
+                    poLogKey = (R_NetCoreLogKeyDTO)R_NetCoreLogAsyncStorage.GetData(R_NetCoreLogConstant.LOG_KEY),
+                    poReportGlobal = R_ReportGlobalVar.R_GetReportDTO()
                 };
 
                 // Set Guid Param 
@@ -109,10 +110,39 @@ namespace GLTR00100SERVICE
 
                 //Get Data and Set Log Key
                 R_NetCoreLogUtility.R_SetNetCoreLogKey(loResultGUID.poLogKey);
+                R_ReportGlobalVar.R_SetFromReportDTO(loResultGUID.poReportGlobal);
                 _AllGLTR00100Parameter = loResultGUID.poParam;
 
-                _LoggerPrint.LogInfo("Read File Report AllStreamJournalTransactionsGet");
-                loRtn = new FileStreamResult(_ReportCls.R_GetStreamReport(), R_ReportUtility.GetMimeType(R_FileType.PDF));
+                R_FileType loFileType = new();
+                if (loResultGUID.poParam.LIS_PRINT)
+                {
+                    loRtn = new FileStreamResult(_ReportCls.R_GetStreamReport(peExport: R_FileType.PDF), R_ReportUtility.GetMimeType(R_FileType.PDF));
+                }
+                else
+                {
+                    switch (loResultGUID.poParam.CREPORT_FILETYPE)
+                    {
+                        case "XLSX":
+                            loFileType = R_FileType.XLSX;
+                            break;
+                        case "PDF":
+                            loFileType = R_FileType.PDF;
+                            break;
+                        case "XLS":
+                            loFileType = R_FileType.XLS;
+                            break;
+                        case "CSV":
+                            loFileType = R_FileType.CSV;
+                            break;
+                        default:
+                            loFileType = R_FileType.PDF;
+                            break;
+                    }
+
+                    //print nama save as
+                    loRtn = File(_ReportCls.R_GetStreamReport(peExport: loFileType), R_ReportUtility.GetMimeType(loFileType), $"{loResultGUID.poParam.CREPORT_FILENAME}.{loResultGUID.poParam.CREPORT_FILETYPE}");
+                }
+                _LoggerPrint.LogInfo("Report generated successfully.");
             }
             catch (Exception ex)
             {
@@ -159,13 +189,13 @@ namespace GLTR00100SERVICE
                 //Convert Header Data
                 loHeaderData.DDOC_DATE = !string.IsNullOrWhiteSpace(loHeaderData.CDOC_DATE)
                                         ? DateTime.ParseExact(loHeaderData.CDOC_DATE, "yyyyMMdd", CultureInfo.InvariantCulture)
-                                        : default;
+                                        : null;
                 loHeaderData.DREF_DATE = !string.IsNullOrWhiteSpace(loHeaderData.CREF_DATE)
                                         ? DateTime.ParseExact(loHeaderData.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture)
-                                        : default;
+                                        : null;
                 loHeaderData.DREVERSE_DATE = !string.IsNullOrWhiteSpace(loHeaderData.CREVERSE_DATE)
                                         ? DateTime.ParseExact(loHeaderData.CREVERSE_DATE, "yyyyMMdd", CultureInfo.InvariantCulture)
-                                        : default;
+                                        : null;
 
                 // Set Detail Data
                 _LoggerPrint.LogInfo("Grouping Report");
@@ -196,13 +226,14 @@ namespace GLTR00100SERVICE
                 _LoggerPrint.LogInfo("Set BaseHeader Report");
                 var loParam = new BaseHeaderDTO()
                 {
-                    CCOMPANY_NAME = "PT Realta Chackradarma",
                     CPRINT_CODE = poParam.CCOMPANY_ID.ToUpper(),
                     CPRINT_NAME = "JOURNAL TRANSACTION",
                     CUSER_ID = poParam.CUSER_ID.ToUpper(),
                 };
-                var loBaseHeader = loCls.GetBaseHeaderLogoCompany(poParam);
+                var loBaseHeader = loCls.GetBaseHeaderLogoCompany();
                 loParam.BLOGO_COMPANY = loBaseHeader.CLOGO;
+                loParam.CCOMPANY_NAME = loBaseHeader.CCOMPANY_NAME;
+                loParam.DPRINT_DATE_COMPANY = DateTime.ParseExact(loBaseHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture);
 
                 // Assign Data
                 loData.HeaderData = loHeaderData;

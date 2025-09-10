@@ -2,12 +2,16 @@
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Reflection;
 using GSM02000Common;
 using GSM02000Common.DTOs;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
 using RSP_GS_MAINTAIN_TAXResources;
+using System.Resources;
+//using R_ContextBackEnd;
+//using R_ContextEnumAndInterface;
 
 namespace GSM02000Back;
 
@@ -593,7 +597,7 @@ public class GSM02000Cls : R_BusinessObjectAsync<GSM02000DTO>
             _logger.LogError(loEx);
         }
 
-        EndBlock:
+    EndBlock:
         loEx.ThrowExceptionIfErrors();
 
         return loRtn;
@@ -608,7 +612,7 @@ public class GSM02000Cls : R_BusinessObjectAsync<GSM02000DTO>
         DbCommand loCmd = null;
         DbConnection loConn = null;
         string lcAction = "";
-
+        var res = new RSP_GS_MAINTAIN_TAXResources.Resources_Dummy_Class();
         try
         {
             loDb = new R_Db();
@@ -717,7 +721,7 @@ public class GSM02000Cls : R_BusinessObjectAsync<GSM02000DTO>
             }
         }
 
-        EndBlock:
+    EndBlock:
         loEx.ThrowExceptionIfErrors();
     }
 
@@ -1039,6 +1043,113 @@ public class GSM02000Cls : R_BusinessObjectAsync<GSM02000DTO>
 
         loEx.ThrowExceptionIfErrors();
     }
+
+    //public static R_Exception R_SP_Get_ExceptionDebug(DbConnection poDbConnection)
+    //{
+    //    R_Exception loException = new R_Exception();
+    //    R_Exception loResult = new R_Exception();
+    //    R_Db loDB = new R_Db();
+    //    DataTable loTable;
+    //    string lcCmd;
+    //    string lcMsg, lcData;
+    //    string[] laData;
+    //    int lnCount;
+
+    //    try
+    //    {
+    //        lcCmd = "select * from #__SP_ERR_Table ";
+    //        loTable = loDB.SqlExecQuery(lcCmd, poDbConnection, false);
+    //        if (loTable.Rows.Count > 0)
+    //        {
+    //            foreach (DataRow loRow in loTable.Rows)
+    //            {
+    //                lcMsg = R_GetMessageDebug(loRow[0].ToString().Trim() + "Resources", loRow[1].ToString().Trim());
+    //                //lcMsg = R_GetMessageDebug(typeof(RSP_GS_MAINTAIN_TAXResources.Resources_Dummy_Class), loRow[1].ToString().Trim());
+    //                lcData = loRow[2].ToString().Trim();
+    //                if (string.IsNullOrEmpty(lcData) == false)
+    //                {
+    //                    laData = lcData.Split("|");
+    //                    lnCount = laData.Length;
+    //                    for (int lnI = 0; lnI <= lnCount - 1; lnI++)
+    //                        lcMsg = lcMsg.Replace("{" + lnI.ToString().Trim() + "}", laData[lnI]);
+    //                }
+    //                loResult.Add(new R_Error(loRow[0].ToString().Trim() + "(" + loRow[1].ToString().Trim() + ")", lcMsg));
+    //            }
+    //        }
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        loException.Add(ex);
+    //    }
+    //    finally
+    //    {
+    //        loDB = null/* TODO Change to default(_) if this is not a reference type */;
+    //    }
+
+    //    loException.ThrowExceptionIfErrors();
+
+    //    return loResult;
+    //}
+
+    //public static string R_GetMessageDebug(string pcDllname, string pcMsgId, System.Globalization.CultureInfo poCulture = null, string pcResourceName = "")
+    //{
+    //    string lcDesc = "";
+    //    ResourceManager loResourceManager;
+    //    string lcResourceName;
+    //    string lcNamespace;
+    //    Assembly loAsm;
+    //    System.Globalization.CultureInfo loCulture;
+
+    //    try
+    //    {
+    //        // Get Assembly
+    //        loAsm = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name.Equals(pcDllname.Trim(), StringComparison.InvariantCultureIgnoreCase)).Select(x => x).FirstOrDefault();
+    //        if (loAsm == null)
+    //        {
+    //            try
+    //            {
+    //                loAsm = Assembly.LoadFrom(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pcDllname.Trim() + ".dll"));
+    //            }
+    //            catch (Exception ex)
+    //            {
+    //                throw new Exception("N/A");
+    //            }
+    //        }
+
+    //        lcNamespace = pcDllname.Trim();
+    //        lcResourceName = pcResourceName.Trim();
+    //        if (string.IsNullOrEmpty(pcResourceName))
+    //            lcResourceName = lcNamespace.ToLower() + "_msgrsc";
+    //        loCulture = poCulture;
+    //        if (poCulture == null)
+    //        {
+    //            if (R_Context._GetInternalContext() == null)
+    //            {
+
+    //                loCulture = Thread.CurrentThread.CurrentUICulture;
+    //            }
+    //            else
+    //            {
+
+    //                // UBAH: URUSAN CULTURE
+    //                //loCulture = R_Context._GetInternalContext().Culture;
+    //                loCulture = new System.Globalization.CultureInfo(R_Context._GetInternalContext(R_InternalContextVarEnumerator.CULTURE).ToString());
+    //            }
+    //        }
+
+    //        loResourceManager = new ResourceManager(lcNamespace + "." + lcResourceName, loAsm);
+    //        loResourceManager.IgnoreCase = true;
+
+    //        lcDesc = loResourceManager.GetString(pcMsgId, loCulture);
+    //        lcDesc = string.IsNullOrWhiteSpace(lcDesc) ? pcMsgId : lcDesc;
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        lcDesc = "[" + pcMsgId.Trim() + "] - " + ex.Message;
+    //    }
+
+    //    return lcDesc;
+    //}
 }
 
 #endregion

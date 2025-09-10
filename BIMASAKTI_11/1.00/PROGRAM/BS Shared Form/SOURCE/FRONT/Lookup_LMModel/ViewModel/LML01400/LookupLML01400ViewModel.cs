@@ -30,6 +30,7 @@ namespace Lookup_PMModel.ViewModel.LML01400
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTRANS_CODE, poParam.CTRANS_CODE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CREF_NO, poParam.CREF_NO);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CSEQ_NO, poParam.CSEQ_NO ?? "");
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LNON_ACCRUAL, poParam.LNON_ACCRUAL);
 
                 var loResult = await _model.LML01400AgreementUnitChargesListAsync();
 

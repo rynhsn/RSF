@@ -104,7 +104,7 @@ public partial class HDR00200 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         R_DisplayException(loEx);
     }
 
@@ -181,7 +181,7 @@ public partial class HDR00200 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         R_DisplayException(loEx);
     }
 
@@ -258,7 +258,7 @@ public partial class HDR00200 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         R_DisplayException(loEx);
     }
 
@@ -331,7 +331,7 @@ public partial class HDR00200 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         R_DisplayException(loEx);
     }
 
@@ -403,7 +403,8 @@ public partial class HDR00200 : R_Page
                             "rpt/HDR00200PrintPrivate/ActivityReportGet",
                             loParam
                         );
-                    }else if (_viewModel.ReportParam.CAREA == "02")
+                    }
+                    else if (_viewModel.ReportParam.CAREA == "02")
                     {
                         await _reportService.GetReport(
                             "R_DefaultServiceUrlHD",
@@ -421,7 +422,7 @@ public partial class HDR00200 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         loEx.ThrowExceptionIfErrors();
     }
 
@@ -439,24 +440,143 @@ public partial class HDR00200 : R_Page
                 eventArgs.PageTitle = _localizer["SaveAs"];
                 eventArgs.TargetPageType = typeof(HDR00200PopupSaveAs);
             }
-            
+
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         loEx.ThrowExceptionIfErrors();
     }
 
     private void OnChangedTypeCare(object obj)
     {
         var llObject = obj as bool? ?? false;
-        if (!llObject) return;
-        _viewModel.ReportParam.LCOMPLAINT = true;
-        _viewModel.ReportParam.LREQUEST = true;
-        _viewModel.ReportParam.LINQUIRY = true;
-        _viewModel.ReportParam.LHANDOVER = false;
+
+        if (!llObject)
+        {
+
+            _viewModel.ReportParam.CFROM_BUILDING_ID = "";
+            _viewModel.ReportParam.CFROM_BUILDING_NAME = "";
+            _viewModel.ReportParam.CTO_BUILDING_ID = "";
+            _viewModel.ReportParam.CTO_BUILDING_NAME = "";
+
+        }
+        else if (llObject)
+        {
+
+            _viewModel.ReportParam.LCOMPLAINT = true;
+            _viewModel.ReportParam.LREQUEST = true;
+            _viewModel.ReportParam.LINQUIRY = true;
+            _viewModel.ReportParam.LHANDOVER = false;
+
+            if (_viewModel.ReportParam.CAREA == "01")
+            {
+                _viewModel.ReportParam.CFROM_BUILDING_ID = _viewModel.DefaultParam.CFIRST_BUILDING_ID;
+                _viewModel.ReportParam.CFROM_BUILDING_NAME = _viewModel.DefaultParam.CFIRST_BUILDING_NAME;
+                _viewModel.ReportParam.CTO_BUILDING_ID = _viewModel.DefaultParam.CLAST_BUILDING_ID;
+                _viewModel.ReportParam.CTO_BUILDING_NAME = _viewModel.DefaultParam.CLAST_BUILDING_NAME;
+            }
+            else if (_viewModel.ReportParam.CAREA == "02")
+            {
+                _viewModel.ReportParam.CFROM_BUILDING_ID = "";
+                _viewModel.ReportParam.CFROM_BUILDING_NAME = "";
+                _viewModel.ReportParam.CTO_BUILDING_ID = "";
+                _viewModel.ReportParam.CTO_BUILDING_NAME = "";
+            }
+
+            _viewModel.ReportParam.CFROM_DEPT_CODE = "";
+            _viewModel.ReportParam.CFROM_DEPT_NAME = "";
+            _viewModel.ReportParam.CTO_DEPT_CODE = "";
+            _viewModel.ReportParam.CTO_DEPT_NAME = "";
+        }
+    }
+
+
+    private void ValueChangedTypeCare(string value)
+    {
+        
+        if (value == "C")
+        {
+            _viewModel.ReportParam.LCOMPLAINT = true;
+            _viewModel.ReportParam.LREQUEST = true;
+            _viewModel.ReportParam.LINQUIRY = true;
+            _viewModel.ReportParam.LHANDOVER = false;
+
+            if (_viewModel.ReportParam.CAREA == "01")
+            {
+                _viewModel.ReportParam.CFROM_BUILDING_ID = _viewModel.DefaultParam.CFIRST_BUILDING_ID;
+                _viewModel.ReportParam.CFROM_BUILDING_NAME = _viewModel.DefaultParam.CFIRST_BUILDING_NAME;
+                _viewModel.ReportParam.CTO_BUILDING_ID = _viewModel.DefaultParam.CLAST_BUILDING_ID;
+                _viewModel.ReportParam.CTO_BUILDING_NAME = _viewModel.DefaultParam.CLAST_BUILDING_NAME;
+            }
+            else if (_viewModel.ReportParam.CAREA == "02")
+            {
+                _viewModel.ReportParam.CFROM_BUILDING_ID = "";
+                _viewModel.ReportParam.CFROM_BUILDING_NAME = "";
+                _viewModel.ReportParam.CTO_BUILDING_ID = "";
+                _viewModel.ReportParam.CTO_BUILDING_NAME = "";
+            }
+
+            _viewModel.DefaultParam.CFIRST_DEPT_CODE= _viewModel.ReportParam.CFROM_DEPT_CODE;
+            _viewModel.DefaultParam.CFIRST_DEPT_NAME = _viewModel.ReportParam.CFROM_DEPT_NAME;
+            _viewModel.DefaultParam.CLAST_DEPT_CODE= _viewModel.ReportParam.CTO_DEPT_CODE;
+            _viewModel.DefaultParam.CLAST_DEPT_NAME = _viewModel.ReportParam.CTO_DEPT_NAME;
+
+            _viewModel.ReportParam.CFROM_DEPT_CODE = "";
+            _viewModel.ReportParam.CFROM_DEPT_NAME = "";
+            _viewModel.ReportParam.CTO_DEPT_CODE = "";
+            _viewModel.ReportParam.CTO_DEPT_NAME = "";
+        }
+        else if (value == "M")
+        {
+
+            if (_viewModel.ReportParam.CAREA == "01")
+            {
+                _viewModel.DefaultParam.CFIRST_BUILDING_ID = _viewModel.ReportParam.CFROM_BUILDING_ID;
+                _viewModel.DefaultParam.CFIRST_BUILDING_NAME = _viewModel.ReportParam.CFROM_BUILDING_NAME;
+                _viewModel.DefaultParam.CLAST_BUILDING_ID = _viewModel.ReportParam.CTO_BUILDING_ID;
+                _viewModel.DefaultParam.CLAST_BUILDING_NAME = _viewModel.ReportParam.CTO_BUILDING_NAME;
+
+                _viewModel.ReportParam.CFROM_BUILDING_ID = "";
+                _viewModel.ReportParam.CFROM_BUILDING_NAME = "";
+                _viewModel.ReportParam.CTO_BUILDING_ID = "";
+                _viewModel.ReportParam.CTO_BUILDING_NAME = "";
+            }
+
+            _viewModel.ReportParam.CFROM_DEPT_CODE = _viewModel.DefaultParam.CFIRST_DEPT_CODE;
+            _viewModel.ReportParam.CFROM_DEPT_NAME = _viewModel.DefaultParam.CFIRST_DEPT_NAME;
+            _viewModel.ReportParam.CTO_DEPT_CODE = _viewModel.DefaultParam.CLAST_DEPT_CODE;
+            _viewModel.ReportParam.CTO_DEPT_NAME = _viewModel.DefaultParam.CLAST_DEPT_NAME;
+
+        }
+
+        _viewModel.ReportParam.CREPORT_TYPE = value;
+    }
+
+    private void ValueChangedArea(string value)
+    {
+        if(value == "01")
+        {
+            _viewModel.ReportParam.CFROM_BUILDING_ID = _viewModel.DefaultParam.CFIRST_BUILDING_ID;
+            _viewModel.ReportParam.CFROM_BUILDING_NAME = _viewModel.DefaultParam.CFIRST_BUILDING_NAME;
+            _viewModel.ReportParam.CTO_BUILDING_ID = _viewModel.DefaultParam.CLAST_BUILDING_ID;
+            _viewModel.ReportParam.CTO_BUILDING_NAME = _viewModel.DefaultParam.CLAST_BUILDING_NAME;
+        }
+        else if(value == "02")
+        {
+            _viewModel.DefaultParam.CFIRST_BUILDING_ID = _viewModel.ReportParam.CFROM_BUILDING_ID;
+            _viewModel.DefaultParam.CFIRST_BUILDING_NAME = _viewModel.ReportParam.CFROM_BUILDING_NAME;
+            _viewModel.DefaultParam.CLAST_BUILDING_ID = _viewModel.ReportParam.CTO_BUILDING_ID;
+            _viewModel.DefaultParam.CLAST_BUILDING_NAME = _viewModel.ReportParam.CTO_BUILDING_NAME;
+            _viewModel.ReportParam.CFROM_BUILDING_ID = "";
+            _viewModel.ReportParam.CFROM_BUILDING_NAME = "";
+            _viewModel.ReportParam.CTO_BUILDING_ID = "";
+            _viewModel.ReportParam.CTO_BUILDING_NAME = "";
+        }
+
+        _viewModel.ReportParam.CAREA = value;
     }
 }

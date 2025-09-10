@@ -16,7 +16,7 @@
   <ItemGroup>
     <EmbeddedResource Update="APR00100BackResources_msgrsc.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>PMR02000BackResources_msgrsc.Designer.cs</LastGenOutput>
+      <LastGenOutput>APR00100BackResources_msgrsc.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

@@ -126,6 +126,9 @@
   <data name="_PrintBtn" xml:space="preserve">
     <value>Print</value>
   </data>
+  <data name="_PrintJournalTransaction" xml:space="preserve">
+    <value>Print Journal Transaction</value>
+  </data>
   <data name="_RefNo" xml:space="preserve">
     <value>Reference No.</value>
   </data>

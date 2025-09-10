@@ -573,6 +573,7 @@ namespace Lookup_PMBACK
                 loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE ", DbType.String, 10, poEntity.CTRANS_CODE );
                 loDb.R_AddCommandParameter(loCmd, "@CREF_NO ", DbType.String, 30, poEntity.CREF_NO );
                 loDb.R_AddCommandParameter(loCmd, "@CSEQ_NO", DbType.String, 3, poEntity.CSEQ_NO);
+                loDb.R_AddCommandParameter(loCmd, "@LNON_ACCRUAL", DbType.Boolean, 1, poEntity.LNON_ACCRUAL);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID ", DbType.String, 8, poEntity.CUSER_ID);
 
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()

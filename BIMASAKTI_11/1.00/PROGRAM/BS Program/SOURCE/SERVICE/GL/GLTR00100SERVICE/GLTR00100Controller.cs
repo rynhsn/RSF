@@ -10,7 +10,7 @@ namespace GLTR00100SERVICE
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class GLTR00100Controller : ControllerBase, IGLTR00100
+    public class GLTR00100Controller : ControllerBase, GLTR00100BACK.IGLTR00100
     {
         private LoggerGLTR00100 _Logger;
         private readonly ActivitySource _activitySource;
@@ -23,7 +23,7 @@ namespace GLTR00100SERVICE
         }
 
         [HttpPost]
-        public GLTR00100Record<GLTR00100DTO> GetGLJournal(GLTR00100DTO poParam)
+        public async Task<GLTR00100Record<GLTR00100DTO>> GetGLJournal(GLTR00100DTO poParam)
         {
             using Activity activity = _activitySource.StartActivity("GetGLJournal");
             var loEx = new R_Exception();
@@ -41,7 +41,7 @@ namespace GLTR00100SERVICE
                 var loCls = new GLTR00100Cls();
 
                 _Logger.LogInfo("Call Back Method GetGLJournalTransaction");
-                loRtn.Data = loCls.GetGLJournalTransaction(poParam);
+                loRtn.Data = await loCls.GetGLJournalTransaction(poParam);
             }
             catch (Exception ex)
             {
@@ -56,7 +56,7 @@ namespace GLTR00100SERVICE
         }
 
         [HttpPost]
-        public GLTR00100InitialDTO GetInitialVar()
+        public async Task<GLTR00100InitialDTO> GetInitialVar()
         {
             using Activity activity = _activitySource.StartActivity("GetInitialVar");
             var loEx = new R_Exception();
@@ -74,7 +74,7 @@ namespace GLTR00100SERVICE
                 var loCls = new GLTR00100Cls();
 
                 _Logger.LogInfo("Call Back Method GetInitial");
-                loRtn = loCls.GetInitial(poParam);
+                loRtn = await loCls.GetInitial(poParam);
             }
             catch (Exception ex)
             {

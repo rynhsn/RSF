@@ -23,6 +23,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\COMMON\LM\PMB05000Common\PMB05000Common.csproj" />
+      <ProjectReference Include="..\..\GS\GS_SPR\RSP_PM_SOFT_CLOSE_PERIOD_PROCESSResources\RSP_PM_SOFT_CLOSE_PERIOD_PROCESSResources.csproj" />
     </ItemGroup>
 
 </Project>

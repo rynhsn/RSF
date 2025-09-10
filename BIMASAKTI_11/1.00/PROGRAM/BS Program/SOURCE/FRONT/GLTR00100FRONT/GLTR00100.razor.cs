@@ -72,6 +72,7 @@ namespace GLTR00100FRONT
                 loData.CCOMPANY_ID = clientHelper.CompanyId;
                 loData.CUSER_ID = clientHelper.UserId;
                 loData.CREPORT_CULTURE = clientHelper.ReportCulture;
+                loData.LIS_PRINT = true;
 
                 await _reportService.GetReport(
                 "R_DefaultServiceUrlGL",

@@ -4,6 +4,7 @@ namespace ICB00100Common.DTOs
 {
     public class ICB00100SystemParamDTO
     {
+        public string CPROPERTY_ID { get; set; } = "";
         public string CSOFT_PERIOD { get; set; } = "";
 
         public string CSOFT_PERIOD_YY { get; set; } = "";

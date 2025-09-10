@@ -156,7 +156,7 @@ namespace PMB05000Model.ViewModel
                     // loItem.DREF_DATE = DateTime.ParseExact(loItem.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
                 }
 
-                SetExcelDataSetToDoList();
+                //SetExcelDataSetToDoList();
             }
             catch (Exception ex)
             {
@@ -191,7 +191,7 @@ namespace PMB05000Model.ViewModel
         }
 
 
-        private void SetExcelDataSetToDoList()
+        public void SetExcelDataSetToDoList()
         {
             var loConvertData = ValidateSoftCloseList.Select(item => new PMB05000ExcelToDoListDTO()
             {

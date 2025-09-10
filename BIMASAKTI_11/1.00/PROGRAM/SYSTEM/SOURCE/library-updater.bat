@@ -67,7 +67,9 @@ echo 2.  Update DLL Front
 echo 3.  Update DLL Back
 echo 4.  Update DLL Menu
 echo 5.  Update DLL Menu Back
-echo 6.  Update Blazor Menu Program
+echo 6.  Update DLL Engine (belum ada)
+echo 7.  Update DLL Report Server (belum ada)
+echo 8.  Update Blazor Menu Program
 echo 99. Super Update
 echo 0.  Exit
 echo.
@@ -77,7 +79,9 @@ if "%choice%"=="2" goto update_dll_front
 if "%choice%"=="3" goto update_dll_back
 if "%choice%"=="4" goto update_dll_menu
 if "%choice%"=="5" goto update_dll_menu_back
-if "%choice%"=="6" goto update_menu_program
+if "%choice%"=="6" goto update_dll_engine
+if "%choice%"=="7" goto update_dll_report_server
+if "%choice%"=="8" goto update_menu_program
 @REM if "%choice%"=="7" goto update_css
 if "%choice%"=="99" goto super_update
 if "%choice%"=="0" goto exit

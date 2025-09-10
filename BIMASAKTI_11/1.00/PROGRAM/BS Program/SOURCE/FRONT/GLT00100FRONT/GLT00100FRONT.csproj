@@ -21,6 +21,7 @@
     <ProjectReference Include="..\GLT00100FrontResources\GLT00100FrontResources.csproj" />
     <ProjectReference Include="..\GLT00100MODEL\GLT00100MODEL.csproj" />
     <ProjectReference Include="..\GLTR00100FRONT\GLTR00100FRONT.csproj" />
+    <!--<ProjectReference Include="..\GLTR00100FRONT\GLTR00100FRONT.csproj" />-->
   </ItemGroup>
 
 	<ItemGroup>

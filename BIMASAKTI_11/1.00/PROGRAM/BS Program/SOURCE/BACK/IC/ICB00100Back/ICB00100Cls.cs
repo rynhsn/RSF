@@ -169,6 +169,7 @@ public class ICB00100Cls
             loCmd.CommandText = lcQuery;
 
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParams.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParams.CPROPERTY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CPERIOD_YEAR", DbType.String, 4, poParams.CPERIOD_YEAR);
             loDb.R_AddCommandParameter(loCmd, "@CPERIOD_MONTH", DbType.String, 2, poParams.CPERIOD_MONTH);
             loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, "EDIT");
@@ -178,6 +179,7 @@ public class ICB00100Cls
                 .Where(x =>
                     x.ParameterName is
                         "@CCOMPANY_ID" or
+                        "@CPROPERTY_ID" or
                         "@CPERIOD_YEAR" or
                         "@CPERIOD_MONTH" or
                         "@CACTION" or
@@ -260,6 +262,8 @@ public class ICB00100Cls
                 }
 
                 loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
+
+                scope.Complete();
             }
             catch (Exception ex)
             {
@@ -347,6 +351,7 @@ public class ICB00100Cls
                 }
 
                 loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
+                scope.Complete();
             }
             catch (Exception ex)
             {

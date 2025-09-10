@@ -1,9 +1,9 @@
 ﻿using BlazorClientHelper;
 using GLT00100COMMON;
 using GLT00100MODEL;
-using GLTR00100COMMON;
+//using GLTR00100COMMON;
 using GLT00100FrontResources;
-using GLTR00100FRONT;
+//using GLTR00100FRONT;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
 using Lookup_GSModel.ViewModel;
@@ -22,6 +22,8 @@ using R_LockingFront;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Xml.Linq;
+using GLTR00100FRONT;
+using GLTR00100COMMON;
 
 namespace GLT00100FRONT
 {
@@ -30,6 +32,9 @@ namespace GLT00100FRONT
         private GLT00110ViewModel _JournalEntryViewModel = new();
         private R_Conductor _conductorRef;
         private R_Grid<GLT00101DTO> _gridDetailRef;
+
+        
+        private R_ConductorGrid _conductorGridRef;
 
         #region Private Property
 

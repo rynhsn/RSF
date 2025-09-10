@@ -26,7 +26,7 @@ namespace GLTR00100BACK
             _activitySource = GLTR00100ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
-        public GLTR00100InitialDTO GetInitial(GLTR00100InitialDTO poEntity)
+        public async Task<GLTR00100InitialDTO> GetInitial(GLTR00100InitialDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GetInitial");
             var loEx = new R_Exception();
@@ -35,7 +35,7 @@ namespace GLTR00100BACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = await loDb.GetConnectionAsync();
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "SELECT dbo.RFN_GET_DB_TODAY(@CCOMPANY_ID) AS DTODAY";
@@ -59,7 +59,7 @@ namespace GLTR00100BACK
                 var loDebugLogResult = string.Format("SELECT dbo.RFN_GET_DB_TODAY({0}) AS DTODAY", loCompanyIdLog);
                 _Logger.LogDebug(loDebugLogResult);
 
-                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
                 var loTempResult = R_Utility.R_ConvertTo<GLTR00100InitialDTO>(loDataTable).FirstOrDefault();
 
                 loResult.DTODAY = loTempResult.DTODAY;
@@ -74,7 +74,7 @@ namespace GLTR00100BACK
 
             return loResult;
         }
-        public GLTR00100DTO GetGLJournalTransaction(GLTR00100DTO poEntity)
+        public async Task<GLTR00100DTO> GetGLJournalTransaction(GLTR00100DTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GetGLJournalTransaction");
             var loEx = new R_Exception();
@@ -83,7 +83,7 @@ namespace GLTR00100BACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loConn = await loDb.GetConnectionAsync();
 
                 var loCmd = loDb.GetCommand();
 
@@ -104,7 +104,7 @@ namespace GLTR00100BACK
                     x.ParameterName == "@CLANGUAGE_ID").Select(x => x.Value);
                 _Logger.LogDebug("EXEC RSP_GL_GET_JOURNAL {@poParameter}", loDbParam2);
 
-                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
 
                 loResult = R_Utility.R_ConvertTo<GLTR00100DTO>(loDataTable).FirstOrDefault();
 
@@ -120,38 +120,69 @@ namespace GLTR00100BACK
             return loResult;
         }
 
-        public GLTR00100PrintDTO GetBaseHeaderLogoCompany(GLTR00100PrintParamDTO poEntity)
+        #region Report SP
+        public GLTR00100PrintResult GetBaseHeaderLogoCompany()
         {
             using Activity activity = _activitySource.StartActivity("GetBaseHeaderLogoCompany");
             var loEx = new R_Exception();
-            GLTR00100PrintDTO loResult = null;
+            GLTR00100PrintResult loResult = null;
+            string lcQuery = "";
+            var loDb = new R_Db();
+            DbConnection loConn = null;
+            DbCommand loCmd = null;
 
             try
             {
-                var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_ReportConnectionString");
-                var loCmd = loDb.GetCommand();
+                loDb = new R_Db();
+                loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
+                loCmd = loDb.GetCommand();
 
-
-                var lcQuery = "SELECT dbo.RFN_GET_COMPANY_LOGO(@CCOMPANY_ID) as CLOGO";
+                lcQuery = "SELECT dbo.RFN_GET_COMPANY_LOGO(@CCOMPANY_ID) as CLOGO";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.Text;
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 15, poEntity.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 15, R_BackGlobalVar.COMPANY_ID);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
                 _LoggerPrint.LogDebug(string.Format("SELECT dbo.RFN_GET_COMPANY_LOGO(@CCOMPANY_ID) as CLOGO", loDbParam));
 
-                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
-                loResult = R_Utility.R_ConvertTo<GLTR00100PrintDTO>(loDataTable).FirstOrDefault();
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+                loResult = R_Utility.R_ConvertTo<GLTR00100PrintResult>(loDataTable).FirstOrDefault();
+
+                lcQuery = "EXEC RSP_GS_GET_COMPANY_INFO @CCOMPANY_ID";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.Text;
+
+                //Debug Logs
+                _LoggerPrint.LogDebug(string.Format("EXEC RSP_GS_GET_COMPANY_INFO '@CCOMPANY_ID'", loDbParam));
+                loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+                var loCompanyNameResult = R_Utility.R_ConvertTo<GLTR00100PrintResult>(loDataTable).FirstOrDefault();
+
+                loResult.CCOMPANY_NAME = loCompanyNameResult.CCOMPANY_NAME;
+                loResult.CDATETIME_NOW = loCompanyNameResult.CDATETIME_NOW;
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
                 _LoggerPrint.LogError(loEx);
             }
+            finally
+            {
+                if (loConn != null)
+                {
+                    if (loConn.State != System.Data.ConnectionState.Closed)
+                        loConn.Close();
 
+                    loConn.Dispose();
+                    loConn = null;
+                }
+                if (loCmd != null)
+                {
+                    loCmd.Dispose();
+                    loCmd = null;
+                }
+            }
             loEx.ThrowExceptionIfErrors();
 
             return loResult;
@@ -165,7 +196,7 @@ namespace GLTR00100BACK
             try
             {
                 var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_ReportConnectionString");
+                var loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
 
                 var loCmd = loDb.GetCommand();
 
@@ -198,5 +229,6 @@ namespace GLTR00100BACK
 
             return loResult;
         }
+        #endregion
     }
 }

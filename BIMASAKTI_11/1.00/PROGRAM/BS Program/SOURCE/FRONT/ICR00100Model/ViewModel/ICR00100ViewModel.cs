@@ -120,6 +120,22 @@ namespace ICR00100Model.ViewModel
             {
                 await GetPropertyList();
                 await GetYearRange();
+                ResetParam();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        public void ResetParam()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
                 ReportParam.IPERIOD_YEAR = DateTime.Now.Year;
                 ReportParam.CPERIOD_MONTH = DateTime.Now.ToString("MM");
                 // ReportParam.DFROM_DATE = DateTime.Now;
@@ -128,6 +144,16 @@ namespace ICR00100Model.ViewModel
                 ReportParam.CDATE_FILTER = PrintPeriodMode[0].Key;
                 ReportParam.CFILTER_BY = FilterByProduct[0].Key;
                 // ReportParam.CSUPRESS_MODE = SupressMode[0].Key;
+                //ReportParam.CWAREHOUSE_CODE = "";
+                //ReportParam.CWAREHOUSE_NAME = "";
+                //ReportParam.CFROM_PROD_ID = "";
+                //ReportParam.CFROM_PROD_NAME = "";
+                ReportParam.CDEPT_CODE = "";
+                ReportParam.CDEPT_NAME = "";
+                ReportParam.CFILTER_DATA_CATEGORY = "";
+                ReportParam.CFILTER_DATA_CATEGORY_NAME = "";
+                ReportParam.CFILTER_DATA_JOURNAL = "";
+                ReportParam.CFILTER_DATA_JOURNAL_NAME = "";
             }
             catch (Exception ex)
             {

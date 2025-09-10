@@ -7,7 +7,7 @@
     <ItemGroup>
       <EmbeddedResource Update="RSP_AP_SAVE_PURCHASE_ADJUSTMENT_ALLOCResources_msgrsc.resx">
         <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>RSP_AP_SAVE_PURCHASE_ADJUSTMENT_ALLOCResources.Designer.cs</LastGenOutput>
+        <LastGenOutput>RSP_AP_SAVE_PURCHASE_ADJUSTMENT_ALLOCResources_msgrsc.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>
 

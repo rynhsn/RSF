@@ -131,6 +131,7 @@ public class ICB00100Controller : ControllerBase, IICB00100
             _logger.LogInfo("Set Parameter");
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbParams.CUSER_ID = R_BackGlobalVar.USER_ID;
+            loDbParams.CPROPERTY_ID = poParams.CPROPERTY_ID;
             loDbParams.CPERIOD_YEAR = poParams.CPERIOD_YEAR;
             loDbParams.CPERIOD_MONTH = poParams.CPERIOD_MONTH;
 

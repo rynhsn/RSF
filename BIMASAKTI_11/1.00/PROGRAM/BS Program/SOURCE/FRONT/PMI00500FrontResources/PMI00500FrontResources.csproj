@@ -7,7 +7,7 @@
     <ItemGroup>
       <EmbeddedResource Update="PMI00500FrontResources_msgrsc.resx">
         <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>PMI00500FrontResources.Designer.cs</LastGenOutput>
+        <LastGenOutput>PMI00500FrontResources_msgrsc.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>
 

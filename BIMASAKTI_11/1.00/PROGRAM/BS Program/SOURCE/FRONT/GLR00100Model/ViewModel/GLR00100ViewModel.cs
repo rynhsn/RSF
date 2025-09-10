@@ -91,7 +91,8 @@ namespace GLR00100Model.ViewModel
                     await _model.GetAsync<GLR00100SingleDTO<GLR00100SystemParamDTO>>(
                         nameof(IGLR00100.GLR00100GetSystemParam));
 
-                YearPeriod = int.Parse(loResult.Data.CSOFT_PERIOD_YY);
+                //YearPeriod = int.Parse(loResult.Data.CSOFT_PERIOD_YY);
+                YearPeriod = DateTime.Now.Year;
             }
             catch (Exception ex)
             {

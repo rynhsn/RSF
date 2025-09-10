@@ -513,6 +513,7 @@ namespace Lookup_PMSERVICES
                 poParameter.CTRANS_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTRANS_CODE);
                 poParameter.CREF_NO = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CREF_NO);
                 poParameter.CSEQ_NO = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CSEQ_NO);
+                poParameter.LNON_ACCRUAL = R_Utility.R_GetStreamingContext<bool>(ContextConstantPublicLookup.LNON_ACCRUAL);
                 poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
 
                 _loggerLookup.LogInfo(string.Format("Get Parameter {0} on Controller", lcMethodName));

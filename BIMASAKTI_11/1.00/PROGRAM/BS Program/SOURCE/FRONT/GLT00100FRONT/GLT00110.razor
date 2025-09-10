@@ -20,11 +20,11 @@
                                CharacterCasing="@R_eCharacterCasing.Upper"
                                MaxLength="5"
                                OnLostFocus="@OnLostFocus_LookupDept" />
-                </R_ItemLayout>
-                <R_ItemLayout Class="col d-flex justify-content-center">
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col d-flex justify-content-center">
                     <R_Lookup R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@Before_Open_lookupDept" R_After_Open_Lookup="@After_Open_lookupDept" @ref="@_lookup_CDEPT_CODE" Enabled="(_conductorRef.R_ConductorMode!=R_eConductorMode.Normal)">...</R_Lookup>
-                </R_ItemLayout>
-                <R_ItemLayout col="6">
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
                     <R_TextBox @bind-Value="_JournalEntryViewModel.Data.CDEPT_NAME"
                                R_ConductorSource="_conductorRef"
                                Enabled="false"
@@ -50,8 +50,8 @@
                     <R_DatePicker Value="_JournalEntryViewModel.RefDate"
                                   R_ConductorSource="_conductorRef"
                                   ValueChanged="((DateTime value) => RefDate_OnChange(value))"
-                                  R_EnableAdd
-                                  R_EnableEdit />
+                                    R_EnableAdd
+                                    R_EnableEdit />
                 </R_ItemLayout>
             </R_StackLayout>
 
@@ -88,11 +88,11 @@
                                 R_EnableAdd
                                 R_EnableEdit
                                 MaxLength="200" />
-                </R_ItemLayout>
-            </R_StackLayout>
+                    </R_ItemLayout>
+                    </R_StackLayout>
 
-            @*Status*@
-            <R_StackLayout Row Class="mt-2">
+                    @*Status*@
+                    <R_StackLayout Row Class="mt-2">
                 <R_ItemLayout col="3">
                     <R_Label>Status</R_Label>
                 </R_ItemLayout>
@@ -102,8 +102,8 @@
                                Enabled="false" />
                 </R_ItemLayout>
             </R_StackLayout>
-        </R_ItemLayout>
-        <R_ItemLayout col="6">
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
             @*Currency*@
             <R_StackLayout Row>
                 <R_ItemLayout col="3">
@@ -229,14 +229,14 @@
                                               R_ConductorSource="_conductorRef"
                                               TValue="decimal"
                                               Arrows="false"
-                                              R_EnableAdd
-                                              R_EnableEdit
+                                                    R_EnableAdd
+                                                    R_EnableEdit
                                               Min="0" />
-                        </R_ItemLayout>
-                    </R_StackLayout>
+                            </R_ItemLayout>
+                            </R_StackLayout>
 
-                    @*Total Debit*@
-                    <R_StackLayout Row>
+                            @*Total Debit*@
+                            <R_StackLayout Row>
                         <R_ItemLayout col="4">
                             <R_Label>Total Debit</R_Label>
                         </R_ItemLayout>
@@ -311,7 +311,7 @@
             <R_Grid @ref="_gridDetailRef"
                     DataSource="_JournalEntryViewModel.JournalDetailGrid"
                     Pageable
-                    R_ConductorSource="_conductorRef"
+                    R_ConductorGridSource="_conductorGridRef"
                     R_GridType="R_eGridType.Batch"
                     R_ServiceGetListRecord="JournalDet_ServiceGetListRecord"
                     Height="280px"
@@ -330,8 +330,8 @@
                     AllowAddNewRow
                     AllowDeleteRow
                     AllowEditRow
-                    R_EnableAdd="true"
-                    R_EnableEdit="true">
+                    Enabled="@(_conductorRef.R_ConductorMode != R_eConductorMode.Normal)"
+                    >
                 <R_GridColumns>
                     <R_GridNumericColumn Width="70px" FieldName="@nameof(GLT00101DTO.INO)" TValue="int" HeaderText="No." Min="0"></R_GridNumericColumn>
                     <R_GridLookupColumn Width="300px"
@@ -347,8 +347,8 @@
                                           FieldName="@nameof(GLT00101DTO.CCENTER_CODE)"
                                           ValueField="@nameof(GLT00100GSCenterDTO.CCENTER_CODE)"
                                           TextField="@nameof(GLT00100GSCenterDTO.CCENTER_NAME)"
-                                          R_EnableAdd
-                                          R_EnableEdit
+                                                        R_EnableAdd
+                                                        R_EnableEdit
                                           PopupMaxHeight="120px"
                                           HeaderText="Center" />
                     <R_GridTextColumn Width="73px" FieldName="@nameof(GLT00101DTO.CDBCR)" HeaderText="D/C" R_EnableAdd="false" R_EnableEdit="false"></R_GridTextColumn>
@@ -366,6 +366,7 @@
         </R_ItemLayout>
 
     </R_StackLayout>
+
     <R_StackLayout Row Class="justify-content-between mt-2">
         <R_StackLayout Row>
             <R_ItemLayout>
@@ -405,17 +406,20 @@
     </R_StackLayout>
 </R_GroupBox>
 
+                
 <R_Conductor @ref="_conductorRef"
-             R_ViewModel="_JournalEntryViewModel"
-             R_IsHeader
-             R_ServiceGetRecord="@JournalForm_GetRecord"
-             R_Saving="@JournalForm_Saving"
-             R_ServiceSave="@JournalForm_ServiceSave"
-             R_AfterAdd="@JournalForm_AfterAddAsync"
-             R_Display="@JournalForm_RDisplay"
-             R_BeforeCancel="@JournalForm_BeforeCancel"
-             R_Validation="@JournalForm_Validation"
-             R_CheckAdd="@JournalForm_CheckAdd"
-             R_CheckEdit="@JournalForm_CheckEdit"
-             R_CheckDelete="@JournalForm_CheckDelete">
-</R_Conductor>
+    R_ViewModel="_JournalEntryViewModel"
+    R_IsHeader
+    R_ServiceGetRecord="@JournalForm_GetRecord"
+    R_Saving="@JournalForm_Saving"
+    R_ServiceSave="@JournalForm_ServiceSave"
+    R_AfterAdd="@JournalForm_AfterAddAsync"
+    R_Display="@JournalForm_RDisplay"
+    R_BeforeCancel="@JournalForm_BeforeCancel"
+    R_Validation="@JournalForm_Validation"
+    R_CheckAdd="@JournalForm_CheckAdd"
+    R_CheckEdit="@JournalForm_CheckEdit"
+    R_CheckDelete="@JournalForm_CheckDelete" />
+
+<R_ConductorGrid @ref="_conductorGridRef"
+                 R_ConductorParent="_conductorRef"/>

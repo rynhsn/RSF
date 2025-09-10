@@ -144,13 +144,13 @@
         "compile": {
           "lib/netstandard2.0/Google.Apis.Auth.PlatformServices.dll": {},
           "lib/netstandard2.0/Google.Apis.Auth.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/netstandard2.0/Google.Apis.Auth.PlatformServices.dll": {},
           "lib/netstandard2.0/Google.Apis.Auth.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -161,12 +161,12 @@
         },
         "compile": {
           "lib/netstandard2.0/Google.Apis.Core.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/netstandard2.0/Google.Apis.Core.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -174,12 +174,12 @@
         "type": "package",
         "compile": {
           "lib/net5.0/Google.Protobuf.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/net5.0/Google.Protobuf.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -190,12 +190,12 @@
         },
         "compile": {
           "lib/netstandard2.1/Grpc.Core.Api.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/netstandard2.1/Grpc.Core.Api.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -207,12 +207,12 @@
         },
         "compile": {
           "lib/net6.0/Grpc.Net.Client.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/net6.0/Grpc.Net.Client.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -223,12 +223,12 @@
         },
         "compile": {
           "lib/net6.0/Grpc.Net.Common.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/net6.0/Grpc.Net.Common.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -2241,12 +2241,12 @@
         },
         "compile": {
           "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "frameworkReferences": [
@@ -2260,12 +2260,12 @@
         },
         "compile": {
           "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -2273,12 +2273,12 @@
         "type": "package",
         "compile": {
           "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "frameworkReferences": [
@@ -4119,6 +4119,50 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "GLT00100Back/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GLT00100Common": "1.0.0",
+          "RSP_GL_SAVE_JOURNALResources": "1.0.0",
+          "RSP_GL_UPDATE_JOURNAL_STATUSResources": "1.0.0",
+          "RSP_PM_SAVE_DEPOSIT_DTResources": "1.0.0",
+          "System.Data.SqlClient": "4.8.5"
+        },
+        "compile": {
+          "bin/placeholder/GLT00100Back.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLT00100Back.dll": {}
+        }
+      },
+      "GLT00100Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GLT00100Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLT00100Common.dll": {}
+        }
+      },
+      "GLT00100Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GLT00100Back": "1.0.0",
+          "GLT00100Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GLT00100Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLT00100Service.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "GLT00200BACK/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -4156,6 +4200,57 @@
         },
         "runtime": {
           "bin/placeholder/GLT00200SERVICE.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "GLTR00100BACK/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GLTR00100BackResources": "1.0.0",
+          "GLTR00100COMMON": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GLTR00100BACK.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLTR00100BACK.dll": {}
+        }
+      },
+      "GLTR00100BackResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GLTR00100BackResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLTR00100BackResources.dll": {}
+        }
+      },
+      "GLTR00100COMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GLTR00100COMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLTR00100COMMON.dll": {}
+        }
+      },
+      "GLTR00100SERVICE/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "BaseHeaderResources": "1.0.0",
+          "GLTR00100BACK": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GLTR00100SERVICE.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GLTR00100SERVICE.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -4216,7 +4311,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "PMB05000Common": "1.0.0"
+          "PMB05000Common": "1.0.0",
+          "RSP_PM_SOFT_CLOSE_PERIOD_PROCESSResources": "1.0.0"
         },
         "compile": {
           "bin/placeholder/PMB05000Back.dll": {}
@@ -4372,6 +4468,16 @@
           "bin/placeholder/RSP_GL_SAVE_BUDGET_UPLOADResources.dll": {}
         }
       },
+      "RSP_GL_SAVE_JOURNALResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GL_SAVE_JOURNALResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GL_SAVE_JOURNALResources.dll": {}
+        }
+      },
       "RSP_GL_SAVE_RECURRING_JRNResources/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -4380,6 +4486,36 @@
         },
         "runtime": {
           "bin/placeholder/RSP_GL_SAVE_RECURRING_JRNResources.dll": {}
+        }
+      },
+      "RSP_GL_UPDATE_JOURNAL_STATUSResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GL_UPDATE_JOURNAL_STATUSResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GL_UPDATE_JOURNAL_STATUSResources.dll": {}
+        }
+      },
+      "RSP_PM_SAVE_DEPOSIT_DTResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_PM_SAVE_DEPOSIT_DTResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_PM_SAVE_DEPOSIT_DTResources.dll": {}
+        }
+      },
+      "RSP_PM_SOFT_CLOSE_PERIOD_PROCESSResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_PM_SOFT_CLOSE_PERIOD_PROCESSResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_PM_SOFT_CLOSE_PERIOD_PROCESSResources.dll": {}
         }
       }
     }
@@ -11772,6 +11908,21 @@
       "path": "../../../SERVICE/GL/GLR00100Service/GLR00100Service.csproj",
       "msbuildProject": "../../../SERVICE/GL/GLR00100Service/GLR00100Service.csproj"
     },
+    "GLT00100Back/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GL/GLT00100BACK/GLT00100Back.csproj",
+      "msbuildProject": "../../../BACK/GL/GLT00100BACK/GLT00100Back.csproj"
+    },
+    "GLT00100Common/1.0.0": {
+      "type": "project",
+      "path": "../../../COMMON/GL/GLT00100COMMON/GLT00100Common.csproj",
+      "msbuildProject": "../../../COMMON/GL/GLT00100COMMON/GLT00100Common.csproj"
+    },
+    "GLT00100Service/1.0.0": {
+      "type": "project",
+      "path": "../../../SERVICE/GL/GLT00100SERVICE/GLT00100Service.csproj",
+      "msbuildProject": "../../../SERVICE/GL/GLT00100SERVICE/GLT00100Service.csproj"
+    },
     "GLT00200BACK/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GL/GLT00200BACK/GLT00200BACK.csproj",
@@ -11786,6 +11937,26 @@
       "type": "project",
       "path": "../../../SERVICE/GL/GLT00200SERVICE/GLT00200SERVICE.csproj",
       "msbuildProject": "../../../SERVICE/GL/GLT00200SERVICE/GLT00200SERVICE.csproj"
+    },
+    "GLTR00100BACK/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GL/GLTR00100BACK/GLTR00100BACK.csproj",
+      "msbuildProject": "../../../BACK/GL/GLTR00100BACK/GLTR00100BACK.csproj"
+    },
+    "GLTR00100BackResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GL/GLTR00100BackResources/GLTR00100BackResources.csproj",
+      "msbuildProject": "../../../BACK/GL/GLTR00100BackResources/GLTR00100BackResources.csproj"
+    },
+    "GLTR00100COMMON/1.0.0": {
+      "type": "project",
+      "path": "../../../COMMON/GL/GLTR00100COMMON/GLTR00100COMMON.csproj",
+      "msbuildProject": "../../../COMMON/GL/GLTR00100COMMON/GLTR00100COMMON.csproj"
+    },
+    "GLTR00100SERVICE/1.0.0": {
+      "type": "project",
+      "path": "../../../SERVICE/GL/GLTR00100SERVICE/GLTR00100SERVICE.csproj",
+      "msbuildProject": "../../../SERVICE/GL/GLTR00100SERVICE/GLTR00100SERVICE.csproj"
     },
     "Lookup_GLBACK/1.0.0": {
       "type": "project",
@@ -11882,10 +12053,30 @@
       "path": "../../../BACK/GL/GL_SPR/RSP_GL_SAVE_BUDGET_UPLOADResources/RSP_GL_SAVE_BUDGET_UPLOADResources.csproj",
       "msbuildProject": "../../../BACK/GL/GL_SPR/RSP_GL_SAVE_BUDGET_UPLOADResources/RSP_GL_SAVE_BUDGET_UPLOADResources.csproj"
     },
+    "RSP_GL_SAVE_JOURNALResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GL/GL_SPR/RSP_GL_SAVE_JOURNALResources/RSP_GL_SAVE_JOURNALResources.csproj",
+      "msbuildProject": "../../../BACK/GL/GL_SPR/RSP_GL_SAVE_JOURNALResources/RSP_GL_SAVE_JOURNALResources.csproj"
+    },
     "RSP_GL_SAVE_RECURRING_JRNResources/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GL/GL_SPR/RSP_GL_SAVE_RECURRING_JRNResources/RSP_GL_SAVE_RECURRING_JRNResources.csproj",
       "msbuildProject": "../../../BACK/GL/GL_SPR/RSP_GL_SAVE_RECURRING_JRNResources/RSP_GL_SAVE_RECURRING_JRNResources.csproj"
+    },
+    "RSP_GL_UPDATE_JOURNAL_STATUSResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GL/GL_SPR/RSP_GL_UPDATE_JOURNAL_STATUSResources/RSP_GL_UPDATE_JOURNAL_STATUSResources.csproj",
+      "msbuildProject": "../../../BACK/GL/GL_SPR/RSP_GL_UPDATE_JOURNAL_STATUSResources/RSP_GL_UPDATE_JOURNAL_STATUSResources.csproj"
+    },
+    "RSP_PM_SAVE_DEPOSIT_DTResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/LM/LM_SPR/RSP_PM_SAVE_DEPOSIT_DTResources/RSP_PM_SAVE_DEPOSIT_DTResources.csproj",
+      "msbuildProject": "../../../BACK/LM/LM_SPR/RSP_PM_SAVE_DEPOSIT_DTResources/RSP_PM_SAVE_DEPOSIT_DTResources.csproj"
+    },
+    "RSP_PM_SOFT_CLOSE_PERIOD_PROCESSResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_PM_SOFT_CLOSE_PERIOD_PROCESSResources/RSP_PM_SOFT_CLOSE_PERIOD_PROCESSResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_PM_SOFT_CLOSE_PERIOD_PROCESSResources/RSP_PM_SOFT_CLOSE_PERIOD_PROCESSResources.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -11894,7 +12085,9 @@
       "GLM00200SERVICE >= 1.0.0",
       "GLM00500Service >= 1.0.0",
       "GLR00100Service >= 1.0.0",
+      "GLT00100Service >= 1.0.0",
       "GLT00200SERVICE >= 1.0.0",
+      "GLTR00100SERVICE >= 1.0.0",
       "Lookup_GLSERVICES >= 1.0.0",
       "PMB05000Service >= 1.0.0",
       "Realta.BackCollectionNuGet >= 1.0.2",
@@ -11949,8 +12142,14 @@
             "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLR00100Service\\GLR00100Service.csproj": {
               "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLR00100Service\\GLR00100Service.csproj"
             },
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLT00100SERVICE\\GLT00100Service.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLT00100SERVICE\\GLT00100Service.csproj"
+            },
             "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLT00200SERVICE\\GLT00200SERVICE.csproj": {
               "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLT00200SERVICE\\GLT00200SERVICE.csproj"
+            },
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLTR00100SERVICE\\GLTR00100SERVICE.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GL\\GLTR00100SERVICE\\GLTR00100SERVICE.csproj"
             },
             "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\LM\\PMB05000Service\\PMB05000Service.csproj": {
               "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\LM\\PMB05000Service\\PMB05000Service.csproj"

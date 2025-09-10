@@ -9,7 +9,7 @@
   <ItemGroup>
     <EmbeddedResource Update="GLI00100FrontResources_msgrsc.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>GSM02000FrontResources_msgrsc.Designer.cs</LastGenOutput>
+      <LastGenOutput>GLI00100FrontResources_msgrsc.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

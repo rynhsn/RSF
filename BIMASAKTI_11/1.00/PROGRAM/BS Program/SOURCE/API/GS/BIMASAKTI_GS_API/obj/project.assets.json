@@ -144,13 +144,13 @@
         "compile": {
           "lib/netstandard2.0/Google.Apis.Auth.PlatformServices.dll": {},
           "lib/netstandard2.0/Google.Apis.Auth.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/netstandard2.0/Google.Apis.Auth.PlatformServices.dll": {},
           "lib/netstandard2.0/Google.Apis.Auth.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -161,12 +161,12 @@
         },
         "compile": {
           "lib/netstandard2.0/Google.Apis.Core.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/netstandard2.0/Google.Apis.Core.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -174,12 +174,12 @@
         "type": "package",
         "compile": {
           "lib/net5.0/Google.Protobuf.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/net5.0/Google.Protobuf.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -190,12 +190,12 @@
         },
         "compile": {
           "lib/netstandard2.1/Grpc.Core.Api.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/netstandard2.1/Grpc.Core.Api.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -207,12 +207,12 @@
         },
         "compile": {
           "lib/net6.0/Grpc.Net.Client.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/net6.0/Grpc.Net.Client.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -223,12 +223,12 @@
         },
         "compile": {
           "lib/net6.0/Grpc.Net.Common.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/net6.0/Grpc.Net.Common.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -2241,12 +2241,12 @@
         },
         "compile": {
           "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "frameworkReferences": [
@@ -2260,12 +2260,12 @@
         },
         "compile": {
           "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -2273,12 +2273,12 @@
         "type": "package",
         "compile": {
           "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "frameworkReferences": [
@@ -4016,7 +4016,8 @@
           "GSM02000Common": "1.0.0",
           "RSP_GS_MAINTAIN_TAXResources": "1.0.0",
           "RSP_GS_MAINTAIN_TAX_PCTResources": "1.0.0",
-          "System.Data.SqlClient": "4.8.6"
+          "System.Data.SqlClient": "4.8.6",
+          "System.Resources.ResourceManager": "4.3.0"
         },
         "compile": {
           "bin/placeholder/GSM02000Back.dll": {}
@@ -4269,6 +4270,60 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "GSM12000BACK/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GSM12000BackResources": "1.0.0",
+          "GSM12000COMMON": "1.0.0",
+          "RSP_GS_MAINTAIN_MESSAGEResources": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GSM12000BACK.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM12000BACK.dll": {}
+        }
+      },
+      "GSM12000BackResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GSM12000BackResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM12000BackResources.dll": {}
+        }
+      },
+      "GSM12000COMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "BaseHeaderResources": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GSM12000COMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM12000COMMON.dll": {}
+        }
+      },
+      "GSM12000SERVICE/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GSM12000BACK": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GSM12000SERVICE.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM12000SERVICE.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "GST00500Back/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -4447,6 +4502,16 @@
         },
         "runtime": {
           "bin/placeholder/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_MESSAGEResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_MESSAGEResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_MESSAGEResources.dll": {}
         }
       },
       "RSP_GS_MAINTAIN_OTHER_UNITResources/1.0.0": {
@@ -12103,6 +12168,26 @@
       "path": "../../../SERVICE/GS/GSM05000Service/GSM05000Service.csproj",
       "msbuildProject": "../../../SERVICE/GS/GSM05000Service/GSM05000Service.csproj"
     },
+    "GSM12000BACK/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GSM12000BACK/GSM12000BACK.csproj",
+      "msbuildProject": "../../../BACK/GS/GSM12000BACK/GSM12000BACK.csproj"
+    },
+    "GSM12000BackResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GSM12000BackResources/GSM12000BackResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GSM12000BackResources/GSM12000BackResources.csproj"
+    },
+    "GSM12000COMMON/1.0.0": {
+      "type": "project",
+      "path": "../../../COMMON/GS/GSM12000COMMON/GSM12000COMMON.csproj",
+      "msbuildProject": "../../../COMMON/GS/GSM12000COMMON/GSM12000COMMON.csproj"
+    },
+    "GSM12000SERVICE/1.0.0": {
+      "type": "project",
+      "path": "../../../SERVICE/GS/GSM12000SERVICE/GSM12000SERVICE.csproj",
+      "msbuildProject": "../../../SERVICE/GS/GSM12000SERVICE/GSM12000SERVICE.csproj"
+    },
     "GST00500Back/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/GST00500Back/GST00500Back.csproj",
@@ -12182,6 +12267,11 @@
       "type": "project",
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources/RSP_GS_MAINTAIN_JOURNAL_GROUP_ACCOUNT_DEPTResources.csproj"
+    },
+    "RSP_GS_MAINTAIN_MESSAGEResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_MESSAGEResources/RSP_GS_MAINTAIN_MESSAGEResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_MESSAGEResources/RSP_GS_MAINTAIN_MESSAGEResources.csproj"
     },
     "RSP_GS_MAINTAIN_OTHER_UNITResources/1.0.0": {
       "type": "project",
@@ -12303,6 +12393,7 @@
       "GSM04000Service >= 1.0.0",
       "GSM04500Service >= 1.0.0",
       "GSM05000Service >= 1.0.0",
+      "GSM12000SERVICE >= 1.0.0",
       "GST00500Service >= 1.0.0",
       "Lookup_GSSERVICES >= 1.0.0",
       "Realta.BackCollectionNuGet >= 1.0.2",
@@ -12362,6 +12453,9 @@
             },
             "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Service\\GSM05000Service.csproj": {
               "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM05000Service\\GSM05000Service.csproj"
+            },
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM12000SERVICE\\GSM12000SERVICE.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM12000SERVICE\\GSM12000SERVICE.csproj"
             },
             "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GST00500Service\\GST00500Service.csproj": {
               "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GST00500Service\\GST00500Service.csproj"

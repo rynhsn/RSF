@@ -7,7 +7,7 @@
     <ItemGroup>
       <EmbeddedResource Update="RSP_AP_INVOICE_UPLOADResources_msgrsc.resx">
         <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>RSP_AP_INVOICEUPDATEResources_msgrsc.Designer.cs</LastGenOutput>
+        <LastGenOutput>RSP_AP_INVOICE_UPLOADResources_msgrsc.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>
 
