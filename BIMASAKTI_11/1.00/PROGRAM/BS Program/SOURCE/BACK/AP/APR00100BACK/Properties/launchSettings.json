@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "APR00100BACK": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64454;http://localhost:64455"
+    }
+  }
+}

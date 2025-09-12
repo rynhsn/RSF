@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_IC_VALIDATE_SOFTCLOSE_PRDResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64506;http://localhost:64507"
+    }
+  }
+}

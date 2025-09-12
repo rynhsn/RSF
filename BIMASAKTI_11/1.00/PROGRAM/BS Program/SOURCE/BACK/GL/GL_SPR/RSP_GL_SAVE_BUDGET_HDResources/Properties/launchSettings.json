@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GL_SAVE_BUDGET_HDResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64339;http://localhost:64340"
+    }
+  }
+}

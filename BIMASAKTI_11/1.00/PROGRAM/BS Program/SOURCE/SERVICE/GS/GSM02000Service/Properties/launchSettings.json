@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GSM02000Service": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64325;http://localhost:64327"
+    }
+  }
+}

@@ -34,7 +34,7 @@ namespace Lookup_PMSERVICES
             _loggerLookup = LoggerLookupLM.R_GetInstanceLogger();
             _activitySource = LookupLMActivity.R_InitializeAndGetActivitySource(nameof(PublicLookupLMController));
         }
-        
+
         [HttpPost]
         public IAsyncEnumerable<LML00200DTO> LML00200UnitChargesList()
         {
@@ -130,6 +130,10 @@ namespace Lookup_PMSERVICES
                 poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
                 poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
                 poParameter.CCHARGE_TYPE_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCHARGE_TYPE_ID);
+                poParameter.CTAXABLE_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTAXABLE_TYPE);
+                poParameter.CACTIVE_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CACTIVE_TYPE);
+                poParameter.CTAX_DATE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTAX_DATE);
+
 
                 _loggerLookup.LogInfo(string.Format("Get Parameter {0} on Controller", lcMethodName));
                 _loggerLookup.LogDebug("DbParameter {@Parameter} ", poParameter);
@@ -319,7 +323,7 @@ namespace Lookup_PMSERVICES
                 poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
                 poParameter.CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CDEPT_CODE);
-                poParameter.CTENANT_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTENANT_ID);            
+                poParameter.CTENANT_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTENANT_ID);
                 poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
                 poParameter.CTRANS_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTRANS_CODE);
                 poParameter.CPERIOD = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPERIOD);
@@ -819,7 +823,7 @@ namespace Lookup_PMSERVICES
             loEx.ThrowExceptionIfErrors();
             _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
             return loRtn!;
-        }    
+        }
         [HttpPost]
         public IAsyncEnumerable<BuildingDTO> BuildingList()
         {
@@ -1043,10 +1047,10 @@ namespace Lookup_PMSERVICES
             }
         }
 
-      
+
 
 
         #endregion
     }
-    
+
 }

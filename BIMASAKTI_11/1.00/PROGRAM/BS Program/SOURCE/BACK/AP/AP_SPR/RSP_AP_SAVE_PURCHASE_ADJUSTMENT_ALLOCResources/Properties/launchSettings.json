@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_AP_SAVE_PURCHASE_ADJUSTMENT_ALLOCResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64378;http://localhost:64379"
+    }
+  }
+}

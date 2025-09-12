@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "ICB00300Back": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64464;http://localhost:64465"
+    }
+  }
+}

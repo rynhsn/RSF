@@ -1816,12 +1816,12 @@
         },
         "compile": {
           "lib/netcoreapp3.1/Scrutor.dll": {
-            "related": ".pdb;.xml"
+            "related": ".xml"
           }
         },
         "runtime": {
           "lib/netcoreapp3.1/Scrutor.dll": {
-            "related": ".pdb;.xml"
+            "related": ".xml"
           }
         }
       },
@@ -1833,12 +1833,12 @@
         },
         "compile": {
           "lib/netstandard2.0/SendGrid.dll": {
-            "related": ".pdb;.xml"
+            "related": ".xml"
           }
         },
         "runtime": {
           "lib/netstandard2.0/SendGrid.dll": {
-            "related": ".pdb;.xml"
+            "related": ".xml"
           }
         }
       },

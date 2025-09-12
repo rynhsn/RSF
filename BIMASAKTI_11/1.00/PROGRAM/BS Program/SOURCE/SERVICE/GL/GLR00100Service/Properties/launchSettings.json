@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GLR00100Service": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57029;http://localhost:57030"
+    }
+  }
+}

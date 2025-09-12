@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj" />
-    <ProjectReference Include="..\..\COMMON\GL\GLT00100COMMON\GLT00100COMMON.csproj" />
     <ProjectReference Include="..\GLT00100FrontResources\GLT00100FrontResources.csproj" />
     <ProjectReference Include="..\GLT00100MODEL\GLT00100MODEL.csproj" />
     <ProjectReference Include="..\GLTR00100FRONT\GLTR00100FRONT.csproj" />

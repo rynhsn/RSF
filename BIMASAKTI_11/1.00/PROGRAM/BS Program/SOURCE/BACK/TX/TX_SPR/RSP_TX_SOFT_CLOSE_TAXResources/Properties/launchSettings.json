@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_TX_SOFT_CLOSE_TAXResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64415;http://localhost:64416"
+    }
+  }
+}

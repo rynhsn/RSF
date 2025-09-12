@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GL_UPDATE_RECURRING_STATUSResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57119;http://localhost:57121"
+    }
+  }
+}

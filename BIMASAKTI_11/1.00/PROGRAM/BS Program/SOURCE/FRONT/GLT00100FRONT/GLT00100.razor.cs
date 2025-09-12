@@ -14,6 +14,7 @@ using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_BlazorFrontEnd.Interfaces;
 using GLT00100FrontResources;
+using GLT00100COMMON;
 
 namespace GLT00100FRONT
 {
