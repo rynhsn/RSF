@@ -70,6 +70,15 @@ namespace PMB01600FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure want to process selected Tenant?.
+        /// </summary>
+        internal static string Are_you_sure_want_to_process_selected_Tenant_ {
+            get {
+                return ResourceManager.GetString("Are you sure want to process selected Tenant?", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Charges.
         /// </summary>
         internal static string Charges {
@@ -174,6 +183,24 @@ namespace PMB01600FrontResources {
         internal static string Total_Amount {
             get {
                 return ResourceManager.GetString("Total Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo Billing Statement completed successfully!.
+        /// </summary>
+        internal static string Undo_Billing_Statement_completed_successfully_ {
+            get {
+                return ResourceManager.GetString("Undo Billing Statement completed successfully!", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo Billing Statement has been cancelled!.
+        /// </summary>
+        internal static string Undo_Billing_Statement_has_been_cancelled_ {
+            get {
+                return ResourceManager.GetString("Undo Billing Statement has been cancelled!", resourceCulture);
             }
         }
     }

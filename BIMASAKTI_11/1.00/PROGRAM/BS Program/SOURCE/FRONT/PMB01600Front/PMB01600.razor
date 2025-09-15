@@ -122,16 +122,16 @@
                                      Decimals="2"
                                                   ThousandSeparator />
                 <R_GridCheckBoxColumn FieldName="@nameof(PMB01600BillingStatementHeaderDTO.LDISTRIBUTE)"
-                                            Width="120px"
-                                            Filterable="true"
-                                            HeaderText="@_localizer["Distribute"]"
-                                            Resizable="false"/>
+                                      Width="120px"
+                                      Filterable="true"
+                                      HeaderText="@_localizer["Distribute"]"
+                                      Resizable="false" />
             </R_GridColumns>
         </R_Grid>
 
 
         <R_ConductorGrid @ref="@_conductorRefHeader"
-                         R_IsHeader />
+                              R_IsHeader />
     </R_ItemLayout>
 
     <R_ItemLayout col="7" Class="ps-2">
@@ -167,27 +167,27 @@
                                      TextAlignment="R_eTextAlignment.Right"
                                      Width="135px"
                                      Decimals="2"
-                                     ThousandSeparator />
+                                                  ThousandSeparator />
             </R_GridColumns>
         </R_Grid>
 
 
         <R_ConductorGrid @ref="@_conductorRefDetail"
-                           R_ConductorParent="@_conductorRefHeader" />
+                         R_ConductorParent="@_conductorRefHeader" />
     </R_ItemLayout>
 </R_StackLayout>
 
 
 <R_StackLayout Class="mt-1">
     <R_ItemLayout col="12">
-        @*<R_ProgressBar Label="@_viewModel.Message" MaxValue="100"
-                       Value="@_viewModel.Percentage"></R_ProgressBar>*@
-        <R_ProgressBar Label="Message" MaxValue="100"
-                       Value="100"></R_ProgressBar>
+        <R_ProgressBar Label="@_viewModelBatch.Message" MaxValue="100"
+        Value="@_viewModelBatch.Percentage"></R_ProgressBar>
+        @*<R_ProgressBar Label="Message" MaxValue="100"
+                       Value="100"></R_ProgressBar>*@
     </R_ItemLayout>
 
     <R_ItemLayout>
-        <R_Button>Process</R_Button>
+        <R_Button OnClick="OnClickProcess" Enabled="@_gridRefHeader.DataSource.Any(x=> x.LSELECTED)">Process</R_Button>
     </R_ItemLayout>
 </R_StackLayout>
 

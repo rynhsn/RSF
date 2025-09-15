@@ -3,6 +3,7 @@ using Lookup_PMFRONT;
 using Lookup_PMModel.ViewModel.LML00600;
 using Microsoft.AspNetCore.Components;
 using PMB01600Common.DTOs;
+using PMB01600Common.Batch;
 using PMB01600Model.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
@@ -15,18 +16,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlazorClientHelper;
+using R_APICommonDTO;
 
 namespace PMB01600Front
 {
     public partial class PMB01600 : R_Page
     {
         private PMB01600ViewModel _viewModel = new();
+        private PMB01600BatchViewModel _viewModelBatch = new();
 
         private R_ConductorGrid _conductorRefHeader;
         private R_Grid<PMB01600BillingStatementHeaderDTO> _gridRefHeader = new();
 
         private R_ConductorGrid _conductorRefDetail;
         private R_Grid<PMB01600BillingStatementDetailDTO> _gridRefDetail = new();
+
+        [Inject] IClientHelper ClientHelper { get; set; }
 
         private void StateChangeInvoke()
         {
@@ -35,17 +41,19 @@ namespace PMB01600Front
 
         #region HandleError
 
-        private void DisplayErrorInvoke(R_Exception poException)
+        private void DisplayErrorInvoke(R_APIException poException)
         {
-            R_DisplayException(poException);
+            var loEx = R_FrontUtility.R_ConvertFromAPIException(poException);
+            this.R_DisplayException(loEx);
         }
-
         #endregion
 
         public async Task ShowSuccessInvoke()
         {
             // _processButton.Enabled = true;
-            await R_MessageBox.Show("", _localizer["SuccessDistribute"], R_eMessageBoxButtonType.OK);
+            var loMsg = await R_MessageBox.Show("", _localizer["Undo Billing Statement completed successfully!"], R_eMessageBoxButtonType.OK);
+
+            await _gridRefHeader.R_RefreshGrid(null);
         }
 
 
@@ -59,9 +67,9 @@ namespace PMB01600Front
                 await _setDefaultTenant();
 
 
-                //_viewModelDistribute.StateChangeAction = StateChangeInvoke;
-                //_viewModelDistribute.DisplayErrorAction = DisplayErrorInvoke;
-                //_viewModelDistribute.ShowSuccessAction = async () => { await ShowSuccessInvoke(); };
+                _viewModelBatch.StateChangeAction = StateChangeInvoke;
+                _viewModelBatch.DisplayErrorAction = DisplayErrorInvoke;
+                _viewModelBatch.ShowSuccessAction = async () => { await ShowSuccessInvoke(); };
             }
             catch (Exception ex)
             {
@@ -405,30 +413,44 @@ namespace PMB01600Front
             try
             {
                 var loTempDataList = (List<PMB01600BillingStatementHeaderDTO>)eventArgs.Data;
-                //var loDataList =
-                //    R_FrontHeader.ConvertCollectionToCollection<PMB01600UploadUtilityErrorValidateDTO>(loTempDataList
-                //        .Where(x => x.LSELECTED).ToList());
+                var loDataList = R_FrontUtility.ConvertCollectionToCollection<PMB01600ForBatchDTO>(loTempDataList
+                        .Where(x => x.LSELECTED).ToList());
 
-                //var loUtilityType = loTempDataList.FirstOrDefault().CUTILITY_TYPE;
-                //_viewModelSave.CompanyId = ClientHelper.CompanyId;
-                //_viewModelSave.UserId = ClientHelper.UserId;
-                //_viewModelSave.UploadParam.CPROPERTY_ID = _viewModelUtility.Property.CPROPERTY_ID;
-                //_viewModelSave.UploadParam.EUTILITY_TYPE =
-                //    loUtilityType is "01" or "02"
-                //        ? EPMB01600UtilityUsageType.EC
-                //        : EPMB01600UtilityUsageType.WG;
+                _viewModelBatch.BatchParam.CCOMPANY_ID = ClientHelper.CompanyId;
+                _viewModelBatch.BatchParam.CUSER_ID = ClientHelper.UserId;
+                _viewModelBatch.BatchParam.CPROPERTY_ID = _viewModel.Param.CPROPERTY_ID;
+                _viewModelBatch.BatchParam.CREF_PRD = _viewModel.Param.IYEAR + _viewModel.Param.CMONTH;
 
-                //_viewModelSave.IsUpload = false;
 
-                //await _viewModelSave.SaveBulkFile(poUploadParam: _viewModelSave.UploadParam,
-                //    poDataList: loDataList.ToList());
+                await _viewModelBatch.SaveBulkFile(poBatchParam: _viewModelBatch.BatchParam,
+                    poDataList: loDataList.ToList());
 
-                //if (_viewModelSave.IsError)
-                //{
-                //    loEx.Add("Error", "Utility Usage saved is not successfully!");
-                //}
+                if (_viewModelBatch.IsError)
+                {
+                    loEx.Add("Error", _localizer["Undo Billing Statement has been cancelled!"]);
+                }
 
-                //_enabledBtn = true;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task OnClickProcess()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loConfirm = await R_MessageBox.Show("", _localizer["Are you sure want to process selected Tenant?"], R_eMessageBoxButtonType.YesNo);
+
+                if (loConfirm == R_eMessageBoxResult.Yes)
+                {
+                    await _gridRefHeader.R_SaveBatch();
+                }
 
             }
             catch (Exception ex)

@@ -184,6 +184,18 @@
         <value>Amount</value>
         <comment>Amount</comment> 
     </data>
+	<data name="Undo Billing Statement completed successfully!" xml:space="preserve">
+        <value>Undo Billing Statement completed successfully!</value>
+        <comment>Undo Billing Statement completed successfully!</comment> 
+    </data>
+	<data name="Undo Billing Statement has been cancelled!" xml:space="preserve">
+        <value>Undo Billing Statement has been cancelled!</value>
+        <comment>Undo Billing Statement has been cancelled!</comment> 
+    </data>
+	<data name="Are you sure want to process selected Tenant?" xml:space="preserve">
+        <value>Are you sure want to process selected Tenant?</value>
+        <comment>Are you sure want to process selected Tenant?</comment> 
+    </data>
 
 
 </root>

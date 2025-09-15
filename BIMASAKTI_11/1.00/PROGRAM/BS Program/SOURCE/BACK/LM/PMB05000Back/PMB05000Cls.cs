@@ -288,7 +288,7 @@ public class PMB05000Cls
             try
             {
 
-                var DataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
+                var DataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
                 loReturn = R_Utility.R_ConvertTo<PMB05000SoftClosePeriodDTO>(DataTable).FirstOrDefault();
             }
             catch (Exception ex)

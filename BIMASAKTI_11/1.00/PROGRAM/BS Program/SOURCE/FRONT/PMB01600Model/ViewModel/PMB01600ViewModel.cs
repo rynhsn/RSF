@@ -135,6 +135,8 @@ namespace PMB01600Model.ViewModel
 
             try
             {
+                Param.CREF_PRD = Param.IYEAR + Param.CMONTH;
+
                 R_FrontContext.R_SetStreamingContext(PMB01600ContextConstantHeader.CPROPERTY_ID, Param.CPROPERTY_ID);
                 R_FrontContext.R_SetStreamingContext(PMB01600ContextConstantHeader.CFROM_TENANT_ID, Param.CFROM_TENANT_ID);
                 R_FrontContext.R_SetStreamingContext(PMB01600ContextConstantHeader.CTO_TENANT_ID, Param.CTO_TENANT_ID);
@@ -173,18 +175,5 @@ namespace PMB01600Model.ViewModel
         }
 
 
-    }
-
-    public class PMB01600Parameter
-    {
-        public string CPROPERTY_ID { get; set; } = "";
-        public string CPROPERTY_NAME { get; set; } = "";
-        public string CFROM_TENANT_ID { get; set; } = "";
-        public string CTO_TENANT_ID { get; set; } = "";
-        public string CFROM_TENANT_NAME { get; set; } = "";
-        public string CTO_TENANT_NAME { get; set; } = "";
-        public string CREF_PRD { get; set; } = "";
-        public int IYEAR { get; set; }
-        public string CMONTH { get; set; } = "";
     }
 }

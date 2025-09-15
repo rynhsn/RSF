@@ -1,9 +1,12 @@
 ﻿using PMB01600Common;
+using PMB01600Common.Batch;
 using PMB01600Common.DTOs;
 using R_BackEnd;
 using R_Common;
+using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Diagnostics;
 
 namespace PMB01600Back
@@ -254,7 +257,7 @@ namespace PMB01600Back
                 _logger.LogError(loEx);
             }
 
-            EndBlock:
+        EndBlock:
             loEx.ThrowExceptionIfErrors();
 
             return loRtn;
@@ -310,5 +313,168 @@ namespace PMB01600Back
             return loRtn;
         }
 
+    }
+
+
+    public class PMB01600BatchCls : R_IBatchProcess
+    {
+        private readonly ActivitySource _activitySource;
+        private LoggerPMB01600 _logger;
+
+        public PMB01600BatchCls()
+        {
+            _logger = LoggerPMB01600.R_GetInstanceLogger();
+            _activitySource = R_OpenTelemetry.R_LibraryActivity.R_GetInstanceActivitySource();
+        }
+
+        public void R_BatchProcess(R_BatchProcessPar poBatchProcessPar)
+        {
+            using var Activity = _activitySource.StartActivity(nameof(R_BatchProcess));
+            _logger.LogInfo(string.Format("START process method {0} on Cls", nameof(R_BatchProcess)));
+            R_Exception loException = new R_Exception();
+            var loDb = new R_Db();
+
+            try
+            {
+                if (loDb.R_TestConnection() == false)
+                {
+                    loException.Add("01", "Database Connection Failed");
+                    goto EndBlock;
+                }
+
+                _logger.LogInfo("Start Batch Process");
+                var loTask = Task.Run(() => { _batchProcess(poBatchProcessPar); });
+
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+                _logger.LogError(loException);
+            }
+
+        EndBlock:
+            loException.ThrowExceptionIfErrors();
+        }
+
+        public async Task _batchProcess(R_BatchProcessPar poBatchProcessPar)
+        {
+            using var Activity = _activitySource.StartActivity(nameof(_batchProcess));
+            var loException = new R_Exception();
+            var loDb = new R_Db();
+            DbCommand loCmd = null;
+            DbConnection loConn = null;
+            var lcQuery = "";
+            List<PMB01600ForBatchDTO> loObject = new();
+            //object loTempVar = "";
+            var LcGroupCode = "";
+
+
+            try
+            {
+                await Task.Delay(1000);
+
+                loObject =
+                    R_NetCoreUtility.R_DeserializeObjectFromByte<List<PMB01600ForBatchDTO>>(
+                        poBatchProcessPar.BigObject);
+
+                _logger.LogInfo("Get User Parameters");
+                var loProperty = poBatchProcessPar.UserParameters
+                    .Where((x) => x.Key.Equals(PMB01600ContextConstantHeader.CPROPERTY_ID)).FirstOrDefault().Value;
+                var loPeriod = poBatchProcessPar.UserParameters
+                    .Where((x) => x.Key.Equals(PMB01600ContextConstantHeader.CREF_PRD)).FirstOrDefault().Value;
+
+                var lcProperty = ((System.Text.Json.JsonElement)loProperty).GetString();
+                var lcPeriod = ((System.Text.Json.JsonElement)loPeriod).GetString();
+
+
+                loConn = loDb.GetConnection();
+                loCmd = loDb.GetCommand();
+
+                _logger.LogInfo("Start Create Temporary Table and Bulk Insert Data");
+                lcQuery += "CREATE TABLE #SELECTED_TENANT( " +
+                           "INO              INT NOT NULL, " +
+                           "CTENANT_ID      varchar(20) NOT NULL" +
+                           ");";
+
+                loDb.SqlExecNonQuery(lcQuery, loConn, false);
+
+                for (var i = 0; i < loObject.Count; i++)
+                        {
+                    _logger.LogDebug($"INSERT INTO #SELECTED_TENANT " +
+                                     $"VALUES (" +
+                                     $"{loObject[i].INO}, " +
+                                     $"'{loObject[i].CTENANT_ID}');");
+                }
+
+                loDb.R_BulkInsert((SqlConnection)loConn, $"#SELECTED_TENANT", loObject);
+
+
+                _logger.LogInfo("End Create Temporary Table and Bulk Insert Data");
+                _logger.LogDebug(lcQuery);
+                _logger.LogInfo("Start Exec Upload Query");
+
+                lcQuery = $"RSP_PM_UNDO_BILL_STMT_PROCESS";
+                loCmd.CommandType = CommandType.StoredProcedure;
+                loCmd.CommandText = lcQuery;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poBatchProcessPar.Key.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, lcProperty);
+                loDb.R_AddCommandParameter(loCmd, "@CPERIOD", DbType.String, 6, lcPeriod);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poBatchProcessPar.Key.USER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CKEY_GUID", DbType.String, 100, poBatchProcessPar.Key.KEY_GUID);
+
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                    .Where(x =>
+                        x.ParameterName is
+                            "@CCOMPANY_ID" or
+                            "@CPROPERTY_ID" or
+                            "@CRERIOD" or
+                            "@CUSER_ID" or
+                            "@CKEY_GUID"
+                    )
+                    .Select(x => x.Value);
+                _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+                _logger.LogInfo("End Process");
+
+                loDb.SqlExecNonQuery(loConn, loCmd, false);
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+                _logger.LogError(loException);
+            }
+            finally
+            {
+                if (loConn != null)
+                {
+                    if (!(loConn.State == ConnectionState.Closed))
+                        loConn.Close();
+                    loConn.Dispose();
+                    loConn = null;
+                }
+
+                if (loCmd != null)
+                {
+                    loCmd.Dispose();
+                    loCmd = null;
+                }
+            }
+
+            if (loException.Haserror)
+            {
+                lcQuery = string.Format("EXEC RSP_WRITEUPLOADPROCESSSTATUS '{0}', '{1}', '{2}', 100, '{3}', {4}", poBatchProcessPar.Key.COMPANY_ID, poBatchProcessPar.Key.USER_ID, poBatchProcessPar.Key.KEY_GUID, loException.ErrorList[0].ErrDescp, 9);
+                loCmd!.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.Text;
+                loDb.SqlExecNonQuery(lcQuery);
+
+                _logger.LogError("Exception Error", loException);
+                lcQuery = $"EXEC RSP_WriteUploadProcessStatus '{poBatchProcessPar.Key.COMPANY_ID}', " +
+                          $"'{poBatchProcessPar.Key.USER_ID}', " +
+                          $"'{poBatchProcessPar.Key.KEY_GUID}', " +
+                          $"100, '{loException.ErrorList[0].ErrDescp}', 9";
+
+                loDb.SqlExecNonQuery(lcQuery);
+            }
+        }
     }
 }

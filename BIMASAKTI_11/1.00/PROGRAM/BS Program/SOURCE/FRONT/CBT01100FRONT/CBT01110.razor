@@ -349,7 +349,7 @@
     <R_ItemLayout col="3">
         <R_CancelButton R_Conductor="_conductorRef"></R_CancelButton>
         <R_SaveButton R_Conductor="_conductorRef"></R_SaveButton>
-        <R_Lookup R_Before_Open_Lookup="@Before_Open_lookupPrint" Enabled="@((EnableHaveRecId && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)&& _isGridDetailOnCrudMode)">@_localizer["_Print"]</R_Lookup>
+        <R_Lookup R_Before_Open_Lookup="@Before_Open_lookupPrint" Enabled="@((EnableHaveRecId && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)&& _isGridDetailOnCrudMode && EnabledPrintButton)">@_localizer["_Print"]</R_Lookup>
     </R_ItemLayout>
     <R_ItemLayout col="2"></R_ItemLayout>
     <R_ItemLayout col="3">

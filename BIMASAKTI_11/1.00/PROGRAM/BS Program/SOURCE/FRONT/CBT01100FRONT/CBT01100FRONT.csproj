@@ -12,9 +12,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.26" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.33" />
 		<ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj" />
 		<ProjectReference Include="..\..\COMMON\CB\CBT01100COMMON\CBT01100COMMON.csproj" />
+		<ProjectReference Include="..\CBR00600FRONT\CBR00600FRONT.csproj" />
 		<ProjectReference Include="..\CBT01100FrontResources\CBT01100FrontResources.csproj" />
 		<ProjectReference Include="..\CBT01100MODEL\CBT01100MODEL.csproj" />
 		<Reference Include="BlazorClientHelper">

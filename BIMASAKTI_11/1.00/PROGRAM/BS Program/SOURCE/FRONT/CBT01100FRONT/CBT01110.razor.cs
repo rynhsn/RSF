@@ -427,6 +427,7 @@ namespace CBT01100FRONT
                 {
                     if (!string.IsNullOrWhiteSpace(data.CSTATUS))
                     {
+                        EnabledPrintButton = int.Parse(data.CSTATUS) > 0 && int.Parse(data.CSTATUS) <= 80;
                         lcLabelCommit = data.CSTATUS == "80" ? _localizer["_UndoCommit"] : _localizer["_Commit"];
                         lcLabelSubmit = data.CSTATUS == "10" ? _localizer["_UndoSubmit"] : _localizer["_Submit"];
                         EnableEdit = data.CSTATUS == "00";
@@ -1231,16 +1232,15 @@ namespace CBT01100FRONT
         #endregion Process
 
         #region Print
-
+        private bool EnabledPrintButton = false;
         private void Before_Open_lookupPrint(R_BeforeOpenLookupEventArgs eventArgs)
         {
-            //var loData = (GLT00110DTO)_conductorRef.R_GetCurrentData();
-            //var param = new GLTR00100DTO()
-            //{
-            //    CREC_ID = loData.CREC_ID
-            //};
-            //eventArgs.Parameter = param;
-            //eventArgs.TargetPageType = typeof(GLTR00100);
+            var loData = (CBT01100DTO)_conductorRef.R_GetCurrentData();
+            var loParam = R_FrontUtility.ConvertObjectToObject<CBR00600FRONT.CBR00600CallerParameterDTO>(loData);
+            loParam.CPROGRAM_ID = "CBT01100";
+
+            eventArgs.Parameter = loParam;
+            eventArgs.TargetPageType = typeof(CBR00600FRONT.CBR00600);
         }
 
         #endregion Print
