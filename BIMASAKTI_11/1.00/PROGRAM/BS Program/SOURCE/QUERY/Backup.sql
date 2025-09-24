@@ -20,21 +20,7 @@ else
 begin try
     Begin
         Transaction
-        CREATE TABLE #AMOR_SCH
-        (
-            CSEQ_NO          VARCHAR(3),
-            CCHARGES_TYPE_ID VARCHAR(2),
-            CCHARGES_ID      VARCHAR(20),
-            CSTART_DATE      VARCHAR(8),
-            CEND_DATE        VARCHAR(8),
-            NAMOUNT          NUMERIC(18, 2)
-        );
-
-        exec RSP_PM_MAINTAIN_AMORTIZATION @CACTION = 'NEW', @CAGREEMENT_NO = 'LOI-U-2025080010',
-             @CAMORTIZATION_NO = 'AMOR01',
-             @CBUILDING_ID = 'TW1', @CCHARGE_ACCRUAL = '', @CCOMPANY_ID = 'BSI', @CCUT_OF_PRD = '', @CDEPT_CODE = '00',
-             @CDESCRIPTION = 'Test', @CEND_DATE = '20260827', @CPROPERTY_ID = 'RLT', @CSTART_DATE = '20250828',
-             @CTENANT_ID = 'TN01', @CTRANS_DEPT_CODE = '00', @CUNIT_OPTION = 'U', @CUSER_ID = 'FK', @LCUT_OF_PRD = false
+        exec RSP_GS_MAINTAIN_APPROVAL 'BSI', '120010', '00', 'AP-202509000005-RTN', '', '', 'RAM', '01'
     rollback
 end try
 begin catch
@@ -59,7 +45,7 @@ EXEC RSP_PM_GET_AGGREMENTNO_LIST
      @CBUILDING_ID ='', @CCOMPANY_ID= 'BSI', @CDEPT_CODE= '00',
      @CLANG_ID= 'en', @CPROPERTY_ID= 'ASHMD', @CREF_NO= '', @CTENANT_ID= 'TNT19', @CTRANS_CODE= '910020',
      @CTRANS_STATUS= '', @CUSER_ID='NNM'
-exec RSP_GS_GET_APPR_TRX_LIST @CCOMPANY_ID='BSI', @CUSER_LOGIN_ID='NNM', @CTRANS_TYPE='I'
+exec RSP_GS_GET_APPR_TRX_LIST @CCOMPANY_ID='BSI', @CUSER_LOGIN_ID='ram', @CTRANS_TYPE='I'
 EXEC RSP_ICR00100_GET_REPORT 'BSI', 'ASHMD', 'Period', '202507', '', '', 'WR01', '', false, 'PROD', 'BH001', 'BH001',
      '', 'en'
 

@@ -125,12 +125,12 @@
         },
         "compile": {
           "lib/netstandard2.0/Google.Apis.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/netstandard2.0/Google.Apis.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -144,13 +144,13 @@
         "compile": {
           "lib/netstandard2.0/Google.Apis.Auth.PlatformServices.dll": {},
           "lib/netstandard2.0/Google.Apis.Auth.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/netstandard2.0/Google.Apis.Auth.PlatformServices.dll": {},
           "lib/netstandard2.0/Google.Apis.Auth.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -161,12 +161,12 @@
         },
         "compile": {
           "lib/netstandard2.0/Google.Apis.Core.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/netstandard2.0/Google.Apis.Core.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -174,12 +174,12 @@
         "type": "package",
         "compile": {
           "lib/net5.0/Google.Protobuf.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/net5.0/Google.Protobuf.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -190,12 +190,12 @@
         },
         "compile": {
           "lib/netstandard2.1/Grpc.Core.Api.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/netstandard2.1/Grpc.Core.Api.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -207,12 +207,12 @@
         },
         "compile": {
           "lib/net6.0/Grpc.Net.Client.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/net6.0/Grpc.Net.Client.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -223,12 +223,12 @@
         },
         "compile": {
           "lib/net6.0/Grpc.Net.Common.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/net6.0/Grpc.Net.Common.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -1816,12 +1816,12 @@
         },
         "compile": {
           "lib/netcoreapp3.1/Scrutor.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/netcoreapp3.1/Scrutor.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -1833,12 +1833,12 @@
         },
         "compile": {
           "lib/netstandard2.0/SendGrid.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/netstandard2.0/SendGrid.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },

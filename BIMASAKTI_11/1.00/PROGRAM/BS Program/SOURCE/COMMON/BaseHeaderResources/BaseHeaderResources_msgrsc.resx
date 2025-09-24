@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="By" xml:space="preserve">
+    <value>By</value>
+    <comment>By</comment>
+  </data>
   <data name="Of" xml:space="preserve">
     <value>Of</value>
     <comment>Of</comment>
@@ -124,6 +128,10 @@
   <data name="Page" xml:space="preserve">
     <value>Page</value>
     <comment>Page</comment>
+  </data>
+  <data name="Printed" xml:space="preserve">
+    <value>Printed</value>
+    <comment>Printed</comment>
   </data>
   <data name="Print_By" xml:space="preserve">
     <value>Print By</value>

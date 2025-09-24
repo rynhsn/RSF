@@ -12,7 +12,7 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\BACK\BaseHeaderResources\BaseHeaderResources.csproj" />
+	  <ProjectReference Include="..\..\..\COMMON\BaseHeaderResources\BaseHeaderResources.csproj" />
     <ProjectReference Include="..\..\..\BACK\LM\PMR00150BackResources\PMR00150BackResources.csproj" />
     <ProjectReference Include="..\..\..\BACK\LM\PMR00150BACK\PMR00150BACK.csproj" />
     <ProjectReference Include="..\..\..\COMMON\LM\PMR00150COMMON\PMR00150COMMON.csproj" />
@@ -20,7 +20,7 @@
 
 	<ItemGroup>
 		<Reference Include="BaseHeaderReportCOMMON">
-			<HintPath>..\..\..\BACK\Dll\BaseHeaderReportCOMMON.dll</HintPath>
+			<HintPath>..\..\..\COMMON\BaseHeaderReportCOMMON.dll</HintPath>
 		</Reference>
 		<Reference Include="R_APIBackEnd">
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>

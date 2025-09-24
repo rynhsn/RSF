@@ -23,14 +23,14 @@ namespace TXB00200Model.ViewModel
         public List<TXB00200PeriodDTO> PeriodList = new List<TXB00200PeriodDTO>();
         public List<TXB00200SoftClosePeriodToDoListDTO> SoftClosePeriodErrorList = new List<TXB00200SoftClosePeriodToDoListDTO>();
         public ObservableCollection<TXB00200SoftClosePeriodToDoListDTO> SoftClosePeriodToDoList = new ObservableCollection<TXB00200SoftClosePeriodToDoListDTO>();
-        
+
         public TXB00200NextPeriodDTO NextPeriod { get; set; } = new TXB00200NextPeriodDTO();
         public string SelectedPropertyId { get; set; }
         public int SelectedYear { get; set; } = DateTime.Now.Year;
         public string SelectedPeriodNo { get; set; }
 
         public DataSet ExcelDataSetToDoList { get; set; }
-        
+
         public async Task GetCurrentPeriod()
         {
             var loEx = new R_Exception();
@@ -40,7 +40,7 @@ namespace TXB00200Model.ViewModel
                     await _model.GetAsync<TXB00200SingleDTO<TXB00200DTO>>(
                         nameof(ITXB00200.TXB00200GetSoftClosePeriod));
                 CurrentPeriod = loReturn.Data;
-                SelectedYear= int.TryParse(CurrentPeriod.CPERIOD_YEAR, out var loYear) ? loYear : DateTime.Now.Year;
+                SelectedYear = int.TryParse(CurrentPeriod.CPERIOD_YEAR, out var loYear) ? loYear : DateTime.Now.Year;
                 SelectedPeriodNo = CurrentPeriod.CPERIOD_MONTH;
             }
             catch (Exception ex)
@@ -58,8 +58,12 @@ namespace TXB00200Model.ViewModel
                 var loReturn =
                     await _model.GetAsync<TXB00200ListDTO<TXB00200PropertyDTO>>(
                         nameof(ITXB00200.TXB00200GetPropertyList));
-                PropertyList = loReturn.Data;
-                SelectedPropertyId = PropertyList[0].CPROPERTY_ID;
+                if (loReturn.Data.Any())
+                {
+
+                    PropertyList = loReturn.Data;
+                    SelectedPropertyId = PropertyList[0].CPROPERTY_ID;
+                }
             }
             catch (Exception ex)
             {
@@ -69,26 +73,26 @@ namespace TXB00200Model.ViewModel
             loEx.ThrowExceptionIfErrors();
         }
 
-        public async Task GetNextPeriod()
-        {
-            var loEx = new R_Exception();
-            try
-            {
-                var loReturn =
-                    await _model.GetAsync<TXB00200SingleDTO<TXB00200NextPeriodDTO>>(
-                        nameof(ITXB00200.TXB00200GetNextPeriod));
-                NextPeriod = loReturn.Data;
-                // SelectedPeriodNo = NextPeriod.CMONTH;
-                // SelectedYear = int.TryParse(NextPeriod.CYEAR, out var loYear) ? loYear : DateTime.Now.Year;
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
+        //public async Task GetNextPeriod()
+        //{
+        //    var loEx = new R_Exception();
+        //    try
+        //    {
+        //        var loReturn =
+        //            await _model.GetAsync<TXB00200SingleDTO<TXB00200NextPeriodDTO>>(
+        //                nameof(ITXB00200.TXB00200GetNextPeriod));
+        //        NextPeriod = loReturn.Data;
+        //        // SelectedPeriodNo = NextPeriod.CMONTH;
+        //        // SelectedYear = int.TryParse(NextPeriod.CYEAR, out var loYear) ? loYear : DateTime.Now.Year;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        loEx.Add(ex);
+        //    }
 
-            loEx.ThrowExceptionIfErrors();
-        }
-        
+        //    loEx.ThrowExceptionIfErrors();
+        //}
+
         public async Task GetPeriodList()
         {
             var loEx = new R_Exception();
@@ -117,9 +121,9 @@ namespace TXB00200Model.ViewModel
                 var loParam = new TXB00200PeriodParam
                 {
                     CYEAR = SelectedYear.ToString(),
-                    CMONTH = SelectedPeriodNo
+                    CMONTH = Data.CPERIOD_MONTH
                 };
-                
+
                 var loResult =
                     await _model.GetAsync<TXB00200SingleDTO<TXB00200PeriodParam>, TXB00200PeriodParam>(
                         nameof(ITXB00200.TXB00200UpdateSoftPeriod), loParam);
@@ -131,7 +135,7 @@ namespace TXB00200Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        
+
         // public async Task ProcessSoftPeriod()
         // {
         //     var loEx = new R_Exception();
@@ -155,7 +159,7 @@ namespace TXB00200Model.ViewModel
         //
         //     loEx.ThrowExceptionIfErrors();
         // }
-        
+
         public async Task ProcessSoftClosePeriod()
         {
             var loEx = new R_Exception();
@@ -165,13 +169,13 @@ namespace TXB00200Model.ViewModel
                 R_FrontContext.R_SetStreamingContext(TXB00200ContextConstant.CPERIOD_YEAR, SelectedYear.ToString());
                 R_FrontContext.R_SetStreamingContext(TXB00200ContextConstant.CPERIOD_MONTH, SelectedPeriodNo);
 
-                
+
                 var loResult =
                     await _model.GetAsync<TXB00200ListDTO<TXB00200SoftClosePeriodToDoListDTO>>(
                         nameof(ITXB00200.TXB00200SoftClosePeriodStream));
                 SoftClosePeriodErrorList = loResult.Data;
-                
-                if(SoftClosePeriodErrorList.Count > 0)
+
+                if (SoftClosePeriodErrorList.Count > 0)
                 {
                     //ubah CREF_DATE ke DREF_DATE
                     foreach (var loItem in SoftClosePeriodErrorList)
@@ -190,7 +194,7 @@ namespace TXB00200Model.ViewModel
 
             loEx.ThrowExceptionIfErrors();
         }
-        
+
         private void SetExcelDataSetToDoList()
         {
             var loConvertData = SoftClosePeriodErrorList.Select(item => new TXB00200SoftClosePeriodExcelDTO()
@@ -217,12 +221,12 @@ namespace TXB00200Model.ViewModel
             // Asign Dataset
             ExcelDataSetToDoList = loDataSet;
         }
-        
+
         public void ValidateHasError(List<TXB00200SoftClosePeriodToDoListDTO> poParam)
         {
             SoftClosePeriodErrorList = poParam;
             SoftClosePeriodToDoList = new ObservableCollection<TXB00200SoftClosePeriodToDoListDTO>(poParam);
-            
+
             SetExcelDataSetToDoList();
         }
 

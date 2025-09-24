@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -12,7 +12,6 @@
 		<ProjectReference Include="..\..\..\COMMON\LM\PMR00210COMMON\PMR00210COMMON.csproj" />
 		<ProjectReference Include="..\..\..\BACK\LM\PMR00210BACK\PMR00210BACK.csproj" />
 		<ProjectReference Include="..\..\..\COMMON\BaseHeaderResources\BaseHeaderResources.csproj" />
-
 		<Reference Include="BaseHeaderReportCOMMON">
 			<HintPath>..\..\..\COMMON\BaseHeaderReportCOMMON.dll</HintPath>
 		</Reference>

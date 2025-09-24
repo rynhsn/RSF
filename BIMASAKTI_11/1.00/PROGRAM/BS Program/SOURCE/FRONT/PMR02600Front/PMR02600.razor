@@ -11,9 +11,10 @@
     </R_ItemLayout>
     <R_ItemLayout col="3">
         <R_ComboBox Data="@_viewModel.PropertyList"
-                    @bind-Value="@_viewModel.ReportParam.CPROPERTY"
+                    Value="@_viewModel.ReportParam.CPROPERTY"
                     ValueField="@nameof(PMR02600PropertyDTO.CPROPERTY_ID)"
-                    TextField="@nameof(PMR02600PropertyDTO.CPROPERTY_NAME)"/>
+                    TextField="@nameof(PMR02600PropertyDTO.CPROPERTY_NAME)"
+                    ValueChanged="@((string value) => _valueChangedProperty(value))" />
     </R_ItemLayout>
 </R_StackLayout>
 

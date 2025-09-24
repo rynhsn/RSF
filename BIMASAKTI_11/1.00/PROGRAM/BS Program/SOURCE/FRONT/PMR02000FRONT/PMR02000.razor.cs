@@ -35,6 +35,7 @@ namespace PMR02000FRONT
             try
             {
                 await _viewModel.InitProcess(_localizer);
+                await _setDefaultCustomer();
             }
             catch (Exception ex)
             {
@@ -49,22 +50,45 @@ namespace PMR02000FRONT
             R_Exception loEx = new R_Exception();
             try
             {
-                _viewModel.ReportParam.CPROPERTY_ID = poParam ?? "";
-                _viewModel.ReportParam.CFROM_CUSTOMER_ID = "";
-                _viewModel.ReportParam.CFROM_CUSTOMER_NAME = "";
-                _viewModel.ReportParam.CTO_CUSTOMER_ID = "";
-                _viewModel.ReportParam.CTO_CUSTOMER_NAME = "";
-                _viewModel.ReportParam.CFROM_JRNGRP_CODE = "";
-                _viewModel.ReportParam.CFROM_JRNGRP_NAME = "";
-                _viewModel.ReportParam.CTO_JRNGRP_CODE = "";
-                _viewModel.ReportParam.CTO_JRNGRP_NAME = "";
-                _viewModel.ReportParam.CFR_DEPT_CODE = "";
-                _viewModel.ReportParam.CFR_DEPT_NAME = "";
-                _viewModel.ReportParam.CTO_DEPT_CODE = "";
-                _viewModel.ReportParam.CTO_DEPT_NAME = "";
-                _viewModel.ReportParam.CTENANT_CATEGORY_ID = "";
-                await _viewModel.GetCategoryTypeAsync(new CategoryTypeParamDTO()
+
+                if (!string.IsNullOrEmpty(poParam))
+                {
+                    _viewModel.ReportParam.CPROPERTY_ID = poParam ?? "";
+                    _viewModel.ReportParam.CFROM_CUSTOMER_ID = "";
+                    _viewModel.ReportParam.CFROM_CUSTOMER_NAME = "";
+                    _viewModel.ReportParam.CTO_CUSTOMER_ID = "";
+                    _viewModel.ReportParam.CTO_CUSTOMER_NAME = "";
+                    _viewModel.ReportParam.CFROM_JRNGRP_CODE = "";
+                    _viewModel.ReportParam.CFROM_JRNGRP_NAME = "";
+                    _viewModel.ReportParam.CTO_JRNGRP_CODE = "";
+                    _viewModel.ReportParam.CTO_JRNGRP_NAME = "";
+                    _viewModel.ReportParam.CFR_DEPT_CODE = "";
+                    _viewModel.ReportParam.CFR_DEPT_NAME = "";
+                    _viewModel.ReportParam.CTO_DEPT_CODE = "";
+                    _viewModel.ReportParam.CTO_DEPT_NAME = "";
+                    _viewModel.ReportParam.CTENANT_CATEGORY_ID = "";
+                    await _viewModel.GetCategoryTypeAsync(new CategoryTypeParamDTO()
                     { CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID });
+
+                    if (_viewModel._dataBasedOn == _viewModel._radioDataBasedOnCustomer.FirstOrDefault().CTYPE_CODE)
+                    {
+                        await _setDefaultCustomer();
+                    }
+                    else if (_viewModel._dataBasedOn == _viewModel._radioDataBasedOnJrnGrp.FirstOrDefault().CTYPE_CODE)
+                    {
+                        await _setDefaultJournal();
+                    }
+
+                    if (_viewModel._enableFilterDept)
+                    {
+                        await _setDefaultDepartment();
+                    }
+
+                    if (_viewModel._enableFilterCustCtg)
+                    {
+                        _viewModel.ReportParam.CTENANT_CATEGORY_ID = _viewModel._categoryTypeList.FirstOrDefault()?.CCATEGORY_ID;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -74,7 +98,7 @@ namespace PMR02000FRONT
             R_DisplayException(loEx);
         }
 
-        public async void CheckBoxOnChanged_EnableFilterCustCtg()
+        public async Task CheckBoxOnChanged_EnableFilterCustCtg()
         {
             R_Exception loEx = new R_Exception();
             try
@@ -82,7 +106,7 @@ namespace PMR02000FRONT
                 if (_viewModel._enableFilterCustCtg)
                 {
                     await _viewModel.GetCategoryTypeAsync(new CategoryTypeParamDTO()
-                        { CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID });
+                    { CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID });
                 }
             }
             catch (Exception ex)
@@ -97,7 +121,33 @@ namespace PMR02000FRONT
 
         private R_TextBox txtToCustomer;
 
-        private void OnLostFocus_DataBasedOn()
+        private async Task OnValueChangedFilter(bool value)
+        {
+
+            var loEx = new R_Exception();
+            try
+            {
+                _viewModel._enableFilterDept = value;
+                if (value)
+                {
+                    await _setDefaultDepartment();
+                }
+                else
+                {
+                    _viewModel.ReportParam.CFR_DEPT_CODE = "";
+                    _viewModel.ReportParam.CFR_DEPT_NAME = "";
+                    _viewModel.ReportParam.CTO_DEPT_CODE = "";
+                    _viewModel.ReportParam.CTO_DEPT_NAME = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
+        }
+        private async Task OnLostFocus_DataBasedOn()
         {
             var loEx = new R_Exception();
             try
@@ -109,6 +159,7 @@ namespace PMR02000FRONT
                         _viewModel.ReportParam.CFROM_JRNGRP_NAME = "";
                         _viewModel.ReportParam.CTO_JRNGRP_CODE = "";
                         _viewModel.ReportParam.CTO_JRNGRP_NAME = "";
+                        await _setDefaultCustomer();
                         break;
 
                     case "J":
@@ -116,6 +167,7 @@ namespace PMR02000FRONT
                         _viewModel.ReportParam.CFROM_CUSTOMER_NAME = "";
                         _viewModel.ReportParam.CTO_CUSTOMER_ID = "";
                         _viewModel.ReportParam.CTO_CUSTOMER_NAME = "";
+                        await _setDefaultJournal();
                         break;
 
                     default:
@@ -385,8 +437,11 @@ namespace PMR02000FRONT
         {
             eventArgs.Parameter = new LML00600ParameterDTO()
             {
-                CCOMPANY_ID = _clientHelper.CompanyId, CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
-                CCUSTOMER_TYPE = "01", CUSER_ID = _clientHelper.UserId, CSEARCH_TEXT = ""
+                CCOMPANY_ID = _clientHelper.CompanyId,
+                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
+                CCUSTOMER_TYPE = "01",
+                CUSER_ID = _clientHelper.UserId,
+                CSEARCH_TEXT = ""
             };
             eventArgs.TargetPageType = typeof(LML00600);
         }
@@ -424,7 +479,7 @@ namespace PMR02000FRONT
                             typeof(Lookup_PMFrontResources.Resources_Dummy_Class_LookupPM),
                             "_ErrLookup01"));
                         _viewModel.ReportParam.CFROM_CUSTOMER_NAME = ""; //kosongin bind textbox name kalo gaada
-                        //await txtFromCustomer.FocusAsync();
+                                                                         //await txtFromCustomer.FocusAsync();
                         goto EndBlock;
                     }
 
@@ -442,7 +497,7 @@ namespace PMR02000FRONT
                 loEx.Add(ex);
             }
 
-            EndBlock:
+        EndBlock:
             R_DisplayException(loEx);
         }
 
@@ -450,8 +505,11 @@ namespace PMR02000FRONT
         {
             eventArgs.Parameter = new LML00600ParameterDTO()
             {
-                CCOMPANY_ID = _clientHelper.CompanyId, CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
-                CCUSTOMER_TYPE = "01", CUSER_ID = _clientHelper.UserId, CSEARCH_TEXT = ""
+                CCOMPANY_ID = _clientHelper.CompanyId,
+                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
+                CCUSTOMER_TYPE = "01",
+                CUSER_ID = _clientHelper.UserId,
+                CSEARCH_TEXT = ""
             };
             eventArgs.TargetPageType = typeof(LML00600);
         }
@@ -493,7 +551,7 @@ namespace PMR02000FRONT
                             typeof(Lookup_PMFrontResources.Resources_Dummy_Class_LookupPM),
                             "_ErrLookup01"));
                         _viewModel.ReportParam.CTO_CUSTOMER_NAME = ""; //kosongin bind textbox name kalo gaada
-                        //await txtToCustomer.FocusAsync();
+                                                                       //await txtToCustomer.FocusAsync();
                         goto EndBlock;
                     }
 
@@ -511,7 +569,7 @@ namespace PMR02000FRONT
                 loEx.Add(ex);
             }
 
-            EndBlock:
+        EndBlock:
             R_DisplayException(loEx);
         }
 
@@ -583,7 +641,7 @@ namespace PMR02000FRONT
                 loEx.Add(ex);
             }
 
-            EndBlock:
+        EndBlock:
             R_DisplayException(loEx);
         }
 
@@ -654,7 +712,7 @@ namespace PMR02000FRONT
                 loEx.Add(ex);
             }
 
-            EndBlock:
+        EndBlock:
             R_DisplayException(loEx);
         }
 
@@ -716,7 +774,7 @@ namespace PMR02000FRONT
                 loEx.Add(ex);
             }
 
-            EndBlock:
+        EndBlock:
             R_DisplayException(loEx);
         }
 
@@ -776,10 +834,125 @@ namespace PMR02000FRONT
                 loEx.Add(ex);
             }
 
-            EndBlock:
+        EndBlock:
             R_DisplayException(loEx);
         }
 
         #endregion lookup & lostfocus
+
+
+        private async Task _setDefaultCustomer()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (string.IsNullOrEmpty(_viewModel.ReportParam.CPROPERTY_ID)) return;
+
+                var loLookupViewModel = new LookupLML00600ViewModel();
+                var param = new LML00600ParameterDTO
+                {
+                    CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
+                    CCUSTOMER_TYPE = "01"
+                };
+                await loLookupViewModel.GetTenantList(param);
+                if (loLookupViewModel.TenantList.Count > 0)
+                {
+                    _viewModel.ReportParam.CFROM_CUSTOMER_ID = loLookupViewModel.TenantList.FirstOrDefault()?.CTENANT_ID;
+                    _viewModel.ReportParam.CFROM_CUSTOMER_NAME = loLookupViewModel.TenantList
+                        .Where(x => x.CTENANT_ID == _viewModel.ReportParam.CFROM_CUSTOMER_ID)
+                        .Select(x => x.CTENANT_NAME).FirstOrDefault() ?? string.Empty;
+                    _viewModel.ReportParam.CTO_CUSTOMER_ID = loLookupViewModel.TenantList.LastOrDefault()?.CTENANT_ID;
+                    _viewModel.ReportParam.CTO_CUSTOMER_NAME = loLookupViewModel.TenantList
+                        .Where(x => x.CTENANT_ID == _viewModel.ReportParam.CTO_CUSTOMER_ID)
+                        .Select(x => x.CTENANT_NAME).FirstOrDefault() ?? string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task _setDefaultJournal()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (string.IsNullOrEmpty(_viewModel.ReportParam.CPROPERTY_ID)) return;
+
+                var loLookupViewModel = new LookupGSL00400ViewModel();
+                var param = new GSL00400ParameterDTO
+                {
+                    CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
+                    CJRNGRP_TYPE = "20"
+                };
+                await loLookupViewModel.GetJournalGroupList(param);
+                if (loLookupViewModel.JournalGroupGrid.Count > 0)
+                {
+                    _viewModel.ReportParam.CFROM_JRNGRP_CODE = loLookupViewModel.JournalGroupGrid.FirstOrDefault()?.CJRNGRP_CODE;
+                    _viewModel.ReportParam.CFROM_JRNGRP_NAME = loLookupViewModel.JournalGroupGrid
+                        .Where(x => x.CJRNGRP_CODE == _viewModel.ReportParam.CFROM_JRNGRP_CODE)
+                        .Select(x => x.CJRNGRP_NAME).FirstOrDefault() ?? string.Empty;
+                    _viewModel.ReportParam.CTO_JRNGRP_CODE = loLookupViewModel.JournalGroupGrid.LastOrDefault()?.CJRNGRP_CODE;
+                    _viewModel.ReportParam.CTO_JRNGRP_NAME = loLookupViewModel.JournalGroupGrid
+                        .Where(x => x.CJRNGRP_CODE == _viewModel.ReportParam.CTO_JRNGRP_CODE)
+                        .Select(x => x.CJRNGRP_NAME).FirstOrDefault() ?? string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task _setDefaultDepartment()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (string.IsNullOrEmpty(_viewModel.ReportParam.CPROPERTY_ID)) return;
+
+                var loLookupViewModel = new LookupGSL00710ViewModel();
+                var param = new GSL00710ParameterDTO
+                {
+                    CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID
+                };
+                await loLookupViewModel.GetDepartmentPropertyList(param);
+                if (loLookupViewModel.DepartmentPropertyGrid.Count > 0)
+                {
+                    _viewModel.ReportParam.CFR_DEPT_CODE = loLookupViewModel.DepartmentPropertyGrid.FirstOrDefault()?.CDEPT_CODE;
+                    _viewModel.ReportParam.CFR_DEPT_NAME = loLookupViewModel.DepartmentPropertyGrid
+                        .Where(x => x.CDEPT_CODE == _viewModel.ReportParam.CFR_DEPT_CODE)
+                        .Select(x => x.CDEPT_NAME).FirstOrDefault() ?? string.Empty;
+                    _viewModel.ReportParam.CTO_DEPT_CODE = loLookupViewModel.DepartmentPropertyGrid.LastOrDefault()?.CDEPT_CODE;
+                    _viewModel.ReportParam.CTO_DEPT_NAME = loLookupViewModel.DepartmentPropertyGrid
+                        .Where(x => x.CDEPT_CODE == _viewModel.ReportParam.CTO_DEPT_CODE)
+                        .Select(x => x.CDEPT_NAME).FirstOrDefault() ?? string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        public void OnChangedTransType(object value)
+        {
+            _viewModel.ReportParam.CTRANS_CODE = (bool)value ? _viewModel._transTypeList.FirstOrDefault()?.CTRANS_CODE : string.Empty;
+        }
+
+        public void OnChangedCustomerCategory(object value)
+        {
+            _viewModel.ReportParam.CTENANT_CATEGORY_ID = (bool)value ? _viewModel._categoryTypeList.FirstOrDefault()?.CCATEGORY_ID : string.Empty;
+        }
     }
 }

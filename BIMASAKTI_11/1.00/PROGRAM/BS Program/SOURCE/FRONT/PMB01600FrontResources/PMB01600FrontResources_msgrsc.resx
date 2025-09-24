@@ -158,10 +158,17 @@
         <comment>Total Amount</comment> 
     </data>
 
+	
 	<!--Distribute-->
 	<data name="Distribute" xml:space="preserve">
         <value>Distribute</value>
         <comment>Distribute</comment> 
+    </data>
+
+	<!--Invoice-->
+<data name="Invoice" xml:space="preserve">
+        <value>Invoice</value>
+        <comment>Invoice</comment> 
     </data>
 
 	<!--Seq No-->

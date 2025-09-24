@@ -82,13 +82,88 @@
         <None Update="Reports\BaseHeaderLandscapeCommon.frx">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="Reports\LetterOfIntent.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMB04000.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMM00500UnitCharges.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00150Detail.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00150Summary.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00170Detail.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00170Summary.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00200Detail.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00200Summary.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00210Detail.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00210Summary.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00220Detail.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00220Summary.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00400Unit.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <None Update="Reports\PMR00460Handover.frx">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00600DetailByCharge.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00600DetailByTenant.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00600SummaryByCharges.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00600SummaryByTenant.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00800.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Reports\PMR02000Detail.frx">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Reports\PMR02000Summary.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR02400Detail.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR02400Summary.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR02600Occupancy.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR03100.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMT01100.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMT01700Event.frx">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
@@ -105,9 +180,16 @@
         <ProjectReference Include="..\..\..\SERVICE\LM\PMI00500Service\PMI00500Service.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMM00100SERVICE\PMM00100SERVICE.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMM09000SERVICE\PMM09000SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR00150SERVICE\PMR00150SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR00170SERVICE\PMR00170SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR00200SERVICE\PMR00200SERVICE.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMR00210SERVICE\PMR00210SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR00220SERVICE\PMR00220SERVICE.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMR00460Service\PMR00460Service.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR00600SERVICE\PMR00600SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR00800SERVICE\PMR00800SERVICE.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMR02000SERVICE\PMR02000SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR02400SERVICE\PMR02400SERVICE.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMR02600Service\PMR02600Service.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMR03000Service\PMR03000Service.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMT01300SERVICE\PMT01300SERVICE.csproj" />

@@ -38,7 +38,7 @@
             </R_ItemLayout>
             <R_ItemLayout col="2">
                 <R_ComboBox Data="_viewModel.PeriodList"
-                            @bind-Value="_viewModel.SelectedPeriodNo"
+                            @bind-Value="_viewModel.Data.CPERIOD_MONTH"
                             R_ConductorSource="_conductorRef"
                             ValueField="@nameof(TXB00200PeriodDTO.CPERIOD_NO)"
                             TextField="@nameof(TXB00200PeriodDTO.CPERIOD_NO)"

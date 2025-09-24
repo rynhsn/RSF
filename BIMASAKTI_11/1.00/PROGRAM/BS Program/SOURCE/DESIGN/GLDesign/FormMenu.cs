@@ -242,5 +242,13 @@ namespace GLDesign
             loReport.RegisterData(loData, "ResponseDataModel");
             loReport.Design();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var loData = new ArrayList();
+            loData.Add(PMR02600Common.Model.PMR02600ModelReportDummyData.DefaultDataWithHeader());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
     }
 }

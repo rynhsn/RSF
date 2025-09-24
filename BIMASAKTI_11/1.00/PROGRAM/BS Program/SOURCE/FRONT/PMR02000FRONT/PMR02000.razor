@@ -293,7 +293,7 @@
         @* chekbox dept *@
         <R_StackLayout Row Class="pt-2">
             <R_ItemLayout>
-                <R_CheckBox @bind-Value="@_viewModel._enableFilterDept" />
+                <R_CheckBox Value="@_viewModel._enableFilterDept" ValueChanged="((bool value) => OnValueChangedFilter(value))"/>
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Label>
@@ -351,7 +351,7 @@
         @* chekbox trans type *@
         <R_StackLayout Row Class="pt-2">
             <R_ItemLayout>
-                <R_CheckBox @bind-Value="@_viewModel._enableFilterTransType" />
+                <R_CheckBox @bind-Value="@_viewModel._enableFilterTransType" OnChanged="OnChangedTransType"/>
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Label>
@@ -375,7 +375,7 @@
         @* chekbox cust ctg *@
         <R_StackLayout Row Class="pt-2">
             <R_ItemLayout>
-                <R_CheckBox @bind-Value="@_viewModel._enableFilterCustCtg" />
+                <R_CheckBox @bind-Value="@_viewModel._enableFilterCustCtg" OnChanged="OnChangedCustomerCategory"/>
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Label>

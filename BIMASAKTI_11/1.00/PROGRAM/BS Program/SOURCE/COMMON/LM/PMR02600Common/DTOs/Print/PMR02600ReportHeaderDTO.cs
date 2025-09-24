@@ -11,12 +11,44 @@ namespace PMR02600Common.DTOs.Print
 
         public PMR02600ReportHeaderDTO Header { get; set; }
         public List<PMR02600DataResultDTO> Data { get; set; }
+
+        public List<PMR02600Header> DataGroup { get; set; }
     }
-    
+
     public class PMR02600DataResultDTO
     {
         public string CBUILDING_ID { get; set; } = "";
         public string CBUILDING_NAME { get; set; } = "";
+        public string CFLOOR_ID { get; set; } = "";
+        public string CUNIT_ID { get; set; } = "";
+        public string CUNIT_TYPE_ID { get; set; } = "";
+        public string CUNIT_TYPE_NAME { get; set; } = "";
+        public string CLEASE_STATUS { get; set; } = "";
+        public string CACTUAL_START_DATE { get; set; } = "";
+        public string CACTUAL_END_DATE { get; set; } = "";
+        public string CUNIT_DESCRIPTION { get; set; } = "";
+        public string CTENANT_ID { get; set; } = "";
+        public string CTENANT_NAME { get; set; } = "";
+        public decimal NLEASED_AREA { get; set; }
+        public decimal NOCCUPIABLE_AREA { get; set; }
+        public decimal NOCCUPANCY { get; set; }
+        public decimal NTOTAL_LEASED_AREA { get; set; }
+        public decimal NTOTAL_LEASE_AREA { get; set; }
+        public decimal NAVAIL_AREA { get; set; }
+        public decimal NTOTAL_LEASE_AREA_PCT { get; set; }
+        public decimal NTOTAL_LEASED_AREA_PCT { get; set; }
+        public decimal NAVAIL_AREA_PCT { get; set; }
+    }
+
+    public class PMR02600Header
+    {
+        public string CBUILDING_ID { get; set; } = "";
+        public string CBUILDING_NAME { get; set; } = "";
+        public List<PMR02600Detail> Detail { get; set; } = new List<PMR02600Detail>();
+    }
+
+    public class PMR02600Detail
+    {
         public string CFLOOR_ID { get; set; } = "";
         public string CUNIT_ID { get; set; } = "";
         public string CUNIT_TYPE_ID { get; set; } = "";
@@ -56,7 +88,7 @@ namespace PMR02600Common.DTOs.Print
         public string TOTAL_AVAILABLE { get; set; } = "Total Available";
         public string S_D { get; set; } = "s/d";
     }
-    
+
     public class PMR02600ReportHeaderDTO
     {
         public string CPROPERTY { get; set; } = "";

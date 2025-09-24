@@ -11,9 +11,9 @@
 		<ProjectReference Include="..\..\..\BACK\LM\PMR00200BackResources\PMR00200BackResources.csproj" />
 		<ProjectReference Include="..\..\..\COMMON\LM\PMR00200COMMON\PMR00200COMMON.csproj" />
 		<ProjectReference Include="..\..\..\BACK\LM\PMR00200BACK\PMR00200BACK.csproj" />
-		<ProjectReference Include="..\..\..\COMMON\BaseHeaderCOMMON\BaseHeaderResources\BaseHeaderResources.csproj" />
+		<ProjectReference Include="..\..\..\COMMON\BaseHeaderResources\BaseHeaderResources.csproj" />
 		<Reference Include="BaseHeaderReportCOMMON">
-		  <HintPath>..\..\..\COMMON\BaseHeaderCOMMON\BaseHeaderReportCommonDLL\BaseHeaderReportCOMMON.dll</HintPath>
+			<HintPath>..\..\..\COMMON\BaseHeaderReportCOMMON.dll</HintPath>
 		</Reference>
 		<Reference Include="R_APIBackEnd">
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>

@@ -53,6 +53,9 @@ namespace PMB01600Front
             // _processButton.Enabled = true;
             var loMsg = await R_MessageBox.Show("", _localizer["Undo Billing Statement completed successfully!"], R_eMessageBoxButtonType.OK);
 
+
+            _viewModel.GridHeaderList.Clear();
+            _viewModel.GridDetailList.Clear();
             await _gridRefHeader.R_RefreshGrid(null);
         }
 
@@ -132,7 +135,11 @@ namespace PMB01600Front
                     _viewModel.Param.CPROPERTY_NAME =
                         _viewModel.PropertyList.FirstOrDefault(x => x.CPROPERTY_ID == value)?.CPROPERTY_NAME ?? string.Empty;
 
+                    await _viewModel.GetSystemParam();
                     await _setDefaultTenant();
+
+                    _viewModel.GridHeaderList.Clear();
+                    _viewModel.GridDetailList.Clear();
                 }
             }
             catch (Exception ex)
@@ -341,6 +348,7 @@ namespace PMB01600Front
             {
                 await _viewModel.GetBillingStatementHeaderList();
                 eventArgs.ListEntityResult = _viewModel.GridHeaderList;
+
             }
             catch (Exception ex)
             {

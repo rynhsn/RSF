@@ -27,6 +27,73 @@ public partial class PMR02600
         try
         {
             await _viewModel.Init();
+            await _setDefaultBuilding();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+
+    private async Task _valueChangedProperty(string value)
+    {
+        var loEx = new R_Exception();
+        try
+        {
+
+            if (!string.IsNullOrEmpty(value))
+            {
+                if (value == _viewModel.ReportParam.CPROPERTY) return;
+
+                _viewModel.ReportParam.CFROM_BUILDING = string.Empty;
+                _viewModel.ReportParam.CFROM_BUILDING_NAME = string.Empty;
+                _viewModel.ReportParam.CTO_BUILDING = string.Empty;
+                _viewModel.ReportParam.CTO_BUILDING_NAME = string.Empty;
+                _viewModel.ReportParam.CPROPERTY = value;
+                _viewModel.ReportParam.CPROPERTY_NAME =
+                    _viewModel.PropertyList.FirstOrDefault(x => x.CPROPERTY_ID == value)?.CPROPERTY_NAME ?? string.Empty;
+
+                await _setDefaultBuilding();
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
+    private async Task _setDefaultBuilding()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            if (string.IsNullOrEmpty(_viewModel.ReportParam.CPROPERTY)) return;
+
+            var loLookupViewModel = new LookupGSL02200ViewModel();
+            var param = new GSL02200ParameterDTO
+            {
+                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY,
+                CSEARCH_TEXT = _viewModel.ReportParam.CFROM_BUILDING
+            };
+
+            await loLookupViewModel.GetBuildingList(param);
+            if (loLookupViewModel.BuildingGrid.Count > 0)
+            {
+                _viewModel.ReportParam.CFROM_BUILDING = loLookupViewModel.BuildingGrid.FirstOrDefault()?.CBUILDING_ID;
+                _viewModel.ReportParam.CFROM_BUILDING_NAME = loLookupViewModel.BuildingGrid
+                    .Where(x => x.CBUILDING_ID == _viewModel.ReportParam.CFROM_BUILDING)
+                    .Select(x => x.CBUILDING_NAME).FirstOrDefault() ?? string.Empty;
+                _viewModel.ReportParam.CTO_BUILDING = loLookupViewModel.BuildingGrid.LastOrDefault()?.CBUILDING_ID;
+                _viewModel.ReportParam.CTO_BUILDING_NAME = loLookupViewModel.BuildingGrid
+                    .Where(x => x.CBUILDING_ID == _viewModel.ReportParam.CTO_BUILDING)
+                    .Select(x => x.CBUILDING_NAME).FirstOrDefault() ?? string.Empty;
+            }
         }
         catch (Exception ex)
         {
@@ -78,7 +145,7 @@ public partial class PMR02600
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         await R_DisplayExceptionAsync(loEx);
     }
 
@@ -168,7 +235,7 @@ public partial class PMR02600
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         await R_DisplayExceptionAsync(loEx);
     }
 
@@ -241,7 +308,7 @@ public partial class PMR02600
             {
                 loEx.Add("Error", _localizer["PLEASESELECTCUTOFFDATE"]);
             }
-            
+
             _viewModel.ReportParam.CPROPERTY_NAME = _viewModel.PropertyList
                 ?.Find(x => x.CPROPERTY_ID == _viewModel.ReportParam.CPROPERTY)
                 .CPROPERTY_NAME;
@@ -252,7 +319,7 @@ public partial class PMR02600
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         loEx.ThrowExceptionIfErrors();
     }
 
@@ -263,7 +330,7 @@ public partial class PMR02600
         try
         {
             _validateDataBeforePrint();
-            
+
             if (!loEx.HasError)
             {
                 var loParam = _viewModel.ReportParam;
@@ -308,7 +375,7 @@ public partial class PMR02600
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         loEx.ThrowExceptionIfErrors();
     }
 }

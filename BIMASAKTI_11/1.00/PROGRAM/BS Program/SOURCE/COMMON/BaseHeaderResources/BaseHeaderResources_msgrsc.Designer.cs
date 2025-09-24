@@ -61,6 +61,15 @@ namespace BaseHeaderResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to By.
+        /// </summary>
+        internal static string By {
+            get {
+                return ResourceManager.GetString("By", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Of.
         /// </summary>
         internal static string Of {
@@ -93,6 +102,15 @@ namespace BaseHeaderResources {
         internal static string Print_Date {
             get {
                 return ResourceManager.GetString("Print_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Printed.
+        /// </summary>
+        internal static string Printed {
+            get {
+                return ResourceManager.GetString("Printed", resourceCulture);
             }
         }
     }

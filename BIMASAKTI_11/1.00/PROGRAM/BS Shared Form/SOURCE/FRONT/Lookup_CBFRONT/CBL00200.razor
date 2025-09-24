@@ -1,0 +1,103 @@
+﻿@using Lookup_CBCOMMON.DTOs.CBL00100
+@using Lookup_CBFrontResources
+@inherits R_Page
+@attribute [R_Page(Title = "CB Journal Lookup")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupCB> _localizer
+<R_StackLayout Style="width: 1200px">
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="6">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label> Transaction Type</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2" Class="pe-3">
+                    <R_TextBox Value="@_viewModel.ParameterLookup.CTRANS_CODE"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false"/>
+                </R_ItemLayout>
+                
+                <R_ItemLayout col="4" Class="pe-3">
+                    <R_TextBox Value="@_viewModel.ParameterLookup.CTRANS_NAME"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false"/>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="1">
+                    <R_Label> Period</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="4" Class="ps-2">
+                    <R_RadioGroup Data="@_viewModel.RadioButton"
+                                  @bind-Value="@_viewModel.CBJournalLookupEntity.RadioButton"
+                                  ValueField="@nameof(CBL00100DTO.Code)"
+                                  TextField="@nameof(CBL00100DTO.Desc)"
+                                  Enabled="true"
+                                  OnChanged="@OnchangedPeriod">
+                    </R_RadioGroup>
+                </R_ItemLayout>
+                <R_ItemLayout col="3" Class="d-flex align-items-center">
+                    <R_NumericTextBox
+                        @bind-Value="@_viewModel.CBJournalLookupEntity.VAR_GSM_PERIOD"
+                        Min="@_viewModel.PeriodLookup.IMIN_YEAR"
+                        Max="@_viewModel.PeriodLookup.IMAX_YEAR"
+                        R_ConductorSource="@_conductorRef"
+                        Step="1" ThousandSeparator="false"
+                        Enabled="@(_viewModel.CBJournalLookupEntity.RadioButton != "A")"/>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_DropDownList Data="@_viewModel.Month"
+                                    @bind-Value="@_viewModel.CBJournalLookupEntity.Month"
+                                    ValueField="@nameof(CBL00100DTO.Code)"
+                                    TextField="@nameof(CBL00100DTO.Desc)"
+                                    R_ConductorSource="@_conductorRef"
+                                    Enabled="@(_viewModel.CBJournalLookupEntity.RadioButton != "A")"></R_DropDownList>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Button OnClick="Refresh_Button">
+                        @_localizer["RFSH"]
+                    </R_Button>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.CBJournalLookupGrid"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                R_GridType="R_eGridType.Navigator"
+                Pageable
+                Height="300px"
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false"
+                PageSize="5"
+                Enabled="@(_viewModel.CBJournalLookupGrid.Count > 0)">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CDEPT_CODE" Width="143px" HeaderText="@_localizer["DEPT_CODE"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CREF_NO" Width="189px" HeaderText="@_localizer["REFERENCE_NO"]"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="DREF_DATE" Width="157px" HeaderText="@_localizer["REFERENCE_DATE"]"></R_GridDatePickerColumn>
+                <R_GridTextColumn FieldName="CCURRENCY_CODE" Width="150px" HeaderText="@_localizer["CURR"]"></R_GridTextColumn>
+                <R_GridNumericColumn TValue="decimal" FieldName="NTRANS_AMOUNT" Width="228px" HeaderText="@_localizer["AMOUNT"]"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="CCB_NAME" Width="140px" HeaderText="@_localizer["REFERENCE_NO"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCB_ACCOUNT_NO" Width="140px" HeaderText="@_localizer["CB_ACCOUNT_NO"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CTRANS_DESC" Width="170px" HeaderText="@_localizer["DESCRIPTION"]"></R_GridTextColumn>
+
+
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+
+        <R_Button Enabled="@(_viewModel.CBJournalLookupGrid.Count != 0)" OnClick="Button_OnClickOkAsync">
+            @_localizer["OK"]
+        </R_Button>
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            @_localizer["CNCL"]
+        </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>

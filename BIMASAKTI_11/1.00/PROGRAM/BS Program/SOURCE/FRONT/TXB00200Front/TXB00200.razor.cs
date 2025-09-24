@@ -27,7 +27,7 @@ public partial class TXB00200 : R_Page
             await _conductorRef.R_GetEntity(null);
             await _viewModel.GetPropertyList();
             await _viewModel.GetPeriodList();
-            await _viewModel.GetNextPeriod();
+            //await _viewModel.GetNextPeriod();
         }
         catch (Exception ex)
         {
@@ -80,7 +80,7 @@ public partial class TXB00200 : R_Page
                 await R_MessageBox.Show("Message", @_localizer["SUCCESS_SOFT_CLOSE"]);
             }
 
-            await _viewModel.GetCurrentPeriod();
+            await _conductorRef.R_GetEntity(null);
             // await _viewModel.GetNextPeriod();
         }
         catch (Exception ex)

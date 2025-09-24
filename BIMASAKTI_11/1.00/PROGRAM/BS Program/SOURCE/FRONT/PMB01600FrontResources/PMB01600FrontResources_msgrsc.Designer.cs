@@ -115,6 +115,15 @@ namespace PMB01600FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invoice.
+        /// </summary>
+        internal static string Invoice {
+            get {
+                return ResourceManager.GetString("Invoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Period.
         /// </summary>
         internal static string Period {

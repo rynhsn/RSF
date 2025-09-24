@@ -78,19 +78,23 @@ public partial class PMR03000 : R_Page
         var loEx = new R_Exception();
         try
         {
-            if (value == _viewModel.ReportParam.CPROPERTY_ID) return;
+            if (!string.IsNullOrEmpty(value))
+            {
+                if (value == _viewModel.ReportParam.CPROPERTY_ID) return;
 
-            _viewModel.ReportParam.CFROM_TENANT = string.Empty;
-            _viewModel.ReportParam.CFROM_TENANT_NAME = string.Empty;
-            _viewModel.ReportParam.CTO_TENANT = string.Empty;
-            _viewModel.ReportParam.CTO_TENANT_NAME = string.Empty;
-            _viewModel.ReportParam.CPROPERTY_ID = value;
-            _viewModel.ReportParam.CPROPERTY_NAME =
-                _viewModel.PropertyList.FirstOrDefault(x => x.CPROPERTY_ID == value)?.CPROPERTY_NAME ?? string.Empty;
+                _viewModel.ReportParam.CFROM_TENANT = string.Empty;
+                _viewModel.ReportParam.CFROM_TENANT_NAME = string.Empty;
+                _viewModel.ReportParam.CTO_TENANT = string.Empty;
+                _viewModel.ReportParam.CTO_TENANT_NAME = string.Empty;
+                _viewModel.ReportParam.CPROPERTY_ID = value;
+                _viewModel.ReportParam.CPROPERTY_NAME =
+                    _viewModel.PropertyList.FirstOrDefault(x => x.CPROPERTY_ID == value)?.CPROPERTY_NAME ?? string.Empty;
 
-            await _setDefaultCustomer();
-            await _viewModel.GetReportTemplateList();
-            // await _viewModel.GetMessageInfoList();
+                await _setDefaultCustomer();
+
+                await _viewModel.GetReportTemplateList();
+                // await _viewModel.GetMessageInfoList();
+            }
         }
         catch (Exception ex)
         {
@@ -142,7 +146,7 @@ public partial class PMR03000 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         await R_DisplayExceptionAsync(loEx);
     }
 
@@ -233,7 +237,7 @@ public partial class PMR03000 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         await R_DisplayExceptionAsync(loEx);
     }
 
@@ -327,7 +331,7 @@ public partial class PMR03000 : R_Page
             loEx.Add(ex);
         }
 
-        EndBlock:
+    EndBlock:
         await R_DisplayExceptionAsync(loEx);
     }
 
@@ -536,17 +540,17 @@ public partial class PMR03000 : R_Page
                 //    var ms = new MemoryStream();
                 //    resFilestream.CopyTo(ms);
                 //    var bytes = ms.ToArray();
-                
+
                 //    loFileBytes = bytes;
                 //}
-                
+
                 //var rtfText = @$"{System.Text.Encoding.Default.GetString(loFileBytes)}";
                 // rtfText = rtfText.Replace(@"\deflang14345", @"\deflang1033")
-                    // .Replace(@"\deflangfe14345", @"\deflangfe1033")
-                    // .Replace(@"\themelang14345", @"\themelang1033")
-                    // .Replace(@"\lang14345", @"\lang1033");
-                    
-               
+                // .Replace(@"\deflangfe14345", @"\deflangfe1033")
+                // .Replace(@"\themelang14345", @"\themelang1033")
+                // .Replace(@"\lang14345", @"\lang1033");
+
+
                 //_viewModel.ReportParam.TMESSAGE_DESCR_RTF = rtfText;
             }
         }

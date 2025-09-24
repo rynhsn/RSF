@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using BaseHeaderReportCOMMON;
 using PMR02600Common.DTOs.Print;
 
@@ -90,6 +91,52 @@ namespace PMR02600Common.Model
                 },
             };
 
+            var loGroupBuilding = loCollection.GroupBy(x => x.CBUILDING_ID).ToList();
+
+            var loResult = new List<PMR02600Header>();
+
+            foreach (var item in loGroupBuilding)
+            {
+                var loGroup = new PMR02600Header()
+                {
+                    CBUILDING_ID = item.Key,
+                    CBUILDING_NAME = item.First().CBUILDING_NAME,
+                    Detail = new List<PMR02600Detail>()
+                };
+
+                var loDetail = item.ToList();
+
+                foreach (var item2 in loDetail)
+                {
+                    loGroup.Detail.Add(new PMR02600Detail()
+                    {
+                        CFLOOR_ID = item2.CFLOOR_ID,
+                        CUNIT_ID = item2.CUNIT_ID ,
+                        CUNIT_TYPE_ID = item2.CUNIT_TYPE_ID ,
+                        CUNIT_TYPE_NAME = item2.CUNIT_TYPE_NAME ,
+                        CLEASE_STATUS = item2.CLEASE_STATUS ,
+                        CACTUAL_START_DATE = item2.CACTUAL_START_DATE ,
+                        CACTUAL_END_DATE = item2.CACTUAL_END_DATE ,
+                        CUNIT_DESCRIPTION = item2.CUNIT_DESCRIPTION ,
+                        CTENANT_ID = item2.CTENANT_ID ,
+                        CTENANT_NAME = item2.CTENANT_NAME ,
+                        NLEASED_AREA = item2.NLEASED_AREA ,
+                        NOCCUPIABLE_AREA = item2.NOCCUPIABLE_AREA ,
+                        NOCCUPANCY = item2.NOCCUPANCY ,
+                        NTOTAL_LEASED_AREA = item2.NTOTAL_LEASED_AREA ,
+                        NTOTAL_LEASE_AREA = item2.NTOTAL_LEASE_AREA ,
+                        NAVAIL_AREA = item2.NAVAIL_AREA ,
+                        NTOTAL_LEASE_AREA_PCT = item2.NTOTAL_LEASE_AREA_PCT ,
+                        NTOTAL_LEASED_AREA_PCT = item2.NTOTAL_LEASED_AREA_PCT ,
+                        NAVAIL_AREA_PCT = item2.NAVAIL_AREA_PCT ,
+
+                    });
+
+                }
+
+                loResult.Add(loGroup);
+            }
+
             var loData = new PMR02600ReportResultDTO
             {
                 Title = "Occupancy Report",
@@ -101,7 +148,8 @@ namespace PMR02600Common.Model
                     CTO_BUILDING = "MULAN TOWER(TOWER2)",
                     CPERIOD = "20240725"
                 },
-                Data = loCollection
+                Data = loCollection,
+                DataGroup = loResult
             };
 
             loData.Header.CPERIOD_DISPLAY = DateTime.TryParseExact(loData.Header.CPERIOD, "yyyyMMdd",
@@ -116,6 +164,7 @@ namespace PMR02600Common.Model
 
             return loData;
         }
+
 
         public static PMR02600ReportWithBaseHeaderDTO DefaultDataWithHeader()
         {

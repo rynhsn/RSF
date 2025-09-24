@@ -21,6 +21,7 @@ namespace PMR02600Model.ViewModel
         public async Task Init()
         {
             await GetPropertyList();
+            ReportParam.DPERIOD = DateTime.Now;
         }
 
         public async Task GetPropertyList()

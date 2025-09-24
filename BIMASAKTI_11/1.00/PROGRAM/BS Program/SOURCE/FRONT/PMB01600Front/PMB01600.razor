@@ -150,14 +150,14 @@
                 R_CheckBoxSelectValueChanged="CheckBoxSelectValueChanged"
                 R_ServiceSaveBatch="SaveBatch">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="@nameof(PMB01600BillingStatementDetailDTO.CSEQ_NO)"
-                                  HeaderText="@_localizer["Seq No"]"
+                <R_GridTextColumn FieldName="@nameof(PMB01600BillingStatementDetailDTO.CINVOICE_ID)"
+                                  HeaderText="@_localizer["Invoice"]"
                                   TextAlignment="R_eTextAlignment.Left"
-                                  Width="90px" />
+                                  Width="115px" />
                 <R_GridTextColumn FieldName="@nameof(PMB01600BillingStatementDetailDTO.CCHARGES_TYPE)"
                                   HeaderText="@_localizer["Charges Type"]"
                                   TextAlignment="R_eTextAlignment.Left"
-                                  Width="160px" />
+                                  Width="150px" />
                 <R_GridTextColumn FieldName="@nameof(PMB01600BillingStatementDetailDTO.CCHARGES_DESC)"
                                   HeaderText="@_localizer["Charges"]"
                                   TextAlignment="R_eTextAlignment.Left"
@@ -165,7 +165,7 @@
                 <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMB01600BillingStatementDetailDTO.NTOTAL_AMOUNT)"
                                      HeaderText="@_localizer["Amount"]"
                                      TextAlignment="R_eTextAlignment.Right"
-                                     Width="135px"
+                                     Width="115px"
                                      Decimals="2"
                                                   ThousandSeparator />
             </R_GridColumns>

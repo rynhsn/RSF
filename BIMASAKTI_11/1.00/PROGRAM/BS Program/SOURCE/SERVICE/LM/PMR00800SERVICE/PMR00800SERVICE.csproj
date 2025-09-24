@@ -11,7 +11,6 @@
 		<ProjectReference Include="..\..\..\BACK\LM\PMR00800BACK\PMR00800BACK.csproj" />
 		<ProjectReference Include="..\..\..\COMMON\LM\PMR00800COMMON\PMR00800COMMON.csproj" />
 		<ProjectReference Include="..\..\..\COMMON\BaseHeaderResources\BaseHeaderResources.csproj" />
-
 		<Reference Include="BaseHeaderReportCOMMON">
 			<HintPath>..\..\..\COMMON\BaseHeaderReportCOMMON.dll</HintPath>
 		</Reference>

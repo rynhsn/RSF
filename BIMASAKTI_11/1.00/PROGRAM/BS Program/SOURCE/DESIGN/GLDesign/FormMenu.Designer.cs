@@ -60,6 +60,7 @@
             ICR00600 = new Button();
             groupBox6 = new GroupBox();
             GSM04000 = new Button();
+            button1 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -408,11 +409,22 @@
             GSM04000.UseVisualStyleBackColor = true;
             GSM04000.Click += GSM04000_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(347, 187);
+            button1.Name = "button1";
+            button1.Size = new Size(283, 54);
+            button1.TabIndex = 17;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // FormMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(745, 417);
+            Controls.Add(button1);
             Controls.Add(groupBox6);
             Controls.Add(groupBox5);
             Controls.Add(Refresh);
@@ -469,5 +481,6 @@
         private Button GLM00200;
         private Button PMR02000Summary;
         private Button PMR02000Detail;
+        private Button button1;
     }
 }

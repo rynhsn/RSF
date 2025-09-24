@@ -38,6 +38,7 @@ public class PMR02600PrintController : R_ReportControllerBase
         _ReportCls.R_SetNumberAndDateFormat += _ReportCls_R_SetNumberAndDateFormat;
     }
 
+
     private void _ReportCls_R_InstantiateMainReportWithFileName(ref string pcfiletemplate)
     {
         pcfiletemplate = Path.Combine("Reports", "PMR02600Occupancy.frx");
@@ -111,7 +112,7 @@ public class PMR02600PrintController : R_ReportControllerBase
             R_ReportGlobalVar.R_SetFromReportDTO(loResultGUID.poGlobalVar);
 
             _Parameter = loResultGUID.poParam;
-            
+
             if (_Parameter.LIS_PRINT)
             {
                 loRtn = new FileStreamResult(_ReportCls.R_GetStreamReport(peExport: R_FileType.PDF), R_ReportUtility.GetMimeType(R_FileType.PDF));
@@ -171,7 +172,7 @@ public class PMR02600PrintController : R_ReportControllerBase
                 DPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
                 CPRINT_CODE = "PMR02600",
                 CPRINT_NAME = "Occupancy Report",
-                CUSER_ID = lcUser,
+                CUSER_ID = lcUser,                
             };
 
             var loData = new PMR02600ReportResultDTO()

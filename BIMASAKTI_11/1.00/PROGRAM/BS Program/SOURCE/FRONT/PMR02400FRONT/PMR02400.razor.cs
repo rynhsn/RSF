@@ -33,6 +33,7 @@ namespace PMR02400FRONT
             try
             {
                 await _viewModel.InitProcess(_localizer);
+                await _setDefaultCustomer();
             }
             catch (Exception ex)
             {
@@ -41,17 +42,24 @@ namespace PMR02400FRONT
             R_DisplayException(loEx);
         }
 
-        public void ComboboxPropertyValueChanged(string poParam)
+        public async Task ComboboxPropertyValueChanged(string poParam)
         {
             R_Exception loEx = new R_Exception();
             try
             {
-                _viewModel._ReportParam.CPROPERTY_ID = string.IsNullOrWhiteSpace(poParam) ? "" : poParam;
-                _viewModel._ReportParam.CPROPERTY_NAME = _viewModel._properties.FirstOrDefault(x => x.CPROPERTY_ID == _viewModel._ReportParam.CPROPERTY_ID).CPROPERTY_NAME;
-                _viewModel._ReportParam.CFROM_CUSTOMER_NAME = "";
-                _viewModel._ReportParam.CTO_CUSTOMER_NAME = "";
-                _viewModel._ReportParam.CFR_CUSTOMER = "";
-                _viewModel._ReportParam.CTO_CUSTOMER = "";
+                if (!string.IsNullOrEmpty(poParam))
+                {
+                    if (poParam == _viewModel._ReportParam.CPROPERTY_ID) return;
+
+                    _viewModel._ReportParam.CPROPERTY_ID = poParam;
+                    _viewModel._ReportParam.CPROPERTY_NAME = _viewModel._properties.FirstOrDefault(x => x.CPROPERTY_ID == _viewModel._ReportParam.CPROPERTY_ID)?.CPROPERTY_NAME ?? string.Empty;
+                    _viewModel._ReportParam.CFROM_CUSTOMER_NAME = "";
+                    _viewModel._ReportParam.CTO_CUSTOMER_NAME = "";
+                    _viewModel._ReportParam.CFR_CUSTOMER = "";
+                    _viewModel._ReportParam.CTO_CUSTOMER = "";
+
+                    await _setDefaultCustomer();
+                }
             }
             catch (Exception ex)
             {
@@ -223,9 +231,9 @@ namespace PMR02400FRONT
                 _viewModel._ReportParam.CTO_CPERIOD = _viewModel._YearToPeriod + _viewModel._MonthToPeriod;
                 _viewModel._ReportParam.LIS_BASED_ON_CUTOFF = _viewModel._DateBasedOn == "I" ? true : false;
                 _viewModel._ReportParam.CCUT_OFF_DATE = _viewModel._DateBasedOn == "I" ? _viewModel._DateCutOff.ToString("yyyyMMdd") : "";
-                
+
                 //set based on display
-                _viewModel._ReportParam.CREPORT_OPTION_TEXT=_viewModel._DateBasedOn=="I" ? _localizer["_rpt_option1"] : _localizer["_rpt_option2"];
+                _viewModel._ReportParam.CREPORT_OPTION_TEXT = _viewModel._DateBasedOn == "I" ? _localizer["_rpt_option1"] : _localizer["_rpt_option2"];
                 if (_viewModel._ReportParam.LIS_BASED_ON_CUTOFF)
                 {
                     _viewModel._ReportParam.CBASED_ON_DISPLAY = DateTime.TryParseExact(_viewModel._ReportParam.CCUT_OFF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out DateTime poCutOffDate)
@@ -352,6 +360,42 @@ namespace PMR02400FRONT
             {
                 loEx.Add(ex);
             }
+            loEx.ThrowExceptionIfErrors();
+        }
+
+
+        private async Task _setDefaultCustomer()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (string.IsNullOrEmpty(_viewModel._ReportParam.CPROPERTY_ID)) return;
+
+                var loLookupViewModel = new LookupLML00600ViewModel();
+                var param = new LML00600ParameterDTO
+                {
+                    CPROPERTY_ID = _viewModel._ReportParam.CPROPERTY_ID,
+                    CCUSTOMER_TYPE = "01"
+                };
+                await loLookupViewModel.GetTenantList(param);
+                if (loLookupViewModel.TenantList.Count > 0)
+                {
+                    _viewModel._ReportParam.CFR_CUSTOMER = loLookupViewModel.TenantList.FirstOrDefault()?.CTENANT_ID;
+                    _viewModel._ReportParam.CFROM_CUSTOMER_NAME = loLookupViewModel.TenantList
+                        .Where(x => x.CTENANT_ID == _viewModel._ReportParam.CFR_CUSTOMER)
+                        .Select(x => x.CTENANT_NAME).FirstOrDefault() ?? string.Empty;
+                    _viewModel._ReportParam.CTO_CUSTOMER = loLookupViewModel.TenantList.LastOrDefault()?.CTENANT_ID;
+                    _viewModel._ReportParam.CTO_CUSTOMER_NAME = loLookupViewModel.TenantList
+                        .Where(x => x.CTENANT_ID == _viewModel._ReportParam.CTO_CUSTOMER)
+                        .Select(x => x.CTENANT_NAME).FirstOrDefault() ?? string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
             loEx.ThrowExceptionIfErrors();
         }
 
