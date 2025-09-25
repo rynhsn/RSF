@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PMR02600BackResources {
+namespace RSP_PM_HANDOVER_NOTIFICATIONResources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace PMR02600BackResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class PMR02600BackResources_msgrsc {
+    internal class RSP_PM_HANDOVER_NOTIFICATIONResources_msgres {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal PMR02600BackResources_msgrsc() {
+        internal RSP_PM_HANDOVER_NOTIFICATIONResources_msgres() {
         }
         
         /// <summary>
@@ -39,7 +39,8 @@ namespace PMR02600BackResources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PMR02600BackResources.PMR02600BackResources_msgrsc", typeof(PMR02600BackResources_msgrsc).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RSP_PM_HANDOVER_NOTIFICATIONResources.RSP_PM_HANDOVER_NOTIFICATIONResources_msgre" +
+                            "s", typeof(RSP_PM_HANDOVER_NOTIFICATIONResources_msgres).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,137 +62,119 @@ namespace PMR02600BackResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Building.
+        ///   Looks up a localized string similar to Error process, please contact your administrator!.
         /// </summary>
-        internal static string BUILDING {
+        internal static string _8001 {
             get {
-                return ResourceManager.GetString("BUILDING", resourceCulture);
+                return ResourceManager.GetString("8001", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cut Off Date.
+        ///   Looks up a localized string similar to Company ID is empty!.
         /// </summary>
-        internal static string CUT_OFF_DATE {
+        internal static string _8002 {
             get {
-                return ResourceManager.GetString("CUT_OFF_DATE", resourceCulture);
+                return ResourceManager.GetString("8002", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Leased Area.
+        ///   Looks up a localized string similar to Company ID is not found!.
         /// </summary>
-        internal static string LEASED_AREA {
+        internal static string _8003 {
             get {
-                return ResourceManager.GetString("LEASED_AREA", resourceCulture);
+                return ResourceManager.GetString("8003", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Occupancy.
+        ///   Looks up a localized string similar to Property ID is empty!.
         /// </summary>
-        internal static string OCCUPANCY {
+        internal static string _8004 {
             get {
-                return ResourceManager.GetString("OCCUPANCY", resourceCulture);
+                return ResourceManager.GetString("8004", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Occupiable Area.
+        ///   Looks up a localized string similar to Property ID is not found!.
         /// </summary>
-        internal static string OCCUPIABLE_AREA {
+        internal static string _8005 {
             get {
-                return ResourceManager.GetString("OCCUPIABLE_AREA", resourceCulture);
+                return ResourceManager.GetString("8005", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Property.
+        ///   Looks up a localized string similar to Dept Code is empty!.
         /// </summary>
-        internal static string PROPERTY {
+        internal static string _8006 {
             get {
-                return ResourceManager.GetString("PROPERTY", resourceCulture);
+                return ResourceManager.GetString("8006", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to s/d.
+        ///   Looks up a localized string similar to Dept Code is not found!.
         /// </summary>
-        internal static string S_D {
+        internal static string _8007 {
             get {
-                return ResourceManager.GetString("S_D", resourceCulture);
+                return ResourceManager.GetString("8007", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tenant Id.
+        ///   Looks up a localized string similar to Trans Code is empty!.
         /// </summary>
-        internal static string TENANT_ID {
+        internal static string _8008 {
             get {
-                return ResourceManager.GetString("TENANT_ID", resourceCulture);
+                return ResourceManager.GetString("8008", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tenant Name.
+        ///   Looks up a localized string similar to Trans Code is not found!.
         /// </summary>
-        internal static string TENANT_NAME {
+        internal static string _8009 {
             get {
-                return ResourceManager.GetString("TENANT_NAME", resourceCulture);
+                return ResourceManager.GetString("8009", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total Available.
+        ///   Looks up a localized string similar to Ref No is empty!.
         /// </summary>
-        internal static string TOTAL_AVAILABLE {
+        internal static string _8010 {
             get {
-                return ResourceManager.GetString("TOTAL_AVAILABLE", resourceCulture);
+                return ResourceManager.GetString("8010", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total Lease Area.
+        ///   Looks up a localized string similar to Ref No is not found!.
         /// </summary>
-        internal static string TOTAL_LEASE_AREA {
+        internal static string _8011 {
             get {
-                return ResourceManager.GetString("TOTAL_LEASE_AREA", resourceCulture);
+                return ResourceManager.GetString("8011", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total Leased Area.
+        ///   Looks up a localized string similar to No receiver found!.
         /// </summary>
-        internal static string TOTAL_LEASED_AREA {
+        internal static string _8012 {
             get {
-                return ResourceManager.GetString("TOTAL_LEASED_AREA", resourceCulture);
+                return ResourceManager.GetString("8012", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unit Description.
+        ///   Looks up a localized string similar to No email template for CARE Notification found, please set email template with Template ID &quot;DONE_HANDOVER&quot; in program Email Template (SAM02100)!.
         /// </summary>
-        internal static string UNIT_DESC {
+        internal static string _8013 {
             get {
-                return ResourceManager.GetString("UNIT_DESC", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unit Id.
-        /// </summary>
-        internal static string UNIT_ID {
-            get {
-                return ResourceManager.GetString("UNIT_ID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unit Type.
-        /// </summary>
-        internal static string UNIT_TYPE {
-            get {
-                return ResourceManager.GetString("UNIT_TYPE", resourceCulture);
+                return ResourceManager.GetString("8013", resourceCulture);
             }
         }
     }
