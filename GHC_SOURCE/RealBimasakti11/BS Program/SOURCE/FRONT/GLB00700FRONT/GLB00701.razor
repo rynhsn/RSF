@@ -1,0 +1,27 @@
+﻿@using GLB00700FrontResources;
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_pagetitle_confirmationProcess")]
+
+<R_StackLayout>
+    <R_ItemLayout>
+        <R_Label>@_localizer["_msg_confirm1"]</R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Class="mt-2">
+    <R_ItemLayout>
+        <R_Label>@_localizer["_msg_confirm2"]</R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Class="mt-2">
+    <R_ItemLayout>
+        <R_Label>@_localizer["_msg_confirm3"]</R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row Class="justify-content-end mt-2">
+    <R_Button OnClick="Onclick_YesButtonAsync">
+        @_localizer["_btn_yes"]
+    </R_Button>
+    <R_Button OnClick="Onclick_NoButtonAsync">
+        @_localizer["_btn_no"]
+    </R_Button>
+</R_StackLayout>

@@ -1,0 +1,6 @@
+5501 	= Maintain Facility failed!
+5502	= Regist No cannot be empty!
+5503	= Start Date cannot be empty!
+5504	= End Date cannot be empty!
+5505	= Start Date must be smaller than End Date!
+5506	= You already have (0) active facility on this type!

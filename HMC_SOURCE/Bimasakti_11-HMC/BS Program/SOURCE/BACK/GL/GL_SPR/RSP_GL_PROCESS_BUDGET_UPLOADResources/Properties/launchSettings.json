@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GL_PROCESS_BUDGET_UPLOADResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56928;http://localhost:56929"
+    }
+  }
+}

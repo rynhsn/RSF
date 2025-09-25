@@ -1,0 +1,139 @@
+@page "/PMT04200"
+@inherits R_Page
+@attribute [R_Page(Title = "Transaction List")]
+
+
+<R_StackLayout Row="true">
+    <R_ItemLayout class="col-1" >
+        <R_Label>Property</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout class="col-4" style="max-width: 318px;">
+        <R_ComboBox Data="@_viewModel.VAR_PROPERTY_LIST"
+                    @bind-Value="_viewModel.PropertyDefault"
+                    ValueField="@nameof(PropertyListDTO.CPROPERTY_ID)"
+                    TextField="@nameof(PropertyListDTO.CPROPERTY_NAME)"
+                    OnChanged="OnChangedProperty"
+        />
+    </R_ItemLayout>
+
+    <R_ItemLayout class="col-1 ps-3 pe-2" style="max-width: 65px;">
+        <R_Label>Period</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout class="col-2 ps-3 pe-1" style="max-width: 120px;">
+        <R_NumericTextBox @bind-Value="_viewModel.ParamPeriodYear"
+                          Min=_viewModel.VAR_GSM_PERIOD.IMIN_YEAR
+                          Max=_viewModel.VAR_GSM_PERIOD.IMAX_YEAR
+                          ThousandSeparator="false"
+                          Arrows="true"/>
+    </R_ItemLayout>
+    <R_ItemLayout class="col-1 pb-2" style="max-width: 60px;">
+        <R_ComboBox Data="@_viewModel.PeriodMonthList"
+                    @bind-Value="_viewModel.ParamPeriodMonth"
+                    ValueField="Key"
+                    TextField="Value" />
+    </R_ItemLayout>
+    <R_ItemLayout class="col-1 text-left ps-3" style="max-width: 60px;">
+        <R_Label>Status</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2" style="max-width: 90px;">
+        <R_ComboBox Data="@_viewModel.VAR_GSB_CODE_LIST"
+                    @bind-Value="_viewModel.JornalParam.CSTATUS"
+                    ValueField="@nameof(PMT04200GSGSBCodeDTO.CCODE)"
+                    TextField="@nameof(PMT04200GSGSBCodeDTO.CNAME)">
+        </R_ComboBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="2" style="max-width: 145px;">
+        <R_TextBox MaxLength="20" @bind-Value="_viewModel.JornalParam.CSEARCH_TEXT" />
+    </R_ItemLayout>
+    <R_ItemLayout class="ps-2">
+        <R_Button OnClick="OnclickSearch">Search</R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="OnClickShowAll">Show All</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row="true">
+    <R_ItemLayout col="1">
+        <R_Label>Department</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="_viewModel.JornalParam.CDEPT_CODE"
+                   R_ConductorSource="_conductorRef"
+                   Enabled="@(string.IsNullOrWhiteSpace(_viewModel.PropertyDefault) == false)"
+                   MaxLength="20"
+                   OnLostFocus="OnLostFocus_LookupDept" />
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupDept" R_After_Open_Lookup="@AfterOpen_lookupDept">
+            ...
+        </R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="_viewModel.JornalParam.CDEPT_NAME"
+                   R_ConductorSource="_conductorRef"
+                   Enabled="false" />
+    </R_ItemLayout>
+
+    <R_ItemLayout class="col-1 ps-3" style="max-width: 80px;">
+        <R_Label>Customer</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="_viewModel.JornalParam.CCUSTOMER_ID"
+                   R_ConductorSource="_conductorRef"
+                   Enabled="@(string.IsNullOrWhiteSpace(_viewModel.PropertyDefault) == false)"
+                   MaxLength="20"
+                   OnLostFocus="OnLostFocus_LookupCust" />
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupCust" R_After_Open_Lookup="@AfterOpen_lookupCust">
+            ...
+        </R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="_viewModel.JornalParam.CCUSTOMER_NAME"
+                   R_ConductorSource="_conductorRef"
+                   Enabled="false" />
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="_viewModel.JornalParam.CCUSTOMER_TYPE"
+                   R_ConductorSource="_conductorRef"
+                   Enabled="false" />
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_Grid @ref="_gridRef"
+            DataSource="@_viewModel.JournalGrid"
+            R_ConductorSource="_conductorRef"
+            R_ServiceGetListRecord="JournalGrid_ServiceGetListRecord"
+            R_GridType="R_eGridType.Navigator"
+            Pageable
+            AllowAddNewRow="false"
+            AllowDeleteRow="false"
+            AllowEditRow="false"
+            Height="300px">
+        <R_GridColumns>
+            <R_GridTextColumn Width="128px" FieldName="@nameof(PMT04200DTO.CDEPT_CODE)" HeaderText="Dept."></R_GridTextColumn>
+            <R_GridDatePickerColumn Width="146px" FieldName="@nameof(PMT04200DTO.DREF_DATE)" HeaderText="Reference Date"></R_GridDatePickerColumn>
+            <R_GridTextColumn Width="293px" FieldName="@nameof(PMT04200DTO.CCUST_SUPP_ID_NAME)" HeaderText="Customer"></R_GridTextColumn>
+            <R_GridTextColumn Width="235px" FieldName="@nameof(PMT04200DTO.CUNIT_DESCRIPTION)" HeaderText="Unit Description"></R_GridTextColumn>
+            <R_GridTextColumn Width="100px" FieldName="@nameof(PMT04200DTO.CCURRENCY_CODE)" HeaderText="Curr"></R_GridTextColumn>
+            <R_GridNumericColumn Width="203px" TValue="decimal" FieldName="@nameof(PMT04200DTO.NTRANS_AMOUNT)" HeaderText="Amount"></R_GridNumericColumn>
+            <R_GridTextColumn Width="98px" FieldName="@nameof(PMT04200DTO.CSTATUS_NAME)" HeaderText="Status"></R_GridTextColumn>
+            <R_GridTextColumn Width="381px" FieldName="@nameof(PMT04200DTO.CTRANS_DESC)" HeaderText="Description"></R_GridTextColumn>
+            <R_GridTextColumn Width="140px" FieldName="@nameof(PMT04200DTO.CREF_NO)" HeaderText="@_localizer["_ReferenceNo"]"></R_GridTextColumn>
+            <R_GridTextColumn Width="150px" FieldName="@nameof(PMT04200DTO.CUPDATE_BY)" HeaderText="Updated By"></R_GridTextColumn>
+            <R_GridTextColumn Width="150px" FieldName="@nameof(PMT04200DTO.DUPDATE_DATE)" HeaderText="Updated Date"></R_GridTextColumn>
+            <R_GridTextColumn Width="150px" FieldName="@nameof(PMT04200DTO.CCREATE_BY)" HeaderText="Created By"></R_GridTextColumn>
+            <R_GridTextColumn Width="150px" FieldName="@nameof(PMT04200DTO.DCREATE_DATE)" HeaderText="Created Date"></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+ <R_Conductor @ref="_conductorRef"
+              R_ViewModel="_viewModel"
+              R_IsHeader
+              R_ServiceGetRecord="JournalGrid_ServiceGetRecord"
+              R_Display="JournalGrid_Display" />
+
+<R_PredefinedDock Title="Transaction Entry" R_InstantiateDock="@Predef_TransactionEntry" R_AfterOpenPredefinedDock="@AfterPredef_TransactionEntry"></R_PredefinedDock>

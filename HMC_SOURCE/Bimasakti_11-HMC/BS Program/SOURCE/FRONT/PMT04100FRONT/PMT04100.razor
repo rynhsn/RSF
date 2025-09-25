@@ -1,0 +1,142 @@
+﻿@page "/PMT04100"
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_TransactionList")]
+
+<R_StackLayout Row>
+    <R_ItemLayout Style="width: 80px">
+        <R_Label>@_localizer["_Property"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout Style="width:28.2%">
+        <R_ComboBox Data="@_viewModel.VAR_GS_PROPERTY_LIST"
+                    Value="_viewModel.JornalParam.CPROPERTY_ID"
+                    ValueChanged="@((string value) => PropertyCombobox_ValueChange(value))"
+                    ValueField="@nameof(PMT04100PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(PMT04100PropertyDTO.CPROPERTY_NAME)">
+        </R_ComboBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout Style="width: 80px">
+        <R_Label>@_localizer["_Period"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_NumericTextBox @bind-Value="_viewModel.JournalPeriodYear"
+                          ThousandSeparator="false"
+                          />
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_ComboBox Data="@_viewModel.PeriodMonthList"
+                    @bind-Value="_viewModel.JournalPeriodMonth"
+                    ValueField="Key"
+                    TextField="Value"
+                    />
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1" Class="text-center">
+        <R_Label>@_localizer["_Status"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_ComboBox Data="@_viewModel.VAR_GSB_CODE_LIST"
+                    @bind-Value="_viewModel.JornalParam.CSTATUS"
+                    ValueField="@nameof(PMT04100GSGSBCodeDTO.CCODE)"
+                    TextField="@nameof(PMT04100GSGSBCodeDTO.CNAME)"
+                    >
+        </R_ComboBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="_viewModel.SearchText"
+                   MaxLength="20"
+                    />
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="OnclickSearch">@_localizer["_Search"]</R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="OnClickShowAll">@_localizer["_ShowAll"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout Style="width: 80px">
+        <R_Label>@_localizer["_Departement"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="_viewModel.JornalParam.CDEPT_CODE"
+                   R_ConductorSource="_conductorRef"
+                   OnLostFocus="@DeptCode_OnLostFocus"
+                   MaxLength="20"
+                   Enabled="@(string.IsNullOrWhiteSpace(_viewModel.JornalParam.CPROPERTY_ID) == false)" />
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_Before_Open_Lookup="@Before_Open_lookupDept" R_After_Open_Lookup="@After_Open_lookupDept" Enabled="@(string.IsNullOrWhiteSpace(_viewModel.JornalParam.CPROPERTY_ID) == false)">
+            ...
+        </R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="_viewModel.JornalParam.CDEPT_NAME"
+                   Enabled="false" />
+    </R_ItemLayout>
+
+    <R_ItemLayout Style="width: 80px">
+        <R_Label>@_localizer["_Customer"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="_viewModel.JornalParam.CCUSTOMER_ID"
+                   R_ConductorSource="_conductorRef"
+                   OnLostFocus="@CustomerCode_OnLostFocus"
+                   MaxLength="20"
+                   Enabled="@(string.IsNullOrWhiteSpace(_viewModel.JornalParam.CPROPERTY_ID) == false)" />
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_Before_Open_Lookup="@Before_Open_lookupCustomer" R_After_Open_Lookup="@After_Open_lookupCustomer" Enabled="@(string.IsNullOrWhiteSpace(_viewModel.JornalParam.CPROPERTY_ID) == false)">
+            ...
+        </R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="_viewModel.JornalParam.CCUSTOMER_NAME"
+                   Enabled="false" />
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="_viewModel.JornalParam.CCUSTOMER_TYPE_NAME"
+                   Enabled="false" />
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_Grid @ref="_gridRef"
+            DataSource="@_viewModel.JournalGrid"
+            R_ConductorSource="_conductorRef"
+            R_ServiceGetListRecord="JournalGrid_ServiceGetListRecord"
+            R_GridType="R_eGridType.Navigator"
+            Pageable
+            AllowAddNewRow="false"
+            AllowDeleteRow="false"
+            AllowEditRow="false"
+            Height="300px">
+        <R_GridColumns>
+            <R_GridTextColumn Width="80px" FieldName="@nameof(PMT04100DTO.CDEPT_CODE)" HeaderText="@_localizer["_Dept"]"></R_GridTextColumn>
+            <R_GridDatePickerColumn Width="140px" FieldName="@nameof(PMT04100DTO.DREF_DATE)" HeaderText="@_localizer["_ReferenceDate"]"></R_GridDatePickerColumn>
+            <R_GridTextColumn Width="200px" FieldName="@nameof(PMT04100DTO.CCUST_SUPP_ID_NAME)" HeaderText="@_localizer["_Customer"]"></R_GridTextColumn>
+            <R_GridTextColumn Width="185px" FieldName="@nameof(PMT04100DTO.CUNIT_DESCRIPTION)" HeaderText="@_localizer["_UnitDescription"]"></R_GridTextColumn>
+          
+            <R_GridTextColumn Width="70px" FieldName="@nameof(PMT04100DTO.CCURRENCY_CODE)" HeaderText="@_localizer["_Curr"]"></R_GridTextColumn>
+            <R_GridNumericColumn TValue="decimal" Width="120px" FieldName="@nameof(PMT04100DTO.NTRANS_AMOUNT)" HeaderText="@_localizer["_Amount"]"></R_GridNumericColumn>
+            <R_GridTextColumn Width="86px" FieldName="@nameof(PMT04100DTO.CSTATUS_NAME)" HeaderText="@_localizer["_Status"]"></R_GridTextColumn>
+            <R_GridTextColumn Width="200px" FieldName="@nameof(PMT04100DTO.CTRANS_DESC)" HeaderText="@_localizer["_Description"]"></R_GridTextColumn>
+
+            <R_GridTextColumn FieldName="@nameof(PMT04100DTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="120px"></R_GridTextColumn>
+            <R_GridDateTimePickerColumn FieldName="@nameof(PMT04100DTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]" Width="180px"></R_GridDateTimePickerColumn>
+            <R_GridTextColumn FieldName="@nameof(PMT04100DTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="120px"></R_GridTextColumn>
+            <R_GridDateTimePickerColumn FieldName="@nameof(PMT04100DTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]" Width="180px"></R_GridDateTimePickerColumn>
+
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+
+<R_Conductor @ref="_conductorRef"
+    R_ViewModel="_viewModel"
+    R_IsHeader
+    R_ServiceGetRecord="JournalGrid_ServiceGetRecord"
+    R_Display="JournalGrid_Display" />
+
+<R_PredefinedDock Title="@_localizer["_JournalEntry"]" R_InstantiateDock="@Predef_JournalEntry" R_AfterOpenPredefinedDock="@AfterPredef_JournalEntry"></R_PredefinedDock>

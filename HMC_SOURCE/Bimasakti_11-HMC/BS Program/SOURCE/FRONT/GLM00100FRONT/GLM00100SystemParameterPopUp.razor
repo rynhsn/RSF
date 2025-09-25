@@ -1,0 +1,64 @@
+@using GLM00100Common.DTOs
+@inherits R_Page
+@attribute [R_Page(Title = "Create GL System Parameter")]
+
+<R_StackLayout Class="mb-4">
+    <R_StackLayout>
+        <R_ItemLayout>
+            <R_Label Class="fw-bold text-primary" FontSize="15">GL System Parameter for this Property has not been created</R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
+    
+    <R_StackLayout Class="mt-5 mb-3"/>
+    
+    <R_StackLayout Row Class="d-flex align-items-center">
+        
+        <R_ItemLayout xs="2">
+            <R_Label> Starting Period</R_Label>
+        </R_ItemLayout>
+        
+        <R_ItemLayout xs="3">
+            <R_NumericTextBox
+                @bind-Value="@_glm00100ViewModel.liTempDataCSTARTING_YY"
+                Min="_glm00100ViewModel.loBindStartingValue.IMIN_YEAR"
+                Max="_glm00100ViewModel.loBindStartingValue.IMAX_YEAR"/>
+        </R_ItemLayout>
+
+        <R_ItemLayout xs="3">
+            <R_ComboBox
+                Data="@_glm00100ViewModel.loMonthGLM00100"
+                Value="_glm00100ViewModel.loCreateDataGLM00100.CSTARTING_MM"
+                ValueField="@nameof(GLM00100GetMonthDTO.Id)"
+                TextField="@nameof(GLM00100GetMonthDTO.Id)"
+                ValueChanged="@((string value) => OnChangedMonth(value))"
+            >
+            </R_ComboBox>
+        </R_ItemLayout>
+
+        <R_ItemLayout xs="2">
+            <R_TextBox
+                @bind-Value="@_glm00100ViewModel.lcMessageBox"
+                Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+
+    </R_StackLayout>
+    
+    <R_StackLayout Class="mb-5"/>
+    
+    <R_StackLayout Row>
+        <R_ItemLayout xs="2">
+            <R_Button
+                OnClick="@OnClickProcessButton"
+                >
+                <R_Label>Create</R_Label>
+            </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout xs="2">
+            <R_Button
+                OnClick="@OnClickCancelButton">
+                <R_Label>Cancel</R_Label>
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>

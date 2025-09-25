@@ -1,0 +1,13 @@
+EMPTY_REF_NO			= HO Ref no cannot be empty
+EMPTY_REF_DATE			= HO Ref Date cannot be empty
+EMPTY_ACTUAL_DATE		= HO Actual Date cannot be empty
+HANDOVERDATE 			= Hand over date cannot before LOI/Agrmt No. Ref. Date
+EMPTY_ACTUAL_SIZE		= Actual size cannot be zero(0)
+ZERO_BLOCK			= Please input Block1/Block2 Start!
+ZERO_METER			= Please input Meter Start!
+EMPTY_START_PERIOD		= Please input Start Period!
+INVALID_FORMAT_PERIOD		= Start Period must be in this format(yyyymm)
+
+LOI_NOT_FOUND			= LOI/Agreement not found
+LOI_HAVE_HANDOVER		= LOI/Agreement has been handover!
+HODATE_AFTERTODAY		= Hand over date cannot after today date!

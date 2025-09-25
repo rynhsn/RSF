@@ -1,0 +1,49 @@
+@* @using LookupAPFrontResources *@
+@* @inherits R_Page *@
+@* @attribute [R_Page(Title = "Supplier Info")] *@
+@* @inject R_ILocalizer<Resources_Dummy_Class_LookupAP> _localizer *@
+@* <R_StackLayout Style="width: 800px"> *@
+@*     @*    <R_StackLayout Row> *@
+@*         <R_ItemLayout> *@
+@*             <R_Button OnClick="Search_Button"> *@
+@*                 Search *@
+@*             </R_Button> *@
+@*         </R_ItemLayout> *@
+@*          *@
+@*         <R_ItemLayout> *@
+@*             <R_Button OnClick="ShowAll_Button"> *@
+@*                 Show All *@
+@*             </R_Button> *@
+@*         </R_ItemLayout> *@
+@* *@
+@*     </R_StackLayout>*@ 
+@* *@
+@*     <R_StackLayout Row> *@
+@*         <R_Grid @ref="@GridRef" *@
+@*                 DataSource="_viewModel.SupplierInfoGrid" *@
+@*                   R_GridType="R_eGridType.Navigator" *@
+@*                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync" *@
+@*                 Pageable *@
+@*                 Height="300px" *@
+@*                 AllowAddNewRow="false" *@
+@*                 AllowEditRow="false" *@
+@*                 AllowDeleteRow="false" *@
+@*                 PageSize="5"> *@
+@*             <R_GridColumns> *@
+@*                 <R_GridTextColumn FieldName="CSEQ_NO" HeaderText="@_localizer["SEQ_NO"]"></R_GridTextColumn> *@
+@*                 <R_GridTextColumn FieldName="CSUPPLIER_NAME" HeaderText="@_localizer["SPR_NM"]"></R_GridTextColumn> *@
+@*             </R_GridColumns> *@
+@*         </R_Grid> *@
+@*     </R_StackLayout> *@
+@* *@
+@*     <R_StackLayout Row Class="justify-content-end"> *@
+@*         <R_Button Enabled="@(_viewModel.SupplierInfoGrid.Count != 0)" *@
+@*                   OnClick="Button_OnClickOkAsync"> *@
+@*             @_localizer["OK"] *@
+@*         </R_Button> *@
+@*         <R_Button OnClick="Button_OnClickCloseAsync"> *@
+@*             @_localizer["CNCL"] *@
+@*         </R_Button> *@
+@*     </R_StackLayout> *@
+@* *@
+@* </R_StackLayout> *@

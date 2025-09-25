@@ -1,0 +1,12 @@
+7501 = Error process, please contact your administrator!
+7502 = Duplicate Stamp Code!
+7503 = Stamp Code cannot be empty!
+7504 = Stamp Code cannot be greater than 20 character!
+7505 = Description cannot be empty!
+7506 = Description cannot be greater than 255 character!
+7507 = Invalid Currency Code!
+7508 = Cannot Delete, Stamp Rate Already in used!
+
+
+
+

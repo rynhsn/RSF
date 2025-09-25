@@ -1,0 +1,8 @@
+Note :
+ - ingetin sihol culture datetime(grid)
+ - updated date, created date
+ - grid pas edit mode
+ - floating property
+ - ilangin arrow
+ - separator kalau decimal ilangin
+ - additional button warna warni

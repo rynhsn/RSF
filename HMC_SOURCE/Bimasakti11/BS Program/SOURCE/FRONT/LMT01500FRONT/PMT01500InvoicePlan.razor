@@ -1,0 +1,311 @@
+@inherits R_Page;
+@inject R_ILocalizer<Resources_PMT01500_Class> _localizer
+
+<R_StackLayout>
+
+    @* Agreement No *@
+    <R_ItemLayout col="12" Class="d-flex">
+
+        @* Pembagi pertama *@
+        <R_ItemLayout col="3" Class="d-flex">
+
+            <R_ItemLayout col="6">
+                <R_Label>Agreement No</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_viewModelInvoicePlan.loEntityInvoicePlanHeader.CREF_NO"
+                           R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                           Enabled="false"/>
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+        @* Pembagi kedua *@
+        <R_ItemLayout col="4" Class="d-flex ps-4">
+            <R_ItemLayout col="3">
+                <R_Label>Tenant</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModelInvoicePlan.loEntityInvoicePlanHeader.CTENANT_ID"
+                           R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                           Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="6" Class="ps-1">
+                <R_TextBox @bind-Value="@_viewModelInvoicePlan.loEntityInvoicePlanHeader.CTENANT_NAME"
+                           R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                           Enabled="false"/>
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+        @* Pembagi ketiga *@
+        <R_ItemLayout col="4" Class="d-flex ps-4">
+            <R_ItemLayout col="3">
+                <R_Label>Building</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModelInvoicePlan.loEntityInvoicePlanHeader.CBUILDING_ID"
+                           R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                           Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="6" Class="ps-1">
+                <R_TextBox @bind-Value="@_viewModelInvoicePlan.loEntityInvoicePlanHeader.CBUILDING_NAME"
+                           R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                           Enabled="false"/>
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+    </R_ItemLayout>
+
+    @* Agreement Unit(s) *@
+    <R_ItemLayout col="12" Class="d-flex">
+
+        @* Pembagi pertama *@
+        <R_ItemLayout col="3" Class="d-flex">
+
+            <R_ItemLayout col="6">
+                <R_Label>Agreement Unit(s)</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_viewModelInvoicePlan.loEntityInvoicePlanHeader.CUNIT_NAME_LIST"
+                           R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                           Enabled="false"/>
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+        @* Pembagi kedua *@
+        <R_ItemLayout col="4" Class="d-flex ps-4">
+            <R_ItemLayout col="3">
+                <R_Label>Unit Id</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModelInvoicePlan.loEntityInvoicePlanHeader.CUNIT_ID"
+                           R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                           Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="6" Class="ps-1">
+                <R_TextBox @bind-Value="@_viewModelInvoicePlan.loEntityInvoicePlanHeader.CUNIT_NAME"
+                           R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                           Enabled="false"/>
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+        @* Pembagi ketiga *@
+        <R_ItemLayout col="4" Class="d-flex ps-4">
+            <R_ItemLayout col="3">
+                <R_Label>Currency</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModelInvoicePlan.loEntityInvoicePlanHeader.CCURRENCY"
+                           R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                           Enabled="false"/>
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+<hr/>
+
+<R_StackLayout Row>
+
+    <!-- List Invoice Plan Charge -->
+    <R_StackLayout Class="col-3">
+
+        <R_Grid @ref="@_gridInvoicePlanCharge"
+                DataSource="_viewModelInvoicePlan.loListPMT01500InvoicePlanChargesList"
+                R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                R_GridType="@R_eGridType.Original"
+                R_ServiceGetListRecord="@GetListInvoicePlanCharge"
+                R_Display="R_DisplayInvoicePlanCharge"
+                Pageable
+                Width="260px"
+                Height="450px"
+                PageSize="15"
+                AllowDeleteRow="false"
+                AllowAddNewRow="false"
+                AllowEditRow="false">
+            <R_GridColumns>
+                <R_GridTextColumn Width="200px"
+                                  FieldName="@nameof(PMT01500InvoicePlanChargesListDTO.CCHARGES_NAME)"
+                                  HeaderText="Charge"/>
+
+            </R_GridColumns>
+        </R_Grid>
+
+    </R_StackLayout>
+
+    <!-- List Invoice Plan -->
+    <R_StackLayout Class="col-9 ps-4">
+
+        @* Seq No *@
+        <R_ItemLayout Class="d-flex">
+            <R_ItemLayout col="1"/>
+
+            <R_ItemLayout col="1">
+                <R_Label>Seq No</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2" Class="text-end">
+                <R_Label>Amount</R_Label>
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+        @* Total *@
+        <R_ItemLayout Class="d-flex">
+            <R_ItemLayout col="1">
+                <R_Label>Total</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="@_viewModelInvoicePlan.loEntityInvoicePlanHeader.CREF_NO"
+                           R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                           Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="2" Class="ps-1">
+                <R_TextBox @bind-Value="@_viewModelInvoicePlan.loEntityInvoicePlanHeader.CREF_NO"
+                           R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                           Enabled="false"/>
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+        @* Total *@
+        <R_ItemLayout Class="d-flex">
+            <R_ItemLayout col="1">
+                <R_Label>Invoiced</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="@_viewModelInvoicePlan.loEntityInvoicePlanHeader.CREF_NO"
+                           R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                           Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="2" Class="ps-1">
+                <R_TextBox @bind-Value="@_viewModelInvoicePlan.loEntityInvoicePlanHeader.CREF_NO"
+                           R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                           Enabled="false"/>
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+        @* Total *@
+        <R_ItemLayout Class="d-flex">
+            <R_ItemLayout col="1">
+                <R_Label>Paid</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="@_viewModelInvoicePlan.loEntityInvoicePlanHeader.CREF_NO"
+                           R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                           Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="2" Class="ps-1">
+                <R_TextBox @bind-Value="@_viewModelInvoicePlan.loEntityInvoicePlanHeader.CREF_NO"
+                           R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                           Enabled="false"/>
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+
+        <R_Grid @ref="@_gridInvoicePlan"
+                DataSource="_viewModelInvoicePlan.loListPMT01500InvoicePlanList"
+                R_ConductorGridSource="@_conductorInvoicePlan"
+                R_GridType="@R_eGridType.Original"
+                R_ServiceGetListRecord="@GetListInvoicePlan"
+                R_Display="R_DisplayInvoicePlan"
+                Pageable
+                Width="800px"
+                Height="300px"
+                PageSize="15"
+                AllowDeleteRow="false"
+                AllowAddNewRow="false"
+                AllowEditRow="false">
+            <R_GridColumns>
+                <R_GridTextColumn Width="200px"
+                                  FieldName="@nameof(PMT01500InvoicePlanListDTO.CSEQ_NO)"
+                                  HeaderText="Seq No"/>
+                <R_GridTextColumn Width="200px"
+                                  FieldName="@nameof(PMT01500InvoicePlanListDTO.CSTART_DATE)"
+                                  HeaderText="Start Date"/>
+                <R_GridTextColumn Width="200px"
+                                  FieldName="@nameof(PMT01500InvoicePlanListDTO.CEND_DATE)"
+                                  HeaderText="End Date"/>
+                <R_GridNumericColumn Width="200px"
+                                     FieldName="@nameof(PMT01500InvoicePlanListDTO.NAMOUNT)"
+                                     HeaderText="Amount"/>
+
+                <R_GridNumericColumn Width="200px"
+                                     FieldName="@nameof(PMT01500InvoicePlanListDTO.NTAX_AMOUNT)"
+                                     HeaderText="Tax Amount"/>
+
+                <R_GridNumericColumn Width="200px"
+                                     FieldName="@nameof(PMT01500InvoicePlanListDTO.NAFTER_TAX_AMOUNT)"
+                                     HeaderText="After Tax Amount"/>
+
+                <R_GridNumericColumn Width="200px"
+                                     FieldName="@nameof(PMT01500InvoicePlanListDTO.NBOOKING_AMOUNT)"
+                                     HeaderText="Booking Amount"/>
+
+                <R_GridTextColumn Width="200px"
+                                  FieldName="@nameof(PMT01500InvoicePlanListDTO.NTOTAL_AMOUNT)"
+                                  HeaderText="Total Amount"/>
+
+                <R_GridTextColumn Width="200px"
+                                  FieldName="@nameof(PMT01500InvoicePlanListDTO.CSTATUS_DESCR)"
+                                  HeaderText="Status"/>
+
+                <R_GridCheckBoxColumn Width="200px"
+                                      FieldName="@nameof(PMT01500InvoicePlanListDTO.LINVOICED)"
+                                      HeaderText="Invoiced"/>
+
+                <R_GridTextColumn Width="200px"
+                                  FieldName="@nameof(PMT01500InvoicePlanListDTO.CINV_NO)"
+                                  HeaderText="Invoice No"/>
+
+                <R_GridCheckBoxColumn Width="200px"
+                                      FieldName="@nameof(PMT01500InvoicePlanListDTO.LPAYMENT)"
+                                      HeaderText="Payment"/>
+
+                <R_GridTextColumn Width="200px"
+                                  FieldName="@nameof(PMT01500InvoicePlanListDTO.CPAYMENT_NO)"
+                                  HeaderText="Payment No"/>
+
+                <R_GridTextColumn Width="200px"
+                                  FieldName="@nameof(PMT01500InvoicePlanListDTO.NPAYMENT_AMOUNT)"
+                                  HeaderText="Payment Amount"/>
+
+                <R_GridTextColumn Width="200px"
+                                  FieldName="@nameof(PMT01500InvoicePlanListDTO.CDESCRIPTION)"
+                                  HeaderText="Descripi/on"/>
+
+
+            </R_GridColumns>
+        </R_Grid>
+
+
+        @* Description *@
+        <R_ItemLayout Class="d-flex">
+            <R_ItemLayout col="1">
+                <R_Label>Description</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3" class="ps-3">
+                <R_TextBox @bind-Value="@_viewModelInvoicePlan.loEntityInvoicePlanHeader.CUNIT_NAME_LIST"
+                           R_ConductorGridSource="@_conductorInvoicePlanCharge"
+                           Enabled="false"/>
+            </R_ItemLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorInvoicePlanCharge"
+                 R_IsHeader/>
+
+<R_ConductorGrid @ref="@_conductorInvoicePlan"
+                 R_ConductorParent="@_conductorInvoicePlanCharge"/>

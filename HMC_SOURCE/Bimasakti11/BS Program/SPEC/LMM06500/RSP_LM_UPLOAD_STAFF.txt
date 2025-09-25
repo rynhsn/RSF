@@ -1,0 +1,16 @@
+EXCESS_STAFF_ID 	= Staff Id cannot be longer than 20 character
+EMPTY_STAFF_ID 		= Staff Id cannot be empty	
+EXCESS_STAFF_NAME 	= Staff Name cannot be longer than 100 character
+EMPTY_STAFF_NAME 	= Staff Name cannot be empty
+INVALID_ACTIVE_FLAG 	= Invalid Active Flag, value is not 1 / 0
+EMPTY_NONACTIVE_DATE 	= For this Inactive Staff, Non Active Date cannot be empty
+EMPTY_DEPT 		= Department cannot be empty
+INVALID_DEPT_CODE 	= Invalid Department Code
+EMPTY_POSITION 		= Position cannot be empty	
+INVALID_POSITION 	= Invalid Position	
+EXCESS_ADDRESS 		= Address cannot be longer than 255 character
+EMPTY_EMAIL 		= Email Address can not be empty
+EXCESS_EMAIL 		= Email Address is bigger than 100 Character
+EMPTY_MOBILE_NO 	= Mobile No 1 can not be empty
+EMPTY_GENDER		= Gender cannot be empty
+INVALID_GENDER		= Invalid Gender Code

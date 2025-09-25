@@ -1,0 +1,378 @@
+﻿@page "/PMM01000"
+@inherits R_Page
+@using PMM01000COMMON
+@using PMM01000MODEL
+@inject R_ILocalizer<PMM01000FrontResources.Resources_Dummy_Class> _localizer
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label FontColor="@R_eFontColor.Danger" Class="fw-bold" FontSize="11">@_localizer["_Property"]</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_ComboBox Data="@_General_viewModel.PropertyList"
+                        Value="_General_viewModel.PropertyValueContext"
+                        PopupMaxHeight="140px"
+                        ValueField="@nameof(PMM01000DTOPropety.CPROPERTY_ID)"
+                        TextField="@nameof(PMM01000DTOPropety.CPROPERTY_NAME)"
+                        Enabled="@_comboboxEnabled"
+                        ValueChanged="@((string value) => PropertyDropdown_OnChange(value))">
+            </R_ComboBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_TabStrip @ref="@_TabGeneral" OnActiveTabIndexChanging="@OnActiveTabIndexChanging">
+    <R_TabStripTab Title="@_localizer["_TabGeneral"]" Id="General">
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Grid @ref="@_General_gridRef"
+                        DataSource="@_General_viewModel.ChargesTypeGrid"
+                        R_ConductorSource="@_General_conductorRef"
+                        Enabled="@(!_pageSupplierOnCRUDmode)"
+                        R_GridType="@R_eGridType.Navigator"
+                        R_ServiceGetListRecord="@ChargesTypeGrid_ServiceGetListRecord">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(PMM01000UniversalDTO.CDESCRIPTION)" HeaderText="@_localizer["_ChargesType"]"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="10">
+                <R_StackLayout Row="true">
+                    <R_Grid @ref="@_UtilityCharges_gridRef"
+                            DataSource="@_General_viewModel.ChargesUtilityGrid"
+                            R_ConductorSource="@_UtilityCharges_conductorRef"
+                            R_GridType="@R_eGridType.Navigator"
+                            Pageable="true"
+                            Enabled="@(!_pageSupplierOnCRUDmode)"
+                            Height="150px"
+                            R_ServiceGetListRecord="@UtilityCharges_ServiceGetListRecord">
+                        <R_GridColumns>
+                            <R_GridTextColumn FieldName="CCHARGES_ID" HeaderText="@_localizer["_ChargesId"]" Width="130px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName="CCHARGES_NAME" HeaderText="@_localizer["_ChargesName"]" Width="200px"></R_GridTextColumn>
+                            <R_GridCheckBoxColumn FieldName="LACTIVE" HeaderText="@_localizer["_Active"]" Width="90px"></R_GridCheckBoxColumn>
+                            <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="@_localizer["_UpdateBy"]" Width="120px"></R_GridTextColumn>
+                            <R_GridDateTimePickerColumn FieldName="DUPDATE_DATE" HeaderText="@_localizer["_UpdateDate"]" Width="180px"></R_GridDateTimePickerColumn>
+                            <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="@_localizer["_CreateBy"]" Width="120px"></R_GridTextColumn>
+                            <R_GridDateTimePickerColumn FieldName="DCREATE_DATE" HeaderText="@_localizer["_CreateDate"]" Width="180px"></R_GridDateTimePickerColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="7">
+                        <R_Label FontColor="@R_eFontColor.Danger" Class="fw-bold">@(_localizer["_GeneralInfo"])</R_Label>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+
+                    <R_StackLayout Row>
+                    <R_ItemLayout col="11">
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="2">
+                                <R_Label>@(_localizer["_ChargesId"])*</R_Label>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout col="3">
+                                <R_TextBox @ref="@ChargesId_TextBox"
+                                           @bind-Value="@_General_viewModel.Data.CCHARGES_ID"
+                                           R_ConductorSource="@_UtilityCharges_conductorRef"
+                                           MaxLength="20"
+                                           R_EnableAdd>
+                                </R_TextBox>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox @ref="@ChargesName_TextBox"
+                                           @bind-Value="@_General_viewModel.Data.CCHARGES_NAME"
+                                           R_ConductorSource="@_UtilityCharges_conductorRef"
+                                           MaxLength="100"
+                                           R_EnableAdd R_EnableEdit>
+                                </R_TextBox>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="2">
+                                <R_Label>@(_localizer["_Desc"])*</R_Label>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout col="8">
+                                <R_TextArea @bind-Value="@_General_viewModel.Data.CDESCRIPTION"
+                                            R_ConductorSource="@_UtilityCharges_conductorRef"
+                                            MaxLength="255"
+                                            R_EnableAdd R_EnableEdit>
+                                </R_TextArea>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_StackLayout Row>
+                            <R_ItemLayout>
+                                <R_CheckBox @bind-Value="@_General_viewModel.Data.LACTIVE"
+                                            R_ConductorSource="@_UtilityCharges_conductorRef"
+                                            Enabled="false">
+                                </R_CheckBox>
+                                <R_Label>@_localizer["_Active"]</R_Label>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="7">
+                        <R_Label FontColor="@R_eFontColor.Danger" Class="fw-bold">@_localizer["_TaxInfo"]</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="11">
+                        <R_CheckBox Value="@_General_viewModel.Data.LTAXABLE"
+                                    R_ConductorSource="@_UtilityCharges_conductorRef"
+                                    R_EnableEdit R_EnableAdd ValueChanged="@((bool value) => Taxable_OnChnaged(value))">
+                        </R_CheckBox>
+                        <R_Label>@_localizer["_TaxableVat"]</R_Label>
+                        </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row>
+                    <R_ItemLayout>
+                        <R_StackLayout Style="width: 12px"></R_StackLayout>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_CheckBox Value="@_General_viewModel.Data.LTAX_EXEMPTION"
+                                    R_ConductorSource="@_UtilityCharges_conductorRef" Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _General_viewModel.Data.LTAXABLE)" ValueChanged="@((bool value) => TaxExemption_OnChnaged(value))">
+                        </R_CheckBox>
+                        <R_Label>@_localizer["_TaxExemp"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["_TaxCode"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_ComboBox Data="@_General_viewModel.TaxExemptionList"
+                                    @bind-Value="_General_viewModel.Data.CTAX_EXEMPTION_CODE"
+                                    PopupMaxHeight="140px"
+                                    ValueField="@nameof(PMM01000UniversalDTO.CCODE)"
+                                    TextField="@nameof(PMM01000UniversalDTO.CDESCRIPTION)"
+                                    Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _General_viewModel.Data.LTAX_EXEMPTION)">
+                        </R_ComboBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_TaxExemp"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@_General_viewModel.Data.NTAX_EXEMPTION_PCT"
+                                          R_ConductorSource="@_UtilityCharges_conductorRef" Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _General_viewModel.Data.LTAX_EXEMPTION)"
+                                          Arrows="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 5px">
+                        <R_Label>%</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row hidden="@(_General_viewModel.hiddenDisplay)">
+                    <R_ItemLayout col="2">
+                        <R_CheckBox Value="@_General_viewModel.Data.LOTHER_TAX"
+                                    R_ConductorSource="@_UtilityCharges_conductorRef"
+                                    R_EnableEdit R_EnableAdd ValueChanged="@((bool value) => OtherTax_OnChnaged(value))">
+                        </R_CheckBox>
+                        <R_Label>@_localizer["_OtherTax"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                        <R_TextBox @bind-Value="@_General_viewModel.Data.COTHER_TAX_ID"
+                                   R_ConductorSource="@_UtilityCharges_conductorRef"
+                                   OnLostFocus="@OtherTaxID_OnLostFocus"
+                                   MaxLength="20"
+                                   Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _General_viewModel.Data.LOTHER_TAX)">
+                        </R_TextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="0">
+                        <R_Lookup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Lookup="@UtilityCharges_OtherTax_Before_Open_Lookup" R_After_Open_Lookup="@UtilityCharges_OtherTax_After_Open_Lookup"
+                                  Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _General_viewModel.Data.LOTHER_TAX)">...</R_Lookup>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="6">
+                        <R_TextBox @bind-Value="@_General_viewModel.Data.CTAX_OTHER_NAME"
+                                   R_ConductorSource="@_UtilityCharges_conductorRef"
+                                   Enabled="false">
+                        </R_TextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                        <R_NumericTextBox @bind-Value="@_General_viewModel.Data.NTAX_PERCENTAGE_OTHER"
+                                          R_ConductorSource="@_UtilityCharges_conductorRef"
+                                          Enabled="false" Arrows="false">
+                        </R_NumericTextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout Style="width: 5px">
+                        <R_Label>%</R_Label>
+                        </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_CheckBox Value="@_General_viewModel.Data.LWITHHOLDING_TAX"
+                                    R_ConductorSource="@_UtilityCharges_conductorRef"
+                                    R_EnableEdit R_EnableAdd ValueChanged="@((bool value) => WithholdingTax_OnChange(value))">
+                        </R_CheckBox>
+                        <R_Label>@_localizer["_WitholTax"]</R_Label>
+                        </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row>
+                    <R_ItemLayout Style="width: 12px">
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 133px">
+                        <R_Label>@_localizer["_TaxType"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_ComboBox Data="@_General_viewModel.WithholdingTaxList"
+                                    R_ConductorSource="@_UtilityCharges_conductorRef"
+                                    @bind-Value="_General_viewModel.Data.CWITHHOLDING_TAX_TYPE"
+                                    PopupMaxHeight="140px"
+                                    ValueField="@nameof(PMM01000UniversalDTO.CCODE)"
+                                    TextField="@nameof(PMM01000UniversalDTO.CDESCRIPTION)" Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _General_viewModel.Data.LWITHHOLDING_TAX)">
+                        </R_ComboBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["_TaxId"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox @bind-Value="@_General_viewModel.Data.CWITHHOLDING_TAX_ID"
+                                   R_ConductorSource="@_UtilityCharges_conductorRef"
+                                   OnLostFocus="@WitholdTaxID_OnLostFocus"
+                                   MaxLength="20"
+                                   Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && !string.IsNullOrWhiteSpace(_General_viewModel.Data.CWITHHOLDING_TAX_TYPE))">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="0">
+                        <R_Lookup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Lookup="@UtilityCharges_WithholdingTax_Before_Open_Lookup" R_After_Open_Lookup="@UtilityCharges_WithholdingTax_After_Open_Lookup"
+                                  Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && !string.IsNullOrWhiteSpace(_General_viewModel.Data.CWITHHOLDING_TAX_TYPE))">
+                            ...
+                        </R_Lookup>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="@_General_viewModel.Data.CWITHHOLDING_TAX_NAME"
+                                   R_ConductorSource="@_UtilityCharges_conductorRef"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_NumericTextBox @bind-Value="@_General_viewModel.Data.NTAX_PERCENTAGE_WITHHOLDING"
+                                          R_ConductorSource="@_UtilityCharges_conductorRef"
+                                          Arrows="false"
+                                          Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 5px">
+                        <R_Label>%</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout hidden="@(_General_viewModel.hiddenDisplay)">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="12">
+                            <R_Label FontColor="@R_eFontColor.Danger" Class="fw-bold">@_localizer["_JrnlGrpSetup"]</R_Label>
+                            <R_Label>@_localizer["_JrnlGrpSetupDesc"]</R_Label>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="2">
+                            <R_Label>@_localizer["_UtilityJrnlGrp"]</R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout col="2">
+                            <R_TextBox @bind-Value="@_General_viewModel.Data.CUTILITY_JRNGRP_CODE"
+                                       R_ConductorSource="@_UtilityCharges_conductorRef"
+                                       OnLostFocus="@JrnlCode_OnLostFocus"
+                                       MaxLength="8"
+                                       R_EnableAdd R_EnableEdit>
+                            </R_TextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="0">
+                            <R_Lookup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Lookup="@UtilityCharges_JournalGrp_Before_Open_Lookup" R_After_Open_Lookup="@UtilityCharges_JournalGrp_After_Open_Lookup" R_EnableAdd R_EnableEdit>...</R_Lookup>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="5">
+                            <R_TextBox @bind-Value="@_General_viewModel.Data.CUTILITY_JRNGRP_NAME"
+                                       R_ConductorSource="@_UtilityCharges_conductorRef"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="2">
+                            <R_Label>@_localizer["_AccrualMethod"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_ComboBox Data="@_General_viewModel.AccrualMethodList"
+                                        R_ConductorSource="@_UtilityCharges_conductorRef"
+                                        PopupMaxHeight="140px"
+                                        @bind-Value="_General_viewModel.Data.CACCRUAL_METHOD"
+                                        ValueField="@nameof(PMM01000UniversalDTO.CCODE)"
+                                        TextField="@nameof(PMM01000UniversalDTO.CDESCRIPTION)"
+                                        Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _General_viewModel.Data.LACCRUAL)">
+                            </R_ComboBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_StackLayout>
+
+
+                <R_StackLayout Row Class="justify-content-between mt-2">
+                    <R_ItemLayout>
+                        <R_AddButton R_Conductor="@_UtilityCharges_conductorRef"></R_AddButton>
+                        <R_EditButton R_Conductor="@_UtilityCharges_conductorRef"></R_EditButton>
+                        <R_DeleteButton R_Conductor="@_UtilityCharges_conductorRef"></R_DeleteButton>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Popup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Popup="@UtilityCharges_CopyFromBtn_Before_Open_Popup" R_After_Open_Popup="@UtilityCharges_CopyFromBtn_After_Open_Popup" Enabled="@CopyNewBtnEnable" R_EnableOther>Copy New</R_Popup>
+                        <R_Popup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Popup="@UtilityCharges_R_Before_Open_Popup_ActivateInactive" R_After_Open_Popup="@UtilityCharges_R_After_Open_Popup_ActivateInactive" Enabled="@ActiveInactiveBtnEnable" R_EnableOther>@_Genereal_lcLabel</R_Popup>
+                        <R_Popup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Popup="@UtilityCharges_R_Before_Open_Popup_Print" R_EnableOther>Print</R_Popup>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_CancelButton R_Conductor="@_UtilityCharges_conductorRef"></R_CancelButton>
+                        <R_SaveButton R_Conductor="@_UtilityCharges_conductorRef"></R_SaveButton>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+    </R_TabStripTab>
+
+    <R_TabStripTab Title="@_localizer["_TabRate"]" Id="Rate" Enabled="@(SetHasDataTab)">
+        <R_TabPage @ref="@_tabPageRate" R_Before_Open_TabPage="@_General_Before_Open_TabPage" R_TabEventCallback="@R_TabEventCallback"></R_TabPage>
+    </R_TabStripTab>
+
+</R_TabStrip>
+
+
+
+
+<R_Conductor @ref="@_General_conductorRef"
+             R_ViewModel="@_Universal_viewModel"
+             R_ServiceGetRecord="@ChargesTypeGrid_ServiceGetRecord"
+             R_Display="@ChargesTypeGrid_Display">
+</R_Conductor>
+
+<R_Conductor @ref="@_UtilityCharges_conductorRef"
+             R_ViewModel="@_General_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@UtilityCharges_ServiceGetRecord"
+             R_CheckAdd="@UtilityCharges_CheckAdd"
+             R_ServiceSave="@UtilityCharges_ServiceSave"
+             R_AfterSave="@UtilityCharges_AfterSave"
+              R_DisableDeleteConfirmation
+             R_BeforeDelete="@UtilityCharges_BeforeDelete"
+             R_ServiceDelete="@UtilityCharges_ServiceDelete"
+             R_Display="@UtilityCharges_Display"
+             R_SetHasData="@UtilityCharges_SetHasData"
+             R_SetAdd="@UtilityCharges_SetAdd"
+             R_SetEdit="@UtilityCharges_SetEdit"
+             R_BeforeCancel="@UtilityCharges_BeforeCancel"
+             R_Validation="@UtilityCharges_Validation"
+             R_SetOther="@Grid_R_SetOther"
+             R_AfterAdd="@UtilityCharges_AfterAdd">
+</R_Conductor>
+

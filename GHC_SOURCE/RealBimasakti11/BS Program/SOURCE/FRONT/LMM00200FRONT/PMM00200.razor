@@ -1,0 +1,129 @@
+﻿@page "/PMM00200"
+@inherits R_Page
+
+<R_StackLayout Spacing="3" Class="mb-4">
+    <R_StackLayout>
+        <R_Grid @ref="@_userParamGridRef"
+                DataSource="@_userParamViewModel._UserParamList"
+                Pageable="true"
+                @bind-PageSize="@_pageSize"
+                R_ConductorSource="@_userParamConductorRef"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="@UserParam_ServiceGetListRecordAsync"
+                Enabled="@_userParamGridEnabled"
+                Height="270px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(PMM00200DTO.CCODE)" HeaderText="@_localizer["gridText_Code"]" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PMM00200DTO.CDESCRIPTION)" HeaderText="@_localizer["gridText_Desc"]" Width="600px"></R_GridTextColumn>
+                <R_GridNumericColumn FieldName="@nameof(PMM00200DTO.IUSER_LEVEL)" TValue="int" HeaderText="@_localizer["gridNum_UserLevel"]" Width="100px"></R_GridNumericColumn>
+                <R_GridCheckBoxColumn FieldName="@nameof(PMM00200DTO.LACTIVE)" HeaderText="@_localizer["gridCheck_Active"]" Width="100px"></R_GridCheckBoxColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout Spacing="4" Justify="R_eJustify.SpaceBetween">
+    <R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["form_Code"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="@_userParamViewModel.Data.CCODE"
+                           R_ConductorSource="@_userParamConductorRef"
+                           Enabled="false"
+                           MaxLength="8"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="2" Class="ms-4">
+                <R_CheckBox @bind-Value="@_userParamViewModel.Data.LACTIVE"
+                            R_ConductorSource="@_userParamConductorRef"
+                            Enabled="false"
+                            Class="me-0" />
+                <R_Label Class="ms-0">Active</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["form_Descirption"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="6">
+                <R_TextArea @bind-Value="@_userParamViewModel.Data.CDESCRIPTION"
+                            R_ConductorSource="@_userParamConductorRef"
+                            Enabled="false"
+                            MaxLength="255"></R_TextArea>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["form_UserLevel"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Class="row ms-2">
+                <R_RadioGroup Class="col"
+                              Data="@_userParamViewModel._Options"
+                              @bind-Value="@_userParamViewModel._CUserOperatorSign"
+                              ValueField="@nameof(RadioModel.Value)"
+                              TextField="@nameof(RadioModel.Text)"
+                              R_ConductorSource="@_userParamConductorRef"
+                              R_EnableEdit>
+                </R_RadioGroup>
+                <R_NumericTextBox @ref="@_numTextBoxUserLevel"
+                                  TValue="int"
+                                  Class="ms-3"
+                                  Width="50px" @bind-Value="@_userParamViewModel.Data.IUSER_LEVEL"
+                                  Min="0"
+                                  R_ConductorSource="@_userParamConductorRef"
+                                  R_EnableEdit
+                                  Max="20"
+                                  Arrows="false">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["form_Value"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextArea @bind-Value="@_userParamViewModel.Data.CVALUE"
+                            R_ConductorSource="@_userParamConductorRef"
+                            R_EnableEdit
+                            MaxLength="100"></R_TextArea>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_StackLayout>
+
+    <R_StackLayout>
+
+        <R_StackLayout Row="true" Justify="R_eJustify.SpaceBetween">
+            <R_ItemLayout>
+                <R_EditButton R_Conductor="@_userParamConductorRef"></R_EditButton>
+                <R_Button R_ConductorSource="@_userParamConductorRef"
+                          OnClick="@BtnActiveInactive"
+                          R_EnableOther>@_labelActiveInactive</R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_CancelButton R_Conductor="@_userParamConductorRef"></R_CancelButton>
+                <R_SaveButton R_Conductor="@_userParamConductorRef"></R_SaveButton>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_StackLayout>
+
+</R_StackLayout>
+
+<R_Conductor @ref="@_userParamConductorRef"
+             R_ViewModel="@_userParamViewModel"
+             R_IsHeader="@true"
+             R_ServiceGetRecord="@UserParam_ServiceGetRecordAsync"
+             R_Validation="@UserParam_Validation"
+             R_ServiceSave="@UserParam_ServiceSaveAsync"
+             R_ConvertToGridEntity="@UserParam_ConvertToGridEntity"
+             R_SetEdit="@UserParam_SetEditAsync"
+             R_SetOther="@UserParam_SetOther"
+             R_Saving="@UserParam_Saving"
+             R_Display="@UserParam_DisplayAsync"></R_Conductor>

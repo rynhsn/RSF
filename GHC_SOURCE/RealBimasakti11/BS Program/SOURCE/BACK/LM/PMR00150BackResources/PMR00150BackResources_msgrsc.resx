@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Col_AMOUNT" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="Col_AREA" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="Col_CAGREEMENT_STATUS_NAME" xml:space="preserve">
+    <value>Agreement</value>
+  </data>
+  <data name="Col_CAL_FEE_AMOUNT" xml:space="preserve">
+    <value>Calculated Fee Amount</value>
+  </data>
+  <data name="Col_CCHARGE_TYPE" xml:space="preserve">
+    <value>Charge Type</value>
+  </data>
+  <data name="Col_CENDDATE" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="Col_CHARGE" xml:space="preserve">
+    <value>Charge</value>
+  </data>
+  <data name="Col_CREF_DATE" xml:space="preserve">
+    <value>LOC Date</value>
+  </data>
+  <data name="Col_CREF_NO" xml:space="preserve">
+    <value>LOC No.</value>
+  </data>
+  <data name="Col_CSALESMAN" xml:space="preserve">
+    <value>Salesman</value>
+  </data>
+  <data name="Col_CSTARTDATE" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="Col_CTAX" xml:space="preserve">
+    <value>Tax</value>
+  </data>
+  <data name="Col_CTC_MESSAGE" xml:space="preserve">
+    <value>Term &amp; Condition</value>
+  </data>
+  <data name="Col_CTENANT" xml:space="preserve">
+    <value>Tenant</value>
+  </data>
+  <data name="Col_CTENURE" xml:space="preserve">
+    <value>Tenure</value>
+  </data>
+  <data name="Col_CTRANS_NAME" xml:space="preserve">
+    <value>Transaction Name</value>
+  </data>
+  <data name="Col_CTRANS_STATUS_NAME" xml:space="preserve">
+    <value>Transaction</value>
+  </data>
+  <data name="Col_CUNIT" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="Col_DATE" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Col_DEPOSIT" xml:space="preserve">
+    <value>Deposit</value>
+  </data>
+  <data name="Col_DESC" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Col_FEE_AMOUNT" xml:space="preserve">
+    <value>Fee Amount</value>
+  </data>
+  <data name="Col_FEE_METHOD" xml:space="preserve">
+    <value>Fee Method</value>
+  </data>
+  <data name="Col_GRAND_TOTAL_AREA" xml:space="preserve">
+    <value>Grand Total Area</value>
+  </data>
+  <data name="Col_NTOTAL_COMMON_AREA_SIZE" xml:space="preserve">
+    <value>Common</value>
+  </data>
+  <data name="Col_NTOTAL_GROSS_AREA_SIZE" xml:space="preserve">
+    <value>Gross</value>
+  </data>
+  <data name="Col_NTOTAL_NET_AREA_SIZE" xml:space="preserve">
+    <value>Net</value>
+  </data>
+  <data name="Col_NTOTAL_PRIZE" xml:space="preserve">
+    <value>Total Rent Prize</value>
+  </data>
+  <data name="Col_PRICE" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Col_STATUS" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Label_Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="Label_GrandTotalOfAggreements" xml:space="preserve">
+    <value>Grand Total  of Agreements</value>
+  </data>
+  <data name="Label_Period" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="Label_Property" xml:space="preserve">
+    <value>Property</value>
+  </data>
+  <data name="Label_ReportType" xml:space="preserve">
+    <value>Report Type</value>
+  </data>
+  <data name="Label_Salesman" xml:space="preserve">
+    <value>Salesman</value>
+  </data>
+  <data name="Label_To" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="Label_Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Label_TotalOfAggreements" xml:space="preserve">
+    <value>Total of Aggreements Based On</value>
+  </data>
+</root>

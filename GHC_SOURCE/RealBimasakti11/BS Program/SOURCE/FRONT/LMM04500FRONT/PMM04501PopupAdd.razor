@@ -1,0 +1,147 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Add Pricing", ResourceId = "_pageTitleAddPricing")]
+
+<R_StackLayout Row Style="width:820px">
+    <R_ItemLayout col="12">
+
+        <R_StackLayout Row Spacing="2">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_lbl_unit_type_ctg"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="_pricingAdd_ViewModel._unitTypeCategoryName" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Spacing="2">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_lbl_valid_from_date"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_DatePicker @ref="@_validDateForm"
+                              @bind-Value="_pricingAdd_ViewModel._validDateForm"
+                              R_ConductorGridSource="@_conGridPricing"></R_DatePicker>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_CheckBox @ref="@_checkBoxActive"
+                            @bind-Value="_pricingAdd_ViewModel._active"
+                            R_ConductorGridSource="@_conGridPricing"
+                            Enabled="false"></R_CheckBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>Active</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_Grid DataSource="@_pricingAdd_ViewModel._pricingSaveList"
+                @ref="@_gridPricing"
+                Pageable="false"
+                R_GridType="@R_eGridType.Batch"
+                R_ConductorGridSource="@_conGridPricing"
+                AllowAddNewRow="_enableGridAdd"
+                AllowEditRow="@_enableGridEdit"
+                AllowDeleteRow="@_enableGridDelete"
+                R_ServiceGetListRecord="@PricingAdd_GetListRecord"
+                R_ServiceGetRecord="@PricingAdd_GetRecord"
+                R_Before_Open_Grid_Lookup="@PricingAdd_BeforeLookup"
+                R_After_Open_Grid_Lookup="@PricingAdd_AfterLookup"
+                R_CellValueChanged="@PricingAdd_CellValueChanged"
+                Height="300px"
+                R_AfterAdd="@PricingAdd_AfterAddAsync">
+            <R_GridColumns>
+                <R_GridComboBoxColumn Data=@_pricingAdd_ViewModel._chargesTypeList
+                                      ValueField="@nameof(TypeDTO.CCODE)"
+                                      TextField="@nameof(TypeDTO.CDESCRIPTION)"
+                                      FieldName="@nameof(PricingBulkSaveDTO.CCHARGES_TYPE)"
+                                      HeaderText="@(_localizer["_col_charges_type"])"
+                                      R_EnableAdd
+                                      R_EnableEdit
+                                      Width="200px" />
+                <R_GridLookupColumn FieldName="@nameof(PricingBulkSaveDTO.CCHARGES_NAME)"
+                                    Name="@nameof(PricingBulkSaveDTO.CCHARGES_NAME)"
+                                    HeaderText="@(_localizer["_col_charges_name"])"
+                                    R_EnableAdd
+                                    R_EnableEdit="true"
+                                    TextboxEnabled="false"
+                                    Width="200px"></R_GridLookupColumn>
+                <R_GridComboBoxColumn Data=@_pricingAdd_ViewModel._priceTypeList
+                                      ValueField="@nameof(TypeDTO.CCODE)"
+                                      TextField="@nameof(TypeDTO.CDESCRIPTION)"
+                                      FieldName="@nameof(PricingBulkSaveDTO.CPRICE_MODE)"
+                                      HeaderText="@(_localizer["_col_price_mode"])"
+                                      R_EnableAdd
+                                      R_EnableEdit
+                                      Width="150px" />
+                <R_GridNumericColumn FieldName="@nameof(PricingBulkSaveDTO.NNORMAL_PRICE)"
+                                     R_EnableAdd
+                                     R_EnableEdit
+                                     TValue="decimal"
+                                     HeaderText="@(_localizer["_col_normal_price"])"
+                                     Width="150px"
+                                     Min="0"
+                                     Max="999999999"
+                                     ThousandSeparator></R_GridNumericColumn>
+                <R_GridNumericColumn FieldName="@nameof(PricingBulkSaveDTO.NBOTTOM_PRICE)"
+                                     R_EnableAdd
+                                     R_EnableEdit
+                                     TValue="decimal"
+                                     HeaderText="@(_localizer["_col_botton_price"])"
+                                     Min="0"
+                                     Max="999999999"
+                                     Width="150px"
+                                     ThousandSeparator></R_GridNumericColumn>
+                <R_GridCheckBoxColumn FieldName="@nameof(PricingBulkSaveDTO.LOVERWRITE)"
+                                      R_EnableAdd
+                                      R_EnableEdit
+                                      HeaderText="@(_localizer["_col_overwrite"])"
+                                      Width="150px"></R_GridCheckBoxColumn>
+                <R_GridComboBoxColumn Data=@_pricingAdd_ViewModel._invPeriodTypeList
+                                      ValueField="@nameof(TypeDTO.CCODE)"
+                                      TextField="@nameof(TypeDTO.CDESCRIPTION)"
+                                      FieldName="@nameof(PricingBulkSaveDTO.CINVOICE_PERIOD)"
+                                      HeaderText="@(_localizer["_col_invoice_period"])"
+                                      R_EnableAdd
+                                      R_EnableEdit
+                                      Width="150px" />
+                <R_GridTextColumn FieldName="@nameof(PricingBulkSaveDTO.CUPDATE_BY)"
+                                  HeaderText="@(_localizer["_col_update_by"])"
+                                  Width="120px"
+                                  R_EnableAdd="false"
+                                  R_EnableEdit="false"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(PricingBulkSaveDTO.DUPDATE_DATE)"
+                                        HeaderText="@(_localizer["_col_update_date"])"
+                                        Width="200px"
+                                        R_EnableAdd="false"
+                                        R_EnableEdit="false"></R_GridDatePickerColumn>
+                <R_GridTextColumn FieldName="@nameof(PricingBulkSaveDTO.CCREATE_BY)"
+                                  HeaderText="@(_localizer["_col_create_by"])"
+                                  Width="120px"
+                                  R_EnableAdd="false"
+                                  R_EnableEdit="false"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(PricingBulkSaveDTO.DCREATE_DATE)"
+                                        HeaderText="@(_localizer["_col_create_date"])"
+                                        Width="200px"
+                                        R_EnableAdd="false"
+                                        R_EnableEdit="false"></R_GridDatePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+
+
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mt-2 d-flex justify-content-end">
+    <R_ItemLayout>
+        <R_Button OnClick="@PricingAdd_CancelAsync"
+                  R_ConductorGridSource="@_conGridPricing"
+                  R_EnableOther
+                  Enabled="@_enableBtnCancel">@_localizer["_btn_cancel"]</R_Button>
+
+        <R_Button OnClick="@PricingAdd_Process"
+                  R_ConductorGridSource="@_conGridPricing"
+                  R_EnableOther>@_localizer["_btn_process"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+@* conductor *@
+<R_ConductorGrid @ref="@_conGridPricing"
+                 R_IsHeader
+                 R_SetOther="@PricingAdd_SetOther" />

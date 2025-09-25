@@ -1,0 +1,9 @@
+EMPTY_DEPT_CODE		= Dept Code cannot be empty
+EXCESS_DEPT_CODE	= Department Code is bigger than 20 Character
+EMPTY_DEPT_NAME		= Dept Name cannot be empty
+EXCESS_DEPT_NAME	= Department Name is bigger than 100 Character
+EXCESS_CENTER_CODE	= Center Code is bigger than 100 Character
+INVALID_CENTER_CODE	= Invalid Center Code
+INVALID_ACTIVE_FLAG	= Active Flag is not valid [1/0]
+EMPTY_NON_ACITVE	= Non Active Date cannot be empty for this inactive Department
+INVALID_EVERYONE_FLAG	= Everyone Flag is not valid [1/0]

@@ -1,0 +1,7 @@
+UPLOAD FILE>
+GET LIST>
+VALIDATE>
+PROGRESSBAR>
+GET completenoerror, completeerror, failed>
+COMPARE>
+UPLOAD PROCESS

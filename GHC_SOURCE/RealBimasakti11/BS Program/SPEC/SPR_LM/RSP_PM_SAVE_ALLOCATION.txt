@@ -1,0 +1,8 @@
+ERROR_PROCESS=Process failed! unable to save PM Allocation {0}
+
+FR_AP_GLNO_NOT_FOUND=From PM GL Account No. not found!
+TO_AP_GLNO_NOT_FOUND=To PM GL Account No. not found!
+
+PROD_GLNO_NOT_FOUND=Product GL Account No. not found!
+TAX_GL_ACCOUNT_NO_NOT_FOUND=Tax GL Account No. not found!
+OTHER_TAX_GL_ACCOUNT_NO_NOT_FOUND=Other Tax GL Account No. not found!

@@ -1,0 +1,37 @@
+Error900=Process failed! unable to preview budget {0}
+Error901=Failed to validate data {0}
+
+BUDGET_YEAR_EMPTY=Budget Year is Mandatory
+BUDGET_YEAR_INVALID=Invalid Budget Year
+
+BUDGET_NO_EMPTY=Budget No. is Mandatory
+BUDGET_NO_ALREADY_EXIST=Budget No. already exists
+
+BUDGET_NAME_EMPTY=Budget Name is Mandatory
+
+CURRENCY_TYPE_EMPTY=Currency Type is Mandatory
+CURRENCY_TYPE_INVALID=Invalid Currency Type value
+
+ACCOUNT_TYPE_EMPTY=Account Type is Mandatory
+ACCOUNT_TYPE_INVALID=Invalid Account Type value
+
+ACCOUNT_NO_EMPTY=Account No. is Mandatory
+ACCOUNT_NO_NOT_EXIST=Account No. does not exist
+
+CENTER_NOT_EXIST=Center doesn not exist
+
+0080=Period_1 cannot be < 0
+0090=Period_2 cannot be < 0
+0100=Period_3 cannot be < 0
+0110=Period_4 cannot be < 0
+0120=Period_5 cannot be < 0
+0130=Period_6 cannot be < 0
+0140=Period_7 cannot be < 0
+0150=Period_8 cannot be < 0
+0160=Period_9 cannot be < 0
+0170=Period_10 cannot be < 0
+0180=Period_11 cannot be < 0
+0190=Period_12 cannot be < 0
+0200=Period_13 cannot be < 0
+0210=Period_14 cannot be < 0
+0220=Period_15 cannot be < 0

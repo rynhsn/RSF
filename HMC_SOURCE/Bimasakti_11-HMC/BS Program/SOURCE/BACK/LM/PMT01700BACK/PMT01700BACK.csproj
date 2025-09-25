@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\COMMON\LM\PMT01700COMMON\PMT01700CommonReport\PMT01700CommonReport.csproj" />
+    <ProjectReference Include="..\..\..\COMMON\LM\PMT01700COMMON\PMT01700Common\PMT01700COMMON.csproj" />
+    <ProjectReference Include="..\LM_SPR\RSP_PM_MAINTAIN_AGREEMENTResources\RSP_PM_MAINTAIN_AGREEMENTResources.csproj" />
+    <ProjectReference Include="..\LM_SPR\RSP_PM_MAINTAIN_AGREEMENT_CHARGESResources\RSP_PM_MAINTAIN_AGREEMENT_CHARGESResources.csproj" />
+    <ProjectReference Include="..\LM_SPR\RSP_PM_MAINTAIN_AGREEMENT_DEPOSITResources\RSP_PM_MAINTAIN_AGREEMENT_DEPOSITResources.csproj" />
+    <ProjectReference Include="..\LM_SPR\RSP_PM_MAINTAIN_AGREEMENT_UNITResources\RSP_PM_MAINTAIN_AGREEMENT_UNITResources.csproj" />
+    <ProjectReference Include="..\LM_SPR\RSP_PM_MAINTAIN_AGREEMENT_UTILITIESResources\RSP_PM_MAINTAIN_AGREEMENT_UTILITIESResources.csproj" />
+    <ProjectReference Include="..\LM_SPR\RSP_PM_MAINTAIN_TENANTResources\RSP_PM_MAINTAIN_TENANTResources.csproj" />
+    <ProjectReference Include="..\LM_SPR\RSP_PM_MAINTAIN_UNIT_CHARGESResources\RSP_PM_MAINTAIN_UNIT_CHARGESResources.csproj" />
+    <ProjectReference Include="..\LM_SPR\RSP_PM_UPDATE_AGREEMENT_TRANS_STSResources\RSP_PM_UPDATE_AGREEMENT_TRANS_STSResources.csproj" />
+    <ProjectReference Include="..\PMT01700BackResources\PMT01700BackResources.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="R_APIBackEnd">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommonDTO">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_APICommonDTO.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CommonFrontBackAPI">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="R_OpenTelemetry">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ReportServerCommon">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportServerCommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_Storage">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_Storage.dll</HintPath>
+		</Reference>
+		<Reference Include="R_StorageCommon">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_StorageCommon.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+</Project>

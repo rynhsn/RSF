@@ -1,0 +1,44 @@
+﻿@using LMM03700Common.DTO_s;
+
+@inherits R_Page
+<R_Grid @ref="@_Grid"
+        DataSource="_viewModelTC.TenantToAssignList"
+        Pageable
+        R_ConductorGridSource="@_conTenantToAssignRef"
+        R_GridType="@R_eGridType.Batch"
+        AllowAddNewRow="false"
+        AllowEditRow="false"
+        AllowDeleteRow="false"
+        R_ServiceGetListRecord="R_ServiceGetListRecordAsync">
+    <R_GridColumns>
+        <R_GridCheckBoxSelectColumn FieldName="@nameof(SelectedTenantGridPopupDTO.LSELECTED)"
+                                                        R_EnableAdd
+                                                        R_EnableEdit
+                                                        ShowSelectAllHeader/>
+        <R_GridTextColumn FieldName="@nameof(TenantGridPopupDTO.CTENANT_ID)" HeaderText="Tenant Id"></R_GridTextColumn>
+        <R_GridTextColumn FieldName="@nameof(TenantGridPopupDTO.CTENANT_NAME)" HeaderText="Tenant Name"></R_GridTextColumn>
+        <R_GridTextColumn FieldName="@nameof(TenantGridPopupDTO.CTENANT_CATEGORY_NAME)" HeaderText="Tenant Category"></R_GridTextColumn>
+        <R_GridTextColumn FieldName="@nameof(TenantGridPopupDTO.CTENANT_TYPE_NAME)" HeaderText="Tenant Type"></R_GridTextColumn>
+        <R_GridTextColumn FieldName="@nameof(TenantGridPopupDTO.CPHONE)" HeaderText="Phone 1"></R_GridTextColumn>
+        <R_GridTextColumn FieldName="@nameof(TenantGridPopupDTO.CEMAIL)" HeaderText="Email"></R_GridTextColumn>
+    </R_GridColumns>
+</R_Grid>
+<R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            Process
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            Cancel
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conTenantToAssignRef"
+                 R_ViewModel="@_viewModelTC"
+                      R_IsHeader
+                 R_BeforeSaveBatch="@R_BeforeSaveBatch"
+                 R_ServiceSaveBatch="@R_ServiceSaveBatchAsync"
+                 R_AfterSaveBatch="@R_AfterSaveBatch" />

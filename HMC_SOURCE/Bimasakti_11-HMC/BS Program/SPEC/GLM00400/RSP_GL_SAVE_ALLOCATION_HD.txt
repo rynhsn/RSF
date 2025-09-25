@@ -1,0 +1,4 @@
+Error100=Allocation No. {0} already exists!
+Error200=Unable to reactivate! GL Account(s) already used by other Allocation Journal
+Error300=Unable to modify! Department Center Code has been changed to {0}! 
+Error900=Process failed! unable to save Allocation Journal {0}

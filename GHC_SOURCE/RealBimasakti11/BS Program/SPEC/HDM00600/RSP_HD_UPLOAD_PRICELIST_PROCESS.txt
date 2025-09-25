@@ -1,0 +1,13 @@
+EMPTY_PRICELIST_ID            	-- Pricelist ID is empty!
+EMPTY_PRICELIST_NAME          	-- Pricelist Name is empty!
+EMPTY_CHARGES_ID              	-- Charges ID is empty!
+INVALID_CHARGES_ID            	-- Charges ID is not found!
+EMPTY_UNIT                    	-- Unit is empty!
+EMPTY_CURRENCY                	-- Currency is empty!
+INVALID_CURRENCY              	-- Currency is not found!
+INVALID_PRICE                 	-- Price cannot be 0 or negative value!
+EMPTY_START_DATE              	-- Start Date is empty!
+INVALID_START_DATE_FORMAT     	-- Start Date format must be YYYYMMDD!
+INVALID_START_DATE_VALUE      	-- Start Date cannot be before latest CARE Date or Current Start Date!
+EMPTY_DEPT_CODE			-- Department is empty!
+INVALID_DEPT_CODE		-- Department is not found!

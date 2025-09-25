@@ -1,0 +1,205 @@
+﻿@page "/GSM00300"
+@using GSM00300COMMON.DTO_s.Helper
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_pageTitle_param")]
+
+
+<R_TabStrip @ref="_tabStrip" OnActiveTabIndexChanging="@OnActiveTabIndexChangingAsync">
+
+    @* tab parameter *@
+    <R_TabStripTab Title="@_localizer["_tab_param"]" id="@nameof(GSM00300)">
+        @* primary account checkbox *@
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_CheckBox @bind-Value="@_viewModel.Data.LPRIMARY_ACCOUNT"
+                            R_ConductorSource="@_conRef"
+                            R_EnableAdd
+                            R_EnableEdit
+                            TabIndex="0" />
+            </R_ItemLayout>
+            <R_ItemLayout col="2" Class="ps-4">
+                <R_Label>
+                    @_localizer["_checkbox_primaryaccount"]
+                </R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* primary account name *@
+        <R_StackLayout Row Class="ps-5 pt-1">
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_checkbox_primaryaccount"]
+                </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="@_viewModel.Data.CPRIMARY_CO_NAME"
+                           R_ConductorSource="@_conRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* base currency *@
+        <R_StackLayout Row Class="ps-5 pt-2">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_lbl_basecurrency"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="_viewModel.Data.CBASE_CURRENCY_CODE"
+                           R_ConductorSource="_conRef"
+                           R_EnableAdd
+                           R_EnableEdit
+                           CharacterCasing="R_eCharacterCasing.Upper"
+                           MaxLength="int.MaxValue"
+                           OnLostFocus="OnLostFocus_LookupBaseCurrency"
+                           TabIndex="1" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_ConductorSource="_conRef"
+                          R_Before_Open_Lookup="@BeforeOpen_LookupBaseCurrencyAsync"
+                          R_After_Open_Lookup="@AfterOpen_LookupBaseCurrency"
+                          R_EnableAdd
+                          R_EnableEdit
+                          TabIndex="2">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="_viewModel.Data.CBASE_CURRENCY_NAME"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* local currency *@
+        <R_StackLayout Row Class="ps-5">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_lbl_localcurrency"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="_viewModel.Data.CLOCAL_CURRENCY_CODE"
+                           R_ConductorSource="_conRef"
+                           R_EnableAdd
+                           R_EnableEdit
+                           CharacterCasing="R_eCharacterCasing.Upper"
+                           MaxLength="int.MaxValue"
+                           OnLostFocus="OnLostFocus_LookupLocalCurrency"
+                           TabIndex="3" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_ConductorSource="_conRef"
+                          R_EnableAdd
+                          R_EnableEdit
+                          R_Before_Open_Lookup="@BeforeOpen_LookupLocalCurrencyAsync"
+                          R_After_Open_Lookup="@AfterOpen_LookupLocalCurrency"
+                          TabIndex="4">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="_viewModel.Data.CLOCAL_CURRENCY_NAME"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* radio bsis *@
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_RadioGroup Data="@_viewModel.CenterByList"
+                              R_ConductorSource="@_conRef"
+                              R_EnableAdd
+                              R_EnableEdit
+                              ValueField="@nameof(GeneralTypeDTO.CCODE)"
+                              TextField="@nameof(GeneralTypeDTO.CDESCRIPTION)"
+                              @bind-Value="_viewModel.Data.CCENTER_BY"
+                              LabelPosition="R_eRadioGroupLabelPosition.After"
+                              Layout="R_eRadioGroupLayout.Horizontal" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* cashflow *@
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_CheckBox @bind-Value="@_viewModel.Data.LCASH_FLOW"
+                            R_ConductorSource="@_conRef"
+                            R_EnableAdd
+                            R_EnableEdit />
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_checkbox_enablecashflow"]
+                </R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* updated by *@
+        <R_StackLayout Row>
+            <R_ItemLayout col="1">
+                <R_Label>
+                    @_localizer["_lbl_updatedby"]
+                </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="_viewModel.Data.CUPDATE_BY"
+                           Enabled="false" />
+            </R_ItemLayout>
+            <R_ItemLayout col="1" Class="col-1 pe-3 d-flex justify-content-end">
+                <R_Label>
+                    @_localizer["_lbl_date"]
+                </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_DateTimePicker @bind-Value="_viewModel.Data.DUPDATE_DATE"
+                                  ShowPickerButton="false"
+                                  Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* created by *@
+        <R_StackLayout Row>
+            <R_ItemLayout col="1">
+                <R_Label>
+                    @_localizer["_lbl_createdby"]
+                </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="_viewModel.Data.CCREATE_BY"
+                           Enabled="false" />
+            </R_ItemLayout>
+            <R_ItemLayout col="1" Class="col-1 pe-3 d-flex justify-content-end">
+                <R_Label>
+                    @_localizer["_lbl_date"]
+                </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_DateTimePicker @bind-Value="_viewModel.Data.DCREATE_DATE"
+                                  ShowPickerButton="false"
+                                  Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* buttons *@
+        <R_StackLayout Row Class="pt-2">
+            <R_ItemLayout col="2">
+                <R_EditButton R_Conductor="@_conRef" />
+            </R_ItemLayout>
+            <R_ItemLayout col="5" Class="d-flex justify-content-end">
+                <R_CancelButton R_Conductor="@_conRef" />
+                <R_SaveButton R_Conductor="@_conRef" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @* conductor *@
+        <R_Conductor @ref="@_conRef"
+                     R_ViewModel="@_viewModel"
+                     R_IsHeader
+                     R_ServiceGetRecord="@CompParam_GetRecord"
+                     R_Display="@CompParam_Display"
+                     R_BeforeEdit="@CompParam_BeforeEditAsync"
+                     R_ServiceSave="@CompParam_SaveAsync" />
+    </R_TabStripTab>
+
+    @* tab taxinfo *@
+    <R_TabStripTab Title="@_localizer["_tab_taxinfo"]" Id="@nameof(GSM00301)">
+        <R_TabPage @ref="@_tabPage_TaxInfo"
+                   R_Before_Open_TabPage="@BeforeOpenTabPage_TaxInfo"
+                   R_TabEventCallback="@R_TabEventCallback">
+        </R_TabPage>
+    </R_TabStripTab>
+</R_TabStrip>
+
+

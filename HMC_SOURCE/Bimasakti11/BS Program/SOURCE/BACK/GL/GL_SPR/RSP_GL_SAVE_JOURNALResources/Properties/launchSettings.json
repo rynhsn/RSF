@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GL_SAVE_JOURNALResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:54559;http://localhost:54561"
+    }
+  }
+}

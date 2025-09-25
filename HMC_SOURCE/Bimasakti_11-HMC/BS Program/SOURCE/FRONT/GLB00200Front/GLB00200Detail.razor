@@ -1,0 +1,90 @@
+﻿@using GLB00200FrontResources
+@inherits R_Page
+
+@attribute [R_Page(Title = "Journal Detail")]
+@inject R_ILocalizer<Resources_GLB00200_Class> _localizer
+
+<div hidden="@IsModalHidden">
+
+    <R_StackLayout Row>
+        <R_ItemLayout Class="me-3">
+            <R_Label>@_localizer["_ReferenceNo"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_TextBox @bind-Value="_viewModelGLB00200Detail.CurrentReversingJournal.CREF_NO"
+                       R_ConductorSource="@_conductorJournalPeriod"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+
+        <R_ItemLayout Class="me-3" xs="1">
+            <R_Label> @_localizer["_Amount"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_NumericTextBox @bind-Value="_viewModelGLB00200Detail.CurrentReversingJournal.NTRANS_AMOUNT"
+                              TValue="decimal"
+                              R_ConductorSource="@_conductorJournalPeriod"
+                              Enabled="false">
+            </R_NumericTextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout>
+        <R_ItemLayout Class="mt-2">
+            <R_Grid @ref="_gridReversingDetail"
+                    DataSource="_viewModelGLB00200Detail.DetailReversingJournalList"
+                    R_ConductorGridSource="_conductorReversingJournalDetail"
+                    R_GridType="R_eGridType.Original"
+                    R_ServiceGetListRecord="ServiceGetListRecord"
+                    Pageable
+                    AllowAddNewRow="false"
+                    AllowDeleteRow="false"
+                    AllowEditRow="false"
+                    Width="650px"
+                    Height="350px">
+                <R_GridColumns>
+                    <R_GridNumericColumn TextAlignment="R_eTextAlignment.Center" TValue="decimal" Width="75px" FieldName="NO_Convert"
+                                         HeaderText=@_localizer["_No"]>
+                    </R_GridNumericColumn>
+                    <R_GridTextColumn Width="200px" FieldName="CGLACCOUNT_NO"
+                                      HeaderText=@_localizer["_AccNo"]>
+                    </R_GridTextColumn>
+                    <R_GridTextColumn Width="200px" FieldName="CGLACCOUNT_NAME"
+                                      HeaderText=@_localizer["_AccName"]>
+                    </R_GridTextColumn>
+                    <R_GridTextColumn Width="100px" FieldName="CCENTER_NAME"
+                                      HeaderText=@_localizer["_Center"]>
+                    </R_GridTextColumn>
+                    <R_GridTextColumn Width="75px" FieldName="CDBCR"
+                                      HeaderText=@_localizer["_DC"]>
+                    </R_GridTextColumn>
+                    <R_GridTextColumn Width="200px" FieldName="NDEBIT"
+                                      HeaderText=@_localizer["_Debit"]>
+                    </R_GridTextColumn>
+                    <R_GridTextColumn Width="200px" FieldName="NCREDIT"
+                                      HeaderText=@_localizer["_Credit"]>
+                    </R_GridTextColumn>
+                    <R_GridTextColumn Width="300px" FieldName="CDETAIL_DESC"
+                                      HeaderText="@_localizer["_Desc"]">
+                    </R_GridTextColumn>
+
+                </R_GridColumns>
+            </R_Grid>
+            </R_ItemLayout>
+            </R_StackLayout>
+
+    <R_StackLayout Class="mt-3" Row>
+        <R_ItemLayout>
+            <R_Button OnClick="@OnClickClose">
+                Close
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_ConductorGrid @ref="_conductorReversingJournalDetail"
+                     R_IsHeader
+                     R_ViewModel="_viewModelGLB00200Detail">
+
+    </R_ConductorGrid>
+
+</div>

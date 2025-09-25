@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "BaseHeaderReportCOMMON": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57193;http://localhost:57194"
+    }
+  }
+}

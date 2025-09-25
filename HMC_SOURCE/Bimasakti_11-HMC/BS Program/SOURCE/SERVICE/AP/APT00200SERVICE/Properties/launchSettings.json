@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "APT00200SERVICE": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56742;http://localhost:56743"
+    }
+  }
+}

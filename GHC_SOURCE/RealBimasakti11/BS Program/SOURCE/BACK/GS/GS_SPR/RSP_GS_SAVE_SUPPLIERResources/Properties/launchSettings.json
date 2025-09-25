@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GS_SAVE_SUPPLIERResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:63739;http://localhost:63741"
+    }
+  }
+}

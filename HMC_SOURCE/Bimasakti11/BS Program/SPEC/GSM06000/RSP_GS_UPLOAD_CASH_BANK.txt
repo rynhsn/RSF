@@ -1,0 +1,11 @@
+EXCESS_GL_ACCOUNT	= GL Account No is bigger than 20 Character
+EMPTY_GL_ACCOUNT	= GL Account cannot be empty	
+EXCESS_GLACCOUNT_NAME	= GL Account Name is bigger than 60 Character
+EMPTY_GLACCOUNT_NAME	= GL Account cannot be empty	
+INVALID_DBCR		= Invalid D/C code, D/C value is not D / C
+EMPTY_DBCR		= Debit / Credit cannot be empty
+INVALID_BSIS		= Invalid BS/IS code, BS/IS value is not B OR I
+EMPTY_BSIS		= BS / IS cannot be empty	
+INVALID_ACTIVE_FLAG	= Invalid Active Flag, Active Flag value is not 1 / 0
+INVALID_CENTER_RESTRICT = Invalid Center Restriction Value, is not 1 / 0
+INVALID_USER_RESTRICT	= Invalid User Restriction Value, is not 1 / 0

@@ -1,0 +1,9 @@
+EMPTY_TICKET_NO 	-- Ticket No is empty!
+INVALID_TICKET_NO 	-- Ticket No is not found!
+EMPTY_SURVEY_NOTES 	-- Survey Notes is empty!
+EMPTY_PRICELIST_ID 	-- Pricelist ID is empty!
+INVALID_PRICELIST_ID 	-- Pricelist ID is not found!
+EMPTY_VALID_ID 		-- Pricelist Valid ID is empty!
+INVALID_VALID_ID 	-- Pricelist Valid ID is not found!
+INVALID_QUANTITY 	-- Quantity cannot be 0 or negative value!
+INVALID_DISCOUNT 	-- Discount cannot be negative value!

@@ -1,0 +1,214 @@
+﻿@page "/GLI00100Transaction"
+@using GLI00100Common.DTOs
+@inherits R_Page
+@attribute [R_Page(Title = "Transaction Detail")];
+
+<R_StackLayout Style="width: 1250px">
+
+    <R_StackLayout>
+        <R_GroupBox Title="Journal Detail">
+            <R_StackLayout Row Class="justify-content-end" Spacing="1">
+                <R_ItemLayout col="1" Class="text-end pe-1">
+                    <R_Label>Debit</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="1" Class="text-end pe-1">
+                    <R_Label>Credit</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row Class="justify-content-between mb-2">
+                <R_ItemLayout col="5" Class="me-3">
+                    <R_StackLayout Row Class="justify-content-start mb-4">
+                        <R_ItemLayout col="3">
+                            <R_Label>Department</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_TextBox @bind-Value="@_viewModel.DataHeader.CDEPT_CODE" Enabled="false"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="6" Class="ms-1">
+                            <R_TextBox @bind-Value="@_viewModel.DataHeader.CDEPT_NAME" Enabled="false"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row Class="justify-content-start mb-1">
+                        <R_ItemLayout col="3">
+                            <R_Label>Reference No.</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_TextBox @bind-Value="@_viewModel.DataHeader.CREF_NO" Enabled="false"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_Label>Doc. Date</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3" Class="align-items-end">
+                            <R_DateInput @bind-Value="@_viewModel.DREF_DATE" Enabled="false"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row Class="justify-content-start mb-1">
+                        <R_ItemLayout col="3">
+                            <R_Label>Document No.</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_TextBox @bind-Value="@_viewModel.DataHeader.CDOC_NO" Enabled="false"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_Label>Ref. Date</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3" Class="align-items-end">
+                            <R_DateInput @bind-Value="@_viewModel.DDOC_DATE" Enabled="false"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_StackLayout Row Class="justify-content-start mb-1">
+                        <R_ItemLayout col="3">
+                            <R_Label>Currency</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_TextBox @bind-Value="@_viewModel.DataHeader.CCURRENCY_CODE" Enabled="false" TextAlignment="R_eTextAlignment.Center"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row Class="justify-content-start mb-1">
+                        <R_ItemLayout col="3"/>
+                        <R_ItemLayout col="2">
+                            <R_Label>Base Rate</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2"/>
+                        <R_ItemLayout col="3">
+                            <R_Label>Currency Rate</R_Label>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row Class="justify-content-start mb-1">
+                        <R_ItemLayout col="3">
+                            <R_Label>Local Currency</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NLBASE_RATE" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_TextBox @bind-Value="@_viewModel.DataHeader.CCURRENCY_CODE" Enabled="false" TextAlignment="R_eTextAlignment.Center"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NLCURRENCY_RATE" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_TextBox @bind-Value="@_viewModel.GSMCompany.CLOCAL_CURRENCY_CODE" Enabled="false" TextAlignment="R_eTextAlignment.Center"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row Class="justify-content-start">
+                        <R_ItemLayout col="3">
+                            <R_Label>Base Currency</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NBBASE_RATE" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_TextBox @bind-Value="@_viewModel.DataHeader.CCURRENCY_CODE" Enabled="false" TextAlignment="R_eTextAlignment.Center"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NBCURRENCY_RATE" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_TextBox @bind-Value="@_viewModel.GSMCompany.CBASE_CURRENCY_CODE" Enabled="false" TextAlignment="R_eTextAlignment.Center"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_StackLayout Row Class="justify-content-end mb-4">
+                        <R_ItemLayout>
+                            <R_Label>Total Journal</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NDEBIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NCREDIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row Class="justify-content-end mb-1">
+                        <R_ItemLayout col="4">
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NLDEBIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NLCREDIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row Class="justify-content-end">
+                        <R_ItemLayout col="4">
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NBDEBIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_NumericTextBox @bind-Value="@_viewModel.DataHeader.NBCREDIT_AMOUNT" Enabled="false" TextAlignment="R_eTextAlignment.Right" Decimals="2" Arrows="false"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+            
+            <R_ItemLayout col="5" Class="mb-1">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>Description</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="12">
+                        <R_TextBox @bind-Value="@_viewModel.DataHeader.CTRANS_DESC" Enabled="false"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>Transaction Type</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
+                        <R_TextBox @bind-Value="@_viewModel.DataHeader.CTRANSACTION_NAME" Enabled="false"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_GroupBox>
+    </R_StackLayout>
+
+    <R_StackLayout>
+        <R_GroupBox Title="Journal Detail">
+            <R_ItemLayout>
+                <R_Grid @ref="_gridRef"
+                        DataSource="_viewModel.DataList"
+                        Pageable="true"
+                        R_ConductorGridSource="_conductorRef"
+                        R_GridType="R_eGridType.Original"
+                        R_ServiceGetListRecord="GetListRecord"
+                        Width="1240px"
+                        Height="220px"
+                        AllowDeleteRow="false"
+                        AllowEditRow="false"
+                        AllowAddNewRow="false">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CGLACCOUNT_NO)" HeaderText="Account No." Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CGLACCOUNT_NAME)" HeaderText="Account Name" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CCENTER)" HeaderText="Center" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CBDCR)" HeaderText="D/C" Width="100px" TextAlignment="R_eTextAlignment.Right"/>
+                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NDEBIT)" HeaderText="Debit" Width="80px" TextAlignment="R_eTextAlignment.Right" Decimals="2"/>
+                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NCREDIT)" HeaderText="Credit" Width="80px" TextAlignment="R_eTextAlignment.Right" Decimals="2"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CDETAIL_DESC)" HeaderText="Description." Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CDOCUMENT_NO)" HeaderText="Voucher No." Width="100px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100JournalGridDTO.CDOCUMENT_DATE)" HeaderText="Voucher Date" Width="100px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NLDEBIT)" HeaderText="DB (Local)" Width="100px" TextAlignment="R_eTextAlignment.Right"/>
+                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NLCREDIT)" HeaderText="CR (Local)" Width="100px" TextAlignment="R_eTextAlignment.Right"/>
+                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NBDEBIT)" HeaderText="DB (Base)" Width="100px" TextAlignment="R_eTextAlignment.Right"/>
+                        <R_GridNumericColumn FieldName="@nameof(GLI00100JournalGridDTO.NBCREDIT)" HeaderText="CR (Base)" Width="100px" TextAlignment="R_eTextAlignment.Right"/>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout>
+                        <R_Button>Drill Down</R_Button>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Button OnClick="CloseEvent">Close</R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_GroupBox>
+    </R_StackLayout>
+
+</R_StackLayout>

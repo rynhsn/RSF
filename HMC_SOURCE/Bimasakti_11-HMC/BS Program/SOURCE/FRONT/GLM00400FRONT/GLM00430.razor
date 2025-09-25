@@ -1,0 +1,116 @@
+﻿@inherits R_Page
+@using GLM00400COMMON
+@inject R_ILocalizer<GLM00400FrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Style="width: 700px">
+
+    <R_StackLayout Row Class="mb-2">
+        <R_ItemLayout col="2">
+            <R_Label>@_localizer["_Alloc"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@AllocID"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="5">
+            <R_TextBox @bind-Value="@AllocName"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="5">
+            <R_GroupBox Title="@_localizer["_AvaiblAccount"]">
+                <R_Grid @ref="@_SourceAllocationAccount_gridRef"
+                        DataSource="@_SourceAllocationAccount_viewModel.SourceAllocationAccountGrid"
+                        R_GridType="@R_eGridType.Batch"
+                        R_ServiceGetListRecord="@Allocation_Account_Source_ServiceGetListRecord"
+                        R_ConductorGridSource="@_SourceAllocationAccount_conGrid"
+                        DragClueField="@nameof(GLM00430DTO.CGLACCOUNT_NAME)"
+                        DragDrop
+                        AllowAddNewRow="false"
+                        AllowEditRow
+                        AllowDeleteRow
+                        TargetGridDrop="@_AllocationCenterAccount_gridRef"
+                        Pageable="true"
+                        R_GridRowBeforeDrop="@R_Source_GridRowBeforeDrop"
+                        R_GridRowAfterDrop="@R_Source_GridRowAfterDrop"
+                        Height="250px">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="@_localizer["_AccountNo"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="CGLACCOUNT_NAME" HeaderText="@_localizer["_AccountName"]" Width="300px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="CBSIS_SHORT_NAME" HeaderText="@_localizer["_BsSi"]" Width="100px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="CDBCR" HeaderText="@_localizer["_DbCr"]" Width="100px"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_GroupBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            @*Spasing*@
+            <R_StackLayout Row><R_ItemLayout col="12"><R_Label>  </R_Label></R_ItemLayout></R_StackLayout>
+            <R_StackLayout Row><R_ItemLayout col="12"><R_Label>  </R_Label></R_ItemLayout></R_StackLayout>
+            <R_StackLayout Row><R_ItemLayout col="12"><R_Label>  </R_Label></R_ItemLayout></R_StackLayout>
+            <R_StackLayout Row><R_ItemLayout col="12"><R_Label>  </R_Label></R_ItemLayout></R_StackLayout>
+            <R_StackLayout Row><R_ItemLayout col="12"><R_Label>  </R_Label></R_ItemLayout></R_StackLayout>
+
+            <R_StackLayout Row Class="d-flex justify-content-center">
+                    <R_Button OnClick="@Allocation_BtnAllMoveRight"> >> </R_Button>
+            </R_StackLayout>
+            <R_StackLayout Row Class="d-flex justify-content-center">
+                    <R_Button OnClick="@Allocation_BtnMoveRight"> > </R_Button>
+            </R_StackLayout>
+            <R_StackLayout Row Class="d-flex justify-content-center">
+                    <R_Button OnClick="@Allocation_BtnAllMoveLeft"> @label1 </R_Button>
+            </R_StackLayout>
+            <R_StackLayout Row Class="d-flex justify-content-center">
+                    <R_Button OnClick="@Allocation_BtnMoveLeft"> @label2 </R_Button>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="5">
+            <R_GroupBox Title="@_localizer["_SelectAccount"]">
+                <R_Grid @ref="@_AllocationCenterAccount_gridRef"
+                        DataSource="@_SourceAllocationAccount_viewModel.AllocationAccountGrid"
+                        R_GridType="@R_eGridType.Batch"
+                        R_ServiceGetListRecord="@Allocation_Account_ServiceGetListRecord"
+                        R_ConductorGridSource="@_AllocationCenterAccount_conGrid"
+                        DragClueField="@nameof(GLM00430DTO.CGLACCOUNT_NAME)"
+                        DragDrop
+                        AllowAddNewRow="false"
+                        AllowEditRow
+                        AllowDeleteRow
+                        TargetGridDrop="@_SourceAllocationAccount_gridRef"
+                        Pageable="true"
+                        R_GridRowBeforeDrop="@R_Selected_GridRowBeforeDrop"
+                        R_GridRowAfterDrop="@R_Selected_GridRowAfterDrop"
+                        Height="250px">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="@_localizer["_AccountNo"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="CGLACCOUNT_NAME" HeaderText="@_localizer["_AccountName"]" Width="300px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="CBSIS_SHORT_NAME" HeaderText="@_localizer["_BsSi"]" Width="100px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="CDBCR" HeaderText="@_localizer["_DbCr"]" Width="100px"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_GroupBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="mt-2">
+        <R_ItemLayout col="4">
+            <R_Button Enabled="@HasMove" OnClick="@BtnProcess">@_localizer["_ProcessBtn"]</R_Button>
+            <R_Button OnClick="@BtnClose">@_localizer["_CloseBtn"]</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>
+<R_ConductorGrid @ref="@_SourceAllocationAccount_conGrid"
+                 R_ViewModel="@_SourceAllocationAccount_viewModel"
+                 R_IsHeader
+                 R_ServiceGetRecord="@R_ServiceGetRecord" />
+
+<R_ConductorGrid @ref="@_AllocationCenterAccount_conGrid"
+                 R_ViewModel="@_SourceAllocationAccount_viewModel"
+                 R_IsHeader
+                 R_ServiceGetRecord="@R_ServiceGetRecord"
+                 R_ServiceSaveBatch="@R_ServiceSaveBatch"/>

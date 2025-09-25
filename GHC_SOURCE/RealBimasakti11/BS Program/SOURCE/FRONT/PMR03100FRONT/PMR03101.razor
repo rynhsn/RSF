@@ -1,0 +1,35 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Save As", ResourceId = "_title_saveas")]
+
+<R_StackLayout Row>
+    <R_ItemLayout>
+        <R_Label>
+            @_localizer["_label_saveas"]
+        </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="@_reportName"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_ComboBox Data="@_listFileType"
+                    @bind-Value="@_reportType"
+                    ValueField="Value"
+                    TextField="Text"></R_ComboBox>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="@OnClickOk"
+                  Enabled="!string.IsNullOrWhiteSpace(_reportName)&&!string.IsNullOrWhiteSpace(_reportType)">
+            @_localizer["_btn_save"]
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="@OnClickCancel">
+            @_localizer["_btn_cancel"]
+        </R_Button>
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+
+
+

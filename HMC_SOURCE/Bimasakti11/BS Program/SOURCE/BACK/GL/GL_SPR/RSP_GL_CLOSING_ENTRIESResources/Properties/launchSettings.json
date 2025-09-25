@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GL_CLOSING_ENTRIESResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56908;http://localhost:56909"
+    }
+  }
+}

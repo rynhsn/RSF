@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+		<ProjectReference Include="..\..\..\COMMON\HD\HDM00500COMMON\HDM00500COMMON.csproj" />
+		<ProjectReference Include="..\HDM00500BackResources\HDM00500BackResources.csproj" />
+		<ProjectReference Include="..\HD_SPR\RSP_HD_MAINTAIN_CHECKLISTResources\RSP_HD_MAINTAIN_CHECKLISTResources.csproj" />
+		<ProjectReference Include="..\HD_SPR\RSP_HD_MAINTAIN_TASK_CHECKLISTResources\RSP_HD_MAINTAIN_TASK_CHECKLISTResources.csproj" />
+		<ProjectReference Include="..\HD_SPR\RSP_HD_UPLOAD_CHECKLISTResources\RSP_HD_UPLOAD_CHECKLISTResources.csproj" />
+		<ProjectReference Include="..\HD_SPR\RSP_HD_UPLOAD_TASK_CHECKLISTResources\RSP_HD_UPLOAD_TASK_CHECKLISTResources.csproj" />
+		<Reference Include="R_APIBackEnd">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CommonFrontBackAPI">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommonDTO">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommonDTO.dll</HintPath>
+		</Reference>
+		<Reference Include="R_OpenTelemetry">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

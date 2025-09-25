@@ -1,0 +1,7 @@
+1021 = Error process, please contact your administrator!
+1022 = Duplicate Usage!
+1023 = Detail Rate cannot be empty!
+
+
+
+

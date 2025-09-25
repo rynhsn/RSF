@@ -1,0 +1,7 @@
+0511 = Error process, please contact your administrator!
+0512 = Duplicate Checklist Code!
+0513 = Cannot Delete, Checklist already in used!
+0514 = Checklist Code cannot be empty!
+0515 = Checklist Name cannot be empty!
+
+

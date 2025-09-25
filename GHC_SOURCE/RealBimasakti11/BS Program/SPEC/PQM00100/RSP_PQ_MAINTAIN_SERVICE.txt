@@ -1,0 +1,3 @@
+0100=Error process, please contact your administrator!
+BEENUSED=This service has been used !
+EXIST=This service already exist !

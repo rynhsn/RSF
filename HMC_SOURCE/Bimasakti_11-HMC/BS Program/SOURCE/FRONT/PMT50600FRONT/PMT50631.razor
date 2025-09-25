@@ -1,0 +1,145 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Credit Note - Addition/Deduction")]
+@using PMT50600COMMON.DTOs.PMT50631
+@using PMT50600MODEL
+
+<R_StackLayout Style="width: 1250px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="7">
+            <R_StackLayout Row>
+                <R_ItemLayout col="11">
+                    <h3 class="mb-0">@loViewModel.loHeader.CPROPERTY_NAME</h3>
+                    <h6 class="fw-bolder">@loViewModel.loHeader.CDEPT_NAME</h6>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Reference"] : </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="9">
+                    <R_Label>@(loViewModel.loHeader.CREF_NO + " / " + loViewModel.loHeader.DREF_DATE.ToString("dd-MMM-yyyy"))</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_StackLayout Row>
+                <R_ItemLayout col="12" Class="justify-content-end">
+                    <h5>@(loViewModel.loHeader.CTENANT_NAME + " / " + loViewModel.loHeader.CCUSTOMER_TYPE_NAME + " " + _localizer["In"] + " " + loViewModel.loHeader.CCURRENCY_CODE)</h5>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_LocalCurrency"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:93px">
+                    <R_NumericTextBox @bind-Value="@loViewModel.loHeader.NLBASE_RATE"
+                                      R_ConductorGridSource="@_conductorRef"
+                                      Arrows="false"
+                                      Decimals="0"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_Label>@loViewModel.loHeader.CCURRENCY_CODE</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 10px">
+                    <R_Label>=</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:93px">
+                    <R_NumericTextBox @bind-Value="@loViewModel.loHeader.NLCURRENCY_RATE"
+                                      R_ConductorGridSource="@_conductorRef"
+                                      Arrows="false"
+                                      Decimals="6"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_Label>@loViewModel.loHeader.CLOCAL_CURRENCY_CODE</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_TaxRate"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:92px">
+                    <R_NumericTextBox @bind-Value="@loViewModel.loHeader.NTAX_BASE_RATE"
+                                      R_ConductorGridSource="@_conductorRef"
+                                      Arrows="false"
+                                      Decimals="0"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_Label>@loViewModel.loHeader.CLOCAL_CURRENCY_CODE</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 10px">
+                    <R_Label>=</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:92px">
+                    <R_NumericTextBox @bind-Value="@loViewModel.loHeader.NTAX_CURRENCY_RATE"
+                                      R_ConductorGridSource="@_conductorRef"
+                                      Arrows="false"
+                                      Decimals="6"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_Label>@loViewModel.loHeader.CLOCAL_CURRENCY_CODE</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Label FontColor="R_eFontColor.Primary" FontSize="16px">@lcLabel</R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_gridAdditionalRef"
+                    DataSource="@loViewModel.loAdditionalList"
+                    Pageable="true"
+                    R_ConductorGridSource="@_conductorRef"
+                    R_GridType="@R_eGridType.Original"
+                    AllowAddNewRow="true"
+                    AllowEditRow="true"
+                    AllowDeleteRow="true"
+                    Height="410px"
+                    R_CellLostFocused="@AdditionalOnLostFocused"
+                    R_After_Open_Grid_Lookup="@Grid_AfterlookUp"
+                    R_Before_Open_Grid_Lookup="@Grid_BeforelookUp"
+                    R_ServiceGetRecord="Additional_ServiceGetRecord"
+                    R_AfterSave="Additional_AfterSave"
+                    R_Validation="Additional_Validation"
+                    R_BeforeCancel="Additional_BeforeCancel"
+                    R_BeforeDelete="Additional_BeforeDelete"
+                    R_AfterDelete="Additional_AfterDelete"
+                    R_Display="Additional_Display"
+                    R_ServiceSave="Additional_ServiceSave"
+                    R_ServiceDelete="Additional_ServiceDelete"
+                    R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
+                <R_GridColumns>
+                    <R_GridLookupColumn FieldName=@nameof(PMT50631DTO.CADD_DEPT_CODE) HeaderText="@_localizer["_DeptCode"]" Width="125px" R_EnableAdd></R_GridLookupColumn>
+                    <R_GridTextColumn FieldName=@nameof(PMT50631DTO.CADD_DEPT_NAME) HeaderText="@_localizer["_DeptName"]" Width="250px"></R_GridTextColumn>
+                    <R_GridLookupColumn FieldName=@nameof(PMT50631DTO.CCHARGES_ID) HeaderText="@_localizer["_ChargeId"]" Width="125px" R_EnableAdd R_EnableEdit></R_GridLookupColumn>
+                    <R_GridTextColumn FieldName=@nameof(PMT50631DTO.CCHARGES_NAME) HeaderText="@_localizer["_ChargeName"]" Width="250px" ></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(PMT50631DTO.CCHARGES_DESC) HeaderText="@_localizer["_Description"]" Width="350px" R_EnableAdd R_EnableEdit></R_GridTextColumn>
+                    <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT50631DTO.NADDITION_AMOUNT) HeaderText="@_localizer["_Amount(Trx)"]" Width="150px" R_EnableAdd R_EnableEdit></R_GridNumericColumn>
+                    <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT50631DTO.NLADDITION_AMOUNT) HeaderText="@_localizer["_Amount(Local)"]" Width="150px"></R_GridNumericColumn>
+                    <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT50631DTO.NBADDITION_AMOUNT) HeaderText="@_localizer["_Amount(Base)"]" Width="150px"></R_GridNumericColumn>
+                    <R_GridTextColumn FieldName=@nameof(PMT50631DTO.CUPDATE_BY) HeaderText="@_localizer["_UpdatedBy"]" Width="150px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName=@nameof(PMT50631DTO.DUPDATE_DATE) HeaderText="@_localizer["_UpdatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                    <R_GridTextColumn FieldName=@nameof(PMT50631DTO.CCREATE_BY) HeaderText="@_localizer["_CreatedBy"]" Width="150px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName=@nameof(PMT50631DTO.DCREATE_DATE) HeaderText="@_localizer["_CreatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorRef"
+                 R_ViewModel="@loViewModel"
+                 R_IsHeader="true" />

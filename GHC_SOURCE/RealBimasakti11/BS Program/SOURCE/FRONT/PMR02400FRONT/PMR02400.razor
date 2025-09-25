@@ -1,0 +1,224 @@
+﻿@page "/PMR02400"
+@using PMR02400COMMON.DTO_s
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_pageTitle", Title ="Penalty")]
+
+
+<R_StackLayout Class="py-2">
+    @* property *@
+    <R_StackLayout Row Class="px-5">
+        <R_ItemLayout col="1">
+            <R_Label>
+                @_localizer["_label_Property"]
+            </R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_ComboBox Data="@_viewModel._properties"
+                        Value="@_viewModel._ReportParam.CPROPERTY_ID"
+                        ValueField="@nameof(PropertyDTO.CPROPERTY_ID)"
+                        TextField="@nameof(PropertyDTO.CPROPERTY_NAME)"
+                        ValueChanged="@((string value) => ComboboxPropertyValueChanged(value))"
+                        TabIndex="0">
+            </R_ComboBox>
+        </R_ItemLayout>
+        <R_ItemLayout class="col" />
+    </R_StackLayout>
+
+    @* hr line *@
+    <R_StackLayout Class="border-top ps-2 my-3"></R_StackLayout>
+
+    <R_StackLayout Row Class="px-5">
+
+        @* period *@
+        <R_ItemLayout col="4">
+
+            <R_StackLayout>
+                <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">@_localizer["_label_BasedOn"]</R_Label>
+            </R_StackLayout>
+
+            @* cutoff *@
+            <R_StackLayout>
+                <R_RadioGroup Data="@_viewModel._radioCutOffList"
+                              @bind-Value="@_viewModel._DateBasedOn"
+                              ValueField="@nameof(ReportTypeDTO.CTYPE_CODE)"
+                              TextField="@nameof(ReportTypeDTO.CTYPE_NAME)"
+                              Layout="R_eRadioGroupLayout.Vertical"
+                              LabelPosition="R_eRadioGroupLabelPosition.After">
+                </R_RadioGroup>
+            </R_StackLayout>
+            <R_StackLayout Class="ps-4">
+                <R_ItemLayout col="8">
+                    <R_DatePicker @bind-Value="@_viewModel._DateCutOff" Enabled="@(_viewModel._DateBasedOn=="I")"></R_DatePicker>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @* period *@
+            <R_StackLayout Class="mt-2">
+                <R_RadioGroup Data="@_viewModel._radioPeriodList"
+                              @bind-Value="@_viewModel._DateBasedOn"
+                              ValueField="@nameof(ReportTypeDTO.CTYPE_CODE)"
+                              TextField="@nameof(ReportTypeDTO.CTYPE_NAME)"
+                              Layout="R_eRadioGroupLayout.Vertical"
+                              LabelPosition="R_eRadioGroupLabelPosition.After">
+                </R_RadioGroup>
+            </R_StackLayout>
+            <R_StackLayout Row class="ps-4">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_label_From"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_NumericTextBox Arrows="true"
+                                      TValue="int"
+                                      @bind-Value="@_viewModel._YearFromPeriod"
+                                      Max="@_viewModel._PeriodYear.IMAX_YEAR"
+                                      Min="@_viewModel._PeriodYear.IMIN_YEAR"
+                                      ThousandSeparator="false"
+                                      Style="height:25px"
+                                      Enabled="@(_viewModel._DateBasedOn=="P")" />
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_ComboBox @bind-Value="@_viewModel._MonthFromPeriod"
+                                Data="_viewModel._monthList"
+                                ValueField="@nameof(MonthDTO.CTYPE_CODE)"
+                                TextField="@nameof(MonthDTO.CTYPE_NAME)"
+                                Enabled="@(_viewModel._DateBasedOn=="P")" />
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row class="ps-4">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_label_To"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_NumericTextBox Arrows="true"
+                                      TValue="int"
+                                      @bind-Value="@_viewModel._YearToPeriod"
+                                      Max="@_viewModel._PeriodYear.IMAX_YEAR"
+                                      Min="@_viewModel._PeriodYear.IMIN_YEAR"
+                                      ThousandSeparator="false"
+                                      Style="height:25px"
+                                      Enabled="@(_viewModel._DateBasedOn=="P")" />
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_ComboBox @bind-Value="@_viewModel._MonthToPeriod"
+                                Data="_viewModel._monthList"
+                                ValueField="@nameof(MonthDTO.CTYPE_CODE)"
+                                TextField="@nameof(MonthDTO.CTYPE_NAME)"
+                                TabIndex="12"
+                                Enabled="@(_viewModel._DateBasedOn=="P")" />
+                    <R_ItemLayout class="col"></R_ItemLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        @* vr line *@
+        <R_ItemLayout Class="border-start border-translucent ps-4" />
+
+        @* currency *@
+        <R_ItemLayout col="2">
+            <R_StackLayout>
+                <R_ItemLayout>
+                    <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">@_localizer["_label_ReportType"]</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout>
+                <R_ItemLayout>
+                    <R_RadioGroup Data="@_viewModel._radioCurrencyTypeList"
+                                  @bind-Value="@_viewModel._ReportParam.CCURRENCY_TYPE"
+                                  ValueField="@nameof(ReportTypeDTO.CTYPE_CODE)"
+                                  TextField="@nameof(ReportTypeDTO.CTYPE_NAME)"
+                                  Layout="R_eRadioGroupLayout.Vertical"
+                                  LabelPosition="R_eRadioGroupLabelPosition.After">
+                    </R_RadioGroup>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        @* vr line *@
+        <R_ItemLayout Class="border-start border-translucent ps-4" />
+
+        @* report type *@
+        <R_ItemLayout>
+            <R_StackLayout>
+                <R_ItemLayout>
+                    <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">@_localizer["_label_ReportType"]</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout>
+                <R_ItemLayout>
+                    <R_RadioGroup Data="@_viewModel._radioReportTypeList"
+                                  @bind-Value="@_viewModel._ReportParam.CREPORT_TYPE"
+                                  ValueField="@nameof(ReportTypeDTO.CTYPE_CODE)"
+                                  TextField="@nameof(ReportTypeDTO.CTYPE_NAME)"
+                                  Layout="R_eRadioGroupLayout.Vertical"
+                                  LabelPosition="R_eRadioGroupLabelPosition.After">
+                    </R_RadioGroup>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    @* hr line *@
+    <R_StackLayout Class="border-top ps-2 my-3"></R_StackLayout>
+
+    @* customer *@
+    <R_StackLayout Class="px-5">
+        <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">@_localizer["_label_Customer"]</R_Label>
+    </R_StackLayout>
+    <R_StackLayout Row Class="px-5">
+        <R_ItemLayout col="1">
+            <R_Label>@_localizer["_label_From"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="_viewModel._ReportParam.CFR_CUSTOMER"
+                       R_ConductorSource="_conductorRef"
+                       CharacterCasing="R_eCharacterCasing.Upper"
+                       MaxLength="int.MaxValue"
+                       OnLostFocus="OnLostFocus_LookupFromTenant" />
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Lookup R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupFromTenant" R_After_Open_Lookup="@AfterOpen_lookupFromTenantAsync">...</R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="_viewModel._ReportParam.CFROM_CUSTOMER_NAME"
+                       R_ConductorSource="_conductorRef"
+                       Enabled="false" />
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row Class="px-5">
+        <R_ItemLayout col="1">
+            <R_Label>@_localizer["_label_To"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="_viewModel._ReportParam.CTO_CUSTOMER"
+                       R_ConductorSource="_conductorRef"
+                       CharacterCasing="R_eCharacterCasing.Upper"
+                       MaxLength="int.MaxValue"
+                       OnLostFocus="OnLostFocus_LookupToTenant" />
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Lookup R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupToTenant" R_After_Open_Lookup="@AfterOpen_lookupToTenantAsync">...</R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="_viewModel._ReportParam.CTO_CUSTOMER_NAME"
+                       R_ConductorSource="_conductorRef"
+                       Enabled="false" />
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    @* hr line *@
+    <R_StackLayout Class="border-top ps-2 my-3"></R_StackLayout>
+
+    @* print *@
+    <R_StackLayout Row Class="px-5">
+        <R_ItemLayout>
+            <R_Button OnClick="@OnclickBtn_Print" TabIndex="27">@_localizer["_btn_Print"]</R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Popup R_Before_Open_Popup="@BeforePopup_SaveAs"
+                     R_After_Open_Popup="@AfterPopup_SaveAs"
+                     TabIndex="8">@_localizer["_btn_save"]</R_Popup>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>

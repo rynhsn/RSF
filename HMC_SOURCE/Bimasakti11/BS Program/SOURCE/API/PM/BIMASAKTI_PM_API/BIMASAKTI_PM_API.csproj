@@ -1,0 +1,169 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>BIMASAKTI_PM_API</AssemblyName>
+    <RootNamespace>BIMASAKTI_PM_API</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Template\Lease Handover.xlsx" />
+    <None Remove="Template\SLA Call Type.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Template\Lease Handover.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Template\SLA Call Type.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Reports\" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Global_PMSERVICES\Global_PMSERVICES.csproj" />
+		<ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_LMSERVICES\Lookup_PMSERVICES.csproj" />
+		<ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\PMF00100SERVICES\PMF00100SERVICES.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\LMT05500SERVICE\PMT05500SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\PMB04000SERVICE\PMB04000SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\PMM06000SERVICE\PMM06000SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\PMM09000SERVICE\PMM09000SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\PMM10000SERVICE\PMM10000SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\PMR00150SERVICE\PMR00150SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\PMT00100SERVICE\PMT00100SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\PMT01700SERVICE\PMT01700SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\PMT02000SERVICE\PMT02000SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\PMT04100SERVICE\PMT04100SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\PMT04200SERVICE\PMT04200SERVICE.csproj" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<Reference Include="FastReport.Compat">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\FastReport.Compat.dll</HintPath>
+		</Reference>
+		<Reference Include="FastReport.DataVisualization">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\FastReport.DataVisualization.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APIBackEnd">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommon">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommonDTO">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommonDTO.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APIStartUp">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIStartUp.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ApplicationBack">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ApplicationBack.dll</HintPath>
+		</Reference>
+		<Reference Include="R_AuthenticationBack">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_AuthenticationBack.dll</HintPath>
+		</Reference>
+		<Reference Include="R_AuthenticationEnumAndInterface">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_AuthenticationEnumAndInterface.dll</HintPath>
+		</Reference>
+		<Reference Include="R_AuthorizationBack">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_AuthorizationBack.dll</HintPath>
+		</Reference>
+		<Reference Include="R_AuthorizationBack.Abstract">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_AuthorizationBack.Abstract.dll</HintPath>
+		</Reference>
+		<Reference Include="R_Cache">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_Cache.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CommonFrontBackAPI">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ContextAPIMiddleware">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ContextAPIMiddleware.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ContextBackEnd">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ContextBackEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ContextEnumAndInterface">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ContextEnumAndInterface.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ControllerPlugins">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ControllerPlugins.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CrossPlatformSecurity">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CrossPlatformSecurity.dll</HintPath>
+		</Reference>
+		<Reference Include="R_EmailEngine">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_EmailEngine.dll</HintPath>
+		</Reference>
+		<Reference Include="R_EmailEngineCommon">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_EmailEngineCommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ExceptionAPIMiddleware">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ExceptionAPIMiddleware.dll</HintPath>
+		</Reference>
+		<Reference Include="R_HelperController">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_HelperController.dll</HintPath>
+		</Reference>
+		<Reference Include="R_LogHeaderMiddleware">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_LogHeaderMiddleware.dll</HintPath>
+		</Reference>
+		<Reference Include="R_MultiTenantDb">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_MultiTenantDb.dll</HintPath>
+		</Reference>
+		<Reference Include="R_MultiTenantDb.Abstract">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_MultiTenantDb.Abstract.dll</HintPath>
+		</Reference>
+		<Reference Include="R_OpenTelemetry">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll</HintPath>
+		</Reference>
+		<Reference Include="R_PluginsCommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_PluginsCommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_Processor">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_Processor.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ProcessorJob">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ProcessorJob.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ReportFastReportBack">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportFastReportBack.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ReportServerClient">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportServerClient.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ReportServerCommon">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportServerCommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_Security">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_Security.dll</HintPath>
+		</Reference>
+		<Reference Include="R_Storage">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_Storage.dll</HintPath>
+		</Reference>
+		<Reference Include="R_StorageCommon">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_StorageCommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ValidationAPIMiddleware">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ValidationAPIMiddleware.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Reports\PMB04000.frx">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reports\PMT01700Event.frx">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+</Project>

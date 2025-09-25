@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GL_UPDATE_JOURNAL_STATUSResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:54556;http://localhost:54557"
+    }
+  }
+}

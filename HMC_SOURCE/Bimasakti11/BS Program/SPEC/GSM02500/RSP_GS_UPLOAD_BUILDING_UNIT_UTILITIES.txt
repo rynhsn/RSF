@@ -1,0 +1,3 @@
+INVALID_UTILITIES_TYPE	= Invalid Utilities Type
+INVALID_ACTIVE_FLAG	= Active Flag is not valid [1/0]
+EMPTY_NON_ACTIVE_DATE	= If Active Flag = 0, Non Active Date can not be empty

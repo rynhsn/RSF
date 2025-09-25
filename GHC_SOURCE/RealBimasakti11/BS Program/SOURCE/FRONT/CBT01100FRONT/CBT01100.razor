@@ -1,0 +1,151 @@
+﻿@page "/CBT01100"
+@inherits R_Page
+@using CBT01100COMMON;
+@using CBT01100FrontResources;
+@using CBT01100COMMON.DTO_s;
+@attribute [R_Page(Title = "Transaction List")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_PredefinedDock Title="Transaction Entry" R_InstantiateDock="@Predef_JournalEntry" R_AfterOpenPredefinedDock="@AfterPredef_JournalEntry"></R_PredefinedDock>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Departement"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="_TransactionListViewModel.JournalParam.CDEPT_CODE"
+                   R_ConductorSource="_conductorRef"
+                   Enabled="true"
+                   OnLostFocus="OnLostFocus_LookupDept"
+                   MaxLength="20" />
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupDept" R_After_Open_Lookup="@AfterOpen_lookupDept">
+            ...
+        </R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="_TransactionListViewModel.JournalParam.CDEPT_NAME"
+                   R_ConductorSource="_conductorRef"
+                   Enabled="false" />
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_journalPeriod"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_NumericTextBox @bind-Value="_TransactionListViewModel.JournalPeriodYear"
+                          TValue="int"
+                          Min=_TransactionListViewModel.VAR_GSM_PERIOD.IMIN_YEAR
+                          Max=_TransactionListViewModel.VAR_GSM_PERIOD.IMAX_YEAR
+                          ThousandSeparator="false"
+                          Arrows="true" />
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_ComboBox Data="@_TransactionListViewModel.PeriodMonthList"
+                    @bind-Value="_TransactionListViewModel.JournalPeriodMonth"
+                    ValueField="Key"
+                    TextField="Value" />
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1" Class="text-center">
+        <R_Label>Status</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_ComboBox Data="@_TransactionListViewModel.VAR_GSB_CODE_LIST"
+                    @bind-Value="_TransactionListViewModel.JournalParam.CSTATUS"
+                    ValueField="@nameof(CBT01100GSGSBCodeDTO.CCODE)"
+                    TextField="@nameof(CBT01100GSGSBCodeDTO.CNAME)">
+        </R_ComboBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="_TransactionListViewModel.JournalParam.CSEARCH_TEXT" MaxLength="20" />
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="OnclickSearch">Search</R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="OnClickShowAll">Show All</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_Grid @ref="_gridRef"
+            DataSource="@_TransactionListViewModel.JournalGrid"
+            R_ConductorSource="_conductorRef"
+            R_ServiceGetListRecord="JournalGrid_ServiceGetListRecord"
+            R_GridType="R_eGridType.Navigator"
+            Pageable
+            AllowAddNewRow="false"
+            AllowDeleteRow="false"
+            AllowEditRow="false"
+            Height="270px">
+        <R_GridColumns>
+            <R_GridTextColumn Width="146px" FieldName="@nameof(CBT01100DTO.CREF_NO)" HeaderText="@_localizer["_ReferenceNo"]"></R_GridTextColumn>
+            <R_GridDatePickerColumn Width="140px" FieldName="@nameof(CBT01100DTO.DREF_DATE)" HeaderText="@_localizer["_ReferenceDate"]"></R_GridDatePickerColumn>
+            <R_GridTextColumn Width="132px" FieldName="@nameof(CBT01100DTO.CDOC_NO)" HeaderText="@_localizer["_DocumentNo"]"></R_GridTextColumn>`
+            <R_GridTextColumn Width="300px" FieldName="@nameof(CBT01100DTO.CTRANS_DESC)" HeaderText="@_localizer["_Description"]"></R_GridTextColumn>
+            <R_GridTextColumn Width="100px" FieldName="@nameof(CBT01100DTO.CCURRENCY_CODE)" HeaderText="@_localizer["_Currency"]"></R_GridTextColumn>
+            <R_GridNumericColumn Width="97px" FieldName="@nameof(CBT01100DTO.NTRANS_AMOUNT)" TValue="decimal" HeaderText="@_localizer["_Amount"]"></R_GridNumericColumn>
+            <R_GridTextColumn Width="86px" FieldName="@nameof(CBT01100DTO.CSTATUS_NAME)" HeaderText="@_localizer["_Status"]"></R_GridTextColumn>
+            <R_GridTextColumn Width="150px" FieldName="@nameof(CBT01100DTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]"></R_GridTextColumn>
+            <R_GridTextColumn Width="150px" FieldName="@nameof(CBT01100DTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]"></R_GridTextColumn>
+            <R_GridTextColumn Width="150px" FieldName="@nameof(CBT01100DTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]"></R_GridTextColumn>
+            <R_GridTextColumn Width="150px" FieldName="@nameof(CBT01100DTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]"></R_GridTextColumn>
+
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_Grid @ref="_gridDetailRef"
+            DataSource="@_TransactionEntryViewModel.JournalDetailGrid"
+            Pageable
+            R_ServiceGetListRecord="JournalGridDetail_ServiceGetListRecord"
+            Height="270px"
+            R_GridType="R_eGridType.Navigator">
+        <R_GridColumns>
+            <R_GridNumericColumn Width="67px" FieldName="@nameof(CBT01101DTO.INO)" TValue="int" HeaderText="@_localizer["_No"]"></R_GridNumericColumn>
+            <R_GridTextColumn Width="120px" FieldName="@nameof(CBT01101DTO.CGLACCOUNT_NO)" HeaderText="@_localizer["_AccountNo"]"></R_GridTextColumn>
+            <R_GridTextColumn Width="165px" FieldName="@nameof(CBT01101DTO.CGLACCOUNT_NAME)" HeaderText="@_localizer["_AccountName"]"></R_GridTextColumn>
+            <R_GridTextColumn Width="120px" FieldName="@nameof(CBT01101DTO.CCENTER_NAME)" HeaderText="@_localizer["_Center"]"></R_GridTextColumn>
+            <R_GridTextColumn Width="200px" FieldName="@nameof(CBT01101DTO.CCASH_FLOW_CODE)" HeaderText="@_localizer["_CashFlowCode"]"></R_GridTextColumn>
+            <R_GridTextColumn Width="250px" FieldName="@nameof(CBT01101DTO.CCASH_FLOW_NAME)" HeaderText="@_localizer["_CashFlowName"]"></R_GridTextColumn>
+            <R_GridNumericColumn Width="92px" FieldName="@nameof(CBT01101DTO.NDEBIT)" TValue="decimal" HeaderText="@_localizer["_Debit"]"></R_GridNumericColumn>
+            <R_GridNumericColumn Width="92px" FieldName="@nameof(CBT01101DTO.NCREDIT)" TValue="decimal" HeaderText="@_localizer["_Credit"]"></R_GridNumericColumn>
+            <R_GridTextColumn Width="300px" FieldName="@nameof(CBT01101DTO.CDETAIL_DESC)" HeaderText="@_localizer["_Description"]"></R_GridTextColumn>
+            <R_GridTextColumn Width="120px" FieldName="@nameof(CBT01101DTO.CDOCUMENT_NO)" HeaderText="@_localizer["_VoucherNo"]"></R_GridTextColumn>
+            <R_GridDatePickerColumn Width="140px" FieldName="@nameof(CBT01101DTO.DDOCUMENT_DATE)" HeaderText="@_localizer["_VoucherDate"]"></R_GridDatePickerColumn>
+            <R_GridNumericColumn Width="110px" FieldName="@nameof(CBT01101DTO.NLDEBIT)" TValue="decimal" HeaderText="@_localizer["_DbLocal"]"></R_GridNumericColumn>
+            <R_GridNumericColumn Width="110px" FieldName="@nameof(CBT01101DTO.NLCREDIT)" TValue="decimal" HeaderText="@_localizer["_CrLocal"]"></R_GridNumericColumn>
+            <R_GridNumericColumn Width="110px" FieldName="@nameof(CBT01101DTO.NBDEBIT)" TValue="decimal" HeaderText="@_localizer["_DbBase"]"></R_GridNumericColumn>
+            <R_GridNumericColumn Width="110px" FieldName="@nameof(CBT01101DTO.NBCREDIT)" TValue="decimal" HeaderText="@_localizer["_CrBase"]"></R_GridNumericColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+<R_StackLayout Row>
+    <R_ItemLayout>
+        <R_Button Enabled="@(_TransactionListViewModel.Data.CSTATUS == "30"&& _TransactionListViewModel.VAR_GSM_TRANSACTION_CODE.LAPPROVAL_FLAG == true)"
+                  OnClick="ApproveJournalProcess">
+            @_localizer["_Approve"]
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button Enabled="@(
+                            (_TransactionListViewModel.Data.CSTATUS == "30" || _TransactionListViewModel.Data.CSTATUS == "80") &&
+                            (int.Parse(_TransactionListViewModel.JournalPeriodYear + _TransactionListViewModel.JournalPeriodMonth) >= int.Parse(_TransactionListViewModel.VAR_CB_SYSTEM_PARAM.CSOFT_PERIOD)) )"
+                  OnClick="CommitJournalProcess">
+            @_TransactionListViewModel.CommitLabel
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_Conductor @ref="_conductorRef"
+             R_ViewModel="_TransactionListViewModel"
+             R_IsHeader
+             R_ServiceGetRecord="JournalGrid_ServiceGetRecord"
+             R_Display="JournalGrid_Display" />
+<R_Conductor @ref="_conductorDetailRef"
+             R_ConductorParent="_conductorRef"
+             R_ViewModel=" _TransactionEntryViewModel" />

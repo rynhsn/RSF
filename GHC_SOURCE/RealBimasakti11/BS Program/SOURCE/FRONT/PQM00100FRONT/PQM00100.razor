@@ -1,0 +1,54 @@
+@page "/PQM00100"
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_pageTitle_param")]
+
+<R_StackLayout>
+    <R_Grid DataSource="@_viewModelService.ServiceList"
+            @ref="@_gridService"
+            Pageable
+            @bind-PageSize="@_pageIndexService"
+            R_GridType="@R_eGridType.Original"
+            R_ConductorGridSource="@_conService"
+            AllowAddNewRow
+            AllowEditRow
+            AllowDeleteRow
+            R_ServiceGetListRecord="@ServiceGrid_ServiceGetListRecordAsync"
+            Height="@_gridHeightService"
+            R_ServiceGetRecord="@ServiceGrid_ServiceGetRecordAsync"
+            R_Display="@ServiceGrid_Display"
+            R_Validation="@ServiceGrid_ValidationAsync"
+            R_AfterAdd="@ServiceGrid_AfterAdd"
+            R_ServiceSave="@ServiceGrid_ServiceSaveAsync"
+            R_Saving="@ServiceGrid_Saving"
+            R_ServiceDelete="@ServiceGrid_ServiceDeleteAsync">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="@nameof(ServiceGridDTO.CSERVICE_ID)"
+                              HeaderText="@_localizer["_col_serviceid"]"
+                              Width="200px"
+                              R_EnableAdd
+                              R_EnableEdit
+                              MaxLength="30"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(ServiceGridDTO.CSERVICE_NAME)"
+                              HeaderText="@_localizer["_col_servicename"]"
+                              Width="200px"
+                              R_EnableAdd
+                              R_EnableEdit
+                              MaxLength="30"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(ServiceGridDTO.CUPDATE_BY)"
+                              HeaderText="@_localizer["_col_updatedby"]"
+                              Width="120px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(ServiceGridDTO.DUPDATE_DATE)"
+                              HeaderText="@_localizer["_col_updateddate"]"
+                              Width="130px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(ServiceGridDTO.CCREATE_BY)"
+                              HeaderText="@_localizer["_col_createdby"]"
+                              Width="120px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(ServiceGridDTO.DCREATE_DATE)"
+                              HeaderText="@_localizer["_col_createddate"]"
+                              Width="130px"></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conService"
+                 R_IsHeader />

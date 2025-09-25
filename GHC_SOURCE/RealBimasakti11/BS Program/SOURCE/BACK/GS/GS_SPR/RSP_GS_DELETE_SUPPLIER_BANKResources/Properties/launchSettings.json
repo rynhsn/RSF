@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GS_DELETE_SUPPLIER_BANKResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57537;http://localhost:57538"
+    }
+  }
+}

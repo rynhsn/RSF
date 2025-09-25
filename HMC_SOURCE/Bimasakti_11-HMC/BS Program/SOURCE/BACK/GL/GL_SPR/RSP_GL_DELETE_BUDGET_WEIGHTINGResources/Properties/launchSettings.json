@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GL_DELETE_BUDGET_WEIGHTINGResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56910;http://localhost:56911"
+    }
+  }
+}

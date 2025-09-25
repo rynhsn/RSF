@@ -1,0 +1,601 @@
+@inherits R_Page;
+
+@* Header *@
+<R_StackLayout>
+
+    <!-- Offer No -->
+    <R_StackLayout Row>
+
+        <R_StackLayout Row Class="col-5">
+
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_OfferNo"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="8">
+                <R_TextBox @bind-Value="@_viewModel.oHeaderEntity.CREF_NO"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="col-5">
+
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_Tenant"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.oHeaderEntity.CTENANT_ID"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="@_viewModel.oHeaderEntity.CTENANT_NAME"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+    </R_StackLayout>
+
+    <!-- Total Net Size -->
+    <R_StackLayout Row>
+
+        <R_StackLayout Row Class="col-5">
+
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_TotalNetSize"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.oHeaderEntity.NTOTAL_NET_AREA"
+                                  Enabled="false"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="col-5">
+
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_Building"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.oHeaderEntity.CBUILDING_ID"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="@_viewModel.oHeaderEntity.CBUILDING_NAME"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+    </R_StackLayout>
+
+    <!-- Tenure -->
+    <R_StackLayout Row>
+
+        <R_StackLayout Row Class="col-5">
+
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_Tenure"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="8" Class="d-flex">
+
+                <R_ItemLayout col="4" Class="d-flex">
+
+                    <R_ItemLayout col="6">
+                        <R_NumericTextBox @bind-Value="@_viewModel.oHeaderEntity.IYEARS"
+                                          Enabled="false"
+                                          Arrows="false" />
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="6">
+                        <R_Label>
+                            @_localizer["_Year"]
+                        </R_Label>
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+
+                <R_ItemLayout col="4" Class="d-flex">
+
+                    <R_ItemLayout col="6">
+                        <R_NumericTextBox @bind-Value="@_viewModel.oHeaderEntity.IMONTHS"
+                                          Enabled="false"
+                                          Arrows="false" />
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="6">
+                        <R_Label>
+                            @_localizer["_Month"]
+                        </R_Label>
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+
+                <R_ItemLayout col="4" Class="d-flex">
+
+                    <R_ItemLayout col="6">
+                        <R_NumericTextBox @bind-Value="@_viewModel.oHeaderEntity.IDAYS"
+                                          Enabled="false"
+                                          Arrows="false" />
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="6">
+                        <R_Label>
+                            @_localizer["_Day"]
+                        </R_Label>
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+    </R_StackLayout>
+
+</R_StackLayout>
+
+
+@* Tab Unit & Utilities *@
+
+<R_TabStrip @ref="@_tabStripRef"
+            OnActiveTabIndexChanged="OnActiveTabIndexChanged"
+            OnActiveTabIndexChanging="OnActiveTabIndexChanging">
+
+
+    <R_TabStripTab Title="@_localizer["_UnitAndUtilities"]" Id="UnitAndUtilities" Enabled="_viewModel.lControlTabUnitAndUtilities">
+
+        <!-- Unit -->
+        <R_Grid @ref="@_gridUnitInfo"
+                DataSource="_viewModel.oListUnitInfo"
+                R_ConductorGridSource="@_conductorUnitInfo"
+                R_GridType="@R_eGridType.Original"
+                R_ServiceGetListRecord="@R_ServiceGetListUnitListRecord"
+                R_Display="@R_DisplayUnitListGetRecord"
+                R_ServiceGetRecord="@ServiceGetRecord"
+                R_ServiceDelete="@ServiceDelete"
+                R_ServiceSave="@ServiceSave"
+                R_Validation="@R_Validation"
+                R_AfterSave="@R_AfterSave"
+                R_AfterDelete="@AfterDelete"
+                Pageable
+                Height="200px"
+                PageSize="10"
+                R_Before_Open_Grid_Lookup="Before_Open_LookupOtherUnitId"
+                R_After_Open_Grid_Lookup="After_Open_LookupOtherUnitId"
+                R_CellLostFocused="@R_CellLostFocusOtherUnitId"
+                AllowDeleteRow
+                AllowAddNewRow
+                AllowEditRow="false">
+
+            <R_GridColumns>
+
+                <R_GridLookupColumn Width="150px"
+                                    FieldName="@nameof(BaseAOCResponseAgreementUnitInfoListDTO.COTHER_UNIT_ID)"
+                                    Name="@nameof(BaseAOCResponseAgreementUnitInfoListDTO.COTHER_UNIT_ID)"
+                                    HeaderText="@_localizer["_OtherUnitId"]"
+                                    MaxLength="20"
+                                    R_EnableAdd
+                                    R_EnableEdit="false" />
+
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(BaseAOCResponseAgreementUnitInfoListDTO.COTHER_UNIT_NAME)"
+                                  HeaderText="@_localizer["_OtherUnitName"]"
+                                  R_EnableEdit="false"
+                                  R_EnableAdd="false" />
+
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(BaseAOCResponseAgreementUnitInfoListDTO.CFLOOR_ID)"
+                                  HeaderText="@_localizer["_Floor"]" />
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(BaseAOCResponseAgreementUnitInfoListDTO.CLOCATION)"
+                                  HeaderText="@_localizer["_Location"]" />
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(BaseAOCResponseAgreementUnitInfoListDTO.COTHER_UNIT_TYPE_NAME)"
+                                  HeaderText="@_localizer["_OtherUnitType"]"
+                                  R_EnableEdit="false"
+                                  R_EnableAdd="false" />
+
+
+                <R_GridNumericColumn Width="150px"
+                                     FieldName="@nameof(BaseAOCResponseAgreementUnitInfoListDTO.NGROSS_AREA_SIZE)"
+                                     HeaderText="@_localizer["_Gross"]"
+                                     Max="100000000"
+                                     R_EnableEdit="false"
+                                     R_EnableAdd="false" />
+
+                <R_GridNumericColumn Width="150px"
+                                     FieldName="@nameof(BaseAOCResponseAgreementUnitInfoListDTO.NNET_AREA_SIZE)"
+                                     HeaderText="@_localizer["_Net"]"
+                                     Max="100000000"
+                                     R_EnableEdit="false"
+                                     R_EnableAdd="false" />
+
+                <R_GridNumericColumn Width="150px"
+                                     FieldName="@nameof(BaseAOCResponseAgreementUnitInfoListDTO.NACTUAL_AREA_SIZE)"
+                                     HeaderText="@_localizer["_Actual"]"
+                                     R_EnableEdit="false"
+                                     R_EnableAdd="false" />
+
+                <R_GridTextColumn FieldName="@nameof(BaseAOCResponseAgreementUnitInfoListDTO.CUPDATE_BY)"
+                                  HeaderText="@_localizer["_UpdatedBy"]"
+                                  Width="125px" />
+
+                <R_GridDateTimePickerColumn FieldName="@nameof(BaseAOCResponseAgreementUnitInfoListDTO.DUPDATE_DATE)"
+                                            HeaderText="@_localizer["_UpdatedDate"]"
+                                            Width="225px" />
+
+                <R_GridTextColumn FieldName="@nameof(BaseAOCResponseAgreementUnitInfoListDTO.CCREATE_BY)"
+                                  HeaderText="@_localizer["_CreatedBy"]"
+                                  Width="125px" />
+
+                <R_GridDateTimePickerColumn FieldName="@nameof(BaseAOCResponseAgreementUnitInfoListDTO.DCREATE_DATE)"
+                                            HeaderText="@_localizer["_CreatedDate"]"
+                                            Width="225px" />
+
+
+            </R_GridColumns>
+
+        </R_Grid>
+
+        <!-- Utilities -->
+        <R_Grid @ref="@_gridUtilities"
+                DataSource="_viewModelUtilities.oListUtilities"
+                R_ConductorSource="@_conductorUtilities"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="@R_ServiceGetListUtilitiesListRecord"
+                Pageable
+                Height="170px"
+                PageSize="10"
+                AllowDeleteRow
+                AllowAddNewRow
+                AllowEditRow>
+
+            <R_GridColumns>
+
+                <R_GridTextColumn FieldName="@nameof(BaseAOCResponseAgreementUtilitiesListDTO.CCHARGES_TYPE)"
+                                  HeaderText="@_localizer["_UtilityType"]"
+                                  R_EnableAdd
+                                  R_EnableEdit="false"
+                                  Width="150px" />
+
+                <R_GridTextColumn FieldName="@nameof(BaseAOCResponseAgreementUtilitiesListDTO.CMETER_NO)"
+                                  HeaderText="@_localizer["_MeterNo"]"
+                                  R_EnableAdd
+                                  R_EnableEdit
+                                  Width="150px" />
+
+                <R_GridNumericColumn Width="150px"
+                                     FieldName="@nameof(BaseAOCResponseAgreementUtilitiesListDTO.NCAPACITY)"
+                                     HeaderText="@_localizer["_Capacity"]"
+                                     R_EnableAdd="false"
+                                     R_EnableEdit="false" />
+
+                <R_GridNumericColumn Width="150px"
+                                     FieldName="@nameof(BaseAOCResponseAgreementUtilitiesListDTO.NCALCULATION_FACTOR)"
+                                     HeaderText="@_localizer["_CF"]"
+                                     R_EnableAdd="false"
+                                     R_EnableEdit="false" />
+
+                <R_GridLookupColumn Width="150px"
+                                    FieldName="@nameof(BaseAOCResponseAgreementUtilitiesListDTO.CCHARGES_ID)"
+                                    HeaderText="@_localizer["_ChargeId"]"
+                                    MaxLength="20"
+                                    R_EnableAdd
+                                    R_EnableEdit="false" />
+
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(BaseAOCResponseAgreementUtilitiesListDTO.CCHARGES_NAME)"
+                                  HeaderText="@_localizer["_ChargeName"]"
+                                  R_EnableAdd="false"
+                                  R_EnableEdit="false" />
+
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(BaseAOCResponseAgreementUtilitiesListDTO.CSTATUS_DESCR)"
+                                  HeaderText="@_localizer["_Status"]"
+                                  Enabled="@false" />
+
+                <R_GridTextColumn FieldName="@nameof(BaseAOCResponseAgreementUtilitiesListDTO.CUPDATE_BY)"
+                                  HeaderText="@_localizer["_UpdatedBy"]"
+                                  Width="125px" />
+
+                <R_GridDateTimePickerColumn FieldName="@nameof(BaseAOCResponseAgreementUtilitiesListDTO.DUPDATE_DATE)"
+                                            HeaderText="@_localizer["_UpdatedDate"]"
+                                            Width="225px" />
+
+                <R_GridTextColumn FieldName="@nameof(BaseAOCResponseAgreementUtilitiesListDTO.CCREATE_BY)"
+                                  HeaderText="@_localizer["_CreatedBy"]"
+                                  Width="125px" />
+
+                <R_GridDateTimePickerColumn FieldName="@nameof(BaseAOCResponseAgreementUtilitiesListDTO.DCREATE_DATE)"
+                                            HeaderText="@_localizer["_CreatedDate"]"
+                                            Width="225px" />
+
+            </R_GridColumns>
+
+        </R_Grid>
+
+        @*FORM DETAIL *@
+        <R_StackLayout>
+
+            @*ROW1*@
+            <R_ItemLayout col="12" Class="d-flex">
+
+                <R_StackLayout Class="col-7" Row>
+
+                    <R_ItemLayout col="3">
+                        <R_Label>
+                            @_localizer["_UtilityType"]*
+                        </R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="5" Class="pe-5">
+                        <R_DropDownList Data="@_viewModelUtilities.oComboBoxDataCCHARGES_TYPE"
+                                        Value="@_viewModelUtilities.Data.CCHARGES_TYPE"
+                                        ValueField="@nameof(BaseAOCResponseComboBoxDTO.CCODE)"
+                                        TextField="@nameof(BaseAOCResponseComboBoxDTO.CDESCRIPTION)"
+                                        R_ConductorSource="@_conductorUtilities"
+                                        ValueChanged="@((string value) => OnChangedCCHARGES_TYPE(value))"
+                                        R_EnableAdd
+                                        R_EnableEdit="false">
+                        </R_DropDownList>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3" Class="d-flex">
+                        <R_ItemLayout col="4">
+                            <R_Label>
+                                @_localizer["_Status"]
+                            </R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout col="8">
+                            <R_TextBox @bind-Value="@_viewModelUtilities.Data.CSTATUS_DESCR"
+                                       R_ConductorSource="@_conductorUtilities"
+                                       OnLostFocus="@OnLostFocusChargeID"
+                                       MaxLength="20"
+                                       Enabled="@false" />
+                        </R_ItemLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_ItemLayout col="5">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="2">
+                            <R_Label>
+                                @_localizer["_Charge"]*
+                            </R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout col="3">
+                            <R_TextBox @bind-Value="@_viewModelUtilities.Data.CCHARGES_ID"
+                                       R_ConductorSource="@_conductorUtilities"
+                                       OnLostFocus="@OnLostFocusChargeID"
+                                       MaxLength="20"
+                                       R_EnableAdd
+                                       R_EnableEdit="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout col="6" Class="d-flex">
+
+                            <R_ItemLayout col="2" Class="d-flex justify-content-center">
+                                <R_Lookup @ref="@R_Lookup_Charge"
+                                          R_Before_Open_Lookup="@BeforeOpenLookUp_ChargeID"
+                                          R_After_Open_Lookup="@AfterOpenLookUp_ChargeID"
+                                          R_ConductorSource="@_conductorUtilities"
+                                          R_EnableAdd
+                                          R_EnableEdit="false">
+                                    ...
+                                </R_Lookup>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout col="9">
+                                <R_TextBox @bind-Value="@_viewModelUtilities.Data.CCHARGES_NAME"
+                                           R_ConductorSource="@_conductorUtilities"
+                                           Enabled="false">
+                                </R_TextBox>
+                            </R_ItemLayout>
+                        </R_ItemLayout>
+
+                    </R_StackLayout>
+
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+            @*ROW2*@
+            <R_ItemLayout col="12" Class="d-flex">
+
+                <R_StackLayout Class="col-7" Row>
+
+                    <R_ItemLayout col="3">
+                        <R_Label>
+                            @_localizer["_MeterNo"]*
+                        </R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="3">
+
+                        <R_DropDownList Data="@_viewModelUtilities.oComboBoxDataCMETER_NO"
+                                        Value="@_viewModelUtilities.Data.CMETER_NO"
+                                        PopupMaxHeight="100px"
+                                        ValueField="@nameof(BaseAOCResponseUtilitiesCMeterNoDTO.CMETER_NO)"
+                                        TextField="@nameof(BaseAOCResponseUtilitiesCMeterNoDTO.CMETER_NO)"
+                                        ValueChanged="@((string value) => OnChangedCMETER_NO(value))"
+                                        R_ConductorSource="@_conductorUtilities"
+                                        Enabled="@(_lControlCMeterNo && !_oEventCallBack.LCRUD_MODE)"
+                                            R_EnableAdd
+                                            R_EnableEdit />
+
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="5" Class="d-flex">
+
+                        <!-- Capacity-->
+                        <R_StackLayout Row Class="col-6">
+
+                            <R_ItemLayout col="6">
+
+                                <R_Label>
+                                    @_localizer["_Capacity"]
+                                </R_Label>
+
+                            </R_ItemLayout>
+
+                            <R_ItemLayout col="8">
+                                <R_NumericTextBox @bind-Value="@_viewModelUtilities.Data.NCAPACITY"
+                                                  R_ConductorSource="@_conductorUtilities"
+                                                  Arrows="false"
+                                                  Enabled="false">
+                                </R_NumericTextBox>
+                            </R_ItemLayout>
+
+                        </R_StackLayout>
+
+                        <!-- CF -->
+                        <R_StackLayout Row Class="col-6">
+
+                            <R_ItemLayout col="4" Class="text-end">
+                                <R_Label>
+                                    @_localizer["_CF"]
+                                </R_Label>
+                            </R_ItemLayout>
+
+
+                            <R_ItemLayout col="8" Class="pe-2">
+                                <R_NumericTextBox @bind-Value="@_viewModelUtilities.Data.NCALCULATION_FACTOR"
+                                                  R_ConductorSource="@_conductorUtilities"
+                                                  Arrows="false"
+                                                  Enabled="false">
+                                </R_NumericTextBox>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                @*TAX ID*@
+                <R_ItemLayout col="5">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="2">
+                            <R_Label>
+                                @_localizer["_TaxId"]
+                            </R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_TextBox @bind-Value="@_viewModelUtilities.Data.CTAX_ID"
+                                       R_ConductorSource="@_conductorUtilities"
+                                       OnLostFocus="@OnLostFocusTax"
+                                       MaxLength="20"
+                                       Enabled="@(_viewModelUtilities.LTAXABLE && !_oEventCallBack.LCRUD_MODE)"
+                                       R_EnableAdd
+                                       R_EnableEdit="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="6" Class="d-flex">
+
+                            <R_ItemLayout col="2" Class="d-flex justify-content-center">
+                                <R_Lookup @ref="@R_Lookup_Tax"
+                                          R_Before_Open_Lookup="@BeforeOpenLookUp_Tax"
+                                          R_After_Open_Lookup="@AfterOpenLookUp_Tax"
+                                          R_ConductorSource="@_conductorUtilities"
+                                          Enabled="@(_viewModelUtilities.LTAXABLE && !_oEventCallBack.LCRUD_MODE)"
+                                          R_EnableAdd
+                                          R_EnableEdit="false">
+                                    ...
+                                </R_Lookup>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout col="9">
+                                <R_TextBox @bind-Value="@_viewModelUtilities.Data.CTAX_NAME"
+                                           R_ConductorSource="@_conductorUtilities"
+                                           Enabled="false">
+                                </R_TextBox>
+                            </R_ItemLayout>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+        <R_StackLayout>
+
+            <R_StackLayout Row Spacing="3" Class="d-flex justify-content-between">
+
+                <R_StackLayout Row>
+
+                    <R_ItemLayout>
+                        <R_AddButton R_Conductor="@_conductorUtilities"></R_AddButton>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout>
+                        <R_EditButton R_Conductor="@_conductorUtilities"></R_EditButton>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout>
+                        <R_DeleteButton R_Conductor="@_conductorUtilities"></R_DeleteButton>
+                    </R_ItemLayout>
+
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout>
+                        <R_CancelButton R_Conductor="@_conductorUtilities"></R_CancelButton>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_SaveButton R_Conductor="@_conductorUtilities"></R_SaveButton>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+            </R_StackLayout>
+
+        </R_StackLayout>
+
+    </R_TabStripTab>
+
+    <!-- Charges -->
+    <R_TabStripTab Title="@_localizer["_Charges"]" Id="Utilities" Enabled="_viewModel.lControlTabCharges">
+        <R_TabPage R_Before_Open_TabPage="General_Before_Open_Charges_TabPage"
+                   R_TabEventCallback="@R_TabEventCallbackAsync"
+                   @ref="@_tabCharges" />
+    </R_TabStripTab>
+
+
+</R_TabStrip>
+
+
+<R_ConductorGrid @ref="@_conductorUnitInfo"
+                 R_SetOther="@R_SetOther"
+                 R_IsHeader />
+
+
+
+<R_Conductor @ref="@_conductorUtilities"
+             R_IsHeader
+             R_ViewModel="@_viewModelUtilities"
+             R_ServiceGetRecord="@ServiceGetUtilitiesRecord"
+             R_ServiceDelete="@ServiceDeleteUtilities"
+             R_ServiceSave="@ServiceSaveUtilities"
+             R_Validation="@R_ValidationUtilities"
+             R_AfterDelete="@AfterDeleteUtilities"
+             R_AfterAdd="@AfterAddUtilities"
+             R_SetOther="R_SetOtherUtilities" />
+

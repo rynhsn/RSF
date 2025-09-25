@@ -1,0 +1,252 @@
+--LIST
+
+delete from SAT_LOCKING where CUSER_ID='hmc'
+
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_GET_INV_RECEIPT_LIST]
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY = 'ashmd',
+		@CDEPT_CODE = 'acc',
+		@CTENANT_ID = '',
+		@LALL_TENANT = 1,
+		@CINVOICE_TYPE = '09',
+		@CPERIOD = '202407',
+		@CTRANS_CODE ='', --940010
+		@CLANG_ID = 'en'
+SELECT	'Return Value' = @return_value
+GO
+
+RSP_GS_GET_GSB_CODE_LIST
+
+RSP_GS_GET_PERIOD_YEAR_RANGE 'rcd','',''
+
+RSP_PM_CREATE_OFFICIAL_RECEIPT 
+
+select * from PMT_TRANS_HD
+order by CTENANT_ID desc
+
+select * from PMM_INVGRP
+
+DECLARE   @CCOMPANY_ID		VARCHAR(20) = 'RCD'
+		, @CPROPERTY		VARCHAR(20) = 'ASHMD'
+		, @CDEPT_CODE		VARCHAR(20) = 'ACC'
+		, @CTENANT_ID		VARCHAR(20)	
+		, @LALL_TENANT	    BIT  = 1
+		, @CINVOICE_TYPE	VARCHAR(2)  = '09'
+		, @CPERIOD			VARCHAR(6) = '202407'
+		, @CTRANS_CODE		VARCHAR(6) = '' --940010
+		, @CLANG_ID			VARCHAR(3) = 'EN'
+EXEC RSP_PM_GET_INV_RECEIPT_LIST @CCOMPANY_ID, 
+@CPROPERTY,@CDEPT_CODE,@CTENANT_ID,@LALL_TENANT,
+@CINVOICE_TYPE,@CPERIOD,@CTRANS_CODE,@CLANG_ID
+
+select * from  #RECEIPT_LIST 
+
+BEGIN TRANSACTION
+
+CREATE TABLE #RECEIPT_LIST (
+	INO INT,
+    CCOMPANY_ID VARCHAR(8),
+    CPROPERTY_ID VARCHAR(20),
+    CDEPT_CODE VARCHAR(20),
+    CTRANS_CODE VARCHAR(10),
+   CREF_NO VARCHAR(200)
+);
+
+INSERT INTO #RECEIPT_LIST (INO, CCOMPANY_ID, CPROPERTY_ID,  CDEPT_CODE, CTRANS_CODE, CREF_NO)
+VALUES 
+(1,'rcd', 'ashmd', 'acc', '910020', 'GJV240039'),
+(2,'rcd', 'ashmd', 'acc', '910020', 'GJV240040'),
+(3,'rcd', 'ashmd', 'acc', '910020', 'GJV240074')
+;
+
+ exec [RSP_PM_CREATE_OFFICIAL_RECEIPT]
+		@CCOMPANY_ID = 'rcd',
+		@CUSER_ID = 'hmc',
+		@CRECEIPT_DATE = '20240811',
+		@GUID_KEY = '110011'
+
+commit transaction
+ROLLBACK
+
+
+----PRINT RSP_PM_PRINT_REMINDER
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_PRINT_RECEIPT]
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY = 'ashmd',
+		@CDEPT_CODE = 'acc',
+		@CREF_NO = 'KW-2024080014',
+		@CUSER_ID = 'hmc',
+		@CLANG_ID = 'en',
+		@LPRINT = 0
+SELECT	'Return Value' = @return_value
+GO
+
+use BIMASAKTI_11
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_PRINT_RECEIPT]
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY = 'ashmd',
+		@CDEPT_CODE = 'acc',
+		@CREF_NO = 'KW-2024080014',
+		@CUSER_ID = 'hmc',
+		@CLANG_ID = 'en',
+		@LPRINT = true
+SELECT	'Return Value' = @return_value
+GO
+
+-------------------RSP_PM_SEND_RECEIPT
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_SEND_RECEIPT]
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY = 'ashmd',
+		@CDEPT_CODE = 'acc',
+		@CREF_NO = 'KW-2024080019',
+		@CUSER_ID = 'hmc',
+		@CLANG_ID = 'en',
+		@LDISTRIBUTE = 0,
+		@CSTORAGE_ID=''
+SELECT	'Return Value' = @return_value
+GO
+
+SELECT * FROM  STORAGE_DATA_TABLE
+
+DECLARE   @CCOMPANY_ID		VARCHAR(20) = 'RCD'
+		, @CPROPERTY		VARCHAR(20) = 'ASHMD'
+		, @CDEPT_CODE		VARCHAR(20) = 'ACC'
+		, @CTENANT_ID		VARCHAR(20)	
+		, @LALL_TENANT	    BIT  = 1
+		, @CINVOICE_TYPE	VARCHAR(2)  = '09'
+		, @CPERIOD			VARCHAR(6) = '202407'
+		, @CTRANS_CODE		VARCHAR(6) = '940020'
+		, @CLANG_ID			VARCHAR(3) = 'EN'
+EXEC RSP_PM_GET_INV_RECEIPT_LIST @CCOMPANY_ID, 
+@CPROPERTY,@CDEPT_CODE,@CTENANT_ID,@LALL_TENANT,
+@CINVOICE_TYPE,@CPERIOD,@CTRANS_CODE,@CLANG_ID
+
+RSP_PM_CREATE_OFFICIAL_RECEIPt
+RSP_PM_CANCEL_OFFICIAL_RECEIPT
+
+select * from STORAGE_DATA_TABLE order by DCREATE_DATE desc
+
+
+select * from GST_EMAIL_OUTBOX
+
+select * from GST_EMAIL_ATTACHMENT
+
+10687f2fc72c49acbf3190e2a5266dc0
+10687f2fc72c49acbf3190e2a5266dc0
+
+SELECT * FROM GST_EMAIL_OUTBOX
+
+update  GST_EMAIL_OUTBOX set LFLAG_ACTIVE = 1, LFLAG_HTML = 1
+
+Select CSMTP_ID From SAM_COMPANIES Where CCOMPANY_ID = 'RCD'
+Select CSMTP_ID From SAM_COMPANIES Where CCOMPANY_ID='{0}'
+
+SELECT * FROM GST_EMAIL_ATTACHMENT
+/*
+a -> email_a
+b -> email_b
+c -> email_a
+d -> email_a
+e -> email_b
+*/
+/*
+List<PMB04000SendReceiptDTO>
+        {
+            new PMB04000SendReceiptDTO { CDEPT_CODE = "D001", CEMAIL_TO = "dept1@example.com" },
+            new PMB04000SendReceiptDTO { CDEPT_CODE = "D002", CEMAIL_TO = "dept2@example.com" },
+            new PMB04000SendReceiptDTO { CDEPT_CODE = "D003", CEMAIL_TO = "dept2@example.com" } },
+}
+
+*/
+
+Sql Command=Insert into GST_EMAIL_OUTBOX(CEMAIL_FROM, CEMAIL_TO, CEMAIL_CC, CEMAIL_BCC, CEMAIL_SUBJECT, 
+CEMAIL_BODY, LFLAG_PRIORITY, CVALID_UNTIL, CSTATUS, LFLAG_HTML, CCOMPANY_ID, CUSER_ID, CPROGRAM_ID, 
+CEMAIL_ID, CSMTP_ID, LFLAG_ACTIVE) 
+values('noreply@realta.co.id',@TO,@CC,@BCC,'KWITANSI KW-2024080014',
+@BODY,1,'','00',1,'rcd','SYSTEM','Generate Receipt KW-2024080014',
+'5c0ba596edb94deaa3c78dce03a9a5ef','SMTP1',0)
+
+
+USE [BIMASAKTI_11]
+GO
+
+DECLARE	@return_value int
+
+EXEC	@return_value = [dbo].[RSP_GET_REPORT_TEMPLATE_LIST]
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY_ID = 'ashmd',
+		@CPROGRAM_ID = 'PMB04000'
+SELECT	'Return Value' = @return_value
+GO
+
+RSP_GET_REPORT_TEMPLATE_LIST ‘Login Company Id’,’Selected Property Id’,’Login Program Id’
+Tampung VAR_TEMPLATE_LIST
+•	Value = CTEMPLATE_ID, Display = CTEMPLATE_NAME
+•	Default Paling atas
+•	Jika VAR_TEMPLATE_LIST.Count = 1, disabled else enabled
+
+USE [BIMASAKTI_11]
+GO
+
+DECLARE	@return_value int
+
+EXEC	@return_value = [dbo].[RSP_GET_REPORT_TEMPLATE_LIST]
+		@CCOMPANY_ID = NULL,
+		@CPROPERTY_ID = NULL,
+		@CPROGRAM_ID = NULL,
+		@CTEMPLATE_ID = NULL
+
+SELECT	'Return Value' = @return_value
+
+GO
+
+select * from GST_UPLOAD_ERROR_STATUS
+
+RSP_GET_REPORT_TEMPLATE_LIST
+@CCOMPANY_ID ='bsi', 
+@CPROPERTY_ID ='ashmd',
+@CPROGRAM_ID ='PMT01700',
+@CTEMPLATE_ID =''
+
+ RSP_GET_REPORT_TEMPLATE_LIST {"@CCOMPANY_ID": "BSI", "@CPROPERTY_ID": "ASHMD", "@CPROGRAM_ID": "PMB04000", "@CTEMPLATE_ID": ""}
+
+RSP_GET_REPORT_TEMPLATE_LIST
+@CCOMPANY_ID = 'BSI',
+@CPROPERTY_ID ='ashmd',
+@CPROGRAM_ID ='PMT01100',
+@CTEMPLATE_ID ='LU02'
+
+
+USE BIMASAKTI_11_BSI
+
+exec RSP_SA_GET_DOMAIN_TYPE_URL
+@CDOMAIN_ID		 ='GENERAL_API',
+@CDOMAIN_TYPE_ID ='HANDOVER_SUMMARY'
+
+
+USE BIMASAKTI_11
+exec RSP_SA_GET_DOMAIN_TYPE_URL
+@CDOMAIN_ID		 ='GENERAL_API',
+@CDOMAIN_TYPE_ID ='HANDOVER_SUMMARY'
+
+
+USE RealMainDb
+exec RSP_SA_GET_DOMAIN_TYPE_URL
+@CDOMAIN_ID		 ='GENERAL_API',
+@CDOMAIN_TYPE_ID ='HANDOVER_SUMMARY'
+
+USE BIMASAKTI_11
+USE RealMainDb
+select * from SAB_MULTI_TENANT_DB

@@ -1,0 +1,50 @@
+﻿@inherits R_Page
+@using GLT00200COMMON.DTOs.GLT00200
+@attribute [R_Page(Title = "Error Logs")]
+@using GLT00200MODEL
+
+<R_StackLayout Style="width:600px">
+    <R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>File Name</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="9">
+                <R_TextBox @bind-Value="@loImportJournalErrorViewModel.loParam.CFILE_NAME"
+                           R_ConductorSource="@_conductorImportJournalErrorRef"
+                           Enabled=false>
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_Grid @ref="@_gridImportJournalErrorRef"
+                        DataSource="@loImportJournalErrorViewModel.loErrorList"
+                        R_ConductorSource="@_conductorImportJournalErrorRef"
+                        R_GridType="@R_eGridType.Original"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false"
+                        AllowDeleteRow="false"
+                        R_ServiceGetListRecord="@Grid_R_ServiceGetImportJournalListRecord">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(ImportJournalErrorDTO.INO)" HeaderText="No." Width="20%"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(ImportJournalErrorDTO.CERROR_MSG)" HeaderText="Error Description" Width="90%"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+
+        <R_StackLayout Row Class="mt-3">
+            <R_ItemLayout col="1">
+                <R_Button R_ConductorSource="@_conductorImportJournalErrorRef" OnClick="OnClickClose">Close</R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorImportJournalErrorRef"
+             R_ViewModel="@loImportJournalErrorViewModel"
+             R_IsHeader="true">
+</R_Conductor>

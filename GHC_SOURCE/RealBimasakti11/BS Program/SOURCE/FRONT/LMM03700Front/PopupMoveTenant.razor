@@ -1,0 +1,78 @@
+﻿@using PMM03700COMMON.DTO_s;
+@inherits R_Page
+@attribute [R_Page(Title = "Move tenant", ResourceId = "_pageTitleMoveTenant")]
+
+<R_StackLayout Style="width:820px">
+
+    @* origin data *@
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_Label>@_localizer["_lbl_fromtenantclass"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@_viewModelTC.TenantClassForMoveTenant.CTENANT_CLASSIFICATION_ID" Enabled=false></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="5">
+            <R_TextBox @bind-Value="@_viewModelTC.TenantClassForMoveTenant.CTENANT_CLASSIFICATION_NAME" Enabled=false></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    @* combo data for destination *@
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_Label>@_localizer["_lbl_totenantclass"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="8">
+            <R_ComboBox Data="@_viewModelTC.TenantClassListForMoveTenant"
+                        @bind-Value="@_viewModelTC._toTenantClassificationId"
+                        ValueField="@nameof(TenantClassificationDTO.CTENANT_CLASSIFICATION_ID)"
+                        TextField="@nameof(TenantClassificationDTO.CTENANT_CLASSIFICATION_NAME)"></R_ComboBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+
+    @* grid tenant data*@
+    <R_Grid @ref="@_gridTenantToMove"
+            DataSource="@_viewModelTC.TenantToMoveList"
+            Pageable
+            R_ConductorGridSource="@_conTenantToMoveRef"
+            R_ServiceGetListRecord="@TenantToMove_ServiceGetListRecordAsync"
+            Height="350px"
+            R_GridType="R_eGridType.Batch"
+            AllowAddNewRow="false"
+            AllowDeleteRow="false"
+            AllowEditRow="false"
+            @bind-PageSize="@_pageSizeTenantToMove"
+            R_ServiceSaveBatch="@MoveTenant_ServiceSaveBatchAsync"
+            R_AfterSaveBatch="@MoveTenant_AfterSaveBatchAsync"
+            R_BeforeSaveBatch="@MoveTenant_BeforeSaveBatchAsync"
+            R_CheckBoxSelectValueChanged="@CheckBoxSelectValueChanged">
+        <R_GridColumns>
+            <R_GridCheckBoxSelectColumn FieldName="@nameof(TenantGridDTO.LCHECKED)" Width="100px" ShowSelectAllHeader Filterable="false" />
+            <R_GridTextColumn FieldName="@nameof(TenantGridDTO.CTENANT_ID)" HeaderText="@_localizer["_col_tenant_id"]" Width="200px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(TenantGridDTO.CTENANT_NAME)" HeaderText="@_localizer["_col_tenant_name"]" Width="250px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(TenantGridDTO.CTENANT_CATEGORY_NAME)" HeaderText="@_localizer["_col_tenant_ctg"]" Width="150px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(TenantGridDTO.CTENANT_TYPE_NAME)" HeaderText="@_localizer["_col_tenant_type"]" Width="150px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(TenantGridDTO.CPHONE)" HeaderText="@_localizer["_col_phone1"]" Width="250px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(TenantGridDTO.CEMAIL)" HeaderText="@_localizer["_col_email"]" Width="250px"></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+
+    @* button *@
+    <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout col="10">
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                @_localizer["_btn_cancel"]
+            </R_Button>
+            <R_Button OnClick="Button_OnClickOkAsync">
+                @_localizer["_btn_process"]
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+@* conductor *@
+<R_ConductorGrid @ref="@_conTenantToMoveRef"
+                 R_IsHeader />

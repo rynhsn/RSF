@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="01/11/2024 13:33:31" ReportInfo.CreatorVersion="2023.2.21.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9" Watermark.Font="Arial, 60pt">
+    <PageHeaderBand Name="PageHeader1" Width="1047.06" Height="75.6">
+      <PictureObject Name="Picture1" Left="37.8" Top="9.45" Width="170.1" Height="66.15" DataColumn="ResponseDataModel.BaseHeaderData.BLOGO_COMPANY"/>
+      <TextObject Name="Text33" Left="359.1" Top="18.9" Width="302.4" Height="18.9" Text="[ResponseDataModel.BaseHeaderData.CCOMPANY_NAME]" HorzAlign="Center" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text40" Left="784.35" Top="18.9" Width="170.1" Height="18.9" Text="Page [Page] of [TotalPages#]" Font="MS Gothic, 10pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text36" Left="869.4" Top="37.8" Width="179.55" Height="18.9" Text=": [Date]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text38" Left="784.35" Top="37.8" Width="85.05" Height="18.9" Text="Print Date" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text34" Left="330.75" Top="47.25" Width="368.55" Height="28.35" Text="[ResponseDataModel.BaseHeaderData.CPRINT_NAME]" HorzAlign="Center" Font="MS Gothic, 12pt, style=Bold"/>
+      <TextObject Name="Text37" Left="869.4" Top="56.7" Width="179.55" Height="18.9" Text=": [ResponseDataModel.BaseHeaderData.CUSER_ID]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text39" Left="784.35" Top="56.7" Width="85.05" Height="18.9" Text="Print by" Font="MS Gothic, 10pt"/>
+    </PageHeaderBand>
+  </ReportPage>
+</Report>

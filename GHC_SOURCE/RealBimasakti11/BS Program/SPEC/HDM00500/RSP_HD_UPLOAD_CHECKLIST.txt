@@ -1,0 +1,4 @@
+EXCESS_CHECKLIST_CODE	= Checklist Code is bigger than 20 Character
+EMPTY_CHECKLIST_CODE	= Checklist Code can not be empty
+EXCESS_CHECKLIST_NAME	= Checklist Name is bigger than 100 Character
+EMPTY_CHECKLIST_NAME	= Checklist Name can not be empty	

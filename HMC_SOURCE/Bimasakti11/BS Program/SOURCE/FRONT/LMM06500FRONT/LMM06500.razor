@@ -1,0 +1,323 @@
+﻿@page "/LMM06500"
+@inherits R_Page
+@using LMM06500COMMON
+@using LMM06500MODEL
+
+<R_StackLayout Class="mb-2" >
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label FontColor="@R_eFontColor.Danger" Class="fw-bold ms-3" FontSize="12">Property</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_ComboBox Data="@_Staff_viewModel.PropertyList"
+                            Value="@_Staff_viewModel.PropertyValueContext"
+                            ValueField="@nameof(LMM06500DTOInitial.CPROPERTY_ID)"
+                            TextField="@nameof(LMM06500DTOInitial.CPROPERTY_NAME)"
+                            R_ConductorSource="@_Staff_conductorRef" ValueChanged="@((string value) => PropertyDropdown_OnChange(value))">
+            </R_ComboBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout Row="true" >
+    <R_ItemLayout col="12">
+        <R_Grid @ref="@_Staff_gridRef"
+                DataSource="@_Staff_viewModel.StaffGrid"
+                R_ConductorSource="@_Staff_conductorRef"
+                Pageable
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="@Staff_ServiceGetListRecord" Height="150px">
+            <R_GridColumns>
+                <R_GridCheckBoxColumn FieldName="LACTIVE" HeaderText="Active" Width="100px"></R_GridCheckBoxColumn>
+                <R_GridTextColumn FieldName="CSTAFF_ID" HeaderText="Staff Id" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CSTAFF_NAME" HeaderText="Staff Name" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CDEPT_NAME" HeaderText="Departement" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CPOSITION_DESCR" HeaderText="Position" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CMOBILE_PHONE1" HeaderText="Mobile No 1" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CEMAIL" HeaderText="Email Address" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CGENDER_DESCR" HeaderText="Gender" Width="120px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Updated By" Width="200px"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="DUPDATE_DATE" HeaderText="Updated Date" Width="200px"></R_GridDatePickerColumn>
+                <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Created By" Width="200px"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="DCREATE_DATE" HeaderText="Created Date" Width="200px"></R_GridDatePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Spacing="1" Class="mt-2" Row="true">
+    <R_ItemLayout col="9">
+
+        <R_StackLayout Row>
+            <R_ItemLayout  col="2">
+                <R_Label>Staff Id*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_Staff_viewModel.Data.CSTAFF_ID"
+                           R_ConductorSource="@_Staff_conductorRef"
+                           R_EnableAdd></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_Staff_viewModel.Data.CSTAFF_NAME"
+                           R_ConductorSource="@_Staff_conductorRef"
+                           R_EnableAdd R_EnableEdit></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>Department*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_Staff_viewModel.Data.CDEPT_CODE"
+                           R_ConductorSource="@_Staff_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Lookup R_ConductorSource="@_Staff_conductorRef" R_EnableAdd R_EnableEdit R_Before_Open_Lookup="@Staff_Department_Before_Open_Lookup" R_After_Open_Lookup="@Staff_Department_OtherTax_After_Open_Lookup">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="@_Staff_viewModel.Data.CDEPT_NAME"
+                           R_ConductorSource="@_Staff_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>Position</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_ComboBox Data="@_Universal_viewModel.PositionList"
+                      Value="@_Staff_viewModel.Data.CPOSITION"
+                      ValueField="@nameof(LMM06500UniversalDTO.CCODE)"
+                      TextField="@nameof(LMM06500UniversalDTO.CDESCRIPTION)"
+                      R_ConductorSource="@_Staff_conductorRef" R_EnableAdd R_EnableEdit ValueChanged="@((string value) => Staff_Position_OnChange(value))" />
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <center> <R_Label>Join Date</R_Label></center>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_DatePicker @bind-Value="@_Staff_viewModel.JoinDateTime"
+                           R_ConductorSource="@_Staff_conductorRef"
+                           Enabled="false"></R_DatePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>Supervisor</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_Staff_viewModel.Data.CSUPERVISOR"
+                           R_ConductorSource="@_Staff_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Lookup R_ConductorSource="@_Staff_conductorRef" Enabled="@SupervisorLookup" R_Before_Open_Lookup="@Staff_Supervisor_Before_Open_Lookup" R_After_Open_Lookup="@Staff_Supervisor_After_Open_Lookup">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="@_Staff_viewModel.Data.CSUPERVISOR_NAME"
+                              R_ConductorSource="@_Staff_conductorRef"
+                              Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>Email Address*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="9">
+                <R_TextBox @bind-Value="@_Staff_viewModel.Data.CEMAIL"
+                           R_ConductorSource="@_Staff_conductorRef"
+                           R_EnableAdd R_EnableEdit ></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>Address</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="9">
+                <R_TextArea @bind-Value="@_Staff_viewModel.Data.CADDRESS"
+                           R_ConductorSource="@_Staff_conductorRef"
+                           R_EnableAdd R_EnableEdit></R_TextArea>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>City</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_Staff_viewModel.Data.CCITY"
+                           R_ConductorSource="@_Staff_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Lookup R_ConductorSource="@_Staff_conductorRef" Enabled="false">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>Zip Code</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_Staff_viewModel.Data.CZIP_CODE"
+                           R_ConductorSource="@_Staff_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>Inactive Note</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="9">
+                <R_TextArea @bind-Value="@_Staff_viewModel.Data.CINACTIVE_NOTE"
+                            R_ConductorSource="@_Staff_conductorRef"
+                            Enabled="@CinactiveNote"></R_TextArea>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_ItemLayout>
+
+    <R_ItemLayout col="3">
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_CheckBox @bind-Value="@_Staff_viewModel.Data.LACTIVE"
+                            R_ConductorSource="@_Staff_conductorRef"
+                            Enabled="false">
+                </R_CheckBox>
+                <R_Label>Active</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_Label>Mobile No(1)*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox @bind-Value="@_Staff_viewModel.Data.CMOBILE_PHONE1"
+                           R_ConductorSource="@_Staff_conductorRef"
+                           R_EnableAdd R_EnableEdit></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_Label>Mobile No(2)</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox @bind-Value="@_Staff_viewModel.Data.CMOBILE_PHONE2"
+                           R_ConductorSource="@_Staff_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+           
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_Label>Gender*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_RadioGroup Data="@_Universal_viewModel.GenderList"
+                      @bind-Value="@_Staff_viewModel.Data.CGENDER"
+                      ValueField="@nameof(LMM06500UniversalDTO.CCODE)"
+                      TextField="@nameof(LMM06500UniversalDTO.CDESCRIPTION)"
+                      R_ConductorSource="@_Staff_conductorRef" R_EnableAdd R_EnableEdit />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_Label>Province</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox @bind-Value="@_Staff_viewModel.Data.CPROVINCE"
+                           R_ConductorSource="@_Staff_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_Label>Country</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox @bind-Value="@_Staff_viewModel.Data.CCOUNTRY"
+                           R_ConductorSource="@_Staff_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_Label>Inactive Date</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_DatePicker @bind-Value="@_Staff_viewModel.Data.DINACTIVE_DATE"
+                              R_ConductorSource="@_Staff_conductorRef"
+                              Enabled="false"></R_DatePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+
+</R_StackLayout>
+
+
+<R_StackLayout Row Class="justify-content-between">
+    <R_ItemLayout>
+        <R_AddButton R_Conductor="@_Staff_conductorRef"></R_AddButton>
+        <R_EditButton R_Conductor="@_Staff_conductorRef"></R_EditButton>
+        <R_DeleteButton R_Conductor="@_Staff_conductorRef"></R_DeleteButton>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button R_ConductorSource="@_Staff_conductorRef" OnClick="@_Staff_TemplateBtn_OnClick" Enabled="@btnUploadEnable">Template</R_Button>
+        <R_Popup R_ConductorSource="@_Staff_conductorRef" Enabled="@btnUploadEnable" R_Before_Open_Popup="@_Staff_Before_Open_Popup" R_After_Open_Popup="@_Staff_After_Open_Popup">Upload</R_Popup>
+        <R_Lookup R_ConductorSource="@_Staff_conductorRef" Enabled="@BtnEnable" R_Before_Open_Lookup="@_Staff_Before_Open_Lookup">Move</R_Lookup>
+        <R_Popup R_ConductorSource="@_Staff_conductorRef" Enabled="@BtnEnable" R_Before_Open_Popup="@_Staff_R_Before_Open_Popup_ActivateInactive" R_After_Open_Popup="@_Staff_R_After_Open_Popup_ActivateInactive">@_Staff_lcLabel</R_Popup>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CancelButton R_Conductor="@_Staff_conductorRef"></R_CancelButton>
+        <R_SaveButton R_Conductor="@_Staff_conductorRef"></R_SaveButton>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_Conductor @ref="@_Staff_conductorRef"
+             R_ViewModel="@_Staff_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Staff_ServiceGetRecord"
+             R_CheckAdd="@Staff_CheckAdd"
+             R_Display="@Staff_Display"
+             R_ServiceSave="@Staff_ServiceSave"
+             R_ServiceDelete="@Staff_ServiceDelete"
+             R_Saving="@Staff_Saving"
+             R_AfterAdd="@Staff_AfterAdd"
+             R_Validation="@Staff_Validation"
+             R_BeforeCancel="@Staff_BeforeCancel"
+             R_AfterSave="@Staff_AfterSave"
+             R_SetHasData="@Staff_SetHasData"
+             >
+</R_Conductor>
+                    

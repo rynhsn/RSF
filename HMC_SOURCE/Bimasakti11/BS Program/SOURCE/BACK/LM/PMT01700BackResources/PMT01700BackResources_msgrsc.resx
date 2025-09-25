@@ -1,0 +1,1604 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="LABEL_NO" xml:space="preserve">
+    <value>NO</value>
+  </data>
+  <data name="LABEL_NAMA_PENYEWA" xml:space="preserve">
+    <value>NAMA PENYEWA</value>
+  </data>
+  <data name="LABEL_ALAMAT_PENYEWA" xml:space="preserve">
+    <value>ALAMAT PENYEWA</value>
+  </data>
+  <data name="LABEL_LETAK_RUANG_SEWA" xml:space="preserve">
+    <value>LETAK RUANG SEWA</value>
+  </data>
+  <data name="LABEL_AGREEMENT_JANGKA_WAKTU_SEWA" xml:space="preserve">
+    <value>JANGKA WAKTU SEWA</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PERJANJIAN_INI" xml:space="preserve">
+    <value>Perjanjian ini dibuat pada hari ini</value>
+  </data>
+  <data name="LABEL_AGREEMENT_OLEH_DAN" xml:space="preserve">
+    <value>oleh dan antara</value>
+  </data>
+  <data name="LABEL_AGREEMENT_DALAM_HAL_MANAJEMEN" xml:space="preserve">
+    <value>Dalam hal ini bertindak untuk dan atas nama Manajemen</value>
+  </data>
+  <data name="LABEL_AGREEMENT_BERKEDUDUKAN_DI" xml:space="preserve">
+    <value>berkedudukan di</value>
+  </data>
+  <data name="LABEL_AGREEMENT_UNTUK_SELANJUTNYA" xml:space="preserve">
+    <value>untuk selanjutnya disebut</value>
+  </data>
+  <data name="LABEL_AGREEMENT_DALAM_HAL_TENANT" xml:space="preserve">
+    <value>Dalam hal ini bertindak untuk dan atas nama tenant</value>
+  </data>
+  <data name="LABEL_AGREEMENT_SECARA_BERSAMA" xml:space="preserve">
+    <value>secara bersama-sama akan disebut juga</value>
+  </data>
+  <data name="LABEL_AGREEMENT_DENGAN_INI_MENERANGKAN" xml:space="preserve">
+    <value>dengan ini menerangkan terlebih dahulu sebagai berikut</value>
+  </data>
+  <data name="LABEL_AGREEMENT_DENGAN_INI_MENYEWAKAN" xml:space="preserve">
+    <value>dengan ini menyewakan kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_ATAS_RUANGAN" xml:space="preserve">
+    <value>atas ruangan perkantoran di dalam sebuah gedung bertingkat, dikenal sebagai</value>
+  </data>
+  <data name="LABEL_AGREEMENT_YANG_TERLETAK" xml:space="preserve">
+    <value>yang terletak di</value>
+  </data>
+  <data name="LABEL_AGREEMENT_SELANJUTNYA_DISEBUT_JUGA" xml:space="preserve">
+    <value>selanjutnya disebut juga</value>
+  </data>
+  <data name="LABEL_AGREEMENT_TELAH_MENUNJUK" xml:space="preserve">
+    <value>telah menunjuk</value>
+  </data>
+  <data name="LABEL_AGREEMENT_SELAKU_PENGELOLA" xml:space="preserve">
+    <value>selaku pengelola</value>
+  </data>
+  <data name="LABEL_AGREEMENT_UNTUK_MELAKUKAN" xml:space="preserve">
+    <value>untuk melakukan pengelolaan dan pemeliharaan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_BERIKUT_DENGAN" xml:space="preserve">
+    <value>berikut dengan segala fasilitasnya yang ada, satu dan lain sebagaimana ternyata di dalam surat Perjanjian Jasa Pengelolaan Gedung, selanjutnya disebut</value>
+  </data>
+  <data name="LABEL_AGREEMENT_SELANJUTNYA" xml:space="preserve">
+    <value>Selanjutnya</value>
+  </data>
+  <data name="LABEL_AGREEMENT_SETUJU_UNTUK" xml:space="preserve">
+    <value>setuju untuk mengadakan Perjanjian Sewa Menyewa (selanjutnya disebut "Perjanjian") ini dengan ketentuan dan syarat-syarat sebagai berikut</value>
+  </data>
+  <data name="LABEL_AGREEMENT_DENGAN_INI_SETUJU_MENYEWAKAN" xml:space="preserve">
+    <value>dengan ini setuju menyewakan kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_YANG_DENGAN_INI_SETUJU_MENYEWAKAN" xml:space="preserve">
+    <value>yang dengan ini setuju menyewa dari</value>
+  </data>
+  <data name="LABEL_AGREEMENT_RUANGANAN_DI_DALAM" xml:space="preserve">
+    <value>ruangan di dalam</value>
+  </data>
+  <data name="LABEL_AGREEMENT_SELANJUTNYA_DISEBUT" xml:space="preserve">
+    <value>selanjutnya disebut</value>
+  </data>
+  <data name="LABEL_AGREEMENT_YANG_MELIPUTI" xml:space="preserve">
+    <value>yang meliputi sebagai berikut</value>
+  </data>
+  <data name="LABEL_AGREEMENT_RUANG_NO" xml:space="preserve">
+    <value>Ruang No</value>
+  </data>
+  <data name="LABEL_AGREEMENT_SELUAS" xml:space="preserve">
+    <value>seluas</value>
+  </data>
+  <data name="LABEL_AGREEMENT_M2_SEMIGROSS" xml:space="preserve">
+    <value>m² semigross</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1" xml:space="preserve">
+    <value>Pasal 1</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_TITLE" xml:space="preserve">
+    <value>PEMBAGIAN RUANG SEWA</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_1_A_1" xml:space="preserve">
+    <value>seperti ternyata dari gambar yang diberikan warna biru yang dilampirkan pada Perjanjian ini (terlampir), RUANG SEWA mana dipergunakan sebagai kantor</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_1_B_1_1" xml:space="preserve">
+    <value>Kelengkapan fasilitas</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_1_B_1_2" xml:space="preserve">
+    <value>yang lazimnya dapat dipakai bersama dengan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_1_B_1_3" xml:space="preserve">
+    <value>lain untuk tujuan yang berhubungan dengan pemakaian</value>
+  </data>
+  <data name="LABEL_AGREEMENT_SEPERTI" xml:space="preserve">
+    <value>seperti</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_1_B_2_1" xml:space="preserve">
+    <value>Ruangan pintu masuk dan jalan-jalan yang menuju</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_1_B_2_2" xml:space="preserve">
+    <value>lift penumpang, lift barang, koridor, selasar, tangga, toilet dan dapur kecil (pantry) di dalam</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_1_B_2_3" xml:space="preserve">
+    <value>Fasilitas ini disediakan selama jam kantor</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_2_1" xml:space="preserve">
+    <value>Pembagian tata ruangan (lay-out) dan dekorasi maupun perubahan-perubahan kemudian di dalam</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_2_2" xml:space="preserve">
+    <value>dilakukan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_2_3" xml:space="preserve">
+    <value>atau kontraktornya atas biaya</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_2_4" xml:space="preserve">
+    <value>setelah terlebih dahulu mendapat persetujuan tertulis dari</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_2_5" xml:space="preserve">
+    <value>mengenai rencana (design) yang diinginkan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_3_1" xml:space="preserve">
+    <value>Bilamana</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_3_2" xml:space="preserve">
+    <value>menghendaki tambahan pemasangan stop kontak, maka pelaksanaannya harus dikerjakan oleh kontraktor</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_3_3" xml:space="preserve">
+    <value>dan biayanya ditanggung oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2" xml:space="preserve">
+    <value>Pasal 2</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_TITLE" xml:space="preserve">
+    <value>JANGKA WAKTU SEWA</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_1_1" xml:space="preserve">
+    <value>Perjanjian Sewa-Menyewa ini berlangsung selama jangka waktu</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_1_2" xml:space="preserve">
+    <value>Tahun</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_1_3" xml:space="preserve">
+    <value>bulan, yaitu mulai tanggal</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_1_4" xml:space="preserve">
+    <value>dan dengan demikian akan berakhir pada tanggal</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_2_1" xml:space="preserve">
+    <value>Apabila</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_2_2" xml:space="preserve">
+    <value>berkeinginan untuk mengakhiri Perjanjian ini sebelum berakhirnya Jangka Waktu Sewa maka</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_2_3" xml:space="preserve">
+    <value>berkewajiban untuk memberitahukan maksudnya tersebut secara tertulis kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_2_4" xml:space="preserve">
+    <value>dan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_2_5" xml:space="preserve">
+    <value>paling lambat 3 (tiga) bulan sebelum pengakhiran Perjanjian dilakukan, namun demikian berakhirnya masa berlaku Perjanjian sebelum jangka waktu perjanjian tidak serta merta menghapuskan kewajiban</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_2_6" xml:space="preserve">
+    <value>terhadap</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_2_7" xml:space="preserve">
+    <value>maupun kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_2_8" xml:space="preserve">
+    <value>atas sesuatu hal dan/atau atas suatu kewajiban yang belum direalisasikan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_3_1_1" xml:space="preserve">
+    <value>dibebaskan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_3_2_1" xml:space="preserve">
+    <value>dari pertanggungan jawab berupa apapun sehubungan dengan keterlambatan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_3_3_1" xml:space="preserve">
+    <value>menempati</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_3_4_1" xml:space="preserve">
+    <value>yang disebabkan karena kegagalan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_3_5_1" xml:space="preserve">
+    <value>dalam menyelesaikan pembagian tata ruangan (lay-out) dan dekorasi pada RUANG KANTOR seperti yang diuraikan dalam Pasal 1 ayat 3 maupun karena sebab lainnya.</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_3_1_2" xml:space="preserve">
+    <value>Dalam hal terjadi demikian maka keterlambatan tersebut tidak berpengaruh pada masa sewa, jangka waktu sewa tetap dihitung mulai tanggal yang semula sudah ditetapkan dalam Pasal 2 ayat 1</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_4_1" xml:space="preserve">
+    <value>setuju bahwa</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_4_2" xml:space="preserve">
+    <value>dapat mengakhiri Perjanjian Sewa-Menyewa secara sepihak apabila</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_4_3" xml:space="preserve">
+    <value>akan merenovasi dan/atau membangun kembali RUANG SEWA dan/atau</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_4_4" xml:space="preserve">
+    <value>yang mengakibatkan RUANG SEWA tidak dapat dipakai/digunakan lagi oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL2_4_5" xml:space="preserve">
+    <value>Mengenai pengakhiran Perjanjian ini akan diatur dalam Pasal 8 ayat 9 Perjanjian ini</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3" xml:space="preserve">
+    <value>Pasal 3</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_TITLE" xml:space="preserve">
+    <value>BIAYA SEWA</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_1_1" xml:space="preserve">
+    <value>Biaya Sewa dari RUANG SEWA adalah sebesar</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_1_RP" xml:space="preserve">
+    <value>Rp</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_1_2" xml:space="preserve">
+    <value>per m² per bulan, atau sebesar</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_1_3" xml:space="preserve">
+    <value>per bulan dimuka</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_2_1_1" xml:space="preserve">
+    <value>akan melakukan pembayaran setiap bulan dimuka</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_3_1_1" xml:space="preserve">
+    <value>Pembayaran akan dibayarkan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_3_2_1" xml:space="preserve">
+    <value>kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_3_3_1" xml:space="preserve">
+    <value>per bulan dimuka paling lambat sebelum jangka waktu sewa dimulai dengan cara transfer ke rekening</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_3_1_2_1" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_3_1_2_2" xml:space="preserve">
+    <value>XXX</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_3_2_2_1" xml:space="preserve">
+    <value>No Rekening</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_3_2_2_2" xml:space="preserve">
+    <value>0001 – X – 00XXX –X</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_3_3_2_1" xml:space="preserve">
+    <value>Atas nama</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_3_3_2_2" xml:space="preserve">
+    <value>PT. XX</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_3_1_3" xml:space="preserve">
+    <value>Bukti transfer tersebut merupakan bukti pembayaran yang sah</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_3_2_3" xml:space="preserve">
+    <value>wajib melakukan pembayaran sewa tersebut sesuai dengan Data Pembayaran Biaya Sewa sebagaimana dalam Lampiran 1 Perjanjian Sewa Menyewa ini</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL3_4_1_1" xml:space="preserve">
+    <value>Apabila pembayaran dilakukan dengan Cek/Giro Bilyet maka pembayarannya baru dianggap sah apabila Cek/Giro Bilyet yang bersangkutan sudah diuangkan/ dicairkan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4" xml:space="preserve">
+    <value>Pasal 4</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_TITLE" xml:space="preserve">
+    <value>UANG JAMINAN</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_1_1" xml:space="preserve">
+    <value>Selama Jangka Waktu Sewa</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_1_2" xml:space="preserve">
+    <value>wajib menyerahkan uang jaminan/deposit sewa kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_1_3" xml:space="preserve">
+    <value>dengan jumlah sebesar 3 (tiga) bulan dari Harga Sewa, selanjutnya disebut “UANG JAMINAN SEWA”, yang diserahkan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_1_4" xml:space="preserve">
+    <value>kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_1_5" xml:space="preserve">
+    <value>pada waktu sebelum ditanda-tanganinya Berita Acara Serah Terima RUANG SEWA. Besarnya jumlah UANG JAMINAN SEWA akan disesuaikan dengan perubahan Harga Sewa selama Jangka Waktu Sewa</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_2_1" xml:space="preserve">
+    <value>Pada waktu berakhirnya Perjanjian sesuai yang ditetapkan dalam Pasal 2 Ayat 1 dari Perjanjian ini, maka UANG JAMINAN SEWA dapat diminta kembali oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_2_2" xml:space="preserve">
+    <value>dari</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_2_3" xml:space="preserve">
+    <value>sejumlah UANG JAMINAN SEWA yang telah diterima oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_2_4" xml:space="preserve">
+    <value>setelah diperhitungkan dengan tunggakan kewajiban-kewajiban pembayaran yang masih tertunggak (apabila ada)</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_3_1" xml:space="preserve">
+    <value>Dalam waktu 6 (enam) bulan sejak Perjanjian ini berakhir, apabila UANG JAMINAN SEWA tidak/belum diminta kembali oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_3_2" xml:space="preserve">
+    <value>dari</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_3_3" xml:space="preserve">
+    <value>maka UANG JAMINAN SEWA yang telah diterima</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_3_4" xml:space="preserve">
+    <value>akan menjadi hak</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_3_5" xml:space="preserve">
+    <value>sepenuhnya</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL5" xml:space="preserve">
+    <value>Pasal 5</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL5_TITLE" xml:space="preserve">
+    <value>PAJAK</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL5_1_1" xml:space="preserve">
+    <value>PARA PIHAK setuju bahwa semua biaya perpajakan yang timbul berdasarkan transaksi sewa menyewa RUANG SEWA ini akan ditanggung oleh masing-masing pihak...</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6" xml:space="preserve">
+    <value>Pasal 6</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_TITLE" xml:space="preserve">
+    <value>KEWAJIBAN – KEWAJIBAN &amp; TANGGUNG JAWAB PENYEWA</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_0_1" xml:space="preserve">
+    <value>Sehubungan dengan RUANG SEWA maka</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_0_2" xml:space="preserve">
+    <value>setuju untuk menaati syarat-syarat yang ditetapkan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_0_3" xml:space="preserve">
+    <value>sebagai berikut</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_1_1_1" xml:space="preserve">
+    <value>Membayar Harga Sewa tepat pada waktu yang ditetapkan dalam Perjanjian ini Bilamana</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_1_2_1" xml:space="preserve">
+    <value>menunggak pembayaran uang sewa sebagaimana yang diatur dalam Pasal 3 Perjanjian ini maka</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_1_3_1" xml:space="preserve">
+    <value>dikenakan denda sebesar 1‰ (satu permil) per hari dari besarnya tunggakan terhitung sejak saat</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_1_4_1" xml:space="preserve">
+    <value>lalai membayar kewajibannya, dengan batas waktu yang tidak melebih dari 1 (satu) bulan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_1_1_2" xml:space="preserve">
+    <value>Denda mana wajib dibayar dengan seketika dan sekaligus atas teguran pertama baik secara lisan maupun tertulis dari</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_2_1" xml:space="preserve">
+    <value>Tidak mempergunakan RUANG SEWA baik sebagian maupun seluruhnya untuk melakukan perbuatan-perbuatan yang bertentangan dengan hukum</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_2_2" xml:space="preserve">
+    <value>hanya diperbolehkan mempergunakan RUANG SEWA untuk kantor bagi kegiatan usahanya yang sah menurut hukum yang berlaku di Negara Republik Indonesia</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_3_1" xml:space="preserve">
+    <value>Memperhatikan serta mematuhi kebiasaan-kebiasaan, Undang-Undang, Peraturan-peraturan pemerintah, pengumuman-pengumuman serta permintaan-permintaan dari pihak yang berwajib sehubungan dengan atau yang berhubungan dengan kegiatan usaha</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_4_1" xml:space="preserve">
+    <value>Mencegah agar pada RUANG SEWA itu, baik untuk sebagian maupun untuk seluruhnya tidak terjadi perbuatan yang dapat menimbulkan kerusakan atau keributan atau gangguan pada para</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_4_2" xml:space="preserve">
+    <value>lain dalam gedung atau benda berharga lain dari tetangga sekitarnya atau perbuatan yang bertentangan dengan Undang-undang dan Peraturan Pemerintah Daerah Khusus Ibukota Jakarta atau Negara Republik Indonesia</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_5_1" xml:space="preserve">
+    <value>Tidak menyimpan atau menimbun atau menyebabkan atau mengizinkan atau membiarkan disimpan atau ditimbun senjata api, amunisi, bahan peledak, salpeter, bensin atau minyak tanah atau bahan bakar atau barang berbahaya lainnya di dalam RUANG SEWA atau sebagian daripadanya</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_6_1" xml:space="preserve">
+    <value>Tidak melakukan perubahan-perubahan pada RUANG SEWA: membuat lubang, memaku di dinding marmer, mengebor, memaku kusen aluminium, meruntuhkannya atau memindahkan bagian dari dinding pemisah, tidak merubah arsitektur atau instalasi listrik, tidak merubah bentuk, letak serta ukuran pintu kantor atau kaca depan, tidak memasang unit-unit Air Conditioning atau segala macam perlengkapan alat instalasi, perkakas dan mesin-mesin atau Rolling Door di bagian depan RUANG SEWA, tidak merubah letak diffuser, Sprinkler dan Alarm Wet Riser tanpa seizin tertulis dari</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_7_1" xml:space="preserve">
+    <value>Memelihara semua bagian dalam dari RUANG SEWA termasuk semua pintu, jendela dan perkakas kantor serta barang-barang yang melekat (fixtures) kepunyaan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_7_2" xml:space="preserve">
+    <value>dalam keadaan baik dan bersih serta membayar biaya perbaikan kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_7_3" xml:space="preserve">
+    <value>atau mengganti atas biaya</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_7_4" xml:space="preserve">
+    <value>semua pintu, jendela, perkakas kantor dan barang-barang yang melekat yang rusak karena kelalaian</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_7_5" xml:space="preserve">
+    <value>pelayannya, pegawainya, wakilnya, tamunya atau para kontraktornya</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_8_1" xml:space="preserve">
+    <value>Tidak meletakkan atau meninggalkan barang apapun seperti peti, kotak, perkakas kantor, sampah atau barang berupa apapun pada toilet, koridor, selasar atau jalan manapun dari</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_8_2" xml:space="preserve">
+    <value>yang dipergunakan bersama dengan para</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_8_3" xml:space="preserve">
+    <value>lainnya atau bagian manapun dari</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_8_4" xml:space="preserve">
+    <value>tersebut yang tidak disewakan secara khusus kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_8_5" xml:space="preserve">
+    <value>yang dapat menghambat atau merintangi pemakaian bersama dari fasilitas tersebut</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_9_1" xml:space="preserve">
+    <value>Mengizinkan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_9_2" xml:space="preserve">
+    <value>atau wakilnya dengan atau tanpa pekerja dan dengan atau tanpa alat untuk setiap saat memasuki dan melihat keadaan perbaikan baik di dalam maupun yang melewati serta terletak di atas langit-langit RUANG SEWA dan melakukan perbaikan apapun yang diperlukan didalamnya dan memperbaiki secara layak dan ahli akan segala kerusakan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_10_1" xml:space="preserve">
+    <value>Tidak mempergunakan RUANG SEWA baik sebagian atau seluruhnya untuk membuat makanan atau mempergunakan sebagai tempat tinggal atau mengizinkan seseorang menginap di RUANG SEWA pada malam hari</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_11_1" xml:space="preserve">
+    <value>Tidak mempergunakan RUANG SEWA baik sebagian maupun seluruhnya untuk laboratorium, bengkel atau untuk menyimpan barang-barang atau contoh-contoh dalam jumlah besar, memamerkan atau melakukan pekerjaan yang diperkirakan dapat menarik perhatian orang-orang yang tidak bertanggung jawab sehingga dapat membahayakan keamanan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_12_1_1" xml:space="preserve">
+    <value>Tidak diperbolehkan memasang papan nama kantor yang dapat mengganggu keindahan tata ruangan, misalnya pemasangan papan nama kantor yang melintang keluar</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_12_1_2" xml:space="preserve">
+    <value>Untuk memasang atau meletakkan, memperagakan papan iklan, papan dekorasi, lampu iklan atau segala macam iklan yang dapat terlihat didalam atau diluar</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_12_2_2" xml:space="preserve">
+    <value>harus dengan persetujuan tertulis dari</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_12_3_2" xml:space="preserve">
+    <value>bilamana tidak ada persetujuan tertulis, maka</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_12_4_2" xml:space="preserve">
+    <value>berhak untuk memindahkan/mengangkutnya atas biaya</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_13_1" xml:space="preserve">
+    <value>wajib menaati semua aturan-aturan yang ditetapkan dan diberlakukan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_13_2" xml:space="preserve">
+    <value>selama Jangka Waktu Sewa berlangsung, baik yang akan diatur lebih lanjut dalam suatu Perjanjian tersendiri antara</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_13_3" xml:space="preserve">
+    <value>dengan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_13_4" xml:space="preserve">
+    <value>maupun dalam suatu Surat Edaran/Ketetapan Peraturan Gedung yang dikeluarkan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_14_1" xml:space="preserve">
+    <value>Tidak menempatkan perabot kantor (furniture) dan atau mempergunakan mesin-mesin kantor yang mempunyai berat melebihi 250 (dua ratus lima puluh) kilogram per meter persegi</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_15_1" xml:space="preserve">
+    <value>Tidak menyewakan kembali atau melepaskan hak sewa kepada pihak manapun juga, baik sebagian maupun seluruh RUANG SEWA kecuali dengan persetujuan tertulis terlebih dahulu dari</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_15_2" xml:space="preserve">
+    <value>dan dengan ketentuan semua hak-hak dan kewajiban-kewajiban</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL6_15_3" xml:space="preserve">
+    <value>yang tercantum dalam Perjanjian Sewa Menyewa maupun Perjanjian Pengelolaan dan Pemeliharaan Gedung tetap berlaku untuk pengganti/penerus hak dan kewajiban</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL7" xml:space="preserve">
+    <value>Pasal 7</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL7_TITLE" xml:space="preserve">
+    <value>KEWAJIBAN – KEWAJIBAN &amp; TANGGUNG JAWAB PEMILIK</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL7_1_1" xml:space="preserve">
+    <value>Sehubungan dengan RUANG SEWA, maka</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL7_1_2" xml:space="preserve">
+    <value>berkewajiban untuk menyediakan RUANG SEWA dan memastikan bebas dari gangguan pihak lain</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL7_2_1" xml:space="preserve">
+    <value>wajib memastikan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL7_2_2" xml:space="preserve">
+    <value>yang ditunjuk menjalankan fungsinya dengan baik sehingga seluruh peralatan dan fasilitas yang ada dalam</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL7_2_3" xml:space="preserve">
+    <value>berfungsi dengan baik</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8" xml:space="preserve">
+    <value>Pasal 8</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_TITLE" xml:space="preserve">
+    <value>PENGAKHIRAN DAN PERPANJANGAN SEWA-MENYEWA</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_0_1" xml:space="preserve">
+    <value>Apabila salah satu atau lebih hal-hal berikut terjadi</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1A_1" xml:space="preserve">
+    <value>tidak memenuhi kewajiban membayar angsuran uang sewa dan kewajiban-kewajiban pembayaran lainnya sebagaimana ditetapkan dalam Perjanjian ini dalam waktu 1 (satu) bulan sejak tanggal yang ditetapkan untuk membayar</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1B_1" xml:space="preserve">
+    <value>Semua atau salah satu kegiatan usaha</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1B_2" xml:space="preserve">
+    <value>yang sekarang dinyatakan bersalah, disita, atau terkena tindakan Pemerintah untuk membubarkan atau menangguhkan kegiatan usaha</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1B_3" xml:space="preserve">
+    <value>atau</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1B_4" xml:space="preserve">
+    <value>tidak dapat melaksanakan tindakan perbaikan yang disetujui</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1B_5" xml:space="preserve">
+    <value>dan/atau</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1B_6" xml:space="preserve">
+    <value>dalam waktu 60 (enam puluh) hari setelah ada pernyataan bersalah, penyitaan, perampasan atau tindakan lainnya oleh Pemerintah</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1C_1" xml:space="preserve">
+    <value>Bilamana</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1C_2" xml:space="preserve">
+    <value>dinyatakan dalam keadaan pailit atau diberikan penundaan pembayaran hutang-hutangnya (surseance van betaling)</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1D_1" xml:space="preserve">
+    <value>Bilamana</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1D_2" xml:space="preserve">
+    <value>dibubarkan atau dinyatakan dalam keadaan likuidasi</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1TEXT_1" xml:space="preserve">
+    <value>Maka dengan lewatnya batas waktu yang ditetapkan dalam Pasal 8 Ayat 1 (a, b, c &amp; d) tersebut diatas,</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1TEXT_2" xml:space="preserve">
+    <value>berhak untuk dengan seketika mengakhiri/ menghentikan/membatalkan Perjanjian ini dengan pemberitahuan secara tertulis terlebih dahulu kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1TEXT_3" xml:space="preserve">
+    <value>Dalam kejadian demikian maka</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1i_1" xml:space="preserve">
+    <value>tidak diwajibkan untuk mengembalikan kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1i_2" xml:space="preserve">
+    <value>sisa pembayaran Harga Sewa yang telah diterima oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1i_3" xml:space="preserve">
+    <value>sesuai Pasal 3 Perjanjian ini, termasuk Uang Jaminan Sewa yang telah dibayarkan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1ii_1" xml:space="preserve">
+    <value>berhak dan berwenang penuh untuk menyewakan kembali RUANG SEWA kepada siapapun juga dengan syarat-syarat yang dipandang baik oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_1_1ii_2" xml:space="preserve">
+    <value>sendiri</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_2_1" xml:space="preserve">
+    <value>Bilamana Perjanjian ini berakhir/berhenti karena jangka waktunya telah lewat maupun karena dihentikan/diakhiri/ dibatalkan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_2_2" xml:space="preserve">
+    <value>berdasarkan apa yang ditetapkan dalam Pasal 8 Ayat 1 Perjanjian ini, maka</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_2_3" xml:space="preserve">
+    <value>wajib menyerahkan kembali RUANG SEWA dalam keadaan kosong sama sekali (tidak ada yang memakai/menguasainya) kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_2_4" xml:space="preserve">
+    <value>selambat-lambatnya pada hari dan tanggal Perjanjian ini berakhir atau dihentikan/diakhiri/dibatalkan, tanpa</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_2_5" xml:space="preserve">
+    <value>wajib untuk membayar ganti kerugian atau menyediakan akomodasi penampungan berupa apapun juga kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_3_1" xml:space="preserve">
+    <value>Dalam hal</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_3_2" xml:space="preserve">
+    <value>pada waktu yang ditetapkan dalam Pasal 8 Ayat 2 di atas lalai untuk menyerahkan kembali RUANG SEWA dalam keadaan kosong sama sekali kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_3_3" xml:space="preserve">
+    <value>maka untuk tiap-tiap hari kelalaian atau keterlambatan dalam hal penyerahan kembali RUANG SEWA</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_3_4" xml:space="preserve">
+    <value>wajib membayar denda kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_3_5" xml:space="preserve">
+    <value>sebesar Rp.3.118.290,- (tiga juta seratus delapan belas ribu dua ratus sembilan puluh Rupiah)  per harinya yang tiap-tiap kali harus dibayar dengan seketika dan sekali lunas kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_3_6" xml:space="preserve">
+    <value>dan yang akan dihitung mulai dari hari dimana</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_3_7" xml:space="preserve">
+    <value>wajib untuk menyerahkan kembali RUANG SEWA sampai dengan hari RUANG SEWA telah diterima kembali dalam keadaan kosong sama sekali oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_4_1_1" xml:space="preserve">
+    <value>Dengan tidak mengurangi ketentuan-ketentuan yang diuraikan di atas</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_4_2_1" xml:space="preserve">
+    <value>dengan ini sekarang dan untuk dikemudian hari pada waktunya, memberi kuasa dan wewenang penuh kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_4_3_1" xml:space="preserve">
+    <value>untuk dan atas biaya-biaya dan resiko dari</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_4_4_1" xml:space="preserve">
+    <value>untuk melakukan semua tindakan/langkah-langkah yang dipandang baik oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_4_5_1" xml:space="preserve">
+    <value>guna mengambil dan mengosongkan sendiri atau suruh untuk diambil atau dikosongkan RUANG SEWA dari siapapun juga yang memakai/menguasainya serta memindahkan semua dan setiap barang-barang milik/ kepunyaan siapapun juga yang berada/disimpan dalam RUANG SEWA ke tempat-tempat yang akan ditentukan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_4_6_1" xml:space="preserve">
+    <value>atas biaya-biaya dan resiko dari</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_4_7_1" xml:space="preserve">
+    <value>dan untuk melaksanakan semua itu</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_4_8_1" xml:space="preserve">
+    <value>dan/atau</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_4_9_1" xml:space="preserve">
+    <value>jika memandang perlu juga berhak untuk mempergunakan bantuan dari Alat-alat Kekuasaan Negara terutama Alat-alat Kepolisian Negara</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_4_1_2" xml:space="preserve">
+    <value>dan/atau</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_4_2_2" xml:space="preserve">
+    <value>dan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_4_3_2" xml:space="preserve">
+    <value>dengan ini, sekarang dan untuk seterusnya dikemudian hari, melepaskan dengan tegas semua dan setiap ketentuan-ketentuan hukum yang sekarang telah dan/atau kemudian hari akan ditetapkan oleh pihak yang berwajib yang mengatur mengenai tata cara untuk mengosongkan bangunan-bangunan atau ruangan-ruangan (antara lain, tetapi tidak terbatas Peraturan Pemerintah Nomor 49 tahun seribu sembilan ratus enam puluh tiga (1963), KUH Perdata Pasal 1548-1600, dan semua peraturan  pelaksanaan sewa menyewa lainnya), sehingga untuk mengambil dan mengosongkan sendiri atau suruh untuk diambil/dikosongkan RUANG SEWA dari pihak yang memakai/menguasainya, sebagaimana diuraikan diatas ini,</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_4_4_2" xml:space="preserve">
+    <value>tidak diwajibkan untuk memohon izin pengosongan terlebih dahulu dari instansi yang berwenang</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_5_1" xml:space="preserve">
+    <value>Sepanjang masih diperlukan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_5_2" xml:space="preserve">
+    <value>dengan ini pula, sekarang untuk dikemudian hari,  melepaskan semua dan setiap haknya (sepanjang hak-hak tersebut dimilikinya) untuk mengajukan tuntutan-tuntutan/gugatan-gugatan berupa apapun juga terhadap</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_5_3" xml:space="preserve">
+    <value>dan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_5_4" xml:space="preserve">
+    <value>baik mengenai pengambilan kembali dan pengosongan atas RUANG SEWA yang dilakukan atau disuruh untuk dilakukan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_5_5" xml:space="preserve">
+    <value>dan/atau</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_5_6" xml:space="preserve">
+    <value>dengan cara yang diuraikan diatas maupun mengenai segala akibatnya yang timbul sehubungan dengan pengambilan dan pengosongan atas RUANG SEWA tersebut</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_6_1_1" xml:space="preserve">
+    <value>Bilamana</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_6_2_1" xml:space="preserve">
+    <value>memutuskan Perjanjian ini sebelum masa sewa-menyewa berakhir, maka semua pembayaran yang telah dilakukan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_6_3_1" xml:space="preserve">
+    <value>kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_6_4_1" xml:space="preserve">
+    <value>menjadi milik</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_6_1_2" xml:space="preserve">
+    <value>Walaupun demikian</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_6_2_2" xml:space="preserve">
+    <value>dapat mengalihkan hak-hak dan kewajiban-kewajibannya berdasarkan Perjanjian ini kepada pihak lain dengan syarat bahwa pengalihan RUANG SEWA tersebut harus dilaksanakan dalam 1 (satu) bulan setelah</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_6_3_2" xml:space="preserve">
+    <value>memberikan izinnya secara tertulis</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_6_1_3" xml:space="preserve">
+    <value>Izin tersebut diatas dapat segera diberikan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_6_2_3" xml:space="preserve">
+    <value>bilamana semua ongkos-ongkos sehubungan dengan pemutusan Perjanjian ini tersebut telah dibayar oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_6_3_3" xml:space="preserve">
+    <value>dan pihak pengganti</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_6_4_3" xml:space="preserve">
+    <value>telah menegaskan bahwa ia akan menaati dan bertanggung jawab atas semua syarat-syarat yang ditetapkan dalam Perjanjian ini</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_7_1_1" xml:space="preserve">
+    <value>Dalam hal</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_7_2_1" xml:space="preserve">
+    <value>harus menyerahkan kembali RUANG SEWA dalam keadaan kosong, maka</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_7_3_1" xml:space="preserve">
+    <value>tidak berkewajiban untuk membayar kembali segala ongkos yang telah dikeluarkan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_7_4_1" xml:space="preserve">
+    <value>untuk internal partitioning dan dekorasi (jika ada) pada waktu berakhirnya atau batalnya Perjanjian ini</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_7_1_2" xml:space="preserve">
+    <value>Pada waktu berakhirnya atau diakhirinya/batalnya Perjanjian ini</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_7_2_2" xml:space="preserve">
+    <value>wajib mengeluarkan dan atau memindahkan internal partitioning dan dekorasi yang melekat pada RUANG SEWA dengan kewajiban untuk mengembalikan RUANG SEWA dalam keadaan dan kondisi yang baik, seperti sewaktu diserahkan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_7_3_2" xml:space="preserve">
+    <value>yang pelaksanaannya dapat dikerjakan oleh kontraktor-kontraktor pilihan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_7_4_2" xml:space="preserve">
+    <value>asal saja</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_7_5_2" xml:space="preserve">
+    <value>diberitahu tentang nama-nama dari semua kontraktor tersebut dan berhak membuat peraturan-peraturan yang pantas mengenai jalan masuk daripada kontraktor tersebut dan para pekerjanya ke ruang yang disewakan. Satu dan lainnya atas perongkosan dan resiko dari</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_7_6_2" xml:space="preserve">
+    <value>sepenuhnya</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_7_1_3" xml:space="preserve">
+    <value>Dengan persetujuan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_7_2_3" xml:space="preserve">
+    <value>dapat tidak mengangkat atau memindahkan internal partitioning dan dekorasi yang melekat pada RUANG SEWA dengan ketentuan peralatan tetap dan perlengkapan yang tidak dipindahkan dari RUANG SEWA dianggap ditinggalkan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_7_3_3" xml:space="preserve">
+    <value>dan menjadi milik dari</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_8_1" xml:space="preserve">
+    <value>Sekurang-kurangnya 3 (tiga) bulan sebelum Perjanjian ini berakhir, Para Pihak dapat merundingkan secara musyawarah mengenai perpanjangan kembali dengan syarat-syarat dan ketentuan-ketentuan serta uang sewa yang akan ditetapkan kemudian</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_9_1_1" xml:space="preserve">
+    <value>Bilamana</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_9_2_1" xml:space="preserve">
+    <value>akan merenovasi dan/atau membangun kembali RUANG SEWA dan/atau</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_9_3_1" xml:space="preserve">
+    <value>yang mengakibatkan RUANG SEWA tidak dapat dipakai/digunakan lagi oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_9_4_1" xml:space="preserve">
+    <value>maka</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_9_5_1" xml:space="preserve">
+    <value>wajib memberitahukan maksudnya secara tertulis kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_9_6_1" xml:space="preserve">
+    <value>paling lambat 6 (enam) bulan sebelum</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_9_7_1" xml:space="preserve">
+    <value>melaksanakan maksudnya untuk mengakhiri Perjanjian ini</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL8_10_1" xml:space="preserve">
+    <value>Para Pihak mengesampingkan berlakunya Pasal 1266 Kitab Undang-Undang Perdata sehingga tidak diperlukan keputusan pengadilan bagi pemutusan atau pembatalan Perjanjian ini</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL9" xml:space="preserve">
+    <value>Pasal 9</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL9_TITLE" xml:space="preserve">
+    <value>KETENTUAN TERHADAP TUNTUTAN</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL9_1_1" xml:space="preserve">
+    <value>harus bertanggung jawab sepenuhnya serta membebaskan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL9_1_2" xml:space="preserve">
+    <value>dari segala tuntutan, permintaan dan tindakan hukum berupa apapun dari pihak ketiga sehubungan dengan kerusakan atau kerugian yang diderita oleh seseorang dalam RUANG SEWA yang disebabkan karena kelalaian</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL9_1_3" xml:space="preserve">
+    <value>pembantunya, pegawainya, wakilnya, tamunya atau kontraktornya</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL9_2_1" xml:space="preserve">
+    <value>tidak bertanggung jawab mengenai kerugian yang diderita oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL9_2_2" xml:space="preserve">
+    <value>pembantunya, pemegang izin, tamunya atau para undangan yang disebabkan karena kerusakan atau kurang sempurna bekerjanya salah satu lift di dalam</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL9_3_1" xml:space="preserve">
+    <value>setuju jika kerugian atau kerusakan yang diderita oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL9_3_2" xml:space="preserve">
+    <value>atau pihak ketiga pada RUANG SEWA selama masa sewa, baik secara langsung maupun tidak langsung yang disebabkan oleh cacat atau karena perbuatan mengangkat atau memindahkan bagian internal partitioning dan dekorasi yang melekat pada RUANG SEWA, maka</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL9_3_3" xml:space="preserve">
+    <value>harus bertanggung jawab sepenuhnya dan akan membayar ganti rugi kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL9_3_4" xml:space="preserve">
+    <value>atau pihak ketiga yang besarnya akan ditentukan kemudian sesuai dengan besarnya kerusakan. Semua perbaikan-perbaikan terhadap kerusakan pada RUANG SEWA hanya boleh dilakukan oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL10" xml:space="preserve">
+    <value>Pasal 10</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL10_TITLE" xml:space="preserve">
+    <value>ASURANSI</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL10_1_1" xml:space="preserve">
+    <value>mempertanggungkan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL10_1_2" xml:space="preserve">
+    <value>tersebut (tidak termasuk barang-barang</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL10_1_3" xml:space="preserve">
+    <value>yang berada di RUANG SEWA) terhadap bahaya lainnya yang dianggap perlu</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL10_2_1" xml:space="preserve">
+    <value>diwajibkan untuk mengasuransikan barang-barang yang berada dalam RUANG SEWA terhadap bahaya kebakaran, kehilangan atau kerusakan oleh sebab apapun juga atas biaya sendiri</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL11" xml:space="preserve">
+    <value>Pasal 11</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL11_TITLE" xml:space="preserve">
+    <value>JAMINAN</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL11_1_1" xml:space="preserve">
+    <value>menjamin bahwa selama masa sewa-menyewa ini berlangsung </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL11_1_2" xml:space="preserve">
+    <value>tidak akan mendapat tuntutan dari pihak ketiga yang menyatakan mempunyai hak terlebih dahulu atau turut mempunyai hak atas RUANG SEWA yang disewakan berdasarkan Perjanjian ini</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12" xml:space="preserve">
+    <value>Pasal 12</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_TITLE" xml:space="preserve">
+    <value>FORCE MAJEURE</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_1_1" xml:space="preserve">
+    <value>Dalam hal RUANG SEWA hancur atau rusak seluruhnya oleh karena angin, kebakaran, gempa bumi, atau Force Majeure lainnya sehingga menjadi seluruhnya tidak dapat ditempati maka Perjanjian ini gugur demi hukum dan masing-masing pihak tidak dapat menuntut sesuatu apapun dari pihak lainnya</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_2_1" xml:space="preserve">
+    <value>Bilamana kehancuran tidak seluruhnya tetapi memerlukan perbaikan lebih dari 15 (lima belas) hari kalender lamanya maka </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_2_2" xml:space="preserve">
+    <value>dan/atau</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_2_3" xml:space="preserve">
+    <value>akan mengembalikan RUANG SEWA dalam keadaan seperti semula sewaktu diserahkan oleh </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_2_4" xml:space="preserve">
+    <value>kepada </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_2_5" xml:space="preserve">
+    <value>Dalam hal demikian </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_2_6" xml:space="preserve">
+    <value>dapat menuntut perpanjangan waktu sewa-menyewa untuk waktu yang sama lamanya antara saat RUANG SEWA berhenti ditempati sampai </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_2_7" xml:space="preserve">
+    <value>selesai memperbaiki kembali RUANG SEWA ke bentuk semula seperti sewaktu diserahkan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_2_8" xml:space="preserve">
+    <value>Perpanjangan Jangka Waktu Sewa tersebut telah meliputi waktu yang diperlukan oleh </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_2_9" xml:space="preserve">
+    <value>untuk keperluan dekorasi serta pembagian tata ruangan (lay-out).</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_2_10" xml:space="preserve">
+    <value>Terhentinya pemakaian RUANG SEWA karena maksud untuk memperbaiki oleh sebab-sebab Force Majeure tersebut diatas tidak dapat dijadikan alasan oleh </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_2_11" xml:space="preserve">
+    <value>untuk menuntut </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_2_12" xml:space="preserve">
+    <value>dan/atau </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_2_13" xml:space="preserve">
+    <value>sebagai pihak yang tidak memenuhi Perjanjian</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_3_1" xml:space="preserve">
+    <value>tidak bertanggung jawab atas segala kerugian yang diderita </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_3_2" xml:space="preserve">
+    <value>dalam hal RUANG SEWA tidak dapat digunakan karena ditutupnya atau tidak beroperasinya </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_3_3" xml:space="preserve">
+    <value>sehubungan terjadinya keadaan diluar kontrol </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL12_3_4" xml:space="preserve">
+    <value>atau Force Majeure</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL13" xml:space="preserve">
+    <value>Pasal 13</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL13_TITLE" xml:space="preserve">
+    <value>PENYELESAIAN PERSELISIHAN</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL13_1_1" xml:space="preserve">
+    <value>Apabila timbul perselisihan mengenai penafsiran dari isi Perjanjian ini, Para Pihak sepakat untuk menyelesaikan secara musyawarah untuk mufakat</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL13_2_1" xml:space="preserve">
+    <value>Apabila penyelesaian musyawarah untuk mufakat tidak tercapai setelah PARA PIHAK melakukan musyawarah dengan itikad baik selama 20 (dua puluh) hari kerja, maka Para Pihak sepakat untuk menyelesaikannya di Pengadilan Negeri Jakarta Pusat, di Jakarta. Hari kerja adalah hari dimana bank umum di Jakarta melakukan kegiatan usaha</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14" xml:space="preserve">
+    <value>Pasal 14</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_TITLE" xml:space="preserve">
+    <value>KETENTUAN-KETENTUAN LAIN</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_1_1" xml:space="preserve">
+    <value>dengan ini setuju dan sepakat bahwa semua tunggakan biaya-biaya sehubungan dengan penggunaan RUANG SEWA atau tunggakan biaya lainnya pada waktu berakhirnya jangka waktu sewa, pembatalan maupun pemutusan Perjanjian secara sepihak oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_1_2" xml:space="preserve">
+    <value>dari Perjanjian ini tetap menjadi tanggung jawab serta wajib dibayar oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_2_1" xml:space="preserve">
+    <value>Semua kuasa, kekuasaan dan wewenang yang diberikan oleh </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_2_2" xml:space="preserve">
+    <value>yang termaksud dalam Perjanjian ini merupakan bagian-bagian yang terpenting dan tidak terpisah dari Perjanjian ini, yang tidak akan dibuat tanpa ada pemberian kuasa, kekuasaan dan wewenang tersebut, dan sebagai demikian maka kuasa, kekuasaan dan wewenang tersebut semuanya tidak dapat dicabut/ditarik kembali oleh </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_2_3" xml:space="preserve">
+    <value>dan juga tidak akan menjadi hapus/berakhir bilamana </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_2_4" xml:space="preserve">
+    <value>meninggal dunia/dibubarkan atau dilikuidasi atau karena peristiwa atau karena sebab apapun juga, dan sehubungan dengan hal tersebut </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_2_5" xml:space="preserve">
+    <value>dengan ini melepaskan pasal 1813 Kitab Undang-undang Hukum Perdata.</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_3_1" xml:space="preserve">
+    <value>Bilamana dalam Perjanjian ini ditetapkan bahwa </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_3_2" xml:space="preserve">
+    <value>wajib untuk melakukan kewajiban-kewajibannya kepada</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_3_3" xml:space="preserve">
+    <value>dalam waktu yang ditentukan, maka lewatnya jangka waktu yang ditetapkan itu saja telah menjadi bukti yang sah dan cukup mengenai kelalaian </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_3_4" xml:space="preserve">
+    <value>untuk melaksanakan kewajiban tersebut, sehingga mengenai kelalaian itu tidak diperlukan teguran dengan surat juru sita atau pernyataan berupa apapun dan dari siapapun juga untuk menyita seluruh barang-barang maupun dokumen apapun yang berada di dalam ruang sewa dan </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_3_5" xml:space="preserve">
+    <value>tidak bertanggung jawab atas barang-barang maupun dokumen sitaan tersebut, sebagaimana diatur dalam pasal 8 ayat 5</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_4_1" xml:space="preserve">
+    <value>Mengenai Perjanjian ini </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_4_2" xml:space="preserve">
+    <value>dan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_4_3" xml:space="preserve">
+    <value>melepaskan pasal 1266 Kitab Undang-undang Hukum Perdata, sepanjang yang mengatur tentang tata cara membatalkan sesuatu Perjanjian, sehingga dalam semua dan setiap hal bilamana</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_4_4" xml:space="preserve">
+    <value>harus membatalkan atau menyatakan batal Perjanjian ini sesuai dengan ketentuan-ketentuan yang termaksud dalam Perjanjian ini, maka mengenai pembatalan itu tidak diperlukan putusan atau ketetapan apapun juga dari instansi pengadilan yang berwewenang</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_5_1" xml:space="preserve">
+    <value>menyetujui bahwa berakhirnya atau diberhentikan /diputuskannya Perjanjian ini sekali-kali tidak mengurangi kewajiban dari </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_5_2" xml:space="preserve">
+    <value>untuk tetap membayar kepada </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_5_3" xml:space="preserve">
+    <value>atas semua tunggakan/pembayaran uang berupa apapun juga yang menjadi kewajibannya </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_5_4" xml:space="preserve">
+    <value>dan yang timbul pada waktu Perjanjian Sewa-Menyewa ini masih berlaku atau belum dihentikan/diputuskan. Dalam hal terjadi pengakhiran sepihak atau pengunduran diri oleh </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_5_5" xml:space="preserve">
+    <value>sebelum berakhirnya jangka waktu sewa dengan atau tanpa persetujuan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_5_6" xml:space="preserve">
+    <value>Maka</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_5_7" xml:space="preserve">
+    <value>tetap berkewajiban untuk membayar seluruh kewajiban uang sewa, dan lainnya untuk masa sewa yang belum terpakai sampai dengan masa sewa berakhir.</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_6_1" xml:space="preserve">
+    <value>Dengan tidak mengurangi ketentuan dalam Pasal 8 Ayat 1.a., maka dalam hal </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_6_2" xml:space="preserve">
+    <value>lalai melaksanakan pembayaran angsuran Biaya Sewa (jika pembayaran dilakukan secara angsuran) dan/atau kewajiban-kewajiban pembayaran lainnya selambat-lambatnya 17 (tujuh belas) hari kerja sejak tanggal yang diwajibkan untuk membayar, maka </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_6_3" xml:space="preserve">
+    <value>berhak memutuskan aliran listrik yang ada pada RUANG SEWA untuk jangka waktu sampai tunggakan-tunggakan angsuran Uang Sewa dan/atau kewajiban-kewajiban pembayaran lainnya telah dilunasi seluruhnya berikut denda-dendanya dan dalam hal terjadi demikian </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_6_4" xml:space="preserve">
+    <value>wajib membayar biaya pemasangan aliran listrik kembali dan yang besarnya akan ditentukan kemudian.</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_6_5" xml:space="preserve">
+    <value>Apabila sampai jangka waktu 1 (satu) bulan sejak tanggal yang ditetapkan untuk membayar </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_6_6" xml:space="preserve">
+    <value>belum juga melunasi tunggakan-tunggakan angsuran Uang Sewa dan/atau kewajiban-kewajiban pembayaran lainnya tersebut berikut dendanya, maka</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_6_7" xml:space="preserve">
+    <value>berhak (dan dengan ini tetapi untuk nanti pada waktunya) diberi Kuasa oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_6_8" xml:space="preserve">
+    <value>untuk menutup RUANG SEWA tersebut sampai tunggakan-tunggakan tersebut dilunasi seluruhnya oleh </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_6_9" xml:space="preserve">
+    <value>kepada </value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_6_10" xml:space="preserve">
+    <value>sesuai yang diatur dalam pasal 8  ayat 1</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_7_1" xml:space="preserve">
+    <value>Setiap pemberitahuan yang diperlukan atau diberikan oleh pihak yang satu kepada yang lain akan dianggap diserahkan apabila tanda terima yang ditandatangani dengan sah telah diterima dari pihak yang menerimanya</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_7_2" xml:space="preserve">
+    <value>Para pihak dapat pindah alamat dengan memberitahukan secara tertulis kepada pihak lainnya dalam waktu 14 (empat belas) hari</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_8_1" xml:space="preserve">
+    <value>Hukum yang berlaku untuk Perjanjian ini adalah Hukum yang berlaku di Negara Republik Indonesia</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_9_1" xml:space="preserve">
+    <value>Mengenai Perjanjian ini dan segala akibatnya serta pelaksanaannya Para Pihak memilih tempat tinggal yang tetap dan seumumnya di Kantor Panitera Pengadilan Negeri Jakarta Pusat di Jakarta.</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL14_10_1" xml:space="preserve">
+    <value>Apabila dikemudian hari dirasa perlu untuk mengubah atau menambah isi perjanjian ini, maka PARA PIHAK akan merundingkan secara musyawarah kemudian dituangkan ke dalam suatu perjanjian tambahan (Addendum) yang merupakan lampiran dan bagian yang tidak dapat dipisahkan dari Perjanjian ini</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PENUTUP" xml:space="preserve">
+    <value>Demikianlah Perjanjian ini, dibuat dan ditandatangani di Jakarta, pada hari, tanggal dan tahun tersebut di atas, bermaterai cukup dibuat dalam rangkap 2 (dua) masing-masing mempunyai kekuatan hokum yang sama</value>
+  </data>
+  <data name="LABEL_RUANG_SEWA" xml:space="preserve">
+    <value>RUANG SEWA</value>
+  </data>
+  <data name="LABEL_PARA_PIHAK" xml:space="preserve">
+    <value>PARA PIHAK</value>
+  </data>
+  <data name="LABEL_GEDUNG" xml:space="preserve">
+    <value>GEDUNG</value>
+  </data>
+  <data name="LABEL_PEMILIK" xml:space="preserve">
+    <value>PEMILIK</value>
+  </data>
+  <data name="LABEL_PENYEWA" xml:space="preserve">
+    <value>PENYEWA</value>
+  </data>
+  <data name="LABEL_BAHWA" xml:space="preserve">
+    <value>Bahwa</value>
+  </data>
+  <data name="LABEL_DAN" xml:space="preserve">
+    <value>Dan</value>
+  </data>
+  <data name="LABEL_TAHUN" xml:space="preserve">
+    <value>Tahun</value>
+  </data>
+  <data name="LABEL_BULAN" xml:space="preserve">
+    <value>bulan</value>
+  </data>
+  <data name="LABEL_HARI" xml:space="preserve">
+    <value>hari</value>
+  </data>
+  <data name="LABEL_M2" xml:space="preserve">
+    <value>m2</value>
+  </data>
+  <data name="LABEL_NOMOR" xml:space="preserve">
+    <value>Nomor</value>
+  </data>
+  <data name="LABEL_PERIHAL" xml:space="preserve">
+    <value>Perihal</value>
+  </data>
+  <data name="LABEL_PENAWARAN_LEASING_SEWA_RUANG_DI" xml:space="preserve">
+    <value>Penawaran Leasing (Sewa Ruang) di</value>
+  </data>
+  <data name="LABEL_KEPADA_YTH" xml:space="preserve">
+    <value>Kepada Yth</value>
+  </data>
+  <data name="LABEL_NAMA" xml:space="preserve">
+    <value>Nama</value>
+  </data>
+  <data name="LABEL_JABATAN" xml:space="preserve">
+    <value>Jabatan</value>
+  </data>
+  <data name="LABEL_INSTITUSI" xml:space="preserve">
+    <value>Institusi</value>
+  </data>
+  <data name="LABEL_ALAMAT" xml:space="preserve">
+    <value>Alamat</value>
+  </data>
+  <data name="LABEL_SALAM_SEJAHTERA" xml:space="preserve">
+    <value>Salam sejahtera dan sukses selalu,</value>
+  </data>
+  <data name="LABEL_TERIMA_KASIH_KAMI_UCAPKAN" xml:space="preserve">
+    <value>Terima kasih kami ucapkan atas kepercayaan bapak/ibu telah memilih:</value>
+  </data>
+  <data name="LABEL_SELANJUTNYA_DISEBUT_LANDLORD" xml:space="preserve">
+    <value>(selanjutnya disebut Landlord),</value>
+  </data>
+  <data name="LABEL_SEBAGAI_REKAN_BISNIS" xml:space="preserve">
+    <value>sebagai rekan bisnis di Kota </value>
+  </data>
+  <data name="LABEL_PMT01900_TERIMA_KASIH_KAMI_SAMPAIKAN" xml:space="preserve">
+    <value>Terima kasih kami sampaikan atas kepercayaan bapak/ibu telah memilih:</value>
+  </data>
+  <data name="LABEL_MENINDAKLANJUTI_KOMUNIKASI_KITA" xml:space="preserve">
+    <value>Menindaklajuti komunikasi kita terakhir, maka kami</value>
+  </data>
+  <data name="LABEL_SELAKU_MARKETING_AGENT_DARI" xml:space="preserve">
+    <value>selaku marketing agent dari Landlord, bermaksud untuk menguraikan hasil kesepakatan yang telah kita diskusikan. Adapun kesepakatan yang dimaksud adalah sebagai berikut:</value>
+  </data>
+  <data name="LABEL_NAMA_BRAND_TENANT" xml:space="preserve">
+    <value>1. NAMA BRAND TENANT:</value>
+  </data>
+  <data name="LABEL_NAMA_BRAND_TENANT_DESC" xml:space="preserve">
+    <value>(Selanjutnya disebut Tenant)</value>
+  </data>
+  <data name="LABEL_DETAIL_RUANG_SEWA" xml:space="preserve">
+    <value>2. DETAIL RUANG SEWA: (terlampir)</value>
+  </data>
+  <data name="LABEL_DETAIL_RUANG_SEWA_A" xml:space="preserve">
+    <value>a. Lokasi:</value>
+  </data>
+  <data name="LABEL_DETAIL_RUANG_B" xml:space="preserve">
+    <value>b. Lantai:</value>
+  </data>
+  <data name="LABEL_DETAIL_RUANG_C" xml:space="preserve">
+    <value>c. No. Retail:</value>
+  </data>
+  <data name="LABEL_DETAIL_RUANG_D" xml:space="preserve">
+    <value>d. Luasan Area:</value>
+  </data>
+  <data name="LABEL_DETAIL_RUANG_DESC" xml:space="preserve">
+    <value>Luasan ruang sewa akan disesuaikan dengan pengukuran bersama Landlord dan Tenant agar dapat dituangkan dalam Berita Acara Serah Terima dan Berita Acara Pengukuran Retail, sehingga perhitungan luasan tersebut digunakan sebagai acuan kerjasama.</value>
+  </data>
+  <data name="LABEL_JANGKA_WAKTU_SEWA" xml:space="preserve">
+    <value>3. JANGKA WAKTU SEWA:</value>
+  </data>
+  <data name="LABEL_JANGKA_WAKTU_SEWA_DESC" xml:space="preserve">
+    <value>sejak Tenant mulai beroperasi.</value>
+  </data>
+  <data name="LABEL_BIAYA_SEWA" xml:space="preserve">
+    <value>4. BIAYA SEWA (tidak termasuk pajak):</value>
+  </data>
+  <data name="LABEL_BIAYA_SEWA_A" xml:space="preserve">
+    <value>a. Luasan Area:</value>
+  </data>
+  <data name="LABEL_BIAYA_SEWA_B" xml:space="preserve">
+    <value>b. Biaya sewa:</value>
+  </data>
+  <data name="LABEL_BIAYA_SEWA_C" xml:space="preserve">
+    <value>c. Jangka waktu sewa:</value>
+  </data>
+  <data name="LABEL_BIAYA_SEWA_D" xml:space="preserve">
+    <value>d. Total biaya sewa: Rp.</value>
+  </data>
+  <data name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA" xml:space="preserve">
+    <value>5. CARA PEMBAYARAN BIAYA SEWA (tidak termasuk pajak):</value>
+  </data>
+  <data name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_A" xml:space="preserve">
+    <value>a. DP, dibayarkan:</value>
+  </data>
+  <data name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_A_DESC" xml:space="preserve">
+    <value>% dari nilai total biaya sewa diatas, sebesar: Rp</value>
+  </data>
+  <data name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_DP_DESC2" xml:space="preserve">
+    <value>Cara pembayaran DP diangsur</value>
+  </data>
+  <data name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_B" xml:space="preserve">
+    <value>b. Pembayaran sisa angsuran (setelah dipotong amortisasi pembayaran uang muka), yaitu sebesar: Rp.</value>
+  </data>
+  <data name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_C" xml:space="preserve">
+    <value>c. Dibayarkan setiap bulannya, selama</value>
+  </data>
+  <data name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_C_DESC" xml:space="preserve">
+    <value>bulan, sebesar: Rp.</value>
+  </data>
+  <data name="LABEL_BIAYA_SERVICE_CHARGE" xml:space="preserve">
+    <value>6. BIAYA SERVICE CHARGE (tidak termasuk pajak):</value>
+  </data>
+  <data name="LABEL_BIAYA_SERVICE_CHARGE_A" xml:space="preserve">
+    <value>a. Luasan Area:</value>
+  </data>
+  <data name="LABEL_BIAYA_SERVICE_CHARGE_B" xml:space="preserve">
+    <value>b. Biaya service charge : Rp.</value>
+  </data>
+  <data name="LABEL_BIAYA_SERIVCE_CHARGE_C" xml:space="preserve">
+    <value>c. Jangka waktu sewa:</value>
+  </data>
+  <data name="LABEL_BIAYA_SERVICE_CHARGE_D" xml:space="preserve">
+    <value>d. Total biaya service charge: Rp</value>
+  </data>
+  <data name="LABEL_CARA_PEMBAYARAN_SERVICE_CHARGES" xml:space="preserve">
+    <value>7. CARA PEMBAYARAN BIAYA SERVICE CHARGE (tidak termasuk pajak):</value>
+  </data>
+  <data name="LABEL_CARA_PEMBAYARAN_SERVICE_CHARGES_A" xml:space="preserve">
+    <value>a. Pembayaran biaya service charge, selama</value>
+  </data>
+  <data name="LABEL_CARA_PEMBAYARAN_SERVICE_CHARGES_A_DESC" xml:space="preserve">
+    <value>bulan, sebesar: Rp</value>
+  </data>
+  <data name="LABEL_UANG_JAMINAN" xml:space="preserve">
+    <value>8. UANG JAMINAN / SECURITY DEPOSIT:</value>
+  </data>
+  <data name="LABEL_UANG_JAMINAN_A" xml:space="preserve">
+    <value>a. Total uang jaminan/security deposit: Rp</value>
+  </data>
+  <data name="LABEL_UANG_JAMINAN_A_DESC" xml:space="preserve">
+    <value>Biaya uang jaminan/security deposit ini dibayarkan saat penandatanganan Surat Konfirmasi ini, dan akan dikembalikan saat masa sewa berakhir setelah dikurangi tunggakan tagihan/denda (jika ada).</value>
+  </data>
+  <data name="LABEL_UANG_JAMINAN_A_DESC2" xml:space="preserve">
+    <value>Note: Security deposit menggunakan security deposit sebelumnya (jaminan existing), apabila ada perubahan harga tenant membayarkan selisihnya saja.</value>
+  </data>
+  <data name="LABEL_AREA_MEDIA_PROMOSI" xml:space="preserve">
+    <value>9. AREA MEDIA PROMOSI DAN RUANG PAMERAN</value>
+  </data>
+  <data name="LABEL_AREA_MEDIA_PROMOSI_A" xml:space="preserve">
+    <value>a. Area media promosi diberikan secara cuma - cuma (tanpa biaya), selama</value>
+  </data>
+  <data name="LABEL_AREA_MEDIA_PROMOSI_A_DESC" xml:space="preserve">
+    <value>minggu untuk keperluan pembukaan outlet (opening store).</value>
+  </data>
+  <data name="LABEL_AREA_MEDIA_PROMOSI_B" xml:space="preserve">
+    <value>b. Area media pameran diberikan secara cuma-cuma (tanpa biaya)</value>
+  </data>
+  <data name="LABEL_AREA_MEDIA_PROMOSI_B_DESC" xml:space="preserve">
+    <value>minggu untuk keperluan pembukaan outlet (opening store).</value>
+  </data>
+  <data name="LABEL_AREA_MEDIA_PROMOSI_C" xml:space="preserve">
+    <value>c. Penggunaan media promosi dan ruang pameran akan mengikuti jadwal yang tersedia.</value>
+  </data>
+  <data name="LABEL_AREA_MEDIA_PROMOSI_D" xml:space="preserve">
+    <value>d. Tenant bertanggungjawab atas izin dan biaya yang timbul atas penggunaan area media promosi dan ruang pameran.</value>
+  </data>
+  <data name="LABEL_MECHANICAL_LISTRIK_AIR" xml:space="preserve">
+    <value>10. MECHANICAL, LISTRIK DAN AIR</value>
+  </data>
+  <data name="LABEL_MECHANICAL_LISTRIK_AIR_DESC" xml:space="preserve">
+    <value>Akan disediakan oleh Landlord, sebagai berikut:</value>
+  </data>
+  <data name="LABEL_MECHANICAL_LISTRIK_AIR_A" xml:space="preserve">
+    <value>a. Daya Listrik sebesar:</value>
+  </data>
+  <data name="LABEL_MECHANICAL_LISTRIK_AIR_B" xml:space="preserve">
+    <value>b. Penggunaan daya listrik diluar kapasitas yang disediakan oleh landlord akan dibebankan kepada tenant sebagai biaya tambahan sesuai penggunaan.</value>
+  </data>
+  <data name="LABEL_MECHANICAL_LISTRIK_AIR_C" xml:space="preserve">
+    <value>c. AC sentral dari gedung.</value>
+  </data>
+  <data name="LABEL_PENGGUNAAN_RUANG_SEWA" xml:space="preserve">
+    <value>11. PENGGUNAAN RUANG SEWA</value>
+  </data>
+  <data name="LABEL_PENGGUNAAN_RUANG_SEWA_DESC" xml:space="preserve">
+    <value>Penggunaan ruang sewa wajib sesuai dengan detail yang akan tertuang pada Perjanjian Sewa menyewa.</value>
+  </data>
+  <data name="LABEL_LAIN_LAIN" xml:space="preserve">
+    <value>14. LAIN-LAIN</value>
+  </data>
+  <data name="LABEL_LAIN_LAIN_A" xml:space="preserve">
+    <value>a. Semua cara pembayaran yang dimaksud dalam surat konfirmasi penawaran leasing ini oleh Tenant langsung kepada Landlord.</value>
+  </data>
+  <data name="LABEL_LAIN_LAIN_B" xml:space="preserve">
+    <value>b. kebijakan - kebijakan yang timbul sehingga terjadinya perubahan nilai dalam penawaran ini selanjutnya akan diberikan oleh Landlord dalam bentuk addendum terpisah mengikuti perkembangan yang ada dengan selalu mengutamakan keberlangsungan bersama.</value>
+  </data>
+  <data name="LABEL_PENUTUP" xml:space="preserve">
+    <value>15. PENUTUP</value>
+  </data>
+  <data name="LABEL_PENUTUP_A" xml:space="preserve">
+    <value>a. Dengan ditandatanganinya surat konfirmasi penawaran ini, maka surat ini ekan menjadi bukti konfirmasi atas butir — butir penawaran yang disepakati diatas sehingga selanjutnya dapat menjadi acuan yang akan dituangkan secara lebih rinci ke dalam Perjanjian Sewa Menyewa oleh dan antara Tenant dan Landlord.</value>
+  </data>
+  <data name="LABEL_PENUTUP_B" xml:space="preserve">
+    <value>b. Tenant dianggap menolak atau mundur dari penawaran ini apabila surat konfirmasi penawaran tidak ditandatangani dalam kurun waktu 14 hari sejak Surat Konfirmasi ini diterima oleh Tenant, sehingga selanjutnya Landlord dan rekan agen marketing berhak untuk menawarkan ruang sewa yang dimaksud dalam penawaran ini kepada pihak lain tanpa pemberitahuan atau persetujuan terlebih dahulu kepada Tenant.</value>
+  </data>
+  <data name="LABEL_DIBUAT_OLEH" xml:space="preserve">
+    <value>Dibuat oleh,</value>
+  </data>
+  <data name="LABEL_MENYETUJUI" xml:space="preserve">
+    <value>Menyetujui,</value>
+  </data>
+  <data name="LABEL_MENGETAHUI" xml:space="preserve">
+    <value>Mengetahui</value>
+  </data>
+  <data name="LABEL_PMT10900_SALAM_PROPERTYNAME" xml:space="preserve">
+    <value>Salam</value>
+  </data>
+  <data name="LABEL_PMT01900_SEBAGAI_PILIHAN_TEMPAT" xml:space="preserve">
+    <value>sebagai pilihan tempat untuk pengembangan bisnis</value>
+  </data>
+  <data name="LABEL_PMT01900_DI_KOTA" xml:space="preserve">
+    <value>di Kota</value>
+  </data>
+  <data name="LABEL_PMT01900_MENINDAKLANJUTI_KOMUNIKASI_KITA" xml:space="preserve">
+    <value>Menindaklanjuti komunikasi kita sebelumnya, maka kami</value>
+  </data>
+  <data name="LABEL_PMT01900_SELAKU" xml:space="preserve">
+    <value>selaku</value>
+  </data>
+  <data name="LABEL_PMT01900_TIPE_PENYEWAAN" xml:space="preserve">
+    <value>2. Type Penyewaan: Pameran</value>
+  </data>
+  <data name="LABEL_PMT01900_LOKASI" xml:space="preserve">
+    <value>3. Lokasi:</value>
+  </data>
+  <data name="LABEL_PMT01900_LUASAN" xml:space="preserve">
+    <value>4. Luasan:</value>
+  </data>
+  <data name="LABEL_PMT01900_JANGKA_WAKTU_SEWA" xml:space="preserve">
+    <value>5. Jangka Waktu Sewa:</value>
+  </data>
+  <data name="LABEL_PMT01900_JANGKA_WAKTU_SEWA_HARI" xml:space="preserve">
+    <value>hari (10 - 24 Februari 2024)</value>
+  </data>
+  <data name="LABEL_PMT01900_HARGA_SEWA" xml:space="preserve">
+    <value>6. Harga Sewa: Rp.</value>
+  </data>
+  <data name="LABEL_PMT01900_TOTAL_BIAYA_SEWA" xml:space="preserve">
+    <value>7. Total Biaya Sewa : Rp.</value>
+  </data>
+  <data name="LABEL_PMT01900_TOTAL_BIAYA_SEWA_DESC" xml:space="preserve">
+    <value>( Excl.PPN 11% )</value>
+  </data>
+  <data name="LABEL_PMT01900_CARA_PEMBAYARAN" xml:space="preserve">
+    <value>8. Cara Pembayaran : Dibayarkan 100% dimuka selambatnya pada tanggal</value>
+  </data>
+  <data name="LABEL_PMT01900_DETAIL_ITEMS" xml:space="preserve">
+    <value>Detail Items:</value>
+  </data>
+  <data name="LABEL_PMT01900_KETENTUAN" xml:space="preserve">
+    <value>Ketentuan :</value>
+  </data>
+  <data name="LABEL_PMT01900_DEMIKIAN_SURAT_PENAWARAN" xml:space="preserve">
+    <value>Demikian surat penawaran ini kami sampaikan, atas perhatian dan kerjasamanya kami ucapkan terima kasih.</value>
+  </data>
+  <data name="LABEL_PMT01900_SALAM_HORMAT" xml:space="preserve">
+    <value>Salam hormat,</value>
+  </data>
+  <data name="LABEL_PMT01900_MENYETUJUI" xml:space="preserve">
+    <value>Menyetujui,</value>
+  </data>
+  <data name="LABEL_DETAIL_PMT01900_ITEM_NAME" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="LABEL_DETAIL_PMT01900_QTY" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="LABEL_DETAIL_PMT01900_UNIT_PRICE" xml:space="preserve">
+    <value>Unit Price</value>
+  </data>
+  <data name="LABEL_DETAIL_PMT01900_DISCOUNT" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="LABEL_DETAIL_PMT01900_TOTAL_PRICE" xml:space="preserve">
+    <value>Total Price</value>
+  </data>
+  <data name="LABEL_DOKUMEN_PELENGKAP" xml:space="preserve">
+    <value>13. DOKUMEN PELENGKAP</value>
+    <comment>13. DOKUMEN PELENGKAP</comment>
+  </data>
+  <data name="LABEL_DOKUMEN_PELENGKAP_A" xml:space="preserve">
+    <value>a. Akte perusahaan + SK Persetujuan Menkeh</value>
+    <comment>a. Akte perusahaan + SK Persetujuan Menkeh</comment>
+  </data>
+  <data name="LABEL_DOKUMEN_PELENGKAP_B" xml:space="preserve">
+    <value>b. Surat keterangan domisili Perusahaan</value>
+    <comment>b. Surat keterangan domisili Perusahaan</comment>
+  </data>
+  <data name="LABEL_DOKUMEN_PELENGKAP_C" xml:space="preserve">
+    <value>c. TDP (Tanda Daftar Perusahaan)</value>
+    <comment>c. TDP (Tanda Daftar Perusahaan)</comment>
+  </data>
+  <data name="LABEL_DOKUMEN_PELENGKAP_D" xml:space="preserve">
+    <value>d. SIUP (surat Izin Usaha Perdagangan)</value>
+    <comment>d. SIUP (surat Izin Usaha Perdagangan)</comment>
+  </data>
+  <data name="LABEL_DOKUMEN_PELENGKAP_DESC" xml:space="preserve">
+    <value>Sebagai pelengkap pembuatan Perjanjian Sewa Menyewa maka Tenant wajib menyerahkan dan atau melampirkannya saat penandatanganan Surat Konfirmasi ini</value>
+    <comment>Sebagai pelengkap pembuatan Perjanjian Sewa Menyewa maka Tenant wajib menyerahkan dan atau melampirkannya saat penandatanganan Surat Konfirmasi ini</comment>
+  </data>
+  <data name="LABEL_DOKUMEN_PELENGKAP_E" xml:space="preserve">
+    <value>e. NIB (Nomor Induk Berusaha)</value>
+    <comment>e. NIB (Nomor Induk Berusaha)</comment>
+  </data>
+  <data name="LABEL_DOKUMEN_PELENGKAP_F" xml:space="preserve">
+    <value>f. NPWP (Nomor Pokok Wajib Pajak)</value>
+    <comment>f. NPWP (Nomor Pokok Wajib Pajak)</comment>
+  </data>
+  <data name="LABEL_DOKUMEN_PELENGKAP_G" xml:space="preserve">
+    <value>g. KTP (Direksi) atau yang diberi kuasa</value>
+    <comment>g. KTP (Direksi) atau yang diberi kuasa</comment>
+  </data>
+  <data name="LABEL_DOKUMEN_PELENGKAP_H" xml:space="preserve">
+    <value>h. Surat kuasa apabila bukan Direksi yang bertandatangan</value>
+    <comment>h. Surat kuasa apabila bukan Direksi yang bertandatangan</comment>
+  </data>
+  <data name="LABEL_FITTING_OUT" xml:space="preserve">
+    <value>12. FITTING OUT DAN OPENING RUANG SEWA</value>
+    <comment>12. FITTING OUT DAN OPENING RUANG SEWA</comment>
+  </data>
+  <data name="LABEL_FITTING_OUT_A" xml:space="preserve">
+    <value>a. Waktu yang diberikan Landlord kepada Tenant untuk fitting out adalah:</value>
+    <comment>a. Waktu yang diberikan Landlord kepada Tenant untuk fitting out adalah:</comment>
+  </data>
+  <data name="LABEL_FITTING_OUT_B" xml:space="preserve">
+    <value>b. Selama kegiatan fitting out, Tenant diwajibkan membayar penggunaan listrik dan air sesuai penggunaan.</value>
+    <comment>b. Selama kegiatan fitting out, Tenant diwajibkan membayar penggunaan listrik dan air sesuai penggunaan.</comment>
+  </data>
+  <data name="LABEL_FITTING_OUT_C" xml:space="preserve">
+    <value>c. Dalam kegiatan fitting out, Tenant dan Landlord wajib berkoordinasi.</value>
+    <comment>c. Dalam kegiatan fitting out, Tenant dan Landlord wajib berkoordinasi.</comment>
+  </data>
+  <data name="LABEL_FITTING_OUT_D" xml:space="preserve">
+    <value>d. Tenant wajib menjalankan kegiatan operasionalnya di ruang sewa, terhitung sejak berakhirnya masa fitting out.</value>
+    <comment>d. Tenant wajib menjalankan kegiatan operasionalnya di ruang sewa, terhitung sejak berakhirnya masa fitting out.</comment>
+  </data>
+  <data name="LABEL_FITTING_OUT_E" xml:space="preserve">
+    <value>e. Tenant wajib mengikuti tata tertib kegiatan operasional yang disediakan oleh Landlord.</value>
+    <comment>e. Tenant wajib mengikuti tata tertib kegiatan operasional yang disediakan oleh Landlord.</comment>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_1_1" xml:space="preserve">
+    <value>dengan ini setuju menyewakan kepada</value>
+    <comment>dengan ini setuju menyewakan kepada</comment>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_1_2" xml:space="preserve">
+    <value>yang dengan ini setuju menyewa dari</value>
+    <comment>yang dengan ini setuju menyewa dari</comment>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_1_3" xml:space="preserve">
+    <value>ruangan di dalam</value>
+    <comment>ruangan di dalam</comment>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL1_1_4" xml:space="preserve">
+    <value>selanjutnya disebut RUANG SEWA, yang meliputi sebagai berikut</value>
+    <comment>selanjutnya disebut RUANG SEWA, yang meliputi sebagai berikut</comment>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL9_3_5" xml:space="preserve">
+    <value>Semua perbaikan-perbaikan terhadap kerusakan pada RUANG SEWA hanya boleh dilakukan oleh</value>
+    <comment>Semua perbaikan-perbaikan terhadap kerusakan pada RUANG SEWA hanya boleh dilakukan oleh</comment>
+  </data>
+  <data name="LABEL_BERAKHIR" xml:space="preserve">
+    <value>BERAKHIR</value>
+    <comment>BERAKHIR</comment>
+  </data>
+  <data name="LABEL_MULAI" xml:space="preserve">
+    <value>MULAI</value>
+    <comment>MULAI</comment>
+  </data>
+  <data name="LABEL_PENGELOLA" xml:space="preserve">
+    <value>PENGELOLA</value>
+    <comment>PENGELOLA</comment>
+  </data>
+  <data name="LABEL_PMT01600_BRAND" xml:space="preserve">
+    <value>Brand</value>
+    <comment>Brand</comment>
+  </data>
+  <data name="LABEL_PMT01600_DI" xml:space="preserve">
+    <value>di</value>
+    <comment>di</comment>
+  </data>
+  <data name="LABEL_PMT01600_TANGGAL_AWAL" xml:space="preserve">
+    <value>tanggal awal sewa</value>
+    <comment>tanggal awal sewa</comment>
+  </data>
+  <data name="LABEL_PMT01600_TELEPON" xml:space="preserve">
+    <value>Telepon</value>
+    <comment>Telepon</comment>
+  </data>
+  <data name="LABEL_PMT016600_LETTER_OF_INTENT" xml:space="preserve">
+    <value>Letter of Intent Sewa Menyewa</value>
+    <comment>Letter of Intent Sewa Menyewa</comment>
+  </data>
+  <data name="LABEL_PMT01900_DAYA_DAN_PEMAKAIAN" xml:space="preserve">
+    <value>- Daya dan Pemakaian Listrik sebesar</value>
+    <comment>- Daya dan Pemakaian Listrik sebesar</comment>
+  </data>
+  <data name="LABEL_PMT01900_DAYA_DAN_PEMAKAIAN_AMPERE" xml:space="preserve">
+    <value>Ampere</value>
+    <comment>Ampere</comment>
+  </data>
+  <data name="LABEL_PMT01900_DENGAN_DITANDATANGANINYA_SURAT" xml:space="preserve">
+    <value>- Dengan ditandatanganinya surat penawaran ini, maka surat ini akan menjadi bukti atas butirbutir penawaran yang disepakati diatas sehingga selanjutnya dapat menjadi acuan yang akan dituangkan secara lebih rinci ke dalam Perjanjian Sewa Menyewa oleh dan antara Tenant dan Lanlord.</value>
+    <comment>- Dengan ditandatanganinya surat penawaran ini, maka surat ini akan menjadi bukti atas butirbutir penawaran yang disepakati diatas sehingga selanjutnya dapat menjadi acuan yang akan dituangkan secara lebih rinci ke dalam Perjanjian Sewa Menyewa oleh dan antara Tenant dan Lanlord.</comment>
+  </data>
+  <data name="LABEL_PMT01900_PELAKSANAAN_KEGIATAN_PAMERAN" xml:space="preserve">
+    <value>- Pelaksanaan kegiatan pameran sesuai ketentuan yang telah disampaikan oleh PT.KAS (Attention Direktur Utama PT.KAS)</value>
+    <comment>- Pelaksanaan kegiatan pameran sesuai ketentuan yang telah disampaikan oleh PT.KAS (Attention Direktur Utama PT.KAS)</comment>
+  </data>
+  <data name="LABEL_PMT01900_PEMBAYARAN_YANG_DIMAKSUD" xml:space="preserve">
+    <value>- Pembayaran yang dimaksud dalam surat penawaran Leasing ini dilakukan oleh Tenant langsung kepada Lanlord.</value>
+    <comment>- Pembayaran yang dimaksud dalam surat penawaran Leasing ini dilakukan oleh Tenant langsung kepada Lanlord.</comment>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_4_1" xml:space="preserve">
+    <value>Dalam hal terjadi pengakhiran sepihak atau pengunduran diri oleh</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_4_2" xml:space="preserve">
+    <value>sebelum berakhirnya jangka waktu sewa dengan atau tanpa persetujuan</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_4_3" xml:space="preserve">
+    <value>maka UANG JAMINAN SEWA yang telah diterima</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_4_4" xml:space="preserve">
+    <value>akan menjadi hak</value>
+  </data>
+  <data name="LABEL_AGREEMENT_PASAL4_4_5" xml:space="preserve">
+    <value>sepenuhnya</value>
+  </data>
+  <data name="LABEL_PMT01900_PENGGUNAAN_DAYA_DAN_PEMAKAIAN" xml:space="preserve">
+    <value>- Penggunaan daya dan pemakaian listrik diluar kapasitas yang disediakan oleh Lanlord akan di bebankan kepada tenant sebagai biaya tambahan sesuai daya yang dibutuhkan.</value>
+    <comment>- Penggunaan daya dan pemakaian listrik diluar kapasitas yang disediakan oleh Lanlord akan di bebankan kepada tenant sebagai biaya tambahan sesuai daya yang dibutuhkan.</comment>
+  </data>
+  <data name="LABEL_PMT01700_TELEPON" xml:space="preserve">
+    <value>Telepon</value>
+  </data>
+</root>

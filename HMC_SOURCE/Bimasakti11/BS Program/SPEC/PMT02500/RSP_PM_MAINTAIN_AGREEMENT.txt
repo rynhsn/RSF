@@ -1,0 +1,19 @@
+1501 = Error process, please contact your administrator!
+1502 = Cannot Delete, this Agreement Status is not eligble for deleted!
+1503 = Invalid Dept Code!
+1504 = Department Code cannot be empty!
+1505 = Agreement Date cannot be empty!
+1506 = Start Date cannot be empty!
+1507 = End Date cannot be empty!
+1508 = Salesman cannot be empty!
+1509 = Invalid Salesman Id!
+1510 = Tenant cannot be empty!
+1511 = Invalid Tenant Id!
+1512 = Unit Description cannot be empty!
+1513 = Currency cannot be empty!
+1514 = Invalid Currency Code!
+1515 = Lease Mode cannot be empty!
+1516 = Invalid Lease Mode!
+1517 = Charge Mode cannot be empty!
+1518 = Invalid Charge Mode!
+

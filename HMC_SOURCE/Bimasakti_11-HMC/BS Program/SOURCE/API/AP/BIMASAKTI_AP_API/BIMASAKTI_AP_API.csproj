@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>BIMASAKTI_AP_API</RootNamespace>
+		<AssemblyName>BIMASAKTI_AP_API</AssemblyName>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Template\PRODUCT_ALLOCATION_UPLOAD.xlsx" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Template\PRODUCT_ALLOCATION_UPLOAD.xlsx">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.2" />
+		<PackageReference Include="Realta.CommonCollectionNuGet" Version="1.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_APSERVICES\Lookup_APSERVICES.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\AP\APT00100SERVICE\APT00100SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\AP\APT00200SERVICE\APT00200SERVICE.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="BackExtension">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\BackExtension.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APIBackEnd">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APIStartUp">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIStartUp.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CrossPlatformSecurity">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CrossPlatformSecurity.dll</HintPath>
+		</Reference>
+		<Reference Include="R_HelperController">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_HelperController.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+</Project>

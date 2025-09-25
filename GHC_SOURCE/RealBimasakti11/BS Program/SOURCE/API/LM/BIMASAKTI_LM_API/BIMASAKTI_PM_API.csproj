@@ -1,0 +1,91 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>BIMASAKTI_PM_API</AssemblyName>
+    <RootNamespace>BIMASAKTI_PM_API</RootNamespace>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Template\Salesman.xlsx" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Template\Salesman.xlsx">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_LMSERVICES\Lookup_PMSERVICES.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\LMM00200Service\PMM00200SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\LMM03700Service\PMM003700SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\LMM04500SERVICE\PMM04500SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\LMM07500SERVICE\PMM07500SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\LMT05000SERVICE\PMT05000SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\PMB02200SERVICE\PMB02200SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\PMI00300SERVICE\PMI00300SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\PMM00100SERVICE\PMM00100SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\PMR00170SERVICE\PMR00170SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\PMR00200SERVICE\PMR00200SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\PMR00210SERVICE\PMR00210SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\PMR00220SERVICE\PMR00220SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\PMR00600SERVICE\PMR00600SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\PMR00800SERVICE\PMR00800SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\PMR02000SERVICE\PMR02000SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\PMR02400SERVICE\PMR02400SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\PMR03100SERVICE\PMR03100SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\LM\PMT03000SERVICE\PMT03000SERVICE.csproj" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<Reference Include="BackExtension">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\BackExtension.dll</HintPath>
+		</Reference>
+		<Reference Include="BlazorMenuBack">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\BlazorMenuBack.dll</HintPath>
+		</Reference>
+		<Reference Include="BlazorMenuCommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\BlazorMenuCommon.dll</HintPath>
+		</Reference>
+		<Reference Include="BlazorMenuService">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\BlazorMenuService.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APIBackEnd">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APIStartUp">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIStartUp.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CrossPlatformSecurity">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CrossPlatformSecurity.dll</HintPath>
+		</Reference>
+		<Reference Include="R_HelperController">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_HelperController.dll</HintPath>
+		</Reference>
+		<Reference Include="R_SecurityPolicyBack">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\R_SecurityPolicyBack.dll</HintPath>
+		</Reference>
+		<Reference Include="R_SecurityPolicyCommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\R_SecurityPolicyCommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_SecurityPolicyService">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\R_SecurityPolicyService.dll</HintPath>
+		</Reference>
+		<Reference Include="R_SecurityTokenBack">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\R_SecurityTokenBack.dll</HintPath>
+		</Reference>
+		<Reference Include="R_SecurityTokenCommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\R_SecurityTokenCommon.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

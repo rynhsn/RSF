@@ -1,0 +1,636 @@
+@page "/GLM00100"
+@using GLM00100Model.ViewModel
+@inherits R_Page
+
+
+@* Currency Rate Type *@
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>Currency Rate Type*</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1">
+        <R_TextBox
+            @bind-Value="@_viewModelGLM00100.Data.CRATETYPE_CODE"
+            R_ConductorSource="@_conductorGLM00100"
+            CharacterCasing="R_eCharacterCasing.Upper"
+            Enabled="false"
+            OnLostFocus="@GetUpperCaseAndCheckLengthCRT"
+            @ref="@_componentCRTTextBox">
+        </R_TextBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_Lookup
+            R_ConductorSource="@_conductorGLM00100"
+            @ref="@R_LookupCurrencyRateTypeLookup"
+            R_EnableAdd="false"
+            R_EnableEdit
+            R_Before_Open_Lookup="@BeforeOpenLookUpCurrencyRateTypeLookup"
+            R_After_Open_Lookup="@AfterOpenLookUpCurrencyRateTypeLookup">
+            ...
+        </R_Lookup>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_TextBox
+            @bind-Value="@_viewModelGLM00100.Data.CRATETYPE_DESCRIPTION"
+            R_ConductorSource="@_conductorGLM00100"
+            Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2" Class="ms-3">
+        <R_Label>Suspense Account*</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1">
+        <R_TextBox
+            @bind-Value="@_viewModelGLM00100.Data.CSUSPENSE_ACCOUNT_NO"
+            R_ConductorSource="@_conductorGLM00100"
+            Enabled="false"
+            OnLostFocus="@GetUpperCaseAndCheckLengthSA"
+            @ref="@_componentSATextBox">
+        </R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup
+            R_ConductorSource="@_conductorGLM00100"
+            @ref="@R_LookupSuspenseAccountLookup"
+            R_EnableAdd="false"
+            R_EnableEdit
+            R_Before_Open_Lookup="@BeforeOpenLookUpSuspenseAccountLookup"
+            R_After_Open_Lookup="@AfterOpenLookUpSuspenseAccountLookupAsync">
+            ...
+        </R_Lookup>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_TextBox
+            @bind-Value="@_viewModelGLM00100.Data.CSUSPENSE_ACCOUNT_NAME"
+            R_ConductorSource="@_conductorGLM00100"
+            Enabled="false">
+
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* Closing Entries Department *@
+<R_StackLayout Row>
+
+    <R_ItemLayout col="2">
+        <R_Label>Closing Entries Department*</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1">
+        <R_TextBox
+            @bind-Value="@_viewModelGLM00100.Data.CCLOSE_DEPT_CODE"
+            R_ConductorSource="@_conductorGLM00100"
+            Enabled="false"
+            OnLostFocus="@GetUpperCaseAndCheckLengthCED"
+            @ref="@_componentCEDTextBox">
+        </R_TextBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_Lookup
+            R_ConductorSource="@_conductorGLM00100"
+            @ref="@R_LookupClosingEntriesDepartmentLookup"
+            R_EnableAdd="false"
+            R_EnableEdit
+            R_Before_Open_Lookup="@BeforeOpenLookUpClosingEntriesDepartmentLookup"
+            R_After_Open_Lookup="@AfterOpenLookUpClosingEntriesDepartmentLookupAsync">
+            ...
+        </R_Lookup>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_TextBox
+            @bind-Value="@_viewModelGLM00100.Data.CCLOSE_DEPT_NAME"
+            R_ConductorSource="@_conductorGLM00100"
+            Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2" Class="ms-3">
+        <R_Label>Retained Earning Account*</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1">
+        <R_TextBox
+            @bind-Value="@_viewModelGLM00100.Data.CRETAINED_ACCOUNT_NO"
+            R_ConductorSource="@_conductorGLM00100"
+            Enabled="false"
+            OnLostFocus="@GetUpperCaseAndCheckLengthREA"
+            @ref="@_componentREATextBox">
+        </R_TextBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_Lookup
+            R_ConductorSource="@_conductorGLM00100"
+            @ref="@R_LookupRetainedEarningAccountLookup"
+            R_EnableAdd="false"
+            R_EnableEdit
+            R_Before_Open_Lookup="@BeforeOpenLookUpRetainedEarningAccountLookup"
+            R_After_Open_Lookup="@AfterOpenLookUpRetainedEarningAccountLookupAsync">
+            ...
+        </R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox
+            @bind-Value="@_viewModelGLM00100.Data.CRETAINED_ACCOUNT_NAME"
+            R_ConductorSource="@_conductorGLM00100"
+            Enabled="false">
+
+        </R_TextBox>
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+<R_StackLayout Row>
+
+<R_StackLayout Class="col-6">
+
+    <R_ItemLayout col="2">
+        <R_Label Class="text-danger">Journal</R_Label>
+    </R_ItemLayout>
+
+    <R_StackLayout>
+
+        <R_GroupBox ShowBorder="true">
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="3">
+                    <R_Label>Reversing Journal Process</R_Label>
+                </R_ItemLayout>
+
+                <R_StackLayout>
+                    <R_ItemLayout>
+                        <R_RadioGroup
+                            R_ConductorSource="@_conductorGLM00100"
+                            Data="@_viewModelGLM00100.ReversingJournalProcessGroupType"
+                            @bind-Value="@_viewModelGLM00100.Data.IREVERSE_JRN_POST"
+                            R_EnableAdd="false"
+                            R_EnableEdit
+                            ValueField="@nameof(GLM00100ViewModel.ComboBoxReversingJournalMode.Id)"
+                            TextField="@nameof(GLM00100ViewModel.ComboBoxReversingJournalMode.Description)"/>
+                    </R_ItemLayout>
+
+                </R_StackLayout>
+
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout>
+                    <R_CheckBox
+                        R_ConductorSource="@_conductorGLM00100"
+                        @bind-Value="@_viewModelGLM00100.Data.LCOMMIT_APVJRN"
+                        R_EnableAdd="false"
+                        R_EnableEdit/>
+                </R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_Label>Automatically Commit Approved Journal</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="1"/>
+
+                <R_ItemLayout >
+                    <R_CheckBox
+                        @bind-Value="@_viewModelGLM00100.Data.LALLOW_UNDO_COMMIT_JRN"
+                        R_ConductorSource="@_conductorGLM00100"
+                        R_EnableAdd="false"
+                        R_EnableEdit/>
+                </R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_Label>Allow Undo Commit Journal</R_Label>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout >
+                    <R_CheckBox
+                        @bind-Value="@_viewModelGLM00100.Data.LCOMMIT_IMPJRN"
+                        R_ConductorSource="@_conductorGLM00100"
+                        R_EnableAdd="false"
+                        R_EnableEdit
+                        OnChanged="@OnChangedLCOMMIT_IMPJRN"/>
+                </R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_Label>Automatically Commit Imported Journal</R_Label>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+
+                <R_GroupBox Enabled="@_viewModelGLM00100.Data.LCOMMIT_IMPJRN" ShowBorder="false">
+
+                    <R_StackLayout Row>
+
+                        <R_ItemLayout>
+
+                            <R_CheckBox
+                                @bind-Value="@_viewModelGLM00100.Data.LALLOW_EDIT_IMPJRN_DESC"
+                                R_ConductorSource="@_conductorGLM00100"
+                                R_EnableAdd="false"
+                                R_EnableEdit/>
+
+                        </R_ItemLayout>
+
+                        <R_ItemLayout>
+                            <R_Label>Allow Edit Imported Journal Description</R_Label>
+                        </R_ItemLayout>
+
+                    </R_StackLayout>
+
+                </R_GroupBox>
+
+            </R_StackLayout>
+
+        </R_GroupBox>
+
+    </R_StackLayout>
+
+</R_StackLayout>
+
+<R_StackLayout Class="col-6">
+    <R_ItemLayout col="3">
+        <R_Label Class="text-danger">Inter Company</R_Label>
+    </R_ItemLayout>
+
+    <R_GroupBox ShowBorder="true">
+
+        <R_StackLayout Row>
+
+            <R_ItemLayout >
+                <R_CheckBox
+                    @bind-Value="@_viewModelGLM00100.Data.LALLOW_INTERCO_JRN"
+                    R_ConductorSource="@_conductorGLM00100"
+                    R_EnableAdd="false"
+                    R_EnableEdit/>
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_Label>Allow Inter Company Journal</R_Label>
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+
+            <R_ItemLayout >
+
+                <R_CheckBox
+                    @bind-Value="@_viewModelGLM00100.Data.LALLOW_MULTIPLE_JRN"
+                    R_ConductorSource="@_conductorGLM00100"
+                    R_EnableAdd="false"
+                    R_EnableEdit
+                    OnChanged="@OnChangedLALLOW_MULTIPLE_JRN"/>
+
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_Label>Allow Multiple Property in One Journal</R_Label>
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+
+            <R_GroupBox Enabled="@_viewModelGLM00100.Data.LALLOW_MULTIPLE_JRN" ShowBorder="false">
+
+                <R_StackLayout Row>
+
+                    <R_ItemLayout>
+                        <R_CheckBox
+                            @bind-Value="@_viewModelGLM00100.Data.LWARNING_MULTIPLE_JRN"
+                            R_ConductorSource="@_conductorGLM00100"
+                            R_EnableAdd="false"
+                            R_EnableEdit/>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout>
+                        <R_Label>With Warning</R_Label>
+                    </R_ItemLayout>
+
+                </R_StackLayout>
+
+            </R_GroupBox>
+
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+
+            <R_ItemLayout>
+
+                <R_CheckBox
+                    @bind-Value="@_viewModelGLM00100.Data.LALLOW_DIFF_INTERCO"
+                    R_ConductorSource="@_conductorGLM00100"
+                    R_EnableAdd="false"
+                    R_EnableEdit
+                    OnChanged="@OnChangedLALLOW_DIFF_INTERCOAsync"/>
+
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_Label>Allow Different Inter Company Account between The Two Properties</R_Label>
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="pb-1">
+
+            <R_GroupBox Enabled="@_viewModelGLM00100.Data.LALLOW_DIFF_INTERCO" ShowBorder="false">
+
+                <R_StackLayout Row>
+
+                    <R_ItemLayout>
+                        <R_CheckBox
+                            @bind-Value="@_viewModelGLM00100.Data.LWARNING_DIFF_INTERCO"
+                            R_ConductorSource="@_conductorGLM00100"
+                            R_EnableAdd="false"
+                            R_EnableEdit/>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout>
+                        <R_Label>With Warning</R_Label>
+                    </R_ItemLayout>
+
+                </R_StackLayout>
+
+            </R_GroupBox>
+
+        </R_StackLayout>
+
+    </R_GroupBox>
+
+</R_StackLayout>
+
+</R_StackLayout>
+
+@* Period *@
+<R_StackLayout Row>
+
+<R_StackLayout Class="col-6">
+
+    <R_ItemLayout col="2" >
+        <R_Label Class="text-danger">Period</R_Label>
+    </R_ItemLayout>
+
+    <R_StackLayout>
+
+        <R_GroupBox ShowBorder="true">
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="3" >
+                    <R_Label>Starting Period</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox
+                        @bind-Value="@_viewModelGLM00100.Data.CSTART_PERIOD_MM"
+                        R_ConductorSource="@_conductorGLM00100"
+                        Enabled="false">
+
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox
+                        @bind-Value="@_viewModelGLM00100.Data.CSTART_PERIOD_YY"
+                        R_ConductorSource="@_conductorGLM00100"
+                        Enabled="false">
+
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="3">
+                    <R_Label>Current period</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox
+                        @bind-Value="@_viewModelGLM00100.Data.CCURRENT_PERIOD_MM"
+                        R_ConductorSource="@_conductorGLM00100"
+                        Enabled="false">
+
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox
+                        @bind-Value="@_viewModelGLM00100.Data.CCURRENT_PERIOD_YY"
+                        R_ConductorSource="@_conductorGLM00100"
+                        Enabled="false">
+
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2" Class="text-end me-3">
+                    <R_Label>By</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox
+                        @bind-Value="@_viewModelGLM00100.Data.CPCPRD_END_BY"
+                        R_ConductorSource="@_conductorGLM00100"
+                        R_EnableAdd="false"
+                        R_EnableEdit>
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="3" >
+                    <R_Label>Soft Close</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox
+                        @bind-Value="@_viewModelGLM00100.Data.CSOFT_PERIOD_MM"
+                        R_ConductorSource="@_conductorGLM00100"
+                        Enabled="false">
+                        3
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox
+                        @bind-Value="@_viewModelGLM00100.Data.CSOFT_PERIOD_YY"
+                        R_ConductorSource="@_conductorGLM00100"
+                        Enabled="false">
+
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2" Class="text-end me-3">
+                    <R_Label>By</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox
+                        @bind-Value="@_viewModelGLM00100.Data.CLSOFT_END_BY"
+                        R_ConductorSource="@_conductorGLM00100"
+                        R_EnableAdd="false"
+                        R_EnableEdit>
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout Class="text-end" col="1">
+                    <R_CheckBox
+                        @bind-Value="@_viewModelGLM00100.Data.LPRD_END_FLAG"
+                        R_ConductorSource="@_conductorGLM00100"
+                        R_EnableAdd="false"
+                        R_EnableEdit/>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="5">
+                    <R_Label>Closing in Progress</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="1"/>
+
+                <R_ItemLayout col="2" Class="text-end me-3">
+                    <R_Label>By</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox
+                        @bind-Value="@_viewModelGLM00100.Data.CLPRD_END_BY"
+                        R_ConductorSource="@_conductorGLM00100"
+                        R_EnableAdd="false"
+                        R_EnableEdit>
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout Class="text-end" col="1">
+                    <R_CheckBox
+                        @bind-Value="@_viewModelGLM00100.Data.LALLOW_CANCEL_SOFT_END"
+                        R_ConductorSource="@_conductorGLM00100"
+                        R_EnableAdd="false"
+                        R_EnableEdit/>
+                </R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_Label>Allow Cancel Soft Close</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+        </R_GroupBox>
+
+    </R_StackLayout>
+
+</R_StackLayout>
+
+@* Updated By *@
+<R_StackLayout Class="col-5">
+    
+    <R_StackLayout Row Class="mt-9">
+        <R_ItemLayout col="3" Class="ms-5">
+            <R_Label>Updated By</R_Label>
+        </R_ItemLayout>
+        
+        <R_ItemLayout col="2">
+            <R_TextBox
+                @bind-Value="@_viewModelGLM00100.Data.CUPDATE_BY"
+                R_ConductorSource="@_conductorGLM00100"
+                Enabled="false">
+
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_DateTimePicker
+                
+
+                @bind-Value="@_viewModelGLM00100.Data.DUPDATE_DATE"
+                R_ConductorSource="@_conductorGLM00100"
+                Enabled="false">
+
+            </R_DateTimePicker>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="3" Class="ms-5">
+            <R_Label>Created By</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox
+                @bind-Value="@_viewModelGLM00100.Data.CCREATE_BY"
+                R_ConductorSource="@_conductorGLM00100"
+                Enabled="false">
+
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_DateTimePicker
+                @bind-Value="@_viewModelGLM00100.Data.DCREATE_DATE"
+                R_ConductorSource="@_conductorGLM00100"
+                Enabled="false">
+
+            </R_DateTimePicker>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>
+
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+
+    <R_StackLayout Class="col-6">
+
+        <R_StackLayout Row Class="d-flex justify-content-between">
+            <R_StackLayout>
+                <R_ItemLayout>
+                    <R_EditButton R_Conductor="@_conductorGLM00100"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout>
+                    <R_CancelButton R_Conductor="@_conductorGLM00100"></R_CancelButton>
+                </R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_SaveButton R_Conductor="@_conductorGLM00100"></R_SaveButton>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+        </R_StackLayout>
+
+    </R_StackLayout>
+
+</R_StackLayout>
+
+<R_Conductor
+    @ref="@_conductorGLM00100"
+    R_ViewModel="@_viewModelGLM00100"
+    R_IsHeader
+    R_ServiceSave="@ServiceSaveLMM00100"
+    R_ServiceGetRecord="@R_ServiceGetRecordGLM00100"
+    R_Validation="ValidationGLM00100Async"/>

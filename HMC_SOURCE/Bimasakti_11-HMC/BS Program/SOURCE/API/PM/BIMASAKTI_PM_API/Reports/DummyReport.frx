@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="03/25/2025 12:27:36" ReportInfo.Modified="03/25/2025 12:32:39" ReportInfo.CreatorVersion="2023.2.21.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="PMR00150SummaryResulDataFormatDTO" DataType="PMR00150COMMON.PMR00150SummaryResultDTO, PMR00150COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="ColumnSummary" DataType="PMR00150COMMON.PMR00150ColumnSummaryDTO, PMR00150COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="Col_CTRANS_NAME" DataType="System.String"/>
+          <Column Name="Col_CSALESMAN" DataType="System.String"/>
+          <Column Name="Col_CREF_NO" DataType="System.String"/>
+          <Column Name="Col_CREF_DATE" DataType="System.String"/>
+          <Column Name="Col_CTENURE" DataType="System.String"/>
+          <Column Name="Col_STATUS" DataType="System.String"/>
+          <Column Name="Col_CAGREEMENT_STATUS_NAME" DataType="System.String"/>
+          <Column Name="Col_CTRANS_STATUS_NAME" DataType="System.String"/>
+          <Column Name="Col_NTOTAL_PRIZE" DataType="System.String"/>
+          <Column Name="Col_CTAX" DataType="System.String"/>
+          <Column Name="Col_CTENANT" DataType="System.String"/>
+          <Column Name="Col_NTOTAL_GROSS_AREA_SIZE" DataType="System.String"/>
+          <Column Name="Col_NTOTAL_NET_AREA_SIZE" DataType="System.String"/>
+          <Column Name="Col_NTOTAL_COMMON_AREA_SIZE" DataType="System.String"/>
+          <Column Name="Col_CTC_MESSAGE" DataType="System.String"/>
+          <Column Name="Col_GRAND_TOTAL_AREA" DataType="System.String"/>
+        </Column>
+        <Column Name="Header" DataType="PMR00150COMMON.PMR00150DataHeaderDTO, PMR00150COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="PROPERTY" DataType="System.String"/>
+          <Column Name="FROM_DEPARTMENT" DataType="System.String"/>
+          <Column Name="TO_DEPARTMENT" DataType="System.String"/>
+          <Column Name="FROM_SALESMEN" DataType="System.String"/>
+          <Column Name="TO_SALESMEN" DataType="System.String"/>
+          <Column Name="FROM_PERIOD" DataType="System.String"/>
+          <Column Name="TO_PERIOD" DataType="System.String"/>
+          <Column Name="CREPORT_NAME" DataType="System.String"/>
+        </Column>
+        <Column Name="Label" DataType="PMR00150COMMON.PMR00150LabelDTO, PMR00150COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="Label_Property" DataType="System.String"/>
+          <Column Name="Label_To" DataType="System.String"/>
+          <Column Name="Label_Department" DataType="System.String"/>
+          <Column Name="Label_Salesman" DataType="System.String"/>
+          <Column Name="Label_Period" DataType="System.String"/>
+          <Column Name="Label_TotalOfAggreements" DataType="System.String"/>
+          <Column Name="Label_GrandTotalOfAggreements" DataType="System.String"/>
+          <Column Name="Label_Total" DataType="System.String"/>
+          <Column Name="Label_ReportType" DataType="System.String"/>
+          <Column Name="Label_SubTotalOfAgreementBasedOn" DataType="System.String"/>
+        </Column>
+        <BusinessObjectDataSource Name="BusinessObjectDataSource1" Alias="Data" DataType="System.Collections.Generic.List`1[[PMR00150COMMON.PMR00150DataTransactionDTO, PMR00150COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" PropName="Data" Enabled="true">
+          <Column Name="CTRANS_CODE" DataType="System.String"/>
+          <Column Name="CTRANS_NAME" DataType="System.String"/>
+          <BusinessObjectDataSource Name="TransactionDetail" DataType="System.Collections.Generic.List`1[[PMR00150COMMON.PMR00150DataTransactionDetailDTO, PMR00150COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+            <Column Name="CSALESMAN_ID" DataType="System.String"/>
+            <Column Name="CSALESMAN_NAME" DataType="System.String"/>
+            <BusinessObjectDataSource Name="SalesmanDetail" DataType="System.Collections.Generic.List`1[[PMR00150COMMON.PMR00150DataSalesmanDetailDTO, PMR00150COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+              <Column Name="CREF_NO" DataType="System.String"/>
+              <Column Name="CREF_DATE" DataType="System.String"/>
+              <Column Name="DREF_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+              <Column Name="CTENURE" DataType="System.String"/>
+              <Column Name="NTOTAL_GROSS_AREA_SIZE" DataType="System.Decimal"/>
+              <Column Name="NTOTAL_NET_AREA_SIZE" DataType="System.Decimal"/>
+              <Column Name="NTOTAL_COMMON_AREA_SIZE" DataType="System.Decimal"/>
+              <Column Name="CAGREEMENT_STATUS_NAME" DataType="System.String"/>
+              <Column Name="CTRANS_STATUS_NAME" DataType="System.String"/>
+              <Column Name="NTOTAL_PRICE" DataType="System.Decimal"/>
+              <Column Name="CTAX" DataType="System.String"/>
+              <Column Name="CTENANT_ID" DataType="System.String"/>
+              <Column Name="CTENANT_NAME" DataType="System.String"/>
+              <Column Name="CTC_MESSAGE" DataType="System.String"/>
+            </BusinessObjectDataSource>
+          </BusinessObjectDataSource>
+        </BusinessObjectDataSource>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+      <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Page" DataType="System.String"/>
+        <Column Name="Of" DataType="System.String"/>
+        <Column Name="Print_Date" DataType="System.String"/>
+        <Column Name="Print_By" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8"/>
+    <PageHeaderBand Name="PageHeader1" Top="41.8" Width="718.2" Height="28.35"/>
+    <DataBand Name="Data1" Top="74.15" Width="718.2" Height="75.6" DataSource="SalesmanDetail">
+      <TextObject Name="Text1" Left="189" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.PMR00150SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.DREF_DATE]" Font="Arial, 10pt"/>
+      <TextObject Name="Text2" Left="302.4" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.PMR00150SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.CREF_DATE]" Font="Arial, 10pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="153.75" Width="718.2" Height="18.9"/>
+  </ReportPage>
+</Report>

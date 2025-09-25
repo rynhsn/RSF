@@ -1,0 +1,187 @@
+﻿@page "/GSM04000"
+@inherits R_Page
+@using R_BlazorFrontEnd.Controls.Events
+@using GSM04000Common;
+@inject IJSRuntime JS
+@attribute [R_Page(ResourceId = "_pageTitleDepartment")]
+
+
+<R_StackLayout>
+    <R_Grid DataSource="@_deptViewModel._DepartmentList"
+            @ref="@_gridDeptRef"
+            Pageable="true"
+            R_ConductorGridSource="@_conGridDeptRef"
+            R_GridType="@R_eGridType.Original"
+            AllowEditRow="true"
+            AllowDeleteRow="true"
+            R_ServiceGetListRecord="@DeptGrid_ServiceGetListRecordAsync"
+            Height="330px"
+            R_Before_Open_Grid_Lookup="Dept_Before_Open_LookupAsync"
+            R_After_Open_Grid_Lookup="Dept_After_Open_Lookup"
+            R_ServiceGetRecord="@DeptGrid_ServiceGetRecordAsync"
+            R_AfterAdd="@DeptGrid_AfterAdd"
+            R_Validation="@DeptGrid_ValidationAsync"
+            R_Saving="@DeptGrid_Saving"
+            R_BeforeDelete="@DeptGrid_BeforeDelete"
+            R_ServiceSave="@DeptGrid_ServiceSaveAsync"
+            R_ServiceDelete="@DeptGrid_ServiceDeleteAsync"
+            R_Display="@DeptGrid_DisplayAsync"
+            R_CellLostFocused="@DeptGrid_R_CellLostFocused">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="@nameof(DepartmentDTO.CDEPT_CODE)"
+                              HeaderText="@_localizer["_gridColumnDeptCode"]"
+                              R_EnableAdd="true"
+                              Width="200px"
+                              MaxLength="20"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(DepartmentDTO.CDEPT_NAME)"
+                              HeaderText="@_localizer["_gridColumnDeptName"]"
+                              R_EnableAdd="true"
+                              R_EnableEdit="true"
+                              Width="250px"
+                              MaxLength="80"></R_GridTextColumn>
+            <R_GridLookupColumn FieldName="@nameof(DepartmentDTO.CCENTER_CODE)"
+                                Name=@nameof(DepartmentDTO.CCENTER_CODE)
+                                HeaderText="@_localizer["_gridColumnCenterCode"]"
+                                R_EnableAdd="true"
+                                R_EnableEdit="true"
+                                Width="130px"></R_GridLookupColumn>
+            <R_GridTextColumn FieldName="@nameof(DepartmentDTO.CCENTER_NAME)"
+                              HeaderText="@_localizer["_gridColumnCenterName"]"
+                              Enabled="false"
+                              Width="200px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(DepartmentDTO.CMANAGER_CODE)"
+                              Visible="false"
+                              HeaderText="@_localizer["_gridColumnManager"]"
+                              Enabled="false"
+                              Width="150px" />
+            <R_GridLookupColumn FieldName="@nameof(DepartmentDTO.CMANAGER_NAME)"
+                                Name="@nameof(DepartmentDTO.CMANAGER_NAME)"
+                                HeaderText="@_localizer["_gridColumnManager"]"
+                                R_EnableAdd="true"
+                                R_EnableEdit="true"
+                                Width="150px"></R_GridLookupColumn>
+            <R_GridTextColumn FieldName="@nameof(DepartmentDTO.CBRANCH_CODE)"
+                              HeaderText="@_localizer["_gridColumnBranch"]"
+                              R_EnableAdd="true"
+                              R_EnableEdit="true"
+                              Visible="false"
+                              Width="150px"></R_GridTextColumn>
+            <R_GridLookupColumn FieldName="@nameof(DepartmentDTO.CBRANCH_NAME)"
+                                Name="@nameof(DepartmentDTO.CBRANCH_NAME)"
+                                HeaderText="@_localizer["_gridColumnBranch"]"
+                                R_EnableAdd="true"
+                                R_EnableEdit="true"
+                                Width="200px"></R_GridLookupColumn>
+            <R_GridCheckBoxColumn FieldName="@nameof(DepartmentDTO.LEVERYONE)"
+                                  HeaderText="@_localizer["_gridColumnEveryone"]"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Width="100px"></R_GridCheckBoxColumn>
+            <R_GridCheckBoxColumn FieldName="@nameof(DepartmentDTO.LACTIVE)"
+                                  HeaderText="@_localizer["_gridColumnActive"]"
+                                  Width="100px"
+                                  R_EnableAdd="false"
+                                  R_EnableEdit="false"></R_GridCheckBoxColumn>
+            <R_GridTextColumn FieldName="@nameof(DepartmentDTO.CEMAIL1)"
+                              HeaderText="@_localizer["_gridColumnEmail1"]"
+                              R_EnableAdd="true"
+                              R_EnableEdit="true"
+                              Width="150px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(DepartmentDTO.CEMAIL2)"
+                              HeaderText="@_localizer["_gridColumnEmail2"]"
+                              R_EnableAdd="true"
+                              R_EnableEdit="true"
+                              Width="150px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(DepartmentDTO.CUPDATE_BY)"
+                              HeaderText="@_localizer["_gridColumnUpdBy"]"
+                              Width="120px"
+                              R_EnableAdd="false"
+                              R_EnableEdit="false"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(DepartmentDTO.DUPDATE_DATE)"
+                              HeaderText="@_localizer["_gridColumnUpdDate"]"
+                              Width="130px"
+                              R_EnableAdd="false"
+                              R_EnableEdit="false"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(DepartmentDTO.CCREATE_BY)"
+                              HeaderText="@_localizer["_gridColumnCreatedBy"]"
+                              Width="120px"
+                              R_EnableAdd="false"
+                              R_EnableEdit="false"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(DepartmentDTO.DCREATE_DATE)"
+                              HeaderText="@_localizer["_gridColumnCreatedDate"]"
+                              Width="130px"
+                              R_EnableAdd="false"
+                              R_EnableEdit="false"></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+    <R_StackLayout Row="true">
+        <R_ItemLayout>
+            <R_Button OnClick="@DownloadTemplateAsync" R_ConductorGridSource="_conGridDeptRef" R_EnableOther>
+                <R_Label>@_localizer["_btnTemplate"]</R_Label>
+            </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Popup R_Before_Open_Popup="@R_Before_Open_PopupUpload" R_After_Open_Popup="@R_After_Open_PopupUpload" R_ConductorGridSource="_conGridDeptRef" R_EnableOther>
+                <R_Label>@_localizer["_pupupUpload"]</R_Label>
+            </R_Popup>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Popup Enabled="@_enableBtnAssignUser" R_Before_Open_Popup="@R_Before_Open_PopupAssignUserAsync" R_After_Open_Popup="@R_After_Open_PopupAssignUser" R_ConductorGridSource="_conGridDeptRef"
+                     R_EnableOther>
+                <R_Label>@_localizer["_popupAssignUser"]</R_Label>
+            </R_Popup>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Popup Enabled="@_enableBtnActiveInactive"
+                     R_ConductorGridSource="@_conGridDeptRef"
+                     R_Before_Open_Popup="R_Before_Open_Popup_ActivateInactiveAsync"
+                     R_After_Open_Popup="R_After_Open_Popup_ActivateInactive"
+                     R_EnableOther>
+                <R_Label>@_labelActiveInactive</R_Label>
+            </R_Popup>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout>
+    <h5 FontStyle="R_eFontStyle.Bold" Class="mt-3">@_localizer["_lblAssignedUsers"]</h5>
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>@_localizer["_lblDept"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@_deptUserViewModel._DepartmentCode"
+                       R_ConductorGridSource="@_conGridDeptUserRef" Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_TextBox @bind-Value="@_deptUserViewModel._DepartmentName"
+                       R_ConductorGridSource="@_conGridDeptUserRef" Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_Grid DataSource="@_deptUserViewModel._DepartmentUserList"
+            @ref="@_gridDeptUserRef"
+            Pageable="true"
+            R_ConductorGridSource="@_conGridDeptUserRef"
+            R_GridType="@R_eGridType.Original"
+            AddButtonText="false"
+            AllowAddNewRow="false"
+            AllowEditRow="false"
+            AllowDeleteRow="true"
+            Enabled="@_enableGridDeptUser"
+            R_ServiceGetListRecord="@DeptUserGrid_ServiceGetListRecord"
+            Height="170px"
+            R_ServiceGetRecord="@DeptUserGrid_ServiceGetRecord"
+            R_ServiceDelete="@DeptUserGrid_ServiceDelete">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="@nameof(UserDepartmentDTO.CUSER_ID)" HeaderText="@_localizer["_gridDtColumnUserID"]" Width="150px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(UserDepartmentDTO.CUSER_NAME)" HeaderText="@_localizer["_gridDetColumnUserName"]" Width="200px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(UserDepartmentDTO.CUPDATE_BY)" HeaderText="@_localizer["_gridDetColumnUpdateBy"]" Width="150px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(UserDepartmentDTO.DUPDATE_DATE)" HeaderText="@_localizer["_gridDetColumnUpdateDate"]" Width="150px"></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conGridDeptRef"
+                 R_SetOther="DeptGrid_SetOther"
+                 R_IsHeader></R_ConductorGrid>
+<R_ConductorGrid @ref="@_conGridDeptUserRef"></R_ConductorGrid>

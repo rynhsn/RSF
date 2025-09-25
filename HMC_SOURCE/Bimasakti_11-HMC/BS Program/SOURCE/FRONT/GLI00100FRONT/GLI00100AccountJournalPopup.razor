@@ -1,0 +1,156 @@
+﻿@page "/GLI00100AccountJournal"
+@using GLI00100Common.DTOs
+@inherits R_Page
+@attribute [R_Page(Title = "Account Journal")];
+
+<R_StackLayout Style="width: 1300px">
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>Account</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox Value="@_viewModel.PopupParams.CGLACCOUNT_NO" Enabled="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_TextBox Value="@_viewModel.PopupParams.CGLACCOUNT_NAME" Enabled="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Button OnClick="RefreshList">Refresh</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>Center</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox Value="@_viewModel.PopupParams.CCENTER_CODE" Enabled="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_TextBox Value="@_viewModel.PopupParams.CCENTER_NAME" Enabled="false"/>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="mb-2">
+        <R_ItemLayout col="1">
+            <R_Label>Period</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox Value="@_viewModel.PopupParams.CYEAR" Enabled="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox Value="@_viewModel.PopupParams.CMONTH" Enabled="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout col="7">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>Currency Type</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox Value="@_viewModel.DataHeader.CCURRENCY" Enabled="false"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="3" Class="me-2">
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_Label>Opening</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_NumericTextBox @bind-Value="_viewModel.DataHeader.NOPENING" Enabled="false" Arrows="false" ThousandSeparator="false" Decimals="2"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_StackLayout Row Spacing="2" Class="mb-1">
+                <R_ItemLayout col="2">
+                    <R_Label>PTD Debit</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox Value="@_viewModel.DataHeader.NPTD_DEBIT" Enabled="false"
+                                      Arrows="false" ThousandSeparator="false" Decimals="2"/>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>PTD Credit</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox Value="@_viewModel.DataHeader.NPTD_CREDIT" Enabled="false"
+                                      Arrows="false" ThousandSeparator="false" Decimals="2"/>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Label>Ending</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox Value="@_viewModel.DataHeader.NENDING" Enabled="false"
+                                      Arrows="false" ThousandSeparator="false" Decimals="2"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row Spacing="2">
+                <R_ItemLayout col="2">
+                    <R_Label>PTD Debit Adj.</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox Value="@_viewModel.DataHeader.NPTD_DEBIT_ADJ" Enabled="false"
+                                      Arrows="false" ThousandSeparator="false" Decimals="2"/>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>PTD Credit Adj.</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox Value="@_viewModel.DataHeader.NPTD_CREDIT_ADJ" Enabled="false"
+                                      Arrows="false" ThousandSeparator="false" Decimals="2"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout>
+        <R_GroupBox Title="Transaction List">
+            <R_ItemLayout>
+                <R_Grid @ref="_gridRef"
+                        DataSource="_viewModel.DataList"
+                        Pageable="true"
+                        R_ConductorGridSource="_conductorRef"
+                        R_GridType="R_eGridType.Original"
+                        R_ServiceGetListRecord="GetListRecord"
+                        Width="1290px"
+                        Height="310px"
+                        AllowDeleteRow="false"
+                        AllowEditRow="false"
+                        AllowAddNewRow="false">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CREF_DATE)" HeaderText="Reference Date" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CREF_NO)" HeaderText="Reference No." Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CTRANSACTION_NAME)" HeaderText="Transaction Type" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridNumericColumn FieldName="@nameof(GLI00100TransactionGridDTO.NDEBIT)" HeaderText="Debit" Width="100px" TextAlignment="R_eTextAlignment.Right" Decimals="2"/>
+                        <R_GridNumericColumn FieldName="@nameof(GLI00100TransactionGridDTO.NCREDIT)" HeaderText="Credit" Width="100px" TextAlignment="R_eTextAlignment.Right" Decimals="2"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CDOCUMENT_NO)" HeaderText="Voucher No." Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(GLI00100TransactionGridDTO.CDETAIL_DESC)" HeaderText="Description" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout>
+                        <R_Popup R_Before_Open_Popup="BeforeOpenPopupTransaction">Drill Down</R_Popup>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Button OnClick="CloseEvent">Close</R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_GroupBox>
+    </R_StackLayout>
+    
+    <R_ConductorGrid @ref="@_conductorRef"
+                 R_ViewModel="_viewModel"
+                 R_IsHeader
+                 R_Display="@Display"/>
+
+</R_StackLayout>

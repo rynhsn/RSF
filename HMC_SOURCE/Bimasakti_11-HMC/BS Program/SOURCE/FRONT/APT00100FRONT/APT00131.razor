@@ -1,0 +1,221 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Invoice - Addition/Deduction")]
+@using APT00100COMMON.DTOs.APT00131
+@using APT00100MODEL
+
+<R_StackLayout Style="width: 1250px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="7">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Property"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="5" Class="me-1">
+                    <R_TextBox @bind-Value="@loViewModel.loHeader.CPROPERTY_NAME"
+                               R_ConductorGridSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_RefNo"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3" Class="pe-3">
+                    <R_TextBox @bind-Value="@loViewModel.loHeader.CREF_NO"
+                               R_ConductorGridSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Department"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@loViewModel.loHeader.CDEPT_CODE"
+                               R_ConductorGridSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="3" Class="pe-1">
+                    <R_TextBox @bind-Value="@loViewModel.loHeader.CDEPT_NAME"
+                               R_ConductorGridSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_RefDate"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3" Class="pe-3">
+                    <R_DatePicker @bind-Value="@loViewModel.loHeader.DREF_DATE"
+                                  R_ConductorGridSource="@_conductorRef"
+                                  Enabled="false">
+                    </R_DatePicker>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Supplier"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@loViewModel.loHeader.CSUPPLIER_ID"
+                               R_ConductorGridSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="@loViewModel.loHeader.CSUPPLIER_NAME"
+                               R_ConductorGridSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="3" Class="pe-3 ps-1">
+                    <R_TextBox @bind-Value="@loViewModel.loHeader.CSUPPLIER_SEQ_NO"
+                               R_ConductorGridSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="5">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_Currency"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@loViewModel.loHeader.CCURRENCY_CODE"
+                               R_ConductorGridSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="7" Class="pe-4">
+                    <R_TextBox @bind-Value="@loViewModel.loHeader.CCURRENCY_NAME"
+                               R_ConductorGridSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_LocalCurrency"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:115px">
+                    <R_NumericTextBox @bind-Value="@loViewModel.loHeader.NLBASE_RATE"
+                                      R_ConductorGridSource="@_conductorRef"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_TextBox @bind-Value="@loViewModel.loHeader.CCURRENCY_CODE"
+                               R_ConductorGridSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 10px">
+                    <R_Label>=</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:115px">
+                    <R_NumericTextBox @bind-Value="@loViewModel.loHeader.NLCURRENCY_RATE"
+                                      R_ConductorGridSource="@_conductorRef"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_TextBox @bind-Value="@loViewModel.loHeader.CLOCAL_CURRENCY_CODE"
+                               R_ConductorGridSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_TaxRate"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:115px">
+                    <R_NumericTextBox @bind-Value="@loViewModel.loHeader.NTAX_BASE_RATE"
+                                      R_ConductorGridSource="@_conductorRef"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_TextBox @bind-Value="@loViewModel.loHeader.CCURRENCY_CODE"
+                               R_ConductorGridSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 10px">
+                    <R_Label>=</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:115px">
+                    <R_NumericTextBox @bind-Value="@loViewModel.loHeader.NTAX_CURRENCY_RATE"
+                                      R_ConductorGridSource="@_conductorRef"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_TextBox @bind-Value="@loViewModel.loHeader.CLOCAL_CURRENCY_CODE"
+                               R_ConductorGridSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Label FontColor="R_eFontColor.Primary" FontSize="16px">@lcLabel</R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_gridAdditionalRef"
+                    DataSource="@loViewModel.loAdditionalList"
+                    Pageable="true"
+                    R_ConductorGridSource="@_conductorRef"
+                    R_GridType="@R_eGridType.Original"
+                    AllowAddNewRow="true"
+                    AllowEditRow="true"
+                    AllowDeleteRow="true"
+                    Height="410px"
+                    R_After_Open_Grid_Lookup="@Grid_AfterlookUp"
+                    R_Before_Open_Grid_Lookup="@Grid_BeforelookUp"
+                    R_ServiceGetRecord="Additional_ServiceGetRecord"
+                    R_AfterSave="Additional_AfterSave"
+                    R_BeforeCancel="Additional_BeforeCancel"
+                    R_BeforeDelete="Additional_BeforeDelete"
+                    R_AfterDelete="Additional_AfterDelete"
+                    R_Display="Additional_Display"
+                    R_ServiceSave="Additional_ServiceSave"
+                    R_ServiceDelete="Additional_ServiceDelete"
+                    R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
+                <R_GridColumns>
+                    <R_GridLookupColumn FieldName=@nameof(APT00131DTO.CADD_DEPT_CODE) HeaderText="@_localizer["_DeptCode"]" Width="150px" R_EnableAdd></R_GridLookupColumn>
+                    <R_GridTextColumn FieldName=@nameof(APT00131DTO.CADD_DEPT_NAME) HeaderText="@_localizer["_DeptName"]" Width="250px"></R_GridTextColumn>
+                    <R_GridLookupColumn FieldName=@nameof(APT00131DTO.CCHARGES_ID) HeaderText="@_localizer["_ChargeId"]" Width="150px" R_EnableAdd R_EnableEdit></R_GridLookupColumn>
+                    <R_GridTextColumn FieldName=@nameof(APT00131DTO.CCHARGES_NAME) HeaderText="@_localizer["_ChargeName"]" Width="250px" ></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(APT00131DTO.CCHARGES_DESC) HeaderText="@_localizer["_Description"]" Width="300px" R_EnableAdd R_EnableEdit></R_GridTextColumn>
+                    <R_GridNumericColumn FieldName=@nameof(APT00131DTO.NADDITION_AMOUNT) HeaderText="@_localizer["_Amount(Trx)"]" Width="150px" R_EnableAdd R_EnableEdit></R_GridNumericColumn>
+                    <R_GridNumericColumn FieldName=@nameof(APT00131DTO.NLADDITION_AMOUNT) HeaderText="@_localizer["_Amount(Local)"]" Width="150px"></R_GridNumericColumn>
+                    <R_GridNumericColumn FieldName=@nameof(APT00131DTO.NBADDITION_AMOUNT) HeaderText="@_localizer["_Amount(Base)"]" Width="150px"></R_GridNumericColumn>
+                    <R_GridTextColumn FieldName=@nameof(APT00131DTO.CUPDATE_BY) HeaderText="@_localizer["_UpdatedBy"]" Width="150px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName=@nameof(APT00131DTO.DUPDATE_DATE) HeaderText="@_localizer["_UpdatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                    <R_GridTextColumn FieldName=@nameof(APT00131DTO.CCREATE_BY) HeaderText="@_localizer["_CreatedBy"]" Width="150px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName=@nameof(APT00131DTO.DCREATE_DATE) HeaderText="@_localizer["_CreatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorRef"
+                 R_ViewModel="@loViewModel"
+                 R_IsHeader="true" />

@@ -1,0 +1,4 @@
+4501= Error process, please contact your administrator!
+4502= Duplicate Journal Group Id!
+4503= Cannot Delete, Journal Group already in used!
+

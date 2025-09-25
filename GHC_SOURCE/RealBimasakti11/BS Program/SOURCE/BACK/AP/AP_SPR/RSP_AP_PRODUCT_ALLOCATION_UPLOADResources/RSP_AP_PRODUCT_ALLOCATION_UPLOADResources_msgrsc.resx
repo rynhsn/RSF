@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="ALLOCATION_ID_EMPTY" xml:space="preserve">
+        <value>Allocation ID is mandatory</value>
+    </data>
+    <data name="ALLOCATION_ID_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Allocation ID is more than 20 characters</value>
+    </data>
+    <data name="ALLOCATION_ID_ALREADY_EXIST" xml:space="preserve">
+        <value>Allocation ID already exists</value>
+    </data>
+    <data name="ALLOCATION_NAME_EMPTY" xml:space="preserve">
+        <value>Allocation Name is mandatory</value>
+    </data>
+    <data name="ALLOCATION_NAME_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Allocation Name is more than 50 characters</value>
+    </data>
+    <data name="DEPARTMENT_MODE_EMPTY" xml:space="preserve">
+        <value />
+    </data>
+    <data name="DEPARTMENT_MODE_INVALID" xml:space="preserve">
+        <value>Invalid Department Mode, valid value is ALL/EACH</value>
+    </data>
+    <data name="DEPARTMENT_CODE_EMPTY" xml:space="preserve">
+        <value>Department Code is mandatory</value>
+    </data>
+    <data name="DEPARTMENT_CODE_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Department Code is more than 20 characters</value>
+    </data>
+    <data name="DEPARTMENT_CODE_NOT_EXIST" xml:space="preserve">
+        <value>Department Code does not exist</value>
+    </data>
+    <data name="ACCOUNT_NO_EMPTY" xml:space="preserve">
+        <value>Account No. is mandatory</value>
+    </data>
+    <data name="ACCOUNT_NO_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Account No. is more than 20 characters</value>
+    </data>
+    <data name="ACCOUNT_NO_NOT_EXIST" xml:space="preserve">
+        <value>Account No. does not exist</value>
+    </data>
+    <data name="ALLOCATION_DUPLICATE_ALL" xml:space="preserve">
+        <value>Duplicated Allocation found for department mode ALL</value>
+    </data>
+    <data name="ALLOCATION_DUPLICATE_EACH" xml:space="preserve">
+        <value>Duplicated Allocation found for department mode EACH</value>
+    </data>
+</root>

@@ -1,0 +1,5 @@
+1501	= Error process, please contact your administrator!
+1502	= This transaction is not eligible to process
+
+
+

@@ -1,0 +1,673 @@
+﻿@page "/GLM00300"
+@inherits R_Page
+
+<R_StackLayout Row="true">
+    <R_ItemLayout col="2">
+        <R_Grid @ref="_gridRef"
+                DataSource="@_viewModel.BudgetWeightingList"
+                R_ConductorSource="_conductorRef"
+                R_GridType="R_eGridType.Navigator"
+                R_ServiceGetListRecord="@ServiceGetListRecord"
+                Pageable="true">
+
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CBW_NAME_DISPLAY" HeaderText="Budget  Weight Name" />
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+    <R_ItemLayout Class="ms-3" col="8">
+        <R_StackLayout>
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="3">
+                    <R_Label>Budget Weight Code</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_viewModel.Data.CBW_CODE"
+                               R_ConductorSource="_conductorRef"
+                               R_EnableAdd="true"
+                               MaxLength="20"
+                               CharacterCasing="R_eCharacterCasing.Upper"
+                    @ref="@_cbwCodeTextbox" />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="3">
+                    <R_Label>Budget Weight Name</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="4">
+                    <R_TextBox @bind-Value="_viewModel.Data.CBW_NAME"
+                               R_ConductorSource="_conductorRef"
+                               R_EnableAdd="true"
+                               MaxLength="50"
+                    @ref="_cbwNameTextbox" />
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_StackLayout>
+
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2" Class="me-1">
+                <R_Label FontColor="@R_eFontColor.Primary" FontStyle="R_eFontStyle.Bold">Local Currency</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="_viewModel.CLOCAL_CURRENCY_CODE"
+                           R_ConductorSource="_conductorRef"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+
+        <R_StackLayout Row="true" Class="align-items-center">
+
+            <R_ItemLayout col="1">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>Period 1</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NL_AMOUNT01"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+            <R_ItemLayout col="1">
+                <R_Label>Period 6</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NL_AMOUNT06"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+            <R_ItemLayout col="1">
+                <R_Label>Period 11</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NL_AMOUNT11"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true" Class="align-items-center">
+            <R_ItemLayout col="1">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="1">
+                <R_Label>Period 2</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NL_AMOUNT02"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+            <R_ItemLayout col="1">
+                <R_Label>Period 7</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NL_AMOUNT07"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+            <R_ItemLayout col="1">
+                <R_Label>Period 12</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NL_AMOUNT12"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true" Class="align-items-center">
+
+            <R_ItemLayout col="1">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>Period 3</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NL_AMOUNT03"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+
+            <R_ItemLayout col="1">
+                <R_Label>Period 8</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NL_AMOUNT08"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+
+            <R_ItemLayout col="1">
+                <R_Label>Period 13</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NL_AMOUNT13"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true" Class="align-items-center">
+            <R_ItemLayout xs="1">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 4</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NL_AMOUNT04"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 9</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NL_AMOUNT09"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 14</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NL_AMOUNT14"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true" Class="align-items-center">
+            <R_ItemLayout xs="1">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 5</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NL_AMOUNT05"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 10</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NL_AMOUNT10"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 15</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NL_AMOUNT15"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout xs="2" Class="me-1">
+                <R_Label FontColor="@R_eFontColor.Primary" FontStyle="R_eFontStyle.Bold">Base Currency</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="1">
+                <R_TextBox @bind-Value="_viewModel.CBASE_CURRENCY_CODE"
+                           R_ConductorSource="_conductorRef"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true" Class="align-items-center">
+
+            <R_ItemLayout xs="1">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout xs="1">
+                <R_Label>Period 1</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NB_AMOUNT01"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 6</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NB_AMOUNT06"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 11</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NB_AMOUNT11"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true" Class="align-items-center">
+            <R_ItemLayout xs="1">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout xs="1">
+                <R_Label>Period 2</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NB_AMOUNT02"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 7</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NB_AMOUNT07"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 12</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NB_AMOUNT12"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true" Class="align-items-center">
+            <R_ItemLayout xs="1">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 3</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NB_AMOUNT03"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 8</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NB_AMOUNT08"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 13</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NB_AMOUNT13"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true" Class="align-items-center">
+
+            <R_ItemLayout xs="1">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout xs="1">
+                <R_Label>Period 4</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NB_AMOUNT04"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 9</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NB_AMOUNT09"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 14</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NB_AMOUNT14"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true" Class="align-items-center">
+            <R_ItemLayout xs="1">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout xs="1">
+                <R_Label>Period 5</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NB_AMOUNT05"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 10</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3" Class="me-4">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NB_AMOUNT10"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+
+            <R_ItemLayout xs="1">
+                <R_Label>Period 15</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3">
+                <R_NumericTextBox @bind-Value="_viewModel.Data.NB_AMOUNT15"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true"
+                                  Decimals="2"
+                                  Min="0"
+                                  Arrows="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+
+        <R_StackLayout Row="true" Class="mt-2">
+            <R_ItemLayout xs="8">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout xs="2">
+                <R_Label>Updated By</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="1">
+                <R_TextBox @bind-Value="_viewModel.Data.CUPDATE_BY"
+                           R_ConductorSource="_conductorRef"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3">
+                <R_TextBox @bind-Value="_viewModel.Data.CUPDATE_DATE"
+                           R_ConductorSource="_conductorRef"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout xs="8">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout xs="2">
+                <R_Label>Created By</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="1">
+                <R_TextBox @bind-Value="_viewModel.Data.CCREATE_BY"
+                           R_ConductorSource="_conductorRef"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="3">
+                <R_TextBox @bind-Value="_viewModel.Data.CCREATE_DATE"
+                           R_ConductorSource="_conductorRef"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+<R_StackLayout Row Class="mt-3 justify-content-between">
+    <R_StackLayout Row>
+        <R_ItemLayout>
+            <R_AddButton R_Conductor="@_conductorRef"></R_AddButton>
+        </R_ItemLayout>
+
+        <R_ItemLayout>
+            <R_EditButton R_Conductor="@_conductorRef"></R_EditButton>
+        </R_ItemLayout>
+
+        <R_ItemLayout>
+            <R_DeleteButton R_Conductor="@_conductorRef"></R_DeleteButton>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout>
+            <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+        </R_ItemLayout>
+
+        <R_ItemLayout>
+            <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+
+<R_Conductor @ref="_conductorRef"
+             R_ViewModel="_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="ServiceGetRecord"
+             R_ConvertToGridEntity="ConvertToGridEntity"
+             R_ServiceSave="ConductorServiceSave"
+             R_ServiceDelete="ConductorServiceDelete"
+             R_Display="R_Display"
+             R_Saving="R_Saving"
+             R_AfterAdd="R_AfterAdd"
+             R_AfterDelete="R_AfterDelete"
+             R_Validation="ValidaitonGLM00300" />

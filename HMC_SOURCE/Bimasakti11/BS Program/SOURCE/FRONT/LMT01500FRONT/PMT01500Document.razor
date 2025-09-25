@@ -1,0 +1,326 @@
+@inherits R_Page;
+@inject R_ILocalizer<Resources_PMT01500_Class> _localizer
+
+<R_ItemLayout>
+
+    @* Agreement No *@
+    <R_ItemLayout col="12" Class="d-flex">
+
+        @* Pembagi pertama *@
+        <R_ItemLayout col="3" Class="d-flex">
+
+            <R_ItemLayout col="6">
+                <R_Label>
+                    @_localizer["_AgreementNo"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_documentViewModel.loEntityDocumentHeader.CREF_NO"
+                           R_ConductorSource="@_conductorDocument"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+        @* Pembagi kedua *@
+        <R_ItemLayout col="4" Class="d-flex ps-4">
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_Tenant"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_documentViewModel.loEntityDocumentHeader.CTENANT_ID"
+                           R_ConductorSource="@_conductorDocument"
+                           Enabled="false" />
+            </R_ItemLayout>
+            <R_ItemLayout col="6" Class="ps-1">
+                <R_TextBox @bind-Value="@_documentViewModel.loEntityDocumentHeader.CTENANT_NAME"
+                           R_ConductorSource="@_conductorDocument"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+        @* Pembagi ketiga *@
+        <R_ItemLayout col="4" Class="d-flex ps-4">
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_Building"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_documentViewModel.loEntityDocumentHeader.CBUILDING_ID"
+                           R_ConductorSource="@_conductorDocument"
+                           Enabled="false" />
+            </R_ItemLayout>
+            <R_ItemLayout col="6" Class="ps-1">
+                <R_TextBox @bind-Value="@_documentViewModel.loEntityDocumentHeader.CBUILDING_NAME"
+                           R_ConductorSource="@_conductorDocument"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+    </R_ItemLayout>
+
+    @* Agreement Unit(s) *@
+    <R_ItemLayout col="12" Class="d-flex mt-1 mb-1">
+
+        @* Pembagi pertama *@
+        <R_ItemLayout col="3" Class="d-flex">
+
+            <R_ItemLayout col="6">
+                <R_Label>
+                    @_localizer["_AgreementUnit(s)"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_documentViewModel.loEntityDocumentHeader.CUNIT_NAME_LIST"
+                           R_ConductorSource="@_conductorDocument"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+        @* Pembagi kedua *@
+        <R_ItemLayout col="4" Class="d-flex ps-4">
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_UnitId"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_documentViewModel.loEntityDocumentHeader.CUNIT_ID"
+                           R_ConductorSource="@_conductorDocument"
+                           Enabled="false" />
+            </R_ItemLayout>
+            <R_ItemLayout col="6" Class="ps-1">
+                <R_TextBox @bind-Value="@_documentViewModel.loEntityDocumentHeader.CUNIT_NAME"
+                           R_ConductorSource="@_conductorDocument"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+        @* Pembagi ketiga *@
+        <R_ItemLayout col="4" Class="d-flex ps-4">
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_Currency"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_documentViewModel.loEntityDocumentHeader.CCURRENCY_CODE"
+                           R_ConductorSource="@_conductorDocument"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+    </R_ItemLayout>
+
+    @* List *@
+    <R_Grid @ref="@_gridDocument"
+            DataSource="_documentViewModel.loListPMT01500Document"
+            R_ConductorSource="@_conductorDocument"
+            R_GridType="@R_eGridType.Navigator"
+            R_ServiceGetListRecord="@GetListDocument"
+            Pageable
+            Width="1050px"
+            Height="270px"
+            PageSize="15"
+            AllowDeleteRow="false"
+            AllowAddNewRow="false"
+            AllowEditRow="false">
+        <R_GridColumns>
+            <R_GridTextColumn Width="200px"
+                              FieldName="@nameof(PMT01500DocumentListDTO.CDOC_NO)"
+                              HeaderText="@_localizer["_DocumentNo"]" />
+
+
+            <R_GridDatePickerColumn Width="200px"
+                              FieldName="@nameof(PMT01500DocumentListDTO.DDOC_DATE)"
+                              HeaderText="@_localizer["_DocumentDate"]" />
+
+            <R_GridDatePickerColumn Width="200px"
+                              FieldName="@nameof(PMT01500DocumentListDTO.DEXPIRED_DATE)"
+                              HeaderText="@_localizer["_ExpiredDate"]" />
+
+            <R_GridTextColumn Width="200px"
+                              FieldName="@nameof(PMT01500DocumentListDTO.CUPDATE_BY)"
+                              HeaderText="@_localizer["_UpdatedBy"]" />
+
+            <R_GridDateTimePickerColumn Width="225px"
+                                        FieldName="@nameof(PMT01500DocumentListDTO.DUPDATE_DATE)"
+                                        HeaderText="@_localizer["_UpdatedDate"]" />
+
+            <R_GridTextColumn Width="200px"
+                              FieldName="@nameof(PMT01500DocumentListDTO.CCREATE_BY)"
+                              HeaderText="@_localizer["_CreatedBy"]" />
+
+            <R_GridDateTimePickerColumn Width="225px"
+                                        FieldName="@nameof(PMT01500DocumentListDTO.DCREATE_DATE)"
+                                        HeaderText="@_localizer["_CreatedDate"]" />
+
+        </R_GridColumns>
+    </R_Grid>
+
+    @* Detail *@
+    <R_ItemLayout>
+
+        @* Document No *@
+        <R_ItemLayout Class="d-flex">
+
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_DocumentNo"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_documentViewModel.Data.CDOC_NO"
+                           R_ConductorSource="@_conductorDocument"
+                           R_EnableAdd
+                           R_EnableEdit="false">
+                </R_TextBox>
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+        @* Document Date *@
+        <R_ItemLayout Class="d-flex">
+
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_DocumentDate"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_DatePicker @bind-Value="@_documentViewModel.Data.DDOC_DATE"
+                              R_ConductorSource="@_conductorDocument"
+                              R_EnableAdd
+                              R_EnableEdit>
+                </R_DatePicker>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="1" />
+
+            <R_ItemLayout col="1" Class="text-end pe-2">
+                <R_Label>
+                    @_localizer["_ExpiredDate"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_DatePicker @bind-Value="@_documentViewModel.Data.DEXPIRED_DATE"
+                              R_ConductorSource="@_conductorDocument"
+                              R_EnableAdd
+                              R_EnableEdit>
+                </R_DatePicker>
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+        @* Description *@
+        <R_ItemLayout Class="d-flex mt-1">
+
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_Description"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="6">
+                <R_TextArea @bind-Value="@_documentViewModel.Data.CDESCRIPTION"
+                            R_ConductorSource="@_conductorDocument"
+                            R_EnableAdd
+                            R_EnableEdit>
+                </R_TextArea>
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+        @* Document File *@
+        <R_ItemLayout Class="d-flex mt-1">
+
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_DocumentFile"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="@_documentViewModel.Data.CDOC_FILE"
+                           R_ConductorSource="@_conductorDocument"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+            <R_ItemLayout col="1" Class="ps-2">
+                <R_OpenFileDialogButton Class="text-white bg-dark"
+                                        R_ConductorSource="@_conductorDocument"
+                                        R_EnableAdd
+                                        R_EnableEdit
+                                        OnChange="@InputFileChangePMT01500Document">
+                    @_localizer["_BrowseFile"]
+                </R_OpenFileDialogButton>
+
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+    </R_ItemLayout>
+
+    @* Button CRUD *@
+    <R_StackLayout Row Class="d-flex justify-content-between">
+
+        <R_StackLayout Row>
+
+            <R_ItemLayout>
+                <R_AddButton R_Conductor="@_conductorDocument" />
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_EditButton R_Conductor="@_conductorDocument" />
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_DeleteButton R_Conductor="@_conductorDocument" />
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="d-flex justify-content-end">
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout>
+                    <R_CancelButton R_Conductor="@_conductorDocument" />
+                </R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_SaveButton R_Conductor="@_conductorDocument" />
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+        </R_StackLayout>
+
+
+
+    </R_StackLayout>
+
+</R_ItemLayout>
+
+
+
+<R_Conductor @ref="@_conductorDocument"
+             R_ViewModel="@_documentViewModel"
+             R_IsHeader
+             R_Display="@ServiceR_Display"
+             R_ServiceGetRecord="@ServiceGetRecord"
+             R_ServiceSave="@ServiceSave"
+             R_ServiceDelete="@ServiceDelete"
+             R_AfterAdd="@AfterAdd"
+             R_SetOther="SetOther" />
+

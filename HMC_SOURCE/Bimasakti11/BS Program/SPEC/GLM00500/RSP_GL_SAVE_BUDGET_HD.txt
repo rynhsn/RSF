@@ -1,0 +1,2 @@
+Error100=Budget No. {0} already exists!
+Error900=Process failed! unable to save budget {0}

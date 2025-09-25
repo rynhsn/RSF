@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="_btn_add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="_btn_cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="_btn_edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="_btn_save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="_chk_electricity_cut_off_date" xml:space="preserve">
+    <value>Cut Off Date</value>
+  </data>
+  <data name="_chk_end_of_month" xml:space="preserve">
+    <value>End of the Month</value>
+  </data>
+  <data name="_chk_gas_cut_off_date" xml:space="preserve">
+    <value>Cut Off Date</value>
+  </data>
+  <data name="_chk_generate_invoice_process" xml:space="preserve">
+    <value>Generate Invoice Process</value>
+  </data>
+  <data name="_chk_gl_link" xml:space="preserve">
+    <value>GL Link</value>
+  </data>
+  <data name="_chk_allbuilding" xml:space="preserve">
+    <value>All Building</value>
+  </data>
+  <data name="_chk_includepenalty" xml:space="preserve">
+    <value>Include Penalty</value>
+  </data>
+  <data name="_chk_water_cut_off_date" xml:space="preserve">
+    <value>Cut Off Date</value>
+  </data>
+  <data name="_column_property" xml:space="preserve">
+    <value>Property</value>
+  </data>
+  <data name="_column_building" xml:space="preserve">
+    <value>Building</value>
+  </data>
+  <data name="_grp_rate_type_parameter" xml:space="preserve">
+    <value>Rate Type Parameter</value>
+  </data>
+  <data name="_grp_receipt_parameter" xml:space="preserve">
+    <value>Receipt Parameter</value>
+  </data>
+  <data name="_grp_utility" xml:space="preserve">
+    <value>Utility</value>
+  </data>
+  <data name="_grp_onlinepayment" xml:space="preserve">
+    <value>Online Payment</value>
+  </data>
+  <data name="_grp_billingstatement" xml:space="preserve">
+    <value>Billing Statement</value>
+  </data>
+  <data name="_grp_handover" xml:space="preserve">
+    <value>Handover</value>
+  </data>
+  <data name="_lbl_currency_rate_type" xml:space="preserve">
+    <value>Currency Rate Type</value>
+  </data>
+  <data name="_lbl_current_period" xml:space="preserve">
+    <value>Current Period</value>
+  </data>
+  <data name="_lbl_electricity_start_period" xml:space="preserve">
+    <value>Electricity Start Period</value>
+  </data>
+  <data name="_lbl_endofthemonth" xml:space="preserve">
+    <value>End of the Month</value>
+  </data>
+  <data name="_lbl_gas_start_period" xml:space="preserve">
+    <value>Gas Start Period</value>
+  </data>
+  <data name="_lbl_invoice_mode" xml:space="preserve">
+    <value>Invoice Mode</value>
+  </data>
+  <data name="_lbl_less_receipt" xml:space="preserve">
+    <value>Less Receipt</value>
+  </data>
+  <data name="_lbl_less_tolerance_amount" xml:space="preserve">
+    <value>Tolerance Amount</value>
+  </data>
+  <data name="_lbl_over_receipt" xml:space="preserve">
+    <value>Over Receipt</value>
+  </data>
+  <data name="_lbl_over_tolerance_amount" xml:space="preserve">
+    <value>Tolerance Amount</value>
+  </data>
+  <data name="_lbl_property" xml:space="preserve">
+    <value>Property</value>
+  </data>
+  <data name="_lbl_soft_period" xml:space="preserve">
+    <value>Soft Period</value>
+  </data>
+  <data name="_lbl_start_invoice_period" xml:space="preserve">
+    <value>Start Invoice Period</value>
+  </data>
+  <data name="_lbl_startdate" xml:space="preserve">
+    <value>Start Date*</value>
+  </data>
+  <data name="_lbl_submitby" xml:space="preserve">
+    <value>Submit By*</value>
+  </data>
+  <data name="_lbl_statementdate" xml:space="preserve">
+    <value>Statement Date*</value>
+  </data>
+  <data name="_lbl_termofpayment" xml:space="preserve">
+    <value>Term of Payment</value>
+  </data>
+  <data name="_lbl_currency" xml:space="preserve">
+    <value>Currency*</value>
+  </data>
+  <data name="_lbl_tax_rate_type" xml:space="preserve">
+    <value>Tax Rate Type</value>
+  </data>
+  <data name="_lbl_water_start_period" xml:space="preserve">
+    <value>Water Start Period</value>
+  </data>
+  <data name="_lbl_withholding_tax_mode" xml:space="preserve">
+    <value>Withholding Tax Mode</value>
+  </data>
+  <data name="_opt_on_invoice" xml:space="preserve">
+    <value>On Invoice</value>
+  </data>
+  <data name="_opt_on_receipt" xml:space="preserve">
+    <value>On Receipt</value>
+  </data>
+  <data name="_pageTitlePMM00100" xml:space="preserve">
+    <value>PM System Parameter</value>
+  </data>
+  <data name="_val1" xml:space="preserve">
+    <value>Please select property !</value>
+  </data>
+  <data name="_val10" xml:space="preserve">
+    <value>Please select Gas cut off date !</value>
+  </data>
+  <data name="_val15" xml:space="preserve">
+    <value>Please fill Water Charges ID!</value>
+  </data>
+  <data name="_val16" xml:space="preserve">
+    <value>Please fill Maximum Reschedule Days!</value>
+  </data>
+  <data name="_val18" xml:space="preserve">
+    <value>Please choose SLA Call Type (Defect)!</value>
+  </data>
+  <data name="_val21" xml:space="preserve">
+    <value>Please fill Currency!</value>
+  </data>
+  <data name="_val23" xml:space="preserve">
+    <value>Please fill Term of Payment!</value>
+  </data>
+  <data name="_val25" xml:space="preserve">
+    <value>Please fill Chiller Tax ID!</value>
+  </data>
+  <data name="_val26" xml:space="preserve">
+    <value>Please fill Water Tax ID!</value>
+  </data>
+  <data name="_val24" xml:space="preserve">
+    <value>Please fill Chiller Charges ID!</value>
+  </data>
+  <data name="_val22" xml:space="preserve">
+    <value>Please fill Statement Date!</value>
+  </data>
+  <data name="_val20" xml:space="preserve">
+    <value>Please choose Submit By!</value>
+  </data>
+  <data name="_val19" xml:space="preserve">
+    <value>Please fill Start Date!</value>
+  </data>
+  <data name="_val17" xml:space="preserve">
+    <value>Please fill Maximum Reschedule Attempts!</value>
+  </data>
+  <data name="_val14" xml:space="preserve">
+    <value>Please fill Gas Tax ID!</value>
+  </data>
+  <data name="_val13" xml:space="preserve">
+    <value>Please fill Gas Charges ID!</value>
+  </data>
+  <data name="_val12" xml:space="preserve">
+    <value>Please fill Electricity Tax ID!</value>
+  </data>
+  <data name="_val11" xml:space="preserve">
+    <value>Please fill Electricity Charges ID!</value>
+  </data>
+  <data name="_val2" xml:space="preserve">
+    <value>Please select soft period !</value>
+  </data>
+  <data name="_val3" xml:space="preserve">
+    <value>Please select current period !</value>
+  </data>
+  <data name="_val4" xml:space="preserve">
+    <value>Please select Start invoice period !</value>
+  </data>
+  <data name="_val5" xml:space="preserve">
+    <value>Please select Electricity start period !</value>
+  </data>
+  <data name="_val6" xml:space="preserve">
+    <value>Please select Water start period !</value>
+  </data>
+  <data name="_val7" xml:space="preserve">
+    <value>Please select Gas start period !</value>
+  </data>
+  <data name="_val8" xml:space="preserve">
+    <value>Please select Electricity cut off date !</value>
+  </data>
+  <data name="_val9" xml:space="preserve">
+    <value>Please select Water cut off date !</value>
+  </data>
+  <data name="_lbl_maxres" xml:space="preserve">
+    <value>Maximum Reschedule*</value>
+  </data>
+  <data name="_lbl_attempt" xml:space="preserve">
+    <value>attempt(s) within</value>
+  </data>
+  <data name="_lbl_days" xml:space="preserve">
+    <value>day(s)</value>
+  </data>
+  <data name="_lbl_slacallype" xml:space="preserve">
+    <value>SLA Call Type (Defect)*</value>
+  </data>
+  <data name="_lbl_chargesandtaxinfo" xml:space="preserve">
+    <value>Charges and Tax Info</value>
+  </data>
+  <data name="_chk_usepriorityapp" xml:space="preserve">
+    <value>Use Priority Apps</value>
+  </data>
+  <data name="_tab_houtillbuildingmapping" xml:space="preserve">
+    <value>HO Utilities Building Mapping</value>
+  </data>
+  <data name="_tab_billing" xml:space="preserve">
+    <value>Billing</value>
+  </data>
+  <data name="_chk_electricity" xml:space="preserve">
+    <value>Electricity</value>
+  </data>
+  <data name="_chk_gas" xml:space="preserve">
+    <value>Gas</value>
+  </data>
+  <data name="_chk_water" xml:space="preserve">
+    <value>Water</value>
+  </data>
+  <data name="_lbl_chargesid" xml:space="preserve">
+    <value>Charges ID*</value>
+  </data>
+  <data name="_lbl_taxid" xml:space="preserve">
+    <value>Tax ID*</value>
+  </data>
+  <data name="_lbl_updatedby" xml:space="preserve">
+    <value>Updated By</value>
+  </data>
+  <data name="_lbl_createdby" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="_chk_chiller" xml:space="preserve">
+    <value>Chiller</value>
+  </data>
+  <data name="_lbl_donehandover" xml:space="preserve">
+    <value>Done Handover</value>
+  </data>
+  <data name="_chk_distributepdf" xml:space="preserve">
+    <value>Distribute PDF</value>
+  </data>
+  <data name="_chk_includeimagesinpdf" xml:space="preserve">
+    <value>Include images in PDF</value>
+  </data>
+</root>

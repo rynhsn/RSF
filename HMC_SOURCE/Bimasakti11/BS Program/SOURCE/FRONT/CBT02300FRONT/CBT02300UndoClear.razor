@@ -1,0 +1,363 @@
+@inherits R_Page
+@attribute [R_Page(Title = "Undo Clear")]
+@inject R_ILocalizer<Resources_CBT02300_Class> _localizer
+
+<R_StackLayout Row>
+
+    <R_ItemLayout col="5">
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label> @_localizer["_dept"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModel.loParamaterFilter!.CDEPT_CODE"
+                           OnLostFocus="@LostFocusLookupDept"
+                           Enabled="true"
+                           MaxLength="20">
+                </R_TextBox>
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@BeforeOpenLookUp_Dept"
+                          R_After_Open_Lookup="@AfterOpenLookUp_Dept">
+                    ...
+                </R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="@_viewModel.loParamaterFilter!.CDEPT_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="6">
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_clearDate"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_DatePicker @bind-Value="@_viewModel.loParamaterFilter!.CDATE_FRONT">
+                </R_DatePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="5">
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_bankCode"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModel.loParamaterFilter!.CCB_CODE"
+                           OnLostFocus="@LostFocusLookupBankCode"
+                           Enabled="true"
+                           MaxLength="20">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@BeforeOpenLookUp_BankCode"
+                          R_After_Open_Lookup="@AfterOpenLookUp_BankCode">
+                    ...
+                </R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="@_viewModel.loParamaterFilter!.CCB_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="6">
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_AccNo"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModel.loParamaterFilter!.CCB_ACCOUNT_NO"
+                           OnLostFocus="@LostFocusLookupAccountNo"
+                           Enabled="true"
+                           MaxLength="20">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@BeforeOpenLookUp_AccountNo"
+                          R_After_Open_Lookup="@AfterOpenLookUp_AccountNo">
+                    ...
+                </R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="@_viewModel.loParamaterFilter!.CCB_ACCOUNT_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+
+            <R_ItemLayout class="d-flex align-items-end"
+                          col="1">
+                <R_Button Class="btn btn-light"
+                          OnClick="@BtnRefresh">
+                    @_localizer["_refresh"]
+                </R_Button>
+
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+<R_StackLayout>
+    <R_Grid @ref="@_gridBankInChequeRef"
+            DataSource="_viewModel.BankInChequeList"
+            R_ConductorGridSource="@_conductorBankInChequeRef"
+            R_GridType="R_eGridType.Batch"
+            R_ServiceGetListRecord="@GetListRecord"
+            R_Display="@Service_Display"
+            R_ServiceSaveBatch="@ServiceSaveBatch"
+            R_AfterSaveBatch="@AfterSaveBatch"
+            Pageable
+            Height="300px"
+            AllowDeleteRow="false"
+            AllowAddNewRow="false"
+            AllowEditRow="false"
+            R_CheckBoxSelectValueChanged="@R_CheckBoxSelectValueChanged">
+
+        <R_GridColumns>
+            <R_GridCheckBoxSelectColumn Width="75px" FieldName="@nameof(CBT02300BankInChequeFrontDTO.LSELECTED)"
+                                                            R_EnableEdit
+                                                            R_EnableAdd
+                                                            ShowSelectAllHeader>
+            </R_GridCheckBoxSelectColumn>
+            <R_GridTextColumn FieldName="@nameof(CBT02300BankInChequeFrontDTO.CCHEQUE_NO)"
+                              HeaderText=@_localizer["_chequeNo"] Width="200px" />
+            <R_GridDatePickerColumn FieldName="@nameof(CBT02300BankInChequeFrontDTO.DCHEQUE_DATE)"
+                                    HeaderText=@_localizer["_chequeDate"] Width="150px" />
+            <R_GridDatePickerColumn FieldName="@nameof(CBT02300BankInChequeFrontDTO.DDUE_DATE)"
+                                    HeaderText=@_localizer["_dueDate"] Width="150px" />
+            <R_GridTextColumn FieldName="@nameof(CBT02300BankInChequeFrontDTO.CREF_NO)"
+                              HeaderText=@_localizer["_refNo"] Width="200px" />
+            <R_GridDatePickerColumn FieldName="@nameof(CBT02300BankInChequeFrontDTO.DREF_DATE)"
+                                    HeaderText=@_localizer["_refDate"] Width="150px" />
+            <R_GridTextColumn FieldName="@nameof(CBT02300BankInChequeFrontDTO.CTRANSACTION_NAME)"
+                              HeaderText=@_localizer["_trxType"] Width="220px" />
+            <R_GridTextColumn FieldName="@nameof(CBT02300BankInChequeFrontDTO.CCURRENCY_CODE)"
+                              HeaderText=@_localizer["_curr"] Width="100px" />
+            <R_GridNumericColumn FieldName="@nameof(CBT02300BankInChequeFrontDTO.NTRANS_AMOUNT)"
+                                 TValue="decimal"
+                                 HeaderText=@_localizer["_amount"] Width="200px" />
+            <R_GridTextColumn FieldName="@nameof(CBT02300BankInChequeFrontDTO.CSTATUS_NAME)"
+                              HeaderText=@_localizer["_status"] Width="150px" />
+            <R_GridTextColumn Width="150px"
+                              FieldName="@nameof(CBT02300BankInChequeFrontDTO.CUPDATE_BY)"
+                              HeaderText=@_localizer["_updatedBy"] />
+            <R_GridDatePickerColumn Width="175px"
+                                    FieldName="@nameof(CBT02300BankInChequeFrontDTO.DUPDATE_DATE)"
+                                    HeaderText=@_localizer["_updatedDate"] />
+            <R_GridTextColumn Width="150px"
+                              FieldName="@nameof(CBT02300BankInChequeFrontDTO.CCREATE_BY)"
+                              HeaderText=@_localizer["_createdBy"] />
+            <R_GridDatePickerColumn Width="175px"
+                                    FieldName="@nameof(CBT02300BankInChequeFrontDTO.DUPDATE_DATE)"
+                                    HeaderText=@_localizer["_createdDate"] />
+        </R_GridColumns>
+
+    </R_Grid>
+
+    @*Bank in Cheque Info*@
+    <R_StackLayout>
+        <R_ItemLayout>
+            <R_Label FontColor="R_eFontColor.Danger">
+                @_localizer["_chequeInfo"]
+            </R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_GroupBox>
+        @*Row 1*@
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="4">
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["_chequeBank"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="8">
+                        <R_TextBox @bind-Value="@_viewModel.BankInChequeInfo.CFRTO_BANK_CODE"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="4">
+                        <R_Label>@_localizer["_chequeDate"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="7">
+                        <R_DatePicker @bind-Value="@_viewModel.BankInChequeInfo.DCHEQUE_DATE"
+                                      Enabled="false">
+                        </R_DatePicker>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="5">
+                        <R_Label>@_localizer["_bankInDate"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
+                        <R_DatePicker @bind-Value="@_viewModel.BankInChequeInfo.DBANK_IN_DATE"
+                                      Enabled="false">
+                        </R_DatePicker>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_by"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
+                        <R_TextBox @bind-Value="@_viewModel.BankInChequeInfo.CBANK_IN_BY"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @*Row 2*@
+        <R_StackLayout Row="true" Class="mt-1">
+            <R_ItemLayout col="4">
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["_chequeNo"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="8">
+                        <R_TextBox @bind-Value="@_viewModel.BankInChequeInfo.CCHEQUE_NO"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="4">
+                        <R_Label>@_localizer["_dueDate"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="7">
+                        <R_DatePicker @bind-Value="@_viewModel.BankInChequeInfo.DDUE_DATE"
+                                      Enabled="false">
+                        </R_DatePicker>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="5">
+                        <R_Label>@_localizer["_clearedDate"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
+                        <R_DatePicker @bind-Value="@_viewModel.BankInChequeInfo.DCLEAR_DATE"
+                                      Enabled="false">
+                        </R_DatePicker>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_by"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
+                        <R_TextBox @bind-Value="@_viewModel.BankInChequeInfo.CCLEAR_BY"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @*Row 3*@
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="4">
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["_amount"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox @bind-Value="@_viewModel.BankInChequeInfo.CCURRENCY_CODE"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6" Class="pe-1">
+                        <R_NumericTextBox @bind-Value="@_viewModel.BankInChequeInfo.NTRANS_AMOUNT"
+                                          TValue="decimal"
+                                          Enabled="false"
+                                          Arrows="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @*Row 4*@
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="11">
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["_desc"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="7" Class="ps-2 pe-6">
+                        <R_TextBox @bind-Value="@_viewModel.BankInChequeInfo.CTRANS_DESC"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_GroupBox>
+    @*row 5*@
+
+    <R_StackLayout Row="true" Class="mt-2">
+        <R_ItemLayout col="4">
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_reason"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="8" Class="pe-1">
+                    <R_TextBox @bind-Value="@_viewModel.BankInChequeInfo.CREASON"
+                               Enabled="_viewModel._enableBtn">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Button Class="btn btn-light"
+                      OnClick="@BtnUndoClear"
+                      Enabled="@_viewModel._enableBtn">
+                @_localizer["_undoClear"]
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorBankInChequeRef"
+                 R_IsHeader="true" />

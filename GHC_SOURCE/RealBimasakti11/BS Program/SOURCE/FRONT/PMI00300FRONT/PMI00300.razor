@@ -1,0 +1,284 @@
+@page "/PMI00300"
+@attribute [R_Page(Title = "Unit Inquiry")]
+@inherits R_Page
+@using PMI00300COMMON.DTO
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="5">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Property"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="7">
+                    <R_ComboBox Data="@loViewModel.loPropertyList"
+                                Value="@loViewModel.loDisplayProcess.CPROPERTY_ID"
+                                ValueField="@nameof(PMI00300GetPropertyListDTO.CPROPERTY_ID)"
+                                TextField="@nameof(PMI00300GetPropertyListDTO.CPROPERTY_NAME)"
+                                ValueChanged="@((string value) => PropertyDropdown_ValueChanged(value))"></R_ComboBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="3"></R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Option"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="7">
+                    <R_RadioGroup Data="@loUnitOptionRadioButtonList"
+                                  Value="@loViewModel.loDisplayProcess.CUNIT_OPTION"
+                                  ValueField="@nameof(RadioButtonOption.CCODE)"
+                                  TextField="@nameof(RadioButtonOption.CNAME)"
+                                  Layout="R_eRadioGroupLayout.Horizontal"
+                                  ValueChanged="@((string value) => UnitOptionRadioButton_ValueChanged(value))">
+                    </R_RadioGroup>
+                </R_ItemLayout>
+                <R_ItemLayout col="3"></R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Building"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="7" Class="d-flex gap-0">
+                    <R_ItemLayout Style="width: 40%;" Class="me-1">
+                        <R_TextBox @bind-Value="@loViewModel.loDisplayProcess.CBUILDING_ID"
+                                   OnLostFocus="@R_OnLostFocus_Building"
+                                   Enabled="!loViewModel.loDisplayProcess.LALL_BUILDING"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 31px;">
+                        <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupBuilding"
+                                  R_After_Open_Lookup="@R_After_Open_LookupBuilding"
+                                  Enabled="!loViewModel.loDisplayProcess.LALL_BUILDING">...</R_Lookup>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width:60%;">
+                        <R_TextBox @bind-value="@loViewModel.loDisplayProcess.CBUILDING_NAME"
+                                   Enabled="false"></R_TextBox>
+                    </R_ItemLayout>
+                </R_ItemLayout>
+                <R_ItemLayout col="3" Class="ps-2">
+                    <R_CheckBox Value="@loViewModel.loDisplayProcess.LALL_BUILDING"
+                                ValueChanged="@((bool value) => AllBuildingCheckbox_ValueChanged(value))"
+                                Enabled="@IsAllBuildingEnabled"></R_CheckBox>
+                    <R_Label>@_localizer["_AllBuilding"]</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="5">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_FromFloor"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="8" Class="d-flex gap-0">
+                    <R_ItemLayout Style="width: 40%;" Class="me-1">
+                        <R_TextBox @bind-value="@loViewModel.loDisplayProcess.CFROM_FLOOR_ID"
+                                   OnLostFocus="@R_OnLostFocus_FromFloor"
+                                   Enabled="!loViewModel.loDisplayProcess.LALL_BUILDING"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 31px;">
+                        <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupFromFloor"
+                                  R_After_Open_Lookup="@R_After_Open_LookupFromFloor"
+                                  Enabled="!loViewModel.loDisplayProcess.LALL_BUILDING">...</R_Lookup>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width:60%;">
+                        <R_TextBox @bind-value="@loViewModel.loDisplayProcess.CFROM_FLOOR_NAME"
+                                   Enabled="false"></R_TextBox>
+                    </R_ItemLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_ToFloor"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="8" Class="d-flex gap-0">
+                    <R_ItemLayout Style="width: 40%;" Class="me-1">
+                        <R_TextBox @bind-value="@loViewModel.loDisplayProcess.CTO_FLOOR_ID"
+                                   Enabled="!loViewModel.loDisplayProcess.LALL_BUILDING"
+                                   OnLostFocus="@R_OnLostFocus_ToFloor"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 31px;">
+                        <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupToFloor"
+                                  R_After_Open_Lookup="@R_After_Open_LookupToFloor"
+                                  Enabled="!loViewModel.loDisplayProcess.LALL_BUILDING">...</R_Lookup>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width:60%;">
+                        <R_TextBox @bind-value="@loViewModel.loDisplayProcess.CTO_FLOOR_NAME"
+                                   Enabled="false"></R_TextBox>
+                    </R_ItemLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_UnitCategory"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_RadioGroup Data="@loUnitCategoryOptionRadioButtonList"
+                                  Value="@loViewModel.loDisplayProcess.CUNIT_CATEGORY"
+                                  ValueField="@nameof(RadioButtonOption.CCODE)"
+                                  TextField="@nameof(RadioButtonOption.CNAME)"
+                                  Layout="R_eRadioGroupLayout.Horizontal"
+                                  ValueChanged="@((string value) => UnitCategoryOptionRadioButton_ValueChanged(value))">
+
+                    </R_RadioGroup>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_Status"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_ComboBox Data="@loStatusList"
+                                Value="@loViewModel.loDisplayProcess.CSTATUS_ID"
+                                ValueField="@nameof(PMI00300GetGSBCodeListDTO.CCODE)"
+                                TextField="@nameof(PMI00300GetGSBCodeListDTO.CNAME)"
+                                ValueChanged="@((string value) => StatusDropdown_ValueChanged(value))"></R_ComboBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_StackLayout Row Class="justify-content-end">
+                <R_Button OnClick="OnClickRefresh" Enabled>@_localizer["_Refresh"]</R_Button>
+                <R_Detail Enabled="@IsAgreementEnabled" R_Before_Open_Detail="@R_Before_Open_Detail_Agreement" R_After_Open_Detail="@R_After_Open_Detail_Agreement">@_localizer["_DrillDown"]</R_Detail>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout>
+        <R_Grid @ref="@_headerGridRef"
+                DataSource="@loViewModel.loUnitInquiryHeaderList"
+                Pageable="true"
+                Height="275px"
+                @bind-PageSize="@PageSizeGridHDUnit"
+                R_GridType="@R_eGridType.Original"
+                R_ConductorGridSource="@_conductorGridRef"
+                R_ServiceGetListRecord="@R_ServiceGetListRecord"
+                R_Display="@R_Display"
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(PMI00300DTO.CBUILDING_NAME)" HeaderText="@_localizer["_Building"]" Width="125px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(PMI00300DTO.CFLOOR_ID) HeaderText="@_localizer["_FloorID"]" Width="125px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PMI00300DTO.CUNIT_ID)" HeaderText="@_localizer["_UnitID"]" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PMI00300DTO.CCATEGORY)" HeaderText="@_localizer["_Category"]" Width="125px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PMI00300DTO.CUNIT_TYPE_ID)" HeaderText="@_localizer["_UnitType"]" Width="125px"></R_GridTextColumn>
+                <R_GridNumericColumn TValue="decimal" Arrows="false" Decimals="2" FieldName="@nameof(PMI00300DTO.NOCCUPIABLE_AREA)" HeaderText="@_localizer["_OccupiableArea"]" Width="150px" TextAlignment="R_eTextAlignment.Center"></R_GridNumericColumn>
+                <R_GridNumericColumn TValue="decimal" Arrows="false" Decimals="2" FieldName="@nameof(PMI00300DTO.NCOMMON_AREA_SIZE)" HeaderText="@_localizer["_CommonArea"]" Width="150px" TextAlignment="R_eTextAlignment.Center"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="@nameof(PMI00300DTO.CUNIT_STATUS)" HeaderText="@_localizer["_UnitStatus"]" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PMI00300DTO.CTENANT)" HeaderText="@_localizer["_Tenant"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PMI00300DTO.CAGREEMENT_NO)" HeaderText="@_localizer["_ReferenceNo"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PMI00300DTO.CAGREEMENT_STATUS)" HeaderText="@_localizer["_AgreementStatus"]" Width="200px"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(PMI00300DTO.DEND_DATE)" HeaderText="@_localizer["_EndDate"]" Width="150px"></R_GridDatePickerColumn>
+                <R_GridTextColumn FieldName="@nameof(PMI00300DTO.CEXP_DAYS)" HeaderText="@_localizer["_ExpDays"]" Width="100px" TextAlignment="R_eTextAlignment.Center"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        @* NOTES: GRID_RIGHT_DISABLED, col="5" if grid right enabled*@
+        @* <R_ItemLayout col="12">
+
+            <R_Grid @ref="@_detailLeftGridRef"
+                    DataSource="@loViewModel.loUnitInquiryDetailLeftList"
+                    Pageable="true"
+                    R_GridType="@R_eGridType.Original"
+                    R_ServiceGetListRecord="@DetailLeft_R_ServiceGetListRecord"
+                    Height="250px"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName=@nameof(PMI00300DetailLeftDTO.CUTILITY_TYPE) HeaderText="@_localizer["_UtilityType"]" Width="125px" TextAlignment="R_eTextAlignment.Center"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(PMI00300DetailLeftDTO.CMETER_NO) HeaderText="@_localizer["_MeterNo"]" Width="125px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(PMI00300DetailLeftDTO.CSEQ_NO) HeaderText="@_localizer["_SeqNo"]" Width="125px" TextAlignment="R_eTextAlignment.Center"></R_GridTextColumn>
+                    <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMI00300DetailLeftDTO.CF) HeaderText="@_localizer["_CF"]" Width="75px" Arrows="false" Decimals="2" TextAlignment="R_eTextAlignment.Center"></R_GridNumericColumn>
+                    <R_GridTextColumn FieldName=@nameof(PMI00300DetailLeftDTO.CLAST_INVOICE_PRD) HeaderText="@_localizer["_LastInvoicePrd"]" Width="175px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(PMI00300DetailLeftDTO.CLAST_INVOICE_NO) HeaderText="@_localizer["_LastInvoiceNo"]" Width="225px"></R_GridTextColumn>
+                    <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMI00300DetailLeftDTO.NAMOUNT) HeaderText="@_localizer["_Amount"]" Width="125px" Arrows="false" Decimals="2"></R_GridNumericColumn>
+                    <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMI00300DetailLeftDTO.NREMAINING) HeaderText="@_localizer["_Remaining"]" Width="125px" Arrows="false" Decimals="2"></R_GridNumericColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+        NOTES: GRID_RIGHT_DISABLED, Hide until SP is done
+        <R_ItemLayout col="7">
+                <R_Grid @ref="@_detailRightGridRef"
+                        DataSource="@loViewModel.loUnitInquiryDetailRightList"
+                        Pageable="true"
+                        R_GridType="@R_eGridType.Original"
+                        R_ServiceGetListRecord="@DetailRight_R_ServiceGetListRecord"
+                        Height="250px"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false"
+                        AllowDeleteRow="false">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName=@nameof(PMI00300DetailRightDTO.CCALL_NO) HeaderText="@_localizer["_CallNo"]" Width="150px"></R_GridTextColumn>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(PMI00300DetailRightDTO.DCALL_DATE)" HeaderText="@_localizer["_CallDate"]" Width="125px"></R_GridDateTimePickerColumn>
+                        <R_GridTextColumn FieldName="@nameof(PMI00300DetailRightDTO.CCALL_STATUS)" HeaderText="@_localizer["_CallStatus"]" Width="150px"></R_GridTextColumn>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(PMI00300DetailRightDTO.DPLAN_START_DT)" HeaderText="@_localizer["_PlanStartDt"]" Width="125px"></R_GridDateTimePickerColumn>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(PMI00300DetailRightDTO.DPLAN_END_DT)" HeaderText="@_localizer["_PlanEndDt"]" Width="125px"></R_GridDateTimePickerColumn>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(PMI00300DetailRightDTO.DACTUAL_START_DT)" HeaderText="@_localizer["_ActualStartDt"]" Width="125px"></R_GridDateTimePickerColumn>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(PMI00300DetailRightDTO.DACTUAL_END_DT)" HeaderText="@_localizer["_ActualEndDt"]" Width="125px"></R_GridDateTimePickerColumn>
+                    </R_GridColumns>
+                </R_Grid>
+        </R_ItemLayout>
+        *@
+    </R_StackLayout>
+
+    <R_TabStrip @ref="_tabStrip">
+        <R_TabStripTab Title="@(_localizer["_TabStripUtility"])">
+            <R_Grid @ref="@_detailLeftGridRef"
+                    DataSource="@loViewModel.loUnitInquiryDetailLeftList"
+                    Pageable="true"
+                    R_GridType="@R_eGridType.Original"
+                    R_ServiceGetListRecord="@DetailLeft_R_ServiceGetListRecord"
+                    Height="200px"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false"
+                    @bind-PageSize="@PageSizeGridDTUnit"
+                    >
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName=@nameof(PMI00300DetailLeftDTO.CUTILITY_TYPE) HeaderText="@_localizer["_UtilityType"]" Width="125px" TextAlignment="R_eTextAlignment.Center"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(PMI00300DetailLeftDTO.CMETER_NO) HeaderText="@_localizer["_MeterNo"]" Width="125px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(PMI00300DetailLeftDTO.CSEQ_NO) HeaderText="@_localizer["_SeqNo"]" Width="125px" TextAlignment="R_eTextAlignment.Center"></R_GridTextColumn>
+                    <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMI00300DetailLeftDTO.CF) HeaderText="@_localizer["_CF"]" Width="75px" Arrows="false" Decimals="2" TextAlignment="R_eTextAlignment.Center"></R_GridNumericColumn>
+                    <R_GridTextColumn FieldName=@nameof(PMI00300DetailLeftDTO.CLAST_INVOICE_PRD) HeaderText="@_localizer["_LastInvoicePrd"]" Width="175px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(PMI00300DetailLeftDTO.CLAST_INVOICE_NO) HeaderText="@_localizer["_LastInvoiceNo"]" Width="225px"></R_GridTextColumn>
+                    <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMI00300DetailLeftDTO.NAMOUNT) HeaderText="@_localizer["_Amount"]" Width="125px" Arrows="false" Decimals="2"></R_GridNumericColumn>
+                    <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMI00300DetailLeftDTO.NREMAINING) HeaderText="@_localizer["_Remaining"]" Width="125px" Arrows="false" Decimals="2"></R_GridNumericColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_TabStripTab>
+        <R_TabStripTab Title="@(_localizer["_TabStripFacility"])">
+            <R_Grid @ref="@_detailRightGridRef"
+                    DataSource="@loViewModel.loUnitInquiryDetailRightList"
+                    Pageable="true"
+                    R_GridType="@R_eGridType.Original"
+                    R_ServiceGetListRecord="@DetailRight_R_ServiceGetListRecord"
+                    Height="200px"
+                    Width="700px"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false"
+                    @bind-PageSize="@PageSizeGridDTUnit">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName=@nameof(PMI00300DetailRightDTO.CFACILITY_TYPE_NAME) HeaderText="@_localizer["_FaciType"]" Width="200px"></R_GridTextColumn>
+                    <R_GridNumericColumn TValue="int" FieldName=@nameof(PMI00300DetailRightDTO.IUSED) HeaderText="@_localizer["_FaciUsed"]" Width="100px"></R_GridNumericColumn>
+                    <R_GridNumericColumn TValue="int" FieldName=@nameof(PMI00300DetailRightDTO.ILIMIT) HeaderText="@_localizer["_FaciLimit"]" Width="100px"></R_GridNumericColumn>
+                    
+                </R_GridColumns>
+            </R_Grid>
+        </R_TabStripTab>
+    </R_TabStrip>
+
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorGridRef"
+                 R_IsHeader>
+
+</R_ConductorGrid>

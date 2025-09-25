@@ -1,0 +1,22 @@
+8001 -- Error process, please contact your administrator!
+8002 -- Ticket Date is empty!
+8003 -- Unit/Location is empty!
+8004 -- Building is not found!
+8005 -- Floor is not found!
+8006 -- Unit is not found!
+8007 -- Location is not found!
+8008 -- Asset is not found!
+8009 -- Tenant/Owner is empty!
+8010 -- Tenant/Owner is not found!
+8011 -- Caller ID cannot be empty!
+8012 -- Caller ID is not found!
+8013 -- Caller Name is empty!
+8014 -- Caller Phone is empty!
+8015 -- Caller Email is empty!
+8016 -- Caller Email format is invalid!
+8017 -- Description is empty!
+8018 -- Call Type is empty!
+8019 -- Call Type is not found!
+8020 -- Plan Start Date is empty!
+8021 -- Plan End Date is empty!
+8022 -- PIC is empty!

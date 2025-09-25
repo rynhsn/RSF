@@ -1,0 +1,124 @@
+@inherits R_Page
+
+<R_StackLayout Row Style="width:1020px">
+    <R_ItemLayout col="12">
+        <R_StackLayout Row Class="mb-2">
+            <R_ItemLayout><R_Label>@_localizer["_lbl_property"]</R_Label></R_ItemLayout>
+            <R_ItemLayout><R_TextBox @bind-Value="@_viewModel._cpropertyId" Enabled="@false"></R_TextBox></R_ItemLayout>
+            <R_ItemLayout><R_TextBox @bind-Value="@_viewModel._cpropertyName" Enabled="@false"></R_TextBox></R_ItemLayout>
+        </R_StackLayout>
+        <R_InputFile OnChange="@Onchange_InputFIlePricelist" Accepts="@_accepts" TabIndex="0" Class="mb-2"></R_InputFile>
+        <R_Grid @ref="@_gridPricelist"
+                DataSource="@_viewModel._pricelist_List"
+                R_ConductorGridSource="@_conPricelist"
+                R_GridType="@R_eGridType.Batch"
+                R_ServiceGetListRecord="@Pricelist_GetlistAsync"
+                AllowAddNewRow="@false"
+                AllowDeleteRow="@false"
+                AllowEditRow="@false"
+                R_RowRender="@Pricelist_RowRender"
+                Pageable
+                @bind-PageSize="@_pageSize_Pricelist"
+                Height="400px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(PriceListExcelDisplayDTO.CPRICELIST_ID)" HeaderText="@(_localizer["_col_pricelistid"])" Width="130px" MaxLength="20"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PriceListExcelDisplayDTO.CPRICELIST_NAME)" HeaderText="@(_localizer["_col_pricelistname"])" Width="200px" MaxLength="100"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PriceListExcelDisplayDTO.CDEPT_CODE)"
+                                  HeaderText="@(_localizer["_col_dept"])"
+                                  Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PriceListExcelDisplayDTO.CCHARGES_ID)"
+                                    HeaderText="@(_localizer["_col_chargesid"])"
+                                    Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PriceListExcelDisplayDTO.CUNIT)" HeaderText="@(_localizer["_col_unit"])" Width="150px" MaxLength="10"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PriceListExcelDisplayDTO.CCURRENCY_CODE)" HeaderText="@(_localizer["_col_curr"])" Width="100px" R_EnableAdd="@false" R_EnableEdit="@false"></R_GridTextColumn>
+                <R_GridNumericColumn FieldName="@nameof(PriceListExcelDisplayDTO.IPRICE)" TValue="int" HeaderText="@(_localizer["_col_price"])" Width="150px" ThousandSeparator></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="@nameof(PriceListExcelDisplayDTO.CDESCRIPTION)" HeaderText="@(_localizer["_col_desc"])" Width="250px" MaxLength="500"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(PriceListExcelDisplayDTO.DSTART_DATE)" HeaderText="@(_localizer["_col_startdate"])" Width="200px"></R_GridDatePickerColumn>
+                <R_GridTextColumn FieldName=@nameof(PriceListExcelDisplayDTO.CVALID) HeaderText="@_localizer["_col_valid"]" Enabled="false" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(PriceListExcelDisplayDTO.CNOTES) HeaderText="@_localizer["_col_notes"]" Enabled="false" Width="300px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_ProgressBar Label="@_viewModel._progressBarMessage"
+                               MaxValue="100"
+                               Value="@_viewModel._progressBarPercentage"></R_ProgressBar>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row class="mt-2">
+            <R_ItemLayout col="8">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>Total Row(s)</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@_viewModel._sumListPricelistExcel"
+                                          Arrows="false"
+                                          Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>Valid</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2" Class="">
+                        <R_NumericTextBox @bind-Value="@_viewModel._sumValidDataPricelistExcel"
+                                          Arrows="false"
+                                          ReadOnly
+                                          Class="bg-success">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>Invalid</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@_viewModel._sumInvalidDataPricelistExcel"
+                                          Arrows="false"
+                                          ReadOnly
+                                          Class="bg-danger">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="4" Class="@(_viewModel._visibleError?"d-none":"d-block")">
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Button OnClick="OnClick_ButtonClose">
+                            Cancel
+                        </R_Button>
+                        <R_Button @ref="_btnProcess" OnClick="OnClick_ButtonOK" Enabled="@_isFileHasData">
+                            Proses
+                        </R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="4" Class="@(_viewModel._visibleError?"d-block":"d-none")">
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Button OnClick="OnClick_ButtonClose">
+                            Cancel
+                        </R_Button>
+                        <R_Button @ref="_btnSaveToExcel" OnClick="@OnClick_ButtonSaveExcelAsync">
+                            Save To Excel
+                        </R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+<style>
+    .k-grid .k-master-row.rowErrorData:hover {
+        background-color: var(--falcon-red) !important;
+        color: white;
+    }
+
+    .k-grid .k-master-row.rowErrorData {
+        background-color: var(--falcon-red);
+        color: white !important;
+    }
+
+    .k-grid .k-table-row.k-selected.rowErrorData > .k-table-td {
+        color: white !important;
+    }
+
+</style>

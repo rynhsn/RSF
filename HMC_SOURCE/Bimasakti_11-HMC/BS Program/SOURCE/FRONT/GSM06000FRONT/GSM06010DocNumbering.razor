@@ -1,0 +1,73 @@
+@using GSM06000Model.ViewModel
+@inherits R_Page;
+@attribute [R_Page(Title = "Doc Numbering")]
+
+
+<R_StackLayout Row>
+
+    <R_StackLayout Row Class="d-flex align-items-center">
+
+         <R_ItemLayout col="2">
+             <R_Label>Cash/Bank</R_Label>
+         </R_ItemLayout>
+
+         <R_ItemLayout col="2">
+             <R_TextBox @bind-Value="@_viewModelGSM06020.loParameterGSM06020.CCB_CODE"
+                        R_ConductorGridSource="_conductorRefGSM06020"
+                        Enabled="false" />
+         </R_ItemLayout>
+
+         <R_ItemLayout col="4">
+             <R_TextBox @bind-Value="@_viewModelGSM06020.loParameterGSM06020.CCB_NAME"
+                        R_ConductorGridSource="_conductorRefGSM06020"
+                        Enabled="false" />
+         </R_ItemLayout>
+
+
+         <R_ItemLayout col="2" Class="ms-3">
+             <R_Label>Method</R_Label>
+         </R_ItemLayout>
+         <R_ItemLayout col="4">
+             <R_TextBox @bind-Value="@_viewModelGSM06020.loParameterGSM06020.CPERIOD_MODE_DESCR"
+                        R_ConductorGridSource="_conductorRefGSM06020"
+                        Enabled="false" />
+         </R_ItemLayout>
+
+     </R_StackLayout>
+
+ </R_StackLayout>
+
+
+ <R_StackLayout>
+     <R_Grid @ref="@_gridRefGSM06020"
+             DataSource="_viewModelGSM06020.loGridList"
+            Pageable
+             PageSize="5"
+             R_ConductorGridSource="@_conductorRefGSM06020"
+             R_GridType="@R_eGridType.Original"
+             R_ServiceGetListRecord="@R_ServiceGetListRecordGSM06020"
+             Height="350px"
+            AllowDeleteRow
+            AllowAddNewRow
+            AllowEditRow>
+
+        <R_GridColumns>
+            <R_GridTextColumn Width="100px" FieldName="@nameof(GSM06020DTO.CCYEARWITHCPERIOD_NO)" HeaderText="Period" />
+            <R_GridNumericColumn Width="200px" Min="1" Max="1000" FieldName="@nameof(GSM06020DTO.ISTART_NUMBER)" HeaderText="Starting No." R_EnableAdd />
+             <R_GridNumericColumn Width="100px" FieldName="@nameof(GSM06020DTO.ILAST_NUMBER)" HeaderText="Last No" />
+             <R_GridTextColumn Width="200px" FieldName="@nameof(GSM06020DTO.CUPDATE_BY)" HeaderText="Updated By" />
+             <R_GridDatePickerColumn Width="250px" FieldName="@nameof(GSM06020DTO.DUPDATE_DATE)" HeaderText="Updated Date" />
+             <R_GridTextColumn Width="200px" FieldName="@nameof(GSM06020DTO.CCREATE_BY)" HeaderText="Created By" />
+             <R_GridDatePickerColumn Width="250px" FieldName="@nameof(GSM06020DTO.DCREATE_DATE)" HeaderText="Created date" />
+         </R_GridColumns>
+     </R_Grid>
+ </R_StackLayout>
+
+
+ <R_ConductorGrid @ref="@_conductorRefGSM06020"
+                  R_ViewModel="@_viewModelGSM06020"
+                  R_IsHeader
+                  R_ServiceGetRecord="@R_ServiceGetRecordAsyncGSM06020"
+                  R_AfterAdd="@R_AfterAddNumbering"
+                  R_ServiceDelete="@ServiceDeleteGSM06020"
+                  R_ServiceSave="@ServiceSaveGSM06020" />

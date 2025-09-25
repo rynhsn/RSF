@@ -1,0 +1,355 @@
+@inherits R_Page;
+@inject R_ILocalizer<Resources_PMT01500_Class> _localizer
+
+<R_StackLayout>
+    @*ROW1*@
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_Label>
+                        @_localizer["_UnitId"]
+                    </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo_Utilities.loParameterList.CUNIT_ID"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="7">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo_Utilities.loParameterList.CUNIT_NAME"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout>
+        <R_Grid @ref="@_gridUnitInfo_Utilities"
+                DataSource="_viewModelPMT01500UnitInfo_Utilities.loListPMT01500UnitInfo_Utilities"
+                R_ConductorSource="@_conductorUnitInfo_Utilities"
+                R_GridType="R_eGridType.Navigator"
+                R_ServiceGetListRecord="GetListUnitInfo_Utilities"
+                Pageable
+                Height="175px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CUTILITY_TYPE_DESCR"
+                                  HeaderText="@_localizer["_UtilityType"]"
+                                  Width="150px" />
+
+                <R_GridTextColumn FieldName="CCHARGES_NAME"
+                                  HeaderText="@_localizer["_Charge"]"
+                                  Width="125px" />
+
+                <R_GridTextColumn FieldName="CMETER_NO"
+                                  HeaderText="@_localizer["_MeterNo"]"
+                                  Width="125px" />
+
+                <R_GridTextColumn FieldName="CSTATUS_DESCR"
+                                  HeaderText="@_localizer["_Status"]"
+                                  Width="125px" />
+
+                <R_GridTextColumn FieldName="CUPDATE_BY"
+                                  HeaderText="@_localizer["_UpdatedBy"]"
+                                  Width="125px" />
+
+                <R_GridDateTimePickerColumn FieldName="DUPDATE_DATE"
+                                            HeaderText="@_localizer["_UpdatedDate"]"
+                                            Width="225px" />
+
+                <R_GridTextColumn FieldName="CCREATE_BY"
+                                  HeaderText="@_localizer["_CreatedBy"]"
+                                  Width="125px" />
+
+                <R_GridDateTimePickerColumn FieldName="DCREATE_DATE"
+                                            HeaderText="@_localizer["_CreatedDate"]"
+                                            Width="225px" />
+
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    @*FORM DETAIL *@
+    <R_StackLayout>
+        @*ROW1*@
+        <R_ItemLayout col="9">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>
+                        @_localizer["_UtilityType"]*
+                    </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_DropDownList Data="@_viewModelPMT01500UnitInfo_Utilities.loComboBoxDataCCHARGES_TYPE"
+                                    Value="@_viewModelPMT01500UnitInfo_Utilities.Data.CCHARGES_TYPE"
+                                    ValueField="@nameof(PMT01500ComboBoxDTO.CCODE)"
+                                    TextField="@nameof(PMT01500ComboBoxDTO.CDESCRIPTION)"
+                                    R_ConductorSource="@_conductorUnitInfo_Utilities"
+                                    ValueChanged="@((string value) => OnChangedCCHARGES_TYPE(value))"
+                                    R_EnableAdd
+                                    R_EnableEdit="false">
+                    </R_DropDownList>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        @*ROW2*@
+        <R_ItemLayout col="9">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>
+                        @_localizer["_Charge"]*
+                    </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo_Utilities.Data.CCHARGES_ID"
+                               R_ConductorSource="@_conductorUnitInfo_Utilities"
+                               OnLostFocus="@OnLostFocusChargeID"
+                               MaxLength="20"
+                               R_EnableAdd
+                               R_EnableEdit="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Lookup @ref="@R_Lookup_Charge"
+                              R_Before_Open_Lookup="@BeforeOpenLookUp_ChargeID"
+                              R_After_Open_Lookup="@AfterOpenLookUp_ChargeID"
+                              R_ConductorSource="@_conductorUnitInfo_Utilities"
+                              R_EnableAdd
+                              R_EnableEdit="false">
+                        ...
+                    </R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo_Utilities.Data.CCHARGES_NAME"
+                               R_ConductorSource="@_conductorUnitInfo_Utilities"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        @*ROW3*@
+        <R_ItemLayout col="9">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>
+                        @_localizer["_TaxCode"]
+                    </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo_Utilities.Data.CTAX_ID"
+                               R_ConductorSource="@_conductorUnitInfo_Utilities"
+                               OnLostFocus="@OnLostFocusTax"
+                               MaxLength="20"
+                               R_EnableAdd
+                               R_EnableEdit>
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Lookup @ref="@R_Lookup_Tax"
+                              R_Before_Open_Lookup="@BeforeOpenLookUp_Tax"
+                              R_After_Open_Lookup="@AfterOpenLookUp_Tax"
+                              R_ConductorSource="@_conductorUnitInfo_Utilities"
+                              R_EnableAdd
+                              R_EnableEdit>
+                        ...
+                    </R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo_Utilities.Data.CTAX_NAME"
+                               R_ConductorSource="@_conductorUnitInfo_Utilities"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        @*ROW4*@
+        <R_ItemLayout col="9">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>
+                        @_localizer["_MeterNo"]*
+                    </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+
+                    <R_DropDownList Data="@_viewModelPMT01500UnitInfo_Utilities.loComboBoxDataCMETER_NO"
+                                    @bind-Value="@_viewModelPMT01500UnitInfo_Utilities.Data.CMETER_NO"
+                                    PopupMaxHeight="100px"
+                                    ValueField="@nameof(PMT01500ComboBoxCMeterNoDTO.CMETER_NO)"
+                                    TextField="@nameof(PMT01500ComboBoxCMeterNoDTO.CMETER_NO)"
+                                    R_ConductorSource="@_conductorUnitInfo_Utilities"
+                                    Enabled="@_lControlCMeterNo" />
+
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="3">
+                            <R_Label>
+                                @_localizer["_MeterStart"]
+                            </R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="6" Class="pe-2">
+                            <R_NumericTextBox @bind-Value="@_viewModelPMT01500UnitInfo_Utilities.Data.IMETER_START"
+                                              R_ConductorSource="@_conductorUnitInfo_Utilities"
+                                              Arrows="false"
+                                              Enabled="@_lControlCMeterNo">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        @*ROW5*@
+        <R_ItemLayout col="9">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>
+                        @_localizer["_StartInvoicePeriod"]*
+                    </R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3" Class="d-flex">
+
+                    <R_ItemLayout col="7">
+                        <R_DropDownList Data="@_viewModelPMT01500UnitInfo_Utilities.loComboBoxDataCSTART_INV_PRD_YEAR"
+                                        @bind-Value="@_viewModelPMT01500UnitInfo_Utilities.Data.CSTART_INV_PRD_YEAR"
+                                        PopupMaxHeight="100px"
+                                        ValueField="@nameof(PMT01500ComboBoxStartInvoicePeriodYearDTO.CYEAR)"
+                                        TextField="@nameof(PMT01500ComboBoxStartInvoicePeriodYearDTO.CYEAR)"
+                                        R_ConductorSource="@_conductorUnitInfo_Utilities"
+                                        R_EnableAdd
+                                        R_EnableEdit>
+                        </R_DropDownList>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="5" Class="ps-1">
+                        <R_DropDownList Data="@_viewModelPMT01500UnitInfo_Utilities.loComboBoxDataCSTART_INV_PRD_MONTH"
+                                        @bind-Value="@_viewModelPMT01500UnitInfo_Utilities.Data.CSTART_INV_PRD_MONTH"
+                                        PopupMaxHeight="100px"
+                                        ValueField="@nameof(PMT01500ComboBoxStartInvoicePeriodMonthDTO.CPERIOD_NO)"
+                                        TextField="@nameof(PMT01500ComboBoxStartInvoicePeriodMonthDTO.CPERIOD_NO)"
+                                        R_ConductorSource="@_conductorUnitInfo_Utilities"
+                                        R_EnableAdd
+                                        R_EnableEdit>
+                        </R_DropDownList>
+                    </R_ItemLayout>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        @*ROW6*@
+        <R_ItemLayout col="9">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>
+                        @_localizer["_InvoicingPeriod"]
+                    </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo_Utilities.Data.CINV_PERIOD"
+                               R_ConductorSource="@_conductorUnitInfo_Utilities"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Label>
+                        @_localizer["_Month(s)"]
+                    </R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        @*ROW7*@
+        <R_ItemLayout col="9">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>
+                        @_localizer["_InvoiceGroup"]
+                    </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo_Utilities.Data.CINVGRP_CODE"
+                               R_ConductorSource="@_conductorUnitInfo_Utilities"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="6" Class="pe-5">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo_Utilities.Data.CINVGRP_NAME"
+                               R_ConductorSource="@_conductorUnitInfo_Utilities"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        @*ROW8*@
+        <R_ItemLayout col="9">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>
+                        @_localizer["_Status"]
+                    </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo_Utilities.Data.CSTATUS"
+                               R_ConductorSource="@_conductorUnitInfo_Utilities"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>
+
+<R_StackLayout>
+
+    <R_StackLayout Row="true" Spacing="3" Class="d-flex justify-content-between">
+        <R_StackLayout Row="true">
+            <R_ItemLayout>
+                <R_AddButton R_Conductor="@_conductorUnitInfo_Utilities"></R_AddButton>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_EditButton R_Conductor="@_conductorUnitInfo_Utilities"></R_EditButton>
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_DeleteButton R_Conductor="@_conductorUnitInfo_Utilities"></R_DeleteButton>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout>
+                <R_CancelButton R_Conductor="@_conductorUnitInfo_Utilities"></R_CancelButton>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_SaveButton R_Conductor="@_conductorUnitInfo_Utilities"></R_SaveButton>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_StackLayout>
+
+</R_StackLayout>
+
+
+
+<R_Conductor @ref="@_conductorUnitInfo_Utilities"
+             R_ViewModel="@_viewModelPMT01500UnitInfo_Utilities"
+             R_IsHeader
+             R_Display="@ServiceR_Display"
+             R_ServiceGetRecord="@ServiceGetOneRecord_Utilities"
+             R_ServiceSave="@ServiceSave"
+             R_ServiceDelete="@ServiceDelete"
+             R_AfterDelete="@AfterDelete"
+             R_AfterAdd="@AfterAdd"
+             R_Validation="@R_Validation"
+             R_SetOther="@SetOther" />

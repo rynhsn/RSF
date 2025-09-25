@@ -1,0 +1,12 @@
+8001 -- Error process, please contact your administrator!
+8002 -- Ticket No is empty!
+8003 -- Ticket No is not found!
+8004 -- No Dept Code found in one or more invoice group!
+8005 -- Transcode 910020 or 910025 does not have increment document numbering!
+8006 -- Tax ID in Help Desk System Param (HDM00100) is not set for current property!
+8007 -- Pay Term Code in Help Desk System Param (HDM00100) is not set for current property!
+8008 -- Currency Rate Type in PM System Param (PMM00100) is not set for current property!
+8009 -- Tax Rate Type in PM System Param (PMM00100) is not set for current property!
+8010 -- Currency Code in Property Profile (GSM02500) is not set for current property!
+8011 -- Local Currency Code in Company Parameter (GSM00300) is not set for current property!
+8012 -- Base Currency Code in Company Parameter (GSM00300) is not set for current property!

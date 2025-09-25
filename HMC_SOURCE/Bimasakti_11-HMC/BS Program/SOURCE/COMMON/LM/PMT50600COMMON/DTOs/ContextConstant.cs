@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace PMT50600COMMON.DTOs
+{
+    public class ContextConstant
+    {
+        public const string PMT50600_GET_INVOICE_LIST_STREAMING_CONTEXT = "PMT50600_GET_INVOICE_LIST_STREAMING_CONTEXT";
+        public const string PMT50610_GET_PROPERTY_ID_STREAMING_CONTEXT = "PMT50610_GET_PROPERTY_ID_STREAMING_CONTEXT";
+        public const string PMT50611_REC_ID_STREAMING_CONTEXT = "PMT50611_REC_ID_STREAMING_CONTEXT";
+
+        public const string PMT50631_GET_ADDITIONAL_LIST_STREAMING_CONTEXT = "PMT50631_GET_ADDITIONAL_LIST_STREAMING_CONTEXT";
+    }
+}

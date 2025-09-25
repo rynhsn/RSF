@@ -1,0 +1,439 @@
+@inherits R_Page;
+@inject R_ILocalizer<Resources_PMT01500_Class> _localizer
+
+@*TOP FORM*@
+<R_StackLayout>
+    @*ROW1*@
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_Label>
+                        @_localizer["_AgreementNo"]
+                    </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo.loEntityUnitInfoHeader.CREF_NO"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="1">
+        </R_ItemLayout>
+
+        <R_ItemLayout col="6">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>
+                        @_localizer["_Tenant"]
+                        </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo.loEntityUnitInfoHeader.CTENANT_ID"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="7">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo.loEntityUnitInfoHeader.CTENANT_NAME"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+    </R_StackLayout>
+    
+    @*2*@
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_Label>
+                        @_localizer["_ChargeMode"]
+                    </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo.loEntityUnitInfoHeader.CCHARGE_MODE"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="1">
+        </R_ItemLayout>
+
+        <R_ItemLayout col="6">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>
+                        @_localizer["_Building"]
+                    </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo.loEntityUnitInfoHeader.CBUILDING_ID"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="7">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo.loEntityUnitInfoHeader.CBUILDING_NAME"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    @*3*@
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_Label>
+                        @_localizer["_TotalGrossArea"]
+                        </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_NumericTextBox @bind-Value="@_viewModelPMT01500UnitInfo.loEntityUnitInfoHeader.NTOTAL_GROSS_AREA"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>
+                        @_localizer["_UnitTypeCategory"]
+                    </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo.loEntityUnitInfoHeader.CUNIT_TYPE_CATEGORY_ID"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="7">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo.loEntityUnitInfoHeader.CUNIT_TYPE_CATEGORY_NAME"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    @*ROW4*@
+    <R_StackLayout Row Class="mb-2">
+         <R_ItemLayout col="4">
+             <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_Label>
+                        @_localizer["_TotalNetArea"]
+                    </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_NumericTextBox @bind-Value="@_viewModelPMT01500UnitInfo.loEntityUnitInfoHeader.NTOTAL_NET_AREA"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>
+                        @_localizer["_TotalUnit"]
+                    </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_NumericTextBox @bind-Value="@_viewModelPMT01500UnitInfo.loEntityUnitInfoHeader.ITOTAL_UNIT"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>
+
+<R_TabStrip @ref="_tabStrip" OnActiveTabIndexChanging="@onTabChange">
+
+    <R_TabStripTab Title="@_localizer["_UnitInfo"]" Id="Unit_Info">
+        @*Grid*@
+        <R_StackLayout>
+            <R_Grid @ref="@_gridUnitInfo_UnitInfo"
+                    DataSource="_viewModelPMT01500UnitInfo.loListPMT01500UnitInfo_UnitInfo"
+                    R_ConductorSource="@_conductorUnitInfo_UnitInfo"
+                    R_GridType="R_eGridType.Navigator"
+                    R_ServiceGetListRecord="GetListUnitInfo"
+                    Pageable
+                     Height="275px">
+                 <R_GridColumns>
+                     <R_GridTextColumn FieldName="@nameof(PMT01500UnitInfoUnitInfoListDTO.CUNIT_NAME)"
+                                       HeaderText="@_localizer["_UnitId"]"
+                                       Width="125px" />
+
+                     <R_GridTextColumn FieldName="@nameof(PMT01500UnitInfoUnitInfoListDTO.CFLOOR_NAME)"
+                                       HeaderText="@_localizer["_Floor"]"
+                                       Width="125px" />
+
+                     <R_GridTextColumn FieldName="@nameof(PMT01500UnitInfoUnitInfoListDTO.CUNIT_TYPE_NAME)"
+                                       HeaderText="@_localizer["_UnitType"]"
+                                       Width="125px" />
+
+                     <R_GridNumericColumn FieldName="@nameof(PMT01500UnitInfoUnitInfoListDTO.NGROSS_AREA_SIZE)"
+                                          HeaderText="@_localizer["_Gross"]"
+                                          Width="125px" />
+
+                     <R_GridNumericColumn FieldName="@nameof(PMT01500UnitInfoUnitInfoListDTO.NNET_AREA_SIZE)"
+                                          HeaderText="@_localizer["_Net"]"
+                                          Width="125px" />
+
+                     <R_GridNumericColumn FieldName="@nameof(PMT01500UnitInfoUnitInfoListDTO.NCOMMON_AREA_SIZE)"
+                                          HeaderText="@_localizer["_Common"]"
+                                          Width="125px" />
+                     <R_GridNumericColumn FieldName="@nameof(PMT01500UnitInfoUnitInfoListDTO.NACTUAL_AREA_SIZE)"
+                                          HeaderText="@_localizer["_Actual"]"
+                                          Width="125px" />
+
+                     <R_GridTextColumn FieldName="@nameof(PMT01500UnitInfoUnitInfoListDTO.CUPDATE_BY)"
+                                       HeaderText="@_localizer["_UpdatedBy"]"
+                                       Width="125px" />
+
+                     <R_GridDateTimePickerColumn FieldName="@nameof(PMT01500UnitInfoUnitInfoListDTO.DUPDATE_DATE)"
+                                                 HeaderText="@_localizer["_UpdatedDate"]"
+                                                 Width="225px" />
+
+                     <R_GridTextColumn FieldName="@nameof(PMT01500UnitInfoUnitInfoListDTO.CCREATE_BY)"
+                                       HeaderText="@_localizer["_CreatedBy"]"
+                                       Width="125px" />
+
+                     <R_GridDateTimePickerColumn FieldName="@nameof(PMT01500UnitInfoUnitInfoListDTO.DCREATE_DATE)"
+                                                 HeaderText="@_localizer["_CreatedDate"]"
+                                                 Width="225px" />
+                 </R_GridColumns>
+             </R_Grid>
+
+         </R_StackLayout>
+
+        @*FORM DETAIL *@
+        <R_StackLayout>
+
+             @*ROW1*@
+             <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="4">
+                            <R_Label>
+                                @_localizer["_UnitId"]*
+                    </R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo.Data.CUNIT_ID"
+                                       R_ConductorSource="@_conductorUnitInfo_UnitInfo"
+                                       @ref="@_CUNIT_IDTextBox"
+                                       MaxLength="20"
+                                       OnLostFocus="@LostFocusCUNIT_ID"
+                                       R_EnableAdd="true"
+                                       R_EnableEdit="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout>
+                            <R_Lookup @ref="@R_Lookup_Unit_Id"
+                                      R_Before_Open_Lookup="@BeforeOpenLookUp_UnitID"
+                                      R_After_Open_Lookup="@AfterOpenLookUp_UnitID"
+                                      R_ConductorSource="@_conductorUnitInfo_UnitInfo"
+                                      R_EnableAdd="true"
+                                      R_EnableEdit="false">
+                                ...
+                            </R_Lookup>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="7" Class="pe-1">
+                            <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo.Data.CUNIT_NAME"
+                                       R_ConductorSource="@_conductorUnitInfo_UnitInfo"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @*Row2*@
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="4">
+                            <R_Label>
+                                @_localizer["_UnitType"]
+                            </R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo.Data.CUNIT_TYPE_ID"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="8">
+                            <R_TextBox @bind-Value="@_viewModelPMT01500UnitInfo.Data.CUNIT_TYPE_NAME"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @*Row3*@
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="4">
+                            <R_Label>
+                                @_localizer["_GrossArea"]
+                            </R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_NumericTextBox @bind-Value="@_viewModelPMT01500UnitInfo.Data.NGROSS_AREA_SIZE"
+                                              Arrows="false"
+                                              Enabled="false">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Label>
+                                @_localizer["_sqm"]
+                            </R_Label>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="8">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="2">
+                            <R_Label>
+                                @_localizer["_NetArea"]
+                            </R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_NumericTextBox @bind-Value="@_viewModelPMT01500UnitInfo.Data.NNET_AREA_SIZE"
+                                              Arrows="false"
+                                              Enabled="false">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Label>
+                                @_localizer["_sqm"]
+                            </R_Label>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @*Row4*@
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="4">
+                            <R_Label>
+                                @_localizer["_CommonArea"]
+                            </R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_NumericTextBox @bind-Value="@_viewModelPMT01500UnitInfo.Data.NCOMMON_AREA_SIZE"
+                                              @ref="@_NCOMMON_AREA_SIZENumericTextBox"
+                                              Arrows="false"
+                                              R_ConductorSource="@_conductorUnitInfo_UnitInfo"
+                                              R_EnableAdd="true"
+                                              R_EnableEdit="true">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Label>
+                                @_localizer["_sqm"]
+                            </R_Label>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="8">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="2">
+                            <R_Label>
+                                @_localizer["_ActualArea"]
+                            </R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_NumericTextBox @bind-Value="@_viewModelPMT01500UnitInfo.Data.NACTUAL_AREA_SIZE"
+                                              Arrows="false"
+                                              R_ConductorSource="@_conductorUnitInfo_UnitInfo"
+                                              R_EnableAdd="true"
+                                              R_EnableEdit="true">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Label>
+                                @_localizer["_sqm"]
+                            </R_Label>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+        </R_StackLayout>
+        <R_StackLayout>
+
+        <R_StackLayout Row="true" Spacing="3" Class="d-flex justify-content-between">
+                <R_StackLayout Row="true">
+                    <R_ItemLayout>
+                        <R_AddButton R_Conductor="@_conductorUnitInfo_UnitInfo"></R_AddButton>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_EditButton R_Conductor="@_conductorUnitInfo_UnitInfo"></R_EditButton>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout>
+                        <R_DeleteButton R_Conductor="@_conductorUnitInfo_UnitInfo"></R_DeleteButton>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout>
+                        <R_CancelButton R_Conductor="@_conductorUnitInfo_UnitInfo"></R_CancelButton>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_SaveButton R_Conductor="@_conductorUnitInfo_UnitInfo"></R_SaveButton>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+            </R_StackLayout>
+        </R_StackLayout>
+    </R_TabStripTab>
+
+    <R_TabStripTab Title="@_localizer["_Utilities"]" Id="Utilities" Enabled="_isDataExist">
+        <R_TabPage @ref="@_tabPageUtilities"
+                   R_Before_Open_TabPage="Before_Open_TabUtilities">
+        </R_TabPage>
+    </R_TabStripTab>
+
+</R_TabStrip>
+
+
+<R_Conductor @ref="@_conductorUnitInfo_UnitInfo"
+             R_ViewModel="@_viewModelPMT01500UnitInfo"
+             R_IsHeader
+             R_ServiceGetRecord="@ServiceGetOneRecord_UnitInfo"
+             R_ServiceDelete="@ServiceDelete"
+             R_AfterDelete="@ServiceAfterDelete"
+             R_AfterAdd="@ServiceAfterAdd"
+             R_AfterSave="@AfterSaveAsync"
+             R_BeforeCancel="@ServiceBeforeCancel"
+             R_BeforeEdit="@BeforeEditAsync"
+             R_SetOther="@SetOther"
+             R_Display="@ServiceR_Display"
+             R_ServiceSave="@ServiceSave"
+             R_Validation="R_ValidationAsync" />

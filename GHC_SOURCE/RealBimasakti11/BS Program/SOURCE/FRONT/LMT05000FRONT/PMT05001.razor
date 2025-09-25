@@ -1,0 +1,230 @@
+﻿@using R_BlazorFrontEnd.Controls.Icons
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_tabUndoDisc")]
+
+@* charge *@
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_labelChargeType"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_ComboBox Data="@_agreementChrgDiscViewModel._ChargeTypeList"
+                    @bind-Value="@_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.CCHARGES_TYPE"
+                    ValueField="@nameof(GSB_CodeInfoDTO.CCODE)"
+                    TextField="@nameof(GSB_CodeInfoDTO.CDESCRIPTION)"
+                    OnChanged="OnChangedCombo_UnitCharges" />
+    </R_ItemLayout>
+    <R_ItemLayout col="1" Class="ps-4 pe-2 d-flex justify-content-end">
+        <R_Label>@_localizer["_labelCharge"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.CCHARGES_ID"
+                   R_ConductorGridSource="_conAgrChrgDisc"
+                   Enabled="!string.IsNullOrWhiteSpace(_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.CCHARGES_TYPE)"
+                   MaxLength="int.MaxValue"
+                   OnLostFocus="OnLostFocus_LookupUnitChargesAsync" />
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_ConductorGridSource="_conAgrChrgDisc"
+                  R_Before_Open_Lookup="@BeforeOpen_lookupUnitCharges"
+                  R_After_Open_Lookup="@AfterOpen_lookupUnitChargesAsync"
+                  Enabled="!string.IsNullOrWhiteSpace(_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.CCHARGES_TYPE)">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_TextBox @bind-Value="_agreementChrgDiscViewModel._chargesName" Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+        @* invoice period *@
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_labelInvoicePeriod"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_NumericTextBox @bind-Value="_agreementChrgDiscViewModel._yearPeriod"
+                          Arrows="true"
+                          OnChanged="OnChanged_YearPeriod"
+                          ThousandSeparator="false"
+                          TValue="int"></R_NumericTextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_ComboBox Data="@_agreementChrgDiscViewModel._MonthPeriodList"
+                    @bind-Value="@_agreementChrgDiscViewModel._monthPeriod"
+                    OnChanged="@OnChanged_MonthPeriod"
+                    ValueField="@nameof(GSPeriodDT_DTO.CPERIOD_NO)"
+                    TextField="@nameof(GSPeriodDT_DTO.CPERIOD_NO)" />
+    </R_ItemLayout>
+</R_StackLayout>
+
+        @* discount *@
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_labelDiscount"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.CDISCOUNT_CODE"
+                   R_ConductorGridSource="_conAgrChrgDisc"
+                   Enabled="!string.IsNullOrWhiteSpace(_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.CCHARGES_TYPE)"
+                   MaxLength="int.MaxValue"
+                   OnLostFocus="OnLostFocus_LookupDiscountAsync" />
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_ConductorGridSource="_conAgrChrgDisc"
+                  Enabled="!string.IsNullOrWhiteSpace(_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.CCHARGES_TYPE)"
+                  R_Before_Open_Lookup="@BeforeOpen_lookupDiscount"
+                  R_After_Open_Lookup="@AfterOpen_lookupDiscountAsync">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_TextBox @bind-Value="_agreementChrgDiscViewModel._discountName" Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+        @* discount type *@
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_labelDiscountType"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_TextBox @bind-Value="_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.CDISCOUNT_TYPE" Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+        @* building *@
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_labelBuilding"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CheckBox @bind-Value="@_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.LALL_BUILDING"
+                    OnChanged="@OnChanged_AllBuilding"></R_CheckBox>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Label>@_localizer["_comboAllBuilding"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2" Class="ps-2">
+        <R_TextBox @bind-Value="@_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.CBUILDING_ID"
+                   R_ConductorGridSource="@_conAgrChrgDisc"
+                   Enabled="!_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.LALL_BUILDING"
+                   MaxLength="int.MaxValue"
+                   OnLostFocus="@OnLostFocus_LookupBuilding" />
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_ConductorGridSource="@_conAgrChrgDisc"
+                  R_Before_Open_Lookup="@BeforeOpen_lookupBuilding"
+                  R_After_Open_Lookup="@AfterOpen_lookupBuildingAsync"
+                  Enabled="!_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.LALL_BUILDING">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="@_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.CBUILDING_NAME"
+                   R_ConductorGridSource="@_conAgrChrgDisc"
+                   Enabled="false" />
+    </R_ItemLayout>
+</R_StackLayout>
+
+        @* agreement type *@
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_labelAgreementType"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_RadioGroup Data="@_agreementChrgDiscViewModel._AgreementTypeList"
+                      @bind-Value="@_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.CAGREEMENT_TYPE"
+                      ValueField="@nameof(AgreementTypeDTO.CAGREEMENT_TYPE)"
+                      TextField="@nameof(AgreementTypeDTO.CAGREEMENT_TYPE_DISPLAY)"
+                      Layout="R_eRadioGroupLayout.Horizontal"
+                      LabelPosition="R_eRadioGroupLabelPosition.After">
+        </R_RadioGroup>
+    </R_ItemLayout>
+    <R_ItemLayout col="2"></R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_Button R_ConductorGridSource="@_conAgrChrgDisc"
+                  OnClick="@BtnRefresh_Click"
+                  Icon="@R_eIcon.Refresh" />
+    </R_ItemLayout>
+</R_StackLayout>
+
+        @* grid *@
+<R_Grid @ref="@_GridAgrChrgDisc"
+        DataSource="@_agreementChrgDiscViewModel._AgreementChrgDiscDetailList"
+        Pageable
+        R_ConductorGridSource="@_conAgrChrgDisc"
+        R_GridType="@R_eGridType.Batch"
+        AllowAddNewRow="false"
+        AllowEditRow="false"
+        AllowDeleteRow="false"
+        R_ServiceGetListRecord="@AgrChrgDiscList_GetList"
+        R_ServiceGetRecord="@AgrChrgDiscList_GetRecord"
+        R_CheckBoxSelectValueChanged="@AgrChrgDiscList_CheckBoxSelectValueChanged"
+        Height="300px">
+    <R_GridColumns>
+        <R_GridCheckBoxSelectColumn FieldName="@nameof(AgreementChrgDiscDetailDTO.LSELECTED)"
+                                    R_EnableAdd
+                                    R_EnableEdit
+                                    ShowSelectAllHeader Width="80px" />
+        <R_GridTextColumn FieldName="@nameof(AgreementChrgDiscDetailDTO.CALREADY_HAVE_DISCOUNT)"
+                          HeaderText="@_localizer["_grid*"]"
+                          Width="80px" />
+        <R_GridTextColumn FieldName="@nameof(AgreementChrgDiscDetailDTO.CFLOOR_DISPLAY)"
+                          HeaderText="@_localizer["_gridFloor"]"
+                          Width="150px" />
+
+        <R_GridTextColumn FieldName="@nameof(AgreementChrgDiscDetailDTO.CUNIT_ID)"
+                          HeaderText="@_localizer["_gridUnitId"]"
+                          Width="150px" />
+        <R_GridTextColumn FieldName="@nameof(AgreementChrgDiscDetailDTO.CUNIT_NAME)"
+                          HeaderText="@_localizer["_gridUnitName"]"
+                          Width="200px" />
+        <R_GridTextColumn FieldName="@nameof(AgreementChrgDiscDetailDTO.CTENANT_NAME)"
+                          HeaderText="@_localizer["_gridTenant"]"
+                          Width="200px" />
+        <R_GridNumericColumn FieldName="@nameof(AgreementChrgDiscDetailDTO.ITOTAL_UNIT)"
+                             TValue="int"
+                             HeaderText="@_localizer["_grid#Unit"]"
+                             Width="100px" ThousandSeparator="false" />
+        <R_GridNumericColumn FieldName="@nameof(AgreementChrgDiscDetailDTO.NCHARGE_AMOUNT)"
+                             TValue="decimal"
+                             HeaderText="@_localizer["_gridChargeAmount"]"
+                             Width="150px"
+                             ThousandSeparator="true" />
+        <R_GridNumericColumn FieldName="@nameof(AgreementChrgDiscDetailDTO.NCHARGE_DISCOUNT)"
+                             TValue="decimal"
+                             HeaderText="@_localizer["_gridChargeDiscount"]"
+                             Width="150px"
+                             ThousandSeparator="true" />
+        <R_GridNumericColumn FieldName="@nameof(AgreementChrgDiscDetailDTO.NNET_CHARGE)"
+                             TValue="decimal"
+                             HeaderText="@_localizer["_gridNetCharge"]"
+                             ThousandSeparator="true"
+                             Width="150px" />
+        <R_GridTextColumn FieldName="@nameof(AgreementChrgDiscDetailDTO.CREF_NO)"
+                          HeaderText="@_localizer["_gridAgreementNo"]"
+                          Width="150px" />
+        <R_GridDatePickerColumn FieldName="@nameof(AgreementChrgDiscDetailDTO.DSTART_DATE)"
+                                HeaderText="@_localizer["_gridStartDate"]"
+                                Width="150px" />
+        <R_GridDatePickerColumn FieldName="@nameof(AgreementChrgDiscDetailDTO.DEND_DATE)"
+                                HeaderText="@_localizer["_gridEndDate"]"
+                                Width="150px" />
+        <R_GridMultiHeaderColumn HeaderText="@_localizer["_gridHeadColExistingDiscount"]" Name="@nameof(AgreementChrgDiscDetailDTO.CEXISTS_DISCOUNT_CODE)">
+            <R_GridTextColumn FieldName="@nameof(AgreementChrgDiscDetailDTO.CEXISTS_DISCOUNT_CODE)"
+                              HeaderText="@_localizer["_gridChildColDiscountCode"]"
+                              Width="150px" />
+            <R_GridNumericColumn FieldName="@nameof(AgreementChrgDiscDetailDTO.NEXIST_CHARGE_DISCOUNT)"
+                                 TValue="decimal"
+                                 HeaderText="@_localizer["_gridChildColChargeDiscount"]"
+                                 Width="150px" />
+        </R_GridMultiHeaderColumn>
+
+    </R_GridColumns>
+</R_Grid>
+
+@* button process *@
+<R_StackLayout Row>
+    <R_ItemLayout col="12" Class="justify-content-end">
+        <R_Button OnClick="@BtnProcess_ClickAsync">@_localizer["_btnUndo"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* conductor grid *@
+<R_ConductorGrid @ref="@_conAgrChrgDisc"
+                 R_IsHeader />

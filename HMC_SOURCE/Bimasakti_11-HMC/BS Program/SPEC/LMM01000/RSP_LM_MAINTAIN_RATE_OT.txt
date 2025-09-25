@@ -1,0 +1,7 @@
+1031 = Error process, please contact your administrator!
+1032 = Duplicate Level
+1033 = Detail Rate cannot be empty!
+
+
+
+

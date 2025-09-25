@@ -1,0 +1,71 @@
+﻿@using Lookup_HDCOMMON.DTOs.HDL00100
+@using Lookup_HDFrontResources
+@using R_BlazorFrontEnd.Controls.Attributes
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_BlazorFrontEnd.Controls.R_Page
+@attribute [R_Page(Title = "Pricelist Lookup")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupHD> _localizer
+<R_StackLayout Style="width: 1200px">
+
+    <R_StackLayout Row>
+        <R_StackLayout Class="col-7">
+            <R_Grid @ref="@GridRef"
+                    DataSource="_viewModel.PriceListLookupHeader"
+                    R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                    R_Display="R_DisplayHDL00100"
+                    Pageable
+                    Height="400px"
+                    R_GridType="R_eGridType.Original"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false"
+                    PageSize="15">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(HDL00100DTO.CPRICELIST_ID)" Width="143px" HeaderText="@_localizer["PRICELIST_ID"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00100DTO.CPRICELIST_NAME)" Width="193px" HeaderText="@_localizer["PRICELIST_NAME"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00100DTO.CDEPT_CODE)" Width="143px" HeaderText="@_localizer["DEPT"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00100DTO.CCHARGES_ID)" Width="143px" HeaderText="@_localizer["CHARGES_ID"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00100DTO.CINVGRP_CODE)" Width="143px" HeaderText="@_localizer["INVOICE_GROUP"]"></R_GridTextColumn>
+                    <R_GridCheckBoxColumn FieldName="@nameof(HDL00100DTO.LTAXABLE)" Width="143px" HeaderText="@_localizer["TAXABLE"]"></R_GridCheckBoxColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00100DTO.CUNIT)" Width="130px" HeaderText="@_localizer["UNIT"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00100DTO.CDESCRIPTION)" Width="130px" HeaderText="@_localizer["DESCRIPTION"]"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_StackLayout>
+        <R_StackLayout Class="col-5">
+            <R_Grid @ref="@GridRefChild"
+                    DataSource="_viewModel.PriceListLookupDetail"
+                    R_ServiceGetListRecord="R_ServiceGetListRecordDetailAsync"
+                    Pageable
+                    Height="400px"
+                    R_GridType="R_eGridType.Original"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false"
+                    PageSize="15">
+                <R_GridColumns>
+                    <R_GridDatePickerColumn FieldName="@nameof(HDL00100DTO.DSTART_DATE)" Width="143px" HeaderText="@_localizer["START_DATE"]"></R_GridDatePickerColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00100DTO.CCURRENCY_CODE)" Width="143px" HeaderText="@_localizer["CURRENCY"]"></R_GridTextColumn>
+                    <R_GridNumericColumn Width="140px" TValue="int" Arrows="false" Decimals="2" FieldName="@nameof(HDL00100DTO.IPRICE)" HeaderText="@_localizer["PRICE"]"></R_GridNumericColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_StackLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+        <R_Button Enabled="@(_viewModel.PriceListLookupHeader.Count != 0)"
+                  OnClick="Button_OnClickOkAsync">
+            @_localizer["OK"]
+        </R_Button>
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            @_localizer["CANCEL"]
+        </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorGridRef"
+                 R_IsHeader="true"/>
+
+<R_ConductorGrid @ref="@_conductorGridRefInvoice"
+                 R_ConductorParent="@_conductorGridRef"/>

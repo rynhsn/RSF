@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\GL\BIMASAKTI_GL_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="03/24/2025 11:16:06" ReportInfo.CreatorVersion="2023.2.21.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat" DataType="GLR00300Common.GLR00300Print.GLR00300AccountTrialBalanceResultFormat_EtoH_DTO, GLR00300Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Header" DataType="GLR00300Common.GLR00300Print.GLR00300HeaderAccountTrialBalanceDTO, GLR00300Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="CPERIOD" DataType="System.String"/>
+          <Column Name="CFROM_ACCOUNT_NO" DataType="System.String"/>
+          <Column Name="CTO_ACCOUNT_NO" DataType="System.String"/>
+          <Column Name="CFROM_CENTER_CODE" DataType="System.String"/>
+          <Column Name="CTO_CENTER_CODE" DataType="System.String"/>
+          <Column Name="CTB_TYPE_NAME" DataType="System.String"/>
+          <Column Name="CCURRENCY" DataType="System.String"/>
+          <Column Name="CJOURNAL_ADJ_MODE_NAME" DataType="System.String"/>
+          <Column Name="CPRINT_METHOD_NAME" DataType="System.String"/>
+          <Column Name="CBUDGET_NO" DataType="System.String"/>
+          <Column Name="CLOGO" DataType="System.Byte[]" BindableControl="Picture"/>
+          <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        </Column>
+        <Column Name="Column" DataType="GLR00300Common.GLR00300Print.AccountTrialBalanceColumnDTO, GLR00300Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="Col_ACCOUNT_NO" DataType="System.String"/>
+          <Column Name="Col_ACCOUNT_NAME" DataType="System.String"/>
+          <Column Name="Col_D_C" DataType="System.String"/>
+          <Column Name="Col_BS_IS" DataType="System.String"/>
+          <Column Name="Col_Center" DataType="System.String"/>
+          <Column Name="Col_BEG_BALANCE" DataType="System.String"/>
+          <Column Name="Col_DEBIT" DataType="System.String"/>
+          <Column Name="Col_CREDIT" DataType="System.String"/>
+          <Column Name="Col_DEBIT_ADJ" DataType="System.String"/>
+          <Column Name="Col_CREDIT_ADJ" DataType="System.String"/>
+          <Column Name="Col_END_BALANCE" DataType="System.String"/>
+          <Column Name="Col_NBUDGET" DataType="System.String"/>
+          <Column Name="Col_BS_IS_DB_CR" DataType="System.String"/>
+        </Column>
+        <Column Name="Label" DataType="GLR00300Common.GLR00300Print.GLR00300LabelDTO, GLR00300Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="Label_Period" DataType="System.String"/>
+          <Column Name="Label_AccountNo" DataType="System.String"/>
+          <Column Name="Label_Center" DataType="System.String"/>
+          <Column Name="Label_To" DataType="System.String"/>
+          <Column Name="Label_TrialBalanceType" DataType="System.String"/>
+          <Column Name="Label_Currency" DataType="System.String"/>
+          <Column Name="Label_JournalAdjMode" DataType="System.String"/>
+          <Column Name="Label_PrintMethod" DataType="System.String"/>
+          <Column Name="Label_BudgetNo" DataType="System.String"/>
+          <Column Name="Label_GrandTotal" DataType="System.String"/>
+          <Column Name="Label_Difference" DataType="System.String"/>
+          <Column Name="Label_Note" DataType="System.String"/>
+        </Column>
+        <BusinessObjectDataSource Name="Data" DataType="System.Collections.Generic.List`1[[GLR00300Common.GLR00300Print.GLRR00300DataAccountTrialBalance, GLR00300Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CGLACCOUNT_NO" DataType="System.String"/>
+          <Column Name="CGLACCOUNT_NAME" DataType="System.String"/>
+          <Column Name="CDBCR" DataType="System.String"/>
+          <Column Name="CBSIS" DataType="System.String"/>
+          <BusinessObjectDataSource Name="DataDetail" DataType="System.Collections.Generic.List`1[[GLR00300Common.GLR00300Print.GLRR00300DataDetailAccountTrialBalance, GLR00300Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+            <Column Name="CCENTER" DataType="System.String"/>
+            <Column Name="NBEGIN_BALANCE" DataType="System.Decimal"/>
+            <Column Name="NCREDIT" DataType="System.Decimal"/>
+            <Column Name="NDEBIT" DataType="System.Decimal"/>
+            <Column Name="NDEBIT_ADJ" DataType="System.Decimal"/>
+            <Column Name="NCREDIT_ADJ" DataType="System.Decimal"/>
+            <Column Name="NEND_BALANCE" DataType="System.Decimal"/>
+            <Column Name="NBUDGET" DataType="System.Decimal"/>
+          </BusinessObjectDataSource>
+        </BusinessObjectDataSource>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+      <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Page" DataType="System.String"/>
+        <Column Name="Of" DataType="System.String"/>
+        <Column Name="Print_Date" DataType="System.String"/>
+        <Column Name="Print_By" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+    <Total Name="TotalDebit" Expression="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.DataDetail.NDEBIT]" Evaluator="Data2" PrintOn="DataFooter2"/>
+    <Total Name="TotalCredit" Expression="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.DataDetail.NCREDIT]" Evaluator="Data2" PrintOn="DataFooter2"/>
+    <Total Name="TotalDebitAdj" Expression="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.DataDetail.NDEBIT_ADJ]" Evaluator="Data2" PrintOn="DataFooter2"/>
+    <Total Name="TotalCreditAdj" Expression="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.DataDetail.NCREDIT_ADJ]" Evaluator="Data2" PrintOn="DataFooter2"/>
+    <Total Name="GrandTotalDebit" Expression="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.DataDetail.NDEBIT]" Evaluator="Data2" PrintOn="DataFooter1"/>
+    <Total Name="GrandTotalCredit" Expression="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.DataDetail.NCREDIT]" Evaluator="Data2" PrintOn="DataFooter1"/>
+    <Total Name="GrandTotalDebitAdj" Expression="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.DataDetail.NDEBIT_ADJ]" Evaluator="Data2" PrintOn="DataFooter1"/>
+    <Total Name="GrandTotalCreditAdj" Expression="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.DataDetail.NCREDIT_ADJ]" Evaluator="Data2" PrintOn="DataFooter1"/>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1" Height="94.5">
+      <inherited Name="Picture1"/>
+      <inherited Name="Text33">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="Text40">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="Text36"/>
+      <inherited Name="Text38"/>
+      <inherited Name="Text34"/>
+      <inherited Name="Text37"/>
+      <inherited Name="Text39"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="96.5" Width="1047.06" Height="85.05">
+        <TextObject Name="Text43" Top="9.45" Width="75.6" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Label.Label_Period]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text44" Left="434.7" Top="9.45" Width="113.4" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Label.Label_TrialBalanceType]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text45" Left="689.85" Top="9.45" Width="103.95" Height="18.9" Text="Print Method" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text90" Top="28.35" Width="75.6" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Label.Label_AccountNo]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text91" Top="47.25" Width="75.6" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Label.Label_Center]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text92" Left="94.5" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Header.CPERIOD]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text93" Left="94.5" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Header.CFROM_ACCOUNT_NO]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text94" Left="94.5" Top="47.25" Width="94.5" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Header.CFROM_CENTER_CODE]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text95" Left="189" Top="28.35" Width="28.35" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Label.Label_To]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text96" Left="189" Top="47.25" Width="28.35" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Label.Label_To]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text97" Left="217.35" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Header.CTO_ACCOUNT_NO]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text98" Left="217.35" Top="47.25" Width="94.5" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Header.CTO_CENTER_CODE]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text99" Left="434.7" Top="28.35" Width="113.4" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Label.Label_Currency]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text100" Left="434.7" Top="47.25" Width="113.4" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Label.Label_JournalAdjMode]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text101" Left="557.55" Top="9.45" Width="122.85" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Header.CTB_TYPE_NAME]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text102" Left="557.55" Top="28.35" Width="122.85" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Header.CCURRENCY]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text103" Left="557.55" Top="47.25" Width="122.85" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Header.CJOURNAL_ADJ_MODE_NAME]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text104" Left="689.85" Top="37.8" Width="103.95" Height="18.9" Text="Budget No." Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text105" Left="803.25" Top="37.8" Width="189" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Header.CBUDGET_NO]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text106" Left="803.25" Top="9.45" Width="189" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Header.CPRINT_METHOD_NAME]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text109" Left="85.05" Top="9.45" Width="9.45" Height="18.9" Text=":" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text110" Left="85.05" Top="28.35" Width="9.45" Height="18.9" Text=":" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text111" Left="85.05" Top="47.25" Width="9.45" Height="18.9" Text=":" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text112" Left="548.1" Top="9.45" Width="9.45" Height="18.9" Text=":" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text113" Left="548.1" Top="28.35" Width="9.45" Height="18.9" Text=":" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text114" Left="548.1" Top="47.25" Width="9.45" Height="18.9" Text=":" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text115" Left="793.8" Top="9.45" Width="9.45" Height="18.9" Text=":" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text116" Left="793.8" Top="37.8" Width="9.45" Height="18.9" Text=":" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <ChildBand Name="Child2" Top="183.55" Width="1047.06" Height="37.8">
+          <LineObject Name="Line1" Top="9.45" Width="1048.95"/>
+          <LineObject Name="Line2" Top="37.8" Width="1048.95"/>
+          <TextObject Name="Text46" Top="18.9" Width="85.05" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Column.Col_ACCOUNT_NO]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+          <TextObject Name="Text47" Left="85.05" Top="18.9" Width="132.3" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Column.Col_ACCOUNT_NAME]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+          <TextObject Name="Text50" Left="349.65" Top="18.9" Width="75.6" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Column.Col_Center]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+          <TextObject Name="Text51" Left="453.6" Top="18.9" Width="122.85" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Column.Col_BEG_BALANCE]" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+          <TextObject Name="Text52" Left="585.9" Top="18.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Column.Col_DEBIT]" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+          <TextObject Name="Text53" Left="708.75" Top="18.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Column.Col_CREDIT]" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+          <TextObject Name="Text54" Left="831.6" Top="18.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Column.Col_END_BALANCE]" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+          <TextObject Name="Text107" Left="945" Top="18.9" Width="103.95" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Column.Col_NBUDGET]" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+          <TextObject Name="Text118" Left="255.15" Top="18.9" Width="66.15" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Column.Col_BS_IS_DB_CR]" AutoWidth="true" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        </ChildBand>
+      </ChildBand>
+    </inherited>
+    <DataBand Name="Data1" ZOrder="0" Top="223.35" Width="1047.06" DataSource="Data">
+      <TextObject Name="Text56" Left="85.05" Width="170.1" Height="18.9" CanGrow="true" CanBreak="false" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.CGLACCOUNT_NAME]" Font="Arial Unicode MS, 8pt"/>
+      <TextObject Name="Text117" Left="255.15" Width="66.15" Height="18.9" CanGrow="true" CanBreak="false" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.CBSIS] - [ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.CDBCR]" Font="Arial Unicode MS, 8pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text55" Width="85.05" Height="18.9" CanGrow="true" CanBreak="false" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.CGLACCOUNT_NO]" Font="Arial Unicode MS, 8pt"/>
+      <DataBand Name="Data2" Top="225.35" Width="1047.06" Height="18.9" DataSource="DataDetail">
+        <TextObject Name="Text59" Left="349.65" Width="103.95" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.DataDetail.CCENTER]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text60" Left="472.5" Width="103.95" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.DataDetail.NBEGIN_BALANCE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text61" Left="585.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.DataDetail.NDEBIT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text62" Left="708.75" Width="113.4" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.DataDetail.NCREDIT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text63" Left="822.15" Width="122.85" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.DataDetail.NEND_BALANCE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text108" Left="945" Width="103.95" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.DataDetail.NBUDGET]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <DataFooterBand Name="DataFooter2" Top="246.25" Width="1047.06" Height="18.9">
+          <LineObject Name="Line3" Left="321.3" Width="727.65"/>
+          <TextObject Name="Text66" Left="349.65" Width="47.25" Height="18.9" Text="Total&#13;&#10;" Font="Arial Unicode MS, 8pt, style=Bold"/>
+          <TextObject Name="Text67" Left="396.9" Width="122.85" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Data.CGLACCOUNT_NO]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+          <TextObject Name="Text68" Left="585.9" Width="113.4" Height="18.9" Text="[TotalDebit]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+          <TextObject Name="Text69" Left="708.75" Width="113.4" Height="18.9" Text="[TotalCredit]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        </DataFooterBand>
+      </DataBand>
+      <DataFooterBand Name="DataFooter1" Top="267.15" Width="1047.06" Height="66.15" Guides="37.8,37.8,28.349998,37.8,28.349998,18.9,18.9,18.9,9.45,9.45,9.45">
+        <TextObject Name="Text80" Left="472.5" Top="9.45" Width="75.6" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Label.Label_GrandTotal]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text81" Left="472.5" Top="37.8" Width="75.6" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Label.Label_Difference]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text82" Left="585.9" Top="9.45" Width="113.4" Height="18.9" Text="[GrandTotalDebit]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text83" Left="708.75" Top="9.45" Width="113.4" Height="18.9" Text="[GrandTotalCredit]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text86" Left="585.9" Top="37.8" Width="113.4" Height="18.9" Text="[IIf( [GrandTotalDebit] &gt; [GrandTotalCredit],[GrandTotalDebit] - [GrandTotalCredit],'-')]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text87" Left="708.75" Top="37.8" Width="113.4" Height="18.9" Text="[IIf( [GrandTotalDebit] &lt; [GrandTotalCredit],[GrandTotalCredit] - [GrandTotalDebit],'-')]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <LineObject Name="Line8" Width="1048.95"/>
+        <LineObject Name="Line9" Top="28.35" Width="1048.95"/>
+        <LineObject Name="Line10" Top="56.7" Width="1048.95"/>
+      </DataFooterBand>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" ZOrder="-1" Top="335.3" Width="1047.06" Height="37.8">
+      <TextObject Name="Text64" Top="9.45" Width="170.1" Height="18.9" Text="[ResponseDataModel.GLR00300AccountTrialBalanceResult_FormatEtoH_DataFormat.Label.Label_Note]" Font="Arial Unicode MS, 6pt"/>
+    </PageFooterBand>
+  </inherited>
+</inherited>

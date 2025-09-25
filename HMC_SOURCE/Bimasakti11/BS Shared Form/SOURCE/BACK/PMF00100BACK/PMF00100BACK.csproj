@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_PM_DELETE_ALLOCATIONResources\RSP_PM_DELETE_ALLOCATIONResources.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_PM_SAVE_ALLOCATIONResources\RSP_PM_SAVE_ALLOCATIONResources.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_PM_SUBMIT_ALLOCATIONResources\RSP_PM_SUBMIT_ALLOCATIONResources.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_PM_UPDATE_ALLOCATION_STATUSResources\RSP_PM_UPDATE_ALLOCATION_STATUSResources.csproj" />
+    <ProjectReference Include="..\PMF00100COMMON\PMF00100COMMON.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="R_APIBackEnd">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommon">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CommonFrontBackAPI">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="R_OpenTelemetry">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

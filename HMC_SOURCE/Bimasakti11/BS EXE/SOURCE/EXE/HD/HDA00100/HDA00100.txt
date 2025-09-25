@@ -1,0 +1,6 @@
+Scheduler
+- Multitenant: True
+- Frequency: Daily
+
+Process
+1. Run "EXEC RSP_HD_SCHEDULER_ACTION"

@@ -1,0 +1,5 @@
+2551	= Error process, please contact your administrator!
+2552	= Duplicate Unit Type Category Id!
+2553	= Cannot Delete, Unit Type Category already in used!
+
+

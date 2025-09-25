@@ -1,0 +1,9 @@
+1501 = Error process, please contact your administrator!
+1502 = Cannot Delete, this Transaction Status is not eligble for deleted!
+EMPTYREFNO = Reference No cannot be empty!
+ZEROACTSIZE = Actual size cannot be zero(0)!
+ZEROBLOCKMETER = Please input Block1/Block2 Start!
+ZEROMETER = Please input Meter Start!
+HANDOVERDATE = Hand over date cannot before LOI/Agrmt No. Ref. Date
+HODATE_AFTERTODAY = Hand over date cannot after today date
+

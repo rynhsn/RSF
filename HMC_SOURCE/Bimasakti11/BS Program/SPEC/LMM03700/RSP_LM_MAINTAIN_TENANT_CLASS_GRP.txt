@@ -1,0 +1,9 @@
+3701	= Error process, please contact your administrator!
+3702	= Duplicate Tenant Classification Group Id!
+3703	= Cannot Delete, Tenant Classification Group already in used!
+3704	= Tenant Classification Group Id cannot be empty!
+3705	= Tenant Classification Group Name cannot be empty!
+3706	= Tenant Classification Group Id cannot be greater than 20 character!
+3707	= Tenant Classification Group Name cannot be greater than 100 character!
+
+

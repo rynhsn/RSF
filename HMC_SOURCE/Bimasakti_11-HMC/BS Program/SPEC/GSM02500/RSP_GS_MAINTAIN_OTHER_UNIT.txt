@@ -1,0 +1,5 @@
+2561	= Error process, please contact your administrator!
+2562	= Duplicate Other Unit Id!
+2563	= Cannot Delete, Other Unit Already in used!
+
+

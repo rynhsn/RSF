@@ -1,0 +1,95 @@
+﻿@using PMM00500Common.DTOs
+@using PMM00500FrontResources
+@using PMM00500Model
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_Page
+@inject R_ILocalizer<Resources_PMM00500> _localizer
+@attribute [R_Page(Title = "Print Unit Charges")]
+
+<R_StackLayout>
+    <R_GroupBox ShowBorder>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label> @_localizer["_chargesType"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_ComboBox Data="@_viewModel.loUnitChargesTypeList"
+                            @bind-Value="@_viewModel.Data.CCHARGES_TYPE_FROM"
+                            ValueField="@nameof(ChargesTypeDTO.CCODE)"
+                            TextField="@nameof(ChargesTypeDTO.CDESCRIPTION)"
+                            R_ConductorSource="@_conductorRef" />
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <label>  -  </label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="4">
+                <R_ComboBox Data="@_viewModel.loUnitChargesTypeList"
+                            @bind-Value="@_viewModel.Data.CCHARGES_TYPE_TO"
+                            ValueField="@nameof(ChargesTypeDTO.CCODE)"
+                            TextField="@nameof(ChargesTypeDTO.CDESCRIPTION)"
+                            R_ConductorSource="@_conductorRef" />
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_sortBy"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_RadioGroup Layout="R_eRadioGroupLayout.Horizontal" LabelPosition="R_eRadioGroupLabelPosition.After"
+                              Data="@_viewModel.radioPrint"
+                              @bind-Value="@_viewModel.Data.CSHORT_BY"
+                              ValueField="@nameof(PMM00510ViewModel.RadioPrintDTO.CCODE)"
+                              TextField="@nameof(PMM00510ViewModel.RadioPrintDTO.CDESCRIPTION)"
+                              R_ConductorSource="@_conductorRef">
+                </R_RadioGroup>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_CheckBox @bind-Value="@_viewModel.Data.LPRINT_INACTIVE"
+                            R_ConductorSource="@_conductorRef" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@_localizer["_printInactiveCharges"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_CheckBox @bind-Value="@_viewModel.Data.LPRINT_DETAIL_ACC"
+                            R_ConductorSource="@_conductorRef" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@_localizer["_printDetailAccount"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_printExtType"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_RadioGroup Layout="R_eRadioGroupLayout.Horizontal" LabelPosition="R_eRadioGroupLabelPosition.After"
+                              Data="@_viewModel.radioPrintExtTypeList"
+                              @bind-Value="@_viewModel._printType"
+                              ValueField="@nameof(ReportTypeExtension.CKEY)"
+                              TextField="@nameof(ReportTypeExtension.CNAME)"
+                              R_ConductorSource="@_conductorRef">
+                </R_RadioGroup>
+            </R_ItemLayout>
+
+            <R_ItemLayout Class="d-flex justify-content-end">
+                <R_Button OnClick="@GetPrint">Print</R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_GroupBox>
+</R_StackLayout>
+
+<R_Conductor @ref="_conductorRef"
+             R_ViewModel="_viewModel"
+             R_IsHeader="true" />

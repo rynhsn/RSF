@@ -1,0 +1,132 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Upload File")]
+
+<R_StackLayout Style="width: 1000px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>Property</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@_viewModel.PropertyValue"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_TextBox @bind-Value="@_viewModel.PropertyName"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+    
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>Source File</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="7">
+            <R_TextBox @bind-Value="@_viewModel.SourceFileName"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_InputFile OnChange="@_Staff_SourceUpload_OnChange" Accepts="@accepts"></R_InputFile>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_StaffMoveDetail_gridRef"
+                    DataSource="@_viewModel.StaffValidateUploadError"
+                    Pageable
+                    R_GridType="@R_eGridType.Batch"
+                    PageSize="5"
+                    R_ServiceGetListRecord="@_Staff_Upload_ServiceGetListRecord">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="NO" HeaderText="No" Width="100px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="StaffId" HeaderText="Staff Id" Width="100px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="StaffName" HeaderText="Staff Name" Width="300px"></R_GridTextColumn>
+                    <R_GridCheckBoxColumn FieldName="Active" HeaderText="Active" Width="120px"></R_GridCheckBoxColumn>
+                    <R_GridTextColumn FieldName="Department" HeaderText="Department" Width="130px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="Position" HeaderText="Position" Width="100px"></R_GridTextColumn>
+                    <R_GridDatePickerColumn FieldName="JoinDateDisplay" HeaderText="JoinDate" Width="150px"></R_GridDatePickerColumn>
+                    <R_GridTextColumn FieldName="EmailAddress" HeaderText="EmailAddress" Width="300px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="MobileNo1" HeaderText="MobileNo1" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="MobileNo2" HeaderText="MobileNo2" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="Gender" HeaderText="Gender" Width="100px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="Address" HeaderText="Address" Width="300px"></R_GridTextColumn>
+                    <R_GridDatePickerColumn FieldName="InActiveDateDisplay" HeaderText="InActiveDate" Width="150px"></R_GridDatePickerColumn>
+                    <R_GridTextColumn FieldName="InactiveNote" HeaderText="InActiveNote" Width="120px"></R_GridTextColumn>
+                    <R_GridCheckBoxColumn FieldName="ErrorFlag" HeaderText="Error Flag" Visible="@_viewModel.VisibleError" Width="300px"></R_GridCheckBoxColumn>
+                    <R_GridTextColumn FieldName="ErrorMessage" HeaderText="ErrorMessage" Visible="@_viewModel.VisibleError" Width="300px"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+
+            </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_ProgressBar Label="@_viewModel.Message" MaxValue="100" Value="@_viewModel.Percentage"></R_ProgressBar>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="8">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>Total Row(s)</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="@_viewModel.SumListStaffExcel"
+                                Arrows="false"
+                               Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Label>Valid</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2" Class="bg-success">
+                    <R_NumericTextBox @bind-Value="@_viewModel.SumValidDataStaffExcel"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Label>Invalid</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2" Class="badge bg-danger">
+                    <R_NumericTextBox @bind-Value="@_viewModel.SumInvalidDataStaffExcel"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="4" hidden="@_viewModel.VisibleError">
+            <R_StackLayout Row Class="justify-content-end">
+                <R_ItemLayout>
+                    <R_Button OnClick="Button_OnClickCloseAsync">
+                        Cancel
+                    </R_Button>
+                    <R_Button OnClick="Button_OnClickOkAsync" Enabled="@FileHasData">
+                        Proses
+                    </R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="4" hidden="@(!_viewModel.VisibleError)">
+            <R_StackLayout Row Class="justify-content-end">
+                <R_ItemLayout>
+                    <R_Button OnClick="Button_OnClickCloseAsync">
+                        Cancel
+                    </R_Button>
+                    <R_Button OnClick="@Button_OnClickSaveExcelAsync">
+                        Save To Excel
+                    </R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>
+

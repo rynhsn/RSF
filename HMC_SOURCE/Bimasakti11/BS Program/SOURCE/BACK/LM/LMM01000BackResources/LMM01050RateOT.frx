@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderCommon.frx" BaseReportAbsolutePath="D:\BIMASAKTI\Bimasakti-version\Bimasakti-version\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="10/01/2024 11:07:37" ReportInfo.CreatorVersion="2023.2.21.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    private void PageHeader1_AfterData(object sender, EventArgs e)
+    {
+      string BaseHeaderCode = (string)Report.GetColumnValue(&quot;ResponseDataModel.BaseHeaderData.CPRINT_CODE&quot;);
+      string BaseHeaderName = (string)Report.GetColumnValue(&quot;ResponseDataModel.BaseHeaderData.CCOMPANY_NAME&quot;);
+      
+      if (string.IsNullOrWhiteSpace(BaseHeaderCode))
+      {
+		     Text33.Text = BaseHeaderName;
+      }else
+      {
+         Text33.Text = BaseHeaderCode + &quot; - &quot; + BaseHeaderName;
+      }
+    }
+
+    private void Data1_AfterData(object sender, EventArgs e)
+    {
+      string adminFee = (string)Report.GetColumnValue(&quot;ResponseDataModel.RateOT.HeaderData.CADMIN_FEE&quot;);
+      string adminFeeDesc = (string)Report.GetColumnValue(&quot;ResponseDataModel.RateOT.HeaderData.CADMIN_FEE_DESCR&quot;);
+      decimal adminFeePCT = (decimal)Report.GetColumnValue(&quot;ResponseDataModel.RateOT.HeaderData.NADMIN_FEE_PCT&quot;);
+      decimal adminFeeAMT = (decimal)Report.GetColumnValue(&quot;ResponseDataModel.RateOT.HeaderData.NADMIN_FEE_AMT&quot;);
+      
+      if (adminFee == &quot;00&quot;)
+      {
+        Text103.Text = &quot;&quot;;
+      }else if (adminFee == &quot;01&quot;)
+      {
+        Text103.Text = adminFeeAMT.ToString();
+      }else if (adminFee == &quot;02&quot;)
+      {
+        Text103.Text = adminFeePCT.ToString(&quot;G29&quot;) + &quot;%&quot;;
+      }
+    }
+    
+    private void Table1_ManualBuild(object sender, EventArgs e)
+    {
+      
+      // get the data source by its name
+      DataSourceBase rowData = Report.GetDataSource(&quot;ResponseDataModel.RateOT.DetailWDData&quot;);
+      // initialize it
+      rowData.Init();
+      
+      while (rowData.HasMoreRows)
+      {
+        // printing the table row
+        Table1.PrintRow(0);
+        Table1.PrintColumns();
+
+        // select the next data row
+        rowData.Next();
+      }
+    }
+
+    private void Table2_ManualBuild(object sender, EventArgs e)
+    {
+      // get the data source by its name
+      DataSourceBase rowData = Report.GetDataSource(&quot;ResponseDataModel.RateOT.DetailWKData&quot;);
+      // initialize it
+      rowData.Init();
+      
+      while (rowData.HasMoreRows)
+      {
+        // printing the table row
+        Table2.PrintRow(0);
+        Table2.PrintColumns();
+
+        // select the next data row
+        rowData.Next();
+      }
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="RateOT" DataType="PMM01000COMMON.PMM01050ResultPrintDTO, PMM01000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Header" DataType="System.String"/>
+        <Column Name="HeaderData" DataType="PMM01000COMMON.PMM01050DTO, PMM01000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CCHARGES_TYPE" DataType="System.String"/>
+          <Column Name="CCHARGES_TYPE_DESCR" DataType="System.String"/>
+          <Column Name="CCHARGES_ID" DataType="System.String"/>
+          <Column Name="CUSER_ID" DataType="System.String"/>
+          <Column Name="CACTION" DataType="System.String"/>
+          <Column Name="CCHARGES_NAME" DataType="System.String"/>
+          <Column Name="CADMIN_FEE" DataType="System.String"/>
+          <Column Name="CADMIN_CHARGE_ID" DataType="System.String"/>
+          <Column Name="CADMIN_CHARGE_ID_DESCR" DataType="System.String"/>
+          <Column Name="CADMIN_FEE_DESCR" DataType="System.String"/>
+          <Column Name="NADMIN_FEE_PCT" DataType="System.Decimal"/>
+          <Column Name="NADMIN_FEE_AMT" DataType="System.Decimal"/>
+          <Column Name="NUNIT_AREA_VALID_FROM" DataType="System.Decimal"/>
+          <Column Name="NUNIT_AREA_VALID_TO" DataType="System.Decimal"/>
+          <Column Name="LSPLIT_ADMIN" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LADMIN_FEE_TAX" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LCUT_OFF_WEEKDAY" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LHOLIDAY" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LSATURDAY" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LSUNDAY" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CLOGO" DataType="System.Byte[]" BindableControl="Picture"/>
+          <BusinessObjectDataSource Name="BusinessObjectDataSource1" Alias="CRATE_OT_LIST" Enabled="false" DataType="System.Collections.Generic.List`1[[PMM01000COMMON.PMM01051DTO, PMM01000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" PropName="CRATE_OT_LIST"/>
+          <Column Name="CCHARGES_DATE" DataType="System.String"/>
+          <Column Name="DCHARGES_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+          <Column Name="CCURRENCY_CODE" DataType="System.String"/>
+        </Column>
+        <BusinessObjectDataSource Name="DetailWKData" DataType="System.Collections.Generic.List`1[[PMM01000COMMON.PMM01051DTO, PMM01000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CCHARGES_TYPE" DataType="System.String"/>
+          <Column Name="CCHARGES_ID" DataType="System.String"/>
+          <Column Name="CDAY_TYPE" DataType="System.String"/>
+          <Column Name="CUSER_ID" DataType="System.String"/>
+          <Column Name="ILEVEL" DataType="System.Int32"/>
+          <Column Name="CLEVEL_DESC" DataType="System.String"/>
+          <Column Name="IHOURS_FROM" DataType="System.Int32"/>
+          <Column Name="IHOURS_TO" DataType="System.Int32"/>
+          <Column Name="NRATE_HOUR" DataType="System.Decimal"/>
+          <Column Name="CCHARGES_DATE" DataType="System.String"/>
+        </BusinessObjectDataSource>
+        <BusinessObjectDataSource Name="DetailWDData" DataType="System.Collections.Generic.List`1[[PMM01000COMMON.PMM01051DTO, PMM01000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CCHARGES_TYPE" DataType="System.String"/>
+          <Column Name="CCHARGES_ID" DataType="System.String"/>
+          <Column Name="CDAY_TYPE" DataType="System.String"/>
+          <Column Name="CUSER_ID" DataType="System.String"/>
+          <Column Name="ILEVEL" DataType="System.Int32"/>
+          <Column Name="CLEVEL_DESC" DataType="System.String"/>
+          <Column Name="IHOURS_FROM" DataType="System.Int32"/>
+          <Column Name="IHOURS_TO" DataType="System.Int32"/>
+          <Column Name="NRATE_HOUR" DataType="System.Decimal"/>
+          <Column Name="CCHARGES_DATE" DataType="System.String"/>
+        </BusinessObjectDataSource>
+      </Column>
+      <Column Name="Column" DataType="PMM01000COMMON.PMM01050ColumnPrintDTO, PMM01000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Utility_Charges" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="Split_Admin_Invoice" DataType="System.String"/>
+        <Column Name="Administration_Fee_P" DataType="System.String"/>
+        <Column Name="Taxable" DataType="System.String"/>
+        <Column Name="Unit_Area_Validation" DataType="System.String"/>
+        <Column Name="To" DataType="System.String"/>
+        <Column Name="Cut_Off_Over_Weekday" DataType="System.String"/>
+        <Column Name="Holiday" DataType="System.String"/>
+        <Column Name="Saturday" DataType="System.String"/>
+        <Column Name="Sunday" DataType="System.String"/>
+        <Column Name="Weekday_Overtime_Rate" DataType="System.String"/>
+        <Column Name="Level" DataType="System.String"/>
+        <Column Name="Description" DataType="System.String"/>
+        <Column Name="From" DataType="System.String"/>
+        <Column Name="Rate_Per_Hour" DataType="System.String"/>
+        <Column Name="Weekend_Overtime_Rate" DataType="System.String"/>
+        <Column Name="Charges_Date" DataType="System.String"/>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+      <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Page" DataType="System.String"/>
+        <Column Name="Of" DataType="System.String"/>
+        <Column Name="Print_Date" DataType="System.String"/>
+        <Column Name="Print_By" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="Picture1"/>
+      <inherited Name="Text33"/>
+      <inherited Name="Text40">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="Text36"/>
+      <inherited Name="Text38"/>
+      <inherited Name="Text34"/>
+      <inherited Name="Text37"/>
+      <inherited Name="Text39"/>
+      <inherited Name="Text41"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="80.93" Width="718.2" Height="37.8">
+        <TextObject Name="Text92" Width="245.7" Height="18.9" Text="[ResponseDataModel.RateOT.Header]" VertAlign="Center" Font="Arial Unicode MS, 10pt"/>
+      </ChildBand>
+    </inherited>
+    <DataBand Name="Data1" ZOrder="0" Top="124.07" Width="718.2" Height="245.7" AfterDataEvent="Data1_AfterData" DataSource="ResponseDataModel">
+      <TextObject Name="Text46" Left="37.8" Top="18.9" Width="198.45" Height="18.9" Text="[ResponseDataModel.Column.Currency]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text94" Left="255.15" Top="18.9" Width="274.05" Height="18.9" Text="[ResponseDataModel.RateOT.HeaderData.CCURRENCY_CODE]" VertAlign="Center" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text57" Left="37.8" Top="141.75" Width="198.45" Height="18.9" Text="[ResponseDataModel.Column.Unit_Area_Validation]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text60" Left="37.8" Top="94.5" Width="217.35" Height="18.9" Text="[ResponseDataModel.Column.Administration_Fee_P]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text103" Left="255.15" Top="94.5" Width="132.3" Height="18.9" Text="This Condition" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text93" Left="255.15" Width="340.2" Height="18.9" Text="[ResponseDataModel.RateOT.HeaderData.CCHARGES_ID] - [ResponseDataModel.RateOT.HeaderData.CCHARGES_NAME]" VertAlign="Center" Font="Arial Unicode MS, 10pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text45" Left="37.8" Width="198.45" Height="18.9" Text="[ResponseDataModel.Column.Utility_Charges]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text136" Left="255.15" Top="141.75" Width="94.5" Height="18.9" Text="[ResponseDataModel.RateOT.HeaderData.NUNIT_AREA_VALID_FROM]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text137" Left="349.65" Top="141.75" Width="37.8" Height="18.9" Text="[ResponseDataModel.Column.To]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text138" Left="387.45" Top="141.75" Width="94.5" Height="18.9" Text="[ResponseDataModel.RateOT.HeaderData.NUNIT_AREA_VALID_TO]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text61" Left="56.7" Top="198.45" Width="170.1" Height="18.9" Text="[ResponseDataModel.Column.Cut_Off_Over_Weekday]" Font="Arial Unicode MS, 10pt"/>
+      <CheckBoxObject Name="CheckBox1" Left="37.8" Top="198.45" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RateOT.HeaderData.LCUT_OFF_WEEKDAY"/>
+      <TextObject Name="Text132" Left="670.95" Top="198.45" Width="56.7" Height="18.9" Text="[ResponseDataModel.Column.Sunday]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text133" Left="576.45" Top="198.45" Width="66.15" Height="18.9" Text="[ResponseDataModel.Column.Saturday]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text134" Left="491.4" Top="198.45" Width="56.7" Height="18.9" Text="[ResponseDataModel.Column.Holiday]" Font="Arial Unicode MS, 10pt"/>
+      <CheckBoxObject Name="CheckBox2" Left="472.5" Top="198.45" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RateOT.HeaderData.LHOLIDAY"/>
+      <CheckBoxObject Name="CheckBox3" Left="557.55" Top="198.45" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RateOT.HeaderData.LSATURDAY"/>
+      <CheckBoxObject Name="CheckBox4" Left="652.05" Top="198.45" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RateOT.HeaderData.LSUNDAY"/>
+      <CheckBoxObject Name="CheckBox5" Left="37.8" Top="75.6" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RateOT.HeaderData.LSPLIT_ADMIN"/>
+      <TextObject Name="Text139" Left="56.7" Top="75.6" Width="198.45" Height="18.9" Text="[ResponseDataModel.Column.Split_Admin_Invoice]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text140" Left="255.15" Top="75.6" Width="226.8" Height="18.9" Text="[ResponseDataModel.RateOT.HeaderData.CADMIN_CHARGE_ID_DESCR]" Font="Arial Unicode MS, 10pt"/>
+      <CheckBoxObject Name="CheckBox6" Left="481.95" Top="94.5" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RateOT.HeaderData.LADMIN_FEE_TAX"/>
+      <TextObject Name="Text141" Left="500.85" Top="94.5" Width="85.05" Height="18.9" Text="[ResponseDataModel.Column.Taxable]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text142" Left="37.8" Top="37.8" Width="198.45" Height="18.9" Text="[ResponseDataModel.Column.Charges_Date]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text143" Left="255.15" Top="37.8" Width="255.15" Height="18.9" Text="[ResponseDataModel.RateOT.HeaderData.DCHARGES_DATE]" Font="Arial Unicode MS, 10pt"/>
+      <DataBand Name="Data2" Top="419.13" Width="718.2" Height="28.35">
+        <TableObject Name="Table2" Left="368.55" Width="349.65" Height="28.35" Border.Lines="Left, Right, Bottom" PrintOnParent="true" ManualBuildEvent="Table2_ManualBuild">
+          <TableColumn Name="Column6" Width="47.25"/>
+          <TableColumn Name="Column7" Width="113.4"/>
+          <TableColumn Name="Column8" Width="47.25"/>
+          <TableColumn Name="Column9" Width="47.25"/>
+          <TableColumn Name="Column10" Width="94.5"/>
+          <TableRow Name="Row2" Height="28.35">
+            <TableCell Name="Cell6" Border.Lines="Right" Text="[ResponseDataModel.RateOT.DetailWKData.ILEVEL]" HorzAlign="Right" Font="Arial Unicode MS, 10pt"/>
+            <TableCell Name="Cell7" Border.Lines="Right" Text="[ResponseDataModel.RateOT.DetailWKData.CLEVEL_DESC]" Font="Arial Unicode MS, 10pt"/>
+            <TableCell Name="Cell8" Border.Lines="Right" Text="[ResponseDataModel.RateOT.DetailWKData.IHOURS_FROM]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" Font="Arial Unicode MS, 10pt"/>
+            <TableCell Name="Cell9" Border.Lines="Right" Text="[ResponseDataModel.RateOT.DetailWKData.IHOURS_TO]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" Font="Arial Unicode MS, 10pt"/>
+            <TableCell Name="Cell10" Text="[ResponseDataModel.RateOT.DetailWKData.NRATE_HOUR]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" Font="Arial Unicode MS, 10pt"/>
+          </TableRow>
+        </TableObject>
+        <TableObject Name="Table1" Width="349.65" Height="28.35" Border.Lines="Left, Right, Bottom" ManualBuildEvent="Table1_ManualBuild">
+          <TableColumn Name="Column1" Width="47.25"/>
+          <TableColumn Name="Column2" Width="113.4"/>
+          <TableColumn Name="Column3" Width="47.25"/>
+          <TableColumn Name="Column4" Width="47.25"/>
+          <TableColumn Name="Column5" Width="94.5"/>
+          <TableRow Name="Row1" Height="28.35">
+            <TableCell Name="Cell1" Border.Lines="Right" Text="[ResponseDataModel.RateOT.DetailWDData.ILEVEL]" HorzAlign="Right" Font="Arial Unicode MS, 10pt"/>
+            <TableCell Name="Cell2" Border.Lines="Right" Text="[ResponseDataModel.RateOT.DetailWDData.CLEVEL_DESC]" Font="Arial Unicode MS, 10pt"/>
+            <TableCell Name="Cell3" Border.Lines="Right" Text="[ResponseDataModel.RateOT.DetailWDData.IHOURS_FROM]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" Font="Arial Unicode MS, 10pt"/>
+            <TableCell Name="Cell4" Border.Lines="Right" Text="[ResponseDataModel.RateOT.DetailWDData.IHOURS_TO]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" Font="Arial Unicode MS, 10pt"/>
+            <TableCell Name="Cell5" Text="[ResponseDataModel.RateOT.DetailWDData.NRATE_HOUR]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" Font="Arial Unicode MS, 10pt"/>
+          </TableRow>
+        </TableObject>
+        <DataHeaderBand Name="DataHeader1" Top="375.1" Width="718.2" Height="38.7">
+          <ShapeObject Name="Shape4" Width="349.65" Height="37.8" Fill.Color="DarkBlue"/>
+          <TextObject Name="Text120" Width="349.65" Height="18.9" Text="[ResponseDataModel.Column.Weekday_Overtime_Rate]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text85" Top="18.9" Width="47.25" Height="18.9" Text="[ResponseDataModel.Column.Level]" VertAlign="Center" Font="Arial Unicode MS, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text86" Left="50.85" Top="18" Width="113.4" Height="18.9" Text="[ResponseDataModel.Column.Description]" VertAlign="Center" Font="Arial Unicode MS, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text112" Left="160.65" Top="18.9" Width="47.25" Height="18.9" Text="[ResponseDataModel.Column.From]" VertAlign="Center" Font="Arial Unicode MS, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text113" Left="207.9" Top="18.9" Width="47.25" Height="18.9" Text="[ResponseDataModel.Column.To]" VertAlign="Center" Font="Arial Unicode MS, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text114" Left="255.15" Top="18.9" Width="103.95" Height="18.9" Text="[ResponseDataModel.Column.Rate_Per_Hour]" VertAlign="Center" Font="Arial Unicode MS, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text121" Left="368.55" Width="359.1" Height="18.9" Text="Weekday Overtime Rate" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 10pt" TextFill.Color="White"/>
+          <ShapeObject Name="Shape5" Left="368.55" Width="349.65" Height="37.8" Fill.Color="DarkBlue"/>
+          <TextObject Name="Text135" Left="368.55" Width="349.65" Height="18.9" Text="[ResponseDataModel.Column.Weekend_Overtime_Rate]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text116" Left="368.55" Top="19.8" Width="47.25" Height="18.9" Text="[ResponseDataModel.Column.Level]" VertAlign="Center" Font="Arial Unicode MS, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text115" Left="419.4" Top="18.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.Column.Description]" VertAlign="Center" Font="Arial Unicode MS, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text117" Left="529.2" Top="19.8" Width="47.25" Height="18.9" Text="[ResponseDataModel.Column.From]" VertAlign="Center" Font="Arial Unicode MS, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text118" Left="576.45" Top="19.8" Width="47.25" Height="18.9" Text="[ResponseDataModel.Column.To]" VertAlign="Center" Font="Arial Unicode MS, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text119" Left="623.7" Top="19.8" Width="103.95" Height="18.9" Text="[ResponseDataModel.Column.Rate_Per_Hour]" VertAlign="Center" Font="Arial Unicode MS, 10pt" TextFill.Color="White"/>
+        </DataHeaderBand>
+      </DataBand>
+    </DataBand>
+  </inherited>
+</inherited>

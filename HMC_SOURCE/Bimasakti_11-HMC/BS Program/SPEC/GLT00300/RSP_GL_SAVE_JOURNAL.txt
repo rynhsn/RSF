@@ -1,0 +1,2 @@
+Error100=Journal No. {0} already exists!
+Error900=Process failed! unable to save Journal transaction {0}

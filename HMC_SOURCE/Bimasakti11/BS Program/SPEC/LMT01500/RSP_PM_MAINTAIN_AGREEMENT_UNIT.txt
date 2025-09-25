@@ -1,0 +1,6 @@
+1521 = Error process, please contact your administrator!
+1522 = Cannot Delete, this Agreement Status is not eligble for deleted!
+1523 = Unit Id cannot be empty!
+1524 = Invalid Unit Id!
+
+

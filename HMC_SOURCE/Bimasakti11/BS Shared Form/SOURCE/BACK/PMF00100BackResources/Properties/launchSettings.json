@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "PMF00100BackResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57006;http://localhost:57007"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <SupportedPlatform Include="browser" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.21" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.26" />
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\BACK\PMF00100COMMON\PMF00100COMMON.csproj" />
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\BACK\PMF00200COMMON\PMF00200COMMON.csproj" />
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj" />
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\Lookup_PMFRONT.csproj" />
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\PMF00100FRONT\PMF00100FRONT.csproj" />
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\PMF00100Model\PMF00100Model.csproj" />
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\PMF00200FRONT\PMF00200FRONT.csproj" />
+        <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\PMF00200Model\PMF00200Model.csproj" />
+        <ProjectReference Include="..\PMT04200FrontResources\PMT04200FrontResources.csproj" />
+        <ProjectReference Include="..\PMT04200MODEL\PMT04200MODEL.csproj" />
+
+        <Reference Include="BlazorClientHelper">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
+        </Reference>
+        <Reference Include="R_APICommonDTO">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_APICommonDTO.dll</HintPath>
+        </Reference>
+        <Reference Include="R_BlazorFrontEnd">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.dll</HintPath>
+        </Reference>
+        <Reference Include="R_BlazorFrontEnd.Controls">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Controls.dll</HintPath>
+        </Reference>
+        <Reference Include="R_CommonFrontBackAPI">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CommonFrontBackAPI.dll</HintPath>
+        </Reference>
+        <Reference Include="R_ContextFrontEnd">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_ContextFrontEnd.dll</HintPath>
+        </Reference>
+        <Reference Include="R_LockingFront">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_LockingFront.dll</HintPath>
+        </Reference>
+        <Reference Include="R_ProcessAndUploadFront">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_ProcessAndUploadFront.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+</Project>

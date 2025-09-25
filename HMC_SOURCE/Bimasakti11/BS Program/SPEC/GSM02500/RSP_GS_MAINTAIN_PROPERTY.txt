@@ -1,0 +1,5 @@
+2501	= Error process, please contact your administrator!
+2502	= Duplicate Property Id!
+2503	= Cannot Delete, Property Already in used!
+
+

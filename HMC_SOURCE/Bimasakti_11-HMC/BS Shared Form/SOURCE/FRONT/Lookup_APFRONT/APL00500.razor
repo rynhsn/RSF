@@ -1,0 +1,138 @@
+﻿@using Lookup_APCOMMON.DTOs.APL00200
+@using LookupAPFrontResources
+@inherits R_Page
+@attribute [R_Page(Title = "Transaction Lookup")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupAP> _localizer
+<R_StackLayout Style="width: 1200px">
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="6">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label> Transaction Type</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox Value="@_viewModel.ParameterLookup.CTRANS_CODE"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false"/>
+                </R_ItemLayout>
+                <R_ItemLayout col="5" Class="pe-3">
+                    <R_TextBox Value="@_viewModel.ParameterLookup.CTRANS_NAME"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false"/>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Label> </R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="1">
+                    <R_Label> Period</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="4" Class="ps-2">
+                    <R_RadioGroup Data="@_viewModel.RadioButton"
+                                  @bind-Value="@_viewModel.TransactionLookupEntity.RadioButton"
+                                  ValueField="@nameof(APL00200DTO.Code)"
+                                  TextField="@nameof(APL00200DTO.Desc)"
+                                  OnChanged="@OnchangedPeriod"
+                                  R_ConductorSource="@_conductorRef">
+                    </R_RadioGroup>
+                </R_ItemLayout>
+                <R_ItemLayout col="3" Class="d-flex align-items-center">
+                    <R_NumericTextBox
+                        @bind-Value="@_viewModel.TransactionLookupEntity.VAR_GSM_PERIOD"
+                        Min="@_viewModel.PeriodLookup.IMIN_YEAR"
+                        Max="@_viewModel.PeriodLookup.IMAX_YEAR"
+                        R_ConductorSource="@_conductorRef"
+                        Step="1" ThousandSeparator="false"
+                        Enabled="@(_viewModel.TransactionLookupEntity.RadioButton != "A")"/>
+
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_DropDownList Data="@_viewModel.Month"
+                                    @bind-Value="@_viewModel.TransactionLookupEntity.Month"
+                                    ValueField="@nameof(APL00200DTO.Code)"
+                                    TextField="@nameof(APL00200DTO.Desc)"
+                                    R_ConductorSource="@_conductorRef"
+                                    Enabled="@(_viewModel.TransactionLookupEntity.RadioButton != "A")"/>
+
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Button OnClick="Refresh_Button">
+                        @_localizer["RFSH"]
+                    </R_Button>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+
+    @* <R_StackLayout Row> *@
+    @*     <R_ItemLayout col="6"> *@
+    @*         <R_StackLayout Row> *@
+    @*             <R_ItemLayout col="3"> *@
+    @*                <R_Label> Supplier</R_Label> *@
+    @*             </R_ItemLayout> *@
+    @*              <R_ItemLayout col="3"> *@
+    @*                    <R_TextBox @bind-Value="@_viewModel.TransactionLookupEntity.CSUPPLIER_ID" *@
+    @*                               R_ConductorSource="@_conductorRef" *@
+    @*                               Enabled="false"/> *@
+    @*                </R_ItemLayout> *@
+    @* *@
+    @*             <R_ItemLayout> *@
+    @*                 <R_Lookup R_Before_Open_Lookup="@R_BeforeOpenLookUp" R_After_Open_Lookup="R_AfterOpenLookUp"> *@
+    @*                     ... *@
+    @*                 </R_Lookup> *@
+    @*             </R_ItemLayout> *@
+    @*              *@
+    @*               <R_ItemLayout col="4"> *@
+    @*                             <R_TextBox @bind-Value="@_viewModel.TransactionLookupEntity.CSUPPLIER_NAME" *@
+    @*                                        R_ConductorSource="@_conductorRef" *@
+    @*                                        Enabled="false"/> *@
+    @*                         </R_ItemLayout> *@
+    @*         </R_StackLayout> *@
+    @*     </R_ItemLayout> *@
+    @* </R_StackLayout> *@
+    @* *@
+
+
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.TransactionLookupGrid"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                  R_GridType="R_eGridType.Navigator"
+                Pageable
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false"
+                PageSize="5"
+                Enabled="@(_viewModel.TransactionLookupEntity.CSUPPLIER_ID != null)">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CSUPPLIER" Width="143px" HeaderText="@_localizer["SPLR"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CDEPT_CODE" Width="89px" HeaderText="@_localizer["DEPT"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CREF_NO" Width="140px" HeaderText="@_localizer["RFRNCE"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CREF_DATE" Width="147px" HeaderText="@_localizer["RFRNCE_DT"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CDOC_NO" Width="143px" HeaderText="@_localizer["DCMNT_NO"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CDOC_DATE" Width="161px" HeaderText="@_localizer["DCMNT_DATE"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CDUE_DATE" Width="138px" HeaderText="@_localizer["DUE_DATE"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCURRENCY_CODE" Width="89px" HeaderText="@_localizer["CURR"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="NTOTAL_REMAINING" Width="178px" HeaderText="@_localizer["RMN_AMNT"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CTRANS_DESC" Width="131px" HeaderText="@_localizer["DESC"]"></R_GridTextColumn>
+
+
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+
+        <R_Button Enabled="@(_viewModel.TransactionLookupGrid.Count != 0)" OnClick="Button_OnClickOkAsync">
+            @_localizer["OK"]
+        </R_Button>
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            @_localizer["CNCL"]
+        </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>

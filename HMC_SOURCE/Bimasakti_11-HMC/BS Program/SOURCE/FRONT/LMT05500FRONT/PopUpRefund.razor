@@ -1,0 +1,29 @@
+@inherits R_Page
+
+@attribute [R_Page(Title = "Refund")]
+@inject R_ILocalizer<Resources_PMT05500_Class> _localizer
+
+<div hidden="@_isModalHidden">
+    <R_StackLayout>
+        <R_ItemLayout>
+            <R_RadioGroup Data="@_depositViewModel.ValueBtnRefund"
+                          ValueField="@nameof(OtherProgram.Id)"
+                          TextField="@nameof(OtherProgram.Name)"
+                          Value="_depositViewModel._buttonRefundValue"
+                          Layout="R_eRadioGroupLayout.Vertical"
+                          ValueChanged="@((string value) => Onchange(value))">
+            </R_RadioGroup>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Class="mt-3" Row>
+        <R_ItemLayout>
+            <R_Button OnClick="@OnClickOK">
+                OK
+            </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout >
+            <R_Button OnClick="OnCancel">Cancel</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</div>

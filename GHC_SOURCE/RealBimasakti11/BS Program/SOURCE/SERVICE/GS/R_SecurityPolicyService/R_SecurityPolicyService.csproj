@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BACK\GS\R_SecurityPolicyBack\R_SecurityPolicyBack.vbproj" />
+    <ProjectReference Include="..\..\..\BACK\GS\R_SecurityTokenBack\R_SecurityTokenBack.vbproj" />
+    <ProjectReference Include="..\..\..\COMMON\GS\R_SecurityPolicyCommon\R_SecurityPolicyCommon.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="R_APICommon">
+      <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+    </Reference>
+    <Reference Include="R_AuthenticationBack">
+      <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_AuthenticationBack.dll</HintPath>
+    </Reference>
+    <Reference Include="R_CommonFrontBackAPI">
+      <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="R_CrossPlatformSecurity">
+      <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CrossPlatformSecurity.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

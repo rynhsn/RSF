@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_PM_SAVE_ALLOCATIONResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57012;http://localhost:57013"
+    }
+  }
+}

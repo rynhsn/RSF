@@ -1,0 +1,2 @@
+ERROR_DATA_ALREADY_EXIST=Supplier already exists!
+ERROR_CREATE_ONETIME_SUPPLIER=Process failed! unable to create One Time Supplier {0}

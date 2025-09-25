@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="EXPENDITURE_ID_EMPTY" xml:space="preserve">
+        <value>Expenditure ID is mandatory</value>
+    </data>
+    <data name="Error900" xml:space="preserve">
+        <value>Failed to validate data {0}</value>
+    </data>
+    <data name="EXPENDITURE_ID_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Expenditure ID is more than 20 characters</value>
+    </data>
+    <data name="EXPENDITURE_ID_ALREADY_EXIST" xml:space="preserve">
+        <value>Expenditure ID already exists</value>
+    </data>
+    <data name="EXPENDITURE_NAME_EMPTY" xml:space="preserve">
+        <value>Expenditure Name is mandatory</value>
+    </data>
+    <data name="EXPENDITURE_NAME_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Expenditure Name is more than 50 characters</value>
+    </data>
+    <data name="CATEGORY_ID_EMPTY" xml:space="preserve">
+        <value>Category ID is mandatory</value>
+    </data>
+    <data name="CATEGORY_ID_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Categoroy ID is more than 20 characters</value>
+    </data>
+    <data name="CATEGORY_ID_NOT_EXIST" xml:space="preserve">
+        <value>Category ID does not exist</value>
+    </data>
+    <data name="JOURNAL_GROUP_ID_EMPTY" xml:space="preserve">
+        <value>Journal Group ID is mandatory</value>
+    </data>
+    <data name="JOURNAL_GROUP_ID_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Journal Group ID is more than 8 characters</value>
+    </data>
+    <data name="JOURNAL_GROUP_ID_NOT_EXIST" xml:space="preserve">
+        <value>Journal Group ID does not exist</value>
+    </data>
+    <data name="UNIT1_EMPTY" xml:space="preserve">
+        <value>Unit 1 is mandatory</value>
+    </data>
+    <data name="UNIT1_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Unit 1 is more than 10 characters</value>
+    </data>
+    <data name="PURCHASE_UNIT_EMPTY" xml:space="preserve">
+        <value>Purchase Unit is mandatory</value>
+    </data>
+    <data name="PURCHASE_UNIT_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Purchase Unit is more than 10 characters</value>
+    </data>
+    <data name="PURCHASE_UNIT_INVALID" xml:space="preserve">
+        <value>Invalid Purchase Unit, Purchase Unit must be either Unit 1/Unit 2/Unit 3</value>
+    </data>
+    <data name="CONVERSION1_INVALID" xml:space="preserve">
+        <value>Invalid Conversion 1, Conversion 1 value must be &gt; 0</value>
+    </data>
+    <data name="CONVERSION2_INVALID" xml:space="preserve">
+        <value>Invalid Conversion 1, Conversion 2 value must be &gt; 0</value>
+    </data>
+    <data name="TAXABLE_EMPTY" xml:space="preserve">
+        <value>Taxable is mandatory</value>
+    </data>
+    <data name="TAXABLE_INVALID" xml:space="preserve">
+        <value>Invalid Taxable value, valid value is Yes/No</value>
+    </data>
+    <data name="TAX_ID_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Tax ID is more than 20 characters</value>
+    </data>
+    <data name="TAX_ID_NOT_EXIST" xml:space="preserve">
+        <value>Tax ID does not exist</value>
+    </data>
+</root>

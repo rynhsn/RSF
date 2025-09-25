@@ -1,0 +1,198 @@
+@inherits R_Page;
+@attribute [R_Page(Title = "CHANGE STATUS PROCESS")]
+@inject R_ILocalizer<Resources_PMT01500_Class> _localizer
+
+
+<div style="width: 1000px; height: 250px;">
+
+    <R_StackLayout>
+
+        @* Agreement No *@
+        <R_ItemLayout col="12" Class="d-flex">
+
+            <!-- Title and TextBoxAwal -->
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_AgreementNo"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="5" Class="pe-3">
+                <R_TextBox @bind-Value="@_viewModel.loEntityChangeStatus.CREF_NO"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+        @* Proposal Date *@
+        <R_ItemLayout col="12" Class="d-flex">
+
+            <!-- Title and TextBoxAwal -->
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_ProposalDate"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_DatePicker @bind-Value="@_viewModel.loEntityChangeStatus.DREF_DATE"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3" />
+
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_HandOverDate"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_DatePicker @bind-Value="@_viewModel.loEntityChangeStatus.DHAND_OVER_DATE"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+        @* Proposal Date *@
+        <R_ItemLayout col="12" Class="d-flex">
+
+            <!-- Title and TextBoxAwal -->
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_StartDate"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_DatePicker @bind-Value="@_viewModel.loEntityChangeStatus.DSTART_DATE"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3" />
+
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_EndDate"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_DatePicker @bind-Value="@_viewModel.loEntityChangeStatus.DEND_DATE"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+        @* ChangeStatusFrom *@
+        <R_ItemLayout col="12" Class="d-flex">
+
+            <!-- Title and TextBoxAwal -->
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_ChangeStatusFrom"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.loEntityChangeStatus.CAGREEMENT_STATUS_DESCR"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3" Class="d-flex justify-content-end ps-1 pe-3">
+                <R_Label Class="pe-2">
+                    @_localizer["_To"]*
+                </R_Label>
+
+                <R_ItemLayout col="10">
+                    <R_DropDownList Data="@_viewModel.loComboBoxDataCTransStatus"
+                                    @bind-Value="_viewModel.loEntityChangeStatus.CAGREEMENT_STATUS"
+                                    ValueField="@nameof(PMT01500ComboBoxDTO.CCODE)"
+                                    TextField="@nameof(PMT01500ComboBoxDTO.CDESCRIPTION)"
+                                    PopupMaxHeight="100px"
+                                    Enabled />
+                </R_ItemLayout>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_NewDocNo"].
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.loEntityChangeStatus.CBLANK"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+        @* Accept Date *@
+        <R_ItemLayout col="12" Class="d-flex">
+
+            <!-- Title and TextBoxAwal -->
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_AcceptDate"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_DatePicker @bind-Value="@_viewModel.loEntityChangeStatus.DACCEPT_DATE"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+        @* Reason *@
+        <R_ItemLayout col="12" Class="d-flex">
+
+            <!-- Title and TextBoxAwal -->
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_Reason"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="9">
+                <R_TextBox @bind-Value="@_viewModel.loEntityChangeStatus.CREASON"
+                           Enabled />
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+        @* Note *@
+        <R_ItemLayout col="12" Class="d-flex">
+
+            <!-- Title and TextBoxAwal -->
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_Note"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="9">
+                <R_TextArea @bind-Value="@_viewModel.loEntityChangeStatus.CNOTES"
+                           Enabled />
+            </R_ItemLayout>
+
+
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end col-12 mt-3">
+        <R_ItemLayout col="1">
+            <R_Button Class="col-11"
+                      OnClick="OnClickCloseButton">
+                @_localizer["_Cancel"]
+            </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Button Class="col-11"
+                      OnClick="OnClickSAveButton">
+                @_localizer["_Save"]
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</div>

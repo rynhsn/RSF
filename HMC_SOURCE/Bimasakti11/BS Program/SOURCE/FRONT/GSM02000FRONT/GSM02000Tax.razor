@@ -1,0 +1,57 @@
+﻿@page "/GSM02000Tax"
+@using GSM02000Common.DTOs
+@inherits R_Page
+
+<R_StackLayout Row Spacing="3">
+    <R_ItemLayout xs="4">
+        <R_Grid @ref="@_gridSalesRef"
+                DataSource="@_viewModel.SalesGridList"
+                Pageable
+                R_ConductorSource="@_conductorSalesRef"
+                R_GridType="R_eGridType.Navigator"
+                R_ServiceGetListRecord="@GetSalesTaxList"
+                Height="445px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GSM02000TaxSalesDTO.CTAX_ID)" HeaderText="Tax Id" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(GSM02000TaxSalesDTO.CTAX_NAME)" HeaderText="Tax Name" TextAlignment="R_eTextAlignment.Left"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+    <R_ItemLayout xs="8" Class="pe-3">
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.GridList"
+                Pageable
+                R_ConductorGridSource="@_conductorRef"
+                R_GridType="R_eGridType.Original"
+                R_ServiceGetListRecord="@GetList"
+                AllowEditRow
+                AllowAddNewRow
+                AllowDeleteRow
+                Width="100%"
+                Height="445px">
+            <R_GridColumns>
+                <R_GridDatePickerColumn FieldName="@nameof(GSM02000TaxDTO.DTAX_DATE)" HeaderText="Tax Date" R_EnableAdd Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridNumericColumn FieldName="@nameof(GSM02000TaxDTO.NTAX_PERCENTAGE)" HeaderText="Tax %" Min="0" Max="100" R_EnableAdd R_EnableEdit Width="100px" TextAlignment="R_eTextAlignment.Right"/>
+                <R_GridTextColumn FieldName="@nameof(GSM02000TaxDTO.CUPDATE_BY)" HeaderText="Updated By" Width="180px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GSM02000TaxDTO.DUPDATE_DATE)" HeaderText="Updated Date" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridTextColumn FieldName="@nameof(GSM02000TaxDTO.CCREATE_BY)" HeaderText="Created By" Width="150px" TextAlignment="R_eTextAlignment.Left"/>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GSM02000TaxDTO.DCREATE_DATE)" HeaderText="Created Date" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorSalesRef"
+                 R_ViewModel="_viewModel"
+                 R_IsHeader
+                 R_ServiceGetRecord="@GetSalesTaxRecord"/>
+
+<R_ConductorGrid @ref="@_conductorRef"
+             R_ViewModel="_viewModel"
+             R_IsHeader
+             R_ServiceGetRecord="@GetRecord"
+             R_AfterAdd="@AfterAdd"
+             R_Saving="Saving"
+             R_ServiceSave="Save"
+             R_BeforeDelete="BeforeDelete"
+             R_ServiceDelete="Delete"/>

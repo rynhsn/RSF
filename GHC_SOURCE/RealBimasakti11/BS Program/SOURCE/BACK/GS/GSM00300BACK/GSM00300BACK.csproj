@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\COMMON\GS\GSM00300COMMON\GSM00300COMMON.csproj" />
+		<ProjectReference Include="..\GSM00300BackResources\GSM00300BackResources.csproj" />
+		<ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_COMP_PARAMResources\RSP_GS_MAINTAIN_COMP_PARAMResources.csproj" />
+		<ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_TAX_INFOResources\RSP_GS_MAINTAIN_TAX_INFOResources.csproj" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+		<Reference Include="R_APIBackEnd">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CommonFrontBackAPI">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommonDTO">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommonDTO.dll</HintPath>
+		</Reference>
+		<Reference Include="R_OpenTelemetry">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,119 @@
+﻿@inherits R_Page
+@inject R_ILocalizer<Resources_GSM04500_Class> _localizer
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label Class="ms-6">@_localizer["_JGrpCode"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1" Class="me-3">
+        <R_TextBox @bind-Value="@JournalGOAViewModel.CurrentJournalGroup.CJRNGRP_CODE" Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="@JournalGOAViewModel.CurrentJournalGroup.CJRNGRP_NAME" Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Class="mt-1">
+    <R_Grid @ref="@_gridRef"
+            DataSource="JournalGOAViewModel.GOAList"
+            R_ConductorGridSource="@_conJournalGOARef"
+            R_GridType="@R_eGridType.Original"
+            R_ServiceGetListRecord="@R_ServiceGetListRecord"
+            Pageable="true"
+            AllowDeleteRow="false"
+            AllowAddNewRow="false"
+            AllowEditRow="true"
+            Height="210px"
+            R_Before_Open_Grid_Lookup="BeforeOpenLookUPGOA"
+            R_After_Open_Grid_Lookup="AfterOpenLookGOA"
+            R_ServiceGetRecord="@R_ServiceGetRecordAsync"
+            R_ServiceSave="@ServiceSaveGOA"
+            R_Display="@Grid_Display"
+            R_CellLostFocused="@R_CellLostFocusedGOA"
+            R_CellValueChanged="@R_CellValueChanged">
+        <R_GridColumns>
+            <R_GridTextColumn Width="210px" FieldName="@nameof(GSM04510GOADTO.GROUPOFACCOUNT)"
+                              HeaderText=@_localizer["_GrpAcc"] />
+            <R_GridCheckBoxColumn Width="100px" FieldName="@nameof(GSM04510GOADTO.LDEPARTMENT_MODE)"
+                                  HeaderText=@_localizer["_LDept"] R_EnableEdit />
+
+            <R_GridLookupColumn Width="190px" FieldName="@nameof(GSM04510GOADTO.CGLACCOUNT_NO)"
+                                Name="GLAccount_No"
+                                HeaderText=@_localizer["_GLAccNo"]
+                                R_EnableEdit="@_EnabledAccountNo" />
+
+            <R_GridTextColumn Width="200px" FieldName="@nameof(GSM04510GOADTO.CGLACCOUNT_NAME)"
+                              HeaderText=@_localizer["_GLAccName"] />
+            <R_GridTextColumn Width="150px" FieldName="@nameof(GSM04510GOADTO.CUPDATE_BY)"
+                              HeaderText=@_localizer["_UpdBy"] />
+            <R_GridDateTimePickerColumn Width="190px" FieldName="@nameof(GSM04510GOADTO.DUPDATE_DATE)"
+                                        HeaderText=@_localizer["_UpdDate"] />
+            <R_GridTextColumn Width="150px" FieldName="@nameof(GSM04510GOADTO.CCREATE_BY)"
+                              HeaderText=@_localizer["_CreatedBy"] />
+            <R_GridDateTimePickerColumn Width="190px" FieldName="@nameof(GSM04510GOADTO.DCREATE_DATE)"
+                                        HeaderText=@_localizer["_CreatedDate"] />
+        </R_GridColumns>
+
+        </R_Grid>
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="mt-2">
+    <R_ItemLayout col="2">
+        <R_Label Class="ms-6">@_localizer["_GrpAcc"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_TextBox @bind-Value="@GOADeptViewModel.GroupOfAccount"
+                   R_ConductorGridSource="@_conGOADeptRef" Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout>
+    <R_Grid @ref="@_gridGOADeptRef"
+            DataSource="GOADeptViewModel.GOADeptList"
+            R_ConductorGridSource="@_conGOADeptRef"
+            R_GridType="@R_eGridType.Original"
+            R_ServiceGetListRecord="@GridGOADept_GetList"
+            Pageable="true"
+            R_CheckGridAdd="CheckGrid"
+            AllowAddNewRow
+            AllowDeleteRow
+            AllowEditRow
+            Height="230px"
+            R_Before_Open_Grid_Lookup="BeforeOpenLookUpDeptCode"
+            R_After_Open_Grid_Lookup="AfterOpenLookUpDeptCode"
+            R_CellLostFocused="@R_CellLostFocusedGOADEPT"
+            R_ServiceGetRecord="R_ServiceGetRecordGOADeptAsync"
+            R_AfterAdd="@AfterAddGOADept"
+            R_ServiceSave="@ServiceSaveGOADept"
+            R_Validation="@ServiceValidationGOADept"
+            Enabled="@_EnableGridGOADept">
+
+        <R_GridColumns>
+            <R_GroupBox Enabled="@JournalGOAViewModel.Data.LDEPARTMENT_MODE">
+                <R_StackLayout>
+                    <R_GridLookupColumn TextAlignment="R_eTextAlignment.Center" Width="170px" FieldName="@nameof(GSM04510GOADeptDTO.CDEPT_CODE)"
+                                        HeaderText=@_localizer["_DeptCode"] R_EnableAdd />
+                    <R_GridTextColumn Width="200px" FieldName="CDEPT_NAME" HeaderText=@_localizer["_DeptName"] R_EnableAdd />
+
+                    <R_GridLookupColumn Width="180px" FieldName="CGLACCOUNT_NO" HeaderText=@_localizer["_GLAccNo"]
+                                                    R_EnableAdd R_EnableEdit TextboxEnabled="@(_EnabledAccountNo)" />
+                    <R_GridTextColumn Width="200px" FieldName="CGLACCOUNT_NAME" HeaderText=@_localizer["_GLAccName"] />
+                    <R_GridTextColumn Width="150px" FieldName="CUPDATE_BY" HeaderText=@_localizer["_UpdBy"] />
+                    <R_GridDateTimePickerColumn Width="200px" FieldName="DUPDATE_DATE" HeaderText=@_localizer["_UpdDate"] />
+                    <R_GridTextColumn Width="150px" FieldName="CCREATE_BY" HeaderText=@_localizer["_CreatedBy"] />
+                    <R_GridDateTimePickerColumn Width="200px" FieldName="DCREATE_DATE" HeaderText=@_localizer["_CreatedDate"] />
+                </R_StackLayout>
+            </R_GroupBox>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conJournalGOARef"
+                      R_IsHeader />
+
+<R_ConductorGrid @ref="@_conGOADeptRef"
+                 R_ConductorParent="_conJournalGOARef"/>

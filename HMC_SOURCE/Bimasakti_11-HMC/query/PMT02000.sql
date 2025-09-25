@@ -1,0 +1,745 @@
+delete from SAT_LOCKING where CUSER_ID='hmc'
+
+/*
+•	Set VAR_HO_TRANS_CODE = 802130
+•	Set VAR_LOI_TRANS_CODE = 802061 
+
+-- 00 draft
+-- 10 open
+*/
+
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_GET_HANDOVER_UTILITY] --HAND/ACC/202408/009/OVER
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY_ID = 'ashmd',
+		@CDEPT_CODE = 'acc',
+		@CTRANS_CODE = '802130',
+		@CREF_NO =  'HAND/ACC/202409/006/OVER',--'LOI-U-2024070002', -- 'HAND/ACC/202408/009/OVER',--//'LOI-U-2024070012',
+		@CBUILDING_ID = 'TW-A',
+		@CFLOOR_ID = 'L01',
+		@CUNIT_ID = 'A0103',
+		@CLANG_ID = 'en'
+SELECT	'Return Value' = @return_value
+GO
+
+--Set VAR_HO_TRANS_CODE = 802130
+--	Set VAR_LOI_TRANS_CODE = 802061 
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_GET_HANDOVER_LIST]
+		@CCOMPANY_ID = N'rcd',
+		@CPROPERTY_ID = N'ashmd',
+		@CTRANS_CODE =  '802130', --
+		@CLANG_ID = N'en'
+SELECT	'Return Value' = @return_value
+GO
+
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_GET_HANDOVER_DETAIL]
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY_ID = 'ashmd',
+		@CTRANS_CODE = '802130',
+		@CLANG_ID = 'en',
+		@CDEPT_CODE = 'ACC',
+		@CREF_NO = 'HAND/ACC/202409/002/OVER',--'REF_20022024',
+		@CBUILDING_ID = 'TW-A',
+		@CSAVEMODE = 'EDIT'
+SELECT	'Return Value' = @return_value
+GO
+
+---rcd	ASHMD	802030	ACC	ACCOUNTING	CheckACC-20240400006-PM	TN007	Test	00	Draft	TW-A	Tower A	L01	Lantai 1	A0102	Unit 02		20240425	20260427	ram	2024-04-25 13:54:03.317	ram	2024-04-25 13:54:03.317
+begin transaction 
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_MAINTAIN_HANDOVER]
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY_ID = 'ashmd',
+		@CTRANS_CODE = '802130',
+		@CREF_NO = 'HAND/ACC/202408/002/OVER',
+		@CREF_DATE = NULL,
+		@CBUILDING_ID = NULL,
+		@CUNIT_ID = NULL,
+		@CFLOOR_ID = NULL,
+		@CHAND_OVER_DATE = NULL,
+		@CSTART_DATE = NULL,
+		@CEND_DATE = NULL,
+		@CACTION = 'DELETE',
+		@CUSER_ID = 'hmc',
+		@CLINK_DEPT = 'acc',
+		@CLINK_TRANSCODE = NULL,
+		@CLINK_REFNO = NULL,
+		@NACTUAL_SIZE = NULL
+SELECT	'Return Value' = @return_value
+GO
+rollback
+
+
+DECLARE 
+	  @CCOMPANY_ID					VARCHAR(8)	= 'RCD'
+	, @CPROPERTY_ID					VARCHAR(20)	= 'JBMPC'
+	, @CDEPT_CODE					VARCHAR(20) = 'ACC'
+	, @CTRANS_CODE					VARCHAR(10)	= '802030'
+	, @CREF_NO						VARCHAR(30)	= 'REF_20022024'
+	, @CBUILDING_ID					VARCHAR(20)	= 'TOWER1'
+	, @CUNIT_ID						VARCHAR(20)	= 'A01'
+    , @CFLOOR_ID					VARCHAR(20)	= 'Lt10'
+	, @CLANG_ID						VARCHAR(3)	= 'EN'
+
+	drop table #GRID_UTILITY 
+
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_GET_HANDOVER_LIST]
+		@CCOMPANY_ID = N'rcd',
+		@CPROPERTY_ID = N'ashmd',
+		@CTRANS_CODE =  '802130', --
+		@CLANG_ID = N'en'
+SELECT	'Return Value' = @return_value
+GO
+
+begin transaction
+
+CREATE TABLE #GRID_UTILITY 
+(CCHARGES_TYPE VARCHAR(2),
+CCHARGES_ID VARCHAR(20),
+CMETER_NO VARCHAR(50), 
+IMETER_START INT, 
+CSTART_YEAR VARCHAR(4),
+CSTART_MONTH VARCHAR(50),
+IBLOCK1_START INT, 
+IBLOCK2_START INT, )
+
+INSERT INTO #GRID_UTILITY (CCHARGES_TYPE, CCHARGES_ID, CMETER_NO, IMETER_START, CSTART_YEAR, CSTART_MONTH, IBLOCK1_START, IBLOCK2_START)
+VALUES 
+('01', 'ELC02', '20240628', 0, '2024', '09', 12, 12);
+
+SELECT * FROM #GRID_UTILITY;
+
+EXEC [dbo].[RSP_PM_MAINTAIN_HANDOVER]
+		@CCOMPANY_ID = 'RCD',
+		@CPROPERTY_ID = 'ashmd',
+		@CTRANS_CODE = '802130',
+		@CREF_NO = 'HAND/ACC/202409/004/OVER',
+		@CREF_DATE = '20240905',
+		@CBUILDING_ID = 'Tower B',
+		@CUNIT_ID = 'UNT 1',
+		@CFLOOR_ID = 'Floor1',
+		@CHAND_OVER_DATE = '20240724',
+		@CSTART_DATE = '20240723',
+		@CEND_DATE = '20250722',
+		@CACTION = 'EDIT',
+		@CUSER_ID = 'hmc',
+		@CLINK_DEPT = 'ACC',
+		@CLINK_TRANSCODE = '802061',
+		@CLINK_REFNO = 'LOI-U-2024070012',
+		@NACTUAL_SIZE = 20
+
+	commit transaction
+
+rollback
+
+
+
+
+
+EXEC [dbo].[RSP_PM_MAINTAIN_HANDOVER]
+		@CCOMPANY_ID = 'RCD',
+		@CPROPERTY_ID = 'JBMPC',
+		@CTRANS_CODE = '802030',
+		@CREF_NO = 'Test',
+		@CREF_DATE = '20240612',
+		@CBUILDING_ID = 'TOWER1',
+		@CUNIT_ID = 'A02',
+		@CFLOOR_ID = 'Lt10',
+		@CHAND_OVER_DATE = '20240612',
+		@CSTART_DATE = '20240220',
+		@CEND_DATE = '20240419',
+		@CACTION = 'ADD',
+		@CUSER_ID = 'hmc',
+		@CLINK_DEPT = 'ACC',
+		@CLINK_TRANSCODE = '802041',
+		@CLINK_REFNO = 'REF_20022024',
+		@NACTUAL_SIZE = 10
+
+
+DROP TABLE #GRID_UTILITY;
+
+--RSP_PM_GET_HANDOVER_UTILITY
+
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_GET_HANDOVER_DETAIL]
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY_ID = 'ASHMD',
+		@CTRANS_CODE = '802061',
+		@CLANG_ID = 'en',
+		@CDEPT_CODE = 'ACC',
+		@CREF_NO = 'LOI-U-2024080011', --'HAND/ACC/202409/002/OVER',--'REF_20022024',
+
+		@CBUILDING_ID = '', --'TW-A',
+		@CFLOOR_ID = '', --'L01',
+		@CUNIT_ID = '', --'A0103',
+		@CSAVEMODE = 'EDIT' --'EDIT'
+		
+SELECT	'Return Value' = @return_value
+GO
+
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_GET_HANDOVER_DETAIL]
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY_ID = '',
+		@CTRANS_CODE = '802130',
+		@CLANG_ID = 'en',
+		@CDEPT_CODE = 'ACC',
+		@CREF_NO = 'HAND/ACC/202408/003/OVER',
+		@CBUILDING_ID = '',
+		@CFLOOR_ID = '',
+		@CUNIT_ID = '',
+		@CSAVEMODE = 'EDIT'
+SELECT	'Return Value' = @return_value
+GO
+
+
+--CR02
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_GET_HANDOVER_DETAIL]
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY_ID = 'ashmd',
+		@CTRANS_CODE = '802130',
+		@CLANG_ID = 'en',
+		@CDEPT_CODE = 'ACC',
+		@CREF_NO = 'HAND/ACC/202409/002/OVER',--'REF_20022024',
+		@CBUILDING_ID = 'TW-A',
+		@CSAVEMODE = 'EDIT'
+SELECT	'Return Value' = @return_value
+GO
+
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_GET_HANDOVER_UNIT]
+			@CCOMPANY_ID = 'rcd',
+		@CPROPERTY_ID = 'ashmd',
+		@CDEPT_CODE = 'ACC',
+		@CTRANS_CODE = '802130',
+		@CREF_NO = 'HAND/ACC/202409/002/OVER',--'REF_20022024',
+		@CBUILDING_ID = 'TW-A',
+		@CLANG_ID = 'EN'
+SELECT	'Return Value' = @return_value
+GO
+
+USE [BIMASAKTI_11]
+GO
+
+DECLARE	@return_value int
+
+EXEC	@return_value = [dbo].[RSP_PM_GET_HANDOVER_UTILITY]
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY_ID = 'ashmd',
+		@CDEPT_CODE = 'ACC',
+		@CTRANS_CODE = '802130',
+			@CREF_NO = 'HAND/ACC/202409/002/OVER',--'REF_20022024',
+		@CBUILDING_ID = 'TW-A',
+		@CLANG_ID = 'EN'
+SELECT	'Return Value' = @return_value
+GO
+
+
+------------cr02
+BEGIN TRANSACTION
+
+--LOI LIST
+EXEC RSP_PM_GET_HANDOVER_LIST
+	  @CCOMPANY_ID		='RCD'
+	  , @CPROPERTY_ID	='ASHMD'
+	  , @CTRANS_CODE	='802061'
+	  , @CLANG_ID		='EN'
+
+--LOI LIST DETAIL ADD
+EXEC RSP_PM_GET_HANDOVER_DETAIL
+	 @CCOMPANY_ID	 ='RCD'
+    ,@CPROPERTY_ID	 ='ASHMD'
+    ,@CTRANS_CODE	 ='802061'
+    ,@CLANG_ID		 ='EN'
+    ,@CDEPT_CODE	 ='ACC'
+    ,@CREF_NO		 ='LOI-U-ACC-202409-00002'
+    ,@CBUILDING_ID	 ='Tower B'
+    ,@CSAVEMODE		 ='NEW'
+
+--LOI LIST DETAIL UNIT ADD
+EXEC RSP_PM_GET_HANDOVER_UNIT
+	 @CCOMPANY_ID	 ='RCD'
+    ,@CPROPERTY_ID	 ='ASHMD'
+	,@CDEPT_CODE	 ='ACC'
+    ,@CTRANS_CODE	 ='802061'
+    ,@CREF_NO		 ='LOI-U-ACC-202409-00002'
+    ,@CBUILDING_ID	 ='Tower B'
+    ,@CLANG_ID		 ='EN'
+
+--LOI LIST DETAIL UTILITY ADD
+EXEC RSP_PM_GET_HANDOVER_UTILITY
+     @CCOMPANY_ID	 ='RCD'
+    ,@CPROPERTY_ID	 ='ASHMD'
+	,@CDEPT_CODE	 ='ACC'
+    ,@CTRANS_CODE	 ='802061'
+    ,@CREF_NO		 ='LOI-U-ACC-202409-00002'
+    ,@CBUILDING_ID	 ='Tower B'
+    ,@CLANG_ID		 ='EN'
+
+CREATE TABLE #GRID_UNIT(
+		[CFLOOR_ID] [varchar](20) NOT NULL DEFAULT ''
+       ,[CUNIT_ID] [varchar](20) NOT NULL DEFAULT ''
+       ,[NACTUAL_AREA_SIZE] [numeric](8,2)NOT NULL DEFAULT 0
+)
+INSERT INTO #GRID_UNIT VALUES 
+('Floor1','UNT 1',20),
+('Floor1','UNT 2',100)
+
+CREATE TABLE #GRID_UTILITY(
+	[CFLOOR_ID] [varchar](20) NOT NULL DEFAULT '',
+    [CUNIT_ID] [varchar](20) NOT NULL DEFAULT '',
+	[CCHARGES_TYPE] [varchar](2) NOT NULL,
+	[CCHARGES_ID] [varchar](20) NOT NULL,
+	[CMETER_NO] [varchar](50) NOT NULL,
+         [CSTART_YEAR] [varchar](4) NOT NULL,
+	[CSTART_MONTH] [varchar](2) NOT NULL,
+	[IMETER_START] [int] NOT NULL,
+         [IBLOCK1_START] [int] NOT NULL,
+         [IBLOCK2_START] [int] NOT NULL
+)
+
+INSERT INTO #GRID_UTILITY VALUES 
+('Floor1','UNT 1','01','EC01','20240628','2024','10',0,10,15)
+
+--ADD NEW HO
+EXEC [RSP_PM_MAINTAIN_HANDOVER]
+	@CCOMPANY_ID					= 'RCD'
+	, @CPROPERTY_ID					= 'ASHMD'
+	, @CTRANS_CODE					= '802130'
+	, @CREF_NO						= ''
+	, @CREF_DATE					= '20240919'
+	, @CBUILDING_ID					= 'Tower B'
+	, @CHAND_OVER_DATE				= '20240920'
+	, @CSTART_DATE					= '20240917'
+	, @CEND_DATE					= '20250916'
+	, @CACTION						= 'NEW'
+	, @CUSER_ID						= 'CH'
+	, @CLINK_DEPT					= 'ACC'
+	, @CLINK_TRANSCODE				= '802061'
+	, @CLINK_REFNO					= 'LOI-U-ACC-202409-00002'
+
+
+--HO LIST
+ EXEC RSP_PM_GET_HANDOVER_LIST
+	  @CCOMPANY_ID		='RCD'
+	  , @CPROPERTY_ID	='ASHMD'
+	  , @CTRANS_CODE	='802130'
+	  , @CLANG_ID		='EN'
+
+--HO LIST DETAIL EDIT/VIEW
+EXEC RSP_PM_GET_HANDOVER_DETAIL
+	 @CCOMPANY_ID	 ='RCD'
+    ,@CPROPERTY_ID	 ='ASHMD'
+    ,@CTRANS_CODE	 ='802130'
+    ,@CLANG_ID		 ='EN'
+    ,@CDEPT_CODE	 ='ACC'
+    ,@CREF_NO		 ='HAND/ACC/202409/009/OVER'
+    ,@CBUILDING_ID	 ='Tower B'
+    ,@CSAVEMODE		 ='EDIT'
+
+	--VERSI HAFIZ
+	--HO LIST DETAIL EDIT/VIEW
+EXEC RSP_PM_GET_HANDOVER_DETAIL
+	 @CCOMPANY_ID	 ='RCD'
+    ,@CPROPERTY_ID	 ='ASHMD'
+    ,@CTRANS_CODE	 ='802130'
+    ,@CLANG_ID		 ='EN'
+    ,@CDEPT_CODE	 ='ACC'
+    ,@CREF_NO		 ='HAND/ACC/202409/008/OVER'
+    ,@CBUILDING_ID	 ='Tower B'
+    ,@CSAVEMODE		 ='EDIT'
+
+--HO LIST DETAIL UNIT EDIT/VIEW
+EXEC RSP_PM_GET_HANDOVER_UNIT
+	 @CCOMPANY_ID	 ='RCD'
+    ,@CPROPERTY_ID	 ='ASHMD'
+	,@CDEPT_CODE	 ='ACC'
+    ,@CTRANS_CODE	 ='802130'
+    ,@CREF_NO		 ='HAND/ACC/202409/009/OVER'
+    ,@CBUILDING_ID	 ='Tower B'
+    ,@CLANG_ID		 ='EN'
+
+--HO LIST DETAIL UTILITY EDIT/VIEW
+EXEC RSP_PM_GET_HANDOVER_UTILITY
+     @CCOMPANY_ID	 ='RCD'
+    ,@CPROPERTY_ID	 ='ASHMD'
+	,@CDEPT_CODE	 ='ACC'
+    ,@CTRANS_CODE	 ='802130'
+    ,@CREF_NO		 = 'HAND/ACC/202409/009/OVER'
+    ,@CBUILDING_ID	 ='Tower B'
+    ,@CLANG_ID		 ='EN'
+
+--DELETE #GRID_UTILITY
+
+--INSERT INTO #GRID_UTILITY VALUES 
+--('Floor1','UNT 1','01','EC01','20240628','2024','10',0,20,25)
+
+--EXEC [RSP_PM_MAINTAIN_HANDOVER]
+--	@CCOMPANY_ID					= 'RCD'
+--	, @CPROPERTY_ID					= 'ASHMD'
+--	, @CTRANS_CODE					= '802130'
+--	, @CREF_NO						= 'HAND/ACC/202409/009/OVER'
+--	, @CREF_DATE					= '20240919'
+--	, @CBUILDING_ID					= 'Tower B'
+--	, @CHAND_OVER_DATE				= '20240920'
+--	, @CSTART_DATE					= '20240917'
+--	, @CEND_DATE					= '20250916'
+--	, @CACTION						= 'EDIT'
+--	, @CUSER_ID						= 'CH'
+--	, @CLINK_DEPT					= 'ACC'
+--	, @CLINK_TRANSCODE				= '802061'
+--	, @CLINK_REFNO					= 'LOI-U-ACC-202409-00002'
+
+----HO LIST DETAIL UTILITY EDIT/VIEW
+--EXEC RSP_PM_GET_HANDOVER_UTILITY
+--     @CCOMPANY_ID	 ='RCD'
+--    ,@CPROPERTY_ID	 ='ASHMD'
+--	,@CDEPT_CODE	 ='ACC'
+--    ,@CTRANS_CODE	 ='802130'
+--    ,@CREF_NO		 = 'HAND/ACC/202409/009/OVER'
+--    ,@CBUILDING_ID	 ='Tower B'
+--    ,@CLANG_ID		 ='EN'
+
+
+--UPDATE PMT_AGREEMENT SET CTRANS_STATUS = '10' WHERE CREF_NO = 'HAND/ACC/202409/009/OVER'
+--SELECT ''TEST,CTRANS_STATUS, * FROM PMT_AGREEMENT WHERE CREF_NO = 'HAND/ACC/202409/009/OVER'
+
+--SELECT * FROM GST_APPROVAL_I WHERE CREF_NO = 'HAND/ACC/202409/009/OVER'
+
+--UPDATE GST_APPROVAL_I SET CAPPROVAL_STATUS = '02' WHERE CREF_NO = 'HAND/ACC/202409/009/OVER' AND CUSER_ID ='HMC'
+
+--SELECT * FROM GST_APPROVAL_I WHERE CREF_NO = 'HAND/ACC/202409/009/OVER'
+
+--SELECT * FROM PMT_AGREEMENT WHERE CREF_NO = 'LOI-U-ACC-202409-00002'
+--SELECT * FROM PMT_AGREEMENT_UNIT WHERE CREF_NO = 'LOI-U-ACC-202409-00002'
+--SELECT * FROM PMT_AGREEMENT_UTILITY WHERE CREF_NO = 'LOI-U-ACC-202409-00002'
+ROLLBACK
+begin transaction
+--HO LIST
+ EXEC RSP_PM_GET_HANDOVER_LIST
+	  @CCOMPANY_ID		='RCD'
+	  , @CPROPERTY_ID	='ASHMD'
+	  , @CTRANS_CODE	='802130'
+	  , @CLANG_ID		='EN'
+
+--HO LIST DETAIL UNIT EDIT/VIEW
+EXEC RSP_PM_GET_HANDOVER_UNIT
+	 @CCOMPANY_ID	 ='RCD'
+    ,@CPROPERTY_ID	 ='ASHMD'
+	,@CDEPT_CODE	 ='ACC'
+    ,@CTRANS_CODE	 ='802130'
+    ,@CREF_NO		 ='HAND/ACC/202409/009/OVER'
+    ,@CBUILDING_ID	 ='Tower B'
+    ,@CLANG_ID		 ='EN'
+
+
+	
+------------cr02
+BEGIN TRANSACTION
+
+--LOI LIST
+EXEC RSP_PM_GET_HANDOVER_LIST
+	  @CCOMPANY_ID		='RCD'
+	  , @CPROPERTY_ID	='ASHMD'
+	  , @CTRANS_CODE	='802061'
+	  , @CLANG_ID		='EN'
+
+--LOI LIST DETAIL ADD
+EXEC RSP_PM_GET_HANDOVER_DETAIL
+	 @CCOMPANY_ID	 ='RCD'
+    ,@CPROPERTY_ID	 ='ASHMD'
+    ,@CTRANS_CODE	 ='802061'
+    ,@CLANG_ID		 ='EN'
+    ,@CDEPT_CODE	 ='ACC'
+    ,@CREF_NO		 ='LOI-U-ACC-202409-00002'
+    ,@CBUILDING_ID	 ='Tower B'
+    ,@CSAVEMODE		 ='NEW'
+
+--LOI LIST DETAIL UNIT ADD
+EXEC RSP_PM_GET_HANDOVER_UNIT
+	 @CCOMPANY_ID	 ='RCD'
+    ,@CPROPERTY_ID	 ='ASHMD'
+	,@CDEPT_CODE	 ='ACC'
+    ,@CTRANS_CODE	 ='802061'
+    ,@CREF_NO		 ='LOI-U-ACC-202409-00002'
+    ,@CBUILDING_ID	 ='Tower B'
+    ,@CLANG_ID		 ='EN'
+
+--LOI LIST DETAIL UTILITY ADD
+EXEC RSP_PM_GET_HANDOVER_UTILITY
+     @CCOMPANY_ID	 ='RCD'
+    ,@CPROPERTY_ID	 ='ASHMD'
+	,@CDEPT_CODE	 ='ACC'
+    ,@CTRANS_CODE	 ='802061'
+    ,@CREF_NO		 ='LOI-U-ACC-202409-00002'
+    ,@CBUILDING_ID	 ='Tower B'
+    ,@CLANG_ID		 ='EN'
+
+CREATE TABLE #GRID_UNIT(
+		[CFLOOR_ID] [varchar](20) NOT NULL DEFAULT ''
+       ,[CUNIT_ID] [varchar](20) NOT NULL DEFAULT ''
+       ,[NACTUAL_AREA_SIZE] [numeric](8,2)NOT NULL DEFAULT 0
+)
+INSERT INTO #GRID_UNIT VALUES 
+('Floor1','UNT 1',20),
+('Floor1','UNT 2',100)
+
+CREATE TABLE #GRID_UTILITY(
+	[CFLOOR_ID] [varchar](20) NOT NULL DEFAULT '',
+    [CUNIT_ID] [varchar](20) NOT NULL DEFAULT '',
+	[CCHARGES_TYPE] [varchar](2) NOT NULL,
+	[CCHARGES_ID] [varchar](20) NOT NULL,
+	[CMETER_NO] [varchar](50) NOT NULL,
+         [CSTART_YEAR] [varchar](4) NOT NULL,
+	[CSTART_MONTH] [varchar](2) NOT NULL,
+	[IMETER_START] [int] NOT NULL,
+         [IBLOCK1_START] [int] NOT NULL,
+         [IBLOCK2_START] [int] NOT NULL
+)
+
+INSERT INTO #GRID_UTILITY VALUES 
+('Floor1','UNT 1','01','EC01','20240628','2024','10',0,10,15)
+
+--ADD NEW HO
+EXEC [RSP_PM_MAINTAIN_HANDOVER]
+	@CCOMPANY_ID					= 'RCD'
+	, @CPROPERTY_ID					= 'ASHMD'
+	, @CTRANS_CODE					= '802130'
+	, @CREF_NO						= ''
+	, @CREF_DATE					= '20240919'
+	, @CBUILDING_ID					= 'Tower B'
+	, @CHAND_OVER_DATE				= '20240920'
+	, @CSTART_DATE					= '20240917'
+	, @CEND_DATE					= '20250916'
+	, @CACTION						= 'NEW'
+	, @CUSER_ID						= 'CH'
+	, @CLINK_DEPT					= 'ACC'
+	, @CLINK_TRANSCODE				= '802061'
+	, @CLINK_REFNO					= 'LOI-U-ACC-202409-00002'
+
+
+--HO LIST
+ EXEC RSP_PM_GET_HANDOVER_LIST
+	  @CCOMPANY_ID		='RCD'
+	  , @CPROPERTY_ID	='ASHMD'
+	  , @CTRANS_CODE	='802130'
+	  , @CLANG_ID		='EN'
+
+
+	  EXEC RSP_PM_GET_HANDOVER_UTILITY
+     @CCOMPANY_ID	 ='RCD'
+    ,@CPROPERTY_ID	 ='ASHMD'
+	,@CDEPT_CODE	 ='ACC'
+    ,@CTRANS_CODE	 ='802130'
+    ,@CREF_NO		 = 'HAND/ACC/202409/008/OVER'
+    ,@CBUILDING_ID	 ='Tower B'
+    ,@CLANG_ID		 ='EN'
+
+	rollback
+
+	EXEC RSP_PM_GET_HANDOVER_UTILITY
+     @CCOMPANY_ID	 ='RCD'
+    ,@CPROPERTY_ID	 ='ASHMD'
+	,@CDEPT_CODE	 ='ACC'
+    ,@CTRANS_CODE	 ='802130'
+    ,@CREF_NO		 = 'HAND/ACC/202409/009/OVER'
+    ,@CBUILDING_ID	 ='Tower B'
+    ,@CLANG_ID		 ='EN'
+
+
+	delete from sat
+
+	RSP_PM_MAINTAIN_HANDOVER
+
+
+
+--ADD NEW HO
+EXEC [RSP_PM_MAINTAIN_HANDOVER]
+	@CCOMPANY_ID					= 'RCD'
+	, @CPROPERTY_ID					= 'ASHMD'
+	, @CTRANS_CODE					= '802130'
+	, @CREF_NO						= 'HAND/ACC/202409/006/OVER'
+
+	, @CREF_DATE					= ''
+	, @CBUILDING_ID					= ''
+	, @CHAND_OVER_DATE				= ''
+	, @CSTART_DATE					= ''
+	, @CEND_DATE					= ''
+	, @CACTION						= 'DELETE'
+	, @CUSER_ID						= 'HMC'
+	, @CLINK_DEPT					= 'ACC'
+	, @CLINK_TRANSCODE				= ''
+	, @CLINK_REFNO					= ''
+
+
+
+	--------------------------UPLOAD ----------
+
+	 EXEC RSP_PM_UPLOAD_HANDOVER
+	    @CCOMPANY_ID	='RCD'
+	  , @CPROPERTY_ID	='ASHMD'
+	  , @CTRANS_CODE	='802061' ---LOI
+	  , @CUSER_ID		='EN'
+	  , @CKEY_GUID	='aaaa'
+
+
+	exec   RSP_PM_GET_DOWN_HO_TEMPLATE
+
+	@CCOMPANY_ID	='RCD'
+	  , @CPROPERTY_ID	='ASHMD'
+	  , @CTRANS_CODE	='802061' ---LOI
+	  , @CLANG_ID		='EN'
+	  , @COUTPUT_TYPE	='A'
+
+	  	exec   RSP_PM_GET_DOWN_HO_TEMPLATE
+	@CCOMPANY_ID	='RCD'
+	  , @CPROPERTY_ID	='ASHMD'
+	  , @CTRANS_CODE	='802061' ---LOI
+	  , @CLANG_ID		='EN'
+	  , @COUTPUT_TYPE	='UN'
+
+
+	  	exec   RSP_PM_GET_DOWN_HO_TEMPLATE
+	@CCOMPANY_ID	='RCD'
+	  , @CPROPERTY_ID	='ASHMD'
+	  , @CTRANS_CODE	='802061' ---LOI
+	  , @CLANG_ID		='EN'
+	  , @COUTPUT_TYPE	='UT'
+
+	  SELECT * FROM GST_UPLOAD_ERROR_STATUS
+	  where CKEY_GUID = 'b5fe3c29e1554a36937f3769f29d00b1'
+
+
+	  PMT_AGREEMENT
+
+	  --UNT0A002003
+
+
+
+ begin transaction	
+CREATE TABLE #LEASE_AGREEMENT(NO			INT
+				,CCOMPANY_ID		VARCHAR(8)							
+				,CPROPERTY_ID		VARCHAR(20)	
+				,CTRANS_CODE VARCHAR(10)
+				,CDEPT_CODE		VARCHAR(20)		
+				,CLOI_REF_NO VARCHAR(30)
+				,CBUILDING_ID		VARCHAR(20)
+				,CREF_NO			VARCHAR(30)	
+				,CREF_DATE		CHAR(8)			
+				,CHO_ACTUAL_DATE    VARCHAR(8)
+				,ISEQ_NO_ERROR INT
+				)
+
+INSERT INTO #LEASE_AGREEMENT VALUES 
+(1, 'RCD', 'ashmd', '802061','acc', 'CheckACC-20240500001-PM',
+'TW-A', '20241010','20241010', '20241015', 1)
+
+select * from #LEASE_AGREEMENT
+
+CREATE TABLE #LEASE_AGREEMENT_UNIT
+		( NO INT
+                            ,CCOMPANY_ID VARCHAR(8)
+                            ,CPROPERTY_ID VARCHAR(20)
+                            ,CTRANS_CODE VARCHAR(10)
+
+                            ,CDEPT_CODE VARCHAR(20)
+                            ,CLOI_REF_NO VARCHAR(30)
+                            ,CBUILDING_ID VARCHAR(20)
+                            ,CFLOOR_ID VARCHAR(30)
+
+                            ,CUNIT_ID VARCHAR(20)
+                            ,NACTUAL_AREA_SIZE NUMERIC(8,2)
+                            ,ISEQ_NO_ERROR INT
+							)
+INSERT INTO #LEASE_AGREEMENT_UNIT VALUES 
+(1, 'RCD', 'ashmd', '802061',
+'acc', 'CheckACC-20240500001-PM','Tw-A', 'L02',
+'UNT0A002003',12, 2)
+
+select * from #LEASE_AGREEMENT_UNIT
+
+CREATE TABLE #LEASE_AGREEMENT_UTILITY( NO INT
+                            ,CCOMPANY_ID VARCHAR(8)
+                            ,CPROPERTY_ID VARCHAR(20)
+                            ,CTRANS_CODE VARCHAR(10)
+
+                            ,CDEPT_CODE VARCHAR(20)
+                            ,CLOI_REF_NO VARCHAR(30)
+                            ,CBUILDING_ID VARCHAR(20)
+                            ,CFLOOR_ID VARCHAR(30)
+
+                            ,CUNIT_ID VARCHAR(20)
+                            ,CCHARGES_TYPE_ID VARCHAR(200)
+                            ,CCHARGES_TYPE_NAME VARCHAR(200)
+                            ,CCHARGES_ID	 VARCHAR(20)
+
+                            ,CCHARGES_NAME	 VARCHAR(200)
+                            ,CMETER_NO	 VARCHAR(50)
+                            ,CSTART_INV_PRD	 VARCHAR(6)
+                            ,IMETER_START INT
+
+                            ,IBLOCK1_START	 INT
+                            ,IBLOCK2_START	 INT
+                            ,ISEQ_NO_ERROR INT)
+
+INSERT INTO #LEASE_AGREEMENT_UTILITY VALUES 
+(1, 'RCD', 'ashmd', '802061',
+'acc', 'CheckACC-20240500001-PM','Tw-A', 'L02',
+'UNT0A002003', '03','Water', 'UCHT02',
+'Dev Tes', ' WTR-UNTA002001','202410', 12,
+12, 12, 3)
+
+select * from #LEASE_AGREEMENT_UTILITY
+
+exec RSP_PM_UPLOAD_HANDOVER
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY_ID = 'ashmd',
+		@CTRANS_CODE = '802130',
+		@CUSER_ID = 'hmc',
+		@CKEY_GUID = '000111'
+--EXEC RSP_PM_UPLOAD_HANDOVER @CCOMPANY_ID, @CPROPERTY_ID, @CTRANS_CODE, @CUSER_ID, @CKEY_GUID
+
+ EXEC RSP_PM_GET_HANDOVER_LIST
+	  @CCOMPANY_ID		='RCD'
+	  , @CPROPERTY_ID	='ASHMD'
+	  , @CTRANS_CODE	='802130'
+	  , @CLANG_ID		='EN'	
+	  
+
+	rollback
+
+SELECT * FROM GST_UPLOAD_ERROR_STATUS
+where CKEY_GUID = 'aebcc29db11241ca8719e0ab72b7174f'
+
+/* The multi-part identifier "A.CTRANS_CODE" could not be bound.  
+The multi-part identifier "A.CDEPT_CODE" could not be bound.  
+The multi-part identifier "A.CLOI_REF_NO" could not be bound.  
+The multi-part identifier "A.CHO_ACTUAL_DATE" could not be bound.  
+The multi-part identifier "A.CHO_ACTUAL_DATE" could not be bound.  
+The multi-part identifier "A.NO" could not be bound.
+RSP_PM_UPLOAD_HANDOVER
+ WTR-UNTA002001
+
+PMT_AGREEMENT

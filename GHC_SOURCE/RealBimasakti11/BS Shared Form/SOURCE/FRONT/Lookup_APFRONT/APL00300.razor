@@ -1,0 +1,76 @@
+@* @using Lookup_APCOMMON.DTOs.APL00200 *@
+@* @using LookupAPFrontResources *@
+@* @inherits R_Page *@
+@* @attribute [R_Page(Title = "Product Lookup")] *@
+@* @inject R_ILocalizer<Resources_Dummy_Class_LookupAP> _localizer *@
+@* <R_StackLayout Style="width: 900px"> *@
+@*     <R_StackLayout Row> *@
+@* *@
+@*         <R_ItemLayout> *@
+@*             <R_RadioGroup Data="@_viewModel.RadioButton" *@
+@*                           @bind-Value="@_viewModel.ProductLookupEntity.RadioButton" *@
+@*                           ValueField="@nameof(APL00200DTO.Code)" *@
+@*                           TextField="@nameof(APL00200DTO.Desc)" *@
+@*                           OnChanged="@OnChanged" *@
+@*                           R_ConductorSource="@_conductorRef"> *@
+@*             </R_RadioGroup> *@
+@*         </R_ItemLayout> *@
+@*         <R_ItemLayout col="2"> *@
+@*             <R_TextBox @bind-Value="@_viewModel.ProductLookupEntity.CCATEGORY_ID" *@
+@*                        R_ConductorSource="@_conductorRef" *@
+@*                        Enabled="false"/> *@
+@*         </R_ItemLayout> *@
+@* *@
+@*         <R_ItemLayout> *@
+@*             <R_Lookup R_Before_Open_Lookup="@R_BeforeOpenLookUp" R_After_Open_Lookup="R_AfterOpenLookUp" *@
+@*                       Enabled="@(_viewModel.ProductLookupEntity.RadioButton == "S")"> *@
+@*                 ... *@
+@*             </R_Lookup> *@
+@*         </R_ItemLayout> *@
+@* *@
+@*         <R_ItemLayout col="3"> *@
+@*             <R_TextBox @bind-Value="@_viewModel.ProductLookupEntity.CCATEGORY_NAME" *@
+@*                        R_ConductorSource="@_conductorRef" *@
+@*                        Enabled="false"/> *@
+@*         </R_ItemLayout> *@
+@*         <R_ItemLayout> *@
+@*             <R_Button OnClick="Refresh_Button"> *@
+@*                 @_localizer["RFSH"] *@
+@*             </R_Button> *@
+@*         </R_ItemLayout> *@
+@* *@
+@*     </R_StackLayout> *@
+@* *@
+@*     <R_StackLayout Row> *@
+@*         <R_Grid @ref="@GridRef" *@
+@*                 DataSource="_viewModel.ProductLookupGrid" *@
+@*                   R_GridType="R_eGridType.Navigator" *@
+@*                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync" *@
+@*                 Pageable *@
+@*                 AllowAddNewRow="false" *@
+@*                 AllowEditRow="false" *@
+@*                 AllowDeleteRow="false" *@
+@*                 Height="300px" *@
+@*                 PageSize="5"> *@
+@*             <R_GridColumns> *@
+@*                 <R_GridTextColumn FieldName="CPRODUCT_ID" HeaderText="@_localizer["PRDCT_ID"]"></R_GridTextColumn> *@
+@*                 <R_GridTextColumn FieldName="CPRODUCT_NAME" HeaderText="@_localizer["PRDCT_NM"]"></R_GridTextColumn> *@
+@*                 <R_GridTextColumn FieldName="CALIAS_NAME" HeaderText="@_localizer["ALS_NM"]"></R_GridTextColumn> *@
+@*                 <R_GridTextColumn FieldName="CUNIT1" HeaderText="@_localizer["UNIT"]"></R_GridTextColumn> *@
+@*                 <R_GridTextColumn FieldName="CCATEGORY_NAME" HeaderText="@_localizer["CTGRY"]"></R_GridTextColumn> *@
+@*                 <R_GridCheckBoxColumn FieldName="LTAXABLE" HeaderText="@_localizer["TXBLE"]"></R_GridCheckBoxColumn> *@
+@*             </R_GridColumns> *@
+@*         </R_Grid> *@
+@*     </R_StackLayout> *@
+@* *@
+@*     <R_StackLayout Row Class="justify-content-end"> *@
+@*         <R_Button Enabled="@(_viewModel.ProductLookupGrid.Count != 0 && _viewModel.ProductLookupEntity.RadioButton != "")" *@
+@*                   OnClick="Button_OnClickOkAsync"> *@
+@*             @_localizer["OK"] *@
+@*         </R_Button> *@
+@*         <R_Button OnClick="Button_OnClickCloseAsync"> *@
+@*             @_localizer["CNCL"] *@
+@*         </R_Button> *@
+@*     </R_StackLayout> *@
+@* *@
+@* </R_StackLayout> *@

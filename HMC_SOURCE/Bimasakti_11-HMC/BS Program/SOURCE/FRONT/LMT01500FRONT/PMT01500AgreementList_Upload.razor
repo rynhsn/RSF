@@ -1,0 +1,222 @@
+@inherits R_Page;
+@inject R_ILocalizer<Resources_PMT01500_Class> _localizer
+@attribute [R_Page(Title = "Upload Lease Manager")]
+
+
+
+<div hidden="@false" style="width: 1000px; height: 460px;">
+
+<R_StackLayout>
+
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="2" Class="d-inline">
+            <R_Label>
+                    @_localizer["_PropertySmall"]
+                </R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_ComboBox Data="@_viewModel.loPropertyList"
+                        @bind-Value="@_viewModel.CurrentObjectParam.CPROPERTY_ID"
+                        Enabled="false"
+                        ValueField="@nameof(PMT01500PropertyListDTO.CPROPERTY_ID)"
+                        TextField="@nameof(PMT01500PropertyListDTO.CPROPERTY_ID)"/>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="5">
+
+            <R_TextBox @bind-Value="@_viewModel.CurrentObjectParam.CPROPERTY_NAME"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+
+    </R_StackLayout>
+    <R_StackLayout Row>
+
+        <R_ItemLayout col="2" Class=" d-inline">
+            <R_Label>
+                    @_localizer["_SourceFile"]
+                </R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_TextBox @bind-Value="@_viewModel.SourceFileName"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_ItemLayout col="7" Class="ps-1">
+                <R_InputFile OnChange="@SourceUpload_OnChange"
+                             Accepts="@accepts">
+                </R_InputFile>
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_Grid @ref="@_gridRefLeaseManagerUpload"
+            DataSource="@_viewModel.LeaseManagerValidateUploadError"
+            Pageable
+            R_GridType="@R_eGridType.Batch"
+            PageSize="10"
+            Height="300px"
+            Width="980px"
+            R_ServiceGetListRecord="@Upload_ServiceGetListRecord">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.NO)"
+                                   HeaderText="@_localizer["_No"]"
+                                   Width="65px" />
+
+            <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CBUILDING_ID)"
+                                   HeaderText="@_localizer["_Building"]"
+                                   Width="100px" />
+
+            <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CDEPT_CODE)"
+                                   HeaderText="@_localizer["_Department*"]"
+                                   Width="130px" />
+
+            <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CREF_NO)"
+                                   HeaderText="@_localizer["_AgreementNo*"]"
+                                   Width="160px" />
+
+                <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CREF_DATE)"
+                                  HeaderText="@_localizer["_AgreementDate"]"
+                                  Width="120px" />
+
+                <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CDOC_NO)"
+                                  HeaderText="@_localizer["_DocumentNo"]"
+                                  Width="150px" />
+
+                <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CDOC_DATE)"
+                                  HeaderText="@_localizer["_DocumentDate"]"
+                                  Width="120px" />
+
+            <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CSTART_DATE)"
+                                   HeaderText="@_localizer["_StartDate*"]"
+                                  Width="120px" />
+
+                <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CEND_DATE)"
+                                  HeaderText="@_localizer["_EndDate"]"
+                                  Width="120px" />
+
+            <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CYEAR)"
+                                   HeaderText="@_localizer["_Year"]"
+                                   Width="75" />
+                                   
+            <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CMONTH)"
+                                   HeaderText="@_localizer["_Month"]"
+                                  Width="85px" />
+
+                <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CDAY)"
+                                  HeaderText="@_localizer["_Day"]"
+                                  Width="85px" />
+
+                <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CCURRENCY_CODE)"
+                                  HeaderText="@_localizer["_Currency"]"
+                                  Width="105px" />
+
+                <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CLEASE_MODE)"
+                                  HeaderText="@_localizer["_LeaseMode"]"
+                                  Width="152px" />
+
+                <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CCHARGE_MODE)"
+                                  HeaderText="@_localizer["_ChargeMode"]"
+                                  Width="152px" />
+
+                <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CSALESMAN_ID)"
+                                  HeaderText="@_localizer["_Salesman"]"
+                                  Width="152px" />
+
+            <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CTENANT_ID)"
+                                   HeaderText="@_localizer["_Tenant*"]"
+                                   Width="152px" />
+
+            <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CUNIT_DESCRIPTION)"
+                                   HeaderText="@_localizer["_UnitDescription*"]"
+                                   Width="152px" />
+
+            <R_GridTextColumn FieldName="@nameof(PMT01500UploadErrorValidateDTO.CNOTES)"
+                                   HeaderText="@_localizer["_Note"]"
+                                  Width="152px" />
+
+                <R_GridTextColumn FieldName=@nameof(PMT01500UploadErrorValidateDTO.CNOTESError)
+                                  Width="300px"
+                                  HeaderText="@_localizer["_NotesError"]"
+                                  Visible="@_viewModel.VisibleError" />
+
+            <R_GridTextColumn FieldName=@nameof(PMT01500UploadErrorValidateDTO.ErrorFlag)
+                              Width="150px"
+                                   HeaderText="@_localizer["_Valid"]"
+                                   Visible="@_viewModel.VisibleError" />
+
+
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_ProgressBar Label="@_viewModel.Message" MaxValue="100" Value="@_viewModel.Percentage"></R_ProgressBar>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row>
+    <R_ItemLayout col="8">
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_TotalRows"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_NumericTextBox @bind-Value="@_viewModel.SumListExcel"
+                                  Arrows="false"
+                                  Enabled="false">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_Valid"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2" Class="bg-success">
+                <R_NumericTextBox @bind-Value="@_viewModel.SumValidDataExcel"
+                                  Arrows="false"
+                                  Enabled="false">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_Invalid"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2" Class="badge bg-danger">
+                <R_NumericTextBox @bind-Value="@_viewModel.SumInvalidDataExcel"
+                                  Arrows="false"
+                                  Enabled="false">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="4" hidden="@_viewModel.VisibleError">
+        <R_StackLayout Row Class="justify-content-end">
+            <R_ItemLayout>
+                <R_Button OnClick="@Button_OnClickCloseAsync">
+                    <R_Label>@_localizer["_Cancel"]</R_Label>
+                </R_Button>
+                <R_Button OnClick="@Button_OnClickOkAsync" Enabled="@FileHasData">
+                    <R_Label>@_localizer["_Process"]</R_Label>
+                </R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="4" hidden="@(!_viewModel.VisibleError)">
+        <R_StackLayout Row Class="justify-content-end">
+            <R_ItemLayout>
+                <R_Button OnClick="@Button_OnClickCloseAsync">
+                    <R_Label>@_localizer["_Cancel"]</R_Label>
+                </R_Button>
+                <R_Button OnClick="@Button_OnClickSaveAsync">
+                    <R_Label>@_localizer["_SaveToExcel"]</R_Label>
+                </R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+</div>

@@ -1,0 +1,12 @@
+'8001' -- Error process, please contact your administrator!
+'8002' -- Category ID is empty!
+'8003' -- Category Name is empty!
+'8004' -- Parent Category ID is empty!
+'8005' -- Level is empty!
+'8006' -- Cannot assign category in root level!
+'8007' -- Level cannot be negative!
+'8008' -- Cannot add, found duplicate Category ID!
+'8009' -- Cannot add or edit, parent Category ID not found!
+'8010' -- Cannot delete, children is not empty!
+'8011' -- Cannot delete, Category has been used in other programs!
+'8012' -- Cannot add child, parent category has been used in other programs!

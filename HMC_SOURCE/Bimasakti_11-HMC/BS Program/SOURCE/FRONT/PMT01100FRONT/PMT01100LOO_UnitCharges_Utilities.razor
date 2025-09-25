@@ -1,0 +1,133 @@
+@inherits R_Page
+
+<R_StackLayout>
+
+    <!-- Offer No -->
+    <R_StackLayout Row>
+
+        <R_StackLayout Row Class="col-6">
+
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_UnitId"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModel.oHeaderUtilitiesEntity.CUNIT_ID"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_viewModel.oHeaderUtilitiesEntity.CUNIT_NAME"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+    </R_StackLayout>
+
+
+    <!-- Utilities -->
+    <R_Grid @ref="@_gridUtilities"
+            DataSource="_viewModel.oListUtilities"
+            R_ConductorGridSource="@_conductorUtilities"
+            R_GridType="@R_eGridType.Original"
+            R_ServiceGetListRecord="@R_ServiceGetListUtilitiesListRecord"
+            R_ServiceGetRecord="@ServiceGetRecord"
+            R_ServiceDelete="@ServiceDelete"
+            R_ServiceSave="@ServiceSave"
+            R_Display="@ServiceR_Display"
+            R_Validation="@R_Validation"
+            R_CellValueChanged="@R_CellValueChangedAsync"
+            R_Before_Open_Grid_Lookup="Before_Open_Lookup"
+            R_After_Open_Grid_Lookup="After_Open_Lookup"
+            R_CellLostFocused="@R_CellLostFocus"
+            R_AfterDelete="AfterDelete"
+            R_AfterAdd="@AfterAdd"
+            Pageable
+            Height="400px"
+            PageSize="10"
+            AllowDeleteRow
+            AllowAddNewRow
+            AllowEditRow>
+        <R_GridColumns>
+
+            <R_GridComboBoxColumn Data="@_viewModel.oComboBoxDataCCHARGES_TYPE"
+                                  ValueField="@nameof(PMT01100ComboBoxDTO.CCODE)"
+                                  TextField="@nameof(PMT01100ComboBoxDTO.CDESCRIPTION)"
+                                  FieldName="@nameof(PMT01100LOO_UnitCharges_Utilities_UtilitiesListDTO.CCHARGES_TYPE)"
+                                  HeaderText="@_localizer["_UtilityType"]"
+                                  R_EnableAdd
+                                  R_EnableEdit="false"
+                                  Width="150px" />
+
+            <R_GridComboBoxColumn Data="@_viewModel.oComboBoxDataCMETER_NO"
+                                  ValueField="@nameof(PMT01100ResponseUtilitiesCMeterNoParameterDTO.CMETER_NO)"
+                                  TextField="@nameof(PMT01100ResponseUtilitiesCMeterNoParameterDTO.CMETER_NO)"
+                                  FieldName="@nameof(PMT01100LOO_UnitCharges_Utilities_UtilitiesListDTO.CMETER_NO)"
+                                  HeaderText="@_localizer["_MeterNo"]"
+                                  R_EnableAdd
+                                  R_EnableEdit
+                                  Width="150px" />
+
+            <R_GridNumericColumn Width="150px"
+                                 FieldName="@nameof(PMT01100LOO_UnitCharges_Utilities_UtilitiesListDTO.NCAPACITY)"
+                                 HeaderText="@_localizer["_Capacity"]"
+                                 R_EnableAdd="false"
+                                 R_EnableEdit="false" />
+
+            <R_GridNumericColumn Width="150px"
+                                 FieldName="@nameof(PMT01100LOO_UnitCharges_Utilities_UtilitiesListDTO.NCALCULATION_FACTOR)"
+                                 HeaderText="@_localizer["_CF"]"
+                                 R_EnableAdd="false"
+                                 R_EnableEdit="false" />
+
+            <R_GridLookupColumn Width="150px"
+                                FieldName="@nameof(PMT01100LOO_UnitCharges_Utilities_UtilitiesListDTO.CCHARGES_ID)"
+                                HeaderText="@_localizer["_ChargeId"]"
+                                MaxLength="20"
+                                R_EnableAdd
+                                R_EnableEdit="false" />
+
+            <R_GridTextColumn Width="150px"
+                              FieldName="@nameof(PMT01100LOO_UnitCharges_Utilities_UtilitiesListDTO.CCHARGES_NAME)"
+                              HeaderText="@_localizer["_ChargeName"]"
+                              R_EnableAdd="false"
+                              R_EnableEdit="false" />
+
+            <R_GridTextColumn Width="150px"
+                              FieldName="@nameof(PMT01100LOO_UnitCharges_Utilities_UtilitiesListDTO.CSTATUS_DESCR)"
+                              HeaderText="@_localizer["_Status"]"
+                              R_EnableAdd="false"
+                              R_EnableEdit="false" />
+
+            <R_GridTextColumn FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_UnitInfoListDTO.CUPDATE_BY)"
+                              HeaderText="@_localizer["_UpdatedBy"]"
+                              Width="125px" />
+
+            <R_GridDateTimePickerColumn FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_UnitInfoListDTO.DUPDATE_DATE)"
+                                        HeaderText="@_localizer["_UpdatedDate"]"
+                                        Width="225px" />
+
+            <R_GridTextColumn FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_UnitInfoListDTO.CCREATE_BY)"
+                              HeaderText="@_localizer["_CreatedBy"]"
+                              Width="125px" />
+
+            <R_GridDateTimePickerColumn FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_UnitInfoListDTO.DCREATE_DATE)"
+                                        HeaderText="@_localizer["_CreatedDate"]"
+                                        Width="225px" />
+
+        </R_GridColumns>
+
+    </R_Grid>
+
+
+
+
+</R_StackLayout>
+
+
+<R_ConductorGrid @ref="@_conductorUtilities"
+                 R_SetOther="R_SetOther"
+                 R_IsHeader />

@@ -1,0 +1,51 @@
+﻿@inherits R_Page
+@inject R_ILocalizer<GLM00400FrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_AllocYear"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_NumericTextBox ThousandSeparator="false" @bind-Value="@_AllocationPeriod_viewModel.Year"></R_NumericTextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_Button R_ConductorSource="@_AllocationPeriod_condutorRef" OnClick="@AllocationPeriod_Refresh_OnClick" R_EnableHasData R_EnableAdd="false" R_EnableEdit="false">@_localizer["_Refresh"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="4">
+        <R_Grid @ref="@_AllocationPeriod_gridRef"
+                DataSource="@_AllocationPeriod_viewModel.AllocationPeriodGrid"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="@Allocation_Period_ServiceGetListRecord"
+                Pageable="true"
+                R_ConductorSource="@_AllocationPeriod_condutorRef"
+                Height="150px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CCYEAR" HeaderText="@_localizer["_Year"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CPERIOD_NO" HeaderText="@_localizer["_Period"]"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+    <R_ItemLayout col="6">
+        <R_Grid @ref="@_AllocationPeriodCenter_gridRef"
+                DataSource="@_AllocationPeriod_viewModel.AllocationPeriodCenterGrid"
+                R_ServiceGetListRecord="@Allocation_CenterPeriod_ServiceGetListRecord"
+                Pageable="true"
+                Height="150px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CCENTER_CODE" HeaderText="@_localizer["_CenterCode"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCENTER_NAME" HeaderText="@_localizer["_CenterName"]"></R_GridTextColumn>
+                <R_GridNumericColumn ThousandSeparator="false" FieldName="NVALUE" HeaderText="@_localizer["_FormulaVal"]"></R_GridNumericColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_AllocationPeriod_condutorRef"
+             R_ViewModel="@_AllocationPeriod_viewModel"
+             R_IsHeader="true" 
+             R_ServiceGetRecord="@Allocation_Period_ServiceGetRecord"
+             R_Display="@Allocation_Period_Display"
+             />
