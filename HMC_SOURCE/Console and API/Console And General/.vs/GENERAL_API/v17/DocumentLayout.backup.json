@@ -1,0 +1,79 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\_Work\\Projects\\Console and API\\Console And General\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7E2C0D40-CC5A-4FA9-9297-11B8578E3D7B}|BIMASAKTI_GENERAL_API\\GENERAL_API.csproj|d:\\_work\\projects\\console and api\\console and general\\bimasakti_general_api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7E2C0D40-CC5A-4FA9-9297-11B8578E3D7B}|BIMASAKTI_GENERAL_API\\GENERAL_API.csproj|solutionrelative:bimasakti_general_api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30E7E291-4C45-459A-9793-C4E6BB554749}|PMA00400\\PMA00400Services\\PMA00400Services.csproj|d:\\_work\\projects\\console and api\\console and general\\pma00400\\pma00400services\\pma00400controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30E7E291-4C45-459A-9793-C4E6BB554749}|PMA00400\\PMA00400Services\\PMA00400Services.csproj|solutionrelative:pma00400\\pma00400services\\pma00400controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E2C0D40-CC5A-4FA9-9297-11B8578E3D7B}|BIMASAKTI_GENERAL_API\\GENERAL_API.csproj|d:\\_work\\projects\\console and api\\console and general\\bimasakti_general_api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7E2C0D40-CC5A-4FA9-9297-11B8578E3D7B}|BIMASAKTI_GENERAL_API\\GENERAL_API.csproj|solutionrelative:bimasakti_general_api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PMA00400Controller.cs",
+              "DocumentMoniker": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Services\\PMA00400Controller.cs",
+              "RelativeDocumentMoniker": "PMA00400\\PMA00400Services\\PMA00400Controller.cs",
+              "ToolTip": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Services\\PMA00400Controller.cs",
+              "RelativeToolTip": "PMA00400\\PMA00400Services\\PMA00400Controller.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwEwAAABZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T04:45:35.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\_Work\\Projects\\Console and API\\Console And General\\BIMASAKTI_GENERAL_API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "BIMASAKTI_GENERAL_API\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\_Work\\Projects\\Console and API\\Console And General\\BIMASAKTI_GENERAL_API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "BIMASAKTI_GENERAL_API\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-12T04:26:17.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\_Work\\Projects\\Console and API\\Console And General\\BIMASAKTI_GENERAL_API\\appsettings.json",
+              "RelativeDocumentMoniker": "BIMASAKTI_GENERAL_API\\appsettings.json",
+              "ToolTip": "D:\\_Work\\Projects\\Console and API\\Console And General\\BIMASAKTI_GENERAL_API\\appsettings.json",
+              "RelativeToolTip": "BIMASAKTI_GENERAL_API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-12T04:26:14.063Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
