@@ -1,0 +1,102 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console\\PMA00400\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5E81DF39-3FD8-446D-B5CE-7EB18C4392F3}|PMA00400HandoverStorageBack\\PMA00400HandoverStorageBack.csproj|d:\\vs2022\\simulationreal\\live_jun_2025\\console\\pma00400\\pma00400handoverstorageback\\pma00400handoverstorageback.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{5E81DF39-3FD8-446D-B5CE-7EB18C4392F3}|PMA00400HandoverStorageBack\\PMA00400HandoverStorageBack.csproj|solutionrelative:pma00400handoverstorageback\\pma00400handoverstorageback.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FE159C4-32BA-4781-8221-D2A7279322E3}|PMA00400Console\\PMA00400Console.csproj|d:\\vs2022\\simulationreal\\live_jun_2025\\console\\pma00400\\pma00400console\\pma00400console.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{4FE159C4-32BA-4781-8221-D2A7279322E3}|PMA00400Console\\PMA00400Console.csproj|solutionrelative:pma00400console\\pma00400console.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4CE301-96C7-4F6D-9B09-E70FA129018E}|PMA00400Common\\PMA00400Common.csproj|d:\\vs2022\\simulationreal\\live_jun_2025\\console\\pma00400\\pma00400common\\pma00400common.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{0D4CE301-96C7-4F6D-9B09-E70FA129018E}|PMA00400Common\\PMA00400Common.csproj|solutionrelative:pma00400common\\pma00400common.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2605E909-59EE-4908-B864-9A467848A485}|PMA00400Back\\PMA00400Back.csproj|d:\\vs2022\\simulationreal\\live_jun_2025\\console\\pma00400\\pma00400back\\pma00400back.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2605E909-59EE-4908-B864-9A467848A485}|PMA00400Back\\PMA00400Back.csproj|solutionrelative:pma00400back\\pma00400back.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 250,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PMA00400HandoverStorageBack",
+              "DocumentMoniker": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console\\PMA00400\\PMA00400HandoverStorageBack\\PMA00400HandoverStorageBack.csproj",
+              "RelativeDocumentMoniker": "PMA00400HandoverStorageBack\\PMA00400HandoverStorageBack.csproj",
+              "ToolTip": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console\\PMA00400\\PMA00400HandoverStorageBack\\PMA00400HandoverStorageBack.csproj",
+              "RelativeToolTip": "PMA00400HandoverStorageBack\\PMA00400HandoverStorageBack.csproj",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-11T03:19:19.979Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PMA00400Console",
+              "DocumentMoniker": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console\\PMA00400\\PMA00400Console\\PMA00400Console.csproj",
+              "RelativeDocumentMoniker": "PMA00400Console\\PMA00400Console.csproj",
+              "ToolTip": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console\\PMA00400\\PMA00400Console\\PMA00400Console.csproj",
+              "RelativeToolTip": "PMA00400Console\\PMA00400Console.csproj",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAEgAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-11T03:17:43.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PMA00400Common",
+              "DocumentMoniker": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console\\PMA00400\\PMA00400Common\\PMA00400Common.csproj",
+              "RelativeDocumentMoniker": "PMA00400Common\\PMA00400Common.csproj",
+              "ToolTip": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console\\PMA00400\\PMA00400Common\\PMA00400Common.csproj",
+              "RelativeToolTip": "PMA00400Common\\PMA00400Common.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-11T03:17:24.595Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PMA00400Back",
+              "DocumentMoniker": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console\\PMA00400\\PMA00400Back\\PMA00400Back.csproj",
+              "RelativeDocumentMoniker": "PMA00400Back\\PMA00400Back.csproj",
+              "ToolTip": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console\\PMA00400\\PMA00400Back\\PMA00400Back.csproj",
+              "RelativeToolTip": "PMA00400Back\\PMA00400Back.csproj",
+              "ViewState": "AQIAACoAAAAAAAAAAAAAAEUAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-11T03:13:11.617Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 325,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
