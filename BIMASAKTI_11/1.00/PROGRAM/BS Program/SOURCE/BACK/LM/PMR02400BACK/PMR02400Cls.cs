@@ -12,6 +12,8 @@ using System.Data;
 using System.Data.Common;
 using System.Diagnostics;
 using System.Reflection;
+using R_StorageCommon;
+using R_Storage;
 
 namespace PMR02400BACK
 {
@@ -116,7 +118,7 @@ namespace PMR02400BACK
             return loRtn;
         }
 
-        public PrintBaseHeaderResultDTO GetBaseHeaderLogoCompany(string pcCompanyId)
+        public PrintBaseHeaderResultDTO GetBaseHeaderLogoCompany(PMR02400ParamDTO poParam)
         {
             using Activity activity = _activitySource.StartActivity("GetBaseHeaderLogoCompany");
             var loEx = new R_Exception();
@@ -132,18 +134,44 @@ namespace PMR02400BACK
                 loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
                 loCmd = loDb.GetCommand();
 
-                lcQuery = "SELECT dbo.RFN_GET_COMPANY_LOGO(@CCOMPANY_ID) as CLOGO";
-                loCmd.CommandText = lcQuery;
-                loCmd.CommandType = CommandType.Text;
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 15, pcCompanyId);
+                //lcQuery = "SELECT dbo.RFN_GET_COMPANY_LOGO(@CCOMPANY_ID) as CLOGO";
+                //loCmd.CommandText = lcQuery;
+                //loCmd.CommandType = CommandType.Text;
+                //loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 15, pcCompanyId);
 
-                //Debug Logs
+                ////Debug Logs
+                //var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                //.Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                //_logger.LogDebug(string.Format("SELECT dbo.RFN_GET_COMPANY_LOGO(@CCOMPANY_ID) as CLOGO", loDbParam));
+
+                lcQuery = "RSP_GS_GET_PROPERTY_DETAIL";
+                loCmd = loDb.GetCommand();
+                loCmd.CommandType = CommandType.StoredProcedure;
+                loCmd.CommandText = lcQuery;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParam.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poParam.CPROPERTY_ID);
+
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-                .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _logger.LogDebug(string.Format("SELECT dbo.RFN_GET_COMPANY_LOGO(@CCOMPANY_ID) as CLOGO", loDbParam));
+                    .Where(x =>
+                        x != null && x.ParameterName.StartsWith("@"))
+                    .Select(x => x.Value);
+                _logger.LogDebug("EXEC {lcQuery} {@Parameters}", lcQuery, loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
                 loResult = R_Utility.R_ConvertTo<PrintBaseHeaderResultDTO>(loDataTable).FirstOrDefault();
+
+                if (string.IsNullOrEmpty(loResult.CSTORAGE_ID) == false)
+                {
+                    var loReadParameter = new R_ReadParameter()
+                    {
+                        StorageId = loResult.CSTORAGE_ID
+                    };
+
+                    var loReadResult = R_StorageUtility.ReadFile(loReadParameter, loConn);
+
+                    loResult.CLOGO = loReadResult.Data;
+                }
 
                 lcQuery = "EXEC RSP_GS_GET_COMPANY_INFO @CCOMPANY_ID";
                 loCmd.CommandText = lcQuery;
