@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\BIMASAKTI\Bimasakti-version\Bimasakti-version\1.00\PROGRAM\BS Program\SOURCE\API\GL\BIMASAKTI_GL_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="11/30/2023 09:40:24" ReportInfo.CreatorVersion="2023.2.21.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="GLTR" DataType="GLTR00100COMMON.GLTR00100ResultPrintDTO, GLTR00100COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="HeaderData" DataType="GLTR00100COMMON.GLTR00101DTO, GLTR00100COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="CTRANSACTION_NAME" DataType="System.String"/>
+          <Column Name="CDEPT_NAME" DataType="System.String"/>
+          <Column Name="CREF_NO" DataType="System.String"/>
+          <Column Name="CREF_DATE" DataType="System.String"/>
+          <Column Name="CDOC_NO" DataType="System.String"/>
+          <Column Name="CDOC_DATE" DataType="System.String"/>
+          <Column Name="CREVERSE_DATE" DataType="System.String"/>
+          <Column Name="CTRANS_DESC" DataType="System.String"/>
+          <Column Name="CCURRENCY_CODE" DataType="System.String"/>
+          <Column Name="NDEBIT_AMOUNT" DataType="System.Decimal"/>
+          <Column Name="NCREDIT_AMOUNT" DataType="System.Decimal"/>
+          <Column Name="NLBASE_RATE" DataType="System.Decimal"/>
+          <Column Name="NLCURRENCY_RATE" DataType="System.Decimal"/>
+          <Column Name="CLOCAL_CURRENCY_CODE" DataType="System.String"/>
+          <Column Name="CBASE_CURRENCY_CODE" DataType="System.String"/>
+          <Column Name="CSTATUS_NAME" DataType="System.String"/>
+          <Column Name="CUPDATE_BY" DataType="System.String"/>
+          <Column Name="DUPDATE_DATE" DataType="System.DateTime"/>
+          <Column Name="DREF_DATE" DataType="System.DateTime"/>
+          <Column Name="DDOC_DATE" DataType="System.DateTime"/>
+          <Column Name="DREVERSE_DATE" DataType="System.DateTime"/>
+          <Column Name="NBBASE_RATE" DataType="System.Decimal"/>
+          <Column Name="NBCURRENCY_RATE" DataType="System.Decimal"/>
+        </Column>
+        <BusinessObjectDataSource Name="ListDetail" DataType="System.Collections.Generic.List`1[[GLTR00100COMMON.GLTR00102DTO, GLTR00100COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CGLACCOUNT_NO" DataType="System.String"/>
+          <Column Name="CGLACCOUNT_NAME" DataType="System.String"/>
+          <Column Name="CCENTER_CODE" DataType="System.String"/>
+          <Column Name="CCENTER_NAME" DataType="System.String"/>
+          <Column Name="CDBCR" DataType="System.String"/>
+          <Column Name="CDETAIL_DESC" DataType="System.String"/>
+          <Column Name="CDOCUMENT_NO" DataType="System.String"/>
+          <Column Name="CDOCUMENT_DATE" DataType="System.String"/>
+          <Column Name="DDOCUMENT_DATE" DataType="System.DateTime"/>
+          <Column Name="NTRANS_AMOUNT" DataType="System.Decimal"/>
+        </BusinessObjectDataSource>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="Picture1"/>
+      <inherited Name="Text33">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="Text40">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="Text36"/>
+      <inherited Name="Text38"/>
+      <inherited Name="Text41"/>
+      <inherited Name="Text34"/>
+      <inherited Name="Text37"/>
+      <inherited Name="Text39"/>
+      <inherited Name="Text42"/>
+    </inherited>
+    <DataBand Name="Data1" ZOrder="0" Top="79.05" Width="1047.06" Height="132.3" CanGrow="true" DataSource="ResponseDataModel">
+      <TextObject Name="Text43" Width="122.85" Height="18.9" Text="Transaction Type" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text44" Left="132.3" Width="198.45" Height="18.9" Text="[ResponseDataModel.GLTR.HeaderData.CTRANSACTION_NAME]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text45" Left="1.45" Top="19.05" Width="122.85" Height="18.9" Text="Department" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text46" Top="37.8" Width="122.85" Height="18.9" Text="Reference No." Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text47" Top="56.7" Width="122.85" Height="18.9" Text="Reference Date" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text48" Top="75.6" Width="122.85" Height="18.9" Text="Document No." Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text49" Left="132.3" Top="56.7" Width="198.45" Height="18.9" Text="[Format(&quot;{0:dd-MM-yyyy}&quot;,[ResponseDataModel.GLTR.HeaderData.DREF_DATE])]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text50" Top="94.5" Width="122.85" Height="18.9" Text="Document Date" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text51" Left="132.3" Top="94.5" Width="198.45" Height="18.9" Text="[Format(&quot;{0:dd-MM-yyyy}&quot;,[ResponseDataModel.GLTR.HeaderData.DDOC_DATE])]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text52" Top="113.4" Width="122.85" Height="18.9" Text="Description" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text53" Left="132.3" Top="18.9" Width="198.45" Height="18.9" Text="[ResponseDataModel.GLTR.HeaderData.CDEPT_NAME]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text54" Left="122.85" Top="94.5" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text55" Left="122.85" Top="56.7" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text56" Left="122.85" Top="75.6" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text57" Left="122.85" Top="37.8" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text58" Left="122.85" Top="18.9" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text59" Left="122.85" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text60" Left="122.85" Top="113.4" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text61" Left="132.3" Top="37.8" Width="198.45" Height="18.9" Text="[ResponseDataModel.GLTR.HeaderData.CREF_NO]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text62" Left="132.3" Top="75.6" Width="198.45" Height="18.9" Text="[ResponseDataModel.GLTR.HeaderData.CDOC_NO]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text63" Left="132.3" Top="113.4" Width="198.45" Height="18.9" CanGrow="true" Text="[ResponseDataModel.GLTR.HeaderData.CTRANS_DESC]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text64" Left="330.75" Width="103.95" Height="18.9" Text="Currency" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text65" Left="332.2" Top="19.05" Width="103.95" Height="18.9" Text="Total Debit" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text66" Left="330.75" Top="37.8" Width="103.95" Height="18.9" Text="Total Creadit" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text70" Left="330.75" Top="94.5" Width="113.4" Height="18.9" Text="Reversing Date" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text74" Left="434.7" Top="37.8" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text75" Left="434.7" Top="18.9" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text76" Left="434.7" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text77" Left="444.15" Top="94.5" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text78" Left="444.15" Width="132.3" Height="18.9" Text="[ResponseDataModel.GLTR.HeaderData.CCURRENCY_CODE]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text79" Left="444.15" Top="18.9" Width="132.3" Height="18.9" Text="[ResponseDataModel.GLTR.HeaderData.NDEBIT_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text80" Left="444.15" Top="37.8" Width="132.3" Height="18.9" Text="[ResponseDataModel.GLTR.HeaderData.NCREDIT_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text81" Left="453.6" Top="94.5" Width="122.85" Height="18.9" Text="[Format(&quot;{0:dd-MM-yyyy}&quot;,[ResponseDataModel.GLTR.HeaderData.DREVERSE_DATE])]" Font="MS Gothic, 10pt">
+        <Highlight>
+          <Condition Expression="[ResponseDataModel.GLTR.HeaderData.CREVERSE_DATE] == &quot;&quot;" Visible="false" Font="Arial, 10pt" ApplyTextFill="false"/>
+        </Highlight>
+      </TextObject>
+      <TextObject Name="Text82" Left="585.9" Width="103.95" Height="18.9" Text="Excharge Rate" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text84" Left="595.35" Top="37.8" Width="113.4" Height="18.9" Text="Base Currency" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text86" Left="585.9" Top="94.5" Width="103.95" Height="18.9" Text="Updated By" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text88" Left="595.35" Top="18.9" Width="113.4" Height="18.9" Text="Local Currency" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text90" Left="708.75" Top="18.9" Width="28.35" Height="18.9" Text="-&gt;" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text91" Left="708.75" Top="37.8" Width="28.35" Height="18.9" Text="-&gt;" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text93" Left="585.9" Top="75.6" Width="103.95" Height="18.9" Text="Status" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text94" Left="689.85" Top="75.6" Width="217.35" Height="18.9" Text="[ResponseDataModel.GLTR.HeaderData.CSTATUS_NAME]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text95" Left="689.85" Top="94.5" Width="283.5" Height="18.9" Text="[ResponseDataModel.GLTR.HeaderData.CUPDATE_BY]          [ResponseDataModel.GLTR.HeaderData.DUPDATE_DATE]" Font="MS Gothic, 10pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text112" Left="737.1" Top="18.9" Width="132.3" Height="18.9" Text="[ResponseDataModel.GLTR.HeaderData.NLBASE_RATE] [ResponseDataModel.GLTR.HeaderData.CCURRENCY_CODE]" Font="MS Gothic, 10pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text113" Left="869.4" Top="18.9" Width="9.45" Height="18.9" Text="=" Font="MS Gothic, 10pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text114" Left="737.1" Top="37.8" Width="132.3" Height="18.9" Text="[ResponseDataModel.GLTR.HeaderData.NBBASE_RATE] [ResponseDataModel.GLTR.HeaderData.CCURRENCY_CODE]" Font="MS Gothic, 10pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text115" Left="869.4" Top="37.8" Width="9.45" Height="18.9" Text="=" Font="MS Gothic, 10pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text117" Left="878.85" Top="37.8" Width="170.1" Height="18.9" Text="[ResponseDataModel.GLTR.HeaderData.NBCURRENCY_RATE] [ResponseDataModel.GLTR.HeaderData.CBASE_CURRENCY_CODE]" Font="MS Gothic, 10pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text116" Left="878.85" Top="18.9" Width="170.1" Height="18.9" Text="[ResponseDataModel.GLTR.HeaderData.NLCURRENCY_RATE] [ResponseDataModel.GLTR.HeaderData.CLOCAL_CURRENCY_CODE]" Font="MS Gothic, 10pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+    </DataBand>
+    <DataBand Name="Data2" ZOrder="1" Top="237.14" Width="1047.06" Height="18.9" CanGrow="true" DataSource="ListDetail">
+      <TextObject Name="Text98" Width="122.85" Height="18.9" Text="[ResponseDataModel.GLTR.ListDetail.CGLACCOUNT_NO]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text99" Left="122.85" Width="217.35" Height="18.9" Text="[ResponseDataModel.GLTR.ListDetail.CGLACCOUNT_NAME]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text101" Left="340.2" Width="85.05" Height="18.9" Text="[ResponseDataModel.GLTR.ListDetail.CCENTER_CODE]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text103" Left="425.25" Width="103.95" Height="18.9" Text="[ResponseDataModel.GLTR.ListDetail.NTRANS_AMOUNT]" HorzAlign="Right" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter">
+        <Formats>
+          <CurrencyFormat UseLocale="false" CurrencySymbol="" NegativePattern="1"/>
+          <GeneralFormat/>
+        </Formats>
+        <Highlight>
+          <Condition Expression="[ResponseDataModel.GLTR.ListDetail.CDBCR] != &quot;D&quot;" Visible="false" Font="Arial, 10pt" ApplyTextFill="false"/>
+        </Highlight>
+      </TextObject>
+      <TextObject Name="Text105" Left="529.2" Width="103.95" Height="18.9" Text="[ResponseDataModel.GLTR.ListDetail.NTRANS_AMOUNT]" HorzAlign="Right" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter">
+        <Formats>
+          <CurrencyFormat UseLocale="false" CurrencySymbol="" NegativePattern="1"/>
+          <GeneralFormat/>
+        </Formats>
+        <Highlight>
+          <Condition Expression="[ResponseDataModel.GLTR.ListDetail.CDBCR] != &quot;C&quot;" Visible="false" Font="Arial, 10pt" ApplyTextFill="false"/>
+        </Highlight>
+      </TextObject>
+      <TextObject Name="Text106" Left="633.15" Width="198.45" Height="18.9" CanGrow="true" Text="[ResponseDataModel.GLTR.ListDetail.CDETAIL_DESC]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text109" Left="831.6" Width="85.05" Height="18.9" Text="[ResponseDataModel.GLTR.ListDetail.CDOCUMENT_NO]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text111" Left="916.65" Width="122.85" Height="18.9" Text="[Format(&quot;{0:dd-MM-yyyy}&quot;,[ResponseDataModel.GLTR.ListDetail.DDOCUMENT_DATE])]" Font="MS Gothic, 10pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+        <Highlight>
+          <Condition Expression="[ResponseDataModel.GLTR.HeaderData.CREVERSE_DATE] == &quot;&quot;" Visible="false" Font="Arial, 10pt" ApplyTextFill="false"/>
+        </Highlight>
+      </TextObject>
+      <DataHeaderBand Name="DataHeader1" Top="214.8" Width="1047.06" Height="18.9" Border.Lines="Top, Bottom" Fill.Color="LightGray" RepeatOnEveryPage="true">
+        <TextObject Name="Text96" Width="122.85" Height="18.9" Text="Account No." Font="MS Gothic, 10pt"/>
+        <TextObject Name="Text97" Left="122.85" Width="217.35" Height="18.9" Text="Account Name" Font="MS Gothic, 10pt"/>
+        <TextObject Name="Text100" Left="340.2" Width="85.05" Height="18.9" Text="Center" Font="MS Gothic, 10pt"/>
+        <TextObject Name="Text102" Left="425.25" Width="103.95" Height="18.9" Text="Debit" HorzAlign="Right" Font="MS Gothic, 10pt"/>
+        <TextObject Name="Text104" Left="529.2" Width="103.95" Height="18.9" Text="Credit" HorzAlign="Right" Font="MS Gothic, 10pt"/>
+        <TextObject Name="Text107" Left="633.15" Width="198.45" Height="18.9" Text="Description" Font="MS Gothic, 10pt"/>
+        <TextObject Name="Text108" Left="831.6" Width="85.05" Height="18.9" Text="Voucher" Font="MS Gothic, 10pt"/>
+        <TextObject Name="Text110" Left="916.65" Width="113.4" Height="18.9" Text="Date" Font="MS Gothic, 10pt"/>
+      </DataHeaderBand>
+    </DataBand>
+  </inherited>
+</inherited>

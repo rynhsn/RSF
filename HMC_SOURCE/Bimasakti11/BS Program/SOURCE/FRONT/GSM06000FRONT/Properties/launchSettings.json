@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "GSM06000Front": {
+      "commandName": "Project",
+      "nativeDebugging": true,
+      "jsWebView2Debugging": true
+    }
+  }
+}

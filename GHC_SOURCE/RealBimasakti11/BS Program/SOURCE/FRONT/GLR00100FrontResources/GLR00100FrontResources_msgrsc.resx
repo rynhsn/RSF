@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="DEPARTMENT" xml:space="preserve">
+        <value>Department</value>
+    </data>
+    <data name="FROM" xml:space="preserve">
+        <value>From</value>
+    </data>
+    <data name="TO" xml:space="preserve">
+        <value>To</value>
+    </data>
+    <data name="BY" xml:space="preserve">
+        <value>By</value>
+    </data>
+    <data name="PERIOD" xml:space="preserve">
+        <value>Period</value>
+    </data>
+    <data name="YEAR" xml:space="preserve">
+        <value>Year</value>
+    </data>
+    <data name="DATE" xml:space="preserve">
+        <value>Date</value>
+    </data>
+    <data name="CURRENCY_TYPE" xml:space="preserve">
+        <value>Currency Type</value>
+    </data>
+    <data name="PRINT" xml:space="preserve">
+        <value>Print</value>
+    </data>
+    <data name="BASED_ON_DATE" xml:space="preserve">
+        <value>Based On Date</value>
+    </data>
+    <data name="BASED_ON_TRANS_CODE" xml:space="preserve">
+        <value>Based On Transaction Code</value>
+    </data>
+    <data name="BASED_ON_REF_NO" xml:space="preserve">
+        <value>Based On Reference No.</value>
+    </data>
+    <data name="TRANS_CODE" xml:space="preserve">
+        <value>Transaction Code</value>
+    </data>
+    <data name="SORT_BY" xml:space="preserve">
+        <value>Sort By</value>
+    </data>
+    <data name="PRINT_TOTAL_BY" xml:space="preserve">
+        <value>Print Total By</value>
+    </data>
+    <data name="REF_NO" xml:space="preserve">
+        <value>Reference No.</value>
+    </data>
+
+    <!-- Period -->
+    <data name="Period" xml:space="preserve">
+        <value>Period</value>
+    </data>
+    <!-- Date -->
+    <data name="Date" xml:space="preserve">
+        <value>Date</value>
+    </data>
+    <!-- LocalCurrency -->
+    <data name="LocalCurrency" xml:space="preserve">
+        <value>Local Currency</value>
+    </data>
+    <!-- BaseCurrency -->
+    <data name="BaseCurrency" xml:space="preserve">
+        <value>Base Currency</value>
+    </data>
+    <!-- TransactionCurrency -->
+    <data name="TransactionCurrency" xml:space="preserve">
+        <value>Transaction Currency</value>
+    </data>
+    <!-- ReferenceNo -->
+    <data name="ReferenceNo" xml:space="preserve">
+        <value>Reference No.</value>
+    </data>
+
+
+    <data name="SAVE_AS" xml:space="preserve">
+        <value>Save As</value>
+        <comment>Save As</comment>
+    </data>
+    <data name="CANCEL" xml:space="preserve">
+        <value>Cancel</value>
+        <comment>Cancel</comment>
+    </data>
+    <data name="SAVE" xml:space="preserve">
+        <value>Save</value>
+        <comment>Save</comment>
+    </data>
+    <!-- Closing -->
+    <data name="Closing" xml:space="preserve">
+        <value>Closing</value>
+    </data>
+</root>

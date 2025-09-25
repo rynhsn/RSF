@@ -1,0 +1,95 @@
+@inherits R_Page
+@attribute [R_Page(Title = "HO List")]
+@inject R_ILocalizer<Resources_PMT02000_Class> _localizer
+
+
+<R_StackLayout>
+    <R_Grid @ref="@_gridHOref"
+            DataSource="_viewModel.LOIList"
+            Pageable="true"
+            @bind-PageSize="@_pageSize"
+            R_ConductorGridSource="@_conGridLOI"
+            R_GridType="@R_eGridType.Original"
+            R_ServiceGetListRecord="@R_ServiceHOListRecord"
+            R_Display="@Grid_Display"
+            AllowDeleteRow="false"
+            AllowAddNewRow="false"
+            AllowEditRow="false"
+            Height="425px">
+        <R_GridColumns>
+            <R_GridTextColumn Width="115px"
+                              FieldName="@nameof(PMT02000LOIDTO.CSTATUS_NAME)"
+                              HeaderText=@_localizer["_Status"] />
+            <R_GridTextColumn Width="175px"
+                              FieldName="@nameof(PMT02000LOIDTO.CBUILDING_NAME)"
+                              HeaderText=@_localizer["_Building"] />
+            <R_GridTextColumn Width="175px"
+                              FieldName="@nameof(PMT02000LOIDTO.CTENANT_NAME)"
+                              HeaderText=@_localizer["_Tenant"] />
+            <R_GridTextColumn Width="175px"
+                              FieldName="@nameof(PMT02000LOIDTO.CDEPT_NAME)"
+                              HeaderText=@_localizer["_Dept"] />
+            <R_GridTextColumn Width="185px"
+                              FieldName="@nameof(PMT02000LOIDTO.CUNIT_DESCRIPTION)"
+                              HeaderText=@_localizer["_UnitDesc"] />
+            <R_GridTextColumn Width="185px"
+                              FieldName="@nameof(PMT02000LOIDTO.CREF_NO)"
+                              HeaderText=@_localizer["_HORefNo"] />
+            <R_GridDatePickerColumn Width="155px"
+                                    FieldName="@nameof(PMT02000LOIDTO.DHAND_OVER_DATE)"
+                                    HeaderText=@_localizer["_HOActualDate"] />
+            <R_GridTextColumn Width="150px"
+                              FieldName="@nameof(PMT02000LOIDTO.CUPDATE_BY)"
+                              HeaderText=@_localizer["_UpdBy"] />
+            <R_GridDateTimePickerColumn Width="225px"
+                                        FieldName="@nameof(PMT02000LOIDTO.DUPDATE_DATE)"
+                                        HeaderText=@_localizer["_UpdDate"] />
+            <R_GridTextColumn Width="150px"
+                              FieldName="@nameof(PMT02000LOIDTO.CCREATE_BY)"
+                              HeaderText=@_localizer["_CreatedBy"] />
+            <R_GridDateTimePickerColumn Width="225px"
+                                        FieldName="@nameof(PMT02000LOIDTO.DCREATE_DATE)"
+                                        HeaderText=@_localizer["_CreatedDate"] />
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+<R_StackLayout Row Class="mt-2">
+    <R_ItemLayout>
+        <R_Popup R_ConductorGridSource="@_conGridLOI"
+                 R_WithLock
+                 Enabled="_viewModel._isBtnEnabled && _viewModel.lControlBtnEditDelete"
+                 R_Before_Open_Popup="@Btn_Edit"
+                 R_After_Open_Popup="@After_Edit">
+            @_localizer["_Edit"]
+        </R_Popup>
+        </R_ItemLayout>
+        <R_ItemLayout>
+        <R_Button Enabled="_viewModel._isBtnEnabled && _viewModel.lControlBtnEditDelete"
+                  OnClick="@Btn_DeleteAsync">
+            @_localizer["_Delete"]
+        </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout>
+        <R_Button Enabled="_viewModel._isBtnEnabled && _viewModel.lControlButtonSubmit"
+                  OnClick="@Btn_SubmitAsync">
+            @_localizer["_Submit"]
+        </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout>
+        <R_Button Enabled="@(_viewModel._isBtnEnabled &&  @_viewModel.lControlButtonRedraft)"
+                  OnClick="@Btn_RedraftAsync">
+            @_localizer["_Redraft"]
+        </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout>
+        <R_Popup Enabled="@(_viewModel._isBtnEnabled)"
+                 R_Before_Open_Popup="@Btn_View">
+            @_localizer["_View"]
+        </R_Popup>
+        </R_ItemLayout>
+        </R_StackLayout>
+
+<R_ConductorGrid @ref="@_conGridLOI"
+                      R_IsHeader>
+
+</R_ConductorGrid>

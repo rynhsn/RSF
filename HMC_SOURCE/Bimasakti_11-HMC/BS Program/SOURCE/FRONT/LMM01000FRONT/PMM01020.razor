@@ -1,0 +1,349 @@
+﻿@inherits R_Page
+@using PMM01000COMMON
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_StackLayout Row>
+            <R_Grid @ref="@_RateWG_gridRef"
+                    DataSource="@_viewModel.RateWGList"
+                    Pageable
+                    R_ConductorSource="@_RateWG_conductorRef"
+                    R_GridType="R_eGridType.Navigator"
+                    R_ServiceGetListRecord="RateWGDate_ServiceGetListRecord"
+                    Enabled="@(_RateWG_conductorRef.R_ConductorMode == R_eConductorMode.Normal)"
+                    Height="300px">
+                <R_GridColumns>
+                    <R_GridDatePickerColumn FieldName="@nameof(PMM01020DTO.DCHARGES_DATE)" HeaderText="@_localizer["_Date"]"></R_GridDatePickerColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="10">
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_UtilityChargesId"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_ID"
+                           R_ConductorSource="@_RateWG_conductorRef"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_NAME"
+                           R_ConductorSource="@_RateWG_conductorRef"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label FontColor="@R_eFontColor.Primary" FontStyle="@R_eFontStyle.Bold">@_HeaderData.CCHARGES_TYPE_DESCR</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row><R_ItemLayout Style="width: 21%"><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Date"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_DatePicker @bind-Value="@_viewModel.Data.DCHARGES_DATE"
+                              R_ConductorSource="@_RateWG_conductorRef"
+                              R_EnableAdd>
+                </R_DatePicker>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_CurrCode"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                           R_ConductorSource="@_RateWG_conductorRef"
+                           OnLostFocus="@Currency_OnLostFocus"
+                           R_EnableAdd R_EnableEdit>
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@Currency_Before_Open_Lookup"
+                          R_After_Open_Lookup="@Currency_After_Open_Lookup"
+                          R_ConductorSource="@_RateWG_conductorRef"
+                          R_EnableAdd
+                          R_EnableEdit>
+                    ...
+                </R_Lookup>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_PipeSize"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_NumericTextBox @ref="@PipeSize_NumericTextBox"
+                                  @bind-Value="@_viewModel.Data.NPIPE_SIZE"
+                                  R_ConductorSource="@_RateWG_conductorRef"
+                                  Arrows="false" R_EnableEdit R_EnableAdd>
+                </R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label> @_localizer["_Inch"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="5" Class="me-2">
+                <R_StackLayout Row>
+                    <R_ItemLayout Style="width: 40%">
+                        <R_Label FontColor="@R_eFontColor.Danger" Class="fw-bold">@_localizer["_Charges"]</R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout Style="width: 30%" Class="bg-success text-center fw-bold">
+                        <R_Label Class="text-light">@_localizer["_Buying"]</R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout Style="width: 30%" Class="bg-danger text-center fw-bold">
+                        <R_Label Class="text-light">@_localizer["_Selling"]</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout Style="width: 40%">
+                        <R_Label>@_localizer["_StandCharges"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 30%" >
+                        <R_NumericTextBox @bind-Value="@_viewModel.Data.NBUY_STANDING_CHARGE"
+                                          R_ConductorSource="@_RateWG_conductorRef"
+                                          Arrows="false" R_EnableEdit R_EnableAdd>
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 30%" >
+                        <R_NumericTextBox @bind-Value="@_viewModel.Data.NSTANDING_CHARGE"
+                                          R_ConductorSource="@_RateWG_conductorRef"
+                                          Arrows="false" R_EnableEdit R_EnableAdd>
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout Style="width: 40%">
+                        <R_Label>@_localizer["_UsageRateMode"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 60%">
+                        <R_RadioGroup Layout="R_eRadioGroupLayout.Horizontal"
+                                      Data="@_Universal_viewModel.UsageRateModeList"
+                                      Value="@_viewModel.Data.CUSAGE_RATE_MODE"
+                                      ValueChanged="@((string value) => UsageRateMode_OnChange(value))"
+                                      ValueField="@nameof(PMM01000UniversalDTO.CCODE)"
+                                      TextField="@nameof(PMM01000UniversalDTO.CDESCRIPTION)"
+                                      R_ConductorSource="@_RateWG_conductorRef" R_EnableEdit R_EnableAdd>
+                        </R_RadioGroup>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout Style="width: 40%">
+                        <R_Label>@_localizer["_UsageChargesRate"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 30%" >
+                        <R_NumericTextBox @bind-Value="@_viewModel.Data.NBUY_USAGE_CHARGE_RATE"
+                                          R_ConductorSource="@_RateWG_conductorRef"
+                                          Min="0" Max="100"
+                                          Arrows="false" R_EnableEdit R_EnableAdd>
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 30%" >
+                        <R_NumericTextBox @bind-Value="@_viewModel.Data.NUSAGE_CHARGE_RATE"
+                                          R_ConductorSource="@_RateWG_conductorRef"
+                                          Min="0" Max="100"
+                                          Arrows="false" R_EnableEdit R_EnableAdd>
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout Style="width: 40%">
+                        <R_CheckBox @bind-Value="@_viewModel.Data.LUSAGE_MIN_CHARGE"
+                                    R_ConductorSource="@_RateWG_conductorRef"
+                                    R_EnableEdit R_EnableAdd>
+                        </R_CheckBox>
+                        <R_Label>@_localizer["_UsageMinCharges"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 30%" >
+                        <R_NumericTextBox @bind-Value="@_viewModel.Data.NUSAGE_MIN_CHARGE_AMT"
+                                          R_ConductorSource="@_RateWG_conductorRef"
+                                          Arrows="false" Enabled="@(_viewModel.Data.LUSAGE_MIN_CHARGE && _RateWG_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout Style="width: 40%">
+                        <R_Label>@_localizer["_MaintenanceFee"]</R_Label>
+                        <R_Label FontSize="10px">@_localizer["_PerMonth"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 30%" >
+                        <R_NumericTextBox @bind-Value="@_viewModel.Data.NMAINTENANCE_FEE"
+                                          R_ConductorSource="@_RateWG_conductorRef"
+                                          Arrows="false" R_EnableEdit R_EnableAdd>
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="5">
+                        <R_CheckBox Value="@_viewModel.Data.LSPLIT_ADMIN"
+                                    ValueChanged="@((bool value) => Rate_SplitAdmin_OnChange(value))"
+                                    R_ConductorSource="@_RateWG_conductorRef"
+                                    R_EnableEdit R_EnableAdd>
+                        </R_CheckBox>
+                        <R_Label>@_localizer["_SpiltAdminInvoice"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["_AdminChargesId"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_ComboBox Data="@_viewModel.CADMIN_CHARGE_ID_LIST"
+                                    Value="@_viewModel.Data.CADMIN_CHARGE_ID"
+                                    ValueChanged="@((string value) => Rate_ChargeAdmin_OnChange(value))"
+                                    ValueField="@nameof(PMM01002DTO.CCHARGES_ID)"
+                                    TextField="@nameof(PMM01002DTO.CCHARGES_NAME)"
+                                    Enabled="@(_RateWG_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _viewModel.Data.LSPLIT_ADMIN)">
+                        </R_ComboBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="11">
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="5">
+                                <R_Label>@_localizer["_AdminFee"]</R_Label>
+                                <R_Label FontSize="10px">@_localizer["_PerMonth"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="3">
+                                <R_RadioGroup Data="@_Universal_viewModel.AdminFeeTypeList"
+                                              Value="@_viewModel.Data.CADMIN_FEE"
+                                              Layout="R_eRadioGroupLayout.Vertical"
+                                              ValueField="@nameof(PMM01000UniversalDTO.CCODE)"
+                                              TextField="@nameof(PMM01000UniversalDTO.CDESCRIPTION)"
+                                              R_ConductorSource="@_RateWG_conductorRef" R_EnableEdit R_EnableAdd ValueChanged="@((string value) => RateWG_Admin_OnChange(value))">
+                                </R_RadioGroup>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="4">
+                                <R_StackLayout Row>
+                                    <R_ItemLayout><R_Label></R_Label></R_ItemLayout>
+                                </R_StackLayout>
+                                <R_StackLayout Row>
+                                    <R_ItemLayout col="8">
+                                        <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_AMT"
+                                                          R_ConductorSource="@_RateWG_conductorRef"
+                                                          Min="0"
+                                                          Arrows="false" Enabled="@(_RateWG_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _viewModel.Data.CADMIN_FEE == "01")">
+                                        </R_NumericTextBox>
+                                    </R_ItemLayout>
+                                </R_StackLayout>
+                                <R_StackLayout Row>
+                                    <R_ItemLayout col="7">
+                                        <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_PCT"
+                                                          R_ConductorSource="@_RateWG_conductorRef"
+                                                          Min="0" Max="100"
+                                                          Arrows="false" Enabled="@(_RateWG_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _viewModel.Data.CADMIN_FEE == "02")">
+                                        </R_NumericTextBox>
+                                    </R_ItemLayout>
+                                    <R_ItemLayout col="1">
+                                        <R_Label>%</R_Label>
+                                    </R_ItemLayout>
+                                </R_StackLayout>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="5"></R_ItemLayout>
+                            <R_ItemLayout col="4">
+                                <R_CheckBox @bind-Value="@_viewModel.Data.LADMIN_FEE_TAX"
+                                            Enabled="@(_RateWG_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && string.IsNullOrWhiteSpace(_viewModel.Data.CADMIN_CHARGE_ID))">
+                                    >
+                                </R_CheckBox>
+                                <R_Label>@_localizer["_Taxable"]</R_Label>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="4">
+                        <R_Label>@_localizer["_AdminFeeFor"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_CheckBox @bind-Value="@_viewModel.Data.LADMIN_FEE_SC"
+                                    R_ConductorSource="@_RateWG_conductorRef"
+                                    R_EnableEdit R_EnableAdd>
+                        </R_CheckBox>
+                        <R_Label>@_localizer["_StandCharges"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_CheckBox @bind-Value="@_viewModel.Data.LADMIN_FEE_USAGE"
+                                    R_ConductorSource="@_RateWG_conductorRef"
+                                    R_EnableEdit R_EnableAdd>
+                        </R_CheckBox>
+                        <R_Label>@_localizer["_Usage"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_CheckBox @bind-Value="@_viewModel.Data.LADMIN_FEE_MAINTENANCE"
+                                    R_ConductorSource="@_RateWG_conductorRef"
+                                    R_EnableEdit R_EnableAdd>
+                        </R_CheckBox>
+                        <R_Label>@_localizer["_Maintainance"]</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_Grid @ref="@_RateWGDetail_gridRef"
+            DataSource="@_viewModel.RateWGDetailList"
+            Pageable
+            R_ConductorGridSource="@_RateWGDetail_conductorRef"
+            R_GridType="@R_eGridType.Batch"
+            AllowAddNewRow="@true"
+            AllowEditRow="@true"
+            AllowDeleteRow="@true"
+            Enabled="@(_RateWG_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _viewModel.Data.CUSAGE_RATE_MODE == "HM" && _viewModel.Data.DCHARGES_DATE != null)"
+            R_ServiceGetListRecord="@RateWGDetail_ServiceGetListRecord"
+            R_ServiceGetRecord="@RateWGDetail_ServiceGetRecord"
+            R_AfterAdd="@RateWGDetail_AfterAdd"
+            R_Validation="@RateWGDetail_Validation"
+            Height="200px">
+        <R_GridColumns>
+            <R_GridNumericColumn TValue="int" FieldName="IUP_TO_USAGE" Min="1" HeaderText="@_localizer["_UsageM3"]" R_EnableAdd R_EnableEdit Width="120px"></R_GridNumericColumn>
+            <R_GridTextColumn FieldName="CUSAGE_DESC" HeaderText="@_localizer["_Desc"]" R_EnableAdd R_EnableEdit MaxLength="255" Width="300px"></R_GridTextColumn>
+            <R_GridNumericColumn TValue="decimal" FieldName="NBUY_USAGE_CHARGE" Arrows="false" HeaderText="@_localizer["_Buying"]" R_EnableAdd R_EnableEdit Width="150px"></R_GridNumericColumn>
+            <R_GridNumericColumn TValue="decimal" FieldName="NUSAGE_CHARGE" Arrows="false" HeaderText="@_localizer["_Selling"]" R_EnableAdd R_EnableEdit Width="150px"></R_GridNumericColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+
+<R_StackLayout Row Class="justify-content-between mt-2">
+    <R_ItemLayout>
+        <R_AddButton R_Conductor="@_RateWG_conductorRef" Enabled="@(EnableNormalMode && EnableHasData )"></R_AddButton>
+        <R_EditButton R_Conductor="@_RateWG_conductorRef" Enabled="@(EnableNormalMode && EnableHasData && _viewModel.RateWGList.Count > 0)"></R_EditButton>
+        <R_DeleteButton R_Conductor="@_RateWG_conductorRef" Enabled="@(EnableNormalMode && EnableHasData && _viewModel.RateWGList.Count > 0)"></R_DeleteButton>
+        <R_Button Class="ms-6" OnClick="@Button_OnClickPrintAsync" Enabled="@(EnableHasData && _viewModel.RateWGList.Count > 0)" R_ConductorSource="@_RateWG_conductorRef">@_localizer["_PrintBtn"]</R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CancelButton R_Conductor="@_RateWG_conductorRef"></R_CancelButton>
+        <R_SaveButton R_Conductor="@_RateWG_conductorRef"></R_SaveButton>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_RateWG_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@RateWG_ServiceGetRecord"
+             R_SetOther="@Grid_R_SetOther"
+             R_Display="@RateWG_Display"
+             R_Validation="@RateWG_Validation"
+             R_ServiceSave="@RateWG_ServiceSave"
+             R_AfterAdd="@RateWG_AfterAdd"
+             R_ServiceDelete="@RateWG_ServiceDelete">
+</R_Conductor>
+
+<R_ConductorGrid @ref="@_RateWGDetail_conductorRef"
+                 R_ConductorParent="@_RateWG_conductorRef">
+</R_ConductorGrid>

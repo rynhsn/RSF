@@ -1,0 +1,6 @@
+1001 = Error process, please contact your administrator!
+1002 = Duplicate Charges Id!
+1003 = Cannot Delete, Charges already in used!
+1004 = Accrual Method Cannot be empty!
+
+

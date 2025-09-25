@@ -1,0 +1,193 @@
+﻿@inherits R_Page
+@inject R_ILocalizer<GLM00400FrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>@(_localizer["_AllocNo"])*</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="1">
+            <R_TextBox @ref="@AllocId_TextBox"
+                       @bind-Value="@_AllocationJournalDT_viewModel.Data.CALLOC_NO"
+                       R_ConductorSource="@_AllocationJournalDT_conductorRef"
+                       R_EnableAdd MaxLength="20">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="1" Class="text-center">
+            <R_Label>@(_localizer["_Status"])</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_CheckBox @bind-Value="@_AllocationJournalDT_viewModel.Data.LACTIVE"
+                        R_ConductorSource="@_AllocationJournalDT_conductorRef"
+                        R_EnableAdd R_EnableEdit>
+            </R_CheckBox>
+            <R_Label>@(_localizer["_Active"])</R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>@(_localizer["_AllocName"]).*</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @ref="@AllocName_TextBox"
+                       @bind-Value="@_AllocationJournalDT_viewModel.Data.CALLOC_NAME"
+                       R_ConductorSource="@_AllocationJournalDT_conductorRef"
+                       R_EnableAdd R_EnableEdit MaxLength="100">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="6">
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_Label>@(_localizer["_Dept"]).*</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_AllocationJournalDT_viewModel.Data.CDEPT_CODE"
+                               R_ConductorSource="@_AllocationJournalDT_conductorRef"
+                               OnLostFocus="@DeptCode_OnLostFocus"
+                               R_EnableAdd R_EnableEdit>
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Lookup R_ConductorSource="@_AllocationJournalDT_conductorRef" R_EnableAdd R_EnableEdit R_Before_Open_Lookup="@Allocation_Depart_Before_Open_Lookup" R_After_Open_Lookup="@Allocation_Depart_After_Open_Lookup">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_TextBox @bind-Value="@_AllocationJournalDT_viewModel.Data.CDEPT_NAME"
+                               R_ConductorSource="@_AllocationJournalDT_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@(_localizer["_UpdateBy"])</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_AllocationJournalDT_viewModel.Data.CUPDATE_BY"
+                               R_ConductorSource="@_AllocationJournalDT_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_DateTimePicker @bind-Value="@_AllocationJournalDT_viewModel.Data.DUPDATE_DATE"
+                                  R_ConductorSource="@_AllocationJournalDT_conductorRef"
+                                  Enabled="false">
+                    </R_DateTimePicker>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="6">
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_Label>@(_localizer["_SourceCenter"])</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_AllocationJournalDT_viewModel.Data.CSOURCE_CENTER_CODE"
+                               R_ConductorSource="@_AllocationJournalDT_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="@_AllocationJournalDT_viewModel.Data.CSOURCE_CENTER_NAME"
+                               R_ConductorSource="@_AllocationJournalDT_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@(_localizer["_CreateBy"])</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_AllocationJournalDT_viewModel.Data.CCREATE_BY"
+                               R_ConductorSource="@_AllocationJournalDT_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_DateTimePicker @bind-Value="@_AllocationJournalDT_viewModel.Data.DCREATE_DATE"
+                                  R_ConductorSource="@_AllocationJournalDT_conductorRef"
+                                  Enabled="false">
+                    </R_DateTimePicker>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-between mt-2">
+    <R_ItemLayout>
+        <R_AddButton R_Conductor="@_AllocationJournalDT_conductorRef"></R_AddButton>
+        <R_EditButton R_Conductor="@_AllocationJournalDT_conductorRef"></R_EditButton>
+        <R_DeleteButton R_Conductor="@_AllocationJournalDT_conductorRef"></R_DeleteButton>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CancelButton R_Conductor="@_AllocationJournalDT_conductorRef"></R_CancelButton>
+        <R_SaveButton R_Conductor="@_AllocationJournalDT_conductorRef"></R_SaveButton>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Class="mt-2">
+    <R_TabStrip @ref="@_tabAllocationChill" OnActiveTabIndexChanged="@Allocation_OnActiveTabIndexChanged" OnActiveTabIndexChanging="@Allocation_OnActiveTabIndexChanging">
+        <R_TabStripTab Title="@(_localizer["_Account"])" Id="Account">
+            <R_StackLayout Row>
+                <R_ItemLayout col="12">
+                    <R_Grid @ref="@_AllocationAccount_gridRef"
+                            DataSource="@_AllocationJournalDT_viewModel.AllocationAccountGrid"
+                            R_ServiceGetListRecord="@Allocation_Account_ServiceGetListRecord"
+                            Enabled="@(!_pageSupplierOnCRUDmode)"
+                            Pageable="true"
+                            Height="150px">
+                        <R_GridColumns>
+                            <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="Account No."></R_GridTextColumn>
+                            <R_GridTextColumn FieldName="CGLACCOUNT_NAME" HeaderText="Account Name"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName="CBSIS_LONG_NAME" HeaderText="BS / IS"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName="CDBCR_LONG_NAME" HeaderText="Debit / Credit"></R_GridTextColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="1">
+                    <R_Popup R_Before_Open_Popup="@Allocation_Account_Before_Open_Popup" R_ConductorSource="@_AllocationJournalDT_conductorRef" R_After_Open_Popup="@Allocation_Account_After_Open_Popup" R_EnableHasData R_EnableOther>Edit Account</R_Popup>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_TabStripTab>
+        <R_TabStripTab Title="@(_localizer["_TabTargetCenter"])" Id="Center" >
+            <R_TabPage @ref="@_CenterTabPage" R_Before_Open_TabPage="@Allocation_Center_Before_Open_TabPage" R_TabEventCallback="@R_TabEventCallback"></R_TabPage>
+        </R_TabStripTab>
+        <R_TabStripTab Title="@(_localizer["_TabAllocPeriod"])" Id="Period" >
+            <R_TabPage @ref="@_PeriodTabPage" R_Before_Open_TabPage="@Allocation_Period_Before_Open_TabPage" R_TabEventCallback="@R_TabEventCallback" ></R_TabPage>
+        </R_TabStripTab>
+    </R_TabStrip>
+</R_StackLayout>
+
+<R_Conductor @ref="@_AllocationJournalDT_conductorRef"
+             R_ViewModel="@_AllocationJournalDT_viewModel"
+             R_IsHeader="true" 
+             R_ServiceGetRecord="@AllocationJournalDT_ServiceGetRecord"
+             R_SetOther="@AllocationJournalDT_SetOther"
+             R_AfterAdd="@AllocationJournalDT_AfterAdd"
+             R_BeforeEdit="@AllocationJournalDT_BeforeEdit"
+             R_Validation="@AllocationJournalDT_Validation"
+             R_ServiceSave="@AllocationJournalDT_ServiceSave"
+             R_ServiceDelete="@AllocationJournalDT_ServiceDelete" 
+             R_BeforeCancel="@AllocationJournalDT_BeforeCancel"
+             R_Display="@AllocationJournalDT_Display"
+             />

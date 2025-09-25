@@ -1,0 +1,9 @@
+8001 -- Error process, please contact your administrator!
+8002 -- Ticket No is empty!
+8003 -- Ticket No is not found!
+8004 -- Pricelist ID is empty!
+8005 -- Pricelist ID is not found!
+8006 -- Pricelist Valid ID is empty!
+8007 -- Pricelist Valid ID is not found!
+8008 -- Quantity cannot be 0 or negative value!
+8009 -- Discount cannot be negative value!

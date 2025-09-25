@@ -1,0 +1,11 @@
+8001 -- Error process, please contact your administrator!
+8002 -- Call Type ID is empty!
+8003 -- Call Type Name is empty!
+8004 -- Category is empty!
+8005 -- Days cannot be negative!
+8006 -- Hours cannot be negative!
+8007 -- Minutes cannot be negative!
+8008 -- Cannot add, found duplicate Call Type ID!
+8009 -- Cannot add or edit, category is not found!
+8010 -- Cannot add or edit, category has child!
+8011 -- Cannot delete, Call Type ID has been used!

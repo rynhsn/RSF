@@ -1,0 +1,179 @@
+@page "/PMT05500"
+@inherits R_Page
+@attribute [R_Page(Title = "Deposit Manager")]
+@inject R_ILocalizer<Resources_PMT05500_Class> _localizer
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label FontStyle="R_eFontStyle.Bold"
+                 FontColor="R_eFontColor.Danger">
+            @_localizer["_Prop"]
+        </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Enabled="@_agreementViewModel._dropdownProperty"
+                    Data="@_agreementViewModel.PropertyList"
+                    Value="_agreementViewModel.PropertyValueContext"
+                    ValueField="@nameof(LMT05500PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(LMT05500PropertyDTO.CPROPERTY_NAME)"
+                    ValueChanged="@((string value) => PropertyDropdown_OnChange(value))">
+        </R_ComboBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_TabStrip @ref="_tabStrip" Class="mt-1" OnActiveTabIndexChanging="@TabChanging">
+    <R_TabStripTab Title="@_localizer["_TabAgreement"]" Id="TabAgreement">
+
+        <!-- Filtering LOI/Agrmnt List -->
+        <R_StackLayout Row>
+
+            <R_ItemLayout col="3" Class="mb-2">
+                <R_RadioGroup Data="@_agreementViewModel.GetFilterTransCode"
+                              Value="@_agreementViewModel.cFilterByTransacodeFront"
+                              ValueField="@nameof(TransCodeTypeDTO.Id)"
+                              TextField="@nameof(TransCodeTypeDTO.Name)"
+                              ValueChanged="@((string value) => FilteringTranscode_OnChange(value))" />
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_CheckBox Value="_agreementViewModel.lIncldActiveDoc"
+                            ValueChanged="@((bool value) => FilteringActiveDoc_OnChange(value))" />
+                <R_Label>@_localizer["_IncldActiveDoc"]</R_Label>
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+        <R_StackLayout>
+            <R_Grid @ref="@_gridAgreementRef"
+                    DataSource="_agreementViewModel.AgreementList"
+                    Pageable="true"
+                    @bind-PageSize="@_pageSizeAgg"
+                    R_ConductorGridSource="@_conGridAgreement"
+                    R_GridType="@R_eGridType.Original"
+                    R_ServiceGetListRecord="@R_ServiceAgreementListRecord"
+                    R_Display="@Grid_DisplayAgreement"
+                    AllowDeleteRow="false"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    Height="275px">
+                <R_GridColumns>
+                    <R_GridTextColumn Width="175px"
+                                      FieldName="@nameof(LMT05500AgreementDTO.CDEPT_NAME)"
+                                      HeaderText=@_localizer["_Dept"] />
+                    <R_GridTextColumn Width="175px"
+                                      FieldName="@nameof(LMT05500AgreementDTO.CREF_NO)"
+                                      HeaderText=@_localizer["_AgreementNo"] />
+                    <R_GridDatePickerColumn Width="135px"
+                                            FieldName="@nameof(LMT05500AgreementDTO.DSTART_DATE)"
+                                            HeaderText=@_localizer["_StartDate"] />
+                    <R_GridDatePickerColumn Width="135px"
+                                            FieldName="@nameof(LMT05500AgreementDTO.DEND_DATE)"
+                                            HeaderText=@_localizer["_EndDate"] />
+                    <R_GridTextColumn Width="175px"
+                                      FieldName="@nameof(LMT05500AgreementDTO.CTENANT_NAME)"
+                                      HeaderText=@_localizer["_Tenant"] />
+                    <R_GridTextColumn Width="175px"
+                                      FieldName="@nameof(LMT05500AgreementDTO.CBUILDING_NAME)"
+                                      HeaderText=@_localizer["_Building"] />
+                    <R_GridTextColumn Width="110px"
+                                      FieldName="@nameof(LMT05500AgreementDTO.CTRANS_STATUS_DESCR)"
+                                      HeaderText=@_localizer["_Status"] />
+                    <R_GridTextColumn Width="120px"
+                                      FieldName="@nameof(LMT05500AgreementDTO.CCATEGORY)"
+                                      HeaderText=@_localizer["_Category"] />
+                    <R_GridTextColumn Width="100px"
+                                      FieldName="@nameof(LMT05500AgreementDTO.CAGREEMENT_TYPE)"
+                                      HeaderText=@_localizer["_Type"] />
+                    <R_GridTextColumn Width="160px"
+                                      FieldName="@nameof(LMT05500AgreementDTO.CDOC_NO)"
+                                      HeaderText=@_localizer["_Doc"] />
+                    <R_GridDatePickerColumn Width="170px"
+                                            FieldName="@nameof(LMT05500AgreementDTO.DDOC_DATE)"
+                                            HeaderText=@_localizer["_DocDate"] />
+
+                    <R_GridTextColumn Width="140px"
+                                      FieldName="@nameof(LMT05500AgreementDTO.CUPDATE_BY)"
+                                      HeaderText=@_localizer["_UpdBy"] />
+                    <R_GridDateTimePickerColumn Width="190px"
+                                                FieldName="@nameof(LMT05500AgreementDTO.DUPDATE_DATE)"
+                                                HeaderText=@_localizer["_UpdDate"] />
+                    <R_GridTextColumn Width="140px"
+                                      FieldName="@nameof(LMT05500AgreementDTO.CCREATE_BY)"
+                                      HeaderText=@_localizer["_CreatedBy"] />
+                    <R_GridDateTimePickerColumn Width="190px"
+                                                FieldName="@nameof(LMT05500AgreementDTO.DUPDATE_DATE)"
+                                                HeaderText=@_localizer["_CreatedDate"] />
+                </R_GridColumns>
+            </R_Grid>
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="mt-2">
+            <R_ItemLayout col="2">
+                <R_Label Class="ms-6">@_localizer["_UnitDesc"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_agreementViewModel.UnitDescValue"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout>
+            <R_Grid @ref="@_gridDepositUnitRef"
+                    Pageable="true"
+                    DataSource="_agreementViewModel.DepositUnitList"
+                    @bind-PageSize="@_pageSizeUnit"
+                    R_ConductorGridSource="@_conGridDepositUnit"
+                    R_GridType="@R_eGridType.Original"
+                    R_ServiceGetListRecord="@R_ServiceDepositUnitListRecord"
+                    R_Display="@Grid_DisplayUnit"
+                    AllowDeleteRow="false"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    Width="1000px"
+                    Height="200px">
+                <R_GridColumns>
+                    <R_GridTextColumn Width="130px"
+                                      FieldName="@nameof(LMT05500UnitDTO.CUNIT_ID)"
+                                      HeaderText=@_localizer["_UnitId"] />
+                    <R_GridTextColumn Width="115px"
+                                      FieldName="@nameof(LMT05500UnitDTO.CFLOOR_ID)"
+                                      HeaderText=@_localizer["_Floor"] />
+                    <R_GridTextColumn Width="175px"
+                                      FieldName="@nameof(LMT05500UnitDTO.CUNIT_TYPE_ID)"
+                                      HeaderText=@_localizer["_UnitType"] />
+
+                    <R_GridNumericColumn Width="115px"
+                                         FieldName="@nameof(LMT05500UnitDTO.NGROSS_AREA_SIZE)"
+                                         Min="0"
+                                         TValue="decimal"
+                                         HeaderText=@_localizer["_Gross"] />
+                    <R_GridNumericColumn Width="115px"
+                                         FieldName="@nameof(LMT05500UnitDTO.NNET_AREA_SIZE)"
+                                         Min="0"
+                                         TValue="decimal"
+                                         HeaderText=@_localizer["_Net"] />
+                    <R_GridNumericColumn Width="115px"
+                                         FieldName="@nameof(LMT05500UnitDTO.NCOMMON_AREA_SIZE)"
+                                         Min="0"
+                                         TValue="decimal"
+                                         HeaderText=@_localizer["_Common"] />
+
+                </R_GridColumns>
+            </R_Grid>
+        </R_StackLayout>
+        </R_TabStripTab>
+
+        <R_TabStripTab Title="Deposit" Id="Tab_Deposit" Enabled="_agreementViewModel._enabledTabDeposit">
+        <R_TabPage @ref="@_tabPageDeposit" R_Before_Open_TabPage="Before_Open_Deposit"
+                   R_TabEventCallback="@R_TabEventCallback">
+        </R_TabPage>
+        </R_TabStripTab>
+
+
+
+        </R_TabStrip>
+
+
+        <R_ConductorGrid @ref="@_conGridAgreement" R_IsHeader />
+<R_ConductorGrid @ref="@_conGridDepositUnit"
+                 R_ConductorParent="@_conGridAgreement" />

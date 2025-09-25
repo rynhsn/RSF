@@ -1,0 +1,77 @@
+SELECT p.name AS ParameterName, t.name AS ParameterType, p.max_length AS ParameterLength
+FROM sys.parameters AS p
+JOIN sys.types AS t ON t.user_type_id = p.user_type_id
+WHERE object_id = OBJECT_ID('RFT_GET_GSB_CODE_INFO')
+delete from sat_locking where CUSER_ID= 'ghc'
+
+EXEC RSP_GS_GET_PROPERTY_LIST 'rcd','en'
+EXEC RSP_GS_GET_PERIOD_YEAR_RANGE 'RCD','',''
+SELECT dbo.RFN_GET_DB_TODAY ('RCD')
+SELECT _BS_CUST_TYPE.CCODE, _BS_CUST_TYPE.CDESCRIPTION FROM RFT_GET_GSB_CODE_INFO('BIMASAKTI', 'RCD', '_BS_CUST_TYPE', '', 'EN') _BS_CUST_TYPE
+
+
+EXEC RSP_PM_GET_CUST_ACTIVITY_TRANS_CODE_LIST 'RCD'	
+exec [dbo].[RSP_GS_GET_CATEGORY_LIST]
+	  'bsi'--@CCOMPANY_ID		VARCHAR(20)
+	, 'ashmd'--@CPROPERTY_ID		VARCHAR(20)
+	, 'ghc'--@CUSER_ID			VARCHAR(8)
+	, '20'-- @CCATEGORY_TYPE	VARCHAR(2) = '20' /CUSTOMER/
+
+EXEC [dbo].[RSP_PMR02000_GET_REPORT]
+	 'BSI'--@CCOMPANY_ID				-- Mandatory
+	,'ASHMD'--@CPROPERTY_ID				
+	,'GHC'--@CUSER_ID					
+	,'S'--@CREPORT_TYPE				--S=SUMMARY, D=DETAIL
+	,'T'--@CCURRENCY_TYPE			-- L=Local Currency, B=Base Currency, T=Transaction Currency
+	,'C'--@CBASED_ON					--C=CUSTOMER, J=JOURNAL GROUP
+	,'TNT01'--@CFR_BASED_ON				
+	,'TNT78'--@CTO_BASED_ON				
+	,'202411'--@@CPERIOD			
+	,'L'--@CREMAINING_BASED_ON	 -- C=CUT-OFF REMAINING, L=LAST REMAINING
+	,'20241130'--@CCUT_OFF_DATE
+	,''--@CFR_DEPT_CODE			
+	,''--@CTO_DEPT_CODE			
+	,'910020'--@CTRANS_CODE				
+	,''--@CTENANT_CATEGORY_ID	 -- PMM_CATEGORY
+	,'C'--@CSORT_BY					 -- C=CUSTOMER, D=DATE
+	,'EN'--@CLANGUAGE_ID				 -- Mandatory PMM_TENANT GSM_DEPARTMENT
+
+EXEC [dbo].[RSP_PMR02000_GET_REPORT]
+	 'BSI'--@CCOMPANY_ID				-- Mandatory
+	,'ASHMD'--@CPROPERTY_ID				
+	,'GHC'--@CUSER_ID					
+	,'D'--@CREPORT_TYPE				--S=SUMMARY, D=DETAIL
+	,'T'--@CCURRENCY_TYPE			-- L=Local Currency, B=Base Currency, T=Transaction Currency
+	,'C'--@CBASED_ON					--C=CUSTOMER, J=JOURNAL GROUP
+	,'TNT05'--@CFR_BASED_ON				
+	,'TNT05'--@CTO_BASED_ON				
+	,'202411'--@@CPERIOD			
+	,'L'--@CREMAINING_BASED_ON	 -- C=CUT-OFF REMAINING, L=LAST REMAINING
+	,'20241130'--@CCUT_OFF_DATE
+	,''--@CFR_DEPT_CODE			
+	,''--@CTO_DEPT_CODE			
+	,'910020'--@CTRANS_CODE				
+	,''--@CTENANT_CATEGORY_ID	 -- PMM_CATEGORY
+	,'C'--@CSORT_BY					 -- C=CUSTOMER, D=DATE
+	,'EN'--@CLANGUAGE_ID				 -- Mandatory PMM_TENANT GSM_DEPARTMENT
+
+
+	EXEC [dbo].[RSP_PMR02000_GET_REPORT]
+	 'BSI'--@CCOMPANY_ID				-- Mandatory
+	,'ASHMD'--@CPROPERTY_ID				
+	,'GHC'--@CUSER_ID					
+	,'S'--@CREPORT_TYPE				--S=SUMMARY, D=DETAIL
+	,'L'--@CCURRENCY_TYPE			-- L=Local Currency, B=Base Currency, T=Transaction Currency
+	,'C'--@CBASED_ON					--C=CUSTOMER, J=JOURNAL GROUP
+	,'TNT05'--@CFR_BASED_ON				
+	,'TNT05'--@CTO_BASED_ON				
+	,'202503'--@@CPERIOD			
+	,'C'--@CREMAINING_BASED_ON	 -- C=CUT-OFF REMAINING, L=LAST REMAINING
+	,'20250416'--@CCUT_OFF_DATE
+	,'02'--@CFR_DEPT_CODE			
+	,'02'--@CTO_DEPT_CODE			
+	,''--@CTRANS_CODE				
+	,''--@CTENANT_CATEGORY_ID	 -- PMM_CATEGORY
+	,'C'--@CSORT_BY					 -- C=CUSTOMER, D=DATE
+	,'EN'--@CLANGUAGE_ID
+			

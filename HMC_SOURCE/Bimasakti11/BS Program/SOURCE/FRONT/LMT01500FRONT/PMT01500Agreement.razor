@@ -1,0 +1,781 @@
+@inherits R_Page;
+@inject R_ILocalizer<Resources_PMT01500_Class> _localizer
+
+<!-- Agreement -->
+
+<R_StackLayout>
+
+    @* Building *@
+    <R_StackLayout Row>
+
+        <R_ItemLayout col="9" Class="d-flex">
+
+            <R_ItemLayout col="12" Class="d-flex">
+
+                <!-- Title and TextBoxAwal -->
+                <R_ItemLayout col="4" Class="d-flex">
+
+                    <R_ItemLayout col="5">
+                        <R_Label>
+                            @_localizer["_Building"]*
+                        </R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="7">
+                        <R_TextBox @bind-Value="@_viewModelPMT01500Agreement.Data.CBUILDING_ID"
+                                   R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                   MaxLength="20"
+                                   OnLostFocus="@OnLostFocusBuilding"
+                                   @ref="_componentCBUILDING_IDTextBox"
+                                   R_EnableAdd
+                                   R_EnableEdit="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+
+                <!-- Bag. Tengah -->
+                <R_ItemLayout col="8" Class="d-flex">
+
+                    <R_ItemLayout col="12" Class="d-flex">
+
+                        <R_ItemLayout col="11" Class="d-flex">
+
+                            <R_ItemLayout Class="ps-1 text-center" col="1">
+                                <R_Lookup R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                          @ref="@R_LookupBuildingLookup"
+                                          R_EnableAdd
+                                          R_EnableEdit="false"
+                                          R_Before_Open_Lookup="@BeforeOpenLookUpBuildingLookup"
+                                          R_After_Open_Lookup="@AfterOpenLookUpBuildingLookup">
+                                    ...
+                                </R_Lookup>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout col="11">
+                                <R_TextBox @bind-Value="@_viewModelPMT01500Agreement.Data.CBUILDING_NAME"
+                                           R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                           Enabled="false">
+                                </R_TextBox>
+                            </R_ItemLayout>
+
+                        </R_ItemLayout>
+
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    @* Transaction *@
+    <R_StackLayout Row>
+
+        <!-- LEFT -->
+        <R_ItemLayout col="9" Class="d-flex">
+
+            <R_ItemLayout col="12" Class="d-flex">
+
+                <!-- Title and TextBoxAwal -->
+                <R_ItemLayout col="4" Class="d-flex">
+
+                    <R_ItemLayout col="5">
+                        <R_Label>
+                            @_localizer["_Transaction"]
+                        </R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="7">
+                        <R_TextBox @bind-Value="@_viewModelPMT01500Agreement.Data.CTRANS_CODE"
+                                   R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                   MaxLength="10"
+                                   Enabled="false" />
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+
+                <!-- Bag. Tengah -->
+                <R_ItemLayout col="8" Class="d-flex">
+
+                    <R_ItemLayout col="11" Class="ps-1">
+                        <R_TextBox @bind-Value="@_viewModelPMT01500Agreement.Data.CTRANS_NAME"
+                                   R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+        <!-- RIGHT -->
+        <R_ItemLayout col="3" Class="d-flex">
+
+            <R_ItemLayout col="12">
+                <R_Label>
+                    @_viewModelPMT01500Agreement.Data.CTRANS_STATUS_DESCR
+                </R_Label>
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    @* Department *@
+    <R_StackLayout Row>
+
+        <!-- LEFT -->
+        <R_ItemLayout col="9" Class="d-flex">
+
+            <!-- Title and TextBoxAwal -->
+            <R_ItemLayout col="4" Class="d-flex">
+
+                <R_ItemLayout col="5">
+                    <R_Label>
+                        @_localizer["_Department"]*
+                    </R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="7">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500Agreement.Data.CDEPT_CODE"
+                               R_ConductorSource="@_conductorFullPMT01500Agreement"
+                               OnLostFocus="@OnLostFocusDepartment"
+                               MaxLength="20"
+                               R_EnableAdd
+                               R_EnableEdit="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+            <!-- Bag. Tengah -->
+            <R_ItemLayout col="8" Class="d-flex">
+
+                <R_ItemLayout col="12" Class="d-flex">
+
+                    <R_ItemLayout col="11" Class="d-flex">
+
+                        <R_ItemLayout Class="ps-1 text-center" col="1">
+                            <R_Lookup R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                      @ref="@R_LookupDepartmentLookup"
+                                      R_EnableAdd
+                                      R_EnableEdit="false"
+                                      R_Before_Open_Lookup="@BeforeOpenLookUpDepartmentLookup"
+                                      R_After_Open_Lookup="@AfterOpenLookUpDepartmentLookup">
+                                ...
+                            </R_Lookup>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout col="11">
+                            <R_TextBox @bind-Value="@_viewModelPMT01500Agreement.Data.CDEPT_NAME"
+                                       R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+        <!-- RIGHT -->
+        <R_ItemLayout col="3" Class="d-flex">
+
+            <R_ItemLayout col="5">
+                <R_Label>
+                    @_localizer["_Status"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="7">
+                <R_TextBox @bind-Value="@_viewModelPMT01500Agreement.Data.CAGREEMENT_STATUS_DESCR"
+                           R_ConductorSource="@_conductorFullPMT01500Agreement"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    @* Agreement No *@
+    <R_StackLayout Row>
+
+        <!-- LEFT -->
+        <R_ItemLayout col="9" Class="d-flex">
+
+
+            <!-- Title and TextBoxAwal -->
+            <R_ItemLayout col="4" Class="d-flex">
+
+                <R_ItemLayout col="5">
+                    <R_Label>
+                        @_localizer["_AgreementNo"]*
+                    </R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="7">
+                    <R_TextBox R_ConductorSource="@_conductorFullPMT01500Agreement"
+                               @bind-Value="@_viewModelPMT01500Agreement.Data.CREF_NO"
+                               @ref="_componentCREF_NOTextBox"
+                               MaxLength="30"
+                               Enabled="_lDataCREF_NO" />
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+
+            <!-- Bag. Tengah -->
+            <R_ItemLayout col="8" Class="d-flex">
+
+                <R_ItemLayout col="12" Class="d-flex">
+
+                    <R_ItemLayout col="11" Class="d-flex justify-content-end">
+
+                        <R_ItemLayout col="3">
+                            <R_Label>
+                                @_localizer["_AgreementDate"]*
+                            </R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout col="4">
+                            <R_DatePicker @bind-Value="@_viewModelPMT01500Agreement.Data.DREF_DATE"
+                                          R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                          R_EnableAdd
+                                          R_EnableEdit>
+                            </R_DatePicker>
+                        </R_ItemLayout>
+
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    @* Document No *@
+    <R_StackLayout Row>
+
+        <!-- LEFT -->
+        <R_ItemLayout col="9" Class="d-flex">
+
+            <!-- Title and TextBoxAwal -->
+            <R_ItemLayout col="4" Class="d-flex">
+
+                <R_ItemLayout col="5">
+                    <R_Label>
+                        @_localizer["_DocumentNo"]
+                    </R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="7">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500Agreement.Data.CDOC_NO"
+                               R_ConductorSource="@_conductorFullPMT01500Agreement"
+                               @ref="_componentCDOC_NOTextBox"
+                               MaxLength="30"
+                               R_EnableAdd
+                               R_EnableEdit>
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+            <!-- Bag. Tengah -->
+            <R_ItemLayout col="8" Class="d-flex">
+
+                <R_ItemLayout col="12" Class="d-flex">
+
+                    <R_ItemLayout col="11" Class="d-flex justify-content-end">
+
+                        <R_ItemLayout col="3">
+                            <R_Label>
+                                @_localizer["_DocumentDate"]*
+                            </R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout col="4">
+                            <R_DatePicker @bind-Value="@_viewModelPMT01500Agreement.Data.DDOC_DATE"
+                                          R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                          R_EnableAdd
+                                          R_EnableEdit>
+                            </R_DatePicker>
+                        </R_ItemLayout>
+
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+
+        <!-- RIGHT -->
+        <R_ItemLayout col="3" Class="d-flex">
+
+            <R_ItemLayout col="5">
+
+                <R_Label>
+                    @_localizer["_Currency"]*
+                </R_Label>
+
+            </R_ItemLayout>
+
+            <R_ItemLayout col="7" Class="d-flex">
+
+                <R_ItemLayout col="10" Class="d-flex">
+
+                    <R_TextBox @bind-Value="@_viewModelPMT01500Agreement.Data.CCURRENCY_CODE"
+                               R_ConductorSource="@_conductorFullPMT01500Agreement"
+                               OnLostFocus="@OnLostFocusCurrency"
+                               MaxLength="3"
+                               R_EnableAdd
+                               R_EnableEdit>
+                    </R_TextBox>
+
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2" Class="ps-1">
+
+                    <R_Lookup R_ConductorSource="@_conductorFullPMT01500Agreement"
+                              @ref="@R_LookupCurrencyLookup"
+                              R_EnableAdd
+                              R_EnableEdit
+                              R_Before_Open_Lookup="@BeforeOpenLookUpCurrencyLookup"
+                              R_After_Open_Lookup="@AfterOpenLookUpCurrencyLookup">
+                        ...
+                    </R_Lookup>
+
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    @* Start Date *@
+    <R_StackLayout Row>
+        <!-- LEFT -->
+        <R_ItemLayout col="9" Class="d-flex">
+
+            <R_ItemLayout col="12" Class="d-flex">
+
+                <!-- Title and TextBoxAwal -->
+                <R_ItemLayout col="4" Class="d-flex">
+
+                    <R_ItemLayout col="5">
+                        <R_Label>
+                            @_localizer["_StartDate"]*
+                        </R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="7">
+                        <R_DatePicker Value="@_viewModelPMT01500Agreement.Data.DSTART_DATE"
+                                      R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                      ValueChanged="@((DateTime? value) => OnChangedDSTART_DATE(value))"
+                                      R_EnableAdd
+                                      R_EnableEdit />
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+
+                <!-- Bag. Tengah -->
+                <R_ItemLayout col="8" Class="d-flex">
+
+                    <!-- Bagian Tengah -->
+                    <R_ItemLayout col="6" Class="d-flex ps-1">
+
+                        <!-- CYEAR -->
+                        <R_ItemLayout col="4" Class="d-flex">
+
+                            <R_ItemLayout col="8" Class="ps-1">
+                                <R_NumericTextBox Value="@_viewModelPMT01500Agreement.Data.IYEAR"
+                                                  R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                                  ValueChanged="@((Int32 value) => OnChangedCYEAR(value))"
+                                                  Min="0"
+                                                  Arrows="false"
+                                                  R_EnableAdd
+                                                  R_EnableEdit>
+                                </R_NumericTextBox>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout>
+                                <R_Label>
+                                    @_localizer["_Year"]
+                                </R_Label>
+                            </R_ItemLayout>
+
+                        </R_ItemLayout>
+
+                        <!-- CMONTH -->
+                        <R_ItemLayout col="4" Class="d-flex ms-2">
+
+                            <R_ItemLayout col="6" Class="ps-1">
+                                <R_NumericTextBox Value="@_viewModelPMT01500Agreement.Data.IMONTH"
+                                                  R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                                  ValueChanged="@((Int32 value) => OnChangedCMONTH(value))"
+                                                  Min="0"
+                                                  Arrows="false"
+                                                  R_EnableAdd
+                                                  R_EnableEdit>
+                                </R_NumericTextBox>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout>
+                                <R_Label>
+                                    @_localizer["_Month"]
+                                </R_Label>
+                            </R_ItemLayout>
+
+                        </R_ItemLayout>
+
+                        <!-- CDAYS -->
+                        <R_ItemLayout col="3" Class="d-flex ms-2">
+
+                            <R_ItemLayout col="8">
+                                <R_NumericTextBox Value="@_viewModelPMT01500Agreement.Data.IDAY"
+                                                  R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                                  ValueChanged="@((Int32 value) => OnChangedCDAY(value))"
+                                                  Min="0"
+                                                  Arrows="false"
+                                                  R_EnableAdd
+                                                  R_EnableEdit>
+                                </R_NumericTextBox>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout>
+                                <R_Label>
+                                    @_localizer["_Day"]
+                                </R_Label>
+                            </R_ItemLayout>
+
+                        </R_ItemLayout>
+
+                    </R_ItemLayout>
+
+                    <!-- END DATE -->
+                    <R_ItemLayout col="6" Class="d-flex">
+
+                        <R_ItemLayout col="3" Class="text-end">
+                            <R_Label>
+                                @_localizer["_EndDate"]*
+                            </R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout col="7">
+                            <R_DatePicker Value="@_viewModelPMT01500Agreement.Data.DEND_DATE"
+                                          R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                          ValueChanged="@((DateTime? value) => OnChangedDEND_DATE(value))"
+                                          R_EnableAdd
+                                          R_EnableEdit>
+                            </R_DatePicker>
+                        </R_ItemLayout>
+
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+        <!-- RIGHT -->
+        <R_ItemLayout col="3" Class="d-flex">
+
+            <R_ItemLayout col="5">
+
+                <R_Label>
+                    @_localizer["_LeaseMode"]*
+                </R_Label>
+
+            </R_ItemLayout>
+
+            <R_ItemLayout col="7">
+
+                <R_DropDownList Data="@_viewModelPMT01500Agreement.loComboBoxDataCLeaseMode"
+                                @bind-Value="_viewModelPMT01500Agreement.Data.CLEASE_MODE"
+                                ValueField="@nameof(PMT01500ComboBoxDTO.CCODE)"
+                                TextField="@nameof(PMT01500ComboBoxDTO.CDESCRIPTION)"
+                                PopupMaxHeight="100px"
+                                R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                R_EnableAdd
+                                R_EnableEdit />
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    @* Salesman *@
+    <R_StackLayout Row Class="mt-1">
+
+        <!-- LEFT -->
+        <R_ItemLayout col="9" Class="d-flex">
+
+            <!-- Title and TextBoxAwal -->
+            <R_ItemLayout col="4" Class="d-flex">
+
+                <R_ItemLayout col="5">
+                    <R_Label>
+                        @_localizer["_Salesman"]*
+                    </R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="7">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500Agreement.Data.CSALESMAN_ID"
+                               R_ConductorSource="@_conductorFullPMT01500Agreement"
+                               OnLostFocus="@OnLostFocusSalesman"
+                               MaxLength="8"
+                               R_EnableAdd
+                               R_EnableEdit>
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+            <!-- Bag. Tengah -->
+            <R_ItemLayout col="8" Class="d-flex">
+
+                <R_ItemLayout col="12" Class="d-flex">
+
+                    <R_ItemLayout col="11" Class="d-flex">
+
+                        <R_ItemLayout Class="ps-1 text-center" col="1">
+                            <R_Lookup R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                      @ref="@R_LookupSalesmanLookup"
+                                      R_EnableAdd
+                                      R_EnableEdit
+                                      R_Before_Open_Lookup="@BeforeOpenLookUpSalesmanLookup"
+                                      R_After_Open_Lookup="@AfterOpenLookUpSalesmanLookup">
+                                ...
+                            </R_Lookup>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout col="11">
+                            <R_TextBox @bind-Value="@_viewModelPMT01500Agreement.Data.CSALESMAN_NAME"
+                                       R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+        <!-- RIGHT -->
+        <R_ItemLayout col="3" Class="d-flex">
+
+            <R_ItemLayout col="5">
+                <R_Label>
+                    @_localizer["_ChargeMode"]*
+                </R_Label>
+            </R_ItemLayout>
+
+
+            <R_ItemLayout col="7">
+                <R_DropDownList Data="@_viewModelPMT01500Agreement.loComboBoxDataCChargesMode"
+                                @bind-Value="_viewModelPMT01500Agreement.Data.CCHARGE_MODE"
+                                ValueField="@nameof(PMT01500ComboBoxDTO.CCODE)"
+                                TextField="@nameof(PMT01500ComboBoxDTO.CDESCRIPTION)"
+                                PopupMaxHeight="100px"
+                                R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                R_EnableAdd
+                                R_EnableEdit />
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    @* Tenant *@
+    <R_StackLayout Row>
+
+        <!-- LEFT -->
+        <R_ItemLayout col="9" Class="d-flex">
+
+            <!-- Title and TextBoxAwal -->
+            <R_ItemLayout col="4" Class="d-flex">
+
+                <R_ItemLayout col="5">
+                    <R_Label>
+                        @_localizer["_Tenant"]*
+                    </R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="7">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500Agreement.Data.CTENANT_ID"
+                               R_ConductorSource="@_conductorFullPMT01500Agreement"
+                               OnLostFocus="@OnLostFocusTenant"
+                               MaxLength="20"
+                               R_EnableAdd
+                               R_EnableEdit>
+                    </R_TextBox>
+                </R_ItemLayout>
+
+
+            </R_ItemLayout>
+
+
+            <!-- Bag. Tengah -->
+            <R_ItemLayout col="8" Class="d-flex">
+
+                <R_ItemLayout col="12" Class="d-flex">
+
+                    <R_ItemLayout col="11" Class="d-flex">
+
+                        <R_ItemLayout Class="ps-1 text-center" col="1">
+                            <R_Lookup R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                      @ref="@R_LookupTenantLookup"
+                                      R_EnableAdd
+                                      R_EnableEdit
+                                      R_Before_Open_Lookup="@BeforeOpenLookUpTenantLookup"
+                                      R_After_Open_Lookup="@AfterOpenLookUpTenantLookup">
+                                ...
+                            </R_Lookup>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout col="11">
+                            <R_TextBox @bind-Value="@_viewModelPMT01500Agreement.Data.CTENANT_NAME"
+                                       R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    @* Unit Description *@
+    <R_StackLayout Row>
+
+        <!-- LEFT -->
+        <R_ItemLayout col="9" Class="d-flex">
+
+            <R_ItemLayout col="10" Class="d-flex">
+
+                <R_ItemLayout col="2">
+                    <R_Label>
+                        @_localizer["_UnitDescription"]*
+                    </R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="12" Class="pe-4">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500Agreement.Data.CUNIT_DESCRIPTION"
+                               R_ConductorSource="@_conductorFullPMT01500Agreement"
+                               MaxLength="255"
+                               R_EnableAdd
+                               R_EnableEdit>
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    @* Note *@
+    <R_StackLayout Row>
+
+        <!-- LEFT -->
+        <R_ItemLayout col="9" Class="d-flex">
+
+            <R_ItemLayout col="10" Class="d-flex">
+                <R_ItemLayout col="2">
+                    <R_Label>
+                        @_localizer["_Note"]
+                    </R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="12" Class="pe-4">
+                    <R_TextArea @bind-Value="@_viewModelPMT01500Agreement.Data.CNOTES"
+                                R_ConductorSource="@_conductorFullPMT01500Agreement"
+                                R_EnableAdd
+                                R_EnableEdit>
+                    </R_TextArea>
+                </R_ItemLayout>
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    @* Button CRUD *@
+    <R_StackLayout Row Class="d-flex justify-content-between">
+
+        <R_StackLayout Row>
+
+            <R_ItemLayout>
+                <R_AddButton R_Conductor="@_conductorFullPMT01500Agreement" />
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_EditButton R_Conductor="@_conductorFullPMT01500Agreement" />
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_DeleteButton R_Conductor="@_conductorFullPMT01500Agreement" />
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="d-flex justify-content-end">
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout>
+                    <R_CancelButton R_Conductor="@_conductorFullPMT01500Agreement" />
+                </R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_SaveButton R_Conductor="@_conductorFullPMT01500Agreement" />
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+        </R_StackLayout>
+
+
+
+    </R_StackLayout>
+
+</R_StackLayout>
+
+
+
+<R_Conductor @ref="@_conductorFullPMT01500Agreement"
+             R_ViewModel="@_viewModelPMT01500Agreement"
+             R_IsHeader
+             R_ServiceGetRecord="@ServiceGetRecord"
+             R_ServiceSave="@ServiceSave"
+             R_ServiceDelete="@ServiceDelete"
+             R_AfterAdd="@AfterAdd"
+             R_AfterDelete="@AfterDelete"
+             R_Validation="@R_Validation"
+             R_SetEdit="@R_SetEdit"
+             R_SetOther="@R_SetOther"
+             R_Display="@ServiceR_Display"
+             R_AfterSave="@AfterSave"
+             @*
+             R_BeforeCancel="@BeforeCancel"
+             R_BeforeEdit="@BeforeEdit"
+             *@ />

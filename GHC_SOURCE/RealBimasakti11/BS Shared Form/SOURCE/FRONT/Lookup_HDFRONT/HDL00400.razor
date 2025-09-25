@@ -1,0 +1,44 @@
+﻿@using Lookup_HDCOMMON.DTOs.HDL00400
+@using Lookup_HDFrontResources
+@using R_BlazorFrontEnd.Controls.Attributes
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_BlazorFrontEnd.Controls.R_Page
+@attribute [R_Page(Title = "Asset Lookup")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupHD> _localizer
+<R_StackLayout Style="width: 1200px">
+
+    <R_StackLayout Row>
+        <R_ItemLayout Class="col-12">
+            <R_Grid @ref="@GridRef"
+                    DataSource="_viewModel.AssetLookup"
+                    R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                    Pageable
+                    Height="400px"
+                    R_GridType="R_eGridType.Navigator"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false"
+                    PageSize="15">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(HDL00400DTO.CASSET_CODE)" Width="130px" HeaderText="@_localizer["ASSET_CODE"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00400DTO.CASSET_NAME)" Width="150px" HeaderText="@_localizer["ASSET_NAME"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00400DTO.CLOCATION_NAME)" Width="150px" HeaderText="@_localizer["LOCATION"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00400DTO.CBUILDING_ID)" Width="130px" HeaderText="@_localizer["BUILDING_ID"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00400DTO.CFLOOR_ID)" Width="125px" HeaderText="@_localizer["FLOOR_ID"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00400DTO.CUNIT_ID)" Width="125px" HeaderText="@_localizer["UNIT_ID"]"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+        <R_Button Enabled="@(_viewModel.AssetLookup.Count != 0)"
+                  OnClick="Button_OnClickOkAsync">
+            @_localizer["OK"]
+        </R_Button>
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            @_localizer["CANCEL"]
+        </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>

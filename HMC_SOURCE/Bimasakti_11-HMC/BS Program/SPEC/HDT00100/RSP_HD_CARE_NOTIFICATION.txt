@@ -1,0 +1,15 @@
+8001 -- Error process, please contact your administrator!
+8002 -- Company ID is empty!
+8003 -- Company ID is not found!
+8004 -- Property ID is empty!
+8005 -- Property ID is not found!
+8006 -- Ticket No is empty!
+8007 -- Ticket No is not found!
+8008 -- No receiver found!
+8009 -- No email template for CARE Notification found, please set email template with Template ID "NEW_CARE" in program Email Template (SAM02100)!
+8010 -- No email template for CARE Notification found, please set email template with Template ID "PENDING_RESPONSE" in program Email Template (SAM02100)!
+8011 -- No email template for CARE Notification found, please set email template with Template ID "CHARGEABLE_CARE" in program Email Template (SAM02100)!
+8012 -- No email template for CARE Notification found, please set email template with Template ID "ESCALATED_CARE" in program Email Template (SAM02100)!
+8013 -- No email template for CARE Notification found, please set email template with Template ID "NEW_CARE_CALLER" in program Email Template (SAM02100)!
+8014 -- No email template for CARE Notification found, please set email template with Template ID "CONFIRMED_BY_TR_CARE" in program Email Template (SAM02100)!
+

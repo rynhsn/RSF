@@ -1,0 +1,139 @@
+﻿@page "/GST00500"
+@attribute [R_Page(Title = "Approval")]
+@inherits R_Page
+@inject R_ILocalizer<Resources_GST00500_Class> _localizer
+
+<R_StackLayout Row="true">
+    <R_ItemLayout xs="1">
+        <R_Label>@_localizer["_Welcome"] </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_TextBox @bind-Value="@_viewModelGST00500Inbox.UserName.CUSER_NAME"
+                   R_ConductorSource="_conductorGetUserName"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_TabStrip OnActiveTabIndexChanged="@ChangeTab">
+    @* $1$ INBOX TAB#1# *@
+    <R_TabStripTab Title="Inbox" Id="TabInbox">
+        <R_ItemLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="10">
+                    <R_Label>
+                        Transaction:
+                    </R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout Class="d-flex justify-content-end"
+                              col="2">
+                    <R_Button Class="btn btn-light"
+                              OnClick="@BtnRefresh">
+                        @_localizer["Refresh"]
+                    </R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_Grid @ref="@_gridInboxTransRef"
+                    DataSource="_viewModelGST00500Inbox.InboxTransactionList"
+                    R_ConductorGridSource="@_conductorInboxTrans"
+                    R_GridType="R_eGridType.Batch"
+                    R_ServiceGetListRecord="@ServiceGetListInboxTransaction"
+                    R_Display="@Grid_Display"
+                    R_BeforeSaveBatch="@BeforeSaveBatch"
+                    R_ServiceSaveBatch="@ServiceSaveBatch"
+                    R_AfterSaveBatch="@AfterSaveBatch"
+                    Pageable
+                    PageSize="15"
+                    AllowDeleteRow="false"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    Height="450px"
+                    R_CheckBoxSelectValueChanged="@R_CheckBoxSelectValueChanged">
+                <R_GridColumns>
+                    <R_GridCheckBoxSelectColumn Width="75px" FieldName="LSELECTED"
+                                                                    R_EnableEdit
+                                                                    R_EnableAdd
+                                                                    ShowSelectAllHeader>
+                    </R_GridCheckBoxSelectColumn>
+                    <R_GridTextColumn Width="190px"
+                                      FieldName="@nameof(GST00500DTO.CTRANS_NAME)"
+                                      HeaderText=@_localizer["_TransName"]>
+                    </R_GridTextColumn>
+                    <R_GridTextColumn Width="190px"
+                                      FieldName="@nameof(GST00500DTO.CDEPT_CODE_NAME)"
+                                      HeaderText=@_localizer["_DeptCode"]>
+                    </R_GridTextColumn>
+                    <R_GridTextColumn Width="225px"
+                                      FieldName="@nameof(GST00500DTO.CREF_NO)"
+                                      HeaderText=@_localizer["_RefNo"]>
+                    </R_GridTextColumn>
+                    <R_GridDatePickerColumn Width="170px"
+                                            FieldName="@nameof(GST00500DTO.DREF_DATE)"
+                                            HeaderText=@_localizer["_RefDate"]>
+                    </R_GridDatePickerColumn>
+                    <R_GridTextColumn Width="150px"
+                                      FieldName="@nameof(GST00500DTO.CUPDATE_BY)"
+                                      HeaderText=@_localizer["_UpdBy"]>
+                    </R_GridTextColumn>
+                    <R_GridDateTimePickerColumn Width="175px"
+                                                FieldName="@nameof(GST00500DTO.DUPDATE_DATE)"
+                                                HeaderText=@_localizer["_UpdDate"]>
+                    </R_GridDateTimePickerColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+
+        <R_StackLayout Row="true" Class="d-flex justify-content-between">
+            <R_StackLayout Row="true">
+                <R_ItemLayout>
+                    <R_Button Enabled="@_viewModelGST00500Inbox.BtnApprove"
+                              R_ConductorGridSource="@_conductorInboxTrans"
+                              OnClick="@OnClickApprove">@_localizer["_BtnApprove"]</R_Button>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Popup Enabled="@_viewModelGST00500Inbox.BtnReject"
+                             R_Before_Open_Popup="@R_Before_Open_Reject"
+                             R_After_Open_Popup="@R_After_Open_Reject"
+                             R_ConductorGridSource="@_conductorInboxTrans">
+                        @_localizer["_Reject"]
+                    </R_Popup>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row="true">
+                <R_ItemLayout>
+                    <R_Detail R_Before_Open_Detail="R_Before_BtnView"
+                              R_After_Open_Detail="R_After_BtnAView">
+                    @*  <R_Popup Enabled="@_viewModelGST00500Inbox.BtnReject"
+                    R_Before_Open_Popup="@R_Before_ServiceOpenOthersProgram"
+                    R_After_Open_Popup="@R_After_ServiceOpenOthersProgram"
+                    R_ConductorGridSource="@_conductorInboxTrans">
+                    </R_Popup>
+                    *@
+                    @_localizer["_BtnView"]
+                    </R_Detail>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_StackLayout>
+
+    </R_TabStripTab>
+
+    <R_TabStripTab Title="Outbox" Id="TabOutbox">
+        <R_TabPage R_Before_Open_TabPage="@R_Before_Open_TabPageOutbox">
+        </R_TabPage>
+    </R_TabStripTab>
+
+    <R_TabStripTab Title="Draft" Id="TabDraft">
+        <R_TabPage @ref="@_tabPageDraft"
+                   R_Before_Open_TabPage="@R_Before_Open_TabPageDraft">
+        </R_TabPage>
+    </R_TabStripTab>
+
+</R_TabStrip>
+
+<R_ConductorGrid @ref="@_conductorInboxTrans"
+                 R_ViewModel="@_viewModelGST00500Inbox"
+                 R_IsHeader="true">
+</R_ConductorGrid>

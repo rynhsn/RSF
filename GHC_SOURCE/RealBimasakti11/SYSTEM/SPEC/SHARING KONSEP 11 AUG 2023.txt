@@ -1,0 +1,23 @@
+- list jangan kirim context
+- parameter untuk get grid data(list) pake context
+- list kirim via batch
+- jikalau batch, gunakan tabel error untuk get error
+- atau tulis error di tabel error
+
+(Case ketika ingin melakukan sesuatu ketika onchange)
+- combobox onchange diganti jadi value change
+- bind-value ganti jadi value(oneway)
+- methodnya assign value, dalamnya jangan lupa di set lagi, kalau onchanging validation kalo gagal gausah set lagi valuenya
+- ingat parameter samain tipedata dengan value
+
+- xs ganti jadi col
+
+- report, pakai r_inject (dll baru)
+ panggil method getreport(mirip model httprequest... )
+
+- original & batch,
+	R_Cellvaluechanged=>jangan lupa pakai if(columnnameapa maka apa) berlaku untuk data row dia sendiri
+
+- bisa matiin tab predefined skrg
+- R_inputfile udah ada conductorsource
+- picturebox

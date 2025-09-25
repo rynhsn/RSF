@@ -1,0 +1,89 @@
+delete from SAT_LOCKING where CUSER_ID='hmc'
+
+EXEC RSP_GS_GET_PERIOD_YEAR_RANGE 
+''
+, ''
+, ''
+IMIN_YEAR	IMAX_YEAR
+2021	2031
+delete
+SELECT MONTH(dbo.RFN_GET_DB_TODAY ('rcd'))
+
+EXEC RSP_PMR00150_GET_REPORT
+'RCD'
+, 'ASHMD'
+, 'ACC'
+, 'FIN'
+, 'C098'
+, 'TEST02'
+, '202404'
+, '202406'
+, 'EN'
+
+EXEC RSP_PMR00150_GET_REPORT
+''
+, ''
+, ''
+, ''
+, ''
+, ''
+, ''
+, ''
+, ''
+SELECT MONTH(dbo.RFN_GET_DB_TODAY ('rcd'))
+SELECT MONTH(dbo.RFN_GET_DB_TODAY ('bsi'))
+SELECT MONTH(dbo.RFN_GET_DB_TODAY ('rcd')) as Cmonths
+SELECT YEAR(dbo.RFN_GET_DB_TODAY ('rcd')) as CYEAR
+
+EXEC sp_help 'dbo.RFN_GET_DB_TODAY';
+EXEC sp_helptext 'dbo.RFN_GET_DB_TODAY';
+
+Set VAR_PERIOD_FROM_MONTH_LIST with 
+EXEC RSP_GS_GET_PERIOD_DT_LIST 
+VAR_COMPANY_ID
+, (Period [From][Year])
+SELECT YEAR(dbo.RFN_GET_DB_TODAY (@CCOMPANY)) as CYEAR
+
+RSP_PMR00150_GET_REPORT
+
+	EXEC RSP_PMR00150_GET_REPORT
+	'RCD'
+	, 'JBMPC'
+	, 'HRD'
+	, 'HRD'
+	, 'hmc'
+	, 'hmc'
+	, '202401'
+	, '202412'
+	, '1'
+	, 'EN'
+
+		EXEC RSP_PMR00150_GET_REPORT
+	'RCD'
+	, 'JBMPC'
+	, 'HRD'
+	, 'HRD'
+	, 'alvan'
+	, 'alvan'
+	, '202401'
+	, '202412'
+	, '1'
+	, 'EN'
+
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PMR00150_GET_REPORT]
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY_ID = 'ASHMD',
+		@CFROM_DEPT_CODE = 'ACC',
+		@CTO_DEPT_CODE = 'ACC',
+		@CFROM_SALESMAN_ID = 'C098',
+		@CTO_SALESMAN_ID = 'C099',
+		@CFROM_PERIOD = '202408',
+		@CTO_PERIOD = '202408',
+		@CREPORT_TYPE = '2',
+		@CLANG_ID = 'EN'
+SELECT	'Return Value' = @return_value
+GO
+CCHARGE_DETAIL_TYPE_NAME

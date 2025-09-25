@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GLF00100FRONT": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:54387;http://localhost:54388"
+    }
+  }
+}

@@ -1,0 +1,134 @@
+﻿@using Lookup_APCOMMON.DTOs.APL00200
+@using Lookup_APCOMMON.DTOs.APL00600
+@using Lookup_APCOMMON.DTOs.APL00700
+@using LookupAPFrontResources
+@inherits R_Page
+@attribute [R_Page(Title = "Cancel Payment To Supplier Lookup")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupAP> _localizer
+<R_StackLayout Style="width: 1200px">
+    <R_StackLayout Row>
+        <R_ItemLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@($"{_localizer["PERIOD"]}*")</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4">
+                        <R_NumericTextBox
+                            @bind-Value="@_viewModel.IYEAR"
+                            Min="@_viewModel.CancelPaymentToSupplierLookupEntity.IMIN_YEAR"
+                            Max="@_viewModel.CancelPaymentToSupplierLookupEntity.IMAX_YEAR"
+                            R_ConductorSource="@_conductorRef"
+                            Step="1" ThousandSeparator="false"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_DropDownList Data="@_viewModel.Month"
+                                        @bind-Value="@_viewModel.monthName"
+                                        ValueField="@nameof(APL00200DTO.Code)"
+                                        TextField="@nameof(APL00200DTO.Desc)"
+                                        R_ConductorSource="@_conductorRef"/>
+                    </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+
+
+                <R_ItemLayout col="5">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="2">
+                            <R_Label>@($"{_localizer["SPLR"]}*")</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3" Class="me-2">
+                            <R_TextBox @bind-Value="@_viewModel.SupplierLookupEntity.CSUPPLIER_ID"
+                                       R_ConductorSource="@_conductorRef"
+                                       OnLostFocus="LookupSupplierOnLostFocus"
+                                       Enabled="true"/>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout>
+                            <R_Lookup R_Before_Open_Lookup="@R_BeforeOpenLookUpSupplier" R_After_Open_Lookup="R_AfterOpenLookUpSupplier">
+                                ...
+                            </R_Lookup>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout col="4">
+                            <R_TextBox @bind-Value="@_viewModel.SupplierLookupEntity.CSUPPLIER_NAME"
+                                       R_ConductorSource="@_conductorRef"
+                                       Enabled="false"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="4">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="4">
+                            <R_Label>@_localizer["SCHED._PAYMENT_NO"]</R_Label>
+
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_TextBox @bind-Value="@_viewModel.SchedulePaymentLookupEntity.CSCH_PAYMENT_ID"
+                                       R_ConductorSource="@_conductorRef"
+                                       Enabled="@(_viewModel.SupplierLookupEntity.CSUPPLIER_ID != "")"
+                                       OnLostFocus="LookupSchedulePayementOnLostFocus"/>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout>
+                            <R_Lookup R_Before_Open_Lookup="@R_BeforeOpenLookUpSchedulePayement" R_After_Open_Lookup="R_AfterOpenLookUpSchedulePayment"   Enabled="@(_viewModel.SupplierLookupEntity.CSUPPLIER_ID != "")">
+                                ...
+                            </R_Lookup>
+                        </R_ItemLayout>
+                        <R_ItemLayout Class="ms-2">
+                            <R_Button OnClick="Refresh_Button"
+                                      Enabled="@(_viewModel.SupplierLookupEntity.CSUPPLIER_ID != "")">
+                                @_localizer["RFSH"]
+                            </R_Button>
+                        </R_ItemLayout>
+
+                    </R_StackLayout>
+                </R_ItemLayout>
+                
+
+              
+            </R_StackLayout>
+
+
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.CancelPaymentToSupplierGrid"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                R_GridType="R_eGridType.Navigator"
+                Pageable
+                Height="300px"
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false"
+                PageSize="5">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(APL00700DTO.CDEPT_CODE)" Width="143px" HeaderText="@_localizer["DEPT."]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APL00700DTO.CREF_NO)" Width="150px" HeaderText="@_localizer["REFERENCE_NO."]"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(APL00700DTO.DREF_DATE)" Width="147px" HeaderText="@_localizer["REFERENCE_DATE"]"></R_GridDatePickerColumn>
+                <R_GridTextColumn FieldName="@nameof(APL00700DTO.CPAYMENT_TYPE_NAME)" Width="140px" HeaderText="@_localizer["TYPE"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APL00700DTO.CCB_CODE)" Width="143px" HeaderText="@_localizer["CB_CODE"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APL00700DTO.CCB_ACCOUNT_NAME)" Width="161px" HeaderText="@_localizer["CB_ACCOUNT_NO"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APL00700DTO.CCURRENCY_CODE)" Width="138px" HeaderText="@_localizer["CURR"]"></R_GridTextColumn>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(APL00700DTO.NTRANS_AMOUNT)" Width="178px" HeaderText="@_localizer["AMOUNT"]"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="@nameof(APL00700DTO.CSCH_PAYMENT_NO)" Width="190px" HeaderText="@_localizer["SCHED._PAYMENT_NO"]"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(APL00700DTO.DSCH_PAYMENT_DATE)" Width="190px" HeaderText="@_localizer["SCHED._PAYMENT_DATE"]"></R_GridDatePickerColumn>
+
+
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+    <R_StackLayout Row Class="justify-content-end">
+
+        <R_Button Enabled="@(_viewModel.CancelPaymentToSupplierGrid.Count != 0)" OnClick="Button_OnClickOkAsync">
+            @_localizer["OK"]
+        </R_Button>
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            @_localizer["CNCL"]
+        </R_Button>
+    </R_StackLayout>
+</R_StackLayout>

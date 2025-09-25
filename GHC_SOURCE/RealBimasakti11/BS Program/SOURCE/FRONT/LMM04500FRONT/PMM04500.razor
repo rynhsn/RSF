@@ -1,0 +1,162 @@
+﻿@page "/PMM04500"
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_pageTitleCurrentPricing")]
+
+
+<R_StackLayout Class="m-2" Spacing="2" Row>
+    <R_ItemLayout>
+        <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">@_localizer["_lbl_property"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3" Class="ms-1">
+        <R_DropDownList Data="@_viewModelPricing._propertyList"
+                        Value="@_viewModelPricing._propertyId"
+                        ValueField="@nameof(PropertyDTO.CPROPERTY_ID)"
+                        TextField="@nameof(PropertyDTO.CPROPERTY_NAME)"
+                        ValueChanged="@((string value) => ComboboxPropertyValueChanged(value))"
+                        Enabled="@_comboboxPropertyEnabled">
+        </R_DropDownList>
+    </R_ItemLayout>
+    <R_ItemLayout Class="ms-5">
+        <R_Label FontStyle="R_eFontStyle.Bold">@_localizer["_lbl_curr"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout Class="ms-1" col="3">
+        <R_TextBox @bind-Value="_viewModelPricing._currency" Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_TabStrip @ref="_tabStripPricing" OnActiveTabIndexChanging="@OnActiveTabIndexChanging">
+
+    <R_TabStripTab Title="@(_localizer["_tab_current"])" id="CP">
+        <R_StackLayout Row Spacing="2" Class="mt-0">
+            <R_ItemLayout col="3">
+                <R_Grid @ref="@_gridUnitTypeCTG"
+                        DataSource="@_viewModelPricing._unitTypeCategoryList"
+                        R_ConductorSource="@_conUnitTypeCTG"
+                        R_GridType="@R_eGridType.Navigator"
+                        R_ServiceGetListRecord="@UnitTypeCTG_ServiceGetListRecord"
+                        AllowAddNewRow="false"
+                        AllowDeleteRow="false"
+                        AllowEditRow="false"
+                        Pageable="false"
+                        Height="450px">
+                    <R_GridColumns>
+                        <R_GridTextColumn Filterable="false" FieldName="@nameof(UnitTypeCategoryDTO.CUNIT_TYPE_CATEGORY_NAME)" HeaderText="@(_localizer["_col_unittypectg_name"])" Width="200px"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="9">
+                <R_StackLayout Row Spacing="2" Class="pb-3 ps-2">
+                    <R_ItemLayout>
+                        <R_Label>@_localizer["_lbl_valid_from_date"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_DatePicker @bind-Value="@_viewModelPricing._validDateDisplay"
+                                      Enabled="false"></R_DatePicker>
+
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="ms-4">
+                        <R_Label>@_localizer["_lbl_valid_id"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="@_viewModelPricing._validId"
+                                   Enabled="false"></R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_Grid @ref="_gridPricing"
+                        DataSource="@_viewModelPricing._pricingList"
+                        R_ConductorSource="_conPricing"
+                        Pageable="true"
+                        R_GridType="R_eGridType.Navigator"
+                        AllowAddNewRow="false"
+                        AllowDeleteRow="false"
+                        AllowEditRow="false"
+                        R_ServiceGetListRecord="CurrentPricing_ServiceGetListRecord"
+                        Height="450px">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(PricingDTO.CCHARGES_TYPE_DESCR)"
+                                          HeaderText="Charge Type"
+                                          Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(PricingDTO.CCHARGES_NAME)"
+                                          HeaderText="Charge Id" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(PricingDTO.CPRICE_MODE_DESCR)"
+                                          HeaderText="Price Mode"
+                                          Width="120px"></R_GridTextColumn>
+                        <R_GridNumericColumn FieldName="@nameof(PricingDTO.NNORMAL_PRICE)"
+                                             HeaderText="Normal Price" Width="150px" TValue="decimal"></R_GridNumericColumn>
+                        <R_GridNumericColumn FieldName="@nameof(PricingDTO.NBOTTOM_PRICE)"
+                                             TValue="decimal"
+                                             HeaderText="Bottom Price"
+                                             Width="150px"></R_GridNumericColumn>
+                        <R_GridCheckBoxColumn FieldName="@nameof(PricingDTO.LOVERWRITE)"
+                                              HeaderText="Overwrite"
+                                              Width="150px"></R_GridCheckBoxColumn>
+                        <R_GridTextColumn FieldName="@nameof(PricingDTO.CUPDATE_BY)"
+                                          HeaderText="Updated By"
+                                          Width="120px"
+                                          R_EnableAdd="false"
+                                          R_EnableEdit="false"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(PricingDTO.CINVOICE_PERIOD_DESCR)"
+                                          HeaderText="Invoice Period"
+                                          Width="150px"
+                                          R_EnableAdd="false"
+                                          R_EnableEdit="false"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(PricingDTO.DUPDATE_DATE)"
+                                          HeaderText="Updated Date"
+                                          Width="140px"
+                                          R_EnableAdd="false"
+                                          R_EnableEdit="false"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(PricingDTO.CCREATE_BY)"
+                                          HeaderText="Created By"
+                                          Width="120px"
+                                          R_EnableAdd="false"
+                                          R_EnableEdit="false"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(PricingDTO.DCREATE_DATE)"
+                                          HeaderText="Created Date"
+                                          Width="140px"
+                                          R_EnableAdd="false"
+                                          R_EnableEdit="false"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+
+            <R_Conductor @ref="@_conUnitTypeCTG"
+                         R_IsHeader="true"
+                         R_ViewModel="@_viewModelPricing"
+                         R_ServiceGetRecord="@UnitTypeCTG_ServiceGetRecord"
+                         R_Display="@UnitTypeCTG_ServiceDisplay">
+            </R_Conductor>
+
+            <R_Conductor @ref="@_conPricing"
+                         R_ConductorParent="@_conUnitTypeCTG"
+                         R_ViewModel="@_viewModelPricing"
+                         R_ServiceGetRecord="@CurrentPricing_ServiceGetRecord"
+                         R_Display="@CurrentPricing_Display">
+            </R_Conductor>
+        </R_StackLayout>
+    </R_TabStripTab>
+
+    <R_TabStripTab Title="@(_localizer["_tab_next"])" Id="NP">
+        <R_TabPage @ref="@_tabNextPricing"
+                   R_Before_Open_TabPage="@BeforeOpenTabPage_NextPricing"
+                   R_TabEventCallback="@TabEventCallback_NextPricingAsync">
+        </R_TabPage>
+    </R_TabStripTab>
+
+    <R_TabStripTab Title="@(_localizer["_tab_history"])" Id="HP">
+        <R_TabPage @ref="@_tabHistoryPricing"
+                   R_Before_Open_TabPage="@BeforeOpenTabPage_HistoryPricing"
+                   R_TabEventCallback="@TabEventCallback_HistoryPricingAsync">
+        </R_TabPage>
+    </R_TabStripTab>
+
+    <R_TabStripTab Title="@(_localizer["_tab_pricingRate"])" Id="PR">
+        <R_TabPage @ref="_tabPricingRate"
+                   R_Before_Open_TabPage="@BeforeOpenTabPage_PricingRate">
+        </R_TabPage>
+    </R_TabStripTab>
+</R_TabStrip>
+
+
+

@@ -1,0 +1,35 @@
+@using Lookup_PMCOMMON.DTOs.LML01400;
+@inherits R_Page
+@attribute [R_Page(Title = "Agreement Unit Charges")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupPM> _localizer
+
+<R_StackLayout Row>
+    <R_Grid @ref="@GridRef"
+            DataSource="_viewModel.GetList"
+            R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+            R_GridType="@R_eGridType.Navigator"
+            Pageable
+            @bind-PageSize="@_pageSize"
+            Height="300px"
+            Width="600px">
+        <R_GridColumns>
+            <R_GridTextColumn Width="150px"
+                              FieldName="@nameof(LML01400DTO.CCHARGES_ID)" HeaderText=@_localizer["_ChargesId"]></R_GridTextColumn>
+            <R_GridTextColumn Width="250px"
+                              FieldName="@nameof(LML01400DTO.CCHARGES_NAME)" HeaderText=@_localizer["_ChargesName"]></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            OK
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            Cancel
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GLT00500BACK": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:53257;http://localhost:53258"
+    }
+  }
+}

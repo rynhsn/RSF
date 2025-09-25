@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Administration_Fee" xml:space="preserve">
+    <value>Administration Fee</value>
+    <comment>Administration Fee</comment>
+  </data>
+  <data name="Administration_Fee_For" xml:space="preserve">
+    <value>Administration Fee for</value>
+    <comment>Administration Fee for</comment>
+  </data>
+  <data name="Administration_Fee_P" xml:space="preserve">
+    <value>Administration Fee (per month)</value>
+    <comment>Administration Fee (per month)</comment>
+  </data>
+  <data name="Buying_Price" xml:space="preserve">
+    <value>Buying Price</value>
+    <comment>Buying Price</comment>
+  </data>
+  <data name="CACCURUAL" xml:space="preserve">
+    <value>Accurual</value>
+    <comment>Accurual</comment>
+  </data>
+  <data name="CCHARGES_ID" xml:space="preserve">
+    <value>Charges Id</value>
+    <comment>Charges Id</comment>
+  </data>
+  <data name="CCHARGES_NAME" xml:space="preserve">
+    <value>Charges Name</value>
+    <comment>Charges Name</comment>
+  </data>
+  <data name="CDEPARTMENT_MODE" xml:space="preserve">
+    <value>By Dept</value>
+    <comment>By Dept</comment>
+  </data>
+  <data name="CGLACCOUNT_NO_NAME" xml:space="preserve">
+    <value>GL Account</value>
+    <comment>GL Account</comment>
+  </data>
+  <data name="CGOA_CODE" xml:space="preserve">
+    <value>Group of Account</value>
+    <comment>Group of Account</comment>
+  </data>
+  <data name="CHARGES" xml:space="preserve">
+    <value>CHARGES</value>
+    <comment>CHARGES</comment>
+  </data>
+  <data name="COTHER_TAX_ID" xml:space="preserve">
+    <value>Other Tax</value>
+    <comment>Other Tax</comment>
+  </data>
+  <data name="CSTATUS_DESCRIPTION" xml:space="preserve">
+    <value>Active</value>
+    <comment>Active</comment>
+  </data>
+  <data name="CTAX_CODE" xml:space="preserve">
+    <value>Tax Code</value>
+    <comment>Tax Code</comment>
+  </data>
+  <data name="CTAX_EXEMPTION_CODE" xml:space="preserve">
+    <value>Tax Exemption</value>
+    <comment>Tax Exemption</comment>
+  </data>
+  <data name="CTAX_ID" xml:space="preserve">
+    <value>Tax Id</value>
+    <comment>Tax Id</comment>
+  </data>
+  <data name="CTAX_TYPE" xml:space="preserve">
+    <value>Tax Type</value>
+    <comment>Tax Type</comment>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+    <comment>Currency</comment>
+  </data>
+  <data name="CUTILITY_JRNGRP_CODE_NAME" xml:space="preserve">
+    <value>Journal Group</value>
+    <comment>Journal Group</comment>
+  </data>
+  <data name="Cut_Off_Over_Weekday" xml:space="preserve">
+    <value>Cut Off Over Weekday</value>
+    <comment>Cut Off Over Weekday</comment>
+  </data>
+  <data name="CWITHHOLDING_TAX_ID" xml:space="preserve">
+    <value>Withholding Tax</value>
+    <comment>Withholding Tax</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>Description</comment>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+    <comment>From</comment>
+  </data>
+  <data name="Holiday" xml:space="preserve">
+    <value>Holiday</value>
+    <comment>Holiday</comment>
+  </data>
+  <data name="KVA_Range" xml:space="preserve">
+    <value>KVA Range</value>
+    <comment>KVA Range</comment>
+  </data>
+  <data name="KWH_Used_Maximum" xml:space="preserve">
+    <value>KWH Used Maximum</value>
+    <comment>KWH Used Maximum</comment>
+  </data>
+  <data name="KWH_Used_Rate" xml:space="preserve">
+    <value>KWH Used Rate</value>
+    <comment>KWH Used Rate</comment>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+    <comment>Level</comment>
+  </data>
+  <data name="LWBP_Charge" xml:space="preserve">
+    <value>LWBP Charge</value>
+    <comment>LWBP Charge</comment>
+  </data>
+  <data name="Maintenance" xml:space="preserve">
+    <value>Maintenance</value>
+    <comment>Maintenance</comment>
+  </data>
+  <data name="Maintenance_Fee_P" xml:space="preserve">
+    <value>Maintenance Fee (per month)</value>
+    <comment>Maintenance Fee (per month)</comment>
+  </data>
+  <data name="NTAX_EXEMPTION_PCT" xml:space="preserve">
+    <value>Tax %</value>
+    <comment>Tax %</comment>
+  </data>
+  <data name="Other_Disincentive_Factor" xml:space="preserve">
+    <value>Other Disincentive Factor</value>
+    <comment>Other Disincentive Factor</comment>
+  </data>
+  <data name="Pipe_Size" xml:space="preserve">
+    <value>Pipe Size</value>
+    <comment>Pipe Size</comment>
+  </data>
+  <data name="Rate_Per_Hour" xml:space="preserve">
+    <value>Rate per Hour</value>
+    <comment>Rate per Hour</comment>
+  </data>
+  <data name="Rate_Type" xml:space="preserve">
+    <value>Rate Type</value>
+    <comment>Rate Type</comment>
+  </data>
+  <data name="Retribution" xml:space="preserve">
+    <value>Retribution %</value>
+    <comment>Retribution %</comment>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Saturday</value>
+    <comment>Saturday</comment>
+  </data>
+  <data name="Selling_Price" xml:space="preserve">
+    <value>Selling Price</value>
+    <comment>Selling Price</comment>
+  </data>
+  <data name="Split_Admin_Invoice" xml:space="preserve">
+    <value>Split Admin Invoice</value>
+    <comment>Split Admin Invoice</comment>
+  </data>
+  <data name="Standing_Charges" xml:space="preserve">
+    <value>Standing Charges</value>
+    <comment>Standing Charges</comment>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Sunday</value>
+    <comment>Sunday</comment>
+  </data>
+  <data name="Taxable" xml:space="preserve">
+    <value>Taxable</value>
+    <comment>Taxable</comment>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+    <comment>To</comment>
+  </data>
+  <data name="Tranformator_Fee" xml:space="preserve">
+    <value>Tranformator Fee</value>
+    <comment>Tranformator Fee</comment>
+  </data>
+  <data name="Unit_Area_Validation" xml:space="preserve">
+    <value>Unit Area Validation (sqm)</value>
+    <comment>Unit Area Validation (sqm)</comment>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Usage</value>
+    <comment>Usage</comment>
+  </data>
+  <data name="Usage_Charge_Rate" xml:space="preserve">
+    <value>Usage Charge Rate</value>
+    <comment>Usage Charge Rate</comment>
+  </data>
+  <data name="Usage_Charge_Rate_P" xml:space="preserve">
+    <value>Usage Charge Rate (per Month)</value>
+    <comment>Usage Charge Rate (per Month)</comment>
+  </data>
+  <data name="Usage_kwh" xml:space="preserve">
+    <value>Usage (kwh)</value>
+    <comment>Usage (kwh)</comment>
+  </data>
+  <data name="Usage_m3" xml:space="preserve">
+    <value>Usage (m3)</value>
+    <comment>Usage (m3)</comment>
+  </data>
+  <data name="Usage_Minimum_Charge" xml:space="preserve">
+    <value>Usage Minimum Charge</value>
+    <comment>Usage Minimum Charge</comment>
+  </data>
+  <data name="Usage_Rate_Mode" xml:space="preserve">
+    <value>Usage Rate Mode</value>
+    <comment>Usage Rate Mode</comment>
+  </data>
+  <data name="Utility_Charges" xml:space="preserve">
+    <value>Utility Charges</value>
+    <comment>Utility Charges</comment>
+  </data>
+  <data name="WBP_Charge" xml:space="preserve">
+    <value>WBP Charge</value>
+    <comment>WBP Charge</comment>
+  </data>
+  <data name="Weekday_Overtime_Rate" xml:space="preserve">
+    <value>Weekday Overtime Rate</value>
+    <comment>Weekday Overtime Rate</comment>
+  </data>
+  <data name="Weekend_Overtime_Rate" xml:space="preserve">
+    <value>Weekend Overtime Rate</value>
+    <comment>Weekend Overtime Rate</comment>
+  </data>
+</root>

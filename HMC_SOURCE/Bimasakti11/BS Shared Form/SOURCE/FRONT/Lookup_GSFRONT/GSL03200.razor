@@ -1,0 +1,39 @@
+﻿@using Lookup_GSCOMMON.DTOs
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_ProductAllocationLookup")]
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Style="width: 800px">
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.ProductAllocationGrid"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                Height="300px"
+                Pageable="true">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GSL03200DTO.CALLOC_ID)" HeaderText="@_localizer["_AllocationID"]" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL03200DTO.CALLOC_NAME)" HeaderText="@_localizer["_AllocationName"]" Width="170px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL03200DTO.CDEPT_MODE_NAME)" HeaderText="@_localizer["_DeptMode"]" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL03200DTO.CGLACCOUNT_NO_NAME)" HeaderText="@_localizer["_AccountNo"]" Width="200px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-between">
+        <R_ItemLayout>
+            <R_Button OnClick="OnClickRefresh">
+                @_localizer["_Refresh"]
+            </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Button OnClick="Button_OnClickOkAsync">
+                @_localizer["_OkBtn"]
+            </R_Button>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                @_localizer["_CancelBtn"]
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>

@@ -1,0 +1,5 @@
+2551	= Error process, please contact your administrator!
+2552	= Duplicate Other Unit Type Id!
+2553	= Cannot Delete, Other Unit Type Already in used!
+
+

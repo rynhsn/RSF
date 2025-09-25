@@ -1,0 +1,13 @@
+1531 = Error process, please contact your administrator!
+1532 = Cannot Delete, this Agreement Status is not eligble for deleted!
+1533 = Utility Type cannot be empty!
+1534 = Invalid Utility Type!
+1535 = Charges Id cannot be empty!
+1536 = Invalid Charges Id!
+1537 = Invalid Tax Id!
+1538 = Meter No cannot be empty!
+1539 = Invalid Meter No!
+1540 = Invoice Period cannot be empty!
+
+
+

@@ -1,0 +1,258 @@
+@inherits R_Page;
+
+
+<R_TabStrip @ref="@_tabStripRef"
+            OnActiveTabIndexChanged="OnActiveTabIndexChanged"
+            OnActiveTabIndexChanging="OnActiveTabIndexChangingAsync">
+
+    <!-- Offer List -->
+    <R_TabStripTab Title="@_localizer["_OfferList"]" Id="OfferList" Enabled="_viewModel.lControlTabOfferList">
+
+        <!-- From Offer Date -->
+        <R_StackLayout Row>
+
+            <R_ItemLayout col="4" Class="d-flex">
+
+                <R_ItemLayout col="6">
+                    <R_Label>
+                        @_localizer["_FromOfferDate"]
+                    </R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="6">
+                    <R_DatePicker Value="@_viewModel.dFilterFromOfferDate"
+                                  ValueChanged="@((DateTime? value) => OnChangedFromOfferDate(value))"
+                                  Enabled />
+
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2" Class="ps-1 d-flex">
+
+                <R_ItemLayout>
+                    <R_CheckBox Value="@_viewModel.lFilterCancelled"
+                                ValueChanged="OnChangeLCONTRACTOR"
+                                Enabled />
+                </R_ItemLayout>
+
+                <R_ItemLayout Class="ps-1">
+                    <R_Label>
+                        @_localizer["_Cancelled"]
+                    </R_Label>
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+        <!-- List Offer List -->
+        <R_Grid @ref="@_gridOfferList"
+                DataSource="_viewModel.loListOfferList"
+                R_ConductorGridSource="@_conductorOfferList"
+                Pageable
+                Height="250px"
+                PageSize="10"
+                R_GridType="@R_eGridType.Batch"
+                R_ServiceGetListRecord="@R_ServiceGetListOfferListRecord"
+                R_Display="@R_DisplayOfferListGetRecord"
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false">
+            <R_GridColumns>
+
+                <R_GridCheckBoxSelectColumn Width="80px"
+                                            FieldName="@nameof(PMT01100LOO_OfferList_OfferListDTO.LSELECTED_UNIT)"
+                                            ShowSelectAllHeader />
+
+                <R_GridTextColumn Width="195px"
+                                  FieldName="@nameof(PMT01100LOO_OfferList_OfferListDTO.CDEPT_NAME)"
+                                  HeaderText="@_localizer["_Department"]" />
+
+                <R_GridTextColumn Width="250px"
+                                  FieldName="@nameof(PMT01100LOO_OfferList_OfferListDTO.CREF_NO)"
+                                  HeaderText="@_localizer["_OfferNo"]" />
+
+                <R_GridDatePickerColumn FieldName="@nameof(PMT01100LOO_OfferList_OfferListDTO.DREF_DATE)"
+                                        HeaderText="@_localizer["_OfferDate"]"
+                                        Width="225px" />
+
+                <R_GridDatePickerColumn FieldName="@nameof(PMT01100LOO_OfferList_OfferListDTO.DFOLLOW_UP_DATE)"
+                                        HeaderText="@_localizer["_FollowUpDate"]"
+                                        Width="225px" />
+
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(PMT01100LOO_OfferList_OfferListDTO.CTENANT_NAME)"
+                                  HeaderText="@_localizer["_ProspectorTenant"]" />
+
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(PMT01100LOO_OfferList_OfferListDTO.CSALESMAN_NAME)"
+                                  HeaderText="@_localizer["_Salesman"]" />
+
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(PMT01100LOO_OfferList_OfferListDTO.CORIGINAL_REF_NO)"
+                                  HeaderText="@_localizer["_ReviseFromNo"]" />
+
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(PMT01100LOO_OfferList_OfferListDTO.CTRANS_STATUS_DESCR)"
+                                  HeaderText="@_localizer["_Status"]" />
+
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(PMT01100LOO_OfferList_OfferListDTO.CDOC_TYPE)"
+                                  HeaderText="@_localizer["_Document"]" />
+
+                <R_GridTextColumn FieldName="@nameof(PMT01100LOO_OfferList_OfferListDTO.CUPDATE_BY)"
+                                  HeaderText="@_localizer["_UpdatedBy"]"
+                                  Width="125px" />
+
+                <R_GridDateTimePickerColumn FieldName="@nameof(PMT01100LOO_OfferList_OfferListDTO.DUPDATE_DATE)"
+                                            HeaderText="@_localizer["_UpdatedDate"]"
+                                            Width="225px" />
+
+                <R_GridTextColumn FieldName="@nameof(PMT01100LOO_OfferList_OfferListDTO.CCREATE_BY)"
+                                  HeaderText="@_localizer["_CreatedBy"]"
+                                  Width="125px" />
+
+                <R_GridDateTimePickerColumn FieldName="@nameof(PMT01100LOO_OfferList_OfferListDTO.DCREATE_DATE)"
+                                            HeaderText="@_localizer["_CreatedDate"]"
+                                            Width="225px" />
+            </R_GridColumns>
+        </R_Grid>
+
+        <!-- Name of Building -->
+        <R_ItemLayout>
+            <R_Label>
+                @_viewModel.cBuildingSelectedUnit
+            </R_Label>
+        </R_ItemLayout>
+
+        <!-- List of Unit -->
+        <R_Grid @ref="@_gridUnitList"
+                DataSource="_viewModel.loListUnitList"
+                R_ConductorGridSource="@_conductorUnitList"
+                R_GridType="@R_eGridType.Original"
+                R_ServiceGetListRecord="@R_ServiceGetListUnitListRecord"
+                Pageable
+                Height="200px"
+                PageSize="5"
+                AllowDeleteRow="false"
+                AllowAddNewRow="false"
+                AllowEditRow="false">
+            <R_GridColumns>
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(PMT01100LOO_OfferList_UnitListDTO.CFLOOR_ID)"
+                                  HeaderText="@_localizer["_Floor"]" />
+
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(PMT01100LOO_OfferList_UnitListDTO.CUNIT_ID)"
+                                  HeaderText="@_localizer["_UnitId"]" />
+
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(PMT01100LOO_OfferList_UnitListDTO.CUNIT_TYPE_ID)"
+                                  HeaderText="@_localizer["_UnitType"]" />
+
+                <R_GridNumericColumn Width="150px"
+                                     FieldName="@nameof(PMT01100LOO_OfferList_UnitListDTO.NGROSS_AREA_SIZE)"
+                                     HeaderText="@_localizer["_Gross"]" />
+
+                <R_GridNumericColumn Width="150px"
+                                     FieldName="@nameof(PMT01100LOO_OfferList_UnitListDTO.NNET_AREA_SIZE)"
+                                     HeaderText="@_localizer["_Net"]" />
+
+            </R_GridColumns>
+
+        </R_Grid>
+
+        <!-- Button -->
+        <R_StackLayout Row hidden>
+
+            <!-- Revise -->
+            <R_ItemLayout Class="d-flex" col="2">
+
+                <R_ItemLayout>
+                    <R_Button R_ConductorGridSource="@_conductorOfferList"
+                              Enabled="true"
+                              OnClick="@BlankFunction">
+                        @_localizer["_Revise"]
+                    </R_Button>
+                </R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_Button R_ConductorGridSource="@_conductorOfferList"
+                              Enabled="true"
+                              OnClick="@BlankFunction">
+                        @_localizer["_Print"]
+                    </R_Button>
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+            <!-- Submit -->
+            <R_ItemLayout Class="d-flex" col="2">
+
+                <R_ItemLayout>
+                    <R_Button R_ConductorGridSource="@_conductorOfferList"
+                              Enabled="true"
+                              OnClick="@BlankFunction">
+                        @_localizer["_Submit"]
+                    </R_Button>
+                </R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_Button R_ConductorGridSource="@_conductorOfferList"
+                              Enabled="true"
+                              OnClick="@BlankFunction">
+                        @_localizer["_UndoSubmit"]
+                    </R_Button>
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+            <!-- Cancel LOO -->
+            <R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_Button R_ConductorGridSource="@_conductorOfferList"
+                              Enabled="true"
+                              OnClick="@BlankFunction">
+                        @_localizer["_CancelLOO"]
+                    </R_Button>
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+    </R_TabStripTab>
+
+    <!-- Offer -->
+    <R_TabStripTab Title="@_localizer["_Offer"]" Id="Offer" Enabled="_viewModel.lControlTabOffer">
+        <R_TabPage R_Before_Open_TabPage="General_Before_Open_Offer_TabPage"
+                   R_TabEventCallback="@R_TabEventCallbackAsync"
+                   @ref="_tabOffer" />
+    </R_TabStripTab>
+
+    <!-- Unit -->
+    <R_TabStripTab Title="@_localizer["_UnitAndCharges"]" Id="Unit" Enabled="_viewModel.lControlTabUnit">
+        <R_TabPage R_Before_Open_TabPage="General_Before_Open_Unit_TabPage"
+                   R_TabEventCallback="@R_TabEventCallbackAsync"
+                   @ref="_tabUnit" />
+    </R_TabStripTab>
+
+    <!-- Deposit -->
+    <R_TabStripTab Title="@_localizer["_Deposit"]" Id="Deposit" Enabled="_viewModel.lControlTabDeposit">
+        <R_TabPage R_Before_Open_TabPage="General_Before_Open_Deposit_TabPage"
+                   R_TabEventCallback="@R_TabEventCallbackAsync"
+                   @ref="_tabDeposit" />
+    </R_TabStripTab>
+
+</R_TabStrip>
+
+
+
+
+<R_ConductorGrid @ref="@_conductorOfferList"
+                 R_IsHeader />
+
+<R_ConductorGrid @ref="@_conductorUnitList"
+                 R_ConductorParent="_conductorOfferList" />

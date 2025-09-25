@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "PMT01700SERVICE": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56959;http://localhost:56960"
+    }
+  }
+}

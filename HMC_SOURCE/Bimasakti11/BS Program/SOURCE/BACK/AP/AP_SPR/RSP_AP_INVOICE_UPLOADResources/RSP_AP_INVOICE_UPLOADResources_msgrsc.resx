@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+
+    <data name="DEPT_CODE_EMPTY" xml:space="preserve">
+        <value>Department Code is mandatory</value>
+    </data>
+    <data name="DEPT_CODE_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Department Code is more than 20 characters</value>
+    </data>
+    <data name="DEPT_CODE_NOT_EXIST" xml:space="preserve">
+        <value>Department Code does not exist</value>
+    </data>
+    <data name="REF_NO_EMPTY" xml:space="preserve">
+        <value>Reference No. is mandatory</value>
+    </data>
+    <data name="REF_NO_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Reference No. is more than 30 characters</value>
+    </data>
+    <data name="REF_DATE_EMPTY" xml:space="preserve">
+        <value>Reference Date is mandatory</value>
+    </data>
+    <data name="REF_DATE_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Reference Date is more than 8 characters</value>
+    </data>
+    <data name="SUPPLIER_ID_EMPTY" xml:space="preserve">
+        <value>Supplier ID is mandatory</value>
+    </data>
+    <data name="SUPPLIER_ID_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Supplier ID is more than 20 characters</value>
+    </data>
+    <data name="SUPPLIER_ID_NOT_EXIST" xml:space="preserve">
+        <value>Supplier ID does not exist</value>
+    </data>
+    <data name="SUPP_REF_NO_EMPTY" xml:space="preserve">
+        <value>Supplier Reference No. is mandatory</value>
+    </data>
+    <data name="SUPP_REF_NO_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Supplier Reference No. is more than 30 characters</value>
+    </data>
+    <data name="SUPP_REF_DATE_EMPTY" xml:space="preserve">
+        <value>Supplier Reference Date is mandatory</value>
+    </data>
+    <data name="SUPP_REF_DATE_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Supplier Reference Date is more than 8 characters</value>
+    </data>
+    <data name="CURRENCY_CODE_EMPTY" xml:space="preserve">
+        <value>Currency Code is mandatory</value>
+    </data>
+    <data name="CURRENCY_CODE_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Currency Code is more than 3 characters</value>
+    </data>
+    <data name="CURRENCY_CODE_NOT_EXIST" xml:space="preserve">
+        <value>Currency Code does not exist</value>
+    </data>
+    <data name="TERM_CODE_EMPTY" xml:space="preserve">
+        <value>Term Code is mandatory</value>
+    </data>
+    <data name="TERM_CODE_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Term Code is more than 8 characters</value>
+    </data>
+    <data name="TERM_CODE_NOT_EXIST" xml:space="preserve">
+        <value>Term Code does not exist</value>
+    </data>
+    <data name="TAX_CODE_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Tax Code is more than 20 characters</value>
+    </data>
+    <data name="TAX_CODE_NOT_EXIST" xml:space="preserve">
+        <value>Tax Code does not exist</value>
+    </data>
+    <data name="LC_BASE_RATE_INVALID" xml:space="preserve">
+        <value>Local Currency Base Rate must be > 0</value>
+    </data>
+    <data name="LC_CURRENCY_RATE_INVALID" xml:space="preserve">
+        <value>Local Currency Rate must be > 0</value>
+    </data>
+    <data name="BC_BASE_RATE_INVALID" xml:space="preserve">
+        <value>Base Currency Base Rate must be > 0</value>
+    </data>
+    <data name="BC_CURRENCY_RATE_INVALID" xml:space="preserve">
+        <value>Base Currency Rate must be > 0</value>
+    </data>
+    <data name="TAX_BASE_RATE_INVALID" xml:space="preserve">
+        <value>Base Tax Base Rate must be > 0</value>
+    </data>
+    <data name="TAX_CURRENCY_RATE_INVALID" xml:space="preserve">
+        <value>Tax Currency Rate must be > 0</value>
+    </data>
+    <data name="H_NOTES_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Header Notes is more than 200 characters</value>
+    </data>
+    <data name="D_NOTES_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Detail Notes is more than 200 characters</value>
+    </data>
+    <data name="PROD_DEPT_EMPTY" xml:space="preserve">
+        <value>Product Department Code is mandatory</value>
+    </data>
+    <data name="PROD_DEPT_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Product Department Code is more than 20 characters</value>
+    </data>
+    <data name="PROD_DEPT_NOT_EXIST" xml:space="preserve">
+        <value>Product Department Code does not exist</value>
+    </data>
+    <data name="PROD_TYPE_EMPTY" xml:space="preserve">
+        <value>Product Type is mandatory</value>
+    </data>
+    <data name="PROD_TYPE_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Product Type is more than 1 character</value>
+    </data>
+    <data name="PROD_TYPE_NOT_EXIST" xml:space="preserve">
+        <value>Invalid Product Type value, valid value is E/P</value>
+    </data>
+    <data name="PRODUCT_ID_EMPTY" xml:space="preserve">
+        <value>Product ID is mandatory</value>
+    </data>
+    <data name="PRODUCT_ID_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Product ID is more than 20 characters</value>
+    </data>
+    <data name="PRODUCT_ID_NOT_EXIST" xml:space="preserve">
+        <value>Product ID does not exist</value>
+    </data>
+    <data name="ALLOC_ID_EMPTY" xml:space="preserve">
+        <value>Allocation ID is mandatory for type Product</value>
+    </data>
+    <data name="ALLOC_ID_LENGTH_EXCEEDED" xml:space="preserve">
+        <value>Allocation ID is more than 30 characters</value>
+    </data>
+    <data name="ALLOC_ID_NOT_EXIST" xml:space="preserve">
+        <value>Allocation ID does not exist</value>
+    </data>
+    <data name="QTY_INVALID" xml:space="preserve">
+        <value>Invalid Quantity, Quantity value must be > 0</value>
+    </data>
+    <data name="PRICE_INVALID" xml:space="preserve">
+        <value>Invalid Unit Price, Unit Price value must be > 0</value>
+    </data>
+    <data name="REF_NO_EXISTS" xml:space="preserve">
+        <value>Reference No. already exists</value>
+    </data>
+</root>

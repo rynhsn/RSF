@@ -1,0 +1,46 @@
+﻿@using Lookup_HDCOMMON.DTOs.HDL00500
+@using Lookup_HDFrontResources
+@inherits R_BlazorFrontEnd.Controls.R_Page
+@attribute [R_Page(Title = "Task Lookup")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupHD> _localizer
+<R_StackLayout Style="width: 1200px">
+
+    <R_StackLayout Row>
+        <R_ItemLayout Class="col-12">
+            <R_Grid @ref="@GridRef"
+                    DataSource="_viewModel.TaskLookup"
+                    R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                    Pageable
+                    Height="400px"
+                    R_GridType="R_eGridType.Navigator"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false"
+                    PageSize="15">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(HDL00500DTO.CTASK_CODE)" Width="130px" HeaderText="@_localizer["TASK_CODE"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00500DTO.CTASK_NAME)" Width="150px" HeaderText="@_localizer["TASK_NAME  "]"></R_GridTextColumn>
+                    <R_GridMultiHeaderColumn HeaderText="@_localizer["DURRATION"]">
+                        <R_GridNumericColumn TValue="int" Width="140px" FieldName="@nameof(HDL00500DTO.IDURATION_TIME)" Arrows="false"></R_GridNumericColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00500DTO.CDURATION_TYPE_DESCR)" Width="130px"></R_GridTextColumn>
+                    </R_GridMultiHeaderColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00500DTO.CDEPT_NAME)" Width="125px" HeaderText="@_localizer["DEPT"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00500DTO.CCALL_TYPE_NAME)" Width="125px" HeaderText="@_localizer["SLA"]"></R_GridTextColumn>
+                    <R_GridDatePickerColumn Width="175px" FieldName="@nameof(HDL00500DTO.CSTART_DISPLAY)" HeaderText="@_localizer["START_DATE"]" ></R_GridDatePickerColumn>
+                    <R_GridDatePickerColumn Width="175px" FieldName="@nameof(HDL00500DTO.CEND_DATE_DISPLAY)" HeaderText="@_localizer["END_DATE"]" ></R_GridDatePickerColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+        <R_Button Enabled="@(_viewModel.TaskLookup.Count != 0)"
+                  OnClick="Button_OnClickOkAsync">
+            @_localizer["OK"]
+        </R_Button>
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            @_localizer["CANCEL"]
+        </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>

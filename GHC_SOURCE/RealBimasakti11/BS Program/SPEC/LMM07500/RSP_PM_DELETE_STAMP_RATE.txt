@@ -1,0 +1,2 @@
+ERROR_PROCESS=Process failed! unable to delete Stamp Rate {0}
+DATA_USED=Unable to delete! Stamp Code {0} has already been used by Invoice Group!

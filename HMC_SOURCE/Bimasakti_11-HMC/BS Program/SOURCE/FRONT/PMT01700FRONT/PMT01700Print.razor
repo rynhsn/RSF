@@ -1,0 +1,32 @@
+@using PMT01700COMMON.DTO.Utilities.Print;
+@inherits R_Page
+@attribute [R_Page(Title = "Print", ResourceId = "_titlePrint")]
+
+
+<R_StackLayout Row>
+
+    <R_ItemLayout>
+        <R_Label>
+            @_localizer["_EventTemplate"]
+        </R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_ComboBox Data="@_viewModel.ListReportTemplate"
+                    Enabled="@(_viewModel.ListReportTemplate.Any())"
+                    @bind-Value="_viewModel.SelectedReportTemplate"
+                    ValueField="@nameof(ReportTemplateListDTO.CTEMPLATE_ID)"
+                    TextField="@nameof(ReportTemplateListDTO.CTEMPLATE_NAME)" />
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Justify="R_eJustify.FlexEnd" AlignItems="R_eAlignItems.End">
+
+    <R_ItemLayout>
+        <R_Button Enabled="@(_viewModel.ListReportTemplate.Any())"
+                  OnClick="@OnClickOk">
+            @_localizer["_Print"]
+        </R_Button>
+    </R_ItemLayout>
+
+</R_StackLayout>

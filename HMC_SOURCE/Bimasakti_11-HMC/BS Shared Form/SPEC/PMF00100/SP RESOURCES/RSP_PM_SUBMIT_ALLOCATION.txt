@@ -1,0 +1,10 @@
+INCOMPLETE_TRX=Incomplete Transaction! Unable to submit.
+PM_GLNO_NOT_FOUND=PM GL Account No. not found!
+PROD_GLNO_NOT_FOUND=Product GL Account No. not found!
+TAX_GL_ACCOUNT_NO_NOT_FOUND=Tax GL Account No. not found!
+OTHER_TAX_GL_ACCOUNT_NO_NOT_FOUND=Other Tax GL Account No. not found!
+PCDSC_GLNO_NOT_FOUND=Purchase Cash Discount GL Account No. not found!
+CRDVG_GLNO_NOT_FOUND=Currency Deviatiation Gain GL Account No. not found!
+CRDVL_GLNO_NOT_FOUND=Currency Deviatiation Loss GL Account No. not found!
+
+ERROR_PROCESS=Process failed! unable to save PM Allocation{0}

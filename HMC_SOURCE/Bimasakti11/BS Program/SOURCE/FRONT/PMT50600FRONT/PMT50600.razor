@@ -1,0 +1,165 @@
+﻿@page "/PMT50600"
+@attribute [R_Page(Title = "Credit Note List")]
+@inherits R_Page
+@using PMT50600COMMON.DTOs.PMT50600
+@using PMT50600MODEL
+
+   
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Property"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@loCreditNoteViewModel.loPropertyList"
+                    Value="loCreditNoteViewModel.loProperty.CPROPERTY_ID"
+                    ValueField="@nameof(GetPropertyListDTO.CPROPERTY_ID)"
+                    TextField="@nameof(GetPropertyListDTO.CPROPERTY_NAME)"
+                    R_ConductorGridSource="@_conductorCreditNoteRef" ValueChanged="@((string value) => PropertyDropdown_ValueChanged(value))">
+        </R_ComboBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Department"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="@loCreditNoteViewModel.loCreditNote.CDEPARTMENT_CODE"
+                   OnLostFocus="OnLostFocusDepartment"
+                   R_ConductorGridSource="@_conductorCreditNoteRef"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="0">
+        <R_Lookup R_ConductorGridSource="_conductorCreditNoteRef"
+                  R_Before_Open_Lookup="@R_Before_Open_LookupDepartment"
+                  R_After_Open_Lookup="@R_After_Open_LookupDepartment">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="4" Class="me-2">
+        <R_TextBox @bind-Value="@loCreditNoteViewModel.loCreditNote.CDEPARTMENT_NAME"
+                    R_ConductorGridSource="@_conductorCreditNoteRef"
+                    Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_Button R_ConductorGridSource="@_conductorCreditNoteRef" OnClick="OnClickRefresh">@_localizer["_Refresh"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Customer"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_RadioGroup Data="@loCustomerOptionRadioButton"
+                      Value="@loCreditNoteViewModel.loCreditNote.CTENANT_OPTIONS"
+                      ValueField="@nameof(CustomerOptionRadioButton.CTENANT_OPTION_CODE)"
+                      TextField="@nameof(CustomerOptionRadioButton.CTENANT_OPTION_NAME)"
+                      Layout="R_eRadioGroupLayout.Horizontal"
+                      ValueChanged="@((string value) => CustomerOptionRadioButton_ValueChanged(value))"
+                      R_ConductorGridSource="@_conductorCreditNoteRef"></R_RadioGroup>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Periodfrom"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="6">
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox Value="@loCreditNoteViewModel.loCreditNote.IPERIOD_FROM_YEAR"
+                                  R_ConductorGridSource="@_conductorCreditNoteRef"
+                                  ThousandSeparator="false"
+                                  ValueChanged="@((int value) => PeriodYearFromDropdownList_ValueChanged(value))"
+                                  Min=loCreditNoteViewModel.loPeriodYearRange.IMIN_YEAR
+                                  Max=loCreditNoteViewModel.loPeriodYearRange.IMAX_YEAR></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_DropDownList Data="@loPeriodMonth"
+                                Value="loCreditNoteViewModel.loCreditNote.CPERIOD_FROM_MONTH"
+                                ValueField="@nameof(PeriodMonth.CCODE)"
+                                TextField="@nameof(PeriodMonth.CCODE)"
+                                ValueChanged="@((string value) => PeriodMonthFromDropdownList_ValueChanged(value))"
+                                R_ConductorGridSource="@_conductorCreditNoteRef">
+                </R_DropDownList>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 10px">
+                <R_Label>@_localizer["_to"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox Value="@loCreditNoteViewModel.loCreditNote.IPERIOD_TO_YEAR"
+                                  R_ConductorGridSource="@_conductorCreditNoteRef"
+                                  ThousandSeparator="false"
+                                  ValueChanged="@((int value) => PeriodYearToDropdownList_ValueChanged(value))"
+                                  Min=loCreditNoteViewModel.loPeriodYearRange.IMIN_YEAR
+                                  Max=loCreditNoteViewModel.loPeriodYearRange.IMAX_YEAR></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_DropDownList Data="@loPeriodMonth"
+                                Value="loCreditNoteViewModel.loCreditNote.CPERIOD_TO_MONTH"
+                                ValueField="@nameof(PeriodMonth.CCODE)"
+                                TextField="@nameof(PeriodMonth.CCODE)"
+                                ValueChanged="@((string value) => PeriodMonthToDropdownList_ValueChanged(value))"
+                                R_ConductorGridSource="@_conductorCreditNoteRef">
+                </R_DropDownList>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label></R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="@loCreditNoteViewModel.loCreditNote.CTENANT_ID"
+                   R_ConductorGridSource="@_conductorCreditNoteRef" OnLostFocus="@OnLostFocusCustomer" Enabled="@IsCustomerEnabled"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="0">
+        <R_Lookup R_ConductorGridSource="_conductorCreditNoteRef" Enabled="@IsCustomerEnabled"  R_Before_Open_Lookup="@R_Before_Open_LookupCustomer" R_After_Open_Lookup="@R_After_Open_LookupCustomer">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="@loCreditNoteViewModel.loCreditNote.CTENANT_NAME"
+                   R_ConductorGridSource="@_conductorCreditNoteRef"
+                   Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_Grid @ref="@_gridInvoiceRef"
+                DataSource="@loCreditNoteViewModel.loCreditNoteList"
+                Pageable="true"
+                R_ConductorGridSource="@_conductorCreditNoteRef"
+                R_GridType="@R_eGridType.Original"
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false"
+                Height="300px"
+                R_Display="@Grid_CreditNote_Display"
+                R_ServiceGetListRecord="@Grid_CreditNote_R_ServiceGetListRecord">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName=@nameof(PMT50600DetailDTO.CREF_NO) HeaderText="@_localizer["_ReferenceNo"]" Width="225px"></R_GridTextColumn>
+                    <R_GridDatePickerColumn FieldName=@nameof(PMT50600DetailDTO.DREF_DATE) HeaderText="@_localizer["_Date"]" Width="150px"></R_GridDatePickerColumn>
+                    <R_GridDatePickerColumn FieldName="@nameof(PMT50600DetailDTO.DDUE_DATE)" HeaderText="@_localizer["_DueDate"]" Width="150px"></R_GridDatePickerColumn>
+                    <R_GridMultiHeaderColumn HeaderText="@_localizer["_Customer"]">
+                        <R_GridTextColumn FieldName="@nameof(PMT50600DetailDTO.CTENANT_NAME)" HeaderText="@_localizer["_Name"]" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(PMT50600DetailDTO.CCUSTOMER_TYPE_NAME)" HeaderText="@_localizer["_Type"]" Width="100px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(PMT50600DetailDTO.CDOC_NO)" HeaderText="@_localizer["_DocNo"]" Width="225px"></R_GridTextColumn>
+                    </R_GridMultiHeaderColumn>
+                    <R_GridTextColumn FieldName="@nameof(PMT50600DetailDTO.CTRANS_STATUS_NAME)" HeaderText="@_localizer["_Status"]" Width="100px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(PMT50600DetailDTO.CCURRENCY_CODE)" HeaderText="@_localizer["_Curr"]" Width="75px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(PMT50600DetailDTO.NTOTAL_AMOUNT)" HeaderText="@_localizer["_Amount"]" Width="100px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(PMT50600DetailDTO.CTRANS_DESC)" HeaderText="@_localizer["_Description"]" Width="350px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(PMT50600DetailDTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="125px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(PMT50600DetailDTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                    <R_GridTextColumn FieldName="@nameof(PMT50600DetailDTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="125px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(PMT50600DetailDTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_PredefinedDock R_InstantiateDock="@PreDock_InstantiateDock"
+                  R_AfterOpenPredefinedDock="@R_AfterOpenPredefinedDock"
+                  Enabled="@IsTabEnabled"
+                  Title="@_localizer["_CreditNoteEntry"]"></R_PredefinedDock>
+
+
+<R_ConductorGrid @ref="@_conductorCreditNoteRef"
+                 R_IsHeader
+                 R_ViewModel="loCreditNoteViewModel">
+</R_ConductorGrid>

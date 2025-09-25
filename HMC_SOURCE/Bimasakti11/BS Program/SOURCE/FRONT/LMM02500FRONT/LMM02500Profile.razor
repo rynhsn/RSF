@@ -1,0 +1,628 @@
+@using LMM02500Common.DTO
+@inherits R_Page;
+
+<R_TabStrip @ref="@_tabStripRef"
+            OnActiveTabIndexChanging="OnActiveTabIndexChanging"
+            OnActiveTabIndexChanged="OnActiveTabIndexChanged">
+    <!-- Profile -->
+    <R_TabStripTab Title="Profile" Id="Profile">
+
+        <R_StackLayout>
+
+            <R_StackLayout Row>
+
+                @* Tenant Group *@
+                <R_ItemLayout col="2">
+                    <R_Label>Tenant Group*</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModelLMM02510.Data.Profile.CTENANT_GROUP_ID"
+                               R_ConductorSource="@_conductorFullLMM02500"
+                               R_EnableAdd="true"
+                               R_EnableEdit="true">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="4">
+                    <R_TextBox @bind-Value="@_viewModelLMM02510.Data.Profile.CTENANT_GROUP_NAME"
+                               R_ConductorSource="@_conductorFullLMM02500"
+                               R_EnableAdd="true"
+                               R_EnableEdit="true">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            @* Address *@
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>Address*</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="6">
+                    <R_TextArea @bind-Value="@_viewModelLMM02510.Data.Profile.CADDRESS"
+                                R_ConductorSource="@_conductorFullLMM02500"
+                                R_EnableAdd="true"
+                                R_EnableEdit="true">
+                    </R_TextArea>
+                </R_ItemLayout>
+
+                <R_StackLayout Class="col-6 ms-4">
+
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="2">
+                            <R_Label>Phone No (1)</R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout col="4">
+                            <R_TextBox @bind-Value="@_viewModelLMM02510.Data.Profile.CPHONE1"
+                                       R_ConductorSource="@_conductorFullLMM02500"
+                                       R_EnableAdd="true"
+                                       R_EnableEdit="true">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="2">
+                            <R_Label>Phone No (2)</R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout col="4">
+                            <R_TextBox @bind-Value="@_viewModelLMM02510.Data.Profile.CPHONE2"
+                                       R_ConductorSource="@_conductorFullLMM02500"
+                                       R_EnableAdd="true"
+                                       R_EnableEdit="true">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+
+                </R_StackLayout>
+            </R_StackLayout>
+
+            @* Email *@
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>Email</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModelLMM02510.Data.Profile.CEMAIL"
+                               R_ConductorSource="@_conductorFullLMM02500"
+                               R_EnableAdd="true"
+                               R_EnableEdit="true">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            @* Pic Name *@
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="2">
+                    <R_Label>PIC Name*</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModelLMM02510.Data.Profile.CPIC_NAME"
+                               R_ConductorSource="@_conductorFullLMM02500"
+                               R_EnableAdd="true"
+                               R_EnableEdit="true">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="1" Class="ms-4">
+                    <R_Label>Mobile No (1)</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModelLMM02510.Data.Profile.CPIC_MOBILE_PHONE1"
+                               R_ConductorSource="@_conductorFullLMM02500"
+                               R_EnableAdd="true"
+                               R_EnableEdit="true">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            @* PIC Position *@
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>PIC Position</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModelLMM02510.Data.Profile.CPIC_POSITION"
+                               R_ConductorSource="@_conductorFullLMM02500"
+                               R_EnableAdd="true"
+                               R_EnableEdit="true">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="1" Class="ms-4
+">
+                    <R_Label>Mobile No (2)</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModelLMM02510.Data.Profile.CPIC_MOBILE_PHONE2"
+                               R_ConductorSource="@_conductorFullLMM02500"
+                               R_EnableAdd="true"
+                               R_EnableEdit="true">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            @* PIC Email *@
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>PIC Email</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModelLMM02510.Data.Profile.CPIC_EMAIL"
+                               R_ConductorSource="@_conductorFullLMM02500"
+                               R_EnableAdd="true"
+                               R_EnableEdit="true">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            @* Use Group Tax Info *@
+
+            <R_StackLayout Row>
+                <R_CheckBox 
+                            Value="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX"
+                            R_ConductorSource="@_conductorFullLMM02500"
+                            R_EnableAdd="true"
+                            R_EnableEdit="true"
+                            ValueChanged="@OnChanged_LUSE_GROUP_TAX_LMMFull02500" 
+                            />
+
+
+                <R_ItemLayout col="3">
+                    <R_Label>Use Group Tax Info</R_Label>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            @* Updated By *@
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>Updated By</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModelLMM02510.Data.Profile.CUPDATE_BY"
+                               R_ConductorSource="@_conductorFullLMM02500"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="1" Class="text-end me-3">
+                    <R_Label>Date</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2" Class="me-5">
+                    <R_DateInput @bind-Value="@_viewModelLMM02510.Data.Profile.DUPDATE_DATE"
+                                 R_ConductorSource="@_conductorFullLMM02500"
+                                 Enabled="false">
+                    </R_DateInput>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            @* Created By *@
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>Created By</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModelLMM02510.Data.Profile.CCREATE_BY"
+                               R_ConductorSource="@_conductorFullLMM02500"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="1" Class="text-end me-3">
+                    <R_Label>Date</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2" Class="me-5">
+                    <R_DateInput @bind-Value="@_viewModelLMM02510.Data.Profile.DCREATE_DATE"
+                                 R_ConductorSource="@_conductorFullLMM02500"
+                                 Enabled="false">
+                    </R_DateInput>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            @* Button Add *@
+
+
+            <R_StackLayout Row Class="d-flex justify-content-between">
+
+                <R_StackLayout Row>
+
+                    <R_ItemLayout>
+                        <R_AddButton R_Conductor="@_conductorFullLMM02500"></R_AddButton>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout>
+                        <R_EditButton R_Conductor="@_conductorFullLMM02500"></R_EditButton>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout>
+                        <R_DeleteButton R_Conductor="@_conductorFullLMM02500"></R_DeleteButton>
+                    </R_ItemLayout>
+
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+
+                    <R_ItemLayout>
+                        <R_CancelButton R_Conductor="@_conductorFullLMM02500"></R_CancelButton>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout>
+                        <R_Button OnClick="@OnClickNextButton"
+                                  R_ConductorSource="@_conductorFullLMM02500"
+                                  R_EnableAdd
+                                  R_EnableEdit>
+                            Next
+                        </R_Button>
+
+                    </R_ItemLayout>
+
+                </R_StackLayout>
+
+            </R_StackLayout>
+        </R_StackLayout>
+    </R_TabStripTab>
+
+    <!-- Tax Info -->
+
+    <R_TabStripTab Title="Tax Info" Id="TaxInfo">
+
+        @* Tenant Group *@
+
+        <R_StackLayout Row>
+
+            <R_ItemLayout col="2">
+                <R_Label>Tenant Group</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2" Class="ms-2">
+                <R_TextBox @bind-Value="@_viewModelLMM02510.Data.Profile.CTENANT_GROUP_ID"
+                           R_ConductorSource="@_conductorFullLMM02500"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="@_viewModelLMM02510.Data.Profile.CTENANT_GROUP_NAME"
+                           R_ConductorSource="@_conductorFullLMM02500"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+        <R_GroupBox Enabled="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX" ShowBorder="false">
+            @* Tax Type *@
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="2">
+                    <R_Label>Type</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="5">
+                    <R_DropDownList Data="@_viewModelLMM02510.loTaxTypeList"
+                                    @bind-Value="_viewModelLMM02510.Data.TaxInfo.CTAX_TYPE"
+                                    ValueField="@nameof(LMM02500ComboBoxType.CCODE)"
+                                    TextField="@nameof(LMM02500ComboBoxType.CDESCRIPTION)"
+                                    R_ConductorSource="@_conductorFullLMM02500"
+                                    R_EnableAdd="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX"
+                                    R_EnableEdit="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX" />
+                </R_ItemLayout>
+
+
+                <R_ItemLayout Class="d-flex align-items-center ms-4">
+                    <R_CheckBox @bind-Value="@_viewModelLMM02510.Data.TaxInfo.LPPH"
+                                R_ConductorSource="@_conductorFullLMM02500"
+                                R_EnableAdd="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX"
+                                R_EnableEdit="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX" />
+                </R_ItemLayout>
+
+                <R_ItemLayout Class="d-flex align-items-end ms-1">
+                    <R_Label>Receipt Payment with Withholding Tax(PPh) Deduction</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @* Tax Id *@
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="2">
+                    <R_Label>Tax Id</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModelLMM02510.Data.TaxInfo.CTAX_ID"
+                               R_ConductorSource="@_conductorFullLMM02500"
+                               R_EnableAdd="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX"
+                               R_EnableEdit="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            @* Tax Name *@
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="2">
+                    <R_Label>Tax Name</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModelLMM02510.Data.TaxInfo.CTAX_NAME"
+                               R_ConductorSource="@_conductorFullLMM02500"
+                               R_EnableAdd="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX"
+                               R_EnableEdit="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            @* ID Number *@
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="2">
+                    <R_Label>Id Number</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModelLMM02510.Data.TaxInfo.CID_NO"
+                               R_ConductorSource="@_conductorFullLMM02500"
+                               R_EnableAdd="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX"
+                               R_EnableEdit="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="1" Class="ms-4">
+                    <R_Label>ID Type</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_DropDownList Data="@_viewModelLMM02510.loIdTypeList"
+                                    @bind-Value="_viewModelLMM02510.Data.TaxInfo.CID_TYPE"
+                                    ValueField="@nameof(LMM02500ComboBoxType.CCODE)"
+                                    TextField="@nameof(LMM02500ComboBoxType.CDESCRIPTION)"
+                                    R_ConductorSource="@_conductorFullLMM02500"
+                                    R_EnableAdd="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX"
+                                    R_EnableEdit="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX" />
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            @* ID Expired Date *@
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="2">
+                    <R_Label>ID Expired Date</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+
+                    <R_DateInput @bind-Value="@_viewModelLMM02510.ltCID_EXPIRED_DATE"
+                                 R_ConductorSource="@_conductorFullLMM02500"
+                                 R_EnableAdd="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX"
+                                 R_EnableEdit="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX">
+                    </R_DateInput>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            @* Tax Code *@
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="2">
+                    <R_Label>Tax Code</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3">
+                    <R_DropDownList Data="@_viewModelLMM02510.loTaxCodeTypeList"
+                                    @bind-Value="_viewModelLMM02510.Data.TaxInfo.CTAX_CODE"
+                                    ValueField="@nameof(LMM02500ComboBoxType.CCODE)"
+                                    TextField="@nameof(LMM02500ComboBoxType.CDESCRIPTION)"
+                                    R_ConductorSource="@_conductorFullLMM02500"
+                                    R_EnableAdd="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX"
+                                    R_EnableEdit="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX" />
+                </R_ItemLayout>
+
+                @*<R_ItemLayout col="1" /> *@
+                <R_ItemLayout col="1" Class="ms-4">
+                    <R_Label>Limit Amount</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="@_viewModelLMM02510.Data.TaxInfo.NTAX_CODE_LIMIT_AMOUNT"
+                                      Arrows="false"
+                                      R_ConductorSource="@_conductorFullLMM02500"
+                                      R_EnableAdd="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX"
+                                      R_EnableEdit="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            @* Address *@
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="2">
+                    <R_Label>Address</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="6">
+                    <R_TextArea @bind-Value="@_viewModelLMM02510.Data.TaxInfo.CTAX_ADDRESS"
+                                R_ConductorSource="@_conductorFullLMM02500"
+                                R_EnableAdd="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX"
+                                R_EnableEdit="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX">
+                    </R_TextArea>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            @* Phone No(1) *@
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="2">
+                    <R_Label>Phone No(1)</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModelLMM02510.Data.TaxInfo.CTAX_PHONE1"
+                               R_ConductorSource="@_conductorFullLMM02500"
+                               R_EnableAdd="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX"
+                               R_EnableEdit="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="1" />
+
+                <R_ItemLayout col="1" Class="ms-4">
+                    <R_Label>Phone No(2)</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModelLMM02510.Data.TaxInfo.CTAX_PHONE2"
+                               R_ConductorSource="@_conductorFullLMM02500"
+                               R_EnableAdd="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX"
+                               R_EnableEdit="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            @* Email *@
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="2">
+                    <R_Label>Email</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModelLMM02510.Data.TaxInfo.CTAX_EMAIL"
+                               R_ConductorSource="@_conductorFullLMM02500"
+                               R_EnableAdd="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX"
+                               R_EnableEdit="@_viewModelLMM02510.Data.Profile.LUSE_GROUP_TAX">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+        </R_GroupBox>
+        @* Updated By *@
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2" Class="ms-2">
+                <R_Label>Update By</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModelLMM02510.Data.TaxInfo.CUPDATE_BY"
+                           R_ConductorSource="@_conductorFullLMM02500"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="1" Class="text-end me-3">
+                <R_Label>Date</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2" Class="me-5">
+                <R_DateInput @bind-Value="@_viewModelLMM02510.Data.TaxInfo.DUPDATE_DATE"
+                             R_ConductorSource="@_conductorFullLMM02500"
+                             Enabled="false">
+                </R_DateInput>
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+        @* Created By *@
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2" Class="ms-2">
+                <R_Label>Created By</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModelLMM02510.Data.TaxInfo.CCREATE_BY"
+                           R_ConductorSource="@_conductorFullLMM02500"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="1" Class="text-end me-3">
+                <R_Label>Date</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2" Class="me-5">
+                <R_DateInput @bind-Value="@_viewModelLMM02510.Data.TaxInfo.DCREATE_DATE"
+                             R_ConductorSource="@_conductorFullLMM02500"
+                             Enabled="false">
+                </R_DateInput>
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="d-flex justify-content-end">
+
+            <R_StackLayout Row>
+
+                <R_ItemLayout>
+                    <R_CancelButton R_Conductor="@_conductorFullLMM02500"></R_CancelButton>
+                </R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_SaveButton R_Conductor="@_conductorFullLMM02500"></R_SaveButton>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+        </R_StackLayout>
+
+    </R_TabStripTab>
+
+    <!-- Tenant List -->
+</R_TabStrip>
+
+<R_Conductor @ref="@_conductorFullLMM02500"
+             R_ViewModel="@_viewModelLMM02510"
+              R_IsHeader
+              R_BeforeCancel="@Profile_BeforeCancel"
+              R_ServiceGetRecord="@ServiceGetRecordLMM02510"
+              R_ServiceSave="@ServiceSaveLMM02510"
+              R_ServiceDelete="@ServiceDeleteGSM06010"
+              R_AfterDelete="@R_AfterDeleteLMM02510"
+              R_AfterAdd="@R_AfterAddLMM02510"
+              R_SetOther="@ProfileAndTaxInfo_SetOther"
+              R_Validation="R_ValidationLMM02510" />

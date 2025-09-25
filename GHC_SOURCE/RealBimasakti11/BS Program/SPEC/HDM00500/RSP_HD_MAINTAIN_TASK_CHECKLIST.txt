@@ -1,0 +1,7 @@
+0501 = Error process, please contact your administrator!
+0502 = Duplicate Task Checklist Id!
+0503 = Cannot Delete, Task Checklist already in used!
+0504 = Task Checklist Id cannot be empty!
+0505 = Task Checklist Name cannot be empty!
+
+

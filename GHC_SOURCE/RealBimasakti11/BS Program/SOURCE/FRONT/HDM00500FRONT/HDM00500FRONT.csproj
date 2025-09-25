@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+	  <SupportedPlatform Include="browser" />
+	  <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.36" />
+	  <Reference Include="BlazorClientHelper">
+		  <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
+	  </Reference>
+	  <Reference Include="R_APICommonDTO">
+		  <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_APICommonDTO.dll</HintPath>
+	  </Reference>
+	  <Reference Include="R_BlazorFrontEnd">
+		  <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.dll</HintPath>
+	  </Reference>
+	  <Reference Include="R_BlazorFrontEnd.Controls">
+		  <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Controls.dll</HintPath>
+	  </Reference>
+	  <Reference Include="R_CommonFrontBackAPI">
+		  <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CommonFrontBackAPI.dll</HintPath>
+	  </Reference>
+	  <Reference Include="R_LockingFront">
+		  <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_LockingFront.dll</HintPath>
+	  </Reference>
+	  <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\BACK\GFF00900COMMON\GFF00900COMMON.csproj" />
+	  <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\GFF00900FrontResources\GFF00900FrontResources.csproj" />
+	  <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\GFF00900FRONT\GFF00900FRONT.csproj" />
+	  <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\GFF00900Model\GFF00900Model.csproj" />
+	  <ProjectReference Include="..\..\COMMON\HD\HDM00500COMMON\HDM00500COMMON.csproj" />
+    <ProjectReference Include="..\HDM00500FrontResources\HDM00500FrontResources.csproj" />
+    <ProjectReference Include="..\HDM00500MODEL\HDM00500MODEL.csproj" />
+  </ItemGroup>
+
+</Project>

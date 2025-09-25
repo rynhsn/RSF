@@ -1,0 +1,87 @@
+﻿@inherits R_Page
+@inject R_ILocalizer<GLM00400FrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row>
+    <R_ItemLayout col="6">
+        <R_Grid @ref="@_AllocationCenter_gridRef"
+                DataSource="@_AllocationTargetCenter_viewModel.AllocationCenterGrid"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="@Allocation_Center_ServiceGetListRecord"
+                Pageable="true"
+                Enabled="@_PageOnCRUDMode"
+                R_ConductorSource="@_AllocationCenter_condutorRef"
+                Height="160px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CCENTER_CODE" HeaderText="@_localizer["_CenterCode"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCENTER_NAME" HeaderText="@_localizer["_CenterName"]"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+    <R_ItemLayout col="6">
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_Label FontColor="@R_eFontColor.Primary"><strong>@_localizer["_Alloc"]</strong></R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_TargetCenter"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_AllocationTargetCenter_viewModel.Data.CCENTER_NAME" Enabled="false" R_ConductorSource="@_AllocationCenter_condutorRef"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_AllocYear"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox ThousandSeparator="false" @bind-Value="@_AllocationTargetCenter_viewModel.Year"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_Button OnClick="@_AllocationTargetCenter_Refresh_OnClick" Enabled="@RefreshBtn">@_localizer["_Refresh"]</R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_Grid @ref="@_AllocationCenterPeriod_gridRef"
+                        R_ConductorGridSource="@_AllocationCenterPeriod_condutorRef"
+                        DataSource="@_AllocationTargetCenter_viewModel.AllocationCenterPeriodGrid"
+                        R_GridType="@R_eGridType.Original"
+                        AllowAddNewRow="false"
+                        AllowDeleteRow="false"
+                        AllowEditRow="true"
+                        R_ServiceGetListRecord="@Allocation_CenterPeriod_ServiceGetListRecord"
+                        Pageable="true"
+                        Height="120px">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="CYEAR" HeaderText="@_localizer["_Year"]"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="CPERIOD_NO" HeaderText="@_localizer["_Period"]"></R_GridTextColumn>
+                        <R_GridNumericColumn FieldName="NVALUE" HeaderText="@_localizer["_FormulaVal"]" R_EnableEdit></R_GridNumericColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row>
+    <R_ItemLayout col="2" Class="mt-2">
+        <R_Popup R_Before_Open_Popup="@Allocation_CenterPeriod_Before_Open_Popup" R_After_Open_Popup="@Allocation_Center_After_Open_Popup" Enabled="@_SetHasDataDT">@_localizer["_EditAccount"]</R_Popup>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_AllocationCenter_condutorRef"
+             R_ViewModel="@_AllocationTargetCenter_viewModel"
+             R_IsHeader="true" 
+             R_ServiceGetRecord="@Allocation_Center_ServiceGetRecord"
+             R_Display="@Allocation_Center_Display"
+             R_SetHasData="@Allocation_Center_SetHasData"
+             />
+
+<R_ConductorGrid @ref="@_AllocationCenterPeriod_condutorRef"
+                 R_ViewModel="@_AllocationTargetCenter_viewModel" 
+                 R_ConductorParent="@_AllocationCenter_condutorRef"
+                 R_ServiceGetRecord="@Allocation_CenterPeriod_ServiceGetRecord"
+                 R_ServiceSave="@Allocation_CenterPeriod_ServiceSave"
+                 R_SetOther="@Grid_R_SetOther" 
+                 R_SetEdit="@Allocation_CenterPeriod_SetEdit"/>

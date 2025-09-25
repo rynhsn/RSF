@@ -1,0 +1,86 @@
+﻿@page "/PMT01810"
+@using R_BlazorFrontEnd.Enums
+@using R_BlazorFrontEnd.Interfaces
+@using PMT01800FrontResources
+@using PMT01800COMMON.DTO
+@inherits R_Page
+@attribute [R_Page(Title = "Assign LOO Event")]
+@inject R_ILocalizer<Resource_Dummy_Class_PMT01800> _localizer
+
+<R_StackLayout Row="true">
+</R_StackLayout>
+<R_StackLayout Spacing="3" Class="mb-2 mt-2">
+    <R_Grid @ref="@_gridRefHead"
+            Width="100%"
+            Height="230px"
+            PageSize="7"
+            DataSource="@_viewModelPMT01810.loGridList"
+            Pageable="true"
+            R_ConductorSource="@_conductorGridPMT01800"
+            R_GridType="@R_eGridType.Navigator"
+            R_ServiceGetListRecord="@GridServiceGetList">
+
+        <R_GridColumns>
+            <R_GridTextColumn Width="155px" FieldName="@nameof(PMT01810DTO.CDEPT_NAME)" HeaderText="@_localizer["DEPT"]" />
+            <R_GridTextColumn Width="180px" FieldName="@nameof(PMT01810DTO.CREF_NO)" HeaderText="@_localizer["LOCNO"]" />
+            <R_GridDatePickerColumn Width="201px" FieldName="@nameof(PMT01810DTO.CREF_DATE_DISPLAY)" HeaderText="@_localizer["LOCDATE"]" />
+            <R_GridTextColumn Width="190px" FieldName="@nameof(PMT01810DTO.CTENANT_NAME)" HeaderText="@_localizer["PRSPK/TNT"]" />
+            <R_GridTextColumn Width="190px" FieldName="@nameof(PMT01810DTO.CSALESMAN_NAME)" HeaderText="@_localizer["SLSMN"]" />
+            <R_GridTextColumn Width="166px" FieldName="@nameof(PMT01810DTO.CTRANS_STATUS_DESC)" HeaderText="@_localizer["STST"]" />
+            <R_GridTextColumn Width="162px" FieldName="@nameof(PMT01810DTO.CAGREEMENT_STATUS_DESC)" HeaderText="@_localizer["DCMNT"]" />
+        </R_GridColumns>
+    </R_Grid>
+
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout>
+        <R_DeleteButton R_Conductor="@_conductorGridPMT01800" Class="justify-content-end"></R_DeleteButton>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row="true">
+    <R_ItemLayout>
+        <R_Label Class="fw-bold">@(BuildName)</R_Label>
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+
+    <R_StackLayout Spacing="3" Class="mb-2 mt-2">
+        <R_Grid @ref="@_gridRefChild"
+            Width="70%"
+            Height="180px"
+            PageSize="5"
+            AllowDeleteRow="false"
+            AllowEditRow="false"
+            AllowAddNewRow="false"
+            DataSource="@_viewModelPMT01810.LoGridListDetail"
+            Pageable="true"
+            R_Display="@R_DIsplayChild"
+            R_GridType="@R_eGridType.Original"
+            R_ConductorGridSource="@_conductorGridPMT01810"
+            R_ServiceGetListRecord="@GridServiceGetListDetail">
+
+            <R_GridColumns>
+                <R_GridTextColumn Width="144px" FieldName="@nameof(PMT01810DTO.CFLOOR_NAME)" HeaderText="@_localizer["FLOR"]" />
+                <R_GridTextColumn Width="182px" FieldName="@nameof(PMT01810DTO.CUNIT_NAME)" HeaderText="@_localizer["UNT_ID"]" />
+                <R_GridTextColumn Width="231px" FieldName="@nameof(PMT01810DTO.CUNIT_TYPE_NAME)" HeaderText="@_localizer["UNT_TYP"]" />
+                <R_GridNumericColumn Width="145px" FieldName="@nameof(PMT01810DTO.NGROSS_AREA_SIZE)" TValue="decimal" HeaderText="@_localizer["GRSS"]" />
+                <R_GridNumericColumn Width="145px" FieldName="@nameof(PMT01810DTO.NNET_AREA_SIZE)" TValue="decimal" HeaderText="@_localizer["NETT"]" />
+            </R_GridColumns>
+        </R_Grid>
+
+    </R_StackLayout>
+
+
+    <R_Conductor @ref="@_conductorGridPMT01800"
+             R_ViewModel="@_viewModelPMT01810"
+             R_Display="@R_Display_Head"
+             R_ServiceDelete="@Conductor_ServiceDelete"
+             R_ServiceGetRecord="@Conductor_ServiceGetRecord"
+             R_IsHeader="true" />
+
+    <R_ConductorGrid @ref="@_conductorGridPMT01810"
+                 R_ConductorParent="@_conductorGridPMT01800" />

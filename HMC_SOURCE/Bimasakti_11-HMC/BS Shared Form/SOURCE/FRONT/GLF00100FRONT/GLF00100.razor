@@ -1,0 +1,252 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Journal")]
+@inject R_ILocalizer<GLF00100FrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Style="width: 1300px">
+    <R_GroupBox Title="@_localizer["_JrnlDesc"]">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_StackLayout Row><R_ItemLayout><R_Label></R_Label> </R_ItemLayout></R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout Style="width:120px">
+                        <R_Label>@_localizer["_Dept"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="@_viewModel.Data.CDEPT_CODE"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
+                        <R_TextBox @bind-Value="@_viewModel.Data.CDEPT_NAME"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout Style="width:120px">
+                        <R_Label>@_localizer["_RefNo"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4">
+                        <R_TextBox @bind-Value="@_viewModel.Data.CREF_NO"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_RefDate"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="@_viewModel.Data.CREF_DATE"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout Style="width:120px">
+                        <R_Label>@_localizer["_DocNo"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4">
+                        <R_TextBox @bind-Value="@_viewModel.Data.CDOC_NO"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_DocDate"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="@_viewModel.Data.CDOC_DATE"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_StackLayout Row><R_ItemLayout><R_Label></R_Label> </R_ItemLayout></R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout Style="width: 100px">
+                        <R_Label>@_localizer["_Curr"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 50px">
+                        <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 180px">
+                        <R_Label></R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 90px">
+                        <R_Label>@_localizer["_TotalJrnl"]</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout Style="width: 100px">
+                        <R_Label>@_localizer["_LocalCurr"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_NumericTextBox  TValue="decimal" @bind-Value="@_viewModel.Data.NLBASE_RATE"
+                                   Arrows="false"
+                                   Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 50px">
+                        <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_NumericTextBox  TValue="decimal" @bind-Value="@_viewModel.Data.NLCURRENCY_RATE"
+                                   Arrows="false"
+                                   Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 50px">
+                        <R_TextBox @bind-Value="@_viewModel.CompanyInfo.CLOCAL_CURRENCY_CODE"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout Style="width: 100px">
+                        <R_Label>@_localizer["_BaseCurr"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_NumericTextBox  TValue="decimal" @bind-Value="@_viewModel.Data.NBBASE_RATE"
+                                   Arrows="false"
+                                   Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 50px">
+                        <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_NumericTextBox  TValue="decimal" @bind-Value="@_viewModel.Data.NBCURRENCY_RATE"
+                                   Arrows="false"
+                                   Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width: 50px">
+                        <R_TextBox @bind-Value="@_viewModel.CompanyInfo.CBASE_CURRENCY_CODE"
+                                   Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="5">
+                        <R_Label>@_localizer["_Debit"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_Label>@_localizer["_Credit"]</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout col="5">
+                        <R_NumericTextBox  TValue="decimal" @bind-Value="@_viewModel.Data.NDEBIT_AMOUNT"
+                                   Arrows="false"
+                                   Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_NumericTextBox  TValue="decimal" @bind-Value="@_viewModel.Data.NCREDIT_AMOUNT"
+                                   Arrows="false"
+                                   Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout col="5">
+                        <R_NumericTextBox  TValue="decimal" @bind-Value="@_viewModel.Data.NLDEBIT_AMOUNT"
+                                          Arrows="false"
+                                          Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_NumericTextBox  TValue="decimal" @bind-Value="@_viewModel.Data.NLCREDIT_AMOUNT"
+                                   Arrows="false"
+                                   Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout col="5">
+                        <R_NumericTextBox  TValue="decimal" @bind-Value="@_viewModel.Data.NBDEBIT_AMOUNT"
+                                   Arrows="false"
+                                   Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_NumericTextBox  TValue="decimal" @bind-Value="@_viewModel.Data.NBCREDIT_AMOUNT"
+                                          Arrows="false"
+                                          Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width:120px">
+                <R_Label>@_localizer["_Desc"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextBox @bind-Value="@_viewModel.Data.CTRANS_DESC"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width:120px">
+                <R_Label>@_localizer["_Transtype"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.CTRANSACTION_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_GroupBox>
+
+    <R_GroupBox Title="@_localizer["_jrnlDetail"]">
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_Grid @ref="@_gridRef"
+                        DataSource="@_viewModel.JrnlDetailGrid"
+                        R_ServiceGetListRecord="@JournalDetail_List_ServiceGetListRecord"
+                        Pageable="true"
+                        R_RowRender="@((R_GridRowRenderEventArgs args) => R_RowRender(args))"
+                        Height="200px">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="@_localizer["_AccountNo"]" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="CGLACCOUNT_NAME" HeaderText="@_localizer["_AccountName"]" Width="300px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="CCENTER_NAME" HeaderText="@_localizer["_Center"]" Width="300px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="CDBCR" HeaderText="@_localizer["_D/C"]" Width="100px"></R_GridTextColumn>
+                        <R_GridNumericColumn  TValue="decimal" FieldName="NDEBIT" HeaderText="@_localizer["_Debit"]" Width="150px"></R_GridNumericColumn>
+                        <R_GridNumericColumn  TValue="decimal" FieldName="NCREDIT" HeaderText="@_localizer["_Credit"]" Width="150px"></R_GridNumericColumn>
+                        <R_GridTextColumn FieldName="CDETAIL_DESC" HeaderText="@_localizer["_Desc"]" Width="300px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="CDOCUMENT_NO" HeaderText="@_localizer["_VoucerNo."]" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="CDOCUMENT_DATE" HeaderText="@_localizer["_VoucerDate"]" Width="200px"></R_GridTextColumn>
+                        <R_GridNumericColumn  TValue="decimal" FieldName="NLDEBIT" HeaderText="@_localizer["_DBLocal"]" Width="150px"></R_GridNumericColumn>
+                        <R_GridNumericColumn  TValue="decimal" FieldName="NLCREDIT" HeaderText="@_localizer["_CRLocal"]" Width="150px"></R_GridNumericColumn>
+                        <R_GridNumericColumn  TValue="decimal" FieldName="NBDEBIT" HeaderText="@_localizer["_DBBase"]" Width="150px"></R_GridNumericColumn>
+                        <R_GridNumericColumn  TValue="decimal" FieldName="NBCREDIT" HeaderText="@_localizer["_CRBase"]" Width="150px"></R_GridNumericColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_GroupBox>
+
+    <R_StackLayout Row Class="mt-2">
+        <R_ItemLayout>
+            <R_Button OnClick="@Button_OnClickCloseAsync" FontSize="16">@_localizer["_CloseBtn"]</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_Conductor @ref="@_conductorRef"
+                 R_ViewModel="@_viewModel"
+                 R_IsHeader="true"
+                 R_ServiceGetRecord="@JournalDetail_ServiceGetRecord"
+                 R_Display="@JournalDetail_Display" />
+</R_StackLayout>

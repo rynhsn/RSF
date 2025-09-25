@@ -1,0 +1,5 @@
+2101	= Error process, please contact your administrator!
+2102	= Duplicate Tax Date
+2103	= Cannot Delete, Tax Date Already in used!
+
+

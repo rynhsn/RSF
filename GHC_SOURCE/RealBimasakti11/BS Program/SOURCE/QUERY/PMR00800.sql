@@ -1,0 +1,5 @@
+EXEC RSP_PMR00800_LEASE_REVENUE_ANALYSIS_REPORT '','','','','','',''
+EXEC RSP_GS_GET_PERIOD_YEAR_RANGE '','',''
+EXEC RSP_GS_GET_PERIOD_DT_LIST 'rcd','2023'
+delete from sat_locking where CUSER_ID= 'tj'
+EXEC RSP_PM_GET_SYSTEM_PARAM 'rcd','en','rcd'

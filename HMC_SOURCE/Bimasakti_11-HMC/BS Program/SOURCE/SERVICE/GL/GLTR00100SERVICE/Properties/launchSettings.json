@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GLTR00100SERVICE": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:50325;http://localhost:50326"
+    }
+  }
+}

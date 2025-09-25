@@ -1,0 +1,325 @@
+@inherits R_Page
+
+
+@* Header *@
+<R_StackLayout>
+
+    <!-- Offer No -->
+    <R_StackLayout Row>
+
+        <R_StackLayout Row Class="col-5">
+
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_OfferNo"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="8">
+                <R_TextBox @bind-Value="@_viewModel.oHeaderEntity.CREF_NO"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="col-5">
+
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_Tenant"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.oHeaderEntity.CTENANT_ID"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="@_viewModel.oHeaderEntity.CTENANT_NAME"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+    </R_StackLayout>
+
+    <!-- Total Net Size -->
+    <R_StackLayout Row>
+
+        <R_StackLayout Row Class="col-5">
+
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_TotalNetSize"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.oHeaderEntity.NTOTAL_NET_AREA"
+                                  Enabled="false"
+                                  Arrows="false" />
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="col-5">
+
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_Building"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.oHeaderEntity.CBUILDING_ID"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="@_viewModel.oHeaderEntity.CBUILDING_NAME"
+                           Enabled="false" />
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+    </R_StackLayout>
+
+    <!-- Tenure -->
+    <R_StackLayout Row>
+
+        <R_StackLayout Row Class="col-5">
+
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_Tenure"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="8" Class="d-flex">
+
+                <R_ItemLayout col="4" Class="d-flex">
+
+                    <R_ItemLayout col="6">
+                        <R_NumericTextBox @bind-Value="@_viewModel.oHeaderEntity.IYEAR"
+                                          Enabled="false"
+                                          Arrows="false" />
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="6">
+                        <R_Label>
+                            @_localizer["_Year"]
+                        </R_Label>
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+
+                <R_ItemLayout col="4" Class="d-flex">
+
+                    <R_ItemLayout col="6">
+                        <R_NumericTextBox @bind-Value="@_viewModel.oHeaderEntity.IMONTH"
+                                          Enabled="false"
+                                          Arrows="false" />
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="6">
+                        <R_Label>
+                            @_localizer["_Month"]
+                        </R_Label>
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+                <R_ItemLayout col="4" Class="d-flex">
+
+                    <R_ItemLayout col="6">
+                        <R_NumericTextBox @bind-Value="@_viewModel.oHeaderEntity.IDAY"
+                                          Enabled="false"
+                                          Arrows="false" />
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="6">
+                        <R_Label>
+                            @_localizer["_Day"]
+                        </R_Label>
+                    </R_ItemLayout>
+
+                </R_ItemLayout>
+
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+    </R_StackLayout>
+
+</R_StackLayout>
+
+
+@* Tab Unit & Charges *@
+
+<R_TabStrip @ref="@_tabStripRef"
+            OnActiveTabIndexChanged="OnActiveTabIndexChanged"
+            OnActiveTabIndexChanging="OnActiveTabIndexChanging">
+
+
+    <R_TabStripTab Title="@_localizer["_UnitAndCharges"]" Id="UnitAndCharges" Enabled="_viewModel.lControlTabUnitAndCharges">
+
+        <!-- Unit -->
+        <R_Grid @ref="@_gridUnitInfo"
+                DataSource="_viewModel.oListUnitInfo"
+                R_ConductorGridSource="@_conductorUnitInfo"
+                R_GridType="@R_eGridType.Original"
+                R_ServiceGetListRecord="@R_ServiceGetListUnitListRecord"
+                R_Display="@R_DisplayUnitListGetRecord"
+                R_ServiceGetRecord="@ServiceGetRecord"
+                R_ServiceDelete="@ServiceDelete"
+                R_ServiceSave="@ServiceSave"
+                R_Validation="@R_Validation"
+                Pageable
+                Height="250px"
+                PageSize="10"
+                R_AfterDelete="AfterDelete"
+                R_Before_Open_Grid_Lookup="Before_Open_LookupUnitId"
+                R_After_Open_Grid_Lookup="After_Open_LookupUnitId"
+                R_CellLostFocused="@R_CellLostFocusUnitId"
+                AllowDeleteRow
+                AllowAddNewRow
+                AllowEditRow="false">
+            <R_GridColumns>
+
+                <R_GridLookupColumn Width="150px"
+                                    FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_UnitInfoListDTO.CUNIT_ID)"
+                                    Name="@nameof(PMT01100LOO_UnitCharges_UnitCharges_UnitInfoListDTO.CUNIT_ID)"
+                                    HeaderText="@_localizer["_UnitId"]"
+                                    MaxLength="20"
+                                    R_EnableAdd
+                                    R_EnableEdit="false" />
+
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_UnitInfoListDTO.CUNIT_NAME)"
+                                  HeaderText="@_localizer["_UnitName"]"
+                                  R_EnableEdit="false"
+                                  R_EnableAdd="false" />
+
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_UnitInfoListDTO.CFLOOR_ID)"
+                                  HeaderText="@_localizer["_Floor"]"
+                                  R_EnableEdit="false"
+                                  R_EnableAdd="false" />
+
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_UnitInfoListDTO.CUNIT_TYPE_NAME)"
+                                  HeaderText="@_localizer["_UnitType"]"
+                                  R_EnableEdit="false"
+                                  R_EnableAdd="false" />
+
+                <R_GridNumericColumn Width="150px"
+                                     FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_UnitInfoListDTO.NGROSS_AREA_SIZE)"
+                                     HeaderText="@_localizer["_Gross"]"
+                                     Max="100000000"
+                                     R_EnableEdit="false"
+                                     R_EnableAdd="false" />
+
+                <R_GridNumericColumn Width="150px"
+                                     FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_UnitInfoListDTO.NNET_AREA_SIZE)"
+                                     HeaderText="@_localizer["_Net"]"
+                                     Max="100000000"
+                                     R_EnableEdit="false"
+                                     R_EnableAdd="false" />
+
+                <R_GridNumericColumn Width="150px"
+                                     FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_UnitInfoListDTO.NACTUAL_AREA_SIZE)"
+                                     HeaderText="@_localizer["_Actual"]"
+                                     R_EnableEdit="false"
+                                     R_EnableAdd="false" />
+
+                <R_GridTextColumn FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_UnitInfoListDTO.CUPDATE_BY)"
+                                  HeaderText="@_localizer["_UpdatedBy"]"
+                                  Width="125px" />
+
+                <R_GridDateTimePickerColumn FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_UnitInfoListDTO.DUPDATE_DATE)"
+                                            HeaderText="@_localizer["_UpdatedDate"]"
+                                            Width="225px" />
+
+                <R_GridTextColumn FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_UnitInfoListDTO.CCREATE_BY)"
+                                  HeaderText="@_localizer["_CreatedBy"]"
+                                  Width="125px" />
+
+                <R_GridDateTimePickerColumn FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_UnitInfoListDTO.DCREATE_DATE)"
+                                            HeaderText="@_localizer["_CreatedDate"]"
+                                            Width="225px" />
+
+            </R_GridColumns>
+
+        </R_Grid>
+
+        <!-- Charges -->
+        <R_Grid @ref="@_gridCharges"
+                DataSource="_viewModel.oListCharges"
+                R_ConductorGridSource="@_conductorCharges"
+                R_GridType="@R_eGridType.Original"
+                R_ServiceGetListRecord="@R_ServiceGetListChargesListRecord"
+                Pageable
+                Height="200px"
+                PageSize="10"
+                AllowDeleteRow="false"
+                AllowAddNewRow="false"
+                AllowEditRow="false">
+            <R_GridColumns>
+
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_ChargesListDTO.CSEQ_NO)"
+                                  HeaderText="@_localizer["_SeqNo"]" />
+
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_ChargesListDTO.CCHARGES_TYPE_DESCR)"
+                                  HeaderText="@_localizer["_ChargeType"]" />
+
+                <R_GridTextColumn Width="200px"
+                                  FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_ChargesListDTO.CCHARGES_ID_AND_NAME)"
+                                  HeaderText="@_localizer["_Charge"]" />
+
+                <R_GridCheckBoxColumn Width="150px"
+                                      FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_ChargesListDTO.LBASED_OPEN_DATE)"
+                                      HeaderText="*" />
+
+                <R_GridTextColumn FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_ChargesListDTO.CUPDATE_BY)"
+                                  HeaderText="@_localizer["_UpdatedBy"]"
+                                  Width="125px" />
+
+                <R_GridDateTimePickerColumn FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_ChargesListDTO.DUPDATE_DATE)"
+                                            HeaderText="@_localizer["_UpdatedDate"]"
+                                            Width="225px" />
+
+                <R_GridTextColumn FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_ChargesListDTO.CCREATE_BY)"
+                                  HeaderText="@_localizer["_CreatedBy"]"
+                                  Width="125px" />
+
+                <R_GridDateTimePickerColumn FieldName="@nameof(PMT01100LOO_UnitCharges_UnitCharges_ChargesListDTO.DCREATE_DATE)"
+                                            HeaderText="@_localizer["_CreatedDate"]"
+                                            Width="225px" />
+
+            </R_GridColumns>
+
+        </R_Grid>
+
+
+    </R_TabStripTab>
+
+
+    <!-- Utilities -->
+    <R_TabStripTab Title="@_localizer["_Utilities"]" Id="Utilities" Enabled="_viewModel.lControlTabUtilities">
+        <R_TabPage R_Before_Open_TabPage="General_Before_Open_Utilities_TabPage"
+                   R_TabEventCallback="@R_TabEventCallbackAsync"
+                   @ref="_tabUtilities" />
+    </R_TabStripTab>
+
+
+</R_TabStrip>
+
+
+<R_ConductorGrid @ref="@_conductorUnitInfo"
+                 R_SetOther="@R_SetOther"
+                 R_IsHeader />
+
+<R_ConductorGrid @ref="@_conductorCharges"
+                 R_ConductorParent="_conductorUnitInfo" />

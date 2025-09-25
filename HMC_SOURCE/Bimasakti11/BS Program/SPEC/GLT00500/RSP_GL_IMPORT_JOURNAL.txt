@@ -1,0 +1,29 @@
+Error900=Failed to import journal {0}
+
+REF_NO_EMPTY=Reference No. is mandatory for Manual Numbering
+REF_NO_ALREADY_EXIST=Reference No. already exists
+
+DEPT_CODE_NOT_EXIST=Department Code does not exist
+DEPT_CODE_NO_ACCESS=You have no access right for department code
+
+REF_DATE_AFTER_TODAY=Invalid Reference Date! Reference Date cannot be after today
+REF_DATE_BEFORE_SOFT_PERIOD=Invalid Reference Date! Reference Date cannot be before Soft Period
+
+DOC_DATE_AFTER_TODAY=Invalid Document Date! Document Date cannot be after today
+DOC_DATE_BEFORE_SOFT_PERIOD=Invalid Document Date! Document Date cannot be before Soft Period
+
+CURRENCY_CODE_NOT_EXIST=Currency Code does not exist
+
+LOCAL_BASE_RATE_INVALID=Invalid Local Currency Base Rate! Local Currency Base Rate must be greater than 0
+LOCAL_CURRENCY_RATE_INVALID=Invalid Local Currency Rate! Local Currency Rate must be greater than 0
+
+BASE_BASE_RATE_INVALID=Invalid Base Currency Base Rate! Base Currency Base Rate must be greater than 0
+BASE_CURRENCY_RATE_INVALID=Invalid Base Currency Rate! Base Currency  Rate must be greater than 0
+
+ACCOUNT_NO_EMPTY=Account No. is mandatory
+ACCOUNT_NO_NOT_EXIST=Account No. does not exist
+
+CENTER_CODE_EMPTY=Center Code is mandatory for Account No.
+CENTER_CODE_NOT_EXIST=Center Code does not exist
+
+JOURNAL_AMOUNT_INVALID=Invalid Journal Amount! Journal Amount must be greater than 0 

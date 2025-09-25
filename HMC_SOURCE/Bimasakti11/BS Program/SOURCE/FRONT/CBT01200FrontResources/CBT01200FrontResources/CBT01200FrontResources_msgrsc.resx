@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="N01" xml:space="preserve">
+    <value>Data Not Found!</value>
+  </data>
+  <data name="N02" xml:space="preserve">
+    <value>Please input keyword to search!</value>
+  </data>
+  <data name="N03" xml:space="preserve">
+    <value>Minimum search keyword is 3 characters!</value>
+  </data>
+  <data name="N04" xml:space="preserve">
+    <value>You don’t have right to approve this journal!</value>
+  </data>
+  <data name="N05" xml:space="preserve">
+    <value>Selected Journal cannot be deleted!</value>
+  </data>
+  <data name="N06" xml:space="preserve">
+    <value>Selected Journal cannot be edited!</value>
+  </data>
+  <data name="Q01" xml:space="preserve">
+    <value>Are you sure want to undo committed this journal?</value>
+  </data>
+  <data name="Q02" xml:space="preserve">
+    <value>Are you sure want to commit this journal?</value>
+  </data>
+  <data name="Q03" xml:space="preserve">
+    <value>Are you sure want to delete this journal?</value>
+  </data>
+  <data name="Q04" xml:space="preserve">
+    <value>You haven’t saved your changes. Are you sure want to cancel?</value>
+  </data>
+  <data name="Q05" xml:space="preserve">
+    <value>Are you sure want to undo submit this journal?</value>
+  </data>
+  <data name="Q06" xml:space="preserve">
+    <value>Are you sure want to submit this journal?</value>
+  </data>
+  <data name="Q07" xml:space="preserve">
+    <value>Delete Selected Journal Detail?</value>
+  </data>
+  <data name="V01" xml:space="preserve">
+    <value>Please Select Department!</value>
+  </data>
+  <data name="V02" xml:space="preserve">
+    <value>Reference No. is required!</value>
+  </data>
+  <data name="V03" xml:space="preserve">
+    <value>Reference Date is required!</value>
+  </data>
+  <data name="V04" xml:space="preserve">
+    <value>Reference Date cannot be after today!</value>
+  </data>
+  <data name="V05" xml:space="preserve">
+    <value>Reference Date cannot be before CB Link Date!</value>
+  </data>
+  <data name="V06" xml:space="preserve">
+    <value>Reference Date cannot be before Soft Period!</value>
+  </data>
+  <data name="V07" xml:space="preserve">
+    <value>Please select Cash Code!</value>
+  </data>
+  <data name="V08" xml:space="preserve">
+    <value>Payment Amount must be &gt; 0!</value>
+  </data>
+  <data name="V09" xml:space="preserve">
+    <value>Document No. is required!</value>
+  </data>
+  <data name="V10" xml:space="preserve">
+    <value>Document Date is required!</value>
+  </data>
+  <data name="V11" xml:space="preserve">
+    <value>Document Date cannot be after Reference Date!</value>
+  </data>
+  <data name="V12" xml:space="preserve">
+    <value>Document Date cannot be before Soft Period!</value>
+  </data>
+  <data name="V13" xml:space="preserve">
+    <value>Description is required!</value>
+  </data>
+  <data name="V14" xml:space="preserve">
+    <value>Local Currency Base Rate must be greater than 0!</value>
+  </data>
+  <data name="V15" xml:space="preserve">
+    <value>Local Currency Rate must be greater than 0!</value>
+  </data>
+  <data name="V16" xml:space="preserve">
+    <value>Base Currency Base Rate must be greater than 0!</value>
+  </data>
+  <data name="V17" xml:space="preserve">
+    <value>Base Currency Rate must be greater than 0!</value>
+  </data>
+  <data name="V18" xml:space="preserve">
+    <value>Cannot Submit Journal with date before Soft Close Period!</value>
+  </data>
+  <data name="V19" xml:space="preserve">
+    <value>Total Debit Amount must be equal to Total Credit Amount</value>
+  </data>
+  <data name="V20" xml:space="preserve">
+    <value>Total Debit Amount or Total Credit Amount cannot be 0!</value>
+  </data>
+  <data name="V21" xml:space="preserve">
+    <value>Total Debit/Credit must be equal to Payment Amount!</value>
+  </data>
+  <data name="V22" xml:space="preserve">
+    <value>Account No. is required!</value>
+  </data>
+  <data name="V23" xml:space="preserve">
+    <value>Account No. [Input Account No.] already exists!</value>
+  </data>
+  <data name="V24" xml:space="preserve">
+    <value>Center Code is required for Account No. [Input Account No.]!</value>
+  </data>
+  <data name="V25" xml:space="preserve">
+    <value>Cash Flow Code is required!</value>
+  </data>
+  <data name="V26" xml:space="preserve">
+    <value>Journal amount cannot be 0!</value>
+  </data>
+  <data name="V27" xml:space="preserve">
+    <value>Journal amount can only be either Debit or Credit!</value>
+  </data>
+  <data name="V28" xml:space="preserve">
+    <value>Description is required!</value>
+  </data>
+  <data name="V29" xml:space="preserve">
+    <value>Voucher No. is required!</value>
+  </data>
+  <data name="V30" xml:space="preserve">
+    <value>Voucher Date is required!</value>
+  </data>
+  <data name="_AccountName" xml:space="preserve">
+    <value>Account Name</value>
+  </data>
+  <data name="_AccountNo" xml:space="preserve">
+    <value>Account No.</value>
+  </data>
+  <data name="_AccountNo*" xml:space="preserve">
+    <value>Account No.*</value>
+  </data>
+  <data name="_Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="_Approve" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="_BankCode" xml:space="preserve">
+    <value>Bank Code</value>
+  </data>
+  <data name="_BaseCurrency" xml:space="preserve">
+    <value>Base Currency</value>
+  </data>
+  <data name="_BaseRate" xml:space="preserve">
+    <value>Base Rate</value>
+  </data>
+  <data name="_CashFlowCode" xml:space="preserve">
+    <value>Cash Flow Code</value>
+  </data>
+  <data name="_CashFlowName" xml:space="preserve">
+    <value>Cash Flow Name</value>
+  </data>
+  <data name="_Center" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="_Commit" xml:space="preserve">
+    <value>Commit</value>
+  </data>
+  <data name="_Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="_CrBase" xml:space="preserve">
+    <value>CR (Base)</value>
+  </data>
+  <data name="_CreatedBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="_CreatedDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="_Credit" xml:space="preserve">
+    <value>Credit</value>
+  </data>
+  <data name="_CrLocal" xml:space="preserve">
+    <value>CR (Local)</value>
+  </data>
+  <data name="_Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="_CurrencyRate" xml:space="preserve">
+    <value>Currency Rate</value>
+  </data>
+  <data name="_DbBase" xml:space="preserve">
+    <value>DB (Base)</value>
+  </data>
+  <data name="_DbLocal" xml:space="preserve">
+    <value>DB (Local)</value>
+  </data>
+  <data name="_Debit" xml:space="preserve">
+    <value>Debit</value>
+  </data>
+  <data name="_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="_Departement" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="_DocDate" xml:space="preserve">
+    <value>Doc Date</value>
+  </data>
+  <data name="_DocumentNo" xml:space="preserve">
+    <value>Document No.</value>
+  </data>
+  <data name="_grpBoxTitleTransEntry" xml:space="preserve">
+    <value>Transaction Entry</value>
+  </data>
+  <data name="_grpBoxTitleTransList" xml:space="preserve">
+    <value>Transaction List</value>
+  </data>
+  <data name="_JournalEntry" xml:space="preserve">
+    <value>Transaction Entry</value>
+  </data>
+  <data name="_JournalPeriod" xml:space="preserve">
+    <value>Journal Period</value>
+  </data>
+  <data name="_LocalCurrency" xml:space="preserve">
+    <value>Local Currency</value>
+  </data>
+  <data name="_No" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="_ReceiptAmount" xml:space="preserve">
+    <value>Receipt Amount</value>
+  </data>
+  <data name="_RefDate" xml:space="preserve">
+    <value>Ref Date</value>
+  </data>
+  <data name="_ReferenceDate" xml:space="preserve">
+    <value>Reference Date</value>
+  </data>
+  <data name="_ReferenceNo" xml:space="preserve">
+    <value>Reference No.</value>
+  </data>
+  <data name="_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="_ShowAll" xml:space="preserve">
+    <value>Show All</value>
+  </data>
+  <data name="_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="_Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="_tabTitleTransEntry" xml:space="preserve">
+    <value>Transaction Entry</value>
+  </data>
+  <data name="_tabTitleTransList" xml:space="preserve">
+    <value>Transaction List</value>
+  </data>
+  <data name="_TotalCredit" xml:space="preserve">
+    <value>Total Credit</value>
+  </data>
+  <data name="_TotalDebit" xml:space="preserve">
+    <value>Total Debit</value>
+  </data>
+  <data name="_UndoCommit" xml:space="preserve">
+    <value>Undo Commit</value>
+  </data>
+  <data name="_UndoSubmit" xml:space="preserve">
+    <value>Undo Submit</value>
+  </data>
+  <data name="_UpdatedBy" xml:space="preserve">
+    <value>Updated By</value>
+  </data>
+  <data name="_UpdatedDate" xml:space="preserve">
+    <value>Updated Date</value>
+  </data>
+  <data name="_VoucherDate" xml:space="preserve">
+    <value>Voucher Date</value>
+  </data>
+  <data name="_VoucherNo" xml:space="preserve">
+    <value>Voucher No.</value>
+  </data>
+</root>

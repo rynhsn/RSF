@@ -1,0 +1,250 @@
+﻿@page "/PMF00100"
+@attribute [R_Page(Title = "Allocation List")]
+@inherits R_Page
+@using PMF00100COMMON.DTOs.PMF00100
+@using PMF00100Model
+
+<R_StackLayout Style="width: 1250px">
+@*
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_Property"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_TextBox @bind-Value="@loAllocationViewModel.loHeader.CPROPERTY_NAME"
+                               R_ConductorGridSource="@_conductorAllocationRef"
+                               Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_Department"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@loAllocationViewModel.loHeader.CDEPT_CODE"
+                               R_ConductorGridSource="@_conductorAllocationRef"
+                               Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="@loAllocationViewModel.loHeader.CDEPT_NAME"
+                               R_ConductorGridSource="@_conductorAllocationRef"
+                               Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="8">
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="4">
+                            <R_Label>@_localizer["_RefNo"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="7">
+                            <R_TextBox @bind-Value="@loAllocationViewModel.loHeader.CREF_NO"
+                                       R_ConductorGridSource="@_conductorAllocationRef"
+                                       Enabled="false"></R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="4">
+                            <R_Label>@_localizer["_RefDate"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="7">
+                            <R_DatePicker @bind-Value="@loAllocationViewModel.loHeader.DREF_DATE"
+                                          R_ConductorGridSource="@_conductorAllocationRef"
+                                          Enabled="false"></R_DatePicker>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="11">
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_localizer["_Supplier"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_TextBox @bind-Value="@loAllocationViewModel.loHeader.CSUPPLIER_ID"
+                                               R_ConductorGridSource="@_conductorAllocationRef"
+                                               Enabled="false"></R_TextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="5">
+                                    <R_TextBox @bind-Value="@loAllocationViewModel.loHeader.CSUPPLIER_NAME"
+                                               R_ConductorGridSource="@_conductorAllocationRef"
+                                               Enabled="false"></R_TextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_TextBox @bind-Value="@loAllocationViewModel.loHeader.CSUPPLIER_SEQ_NO"
+                                               R_ConductorGridSource="@_conductorAllocationRef"
+                                               Enabled="false"></R_TextBox>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_localizer["_SupplierRefNo"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="4">
+                                    <R_TextBox @bind-Value="@loAllocationViewModel.loHeader.CDOC_NO"
+                                               R_ConductorGridSource="@_conductorAllocationRef"
+                                               Enabled="false"></R_TextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_Label>@_localizer["_Date"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="4">
+                                    <R_DatePicker @bind-Value="@loAllocationViewModel.loHeader.DDOC_DATE"
+                                                  R_ConductorGridSource="@_conductorAllocationRef"
+                                                  Enabled="false"></R_DatePicker>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+*@
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="7">
+            <R_StackLayout Row>
+                <R_ItemLayout col="11">
+                    <h3 class="mb-0">@loAllocationViewModel.loHeader.CPROPERTY_NAME</h3>
+                    <h6 class="fw-bolder">@loAllocationViewModel.loHeader.CDEPT_NAME</h6>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Reference"] : </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="9">
+                    <R_Label>@(loAllocationViewModel.loHeader.CREF_NO + " / " + loAllocationViewModel.loHeader.DREF_DATE    .ToString("dd-MMM-yyyy"))</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_StackLayout Row>
+                <R_ItemLayout col="12" Class="justify-content-end">
+                    <h5>@(loAllocationViewModel.loHeader.CTENANT_NAME + " / " + loAllocationViewModel.loHeader.CCUSTOMER_TYPE_NAME + " " + _localizer["In"] + " " + loAllocationViewModel.loHeader.CCURRENCY_CODE)</h5>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_LocalCurrency"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:93px">
+                    <R_NumericTextBox @bind-Value="@loAllocationViewModel.loHeader.NLBASE_RATE"
+                                      R_ConductorGridSource="@_conductorAllocationRef"
+                                      Arrows="false"
+                                      Decimals="0"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_Label>@loAllocationViewModel.loHeader.CCURRENCY_CODE</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 10px">
+                    <R_Label>=</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:93px">
+                    <R_NumericTextBox @bind-Value="@loAllocationViewModel.loHeader.NLCURRENCY_RATE"
+                                      R_ConductorGridSource="@_conductorAllocationRef"
+                                      Arrows="false"
+                                      Decimals="6"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_Label>@loAllocationViewModel.loCompanyInfo.CLOCAL_CURRENCY_CODE</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_TaxRate"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:92px">
+                    <R_NumericTextBox @bind-Value="@loAllocationViewModel.loHeader.NTAX_BASE_RATE"
+                                      R_ConductorGridSource="@_conductorAllocationRef"
+                                      Arrows="false"
+                                      Decimals="0"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_Label>@loAllocationViewModel.loCompanyInfo.CLOCAL_CURRENCY_CODE</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 10px">
+                    <R_Label>=</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:92px">
+                    <R_NumericTextBox @bind-Value="@loAllocationViewModel.loHeader.NTAX_CURRENCY_RATE"
+                                      R_ConductorGridSource="@_conductorAllocationRef"
+                                      Arrows="false"
+                                      Decimals="6"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_Label>@loAllocationViewModel.loCompanyInfo.CLOCAL_CURRENCY_CODE</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_TabStrip @ref="@_TabStripRef" OnActiveTabIndexChanged="OnActiveTabIndexChanged">
+        <R_TabStripTab Title="@_localizer["_AllocationList"]" Id="AllocationList">
+            <R_StackLayout Row>
+                <R_ItemLayout col="12">
+                    <R_Grid @ref="@_gridAllocationRef"
+                            DataSource="@loAllocationViewModel.loAllocationList"
+                            Pageable="true"
+                            R_ConductorGridSource="@_conductorAllocationRef"
+                            R_GridType="@R_eGridType.Original"
+                            AllowAddNewRow="false"
+                            AllowEditRow="false"
+                            AllowDeleteRow="false"
+                            Height="300px"
+                            R_Display="@Grid_Allocation_Display"
+                            R_ServiceGetListRecord="@Grid_Allocation_R_ServiceGetListRecord">
+                            <R_GridColumns>
+                                <R_GridNumericColumn FieldName=@nameof(PMF00100ListDTO.INO) TValue="int" HeaderText="@_localizer["_No"]" Width="100px"></R_GridNumericColumn>
+                                <R_GridTextColumn FieldName=@nameof(PMF00100ListDTO.CALLOC_NO) HeaderText="@_localizer["_AllocRefNo"]" Width="150px"></R_GridTextColumn>
+                                <R_GridDatePickerColumn FieldName=@nameof(PMF00100ListDTO.DALLOC_DATE) HeaderText="@_localizer["_AllocationDate"]" Width="200px"></R_GridDatePickerColumn>
+                                <R_GridTextColumn FieldName="@nameof(PMF00100ListDTO.CTRANS_NAME)" HeaderText="@_localizer["_TrxType"]" Width="150px"></R_GridTextColumn>
+                                <R_GridTextColumn FieldName="@nameof(PMF00100ListDTO.CREF_NO)" HeaderText="@_localizer["_RefNo"]" Width="150px"></R_GridTextColumn>
+                                <R_GridTextColumn FieldName="@nameof(PMF00100ListDTO.CTRANS_STATUS_NAME)" HeaderText="@_localizer["_Status"]" Width="150px"></R_GridTextColumn>
+                                <R_GridTextColumn FieldName="@nameof(PMF00100ListDTO.CAPPLIED_CURR_CODE)" HeaderText="@_localizer["_Curr"]" Width="150px"></R_GridTextColumn>
+                                <R_GridTextColumn FieldName="@nameof(PMF00100ListDTO.NAPPLIED_AMOUNT)" HeaderText="@_localizer["_AppliedAmount"]" Width="200px"></R_GridTextColumn>
+                                <R_GridTextColumn FieldName="@nameof(PMF00100ListDTO.CALLOC_CURR_CODE)" HeaderText="@_localizer["_Curr"]" Width="150px"></R_GridTextColumn>
+                                <R_GridTextColumn FieldName="@nameof(PMF00100ListDTO.NALLOC_AMOUNT)" HeaderText="@_localizer["_AllocationAmount"]" Width="200px"></R_GridTextColumn>
+                                <R_GridTextColumn FieldName="@nameof(PMF00100ListDTO.NALLOC_DISCOUNT)" HeaderText="@_localizer["_AllocationDisc"]" Width="200px"></R_GridTextColumn>
+                                <R_GridTextColumn FieldName="@nameof(PMF00100ListDTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="150px"></R_GridTextColumn>
+                                <R_GridDateTimePickerColumn FieldName="@nameof(PMF00100ListDTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                                <R_GridTextColumn FieldName="@nameof(PMF00100ListDTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="150px"></R_GridTextColumn>
+                                <R_GridDateTimePickerColumn FieldName="@nameof(PMF00100ListDTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                            </R_GridColumns>
+                    </R_Grid>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row Class="justify-content-start">
+                <R_ItemLayout>
+                    <R_Button R_ConductorGridSource="@_conductorAllocationRef" R_EnableOther OnClick="OnClickRefresh">@_localizer["_Refresh"]</R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_TabStripTab>
+        <R_TabStripTab Title="@_localizer["_AllocationEntry"]" Id="AllocationEntry">
+            <R_TabPage R_Before_Open_TabPage="R_Before_OpenAllocationEntry_TabPage" R_TabEventCallback="@R_TabEventCallback">
+                <PMF00110></PMF00110>
+            </R_TabPage>
+        </R_TabStripTab>
+    </R_TabStrip>
+</R_StackLayout>
+
+
+<R_ConductorGrid @ref="@_conductorAllocationRef"
+                 R_IsHeader
+                 R_ViewModel="loAllocationViewModel">
+</R_ConductorGrid>

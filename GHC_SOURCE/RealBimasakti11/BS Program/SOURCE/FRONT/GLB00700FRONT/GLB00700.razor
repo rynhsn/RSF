@@ -1,0 +1,134 @@
+﻿@page "/GLB00700"
+@inherits R_Page
+@using GLB00700COMMON.DTO_s.Helper
+
+@* dept lookup *@
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_lbl_dept"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="@_viewModel.Param.CDEPT_CODE"
+                   CharacterCasing="@R_eCharacterCasing.Upper"
+                   MaxLength="10"
+                   Enabled="true"
+                   OnLostFocus="@OnLostFocus_LookupDept" />
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_Before_Open_Lookup="@Before_Open_lookupDept"
+                  R_After_Open_Lookup="@After_Open_lookupDept">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="5">
+        <R_TextBox @bind-Value="@_viewModel.Param.CDEPT_NAME"
+                   Enabled="false" />
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* date *@
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_lbl_date"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_DatePicker @bind-Value="@_viewModel.DDATE" ShowPickerButton
+                          Enabled="true" />
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* row header *@
+<R_StackLayout Row>
+    <R_ItemLayout col="3"></R_ItemLayout>
+    <R_ItemLayout col="2"></R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_Label>@_localizer["_lbl_lastprocesseddate"]</R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* row *@
+<R_StackLayout Row>
+    @* label *@
+    <R_ItemLayout col="3">
+        <R_StackLayout>
+            <R_Label>
+                @_localizer["_lbl_procesfor"]
+            </R_Label>
+        </R_StackLayout>
+
+    </R_ItemLayout>
+
+    @* radio *@
+    <R_ItemLayout col="2">
+        <R_StackLayout>
+            <R_RadioGroup Data="@_viewModel.RadioProcesFor"
+                          @bind-Value="@_viewModel.Param.CPROCESS_FOR"
+                          ValueField="@nameof(GeneralTypeDTO.CTYPE_CODE)"
+                          TextField="@nameof(GeneralTypeDTO.CTYPE_NAME)"
+                          Layout="R_eRadioGroupLayout.Vertical"
+                          LabelPosition="R_eRadioGroupLabelPosition.After">
+            </R_RadioGroup>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    @* timestamp *@
+    <R_ItemLayout>
+        <R_StackLayout>
+            <R_ItemLayout>
+                <R_DatePicker @bind-Value="@_viewModel.LastRateRevaluation.DLAST_AR_DATE" Enabled="false" ShowPickerButton="false"></R_DatePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout>
+            <R_ItemLayout>
+                <R_DatePicker @bind-Value="@_viewModel.LastRateRevaluation.DLAST_AP_DATE" Enabled="false" ShowPickerButton="false"></R_DatePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout>
+            <R_ItemLayout>
+                <R_DatePicker @bind-Value="@_viewModel.LastRateRevaluation.DLAST_CB_DATE" Enabled="false" ShowPickerButton="false"></R_DatePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* warning label head*@
+<R_StackLayout Row>
+    <R_ItemLayout>
+        <R_Label FontColor="R_eFontColor.Danger">
+            @_localizer["_lbl_warning_header"]
+        </R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* warning 1*@
+<R_StackLayout Row>
+    <R_ItemLayout>
+        <R_Label FontColor="R_eFontColor.Danger">
+            @_localizer["_lbl_warning_1"]
+        </R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* warning 2*@
+<R_StackLayout Row>
+    <R_ItemLayout>
+        <R_Label FontColor="R_eFontColor.Danger">
+            @_localizer["_lbl_warning_2"]
+        </R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@if (_isProcessing)
+{
+    @* progress bar *@
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_ProgressBar Label="@_viewModel.Message" MaxValue="100" Value="@_viewModel.Percentage"></R_ProgressBar>
+        </R_ItemLayout>
+    </R_StackLayout>
+}
+
+@* button *@
+<R_StackLayout Class="mt-2">
+    <R_ItemLayout Class="d-flex justify-content-end">
+        <R_Button OnClick="@Onclick_BtnProcessAsync">@_localizer["_btn_process"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

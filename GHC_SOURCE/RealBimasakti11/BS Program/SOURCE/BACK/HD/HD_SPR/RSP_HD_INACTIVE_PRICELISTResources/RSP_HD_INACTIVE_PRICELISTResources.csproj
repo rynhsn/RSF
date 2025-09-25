@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="RSP_HD_INACTIVE_PRICELISTResources_msgrcs.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RSP_HD_INACTIVE_PRICELISTResources_msgrcs.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="RSP_HD_INACTIVE_PRICELISTResources_msgrcs.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RSP_HD_INACTIVE_PRICELISTResources_msgrcs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,1 @@
+Error900=Process failed! unable to process Recurring Journal transaction {0}

@@ -1,0 +1,109 @@
+﻿@using PMM03700COMMON;
+@using PMM03700COMMON.DTO_s;
+@using R_BlazorFrontEnd.Controls
+@using R_BlazorFrontEnd.Controls.Enums
+@using R_BlazorFrontEnd.Enums
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_pageTitleTC")]
+
+<R_StackLayout Row>
+    <R_ItemLayout col="3" Class="mt-0">
+        <R_Grid @ref="@_gridTenantClassGrpRef"
+                DataSource="@_viewModelTenantClass._TenantClassGrpList"
+                R_GridType="@R_eGridType.Original"
+                R_ServiceGetListRecord="@TenantClassGrp_ServiceGetListRecord"
+                R_ServiceGetRecord="@TenantClassGrp_ServiceGetRecord"
+                R_Display="@TenantClassGrp_ServiceDisplay"
+                AllowAddNewRow="false"
+                AllowDeleteRow="false"
+                AllowEditRow="false"
+                Height="520px"
+                Enabled="@_isTenantClassOnCRUDmode">
+            <R_GridColumns>
+                <R_GridTextColumn Filterable="false" FieldName="@nameof(TenantClassificationGroupDTO.CTENANT_CLASSIFICATION_GROUP_NAME)" HeaderText="@(_localizer["_col_tenant_class_grp"])" Width="300px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="9" Class="ms-4 mt-0">
+        <R_Grid @ref="_gridTenantClassRef"
+                DataSource="@_viewModelTenantClass.TenantClassList"
+                R_ConductorGridSource="_conTenantClassRef"
+                Pageable="true"
+                R_GridType="R_eGridType.Original"
+                AllowAddNewRow="true"
+                AllowDeleteRow="true"
+                AllowEditRow="true"
+                R_ServiceGetListRecord="TenantClass_ServiceGetListRecord"
+                Height="300px"
+                R_ServiceGetRecord="@TenantClass_ServiceGetRecord"
+                R_Display="TenantClass_ServiceDisplay"
+                R_ServiceDelete="@TenantClass_ServiceDelete"
+                R_Validation="@TenantClass_Validation"
+                R_Saving="@TenantClass_Saving"
+                R_ServiceSave="@TenantClass_ServiceSave">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(TenantClassificationDTO.CTENANT_CLASSIFICATION_ID)" HeaderText="@(_localizer["_col_tenant_class_id"])" R_EnableAdd Width="250px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(TenantClassificationDTO.CTENANT_CLASSIFICATION_NAME)" HeaderText="@(_localizer["_col_tenant_class_name"])" R_EnableAdd R_EnableEdit Width="250px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(TenantClassificationDTO.CUPDATE_BY)" HeaderText="@_localizer["_col_update_by"]" Width="120px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName="@nameof(TenantClassificationDTO.DUPDATE_DATE)" HeaderText="@_localizer["_col_update_date"]" Width="150px"></R_GridDateTimePickerColumn>
+                <R_GridTextColumn FieldName="@nameof(TenantClassificationDTO.CCREATE_BY)" HeaderText="@_localizer["_col_create_by"]" Width="120px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName="@nameof(TenantClassificationDTO.DCREATE_DATE)" HeaderText="@_localizer["_col_create_date"]" Width="150px"></R_GridDateTimePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+        <R_StackLayout Row="true" Class="mt-1 justify-content-start">
+            <R_ItemLayout>
+                <R_Popup @ref="R_PopupCheck"
+                         R_Before_Open_Popup="@R_Before_Open_Popup_AssignTenant"
+                         R_After_Open_Popup="@R_After_Open_Popup_AssignTenantAsync"
+                         Enabled="_conTenantClassRef.R_ConductorMode==R_eConductorMode.Normal && _gridTenantClassRef.DataSource.Count>0">
+                    <R_Label>@_localizer["_lbl_assign_tenant"]</R_Label>
+                </R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Popup R_ConductorGridSource="@_conTenantRef"
+                         R_Before_Open_Popup="R_Before_Open_Popup_MoveTenant"
+                         R_After_Open_Popup="R_After_Open_Popup_MoveTenant"
+                         Enabled="_conTenantClassRef.R_ConductorMode==R_eConductorMode.Normal && _gridTenantClassRef.DataSource.Count>0">
+                    <R_Label>@_localizer["_lbl_move_tenant"]</R_Label>
+                </R_Popup>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Class="mt-2">
+            <R_Grid @ref="@_gridTenantRef"
+                    DataSource="@_viewModelTenantClass.AssignedTenantList"
+                    R_ConductorGridSource="@_conTenantRef"
+                    R_GridType="@R_eGridType.Original"
+                    R_ServiceGetListRecord="@Tenant_ServiceGetListRecord"
+                    Pageable="true"
+                    AllowAddNewRow="false"
+                    AllowDeleteRow="false"
+                    AllowEditRow="false"
+                    Height="175px"
+                    R_ServiceGetRecord="Tenant_GetRecord">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(TenantDTO.CTENANT_ID)" HeaderText="@(_localizer["_col_tenant_id"])" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(TenantDTO.CTENANT_NAME)" HeaderText="@(_localizer["_col_tenant_name"])" Width="250px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(TenantDTO.CTENANT_CATEGORY_NAME)" HeaderText="@(_localizer["_col_tenant_ctg"])" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(TenantDTO.CTENANT_TYPE_NAME)" HeaderText="@(_localizer["_col_tenant_type"])" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(TenantDTO.CUNIT_NAME)" HeaderText="@(_localizer["_col_units"])" Width="200px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(TenantDTO.CPHONE)" HeaderText="@(_localizer["_col_phone1"])" Width="130px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(TenantDTO.CEMAIL)" HeaderText="@(_localizer["_col_email"])" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(TenantDTO.CUPDATE_BY)" HeaderText="@(_localizer["_col_update_by"])" Width="120px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(TenantDTO.DUPDATE_DATE)" HeaderText="@(_localizer["_col_update_date"])" Width="130px"></R_GridDateTimePickerColumn>
+                    <R_GridTextColumn FieldName="@nameof(TenantDTO.CCREATE_BY)" HeaderText="@(_localizer["_col_create_by"])" Width="120px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(TenantDTO.DCREATE_DATE)" HeaderText="@(_localizer["_col_create_date"])" Width="130px"></R_GridDateTimePickerColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conTenantClassRef"
+                 R_IsHeader
+                 R_SetOther="TenantClass_SetOtherAsync">
+</R_ConductorGrid>
+
+<R_ConductorGrid @ref="@_conTenantRef"
+                 R_ConductorParent="_conTenantClassRef">
+</R_ConductorGrid>

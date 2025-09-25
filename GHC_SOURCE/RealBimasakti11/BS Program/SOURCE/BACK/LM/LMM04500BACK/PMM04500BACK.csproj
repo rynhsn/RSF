@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\COMMON\LM\LMM04500COMMON\PMM04500COMMON.csproj" />
+    <ProjectReference Include="..\LM_SPR\RSP_PM_ACTIVE_INACTIVE_PRICINGResources\RSP_PM_ACTIVE_INACTIVE_PRICINGResources.csproj" />
+    <ProjectReference Include="..\LM_SPR\RSP_PM_MAINTAIN_PRICINGResources\RSP_PM_MAINTAIN_PRICINGResources.csproj" />
+    <ProjectReference Include="..\LM_SPR\RSP_PM_MAINTAIN_PRICING_RATEResources\RSP_PM_MAINTAIN_PRICING_RATEResources.csproj" />
+  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="R_APIBackEnd">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommonDTO">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommonDTO.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CommonFrontBackAPI">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="R_OpenTelemetry">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

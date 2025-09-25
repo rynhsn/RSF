@@ -1,0 +1,411 @@
+delete SAT_LOCKING where CUSER_ID = 'vfm'
+
+
+EXEC RSP_LM_GET_SALESMAN_LIST 'RCD', 'JBMPC', 'Admin'
+
+RSP_LM_GET_TENANT_LIST 'RCD', 'jbmpc', '01', 'hmc'
+RSP_LM_GET_DISCOUNT_LIST 'rcd', 'jbmpc', '01', 'hmc' 
+
+EXEC RSP_LM_GET_AGREEMENT_DETAIL
+@CCOMPANY_ID = 'rcd',
+@CPROPERTY_ID = 'JBMPC',
+@CDEPT_CODE = 'ACC',
+@CTRANS_CODE = '802030',
+@CREF_NO = 'REF_20022024',
+@CUSER_ID = 'aoc';
+
+RSP_LM_GET_TENANT_LIST'rcd', 'ashmd', '01', 'aoc'
+
+RSP_LM_GET_CHARGES_TYPE_LIST 'rcd','ashmd','','hmc'
+
+--1
+EXEC RSP_GS_GET_SALES_TAX_LIST 'rcd', 'hmc' 
+
+--200
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_GET_CHARGES_TYPE_LIST]
+		@CCOMPANY_ID = 'BSI',
+		@CPROPERTY_ID = 'ASHMD',
+		@CCHARGE_TYPE_ID = '01', --'01',
+		@CTAXABLE_TYPE = '1',
+		@CACTIVE_TYPE = '1',
+		@CTAX_DATE= '20241004',
+		@CUSER_ID = 'ram',
+		@LACCRUAL = 1
+SELECT	'Return Value' = @return_value
+GO 
+
+/*
+
+{'@CACTIVE_TYPE': '1', '@CCHARGE_TYPE_ID': '01', '@CCOMPANY_ID': 'BSI', '@CPROPERTY_ID': 'ASHMD', '@CTAX_DATE': '20241004', '@CTAXABLE_TYPE': '1', '@CUSER_ID': 'RAM'}
+
+
+RSP_PM_GET_CHARGES_TYPE_LIST 
+--CINVGRP_CODE	CINVGRP_NAME
+--INVGRP01		
+--300
+exec RSP_PM_GET_SUPERVISOR_LOOKUP_LIST '','',''
+
+--4
+*/
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_GET_CHARGES_UTILITY_LIST]
+		@CCOMPANY_ID = 'bsi',
+		@CPROPERTY_ID = 'ashmd',
+		@CCHARGE_TYPE_ID = '01',
+		@CUSER_ID = 'hmc',
+		@CTAXABLE_TYPE = '',
+		@CACTIVE_TYPE = '',
+		@CTAX_DATE = ''
+SELECT	'Return Value' = @return_value
+GO
+
+LSPLIT_ADMIN	LADMIN_FEE_TAX
+0	0
+/*
+--RSP_PM_GET_CHARGES_UTILITY_LIST {'@CACTIVE_TYPE': '0', '@CCHARGE_TYPE_ID': '01', '@CCOMPANY_ID': 'RCD', '@CPROPERTY_ID': 'ASHMD', '@CTAX_DATE': '', '@CTAXABLE_TYPE': '0', '@CUSER_ID': 'FMC'}
+--5
+exec RSP_PM_GET_SALESMAN_LIST  
+		@CCOMPANY_ID = '',
+		@CPROPERTY_ID = '',
+		@CUSER_ID = '',
+		@LACTIVE
+--6
+EXEC RSP_PM_GET_TENANT_LIST 'bsi', 'ashmd', '02', 'ram'
+-- minta dapatin 
+--Tax, Currency, Payment Term
+--7
+exec RSP_PM_GET_DISCOUNT_LIST '','','',''
+
+--8
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_GET_AGGREMENTNO_LIST]
+		@CCOMPANY_ID = 'bsi',
+		@CPROPERTY_ID = 'ashmd',
+		@CDEPT_CODE = '',
+		@CAGGR_STTS = '00,02',
+		@CLANG_ID = 'en',
+		@CTRANS_CODE = '802012',
+		@CREF_NO = '',
+		@CTRANS_STATUS = '30',
+		@CTENANT_ID = '',
+		@CBUILDING_ID = '',
+		@CUSER_ID = ''
+SELECT	'Return Value' = @return_value
+GO
+
+
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_GET_AGGREMENTNO_LIST]
+		@CCOMPANY_ID = 'BSI',
+		@CPROPERTY_ID = 'ashmd',
+		@CDEPT_CODE = '',
+		@CAGGR_STTS = '',
+		@CLANG_ID = 'en',
+		@CTRANS_CODE = '991000',
+		@CREF_NO = ''
+SELECT	'Return Value' = @return_value
+GO
+
+{'@CAGGR_STTS': '', '@CBUILDING_ID': '', '@CCOMPANY_ID': 'BSI', '@CDEPT_CODE': '', '@CLANG_ID': 'en', 
+'@CPROPERTY_ID': 'ASHMD', '@CREF_NO': '', '@CTENANT_ID': 'TNT48', '@CTRANS_CODE': '991000', '@CTRANS_STATUS': '30,80', '@CUSER_ID': 'RAM'}
+----9-----
+USE [BIMASAKTI_11]
+GO
+
+DECLARE	@return_value int
+
+EXEC	@return_value = [dbo].[RSP_PM_LOOKUP_TRX_REF_NO]
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY_ID = 'ashmd',
+		@CDEPT_CODE = NULL,
+		@CUSER_ID = NULL,
+		@CTRANS_CODE = NULL,
+		@CCUSTOMER_ID = NULL,
+		@CPERIOD = NULL,
+		@LHAS_REMAINING = NULL,
+		@LNO_REMAINING = NULL,
+		@CLANGUAGE_ID = NULL,
+		@CCURRENCY_CODE = NULL
+
+SELECT	'Return Value' = @return_value
+
+GO
+
+--10
+EXEC [RSP_PM_GET_BILLING_RULE_LIST] @CCOMPANY_ID, @CPROPERTY_ID, @CUSER_LOGIN_ID
+EXEC RSP_PM_GET_BILLING_RULE_LIST 'rcd', 'ashmd', 'hmc','','',''
+
+---	Value = Lookup PM – PML01000 – BILLING RULE LOOKUP
+USE [BIMASAKTI_11]
+GO
+
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_GET_BILLING_RULE_LIST]  --RSP_PM_GET_BILLING_RULE_LIST
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY_ID = 'ashmd',
+		@CBILLING_RULE_TYPE = '01',
+		@CUNIT_TYPE_CTG_ID = '',
+		@LACTIVE_ONLY = 1,
+		@CUSER_ID = 'hmc'
+SELECT	'Return Value' = @return_value
+GO
+
+nmin booking fee, Lbooking fee overwrite
+
+--1100
+USE [BIMASAKTI_11]
+GO
+
+DECLARE	@return_value int
+
+EXEC	@return_value = [dbo].[RSP_PM_GET_TC_LIST]
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY_ID = 'ashmd',
+		@CUSER_ID = 'hmc'
+
+SELECT	'Return Value' = @return_value
+
+GO
+
+
+--1300
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_LOOKUP_INV_PLAN_AGREEMENT]
+		@CCOMPANY_ID = 'bsi',
+		@CPROPERTY_ID = 'ashmd',
+		@CDEPT_CODE = '00',
+		@CLEASE_MODE = '',
+		@CTENANT_ID='',
+		@CLANGUAGE_ID = 'en'
+SELECT	'Return Value' = @return_value
+
+GO
+CSTART_DATE	CSTART_TIME	CEND_DATE
+20241016		20251015
+
+select * from PMT_AGREEMENT
+
+EXEC RSP_PM_GET_CHARGES_TYPE_LIST 'BSI', 'ashmd', '01', 'ERC', '1', '1', '20240919'
+
+SELECT * FROM PMM_UNIT_CHARGES WHERE CCOMPANY_ID='BSI' AND CCHARGES_TYPE='01' AND CPROPERTY_ID='ASHMD'
+
+RSP_CB_GET_CHEQUE_HD
+*/
+
+
+--1400
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+
+EXEC	@return_value = [dbo].[RSP_PM_GET_AGREEMENT_CHARGES_DT]
+		@CCOMPANY_ID = 'bsi',
+		@CPROPERTY_ID = 'ashmd',
+		@CDEPT_CODE = '00',
+		@CTRANS_CODE = '802061',
+		@CREF_NO = 'LOI-U-2024090013',
+		@CSEQ_NO = '',
+		@CUSER_ID = 'HMC'
+SELECT	'Return Value' = @return_value
+GO
+--CHARGES_TYPE_DESCR
+--nt
+
+--1500
+USE [BIMASAKTI_11]
+GO
+
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].RSP_PM_GET_ASSIGN_SLA_CATEGORY 
+		@CCOMPANY_ID = 'rcd',
+		@CPROPERTY_ID = 'ashmd',
+		@CCATEGORY_ID = ''
+SELECT	'Return Value' = @return_value
+
+GO
+
+
+--1600
+EXEC	RSP_PM_GET_SLA_CALL_TYPE_LIST
+		@CCOMPANY_ID = NULL,
+		@CPROPERTY_ID = NULL,
+		@CCALL_TYPE_ID = NULL
+
+
+--1700
+				--00800-
+				/*
+				USE [BIMASAKTI_11]
+					GO
+					DECLARE	@return_value int
+					EXEC	@return_value = [dbo].[RSP_PM_GET_AGGREMENTNO_LIST]
+							@CCOMPANY_ID = 'bsi',
+							@CPROPERTY_ID = 'ashmd',
+							@CDEPT_CODE = '',
+							@CAGGR_STTS = '',
+							@CLANG_ID = 'en',
+							@CTRANS_CODE = '991000',
+							@CREF_NO = '',
+							@CTENANT_ID = 'TNT48',
+							@CBUILDING_ID = '',
+							@CTRANS_STATUS = '30,80',
+							@CUSER_ID = ''
+					SELECT	'Return Value' = @return_value
+					GO
+				*/
+USE [BIMASAKTI_11]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[RSP_PM_LOOKUP_CANCEL_CUST_RECEIPT] --[RSP_PM_LOOKUP_TRX_REF_NO]
+		@CCOMPANY_ID = 'bsi',
+		@CPROPERTY_ID = 'ashmd',
+		@CUSER_ID = 'ram',
+		@CPERIOD = '202412',
+		@CCUSTOMER_ID = 'TNT48',
+		@CLOI_AGRMT_ID ='9F7EB1CC-EC72-429B-86C5-E26B7469411A', --'LOI-U-2024100063',
+		@CLANGUAGE_ID = 'en',
+		@CDEPT_CODE = '02'
+SELECT	'Return Value' = @return_value
+GO
+
+
+RSP_PM_GET_PREREQUISITE_CUST_RECEIPT_LIST 
+		@CCOMPANY_ID = NULL,
+		@CRECEIPT_ID = NULL,
+		@CLANGUAGE_ID = NULL
+
+begin transaction
+CREATE TABLE #TEMP_INVOICE (
+		CINVOICE_CODE	[varchar](50)		NOT NULL,
+)
+
+INSERT INTO #TEMP_INVOICE (CINVOICE_CODE)
+VALUES ('CHG-2024100054-ALW');
+
+
+EXEC RSP_PMR01600_GET_REPORT 
+@CCOMPANY_ID = 'BSI'
+,@CPROPERTY_ID = 'ASHMD'
+,@CUSER_ID= 'AOC'
+,@LPRINT = 0;
+
+rollback
+
+
+exec RSP_GS_GET_PERIOD_YEAR_RANGE 'bsi', '', ''
+--01800
+RSP_GS_GET_PROPERTY_LIST 
+
+exec RSP_GS_GET_BUILDING_LIST
+@CCOMPANY_ID ='rcd',
+@CPROPERTY_ID ='ashmd',
+@CUSER_ID ='hmc'
+
+RSP_GS_GET_BUILDING_FLOOR_LIST 
+exec RSP_GS_GET_BUILDING_UNIT_LIST 
+@CCOMPANY_ID = 'rcd',
+@CPROPERTY_ID = 'ashmd',
+@CBUILDING_ID = 'TW-A',
+@CFLOOR_ID= '',
+@CUSER_ID = 'hmc'
+
+RSP_PM_GET_UNIT_TENANT_LIST
+
+--01900
+RSP_GS_GET_DEPT_LIST 'bsi', 'ashmd'
+
+RSP_PM_GET_SUPERVISOR_LOOKUP_LIST
+@CCOMPANY_ID = 'rcd',
+@CPROPERTY_ID = 'ashmd',
+@CUSER_ID = 'hmc'
+
+RSP_GS_GET_GSB_CODE_LIST  --CLANGUAGE_ID
+
+
+RSP_PM_GET_STAFF_LOOKUP_LIST
+@CCOMPANY_ID = 'bsi',
+@CPROPERTY_ID ='ashmd',
+@CSUPERVISOR_ID ='spv01',
+@LSUPERVISOR = false,
+@CDEPT_CODE ='00',
+@CACTIVE_INACTIVE =  '1',
+@CSTAFF_TYPE ='AD',
+@CUSER_ID ='RAM',
+@CLANG_ID ='en',
+@CSTAFF_ID =''
+
+
+RSP_GS_GET_GSB_CODE_LIST 
+@CAPPLICATION = 'BIMASAKTI',
+@CCOMPANY_ID = 'RCD',
+@CCLASS_ID = '_BS_STAFF_TYPE',
+@CLANGUAGE_ID= 'en',
+@CREC_ID_LIST = ''
+
+
+RSP_PM_GET_STAFF_LOOKUP_LIST 
+@CCOMPANY_ID= 'RCD', 
+@CPROPERTY_ID= 'ASHMD', 
+@CDEPT_CODE='ACC', 
+@CSUPERVISOR_ID= 'Staff01', 
+@LSUPERVISOR= true,
+@CACTIVE_INACTIVE= '', 
+@CSTAFF_TYPE= 'AD',
+@CLANG_ID= 'en',
+@CSTAFF_ID= '', 
+@CUSER_ID='HMC'
+
+rollback
+
+RSP_GS_GET_GSB_CODE_LIST
+@CAPPLICATION= 'BIMASAKTI', 
+@CCLASS_ID= '_BS_STAFF_TYPE', 
+@CCOMPANY_ID='RCD', 
+@CLANGUAGE_ID= 'en'
+
+/*
+EXEC RSP_PM_LOOKUP_TRX_REF_NO
+'BSI',
+'ASHMD',
+'00',
+'RAM',
+'920010',
+'TNT72',
+'',
+1,
+0,
+'EN',
+''
+
+EXEC RSP_PM_LOOKUP_TRX_REF_NO
+'BSI',
+'ASHMD',
+'00',
+'RAM',
+'920010',
+'TNT72',
+'',
+1,
+0,
+'EN',
+
+''
+*/
+
+RSP_PM_GET_SUPERVISOR_LOOKUP_LIST 
+@CCOMPANY_ID			='bsi',
+@CPROPERTY_ID			='ashmd',
+@CUSER_ID				='hmc',
+@LINCLUDE_ADMIN			=1,
+@LINCLUDE_MANAGEMENT	=1

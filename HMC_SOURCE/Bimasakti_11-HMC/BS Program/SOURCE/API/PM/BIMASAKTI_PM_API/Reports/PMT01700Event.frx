@@ -1,0 +1,866 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="02/19/2025 15:03:10" ReportInfo.Modified="04/17/2025 13:56:04" ReportInfo.CreatorVersion="2023.2.21.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="Title" DataType="System.String"/>
+      <Column Name="LabelReport" DataType="PMT01700CommonReport.PMTLabelReportDTO, PMT01700CommonReport, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="LABEL_NO" DataType="System.String"/>
+        <Column Name="LABEL_MULAI" DataType="System.String"/>
+        <Column Name="LABEL_BERAKHIR" DataType="System.String"/>
+        <Column Name="LABEL_NAMA_PENYEWA" DataType="System.String"/>
+        <Column Name="LABEL_ALAMAT_PENYEWA" DataType="System.String"/>
+        <Column Name="LABEL_LETAK_RUANG_SEWA" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_JANGKA_WAKTU_SEWA" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PERJANJIAN_INI" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_OLEH_DAN" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_DALAM_HAL_MANAJEMEN" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_BERKEDUDUKAN_DI" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_UNTUK_SELANJUTNYA" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_DALAM_HAL_TENANT" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_SECARA_BERSAMA" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_DENGAN_INI_MENERANGKAN" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_DENGAN_INI_MENYEWAKAN" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_YANG_DENGAN_INI" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_ATAS_RUANGAN" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_YANG_TERLETAK" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_SELANJUTNYA_DISEBUT_JUGA" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_TELAH_MENUNJUK" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_SELAKU_PENGELOLA" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_UNTUK_MELAKUKAN" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_BERIKUT_DENGAN" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_SELANJUTNYA" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_SETUJU_UNTUK" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_DENGAN_INI_SETUJU_MENYEWAKAN" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_YANG_DENGAN_INI_SETUJU_MENYEWAKAN" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_RUANGANAN_DI_DALAM" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_SELANJUTNYA_DISEBUT" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_YANG_MELIPUTI" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_RUANG_NO" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_SELUAS" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_M2_SEMIGROSS" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_TITLE" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_1_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_1_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_1_A_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_1_B_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_1_B_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_1_B_1_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_SEPERTI" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_1_B_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_1_B_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_1_B_2_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_2_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_2_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_2_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_3_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_3_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_3_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_4_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_4_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_4_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_4_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL1_4_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_TITLE" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_1_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_1_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_2_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_2_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_2_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_2_6" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_2_7" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_2_8" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_3_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_3_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_3_3_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_3_4_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_3_5_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_3_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_4_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_4_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_4_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_4_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL2_4_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_TITLE" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_1_RP" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_1_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_2_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_3_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_3_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_3_3_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_3_1_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_3_1_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_3_2_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_3_2_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_3_3_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_3_3_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_3_1_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_3_2_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL3_4_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_TITLE" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_1_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_1_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_1_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_2_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_2_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_3_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_3_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_3_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_3_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_3_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_4_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_4_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_4_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_4_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL4_4_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL5_TITLE" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL5_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL5_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL5_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_TITLE" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_0_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_0_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_0_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_1_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_1_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_1_3_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_1_4_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_1_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_3_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_4_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_4_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_5_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_6_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_7_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_7_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_7_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_7_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_7_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_8_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_8_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_8_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_8_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_8_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_9_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_9_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_10_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_11_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_12_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_12_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_12_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_12_3_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_12_4_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_13_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_13_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_13_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_13_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_14_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_15_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_15_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL6_15_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL7" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL7_TITLE" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL7_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL7_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL7_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL7_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL7_2_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_TITLE" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_0_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1A_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1B_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1B_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1B_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1B_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1B_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1B_6" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1C_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1C_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1D_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1D_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1TEXT_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1TEXT_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1TEXT_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1i_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1i_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1i_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1ii_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_1_1ii_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_2_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_2_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_2_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_3_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_3_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_3_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_3_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_3_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_3_6" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_3_7" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_4_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_4_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_4_3_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_4_4_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_4_5_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_4_6_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_4_7_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_4_8_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_4_9_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_4_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_4_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_4_3_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_4_4_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_5_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_5_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_5_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_5_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_5_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_5_6" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_6_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_6_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_6_3_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_6_4_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_6_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_6_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_6_3_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_6_1_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_6_2_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_6_3_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_6_4_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_7_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_7_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_7_3_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_7_4_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_7_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_7_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_7_3_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_7_4_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_7_5_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_7_6_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_7_1_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_7_2_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_7_3_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_8_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_9_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_9_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_9_3_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_9_4_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_9_5_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_9_6_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_9_7_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_9_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_9_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_9_3_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_9_4_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_9_5_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_9_6_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_9_7_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_9_8_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL8_10_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL9" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL9_TITLE" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL9_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL9_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL9_1_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL9_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL9_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL9_3_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL9_3_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL9_3_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL9_3_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL9_3_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL10" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL10_TITLE" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL10_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL10_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL10_1_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL10_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL11" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL11_TITLE" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL11_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL11_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_TITLE" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_2_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_2_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_2_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_2_6" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_2_7" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_2_8" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_2_9" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_2_10" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_2_11" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_2_12" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_2_13" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_3_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_3_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_3_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL12_3_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL13" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL13_TITLE" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL13_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL13_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_TITLE" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_1_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_1_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_2_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_2_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_2_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_2_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_2_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_3_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_3_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_3_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_3_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_3_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_4_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_4_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_4_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_4_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_5_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_5_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_5_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_5_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_5_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_5_6" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_5_7" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_6_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_6_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_6_3" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_6_4" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_6_5" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_6_6" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_6_7" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_6_8" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_6_9" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_6_10" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_7_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_7_2" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_8_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_9_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PASAL14_10_1" DataType="System.String"/>
+        <Column Name="LABEL_AGREEMENT_PENUTUP" DataType="System.String"/>
+        <Column Name="LABEL_RUANG_SEWA" DataType="System.String"/>
+        <Column Name="LABEL_PARA_PIHAK" DataType="System.String"/>
+        <Column Name="LABEL_GEDUNG" DataType="System.String"/>
+        <Column Name="LABEL_PEMILIK" DataType="System.String"/>
+        <Column Name="LABEL_PENYEWA" DataType="System.String"/>
+        <Column Name="LABEL_PENGELOLA" DataType="System.String"/>
+        <Column Name="LABEL_BAHWA" DataType="System.String"/>
+        <Column Name="LABEL_DAN" DataType="System.String"/>
+        <Column Name="LABEL_TAHUN" DataType="System.String"/>
+        <Column Name="LABEL_BULAN" DataType="System.String"/>
+        <Column Name="LABEL_HARI" DataType="System.String"/>
+        <Column Name="LABEL_M2" DataType="System.String"/>
+        <Column Name="LABEL_NOMOR" DataType="System.String"/>
+        <Column Name="LABEL_PERIHAL" DataType="System.String"/>
+        <Column Name="LABEL_PENAWARAN_LEASING_SEWA_RUANG_DI" DataType="System.String"/>
+        <Column Name="LABEL_KEPADA_YTH" DataType="System.String"/>
+        <Column Name="LABEL_NAMA" DataType="System.String"/>
+        <Column Name="LABEL_JABATAN" DataType="System.String"/>
+        <Column Name="LABEL_INSTITUSI" DataType="System.String"/>
+        <Column Name="LABEL_ALAMAT" DataType="System.String"/>
+        <Column Name="LABEL_SALAM_SEJAHTERA" DataType="System.String"/>
+        <Column Name="LABEL_TERIMA_KASIH_KAMI_UCAPKAN" DataType="System.String"/>
+        <Column Name="LABEL_SELANJUTNYA_DISEBUT_LANDLORD" DataType="System.String"/>
+        <Column Name="LABEL_SEBAGAI_REKAN_BISNIS" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_TERIMA_KASIH_KAMI_SAMPAIKAN" DataType="System.String"/>
+        <Column Name="LABEL_MENINDAKLANJUTI_KOMUNIKASI_KITA" DataType="System.String"/>
+        <Column Name="LABEL_SELAKU_MARKETING_AGENT_DARI" DataType="System.String"/>
+        <Column Name="LABEL_NAMA_BRAND_TENANT" DataType="System.String"/>
+        <Column Name="LABEL_NAMA_BRAND_TENANT_DESC" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_RUANG_SEWA" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_RUANG_SEWA_A" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_RUANG_B" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_RUANG_C" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_RUANG_D" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_RUANG_DESC" DataType="System.String"/>
+        <Column Name="LABEL_JANGKA_WAKTU_SEWA" DataType="System.String"/>
+        <Column Name="LABEL_JANGKA_WAKTU_SEWA_DESC" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SEWA" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SEWA_A" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SEWA_B" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SEWA_C" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SEWA_D" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_A" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_A_DESC" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_DP_DESC2" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_B" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_C" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_C_DESC" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SERVICE_CHARGE" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SERVICE_CHARGE_A" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SERVICE_CHARGE_B" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SERIVCE_CHARGE_C" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SERVICE_CHARGE_D" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_SERVICE_CHARGES" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_SERVICE_CHARGES_A" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_SERVICE_CHARGES_A_DESC" DataType="System.String"/>
+        <Column Name="LABEL_UANG_JAMINAN" DataType="System.String"/>
+        <Column Name="LABEL_UANG_JAMINAN_A" DataType="System.String"/>
+        <Column Name="LABEL_UANG_JAMINAN_A_DESC" DataType="System.String"/>
+        <Column Name="LABEL_UANG_JAMINAN_A_DESC2" DataType="System.String"/>
+        <Column Name="LABEL_AREA_MEDIA_PROMOSI" DataType="System.String"/>
+        <Column Name="LABEL_AREA_MEDIA_PROMOSI_A" DataType="System.String"/>
+        <Column Name="LABEL_AREA_MEDIA_PROMOSI_A_DESC" DataType="System.String"/>
+        <Column Name="LABEL_AREA_MEDIA_PROMOSI_B" DataType="System.String"/>
+        <Column Name="LABEL_AREA_MEDIA_PROMOSI_B_DESC" DataType="System.String"/>
+        <Column Name="LABEL_AREA_MEDIA_PROMOSI_C" DataType="System.String"/>
+        <Column Name="LABEL_AREA_MEDIA_PROMOSI_D" DataType="System.String"/>
+        <Column Name="LABEL_MECHANICAL_LISTRIK_AIR" DataType="System.String"/>
+        <Column Name="LABEL_MECHANICAL_LISTRIK_AIR_DESC" DataType="System.String"/>
+        <Column Name="LABEL_MECHANICAL_LISTRIK_AIR_A" DataType="System.String"/>
+        <Column Name="LABEL_MECHANICAL_LISTRIK_AIR_B" DataType="System.String"/>
+        <Column Name="LABEL_MECHANICAL_LISTRIK_AIR_C" DataType="System.String"/>
+        <Column Name="LABEL_PENGGUNAAN_RUANG_SEWA" DataType="System.String"/>
+        <Column Name="LABEL_PENGGUNAAN_RUANG_SEWA_DESC" DataType="System.String"/>
+        <Column Name="LABEL_FITTING_OUT" DataType="System.String"/>
+        <Column Name="LABEL_FITTING_OUT_A" DataType="System.String"/>
+        <Column Name="LABEL_FITTING_OUT_B" DataType="System.String"/>
+        <Column Name="LABEL_FITTING_OUT_C" DataType="System.String"/>
+        <Column Name="LABEL_FITTING_OUT_D" DataType="System.String"/>
+        <Column Name="LABEL_FITTING_OUT_E" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_DESC" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_A" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_B" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_C" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_D" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_E" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_F" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_G" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_H" DataType="System.String"/>
+        <Column Name="LABEL_LAIN_LAIN" DataType="System.String"/>
+        <Column Name="LABEL_LAIN_LAIN_A" DataType="System.String"/>
+        <Column Name="LABEL_LAIN_LAIN_B" DataType="System.String"/>
+        <Column Name="LABEL_PENUTUP" DataType="System.String"/>
+        <Column Name="LABEL_PENUTUP_A" DataType="System.String"/>
+        <Column Name="LABEL_PENUTUP_B" DataType="System.String"/>
+        <Column Name="LABEL_DIBUAT_OLEH" DataType="System.String"/>
+        <Column Name="LABEL_MENYETUJUI" DataType="System.String"/>
+        <Column Name="LABEL_MENGETAHUI" DataType="System.String"/>
+        <Column Name="LABEL_PMT016600_LETTER_OF_INTENT" DataType="System.String"/>
+        <Column Name="LABEL_PMT01600_DI" DataType="System.String"/>
+        <Column Name="LABEL_PMT01600_TANGGAL_AWAL" DataType="System.String"/>
+        <Column Name="LABEL_PMT01600_BRAND" DataType="System.String"/>
+        <Column Name="LABEL_PMT01600_TELEPON" DataType="System.String"/>
+        <Column Name="LABEL_PMT01700_TELEPON" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_SALAM_PROPERTYNAME" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_SEBAGAI_PILIHAN_TEMPAT" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_DI_KOTA" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_MENINDAKLANJUTI_KOMUNIKASI_KITA" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_SELAKU" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_TIPE_PENYEWAAN" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_LOKASI" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_LUASAN" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_JANGKA_WAKTU_SEWA" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_JANGKA_WAKTU_SEWA_HARI" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_HARGA_SEWA" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_TOTAL_BIAYA_SEWA" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_TOTAL_BIAYA_SEWA_DESC" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_CARA_PEMBAYARAN" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_DETAIL_ITEMS" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_KETENTUAN" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_DAYA_DAN_PEMAKAIAN" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_DAYA_DAN_PEMAKAIAN_AMPERE" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_PENGGUNAAN_DAYA_DAN_PEMAKAIAN" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_PEMBAYARAN_YANG_DIMAKSUD" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_PELAKSANAAN_KEGIATAN_PAMERAN" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_DENGAN_DITANDATANGANINYA_SURAT" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_DEMIKIAN_SURAT_PENAWARAN" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_SALAM_HORMAT" DataType="System.String"/>
+        <Column Name="LABEL_PMT01900_MENYETUJUI" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_PMT01900_ITEM_NAME" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_PMT01900_QTY" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_PMT01900_UNIT_PRICE" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_PMT01900_DISCOUNT" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_PMT01900_TOTAL_PRICE" DataType="System.String"/>
+      </Column>
+      <Column Name="Data" DataType="PMT01700CommonReport.PMTDataReportDTO, PMT01700CommonReport, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="CCOMPANY_ID" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CCOMPANY_ADDRESS" DataType="System.String"/>
+        <Column Name="CCOMPANY_CITY" DataType="System.String"/>
+        <Column Name="CPROPERTY_ID" DataType="System.String"/>
+        <Column Name="CPROPERTY_NAME" DataType="System.String"/>
+        <Column Name="CDEPT_CODE" DataType="System.String"/>
+        <Column Name="CTRANS_CODE" DataType="System.String"/>
+        <Column Name="CREF_NO" DataType="System.String"/>
+        <Column Name="CPROPERTY_CADDRESS" DataType="System.String"/>
+        <Column Name="CPROPERTY_CITY" DataType="System.String"/>
+        <Column Name="CPROPERTY_PROVINCE" DataType="System.String"/>
+        <Column Name="CBUILDING_ID" DataType="System.String"/>
+        <Column Name="CBUILDING_NAME" DataType="System.String"/>
+        <Column Name="CSTART_TIME" DataType="System.String"/>
+        <Column Name="CEND_TIME" DataType="System.String"/>
+        <Column Name="IMONTHS" DataType="System.Int32"/>
+        <Column Name="IYEARS" DataType="System.Int32"/>
+        <Column Name="IDAYS" DataType="System.Int32"/>
+        <Column Name="IHOURS" DataType="System.Int32"/>
+        <Column Name="CSALESMAN_ID" DataType="System.String"/>
+        <Column Name="CSALESMAN_NAME" DataType="System.String"/>
+        <Column Name="CTENANT_ID" DataType="System.String"/>
+        <Column Name="CTENANT_NAME" DataType="System.String"/>
+        <Column Name="CTENANT_ADDRESS" DataType="System.String"/>
+        <Column Name="CTENANT_CITY" DataType="System.String"/>
+        <Column Name="CTENANT_POSTAL_CODE" DataType="System.String"/>
+        <Column Name="CTENANT_EMAIL" DataType="System.String"/>
+        <Column Name="CTENANT_PHONE1" DataType="System.String"/>
+        <Column Name="CTENANT_PHONE2" DataType="System.String"/>
+        <Column Name="CTENANT_ATTENTION1_NAME" DataType="System.String"/>
+        <Column Name="CTENANT_ATTENTION1_POSITION" DataType="System.String"/>
+        <Column Name="CTENANT_GROUP_NAME" DataType="System.String"/>
+        <Column Name="CUNIT_DESCRIPTION" DataType="System.String"/>
+        <Column Name="CNOTES" DataType="System.String"/>
+        <Column Name="CCURRENCY_CODE" DataType="System.String"/>
+        <Column Name="CCURRENCY_NAME" DataType="System.String"/>
+        <Column Name="CUNIT_LIST" DataType="System.String"/>
+        <Column Name="NTOTAL_GROSS_AREA" DataType="System.Decimal"/>
+        <Column Name="NTOTAL_NET_AREA" DataType="System.Decimal"/>
+        <Column Name="NTOTAL_ACTUAL_AREA" DataType="System.Decimal"/>
+        <Column Name="NTOTAL_COMMON_AREA" DataType="System.Decimal"/>
+        <Column Name="NBOOKING_FEE" DataType="System.Decimal"/>
+        <Column Name="CLEASE_MODE" DataType="System.String"/>
+        <Column Name="CLEASE_MODE_DESCR" DataType="System.String"/>
+        <Column Name="CCHARGE_MODE" DataType="System.String"/>
+        <Column Name="CCHARGE_MODE_DESCR" DataType="System.String"/>
+        <Column Name="CTRANS_STATUS" DataType="System.String"/>
+        <Column Name="CTRANS_STATUS_DESCR" DataType="System.String"/>
+        <Column Name="CAGREEMENT_STATUS" DataType="System.String"/>
+        <Column Name="CAGREEMENT_STATUS_DESCR" DataType="System.String"/>
+        <Column Name="CUNIT_TYPE_CATEGORY_ID" DataType="System.String"/>
+        <Column Name="CUNIT_TYPE_CATEGORY_NAME" DataType="System.String"/>
+        <Column Name="ITOTAL_UNIT" DataType="System.Int32"/>
+        <Column Name="CBILLING_RULE_TYPE" DataType="System.String"/>
+        <Column Name="CBILLING_RULE_CODE" DataType="System.String"/>
+        <Column Name="CBILLING_RULE_NAME" DataType="System.String"/>
+        <Column Name="LWITH_DP" DataType="System.Boolean"/>
+        <Column Name="IDP_PERCENTAGE" DataType="System.Int32"/>
+        <Column Name="IDP_INTERVAL" DataType="System.Int32"/>
+        <Column Name="CDP_PERIOD_MODE" DataType="System.String"/>
+        <Column Name="IINSTALLMENT_PERCENTAGE" DataType="System.Int32"/>
+        <Column Name="IINSTALLMENT_INTERVAL" DataType="System.Int32"/>
+        <Column Name="CINSTALLMENT_PERIOD_MODE" DataType="System.String"/>
+        <Column Name="NLEASE_AMT" DataType="System.Decimal"/>
+        <Column Name="NLEASE_TOTAL_AMT" DataType="System.Decimal"/>
+        <Column Name="NLEASE_DP_AMT" DataType="System.Decimal"/>
+        <Column Name="NLEASE_INSTALLMENT_AMT" DataType="System.Decimal"/>
+        <Column Name="NCHARGES_AMT" DataType="System.Decimal"/>
+        <Column Name="NCHARGES_TOTAL_AMT" DataType="System.Decimal"/>
+        <Column Name="NDEPOSIT_TOTAL_AMT" DataType="System.Decimal"/>
+        <Column Name="NCAPACITY" DataType="System.Decimal"/>
+        <Column Name="CTC_CODE" DataType="System.String"/>
+        <Column Name="IREVISE_SEQ_NO" DataType="System.Int32"/>
+        <Column Name="LWITH_FO" DataType="System.Boolean"/>
+        <Column Name="CACTUAL_START_TIME" DataType="System.String"/>
+        <Column Name="CACTUAL_END_TIME" DataType="System.String"/>
+        <Column Name="CREC_ID" DataType="System.String"/>
+        <Column Name="NACTUAL_PRICE" DataType="System.Decimal"/>
+        <Column Name="NSELL_PRICE" DataType="System.Decimal"/>
+        <Column Name="CUNIT_ID" DataType="System.String"/>
+        <Column Name="CUNIT_NAME" DataType="System.String"/>
+        <Column Name="CFLOOR_NAME" DataType="System.String"/>
+        <Column Name="CLOCATION" DataType="System.String"/>
+        <Column Name="CREF_DATE" DataType="System.String"/>
+        <Column Name="DREF_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="CSTART_DATE" DataType="System.String"/>
+        <Column Name="DSTART_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="CEND_DATE" DataType="System.String"/>
+        <Column Name="DEND_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="CEXPIRED_DATE" DataType="System.String"/>
+        <Column Name="DEXPIRED_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="CHO_PLAN_DATE" DataType="System.String"/>
+        <Column Name="DHO_PLAN_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="CHO_ACTUAL_DATE" DataType="System.String"/>
+        <Column Name="DHO_ACTUAL_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="CACTUAL_START_DATE" DataType="System.String"/>
+        <Column Name="DACTUAL_START_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="CACTUAL_END_DATE" DataType="System.String"/>
+        <Column Name="DACTUAL_END_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="CSOLD_DATE" DataType="System.String"/>
+        <Column Name="DSOLD_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+      </Column>
+      <BusinessObjectDataSource Name="BusinessObjectDataSource1" Alias="DataCharges" DataType="System.Collections.Generic.List`1[[PMT01700CommonReport.PMTDataChargesReportDTO, PMT01700CommonReport, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" PropName="DataCharges" Enabled="true">
+        <Column Name="CCHARGES_SEQ_NO" DataType="System.String"/>
+        <Column Name="CSEQ_NO" DataType="System.String"/>
+        <Column Name="CITEM_NAME" DataType="System.String"/>
+        <Column Name="IQTY" DataType="System.Int32"/>
+        <Column Name="NUNIT_PRICE" DataType="System.Decimal"/>
+        <Column Name="NDISCOUNT" DataType="System.Decimal"/>
+        <Column Name="NTOTAL_PRICE" DataType="System.Decimal"/>
+      </BusinessObjectDataSource>
+      <Column Name="Format" DataType="PMT01700CommonReport.PMTFormatReportDTO, PMT01700CommonReport, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="CSIGN_NAME01" DataType="System.String"/>
+      </Column>
+      <Column Name="DigitalSign" DataType="PMT01700CommonReport.PMTDigitalSignDTO, PMT01700CommonReport, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="CSIGN_POSITION01" DataType="System.String"/>
+        <Column Name="OSIGN_IMAGE01" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CSIGN_NAME01" DataType="System.String"/>
+        <Column Name="CSIGN_POSITION02" DataType="System.String"/>
+        <Column Name="OSIGN_IMAGE02" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CSIGN_NAME02" DataType="System.String"/>
+        <Column Name="CSIGN_POSITION03" DataType="System.String"/>
+        <Column Name="OSIGN_IMAGE03" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CSIGN_NAME03" DataType="System.String"/>
+        <Column Name="CSIGN_POSITION04" DataType="System.String"/>
+        <Column Name="OSIGN_IMAGE04" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CSIGN_NAME04" DataType="System.String"/>
+        <Column Name="CSIGN_POSITION05" DataType="System.String"/>
+        <Column Name="OSIGN_IMAGE05" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CSIGN_NAME05" DataType="System.String"/>
+        <Column Name="CSIGN_POSITION06" DataType="System.String"/>
+        <Column Name="OSIGN_IMAGE06" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CSIGN_NAME06" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8">
+      <TextObject Name="Text1" Left="18.9" Width="680.4" Height="28.35" Text="[ResponseDataModel.Title]" HorzAlign="Center" Font="Arial Unicode MS, 14pt, style=Bold, Underline"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="41.8" Width="718.2" Height="47.25">
+      <TextObject Name="Text2" Left="9.45" Width="330.75" Height="28.35" Text="[ResponseDataModel.Data.CPROPERTY_CITY], [ResponseDataModel.Data.CREF_DATE]" Font="Arial Unicode MS, 12pt, style=Bold">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <ChildBand Name="Child1" Top="93.05" Width="718.2" Height="28.35">
+        <TextObject Name="Text190" Left="9.45" Width="94.5" Height="20.9" CanShrink="true" Text="[ResponseDataModel.LabelReport.LABEL_NOMOR]" Font="Arial Unicode MS, 12pt"/>
+        <TextObject Name="Text191" Left="103.95" Width="94.5" Height="20.9" CanShrink="true" Text=": [ResponseDataModel.Data.CREF_NO]" AutoWidth="true" Font="Arial Unicode MS, 12pt, style=Bold"/>
+        <ChildBand Name="Child2" Top="125.4" Width="718.2" Height="30.35">
+          <TextObject Name="Text192" Left="9.45" Width="94.5" Height="20.9" CanShrink="true" Text="[ResponseDataModel.LabelReport.LABEL_PERIHAL]" AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+          <TextObject Name="Text193" Left="103.95" Width="94.5" Height="20.9" CanShrink="true" Text=": [ResponseDataModel.LabelReport.LABEL_PENAWARAN_LEASING_SEWA_RUANG_DI] [ResponseDataModel.Data.CPROPERTY_NAME]" AutoWidth="true" Font="Arial Unicode MS, 12pt, style=Bold">
+            <Formats>
+              <GeneralFormat/>
+              <GeneralFormat/>
+            </Formats>
+          </TextObject>
+          <ChildBand Name="Child3" Top="159.75" Width="718.2" Height="47.25">
+            <TextObject Name="Text3" Left="9.45" Top="18.9" Width="321.3" Height="28.35" Text="[ResponseDataModel.LabelReport.LABEL_KEPADA_YTH]," AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+            <ChildBand Name="Child4" Top="211" Width="718.2" Height="28.35">
+              <TextObject Name="Text194" Left="9.45" Width="103.95" Height="20.9" CanShrink="true" Text="[ResponseDataModel.LabelReport.LABEL_NAMA] " AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+              <TextObject Name="Text195" Left="113.4" Width="283.5" Height="20.9" CanBreak="false" Text=": [ResponseDataModel.Data.CTENANT_NAME]" AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+              <ChildBand Name="Child5" Top="243.35" Width="718.2" Height="28.35">
+                <TextObject Name="Text211" Left="9.45" Width="103.95" Height="20.9" CanShrink="true" Text="[ResponseDataModel.LabelReport.LABEL_ALAMAT]	" AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+                <TextObject Name="Text212" Left="113.4" Width="283.5" Height="20.9" CanGrow="true" CanBreak="false" Text=": [ResponseDataModel.Data.CTENANT_ADDRESS]" AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+                <ChildBand Name="Child7" Top="275.7" Width="718.2" Height="28.35">
+                  <TextObject Name="Text201" Left="113.4" Width="283.5" Height="20.9" CanBreak="false" Text=": [ResponseDataModel.Data.CTENANT_PHONE1]" AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+                  <TextObject Name="Text213" Left="9.45" Width="103.95" Height="18.9" CanShrink="true" Text="[ResponseDataModel.LabelReport.LABEL_PMT01700_TELEPON]" AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+                  <ChildBand Name="Child8" Top="308.05" Width="718.2" Height="37.8">
+                    <TextObject Name="Text202" Left="9.45" Top="18.9" Width="689.85" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_PMT01900_SALAM_PROPERTYNAME] [ResponseDataModel.Data.CPROPERTY_NAME]" Font="Arial Unicode MS, 12pt">
+                      <Formats>
+                        <GeneralFormat/>
+                        <GeneralFormat/>
+                      </Formats>
+                    </TextObject>
+                    <ChildBand Name="Child9" Top="349.85" Width="718.2" Height="28.35" CanGrow="true">
+                      <TextObject Name="Text203" Left="9.45" Top="9.45" Width="689.85" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_TERIMA_KASIH_KAMI_UCAPKAN] [ResponseDataModel.Data.CPROPERTY_NAME], [ResponseDataModel.LabelReport.LABEL_PMT01900_SEBAGAI_PILIHAN_TEMPAT] [ResponseDataModel.Data.CTENANT_NAME] [ResponseDataModel.LabelReport.LABEL_PMT01900_DI_KOTA] [ResponseDataModel.Data.CPROPERTY_CITY],[ResponseDataModel.Data.CPROPERTY_PROVINCE]." HorzAlign="Justify" Font="Arial Unicode MS, 12pt">
+                        <Formats>
+                          <GeneralFormat/>
+                          <GeneralFormat/>
+                          <GeneralFormat/>
+                          <GeneralFormat/>
+                          <GeneralFormat/>
+                          <GeneralFormat/>
+                          <GeneralFormat/>
+                        </Formats>
+                      </TextObject>
+                    </ChildBand>
+                  </ChildBand>
+                </ChildBand>
+              </ChildBand>
+            </ChildBand>
+          </ChildBand>
+        </ChildBand>
+      </ChildBand>
+    </DataBand>
+    <DataBand Name="Data2" Top="382.2" Width="718.2" Height="18.9" CanGrow="true">
+      <TextObject Name="Text105" Left="9.45" Width="614.25" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_MENINDAKLANJUTI_KOMUNIKASI_KITA] [ResponseDataModel.Data.CCOMPANY_NAME] [ResponseDataModel.LabelReport.LABEL_PMT01900_SELAKU]" Font="Arial Unicode MS, 12pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <ChildBand Name="Child11" Top="405.1" Width="718.2" Height="18.9">
+        <TextObject Name="Text106" Left="37.8" Width="680.4" Height="18.9" CanGrow="true" CanBreak="false" Text="[ResponseDataModel.LabelReport.LABEL_NAMA_BRAND_TENANT] [ResponseDataModel.Data.CUNIT_DESCRIPTION]" AutoWidth="true" Font="Arial Unicode MS, 12pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <ChildBand Name="Child12" Top="428" Width="718.2" Height="18.9">
+          <TextObject Name="Text107" Left="37.8" Width="680.4" Height="18.9" CanGrow="true" CanBreak="false" Text="[ResponseDataModel.LabelReport.LABEL_PMT01900_TIPE_PENYEWAAN] " AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+          <ChildBand Name="Child13" Top="450.9" Width="718.2" Height="18.9">
+            <TextObject Name="Text108" Left="37.8" Width="680.4" Height="18.9" CanGrow="true" CanBreak="false" Text="[ResponseDataModel.LabelReport.LABEL_PMT01900_LOKASI] [ResponseDataModel.Data.CLOCATION]" AutoWidth="true" Font="Arial Unicode MS, 12pt">
+              <Formats>
+                <GeneralFormat/>
+                <GeneralFormat/>
+              </Formats>
+            </TextObject>
+            <ChildBand Name="Child14" Top="473.8" Width="718.2" Height="18.9" CanGrow="true">
+              <TextObject Name="Text109" Left="37.8" Width="680.4" Height="18.9" CanGrow="true" CanBreak="false" Text="[ResponseDataModel.LabelReport.LABEL_PMT01900_LUASAN] [ResponseDataModel.Data.NTOTAL_GROSS_AREA] [ResponseDataModel.LabelReport.LABEL_M2]" AutoWidth="true" Font="Arial Unicode MS, 12pt">
+                <Formats>
+                  <GeneralFormat/>
+                  <CurrencyFormat UseLocale="false" DecimalSeparator="," GroupSeparator="." CurrencySymbol=""/>
+                  <GeneralFormat/>
+                </Formats>
+              </TextObject>
+              <ChildBand Name="Child10" Top="496.7" Width="718.2" Height="18.9" CanGrow="true">
+                <TextObject Name="Text110" Left="37.8" Width="680.4" Height="18.9" CanGrow="true" CanBreak="false" Text="[ResponseDataModel.LabelReport.LABEL_PMT01900_JANGKA_WAKTU_SEWA] [ResponseDataModel.Data.IDAYS] [ResponseDataModel.LabelReport.LABEL_PMT01900_JANGKA_WAKTU_SEWA_HARI]" AutoWidth="true" HorzAlign="Justify" Font="Arial Unicode MS, 12pt">
+                  <Formats>
+                    <GeneralFormat/>
+                    <NumberFormat UseLocale="false" DecimalSeparator="," GroupSeparator="."/>
+                    <GeneralFormat/>
+                  </Formats>
+                </TextObject>
+                <ChildBand Name="Child47" Top="519.6" Width="718.2" Height="18.9" CanGrow="true">
+                  <TextObject Name="Text204" Left="37.8" Width="680.4" Height="18.9" CanGrow="true" CanBreak="false" Text="[ResponseDataModel.LabelReport.LABEL_PMT01900_HARGA_SEWA][ResponseDataModel.Data.NLEASE_AMT] / [ResponseDataModel.LabelReport.LABEL_M2]" AutoWidth="true" HorzAlign="Justify" Font="Arial Unicode MS, 12pt">
+                    <Formats>
+                      <GeneralFormat/>
+                      <CurrencyFormat UseLocale="false" DecimalSeparator="," GroupSeparator="." CurrencySymbol=""/>
+                      <GeneralFormat/>
+                    </Formats>
+                  </TextObject>
+                  <ChildBand Name="Child48" Top="542.5" Width="718.2" Height="18.9" CanGrow="true">
+                    <TextObject Name="Text205" Left="37.8" Width="680.4" Height="18.9" CanGrow="true" CanBreak="false" Text="[ResponseDataModel.LabelReport.LABEL_PMT01900_TOTAL_BIAYA_SEWA] [ResponseDataModel.Data.NLEASE_TOTAL_AMT] [ResponseDataModel.LabelReport.LABEL_PMT01900_TOTAL_BIAYA_SEWA_DESC]" AutoWidth="true" HorzAlign="Justify" Font="Arial Unicode MS, 12pt">
+                      <Formats>
+                        <GeneralFormat/>
+                        <CurrencyFormat UseLocale="false" DecimalSeparator="," GroupSeparator="." CurrencySymbol=""/>
+                        <GeneralFormat/>
+                      </Formats>
+                    </TextObject>
+                    <ChildBand Name="Child18" Top="565.4" Width="718.2" Height="18.9" CanGrow="true">
+                      <TextObject Name="Text206" Left="37.8" Width="680.4" Height="18.9" CanGrow="true" CanBreak="false" Text="[ResponseDataModel.LabelReport.LABEL_PMT01900_CARA_PEMBAYARAN] [ResponseDataModel.Data.CSTART_DATE]" AutoWidth="true" HorzAlign="Justify" Font="Arial Unicode MS, 12pt">
+                        <Formats>
+                          <GeneralFormat/>
+                          <GeneralFormat/>
+                        </Formats>
+                      </TextObject>
+                    </ChildBand>
+                  </ChildBand>
+                </ChildBand>
+              </ChildBand>
+            </ChildBand>
+          </ChildBand>
+        </ChildBand>
+      </ChildBand>
+    </DataBand>
+    <DataBand Name="Data3" Top="588.3" Width="718.2" Height="28.35">
+      <TextObject Name="Text114" Left="18.9" Top="5.45" Width="425.25" Height="18.9" Text="[ResponseDataModel.LabelReport.LABEL_PMT01900_DETAIL_ITEMS]" AutoWidth="true" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <DataBand Name="Data4" Top="683.24" Width="718.2" Height="30.24" DataSource="BusinessObjectDataSource1">
+        <TableObject Name="Table2" Left="9.45" Width="699.3" Height="30.24" Border.Lines="All" PrintOnParent="true">
+          <TableColumn Name="Column6" Width="139.86"/>
+          <TableColumn Name="Column7" Width="139.86"/>
+          <TableColumn Name="Column8" Width="139.86"/>
+          <TableColumn Name="Column9" Width="139.86"/>
+          <TableColumn Name="Column10" Width="139.86"/>
+          <TableRow Name="Row2" Height="30.24">
+            <TableCell Name="Cell6" Text="[ResponseDataModel.DataCharges.CITEM_NAME]" Font="Arial, 10pt"/>
+            <TableCell Name="Cell7" Border.Lines="Left" Text="[ResponseDataModel.DataCharges.IQTY]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" Font="Arial, 10pt"/>
+            <TableCell Name="Cell8" Border.Lines="Left" Text="[ResponseDataModel.DataCharges.NUNIT_PRICE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" Font="Arial, 10pt"/>
+            <TableCell Name="Cell9" Border.Lines="Left" Text="[ResponseDataModel.DataCharges.NDISCOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" Font="Arial, 10pt"/>
+            <TableCell Name="Cell10" Border.Lines="Left" Text="[ResponseDataModel.DataCharges.NTOTAL_PRICE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" Font="Arial, 10pt"/>
+          </TableRow>
+        </TableObject>
+        <DataHeaderBand Name="DataHeader1" Top="620.65" Width="718.2" Height="58.59">
+          <TableObject Name="Table1" Left="9.45" Top="28.35" Width="699.3" Height="30.24" Border.Lines="All" Fill.Color="135, 173, 216, 230">
+            <TableColumn Name="Column1" Width="139.86"/>
+            <TableColumn Name="Column2" Width="139.86"/>
+            <TableColumn Name="Column3" Width="139.86"/>
+            <TableColumn Name="Column4" Width="139.86"/>
+            <TableColumn Name="Column5" Width="139.86"/>
+            <TableRow Name="Row1" Height="30.24">
+              <TableCell Name="Cell1" Text="[ResponseDataModel.LabelReport.LABEL_DETAIL_PMT01900_ITEM_NAME]" Font="Arial, 10pt, style=Bold"/>
+              <TableCell Name="Cell2" Border.Lines="Left" Text="[ResponseDataModel.LabelReport.LABEL_DETAIL_PMT01900_QTY]" Font="Arial, 10pt, style=Bold"/>
+              <TableCell Name="Cell3" Border.Lines="Left" Text="[ResponseDataModel.LabelReport.LABEL_DETAIL_PMT01900_UNIT_PRICE]" Font="Arial, 10pt, style=Bold"/>
+              <TableCell Name="Cell4" Border.Lines="Left" Text="[ResponseDataModel.LabelReport.LABEL_DETAIL_PMT01900_DISCOUNT]" Font="Arial, 10pt, style=Bold"/>
+              <TableCell Name="Cell5" Border.Lines="Left" Text="[ResponseDataModel.LabelReport.LABEL_DETAIL_PMT01900_TOTAL_PRICE]" Font="Arial, 10pt, style=Bold"/>
+            </TableRow>
+          </TableObject>
+        </DataHeaderBand>
+      </DataBand>
+    </DataBand>
+    <DataBand Name="Data15" Top="717.48" Width="718.2" Height="56.7" CanGrow="true">
+      <TextObject Name="Text182" Left="18.9" Top="9.45" Width="689.85" Height="28.35" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_PMT01900_KETENTUAN]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text183" Left="37.8" Top="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_PMT01900_DAYA_DAN_PEMAKAIAN] [ResponseDataModel.Data.NCAPACITY] [ResponseDataModel.LabelReport.LABEL_PMT01900_DAYA_DAN_PEMAKAIAN_AMPERE]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <ChildBand Name="Child42" Top="778.18" Width="718.2" Height="18.9" CanGrow="true">
+        <TextObject Name="Text184" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_PMT01900_PENGGUNAAN_DAYA_DAN_PEMAKAIAN]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+        <ChildBand Name="Child15" Top="801.08" Width="718.2" Height="18.9" CanGrow="true">
+          <TextObject Name="Text207" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_PMT01900_PEMBAYARAN_YANG_DIMAKSUD]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+          <ChildBand Name="Child16" Top="823.98" Width="718.2" Height="18.9" CanGrow="true">
+            <TextObject Name="Text208" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_PMT01900_PELAKSANAAN_KEGIATAN_PAMERAN]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+            <ChildBand Name="Child17" Top="846.88" Width="718.2" Height="18.9" CanGrow="true">
+              <TextObject Name="Text209" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_PMT01900_DENGAN_DITANDATANGANINYA_SURAT]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+            </ChildBand>
+          </ChildBand>
+        </ChildBand>
+      </ChildBand>
+    </DataBand>
+    <DataBand Name="Data5" Top="869.78" Width="718.2" Height="18.9">
+      <TextObject Name="Text210" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_PMT01900_DEMIKIAN_SURAT_PENAWARAN]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+    </DataBand>
+    <DataBand Name="Data17" Top="892.68" Width="718.2" Height="47.25" CanGrow="true">
+      <SubreportObject Name="Subreport1" Left="18.9" Top="18.9" Width="94.5" Height="18.9" ReportPage="Page2"/>
+    </DataBand>
+  </ReportPage>
+  <ReportPage Name="Page2" Watermark.Font="Arial, 60pt">
+    <DataBand Name="Data6" Width="718.2" Height="141.75" DataSource="ResponseDataModel">
+      <TextObject Name="Text216" Left="9.45" Top="9.45" Width="141.75" Height="18.9" Text="[ResponseDataModel.DigitalSign.CSIGN_POSITION01]" AutoWidth="true" HorzAlign="Center" Font="Arial Unicode MS, 12pt"/>
+      <TextObject Name="Text217" Left="47.25" Top="113.4" Width="75.6" Height="18.9" GrowToBottom="true" Text="[ResponseDataModel.DigitalSign.CSIGN_NAME01]" AutoWidth="true" HorzAlign="Center" Font="Arial Unicode MS, 12pt"/>
+      <PictureObject Name="Picture1" Left="47.25" Top="37.8" Width="75.6" Height="75.6" CanGrow="true" DataColumn="ResponseDataModel.DigitalSign.OSIGN_IMAGE01"/>
+      <TextObject Name="Text218" Left="189" Top="9.45" Width="141.75" Height="18.9" Text="[ResponseDataModel.DigitalSign.CSIGN_POSITION02]" AutoWidth="true" HorzAlign="Center" Font="Arial Unicode MS, 12pt"/>
+      <TextObject Name="Text219" Left="226.8" Top="113.4" Width="75.6" Height="18.9" CanGrow="true" GrowToBottom="true" Text="[ResponseDataModel.DigitalSign.CSIGN_NAME02]" AutoWidth="true" HorzAlign="Center" Font="Arial Unicode MS, 12pt"/>
+      <PictureObject Name="Picture2" Left="226.8" Top="37.8" Width="75.6" Height="75.6" CanGrow="true" DataColumn="ResponseDataModel.DigitalSign.OSIGN_IMAGE02"/>
+      <TextObject Name="Text220" Left="387.45" Top="9.45" Width="141.75" Height="18.9" Text="[ResponseDataModel.DigitalSign.CSIGN_POSITION03]" AutoWidth="true" HorzAlign="Center" Font="Arial Unicode MS, 12pt"/>
+      <TextObject Name="Text221" Left="387.45" Top="113.4" Width="141.75" Height="18.9" CanGrow="true" GrowToBottom="true" Text="[ResponseDataModel.DigitalSign.CSIGN_NAME03]" AutoWidth="true" HorzAlign="Center" Font="Arial Unicode MS, 12pt"/>
+      <PictureObject Name="Picture3" Left="425.25" Top="37.8" Width="75.6" Height="75.6" CanGrow="true" DataColumn="ResponseDataModel.DigitalSign.OSIGN_IMAGE03"/>
+      <TextObject Name="Text226" Left="567" Top="9.45" Width="141.75" Height="18.9" Text="[ResponseDataModel.DigitalSign.CSIGN_POSITION04]" AutoWidth="true" HorzAlign="Center" Font="Arial Unicode MS, 12pt"/>
+      <TextObject Name="Text227" Left="567" Top="113.4" Width="141.75" Height="18.9" CanGrow="true" GrowToBottom="true" Text="[ResponseDataModel.DigitalSign.CSIGN_NAME04]" AutoWidth="true" HorzAlign="Center" Font="Arial Unicode MS, 12pt"/>
+      <PictureObject Name="Picture6" Left="604.8" Top="37.8" Width="75.6" Height="75.6" CanGrow="true" DataColumn="ResponseDataModel.DigitalSign.OSIGN_IMAGE04"/>
+      <ChildBand Name="Child6" Top="145.75" Width="718.2" Height="122.85">
+        <TextObject Name="Text223" Left="189" Top="103.95" Width="141.75" Height="18.9" CanGrow="true" GrowToBottom="true" Text="[ResponseDataModel.DigitalSign.CSIGN_NAME05]" AutoWidth="true" HorzAlign="Center" Font="Arial Unicode MS, 12pt"/>
+        <TextObject Name="Text225" Left="387.45" Top="103.95" Width="141.75" Height="18.9" CanGrow="true" GrowToBottom="true" Text="[ResponseDataModel.DigitalSign.CSIGN_NAME06]" AutoWidth="true" HorzAlign="Center" Font="Arial Unicode MS, 12pt"/>
+        <PictureObject Name="Picture4" Left="226.8" Top="28.35" Width="75.6" Height="75.6" CanGrow="true" DataColumn="ResponseDataModel.DigitalSign.OSIGN_IMAGE05"/>
+        <PictureObject Name="Picture5" Left="425.25" Top="28.35" Width="75.6" Height="75.6" CanGrow="true" DataColumn="ResponseDataModel.DigitalSign.OSIGN_IMAGE06"/>
+        <TextObject Name="Text222" Left="189" Width="141.75" Height="18.9" Text="[ResponseDataModel.DigitalSign.CSIGN_POSITION05]" AutoWidth="true" HorzAlign="Center" Font="Arial Unicode MS, 12pt"/>
+        <TextObject Name="Text224" Left="387.45" Width="141.75" Height="18.9" Text="[ResponseDataModel.DigitalSign.CSIGN_POSITION06]" AutoWidth="true" HorzAlign="Center" Font="Arial Unicode MS, 12pt"/>
+      </ChildBand>
+    </DataBand>
+  </ReportPage>
+</Report>

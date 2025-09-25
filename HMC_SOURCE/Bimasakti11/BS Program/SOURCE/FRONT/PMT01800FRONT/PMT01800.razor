@@ -1,0 +1,136 @@
+﻿@page "/PMT01800"
+@using R_BlazorFrontEnd.Enums
+@using R_BlazorFrontEnd.Interfaces
+@using PMT01800FrontResources
+@using PMT01800COMMON.DTO
+@inherits R_Page
+@attribute [R_Page(Title = "Assign LOO Event")]
+@inject R_ILocalizer<Resource_Dummy_Class_PMT01800> _localizer
+
+
+<R_StackLayout Row="true">
+    <R_ItemLayout>
+        <R_Label FontColor="R_eFontColor.Danger" Class="fw-bold">@_localizer["PRTY"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3" class="mb-4">
+        <R_ComboBox
+            Enabled="@enableDisableProperty"
+            Data="@_viewModelPMT01800.PropertyList"
+            Value="@_viewModelPMT01800.propertyValue"
+            ValueField="@nameof(PMT01800PropertyDTO.CPROPERTY_ID)"
+            TextField="@nameof(PMT01800PropertyDTO.CPROPERTY_NAME)"
+            ValueChanged="@((string value) => OnChangedProperty(value))"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_TabStrip @ref="@_tabStripRef" OnActiveTabIndexChanging="@ActiveIndexChanging">
+    <R_TabStripTab Title="@_localizer["LOO_LIST"]" Id="@nameof(PMT01800)">
+
+              <R_StackLayout Row="true">
+                  <R_ItemLayout>
+                      <R_Label Class="fw-bold">@_localizer["FRM_OFR_DT"]</R_Label>
+                  </R_ItemLayout>
+                  <R_ItemLayout>
+                      <R_DatePicker
+                          @bind-Value="@_viewModelPMT01800.OfferDate"
+                          OnLostFocused="@OnchangeDate"/>
+                  </R_ItemLayout>
+      
+                  <R_ItemLayout>
+                      <R_Button OnClick="Refresh_Button">
+                          @_localizer["RFSH"]
+                      </R_Button>
+                  </R_ItemLayout>
+              </R_StackLayout>
+        <R_StackLayout Spacing="3" Class="mb-2 mt-2">
+            <R_Grid @ref="@_gridRefHead"
+                    Width="100%"
+                    Height="230px"
+                    PageSize="7"
+                    AllowDeleteRow="false"
+                    AllowEditRow="false"
+                    AllowAddNewRow="false"
+                    DataSource="@_viewModelPMT01800.loGridList"
+                    Pageable="true"
+                    R_Display="@ServiceGetRecord"
+                    R_ConductorGridSource="@_conductorGridPMT01800"
+                    R_GridType="@R_eGridType.Original"
+                    R_ServiceGetListRecord="@GridServiceGetList">
+
+                <R_GridColumns>
+                    <R_GridTextColumn Width="155px" FieldName="@nameof(PMT01800DTO.CDEPT_NAME)" HeaderText="@_localizer["DPT"]"/>
+                    <R_GridTextColumn Width="190px" FieldName="@nameof(PMT01800DTO.CREF_NO)" HeaderText="@_localizer["OFR_NO"]"/>
+                    <R_GridDatePickerColumn Width="201px" FieldName="@nameof(PMT01800DTO.CREF_DATE_DISPLAY)" HeaderText="@_localizer["OFR_DT"]"/>
+                    <R_GridDatePickerColumn Width="201px" FieldName="@nameof(PMT01800DTO.CFOLLOW_UP_DATE_DISPLAY)" HeaderText="@_localizer["FLW_UP_DT"]"/>
+                    <R_GridTextColumn Width="190px" FieldName="@nameof(PMT01800DTO.CTENANT_NAME)" HeaderText="@_localizer["PRSPK/TNT"]"/>
+                    <R_GridTextColumn Width="190px" FieldName="@nameof(PMT01800DTO.CSALESMAN_NAME)" HeaderText="@_localizer["SLSMN"]"/>
+                    <R_GridTextColumn Width="238px" FieldName="@nameof(PMT01800DTO.CORIGINAL_REF_NO)" HeaderText="@_localizer["REVFRMNO"]"/>
+                    <R_GridTextColumn Width="166px" FieldName="@nameof(PMT01800DTO.CTRANS_STATUS_DESC)" HeaderText="@_localizer["STST"]"/>
+                    <R_GridTextColumn Width="162px" FieldName="@nameof(PMT01800DTO.CAGREEMENT_STATUS_DESC)" HeaderText="@_localizer["DCMNT"]"/>
+                </R_GridColumns>
+            </R_Grid>
+
+        </R_StackLayout>
+        <R_StackLayout Row Class="justify-content-end">
+            <R_ItemLayout>
+                <R_Popup
+                    Enabled="@(_viewModelPMT01800.loGridList.Count != 0)"
+                    Class="justify-content-end"
+                    R_Before_Open_Popup="@BeforeOpenPMT01700"
+                    R_After_Open_Popup="@R_After_ServiceOpenOthersProgram"
+                    R_ConductorGridSource="@_conductorGridPMT01800">
+                    @_localizer["_BtnView"]
+                </R_Popup>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout>
+                <R_Label  Class="fw-bold">@(BuildName)</R_Label>
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+
+        <R_StackLayout Spacing="3" Class="mb-2 mt-2">
+            <R_Grid @ref="@_gridRefChild"
+                    Width="70%"
+                    Height="180px"
+                    PageSize="5"
+                    AllowDeleteRow="false"
+                    AllowEditRow="false"
+                    AllowAddNewRow="false"
+                    DataSource="@_viewModelPMT01800.LoGridListDetail"
+                    Pageable="true"
+                    R_GridType="@R_eGridType.Original"
+                    R_Display="@R_DIsplayChild"
+                    R_ConductorGridSource="@_conductorGridPMT01810"
+                    R_ServiceGetListRecord="@GridServiceGetListDetail">
+
+                <R_GridColumns>
+                    <R_GridTextColumn Width="144px" FieldName="@nameof(PMT01800DTO.CFLOOR_NAME)" HeaderText="@_localizer["FLOR"]"/>
+                    <R_GridTextColumn Width="182px" FieldName="@nameof(PMT01800DTO.CUNIT_NAME)" HeaderText="@_localizer["UNT_ID"]"/>
+                    <R_GridTextColumn Width="231px" FieldName="@nameof(PMT01800DTO.CUNIT_TYPE_NAME)" HeaderText="@_localizer["UNT_TYP"]"/>
+                    <R_GridNumericColumn Width="145px" FieldName="@nameof(PMT01800DTO.NGROSS_AREA_SIZE)"   TValue="decimal" HeaderText="@_localizer["GRSS"]"/>
+                    <R_GridNumericColumn Width="145px" FieldName="@nameof(PMT01800DTO.NNET_AREA_SIZE)"  TValue="decimal" HeaderText="@_localizer["NETT"]"/>
+                </R_GridColumns>
+            </R_Grid>
+
+
+        </R_StackLayout>
+        <R_StackLayout>
+        </R_StackLayout>
+
+    </R_TabStripTab>
+    <R_TabStripTab Title="@_localizer["LOC_LIST"]" Id="@nameof(PMT01810)">
+        <R_TabPage @ref="@_tabPageLOCRef" R_Before_Open_TabPage="@BeforeOpenTabPage_Undo"></R_TabPage>
+    </R_TabStripTab>
+</R_TabStrip>
+
+
+<R_ConductorGrid @ref="@_conductorGridPMT01800"
+                 R_IsHeader="true"/>
+
+<R_ConductorGrid @ref="@_conductorGridPMT01810"
+                 R_ConductorParent="@_conductorGridPMT01800"/>

@@ -1,0 +1,8 @@
+0901 = Error Save, please contact your administrator!
+0902 = Duplicate Ref No!
+0903 = Adjustment already approved!
+0904 = Empty Allocation Id!
+0905 = Empty Product Id!
+
+
+

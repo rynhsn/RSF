@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="RSP_AP_UPDATE_EXPENDITURE_ACTIVE_FLAGResources_msgrsc.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RSP_AP_UPDATE_EXPENDITURE_ACTIVE_FLAGResources_msgrsc.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="RSP_AP_UPDATE_EXPENDITURE_ACTIVE_FLAGResources_msgrsc.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RSP_AP_UPDATE_EXPENDITURE_ACTIVE_FLAGResources_msgrsc.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

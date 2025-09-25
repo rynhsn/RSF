@@ -1,0 +1,56 @@
+﻿@using PMM00500FrontResources
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_Page
+@attribute [R_Page(Title = "Copy New")]
+@inject R_ILocalizer<Resources_PMM00500> _localizer
+
+<R_StackLayout Style="width: 700px; height: 100px">
+    <R_StackLayout Row="true">
+        <R_ItemLayout col="4">
+            <R_Label FontStyle="R_eFontStyle.Bold">@_localizer["_currentChargesId"]</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@_viewModel.Charge.CCHARGES_ID"
+                       R_ConductorSource="@_conductorRef"
+                       Enabled="false" />
+        </R_ItemLayout>
+
+        <R_ItemLayout col="5">
+            <R_TextBox @bind-Value="@_viewModel.Charge.CCHARGES_NAME"
+                       R_ConductorSource="@_conductorRef"
+                       Enabled="false" />
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row="true" Class="mt-2">
+        <R_ItemLayout col="4">
+            <R_Label FontStyle="R_eFontStyle.Bold">@_localizer["_newChargesId"]</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@_viewModel.Charge.CNEW_CHARGES_ID"
+                       R_ConductorSource="@_conductorRef" />
+        </R_ItemLayout>
+
+        <R_ItemLayout col="5">
+            <R_TextBox @bind-Value="@_viewModel.Charge.CNEW_CHARGES_NAME"
+                       R_ConductorSource="@_conductorRef" />
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row="true" Spacing="3" Class="mt-4 justify-content-end">
+        <R_ItemLayout>
+            <R_Button OnClick="OnClose" R_Conductor="@_conductorRef">@_localizer["_cancel"]</R_Button>
+        </R_ItemLayout>
+
+        <R_ItemLayout>
+            <R_Button OnClick="OnOk" R_Conductor="@_conductorRef">@_localizer["_save"]</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="_conductorRef"
+             R_ViewModel="_viewModel"
+             R_IsHeader="true" />
+

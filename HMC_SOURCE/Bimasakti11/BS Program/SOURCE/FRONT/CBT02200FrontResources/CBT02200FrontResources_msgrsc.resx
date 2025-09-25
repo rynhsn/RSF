@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="M001" xml:space="preserve">
+    <value>No data found!</value>
+  </data>
+  <data name="M002" xml:space="preserve">
+    <value>You don’t have right to approve this Cheque!</value>
+  </data>
+  <data name="M003" xml:space="preserve">
+    <value>Selected Cheque Approved Successfully!</value>
+  </data>
+  <data name="M004" xml:space="preserve">
+    <value>Cheque Undo Committed Successfully!</value>
+  </data>
+  <data name="M005" xml:space="preserve">
+    <value>Cheque Committed Successfully!</value>
+  </data>
+  <data name="M006" xml:space="preserve">
+    <value>Cheque Deleted Successfully!</value>
+  </data>
+  <data name="M007" xml:space="preserve">
+    <value>Selected Cheque cannot be edited!</value>
+  </data>
+  <data name="M008" xml:space="preserve">
+    <value>Selected Cheque cannot be deleted!</value>
+  </data>
+  <data name="Q001" xml:space="preserve">
+    <value>Are you sure want to undo commit this Cheque?</value>
+  </data>
+  <data name="Q002" xml:space="preserve">
+    <value>Are you sure want to commit this Cheque?</value>
+  </data>
+  <data name="Q003" xml:space="preserve">
+    <value>Are you sure want to delete this Cheque?</value>
+  </data>
+  <data name="Q004" xml:space="preserve">
+    <value>Are you sure want to undo submit this Cheque?</value>
+  </data>
+  <data name="Q005" xml:space="preserve">
+    <value>Are you sure want to submit this Cheque?</value>
+  </data>
+  <data name="Q006" xml:space="preserve">
+    <value>You haven’t saved your changes. Are you sure want to cancel?</value>
+  </data>
+  <data name="Q007" xml:space="preserve">
+    <value>Delete Selected Cheque Detail?</value>
+  </data>
+  <data name="Q008" xml:space="preserve">
+    <value>Are you sure want to approve this Cheque?</value>
+  </data>
+  <data name="V001" xml:space="preserve">
+    <value>Please Select Department!</value>
+  </data>
+  <data name="V002" xml:space="preserve">
+    <value>Please input keyword to search!</value>
+  </data>
+  <data name="V003" xml:space="preserve">
+    <value>Minimum search keyword is 3 characters!</value>
+  </data>
+  <data name="V004" xml:space="preserve">
+    <value>Cannot Submit Cheque with date before Soft Close Period!</value>
+  </data>
+  <data name="V005" xml:space="preserve">
+    <value>Total Debit Amount must be equal to Total Credit Amount</value>
+  </data>
+  <data name="V006" xml:space="preserve">
+    <value>Total Debit Amount or Total Credit Amount cannot be 0!</value>
+  </data>
+  <data name="V007" xml:space="preserve">
+    <value>Total Debit/Credit must be equal to Receipt Amount!</value>
+  </data>
+  <data name="V008" xml:space="preserve">
+    <value>Please select Department!</value>
+  </data>
+  <data name="V009" xml:space="preserve">
+    <value>Reference No. is required!</value>
+  </data>
+  <data name="V010" xml:space="preserve">
+    <value>Reference Date is required!</value>
+  </data>
+  <data name="V011" xml:space="preserve">
+    <value>Reference Date cannot be after today!</value>
+  </data>
+  <data name="V012" xml:space="preserve">
+    <value>Reference Date cannot be before CB Link Date!</value>
+  </data>
+  <data name="V013" xml:space="preserve">
+    <value>Reference Date cannot be before Soft Period!</value>
+  </data>
+  <data name="V014" xml:space="preserve">
+    <value>Cheque No. is required!</value>
+  </data>
+  <data name="V015" xml:space="preserve">
+    <value>Cheque Date is required!</value>
+  </data>
+  <data name="V016" xml:space="preserve">
+    <value>Cheque Date cannot be before CB Link Date!</value>
+  </data>
+  <data name="V017" xml:space="preserve">
+    <value>Cheque Date cannot be before Soft Period!</value>
+  </data>
+  <data name="V018" xml:space="preserve">
+    <value>Due Date is required!</value>
+  </data>
+  <data name="V019" xml:space="preserve">
+    <value>Due Date Date cannot be before Cheque Date!</value>
+  </data>
+  <data name="V020" xml:space="preserve">
+    <value>Please select Bank Code!</value>
+  </data>
+  <data name="V021" xml:space="preserve">
+    <value>Please select Account No.!</value>
+  </data>
+  <data name="V022" xml:space="preserve">
+    <value>Payment Amount must be &gt; 0!</value>
+  </data>
+  <data name="V023" xml:space="preserve">
+    <value>Description is required!</value>
+  </data>
+  <data name="V024" xml:space="preserve">
+    <value>Local Currency Base Rate must be greater than 0!</value>
+  </data>
+  <data name="V025" xml:space="preserve">
+    <value>Account No. is required!</value>
+  </data>
+  <data name="V026" xml:space="preserve">
+    <value>Account No. [Input Account No.] already exists!</value>
+  </data>
+  <data name="V027" xml:space="preserve">
+    <value>Center Code is required for Account No. [Input Account No.]!</value>
+  </data>
+  <data name="V028" xml:space="preserve">
+    <value>Cash Flow Code is required!</value>
+  </data>
+  <data name="V029" xml:space="preserve">
+    <value>Cheque amount cannot be 0!</value>
+  </data>
+  <data name="V030" xml:space="preserve">
+    <value>Cheque amount can only be either Debit or Credit!</value>
+  </data>
+  <data name="V031" xml:space="preserve">
+    <value>Description is required!</value>
+  </data>
+  <data name="V032" xml:space="preserve">
+    <value>Voucher No. is required!</value>
+  </data>
+  <data name="V033" xml:space="preserve">
+    <value>Voucher Date is required!</value>
+  </data>
+  <data name="_AccountName" xml:space="preserve">
+    <value>Account Name</value>
+  </data>
+  <data name="_AccountNo" xml:space="preserve">
+    <value>Account No.</value>
+  </data>
+  <data name="_Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="_Approve" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="_BaseCurrency" xml:space="preserve">
+    <value>Base Currency</value>
+  </data>
+  <data name="_BaseRate" xml:space="preserve">
+    <value>Base Rate</value>
+  </data>
+  <data name="_CashCode" xml:space="preserve">
+    <value>Cash Code</value>
+  </data>
+  <data name="_CashFlowCode" xml:space="preserve">
+    <value>Cash Flow Code</value>
+  </data>
+  <data name="_CashFlowName" xml:space="preserve">
+    <value>Cash Flow Name</value>
+  </data>
+  <data name="_Center" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="_Commit" xml:space="preserve">
+    <value>Commit</value>
+  </data>
+  <data name="_Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="_CRBase" xml:space="preserve">
+    <value>CR (Base)</value>
+  </data>
+  <data name="_CreatedBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="_CreatedDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="_Credit" xml:space="preserve">
+    <value>Credit</value>
+  </data>
+  <data name="_CRLocal" xml:space="preserve">
+    <value>CR (Local)</value>
+  </data>
+  <data name="_Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="_CurrencyRate" xml:space="preserve">
+    <value>Currency Rate</value>
+  </data>
+  <data name="_DBBase" xml:space="preserve">
+    <value>DB (Base)</value>
+  </data>
+  <data name="_DBLocal" xml:space="preserve">
+    <value>DB (Local)</value>
+  </data>
+  <data name="_Debit" xml:space="preserve">
+    <value>Debit</value>
+  </data>
+  <data name="_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="_Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="_DocDate" xml:space="preserve">
+    <value>Doc. Date</value>
+  </data>
+  <data name="_DocumentNo" xml:space="preserve">
+    <value>Document No.</value>
+  </data>
+  <data name="_ChequeEntry" xml:space="preserve">
+    <value>Cheque Entry</value>
+  </data>
+  <data name="_ChequeList" xml:space="preserve">
+    <value>Cheque List</value>
+  </data>
+  <data name="_ChequePeriod" xml:space="preserve">
+    <value>Cheque Period</value>
+  </data>
+  <data name="_LocalCurrency" xml:space="preserve">
+    <value>Local Currency</value>
+  </data>
+  <data name="_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="_ReceiptAmount" xml:space="preserve">
+    <value>Receipt Amount</value>
+  </data>
+  <data name="_RefDate" xml:space="preserve">
+    <value>Ref. Date</value>
+  </data>
+  <data name="_ReferenceDate" xml:space="preserve">
+    <value>Reference Date</value>
+  </data>
+  <data name="_ReferenceNo" xml:space="preserve">
+    <value>ReferenceNo.</value>
+  </data>
+  <data name="_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="_ShowAll" xml:space="preserve">
+    <value>Show All</value>
+  </data>
+  <data name="_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="_Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="_TotalCredit" xml:space="preserve">
+    <value>Total Credit</value>
+  </data>
+  <data name="_TotalDebit" xml:space="preserve">
+    <value>Total Debit</value>
+  </data>
+  <data name="_TransactionEntry" xml:space="preserve">
+    <value>Transaction Entry</value>
+  </data>
+  <data name="_UndoCommit" xml:space="preserve">
+    <value>Undo Commit</value>
+  </data>
+  <data name="_UndoSubmit" xml:space="preserve">
+    <value>Undo Submit</value>
+  </data>
+  <data name="_UpdatedBy" xml:space="preserve">
+    <value>Updated By</value>
+  </data>
+  <data name="_UpdatedDate" xml:space="preserve">
+    <value>Updated Date</value>
+  </data>
+  <data name="_VoucherDate" xml:space="preserve">
+    <value>Voucher Date</value>
+  </data>
+  <data name="_VoucherNo" xml:space="preserve">
+    <value>Voucher No.</value>
+  </data>
+  <data name="_BankCode" xml:space="preserve">
+    <value>Bank Code</value>
+  </data>
+  <data name="_ChequeDate" xml:space="preserve">
+    <value>Cheque Date</value>
+  </data>
+  <data name="_ChequeNo" xml:space="preserve">
+    <value>Cheque No.</value>
+  </data>
+  <data name="_ClearedDate" xml:space="preserve">
+    <value>ClearedDate</value>
+  </data>
+  <data name="_DueDate" xml:space="preserve">
+    <value>Due Date</value>
+  </data>
+  <data name="_Period" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="V034" xml:space="preserve">
+    <value>Local Currency Rate must be greater than 0!</value>
+  </data>
+  <data name="V035" xml:space="preserve">
+    <value>Base Currency Base Rate must be greater than 0!</value>
+  </data>
+  <data name="V036" xml:space="preserve">
+    <value>Base Currency Rate must be greater than 0!</value>
+  </data>
+</root>

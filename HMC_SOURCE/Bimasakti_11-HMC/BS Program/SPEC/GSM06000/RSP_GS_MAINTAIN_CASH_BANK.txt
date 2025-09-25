@@ -1,0 +1,4 @@
+6001	= Error process, please contact your administrator!
+6002	= Duplicate CB Code!
+6003	= Cannot Delete, CB Code Already in used!
+

@@ -1,0 +1,7 @@
+1011 = Error process, please contact your administrator!
+1012 = Duplicate Usage!
+1013 = Detail Rate cannot be empty!
+
+
+
+

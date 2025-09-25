@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GS_SAVE_PRODUCT_ALLOCATIONResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:63767;http://localhost:63768"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+EXCESS_FLOOR_CODE	= Floor Code is bigger than 20 Character
+EMPTY_FLOOR_CODE	= Floor Code can not be empty
+EXCESS_FLOOR_NAME	= Floor Name is bigger than 100 Character
+EMPTY_FLOOR_NAME	= Floor Name can not be empty
+INVALID_ACTIVE_FLAG	= Invalid Active Flag, Active Flag value is not 1 / 0
+EMPTY_NONACTIVE_DATE	= If Active Flag = 0, Non Active Date can not be empty
+INVALID_UNIT_TYPE	= Invalid Unit Type

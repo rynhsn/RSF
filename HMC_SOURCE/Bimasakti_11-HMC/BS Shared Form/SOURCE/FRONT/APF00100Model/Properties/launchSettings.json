@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "APF00100Model": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56212;http://localhost:56213"
+    }
+  }
+}

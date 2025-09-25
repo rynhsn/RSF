@@ -1,0 +1,16 @@
+6501 = Error process, please contact your administrator!
+6502= Duplicate Staff Id!
+6503= Cannot Delete, Staff already in used!
+6504= Staff Id cannot be empty!
+6505= Staff Name cannot be empty!
+6506= Staff Id cannot be greater than 20 character!
+6507= Staff Name cannot be greater than 100 character!
+6508= Department cannot be empty!
+6509= Invalid Department!
+6510= Invalid Position!
+6511= Invalid Supervisor!
+6512= Email Address cannot be empty!
+6513= Mobile Phone 1 cannot be empty!
+
+
+

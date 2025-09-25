@@ -1,0 +1,108 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Move Staff")]
+
+<R_StackLayout Style="width: 700px">
+    <R_GroupBox Title="Old Supervisor">
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>Supervisor Id</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModel.StaffMoveHeader.COLD_SUPERVISOR_ID"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Lookup R_ConductorSource="@_Staff_Header_conductorRef" R_Before_Open_Lookup="@Staff_Before_Open_Lookup" R_After_Open_Lookup="@Staff_Old_After_Open_Lookup">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_viewModel.StaffMoveHeader.COLD_SUPERVISOR_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>Department</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModel.StaffMoveHeader.COLD_DEPT_CODE"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox @bind-Value="@_viewModel.StaffMoveHeader.COLD_DEPT_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_GroupBox>
+
+    <R_GroupBox Title="New Supervisor">
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>Supervisor Id</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModel.StaffMoveHeader.CNEW_SUPERVISOR_ID"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Lookup R_Before_Open_Lookup="@Staff_Before_Open_Lookup" R_After_Open_Lookup="@Staff_New_After_Open_Lookup">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_viewModel.StaffMoveHeader.CNEW_SUPERVISOR_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>Department</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModel.StaffMoveHeader.CNEW_DEPT_CODE"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox @bind-Value="@_viewModel.StaffMoveHeader.CNEW_DEPT_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_GroupBox>
+
+    <R_StackLayout Row Class="mb-3">
+        <R_Grid @ref="@_StaffMoveDetail_gridRef"
+                DataSource="@_viewModel.StaffMoveGrid"
+                Pageable
+                PageSize="5"
+                R_ServiceGetListRecord="@_Staff_Detail_ServiceGetListRecord">
+            <R_GridColumns>
+                <R_GridCheckBoxSelectColumn FieldName="LSELECTED" ShowSelectAllHeader></R_GridCheckBoxSelectColumn>
+                <R_GridTextColumn FieldName="CSTAFF_ID" HeaderText="Staff Id"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CSTAFF_NAME" HeaderText="Staff Name"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                Cancel
+            </R_Button>
+            <R_Button OnClick="Button_OnClickOkAsync">
+                Save
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>

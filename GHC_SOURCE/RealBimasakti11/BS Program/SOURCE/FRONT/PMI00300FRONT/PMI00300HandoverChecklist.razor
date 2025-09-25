@@ -1,0 +1,62 @@
+@inherits R_Page
+
+<R_StackLayout Style="width:800px; height:500px; ">
+    <R_ItemLayout colauto Style="padding-bottom: 3vh;">
+        <R_StackLayout Spacing="4" Justify="R_eJustify.Center">
+            @if (_viewModel.loHandOverChecklist != null && _viewModel.loHandOverChecklist.Count > 0)
+            {
+                @foreach (var item in _viewModel.loHandOverChecklist)
+                {
+                    <R_StackLayout Spacing="0">
+                        <R_StackLayout Row>
+                            <R_ItemLayout>
+                                <R_Label FontStyle="@R_eFontStyle.Bold"> @item.CPARENT_CHECKLIST_NAME</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout>
+                                <R_Label>: @item.CCHECKLIST_ITEM_NAME (@item.CSTATUS) @item.CQUANTITY_DISPLAY</R_Label>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row Justify="R_eJustify.SpaceBetween">
+                            <R_StackLayout Row Justify="R_eJustify.Center" AlignItems="R_eAlignItems.Center" Spacing="0" Style=" width: 250px; height: 200px;">
+                                <R_ImageBox MaxHeight="200px" MaxWidth="250px"
+                                            Style="height:200px; width:250px;"
+                                            Value="@item.OIMAGE_STORAGE_ID_01"
+                                            ImageBoxType="R_eImageBoxType.Zoom"
+                                            ImageObjectFit="R_eImageObjectFit.Cover" />
+                            </R_StackLayout>
+                            <R_StackLayout Row Justify="R_eJustify.Center" AlignItems="R_eAlignItems.Center" Spacing="0" Style=" width: 250px; height: 200px;">
+                                <R_ImageBox MaxHeight="200px" MaxWidth="250px"
+                                            Style="height:200px; width:250px;"
+                                            Value="@item.OIMAGE_STORAGE_ID_02"
+                                            ImageBoxType="R_eImageBoxType.Zoom"
+                                            ImageObjectFit="R_eImageObjectFit.Cover" />
+                            </R_StackLayout>
+                            <R_StackLayout Row Justify="R_eJustify.Center" AlignItems="R_eAlignItems.Center" Spacing="0" Style=" width: 250px; height: 200px;">
+                                <R_ImageBox MaxHeight="200px" MaxWidth="250px"
+                                            Style="height:200px; width:250px;"
+                                            Value="@item.OIMAGE_STORAGE_ID_03"
+                                            ImageBoxType="R_eImageBoxType.Zoom"
+                                            ImageObjectFit="R_eImageObjectFit.Cover" />
+                            </R_StackLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row>
+                            <R_ItemLayout>
+                                <R_Label>@_localizer["_Notes"] : </R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout>
+                                <R_Label>@item.CNOTES</R_Label>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_StackLayout>
+                }
+            }
+            else
+            {
+                <R_StackLayout Spacing="0">
+                    <R_Label>@_localizer["_NoData"]</R_Label>
+                </R_StackLayout>
+            }
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+

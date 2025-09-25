@@ -1,0 +1,490 @@
+@using GSM06000Model.ViewModel
+@inherits R_Page;
+
+
+<R_StackLayout Row>
+
+    <R_StackLayout Row class="d-flex align-items-center">
+        <R_ItemLayout col="2">
+            <R_Label>Cash/Bank</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@_viewModelGSM06010.loParameterGSM06010.CCB_CODE"
+                       R_ConductorSource="@_conductorRefGSM06010"
+                       Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_TextBox @bind-Value="@_viewModelGSM06010.loParameterGSM06010.CCB_NAME"
+                       R_ConductorSource="@_conductorRefGSM06010"
+                       Enabled="false" />
+        </R_ItemLayout>
+
+
+        <R_ItemLayout col="1" Class="ms-4">
+            <R_Label>Type</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="4">
+            <R_RadioGroup R_ConductorSource="@_conductorRefGSM06010"
+                          Data="@_viewModelGSM06010.loTypeModeList"
+                          @bind-Value="@_viewModelGSM06010.PropertyTypeContext"
+                          ValueField="@nameof(GSM06000CodeDTO.CCODE)"
+                          TextField="@nameof(GSM06000CodeDTO.CDESCRIPTION)"
+                          Enabled="false" />
+        </R_ItemLayout>
+
+
+
+
+
+    </R_StackLayout>
+
+</R_StackLayout>
+
+<hr />
+
+<R_StackLayout Spacing="3" Class="mb-4" Row>
+
+
+@* Lay-Out Table Grid List *@
+<R_StackLayout Class="col-3">
+
+    <R_Grid @ref="@_gridRefGSM06010"
+            DataSource="@_viewModelGSM06010.loGridList"
+            Pageable
+            PageSize="10"
+            Height="400px"
+            R_ConductorSource="@_conductorRefGSM06010"
+            R_GridType="@R_eGridType.Navigator"
+            R_ServiceGetListRecord="@ServiceGetListRecordGSM06010">
+        <R_GridColumns>
+            <R_GridTextColumn Width="122px" FieldName="@nameof(GSM06010GridDTO.CCB_ACCOUNT_NO)" HeaderText="Account No." />
+            <R_GridTextColumn Width="187px" FieldName="@nameof(GSM06010GridDTO.CDEPT_NAME)" HeaderText="Department" />
+            <R_GridTextColumn Width="100px" FieldName="@nameof(GSM06010GridDTO.CCURRENCY_CODE)" HeaderText="Currency" />
+
+        </R_GridColumns>
+    </R_Grid>
+
+</R_StackLayout>
+
+
+@* Lay-Out Navigator *@
+<R_StackLayout Class="col-9">
+
+@* Account No | Layout - 1 *@
+<R_StackLayout Row>
+    <R_ItemLayout col="3">
+        <R_Label>Account No.*</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="@_viewModelGSM06010.loParameterGSM06010.CCB_CODE"
+                   R_ConductorSource="@_conductorRefGSM06010"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="6">
+        <R_TextBox @bind-Value="@_viewModelGSM06010.Data.CCB_ACCOUNT_NO"
+                   R_ConductorSource="@_conductorRefGSM06010"
+                   R_EnableAdd
+                   R_EnableEdit>
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* Department *@
+<R_StackLayout Row>
+    <R_ItemLayout col="3">
+        <R_Label>Department</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="@_viewModelGSM06010.Data.CDEPT_CODE"
+                   R_ConductorSource="@_conductorRefGSM06010"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1">
+        <R_Lookup R_ConductorSource="@_conductorRefGSM06010"
+                  @ref="@R_LookupCdeptCodeButton"
+                  R_EnableAdd
+                  R_EnableEdit
+                  R_Before_Open_Lookup="@BeforeOpenLookUpCDeptCode"
+                  R_After_Open_Lookup="@AfterOpenLookUpCDeptCode">
+            ...
+        </R_Lookup>
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+@* Currency *@
+<R_StackLayout Row>
+    <R_ItemLayout col="3">
+        <R_Label>Currency</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="@_viewModelGSM06010.Data.CCURRENCY_CODE"
+                   R_ConductorSource="@_conductorRefGSM06010"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+
+
+    <R_ItemLayout col="1">
+        <R_Lookup R_ConductorSource="@_conductorRefGSM06010"
+                  R_EnableAdd
+                  R_EnableEdit
+                  @ref="@R_LookupCCurrencyCodeButton"
+                  R_Before_Open_Lookup="@BeforeOpenLookUpCCurrencyCode"
+                  R_After_Open_Lookup="@AfterOpenLookUpCCurrencyCode">
+            ...
+        </R_Lookup>
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+@* GL Account No w8 GL Account No (Bank Charges) *@
+<R_StackLayout Row>
+    <R_ItemLayout col="3">
+        <R_Label>GL Account No (Cash)</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="@_viewModelGSM06010.Data.CCB_GLACCOUNT_NO"
+                   R_ConductorSource="@_conductorRefGSM06010"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1">
+        <R_Lookup R_ConductorSource="@_conductorRefGSM06010"
+                  R_EnableAdd
+                  R_EnableEdit
+                  @ref="@R_LookupCCBAccountNoButton"
+                  R_Before_Open_Lookup="@BeforeOpenLookUpCCBAccountNo"
+                  R_After_Open_Lookup="@AfterOpenLookUpCCBAccountNo">
+            ...
+        </R_Lookup>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="3">
+        <R_Label>GL Account No (Bank Charges)</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="@_viewModelGSM06010.Data.CBCHG_GLACCOUNT_NO"
+                   R_ConductorSource="@_conductorRefGSM06010"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_Lookup R_ConductorSource="@_conductorRefGSM06010"
+                  R_EnableAdd
+                  R_EnableEdit
+                  @ref="@R_LookupCBCHG_GLACCOUNT_NOButton"
+                  R_Before_Open_Lookup="@BeforeOpenLookUpCBCHG_GLACCOUNT_NO"
+                  R_After_Open_Lookup="@AfterOpenLookUpCBCHG_GLACCOUNT_NO">
+            ...
+        </R_Lookup>
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+@* Notes *@
+<R_StackLayout Row>
+    <R_ItemLayout col="3">
+        <R_Label>Notes</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="8">
+        <R_TextBox @bind-Value="@_viewModelGSM06010.Data.CNOTE"
+                   R_ConductorSource="@_conductorRefGSM06010"
+                   R_EnableAdd
+                   R_EnableEdit>
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<hr />
+@* Separator Sequence | Layout - 1 *@
+<R_StackLayout Row>
+
+    <R_ItemLayout col="6" />
+
+    <R_ItemLayout col="3" Class="ms-2">
+        <R_Label>Separator</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_Label>Sequence</R_Label>
+    </R_ItemLayout>
+
+
+</R_StackLayout>
+
+@* Numbering Method *@
+<R_StackLayout Row>
+
+
+    <R_ItemLayout col="2">
+        <R_Label>Numbering Method*</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@_viewModelGSM06010.OptionPeriodModes"
+                    @bind-Value="@_viewModelGSM06010.Data.CPERIOD_MODE"
+                    ValueField="@nameof(ComboBoxPeriodMode.Id)"
+                    TextField="@nameof(ComboBoxPeriodMode.Description)"
+                    R_ConductorSource="@_conductorRefGSM06010"
+                    OnLostFocused="GetUpdateSample"
+                    R_EnableAdd
+                    R_EnableEdit />
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1" />
+
+    <R_ItemLayout col="2">
+        <R_ComboBox Data="_viewModelGSM06010.OptionTypeCPeriodMode"
+                    @bind-Value="@_viewModelGSM06010.Data.CPERIOD_DELIMITER"
+                    ValueField="@nameof(GSM06010DelimiterInfoDTO.CCODE)"
+                    TextField="@nameof(GSM06010DelimiterInfoDTO.CDESCRIPTION)"
+                    OnLostFocused="GetUpdateSample"
+                    R_ConductorSource="@_conductorRefGSM06010"
+                    R_EnableAdd
+                    R_EnableEdit />
+
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1" />
+
+    <R_ItemLayout col="2">
+        <R_NumericTextBox @bind-Value="@_viewModelGSM06010.PropertyTempSequence01"
+                          R_ConductorSource="@_conductorRefGSM06010"
+                          OnLostFocused="GetUpdateSample"
+                          R_EnableAdd
+                          R_EnableEdit
+                          Min="1"
+                          Max="2" />
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+
+@* Year Format *@
+<R_StackLayout Row>
+
+    <R_ItemLayout col="2">
+        <R_Label>Year Format</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_RadioGroup R_ConductorSource="_conductorRefGSM06010"
+                      Data="@_viewModelGSM06010.OptionCYearFormatModes"
+                      @bind-Value="@_viewModelGSM06010.Data.CYEAR_FORMAT"
+                      ValueField="@nameof(ComboBoxPeriodMode.Id)"
+                      TextField="@nameof(ComboBoxPeriodMode.Description)"
+                      OnLostFocused="GetUpdateSample"
+                      R_EnableAdd
+                      R_EnableEdit />
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+
+@* Length of Number *@
+<R_StackLayout Row>
+
+    <R_ItemLayout col="2">
+        <R_Label>Lenght of Number *</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="3">
+        <R_NumericTextBox @bind-Value="@_viewModelGSM06010.Data.INUMBER_LENGTH"
+                          R_ConductorSource="@_conductorRefGSM06010"
+                          OnLostFocused="GetUpdateSample"
+                          R_EnableAdd
+                          R_EnableEdit
+                          Min="2"
+                          Max="10" />
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1" />
+
+    <R_ItemLayout col="2">
+        <R_ComboBox Data="_viewModelGSM06010.OptionTypeCPeriodMode"
+                    @bind-Value="@_viewModelGSM06010.Data.CNUMBER_DELIMITER"
+                    ValueField="@nameof(GSM06010DelimiterInfoDTO.CCODE)"
+                    TextField="@nameof(GSM06010DelimiterInfoDTO.CDESCRIPTION)"
+                    R_ConductorSource="@_conductorRefGSM06010"
+                    OnLostFocused="GetUpdateSample"
+                    R_EnableAdd
+                    R_EnableEdit />
+
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1" />
+
+    <R_ItemLayout col="2">
+        <R_NumericTextBox @bind-Value="@_viewModelGSM06010.PropertyTempSequence02"
+                          R_ConductorSource="@_conductorRefGSM06010"
+                          OnLostFocused="GetUpdateSample"
+                          R_EnableAdd
+                          R_EnableEdit
+                          Min="1"
+                          Max="2" />
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+
+@* Prefix *@
+<R_StackLayout Row>
+
+    <R_ItemLayout col="2">
+        <R_Label>Prefix</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="3">
+        <R_TextBox @bind-Value="@_viewModelGSM06010.Data.CPREFIX"
+                   R_ConductorSource="@_conductorRefGSM06010"
+                   OnLostFocus="GetUpdateSample"
+                   R_EnableAdd
+                   R_EnableEdit>
+        </R_TextBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1" />
+
+    <R_ItemLayout col="2">
+        <R_ComboBox Data="_viewModelGSM06010.OptionTypeCPeriodMode"
+                    @bind-Value="@_viewModelGSM06010.Data.CPREFIX_DELIMITER"
+                    ValueField="@nameof(GSM06010DelimiterInfoDTO.CCODE)"
+                    TextField="@nameof(GSM06010DelimiterInfoDTO.CDESCRIPTION)"
+                    R_ConductorSource="@_conductorRefGSM06010"
+                    OnLostFocused="GetUpdateSample"
+                    R_EnableAdd
+                    R_EnableEdit />
+
+    </R_ItemLayout>
+    <R_ItemLayout col="1" />
+
+    <R_ItemLayout col="1">
+        <R_NumericTextBox Arrows="false"
+                          Value="0"
+                          R_ConductorSource="@_conductorRefGSM06010"
+                          Enabled="false"
+                          Min="0"
+                          Max="0" />
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+
+@* Sufix *@
+<R_StackLayout Row>
+
+    <R_ItemLayout col="2">
+        <R_Label>Sufix</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="3">
+        <R_TextBox @bind-Value="@_viewModelGSM06010.Data.CSUFFIX"
+                   R_ConductorSource="@_conductorRefGSM06010"
+                   R_EnableAdd
+                   R_EnableEdit
+                   OnLostFocus="GetUpdateSample">
+        </R_TextBox>
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+@* New Line*@
+<R_StackLayout Row>
+</R_StackLayout>
+
+@* Sample *@
+<R_StackLayout Row>
+    <R_ItemLayout col="2" Class="fw-bold">
+        <R_Label>Sample</R_Label>
+    </R_ItemLayout>
+
+    @* TextBox Sample *@
+
+
+
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="@_viewModelGSM06010.lcREFNO"
+                   R_ConductorSource="@_conductorRefGSM06010"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+
+        <R_TextBox @bind-Value="@_viewModelGSM06010.lcREFNO_LENGTH"
+                   R_ConductorSource="@_conductorRefGSM06010"
+                   Enabled="false">
+        </R_TextBox>
+
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2" Class="fw-bold ">
+        <R_Label FontColor="R_eFontColor.Danger">MAXIMUM 30</R_Label>
+    </R_ItemLayout>
+
+</R_StackLayout>
+<hr />
+
+@* Button *@
+
+<R_StackLayout Row Class="d-flex justify-content-between">
+    <R_StackLayout Row>
+
+        <R_ItemLayout>
+            <R_AddButton R_Conductor="@_conductorRefGSM06010"></R_AddButton>
+        </R_ItemLayout>
+
+        <R_ItemLayout>
+            <R_EditButton R_Conductor="@_conductorRefGSM06010"></R_EditButton>
+        </R_ItemLayout>
+
+        <R_ItemLayout>
+            <R_DeleteButton R_Conductor="@_conductorRefGSM06010"></R_DeleteButton>
+        </R_ItemLayout>
+
+        <R_Detail R_ConductorSource="@_conductorRefGSM06010"
+                  R_Before_Open_Detail="R_Before_OpenDocNumbering_Detail"
+                  R_After_Open_Detail="R_After_OpenDocNumbering_Detail"
+                  Enabled="IsListExist">
+            Doc Numbering
+        </R_Detail>
+
+    </R_StackLayout>
+    @*pinggir ke kanan*@
+    <R_StackLayout Row>
+        <R_ItemLayout>
+            <R_CancelButton R_Conductor="@_conductorRefGSM06010"></R_CancelButton>
+        </R_ItemLayout>
+
+        <R_ItemLayout>
+            <R_SaveButton R_Conductor="@_conductorRefGSM06010"></R_SaveButton>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>
+
+</R_StackLayout>
+</R_StackLayout>
+
+
+<R_Conductor @ref="@_conductorRefGSM06010"
+             R_ViewModel="@_viewModelGSM06010"
+             R_IsHeader
+             R_AfterAdd="@AfterAddGSM06000CashBankInfo"
+             R_ServiceGetRecord="@ServiceGetRecordGSM06010"
+             R_ServiceSave="@ServiceSaveGSM06010"
+             R_ServiceDelete="@ServiceDeleteGSM06010"
+             R_Display="@R_DisplayGSM06010" />

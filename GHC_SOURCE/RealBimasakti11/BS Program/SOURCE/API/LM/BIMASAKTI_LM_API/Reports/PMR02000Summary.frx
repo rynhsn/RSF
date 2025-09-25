@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\4. Work\GHC_SOURCE\RealBimasakti11\BS Program\SOURCE\API\LM\BIMASAKTI_LM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="07/21/2025 15:18:32" ReportInfo.CreatorVersion="2023.3.0.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="ReportData" DataType="PMR02000COMMON.DTO_s.Print.ReportSummaryDataDTO, PMR02000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Header" DataType="System.String"/>
+        <Column Name="Label" DataType="PMR02000COMMON.DTO_s.Print.ReportLabelDTO, PMR02000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="LABEL_PARAM_PROPERTY" DataType="System.String"/>
+          <Column Name="LABEL_PARAM_DATA_BASED_ON" DataType="System.String"/>
+          <Column Name="LABEL_PARAM_REMAINING_BASED_ON" DataType="System.String"/>
+          <Column Name="LABEL_PARAM_CUTT_OFF_DATE" DataType="System.String"/>
+          <Column Name="LABEL_PARAM_PERIOD" DataType="System.String"/>
+          <Column Name="LABEL_PARAM_REPORT_TYPE" DataType="System.String"/>
+          <Column Name="LABEL_PARAM_CURRENCY" DataType="System.String"/>
+          <Column Name="LABEL_PARAM_TRANS_CURR" DataType="System.String"/>
+          <Column Name="LABEL_PARAM_LOCAL_CURR" DataType="System.String"/>
+          <Column Name="LABEL_PARAM_BASE_CURR" DataType="System.String"/>
+          <Column Name="LABEL_PARAM_FILTER" DataType="System.String"/>
+          <Column Name="LABEL_PARAM_FILTER_DEPT" DataType="System.String"/>
+          <Column Name="LABEL_PARAM_FILTER_TRANSTYPE" DataType="System.String"/>
+          <Column Name="LABEL_PARAM_FILTER_CUSTCTG" DataType="System.String"/>
+          <Column Name="LABEL_DEPARTMENT" DataType="System.String"/>
+          <Column Name="LABEL_CUSTOMER" DataType="System.String"/>
+          <Column Name="LABEL_CUSTOMER_TYPE" DataType="System.String"/>
+          <Column Name="LABEL_TRANS_TYPE" DataType="System.String"/>
+          <Column Name="LABEL_REFNO" DataType="System.String"/>
+          <Column Name="LABEL_REFDATE" DataType="System.String"/>
+          <Column Name="LABEL_LOI_AGRMT_NO" DataType="System.String"/>
+          <Column Name="LABEL_CURRENCY" DataType="System.String"/>
+          <Column Name="LABEL_AMOUNT" DataType="System.String"/>
+          <Column Name="LABEL_BEGINNING_APPLY" DataType="System.String"/>
+          <Column Name="LABEL_REMAINING" DataType="System.String"/>
+          <Column Name="LABEL_TAX" DataType="System.String"/>
+          <Column Name="LABEL_GAIN_LOSS" DataType="System.String"/>
+          <Column Name="LABEL_ALLOCATION" DataType="System.String"/>
+          <Column Name="LABEL_SUBTOTAL" DataType="System.String"/>
+          <Column Name="LABEL_GRANDTOTAL" DataType="System.String"/>
+          <Column Name="LABEL_REFERENCE" DataType="System.String"/>
+          <Column Name="lABEL_NO" DataType="System.String"/>
+          <Column Name="LABEL_DATE" DataType="System.String"/>
+          <Column Name="LABEL_PRIDUCTCHARGE" DataType="System.String"/>
+          <Column Name="LABEL_PRODUCTDEPT" DataType="System.String"/>
+          <Column Name="LABEL_PRODUCTQTY" DataType="System.String"/>
+          <Column Name="LABEL_PRODUCTMEASUREMENT" DataType="System.String"/>
+          <Column Name="LABEL_PRODUCTUNITPRICE" DataType="System.String"/>
+          <Column Name="LABEL_PRODUCTTOTPRICE" DataType="System.String"/>
+          <Column Name="LABEL_PRODUCTLINEDISC" DataType="System.String"/>
+          <Column Name="LABEL_PRODUCTOTHERTAX" DataType="System.String"/>
+          <Column Name="LABEL_PRODUCTTOTALAMOUNT" DataType="System.String"/>
+        </Column>
+        <Column Name="Param" DataType="PMR02000COMMON.DTO_s.Print.ReportParamDTO, PMR02000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="CPROPERTY_NAME" DataType="System.String"/>
+          <Column Name="CREPORT_CULTURE" DataType="System.String"/>
+          <Column Name="CUSER_ID" DataType="System.String"/>
+          <Column Name="CPERIOD_DISPLAY" DataType="System.String"/>
+          <Column Name="CTO_CUSTOMER_NAME" DataType="System.String"/>
+          <Column Name="CFROM_CUSTOMER_NAME" DataType="System.String"/>
+          <Column Name="CFROM_JRNGRP_NAME" DataType="System.String"/>
+          <Column Name="CTO_JRNGRP_NAME" DataType="System.String"/>
+          <Column Name="CFR_DEPT_NAME" DataType="System.String"/>
+          <Column Name="CTO_DEPT_NAME" DataType="System.String"/>
+          <Column Name="CDATA_BASED_ON_DISPLAY" DataType="System.String"/>
+          <Column Name="CREMAINING_BASED_ON_DISPLAY" DataType="System.String"/>
+          <Column Name="CREMAINING_BASED_ON_TEXT" DataType="System.String"/>
+          <Column Name="DDATE_CUTOFF" DataType="System.DateTime"/>
+          <Column Name="CREPORT_TYPE_DISPLAY" DataType="System.String"/>
+          <Column Name="CJRNGRP_DISPLAY" DataType="System.String"/>
+          <Column Name="CCUSTOMER_DISPLAY" DataType="System.String"/>
+          <Column Name="CDEPT_DISPLAY" DataType="System.String"/>
+          <Column Name="LIS_PRINT" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CREPORT_FILENAME" DataType="System.String"/>
+          <Column Name="CREPORT_FILETYPE" DataType="System.String"/>
+          <Column Name="IS_TRANS_CURRENCY" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="IS_LOCAL_CURRENCY" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="IS_BASE_CURRENCY" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="IS_DEPT_FILTER_ENABLED" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="IS_TRANSTYPE_FILTER_ENABLED" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="IS_CUSTCTG_FILTER_ENABLED" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CUSTCTG_FILTER_DISPLAY" DataType="System.String"/>
+          <Column Name="CTRANSTYPE_FILTER_DISPLAY" DataType="System.String"/>
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CREPORT_TYPE" DataType="System.String"/>
+          <Column Name="CCURRENCY_TYPE_CODE" DataType="System.String"/>
+          <Column Name="CBASED_ON" DataType="System.String"/>
+          <Column Name="CFROM_CUSTOMER_ID" DataType="System.String"/>
+          <Column Name="CTO_CUSTOMER_ID" DataType="System.String"/>
+          <Column Name="CFROM_JRNGRP_CODE" DataType="System.String"/>
+          <Column Name="CTO_JRNGRP_CODE" DataType="System.String"/>
+          <Column Name="CPERIOD" DataType="System.String"/>
+          <Column Name="CREMAINING_BASED_ON" DataType="System.String"/>
+          <Column Name="CCUT_OFF_DATE" DataType="System.String"/>
+          <Column Name="CFR_DEPT_CODE" DataType="System.String"/>
+          <Column Name="CTO_DEPT_CODE" DataType="System.String"/>
+          <Column Name="CTRANS_CODE" DataType="System.String"/>
+          <Column Name="CTENANT_CATEGORY_ID" DataType="System.String"/>
+          <Column Name="CSORT_BY" DataType="System.String"/>
+          <Column Name="CLANGUAGE_ID" DataType="System.String"/>
+        </Column>
+        <BusinessObjectDataSource Name="Data" DataType="System.Collections.Generic.List`1[[PMR02000COMMON.DTO_s.Print.Grouping.DeptDTO, PMR02000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CDEPT_CODE" DataType="System.String"/>
+          <Column Name="CDEPT_NAME" DataType="System.String"/>
+          <BusinessObjectDataSource Name="Customers" DataType="System.Collections.Generic.List`1[[PMR02000COMMON.DTO_s.Print.Grouping.CustomerDTO, PMR02000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+            <Column Name="CCUSTOMER_ID" DataType="System.String"/>
+            <Column Name="CCUSTOMER_NAME" DataType="System.String"/>
+            <BusinessObjectDataSource Name="Transactions" DataType="System.Collections.Generic.List`1[[PMR02000COMMON.DTO_s.Print.Grouping.TrxTypeDTO, PMR02000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+              <Column Name="CTRX_TYPE_NAME" DataType="System.String"/>
+              <Column Name="CREF_NO" DataType="System.String"/>
+              <Column Name="CREF_DATE" DataType="System.String"/>
+              <Column Name="DREF_DATE" DataType="System.DateTime"/>
+              <Column Name="CTENANT_TYPE_ID" DataType="System.String"/>
+              <Column Name="CCUSTOMER_TYPE_NAME" DataType="System.String"/>
+              <Column Name="CLOI_AGRMT_NO" DataType="System.String"/>
+              <Column Name="CCURRENCY_CODE" DataType="System.String"/>
+              <Column Name="NBEGINNING_APPLY_AMOUNT" DataType="System.Decimal"/>
+              <Column Name="NREMAINING_AMOUNT" DataType="System.Decimal"/>
+              <Column Name="NTAX_AMOUNT" DataType="System.Decimal"/>
+              <Column Name="NGAINLOSS_AMOUNT" DataType="System.Decimal"/>
+              <Column Name="NCASHBANK_AMOUNT" DataType="System.Decimal"/>
+            </BusinessObjectDataSource>
+            <BusinessObjectDataSource Name="BusinessObjectDataSource1" Alias="ProductList" DataType="System.Collections.Generic.List`1[[PMR02000COMMON.DTO_s.Print.Grouping.ProductDTO, PMR02000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" PropName="ProductList" Enabled="true">
+              <Column Name="CPRODUCT_OR_CHARGE_ID" DataType="System.String"/>
+              <Column Name="CPRODUCT_OR_CHARGE_NAME" DataType="System.String"/>
+              <Column Name="CPRODUCT_DEPARTMENT_CODE" DataType="System.String"/>
+              <Column Name="CPRODUCT_DEPARTMENT_NAME" DataType="System.String"/>
+              <Column Name="NPRODUCT_QUANTITY" DataType="System.Decimal"/>
+              <Column Name="CPRODUCT_MEASUREMENT_NAME" DataType="System.String"/>
+              <Column Name="NPRODUCT_PRICE_AMOUNT" DataType="System.Decimal"/>
+              <Column Name="NPRODUCT_LINE_AMOUNT" DataType="System.Decimal"/>
+              <Column Name="NPRODUCT_DISCOUNT_AMOUNT" DataType="System.Decimal"/>
+              <Column Name="NOTHER_TAX_AMOUNT" DataType="System.Decimal"/>
+              <Column Name="NPRODUCT_LINE_TOTAL_AMOUNT" DataType="System.Decimal"/>
+            </BusinessObjectDataSource>
+            <BusinessObjectDataSource Name="CustSubtotalCurr" DataType="System.Collections.Generic.List`1[[PMR02000COMMON.DTO_s.Print.Grouping.SubtotalCurrenciesDTO, PMR02000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+              <Column Name="CDEPT_CODE" DataType="System.String"/>
+              <Column Name="CCUSTOMER_ID" DataType="System.String"/>
+              <Column Name="CCURRENCY_CODE" DataType="System.String"/>
+              <Column Name="NBEGINNING_APPLY_AMOUNT" DataType="System.Decimal"/>
+              <Column Name="NREMAINING_AMOUNT" DataType="System.Decimal"/>
+              <Column Name="NTAX_AMOUNT" DataType="System.Decimal"/>
+              <Column Name="NGAINLOSS_AMOUNT" DataType="System.Decimal"/>
+              <Column Name="NCASHBANK_AMOUNT" DataType="System.Decimal"/>
+            </BusinessObjectDataSource>
+            <Column Name="CTRX_TYPE_NAME" DataType="System.String"/>
+            <Column Name="CREF_NO" DataType="System.String"/>
+            <Column Name="CREF_DATE" DataType="System.String"/>
+            <Column Name="DREF_DATE" DataType="System.DateTime"/>
+            <Column Name="CCUSTOMER_TYPE_NAME" DataType="System.String"/>
+            <Column Name="CLOI_AGRMT_NO" DataType="System.String"/>
+            <Column Name="CCURRENCY_CODE" DataType="System.String"/>
+            <Column Name="CDEPT_CODE" DataType="System.String"/>
+            <Column Name="CDEPT_NAME" DataType="System.String"/>
+            <Column Name="NBEGINNING_APPLY_AMOUNT" DataType="System.Decimal"/>
+            <Column Name="NREMAINING_AMOUNT" DataType="System.Decimal"/>
+            <Column Name="NTAX_AMOUNT" DataType="System.Decimal"/>
+            <Column Name="NGAINLOSS_AMOUNT" DataType="System.Decimal"/>
+            <Column Name="NCASHBANK_AMOUNT" DataType="System.Decimal"/>
+          </BusinessObjectDataSource>
+          <BusinessObjectDataSource Name="DeptSubtotalCurrencies" DataType="System.Collections.Generic.List`1[[PMR02000COMMON.DTO_s.Print.Grouping.SubtotalCurrenciesDTO, PMR02000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+            <Column Name="CDEPT_CODE" DataType="System.String"/>
+            <Column Name="CCUSTOMER_ID" DataType="System.String"/>
+            <Column Name="CCURRENCY_CODE" DataType="System.String"/>
+            <Column Name="NBEGINNING_APPLY_AMOUNT" DataType="System.Decimal"/>
+            <Column Name="NREMAINING_AMOUNT" DataType="System.Decimal"/>
+            <Column Name="NTAX_AMOUNT" DataType="System.Decimal"/>
+            <Column Name="NGAINLOSS_AMOUNT" DataType="System.Decimal"/>
+            <Column Name="NCASHBANK_AMOUNT" DataType="System.Decimal"/>
+          </BusinessObjectDataSource>
+        </BusinessObjectDataSource>
+        <BusinessObjectDataSource Name="GrandTotal" DataType="System.Collections.Generic.List`1[[PMR02000COMMON.DTO_s.Print.Grouping.SubtotalCurrenciesDTO, PMR02000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CDEPT_CODE" DataType="System.String"/>
+          <Column Name="CCUSTOMER_ID" DataType="System.String"/>
+          <Column Name="CCURRENCY_CODE" DataType="System.String"/>
+          <Column Name="NBEGINNING_APPLY_AMOUNT" DataType="System.Decimal"/>
+          <Column Name="NREMAINING_AMOUNT" DataType="System.Decimal"/>
+          <Column Name="NTAX_AMOUNT" DataType="System.Decimal"/>
+          <Column Name="NGAINLOSS_AMOUNT" DataType="System.Decimal"/>
+          <Column Name="NCASHBANK_AMOUNT" DataType="System.Decimal"/>
+        </BusinessObjectDataSource>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+      <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Page" DataType="System.String"/>
+        <Column Name="Of" DataType="System.String"/>
+        <Column Name="Print_Date" DataType="System.String"/>
+        <Column Name="Print_By" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="BaseHeaderLogo"/>
+      <inherited Name="Text33"/>
+      <inherited Name="LabelNoPage">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="BaseHeaderDate"/>
+      <inherited Name="LabelDateTime"/>
+      <inherited Name="BaseHeaderLabel"/>
+      <inherited Name="BaseHeaderUserId"/>
+      <inherited Name="LabelUserId"/>
+      <inherited Name="BaseHeaderDateTime"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="79.6" Width="1047.06" Height="113.4">
+        <TextObject Name="Text42" Left="-28.35" Top="18.9" Width="311.85" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_PROPERTY] : [ResponseDataModel.ReportData.Param.CPROPERTY_ID] - [ResponseDataModel.ReportData.Param.CPROPERTY_NAME]" Font="Arial Unicode MS, 7pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text43" Left="-28.35" Top="37.8" Width="311.85" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_DATA_BASED_ON] : [ResponseDataModel.ReportData.Param.CDATA_BASED_ON_DISPLAY]" Font="Arial Unicode MS, 7pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text44" Left="-28.35" Top="56.7" Width="311.85" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_REMAINING_BASED_ON] : [ResponseDataModel.ReportData.Param.CREMAINING_BASED_ON_DISPLAY]" Font="Arial Unicode MS, 7pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text45" Left="-28.35" Top="75.6" Width="311.85" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_CUTT_OFF_DATE] : [ResponseDataModel.ReportData.Param.DDATE_CUTOFF]" Font="Arial Unicode MS, 7pt">
+          <Formats>
+            <GeneralFormat/>
+            <DateFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text46" Left="283.5" Top="18.9" Width="207.9" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_PERIOD] : [ResponseDataModel.ReportData.Param.CPERIOD_DISPLAY]" Font="Arial Unicode MS, 7pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text47" Left="283.5" Top="37.8" Width="207.9" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_REPORT_TYPE] : [ResponseDataModel.ReportData.Param.CREPORT_TYPE_DISPLAY]" Font="Arial Unicode MS, 7pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text48" Left="604.8" Top="18.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_CURRENCY] :" Font="Arial Unicode MS, 7pt"/>
+        <CheckBoxObject Name="CheckBox1" Left="614.25" Top="37.8" Width="9.45" Height="9.45" DataColumn="ResponseDataModel.ReportData.Param.IS_TRANS_CURRENCY"/>
+        <CheckBoxObject Name="CheckBox2" Left="614.25" Top="56.7" Width="9.45" Height="9.45" DataColumn="ResponseDataModel.ReportData.Param.IS_LOCAL_CURRENCY"/>
+        <CheckBoxObject Name="CheckBox3" Left="614.25" Top="75.6" Width="9.45" Height="9.45" DataColumn="ResponseDataModel.ReportData.Param.IS_BASE_CURRENCY"/>
+        <TextObject Name="Text49" Left="623.7" Top="37.8" Width="151.2" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_TRANS_CURR]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text50" Left="623.7" Top="56.7" Width="151.2" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_LOCAL_CURR]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text51" Left="623.7" Top="75.6" Width="151.2" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_BASE_CURR]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text52" Left="756" Top="18.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_FILTER] :" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text53" Left="774.9" Top="37.8" Width="122.85" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_FILTER_DEPT] :" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text54" Left="774.9" Top="56.7" Width="122.85" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_FILTER_TRANSTYPE] :" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text55" Left="774.9" Top="75.6" Width="122.85" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_PARAM_FILTER_CUSTCTG] :	" Font="Arial Unicode MS, 7pt"/>
+        <CheckBoxObject Name="CheckBox4" Left="765.45" Top="37.8" Width="9.45" Height="9.45" DataColumn="ResponseDataModel.ReportData.Param.IS_DEPT_FILTER_ENABLED"/>
+        <CheckBoxObject Name="CheckBox5" Left="765.45" Top="56.7" Width="9.45" Height="9.45" DataColumn="ResponseDataModel.ReportData.Param.IS_TRANSTYPE_FILTER_ENABLED"/>
+        <CheckBoxObject Name="CheckBox6" Left="765.45" Top="75.6" Width="9.45" Height="9.45" DataColumn="ResponseDataModel.ReportData.Param.IS_CUSTCTG_FILTER_ENABLED"/>
+        <TextObject Name="Text56" Left="897.75" Top="75.6" Width="217.35" Height="18.9" VisibleExpression="[ResponseDataModel.ReportData.Param.IS_CUSTCTG_FILTER_ENABLED]" Text="[ResponseDataModel.ReportData.Param.CUSTCTG_FILTER_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text57" Left="897.75" Top="56.7" Width="217.35" Height="18.9" VisibleExpression="[ResponseDataModel.ReportData.Param.IS_TRANSTYPE_FILTER_ENABLED]" Text="[ResponseDataModel.ReportData.Param.CTRANSTYPE_FILTER_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text58" Left="897.75" Top="37.8" Width="217.35" Height="18.9" VisibleExpression="[ResponseDataModel.ReportData.Param.IS_DEPT_FILTER_ENABLED]" Text="[ResponseDataModel.ReportData.Param.CDEPT_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+      </ChildBand>
+    </inherited>
+    <DataBand Name="Data1" ZOrder="0" Top="257.7" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Data">
+      <TextObject Name="Text64" Left="-28.35" Width="491.4" Height="18.9" Text="[ResponseDataModel.ReportData.Data.CDEPT_CODE] - [ResponseDataModel.ReportData.Data.CDEPT_NAME]" Font="Arial Unicode MS, 7pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <LineObject Name="Line2" Left="-37.8" Width="1124.55" Diagonal="true"/>
+      <DataHeaderBand Name="DataHeader1" Top="197" Width="1047.06" Height="56.7" CanShrink="true" CanBreak="true" RepeatOnEveryPage="true">
+        <TextObject Name="Text59" Left="-28.35" Top="9.45" Width="113.4" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_DEPARTMENT]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text60" Left="-9.45" Top="28.35" Width="151.2" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_CUSTOMER]" Font="Arial Unicode MS, 7pt"/>
+        <LineObject Name="Line1" Left="-37.8" Width="1124.55" Diagonal="true"/>
+        <TextObject Name="Text62" Left="321.3" Top="28.35" Width="122.85" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_REFNO]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text63" Left="444.15" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_REFDATE]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text70" Left="538.65" Top="28.35" Width="122.85" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_LOI_AGRMT_NO]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text71" Left="661.5" Top="28.35" Width="56.7" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_CURRENCY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text72" Left="718.2" Top="28.35" Width="85.05" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_BEGINNING_APPLY]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text73" Left="803.25" Top="28.35" Width="66.15" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_REMAINING]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text74" Left="869.4" Top="28.35" Width="56.7" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_TAX]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text75" Left="926.1" Top="28.35" Width="75.6" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_GAIN_LOSS]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text76" Left="1001.7" Top="28.35" Width="66.15" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_ALLOCATION]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text86" Left="850.5" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_AMOUNT]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <LineObject Name="Line4" Left="718.2" Top="18.9" Width="368.55" Diagonal="true"/>
+        <TextObject Name="Text123" Left="141.75" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_CUSTOMER_TYPE]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text124" Left="236.25" Top="28.35" Width="85.05" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_TRANS_TYPE]" Font="Arial Unicode MS, 7pt"/>
+      </DataHeaderBand>
+      <DataBand Name="Data2" Top="280.6" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true" DataSource="Customers">
+        <TextObject Name="Text65" Left="-18.9" Width="160.65" Height="18.9" CanGrow="true" Text="[ResponseDataModel.ReportData.Data.Customers.CCUSTOMER_ID] - [ResponseDataModel.ReportData.Data.Customers.CCUSTOMER_NAME]" Font="Arial Unicode MS, 7pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text125" Left="141.75" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportData.Data.Customers.CCUSTOMER_TYPE_NAME]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text126" Left="236.25" Width="85.05" Height="18.9" Text="[ResponseDataModel.ReportData.Data.Customers.CTRX_TYPE_NAME]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text127" Left="321.3" Width="122.85" Height="18.9" Text="[ResponseDataModel.ReportData.Data.Customers.CREF_NO]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text128" Left="444.15" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportData.Data.Customers.DREF_DATE]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text129" Left="538.65" Width="122.85" Height="18.9" Text="[ResponseDataModel.ReportData.Data.Customers.CLOI_AGRMT_NO]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text130" Left="661.5" Width="56.7" Height="18.9" Text="[ResponseDataModel.ReportData.Data.Customers.CCURRENCY_CODE]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text131" Left="718.2" Width="75.6" Height="18.9" Text="[ResponseDataModel.ReportData.Data.Customers.NBEGINNING_APPLY_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text132" Left="793.8" Width="66.15" Height="18.9" Text="[ResponseDataModel.ReportData.Data.Customers.NREMAINING_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text133" Left="859.95" Width="66.15" Height="18.9" Text="[ResponseDataModel.ReportData.Data.Customers.NTAX_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text134" Left="926.1" Width="75.6" Height="18.9" Text="[ResponseDataModel.ReportData.Data.Customers.NGAINLOSS_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text135" Left="1001.7" Width="75.6" Height="18.9" Text="[ResponseDataModel.ReportData.Data.Customers.NCASHBANK_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+      </DataBand>
+      <DataBand Name="Data4" Top="312.95" Width="1047.06" Height="18.9">
+        <LineObject Name="Line8" Left="-18.9" Top="9.45" Width="1096.2" Diagonal="true"/>
+      </DataBand>
+      <DataBand Name="Data5" Top="335.85" Width="1047.06" Height="37.8" CanGrow="true" CanShrink="true" DataSource="DeptSubtotalCurrencies">
+        <TextObject Name="Text111" Left="444.15" Width="274.05" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_SUBTOTAL] [ResponseDataModel.ReportData.Data.CDEPT_CODE] [ResponseDataModel.ReportData.Data.DeptSubtotalCurrencies.CCURRENCY_CODE] : " HorzAlign="Right" Font="Arial Unicode MS, 7pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text112" Left="718.2" Width="75.6" Height="18.9" Text="[ResponseDataModel.ReportData.Data.DeptSubtotalCurrencies.NBEGINNING_APPLY_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text113" Left="793.8" Width="66.15" Height="18.9" Text="[ResponseDataModel.ReportData.Data.DeptSubtotalCurrencies.NREMAINING_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text114" Left="859.95" Width="66.15" Height="18.9" Text="[ResponseDataModel.ReportData.Data.DeptSubtotalCurrencies.NTAX_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text115" Left="926.1" Width="75.6" Height="18.9" Text="[ResponseDataModel.ReportData.Data.DeptSubtotalCurrencies.NGAINLOSS_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text116" Left="1001.7" Width="75.6" Height="18.9" Text="[ResponseDataModel.ReportData.Data.DeptSubtotalCurrencies.NCASHBANK_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+      </DataBand>
+    </DataBand>
+    <DataBand Name="Data10" ZOrder="1" Top="377.65" Width="1047.06" Height="18.9">
+      <LineObject Name="Line9" Left="330.75" Top="9.45" Width="746.55" Diagonal="true"/>
+    </DataBand>
+    <DataBand Name="Data6" ZOrder="2" Top="400.55" Width="1047.06" Height="37.8" CanGrow="true" CanShrink="true" DataSource="GrandTotal">
+      <TextObject Name="Text117" Left="444.15" Width="274.05" Height="18.9" Text="[ResponseDataModel.ReportData.Label.LABEL_GRANDTOTAL] [ResponseDataModel.ReportData.GrandTotal.CCURRENCY_CODE] : " HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text118" Left="718.2" Width="75.6" Height="18.9" Text="[ResponseDataModel.ReportData.GrandTotal.NBEGINNING_APPLY_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt, style=Bold" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text119" Left="793.8" Width="66.15" Height="18.9" Text="[ResponseDataModel.ReportData.GrandTotal.NREMAINING_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt, style=Bold" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text120" Left="859.95" Width="66.15" Height="18.9" Text="[ResponseDataModel.ReportData.GrandTotal.NTAX_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt, style=Bold" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text121" Left="926.1" Width="75.6" Height="18.9" Text="[ResponseDataModel.ReportData.GrandTotal.NGAINLOSS_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt, style=Bold" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text122" Left="1001.7" Width="75.6" Height="18.9" Text="[ResponseDataModel.ReportData.GrandTotal.NCASHBANK_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt, style=Bold" Trimming="EllipsisCharacter"/>
+    </DataBand>
+  </inherited>
+</inherited>

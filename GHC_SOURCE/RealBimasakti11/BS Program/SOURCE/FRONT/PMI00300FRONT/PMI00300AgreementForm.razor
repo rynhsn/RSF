@@ -1,0 +1,114 @@
+@attribute [R_Page(Title = "Agreement Form")]
+@inherits R_Page
+@using PMI00300COMMON.DTO
+
+
+<R_StackLayout Row Spacing="2">
+
+    <R_StackLayout Row>
+        <R_ItemLayout>
+            <R_Label>@_localizer["_Property"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_TextBox @bind-value="@loViewModel.loDisplayProcess.CPROPERTY_NAME"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+
+        <R_ItemLayout>
+            <R_Label>@_localizer["_Building"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_TextBox @bind-value="@loViewModel.loDisplayProcess.CBUILDING_NAME"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout>
+            <R_Label>@_localizer["_Floor"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_TextBox @bind-value="@loViewModel.loDisplayProcess.CFLOOR_ID"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout>
+            <R_Label>@_localizer["_Unit"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_TextBox @bind-value="@loViewModel.loDisplayProcess.CUNIT_ID"
+                       MaxLength="20"
+                       Enabled></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout>
+            <R_Label>@_localizer["_Year"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_NumericTextBox @bind-Value="@loViewModel.loDisplayProcess.IPERIOD_YEAR"
+                              ThousandSeparator="false"
+                              Decimals="0"
+                              Min=loViewModel.loPeriodYearRange.IMIN_YEAR
+                              Max=loViewModel.loPeriodYearRange.IMAX_YEAR></R_NumericTextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Justify="R_eJustify.FlexEnd">
+        <R_ItemLayout>
+            <R_Button OnClick="OnClickRefresh" Enabled>@_localizer["_Refresh"]</R_Button>
+        </R_ItemLayout>
+        @* cr04 *@
+        <R_ItemLayout>
+            <R_Popup R_Before_Open_Popup="@R_Before_Open_Popup_HandOver"
+                     Enabled="@loViewModel.loSelectedAgreementForm.LHO_CHECKLIST">
+                @_localizer["_Hochecklist"]
+            </R_Popup>
+        </R_ItemLayout>
+        @* cr04 *@
+        <R_ItemLayout>
+            <R_Detail R_Before_Open_Detail="@R_Before_Open_Detail_DrillDown"
+                      R_After_Open_Detail="@R_After_Open_Detail_DrillDown"
+                      Enabled="@IsDrillDownEnabled">@_localizer["_DrillDown"]</R_Detail>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout Class="mt-2">
+    <R_Grid @ref="@_gridRef"
+            DataSource="@loViewModel.loAgreementFormList"
+            Pageable="true"
+            @bind-PageSize="@PageSize"
+            Height="375px"
+            R_GridType="@R_eGridType.Original"
+            R_ConductorGridSource="@_conductorGridRef"
+            R_ServiceGetListRecord="@R_ServiceGetListRecord"
+            R_Display="@R_Display"
+            AllowAddNewRow="false"
+            AllowEditRow="false"
+            AllowDeleteRow="false">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="@nameof(PMI00300GetAgreementFormListDTO.CDEPT_NAME)" HeaderText="@_localizer["_Department"]" Width="150px" TextAlignment="R_eTextAlignment.Center"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(PMI00300GetAgreementFormListDTO.CTRANS_CODE)" HeaderText="@_localizer["_TransCode"]" Width="150px" TextAlignment="R_eTextAlignment.Center"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(PMI00300GetAgreementFormListDTO.CTENANT)" HeaderText="@_localizer["_Tenant"]" Width="150px" TextAlignment="R_eTextAlignment.Center"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(PMI00300GetAgreementFormListDTO.CAGREEMENT_NO)" HeaderText="@_localizer["_ReferenceNo"]" Width="175px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(PMI00300GetAgreementFormListDTO.CUNIT_DESCRIPTION)" HeaderText="@_localizer["_UnitDescription"]" Width="200px"></R_GridTextColumn>
+            <R_GridDatePickerColumn FieldName="@nameof(PMI00300GetAgreementFormListDTO.DSTART_DATE)" HeaderText="@_localizer["_StartDate"]" Width="150px"></R_GridDatePickerColumn>
+            <R_GridDatePickerColumn FieldName="@nameof(PMI00300GetAgreementFormListDTO.DEND_DATE)" HeaderText="@_localizer["_EndDate"]" Width="150px"></R_GridDatePickerColumn>
+            <R_GridTextColumn FieldName="@nameof(PMI00300GetAgreementFormListDTO.CEXPIRED_DAYS)" HeaderText="@_localizer["_ExpDays"]" Width="125px" TextAlignment="R_eTextAlignment.Center"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(PMI00300GetAgreementFormListDTO.CDOCUMENT_STATUS)" HeaderText="@_localizer["_DocumentStatus"]" Width="200px"></R_GridTextColumn>
+            <R_GridDatePickerColumn FieldName="@nameof(PMI00300GetAgreementFormListDTO.DHO_ACTUAL_DATE)" HeaderText="@_localizer["_col_HandoverDate"]" Width="200px"></R_GridDatePickerColumn>
+            <R_GridCheckBoxColumn FieldName="@nameof(PMI00300GetAgreementFormListDTO.LHO_CHECKLIST)" HeaderText="@_localizer["_col_ForcedHO"]" Width="150px"></R_GridCheckBoxColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorGridRef"
+                 R_IsHeader>
+</R_ConductorGrid>

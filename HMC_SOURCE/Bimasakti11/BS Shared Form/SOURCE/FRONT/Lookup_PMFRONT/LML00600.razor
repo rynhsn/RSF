@@ -1,0 +1,57 @@
+@inherits R_Page
+@attribute [R_Page(Title = "Tenant")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupPM> _localizer
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModelLML00600.TenantList"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                R_GridType="@R_eGridType.Navigator"
+                Pageable
+                PageSize="5"
+                Height="300px"
+                Width="1100px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(LML00600DTO.CTENANT_ID)"
+                                  HeaderText="Tenant Id"
+                                  Width="150px">
+                </R_GridTextColumn>
+                <R_GridTextColumn Width="250px"
+                                  FieldName="@nameof(LML00600DTO.CTENANT_NAME)"
+                                  HeaderText=@_localizer["_TenantName"]></R_GridTextColumn>
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(LML00600DTO.CTENANT_GROUP_NAME)"
+                                  HeaderText=@_localizer["_TenantGroup"]></R_GridTextColumn>
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(LML00600DTO.CTENANT_CATEGORY_NAME)"
+                                  HeaderText=@_localizer["_TenantCat"]></R_GridTextColumn>
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(LML00600DTO.CTENANT_TYPE_NAME)"
+                                  HeaderText=@_localizer["_TenantType"]></R_GridTextColumn>
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(LML00600DTO.CUNIT_NAME)"
+                                  HeaderText=@_localizer["_Units"]></R_GridTextColumn>
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(LML00600DTO.CPHONE1)"
+                                  HeaderText=@_localizer["_Phone"]></R_GridTextColumn>
+                <R_GridTextColumn Width="150px"
+                                  FieldName="@nameof(LML00600DTO.CEMAIL)"
+                                  HeaderText=@_localizer["_Email"]></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout xs="2">
+            <R_Button OnClick="Button_OnClickOkAsync">
+                OK
+            </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout xs="2">
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                Cancel
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+    </R_StackLayout>

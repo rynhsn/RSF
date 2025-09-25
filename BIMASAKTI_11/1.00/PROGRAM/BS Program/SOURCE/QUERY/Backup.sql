@@ -30,6 +30,7 @@ end catch
 
 rollback
 
+exec RSP_GS_GET_PROPERTY_DETAIL 'bsi', 'bsi'
 
 EXEC RSP_PM_LOOKUP_INVOICE_GROUP
      @CACTIVE_TYPE = 'ACTIVE',

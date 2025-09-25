@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BACK\GS\BlazorMenuBack\BlazorMenuBack.vbproj" />
+    <ProjectReference Include="..\..\..\COMMON\GS\BlazorMenuCommon\BlazorMenuCommon.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="R_APICommon">
+      <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

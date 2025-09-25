@@ -1,0 +1,5 @@
+2001	= Error process, please contact your administrator!
+2002	= Duplicate Tax Id!
+2003	= Cannot Delete, Tax Already in used!
+
+

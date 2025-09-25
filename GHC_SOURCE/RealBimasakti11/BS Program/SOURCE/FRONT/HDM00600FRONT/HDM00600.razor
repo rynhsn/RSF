@@ -1,0 +1,96 @@
+@page "/HDM00600"
+@inject IJSRuntime JS
+@inherits R_Page
+
+<R_StackLayout Class="m-2" Spacing="2" Row>
+    <R_ItemLayout>
+        <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">@_localizer["_lbl_property"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3" Class="ms-1">
+        <R_DropDownList Data="@_viewModel._propertyList"
+                        Value="@_viewModel._propertyId"
+                        ValueField="@nameof(PropertyDTO.CPROPERTY_ID)"
+                        TextField="@nameof(PropertyDTO.CPROPERTY_NAME)"
+                        ValueChanged="@((string value) => ComboboxPropertyValueChanged(value))"
+                        Enabled="@_comboboxPropertyEnabled">
+        </R_DropDownList>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_TabStrip @ref="_tabStrip" OnActiveTabIndexChanging="@OnActiveTabIndexChanging">
+    <R_TabStripTab Title="@(_localizer["_tab_current"])" id="@nameof(HDM00600)">
+        <R_Grid @ref="_gridPricelist"
+                DataSource="@_viewModel._pricelist_List"
+                R_GridType="@R_eGridType.Original"
+                R_ServiceGetListRecord="@CurrentPricelist_GetList"
+                R_Display="@CurrentPricelsit_Display"
+                AllowAddNewRow="false"
+                AllowDeleteRow="false"
+                AllowEditRow="false"
+                Pageable
+                @bind-PageSize="@_pageBinding_PricelistGrid"
+                Height="500px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CPRICELIST_ID)" HeaderText="@(_localizer["_col_pricelistid"])" Width="130px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CPRICELIST_NAME)" HeaderText="@(_localizer["_col_pricelistname"])" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CDEPT_CODE)" HeaderText="@(_localizer["_col_dept"])" Width="130px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CCHARGES_ID)" HeaderText="@(_localizer["_col_chargesid"])" Width="130px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CINVGRP_CODE)" HeaderText="@(_localizer["_col_invoicegrp"])" Width="130px"></R_GridTextColumn>
+                <R_GridCheckBoxColumn FieldName="@nameof(PricelistDTO.LTAXABLE)" HeaderText="@(_localizer["_col_taxable"])" Width="100px"></R_GridCheckBoxColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CUNIT)" HeaderText="@(_localizer["_col_unit"])" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CCURRENCY_CODE)" HeaderText="@(_localizer["_col_curr"])" Width="100px"></R_GridTextColumn>
+                <R_GridNumericColumn FieldName="@nameof(PricelistDTO.IPRICE)" TValue="int" HeaderText="@(_localizer["_col_price"])" Width="150px"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CDESCRIPTION)" HeaderText="@(_localizer["_col_desc"])" Width="200px"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(PricelistDTO.DSTART_DATE)" HeaderText="@(_localizer["_col_startdate"])" Width="200px"></R_GridDatePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+        <R_StackLayout Row Class="d-flex justify-content-between">
+            <R_ItemLayout>
+                <R_StackLayout Row>
+
+                    @* add popup *@
+                    <R_ItemLayout>
+                        <R_Popup R_Before_Open_Popup="@BeforeOpenPopup_PricelistAdd" R_After_Open_Popup="@AfterOpenPopup_PricelistAdd">@_localizer["_btn_addnew"]</R_Popup>
+                    </R_ItemLayout>
+
+                    @* inactive button *@
+                    <R_ItemLayout>
+                        <R_Button Enabled="@(_viewModel._pricelist_List.Count>0)"
+                                  OnClick="@Btn_Activeinactive_OnClickAsync">@_localizer["_btn_inactive"]</R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_StackLayout Row>
+
+                    @* template button *@
+                    <R_ItemLayout>
+                        <R_Button OnClick="@Btn_Template_OnClickAsync">@_localizer["_btn_template"]</R_Button>
+                    </R_ItemLayout>
+
+                    @* upload *@
+                    <R_ItemLayout>
+                        <R_Popup R_Before_Open_Popup="@BeforeOpenPopup_PricelistUpload" R_After_Open_Popup="@AfterOpenPopup_PricelistUpload" >@_localizer["_btn_upload"]</R_Popup>
+                    </R_ItemLayout>
+
+                </R_StackLayout>
+            </R_ItemLayout>
+
+
+        </R_StackLayout>
+
+        <R_ConductorGrid @ref="@_conPricelist"
+                         R_IsHeader></R_ConductorGrid>
+    </R_TabStripTab>
+    <R_TabStripTab Title="@(_localizer["_tab_next"])" Id="@nameof(HDM00610)">
+        <R_TabPage @ref="@_tabNextPricelist"
+                   R_Before_Open_TabPage="@BeforeOpenTabPage_NextPricelist"
+                   R_TabEventCallback="@TabEventCallback_NextPricelist">
+        </R_TabPage>
+    </R_TabStripTab>
+    <R_TabStripTab Title="@(_localizer["_tab_history"])" Id="@nameof(HDM00620)">
+        <R_TabPage @ref="@_tabHistoryPricelist"
+                   R_Before_Open_TabPage="@BeforeOpenTabPage_HistoryPricelist">
+        </R_TabPage>
+    </R_TabStripTab>
+</R_TabStrip>

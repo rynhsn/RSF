@@ -1,0 +1,33 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Other Charges Lookup")]
+@inject R_ILocalizer<LMM01500FrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Style="width: 1000px">
+    <R_StackLayout Row>
+        <R_Grid @ref="@_gridRef"
+                DataSource="_viewModel.LookupOtherCharges"
+                R_ServiceGetListRecord="Lookup_R_ServiceGetListRecordAsync"
+                Pageable
+                PageSize="5">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CCHARGES_ID" HeaderText="@_localizer["_ChargesId"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCHARGES_NAME" HeaderText="@_localizer["_ChargesName"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="UNIT_UTILITY_CHARGE" HeaderText="@_localizer["_UnitOrUtilityCharges"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCHARGES_TYPE" HeaderText="@_localizer["_ChargesType"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCHARGES_TYPE_DESCR" HeaderText="@_localizer["_ChargesTypeDesc"]"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="justify-content-end mt-2">
+        <R_ItemLayout>
+            <R_Button OnClick="Button_OnClickOkAsync">
+                @_localizer["_OkBtn"]
+            </R_Button>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                @_localizer["_CancelBtn"]
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>

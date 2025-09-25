@@ -1,0 +1,7 @@
+5501 = Error process, please contact your administrator!
+5503 = Invalid Dept Code!
+5504 = Department Code cannot be empty!
+
+
+
+

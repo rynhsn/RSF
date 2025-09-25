@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="M001" xml:space="preserve">
+    <value>Are you sure want to delete this A/P Allocation?</value>
+  </data>
+  <data name="M002" xml:space="preserve">
+    <value>Are you sure want to submit this Allocation? </value>
+  </data>
+  <data name="M003" xml:space="preserve">
+    <value>Are you sure want to redraft this A/P Allocation? </value>
+  </data>
+  <data name="M004" xml:space="preserve">
+    <value>You haven’t saved your changes. Are you sure want to cancel? </value>
+  </data>
+  <data name="M005" xml:space="preserve">
+    <value>A/P Allocation Deleted Successfully!</value>
+  </data>
+  <data name="V001" xml:space="preserve">
+    <value>Please select Transaction Type!</value>
+  </data>
+  <data name="V002" xml:space="preserve">
+    <value>Reference No. is required!</value>
+  </data>
+  <data name="V003" xml:space="preserve">
+    <value>Allocation Date cannot be before Soft Close Period!</value>
+  </data>
+  <data name="V004" xml:space="preserve">
+    <value>Allocation Amount cannot be greater than Remaining Allocation Amount!</value>
+  </data>
+  <data name="V005" xml:space="preserve">
+    <value>Allocation Tax Amount cannot be greater than Remaining Allocation Tax Amount!</value>
+  </data>
+  <data name="V006" xml:space="preserve">
+    <value>Allocation Tax Amount must be equal with From Tax Amount</value>
+  </data>
+  <data name="V007" xml:space="preserve">
+    <value>From Amount cannot be greater than Remaining From Amount!</value>
+  </data>
+  <data name="V008" xml:space="preserve">
+    <value>From Tax Amount cannot be greater than Remaining Tax Amount!</value>
+  </data>
+  <data name="V009" xml:space="preserve">
+    <value>Allocation Tax Amount must be equal with From Tax Amount</value>
+  </data>
+  <data name="V010" xml:space="preserve">
+    <value>Total Allocation Amount cannot be 0!</value>
+  </data>
+  <data name="V011" xml:space="preserve">
+    <value>Total Allocation Amount must be equal to Total From Amount!</value>
+  </data>
+  <data name="V012" xml:space="preserve">
+    <value>Total From Amount cannot be 0!</value>
+  </data>
+  <data name="_AllocationAmount" xml:space="preserve">
+    <value>Allocation Amount</value>
+  </data>
+  <data name="_AllocationDate" xml:space="preserve">
+    <value>Allocation Date</value>
+  </data>
+  <data name="_AllocationDisc" xml:space="preserve">
+    <value>Allocation Disc.</value>
+  </data>
+  <data name="_AllocationEntry" xml:space="preserve">
+    <value>Allocation Entry</value>
+  </data>
+  <data name="_AllocationList" xml:space="preserve">
+    <value>Allocation List</value>
+  </data>
+  <data name="_AllocRefNo" xml:space="preserve">
+    <value>Alloc. Ref. No.</value>
+  </data>
+  <data name="_Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="_AppliedAmount" xml:space="preserve">
+    <value>Applied Amount</value>
+  </data>
+  <data name="_Base" xml:space="preserve">
+    <value>Base</value>
+  </data>
+  <data name="_BaseCurrency" xml:space="preserve">
+    <value>Base Currency</value>
+  </data>
+  <data name="_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="_CreateBy" xml:space="preserve">
+    <value>Create By</value>
+  </data>
+  <data name="_CreatedBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="_CreatedDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="_Curr" xml:space="preserve">
+    <value>Curr.</value>
+  </data>
+  <data name="_Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="_Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_Dept" xml:space="preserve">
+    <value>Dept.</value>
+  </data>
+  <data name="_Discount" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="_ForeignGain" xml:space="preserve">
+    <value>ForeignGain(Loss)</value>
+  </data>
+  <data name="_Journal" xml:space="preserve">
+    <value>Journal</value>
+  </data>
+  <data name="_Local" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="_LocalCurrency" xml:space="preserve">
+    <value>Local Currency</value>
+  </data>
+  <data name="_No" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="_Property" xml:space="preserve">
+    <value>Property</value>
+  </data>
+  <data name="_Redraft" xml:space="preserve">
+    <value>Redraft</value>
+  </data>
+  <data name="_RefDate" xml:space="preserve">
+    <value>Ref. Date</value>
+  </data>
+  <data name="_Reference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="_ReferenceNo" xml:space="preserve">
+    <value>Reference No.</value>
+  </data>
+  <data name="_RefNo" xml:space="preserve">
+    <value>Ref. No.</value>
+  </data>
+  <data name="_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="_Remaining" xml:space="preserve">
+    <value>Remaining</value>
+  </data>
+  <data name="_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="_Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="_Supplier" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="_SupplierRefNo" xml:space="preserve">
+    <value>Supplier's Ref. No.</value>
+  </data>
+  <data name="_TaxAmount" xml:space="preserve">
+    <value>Tax Amount</value>
+  </data>
+  <data name="_TaxRate" xml:space="preserve">
+    <value>Tax Rate</value>
+  </data>
+  <data name="_TotalAllocationAmount" xml:space="preserve">
+    <value>Total Allocation Amount</value>
+  </data>
+  <data name="_TotalFromAmount" xml:space="preserve">
+    <value>Total From Amount</value>
+  </data>
+  <data name="_TotalRemaining" xml:space="preserve">
+    <value>Total Remaining</value>
+  </data>
+  <data name="_Transaction" xml:space="preserve">
+    <value>Transaction</value>
+  </data>
+  <data name="_TransactionType" xml:space="preserve">
+    <value>Transaction Type</value>
+  </data>
+  <data name="_TrxType" xml:space="preserve">
+    <value>Trx Type</value>
+  </data>
+  <data name="_UpdatedBy" xml:space="preserve">
+    <value>Updated By</value>
+  </data>
+  <data name="_UpdatedDate" xml:space="preserve">
+    <value>Updated Date</value>
+  </data>
+  <data name="_WHTaxAmount" xml:space="preserve">
+    <value>WH Tax Amount</value>
+  </data>
+</root>

@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BC_BASE_INVALID" xml:space="preserve">
+    <value>Base Currency Base Rate must be &gt; 0</value>
+  </data>
+  <data name="BC_RATE_INVALID" xml:space="preserve">
+    <value>Base Currency Rate must be &gt; 0</value>
+  </data>
+  <data name="CURR_EMPTY" xml:space="preserve">
+    <value>Currency Code is mandatory</value>
+  </data>
+  <data name="CURR_LENGTH" xml:space="preserve">
+    <value>Currency Code is more than 3 characters</value>
+  </data>
+  <data name="CURR_NOT_EXIST" xml:space="preserve">
+    <value>Currency Code does not exist</value>
+  </data>
+  <data name="DEPT_EMPTY" xml:space="preserve">
+    <value>Deparment Code is mandatory</value>
+  </data>
+  <data name="DEPT_LENGTH" xml:space="preserve">
+    <value>Department Code is more than 20 characters</value>
+  </data>
+  <data name="DEPT_NOT_EXIST" xml:space="preserve">
+    <value>Department Code does not exist</value>
+  </data>
+  <data name="D_NOTES_LENGTH" xml:space="preserve">
+    <value>Detail Notes is more than 200 characters</value>
+  </data>
+  <data name="H_NOTES_LENGTH" xml:space="preserve">
+    <value>Header Notes is more than 200 characters</value>
+  </data>
+  <data name="INVGRP_EMPTY" xml:space="preserve">
+    <value>Invoice Group is mandatory</value>
+  </data>
+  <data name="INVGRP_LENGTH" xml:space="preserve">
+    <value>Invoice Group is more than 8 characters</value>
+  </data>
+  <data name="INVGRP_NOT_EXIST" xml:space="preserve">
+    <value>Invoice Group does not exist</value>
+  </data>
+  <data name="LC_BASE_INVALID" xml:space="preserve">
+    <value>Local Currency Base Rate must be &gt; 0</value>
+  </data>
+  <data name="LC_RATE_INVALID" xml:space="preserve">
+    <value>Local Currency Rate must be &gt; 0</value>
+  </data>
+  <data name="LOI_DEPT_EMPTY" xml:space="preserve">
+    <value>LOI/Agreement Deparment Code is mandatory</value>
+  </data>
+  <data name="LOI_DEPT_LENGTH" xml:space="preserve">
+    <value>LOI/Agreement Department Code is more than 20 characters</value>
+  </data>
+  <data name="LOI_DEPT_NOT_EXIST" xml:space="preserve">
+    <value>LOI/Agreement Department Code does not exist</value>
+  </data>
+  <data name="LOI_NOT_EXIST" xml:space="preserve">
+    <value>LOI/Agreement No. does not exist</value>
+  </data>
+  <data name="LOI_NO_EMPTY" xml:space="preserve">
+    <value>LOI/Agreement No. is mandatory</value>
+  </data>
+  <data name="LOI_NO_LENGTH" xml:space="preserve">
+    <value>LOI/Agreement No. is more than 30 characters</value>
+  </data>
+  <data name="PRICE_INVALID" xml:space="preserve">
+    <value>Invalid Unit Price, Unit Price value must be &gt; 0</value>
+  </data>
+  <data name="PROD_DEPT_EMPTY" xml:space="preserve">
+    <value>Product Deparment Code is mandatory</value>
+  </data>
+  <data name="PROD_DEPT_LENGTH" xml:space="preserve">
+    <value>Product Department Code is more than 20 characters</value>
+  </data>
+  <data name="PROD_DEPT_NOT_EXIST" xml:space="preserve">
+    <value>Product Department Code does not exist</value>
+  </data>
+  <data name="PROD_ID_EMPTY" xml:space="preserve">
+    <value>Product ID is mandatory</value>
+  </data>
+  <data name="PROD_ID_LENGTH" xml:space="preserve">
+    <value>Product ID is more than 20 characters</value>
+  </data>
+  <data name="PROD_ID_NOT_EXIST" xml:space="preserve">
+    <value>Product ID does not exist</value>
+  </data>
+  <data name="PROD_TYPE_EMPTY" xml:space="preserve">
+    <value>Product Type is mandatory</value>
+  </data>
+  <data name="PROD_TYPE_LENGTH" xml:space="preserve">
+    <value>Product Type is more than 1 character</value>
+  </data>
+  <data name="PROD_TYPE_NOT_EXIST" xml:space="preserve">
+    <value>Invalid Product Type value, valid value is P/S</value>
+  </data>
+  <data name="QTY_INVALID" xml:space="preserve">
+    <value>Invalid Quantity, Quantity value must be &gt; 0</value>
+  </data>
+  <data name="REF_DATE_EMPTY" xml:space="preserve">
+    <value>Reference Date is mandatory</value>
+  </data>
+  <data name="REF_DATE_LENGTH" xml:space="preserve">
+    <value>Reference Date is more than 8 characters</value>
+  </data>
+  <data name="REF_NO_EMPTY" xml:space="preserve">
+    <value>Reference No. is mandatory</value>
+  </data>
+  <data name="REF_NO_EXISTS" xml:space="preserve">
+    <value>Reference No. already exists</value>
+  </data>
+  <data name="REF_NO_LENGTH" xml:space="preserve">
+    <value>Reference No. is more than 30 characters</value>
+  </data>
+  <data name="SVC_TYPE_EMPTY" xml:space="preserve">
+    <value>Service Type is mandatory</value>
+  </data>
+  <data name="SVC_TYPE_LENGTH" xml:space="preserve">
+    <value>Service Type is more than 1 character</value>
+  </data>
+  <data name="SVC_TYPE_NOT_EXIST" xml:space="preserve">
+    <value>Invalid Service Type value, valid value is UN/UT</value>
+  </data>
+  <data name="TAX_BASE_INVALID" xml:space="preserve">
+    <value>Base Tax Base Rate must be &gt; 0</value>
+  </data>
+  <data name="TAX_CODE_LENGTH" xml:space="preserve">
+    <value>Tax Code is more than 20 characters</value>
+  </data>
+  <data name="TAX_CODE_NOT_EXIST" xml:space="preserve">
+    <value>Tax Code does not exist</value>
+  </data>
+  <data name="TAX_RATE_INVALID" xml:space="preserve">
+    <value>Tax Currency Rate must be &gt; 0</value>
+  </data>
+  <data name="TENANT_ID_EMPTY" xml:space="preserve">
+    <value>Tenant ID is mandatory</value>
+  </data>
+  <data name="TENANT_ID_LENGTH" xml:space="preserve">
+    <value>Tenant ID is more than 20 characters</value>
+  </data>
+  <data name="TENANT_ID_NOT_EXIST" xml:space="preserve">
+    <value>Tenant ID does not exist</value>
+  </data>
+  <data name="TERM_EMPTY" xml:space="preserve">
+    <value>Term Code is mandatory</value>
+  </data>
+  <data name="TERM_LENGTH" xml:space="preserve">
+    <value>Term Code is more than 8 characters</value>
+  </data>
+  <data name="TERM_NOT_EXIST" xml:space="preserve">
+    <value>Term Code does not exist</value>
+  </data>
+  <data name="TNT_REF_DATE_EMPTY" xml:space="preserve">
+    <value>Tenant Reference Date is mandatory</value>
+  </data>
+  <data name="TNT_REF_DATE_LENGTH" xml:space="preserve">
+    <value>Tenant Reference Date is more than 8 characters</value>
+  </data>
+  <data name="TNT_REF_NO_EMPTY" xml:space="preserve">
+    <value>Tenant Reference No. is mandatory</value>
+  </data>
+  <data name="TNT_REF_NO_LENGTH" xml:space="preserve">
+    <value>Tenant Reference No. is more than 30 characters</value>
+  </data>
+</root>

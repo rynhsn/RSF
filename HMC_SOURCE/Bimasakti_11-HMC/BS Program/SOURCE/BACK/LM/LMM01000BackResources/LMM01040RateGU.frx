@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderCommon.frx" BaseReportAbsolutePath="D:\BIMASAKTI\Bimasakti-version\Bimasakti-version\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="10/01/2024 11:07:10" ReportInfo.CreatorVersion="2023.2.21.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    private void PageHeader1_AfterData(object sender, EventArgs e)
+    {
+      string BaseHeaderCode = (string)Report.GetColumnValue(&quot;ResponseDataModel.BaseHeaderData.CPRINT_CODE&quot;);
+      string BaseHeaderName = (string)Report.GetColumnValue(&quot;ResponseDataModel.BaseHeaderData.CCOMPANY_NAME&quot;);
+      
+      if (string.IsNullOrWhiteSpace(BaseHeaderCode))
+      {
+		     Text33.Text = BaseHeaderName;
+      }else
+      {
+         Text33.Text = BaseHeaderCode + &quot; - &quot; + BaseHeaderName;
+      }
+    }
+
+    private void Data1_AfterData(object sender, EventArgs e)
+    {
+      string adminFee = (string)Report.GetColumnValue(&quot;ResponseDataModel.RateGU.HeaderData.CADMIN_FEE&quot;);
+      string adminFeeDesc = (string)Report.GetColumnValue(&quot;ResponseDataModel.RateGU.HeaderData.CADMIN_FEE_DESCR&quot;);
+      decimal adminFeePCT = (decimal)Report.GetColumnValue(&quot;ResponseDataModel.RateGU.HeaderData.NADMIN_FEE_PCT&quot;);
+      decimal adminFeeAMT = (decimal)Report.GetColumnValue(&quot;ResponseDataModel.RateGU.HeaderData.NADMIN_FEE_AMT&quot;);
+      
+      if (adminFee == &quot;00&quot;)
+      {
+        Text103.Text = &quot;&quot;;
+      }else if (adminFee == &quot;01&quot;)
+      {
+        Text103.Text = adminFeeAMT.ToString();
+      }else if (adminFee == &quot;02&quot;)
+      {
+        Text103.Text = adminFeePCT.ToString(&quot;G29&quot;) + &quot;%&quot;;
+      }
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="RateGU" DataType="PMM01000COMMON.PMM01040ResultPrintDTO, PMM01000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Header" DataType="System.String"/>
+        <Column Name="HeaderData" DataType="PMM01000COMMON.PMM01040DTO, PMM01000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CCHARGES_TYPE" DataType="System.String"/>
+          <Column Name="CCHARGES_TYPE_DESCR" DataType="System.String"/>
+          <Column Name="CCHARGES_ID" DataType="System.String"/>
+          <Column Name="CUSER_ID" DataType="System.String"/>
+          <Column Name="CACTION" DataType="System.String"/>
+          <Column Name="CCHARGES_NAME" DataType="System.String"/>
+          <Column Name="NBUY_STANDING_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NSTANDING_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NBUY_USAGE_CHARGE_RATE" DataType="System.Decimal"/>
+          <Column Name="NUSAGE_CHARGE_RATE" DataType="System.Decimal"/>
+          <Column Name="NMAINTENANCE_FEE" DataType="System.Decimal"/>
+          <Column Name="CADMIN_FEE" DataType="System.String"/>
+          <Column Name="CADMIN_CHARGE_ID" DataType="System.String"/>
+          <Column Name="CADMIN_CHARGE_ID_DESCR" DataType="System.String"/>
+          <Column Name="CADMIN_FEE_DESCR" DataType="System.String"/>
+          <Column Name="NADMIN_FEE_PCT" DataType="System.Decimal"/>
+          <Column Name="NADMIN_FEE_AMT" DataType="System.Decimal"/>
+          <Column Name="LADMIN_FEE_TAX" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LSPLIT_ADMIN" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LADMIN_FEE_SC" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LADMIN_FEE_USAGE" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LADMIN_FEE_MAINTENANCE" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CLOGO" DataType="System.Byte[]" BindableControl="Picture"/>
+          <Column Name="CCHARGES_DATE" DataType="System.String"/>
+          <Column Name="DCHARGES_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+          <Column Name="CCURRENCY_CODE" DataType="System.String"/>
+        </Column>
+      </Column>
+      <Column Name="Column" DataType="PMM01000COMMON.PMM01040ColumnPrintDTO, PMM01000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Utility_Charges" DataType="System.String"/>
+        <Column Name="Currency" DataType="System.String"/>
+        <Column Name="CHARGES" DataType="System.String"/>
+        <Column Name="Buying_Price" DataType="System.String"/>
+        <Column Name="Selling_Price" DataType="System.String"/>
+        <Column Name="Usage_Charge_Rate_P" DataType="System.String"/>
+        <Column Name="Split_Admin_Invoice" DataType="System.String"/>
+        <Column Name="Administration_Fee_P" DataType="System.String"/>
+        <Column Name="Maintenance_Fee_P" DataType="System.String"/>
+        <Column Name="Administration_Fee_For" DataType="System.String"/>
+        <Column Name="Standing_Charges" DataType="System.String"/>
+        <Column Name="Taxable" DataType="System.String"/>
+        <Column Name="Usage" DataType="System.String"/>
+        <Column Name="Maintenance" DataType="System.String"/>
+        <Column Name="Charges_Date" DataType="System.String"/>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+      <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Page" DataType="System.String"/>
+        <Column Name="Of" DataType="System.String"/>
+        <Column Name="Print_Date" DataType="System.String"/>
+        <Column Name="Print_By" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="Picture1"/>
+      <inherited Name="Text33"/>
+      <inherited Name="Text40">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="Text36"/>
+      <inherited Name="Text38"/>
+      <inherited Name="Text34"/>
+      <inherited Name="Text37"/>
+      <inherited Name="Text39"/>
+      <inherited Name="Text41"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="80.93" Width="718.2" Height="37.8">
+        <TextObject Name="Text92" Width="245.7" Height="18.9" Text="[ResponseDataModel.RateGU.Header]" VertAlign="Center" Font="Arial Unicode MS, 10pt"/>
+      </ChildBand>
+    </inherited>
+    <DataBand Name="Data1" ZOrder="0" Top="124.07" Width="718.2" Height="264.6" AfterDataEvent="Data1_AfterData" DataSource="ResponseDataModel">
+      <TextObject Name="Text45" Left="37.8" Width="198.45" Height="18.9" Text="[ResponseDataModel.Column.Utility_Charges]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text46" Left="37.8" Top="18.9" Width="198.45" Height="18.9" Text="[ResponseDataModel.Column.Currency]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text49" Left="37.8" Top="75.6" Width="103.95" Height="18.9" Text="[ResponseDataModel.Column.CHARGES]" Font="Arial Unicode MS, 10pt, style=Bold, Underline" TextFill.Color="Red"/>
+      <TextObject Name="Text50" Left="37.8" Top="103.95" Width="207.9" Height="18.9" Text="[ResponseDataModel.Column.Standing_Charges]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text51" Left="255.15" Top="75.6" Width="132.3" Height="18.9" Border.Lines="All" Fill.Color="Red" Text="[ResponseDataModel.Column.Buying_Price]" HorzAlign="Center" Font="Arial Unicode MS, 10pt, style=Bold" TextFill.Color="White"/>
+      <TextObject Name="Text52" Left="396.9" Top="75.6" Width="132.3" Height="18.9" Border.Lines="All" Fill.Color="Green" Text="[ResponseDataModel.Column.Selling_Price]" HorzAlign="Center" Font="Arial Unicode MS, 10pt, style=Bold" TextFill.Color="White"/>
+      <TextObject Name="Text54" Left="56.7" Top="160.65" Width="189" Height="18.9" Text="[ResponseDataModel.Column.Split_Admin_Invoice]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text57" Left="37.8" Top="179.55" Width="207.9" Height="18.9" Text="[ResponseDataModel.Column.Maintenance_Fee_P]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text60" Left="37.8" Top="198.45" Width="217.35" Height="18.9" Text="[ResponseDataModel.Column.Administration_Fee_P]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text93" Left="255.15" Width="340.2" Height="18.9" Text="[ResponseDataModel.RateGU.HeaderData.CCHARGES_ID] - [ResponseDataModel.RateGU.HeaderData.CCHARGES_NAME]" VertAlign="Center" Font="Arial Unicode MS, 10pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text94" Left="255.15" Top="18.9" Width="274.05" Height="18.9" Text="[ResponseDataModel.RateGU.HeaderData.CCURRENCY_CODE]" VertAlign="Center" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text96" Left="255.15" Top="103.95" Width="132.3" Height="18.9" Text="[ResponseDataModel.RateGU.HeaderData.NBUY_STANDING_CHARGE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Unicode MS, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text98" Left="396.9" Top="103.95" Width="132.3" Height="18.9" Text="[ResponseDataModel.RateGU.HeaderData.NSTANDING_CHARGE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Unicode MS, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text99" Left="255.15" Top="122.85" Width="132.3" Height="18.9" Text="[ResponseDataModel.RateGU.HeaderData.NBUY_USAGE_CHARGE_RATE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Unicode MS, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text100" Left="396.9" Top="122.85" Width="132.3" Height="18.9" Text="[ResponseDataModel.RateGU.HeaderData.NUSAGE_CHARGE_RATE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Unicode MS, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text102" Left="255.15" Top="179.55" Width="132.3" Height="18.9" Text="[ResponseDataModel.RateGU.HeaderData.NMAINTENANCE_FEE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Unicode MS, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text103" Left="255.15" Top="198.45" Width="132.3" Height="18.9" Text="This Condition" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text104" Left="415.8" Top="198.45" Width="113.4" Height="18.9" Text="[ResponseDataModel.Column.Taxable]" Font="Arial Unicode MS, 10pt"/>
+      <CheckBoxObject Name="CheckBox1" Left="396.9" Top="198.45" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RateGU.HeaderData.LADMIN_FEE_TAX"/>
+      <TextObject Name="Text61" Left="37.8" Top="226.8" Width="207.9" Height="18.9" Text="[ResponseDataModel.Column.Administration_Fee_For]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text105" Left="274.05" Top="226.8" Width="113.4" Height="18.9" Text="[ResponseDataModel.Column.Standing_Charges]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text106" Left="415.8" Top="226.8" Width="113.4" Height="18.9" Text="[ResponseDataModel.Column.Usage]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text107" Left="557.55" Top="226.8" Width="113.4" Height="18.9" Text="[ResponseDataModel.Column.Maintenance]" Font="Arial Unicode MS, 10pt"/>
+      <CheckBoxObject Name="CheckBox2" Left="255.15" Top="226.8" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RateGU.HeaderData.LADMIN_FEE_SC"/>
+      <CheckBoxObject Name="CheckBox3" Left="396.9" Top="226.8" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RateGU.HeaderData.LADMIN_FEE_USAGE"/>
+      <CheckBoxObject Name="CheckBox4" Left="538.65" Top="226.8" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RateGU.HeaderData.LADMIN_FEE_MAINTENANCE"/>
+      <CheckBoxObject Name="CheckBox5" Left="37.8" Top="160.65" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RateGU.HeaderData.LSPLIT_ADMIN"/>
+      <TextObject Name="Text108" Left="255.15" Top="160.65" Width="198.45" Height="18.9" Text="[ResponseDataModel.RateGU.HeaderData.CADMIN_CHARGE_ID_DESCR]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text109" Left="37.8" Top="37.8" Width="198.45" Height="18.9" Text="[ResponseDataModel.Column.Charges_Date]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="Text110" Left="255.15" Top="37.8" Width="217.35" Height="18.9" Text="[ResponseDataModel.RateGU.HeaderData.DCHARGES_DATE]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 10pt"/>
+    </DataBand>
+  </inherited>
+</inherited>

@@ -1,0 +1,42 @@
+﻿@using Lookup_GSCOMMON.DTOs
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_SupplierLookup")]
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Style="width: 800px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_TextBox @bind-Value="@_viewModel.SearchText"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Button OnClick="@OnClickSearch">@_localizer["_Search"]</R_Button>
+            <R_Button OnClick="@OnClickShowAll">@_localizer["_ShowAll"]</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.SupplierGrid"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                Height="300px"
+                Pageable="true">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GSL02900DTO.CSUPPLIER_ID)" HeaderText="@_localizer["_SupplierID"]" Width="130px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL02900DTO.CSUPPLIER_NAME)" HeaderText="@_localizer["_SupplierName"]" Width="160px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL02900DTO.CADDRESS)" HeaderText="@_localizer["_Address"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL02900DTO.CCITY_NAME)" HeaderText="@_localizer["_City"]" Width="180px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+        <R_Button OnClick="Button_OnClickOkAsync" Enabled="@(_viewModel.SupplierGrid.Count > 0)">
+            @_localizer["_OkBtn"]
+            </R_Button>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                @_localizer["_CancelBtn"]
+            </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>

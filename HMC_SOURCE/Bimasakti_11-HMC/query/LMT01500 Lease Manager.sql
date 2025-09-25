@@ -1,0 +1,1 @@
+EXEC RSP_LM_GET_AGREEMENT_DETAIL 'rcd', 'jbmpc', 'Selected Dept Code', '802030', 'Selected Ref No', 'Login User Id'

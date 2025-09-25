@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\LM\BIMASAKTI_LM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="10/25/2024 15:52:49" ReportInfo.CreatorVersion="2023.2.21.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    private void Text107_AfterData(object sender, EventArgs e)
+    {
+      // Accessing the first data source
+      var dataSource = Report.GetDataSource(&quot;ResponseDataModel&quot;)    ;
+      if (dataSource != null)
+      {
+        
+
+        // Set the value to the text object
+        (sender as TextObject).Text = dataSource.ToString();
+      }
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="ReportData" DataType="PMR00800COMMON.DTO_s.Print.PMR00800ReportDataDTO, PMR00800COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Header" DataType="System.String"/>
+        <Column Name="Label" DataType="PMR00800COMMON.DTO_s.Print.PMR00800LabelDTO, PMR00800COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="CCOLUMN_NO" DataType="System.String"/>
+          <Column Name="CCOLUMN_UNIT_ID" DataType="System.String"/>
+          <Column Name="CCOLUMN_UNIT_TYPE" DataType="System.String"/>
+          <Column Name="CCOLUMN_AGREEMENT_NO" DataType="System.String"/>
+          <Column Name="CCOLUMN_TENANT_ID" DataType="System.String"/>
+          <Column Name="CCOLUMN_TENANT_NAME" DataType="System.String"/>
+          <Column Name="CCOLUMN_OCCUPIED_AREA" DataType="System.String"/>
+          <Column Name="CCOLUMN_RENT_HEADER" DataType="System.String"/>
+          <Column Name="CCOLUMN_RENT_RENTED" DataType="System.String"/>
+          <Column Name="CCOLUMN_RENT_AVAILABLE" DataType="System.String"/>
+          <Column Name="CCOLUMN_RENT_PERCENT" DataType="System.String"/>
+          <Column Name="CCOLUMN_SC_HEADER" DataType="System.String"/>
+          <Column Name="CCOLUMN_SC_RENTED" DataType="System.String"/>
+          <Column Name="CCOLUMN_SC_AVAILABLE" DataType="System.String"/>
+          <Column Name="CCOLUMN_SC_PERCENT" DataType="System.String"/>
+          <Column Name="CCOLUMN_PL_HEADER" DataType="System.String"/>
+          <Column Name="CCOLUMN_PL_RENTED" DataType="System.String"/>
+          <Column Name="CCOLUMN_PL_AVAILABLE" DataType="System.String"/>
+          <Column Name="CCOLUMN_PL_PERCENT" DataType="System.String"/>
+          <Column Name="CCOLUMN_SPACE_HEADER" DataType="System.String"/>
+          <Column Name="CCOLUMN_AREA_RENTED" DataType="System.String"/>
+          <Column Name="CCOLUMN_AREA_ALL" DataType="System.String"/>
+          <Column Name="CCOLUMN_OCC_RATE" DataType="System.String"/>
+          <Column Name="CLABEL_PROPERTY" DataType="System.String"/>
+          <Column Name="CLABEL_BUILDING" DataType="System.String"/>
+          <Column Name="CLABEL_PERIOD" DataType="System.String"/>
+          <Column Name="CLABEL_SUBTOTAL" DataType="System.String"/>
+          <Column Name="CLABEL_GRANDTOTAL" DataType="System.String"/>
+        </Column>
+        <Column Name="Param" DataType="PMR00800COMMON.DTO_s.PMR00800ParamDTO, PMR00800COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="CREPORT_CULTURE" DataType="System.String"/>
+          <Column Name="CPERIOD_YYYY" DataType="System.String"/>
+          <Column Name="CPERIOD_MM" DataType="System.String"/>
+          <Column Name="CFROM_BUILDING_NAME" DataType="System.String"/>
+          <Column Name="CTO_BUILDING_NAME" DataType="System.String"/>
+          <Column Name="CPROPERTY_NAME" DataType="System.String"/>
+          <Column Name="CBUILDING_DISPLAY" DataType="System.String"/>
+          <Column Name="LIS_PRINT" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CREPORT_FILENAME" DataType="System.String"/>
+          <Column Name="CREPORT_FILETYPE" DataType="System.String"/>
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CUSER_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CFROM_BUILDING" DataType="System.String"/>
+          <Column Name="CTO_BUILDING" DataType="System.String"/>
+          <Column Name="CPERIOD" DataType="System.String"/>
+          <Column Name="CLANG_ID" DataType="System.String"/>
+        </Column>
+        <BusinessObjectDataSource Name="Data" DataType="System.Collections.Generic.List`1[[PMR00800COMMON.DTO_s.PMR00800SpResultDTO, PMR00800COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CBUILDING_ID" DataType="System.String"/>
+          <Column Name="CBUILDING_NAME" DataType="System.String"/>
+          <Column Name="CFLOOR_ID" DataType="System.String"/>
+          <Column Name="CUNIT_ID" DataType="System.String"/>
+          <Column Name="CUNIT_TYPE_ID" DataType="System.String"/>
+          <Column Name="CUNIT_TYPE_NAME" DataType="System.String"/>
+          <Column Name="CLEASE_STATUS" DataType="System.String"/>
+          <Column Name="CUNIT_DESCRIPTION" DataType="System.String"/>
+          <Column Name="CAGREEMENT_NO" DataType="System.String"/>
+          <Column Name="CTENANT_ID" DataType="System.String"/>
+          <Column Name="CTENANT_NAME" DataType="System.String"/>
+          <Column Name="NOCCUPIED" DataType="System.Decimal"/>
+          <Column Name="NRENT" DataType="System.Decimal"/>
+          <Column Name="NAVAILABLE" DataType="System.Decimal"/>
+          <Column Name="NRENT_PCT" DataType="System.Decimal"/>
+          <Column Name="NSC_RENT" DataType="System.Decimal"/>
+          <Column Name="NSC_AVAIL" DataType="System.Decimal"/>
+          <Column Name="NSC_PCT" DataType="System.Decimal"/>
+          <Column Name="NPL_RENT" DataType="System.Decimal"/>
+          <Column Name="NPL_AVAIL" DataType="System.Decimal"/>
+          <Column Name="NPL_PCT" DataType="System.Decimal"/>
+          <Column Name="NSPACE_RENT" DataType="System.Decimal"/>
+          <Column Name="NALL_AREA" DataType="System.Decimal"/>
+          <Column Name="NOCC_RATE_PCT" DataType="System.Decimal"/>
+          <Column Name="NRENT_PCT_TOTAL" DataType="System.Decimal"/>
+          <Column Name="NSC_PCT_TOTAL" DataType="System.Decimal"/>
+          <Column Name="NPL_PCT_TOTAL" DataType="System.Decimal"/>
+          <Column Name="NOCC_RATE_PCT_TOTAL" DataType="System.Decimal"/>
+        </BusinessObjectDataSource>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+      <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Page" DataType="System.String"/>
+        <Column Name="Of" DataType="System.String"/>
+        <Column Name="Print_Date" DataType="System.String"/>
+        <Column Name="Print_By" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+    <Total Name="SUM_NOCCUPIED" Expression="[ResponseDataModel.ReportData.Data.NOCCUPIED]" Evaluator="Data1" PrintOn="GroupFooter1" ResetOnReprint="true"/>
+    <Total Name="SUM_NRENT" Expression="[ResponseDataModel.ReportData.Data.NRENT]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="SUM_NAVAILABLE" Expression="[ResponseDataModel.ReportData.Data.NAVAILABLE]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="SUM_NSC_RENT" Expression="[ResponseDataModel.ReportData.Data.NSC_RENT]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="SUM_NSC_AVAIL" Expression="[ResponseDataModel.ReportData.Data.NSC_AVAIL]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="SUM_NPL_RENT" Expression="[ResponseDataModel.ReportData.Data.NPL_RENT]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="SUM_NPL_AVAIL" Expression="[ResponseDataModel.ReportData.Data.NPL_AVAIL]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="SUM_NSPACE_RENT" Expression="[ResponseDataModel.ReportData.Data.NSPACE_RENT]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="SUM_NALL_AREA" Expression="[ResponseDataModel.ReportData.Data.NALL_AREA]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="GRAND_TOTAL_NOCCUPIED" Expression="[SUM_NOCCUPIED]" Evaluator="Data1" PrintOn="DataFooter1"/>
+    <Total Name="GRAND_TOTAL_NRENT" Expression="[SUM_NRENT]" Evaluator="Data1" PrintOn="DataFooter1"/>
+    <Total Name="GRAND_TOTAL_NAVAIL" Expression="[SUM_NAVAILABLE]" Evaluator="Data1" PrintOn="DataFooter1" ResetOnReprint="true"/>
+    <Total Name="GRAND_TOTAL_PCTRENT" Expression="[ResponseDataModel.ReportData.Data.NRENT_PCT_TOTAL]" Evaluator="Data1" ResetAfterPrint="false"/>
+    <Total Name="SUM_NRENT_PCT_TOTAL" Expression="[ResponseDataModel.ReportData.Data.NRENT_PCT_TOTAL]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="SUM_NSC_PCT_TOTAL" Expression="[ResponseDataModel.ReportData.Data.NSC_PCT_TOTAL]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="SUM_NPL_PCT_TOTAL" Expression="[ResponseDataModel.ReportData.Data.NPL_PCT_TOTAL]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="SUM_RATE_PCT_TOTAL" Expression="[ResponseDataModel.ReportData.Data.NOCC_RATE_PCT_TOTAL]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="GRAND_TOTAL_NSC_RENT" Expression="[SUM_NSC_RENT]" Evaluator="Data1" PrintOn="DataFooter1"/>
+    <Total Name="GRAND_TOTAL_NSC_AVAIL" Expression="[SUM_NSC_AVAIL]" Evaluator="Data1" PrintOn="DataFooter1"/>
+    <Total Name="GRAND_TOTAL_NSC_PCT_TOTAL" Expression="[SUM_NSC_PCT_TOTAL]" Evaluator="Data1" PrintOn="DataFooter1"/>
+    <Total Name="GRAND_TOTAL_NPL_RENT" Expression="[SUM_NPL_RENT]" Evaluator="Data1" PrintOn="DataFooter1"/>
+    <Total Name="GRAND_TOTAL_NPL_AVAIL" Expression="[SUM_NPL_AVAIL]" Evaluator="Data1" PrintOn="DataFooter1"/>
+    <Total Name="GRAND_TOTAL_NPL_PCT" Expression="[SUM_NPL_PCT_TOTAL]" Evaluator="Data1" PrintOn="DataFooter1"/>
+    <Total Name="GRAND_TOTAL_NSPACERENT" Expression="[SUM_NSPACE_RENT]" Evaluator="Data1" PrintOn="DataFooter1"/>
+    <Total Name="GRAND_TOTAL_NALL_AREA" Expression="[SUM_NALL_AREA]" Evaluator="Data1" PrintOn="DataFooter1"/>
+    <Total Name="GRAND_TOTAL_RATE_PCT_TOT" Expression="[SUM_RATE_PCT_TOTAL]" Evaluator="Data1" PrintOn="DataFooter1"/>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="BaseHeaderLogo"/>
+      <inherited Name="Text33"/>
+      <inherited Name="LabelNoPage">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="BaseHeaderDate"/>
+      <inherited Name="LabelDateTime"/>
+      <inherited Name="BaseHeaderLabel"/>
+      <inherited Name="BaseHeaderUserId"/>
+      <inherited Name="LabelUserId"/>
+      <inherited Name="BaseHeaderDateTime"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="76.76" Width="1047.06" Height="94.5" CanGrow="true" CanShrink="true">
+        <TextObject Name="Text41" Left="-28.35" Top="18.9" Width="1039.5" Height="18.9" Text="[ResponseDataModel.ReportData.Label.CLABEL_PROPERTY] : [ResponseDataModel.ReportData.Param.CPROPERTY_NAME]([ResponseDataModel.ReportData.Param.CPROPERTY_ID])" Font="Arial Unicode MS, 7pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text42" Left="-28.35" Top="37.8" Width="604.8" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CLABEL_BUILDING] : [ResponseDataModel.ReportData.Param.CBUILDING_DISPLAY]" Font="Arial Unicode MS, 7pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text43" Left="746.55" Top="37.8" Width="425.25" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CLABEL_PERIOD] : [ResponseDataModel.ReportData.Param.CPERIOD_YYYY] - [ResponseDataModel.ReportData.Param.CPERIOD_MM]" Font="Arial Unicode MS, 7pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+      </ChildBand>
+    </inherited>
+    <GroupHeaderBand Name="GroupHeader1" ZOrder="0" Top="239.74" Width="1047.06" Height="37.8" CanGrow="true" CanShrink="true" Condition="[ResponseDataModel.ReportData.Data.CBUILDING_ID]">
+      <TextObject Name="Text44" Left="-28.35" Top="9.45" Width="973.35" Height="18.9" Text="[ResponseDataModel.ReportData.Data.CBUILDING_ID] - [ResponseDataModel.ReportData.Data.CBUILDING_NAME]" Font="Arial Unicode MS, 7pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <LineObject Name="Line23" Left="-28.35" Top="28.35" Width="1105.65" Diagonal="true"/>
+      <DataHeaderBand Name="DataHeader1" Top="172.43" Width="1047.06" Height="66.15" CanGrow="true" CanShrink="true" RepeatOnEveryPage="true">
+        <TextObject Name="Text45" Left="28.35" Width="75.6" Height="56.7" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_UNIT_ID]" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text46" Left="-37.8" Width="66.15" Height="56.7" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_UNIT_TYPE]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text47" Left="103.95" Width="75.6" Height="56.7" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_AGREEMENT_NO]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text48" Left="179.55" Width="66.15" Height="56.7" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_TENANT_ID]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text49" Left="245.7" Width="75.6" Height="56.7" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_TENANT_NAME]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text50" Left="321.3" Width="66.15" Height="56.7" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_OCCUPIED_AREA]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text51" Left="387.45" Top="9.45" Width="151.2" Height="18.9" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_RENT_HEADER]" HorzAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text52" Left="387.45" Top="28.35" Width="47.25" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_RENT_RENTED]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text53" Left="434.7" Top="28.35" Width="75.6" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_RENT_AVAILABLE]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text54" Left="510.3" Top="28.35" Width="37.8" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_RENT_PERCENT]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <LineObject Name="Line2" Left="387.45" Top="28.35" Width="689.85" Diagonal="true"/>
+        <TextObject Name="Text57" Left="548.1" Top="9.45" Width="179.55" Height="18.9" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_SC_HEADER]" HorzAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text58" Left="548.1" Top="28.35" Width="56.7" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_SC_RENTED]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text60" Left="689.85" Top="28.35" Width="37.8" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_SC_PERCENT]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text62" Left="604.8" Top="28.35" Width="85.05" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_SC_AVAILABLE]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text63" Left="727.65" Top="9.45" Width="179.55" Height="18.9" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_PL_HEADER]" HorzAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text64" Left="727.65" Top="28.35" Width="56.7" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_PL_RENTED]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text65" Left="784.35" Top="28.35" Width="85.05" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_PL_AVAILABLE]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text66" Left="869.4" Top="28.35" Width="37.8" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_PL_PERCENT]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text67" Left="907.2" Top="9.45" Width="170.1" Height="18.9" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_SPACE_HEADER]" HorzAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text68" Left="907.2" Top="28.35" Width="56.7" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_AREA_RENTED]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text69" Left="963.9" Top="28.35" Width="75.6" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_AREA_ALL]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text70" Left="1039.5" Top="28.35" Width="37.8" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_OCC_RATE]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <LineObject Name="Line1" Left="-28.35" Width="1105.65" Diagonal="true"/>
+        <LineObject Name="Line4" Left="387.45" Height="56.7" Diagonal="true"/>
+        <LineObject Name="Line5" Left="548.1" Height="56.7" Diagonal="true"/>
+        <LineObject Name="Line6" Left="727.65" Height="56.7" Diagonal="true"/>
+        <LineObject Name="Line7" Left="907.2" Height="56.7" Diagonal="true"/>
+        <LineObject Name="Line8" Left="434.7" Top="28.35" Height="28.35" Diagonal="true"/>
+        <LineObject Name="Line9" Left="510.3" Top="28.35" Height="28.35" Diagonal="true"/>
+        <LineObject Name="Line10" Left="604.8" Top="28.35" Height="28.35" Diagonal="true"/>
+        <LineObject Name="Line11" Left="689.85" Top="28.35" Height="28.35" Diagonal="true"/>
+        <LineObject Name="Line12" Left="784.35" Top="28.35" Height="28.35" Diagonal="true"/>
+        <LineObject Name="Line13" Left="869.4" Top="28.35" Height="28.35" Diagonal="true"/>
+        <LineObject Name="Line14" Left="963.9" Top="28.35" Height="28.35" Diagonal="true"/>
+        <LineObject Name="Line15" Left="1039.5" Top="28.35" Height="28.35" Diagonal="true"/>
+        <LineObject Name="Line16" Left="1077.3" Height="56.7" Diagonal="true"/>
+        <LineObject Name="Line17" Left="-28.35" Height="56.7" Diagonal="true"/>
+        <LineObject Name="Line18" Left="321.3" Height="56.7" Diagonal="true"/>
+        <LineObject Name="Line19" Left="245.7" Height="56.7" Diagonal="true"/>
+        <LineObject Name="Line20" Left="179.55" Height="56.7" Diagonal="true"/>
+        <LineObject Name="Line21" Left="103.95" Height="56.7" Diagonal="true"/>
+        <LineObject Name="Line22" Left="28.35" Height="56.7" Diagonal="true"/>
+        <LineObject Name="Line3" Left="-28.35" Top="56.7" Width="1105.65" Diagonal="true"/>
+      </DataHeaderBand>
+      <DataBand Name="Data1" Top="278.7" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true" DataSource="Data">
+        <TextObject Name="Text55" Left="-28.35" Width="56.7" Height="28.35" Text="[ResponseDataModel.ReportData.Data.CUNIT_ID]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text71" Left="28.35" Width="75.6" Height="28.35" Text="[ResponseDataModel.ReportData.Data.CUNIT_TYPE_NAME]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text72" Left="103.95" Width="75.6" Height="28.35" Text="[ResponseDataModel.ReportData.Data.CAGREEMENT_NO]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text73" Left="179.55" Width="66.15" Height="28.35" Text="[ResponseDataModel.ReportData.Data.CTENANT_ID]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text75" Left="321.3" Width="66.15" Height="28.35" Text="[ResponseDataModel.ReportData.Data.NOCCUPIED]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text76" Left="387.45" Width="47.25" Height="28.35" Text="[ResponseDataModel.ReportData.Data.NRENT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text77" Left="434.7" Width="75.6" Height="28.35" Text="[ResponseDataModel.ReportData.Data.NAVAILABLE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text78" Left="510.3" Width="37.8" Height="28.35" Text="[ResponseDataModel.ReportData.Data.NRENT_PCT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text79" Left="548.1" Width="56.7" Height="28.35" Text="[ResponseDataModel.ReportData.Data.NSC_RENT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text80" Left="604.8" Width="85.05" Height="28.35" Text="[ResponseDataModel.ReportData.Data.NSC_AVAIL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text81" Left="689.85" Width="37.8" Height="28.35" Text="[ResponseDataModel.ReportData.Data.NSC_PCT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text82" Left="727.65" Width="56.7" Height="28.35" Text="[ResponseDataModel.ReportData.Data.NPL_RENT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text83" Left="784.35" Width="85.05" Height="28.35" Text="[ResponseDataModel.ReportData.Data.NPL_AVAIL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text84" Left="869.4" Width="37.8" Height="28.35" Text="[ResponseDataModel.ReportData.Data.NPL_PCT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text85" Left="907.2" Width="56.7" Height="28.35" Text="[ResponseDataModel.ReportData.Data.NSPACE_RENT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text86" Left="963.9" Width="75.6" Height="28.35" Text="[ResponseDataModel.ReportData.Data.NALL_AREA]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text87" Left="1039.5" Width="37.8" Height="28.35" Text="[ResponseDataModel.ReportData.Data.NOCC_RATE_PCT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text74" Left="245.7" Width="75.6" Height="28.35" Text="[ResponseDataModel.ReportData.Data.CTENANT_NAME]" Font="Arial Unicode MS, 7pt"/>
+        <Sort>
+          <Sort Expression="[ResponseDataModel.ReportData.Data.CUNIT_ID]"/>
+        </Sort>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="308.22" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true">
+        <LineObject Name="Line24" Left="245.7" Width="831.6" Diagonal="true"/>
+        <TextObject Name="Text88" Left="245.7" Width="75.6" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CLABEL_SUBTOTAL]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text89" Left="321.3" Width="66.15" Height="28.35" Text="[SUM_NOCCUPIED]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text90" Left="387.45" Width="47.25" Height="28.35" Text="[SUM_NRENT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text91" Left="434.7" Width="75.6" Height="28.35" Text="[SUM_NAVAILABLE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text93" Left="548.1" Width="56.7" Height="28.35" Text="[SUM_NSC_RENT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text94" Left="604.8" Width="85.05" Height="28.35" Text="[SUM_NSC_AVAIL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text96" Left="727.65" Width="56.7" Height="28.35" Text="[SUM_NPL_RENT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text97" Left="784.35" Width="85.05" Height="28.35" Text="[SUM_NPL_AVAIL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text99" Left="907.2" Width="56.7" Height="28.35" Text="[SUM_NSPACE_RENT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text100" Left="963.9" Width="75.6" Height="28.35" Text="[SUM_NALL_AREA]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text107" Left="510.3" Width="37.8" Height="28.35" Text="[SUM_NRENT_PCT_TOTAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text108" Left="689.85" Width="37.8" Height="28.35" Text="[SUM_NSC_PCT_TOTAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text109" Left="869.4" Width="37.8" Height="28.35" Text="[SUM_NPL_PCT_TOTAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text110" Left="1039.5" Width="37.8" Height="28.35" Text="[SUM_RATE_PCT_TOTAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+      </GroupFooterBand>
+      <DataFooterBand Name="DataFooter1" Top="337.73" Width="1047.06" Height="37.8" CanGrow="true" CanShrink="true">
+        <LineObject Name="Line25" Left="245.7" Top="9.45" Width="831.6" Diagonal="true"/>
+        <TextObject Name="Text102" Left="321.3" Top="9.45" Width="66.15" Height="28.35" Text="[GRAND_TOTAL_NOCCUPIED]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text103" Left="245.7" Top="9.45" Width="75.6" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CLABEL_GRANDTOTAL]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text104" Left="387.45" Top="9.45" Width="47.25" Height="28.35" Text="[GRAND_TOTAL_NRENT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text105" Left="434.7" Top="9.45" Width="75.6" Height="28.35" Text="[GRAND_TOTAL_NAVAIL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text106" Left="510.3" Top="9.45" Width="37.8" Height="28.35" AfterDataEvent="Text106_AfterData" Text="[GRAND_TOTAL_PCTRENT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text111" Left="548.1" Top="9.45" Width="56.7" Height="28.35" Text="[GRAND_TOTAL_NSC_RENT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text112" Left="604.8" Top="9.45" Width="85.05" Height="28.35" Text="[GRAND_TOTAL_NSC_AVAIL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text113" Left="689.85" Top="9.45" Width="37.8" Height="28.35" Text="[GRAND_TOTAL_NSC_PCT_TOTAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text114" Left="727.65" Top="9.45" Width="56.7" Height="28.35" Text="[GRAND_TOTAL_NPL_RENT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text115" Left="784.35" Top="9.45" Width="85.05" Height="28.35" Text="[GRAND_TOTAL_NPL_AVAIL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text116" Left="869.4" Top="9.45" Width="37.8" Height="28.35" Text="[GRAND_TOTAL_NPL_PCT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text117" Left="907.2" Top="9.45" Width="56.7" Height="28.35" Text="[GRAND_TOTAL_NSPACERENT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text118" Left="963.9" Top="9.45" Width="75.6" Height="28.35" Text="[GRAND_TOTAL_NALL_AREA]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text119" Left="1039.5" Top="9.45" Width="37.8" Height="28.35" Text="[GRAND_TOTAL_RATE_PCT_TOT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+      </DataFooterBand>
+    </GroupHeaderBand>
+  </inherited>
+</inherited>

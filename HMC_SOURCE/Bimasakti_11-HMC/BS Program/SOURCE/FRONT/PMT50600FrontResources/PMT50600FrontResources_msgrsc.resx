@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="M001" xml:space="preserve">
+    <value>Cannot process Credit Note with Manual Numbering! Transaction numbering setting for Credit Note should be auto increment, not manual numbering!</value>
+  </data>
+  <data name="M002" xml:space="preserve">
+    <value>Are you sure want to delete this Credit Note?</value>
+  </data>
+  <data name="M003" xml:space="preserve">
+    <value>Purchase Credit Note Deleted Successfully!</value>
+  </data>
+  <data name="M004" xml:space="preserve">
+    <value>Are you sure want to submit this Credit Note?</value>
+  </data>
+  <data name="M005" xml:space="preserve">
+    <value>Are you sure want to redraft this Credit Note?</value>
+  </data>
+  <data name="M006" xml:space="preserve">
+    <value>You haven’t saved your changes. Are you sure want to cancel?</value>
+  </data>
+  <data name="M007" xml:space="preserve">
+    <value>Are you sure want to delete this Credit Note Item?</value>
+  </data>
+  <data name="M008" xml:space="preserve">
+    <value>Credit Note Item Deleted Successfully!</value>
+  </data>
+  <data name="M009" xml:space="preserve">
+    <value>Are you sure want to delete this {0}?</value>
+  </data>
+  <data name="M010" xml:space="preserve">
+    <value>{0} Deleted Successfully!</value>
+  </data>
+  <data name="V001" xml:space="preserve">
+    <value>Please Select Department!</value>
+  </data>
+  <data name="V002" xml:space="preserve">
+    <value>Please Select Customer!</value>
+  </data>
+  <data name="V003" xml:space="preserve">
+    <value>Please select property!</value>
+  </data>
+  <data name="V004" xml:space="preserve">
+    <value>Please select department!</value>
+  </data>
+  <data name="V005" xml:space="preserve">
+    <value>Please select Customer!</value>
+  </data>
+  <data name="V006" xml:space="preserve">
+    <value>Please select Due Date!</value>
+  </data>
+  <data name="V007" xml:space="preserve">
+    <value>Customer Reference No. is required!</value>
+  </data>
+  <data name="V008" xml:space="preserve">
+    <value>Document No is required!</value>
+  </data>
+  <data name="V009" xml:space="preserve">
+    <value>Document Date is required!</value>
+  </data>
+  <data name="V010" xml:space="preserve">
+    <value>Please select term!</value>
+  </data>
+  <data name="V011" xml:space="preserve">
+    <value>Please select currency!</value>
+  </data>
+  <data name="V012" xml:space="preserve">
+    <value>Local Currency Base Rate must be greater than 0!</value>
+  </data>
+  <data name="V013" xml:space="preserve">
+    <value>Local Currency Rate must be greater than 0!</value>
+  </data>
+  <data name="V014" xml:space="preserve">
+    <value>Base Currency Base Rate must be greater than 0!</value>
+  </data>
+  <data name="V015" xml:space="preserve">
+    <value>Base Currency Rate must be greater than 0!</value>
+  </data>
+  <data name="V016" xml:space="preserve">
+    <value>Please select Tax ID!</value>
+  </data>
+  <data name="V017" xml:space="preserve">
+    <value>Tax Base Rate must be greater than 0!</value>
+  </data>
+  <data name="V018" xml:space="preserve">
+    <value>Tax Currency Rate must be greater than 0!</value>
+  </data>
+  <data name="V019" xml:space="preserve">
+    <value>Description is required!</value>
+  </data>
+  <data name="V020" xml:space="preserve">
+    <value>Please select Service Department!</value>
+  </data>
+  <data name="V021" xml:space="preserve">
+    <value>Please select Service Type!</value>
+  </data>
+  <data name="V022" xml:space="preserve">
+    <value>Please select Service!</value>
+  </data>
+  <data name="V023" xml:space="preserve">
+    <value>Please select Expenditure!</value>
+  </data>
+  <data name="V024" xml:space="preserve">
+    <value>Please select Allocation ID!</value>
+  </data>
+  <data name="V025" xml:space="preserve">
+    <value>Sales Qty must be &gt; 0!</value>
+  </data>
+  <data name="V026" xml:space="preserve">
+    <value>Please select Sales Unit!</value>
+  </data>
+  <data name="V027" xml:space="preserve">
+    <value>Billing Unit is required!</value>
+  </data>
+  <data name="V028" xml:space="preserve">
+    <value>Conversion Factor must be &gt; 0!</value>
+  </data>
+  <data name="V029" xml:space="preserve">
+    <value>Unit Price must be &gt; 0</value>
+  </data>
+  <data name="V030" xml:space="preserve">
+    <value>Invalid Discount Percentage! Please input value between 0 and 100.</value>
+  </data>
+  <data name="V031" xml:space="preserve">
+    <value>Discount Amount cannot be &lt; 0!</value>
+  </data>
+  <data name="V032" xml:space="preserve">
+    <value>Invalid Discount Amount! Discount Amount cannot be &gt; Total Price</value>
+  </data>
+  <data name="V033" xml:space="preserve">
+    <value>Invalid Discount Percentage! Please input value between 0 and 100.</value>
+  </data>
+  <data name="V034" xml:space="preserve">
+    <value>Discount Amount cannot be &lt; 0!</value>
+  </data>
+  <data name="V035" xml:space="preserve">
+    <value>Invalid Discount Amount! Discount Amount cannot be &gt; Total Price after Total Discount</value>
+  </data>
+  <data name="_Addition" xml:space="preserve">
+    <value>Addition</value>
+  </data>
+  <data name="_AddOn" xml:space="preserve">
+    <value>Add On</value>
+  </data>
+  <data name="_Allocate" xml:space="preserve">
+    <value>Allocate</value>
+  </data>
+  <data name="_AllocationID" xml:space="preserve">
+    <value>Allocation ID</value>
+  </data>
+  <data name="_AllCustomer" xml:space="preserve">
+    <value>All Customer</value>
+  </data>
+  <data name="_Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="_Amount(Base)" xml:space="preserve">
+    <value>Amount (Base)</value>
+  </data>
+  <data name="_Amount(Local)" xml:space="preserve">
+    <value>Amount (Local)</value>
+  </data>
+  <data name="_Amount(Trx)" xml:space="preserve">
+    <value>Amount (Trx)</value>
+  </data>
+  <data name="_ApprovedQty" xml:space="preserve">
+    <value>Approved Qty</value>
+  </data>
+  <data name="_BaseCurrency" xml:space="preserve">
+    <value>Base Currency</value>
+  </data>
+  <data name="_CF" xml:space="preserve">
+    <value>CF</value>
+  </data>
+  <data name="_ChargeID" xml:space="preserve">
+    <value>Charge ID</value>
+  </data>
+  <data name="_ChargeName" xml:space="preserve">
+    <value>Charge Name</value>
+  </data>
+  <data name="_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="_CreatedBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="_CreatedDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="_Curr" xml:space="preserve">
+    <value>Curr.</value>
+  </data>
+  <data name="_Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="_CurrencyRate" xml:space="preserve">
+    <value>Currency Rate</value>
+  </data>
+  <data name="_Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="_Deduction" xml:space="preserve">
+    <value>Deduction</value>
+  </data>
+  <data name="_Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_DeptCode" xml:space="preserve">
+    <value>Dept. Code</value>
+  </data>
+  <data name="_DeptName" xml:space="preserve">
+    <value>Dept. Name</value>
+  </data>
+  <data name="_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="_Detail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="_DueDate" xml:space="preserve">
+    <value>Due Date</value>
+  </data>
+  <data name="_Expenditure" xml:space="preserve">
+    <value>Expenditure</value>
+  </data>
+  <data name="_CreditNoteEntry" xml:space="preserve">
+    <value>Credit Note Entry</value>
+  </data>
+  <data name="_CreditNoteHeader" xml:space="preserve">
+    <value>Credit Note Header</value>
+  </data>
+  <data name="_CreditNoteItem" xml:space="preserve">
+    <value>Credit Note Item</value>
+  </data>
+  <data name="_CreditNoteList" xml:space="preserve">
+    <value>Credit Note List</value>
+  </data>
+  <data name="_ItemEntry" xml:space="preserve">
+    <value>Item Entry</value>
+  </data>
+  <data name="_ItemList" xml:space="preserve">
+    <value>Item List</value>
+  </data>
+  <data name="_Journal" xml:space="preserve">
+    <value>Journal</value>
+  </data>
+  <data name="_LineAmount" xml:space="preserve">
+    <value>Line Amount</value>
+  </data>
+  <data name="_LineDiscount" xml:space="preserve">
+    <value>Line Discount</value>
+  </data>
+  <data name="_LocalAmount" xml:space="preserve">
+    <value>Local Amount</value>
+  </data>
+  <data name="_LocalCurrency" xml:space="preserve">
+    <value>Local Currency</value>
+  </data>
+  <data name="_NetAmount" xml:space="preserve">
+    <value>Net Amount</value>
+  </data>
+  <data name="_Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="_OtherTax" xml:space="preserve">
+    <value>Other Tax</value>
+  </data>
+  <data name="_Periodfrom" xml:space="preserve">
+    <value>Period from</value>
+  </data>
+  <data name="_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="_ProdType" xml:space="preserve">
+    <value>Prod. Type</value>
+  </data>
+  <data name="_Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="_ProductDept" xml:space="preserve">
+    <value>Product Dept.</value>
+  </data>
+  <data name="_ProductType" xml:space="preserve">
+    <value>Product Type</value>
+  </data>
+  <data name="_Property" xml:space="preserve">
+    <value>Property</value>
+  </data>
+  <data name="_PurchaseAmount" xml:space="preserve">
+    <value>Purchase Amount</value>
+  </data>
+  <data name="_PurchaseQty" xml:space="preserve">
+    <value>Purchase Qty</value>
+  </data>
+  <data name="_Qty" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="_Redraft" xml:space="preserve">
+    <value>Redraft</value>
+  </data>
+  <data name="_RefDate" xml:space="preserve">
+    <value>Ref. Date</value>
+  </data>
+  <data name="_ReferenceNo" xml:space="preserve">
+    <value>Reference No</value>
+  </data>
+  <data name="_RefNo" xml:space="preserve">
+    <value>Ref. No.</value>
+  </data>
+  <data name="_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="_SelectedCustomer" xml:space="preserve">
+    <value>Selected Customer</value>
+  </data>
+  <data name="_SeqNo" xml:space="preserve">
+    <value>Seq No.</value>
+  </data>
+  <data name="_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="_Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="_Summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="_SummaryDiscount" xml:space="preserve">
+    <value>Summary Discount</value>
+  </data>
+  <data name="_Customer" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="_Customer'sProduct" xml:space="preserve">
+    <value>Customer's Product</value>
+  </data>
+  <data name="_CustomerProductID" xml:space="preserve">
+    <value>Customer Product ID</value>
+  </data>
+  <data name="_CustomerProductName" xml:space="preserve">
+    <value>Customer Product Name</value>
+  </data>
+  <data name="_CustomerRefNo" xml:space="preserve">
+    <value>Customer Ref. No</value>
+  </data>
+  <data name="_Tax" xml:space="preserve">
+    <value>Tax</value>
+  </data>
+  <data name="_Taxable" xml:space="preserve">
+    <value>Taxable</value>
+  </data>
+  <data name="_TaxRate" xml:space="preserve">
+    <value>Tax Rate</value>
+  </data>
+  <data name="_Term" xml:space="preserve">
+    <value>Term</value>
+  </data>
+  <data name="_to" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="_TotalDiscount" xml:space="preserve">
+    <value>Total Discount</value>
+  </data>
+  <data name="_TotalPrice" xml:space="preserve">
+    <value>Total Price</value>
+  </data>
+  <data name="_TotalPurchaseAmount" xml:space="preserve">
+    <value>Total Purchase Amount</value>
+  </data>
+  <data name="_TrxAmount" xml:space="preserve">
+    <value>Trx Amount</value>
+  </data>
+  <data name="_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="_Unit" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="_UnitPrice" xml:space="preserve">
+    <value>Unit Price</value>
+  </data>
+  <data name="_UpdatedBy" xml:space="preserve">
+    <value>Updated By</value>
+  </data>
+  <data name="_UpdatedDate" xml:space="preserve">
+    <value>Updated Date</value>
+  </data>
+  <data name="_DocNo" xml:space="preserve">
+    <value>Doc No</value>
+  </data>
+  <data name="_DocumentNo" xml:space="preserve">
+    <value>Document No</value>
+  </data>
+  <data name="_Reference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="_Service" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="_ServiceDept" xml:space="preserve">
+    <value>Service Dept.</value>
+  </data>
+  <data name="_ProductServiceID" xml:space="preserve">
+    <value>Product / Service ID</value>
+  </data>
+  <data name="_ProductServiceName" xml:space="preserve">
+    <value>Product / Service Name</value>
+  </data>
+  <data name="_ServiceType" xml:space="preserve">
+    <value>Service Type</value>
+  </data>
+  <data name="_TotalCreditNoteAmount" xml:space="preserve">
+    <value>Total Credit Note Amount</value>
+  </data>
+  <data name="V036" xml:space="preserve">
+    <value>Please select Dept. Code!</value>
+  </data>
+  <data name="V037" xml:space="preserve">
+    <value>Please select Charge ID!</value>
+  </data>
+  <data name="V038" xml:space="preserve">
+    <value>Description is required!</value>
+  </data>
+  <data name="V039" xml:space="preserve">
+    <value>Amount must be &gt; 0!</value>
+  </data>
+  <data name="_CreditNoteAmount" xml:space="preserve">
+    <value>Credit Note Amount</value>
+  </data>
+  <data name="_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="_DocDate" xml:space="preserve">
+    <value>Doc Date</value>
+  </data>
+  <data name="_Dept" xml:space="preserve">
+    <value>Dept.</value>
+  </data>
+  <data name="_ProductService" xml:space="preserve">
+    <value>Product / Service</value>
+  </data>
+  <data name="_CreditQty" xml:space="preserve">
+    <value>Credit Qty</value>
+  </data>
+  <data name="V040" xml:space="preserve">
+    <value>Invoice Amount can't be negative</value>
+  </data>
+  <data name="M011" xml:space="preserve">
+    <value>Selected {0} cannot be deleted!</value>
+  </data>
+  <data name="V041" xml:space="preserve">
+    <value>Please select Property!</value>
+  </data>
+</root>

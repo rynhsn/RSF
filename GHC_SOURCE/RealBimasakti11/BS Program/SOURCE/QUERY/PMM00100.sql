@@ -1,0 +1,70 @@
+delete from sat_locking where CUSER_ID= 'ghc' 
+delete from SAM_USER_LOCKING where CUSER_ID= 'ghc' 
+select * from SAM_USER_LOCKING
+select * from PMM_SYSTEM_PARAM
+EXEC RSP_GS_GET_PROPERTY_LIST 'rcd', 'ghc',0
+EXEC RSP_PM_GET_SYSTEM_PARAMETER_LIST 'rcd','ghc'
+EXEC RSP_GS_GET_GSB_CODE_LIST 'BIMASAKTI','rcd','_BS_GENERATE_INVOICE_MODE','en',''
+EXEC RSP_PM_GET_SYSTEM_PARAMETER_DETAIL 'BSI','ASHMD','ghc','02'
+EXEC RSP_PM_GET_SYSTEM_PARAMETER_DETAIL 'rcd','TAR','ghc'
+EXEC RSP_PM_GET_SYSTEM_PARAMETER_DETAIL 'rcd','JBMPC','ghc'
+DELETE FROM PMM_SYSTEM_PARAM_UTILITIES
+WHERE CCOMPANY_ID = 'RCD' AND CPROPERTY_ID = 'JBMPC' AND CBUILDING_ID = ''
+
+IF (OBJECT_ID('tempdb..#__SP_ERR_Table') is null) BEGIN
+	select SP_Name=cast('' as varchar(50)), Err_Code=cast('' as varchar(20)), Err_Detail=cast('' as nvarchar(max)) into #__SP_ERR_Table where 0=1
+end else begin
+	truncate table #__SP_ERR_TABLE
+end
+
+begin try
+	-- Jalankan script SP disini
+
+	 EXEC RSP_PM_MAINTAIN_SYSTEM_PARAMETER
+	 'RCD', 'JBMPC','202408','202405', '202408', 1, 0,'I','R', '01  ','01  ','IPT', '100.00','IPK','100.00','202408','202408','202408',1, 1, 1, '', '', '', 1, 1,1,'', 0,'EDIT','GHC'
+end try
+begin catch
+	select * from #__SP_ERR_TABLE --untuk tahu error code yg di raise
+end catch
+
+
+EXEC RSP_PM_GET_SYSTEM_PARAMETER_DETAIL 'rcd','JBMPC','ghc'
+EXEC RSP_PM_GET_SYSTEM_PARAMETER_DETAIL 'rcd','ASHMD','ghc'
+select * from SAM_USER_LOCKING 
+SELECT * FROM GST_UPLOAD_ERROR_STATUS
+
+--- HO Utilities Building Mapping
+EXEC RSP_GS_GET_BUILDING_LIST 'RCD','ASHMD','GHC'
+EXEC RSP_PM_GET_BUILDING_UTILITIES 'RCD','JBMPC',''
+EXEC RSP_PM_GET_BUILDING_UTILITIES 'RCD','ASHMD','TW-C'
+EXEC RSP_PM_MAINTAIN_BUILDING_UTILITIES '','','',0,0,'','',0,'','',0,'','','',''
+
+---- Billing System Param
+EXEC RSP_PM_GET_SYSTEM_PARAMETER_DETAIL'rcd','JBMPC','ghc','02'
+EXEC RSP_GS_GET_GSB_CODE_LIST 
+   'BIMASAKTI'--@CAPPLICATION
+  ,'RCD'--@CCOMPANY_ID
+  ,'_PM_PAYMENT_SUBMIT_BY'--@CCLASS_ID
+  ,'EN'--@CLANGUAGE_ID
+  ,''--@CREC_ID_LIST
+EXEC RSP_GS_GET_CURRENCY_LIST 'rcd','ghc'
+EXEC RSP_GS_GET_PAYMENT_TERM_LIST 'rcd','ashmd','ghc'
+EXEC RSP_PM_MAINTAIN_BILLING_PARAMETER
+''--@CCOMPANY_ID
+,''--@CPROPERTY_ID
+,''--@CBUILDING_ID
+,''--@LALL_BUILDING
+,''--@LELECTRICITY
+,''--@CELECTRICITY_CHARGES_ID
+,''--@CELECTRICITY_TAX_ID
+,''--@LCHILLER
+,''--@CCHILLER_CHARGES_ID
+,''--@CCHILLER_TAX_ID
+,''--@LGAS
+,''--@CGAS_CHARGES_ID
+,''--@CGAS_TAX_ID
+,''--@LWATER
+,''--@CWATER_CHARGES_ID
+,''--@CWATER_TAX_ID
+,''--@CACTION
+,''--@CUSER_ID

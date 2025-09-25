@@ -1,0 +1,72 @@
+@* @using LookupAPFrontResources *@
+@* @inherits R_Page *@
+@* @attribute [R_Page(Title = "Product Allocation Lookup")] *@
+@* @inject R_ILocalizer<Resources_Dummy_Class_LookupAP> _localizer *@
+@* *@
+@* <R_StackLayout Style="width: 800px"> *@
+@*     @*    <R_StackLayout Row> *@
+@*         <R_ItemLayout> *@
+@*             <R_Button OnClick="Search_Button"> *@
+@*                 Search *@
+@*             </R_Button> *@
+@*         </R_ItemLayout> *@
+@*          *@
+@*         <R_ItemLayout> *@
+@*             <R_Button OnClick="ShowAll_Button"> *@
+@*                 Show All *@
+@*             </R_Button> *@
+@*         </R_ItemLayout> *@
+@* *@
+@*     </R_StackLayout>*@ 
+@* *@
+@*     <R_StackLayout Row> *@
+@*         <R_Grid @ref="@GridRef" *@
+@*                 AllowAddNewRow="false" *@
+@*                 AllowEditRow="false" *@
+@*                 AllowDeleteRow="false" *@
+@*                 DataSource="_viewModel.ProductAllocationGrid" *@
+@*                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync" *@
+@*                   R_GridType="R_eGridType.Navigator" *@
+@*                 Pageable *@
+@*                 Height="300px" *@
+@*                 PageSize="5"> *@
+@*             <R_GridColumns> *@
+@*                 <R_GridTextColumn FieldName="CALLOC_ID" HeaderText="@_localizer["ALLOC_ID"]"></R_GridTextColumn> *@
+@*                 <R_GridTextColumn FieldName="CALLOC_NAME" HeaderText="@_localizer["ALLOC_NM"]"></R_GridTextColumn> *@
+@*                 <R_GridTextColumn FieldName="CDEPT_MODE_NAME" HeaderText="@_localizer["DEPT_MD"]"></R_GridTextColumn> *@
+@*                 <R_GridTextColumn FieldName="GLACCOUNT" HeaderText="@_localizer["ACCNT_NO"]"></R_GridTextColumn> *@
+@*             </R_GridColumns> *@
+@*         </R_Grid> *@
+@*     </R_StackLayout> *@
+@* *@
+@* *@
+@*     <R_StackLayout Row Class="justify-content-between"> *@
+@* *@
+@*         <R_StackLayout Row Class="justify-content-start"> *@
+@*             <R_ItemLayout> *@
+@*                 <R_Button OnClick="Refresh_Button"> *@
+@*                     @_localizer["RFSH"] *@
+@*                 </R_Button> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*         </R_StackLayout> *@
+@*         <R_StackLayout Row Class="justify-content-end"> *@
+@*             <R_ItemLayout> *@
+@*                 <R_Button Class="justify-content-end" Enabled="@(_viewModel.ProductAllocationGrid.Count != 0)" *@
+@*                           OnClick="Button_OnClickOkAsync"> *@
+@*                     @_localizer["OK"] *@
+@*                 </R_Button> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*             <R_ItemLayout> *@
+@*                 <R_Button Class="justify-content-end" OnClick="Button_OnClickCloseAsync"> *@
+@*                     @_localizer["CNCL"] *@
+@*                 </R_Button> *@
+@*             </R_ItemLayout> *@
+@* *@
+@*         </R_StackLayout> *@
+@* *@
+@*     </R_StackLayout> *@
+@* *@
+@* *@
+@* </R_StackLayout> *@

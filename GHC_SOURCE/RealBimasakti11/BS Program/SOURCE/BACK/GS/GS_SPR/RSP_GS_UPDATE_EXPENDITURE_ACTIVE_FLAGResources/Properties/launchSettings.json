@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GS_UPDATE_EXPENDITURE_ACTIVE_FLAGResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:61644;http://localhost:61645"
+    }
+  }
+}

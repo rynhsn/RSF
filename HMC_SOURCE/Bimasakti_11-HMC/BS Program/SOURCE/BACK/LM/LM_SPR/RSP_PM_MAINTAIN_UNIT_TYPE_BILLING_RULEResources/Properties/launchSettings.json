@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_PM_MAINTAIN_UNIT_TYPE_BILLING_RULEResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:51074;http://localhost:51075"
+    }
+  }
+}

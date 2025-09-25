@@ -1,0 +1,680 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ValidationAgreementNo" xml:space="preserve">
+    <value>Agreement No is required.</value>
+    <comment>Agreement No is required.</comment>
+  </data>
+  <data name="ValidationBuilding" xml:space="preserve">
+    <value>Building is required.</value>
+    <comment>Building is required.</comment>
+  </data>
+  <data name="ValidationCharge" xml:space="preserve">
+    <value>Charge Id is required.</value>
+    <comment>Charge Id is required.</comment>
+  </data>
+  <data name="ValidationChargeMode" xml:space="preserve">
+    <value>Charge Mode is required.</value>
+    <comment>Charge Mode is required.</comment>
+  </data>
+  <data name="ValidationContractor" xml:space="preserve">
+    <value>Contractor is required.</value>
+    <comment>Contractor is required.</comment>
+  </data>
+  <data name="ValidationCurrency" xml:space="preserve">
+    <value>Currency is required.</value>
+    <comment>Currency is required.</comment>
+  </data>
+  <data name="ValidationDepartment" xml:space="preserve">
+    <value>Department is required.</value>
+    <comment>Department is required.</comment>
+  </data>
+  <data name="ValidationDepositID" xml:space="preserve">
+    <value>Deposit ID is required.</value>
+    <comment>Deposit ID is required.</comment>
+  </data>
+  <data name="ValidationFeeAmount" xml:space="preserve">
+    <value>Fee Amount is required.</value>
+    <comment>Fee Amount is required.</comment>
+  </data>
+  <data name="ValidationFeeCalculation" xml:space="preserve">
+    <value>Fee Calculation is required.</value>
+    <comment>Fee Calculation is required.</comment>
+  </data>
+  <data name="ValidationLeaseMode" xml:space="preserve">
+    <value>Lease Mode is required.</value>
+    <comment>Lease Mode is required.</comment>
+  </data>
+  <data name="ValidationMeterNo" xml:space="preserve">
+    <value>Meter No is required.</value>
+    <comment>Meter No is required.</comment>
+  </data>
+  <data name="ValidationSalesman" xml:space="preserve">
+    <value>Salesman is required.</value>
+    <comment>Salesman is required.</comment>
+  </data>
+  <data name="ValidationTenant" xml:space="preserve">
+    <value>Tenant is required.</value>
+    <comment>Tenant is required.</comment>
+  </data>
+  <data name="ValidationUnitDescription" xml:space="preserve">
+    <value>Unit Description is required.</value>
+    <comment>Unit Description is required.</comment>
+  </data>
+  <data name="ValidationUnitId" xml:space="preserve">
+    <value>Unit Id is required.</value>
+    <comment>Unit Id is required.</comment>
+  </data>
+  <data name="_AcceptDate" xml:space="preserve">
+    <value>Accept Date</value>
+    <comment>Accept Date</comment>
+  </data>
+  <data name="_ActiveorInActive" xml:space="preserve">
+    <value>Active / InActive</value>
+    <comment>Active / InActive</comment>
+  </data>
+  <data name="_Actual" xml:space="preserve">
+    <value>Actual</value>
+    <comment>Actual</comment>
+  </data>
+  <data name="_ActualArea" xml:space="preserve">
+    <value>Actual Area</value>
+    <comment>Actual Area</comment>
+  </data>
+  <data name="_Agreement" xml:space="preserve">
+    <value>Agreement</value>
+    <comment>Agreement</comment>
+  </data>
+  <data name="_AgreementDate" xml:space="preserve">
+    <value>Agreement Date</value>
+    <comment>Agreement Date</comment>
+  </data>
+  <data name="_AgreementList" xml:space="preserve">
+    <value>Agreement List</value>
+    <comment>Agreement List</comment>
+  </data>
+  <data name="_AgreementNo" xml:space="preserve">
+    <value>Agreement No</value>
+    <comment>Agreement No</comment>
+  </data>
+  <data name="_AgreementNo*" xml:space="preserve">
+    <value>Agreement No*</value>
+    <comment>Agreement No*</comment>
+  </data>
+  <data name="_AgreementStatus" xml:space="preserve">
+    <value>Agreement Status</value>
+    <comment>Agreement Status</comment>
+  </data>
+  <data name="_AgreementUnit(s)" xml:space="preserve">
+    <value>Agreement Unit(s)</value>
+    <comment>Agreement Unit(s)</comment>
+  </data>
+  <data name="_BillingMethod" xml:space="preserve">
+    <value>Billing Method</value>
+    <comment>Billing Method</comment>
+  </data>
+  <data name="_BrowseFile" xml:space="preserve">
+    <value>Browse File</value>
+    <comment>Browse File</comment>
+  </data>
+  <data name="_Building" xml:space="preserve">
+    <value>Building</value>
+    <comment>Building</comment>
+  </data>
+  <data name="_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="_ChangeStatus" xml:space="preserve">
+    <value>Change Status</value>
+    <comment>Change Status</comment>
+  </data>
+  <data name="_ChangeStatusFrom" xml:space="preserve">
+    <value>Change Status From</value>
+    <comment>Change Status From</comment>
+  </data>
+  <data name="_Charge" xml:space="preserve">
+    <value>Charge</value>
+    <comment>Charge</comment>
+  </data>
+  <data name="_ChargeId" xml:space="preserve">
+    <value>Charge Id</value>
+    <comment>Charge Id</comment>
+  </data>
+  <data name="_ChargeMode" xml:space="preserve">
+    <value>Charge Mode</value>
+    <comment>Charge Mode</comment>
+  </data>
+  <data name="_ChargesInfo" xml:space="preserve">
+    <value>Charges Info</value>
+    <comment>Charges Info</comment>
+  </data>
+  <data name="_ChargeType" xml:space="preserve">
+    <value>Charge Type</value>
+    <comment>Charge Type</comment>
+  </data>
+  <data name="_Close" xml:space="preserve">
+    <value>Close</value>
+    <comment>Close</comment>
+  </data>
+  <data name="_Common" xml:space="preserve">
+    <value>Common</value>
+    <comment>Common</comment>
+  </data>
+  <data name="_CommonArea" xml:space="preserve">
+    <value>Common Area</value>
+    <comment>Common Area</comment>
+  </data>
+  <data name="_Contractor" xml:space="preserve">
+    <value>Contractor</value>
+    <comment>Contractor</comment>
+  </data>
+  <data name="_CreatedBy" xml:space="preserve">
+    <value>Created By</value>
+    <comment>Created By</comment>
+  </data>
+  <data name="_CreatedDate" xml:space="preserve">
+    <value>Created Date</value>
+    <comment>Created Date</comment>
+  </data>
+  <data name="_Currency" xml:space="preserve">
+    <value>Currency</value>
+    <comment>Currency</comment>
+  </data>
+  <data name="_Day" xml:space="preserve">
+    <value>Day</value>
+    <comment>Day</comment>
+  </data>
+  <data name="_Department" xml:space="preserve">
+    <value>Department</value>
+    <comment>Department</comment>
+  </data>
+  <data name="_Department*" xml:space="preserve">
+    <value>Department*</value>
+    <comment>Department*</comment>
+  </data>
+  <data name="_Deposit" xml:space="preserve">
+    <value>Deposit</value>
+    <comment>Deposit</comment>
+  </data>
+  <data name="_DepositAmount" xml:space="preserve">
+    <value>Deposit Amount</value>
+    <comment>Deposit Amount</comment>
+  </data>
+  <data name="_DepositDate" xml:space="preserve">
+    <value>Deposit Date</value>
+    <comment>Deposit Date</comment>
+  </data>
+  <data name="_DepositID" xml:space="preserve">
+    <value>Deposit ID</value>
+    <comment>Deposit ID</comment>
+  </data>
+  <data name="_DepositName" xml:space="preserve">
+    <value>Deposit Name</value>
+    <comment>Deposit Name</comment>
+  </data>
+  <data name="_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>Description</comment>
+  </data>
+  <data name="_Document" xml:space="preserve">
+    <value>Document</value>
+    <comment>Document</comment>
+  </data>
+  <data name="_DocumentDate" xml:space="preserve">
+    <value>Document Date</value>
+    <comment>Document Date</comment>
+  </data>
+  <data name="_DocumentFile" xml:space="preserve">
+    <value>Document File</value>
+    <comment>Document File</comment>
+  </data>
+  <data name="_DocumentNo" xml:space="preserve">
+    <value>Document No</value>
+    <comment>Document No</comment>
+  </data>
+  <data name="_EndDate" xml:space="preserve">
+    <value>End Date</value>
+    <comment>End Date</comment>
+  </data>
+  <data name="_ExpiredDate" xml:space="preserve">
+    <value>Expired Date</value>
+    <comment>Expired Date</comment>
+  </data>
+  <data name="_FeeAmount" xml:space="preserve">
+    <value>Fee Amount</value>
+    <comment>Fee Amount</comment>
+  </data>
+  <data name="_FeeCalculation" xml:space="preserve">
+    <value>Fee Calculation</value>
+    <comment>Fee Calculation</comment>
+  </data>
+  <data name="_FeeMethod" xml:space="preserve">
+    <value>Fee Method</value>
+    <comment>Fee Method</comment>
+  </data>
+  <data name="_FeePerArea" xml:space="preserve">
+    <value>Fee/Area</value>
+    <comment>Fee/Area</comment>
+  </data>
+  <data name="_Floor" xml:space="preserve">
+    <value>Floor</value>
+    <comment>Floor</comment>
+  </data>
+  <data name="_ForTotalArea" xml:space="preserve">
+    <value>For Total Area</value>
+    <comment>For Total Area</comment>
+  </data>
+  <data name="_From" xml:space="preserve">
+    <value>From</value>
+    <comment>From</comment>
+  </data>
+  <data name="_Gross" xml:space="preserve">
+    <value>Gross</value>
+    <comment>Gross</comment>
+  </data>
+  <data name="_GrossArea" xml:space="preserve">
+    <value>Gross Area</value>
+    <comment>Gross Area</comment>
+  </data>
+  <data name="_HandOverDate" xml:space="preserve">
+    <value>Hand Over Date</value>
+    <comment>Hand Over Date</comment>
+  </data>
+  <data name="_Invalid" xml:space="preserve">
+    <value>Invalid</value>
+    <comment>Invalid</comment>
+  </data>
+  <data name="_InvoiceAmount" xml:space="preserve">
+    <value>Invoice Amount</value>
+    <comment>Invoice Amount</comment>
+  </data>
+  <data name="_InvoiceGroup" xml:space="preserve">
+    <value>Invoice Group</value>
+    <comment>Invoice Group</comment>
+  </data>
+  <data name="_InvoicePeriod" xml:space="preserve">
+    <value>Invoice Period</value>
+    <comment>Invoice Period</comment>
+  </data>
+  <data name="_InvoicePlan" xml:space="preserve">
+    <value>Invoice Plan</value>
+    <comment>Invoice Plan</comment>
+  </data>
+  <data name="_InvoicingPeriod" xml:space="preserve">
+    <value>Invoicing Period</value>
+    <comment>Invoicing Period</comment>
+  </data>
+  <data name="_LandLord" xml:space="preserve">
+    <value>Land Lord</value>
+    <comment>Land Lord</comment>
+  </data>
+  <data name="_LeaseMode" xml:space="preserve">
+    <value>Lease Mode</value>
+    <comment>Lease Mode</comment>
+  </data>
+  <data name="_MeterNo" xml:space="preserve">
+    <value>Meter No</value>
+    <comment>Meter No</comment>
+  </data>
+  <data name="_MeterStart" xml:space="preserve">
+    <value>Meter Start</value>
+    <comment>Meter Start</comment>
+  </data>
+  <data name="_MinimumRent" xml:space="preserve">
+    <value>Minimum Rent</value>
+    <comment>Minimum Rent</comment>
+  </data>
+  <data name="_Month" xml:space="preserve">
+    <value>Month</value>
+    <comment>Month</comment>
+  </data>
+  <data name="_Month(s)" xml:space="preserve">
+    <value>Month(s)</value>
+    <comment>Month(s)</comment>
+  </data>
+  <data name="_MonthlyRevenue" xml:space="preserve">
+    <value>Monthly Revenue</value>
+    <comment>Monthly Revenue</comment>
+  </data>
+  <data name="_Net" xml:space="preserve">
+    <value>Net</value>
+    <comment>Net</comment>
+  </data>
+  <data name="_NetArea" xml:space="preserve">
+    <value>Net Area</value>
+    <comment>Net Area</comment>
+  </data>
+  <data name="_NewAgreement" xml:space="preserve">
+    <value>New Agreement</value>
+    <comment>New Agreement</comment>
+  </data>
+  <data name="_NewDocNo" xml:space="preserve">
+    <value>New Doc No</value>
+    <comment>New Doc No</comment>
+  </data>
+  <data name="_No" xml:space="preserve">
+    <value>No</value>
+    <comment>No</comment>
+  </data>
+  <data name="_Note" xml:space="preserve">
+    <value>Note</value>
+    <comment>Note</comment>
+  </data>
+  <data name="_Notes" xml:space="preserve">
+    <value>Notes</value>
+    <comment>Notes</comment>
+  </data>
+  <data name="_NotesError" xml:space="preserve">
+    <value>Notes Error</value>
+    <comment>Notes Error</comment>
+  </data>
+  <data name="_Process" xml:space="preserve">
+    <value>Process</value>
+    <comment>Process</comment>
+  </data>
+  <data name="_PROPERTY" xml:space="preserve">
+    <value>PROPERTY</value>
+    <comment>PROPERTY</comment>
+  </data>
+  <data name="_PropertySmall" xml:space="preserve">
+    <value>Property</value>
+    <comment>Property</comment>
+  </data>
+  <data name="_ProposalDate" xml:space="preserve">
+    <value>Proposal Date</value>
+    <comment>Proposal Date</comment>
+  </data>
+  <data name="_Reason" xml:space="preserve">
+    <value>Reason</value>
+    <comment>Reason</comment>
+  </data>
+  <data name="_RenewalAgreement" xml:space="preserve">
+    <value>Renewal Agreement</value>
+    <comment>Renewal Agreement</comment>
+  </data>
+  <data name="_RentRate" xml:space="preserve">
+    <value>Rent Rate</value>
+    <comment>Rent Rate</comment>
+  </data>
+  <data name="_RevenueSharing" xml:space="preserve">
+    <value>Revenue Sharing</value>
+    <comment>Revenue Sharing</comment>
+  </data>
+  <data name="_Salesman" xml:space="preserve">
+    <value>Salesman</value>
+    <comment>Salesman</comment>
+  </data>
+  <data name="_Save" xml:space="preserve">
+    <value>Save</value>
+    <comment>Save</comment>
+  </data>
+  <data name="_SaveToExcel" xml:space="preserve">
+    <value>Save To Excel</value>
+    <comment>Save To Excel</comment>
+  </data>
+  <data name="_SeqNo" xml:space="preserve">
+    <value>Seq No</value>
+    <comment>Seq No</comment>
+  </data>
+  <data name="_Share" xml:space="preserve">
+    <value>Share(%)</value>
+    <comment>Share(%)</comment>
+  </data>
+  <data name="_SourceFile" xml:space="preserve">
+    <value>Source File</value>
+    <comment>Source File</comment>
+  </data>
+  <data name="_sqm" xml:space="preserve">
+    <value>sqm</value>
+    <comment>sqm</comment>
+  </data>
+  <data name="_StartDate" xml:space="preserve">
+    <value>Start Date</value>
+    <comment>Start Date</comment>
+  </data>
+  <data name="_StartDate*" xml:space="preserve">
+    <value>Start Date*</value>
+    <comment>Start Date*</comment>
+  </data>
+  <data name="_StartInvoicePeriod" xml:space="preserve">
+    <value>Start Invoice Period</value>
+    <comment>Start Invoice Period</comment>
+  </data>
+  <data name="_Status" xml:space="preserve">
+    <value>Status</value>
+    <comment>Status</comment>
+  </data>
+  <data name="_TaxCode" xml:space="preserve">
+    <value>Tax Code</value>
+    <comment>Tax Code</comment>
+  </data>
+  <data name="_Template" xml:space="preserve">
+    <value>Template</value>
+    <comment>Template</comment>
+  </data>
+  <data name="_Tenant" xml:space="preserve">
+    <value>Tenant</value>
+    <comment>Tenant</comment>
+  </data>
+  <data name="_Tenant*" xml:space="preserve">
+    <value>Tenant*</value>
+    <comment>Tenant*</comment>
+  </data>
+  <data name="_To" xml:space="preserve">
+    <value>To</value>
+    <comment>To</comment>
+  </data>
+  <data name="_TotalActualArea" xml:space="preserve">
+    <value>Total Actual Area</value>
+    <comment>Total Actual Area</comment>
+  </data>
+  <data name="_TotalAmount" xml:space="preserve">
+    <value>Total Amount</value>
+    <comment>Total Amount</comment>
+  </data>
+  <data name="_TotalArea" xml:space="preserve">
+    <value>Total Area</value>
+    <comment>Total Area</comment>
+  </data>
+  <data name="_TotalCommonArea" xml:space="preserve">
+    <value>Total Common Area</value>
+    <comment>Total Common Area</comment>
+  </data>
+  <data name="_TotalGrossArea" xml:space="preserve">
+    <value>Total Gross Area</value>
+    <comment>Total Gross Area</comment>
+  </data>
+  <data name="_TotalNetArea" xml:space="preserve">
+    <value>Total Net Area</value>
+    <comment>Total Net Area</comment>
+  </data>
+  <data name="_TotalRows" xml:space="preserve">
+    <value>Total Rows</value>
+    <comment>Total Rows</comment>
+  </data>
+  <data name="_TotalUnit" xml:space="preserve">
+    <value>Total Unit</value>
+    <comment>Total Unit</comment>
+  </data>
+  <data name="_Transaction" xml:space="preserve">
+    <value>Transaction</value>
+    <comment>Transaction</comment>
+  </data>
+  <data name="_TrxStatus" xml:space="preserve">
+    <value>Trx Status</value>
+    <comment>Trx Status</comment>
+  </data>
+  <data name="_Unit Type" xml:space="preserve">
+    <value>Unit Type</value>
+    <comment>Unit Type</comment>
+  </data>
+  <data name="_UnitDescription" xml:space="preserve">
+    <value>Unit Description</value>
+    <comment>Unit Description</comment>
+  </data>
+  <data name="_UnitDescription*" xml:space="preserve">
+    <value>Unit Description*</value>
+    <comment>Unit Description*</comment>
+  </data>
+  <data name="_UnitId" xml:space="preserve">
+    <value>Unit Id</value>
+    <comment>Unit Id</comment>
+  </data>
+  <data name="_UnitInfo" xml:space="preserve">
+    <value>Unit Info</value>
+    <comment>Unit Info</comment>
+  </data>
+  <data name="_UnitType" xml:space="preserve">
+    <value>Unit Type</value>
+    <comment>Unit Type</comment>
+  </data>
+  <data name="_UnitTypeCategory" xml:space="preserve">
+    <value>Unit Type Category</value>
+    <comment>Unit Type Category</comment>
+  </data>
+  <data name="_UpdatedBy" xml:space="preserve">
+    <value>Updated By</value>
+    <comment>Updated By</comment>
+  </data>
+  <data name="_UpdatedDate" xml:space="preserve">
+    <value>Updated Date</value>
+    <comment>Updated Date</comment>
+  </data>
+  <data name="_Upload" xml:space="preserve">
+    <value>Upload</value>
+    <comment>Upload</comment>
+  </data>
+  <data name="_Utilities" xml:space="preserve">
+    <value>Utilities</value>
+    <comment>Utilities</comment>
+  </data>
+  <data name="_UtilityType" xml:space="preserve">
+    <value>Utility Type</value>
+    <comment>Utility Type</comment>
+  </data>
+  <data name="_Valid" xml:space="preserve">
+    <value>Valid</value>
+    <comment>Valid</comment>
+  </data>
+  <data name="_Year" xml:space="preserve">
+    <value>Year</value>
+    <comment>Year</comment>
+  </data>
+</root>

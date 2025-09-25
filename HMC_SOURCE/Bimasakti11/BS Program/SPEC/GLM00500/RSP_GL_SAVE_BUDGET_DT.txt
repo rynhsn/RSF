@@ -1,0 +1,2 @@
+Error100=Account No. {0} already exists for selected center code!
+Error900=Process failed! unable to save Budget Detail {0}

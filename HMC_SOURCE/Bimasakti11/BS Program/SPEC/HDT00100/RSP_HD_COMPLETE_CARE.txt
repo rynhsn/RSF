@@ -1,0 +1,6 @@
+8001 -- Error process, please contact your administrator!
+8002 -- Ticket No is empty!
+8003 -- Ticket No is not found!
+8004 -- Actual Start Date is empty!
+8005 -- Actual End Date is not found!
+8006 -- Solution is empty!

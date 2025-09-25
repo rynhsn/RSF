@@ -1,0 +1,112 @@
+﻿@inherits R_Page
+@inject R_ILocalizer<Resources_GST00500_Class> _localizer
+
+<R_ItemLayout>
+    <R_ItemLayout Class="d-flex justify-content-end"
+                  col="12">
+        <R_Button Class="btn btn-light"
+                  OnClick="@BtnRefresh">
+            @_localizer["Refresh"]
+        </R_Button>
+    </R_ItemLayout>
+    <R_Grid @ref="@_gridOutboxTransRef"
+            DataSource="_viewModelGST00500Outbox.OutboxTransactionList"
+            R_ConductorGridSource="@_conductorOutboxTrans"
+            R_GridType="R_eGridType.Original"
+            R_ServiceGetListRecord="ServiceGetListOutboxTransaction"
+            R_Display="Grid_DisplayOutbox"
+            Pageable
+            AllowDeleteRow="false"
+            AllowAddNewRow="false"
+            AllowEditRow="false"
+            Height="255px">
+        <R_GridColumns>
+            <R_GridTextColumn Width="200px"
+                              FieldName="@nameof(GST00500DTO.CTRANS_NAME)"
+                              HeaderText=@_localizer["_TransName"]>
+            </R_GridTextColumn>
+            <R_GridTextColumn Width="210px"
+                              FieldName="@nameof(GST00500DTO.CDEPT_CODE_NAME)"
+                              HeaderText=@_localizer["_DeptCode"]>
+            </R_GridTextColumn>
+            <R_GridTextColumn Width="225px"
+                              FieldName="@nameof(GST00500DTO.CREF_NO)"
+                              HeaderText=@_localizer["_RefNo"]>
+            </R_GridTextColumn>
+            <R_GridDatePickerColumn Width="200px"
+                                    FieldName="@nameof(GST00500DTO.DREF_DATE)"
+                                    HeaderText=@_localizer["_RefDate"]>
+            </R_GridDatePickerColumn>
+            <R_GridTextColumn Width="150px"
+                              FieldName="@nameof(GST00500DTO.CTRANS_STATUS_DESC)"
+                              HeaderText=@_localizer["_Status"]>
+            </R_GridTextColumn>
+            <R_GridTextColumn Width="150px"
+                              FieldName="@nameof(GST00500DTO.CUPDATE_BY)"
+                              HeaderText=@_localizer["_UpdBy"]>
+            </R_GridTextColumn>
+            <R_GridDateTimePickerColumn Width="175px"
+                                        FieldName="@nameof(GST00500DTO.DUPDATE_DATE)"
+                                        HeaderText=@_localizer["_UpdDate"]>
+            </R_GridDateTimePickerColumn>
+        </R_GridColumns>
+    </R_Grid>
+    <R_StackLayout Row="true" Class="d-flex justify-content-end mt-1 mb-1">
+        <R_ItemLayout>
+            <R_Popup R_Before_Open_Popup="@R_Before_ServiceOpenOthersProgram"
+                     R_After_Open_Popup="@R_After_ServiceOpenOthersProgram"
+                     R_ConductorGridSource="@_conductorOutboxTrans">
+                @_localizer["_BtnView"]
+            </R_Popup>
+        </R_ItemLayout>
+    </R_StackLayout>
+    </R_ItemLayout>
+
+    @*REGION GRID Outbox Transaction Status LIST [BOTTOM GRID]*@
+    <R_StackLayout>
+    <R_Label>
+        Approval Status
+    </R_Label>
+    <R_Grid @ref="@_gridOutboxTransStatusRef"
+            DataSource="_viewModelGST00500Outbox.OutboxApprovalStatusTransactionList"
+            R_ConductorGridSource="@_conductorOutboxTransStatus"
+            R_GridType="R_eGridType.Original"
+            R_ServiceGetListRecord="ServiceGetListOutboxTransactionStatus"
+            Pageable
+            AllowDeleteRow="false"
+            AllowAddNewRow="false"
+            AllowEditRow="false"
+            Height="185px"
+            Width="800px">
+        <R_GridColumns>
+            <R_GridTextColumn Width="150px"
+                              FieldName="@nameof(GST00500ApprovalStatusDTO.CUSER_ID)"
+                              HeaderText=@_localizer["_UserAppr"]>
+            </R_GridTextColumn>
+            <R_GridTextColumn Width="150px"
+                              FieldName="@nameof(GST00500ApprovalStatusDTO.CUSER_NAME)"
+                              HeaderText=@_localizer["_UserName"]>
+            </R_GridTextColumn>
+            <R_GridTextColumn Width="180px"
+                              FieldName="@nameof(GST00500ApprovalStatusDTO.CPOSITION)"
+                              HeaderText=@_localizer["_Position"]>
+            </R_GridTextColumn>
+            <R_GridTextColumn Width="180px"
+                              FieldName="@nameof(GST00500ApprovalStatusDTO.CAPPROVAL_STATUS_DESC)"
+                              HeaderText=@_localizer["_Status"]>
+            </R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+    </R_StackLayout>
+
+    @*MAIN GRID*@
+    <R_ConductorGrid @ref="@_conductorOutboxTrans"
+                     R_ViewModel="@_viewModelGST00500Outbox"
+                 R_IsHeader="true">
+    </R_ConductorGrid>
+
+    @*BOTTOM GRID*@
+    <R_ConductorGrid @ref="@_conductorOutboxTransStatus"
+                     R_ViewModel="@_viewModelGST00500Outbox"
+                 R_IsHeader="true">
+    </R_ConductorGrid>

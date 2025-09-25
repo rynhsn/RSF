@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "PMM06000COMMON": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56932;http://localhost:56933"
+    }
+  }
+}

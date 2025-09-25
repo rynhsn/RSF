@@ -1,0 +1,61 @@
+﻿@using System.Reflection
+
+
+<R_BasicRouter AppAssembly="@typeof(Program).Assembly"
+               AdditionalAssemblies="@lazyLoadedAssemblies">
+    <Found Context="routeData">
+        <CascadingAuthenticationState>
+            <MenuTabsRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        </CascadingAuthenticationState>
+    </Found>
+    <NotFound>
+        <CascadingAuthenticationState>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </CascadingAuthenticationState>
+    </NotFound>
+</R_BasicRouter>
+
+
+@code {
+    private List<Assembly> lazyLoadedAssemblies = new()
+    {
+        typeof(BlazorMenu.Components.Pages.Content.Home).Assembly,
+        // typeof(GSM00300FRONT.GSM00300).Assembly,
+        // typeof(GSM04000Front.GSM04000).Assembly,
+
+        // typeof(PMB02200FRONT.PMB02200).Assembly,
+        // typeof(PMM00100FRONT.PMM00100).Assembly,
+        // typeof(PMM00200FRONT.PMM00200).Assembly,
+        // typeof(PMM03700FRONT.PMM03700).Assembly,
+        // typeof(PMM04500FRONT.PMM04500).Assembly,
+        // typeof(PMM07500FRONT.PMM07500).Assembly,
+        // typeof(PMT05000FRONT.PMT05000).Assembly,
+        // typeof(PMT03000FRONT.PMT03000).Assembly,
+        // typeof(PMR00170FRONT.PMR00170).Assembly,
+        // typeof(PMR00200FRONT.PMR00200).Assembly,
+        // typeof(PMR00210FRONT.PMR00210).Assembly,
+        // typeof(PMR00220FRONT.PMR00220).Assembly,
+        // typeof(PMR00600FRONT.PMR00600).Assembly,
+        // typeof(PMR00800FRONT.PMR00800).Assembly,
+        // typeof(PMR02000FRONT.PMR02000).Assembly,
+        // typeof(PMR02400FRONT.PMR02400).Assembly,
+        // typeof(PMR03100FRONT.PMR03100).Assembly,
+        // typeof(PMI00300FRONT.PMI00300).Assembly,
+
+        // typeof(GLM00200FRONT.GLM00200).Assembly,
+        // typeof(GLT00100FRONT.GLT00100).Assembly,
+        // typeof(GLB00700FRONT.GLB00700).Assembly,
+
+        typeof(CBT01100FRONT.CBT01100).Assembly,
+
+        // typeof(APB00200FRONT.APB00200).Assembly,
+
+        // typeof(HDM00500FRONT.HDM00500).Assembly,
+        // typeof(HDM00600FRONT.HDM00600).Assembly,
+
+        // typeof(PQM00100FRONT.PQM00100).Assembly,
+        // typeof(PQM00500FRONT.PQM00500).Assembly,
+    };
+}

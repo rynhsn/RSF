@@ -1,0 +1,96 @@
+﻿@using Lookup_APCOMMON.DTOs.APL00600
+@using LookupAPFrontResources
+@inherits R_Page
+@attribute [R_Page(Title = "Schedule Payment Lookup")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupAP> _localizer
+
+<R_StackLayout Style="width: 1000px">
+
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                R_ConductorGridSource="@_conductorGridRef"
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false"
+                DataSource="_viewModel.SchedulePaymentGrid"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                R_GridType="R_eGridType.Original"
+                Pageable
+                R_Display="R_DisplayAPL00600"
+                Height="300px"
+                PageSize="5">
+            <R_GridColumns>
+                <R_GridTextColumn Width="230px" FieldName="@nameof(APL00600DTO.CSUPLIER)" HeaderText="@_localizer["SUPLIER_ID"]"></R_GridTextColumn>
+                <R_GridTextColumn Width="91px" FieldName="@nameof(APL00600DTO.CDEPT_CODE)" HeaderText="@_localizer["DEPT."]"></R_GridTextColumn>
+                <R_GridTextColumn Width="145px" FieldName="@nameof(APL00600DTO.CREF_NO)" HeaderText="@_localizer["REFERENCE_NO."]"></R_GridTextColumn>
+                <R_GridDatePickerColumn Width="171px" FieldName="@nameof(APL00600DTO.DREF_DATE)" HeaderText="@_localizer["REFERENCE_DATE"]"></R_GridDatePickerColumn>
+                <R_GridDatePickerColumn Width="171px" FieldName="@nameof(APL00600DTO.DSCH_PAYMENT_DATE)" HeaderText="@_localizer["SCH._PAYMENT_DATE"]"></R_GridDatePickerColumn>
+                <R_GridTextColumn Width="81px" FieldName="@nameof(APL00600DTO.CCB_NAME)" HeaderText="@_localizer["BANK"]"></R_GridTextColumn>
+                <R_GridTextColumn Width="146px" FieldName="@nameof(APL00600DTO.CACCOUNT_NO)" HeaderText="@_localizer["ACCOUNT_NO"]"></R_GridTextColumn>
+                <R_GridTextColumn Width="93px" FieldName="@nameof(APL00600DTO.CCURRENCY_CODE)" HeaderText="@_localizer["CURR."]"></R_GridTextColumn>
+                <R_GridNumericColumn Width="180px" TValue="decimal" Arrows="false" Decimals="2" FieldName="@nameof(APL00600DTO.NAMOUNT)" HeaderText="@_localizer["AMOUNT"]"></R_GridNumericColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+
+    <R_StackLayout Row Class="justify-content-between">
+
+        <R_StackLayout Row Class="justify-content-start">
+            <R_ItemLayout>
+                <R_Button OnClick="Refresh_Button">
+                    @_localizer["RFSH"]
+                </R_Button>
+            </R_ItemLayout>
+
+        </R_StackLayout>
+        <R_StackLayout Row Class="justify-content-end">
+            <R_ItemLayout>
+                <R_Button Class="justify-content-end" Enabled="@(_viewModel.SchedulePaymentGrid.Count != 0)"
+                          OnClick="Button_OnClickOkAsync">
+                    @_localizer["OK"]
+                </R_Button>
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_Button Class="justify-content-end" OnClick="Button_OnClickCloseAsync">
+                    @_localizer["CNCL"]
+                </R_Button>
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+    </R_StackLayout>
+    <R_GroupBox ShowBorder="false" Class="p-2"  TitleClass="text-danger" Title="@_localizer["INVOICE_LIST"]">
+        <R_StackLayout Row>
+            <R_Grid @ref="@GridRefInvoice"
+                    R_ConductorGridSource="@_conductorGridRefInvoice"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false"
+                    DataSource="_viewModel.InvoiceListGrid"
+                    R_ServiceGetListRecord="R_ServiceGetListRecorInvoiceAsync"
+                    R_GridType="R_eGridType.Original"
+                    Pageable
+                    Width="80%"
+                    Height="200px"
+                    PageSize="5">
+                <R_GridColumns>
+                    <R_GridTextColumn Width="190px" FieldName="@nameof(APL00600DTO.CTRANS_NAME)" HeaderText="@_localizer["TRANSACTION"]"></R_GridTextColumn>
+                    <R_GridTextColumn Width="145px" FieldName="@nameof(APL00600DTO.CREF_NO)" HeaderText="@_localizer["INVOICE_NO."]"></R_GridTextColumn>
+                    <R_GridDatePickerColumn Width="171px" FieldName="@nameof(APL00600DTO.DDUE_DATE)" HeaderText="@_localizer["DUE_DATE"]"></R_GridDatePickerColumn>
+                    <R_GridTextColumn Width="93px" FieldName="@nameof(APL00600DTO.CCURRENCY_CODE)" HeaderText="@_localizer["CURR."]"></R_GridTextColumn>
+                    <R_GridNumericColumn TValue="decimal" Width="180px" FieldName="@nameof(APL00600DTO.NALLOC_AMOUNT)" HeaderText="@_localizer["ALLOC_AMT"]"></R_GridNumericColumn>
+                    <R_GridNumericColumn TValue="decimal" Width="180px" FieldName="@nameof(APL00600DTO.NAPPLIED_AMOUNT)" HeaderText="@_localizer["APPLIED_AMT"]"></R_GridNumericColumn>
+                    <R_GridTextColumn Width="200px" FieldName="@nameof(APL00600DTO.CTRANS_DESC)" HeaderText="@_localizer["DESCRIPTION"]"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_StackLayout>
+    </R_GroupBox>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorGridRef"
+                 R_IsHeader="true"/>
+
+<R_ConductorGrid @ref="@_conductorGridRefInvoice"
+                 R_ConductorParent="@_conductorGridRef"/>

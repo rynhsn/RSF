@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_PM_CANCEL_OFFICIAL_RECEIPTResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56965;http://localhost:56966"
+    }
+  }
+}

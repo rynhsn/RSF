@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_PM_MAINTAIN_SLA_CALL_TYPEResources_msgrsc": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57026;http://localhost:57027"
+    }
+  }
+}

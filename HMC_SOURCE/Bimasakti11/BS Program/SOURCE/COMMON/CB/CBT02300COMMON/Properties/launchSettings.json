@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "CBT02300COMMON": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:54558;http://localhost:54560"
+    }
+  }
+}

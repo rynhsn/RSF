@@ -1,0 +1,9 @@
+3711	= Error process, please contact your administrator!
+3712	= Duplicate Tenant Classification Id!
+3713	= Cannot Delete, Tenant Classification already in used!
+3714	= Tenant Classification Id cannot be empty!
+3715	= Tenant Classification Name cannot be empty!
+3716	= Tenant Classification Id cannot be greater than 20 character!
+3717	= Tenant Classification Name cannot be greater than 100 character!
+3718	= Tenant Classification Group Id cannot be empty!
+

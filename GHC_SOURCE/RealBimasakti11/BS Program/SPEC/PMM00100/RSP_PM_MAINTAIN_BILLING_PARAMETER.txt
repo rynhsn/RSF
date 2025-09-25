@@ -1,0 +1,7 @@
+6501 -- Error process, please contact your administrator!
+6502 -- Duplicate Property Id!
+8001 -- Online Payment Start Date is empty!
+8002 -- Online Payment Submit By is empty!
+8003 -- Online Payment Currency is empty!
+8004 -- Billing Statement Date is empty!
+8005 -- Billing Term of Payment is empty!

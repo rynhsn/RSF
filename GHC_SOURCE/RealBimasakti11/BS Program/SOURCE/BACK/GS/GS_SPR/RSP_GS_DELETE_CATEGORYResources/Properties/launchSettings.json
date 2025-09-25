@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GS_DELETE_CATEGORYResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56698;http://localhost:56699"
+    }
+  }
+}

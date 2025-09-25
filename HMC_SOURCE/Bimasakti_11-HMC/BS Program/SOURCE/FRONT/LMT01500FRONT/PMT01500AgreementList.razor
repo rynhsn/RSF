@@ -1,0 +1,354 @@
+@page "/PMT01500"
+@using PMT01500Common.DTO._1._AgreementList
+@using PMT01500FrontResources
+@using R_BlazorFrontEnd.Controls
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_Page
+@inject R_ILocalizer<Resources_PMT01500_Class> _localizer
+
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">
+                @_localizer["_PROPERTY"]
+            </R_Label>
+
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_ComboBox Data="@_viewModelPMT01500AgreementList.loPropertyList"
+                        Value="@_viewModelPMT01500AgreementList._cPropertyId"
+                        ValueField="@nameof(PMT01500PropertyListDTO.CPROPERTY_ID)"
+                        TextField="@nameof(PMT01500PropertyListDTO.CPROPERTY_NAME)"
+                        Enabled="_viewModelPMT01500AgreementList._lComboBoxProperty"
+                        R_ConductorGridSource="@_conductorPMT01500AgreementList"
+                        ValueChanged="@((string value) => PropertyDropdown_OnChange(value))">
+            </R_ComboBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+
+<R_TabStrip @ref="@_tabStripRef"
+            OnActiveTabIndexChanged="OnActiveTabIndexChanged"
+            OnActiveTabIndexChanging="OnActiveTabIndexChanging">
+    <!-- List -->
+    <R_TabStripTab Title="@_localizer["_AgreementList"]" Id="AgreementList" Enabled="_isAgreementListUsed">
+        <R_StackLayout>
+
+            <!-- R_ServiceGetList -->
+            <R_StackLayout>
+
+                <R_Grid @ref="@_gridRefPMT01500AgreementList"
+                        DataSource="_viewModelPMT01500AgreementList.loListPMT01500Agreement"
+                        R_ConductorGridSource="@_conductorPMT01500AgreementList"
+                        R_GridType="@R_eGridType.Original"
+                        R_ServiceGetListRecord="@R_ServiceGetListRecord"
+                        R_Display="R_DisplayGetRecord"
+                        Pageable
+                        Width="1050px"
+                        Height="220px"
+                        PageSize="15"
+                        AllowDeleteRow="false"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false">
+                    <R_GridColumns>
+                        <R_GridTextColumn Width="140px"
+                                          FieldName="@nameof(PMT01500AgreementListOriginalDTO.CDEPT_NAME)"
+                                          HeaderText="@_localizer["_Department"]" />
+
+                        <R_GridTextColumn Width="200px"
+                                          FieldName="@nameof(PMT01500AgreementListOriginalDTO.CREF_NO)"
+                                          HeaderText="@_localizer["_AgreementNo"]" />
+
+                        <R_GridDatePickerColumn Width="140px"
+                                                FieldName="@nameof(PMT01500AgreementListOriginalDTO.DSTART_DATE)"
+                                                HeaderText="@_localizer["_StartDate"]" />
+
+                        <R_GridDatePickerColumn Width="140px"
+                                                FieldName="@nameof(PMT01500AgreementListOriginalDTO.DEND_DATE)"
+                                                HeaderText="@_localizer["_EndDate"]" />
+
+                        <R_GridTextColumn Width="140px"
+                                          FieldName="@nameof(PMT01500AgreementListOriginalDTO.CTENANT_NAME)"
+                                          HeaderText="@_localizer["_Tenant"]" />
+
+                        <R_GridTextColumn Width="140px"
+                                          FieldName="@nameof(PMT01500AgreementListOriginalDTO.CBUILDING_NAME)"
+                                          HeaderText="@_localizer["_Building"]" />
+
+                        <R_GridTextColumn Width="140px"
+                                          FieldName="@nameof(PMT01500AgreementListOriginalDTO.CLEASE_MODE_DESCR)"
+                                          HeaderText="@_localizer["_LeaseMode"]" />
+
+                        <R_GridTextColumn Width="140px"
+                                          FieldName="@nameof(PMT01500AgreementListOriginalDTO.CCHARGE_MODE_DESCR)"
+                                          HeaderText="@_localizer["_ChargeMode"]" />
+
+                        <R_GridTextColumn Width="140px"
+                                          FieldName="@nameof(PMT01500AgreementListOriginalDTO.CAGREEMENT_STATUS_DESCR)"
+                                          HeaderText="@_localizer["_Status"]" />
+
+                        <R_GridTextColumn Width="140px"
+                                          FieldName="@nameof(PMT01500AgreementListOriginalDTO.CDOC_NO)"
+                                          HeaderText="@_localizer["_DocumentNo"]" />
+
+                        <R_GridTextColumn Width="140px"
+                                          FieldName="@nameof(PMT01500AgreementListOriginalDTO.CDOC_DATE)"
+                                          HeaderText="@_localizer["_DocumentDate"]" />
+
+                        <R_GridTextColumn FieldName="@nameof(PMT01500AgreementListOriginalDTO.CUPDATE_BY)"
+                                          HeaderText="@_localizer["_UpdatedBy"]"
+                                          Width="125px" />
+
+                        <R_GridDateTimePickerColumn FieldName="@nameof(PMT01500AgreementListOriginalDTO.DUPDATE_DATE)"
+                                                    HeaderText="@_localizer["_UpdatedDate"]"
+                                                    Width="225px" />
+
+                        <R_GridTextColumn FieldName="@nameof(PMT01500AgreementListOriginalDTO.CCREATE_BY)"
+                                          HeaderText="@_localizer["_CreatedBy"]"
+                                          Width="125px" />
+
+                        <R_GridDateTimePickerColumn FieldName="@nameof(PMT01500AgreementListOriginalDTO.DCREATE_DATE)"
+                                                    HeaderText="@_localizer["_CreatedDate"]"
+                                                    Width="225px" />
+
+                    </R_GridColumns>
+                </R_Grid>
+
+            </R_StackLayout>
+
+            <!-- Get Selected Agreement, Get Unit Description -->
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="2">
+                    <R_Label>
+                        @_localizer["_UnitDescription"]
+                    </R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="4">
+                    <R_TextBox @bind-Value="@_viewModelPMT01500AgreementList.loSelectedAgreementGetUnitDescription.CUNIT_DESCRIPTION"
+                               R_ConductorGridSource="@_conductorPMT01500UnitList"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            <!-- R_ServiceGetListUnitList -->
+            <R_StackLayout>
+
+                <R_Grid @ref="@_gridRefPMT01500UnitList"
+                        DataSource="_viewModelPMT01500AgreementList.loListPMT01500UnitList"
+                        R_ConductorGridSource="@_conductorPMT01500UnitList"
+                        R_GridType="@R_eGridType.Original"
+                        R_ServiceGetListRecord="@R_ServiceGetListRecordUnitList"
+                        R_Display="R_DisplayGetRecordUnitList"
+                        Pageable
+                        Width="1050px"
+                        Height="220px"
+                        PageSize="15"
+                        AllowDeleteRow="false"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false">
+                    <R_GridColumns>
+                        <R_GridTextColumn Width="140px"
+                                          FieldName="@nameof(PMT01500UnitListOriginalDTO.CUNIT_ID)"
+                                          HeaderText="@_localizer["_UnitId"]" />
+
+                        <R_GridTextColumn Width="140px"
+                                          FieldName="@nameof(PMT01500UnitListOriginalDTO.CFLOOR_ID)"
+                                          HeaderText="@_localizer["_Floor"]" />
+
+                        <R_GridTextColumn Width="140px"
+                                          FieldName="@nameof(PMT01500UnitListOriginalDTO.CUNIT_TYPE_ID)"
+                                          HeaderText="@_localizer["_UnitType"]" />
+
+                        <R_GridNumericColumn Width="140px"
+                                             FieldName="@nameof(PMT01500UnitListOriginalDTO.NGROSS_AREA_SIZE)"
+                                             TValue="Decimal"
+                                             HeaderText="@_localizer["_Gross"]" />
+
+                        <R_GridNumericColumn Width="140px"
+                                             FieldName="@nameof(PMT01500UnitListOriginalDTO.NNET_AREA_SIZE)"
+                                             TValue="Decimal"
+                                             HeaderText="@_localizer["_Net"]" />
+
+                        <R_GridNumericColumn Width="140px"
+                                             FieldName="@nameof(PMT01500UnitListOriginalDTO.NCOMMON_AREA_SIZE)"
+                                             TValue="Decimal"
+                                             HeaderText="@_localizer["_Common"]" />
+
+
+                        <R_GridTextColumn FieldName="@nameof(PMT01500UnitListOriginalDTO.CUPDATE_BY)"
+                                          HeaderText="@_localizer["_UpdatedBy"]"
+                                          Width="125px" />
+
+                        <R_GridDateTimePickerColumn FieldName="@nameof(PMT01500UnitListOriginalDTO.DUPDATE_DATE)"
+                                                    HeaderText="@_localizer["_UpdatedDate"]"
+                                                    Width="225px" />
+
+                        <R_GridTextColumn FieldName="@nameof(PMT01500UnitListOriginalDTO.CCREATE_BY)"
+                                          HeaderText="@_localizer["_CreatedBy"]"
+                                          Width="125px" />
+
+                        <R_GridDateTimePickerColumn FieldName="@nameof(PMT01500UnitListOriginalDTO.DCREATE_DATE)"
+                                                    HeaderText="@_localizer["_CreatedDate"]"
+                                                    Width="225px" />
+
+                    </R_GridColumns>
+                </R_Grid>
+
+                <!-- Total Unit -->
+                <R_StackLayout Row>
+                    <R_ItemLayout col="1">
+                        <R_Label>
+                            @_localizer["_TotalUnit"]
+                        </R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="1">
+                        <R_NumericTextBox @bind-Value="@_viewModelPMT01500AgreementList._oTotalUnitAgreementList.ITOTAL_UNIT"
+                                          Enabled="false"
+                                          Arrows="false" />
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="1" />
+
+
+                    <R_ItemLayout col="1">
+                        <R_Label>
+                            @_localizer["_TotalArea"]
+                        </R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="1">
+                        <R_NumericTextBox @bind-Value="@_viewModelPMT01500AgreementList._oTotalUnitAgreementList.NTOTAL_GROSS"
+                                          Enabled="false"
+                                          Arrows="false" />
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="1">
+                        <R_NumericTextBox @bind-Value="@_viewModelPMT01500AgreementList._oTotalUnitAgreementList.NTOTAL_NET"
+                                          Enabled="false"
+                                          Arrows="false" />
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="1">
+                        <R_NumericTextBox @bind-Value="@_viewModelPMT01500AgreementList._oTotalUnitAgreementList.NTOTAL_COMMON"
+                                          Enabled="false"
+                                          Arrows="false" />
+                    </R_ItemLayout>
+
+                </R_StackLayout>
+
+            </R_StackLayout>
+
+            <hr />
+
+            <!-- Button -->
+            <R_StackLayout Row>
+
+                <R_ItemLayout>
+                    <R_Button R_ConductorGridSource="@_conductorPMT01500AgreementList"
+                              Enabled="true"
+                              OnClick="OnClickNexttoAddPageAgreementButtonAsync">
+                        @_localizer["_NewAgreement"]
+                    </R_Button>
+                </R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_Button R_ConductorGridSource="@_conductorPMT01500AgreementList"
+                              Enabled="false"
+                              OnClick="OnClickNexttoEditPageAgreementButton">
+                        @_localizer["_RenewalAgreement"]
+                    </R_Button>
+                </R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_Popup R_ConductorGridSource="@_conductorPMT01500AgreementList"
+                             R_Before_Open_Popup="@R_Before_Open_Popup_ChangeStatus"
+                             R_After_Open_Popup="@R_After_Open_Popup_ChangeStatus"
+                             Enabled="@_isDataExist">
+                        @_localizer["_ChangeStatus"]
+                    </R_Popup>
+                </R_ItemLayout>
+
+
+                <R_ItemLayout Class="ms-5">
+                    <R_Button R_ConductorGridSource="@_conductorPMT01500AgreementList"
+                              Enabled="true"
+                              OnClick="@DownloadTemplate">
+                        @_localizer["_Template"]
+                    </R_Button>
+                </R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_Popup R_ConductorGridSource="@_conductorPMT01500AgreementList"
+                             Enabled="@true"
+                             R_Before_Open_Popup="Before_Open_Upload_Popup"
+                             R_After_Open_Popup="After_Open_Upload_Popup">
+                        @_localizer["_Upload"]
+                    </R_Popup>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+        </R_StackLayout>
+    </R_TabStripTab>
+
+    <!-- Agreement -->
+    <R_TabStripTab Title="@_localizer["_Agreement"]" Id="Agreement" Enabled="_isAgreementListUsed">
+        <R_TabPage R_Before_Open_TabPage="General_Before_Open_Agreement_TabPage"
+                   R_TabEventCallback="@R_TabEventCallback"
+                   @ref="_tabAgreementRef" />
+    </R_TabStripTab>
+
+    <!-- UnitInfo -->
+    <R_TabStripTab Title="@_localizer["_UnitInfo"]" Id="UnitInfo" Enabled="_isDataExist">
+        <R_TabPage R_Before_Open_TabPage="General_Before_Open_UnitInfo_TabPage"
+                   R_TabEventCallback="@R_TabEventCallback"
+                   @ref="_tabUnitInfoRef" />
+    </R_TabStripTab>
+
+
+    <!-- ChargesInfo -->
+    <R_TabStripTab Title="@_localizer["_ChargesInfo"]" Id="ChargesInfo" Enabled="_isChargesInfoandDepositExist">
+        <R_TabPage R_Before_Open_TabPage="General_Before_Open_ChargesInfo_TabPage"
+                   R_TabEventCallback="@R_TabEventCallback"
+                   @ref="_tabChargesInfoRef" />
+    </R_TabStripTab>
+
+    <!-- InvoicePlan -->
+    <!-- BELOM KEPAKE
+
+    <R_TabStripTab Title="@_localizer["_InvoicePlan"]" Id="InvoicePlan" Enabled="_isDataExist">
+        <R_TabPage R_Before_Open_TabPage="General_Before_Open_InvoicePlan_TabPage"
+
+    R_TabEventCallback="@R_TabEventCallback"
+    @ref="_tabInvoicePlanRef" />
+    </R_TabStripTab>
+    -->
+    <!-- Deposit -->
+    <R_TabStripTab Title="@_localizer["_Deposit"]" Id="Deposit" Enabled="_isChargesInfoandDepositExist">
+        <R_TabPage R_Before_Open_TabPage="General_Before_Open_Deposit_TabPage"
+                   R_TabEventCallback="@R_TabEventCallback"
+                   @ref="_tabDepositRef" />
+    </R_TabStripTab>
+
+    <!-- Document -->
+    <R_TabStripTab Title="@_localizer["_Document"]" Id="Document" Enabled="_isDataExist">
+        <R_TabPage R_Before_Open_TabPage="General_Before_Open_Document_TabPage"
+                   R_TabEventCallback="@R_TabEventCallback"
+                   @ref="_tabDocumentRef" />
+    </R_TabStripTab>
+
+
+</R_TabStrip>
+
+<R_ConductorGrid @ref="@_conductorPMT01500AgreementList"
+                 R_IsHeader />
+
+<R_ConductorGrid @ref="@_conductorPMT01500UnitList"
+                 R_ConductorParent="@_conductorPMT01500AgreementList" />

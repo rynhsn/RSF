@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderCommon.frx" BaseReportAbsolutePath="D:\PMA00400\ReportFrx\BaseHeaderCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="05/01/2025 19:55:58" ReportInfo.CreatorVersion="2023.2.21.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+      
+
+    private void Text118_BeforePrint(object sender, EventArgs e)
+    {
+      
+    }
+
+    private void Text138_BeforePrint(object sender, EventArgs e)
+    {                                                                                                                                                                                
+ //     int IActualQuantity = Convert.ToInt32(Report.GetColumnValue(&quot;ResponseDataModel.PMA00400ResulDataFormatDTO.HandoverChecklistData.IACTUAL_QUANTITY&quot;)??0);
+   //   int IBaseQuantity = Convert.ToInt32(Report.GetColumnValue(&quot;ResponseDataModel.PMA00400ResulDataFormatDTO.HandoverChecklistData.IBASE_QUANTITY&quot;)??0);
+     // int IActualQuantity = ResponseDataModel.PMA00400ResulDataFormatDTO.HandoverChecklistData.IACTUAL_QUANTITY;
+    //  string CUnit = Convert.ToString(Report.GetColumnValue(&quot;ResponseDataModel.PMA00400ResulDataFormatDTO.HandoverChecklistData.CUNIT&quot;)??&quot; &quot;);
+      
+     // Text138.Text = (IBaseQuantity == 0) 
+      //  ? &quot;-&quot; 
+       // : $&quot;{IActualQuantity} / {IBaseQuantity} {CUnit}&quot;;
+      // Jika ingin menyembunyikan teks berdasarkan kondisi tertentu, gunakan:
+      // Text138.Visible = !hideBand;    
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="PMA00400ResulDataFormatDTO" DataType="PMA00400Common.DTO.PMA00400ResultDataDTO, PMA00400Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Label" DataType="PMA00400Common.DTO.PMA00400LabelDTO, PMA00400Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="LABEL_AGGREEMET_INFORMATION" DataType="System.String"/>
+          <Column Name="LABEL_DEPARTMENT" DataType="System.String"/>
+          <Column Name="LABEL_REFERENCE_NO" DataType="System.String"/>
+          <Column Name="LABEL_REFERENCE_DATE" DataType="System.String"/>
+          <Column Name="LABEL_HANDOVER_INFORMATION" DataType="System.String"/>
+          <Column Name="LABEL_CONFIRMED_DATE" DataType="System.String"/>
+          <Column Name="LABEL_CONFIRMED_BY" DataType="System.String"/>
+          <Column Name="LABEL_SCHEDULED_DATE" DataType="System.String"/>
+          <Column Name="LABEL_UNIT_INFORMATION" DataType="System.String"/>
+          <Column Name="LABEL_PROPERTY" DataType="System.String"/>
+          <Column Name="LABEL_BUILDING" DataType="System.String"/>
+          <Column Name="LABEL_FLOOR" DataType="System.String"/>
+          <Column Name="LABEL_UNIT" DataType="System.String"/>
+          <Column Name="LABEL_UNIT_TYPE_CATEGORY" DataType="System.String"/>
+          <Column Name="LABEL_TENANT_INFORMATION" DataType="System.String"/>
+          <Column Name="LABEL_NAME" DataType="System.String"/>
+          <Column Name="LABEL_PHONE_NO" DataType="System.String"/>
+          <Column Name="LABEL_EMAIL" DataType="System.String"/>
+          <Column Name="LABEL_ASSIGNED_EMPLOYEE" DataType="System.String"/>
+          <Column Name="LABEL_EMPLOYEE" DataType="System.String"/>
+          <Column Name="LABEL_TYPE" DataType="System.String"/>
+          <Column Name="LABEL_CHECKLIST" DataType="System.String"/>
+          <Column Name="LABEL_CATEGORY" DataType="System.String"/>
+          <Column Name="LABEL_ITEM" DataType="System.String"/>
+          <Column Name="LABEL_STATUS" DataType="System.String"/>
+          <Column Name="LABEL_NOTES" DataType="System.String"/>
+          <Column Name="LABEL_QUANTITY" DataType="System.String"/>
+          <Column Name="LABEL_ACTUAL_QUANTITY" DataType="System.String"/>
+          <Column Name="LABEL_TOTAL_QUANTITY" DataType="System.String"/>
+          <Column Name="LABEL_UTILITY" DataType="System.String"/>
+          <Column Name="LABEL_METER_NO" DataType="System.String"/>
+          <Column Name="LABEL_START_INVOICE_PERIOD" DataType="System.String"/>
+          <Column Name="LABEL_METER_START" DataType="System.String"/>
+          <Column Name="LABEL_CONFIRMATION" DataType="System.String"/>
+          <Column Name="LABEL_CONFIRMATION_DESC" DataType="System.String"/>
+          <Column Name="LABEL_CONFIRMATON_DESC2" DataType="System.String"/>
+          <Column Name="LABEL_DATE" DataType="System.String"/>
+          <Column Name="LABEL_TENANT" DataType="System.String"/>
+          <Column Name="LABEL_NBLOCK1_START" DataType="System.String"/>
+          <Column Name="LABEL_NBLOCK2_START" DataType="System.String"/>
+          <Column Name="LABEL_DETAILCHEKCLIST" DataType="System.String"/>
+          <Column Name="LABEL_CCARE_TICKET_NO" DataType="System.String"/>
+          <Column Name="LABEL_DETAILCHEKCLIST_2" DataType="System.String"/>
+        </Column>
+        <Column Name="HeaderData" DataType="PMA00400Common.DTO.PMA00400HeaderDTO, PMA00400Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CUSER_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CDEPT_CODE" DataType="System.String"/>
+          <Column Name="CTRANS_CODE" DataType="System.String"/>
+          <Column Name="CREF_NO" DataType="System.String"/>
+          <Column Name="CREC_ID" DataType="System.String"/>
+          <Column Name="CREF_DATE" DataType="System.String"/>
+          <Column Name="DREF_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+          <Column Name="CCONFIRMED_HO_TIME" DataType="System.String"/>
+          <Column Name="CCONFIRMED_HO_DATE" DataType="System.String"/>
+          <Column Name="DCONFIRMED_HO_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+          <Column Name="CCONFIRMED_HO_BY" DataType="System.String"/>
+          <Column Name="CSCHEDULED_HO_DATE" DataType="System.String"/>
+          <Column Name="DSCHEDULED_HO_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+          <Column Name="CSCHEDULED_HO_TIME" DataType="System.String"/>
+          <Column Name="CSCHEDULED_HO_BY" DataType="System.String"/>
+          <Column Name="IRESCHEDULE_COUNT" DataType="System.Int32"/>
+          <Column Name="CPROPERTY_NAME" DataType="System.String"/>
+          <Column Name="CBUILDING_ID" DataType="System.String"/>
+          <Column Name="CBUILDING_NAME" DataType="System.String"/>
+          <Column Name="CUNIT_TYPE_CATEGORY_ID" DataType="System.String"/>
+          <Column Name="CUNIT_TYPE_CATEGORY_NAME" DataType="System.String"/>
+          <Column Name="CTENANT_ID" DataType="System.String"/>
+          <Column Name="CTENANT_NAME" DataType="System.String"/>
+          <Column Name="CTENANT_PHONE_NO" DataType="System.String"/>
+          <Column Name="CTENANT_EMAIL" DataType="System.String"/>
+          <Column Name="CHO_ACTUAL_DATE" DataType="System.String"/>
+          <Column Name="DHO_ACTUAL_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+          <Column Name="LFORCED_HO" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LINCLUDE_IMAGE" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CUNIT_ID" DataType="System.String"/>
+          <Column Name="CUNIT_NAME" DataType="System.String"/>
+          <Column Name="CFLOOR_ID" DataType="System.String"/>
+          <Column Name="CFLOOR_NAME" DataType="System.String"/>
+          <Column Name="CEMPLOYEE_SIGNATURE_NAME" DataType="System.String"/>
+          <Column Name="CEMPLOYEE_SIGNATURE_STORAGE_ID" DataType="System.String"/>
+          <Column Name="CTENANT_SIGNATURE_STORAGE_ID" DataType="System.String"/>
+          <Column Name="OData_EMPLOYEE_SIGNATURE" DataType="System.Byte[]" BindableControl="Picture"/>
+          <Column Name="OData_TENANT_SIGNATURE" DataType="System.Byte[]" BindableControl="Picture"/>
+          <Column Name="CCARE_TICKET_NO" DataType="System.String"/>
+        </Column>
+        <BusinessObjectDataSource Name="EmployeeData" DataType="System.Collections.Generic.List`1[[PMA00400Common.DTO.PMA00400EmployeeDTO, PMA00400Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CEMPLOYEE_ID" DataType="System.String"/>
+          <Column Name="CEMPLOYEE_NAME" DataType="System.String"/>
+          <Column Name="CEMPLOYEE_TYPE" DataType="System.String"/>
+          <Column Name="CEMPLOYEE_PHONE_NO" DataType="System.String"/>
+        </BusinessObjectDataSource>
+        <BusinessObjectDataSource Name="HandoverChecklistData" DataType="System.Collections.Generic.List`1[[PMA00400Common.DTO.PMA00400HandoverChecklistDTO, PMA00400Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CCHECKLIST_ITEM_NAME" DataType="System.String"/>
+          <Column Name="CPARENT_CHECKLIST_NAME" DataType="System.String"/>
+          <Column Name="CNOTES" DataType="System.String"/>
+          <Column Name="LSTATUS" DataType="System.Boolean"/>
+          <Column Name="CSTATUS" DataType="System.String"/>
+          <Column Name="CCARE_REF_NO" DataType="System.String"/>
+          <Column Name="IBASE_QUANTITY" DataType="System.Int32"/>
+          <Column Name="IACTUAL_QUANTITY" DataType="System.Int32"/>
+          <Column Name="CIMAGE_STORAGE_ID_01" DataType="System.String"/>
+          <Column Name="CIMAGE_STORAGE_ID_02" DataType="System.String"/>
+          <Column Name="CIMAGE_STORAGE_ID_03" DataType="System.String"/>
+          <Column Name="CUNIT" DataType="System.String"/>
+        </BusinessObjectDataSource>
+        <BusinessObjectDataSource Name="UtilityData" DataType="System.Collections.Generic.List`1[[PMA00400Common.DTO.PMA00400UtilityDTO, PMA00400Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CUNIT_ID" DataType="System.String"/>
+          <Column Name="CUTILITY_TYPE" DataType="System.String"/>
+          <Column Name="CMETER_NO" DataType="System.String"/>
+          <Column Name="NCAPACITY" DataType="System.Decimal"/>
+          <Column Name="NCALCULATION_FACTOR" DataType="System.Decimal"/>
+          <Column Name="CCHARGES_ID" DataType="System.String"/>
+          <Column Name="CCHARGES_NAME" DataType="System.String"/>
+          <Column Name="CSTART_INV_PRD" DataType="System.String"/>
+          <Column Name="CSTART_INV_PRD_CONVERT" DataType="System.String"/>
+          <Column Name="NMETER_START" DataType="System.Decimal"/>
+          <Column Name="NBLOCK1_START" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_START" DataType="System.Decimal"/>
+          <Column Name="CFLOOR_ID" DataType="System.String"/>
+          <Column Name="CCHARGES_TYPE" DataType="System.String"/>
+          <Column Name="CSEQ_NO" DataType="System.String"/>
+        </BusinessObjectDataSource>
+        <BusinessObjectDataSource Name="ChecklistImageData" DataType="System.Collections.Generic.List`1[[PMA00400Common.DTO.PMA00400GetImageDTO, PMA00400Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="OData" DataType="System.Byte[]" BindableControl="Picture"/>
+          <Column Name="CCHARGES_TYPE_DESCRIPTION" DataType="System.String"/>
+          <Column Name="CMETER_NO" DataType="System.String"/>
+          <Column Name="CPARENT_CHECKLIST_ITEM_NAME" DataType="System.String"/>
+          <Column Name="CCHECKLIST_ITEM_NAME" DataType="System.String"/>
+          <Column Name="CIMAGE_STORAGE_ID" DataType="System.String"/>
+          <Column Name="CNOTES" DataType="System.String"/>
+        </BusinessObjectDataSource>
+        <BusinessObjectDataSource Name="UtilityImageData" DataType="System.Collections.Generic.List`1[[PMA00400Common.DTO.PMA00400GetImageDTO, PMA00400Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="OData" DataType="System.Byte[]" BindableControl="Picture"/>
+          <Column Name="CCHARGES_TYPE_DESCRIPTION" DataType="System.String"/>
+          <Column Name="CMETER_NO" DataType="System.String"/>
+          <Column Name="CPARENT_CHECKLIST_ITEM_NAME" DataType="System.String"/>
+          <Column Name="CCHECKLIST_ITEM_NAME" DataType="System.String"/>
+          <Column Name="CIMAGE_STORAGE_ID" DataType="System.String"/>
+          <Column Name="CNOTES" DataType="System.String"/>
+        </BusinessObjectDataSource>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+        <Column Name="DPRINT_DATE_COMPANY" DataType="System.DateTime"/>
+      </Column>
+      <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Page" DataType="System.String"/>
+        <Column Name="Of" DataType="System.String"/>
+        <Column Name="Print_Date" DataType="System.String"/>
+        <Column Name="Print_By" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+    <Total Name="TotalQuantityChecklist" Expression="[ResponseDataModel.PMA00400ResulDataFormatDTO.HandoverChecklistData.IBASE_QUANTITY]" Evaluator="Data3" PrintOn="DataFooter1" ResetOnReprint="true" IncludeInvisibleRows="true"/>
+    <Total Name="TotalActualQuantityChecklist" Expression="[ResponseDataModel.PMA00400ResulDataFormatDTO.HandoverChecklistData.IACTUAL_QUANTITY]" Evaluator="Data3" PrintOn="DataFooter1" ResetOnReprint="true"/>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="LogoCompany"/>
+      <inherited Name="Text33"/>
+      <inherited Name="LabelNoPage">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="BaseHeaderDate"/>
+      <inherited Name="LabelDate"/>
+      <inherited Name="BaseHeaderLabel"/>
+      <inherited Name="BaseHeaderUserId"/>
+      <inherited Name="LabelUserId"/>
+      <inherited Name="BaseHeaderDateTime"/>
+    </inherited>
+    <DataBand Name="Data1" ZOrder="0" Top="79.6" Width="718.2" Height="283.5" DataSource="ResponseDataModel">
+      <TextObject Name="Text41" Top="18.9" Width="292.95" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_AGGREEMET_INFORMATION]" Font="Arial Unicode MS, 11pt, style=Bold"/>
+      <TextObject Name="Text42" Top="56.7" Width="132.3" Height="28.35" CanBreak="false" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_DEPARTMENT]" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text43" Top="75.6" Width="132.3" Height="28.35" CanBreak="false" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_REFERENCE_NO]" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text44" Top="94.5" Width="132.3" Height="28.35" CanBreak="false" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_REFERENCE_DATE]" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text45" Top="132.3" Width="292.95" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_UNIT_INFORMATION]" Font="Arial Unicode MS, 11pt, style=Bold"/>
+      <TextObject Name="Text46" Top="170.1" Width="122.85" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_PROPERTY]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text47" Top="207.9" Width="122.85" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_BUILDING]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text48" Top="189" Width="122.85" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_FLOOR]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text49" Top="226.8" Width="122.85" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_UNIT]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text50" Top="245.7" Width="122.85" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_UNIT_TYPE_CATEGORY]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text51" Left="378" Top="18.9" Width="283.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_HANDOVER_INFORMATION]" Font="Arial Unicode MS, 11pt, style=Bold"/>
+      <TextObject Name="Text52" Left="378" Top="56.7" Width="113.4" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_CONFIRMED_DATE]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text53" Left="378" Top="75.6" Width="113.4" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_CONFIRMED_BY]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text54" Left="378" Top="94.5" Width="113.4" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_SCHEDULED_DATE]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text55" Left="378" Top="132.3" Width="283.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_TENANT_INFORMATION]" Font="Arial Unicode MS, 11pt, style=Bold"/>
+      <TextObject Name="Text56" Left="378" Top="170.1" Width="113.4" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_NAME]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text57" Left="378" Top="189" Width="113.4" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_PHONE_NO]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text58" Left="378" Top="207.9" Width="113.4" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_EMAIL]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text59" Left="151.2" Top="56.7" Width="94.5" Height="28.35" Text=": [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CDEPT_CODE]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text60" Left="151.2" Top="75.6" Width="94.5" Height="28.35" Text=": [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CREF_NO]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text61" Left="151.2" Top="94.5" Width="94.5" Height="28.35" Text=": [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.DREF_DATE]" Format="Date" Format.Format="d" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text62" Left="151.2" Top="170.1" Width="94.5" Height="28.35" Text=": [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CPROPERTY_NAME]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text63" Left="151.2" Top="189" Width="94.5" Height="28.35" Text=": [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CBUILDING_NAME]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text65" Left="151.2" Top="207.9" Width="94.5" Height="28.35" Text=": [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CFLOOR_NAME]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text66" Left="151.2" Top="226.8" Width="94.5" Height="28.35" Text=": [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CUNIT_NAME]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text67" Left="151.2" Top="245.7" Width="94.5" Height="28.35" Text=": [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CUNIT_TYPE_CATEGORY_NAME]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text68" Left="519.75" Top="170.1" Width="94.5" Height="28.35" Text=": [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CTENANT_NAME]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text69" Left="519.75" Top="189" Width="94.5" Height="28.35" Text=": [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CTENANT_PHONE_NO]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text70" Left="519.75" Top="207.9" Width="94.5" Height="28.35" Text=": [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CTENANT_EMAIL]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text71" Left="519.75" Top="75.6" Width="94.5" Height="28.35" Text=": [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CCONFIRMED_HO_BY]" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text135" Left="519.75" Top="56.7" Width="94.5" Height="28.35" Text=": [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.DCONFIRMED_HO_DATE], [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CCONFIRMED_HO_TIME]" AutoWidth="true" Font="Arial Unicode MS, 11pt">
+        <Formats>
+          <DateFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text136" Left="519.75" Top="94.5" Width="94.5" Height="28.35" Text=": [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.DSCHEDULED_HO_DATE], [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CSCHEDULED_HO_TIME] ([ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.IRESCHEDULE_COUNT])" AutoWidth="true" Font="Arial Unicode MS, 11pt">
+        <Formats>
+          <DateFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+    </DataBand>
+    <DataBand Name="Data2" ZOrder="1" Top="437.25" Width="718.2" Height="28.35" CanGrow="true" DataSource="EmployeeData">
+      <TextObject Name="Text106" Width="264.6" Height="18.9" GrowToBottom="true" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.EmployeeData.CEMPLOYEE_ID] - [ResponseDataModel.PMA00400ResulDataFormatDTO.EmployeeData.CEMPLOYEE_NAME]" AutoWidth="true" Font="Arial Unicode MS, 12pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text107" Left="264.6" Width="255.15" Height="18.9" GrowToBottom="true" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.EmployeeData.CEMPLOYEE_TYPE]" AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+      <TextObject Name="Text108" Left="510.3" Width="217.35" Height="18.9" GrowToBottom="true" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.EmployeeData.CEMPLOYEE_PHONE_NO]" AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+      <DataHeaderBand Name="DataHeader1" Top="367.1" Width="718.2" Height="66.15">
+        <TextObject Name="Text72" Top="9.45" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_ASSIGNED_EMPLOYEE]" AutoWidth="true" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <LineObject Name="Line1" Top="37.8" Width="718.2"/>
+        <TextObject Name="Text73" Top="37.8" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_EMPLOYEE]" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <TextObject Name="Text74" Left="264.6" Top="37.8" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_TYPE]" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <TextObject Name="Text75" Left="510.3" Top="37.8" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_PHONE_NO]" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <LineObject Name="Line2" Top="66.15" Width="718.2"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="DataFooter3" Top="469.6" Width="718.2" Height="18.9">
+        <LineObject Name="Line12" Top="9.45" Width="718.2"/>
+      </DataFooterBand>
+    </DataBand>
+    <DataBand Name="Data3" ZOrder="2" Top="562.65" Width="718.2" Height="28.35" CanGrow="true" DataSource="HandoverChecklistData">
+      <TextObject Name="Text109" Left="226.8" Width="113.4" Height="18.9" CanGrow="true" GrowToBottom="true" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.HandoverChecklistData.CSTATUS]" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text110" Left="340.2" Width="245.7" Height="18.9" CanGrow="true" GrowToBottom="true" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.HandoverChecklistData.CNOTES]" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text111" Left="122.85" Width="103.95" Height="18.9" CanGrow="true" GrowToBottom="true" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.HandoverChecklistData.CCHECKLIST_ITEM_NAME]" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text112" Width="122.85" Height="18.9" CanGrow="true" GrowToBottom="true" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.HandoverChecklistData.CPARENT_CHECKLIST_NAME]" Font="Arial Unicode MS, 12pt"/>
+      <LineObject Name="Line7" Top="28.35" Width="718.2"/>
+      <TextObject Name="Text138" Left="595.35" Width="94.5" Height="18.9" CanGrow="true" BeforePrintEvent="Text138_BeforePrint" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.HandoverChecklistData.IACTUAL_QUANTITY] / [ResponseDataModel.PMA00400ResulDataFormatDTO.HandoverChecklistData.IBASE_QUANTITY]&#13;&#10;" AutoWidth="true" Font="Arial Unicode MS, 11pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <DataHeaderBand Name="DataHeader2" Top="492.5" Width="718.2" Height="66.15">
+        <TextObject Name="Text76" Top="9.45" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_CHECKLIST]" AutoWidth="true" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <LineObject Name="Line3" Top="37.8" Width="718.2"/>
+        <TextObject Name="Text78" Left="122.85" Top="37.8" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_ITEM]" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <TextObject Name="Text80" Top="37.8" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_CATEGORY]" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <TextObject Name="Text81" Left="226.8" Top="37.8" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_STATUS]" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <TextObject Name="Text82" Left="349.65" Top="37.8" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_NOTES]" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <TextObject Name="Text83" Left="585.9" Top="37.8" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_QUANTITY]" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <LineObject Name="Line4" Top="66.15" Width="718.2"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="DataFooter1" Top="595" Width="718.2" Height="94.5" CanGrow="true">
+        <LineObject Name="Line9" Top="28.35" Width="718.2"/>
+        <TextObject Name="Text120" Left="415.8" Width="94.5" Height="18.9" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_TOTAL_QUANTITY]" AutoWidth="true" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <TextObject Name="Text122" Left="595.35" Width="94.5" Height="18.9" Text="[TotalActualQuantityChecklist]/[TotalQuantityChecklist]" Font="Arial Unicode MS, 11pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <RichObject Name="Rich1" Top="37.8" Width="718.2" Height="18.9" CanGrow="true" GrowToBottom="true" Text="{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial Unicode MS;}}&#13;&#10;{\*\generator Riched20 10.0.26100}\viewkind4\uc1 &#13;&#10;\pard\qj\f0\fs22 [ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_DETAILCHEKCLIST] (\b [ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CCARE_TICKET_NO]\b0 ), [ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_DETAILCHEKCLIST_2]\fs24\par&#13;&#10;}&#13;&#10;"/>
+      </DataFooterBand>
+    </DataBand>
+    <DataBand Name="Data4" ZOrder="3" Top="763.65" Width="718.2" Height="28.35" CanGrow="true" DataSource="UtilityData">
+      <TextObject Name="Text115" Width="122.85" Height="18.9" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.UtilityData.CUTILITY_TYPE]" Font="Arial Unicode MS, 12pt"/>
+      <TextObject Name="Text116" Left="122.85" Width="103.95" Height="18.9" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.UtilityData.CMETER_NO]" Font="Arial Unicode MS, 12pt"/>
+      <TextObject Name="Text117" Left="226.8" Width="170.1" Height="18.9" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.UtilityData.CSTART_INV_PRD_CONVERT]" Font="Arial Unicode MS, 12pt"/>
+      <TextObject Name="Text118" Left="378" Width="113.4" Height="18.9" BeforePrintEvent="Text118_BeforePrint" Text="[IIf([ResponseDataModel.PMA00400ResulDataFormatDTO.UtilityData.CCHARGES_TYPE] == &quot;01&quot; || [ResponseDataModel.PMA00400ResulDataFormatDTO.UtilityData.CCHARGES_TYPE] == &quot;02&quot; , &quot;-&quot;, [ResponseDataModel.PMA00400ResulDataFormatDTO.UtilityData.NMETER_START])]&#13;&#10;&#13;&#10;&#13;&#10;" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 11pt" Trimming="EllipsisCharacter"/>
+      <LineObject Name="Line10" Top="28.35" Width="718.2"/>
+      <TextObject Name="Text133" Left="510.3" Width="94.5" Height="18.9" Text="[IIf([ResponseDataModel.PMA00400ResulDataFormatDTO.UtilityData.CCHARGES_TYPE] == &quot;03&quot; || [ResponseDataModel.PMA00400ResulDataFormatDTO.UtilityData.CCHARGES_TYPE] == &quot;04&quot;, &quot;-&quot;, [ResponseDataModel.PMA00400ResulDataFormatDTO.UtilityData.NBLOCK1_START])]&#13;&#10;&#13;&#10;&#13;&#10;" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 11pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text134" Left="623.7" Width="94.5" Height="18.9" Text="[IIf([ResponseDataModel.PMA00400ResulDataFormatDTO.UtilityData.CCHARGES_TYPE] == &quot;03&quot; || [ResponseDataModel.PMA00400ResulDataFormatDTO.UtilityData.CCHARGES_TYPE] == &quot;04&quot;, &quot;-&quot;, [ResponseDataModel.PMA00400ResulDataFormatDTO.UtilityData.NBLOCK2_START])]&#13;&#10;&#13;&#10;&#13;&#10;" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 11pt" Trimming="EllipsisCharacter"/>
+      <DataHeaderBand Name="DataHeader3" Top="693.5" Width="718.2" Height="66.15" KeepWithData="true">
+        <TextObject Name="Text86" Top="9.45" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_UTILITY]" AutoWidth="true" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <LineObject Name="Line6" Top="37.8" Width="718.2"/>
+        <TextObject Name="Text85" Left="122.85" Top="37.8" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_METER_NO]" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <TextObject Name="Text87" Top="37.8" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_TYPE]" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <TextObject Name="Text88" Left="226.8" Top="37.8" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_START_INVOICE_PERIOD]" AutoWidth="true" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <TextObject Name="Text89" Left="396.9" Top="37.8" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_METER_START]" HorzAlign="Right" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <LineObject Name="Line5" Top="66.15" Width="718.2"/>
+        <TextObject Name="Text131" Left="510.3" Top="37.8" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_NBLOCK1_START]" HorzAlign="Right" Font="Arial Unicode MS, 11pt, style=Bold"/>
+        <TextObject Name="Text132" Left="623.7" Top="37.8" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_NBLOCK2_START]" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 11pt, style=Bold"/>
+      </DataHeaderBand>
+    </DataBand>
+    <DataBand Name="Data5" ZOrder="4" Top="796" Width="718.2" Height="255.15" VisibleExpression="[ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.LFORCED_HO]== false" DataSource="ResponseDataModel">
+      <TextObject Name="Text92" Top="18.9" Width="94.5" Height="28.35" CanShrink="true" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_CONFIRMATION]" AutoWidth="true" Font="Arial Unicode MS, 11pt, style=Bold"/>
+      <TextObject Name="Text93" Top="47.25" Width="708.75" Height="18.9" GrowToBottom="true" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_CONFIRMATION_DESC]" HorzAlign="Justify" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text95" Left="9.45" Top="217.35" Width="103.95" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_DATE]" AutoWidth="true" HorzAlign="Justify" WordWrap="false" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text96" Left="453.6" Top="189" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_TENANT]" HorzAlign="Justify" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text97" Left="453.6" Top="217.35" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_DATE]" HorzAlign="Justify" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text98" Left="9.45" Top="189" Width="103.95" Height="28.35" CanShrink="true" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_EMPLOYEE]" AutoWidth="true" HorzAlign="Justify" WordWrap="false" Font="Arial Unicode MS, 11pt"/>
+      <PictureObject Name="Picture3" Left="28.35" Top="94.5" Width="122.85" Height="94.5" DataColumn="ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.OData_EMPLOYEE_SIGNATURE"/>
+      <PictureObject Name="Picture4" Left="463.05" Top="94.5" Width="141.75" Height="94.5" DataColumn="ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.OData_TENANT_SIGNATURE"/>
+      <TextObject Name="Text123" Left="113.4" Top="189" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CEMPLOYEE_SIGNATURE_NAME]" AutoWidth="true" Font="Arial Unicode MS, 11pt, style=Underline"/>
+      <TextObject Name="Text124" Left="548.1" Top="189" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CTENANT_NAME]" AutoWidth="true" Font="Arial Unicode MS, 11pt, style=Underline"/>
+      <TextObject Name="Text125" Left="113.4" Top="217.35" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.DHO_ACTUAL_DATE]" Format="Date" Format.Format="d" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text126" Left="548.1" Top="217.35" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.DHO_ACTUAL_DATE]" Format="Date" Format.Format="d" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+    </DataBand>
+    <DataBand Name="Data6" ZOrder="5" Top="1055.15" Width="718.2" Height="255.15" VisibleExpression="[ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.LFORCED_HO]== true" DataSource="ResponseDataModel">
+      <TextObject Name="Text99" Top="9.45" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_CONFIRMATION]" AutoWidth="true" Font="Arial Unicode MS, 11pt, style=Bold"/>
+      <TextObject Name="Text105" Top="37.8" Width="708.75" Height="18.9" GrowToBottom="true" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_CONFIRMATON_DESC2]" HorzAlign="Justify" Font="Arial Unicode MS, 11pt"/>
+      <PictureObject Name="Picture2" Left="28.35" Top="85.05" Width="132.3" Height="103.95" DataColumn="ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.OData_EMPLOYEE_SIGNATURE"/>
+      <TextObject Name="Text127" Left="9.45" Top="217.35" Width="103.95" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_DATE]" AutoWidth="true" HorzAlign="Justify" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text128" Left="9.45" Top="189" Width="103.95" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_EMPLOYEE]" AutoWidth="true" HorzAlign="Justify" Font="Arial Unicode MS, 11pt"/>
+      <TextObject Name="Text129" Left="113.4" Top="189" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.CEMPLOYEE_SIGNATURE_NAME]" AutoWidth="true" Font="Arial Unicode MS, 11pt, style=Underline"/>
+      <TextObject Name="Text130" Left="113.4" Top="217.35" Width="94.5" Height="28.35" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.DHO_ACTUAL_DATE]" Format="Date" Format.Format="d" AutoWidth="true" Font="Arial Unicode MS, 11pt"/>
+    </DataBand>
+    <DataBand Name="Data7" ZOrder="6" Top="1356.1" Width="239.4" Height="292.95" VisibleExpression="[ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.LINCLUDE_IMAGE]==true" DataSource="ChecklistImageData" Columns.Count="3" Columns.MinRowCount="3">
+      <PictureObject Name="Picture5" Left="18.9" Top="9.45" Width="207.9" Height="255.15" DataColumn="ResponseDataModel.PMA00400ResulDataFormatDTO.ChecklistImageData.OData"/>
+      <RichObject Name="Rich2" Left="18.9" Top="264.6" Width="207.9" Height="18.9" CanGrow="true" GrowToBottom="true" Text="{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial Unicode MS;}{\f1\fnil Tahoma;}}&#13;&#10;{\*\generator Riched20 10.0.26100}\viewkind4\uc1 &#13;&#10;\pard\qc\b\f0\fs22 [ResponseDataModel.PMA00400ResulDataFormatDTO.ChecklistImageData.CPARENT_CHECKLIST_ITEM_NAME] \b0 - [ResponseDataModel.PMA00400ResulDataFormatDTO.ChecklistImageData.CCHECKLIST_ITEM_NAME]\f1\fs17\par&#13;&#10;}&#13;&#10;"/>
+      <DataHeaderBand Name="DataHeader4" Top="1314.3" Width="718.2" Height="37.8" VisibleExpression="[ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.LINCLUDE_IMAGE]==true" StartNewPage="true" KeepWithData="true">
+        <TextObject Name="Text139" Left="37.8" Top="9.45" Width="642.6" Height="18.9" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_CHECKLIST]" AutoWidth="true" HorzAlign="Center" Font="Arial Unicode MS, 11pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="DataFooter2" Top="1653.05" Width="718.2" Height="18.9">
+        <LineObject Name="Line11" Top="9.45" Width="718.2"/>
+      </DataFooterBand>
+    </DataBand>
+    <DataBand Name="Data8" ZOrder="7" Top="1717.75" Width="239.4" Height="292.95" VisibleExpression="[ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.LINCLUDE_IMAGE]==true" DataSource="UtilityImageData" Columns.Count="3">
+      <PictureObject Name="Picture6" Left="18.9" Top="9.45" Width="207.9" Height="255.15" DataColumn="ResponseDataModel.PMA00400ResulDataFormatDTO.UtilityImageData.OData"/>
+      <RichObject Name="Rich3" Left="18.9" Top="264.6" Width="207.9" Height="18.9" CanGrow="true" GrowToBottom="true" Text="{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial Unicode MS;}{\f1\fnil Tahoma;}}&#13;&#10;{\*\generator Riched20 10.0.26100}\viewkind4\uc1 &#13;&#10;\pard\qc\b\f0\fs22 [ResponseDataModel.PMA00400ResulDataFormatDTO.UtilityImageData.CCHARGES_TYPE_DESCRIPTION] \b0 - [ResponseDataModel.PMA00400ResulDataFormatDTO.UtilityImageData.CMETER_NO]\f1\fs17\par&#13;&#10;}&#13;&#10;"/>
+      <DataHeaderBand Name="DataHeader5" Top="1675.95" Width="718.2" Height="37.8" VisibleExpression="[ResponseDataModel.PMA00400ResulDataFormatDTO.HeaderData.LINCLUDE_IMAGE]==true">
+        <TextObject Name="Text140" Left="37.8" Top="9.45" Width="642.6" Height="18.9" Text="[ResponseDataModel.PMA00400ResulDataFormatDTO.Label.LABEL_UTILITY]" AutoWidth="true" HorzAlign="Center" Font="Arial Unicode MS, 11pt, style=Bold"/>
+      </DataHeaderBand>
+    </DataBand>
+  </inherited>
+</inherited>

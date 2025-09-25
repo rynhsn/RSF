@@ -1,0 +1,394 @@
+@using PMT01700COMMON.DTO._2._LOO._4._LOO___Deposit;
+@inherits R_Page
+@attribute [R_Page(Title = "Deposit")]
+@inject R_ILocalizer<Resources_PMT01700_Class> _localizer
+
+<!-- Header -->
+<R_StackLayout Row>
+
+    <R_StackLayout Row Class="col-3">
+
+        <R_ItemLayout col="3">
+            <R_Label>
+                @_localizer["_OfferNo"]
+            </R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="8">
+            <R_TextBox @bind-Value="@_viewModel.oHeaderEntity.CREF_NO"
+                       Enabled="false" />
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="col-5">
+
+        <R_ItemLayout col="2">
+            <R_Label>
+                @_localizer["_Tenant"]
+            </R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@_viewModel.oHeaderEntity.CTENANT_ID"
+                       Enabled="false" />
+        </R_ItemLayout>
+
+        <R_ItemLayout col="4">
+            <R_TextBox @bind-Value="@_viewModel.oHeaderEntity.CTENANT_NAME"
+                       Enabled="false" />
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    </R_StackLayout>
+
+    <!-- Deposit -->
+    <R_StackLayout Row>
+
+    <R_Grid @ref="@_gridDeposit"
+            DataSource="_viewModel.oListDeposit"
+            R_ConductorSource="@_conductorDeposit"
+            R_GridType="@R_eGridType.Navigator"
+            R_ServiceGetListRecord="@R_ServiceGetListDepositListRecord"
+            Pageable
+            Height="215px"
+            @bind-PageSize="@_pageSizeDeposit"
+            AllowDeleteRow
+            AllowAddNewRow
+            AllowEditRow>
+        <R_GridColumns>
+
+            <R_GridTextColumn Width="125px"
+                              FieldName="@nameof(PMT01700LOO_Deposit_DepositDetailDTO.CSEQ_NO)"
+                              HeaderText="@_localizer["_SeqNo"]" />
+
+            <R_GridTextColumn Width="150px"
+                              FieldName="@nameof(PMT01700LOO_Deposit_DepositDetailDTO.CDEPOSIT_ID)"
+                              HeaderText="@_localizer["_DepositID"]" />
+
+            <R_GridTextColumn Width="160px"
+                              FieldName="@nameof(PMT01700LOO_Deposit_DepositDetailDTO.CDEPOSIT_NAME)"
+                              HeaderText="@_localizer["_DepositName"]" />
+
+            <R_GridDatePickerColumn Width="160px"
+                                    FieldName="@nameof(PMT01700LOO_Deposit_DepositDetailDTO.DDEPOSIT_DATE)"
+                                    HeaderText="@_localizer["_DepositDate"]" />
+
+            <R_GridTextColumn Width="120px"
+                              FieldName="@nameof(PMT01700LOO_Deposit_DepositDetailDTO.CCURRENCY_CODE)"
+                              HeaderText="@_localizer["_Currency"]" />
+
+            <R_GridNumericColumn Width="200px"
+                                 FieldName="@nameof(PMT01700LOO_Deposit_DepositDetailDTO.NDEPOSIT_AMT)"
+                                 TValue="decimal"
+                                 HeaderText="@_localizer["_DepositAmount"]" />
+            <R_GridCheckBoxColumn Width="95px"
+                                 FieldName="@nameof(PMT01700LOO_Deposit_DepositDetailDTO.NDEPOSIT_AMT)"
+                                 HeaderText="@_localizer["_Paid"]" />
+
+            <R_GridTextColumn FieldName="@nameof(PMT01700LOO_Deposit_DepositDetailDTO.CUPDATE_BY)"
+                              HeaderText="@_localizer["_UpdatedBy"]"
+                              Width="125px" />
+
+            <R_GridDateTimePickerColumn FieldName="@nameof(PMT01700LOO_Deposit_DepositDetailDTO.DUPDATE_DATE)"
+                                        HeaderText="@_localizer["_UpdatedDate"]"
+                                        Width="190px" />
+
+            <R_GridTextColumn FieldName="@nameof(PMT01700LOO_Deposit_DepositDetailDTO.CCREATE_BY)"
+                              HeaderText="@_localizer["_CreatedBy"]"
+                              Width="125px" />
+
+            <R_GridDateTimePickerColumn FieldName="@nameof(PMT01700LOO_Deposit_DepositDetailDTO.DCREATE_DATE)"
+                                        HeaderText="@_localizer["_CreatedDate"]"
+                                        Width="190px" />
+
+        </R_GridColumns>
+
+    </R_Grid>
+
+</R_StackLayout>
+
+
+<!-- Deposit Navigator -->
+<R_StackLayout Class="mt-2">
+
+    <!-- Seq No -->
+    <R_ItemLayout col="10" Class="d-flex">
+
+        <R_ItemLayout col="2">
+            <R_Label>
+                @_localizer["_SeqNo"]
+            </R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+
+            <R_TextBox @bind-Value="@_viewModel.Data.CSEQ_NO"
+                       R_ConductorSource="@_conductorDeposit"
+                       Enabled="false" />
+
+        </R_ItemLayout>
+
+    </R_ItemLayout>
+
+    <!-- Tax-->
+    <R_ItemLayout col="10" Class="d-flex">
+
+        <R_ItemLayout col="2">
+            <R_Label>
+                @_localizer["_DepositID"]*
+            </R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+
+            <R_TextBox @bind-Value="@_viewModel.Data.CDEPOSIT_ID"
+                       R_ConductorSource="@_conductorDeposit"
+                       @ref="_componentCDepositTextBox"
+                       OnLostFocus="@OnLostFocusDeposit"
+                       MaxLength="20"
+                       R_EnableAdd
+                       R_EnableEdit="false" />
+
+            </R_ItemLayout>
+
+            <R_ItemLayout col="7" Class="d-flex">
+
+            <R_ItemLayout col="1" Class="ps-2">
+
+                <R_Lookup R_ConductorSource="@_conductorDeposit"
+                          @ref="@R_LookupDepositLookup"
+                          R_EnableAdd
+                          R_EnableEdit="false"
+                          R_Before_Open_Lookup="@BeforeOpenLookUpDepositLookup"
+                          R_After_Open_Lookup="@AfterOpenLookUpDepositLookup">
+                    ...
+                </R_Lookup>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="11">
+
+                <R_TextBox @bind-Value="@_viewModel.Data.CDEPOSIT_NAME"
+                           R_ConductorSource="@_conductorDeposit"
+                           Enabled="false" />
+
+                </R_ItemLayout>
+
+                </R_ItemLayout>
+
+                </R_ItemLayout>
+                <!-- Deposit JG -->
+                <R_ItemLayout col="10" Class="d-flex">
+
+                <R_ItemLayout col="2">
+                <R_Label>
+                @_localizer["_TaxId"]*
+                </R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3">
+
+                <R_TextBox @bind-Value="@_viewModel.Data.CTAX_ID"
+                       R_ConductorSource="@_conductorDeposit"
+                       @ref="_componentTaxCodeLookup"
+                       OnLostFocus="@OnLostFocusTaxCode"
+                       MaxLength="20"
+                       R_EnableAdd
+                       R_EnableEdit="false" />
+
+            </R_ItemLayout>
+
+            <R_ItemLayout col="7" Class="d-flex">
+
+            <R_ItemLayout col="1" Class="ps-2">
+
+                <R_Lookup R_ConductorSource="@_conductorDeposit"
+                          @ref="@R_LookupTaxCodeLookup"
+                          R_EnableAdd
+                          R_EnableEdit="false"
+                          R_Before_Open_Lookup="@BeforeOpenLookUpTaxCodeLookup"
+                          R_After_Open_Lookup="@AfterOpenLookUpTaxCodeLookup">
+                    ...
+                </R_Lookup>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="11">
+
+                <R_TextBox @bind-Value="@_viewModel.Data.CTAX_NAME"
+                           R_ConductorSource="@_conductorDeposit"
+                           Enabled="false" />
+
+                </R_ItemLayout>
+
+                </R_ItemLayout>
+
+                </R_ItemLayout>
+
+                <!-- Deposit Date -->
+                <R_ItemLayout col="10" Class="d-flex">
+
+
+                <R_ItemLayout col="2">
+                <R_Label>
+                @_localizer["_DepositDate"]*
+                </R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3">
+
+                <R_DatePicker Value="@_viewModel.Data.DDEPOSIT_DATE"
+                          R_ConductorSource="@_conductorDeposit"
+                            R_EnableAdd
+                            R_EnableEdit />
+
+        </R_ItemLayout>
+
+    </R_ItemLayout>
+
+    <!-- Currency -->
+    <R_ItemLayout col="10" Class="d-flex">
+
+        <R_ItemLayout col="2">
+            <R_Label>
+                @_localizer["_Currency"]*
+            </R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+
+            <R_DropDownList Data="@_viewModel.oComboBoxDataCurrency"
+                            Value="_viewModel.Data.CCURRENCY_CODE"
+                            ValueField="@nameof(PMT01700ResponseCurrencyParameterDTO.CCURRENCY_CODE)"
+                            TextField="@nameof(PMT01700ResponseCurrencyParameterDTO.CCURRENCY_CODE)"
+                            ValueChanged="@((string value) => OnChangedCurrencyCode(value))"
+                            PopupMaxHeight="75px"
+                            R_ConductorSource="@_conductorDeposit"
+                                R_EnableAdd
+                                R_EnableEdit />
+
+        </R_ItemLayout>
+
+        <R_ItemLayout col="4" Class="ps-1">
+
+            <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_NAME"
+                       R_ConductorSource="@_conductorDeposit"
+                       Enabled="false" />
+        </R_ItemLayout>
+
+    </R_ItemLayout>
+
+    <!-- Deposit Amount -->
+    <R_ItemLayout col="10" Class="d-flex">
+
+        <R_ItemLayout col="2">
+            <R_Label>
+                @_localizer["_DepositAmount"]*
+            </R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+
+            <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                       R_ConductorSource="@_conductorDeposit"
+                       Enabled="false" />
+
+        </R_ItemLayout>
+
+        <R_ItemLayout col="4" Class="ps-1">
+
+            <R_NumericTextBox @bind-Value="@_viewModel.Data.NDEPOSIT_AMT"
+                              R_ConductorSource="@_conductorDeposit"
+                              TValue="decimal"
+                              Max="10000000000000"
+                              Min="1"
+                              Arrows="false"
+                                    R_EnableAdd
+                                    R_EnableEdit />
+        </R_ItemLayout>
+        <R_ItemLayout col="1" Class="text-end">
+
+            <R_CheckBox Value="@_viewModel.Data.LPAID"
+                        R_ConductorSource="@_conductorDeposit" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1" Class="ps-2">
+            <R_Label>
+                @_localizer["_Paid"]
+            </R_Label>
+        </R_ItemLayout>
+
+    </R_ItemLayout>
+
+    <!-- Description -->
+    <R_ItemLayout col="10" Class="d-flex">
+
+        <R_ItemLayout col="2">
+            <R_Label>
+                @_localizer["_Description"]
+            </R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="10">
+
+            <R_TextArea @bind-Value="@_viewModel.Data.CDESCRIPTION"
+                        R_ConductorSource="@_conductorDeposit"
+                        MaxLength="int.MaxValue"
+                        R_EnableAdd
+                        R_EnableEdit />
+
+        </R_ItemLayout>
+
+    </R_ItemLayout>
+
+
+</R_StackLayout>
+
+
+@* Button CRUD *@
+<R_StackLayout Row Class="d-flex justify-content-between">
+
+    <R_StackLayout Row>
+
+        <R_ItemLayout>
+            <R_AddButton R_Conductor="@_conductorDeposit" />
+        </R_ItemLayout>
+
+        <R_ItemLayout>
+            <R_EditButton R_Conductor="@_conductorDeposit" />
+        </R_ItemLayout>
+
+        <R_ItemLayout>
+            <R_DeleteButton R_Conductor="@_conductorDeposit" />
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="d-flex justify-content-end">
+
+        <R_StackLayout Row>
+
+            <R_ItemLayout>
+                <R_CancelButton R_Conductor="@_conductorDeposit" />
+            </R_ItemLayout>
+
+            <R_ItemLayout>
+                <R_SaveButton R_Conductor="@_conductorDeposit" />
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+    </R_StackLayout>
+
+</R_StackLayout>
+
+
+<R_Conductor @ref="@_conductorDeposit"
+             R_ViewModel="@_viewModel"
+              R_IsHeader
+             R_ServiceGetRecord="@ServiceGetRecord"
+             R_ServiceSave="@ServiceSave"
+             R_AfterAdd="@ServiceAfterAdd"
+             R_ServiceDelete="@ServiceDelete"
+             R_Validation="@R_Validation"
+             R_AfterDelete="@AfterDelete"
+             R_SetOther="@SetOtherAsync" />

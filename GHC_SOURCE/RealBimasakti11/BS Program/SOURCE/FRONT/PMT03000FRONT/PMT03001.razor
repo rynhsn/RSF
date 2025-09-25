@@ -1,0 +1,260 @@
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_title_maintainfacility")]
+
+<R_StackLayout Row>
+
+    <R_ItemLayout Col="12" Style="width:820px">
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_lbl_property"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.TransByUnit.CPROPERTY_ID" Enabled="@false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col">
+                <R_TextBox @bind-Value="@_viewModel.TransByUnit.CPROPERTY_NAME" Enabled="@false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_lbl_tenant"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.TransByUnit.CTENANT_ID" Enabled="@false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col">
+                <R_TextBox @bind-Value="@_viewModel.TransByUnit.CTENANT_NAME" Enabled="@false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_lbl_building"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.TransByUnit.CBUILDING_ID" Enabled="@false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col">
+                <R_TextBox @bind-Value="@_viewModel.TransByUnit.CBUILDING_NAME" Enabled="@false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_lbl_floor"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.TransByUnit.CFLOOR_ID" Enabled="@false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col">
+                <R_TextBox @bind-Value="@_viewModel.TransByUnit.CFLOOR_NAME" Enabled="@false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_lbl_unit"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.TransByUnit.CUNIT_ID" Enabled="@false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col">
+                <R_TextBox @bind-Value="@_viewModel.TransByUnit.CUNIT_NAME" Enabled="@false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_lbl_unittypecategory"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.TransByUnit.CUNIT_TYPE_CATEGORY_ID" Enabled="@false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col">
+                <R_TextBox @bind-Value="@_viewModel.TransByUnit.CUNIT_TYPE_CATEGORY_NAME" Enabled="@false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+
+            <R_ItemLayout col="3">
+                <R_Grid @ref="@_gridUnitTypeCtgFacility"
+                        DataSource="@_viewModel.UnitTypeCtgFacilities"
+                        R_GridType="@R_eGridType.Original"
+                        R_ConductorGridSource="@_conUnitTypeCtgFacility"
+                        R_ServiceGetListRecord="@UnitTypeCtgFacility_GetList"
+                        R_Display="@UnitTypeCtgFacility_Display"
+                        AllowAddNewRow="false"
+                        AllowDeleteRow="false"
+                        AllowEditRow="false"
+                        Pageable
+                        @bind-PageSize="@_pageSize_UnitTypeCtgFacility"
+                        Height="400px">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(UnitTypeCtgFacilityDTO.CFACILITY_TYPE_DESCR)" HeaderText="@(_localizer["_col_facility"])" Width="200px"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="9">
+                <R_StackLayout Row>
+                    <R_ItemLayout>
+                        <R_Label>@_localizer["_lbl_usedqty"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Label>
+                            :
+                        </R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Label>@_viewModel.FacilityQty.IUNIT_FACILITY_QTY/@_viewModel.FacilityQty.IFACILITY_QTY</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_Grid @ref="@_gridTenantUnitFacility"
+                        DataSource="@_viewModel.TenantUnitFacilites"
+                        R_GridType="@R_eGridType.Navigator"
+                        R_ConductorSource="@_conTenantUnitFacility"
+                        R_ServiceGetListRecord="@TenantUnitFacility_GetList"
+                        Pageable
+                        AllowAddNewRow="false"
+                        AllowDeleteRow="false"
+                        AllowEditRow="false"
+                        @bind-PageSize="@_pageSize_TenantUnitFacility"
+                        Height="200px">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(TenantUnitFacilityDTO.CSEQUENCE)" HeaderText="@(_localizer["_col_seqno"])" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(TenantUnitFacilityDTO.CREGIST_NO)" HeaderText="@(_localizer["_col_regno"])" Width="200px"></R_GridTextColumn>
+                        <R_GridDatePickerColumn FieldName="@nameof(TenantUnitFacilityDTO.DSTART_DATE)" HeaderText="@(_localizer["_col_startdate"])" Width="140px"></R_GridDatePickerColumn>
+                        <R_GridDatePickerColumn FieldName="@nameof(TenantUnitFacilityDTO.DEND_DATE)" HeaderText="@(_localizer["_col_enddate"])" Width="140px"></R_GridDatePickerColumn>
+                        <R_GridCheckBoxColumn FieldName="@nameof(TenantUnitFacilityDTO.LACTIVE)" HeaderText="@(_localizer["_col_active"])" Width="100px"></R_GridCheckBoxColumn>
+                        <R_GridTextColumn FieldName="@nameof(TenantUnitFacilityDTO.CUPDATE_BY)"
+                                          HeaderText="Updated By"
+                                          Width="120px"
+                                          R_EnableAdd="false"
+                                          R_EnableEdit="false"></R_GridTextColumn>
+                        <R_GridDatePickerColumn FieldName="@nameof(TenantUnitFacilityDTO.DUPDATE_DATE)"
+                                                HeaderText="Updated Date"
+                                                Width="140px"
+                                                R_EnableAdd="false"
+                                                R_EnableEdit="false"></R_GridDatePickerColumn>
+                        <R_GridTextColumn FieldName="@nameof(TenantUnitFacilityDTO.CCREATE_BY)"
+                                          HeaderText="Created By"
+                                          Width="120px"
+                                          R_EnableAdd="false"
+                                          R_EnableEdit="false"></R_GridTextColumn>
+                        <R_GridDatePickerColumn FieldName="@nameof(TenantUnitFacilityDTO.DCREATE_DATE)"
+                                                HeaderText="Created Date"
+                                                Width="140px"
+                                                R_EnableAdd="false"
+                                                R_EnableEdit="false"></R_GridDatePickerColumn>
+                    </R_GridColumns>
+                </R_Grid>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_txt_facility"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
+                        <R_TextBox @bind-Value="@_viewModel.UnitFacilityTypeName" Enabled="@false"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col"></R_ItemLayout>
+                    <R_ItemLayout colauto>
+                        <R_StackLayout Row>
+                            <R_ItemLayout>
+                                <R_CheckBox @bind-Value=@_viewModel.Data.LACTIVE R_ConductorSource="@_conTenantUnitFacility" R_EnableEdit></R_CheckBox>
+                            </R_ItemLayout>
+                            <R_ItemLayout colauto>
+                                <R_Label>@_localizer["_chk_active"]</R_Label>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_txt_seqno"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_TextBox @bind-Value="@_viewModel.Data.CSEQUENCE"
+                                   Enabled="@false"></R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_txt_registno"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="10">
+                        <R_TextBox @bind-Value="@_viewModel.Data.CREGIST_NO" R_ConductorSource="@_conTenantUnitFacility" R_EnableAdd R_EnableEdit MaxLength="50"></R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_txt_startdate"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
+                        <R_DatePicker @bind-Value="@_viewModel.Data.DSTART_DATE" R_ConductorSource="@_conTenantUnitFacility" R_EnableAdd R_EnableEdit></R_DatePicker>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_txt_enddate"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
+                        <R_DatePicker @bind-Value="@_viewModel.Data.DEND_DATE" R_ConductorSource="@_conTenantUnitFacility" R_EnableAdd R_EnableEdit></R_DatePicker>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row Justify="R_eJustify.SpaceBetween">
+                    <R_ItemLayout>
+                        <R_StackLayout Row>
+                            <R_ItemLayout>
+                                <R_AddButton R_Conductor="@_conTenantUnitFacility"></R_AddButton>
+                            </R_ItemLayout>
+                            <R_ItemLayout>
+                                <R_EditButton R_Conductor="@_conTenantUnitFacility"></R_EditButton>
+                            </R_ItemLayout>
+                            <R_ItemLayout>
+                                <R_DeleteButton R_Conductor="@_conTenantUnitFacility"></R_DeleteButton>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout>
+                        <R_Button OnClick="BtnActiveInactive_Onclick" Enabled="@(_conTenantUnitFacility.R_ConductorMode==R_eConductorMode.Normal&&_viewModel.TenantUnitFacilites.Count>0)">@_lbl_activeinactive</R_Button>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout>
+                        <R_StackLayout Row>
+                            <R_ItemLayout>
+                                <R_CancelButton R_Conductor="@_conTenantUnitFacility"></R_CancelButton>
+                                <R_SaveButton R_Conductor="@_conTenantUnitFacility"></R_SaveButton>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conUnitTypeCtgFacility"
+                 R_IsHeader />
+
+<R_Conductor @ref="@_conTenantUnitFacility"
+             R_ViewModel="@_viewModel"
+             R_ConductorParent="@_conUnitTypeCtgFacility"
+             R_ServiceGetRecord="@TenantUnitFacility_GetRecord"
+             R_ConvertToGridEntity="@TenantUnitFacility_ConvertGridToEntity"
+             R_Display="@TenantUnitFacility_RDisplay"
+             R_AfterAdd="@TenantUnitFacility_AfterAdd"
+             R_Saving="@TenantUnitFacility_Saving"
+             R_ServiceSave="@TenantUnitFacility_SaveAsync"
+             R_ServiceDelete="@TenantUnitFacility_Delete" />

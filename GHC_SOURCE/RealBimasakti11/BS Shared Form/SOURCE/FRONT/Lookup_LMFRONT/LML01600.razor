@@ -1,0 +1,37 @@
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_SLACallType")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupPM> _localizer
+
+
+<R_StackLayout Row>
+    <R_Grid @ref="@GridRef"
+            DataSource="_viewModel.GetList"
+            R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+            R_GridType="@R_eGridType.Navigator"
+            Pageable
+            @bind-PageSize="@_pageSize"
+            Height="300px"
+            Width="600px">
+        <R_GridColumns>
+            <R_GridTextColumn Width="200px"
+                              FieldName="@nameof(LML01600DTO.CCALL_TYPE_ID)" HeaderText=@_localizer["_callTypeId"]></R_GridTextColumn>
+            <R_GridTextColumn Width="200px"
+                              FieldName="@nameof(LML01600DTO.CCALL_TYPE_NAME)" HeaderText=@_localizer["_callTypeName"]></R_GridTextColumn>
+            <R_GridTextColumn Width="170px"
+                              FieldName="@nameof(LML01600DTO.CCATEGORY_ID_AND_NAME)" HeaderText=@_localizer["_category"]></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            OK
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            Cancel
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

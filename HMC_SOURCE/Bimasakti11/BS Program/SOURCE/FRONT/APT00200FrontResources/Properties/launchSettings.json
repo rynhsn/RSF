@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "APT00200FrontResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64698;http://localhost:64699"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+2541	= Error process, please contact your administrator!
+2542	= Duplicate Floor Id!
+2543	= Cannot Delete, Floor already in used!
+2544	= Floor Id cannot be empty!
+2545	= Floor Name cannot be empty!
+2546	= Floor Id cannot be greater than 20 character!
+2547	= Floor Name cannot be greater than 100 character!
+2548	= Total Floor Space must be greater than Total Unit Space!
+
+
+

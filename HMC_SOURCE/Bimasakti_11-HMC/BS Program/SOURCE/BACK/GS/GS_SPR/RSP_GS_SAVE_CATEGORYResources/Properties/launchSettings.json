@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GS_SAVE_CATEGORYResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:49194;http://localhost:49195"
+    }
+  }
+}

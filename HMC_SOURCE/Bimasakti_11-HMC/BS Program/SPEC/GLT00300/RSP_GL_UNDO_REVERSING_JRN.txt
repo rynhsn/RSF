@@ -1,0 +1,1 @@
+Error900=Process failed! unable to undo Reverse Journal transaction {0}

@@ -1,0 +1,328 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Purchase Return Detail")]
+@using APT00200COMMON.DTOs.APT00211
+@using APT00200MODEL
+
+<R_StackLayout Style="width: 1250px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="7">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Property"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="5" Class="me-1">
+                    <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.CPROPERTY_NAME"
+                               R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_RefNo"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3" Class="pe-3">
+                    <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.CREF_NO"
+                               R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Department"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.CDEPT_CODE"
+                               R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="3" Class="pe-1">
+                    <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.CDEPT_NAME"
+                               R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_RefDate"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3" Class="pe-3">
+                    <R_DatePicker @bind-Value="@loPurchaseReturnItemViewModel.loHeader.DREF_DATE"
+                                  R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                                  Enabled="false">
+                    </R_DatePicker>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Supplier"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.CSUPPLIER_ID"
+                               R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.CSUPPLIER_NAME"
+                               R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="3" Class="pe-3 ps-1">
+                    <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.CSUPPLIER_SEQ_NO"
+                               R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="5">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_Currency"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.CCURRENCY_CODE"
+                               R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="7" Class="pe-4">
+                    <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.CCURRENCY_NAME"
+                               R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_LocalCurrency"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:115px">
+                    <R_NumericTextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.NLBASE_RATE"
+                                      R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                                      Arrows="false"
+                                      Decimals="0"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.CCURRENCY_CODE"
+                               R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 10px">
+                    <R_Label>=</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:115px">
+                    <R_NumericTextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.NLCURRENCY_RATE"
+                                      R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                                      Arrows="false"
+                                      Decimals="6"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.CLOCAL_CURRENCY_CODE"
+                               R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_TaxRate"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:115px">
+                    <R_NumericTextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.NTAX_BASE_RATE"
+                                      R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                                      Arrows="false"
+                                      Decimals="0"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.CCURRENCY_CODE"
+                               R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 10px">
+                    <R_Label>=</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:115px">
+                    <R_NumericTextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.NTAX_CURRENCY_RATE"
+                                      R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                                      Arrows="false"
+                                      Decimals="6"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loHeader.CLOCAL_CURRENCY_CODE"
+                               R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_TabStrip OnActiveTabIndexChanged="OnActiveTabIndexChanged">
+        <R_TabStripTab Title="@_localizer["_ItemList"]" Id="ItemList">
+            <R_StackLayout Row>
+                <R_ItemLayout col="12">
+                    <R_Grid @ref="@_gridPurchaseReturnItemRef"
+                            DataSource="@loPurchaseReturnItemViewModel.loPurchaseReturnItemList"
+                            Pageable="true"
+                            R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                            R_GridType="@R_eGridType.Original"
+                            AllowAddNewRow="false"
+                            AllowEditRow="false"
+                            AllowDeleteRow="false"
+                            Height="300px"
+                            R_Display="Grid_PurchaseReturnItem_R_Display"
+                            R_ServiceGetListRecord="@Grid_PurchaseReturnItem_R_ServiceGetListRecord">
+                        <R_GridColumns>
+                            <R_GridTextColumn FieldName=@nameof(APT00211ListDTO.CSEQ_NO) HeaderText="@_localizer["_SeqNo"]" Width="100px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(APT00211ListDTO.CPROD_TYPE_NAME) HeaderText="@_localizer["_Type"]" Width="150px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName="@nameof(APT00211ListDTO.CSUP_PRODUCT_ID)" HeaderText="@_localizer["_SupplierProductID"]" Width="200px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName="@nameof(APT00211ListDTO.CSUP_PRODUCT_NAME)" HeaderText="@_localizer["_SupplierProductName"]" Width="250px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName="@nameof(APT00211ListDTO.CBILL_UNIT)" HeaderText="@_localizer["_Unit"]" Width="100px"></R_GridTextColumn>
+                            <R_GridNumericColumn FieldName="@nameof(APT00211ListDTO.NBILL_UNIT_QTY)" HeaderText="@_localizer["_Qty"]" Width="150px"></R_GridNumericColumn>
+                            <R_GridNumericColumn FieldName="@nameof(APT00211ListDTO.NUNIT_PRICE)" HeaderText="@_localizer["_UnitPrice"]" Width="200px"></R_GridNumericColumn>
+                            <R_GridNumericColumn FieldName="@nameof(APT00211ListDTO.NAMOUNT)" HeaderText="@_localizer["_TotalPrice"]" Width="200px"></R_GridNumericColumn>
+                            <R_GridTextColumn FieldName="@nameof(APT00211ListDTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="150px"></R_GridTextColumn>
+                            <R_GridDateTimePickerColumn FieldName="@nameof(APT00211ListDTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                            <R_GridTextColumn FieldName="@nameof(APT00211ListDTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="150px"></R_GridTextColumn>
+                            <R_GridDateTimePickerColumn FieldName="@nameof(APT00211ListDTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+                </R_ItemLayout>
+            </R_StackLayout>
+            
+            <R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["_ProductDept"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loDetail.CPROD_DEPT_CODE"
+                                    R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                                    Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loDetail.CPROD_DEPT_NAME"
+                                    R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                                    Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width:150px">
+                        <R_Label>@_localizer["_LineDiscount"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@loPurchaseReturnItemViewModel.loDetail.NDISC_AMOUNT"
+                                            R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                                            Arrows="false"
+                                            Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["_Tax"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@loPurchaseReturnItemViewModel.loDetail.NTAX_AMOUNT"
+                                            R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                                            Arrows="false"
+                                            Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["_Product"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loDetail.CPRODUCT_ID"
+                                    R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                                    Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="@loPurchaseReturnItemViewModel.loDetail.CPRODUCT_NAME"
+                                    R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                                    Enabled="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width:150px">
+                        <R_Label>@_localizer["_SummaryDiscount"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@loPurchaseReturnItemViewModel.loDetail.NDIST_DISCOUNT"
+                                            R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                                            Arrows="false"
+                                            Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["_Tax"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@loPurchaseReturnItemViewModel.loDetail.NOTHER_TAX_AMOUNT"
+                                            R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                                            Arrows="false"
+                                            Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="5" Class="me-2">
+                        <R_Label></R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Style="width:150px">
+                        <R_Label>@_localizer["_AddOn"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@loPurchaseReturnItemViewModel.loDetail.NDIST_ADD_ON"
+                                            R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                                            Arrows="false"
+                                            Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["_LineAmount"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@loPurchaseReturnItemViewModel.loDetail.NLINE_AMOUNT"
+                                            R_ConductorGridSource="@_conductorPurchaseReturnItemRef"
+                                            Arrows="false"
+                                            Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+    
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Button R_ConductorGridSource="@_conductorPurchaseReturnItemRef" OnClick="OnClose">@_localizer["_Close"]</R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_StackLayout>
+        </R_TabStripTab>
+                <R_TabStripTab Title="@_localizer["_ItemEntry"]" Id="ItemEntry">
+            <R_TabPage R_Before_Open_TabPage="R_Before_OpenItemEntry_TabPage">
+                <APT00211></APT00211>
+            </R_TabPage>
+        </R_TabStripTab>
+    </R_TabStrip>
+
+</R_StackLayout>
+<R_ConductorGrid @ref="@_conductorPurchaseReturnItemRef"
+                 R_ViewModel="@loPurchaseReturnItemViewModel"
+                 R_IsHeader="true" />

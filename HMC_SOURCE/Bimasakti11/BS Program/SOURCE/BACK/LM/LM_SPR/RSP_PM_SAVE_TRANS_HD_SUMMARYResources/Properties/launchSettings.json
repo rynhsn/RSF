@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_PM_SAVE_TRANS_HD_SUMMARYResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:51049;http://localhost:51050"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+DATA_EXISTS=Reference No. {0} already exists!
+ERROR_PROCESS=Process failed! unable to save Customer Receipt transaction {0}
+CB_GL_ACC_NOT_FOUND=GL Account No. not found for selected CB Account {0}
+CENTER_NOT_FOUND=Center Code not found for Department {0}
+REF_NO_NOT_SET=Transaction Code Numbering Setting not found for {0}
+CB_NO_NOT_SET=Cash/Bank Code Numbering Setting not found for {0}
+

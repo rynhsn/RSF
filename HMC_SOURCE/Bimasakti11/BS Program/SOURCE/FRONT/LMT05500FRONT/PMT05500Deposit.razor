@@ -1,0 +1,255 @@
+@inherits R_Page
+@attribute [R_Page(Title = "Deposit")]
+@inject R_ILocalizer<Resources_PMT05500_Class> _localizer
+
+<R_StackLayout Row>
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_Label>@_localizer["_AgreementNo"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_depositViewModel._headerDeposit.CREF_NO"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Tenant"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_depositViewModel._headerDeposit.CTENANT_ID"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_depositViewModel._headerDeposit.CTENANT_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Building"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_depositViewModel._headerDeposit.CBUILDING_ID"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_depositViewModel._headerDeposit.CBUILDING_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_Label>@_localizer["_AggUnit"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_depositViewModel._headerDeposit.CUNIT_NAME_LIST"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_UnitId"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_depositViewModel._headerDeposit.CUNIT_ID"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_depositViewModel._headerDeposit.CUNIT_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Currency"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_depositViewModel._headerDeposit.CCURRENCY_CODE"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_TabStrip @ref="_tabStripDeposit" Class="mt-1" OnActiveTabIndexChanging="@OnActiveTabDepositIndexChangingAsync">
+    <R_TabStripTab Title="Deposit List" Id="TabDepositList">
+        <R_StackLayout>
+            <R_Grid @ref="@_gridDepositRef"
+                    DataSource="_depositViewModel._depositList"
+                    Pageable="true"
+                    @bind-PageSize="@_pageSizeDeposit"
+                    R_ConductorGridSource="@_conGridDeposit"
+                    R_GridType="@R_eGridType.Original"
+                    R_ServiceGetListRecord="@R_ServiceDepositListRecord"
+                    AllowDeleteRow="false"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    R_Display="@Grid_DisplayDeposit"
+                    Height="200px">
+                <R_GridColumns>
+                    <R_GridTextColumn Width="120px"
+                                      FieldName="@nameof(LMT05500DepositListDTO.CSEQ_NO)"
+                                      HeaderText=@_localizer["_SeqNo"] />
+                    <R_GridTextColumn Width="175px"
+                                      FieldName="@nameof(LMT05500DepositListDTO.CCONTRACTOR_NAME)"
+                                      HeaderText=@_localizer["_Contractor"] />
+                    <R_GridTextColumn Width="130px"
+                                      FieldName="@nameof(LMT05500DepositListDTO.CDEPOSIT_ID)"
+                                      HeaderText=@_localizer["_DepId"] />
+                    <R_GridTextColumn Width="175px"
+                                      FieldName="@nameof(LMT05500DepositListDTO.CDEPOSIT_NAME)"
+                                      HeaderText=@_localizer["_DepName"] />
+                    <R_GridDatePickerColumn Width="150px"
+                                            FieldName="@nameof(LMT05500DepositListDTO.DDEPOSIT_DATE)"
+                                            HeaderText=@_localizer["_DepDate"] />
+
+                    <R_GridNumericColumn Width="175px"
+                                         FieldName="@nameof(LMT05500DepositListDTO.NDEPOSIT_AMOUNT)"
+                                         TValue="decimal"
+                                         HeaderText=@_localizer["_DepAmount"] />
+                    <R_GridNumericColumn Width="195px"
+                                         FieldName="@nameof(LMT05500DepositListDTO.NREMAINING_AMOUNT)"
+                                         TValue="decimal"
+                                         HeaderText=@_localizer["_RemainingAmt"] />
+                    <R_GridTextColumn Width="175px"
+                                      FieldName="@nameof(LMT05500DepositListDTO.CINVOICE_NO)"
+                                      HeaderText=@_localizer["_InvNo"] />
+                    <R_GridCheckBoxColumn Width="130px"
+                                          FieldName="@nameof(LMT05500DepositListDTO.LPAYMENT)"
+                                          HeaderText=@_localizer["_Pay"] />
+
+                    <R_GridTextColumn Width="140px"
+                                      FieldName="@nameof(LMT05500DepositListDTO.CUPDATE_BY)"
+                                      HeaderText=@_localizer["_UpdBy"] />
+                    <R_GridDateTimePickerColumn Width="190px"
+                                                FieldName="@nameof(LMT05500DepositListDTO.DUPDATE_DATE)"
+                                                HeaderText=@_localizer["_UpdDate"] />
+                    <R_GridTextColumn Width="140px"
+                                      FieldName="@nameof(LMT05500DepositListDTO.CCREATE_BY)"
+                                      HeaderText=@_localizer["_CreatedBy"] />
+                    <R_GridDateTimePickerColumn Width="190px"
+                                                FieldName="@nameof(LMT05500DepositListDTO.DUPDATE_DATE)"
+                                                HeaderText=@_localizer["_CreatedDate"] />
+                </R_GridColumns>
+            </R_Grid>
+
+            <R_StackLayout Row="true" Class="d-flex justify-content-start">
+                <R_ItemLayout>
+                    <R_Detail R_Before_Open_Detail="R_Before_BtnAdjustment"
+                              R_After_Open_Detail="R_After_BtnAdjustmentAsync"
+                              Enabled="(_depositViewModel._lIsPayment && _depositViewModel._lRemainingAmountMoreThanZero)">
+                        @_localizer["_btnAdj"]
+                    </R_Detail>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Detail R_Before_Open_Detail="R_Before_BtnSalesCreditNote"
+                              R_After_Open_Detail="R_After_BtnSalesCreditNote"
+                              Enabled="(_depositViewModel._lIsPayment && _depositViewModel._lRemainingAmountMoreThanZero)">
+                        @_localizer["_btnCreditNote"]
+                    </R_Detail>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Detail R_Before_Open_Detail="R_Before_BtnRefund"
+                              R_After_Open_Detail="R_After_BtnRefundAsync"
+                              Enabled="(_depositViewModel._lIsPayment && _depositViewModel._lRemainingAmountMoreThanZero)">
+                        @_localizer["_btnRefund"]
+                    </R_Detail>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Class="mt-1">
+            <R_Grid @ref="@_gridDepositDetailRef"
+                    DataSource="_depositViewModel._depositDetailList"
+                    Pageable="true"
+                    @bind-PageSize="@_pageSizeDepositDt"
+                    R_ConductorGridSource="@_conGridDepositDetail"
+                    R_GridType="@R_eGridType.Original"
+                    R_Display="@Grid_DisplayDepositDetail"
+                    R_ServiceGetListRecord="@R_ServiceDepositDetailListRecord"
+                    AllowDeleteRow="false"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    Height="160px">
+                <R_GridColumns>
+                    <R_GridTextColumn Width="100px"
+                                      FieldName="@nameof(LMT05500DepositDetailListDTO.CSEQ_NO)"
+                                      HeaderText=@_localizer["_SeqNo"] />
+                    <R_GridTextColumn Width="175px"
+                                      FieldName="@nameof(LMT05500DepositDetailListDTO.CDEPT_NAME)"
+                                      HeaderText=@_localizer["_Dept"] />
+                    <R_GridTextColumn Width="160px"
+                                      FieldName="@nameof(LMT05500DepositDetailListDTO.CREF_NO)"
+                                      HeaderText=@_localizer["_RefNo"] />
+                    <R_GridDatePickerColumn Width="130px"
+                                            FieldName="@nameof(LMT05500DepositDetailListDTO.DREF_DATE)"
+                                            HeaderText=@_localizer["_RefDate"] />
+                    <R_GridTextColumn Width="100px"
+                                      FieldName="@nameof(LMT05500DepositDetailListDTO.CDEPOSIT_TYPE)"
+                                      HeaderText=@_localizer["_Type"] />
+                    <R_GridNumericColumn Width="115px"
+                                         FieldName="@nameof(LMT05500DepositDetailListDTO.NDEPOSIT_AMOUNT)"
+                                         TValue="decimal"
+                                         Min="0"
+                                         HeaderText=@_localizer["_Amount"] />
+                    <R_GridTextColumn Width="125px"
+                                      FieldName="@nameof(LMT05500DepositDetailListDTO.CTRANS_STATUS_DESCR)"
+                                      HeaderText=@_localizer["_Status"] />
+
+                </R_GridColumns>
+            </R_Grid>
+        </R_StackLayout>
+
+        <R_StackLayout>
+            <R_ItemLayout>
+                <R_Detail Enabled="_depositViewModel._buttonView"
+                          R_Before_Open_Detail="Before_OpenView"
+                          R_After_Open_Detail="After_OpenView">
+                    @_localizer["_View"]
+                </R_Detail>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_TabStripTab>
+
+    <R_TabStripTab Title="Deposit Info" Id="Tab_DepositInfo"
+                   Enabled="@_enableDepositInfo">
+        <R_TabPage @ref="@_tabPageSubDeposit"
+                   R_Before_Open_TabPage="Before_Open_DepositInfo" />
+
+    </R_TabStripTab>
+</R_TabStrip>
+
+<R_ConductorGrid @ref="@_conGridDeposit"
+                      R_IsHeader
+                 R_SetOther="SetOther" />
+
+<R_ConductorGrid @ref="@_conGridDepositDetail"
+                 R_ConductorParent="@_conGridDeposit" />

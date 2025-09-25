@@ -1,0 +1,109 @@
+﻿@inherits R_Page
+@using PMM03700COMMON;
+@using PMM03700COMMON.DTO_s
+@using R_BlazorFrontEnd.Interfaces;
+@attribute [R_Page(Title = "AssignTenant", ResourceId = "_pageTitleAssignTenant")]
+
+<R_StackLayout Row Style="width:820px">
+    @* available grid *@
+    <R_ItemLayout col="5">
+        <R_Label>@_localizer["_lbl_available"]</R_Label>
+        <R_Grid @ref="@_gridAvailableTenant"
+                DataSource="@_viewModelTC.AvailableTenantList"
+                R_ConductorGridSource="@_conAvailableTenant"
+                R_GridType="@R_eGridType.Batch"
+                R_ServiceGetListRecord="@AvailableTenant_GetList"
+                R_ServiceGetRecord="@R_ServiceGetRecord"
+                DragClueField="@nameof(TenantDTO.CTENANT_ID)"
+                DragDrop="true"
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false"
+                TargetGridDrop="@_gridSelectedTenant"
+                Pageable="true"
+                R_GridDragDropBeforeDrop="@((R_GridDragDropBeforeDropEventArgs<TenantDTO> args) => R_GridRowBeforeDrop(args))"
+                R_GridDragDropAfterDrop="@((R_GridDragDropAfterDropEventArgs<TenantDTO> args) => R_GridRowAfterDrop(args))"
+                Height="300px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(TenantDTO.CTENANT_ID)" HeaderText="@_localizer["_col_tenant_id"]" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(TenantDTO.CTENANT_NAME)" HeaderText="@_localizer["_col_tenant_name"]" Width="300px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+
+    @* move button *@
+    <R_ItemLayout col="2" Class="pt-5 mt-5">
+        <R_StackLayout Row Class="d-flex justify-content-center mt-2">
+            <R_Button R_ConductorGridSource="@_conAvailableTenant"
+                      OnClick="@MoveAllTo_SelectedTenantList">
+                @_moveRightAll
+            </R_Button>
+        </R_StackLayout>
+        <R_StackLayout Row Class="d-flex justify-content-center mt-2">
+            <R_Button R_ConductorGridSource="@_conAvailableTenant"
+                      OnClick="@MoveTo_SelectedTenantList">
+                @_moveRight
+            </R_Button>
+        </R_StackLayout>
+        <R_StackLayout Row Class="d-flex justify-content-center mt-2">
+            <R_Button R_ConductorGridSource="@_conAvailableTenant"
+                      OnClick="@MoveTo_AvailableTenantList">
+                @_moveLeft
+            </R_Button>
+        </R_StackLayout>
+        <R_StackLayout Row Class="d-flex justify-content-center mt-2">
+            <R_Button R_ConductorGridSource="@_conAvailableTenant"
+                      OnClick="@MoveAllTo_AvailableTenantList">
+                @_moveLeftAll
+            </R_Button>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    @* selected grid *@
+    <R_ItemLayout col="5">
+        <R_Label>@_localizer["_lblSelectedAccount"]</R_Label>
+        <R_Grid @ref="@_gridSelectedTenant"
+                DataSource="@_viewModelTC.SelectedTenantList"
+                R_GridType="@R_eGridType.Batch"
+                R_ConductorGridSource="@_conSelectedTenant"
+                R_ServiceGetListRecord="@SelectedTenant_GetList"
+                DragClueField="@nameof(TenantDTO.CTENANT_ID)"
+                DragDrop="true"
+                AllowAddNewRow="false"
+                AllowEditRow
+                AllowDeleteRow
+                TargetGridDrop="@_gridAvailableTenant"
+                Pageable="true"
+                R_GridDragDropBeforeDrop="@((R_GridDragDropBeforeDropEventArgs<TenantDTO> args) => R_GridRowBeforeDrop(args))"
+                R_GridDragDropAfterDrop="@((R_GridDragDropAfterDropEventArgs<TenantDTO> args) => R_GridRowAfterDrop(args))"
+                Height="300px"
+                R_ServiceGetRecord="@R_ServiceGetRecord"
+                R_BeforeSaveBatch="@SelectedTenant_BeforeSaveBatchAsync"
+                R_ServiceSaveBatch="@SelectedTenant_ServiceSaveBatchAsync"
+                R_AfterSaveBatch="@SelectedTenant_AfterSaveBatchAsync"
+                >
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(TenantDTO.CTENANT_ID)" HeaderText="@_localizer["_col_tenant_id"]" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(TenantDTO.CTENANT_NAME)" HeaderText="@_localizer["_col_tenant_name"]" Width="300px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* button *@
+<R_StackLayout Row Class="mt-2">
+    <R_ItemLayout col="10"></R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_Button OnClick="@BtnClose">@_localizer["_btn_cancel"]</R_Button>
+        <R_Button Enabled="@_isMove" OnClick="@BtnProcess">@_localizer["_btn_process"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+@* conductor *@
+<R_ConductorGrid @ref="@_conAvailableTenant"
+                 R_IsHeader />
+
+<R_ConductorGrid @ref="@_conSelectedTenant"
+                 R_ViewModel="@_viewModelTC"
+                 R_IsHeader />
