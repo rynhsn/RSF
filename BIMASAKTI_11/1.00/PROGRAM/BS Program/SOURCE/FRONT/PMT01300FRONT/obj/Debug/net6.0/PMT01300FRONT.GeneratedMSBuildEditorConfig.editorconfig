@@ -1,0 +1,57 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows,browser
+build_property.RootNamespace = PMT01300FRONT
+build_property.RootNamespace = PMT01300FRONT
+build_property.ProjectDir = D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\PMT01300FRONT\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\PMT01300FRONT
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/PMT01300FRONT/PMT01300.razor]
+build_metadata.AdditionalFiles.TargetPath = UE1UMDEzMDAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/PMT01300FRONT/PMT01300PrintPopup.razor]
+build_metadata.AdditionalFiles.TargetPath = UE1UMDEzMDBQcmludFBvcHVwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/PMT01300FRONT/PMT01301.razor]
+build_metadata.AdditionalFiles.TargetPath = UE1UMDEzMDEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/PMT01300FRONT/PMT01310.razor]
+build_metadata.AdditionalFiles.TargetPath = UE1UMDEzMTAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/PMT01300FRONT/PMT01320.razor]
+build_metadata.AdditionalFiles.TargetPath = UE1UMDEzMjAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/PMT01300FRONT/PMT01330.razor]
+build_metadata.AdditionalFiles.TargetPath = UE1UMDEzMzAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/PMT01300FRONT/PMT01331.razor]
+build_metadata.AdditionalFiles.TargetPath = UE1UMDEzMzEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/PMT01300FRONT/PMT01340.razor]
+build_metadata.AdditionalFiles.TargetPath = UE1UMDEzNDAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/PMT01300FRONT/PMT01350.razor]
+build_metadata.AdditionalFiles.TargetPath = UE1UMDEzNTAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/PMT01300FRONT/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 

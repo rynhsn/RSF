@@ -1,0 +1,161 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows,browser
+build_property.RootNamespace = GSM02500FRONT
+build_property.RootNamespace = GSM02500FRONT
+build_property.ProjectDir = D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GSM02500FRONT\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GSM02500FRONT
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/AddGalleryModal.razor]
+build_metadata.AdditionalFiles.TargetPath = QWRkR2FsbGVyeU1vZGFsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/AddUnitTypeImageModal.razor]
+build_metadata.AdditionalFiles.TargetPath = QWRkVW5pdFR5cGVJbWFnZU1vZGFsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02500.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1MDAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02501.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1MDEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02502.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1MDIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02502Charge.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1MDJDaGFyZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02502Facility.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1MDJGYWNpbGl0eS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02502Utility.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1MDJVdGlsaXR5LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02503.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1MDMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02503Image.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1MDNJbWFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02504.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1MDQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM0250x.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1MHgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02510.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1MTAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02520.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1MjAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02530.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1MzAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02530Testing.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1MzBUZXN0aW5nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02531.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1MzEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02540.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1NDAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02540Utilities.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1NDBVdGlsaXRpZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02541.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1NDEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02550.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1NTAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02560.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1NjAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02570.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1NzAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/GSM02580.razor]
+build_metadata.AdditionalFiles.TargetPath = R1NNMDI1ODAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/LookupDepartment.razor]
+build_metadata.AdditionalFiles.TargetPath = TG9va3VwRGVwYXJ0bWVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/LookUpUser.razor]
+build_metadata.AdditionalFiles.TargetPath = TG9va1VwVXNlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/ShowUnitTypeImage.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hvd1VuaXRUeXBlSW1hZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/UploadFloor.razor]
+build_metadata.AdditionalFiles.TargetPath = VXBsb2FkRmxvb3IucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/UploadOtherUnit.razor]
+build_metadata.AdditionalFiles.TargetPath = VXBsb2FkT3RoZXJVbml0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/UploadOtherUnitType.razor]
+build_metadata.AdditionalFiles.TargetPath = VXBsb2FkT3RoZXJVbml0VHlwZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/UploadUnit.razor]
+build_metadata.AdditionalFiles.TargetPath = VXBsb2FkVW5pdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/UploadUnitType.razor]
+build_metadata.AdditionalFiles.TargetPath = VXBsb2FkVW5pdFR5cGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/UploadUnitTypeCategory.razor]
+build_metadata.AdditionalFiles.TargetPath = VXBsb2FkVW5pdFR5cGVDYXRlZ29yeS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/UploadUnitUtility.razor]
+build_metadata.AdditionalFiles.TargetPath = VXBsb2FkVW5pdFV0aWxpdHkucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GSM02500FRONT/Component1.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50MS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-bdjnpxwmtu

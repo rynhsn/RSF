@@ -1,0 +1,37 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows,browser
+build_property.RootNamespace = ICI00200Front
+build_property.RootNamespace = ICI00200Front
+build_property.ProjectDir = D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\ICI00200Front\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\ICI00200Front
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/ICI00200Front/ICI00200.razor]
+build_metadata.AdditionalFiles.TargetPath = SUNJMDAyMDAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/ICI00200Front/ICI00200PopupDept.razor]
+build_metadata.AdditionalFiles.TargetPath = SUNJMDAyMDBQb3B1cERlcHQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/ICI00200Front/ICI00200PopupLastInfo.razor]
+build_metadata.AdditionalFiles.TargetPath = SUNJMDAyMDBQb3B1cExhc3RJbmZvLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/ICI00200Front/ICI00200PopupWare.razor]
+build_metadata.AdditionalFiles.TargetPath = SUNJMDAyMDBQb3B1cFdhcmUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/ICI00200Front/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 

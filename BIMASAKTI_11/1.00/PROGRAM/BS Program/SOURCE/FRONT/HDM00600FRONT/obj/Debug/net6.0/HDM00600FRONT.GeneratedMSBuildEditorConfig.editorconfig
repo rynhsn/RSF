@@ -1,0 +1,41 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows,browser
+build_property.RootNamespace = HDM00600FRONT
+build_property.RootNamespace = HDM00600FRONT
+build_property.ProjectDir = D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\HDM00600FRONT\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\HDM00600FRONT
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/HDM00600FRONT/HDM00600.razor]
+build_metadata.AdditionalFiles.TargetPath = SERNMDA2MDAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/HDM00600FRONT/HDM00601.razor]
+build_metadata.AdditionalFiles.TargetPath = SERNMDA2MDEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/HDM00600FRONT/HDM00602.razor]
+build_metadata.AdditionalFiles.TargetPath = SERNMDA2MDIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/HDM00600FRONT/HDM00610.razor]
+build_metadata.AdditionalFiles.TargetPath = SERNMDA2MTAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/HDM00600FRONT/HDM00620.razor]
+build_metadata.AdditionalFiles.TargetPath = SERNMDA2MjAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/RealCode/RSF/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/HDM00600FRONT/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
