@@ -1,0 +1,278 @@
+﻿@inherits R_Page
+@using GSM02500COMMON.DTOs.GSM02500
+@using GSM02500COMMON.DTOs.GSM02530;
+@using GSM02500COMMON.DTOs.GSM02541
+@using GSM02500COMMON.DTOs;
+@using GSM02500MODEL
+@using GSM02500MODEL.View_Model;
+
+
+<R_TabStrip>
+    <R_TabStripTab Title="@_localizer["_OtherUnit"]" Id="OtherUnit">
+        <R_StackLayout Spacing="3" Row="true">
+            <R_ItemLayout col="12">
+                <R_Grid @ref="@_gridOtherUnitRef"
+                        DataSource="@loOtherUnitViewModel.loOtherUnitList"
+                        R_ConductorSource="@_conductorOtherUnitRef"
+                        R_GridType="@R_eGridType.Navigator"
+                        Height="150px"
+                        R_ServiceGetListRecord="@Grid_R_ServiceGetOtherUnitListRecord">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(GSM02541DTO.COTHER_UNIT_ID)" HeaderText="@_localizer["_OtherUnitId"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02541DTO.COTHER_UNIT_NAME)" HeaderText="@_localizer["_OtherUnitName"]" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02541DTO.COTHER_UNIT_TYPE_NAME)" HeaderText="@_localizer["_OtherUnitType"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02541DTO.COTHER_UNIT_VIEW_NAME)" HeaderText="@_localizer["_OtherUnitView"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02541DTO.CBUILDING_NAME)" HeaderText="@_localizer["_Building"]" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02541DTO.CFLOOR_NAME)" HeaderText="@_localizer["_Floor"]" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02541DTO.CLOCATION)" HeaderText="@_localizer["_Location"]" Width="200px"></R_GridTextColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GSM02541DTO.NGROSS_AREA_SIZE)" HeaderText="@_localizer["_Gross"]" Width="100px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GSM02541DTO.NNET_AREA_SIZE)" HeaderText="@_localizer["_Net"]" Width="100px"></R_GridNumericColumn>
+                        <R_GridCheckBoxColumn FieldName="@nameof(GSM02541DTO.LACTIVE)" HeaderText="@_localizer["_Active"]" Width="100px"></R_GridCheckBoxColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02541DTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="125px"></R_GridTextColumn>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(GSM02541DTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02541DTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="125px"></R_GridTextColumn>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(GSM02541DTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true" Class="justify-content-end">
+            <R_ItemLayout col="1">
+                <R_CheckBox @bind-Value="@loOtherUnitViewModel.Data.LACTIVE"
+                            R_ConductorSource="@_conductorOtherUnitRef"
+                            Enabled="false">
+                </R_CheckBox>
+                <R_Label>@_localizer["_Active"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_OtherUnit"]*</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@loOtherUnitViewModel.Data.COTHER_UNIT_ID"
+                           R_ConductorSource="@_conductorOtherUnitRef"
+                           MaxLength="20"
+                           R_EnableAdd="true"
+                           R_EnableEdit="false"
+                           @ref="@OtherUnitIdRef">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@loOtherUnitViewModel.Data.COTHER_UNIT_NAME"
+                           R_ConductorSource="@_conductorOtherUnitRef"
+                           MaxLength="200"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true"
+                           @ref="@OtherUnitNameRef">
+                </R_TextBox>
+            </R_ItemLayout>
+            @*
+            <R_ItemLayout col="1">
+            <R_CheckBox @bind-Value="@loOtherUnitViewModel.Data.LACTIVE"
+            R_ConductorSource="@_conductorOtherUnitRef"
+            Enabled="false">
+            </R_CheckBox>
+            <R_Label>Active</R_Label>
+            </R_ItemLayout>
+            *@
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Description"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextArea @bind-Value="@loOtherUnitViewModel.Data.CDESCRIPTION"
+                            R_ConductorSource="@_conductorOtherUnitRef"
+                            R_EnableAdd="true" R_EnableEdit="true"></R_TextArea>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Building"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_ComboBox Data="@loOtherUnitViewModel.loBuildingList"
+                            Value="loOtherUnitViewModel.Data.CBUILDING_ID"
+                            ValueField="@nameof(BuildingDTO.CBUILDING_ID)"
+                            TextField="@nameof(BuildingDTO.CBUILDING_NAME)"
+                            R_ConductorSource="@_conductorOtherUnitRef"
+                            R_EnableAdd="true" R_EnableEdit="true" ValueChanged="((string value) => BuildingDropdownValueChanged(value))">
+                </R_ComboBox>
+            </R_ItemLayout>
+            
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Floor"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_ComboBox Data="@loOtherUnitViewModel.loFloorList"
+                            @bind-Value="loOtherUnitViewModel.Data.CFLOOR_ID"
+                            ValueField="@nameof(FloorDTO.CFLOOR_ID)"
+                            TextField="@nameof(FloorDTO.CFLOOR_NAME)"
+                            R_ConductorSource="@_conductorOtherUnitRef"
+                            R_EnableAdd="true" R_EnableEdit="true">
+                </R_ComboBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Location"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextBox @bind-Value="@loOtherUnitViewModel.Data.CLOCATION"
+                           R_ConductorSource="@_conductorOtherUnitRef"
+                           MaxLength="20"
+                           R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_OtherUnitType"]*</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_ComboBox Data="@loOtherUnitViewModel.loOtherUnitTypeList"
+                            @bind-Value="loOtherUnitViewModel.Data.COTHER_UNIT_TYPE_ID"
+                            ValueField="@nameof(OtherUnitTypeDTO.COTHER_UNIT_TYPE_ID)"
+                            TextField="@nameof(OtherUnitTypeDTO.COTHER_UNIT_TYPE_NAME)"
+                            R_ConductorSource="@_conductorOtherUnitRef"
+                            R_EnableAdd="true" R_EnableEdit="true">
+                </R_ComboBox>
+            </R_ItemLayout>
+            
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_OtherUnitView"]*</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_ComboBox Data="@loOtherUnitViewModel.loOtherUnitViewList"
+                            @bind-Value="loOtherUnitViewModel.Data.COTHER_UNIT_VIEW_ID"
+                            ValueField="@nameof(GetUnitViewDTO.CUNIT_VIEW_ID)"
+                            TextField="@nameof(GetUnitViewDTO.CUNIT_VIEW_NAME)"
+                            R_ConductorSource="@_conductorOtherUnitRef"
+                            R_EnableAdd="true" R_EnableEdit="true">
+                </R_ComboBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_GrossSize"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_NumericTextBox @bind-Value="@loOtherUnitViewModel.Data.NGROSS_AREA_SIZE"
+                                R_ConductorSource="@_conductorOtherUnitRef"
+                                R_EnableAdd R_EnableEdit>
+                </R_NumericTextBox>
+            </R_ItemLayout>
+            
+            <R_ItemLayout col="1">
+                    <R_Label FontStyle="R_eFontStyle.Italic">@lcCUOMLabel</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_NetSize"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_NumericTextBox @bind-Value="@loOtherUnitViewModel.Data.NNET_AREA_SIZE"
+                                R_ConductorSource="@_conductorOtherUnitRef"
+                                R_EnableAdd R_EnableEdit>
+                </R_NumericTextBox>
+            </R_ItemLayout>
+            
+            <R_ItemLayout col="1">
+                    <R_Label FontStyle="R_eFontStyle.Italic">@lcCUOMLabel</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_ActualSize"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_NumericTextBox @bind-Value="@loOtherUnitViewModel.Data.NACTUAL_AREA_SIZE"
+                                R_ConductorSource="@_conductorOtherUnitRef"
+                                  Enabled="false">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+            
+            <R_ItemLayout col="2">
+                    <R_Label FontStyle="R_eFontStyle.Italic">@lcCUOMLabel</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_LeaseStatus"]*</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_ComboBox Data="@loOtherUnitViewModel.loLeaseList"
+                        @bind-Value="loOtherUnitViewModel.Data.CLEASE_STATUS"
+                        ValueField="@nameof(GetStrataLeaseDTO.CCODE)"
+                        TextField="@nameof(GetStrataLeaseDTO.CDESCRIPTION)"
+                        R_ConductorSource="@_conductorOtherUnitRef"
+                        R_EnableAdd="true" R_EnableEdit="true">
+                </R_ComboBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="justify-content-between">
+            <R_ItemLayout>
+                <R_AddButton R_Conductor="@_conductorOtherUnitRef"></R_AddButton>
+                <R_EditButton R_Conductor="@_conductorOtherUnitRef"></R_EditButton>
+                <R_DeleteButton R_Conductor="@_conductorOtherUnitRef"></R_DeleteButton>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Button R_ConductorSource="@_conductorOtherUnitRef" R_EnableOther OnClick="OnClickTemplate">@_localizer["_Template"]</R_Button>
+                <R_Popup R_ConductorSource="@_conductorOtherUnitRef"
+                         R_EnableOther
+                         R_Before_Open_Popup="Before_Open_Upload_Popup"
+                         R_After_Open_Popup="After_Open_Upload_Popup">@_localizer["_Upload"]</R_Popup>
+                <R_Popup R_ConductorSource="@_conductorOtherUnitRef"
+                         R_Before_Open_Popup="@R_Before_Open_Popup_ActivateInactiveOtherUnit"
+                         R_After_Open_Popup="@R_After_Open_Popup_ActivateInactiveOtherUnit"
+                         R_EnableOther>@loOtherUnitLabel</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_CancelButton R_Conductor="@_conductorOtherUnitRef"></R_CancelButton>
+                <R_SaveButton R_Conductor="@_conductorOtherUnitRef"></R_SaveButton>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_TabStripTab>
+    <R_TabStripTab Title="@_localizer["_Utilities"]" Id="Utilities" Enabled="@(!string.IsNullOrWhiteSpace(loOtherUnitViewModel.Data.COTHER_UNIT_ID) && _conductorOtherUnitRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)">
+        <R_TabPage R_Before_Open_TabPage="R_Before_OpenUtilities_TabPage">
+            <GSM02541></GSM02541>
+        </R_TabPage>
+    </R_TabStripTab>
+</R_TabStrip>
+
+<R_Conductor @ref="@_conductorOtherUnitRef"
+             R_ViewModel="@loOtherUnitViewModel"
+             R_SetOther="OtherUnit_SetOther"
+             R_Display="Grid_DisplayOtherUnit"
+             R_ServiceSave="@Grid_ServiceSaveOtherUnit"
+             R_Saving="Grid_SavingOtherUnit"
+             R_AfterAdd="Grid_AfterAddOtherUnit"
+             R_Validation="Grid_ValidationOtherUnit"
+             R_ConvertToGridEntity="Grid_ConvertToGridEntityOtherUnitType"
+             R_BeforeAdd="@Grid_BeforeAddOtherUnit"
+             R_ServiceDelete="@Grid_ServiceDeleteOtherUnit"
+             R_ServiceGetRecord="@Grid_ServiceGetOtherUnitRecord"
+             R_IsHeader>
+</R_Conductor>
+

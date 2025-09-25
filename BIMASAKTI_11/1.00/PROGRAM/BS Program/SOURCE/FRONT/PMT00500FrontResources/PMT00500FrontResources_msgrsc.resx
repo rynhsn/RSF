@@ -1,0 +1,970 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="N01" xml:space="preserve">
+    <value>No data found!</value>
+  </data>
+  <data name="N02" xml:space="preserve">
+    <value>Agreement Submitted Successfully!</value>
+  </data>
+  <data name="N03" xml:space="preserve">
+    <value>Agreement Redraft Successfully!</value>
+  </data>
+  <data name="N04" xml:space="preserve">
+    <value>Agreement Cancelled Successfully!</value>
+  </data>
+  <data name="N05" xml:space="preserve">
+    <value>Agreement Closed Successfully!</value>
+  </data>
+  <data name="N06" xml:space="preserve">
+    <value>File Type must Microsoft Excel .xlsx</value>
+    <comment>File Type must Microsoft Excel .xlsx</comment>
+  </data>
+  <data name="N07" xml:space="preserve">
+    <value>This Unit type only allows 1 unit in the Agreement!</value>
+  </data>
+  <data name="N08" xml:space="preserve">
+    <value>Must fill Unit Data</value>
+  </data>
+  <data name="N09" xml:space="preserve">
+    <value>You can’t make New Agreement with Sold Unit</value>
+  </data>
+  <data name="N10" xml:space="preserve">
+    <value>This unit has not been sold</value>
+  </data>
+  <data name="N11" xml:space="preserve">
+    <value>You can’t make Lease with Leased Unit</value>
+  </data>
+  <data name="N12" xml:space="preserve">
+    <value>Selected Unit must equal or less than 10!</value>
+  </data>
+  <data name="N13" xml:space="preserve">
+    <value>Please select at least 1(one) unit!</value>
+  </data>
+  <data name="N14" xml:space="preserve">
+    <value>This unit already leased</value>
+  </data>
+  <data name="N15" xml:space="preserve">
+    <value>This unit can’t be leased</value>
+  </data>
+  <data name="N16" xml:space="preserve">
+    <value>This unit has not been leased</value>
+  </data>
+  <data name="N17" xml:space="preserve">
+    <value>This unit can’t be closed</value>
+  </data>
+  <data name="N18" xml:space="preserve">
+    <value>Create Lease Successfully!</value>
+  </data>
+  <data name="N19" xml:space="preserve">
+    <value>You can’t change owner,transaction not finished</value>
+  </data>
+  <data name="N20" xml:space="preserve">
+    <value>This unit need to be handover first!</value>
+  </data>
+  <data name="Q01" xml:space="preserve">
+    <value>Will delete all detail unit for total area?</value>
+  </data>
+  <data name="Q02" xml:space="preserve">
+    <value>Are you sure want to submit this Agreement?</value>
+  </data>
+  <data name="Q03" xml:space="preserve">
+    <value>Are you sure want to redraft this Agreement?</value>
+  </data>
+  <data name="Q04" xml:space="preserve">
+    <value>You haven’t saved your changes. Are you sure want to cancel?</value>
+  </data>
+  <data name="Q05" xml:space="preserve">
+    <value>Are you sure want to cancel this Agreement?</value>
+  </data>
+  <data name="Q06" xml:space="preserve">
+    <value>Are you sure want to close this Agreement?</value>
+  </data>
+  <data name="V001" xml:space="preserve">
+    <value>Please Select Department!</value>
+  </data>
+  <data name="V002" xml:space="preserve">
+    <value>Please Select Salesman!</value>
+  </data>
+  <data name="V003" xml:space="preserve">
+    <value>Ref. No is required!</value>
+  </data>
+  <data name="V004" xml:space="preserve">
+    <value>Ref. Date is required!</value>
+  </data>
+  <data name="V005" xml:space="preserve">
+    <value>Start Date is required!</value>
+  </data>
+  <data name="V006" xml:space="preserve">
+    <value>End Date is required!</value>
+  </data>
+  <data name="V007" xml:space="preserve">
+    <value>Plan HO Date is required!</value>
+  </data>
+  <data name="V008" xml:space="preserve">
+    <value>Unit Description is required!</value>
+  </data>
+  <data name="V009" xml:space="preserve">
+    <value>Please Select Currency!</value>
+  </data>
+  <data name="V010" xml:space="preserve">
+    <value>Please Select Lease Mode!</value>
+  </data>
+  <data name="V011" xml:space="preserve">
+    <value>Please Select Charge Mode!</value>
+  </data>
+  <data name="V012" xml:space="preserve">
+    <value>Please Select Billing Rule!</value>
+  </data>
+  <data name="V013" xml:space="preserve">
+    <value>Booking Fee must be greater or equal than 0!</value>
+  </data>
+  <data name="V014" xml:space="preserve">
+    <value>Please Select T &amp; C!</value>
+  </data>
+  <data name="V015" xml:space="preserve">
+    <value>Start Date must be less than End Date</value>
+  </data>
+  <data name="V016" xml:space="preserve">
+    <value>Please Select Unit Id!</value>
+  </data>
+  <data name="V017" xml:space="preserve">
+    <value>Please Select Tenant!</value>
+  </data>
+  <data name="V018" xml:space="preserve">
+    <value>Please Select Building!</value>
+  </data>
+  <data name="V019" xml:space="preserve">
+    <value>Utility Type is required!</value>
+  </data>
+  <data name="V020" xml:space="preserve">
+    <value>Please Select Meter No!</value>
+  </data>
+  <data name="V021" xml:space="preserve">
+    <value>Please Select Charge!</value>
+  </data>
+  <data name="V022" xml:space="preserve">
+    <value>Please Select Deposit Id!</value>
+  </data>
+  <data name="V023" xml:space="preserve">
+    <value>Deposit Date is required!</value>
+  </data>
+  <data name="V024" xml:space="preserve">
+    <value>Deposit Amount must be greater than 0!</value>
+  </data>
+  <data name="V025" xml:space="preserve">
+    <value>Please Select Fee Method</value>
+  </data>
+  <data name="V026" xml:space="preserve">
+    <value>Must fill Unit Fee Calculation</value>
+  </data>
+  <data name="V027" xml:space="preserve">
+    <value>Fee Amount must be greater than 0!</value>
+  </data>
+  <data name="V028" xml:space="preserve">
+    <value>Monthly Revenue To must be greater than Monthly Revenue From!</value>
+  </data>
+  <data name="V029" xml:space="preserve">
+    <value>Please Select Tax Id!</value>
+  </data>
+  <data name="V030" xml:space="preserve">
+    <value>Monthly Revenue From must be greater than {0}</value>
+  </data>
+  <data name="V031" xml:space="preserve">
+    <value>Start Date must be equal or greater than Plan HO Date</value>
+  </data>
+  <data name="V033" xml:space="preserve">
+    <value>Reference Date may not be later than today!</value>
+  </data>
+  <data name="V034" xml:space="preserve">
+    <value>Invoice Amount must be greater than 0!</value>
+  </data>
+  <data name="V035" xml:space="preserve">
+    <value>Tenure must bee fill daily only</value>
+  </data>
+  <data name="V036" xml:space="preserve">
+    <value>Fee Amount must be equal or greater than 0!</value>
+  </data>
+  <data name="V037" xml:space="preserve">
+    <value>Start Date must be equal or greater than Start Date Agreement</value>
+  </data>
+  <data name="V038" xml:space="preserve">
+    <value>Must fill Unit Fee Calculation Or Fee Amount must be greater than 0!</value>
+  </data>
+  <data name="V039" xml:space="preserve">
+    <value>Must fill Unit Fee Calculation Or Fee Amount must be equal or greater than 0!</value>
+  </data>
+  <data name="V040" xml:space="preserve">
+    <value>End Date can't be greater than Plan End Date</value>
+  </data>
+  <data name="V041" xml:space="preserve">
+    <value>Fee Amount must greater than Lease Pricing Botton Price</value>
+  </data>
+  <data name="V042" xml:space="preserve">
+    <value>Document No is required!</value>
+  </data>
+  <data name="V043" xml:space="preserve">
+    <value>Document Date is required!</value>
+  </data>
+  <data name="V044" xml:space="preserve">
+    <value>Expired Date is required!</value>
+  </data>
+  <data name="V045" xml:space="preserve">
+    <value>Plan Start Date is required!</value>
+  </data>
+  <data name="V046" xml:space="preserve">
+    <value>Plan End Date is required!</value>
+  </data>
+  <data name="V047" xml:space="preserve">
+    <value>Start Date and End Date must in the range Plan Start Date and Plan End Date</value>
+  </data>
+  <data name="V048" xml:space="preserve">
+    <value>Plan Start Date must be less than Plan End Date</value>
+  </data>
+  <data name="V049" xml:space="preserve">
+    <value>Please select Unit to be process</value>
+  </data>
+  <data name="V050" xml:space="preserve">
+    <value>Please select Utilies to be process</value>
+  </data>
+  <data name="V051" xml:space="preserve">
+    <value>Please select Charges to be process</value>
+  </data>
+  <data name="V052" xml:space="preserve">
+    <value>Start Date and End Date in Charges is required!</value>
+  </data>
+  <data name="V053" xml:space="preserve">
+    <value>No Charges to be process</value>
+  </data>
+  <data name="_Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="_Actual" xml:space="preserve">
+    <value>Actual</value>
+  </data>
+  <data name="_ActualHODate" xml:space="preserve">
+    <value>Actual HO Date</value>
+  </data>
+  <data name="_AfterTaxAmount" xml:space="preserve">
+    <value>After Tax Amount</value>
+  </data>
+  <data name="_Agreement" xml:space="preserve">
+    <value>Agreement</value>
+    <comment>Agreement</comment>
+  </data>
+  <data name="_AgreementDate" xml:space="preserve">
+    <value>Agreement Date</value>
+    <comment>Agreement Date</comment>
+  </data>
+  <data name="_AgreementList" xml:space="preserve">
+    <value>Agreement List</value>
+    <comment>Agreement List</comment>
+  </data>
+  <data name="_AgreementNo" xml:space="preserve">
+    <value>Agreement No</value>
+    <comment>Agreement No</comment>
+  </data>
+  <data name="_AgreementNo*" xml:space="preserve">
+    <value>Agreement No*</value>
+    <comment>Agreement No*</comment>
+  </data>
+  <data name="_AgreementStatus" xml:space="preserve">
+    <value>Agreement Status</value>
+    <comment>Agreement Status</comment>
+  </data>
+  <data name="_AgreementUnit(s)" xml:space="preserve">
+    <value>Agreement Unit(s)</value>
+    <comment>Agreement Unit(s)</comment>
+  </data>
+  <data name="_Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="_Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="_BasedOnOpeningDate" xml:space="preserve">
+    <value>Based on Opening Date</value>
+  </data>
+  <data name="_BasedOnOpeningDate1" xml:space="preserve">
+    <value>Based On Opening Date</value>
+    <comment>Based On Opening Date</comment>
+  </data>
+  <data name="_BaseonOpeningDate" xml:space="preserve">
+    <value>Base on Opening Date</value>
+    <comment>Base on Opening Date</comment>
+  </data>
+  <data name="_BillingMode" xml:space="preserve">
+    <value>Billing Mode</value>
+  </data>
+  <data name="_BillingRule" xml:space="preserve">
+    <value>Billing Rule</value>
+  </data>
+  <data name="_Block1Start" xml:space="preserve">
+    <value>Block 1 Start</value>
+  </data>
+  <data name="_Block2Start" xml:space="preserve">
+    <value>Block 2 Start</value>
+  </data>
+  <data name="_BookingAmount" xml:space="preserve">
+    <value>Booking Amount</value>
+  </data>
+  <data name="_BookingFee" xml:space="preserve">
+    <value>Booking Fee</value>
+  </data>
+  <data name="_BTNTemplate" xml:space="preserve">
+    <value>Template</value>
+  </data>
+  <data name="_BTNUpload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="_Building" xml:space="preserve">
+    <value>Building</value>
+  </data>
+  <data name="_BuildingId" xml:space="preserve">
+    <value>Building Id</value>
+    <comment>Building Id</comment>
+  </data>
+  <data name="_BuyerOwnerName" xml:space="preserve">
+    <value>Buyer / Owner Name</value>
+  </data>
+  <data name="_ByPeriod" xml:space="preserve">
+    <value>By Period</value>
+  </data>
+  <data name="_CancelBtn" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="_CancelledRejected" xml:space="preserve">
+    <value>Cancelled/Rejected</value>
+  </data>
+  <data name="_CancelLOI" xml:space="preserve">
+    <value>Cancel LOI</value>
+  </data>
+  <data name="_Capacity" xml:space="preserve">
+    <value>Capacity</value>
+  </data>
+  <data name="_CF" xml:space="preserve">
+    <value>CF</value>
+  </data>
+  <data name="_ChangeOwner" xml:space="preserve">
+    <value>Change Owner</value>
+  </data>
+  <data name="_Charge" xml:space="preserve">
+    <value>Charge</value>
+  </data>
+  <data name="_ChargeId" xml:space="preserve">
+    <value>Charge Id</value>
+  </data>
+  <data name="_ChargeMode" xml:space="preserve">
+    <value>Charge Mode</value>
+  </data>
+  <data name="_Charges" xml:space="preserve">
+    <value>Charges</value>
+  </data>
+  <data name="_ChargesId" xml:space="preserve">
+    <value>Charge Id</value>
+    <comment>Charge Id</comment>
+  </data>
+  <data name="_ChargeType" xml:space="preserve">
+    <value>Charge Type</value>
+  </data>
+  <data name="_CloseAgreement" xml:space="preserve">
+    <value>Close Agreement</value>
+    <comment>Close Agreement</comment>
+  </data>
+  <data name="_Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="_CloseLease" xml:space="preserve">
+    <value>Close Lease</value>
+  </data>
+  <data name="_CloseLOI" xml:space="preserve">
+    <value>Close LOI</value>
+  </data>
+  <data name="_ConfirmedHO" xml:space="preserve">
+    <value>Confirmed HO</value>
+    <comment>Confirmed HO</comment>
+  </data>
+  <data name="_Contractor" xml:space="preserve">
+    <value>Contractor</value>
+  </data>
+  <data name="_ContractorId" xml:space="preserve">
+    <value>Contractor Id</value>
+    <comment>Contractor Id</comment>
+  </data>
+  <data name="_CreatedBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="_CreatedDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="_CreateLease" xml:space="preserve">
+    <value>Create Lease</value>
+  </data>
+  <data name="_Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="_Day" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="_Days" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="_Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_Deposit" xml:space="preserve">
+    <value>Deposit</value>
+  </data>
+  <data name="_DepositAmount" xml:space="preserve">
+    <value>Deposit Amount</value>
+  </data>
+  <data name="_DepositDate" xml:space="preserve">
+    <value>Deposit Date</value>
+  </data>
+  <data name="_DepositId" xml:space="preserve">
+    <value>Deposit Id</value>
+  </data>
+  <data name="_DepositName" xml:space="preserve">
+    <value>Deposit Name</value>
+  </data>
+  <data name="_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="_Discount" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="_Document" xml:space="preserve">
+    <value>Document</value>
+  </data>
+  <data name="_DocumentDate" xml:space="preserve">
+    <value>Document Date</value>
+    <comment>Document Date</comment>
+  </data>
+  <data name="_DocumentFile" xml:space="preserve">
+    <value>Document File</value>
+    <comment>Document File</comment>
+  </data>
+  <data name="_DocumentNo" xml:space="preserve">
+    <value>Document No</value>
+    <comment>Document No</comment>
+  </data>
+  <data name="_DocumentStatus" xml:space="preserve">
+    <value>Document Status</value>
+  </data>
+  <data name="_DoneHO" xml:space="preserve">
+    <value>Done HO</value>
+    <comment>Done HO</comment>
+  </data>
+  <data name="_Dp" xml:space="preserve">
+    <value>DP</value>
+  </data>
+  <data name="_DraftOpenInProgress" xml:space="preserve">
+    <value>Draft/Open/In Progress</value>
+  </data>
+  <data name="_EndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="_ErrorNotes" xml:space="preserve">
+    <value>Error Notes</value>
+  </data>
+  <data name="_ExpiredDate" xml:space="preserve">
+    <value>Expired Date</value>
+  </data>
+  <data name="_FeeAmount" xml:space="preserve">
+    <value>Fee Amount</value>
+  </data>
+  <data name="_FeeArea" xml:space="preserve">
+    <value>Fee / Area</value>
+  </data>
+  <data name="_FeeCalculation" xml:space="preserve">
+    <value>Fee Calculation</value>
+  </data>
+  <data name="_FeeMethod" xml:space="preserve">
+    <value>Fee Method</value>
+  </data>
+  <data name="_FlagContractor" xml:space="preserve">
+    <value>Flag Contractor</value>
+    <comment>Flag Contractor</comment>
+  </data>
+  <data name="_FlagPaid" xml:space="preserve">
+    <value>Flag Paid</value>
+    <comment>Flag Paid</comment>
+  </data>
+  <data name="_Floor" xml:space="preserve">
+    <value>Floor</value>
+  </data>
+  <data name="_FloorId" xml:space="preserve">
+    <value>Floor Id</value>
+    <comment>Floor Id</comment>
+  </data>
+  <data name="_FollowUpDate" xml:space="preserve">
+    <value>Follow Up Date</value>
+  </data>
+  <data name="_ForTotalArea" xml:space="preserve">
+    <value>For Total Area</value>
+  </data>
+  <data name="_From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="_Gross" xml:space="preserve">
+    <value>Gross</value>
+  </data>
+  <data name="_HO Status" xml:space="preserve">
+    <value>HO Status</value>
+    <comment>HO Status</comment>
+  </data>
+  <data name="_HODate" xml:space="preserve">
+    <value>HO Date</value>
+  </data>
+  <data name="_Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="_Interval" xml:space="preserve">
+    <value>Interval</value>
+  </data>
+  <data name="_Invalid" xml:space="preserve">
+    <value>Invalid</value>
+    <comment>Invalid</comment>
+  </data>
+  <data name="_Invitation" xml:space="preserve">
+    <value>#Invitation</value>
+  </data>
+  <data name="_InvoiceAmount" xml:space="preserve">
+    <value>Invoice Amount</value>
+  </data>
+  <data name="_Invoiced" xml:space="preserve">
+    <value>Invoiced</value>
+  </data>
+  <data name="_InvoiceGroup" xml:space="preserve">
+    <value>Invoice Group</value>
+  </data>
+  <data name="_InvoiceNo" xml:space="preserve">
+    <value>Invoice No</value>
+  </data>
+  <data name="_InvoicePlan" xml:space="preserve">
+    <value>Invoice Plan</value>
+  </data>
+  <data name="_Landlord" xml:space="preserve">
+    <value>Landlord</value>
+  </data>
+  <data name="_Lease" xml:space="preserve">
+    <value>Lease</value>
+  </data>
+  <data name="_LeaseMode" xml:space="preserve">
+    <value>Lease Mode</value>
+  </data>
+  <data name="_LeaseStatus" xml:space="preserve">
+    <value>Lease Status</value>
+  </data>
+  <data name="_LOC" xml:space="preserve">
+    <value>LOC</value>
+  </data>
+  <data name="_LOCRefNo" xml:space="preserve">
+    <value>LOC Ref No</value>
+  </data>
+  <data name="_LOI" xml:space="preserve">
+    <value>LOI</value>
+  </data>
+  <data name="_LOILeaseUnit" xml:space="preserve">
+    <value>LOI Lease Unit</value>
+  </data>
+  <data name="_LOIList" xml:space="preserve">
+    <value>LOI List</value>
+  </data>
+  <data name="_MeterNo" xml:space="preserve">
+    <value>Meter No</value>
+  </data>
+  <data name="_MeterStart" xml:space="preserve">
+    <value>Meter Start</value>
+  </data>
+  <data name="_MinimumRent" xml:space="preserve">
+    <value>Minimum Rent</value>
+  </data>
+  <data name="_Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="_MonthlyRevenue" xml:space="preserve">
+    <value>Monthly Revenue</value>
+  </data>
+  <data name="_Months" xml:space="preserve">
+    <value>Months</value>
+  </data>
+  <data name="_MoveBuyer" xml:space="preserve">
+    <value>Move Buyer</value>
+  </data>
+  <data name="_Net" xml:space="preserve">
+    <value>Net</value>
+  </data>
+  <data name="_NewAgreement" xml:space="preserve">
+    <value>New Agreement</value>
+  </data>
+  <data name="_No" xml:space="preserve">
+    <value>No</value>
+    <comment>No</comment>
+  </data>
+  <data name="_Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="_Notes" xml:space="preserve">
+    <value>Notes</value>
+    <comment>Notes</comment>
+  </data>
+  <data name="_NotifSuccesUpload" xml:space="preserve">
+    <value>Agreement imported successfully!</value>
+  </data>
+  <data name="_NotifTemplate" xml:space="preserve">
+    <value>Are you sure download this template?</value>
+  </data>
+  <data name="_NotYetHO" xml:space="preserve">
+    <value>Not Yet HO</value>
+    <comment>Not Yet HO</comment>
+  </data>
+  <data name="_OfferNo" xml:space="preserve">
+    <value>Offer No</value>
+  </data>
+  <data name="_OfferStatus" xml:space="preserve">
+    <value>Offer Status</value>
+  </data>
+  <data name="_OpeningDate" xml:space="preserve">
+    <value>Opening Date</value>
+  </data>
+  <data name="_OwnershipManager" xml:space="preserve">
+    <value>Ownership Manager</value>
+  </data>
+  <data name="_Paid" xml:space="preserve">
+    <value>Paid</value>
+  </data>
+  <data name="_Payment" xml:space="preserve">
+    <value>Payment</value>
+  </data>
+  <data name="_PaymentAmount" xml:space="preserve">
+    <value>Payment Amount</value>
+  </data>
+  <data name="_PaymentNo" xml:space="preserve">
+    <value>Payment No</value>
+  </data>
+  <data name="_Period" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="_PeriodMode" xml:space="preserve">
+    <value>Period Mode</value>
+  </data>
+  <data name="_PlanEndDate" xml:space="preserve">
+    <value>Plan End Date</value>
+  </data>
+  <data name="_PlanHODate" xml:space="preserve">
+    <value>Plan HO Date</value>
+  </data>
+  <data name="_PlanStartDate" xml:space="preserve">
+    <value>Plan Start Date</value>
+  </data>
+  <data name="_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="_ProcessBtn" xml:space="preserve">
+    <value>Process</value>
+    <comment>Process</comment>
+  </data>
+  <data name="_Property" xml:space="preserve">
+    <value>Property</value>
+  </data>
+  <data name="_Prorate" xml:space="preserve">
+    <value>Prorate</value>
+  </data>
+  <data name="_Redraft" xml:space="preserve">
+    <value>Redraft</value>
+  </data>
+  <data name="_RefDate" xml:space="preserve">
+    <value>Ref Date</value>
+  </data>
+  <data name="_RefNo" xml:space="preserve">
+    <value>Ref No</value>
+  </data>
+  <data name="_RentRent" xml:space="preserve">
+    <value>Rent Rate (*)</value>
+  </data>
+  <data name="_RevenueSharing" xml:space="preserve">
+    <value>Revenue Sharing</value>
+  </data>
+  <data name="_RevenueSharingId" xml:space="preserve">
+    <value>Revenue Sharing Id</value>
+  </data>
+  <data name="_RevenueSharingName" xml:space="preserve">
+    <value>Revenue Sharing Name</value>
+  </data>
+  <data name="_RevenueSharingSchema" xml:space="preserve">
+    <value>Revenue Sharing Schema</value>
+  </data>
+  <data name="_SalesAmount" xml:space="preserve">
+    <value>Sales Amount</value>
+  </data>
+  <data name="_Salesman" xml:space="preserve">
+    <value>Salesman</value>
+  </data>
+  <data name="_SaveToExcelBtn" xml:space="preserve">
+    <value>Save To Excel</value>
+    <comment>Save To Excel</comment>
+  </data>
+  <data name="_SeqNo" xml:space="preserve">
+    <value>Seq No</value>
+  </data>
+  <data name="_Share" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="_StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="_StrataStatus" xml:space="preserve">
+    <value>Strata Status</value>
+  </data>
+  <data name="_Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="_SubscriptionNumber" xml:space="preserve">
+    <value>Subscription Number</value>
+  </data>
+  <data name="_TaxAmount" xml:space="preserve">
+    <value>Tax Amount</value>
+  </data>
+  <data name="_TaxID" xml:space="preserve">
+    <value>Tax Id</value>
+  </data>
+  <data name="_TC" xml:space="preserve">
+    <value>T&amp;C</value>
+  </data>
+  <data name="_Tenant" xml:space="preserve">
+    <value>Tenant</value>
+  </data>
+  <data name="_Tenure" xml:space="preserve">
+    <value>Tenure</value>
+  </data>
+  <data name="_TenureDays" xml:space="preserve">
+    <value>Tenure Days</value>
+    <comment>Tenure Days</comment>
+  </data>
+  <data name="_TenureMonth" xml:space="preserve">
+    <value>Tenure Month</value>
+    <comment>Tenure Month</comment>
+  </data>
+  <data name="_TenureYear" xml:space="preserve">
+    <value>Tenure Year</value>
+    <comment>Tenure Year</comment>
+  </data>
+  <data name="_To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="_Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="_TotalAmount" xml:space="preserve">
+    <value>Total Amount</value>
+  </data>
+  <data name="_TotalArea" xml:space="preserve">
+    <value>Total Area</value>
+  </data>
+  <data name="_TotalGrossArea" xml:space="preserve">
+    <value>Total Gross Area</value>
+  </data>
+  <data name="_TotalNetArea" xml:space="preserve">
+    <value>Total Net Area</value>
+  </data>
+  <data name="_TotalNetSize" xml:space="preserve">
+    <value>Total Net Size</value>
+  </data>
+  <data name="_TotalRows" xml:space="preserve">
+    <value>Total Rows</value>
+    <comment>Total Rows</comment>
+  </data>
+  <data name="_TrxStatus" xml:space="preserve">
+    <value>Trx Status</value>
+  </data>
+  <data name="_Undo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="_Unit" xml:space="preserve">
+    <value>Unit</value>
+    <comment>Unit</comment>
+  </data>
+  <data name="_UnitAndCharges" xml:space="preserve">
+    <value>Unit &amp; Charges</value>
+  </data>
+  <data name="_UnitAndUtility" xml:space="preserve">
+    <value>Unit &amp; Utilities</value>
+  </data>
+  <data name="_UnitDescription" xml:space="preserve">
+    <value>Unit Description</value>
+  </data>
+  <data name="_UnitId" xml:space="preserve">
+    <value>Unit Id</value>
+  </data>
+  <data name="_UnitList" xml:space="preserve">
+    <value>Unit List</value>
+  </data>
+  <data name="_UnitName" xml:space="preserve">
+    <value>Unit Name</value>
+  </data>
+  <data name="_Units" xml:space="preserve">
+    <value>Units</value>
+    <comment>Units</comment>
+  </data>
+  <data name="_UnitType" xml:space="preserve">
+    <value>Unit Type</value>
+  </data>
+  <data name="_UnitView" xml:space="preserve">
+    <value>Unit View</value>
+  </data>
+  <data name="_UpdatedBy" xml:space="preserve">
+    <value>Updated By</value>
+  </data>
+  <data name="_UpdatedDate" xml:space="preserve">
+    <value>Updated Date</value>
+  </data>
+  <data name="_Utilities" xml:space="preserve">
+    <value>Utilities</value>
+    <comment>Utilities</comment>
+  </data>
+  <data name="_Utility" xml:space="preserve">
+    <value>Utility</value>
+    <comment>Utility</comment>
+  </data>
+  <data name="_UtilityType" xml:space="preserve">
+    <value>Utility Type</value>
+  </data>
+  <data name="_Valid" xml:space="preserve">
+    <value>Valid</value>
+    <comment>Valid</comment>
+  </data>
+  <data name="_ViewTransaction" xml:space="preserve">
+    <value>View Transaction</value>
+    <comment>View Transaction</comment>
+  </data>
+  <data name="_WithFO" xml:space="preserve">
+    <value>With FO</value>
+  </data>
+  <data name="_Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="_Years" xml:space="preserve">
+    <value>Years</value>
+  </data>
+</root>

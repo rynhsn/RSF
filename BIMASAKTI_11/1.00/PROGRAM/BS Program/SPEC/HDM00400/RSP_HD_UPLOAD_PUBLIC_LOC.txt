@@ -1,0 +1,8 @@
+EXCESS_PUBLIC_LOCATION_ID	= Public Location Id is bigger than 20 Character
+EMPTY_PUBLIC_LOCATION_ID	= Public Location Id can not be empty
+EXCESS_PUBLIC_LOCATION_NAME	= Public Location Name is bigger than 100 Character
+EMPTY_PUBLIC_LOCATION_NAME	= Public Location Name can not be empty
+INVALID_ACTIVE_FLAG		= Invalid Active Flag, Active Flag value is not 1 / 0	
+EMPTY_NONACTIVE_DATE		= If Active Flag = 0, Non Active Date can not be empty	
+INVALID_BUILDING_ID		= Invalid Building Id
+INVALID_FLOOR_ID		= Invalid Floor Id

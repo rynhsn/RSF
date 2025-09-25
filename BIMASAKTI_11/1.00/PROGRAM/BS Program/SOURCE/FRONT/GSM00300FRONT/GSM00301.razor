@@ -1,0 +1,144 @@
+﻿@using GSM00300COMMON.DTO_s.Helper
+@using GSM00300COMMON.DTO_s
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_pageTitle_taxinfo")]
+<R_StackLayout Row Class="mx-3">
+    <R_ItemLayout col="2"><R_Label>@_localizer["_lbl_taxid"]</R_Label></R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="_viewModel.Data.CTAX_ID" R_ConductorSource="_conRef" R_EnableAdd R_EnableEdit></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row Class="mx-3">
+    <R_ItemLayout col="2"><R_Label>@_localizer["_lbl_taxname"]</R_Label></R_ItemLayout>
+    <R_ItemLayout Class="col">
+        <R_TextBox @bind-Value="_viewModel.Data.CTAX_NAME" R_ConductorSource="_conRef" R_EnableAdd R_EnableEdit></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row Class="mx-3">
+    <R_ItemLayout col="2"><R_Label>@_localizer["_lbl_idnumber"]</R_Label></R_ItemLayout>
+    <R_ItemLayout Class="col">
+        <R_TextBox @bind-Value="_viewModel.Data.CID_NO" R_ConductorSource="_conRef" R_EnableAdd R_EnableEdit></R_TextBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2" Class="d-flex justify-content-end"><R_Label>@_localizer["_lbl_idtype"]</R_Label></R_ItemLayout>
+    <R_ItemLayout Class="col">
+        <R_ComboBox @bind-Value="_viewModel.Data.CID_TYPE"
+                    Data="_viewModel.IdTypeList"
+                    ValueField="@nameof(GSBCodeInfoDTO.CCODE)"
+                    TextField="@nameof(GSBCodeInfoDTO.CDESCRIPTION)"
+                    R_ConductorSource="_conRef" 
+                    R_EnableAdd
+                    R_EnableEdit></R_ComboBox>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row Class="mx-3">
+    <R_ItemLayout col="2"><R_Label>@_localizer["_lbl_idexpireddate"]</R_Label></R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_DatePicker @bind-Value="_viewModel.Data.DID_EXPIRED_DATE"
+                    R_ConductorSource="_conRef"
+                    R_EnableAdd
+                    R_EnableEdit></R_DatePicker>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row Class="mx-3">
+    <R_ItemLayout col="2"><R_Label>@_localizer["_lbl_address"]</R_Label></R_ItemLayout>
+    <R_ItemLayout Class="col">
+        <R_TextArea @bind-Value="_viewModel.Data.CTAX_ADDRESS" R_ConductorSource="_conRef" R_EnableAdd R_EnableEdit></R_TextArea>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row Class="mx-3">
+    <R_ItemLayout col="2"><R_Label>@_localizer["_lbl_taxtype"]</R_Label></R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_ComboBox @bind-Value="_viewModel.Data.CTAX_TYPE"
+                    Data="_viewModel.TaxForTypeList"
+                    ValueField="@nameof(GSBCodeInfoDTO.CCODE)"
+                    TextField="@nameof(GSBCodeInfoDTO.CDESCRIPTION)"
+                    R_ConductorSource="_conRef"
+                    R_EnableAdd
+                    R_EnableEdit></R_ComboBox>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row Class="mx-3">
+    <R_ItemLayout col="2"><R_Label>@_localizer["_lbl_phoneno1"]</R_Label></R_ItemLayout>
+    <R_ItemLayout Class="col">
+        <R_TextBox @bind-Value="_viewModel.Data.CTAX_PHONE1" R_ConductorSource="_conRef" R_EnableAdd R_EnableEdit></R_TextBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2" Class="d-flex justify-content-end"><R_Label>@_localizer["_lbl_phoneno2"]</R_Label></R_ItemLayout>
+    <R_ItemLayout Class="col">
+        <R_TextBox @bind-Value="_viewModel.Data.CTAX_PHONE2" R_ConductorSource="_conRef" R_EnableAdd R_EnableEdit></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row Class="mx-3">
+    <R_ItemLayout col="2"><R_Label>@_localizer["_lbl_email1"]</R_Label></R_ItemLayout>
+    <R_ItemLayout Class="col">
+        <R_TextBox @bind-Value="_viewModel.Data.CTAX_EMAIL" R_ConductorSource="_conRef" R_EnableAdd R_EnableEdit></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row Class="mx-3">
+    <R_ItemLayout col="2"><R_Label>@_localizer["_lbl_email2"]</R_Label></R_ItemLayout>
+    <R_ItemLayout Class="col">
+        <R_TextBox @bind-Value="_viewModel.Data.CTAX_EMAIL2" R_ConductorSource="_conRef" R_EnableAdd R_EnableEdit></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row Class="mx-3">
+    <R_ItemLayout col="2">
+        <R_Label>
+            @_localizer["_lbl_updatedby"]
+        </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout Class="col">
+        <R_TextBox @bind-Value="_viewModel.Data.CUPDATE_BY"
+                   Enabled="false" />
+    </R_ItemLayout>
+    <R_ItemLayout col="2" Class="pe-3 d-flex justify-content-end">
+        <R_Label>
+            @_localizer["_lbl_date"]
+        </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout Class="col">
+        <R_DateTimePicker @bind-Value="_viewModel.Data.DUPDATE_DATE"
+                          ShowPickerButton="false"
+                          Enabled="false" />
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row Class="mx-3">
+    <R_ItemLayout col="2">
+        <R_Label>
+            @_localizer["_lbl_createdby"]
+        </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout Class="col">
+        <R_TextBox @bind-Value="_viewModel.Data.CCREATE_BY"
+                   Enabled="false" />
+    </R_ItemLayout>
+    <R_ItemLayout col="2" Class="pe-3 d-flex justify-content-end">
+        <R_Label>
+            @_localizer["_lbl_date"]
+        </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout Class="col">
+        <R_DateTimePicker @bind-Value="_viewModel.Data.DCREATE_DATE"
+                          ShowPickerButton="false"
+                          Enabled="false" />
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row Class="mx-3 pt-2">
+    <R_ItemLayout col="2">
+        <R_EditButton R_Conductor="@_conRef" />
+    </R_ItemLayout>
+    <R_ItemLayout col="5" Class="d-flex justify-content-end">
+        <R_CancelButton R_Conductor="@_conRef" />
+        <R_SaveButton R_Conductor="@_conRef" />
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* conductor *@
+<R_Conductor @ref="@_conRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader
+             R_ServiceGetRecord="@TaxInfo_GetRecordAsync"
+             R_Display="@TaxInfo_Display"
+             R_Saving="@TaxInfo_Saving"
+             R_ServiceSave="@TaxInfo_SaveAsync"
+             R_SetOther="@TaxInfo_SetOtherAsync" />

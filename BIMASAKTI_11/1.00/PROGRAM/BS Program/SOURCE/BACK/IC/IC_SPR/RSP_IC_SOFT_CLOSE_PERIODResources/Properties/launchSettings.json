@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_IC_SOFT_CLOSE_PERIODResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64468;http://localhost:64469"
+    }
+  }
+}

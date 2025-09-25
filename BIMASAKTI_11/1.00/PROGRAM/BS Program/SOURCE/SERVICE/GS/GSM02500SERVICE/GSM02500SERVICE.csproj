@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\BACK\GS\GSM02500BackResources\GSM02500BackResources.csproj" />
+		<ProjectReference Include="..\..\..\BACK\GS\GSM02500BACK\GSM02500BACK.csproj" />
+		<ProjectReference Include="..\..\..\COMMON\BaseHeaderResources\BaseHeaderResources.csproj" />
+		<ProjectReference Include="..\..\..\BACK\GS\GS_SPR\RSP_GS_MAINTAIN_BUILDING_FLOORResources\RSP_GS_MAINTAIN_BUILDING_FLOORResources.csproj" />
+		<ProjectReference Include="..\..\..\COMMON\GS\GSM02500COMMON\GSM02500COMMON.csproj" />
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="BaseHeaderReportCOMMON">
+			<HintPath>..\..\..\COMMON\BaseHeaderReportCOMMON.dll</HintPath>
+		</Reference>
+		<Reference Include="R_Cache">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_Cache.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ReportFastReportBack">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportFastReportBack.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APIBackEnd">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CommonFrontBackAPI">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="R_OpenTelemetry">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="GSM02500PrintController.cs" />
+	</ItemGroup>
+
+</Project>

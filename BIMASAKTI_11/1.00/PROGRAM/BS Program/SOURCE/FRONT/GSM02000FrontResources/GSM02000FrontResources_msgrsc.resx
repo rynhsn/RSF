@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="LABEL_TAXNAME" xml:space="preserve">
+        <value>Tax Name</value>
+    </data>
+    <data name="LABEL_TAXID" xml:space="preserve">
+        <value>Tax Id</value>
+    </data>
+    <data name="LABEL_ROUNDINGMODE" xml:space="preserve">
+        <value>Rounding Mode</value>
+    </data>
+    <data name="LABEL_ROUNDINGUNIT" xml:space="preserve">
+        <value>Rounding Unit</value>
+    </data>
+    <data name="LABEL_TAXIN" xml:space="preserve">
+        <value>Tax In GL Account</value>
+    </data>
+    <data name="LABEL_TAXOUT" xml:space="preserve">
+        <value>Tax Out GL Account</value>
+    </data>
+    <data name="LABEL_UPDATEDBY" xml:space="preserve">
+        <value>Updated By</value>
+    </data>
+    <data name="LABEL_UPDATEDDATE" xml:space="preserve">
+        <value>Updated Date</value>
+    </data>
+    <data name="LABEL_CREATEDBY" xml:space="preserve">
+        <value>Created By</value>
+    </data>
+    <data name="LABEL_CREATEDDATE" xml:space="preserve">
+        <value>Created Date</value>
+    </data>
+    <data name="LABEL_DESCRIPTION" xml:space="preserve">
+        <value>Description</value>
+    </data>
+    <data name="LABEL_ACTIVE" xml:space="preserve">
+        <value>Active</value>
+    </data>
+    <data name="Err01" xml:space="preserve">
+        <value>Tax ID is required</value>
+    </data>
+    <data name="Err02" xml:space="preserve">
+        <value>Tax Name is required</value>
+    </data>
+    <data name="Err03" xml:space="preserve">
+        <value>Rounding Mode is required</value>
+    </data>
+    <data name="Err04" xml:space="preserve">
+        <value>Rounding Unit is required</value>
+    </data>
+    <data name="LABEL_TAXDATE" xml:space="preserve">
+        <value>Tax Date*</value>
+    </data>
+    <data name="LABEL_TAXPCT" xml:space="preserve">
+        <value>Tax %*</value>
+    </data>
+    <data name="LABEL_DEDUCTIONTAXID" xml:space="preserve">
+        <value>Deduction Tax Id</value>
+    </data>
+    <data name="LABEL_DEDUCTIONTAXNAME" xml:space="preserve">
+        <value>Deduction Tax Name</value>
+    </data>
+    <data name="LABEL_PROPERTYID" xml:space="preserve">
+        <value>Property Id</value>
+    </data>
+    <data name="LABEL_PROPERTYNAME" xml:space="preserve">
+        <value>Property Name</value>
+    </data>
+    <data name="Err05" xml:space="preserve">
+        <value>Tax Date is required</value>
+    </data>
+    <data name="Err06" xml:space="preserve">
+        <value>Tax % is required</value>
+    </data>
+    <data name="BTN_ACTIVATE" xml:space="preserve">
+        <value>Activate</value>
+    </data>
+    <data name="BTN_INACTIVE" xml:space="preserve">
+        <value>Inactive</value>
+    </data>
+    <data name="Err07" xml:space="preserve">
+        <value>Tax In GL Account is required</value>
+    </data>
+    <data name="Err08" xml:space="preserve">
+        <value>Tax Out GL Account is required</value>
+    </data>
+    <data name="Err09" xml:space="preserve">
+        <value>Property is required</value>
+    </data>
+    <data name="Err10" xml:space="preserve">
+        <value>Deduction Tax is required</value>
+    </data>
+    <data name="Err11" xml:space="preserve">
+        <value>Deduction Tax already exists</value>
+    </data>
+    <!-- <data name="Err12" xml:space="preserve"> -->
+    <!--     <value>Deduction list is empty</value> -->
+    <!-- </data> -->
+</root>

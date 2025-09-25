@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "PMB05000Back": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57039;http://localhost:57040"
+    }
+  }
+}

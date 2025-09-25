@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PMA00400Console": {
+      "commandName": "Project",
+      "commandLineArgs": "false"
+    }
+  }
+}

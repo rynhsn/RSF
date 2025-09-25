@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_PM_UPLOAD_LEASE_AGREEMENTResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64896;http://localhost:64897"
+    }
+  }
+}

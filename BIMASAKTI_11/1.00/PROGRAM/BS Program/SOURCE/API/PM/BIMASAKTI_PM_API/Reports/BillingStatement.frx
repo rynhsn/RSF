@@ -1,0 +1,1188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="01/17/2025 16:26:44" ReportInfo.Modified="08/20/2025 17:27:37" ReportInfo.CreatorVersion="2023.2.21.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+     
+             
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="Label" DataType="PMR03000Common.DTOs.Print.PMR03000ReportLabelDTO, PMR03000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Label_RingkasanPenagihan" DataType="System.String"/>
+        <Column Name="Label_RingkasanPenagihan_En" DataType="System.String"/>
+        <Column Name="Label_TanggalInvoice" DataType="System.String"/>
+        <Column Name="Label_TanggalInvoice_En" DataType="System.String"/>
+        <Column Name="Label_TanggalJatuhTempo" DataType="System.String"/>
+        <Column Name="Label_TanggalJatuhTempo_En" DataType="System.String"/>
+        <Column Name="Label_RingkasanInvoice" DataType="System.String"/>
+        <Column Name="Label_RingkasanInvoice_En" DataType="System.String"/>
+        <Column Name="Label_TagihanLalu" DataType="System.String"/>
+        <Column Name="Label_TagihanLalu_En" DataType="System.String"/>
+        <Column Name="Label_PembayaranLalu" DataType="System.String"/>
+        <Column Name="Label_PembayaranLalu_En" DataType="System.String"/>
+        <Column Name="Label_PenaltySaatIni" DataType="System.String"/>
+        <Column Name="Label_PenaltySaatIni_En" DataType="System.String"/>
+        <Column Name="Label_TotalTagihanSaatIni" DataType="System.String"/>
+        <Column Name="Label_TotalTagihanSaatIni_En" DataType="System.String"/>
+        <Column Name="Label_JumlahYangHarusDibayar" DataType="System.String"/>
+        <Column Name="Label_JumlahYangHarusDibayar_En" DataType="System.String"/>
+        <Column Name="Label_VirtualAccount" DataType="System.String"/>
+        <Column Name="Label_VirtualAccount_En" DataType="System.String"/>
+        <Column Name="Label_Sales" DataType="System.String"/>
+        <Column Name="Label_Rent" DataType="System.String"/>
+        <Column Name="Label_Deposit" DataType="System.String"/>
+        <Column Name="Label_RevenueSharing" DataType="System.String"/>
+        <Column Name="Label_ServiceCharge" DataType="System.String"/>
+        <Column Name="Label_SingkingFund" DataType="System.String"/>
+        <Column Name="Label_PromoLevy" DataType="System.String"/>
+        <Column Name="Label_Other" DataType="System.String"/>
+        <Column Name="Label_Electricity" DataType="System.String"/>
+        <Column Name="Label_Chiller" DataType="System.String"/>
+        <Column Name="Label_Water" DataType="System.String"/>
+        <Column Name="Label_Gas" DataType="System.String"/>
+        <Column Name="Label_Parking" DataType="System.String"/>
+        <Column Name="Label_Overtime" DataType="System.String"/>
+        <Column Name="Label_GeneralUtility" DataType="System.String"/>
+        <Column Name="Label_Currency" DataType="System.String"/>
+        <Column Name="Label_IPLHeader" DataType="System.String"/>
+        <Column Name="Label_IPL" DataType="System.String"/>
+        <Column Name="Label_OccupiableArea" DataType="System.String"/>
+        <Column Name="Label_InvoicedPeriod" DataType="System.String"/>
+        <Column Name="Label_Fee" DataType="System.String"/>
+        <Column Name="Label_ChargeAmount" DataType="System.String"/>
+        <Column Name="Label_Total" DataType="System.String"/>
+        <Column Name="Label_TotalBiayaListrik" DataType="System.String"/>
+        <Column Name="Label_TotalBiayaChiller" DataType="System.String"/>
+        <Column Name="Label_AirListrik" DataType="System.String"/>
+        <Column Name="Label_MeterNo" DataType="System.String"/>
+        <Column Name="Label_CalculationFactor" DataType="System.String"/>
+        <Column Name="Label_CatatanMeter" DataType="System.String"/>
+        <Column Name="Label_MeterAwal" DataType="System.String"/>
+        <Column Name="Label_MeterAkhir" DataType="System.String"/>
+        <Column Name="Label_PenggunaanListrik" DataType="System.String"/>
+        <Column Name="Label_PenggunaanChiller" DataType="System.String"/>
+        <Column Name="Label_RekeningMinimum" DataType="System.String"/>
+        <Column Name="Label_TotalPemakaian" DataType="System.String"/>
+        <Column Name="Label_SubTotal" DataType="System.String"/>
+        <Column Name="Label_PPJU" DataType="System.String"/>
+        <Column Name="Label_BiayaTambahan" DataType="System.String"/>
+        <Column Name="Label_DayaTerpasang" DataType="System.String"/>
+        <Column Name="Label_KwhYangDiperhitungkan" DataType="System.String"/>
+        <Column Name="Label_BatasKWHMinimum" DataType="System.String"/>
+        <Column Name="Label_SubTotalBiayaListrik" DataType="System.String"/>
+        <Column Name="Label_SubTotalBiayaChiller" DataType="System.String"/>
+        <Column Name="Label_PenggunaanAir" DataType="System.String"/>
+        <Column Name="Label_PenggunaanGas" DataType="System.String"/>
+        <Column Name="Label_BiayaTetap" DataType="System.String"/>
+        <Column Name="Label_BiayaOperasional" DataType="System.String"/>
+        <Column Name="Label_Tarif" DataType="System.String"/>
+        <Column Name="Label_TarifBlock1" DataType="System.String"/>
+        <Column Name="Label_TarifBlock2" DataType="System.String"/>
+        <Column Name="Label_SubTotalBiayaAir" DataType="System.String"/>
+        <Column Name="Label_SubTotalBiayaGas" DataType="System.String"/>
+        <Column Name="Label_TotalBiayaAir" DataType="System.String"/>
+        <Column Name="Label_TotalBiayaGas" DataType="System.String"/>
+        <Column Name="Label_InvoiceNo" DataType="System.String"/>
+        <Column Name="Label_Tax" DataType="System.String"/>
+        <Column Name="Label_BebanBersama" DataType="System.String"/>
+        <Column Name="Label_BiayaTransformator" DataType="System.String"/>
+        <Column Name="Label_BiayaAdmin" DataType="System.String"/>
+        <Column Name="Label_MaintenanceFee" DataType="System.String"/>
+        <Column Name="Label_StandingAmount" DataType="System.String"/>
+        <Column Name="Label_Block1" DataType="System.String"/>
+        <Column Name="Label_Block2" DataType="System.String"/>
+        <Column Name="Label_TarifPemakaian" DataType="System.String"/>
+      </Column>
+      <Column Name="Header" DataType="PMR03000Common.DTOs.Print.PMR03000BaseHeaderDTO, PMR03000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="CLOGO" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="PROPERTY_ID" DataType="System.String"/>
+        <Column Name="PROPERTY_NAME" DataType="System.String"/>
+        <Column Name="CSTORAGE_ID" DataType="System.String"/>
+      </Column>
+      <BusinessObjectDataSource Name="BusinessObjectDataSource14" Alias="Datas" DataType="System.Collections.Generic.List`1[[PMR03000Common.DTOs.Print.PMR03000DataReportDTO, PMR03000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" PropName="Datas" Enabled="true">
+        <Column Name="CCOMPANY_ID" DataType="System.String"/>
+        <Column Name="CPROPERTY_ID" DataType="System.String"/>
+        <Column Name="CPROPERTY_NAME" DataType="System.String"/>
+        <Column Name="CSTATEMENT_DATE" DataType="System.String"/>
+        <Column Name="DSTATEMENT_DATE" DataType="System.DateTime"/>
+        <Column Name="CDUE_DATE" DataType="System.String"/>
+        <Column Name="DDUE_DATE" DataType="System.DateTime"/>
+        <Column Name="CLOI_AGRMT_REC_ID" DataType="System.String"/>
+        <Column Name="CSTORAGE_ID" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+        <Column Name="CTENANT_ID" DataType="System.String"/>
+        <Column Name="CTENANT_NAME" DataType="System.String"/>
+        <Column Name="CBILLING_ADDRESS" DataType="System.String"/>
+        <Column Name="CREF_NO" DataType="System.String"/>
+        <Column Name="CBUILDING_ID" DataType="System.String"/>
+        <Column Name="CBUILDING_NAME" DataType="System.String"/>
+        <Column Name="CUNIT_ID_LIST" DataType="System.String"/>
+        <Column Name="CUNIT_DESCRIPTION" DataType="System.String"/>
+        <Column Name="CCURRENCY" DataType="System.String"/>
+        <Column Name="CCURRENCY_CODE" DataType="System.String"/>
+        <Column Name="NPREVIOUS_BALANCE" DataType="System.Decimal"/>
+        <Column Name="NPREVIOUS_PAYMENT" DataType="System.Decimal"/>
+        <Column Name="NCURRENT_PENALTY" DataType="System.Decimal"/>
+        <Column Name="NNEW_BILLING" DataType="System.Decimal"/>
+        <Column Name="NNEW_BALANCE" DataType="System.Decimal"/>
+        <Column Name="NSALES" DataType="System.Decimal"/>
+        <Column Name="NRENT" DataType="System.Decimal"/>
+        <Column Name="NDEPOSIT" DataType="System.Decimal"/>
+        <Column Name="NREVENUE_SHARING" DataType="System.Decimal"/>
+        <Column Name="NSERVICE_CHARGE" DataType="System.Decimal"/>
+        <Column Name="NSINKING_FUND" DataType="System.Decimal"/>
+        <Column Name="NPROMO_LEVY" DataType="System.Decimal"/>
+        <Column Name="NGENERAL_CHARGE" DataType="System.Decimal"/>
+        <Column Name="NELECTRICITY" DataType="System.Decimal"/>
+        <Column Name="NCHILLER" DataType="System.Decimal"/>
+        <Column Name="NWATER" DataType="System.Decimal"/>
+        <Column Name="NGAS" DataType="System.Decimal"/>
+        <Column Name="NPARKING" DataType="System.Decimal"/>
+        <Column Name="NOVERTIME" DataType="System.Decimal"/>
+        <Column Name="NGENERAL_UTILITY" DataType="System.Decimal"/>
+        <Column Name="CMESSAGE_NO" DataType="System.String"/>
+        <Column Name="CMESSAGE_NAME" DataType="System.String"/>
+        <Column Name="TMESSAGE_DESCR_RTF" DataType="System.String"/>
+        <Column Name="TADDITIONAL_DESCR_RTF" DataType="System.String"/>
+        <Column Name="MessageInfo" DataType="PMR03000Common.DTOs.Print.PMR03000MessageInfoDTO, PMR03000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CMESSAGE_TYPE" DataType="System.String"/>
+          <Column Name="CMESSAGE_TYPE_DESCR" DataType="System.String"/>
+          <Column Name="CMESSAGE_NO" DataType="System.String"/>
+          <Column Name="TMESSAGE_DESCRIPTION" DataType="System.String"/>
+          <Column Name="CADDITIONAL_DESCRIPTION" DataType="System.String"/>
+          <Column Name="LACTIVE" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CACTIVE_BY" DataType="System.String"/>
+          <Column Name="DACTIVE_DATE" DataType="System.DateTime"/>
+          <Column Name="CINACTIVE_BY" DataType="System.String"/>
+          <Column Name="DINACTIVE_DATE" DataType="System.DateTime"/>
+          <Column Name="CCREATE_BY" DataType="System.String"/>
+          <Column Name="DCREATE_DATE" DataType="System.DateTime"/>
+          <Column Name="CUPDATE_BY" DataType="System.String"/>
+          <Column Name="DUPDATE_DATE" DataType="System.DateTime"/>
+        </Column>
+        <BusinessObjectDataSource Name="VirtualAccountData" DataType="System.Collections.Generic.List`1[[PMR03000Common.DTOs.Print.PMR03000VADTO, PMR03000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CBANK_CODE" DataType="System.String"/>
+          <Column Name="CBANK_NAME" DataType="System.String"/>
+          <Column Name="CVA_CODE" DataType="System.String"/>
+        </BusinessObjectDataSource>
+        <BusinessObjectDataSource Name="DataUnitList" DataType="System.Collections.Generic.List`1[[PMR03000Common.DTOs.Print.PMR03000DetailUnitDTO, PMR03000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CREF_NO" DataType="System.String"/>
+          <Column Name="CCUSTOMER_ID" DataType="System.String"/>
+          <Column Name="CCUSTOMER_NAME" DataType="System.String"/>
+          <Column Name="CTRANS_DESC" DataType="System.String"/>
+          <Column Name="NOCCUPIABLE_AREA" DataType="System.Decimal"/>
+          <Column Name="CINV_PERIOD_DESC" DataType="System.String"/>
+          <Column Name="NFEE_AMT" DataType="System.Decimal"/>
+          <Column Name="NCHARGE_AMOUNT" DataType="System.Decimal"/>
+          <Column Name="NTOTAL_AMOUNT" DataType="System.Decimal"/>
+          <Column Name="CINVOICE_NO" DataType="System.String"/>
+          <Column Name="CCURRENCY_CODE" DataType="System.String"/>
+          <Column Name="CREF_DATE" DataType="System.String"/>
+          <Column Name="DREF_DATE" DataType="System.DateTime"/>
+          <Column Name="LTAXABLE" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="NTAX_AMT" DataType="System.Decimal"/>
+          <Column Name="NSUB_TOTAL_AMT" DataType="System.Decimal"/>
+          <Column Name="CUNIT_DESCRIPTION" DataType="System.String"/>
+          <Column Name="CCHARGES_ID" DataType="System.String"/>
+          <Column Name="CCHARGES_NAME" DataType="System.String"/>
+        </BusinessObjectDataSource>
+        <Column Name="DataUnitListIsEmpty" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <BusinessObjectDataSource Name="DataUtility1" DataType="System.Collections.Generic.List`1[[PMR03000Common.DTOs.Print.PMR03000DetailUtilityDTO, PMR03000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CCUSTOMER_ID" DataType="System.String"/>
+          <Column Name="CREF_NO" DataType="System.String"/>
+          <Column Name="CCHARGES_TYPE" DataType="System.String"/>
+          <Column Name="CMETER_NO" DataType="System.String"/>
+          <Column Name="NMETER_START" DataType="System.Decimal"/>
+          <Column Name="NMETER_END" DataType="System.Decimal"/>
+          <Column Name="NMETER_USAGE" DataType="System.Decimal"/>
+          <Column Name="NMETER_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NBEBAN_BERSAMA" DataType="System.Decimal"/>
+          <Column Name="NCAPACITY" DataType="System.Decimal"/>
+          <Column Name="NCF" DataType="System.Decimal"/>
+          <Column Name="NUSAGE_MIN_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NMIN_CHARGE_AMT" DataType="System.Decimal"/>
+          <Column Name="NADDITIONAL_AMT" DataType="System.Decimal"/>
+          <Column Name="NTOTAL_USAGE_KVA" DataType="System.Decimal"/>
+          <Column Name="NSTANDING_CONSUMP_AMT" DataType="System.Decimal"/>
+          <Column Name="NSUB_TOTAL_AMT" DataType="System.Decimal"/>
+          <Column Name="NADMIN_FEE_AMT" DataType="System.Decimal"/>
+          <Column Name="NVAT_AMT" DataType="System.Decimal"/>
+          <Column Name="NADMIN_FEE_TAX_AMT" DataType="System.Decimal"/>
+          <Column Name="NTOTAL_AMT" DataType="System.Decimal"/>
+          <Column Name="NMAINTENANCE_FEE" DataType="System.Decimal"/>
+          <Column Name="CFROM_SEQ_NO" DataType="System.Decimal"/>
+          <Column Name="CTRANS_DESC" DataType="System.String"/>
+          <Column Name="CINVOICE_NO" DataType="System.String"/>
+          <Column Name="CCURRENCY_CODE" DataType="System.String"/>
+          <Column Name="CREF_DATE" DataType="System.String"/>
+          <Column Name="DREF_DATE" DataType="System.DateTime"/>
+          <Column Name="NUSAGE_CF" DataType="System.Decimal"/>
+          <Column Name="NBLOCK1_USAGE_CF" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_START" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_END" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_USAGE" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_USAGE_CF" DataType="System.Decimal"/>
+          <Column Name="LTAXABLE" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="NTAX_AMT" DataType="System.Decimal"/>
+          <Column Name="NUSAGE_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NSTANDING_AMT" DataType="System.Decimal"/>
+          <Column Name="NRETRIBUTION_AMT" DataType="System.Decimal"/>
+          <Column Name="NTRANSFORMATOR_AMT" DataType="System.Decimal"/>
+          <Column Name="NBLOCK1_BLOCK2_AMT" DataType="System.Decimal"/>
+          <Column Name="NUSAGE_AMT" DataType="System.Decimal"/>
+          <Column Name="CCHARGES_ID" DataType="System.String"/>
+          <Column Name="CSTART_DATE" DataType="System.String"/>
+          <BusinessObjectDataSource Name="BusinessObjectDataSource19" Alias="RateWGList" Enabled="false" DataType="System.Collections.Generic.List`1[[PMR03000Common.DTOs.Print.PMR03000RateWGListDTO, PMR03000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" PropName="RateWGList"/>
+          <Column Name="CUSAGE_RATE_MODE" DataType="System.String"/>
+          <Column Name="CUNIT_DESCRIPTION" DataType="System.String"/>
+          <Column Name="CCHARGES_NAME" DataType="System.String"/>
+        </BusinessObjectDataSource>
+        <Column Name="DataUtility1IsEmpty" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <BusinessObjectDataSource Name="DataUtility2" DataType="System.Collections.Generic.List`1[[PMR03000Common.DTOs.Print.PMR03000DetailUtilityDTO, PMR03000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CCUSTOMER_ID" DataType="System.String"/>
+          <Column Name="CREF_NO" DataType="System.String"/>
+          <Column Name="CCHARGES_TYPE" DataType="System.String"/>
+          <Column Name="CMETER_NO" DataType="System.String"/>
+          <Column Name="NMETER_START" DataType="System.Decimal"/>
+          <Column Name="NMETER_END" DataType="System.Decimal"/>
+          <Column Name="NMETER_USAGE" DataType="System.Decimal"/>
+          <Column Name="NMETER_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NBEBAN_BERSAMA" DataType="System.Decimal"/>
+          <Column Name="NCAPACITY" DataType="System.Decimal"/>
+          <Column Name="NCF" DataType="System.Decimal"/>
+          <Column Name="NUSAGE_MIN_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NMIN_CHARGE_AMT" DataType="System.Decimal"/>
+          <Column Name="NADDITIONAL_AMT" DataType="System.Decimal"/>
+          <Column Name="NTOTAL_USAGE_KVA" DataType="System.Decimal"/>
+          <Column Name="NSTANDING_CONSUMP_AMT" DataType="System.Decimal"/>
+          <Column Name="NSUB_TOTAL_AMT" DataType="System.Decimal"/>
+          <Column Name="NADMIN_FEE_AMT" DataType="System.Decimal"/>
+          <Column Name="NVAT_AMT" DataType="System.Decimal"/>
+          <Column Name="NADMIN_FEE_TAX_AMT" DataType="System.Decimal"/>
+          <Column Name="NTOTAL_AMT" DataType="System.Decimal"/>
+          <Column Name="NMAINTENANCE_FEE" DataType="System.Decimal"/>
+          <Column Name="CFROM_SEQ_NO" DataType="System.Decimal"/>
+          <Column Name="CTRANS_DESC" DataType="System.String"/>
+          <Column Name="CINVOICE_NO" DataType="System.String"/>
+          <Column Name="CCURRENCY_CODE" DataType="System.String"/>
+          <Column Name="CREF_DATE" DataType="System.String"/>
+          <Column Name="DREF_DATE" DataType="System.DateTime"/>
+          <Column Name="NUSAGE_CF" DataType="System.Decimal"/>
+          <Column Name="NBLOCK1_USAGE_CF" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_START" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_END" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_USAGE" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_USAGE_CF" DataType="System.Decimal"/>
+          <Column Name="LTAXABLE" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="NTAX_AMT" DataType="System.Decimal"/>
+          <Column Name="NUSAGE_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NSTANDING_AMT" DataType="System.Decimal"/>
+          <Column Name="NRETRIBUTION_AMT" DataType="System.Decimal"/>
+          <Column Name="NTRANSFORMATOR_AMT" DataType="System.Decimal"/>
+          <Column Name="NBLOCK1_BLOCK2_AMT" DataType="System.Decimal"/>
+          <Column Name="NUSAGE_AMT" DataType="System.Decimal"/>
+          <Column Name="CCHARGES_ID" DataType="System.String"/>
+          <Column Name="CSTART_DATE" DataType="System.String"/>
+          <BusinessObjectDataSource Name="BusinessObjectDataSource20" Alias="RateWGList" Enabled="false" DataType="System.Collections.Generic.List`1[[PMR03000Common.DTOs.Print.PMR03000RateWGListDTO, PMR03000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" PropName="RateWGList"/>
+          <Column Name="CUSAGE_RATE_MODE" DataType="System.String"/>
+          <Column Name="CUNIT_DESCRIPTION" DataType="System.String"/>
+          <Column Name="CCHARGES_NAME" DataType="System.String"/>
+        </BusinessObjectDataSource>
+        <Column Name="DataUtility2IsEmpty" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <BusinessObjectDataSource Name="DataUtility3" DataType="System.Collections.Generic.List`1[[PMR03000Common.DTOs.Print.PMR03000DetailUtilityDTO, PMR03000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CCUSTOMER_ID" DataType="System.String"/>
+          <Column Name="CREF_NO" DataType="System.String"/>
+          <Column Name="CCHARGES_TYPE" DataType="System.String"/>
+          <Column Name="CMETER_NO" DataType="System.String"/>
+          <Column Name="NMETER_START" DataType="System.Decimal"/>
+          <Column Name="NMETER_END" DataType="System.Decimal"/>
+          <Column Name="NMETER_USAGE" DataType="System.Decimal"/>
+          <Column Name="NMETER_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NBEBAN_BERSAMA" DataType="System.Decimal"/>
+          <Column Name="NCAPACITY" DataType="System.Decimal"/>
+          <Column Name="NCF" DataType="System.Decimal"/>
+          <Column Name="NUSAGE_MIN_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NMIN_CHARGE_AMT" DataType="System.Decimal"/>
+          <Column Name="NADDITIONAL_AMT" DataType="System.Decimal"/>
+          <Column Name="NTOTAL_USAGE_KVA" DataType="System.Decimal"/>
+          <Column Name="NSTANDING_CONSUMP_AMT" DataType="System.Decimal"/>
+          <Column Name="NSUB_TOTAL_AMT" DataType="System.Decimal"/>
+          <Column Name="NADMIN_FEE_AMT" DataType="System.Decimal"/>
+          <Column Name="NVAT_AMT" DataType="System.Decimal"/>
+          <Column Name="NADMIN_FEE_TAX_AMT" DataType="System.Decimal"/>
+          <Column Name="NTOTAL_AMT" DataType="System.Decimal"/>
+          <Column Name="NMAINTENANCE_FEE" DataType="System.Decimal"/>
+          <Column Name="CFROM_SEQ_NO" DataType="System.Decimal"/>
+          <Column Name="CTRANS_DESC" DataType="System.String"/>
+          <Column Name="CINVOICE_NO" DataType="System.String"/>
+          <Column Name="CCURRENCY_CODE" DataType="System.String"/>
+          <Column Name="CREF_DATE" DataType="System.String"/>
+          <Column Name="DREF_DATE" DataType="System.DateTime"/>
+          <Column Name="NUSAGE_CF" DataType="System.Decimal"/>
+          <Column Name="NBLOCK1_USAGE_CF" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_START" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_END" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_USAGE" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_USAGE_CF" DataType="System.Decimal"/>
+          <Column Name="LTAXABLE" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="NTAX_AMT" DataType="System.Decimal"/>
+          <Column Name="NUSAGE_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NSTANDING_AMT" DataType="System.Decimal"/>
+          <Column Name="NRETRIBUTION_AMT" DataType="System.Decimal"/>
+          <Column Name="NTRANSFORMATOR_AMT" DataType="System.Decimal"/>
+          <Column Name="NBLOCK1_BLOCK2_AMT" DataType="System.Decimal"/>
+          <Column Name="NUSAGE_AMT" DataType="System.Decimal"/>
+          <Column Name="CCHARGES_ID" DataType="System.String"/>
+          <Column Name="CSTART_DATE" DataType="System.String"/>
+          <BusinessObjectDataSource Name="BusinessObjectDataSource17" Alias="RateWGList" DataType="System.Collections.Generic.List`1[[PMR03000Common.DTOs.Print.PMR03000RateWGListDTO, PMR03000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" PropName="RateWGList" Enabled="true">
+            <Column Name="IUP_TO_USAGE" DataType="System.Int32"/>
+            <Column Name="NUSAGE_CHARGE" DataType="System.Decimal"/>
+            <Column Name="IMIN_USAGE" DataType="System.Int32"/>
+            <Column Name="NFROM_TO" DataType="System.Decimal"/>
+            <Column Name="NSUB_TOTAL_ROW" DataType="System.Decimal"/>
+          </BusinessObjectDataSource>
+          <Column Name="CUSAGE_RATE_MODE" DataType="System.String"/>
+          <Column Name="CUNIT_DESCRIPTION" DataType="System.String"/>
+          <Column Name="CCHARGES_NAME" DataType="System.String"/>
+        </BusinessObjectDataSource>
+        <Column Name="DataUtility3IsEmpty" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <BusinessObjectDataSource Name="DataUtility4" DataType="System.Collections.Generic.List`1[[PMR03000Common.DTOs.Print.PMR03000DetailUtilityDTO, PMR03000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CCUSTOMER_ID" DataType="System.String"/>
+          <Column Name="CREF_NO" DataType="System.String"/>
+          <Column Name="CCHARGES_TYPE" DataType="System.String"/>
+          <Column Name="CMETER_NO" DataType="System.String"/>
+          <Column Name="NMETER_START" DataType="System.Decimal"/>
+          <Column Name="NMETER_END" DataType="System.Decimal"/>
+          <Column Name="NMETER_USAGE" DataType="System.Decimal"/>
+          <Column Name="NMETER_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NBEBAN_BERSAMA" DataType="System.Decimal"/>
+          <Column Name="NCAPACITY" DataType="System.Decimal"/>
+          <Column Name="NCF" DataType="System.Decimal"/>
+          <Column Name="NUSAGE_MIN_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NMIN_CHARGE_AMT" DataType="System.Decimal"/>
+          <Column Name="NADDITIONAL_AMT" DataType="System.Decimal"/>
+          <Column Name="NTOTAL_USAGE_KVA" DataType="System.Decimal"/>
+          <Column Name="NSTANDING_CONSUMP_AMT" DataType="System.Decimal"/>
+          <Column Name="NSUB_TOTAL_AMT" DataType="System.Decimal"/>
+          <Column Name="NADMIN_FEE_AMT" DataType="System.Decimal"/>
+          <Column Name="NVAT_AMT" DataType="System.Decimal"/>
+          <Column Name="NADMIN_FEE_TAX_AMT" DataType="System.Decimal"/>
+          <Column Name="NTOTAL_AMT" DataType="System.Decimal"/>
+          <Column Name="NMAINTENANCE_FEE" DataType="System.Decimal"/>
+          <Column Name="CFROM_SEQ_NO" DataType="System.Decimal"/>
+          <Column Name="CTRANS_DESC" DataType="System.String"/>
+          <Column Name="CINVOICE_NO" DataType="System.String"/>
+          <Column Name="CCURRENCY_CODE" DataType="System.String"/>
+          <Column Name="CREF_DATE" DataType="System.String"/>
+          <Column Name="DREF_DATE" DataType="System.DateTime"/>
+          <Column Name="NUSAGE_CF" DataType="System.Decimal"/>
+          <Column Name="NBLOCK1_USAGE_CF" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_START" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_END" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_USAGE" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NBLOCK2_USAGE_CF" DataType="System.Decimal"/>
+          <Column Name="LTAXABLE" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="NTAX_AMT" DataType="System.Decimal"/>
+          <Column Name="NUSAGE_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NSTANDING_AMT" DataType="System.Decimal"/>
+          <Column Name="NRETRIBUTION_AMT" DataType="System.Decimal"/>
+          <Column Name="NTRANSFORMATOR_AMT" DataType="System.Decimal"/>
+          <Column Name="NBLOCK1_BLOCK2_AMT" DataType="System.Decimal"/>
+          <Column Name="NUSAGE_AMT" DataType="System.Decimal"/>
+          <Column Name="CCHARGES_ID" DataType="System.String"/>
+          <Column Name="CSTART_DATE" DataType="System.String"/>
+          <BusinessObjectDataSource Name="BusinessObjectDataSource18" Alias="RateWGList" DataType="System.Collections.Generic.List`1[[PMR03000Common.DTOs.Print.PMR03000RateWGListDTO, PMR03000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" PropName="RateWGList" Enabled="true">
+            <Column Name="IUP_TO_USAGE" DataType="System.Int32"/>
+            <Column Name="NUSAGE_CHARGE" DataType="System.Decimal"/>
+            <Column Name="IMIN_USAGE" DataType="System.Int32"/>
+            <Column Name="NFROM_TO" DataType="System.Decimal"/>
+            <Column Name="NSUB_TOTAL_ROW" DataType="System.Decimal"/>
+          </BusinessObjectDataSource>
+          <Column Name="CUSAGE_RATE_MODE" DataType="System.String"/>
+          <Column Name="CUNIT_DESCRIPTION" DataType="System.String"/>
+          <Column Name="CCHARGES_NAME" DataType="System.String"/>
+        </BusinessObjectDataSource>
+        <Column Name="DataUtility4IsEmpty" DataType="System.Boolean" BindableControl="CheckBox"/>
+      </BusinessObjectDataSource>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" TopMargin="7" RightMargin="5" Watermark.Font="Arial, 60pt" LastPageSource="261" FirstPageSource="261">
+    <PageHeaderBand Name="PageHeader1" Width="737.1" Height="94.5">
+      <TextObject Name="Text657" Left="9.45" Top="9.45" Width="713.35" Height="75.6" Text="[ResponseDataModel.Header.PROPERTY_NAME]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 14pt, style=Bold"/>
+      <PictureObject Name="Picture3" Left="9.45" Top="9.45" Width="151.2" Height="75.6" DataColumn="ResponseDataModel.Header.CLOGO"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="98.5" Width="737.1" Height="9.45" StartNewPage="true" DataSource="BusinessObjectDataSource14" KeepTogether="true">
+      <DataBand Name="Data14" Top="111.95" Width="737.1" Height="47.25" StartNewPage="true">
+        <TextObject Name="Text653" Left="9.45" Width="302.4" Height="18.9" Text="[ResponseDataModel.Label.Label_RingkasanPenagihan]" HorzAlign="Center" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text654" Left="9.45" Top="18.9" Width="302.4" Height="18.9" Text="[ResponseDataModel.Label.Label_RingkasanPenagihan_En]" HorzAlign="Center" Font="Arial Unicode MS, 8pt, style=Italic"/>
+        <TextObject Name="Text655" Left="614.25" Width="113.4" Height="18.9" Text=": [ResponseDataModel.Datas.DSTATEMENT_DATE]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text656" Left="614.25" Top="18.9" Width="113.4" Height="18.9" Text=": [ResponseDataModel.Datas.DDUE_DATE]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 8pt"/>
+        <RichObject Name="Rich15" Left="406.35" Width="207.9" Height="18.9" Text="{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial Unicode MS;}}&#13;&#10;{\*\generator Riched20 10.0.26100}\viewkind4\uc1 &#13;&#10;\pard\qr\f0\fs16 [ResponseDataModel.Label.Label_TanggalInvoice] \i [ResponseDataModel.Label.Label_TanggalInvoice_En]\par&#13;&#10;}&#13;&#10;"/>
+        <RichObject Name="Rich16" Left="406.35" Top="18.9" Width="207.9" Height="18.9" Text="{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial Unicode MS;}}&#13;&#10;{\*\generator Riched20 10.0.26100}\viewkind4\uc1 &#13;&#10;\pard\qr\f0\fs16 [ResponseDataModel.Label.Label_TanggalJatuhTempo] \i [ResponseDataModel.Label.Label_TanggalJatuhTempo_En]\par&#13;&#10;}&#13;&#10;"/>
+      </DataBand>
+      <DataBand Name="Data15" Top="163.2" Width="737.1" Height="113.4" Border.Lines="Left, Right, Top">
+        <TextObject Name="Text658" Left="330.75" Top="9.45" Width="396.9" Height="18.9" Text="[ResponseDataModel.Label.Label_RingkasanInvoice]" HorzAlign="Center" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text662" Left="330.75" Top="28.35" Width="396.9" Height="18.9" Text="[ResponseDataModel.Label.Label_RingkasanInvoice_En]" HorzAlign="Center" Font="Arial Unicode MS, 8pt, style=Italic"/>
+        <RichObject Name="Rich18" Left="330.75" Top="56.7" Width="226.8" Height="18.9" Text="{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial Unicode MS;}}&#13;&#10;{\*\generator Riched20 10.0.26100}\viewkind4\uc1 &#13;&#10;\pard\f0\fs16 [ResponseDataModel.Label.Label_TagihanLalu] \i [ResponseDataModel.Label.Label_TagihanLalu_En]\i0\par&#13;&#10;}&#13;&#10;"/>
+        <TextObject Name="Text660" Left="595.35" Top="56.7" Width="132.3" Height="18.9" Text="[ResponseDataModel.Datas.NPREVIOUS_BALANCE]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text661" Left="557.55" Top="56.7" Width="37.8" Height="18.9" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <RichObject Name="Rich17" Left="330.75" Top="75.6" Width="226.8" Height="18.9" Text="{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial Unicode MS;}}&#13;&#10;{\*\generator Riched20 10.0.26100}\viewkind4\uc1 &#13;&#10;\pard\f0\fs16 [ResponseDataModel.Label.Label_PembayaranLalu] \i [ResponseDataModel.Label.Label_\i0 PembayaranLalu\i _En]\i0\par&#13;&#10;}&#13;&#10;"/>
+        <TextObject Name="Text659" Left="557.55" Top="75.6" Width="37.8" Height="18.9" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text663" Left="595.35" Top="75.6" Width="132.3" Height="18.9" Text="[ResponseDataModel.Datas.NPREVIOUS_PAYMENT]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line81" Left="321.3" Height="113.4"/>
+        <SubreportObject Name="Subreport5" Left="9.45" Top="9.45" Width="302.4" Height="18.9" ReportPage="Page2" PrintOnParent="true"/>
+      </DataBand>
+      <DataBand Name="Data16" Top="280.6" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NSALES] != 0" Border.Lines="Left, Right">
+        <TextObject Name="Text671" Left="595.35" Width="132.3" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NSALES] != 0" Text="[ResponseDataModel.Datas.NSALES]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text672" Left="330.75" Width="226.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NSALES] != 0" Text="[ResponseDataModel.Label.Label_Sales]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text673" Left="557.55" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NSALES] != 0" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line82" Left="321.3" Height="18.9"/>
+      </DataBand>
+      <DataBand Name="Data20" Top="303.5" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NRENT] != 0" Border.Lines="Left, Right">
+        <TextObject Name="Text674" Left="595.35" Width="132.3" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NRENT] != 0" Text="[ResponseDataModel.Datas.NRENT]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text675" Left="330.75" Width="226.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NRENT] != 0" Text="[ResponseDataModel.Label.Label_Rent]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text676" Left="557.55" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NRENT] != 0" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line83" Left="321.3" Height="18.9"/>
+      </DataBand>
+      <DataBand Name="Data22" Top="326.4" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NDEPOSIT] != 0" Border.Lines="Left, Right">
+        <TextObject Name="Text677" Left="595.35" Width="132.3" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NDEPOSIT] != 0" Text="[ResponseDataModel.Datas.NDEPOSIT]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text678" Left="330.75" Width="226.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NDEPOSIT] != 0" Text="[ResponseDataModel.Label.Label_Deposit]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text679" Left="557.55" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NDEPOSIT] != 0" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line84" Left="321.3" Height="18.9"/>
+      </DataBand>
+      <DataBand Name="Data23" Top="349.3" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NREVENUE_SHARING] !=0" Border.Lines="Left, Right">
+        <TextObject Name="Text680" Left="595.35" Width="132.3" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NREVENUE_SHARING] !=0" Text="[ResponseDataModel.Datas.NREVENUE_SHARING]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text681" Left="330.75" Width="226.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NREVENUE_SHARING] !=0" Text="[ResponseDataModel.Label.Label_RevenueSharing]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text682" Left="557.55" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NREVENUE_SHARING] !=0" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line85" Left="321.3" Height="18.9"/>
+      </DataBand>
+      <DataBand Name="Data24" Top="372.2" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NSERVICE_CHARGE] !=0" Border.Lines="Left, Right">
+        <TextObject Name="Text683" Left="330.75" Width="226.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NSERVICE_CHARGE] !=0" Text="[ResponseDataModel.Label.Label_ServiceCharge]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text684" Left="557.55" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NSERVICE_CHARGE] !=0" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text685" Left="595.35" Width="132.3" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NSERVICE_CHARGE] !=0" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Datas.NSERVICE_CHARGE]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line86" Left="321.3" Height="18.9"/>
+      </DataBand>
+      <DataBand Name="Data25" Top="395.1" Width="737.1" Height="20" VisibleExpression="[ResponseDataModel.Datas.NSINKING_FUND] != 0" Border.Lines="Left, Right">
+        <TextObject Name="Text686" Left="330.75" Width="226.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NSINKING_FUND] != 0" Text="[ResponseDataModel.Label.Label_SingkingFund]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text687" Left="595.35" Width="132.3" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NSINKING_FUND] != 0" Text="[ResponseDataModel.Datas.NSINKING_FUND]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text688" Left="557.55" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NSINKING_FUND] != 0" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line87" Left="321.3" Height="18.9"/>
+      </DataBand>
+      <DataBand Name="Data26" Top="419.1" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NPROMO_LEVY] != 0" Border.Lines="Left, Right">
+        <TextObject Name="Text689" Left="595.35" Width="132.3" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NPROMO_LEVY] != 0" Text="[ResponseDataModel.Datas.NPROMO_LEVY]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text690" Left="330.75" Width="226.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NPROMO_LEVY] != 0" Text="[ResponseDataModel.Label.Label_PromoLevy]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text691" Left="557.55" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NPROMO_LEVY] != 0" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line88" Left="321.3" Height="18.9"/>
+      </DataBand>
+      <DataBand Name="Data27" Top="442" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NGENERAL_CHARGE] != 0" Border.Lines="Left, Right">
+        <TextObject Name="Text692" Left="595.35" Width="132.3" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NGENERAL_CHARGE] != 0" Text="[ResponseDataModel.Datas.NGENERAL_CHARGE]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text693" Left="330.75" Width="226.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NGENERAL_CHARGE] != 0" Text="[ResponseDataModel.Label.Label_Other]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text694" Left="557.55" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NGENERAL_CHARGE] != 0" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line89" Left="321.3" Height="18.9"/>
+      </DataBand>
+      <DataBand Name="Data28" Top="464.9" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NELECTRICITY] != 0" Border.Lines="Left, Right">
+        <TextObject Name="Text695" Left="330.75" Width="226.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NELECTRICITY] != 0" Text="[ResponseDataModel.Label.Label_Electricity]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text696" Left="595.35" Width="132.3" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NELECTRICITY] != 0" Text="[ResponseDataModel.Datas.NELECTRICITY]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text697" Left="557.55" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NELECTRICITY] != 0" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line90" Left="321.3" Height="18.9"/>
+      </DataBand>
+      <DataBand Name="Data29" Top="487.8" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NCHILLER] != 0" Border.Lines="Left, Right">
+        <TextObject Name="Text698" Left="330.75" Width="226.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NCHILLER] != 0" Text="[ResponseDataModel.Label.Label_Chiller]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text699" Left="595.35" Width="132.3" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NCHILLER] != 0" Text="[ResponseDataModel.Datas.NCHILLER]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text700" Left="557.55" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NCHILLER] != 0" CanBreak="false" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" AutoShrink="FontWidth" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line91" Left="321.3" Height="18.9"/>
+      </DataBand>
+      <DataBand Name="Data30" Top="510.7" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NWATER] != 0" Border.Lines="Left, Right">
+        <TextObject Name="Text701" Left="330.75" Width="226.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NWATER] != 0" CanBreak="false" Text="[ResponseDataModel.Label.Label_Water]" AutoWidth="true" AutoShrink="FontWidth" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text702" Left="595.35" Width="132.3" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NWATER] != 0" CanBreak="false" Text="[ResponseDataModel.Datas.NWATER]" AutoWidth="true" AutoShrink="FontWidth" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text703" Left="557.55" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NWATER] != 0" CanBreak="false" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" AutoShrink="FontWidth" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line92" Left="321.3" Height="18.9"/>
+      </DataBand>
+      <DataBand Name="Data31" Top="533.6" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NGAS] != 0" Border.Lines="Left, Right">
+        <TextObject Name="Text704" Left="330.75" Width="226.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NGAS] != 0" CanBreak="false" Text="[ResponseDataModel.Label.Label_Gas]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text705" Left="595.35" Width="132.3" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NGAS] != 0" CanBreak="false" Text="[ResponseDataModel.Datas.NGAS]" AutoWidth="true" AutoShrink="FontWidth" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text706" Left="557.55" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NGAS] != 0" CanBreak="false" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" AutoShrink="FontWidth" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line93" Left="321.3" Height="18.9"/>
+      </DataBand>
+      <DataBand Name="Data32" Top="556.5" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NPARKING] != 0" Border.Lines="Left, Right">
+        <TextObject Name="Text707" Left="330.75" Width="226.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NPARKING] != 0" Text="[ResponseDataModel.Label.Label_Parking]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text708" Left="595.35" Width="132.3" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NPARKING] != 0" Text="[ResponseDataModel.Datas.NPARKING]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text709" Left="557.55" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NPARKING] != 0" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line94" Left="321.3" Height="18.9"/>
+      </DataBand>
+      <DataBand Name="Data33" Top="579.4" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NOVERTIME] != 0" Border.Lines="Left, Right">
+        <TextObject Name="Text710" Left="330.75" Width="226.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NOVERTIME] != 0" Text="[ResponseDataModel.Label.Label_Overtime]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text711" Left="595.35" Width="132.3" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NOVERTIME] != 0" Text="[ResponseDataModel.Datas.NOVERTIME]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text712" Left="557.55" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NOVERTIME] != 0" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line95" Left="321.3" Height="18.9"/>
+      </DataBand>
+      <DataBand Name="Data34" Top="602.3" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NGENERAL_UTILITY] != 0" Border.Lines="Left, Right">
+        <TextObject Name="Text713" Left="330.75" Width="226.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NGENERAL_UTILITY] != 0" Text="[ResponseDataModel.Label.Label_GeneralUtility]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text714" Left="595.35" Width="132.3" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NGENERAL_UTILITY] != 0" Text="[ResponseDataModel.Datas.NGENERAL_UTILITY]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text715" Left="557.55" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NGENERAL_UTILITY] != 0" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line96" Left="321.3" Height="18.9"/>
+      </DataBand>
+      <DataBand Name="Data35" Top="625.2" Width="737.1" Height="170.1" Border.Lines="Left, Right, Bottom">
+        <TextObject Name="Text716" Left="330.75" Top="18.9" Width="226.8" Height="18.9" Text="[ResponseDataModel.Label.Label_PenaltySaatIni]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text717" Left="595.35" Top="18.9" Width="132.3" Height="37.8" Text="[ResponseDataModel.Datas.NCURRENT_PENALTY]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text718" Left="557.55" Top="18.9" Width="37.8" Height="37.8" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text719" Left="330.75" Top="37.8" Width="226.8" Height="18.9" Text="[ResponseDataModel.Label.Label_PenaltySaatIni_En]" Font="Arial Unicode MS, 8pt, style=Italic"/>
+        <TextObject Name="Text720" Left="595.35" Top="56.7" Width="132.3" Height="28.35" Text="[ResponseDataModel.Datas.NNEW_BILLING]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text721" Left="557.55" Top="56.7" Width="37.8" Height="28.35" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text722" Left="330.75" Top="56.7" Width="226.8" Height="18.9" Text="[ResponseDataModel.Label.Label_TotalTagihanSaatIni]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text723" Left="330.75" Top="75.6" Width="226.8" Height="18.9" Text="[ResponseDataModel.Label.Label_TotalTagihanSaatIni_En]" Font="Arial Unicode MS, 8pt, style=Italic"/>
+        <TextObject Name="Text724" Left="595.35" Top="103.95" Width="132.3" Height="37.8" Text="[ResponseDataModel.Datas.NNEW_BALANCE]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text725" Left="557.55" Top="103.95" Width="37.8" Height="37.8" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text726" Left="330.75" Top="103.95" Width="226.8" Height="18.9" Text="[ResponseDataModel.Label.Label_JumlahYangHarusDibayar]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <LineObject Name="Line97" Left="321.3" Height="170.1"/>
+        <LineObject Name="Line98" Left="548.1" Top="94.5" Width="189"/>
+        <TextObject Name="Text727" Left="330.75" Top="122.85" Width="226.8" Height="18.9" Text="[ResponseDataModel.Label.Label_JumlahYangHarusDibayar_En]" Font="Arial Unicode MS, 8pt, style=Italic"/>
+      </DataBand>
+      <DataBand Name="Data36" Top="799.3" Width="737.1" Height="18.9"/>
+      <DataBand Name="Data37" Top="822.2" Width="737.1" Height="28.35" Border.Lines="Left, Right, Top" CanGrow="true">
+        <RichObject Name="Rich19" Left="9.45" Top="9.45" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" Text="{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial Unicode MS;}}&#13;&#10;{\*\generator Riched20 10.0.26100}\viewkind4\uc1 &#13;&#10;\pard\f0\fs12 [ResponseDataModel.Datas.TMESSAGE_DESCR_RTF]\fs16\par&#13;&#10;}&#13;&#10;"/>
+      </DataBand>
+      <DataBand Name="Data40" Top="854.55" Width="737.1" Height="28.35" Border.Lines="Left, Right, Bottom" CanGrow="true">
+        <RichObject Name="Rich20" Left="9.45" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" Text="{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial Unicode MS;}}&#13;&#10;{\*\generator Riched20 10.0.26100}\viewkind4\uc1 &#13;&#10;\pard\f0\fs12 [ResponseDataModel.Datas.TADDITIONAL_DESCR_RTF]\par&#13;&#10;}&#13;&#10;"/>
+      </DataBand>
+      <DataBand Name="Data41" Top="886.9" Width="737.1" Height="37.8" PrintOnBottom="true"/>
+      <DataBand Name="Data3" Top="928.7" Width="737.1" Height="9.45"/>
+      <DataBand Name="Data4" Top="942.15" Width="737.1" Height="136.3" VisibleExpression="[ResponseDataModel.Datas.DataUnitListIsEmpty]==false" Border.Lines="All" DataSource="DataUnitList">
+        <TextObject Name="Text106" Left="585.9" Top="107.95" Width="141.75" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Datas.DataUnitList.CCURRENCY_CODE] [ResponseDataModel.Datas.DataUnitList.NTOTAL_AMOUNT]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text107" Left="349.65" Top="107.95" Width="122.85" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Datas.DataUnitList.NCHARGE_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text108" Left="245.7" Top="107.95" Width="103.95" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Datas.DataUnitList.NFEE_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text109" Left="132.3" Top="107.95" Width="113.4" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Datas.DataUnitList.CINV_PERIOD_DESC]" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text110" Left="9.45" Top="107.95" Width="122.85" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Datas.DataUnitList.NOCCUPIABLE_AREA]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text101" Left="9.45" Top="89.05" Width="122.85" Height="18.9" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Label.Label_OccupiableArea]" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text102" Left="132.3" Top="89.05" Width="113.4" Height="18.9" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Label.Label_InvoicedPeriod]" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text103" Left="245.7" Top="89.05" Width="103.95" Height="18.9" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Label.Label_Fee]" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text104" Left="349.65" Top="89.05" Width="122.85" Height="18.9" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Label.Label_ChargeAmount]" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text105" Left="585.9" Top="89.05" Width="141.75" Height="18.9" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Label.Label_Total]" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text100" Left="9.45" Top="70.15" Width="481.95" Height="18.9" Text="[ResponseDataModel.Datas.DataUnitList.CTRANS_DESC]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text319" Left="9.45" Top="9.45" Width="595.35" Height="18.9" Text="[ResponseDataModel.Label.Label_InvoiceNo] : [ResponseDataModel.Datas.DataUnitList.CINVOICE_NO] | [ResponseDataModel.Datas.DataUnitList.CREF_NO] | [ResponseDataModel.Datas.DataUnitList.CUNIT_DESCRIPTION]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line41" Top="37.8" Width="737.1"/>
+        <TextObject Name="Text360" Left="633.15" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Datas.DataUnitList.DREF_DATE]" Format="Date" Format.Format="d" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text370" Left="472.5" Top="89.05" Width="113.4" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUnitList.LTAXABLE]" Text="[ResponseDataModel.Label.Label_Tax]" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text371" Left="472.5" Top="107.95" Width="113.4" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUnitList.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUnitList.NTAX_AMT]" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text728" Left="9.45" Top="47.25" Width="481.95" Height="18.9" Text="[ResponseDataModel.Datas.DataUnitList.CCHARGES_NAME]" AutoWidth="true" VertAlign="Center" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <ChildBand Name="Child7" Top="1082.45" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUnitListIsEmpty]==false"/>
+      </DataBand>
+      <DataBand Name="Data6" Top="1105.35" Width="737.1" Height="349.65" VisibleExpression="[ResponseDataModel.Datas.DataUtility1IsEmpty]==false" Border.Lines="All" DataSource="DataUtility1">
+        <LineObject Name="Line37" Top="37.8" Width="737.1"/>
+        <TextObject Name="Text182" Left="37.8" Top="66.15" Width="113.4" Height="18.9" Text="[ResponseDataModel.Label.Label_MeterNo]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text185" Left="9.45" Top="85.05" Width="207.9" Height="18.9" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Label.Label_CatatanMeter]" AutoWidth="true" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text186" Left="9.45" Top="103.95" Width="151.2" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Label.Label_MeterAwal]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text193" Left="396.9" Top="103.95" Width="151.2" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Label.Label_DayaTerpasang]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text187" Left="9.45" Top="122.85" Width="151.2" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Label.Label_MeterAkhir]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text183" Left="9.45" Top="47.25" Width="141.75" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.CCHARGES_NAME]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text247" Left="170.1" Top="66.15" Width="217.35" Height="18.9" Text=": [ResponseDataModel.Datas.DataUtility1.CMETER_NO]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text248" Left="217.35" Top="103.95" Width="85.05" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NMETER_START]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text249" Left="217.35" Top="122.85" Width="85.05" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NMETER_END]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text261" Left="396.9" Top="66.15" Width="189" Height="18.9" Text="[ResponseDataModel.Label.Label_CalculationFactor]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text262" Left="585.9" Top="66.15" Width="141.75" Height="18.9" Text=": [ResponseDataModel.Datas.DataUtility1.NCF]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text263" Left="585.9" Top="103.95" Width="141.75" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NCAPACITY]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text314" Left="170.1" Top="47.25" Width="217.35" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.CTRANS_DESC]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text188" Left="9.45" Top="141.75" Width="151.2" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Label.Label_PenggunaanListrik]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text189" Left="9.45" Top="226.8" Width="151.2" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Label.Label_RekeningMinimum]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text250" Left="217.35" Top="141.75" Width="85.05" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NUSAGE_CF]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text251" Left="198.45" Top="226.8" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NUSAGE_MIN_CHARGE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text259" Left="585.9" Top="122.85" Width="141.75" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NMETER_CHARGE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text287" Left="396.9" Top="122.85" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_TarifBlock1]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text190" Left="9.45" Top="189" Width="151.2" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Label.Label_TotalPemakaian]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text252" Left="198.45" Top="189" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NBLOCK1_BLOCK2_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text191" Left="9.45" Top="207.9" Width="151.2" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Label.Label_SubTotal]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text204" Left="396.9" Top="283.5" Width="151.2" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility1.LTAXABLE]" CanBreak="false" Text="[ResponseDataModel.Label.Label_SubTotalBiayaListrik]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text253" Left="198.45" Top="207.9" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NSTANDING_CONSUMP_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text254" Left="9.45" Top="264.6" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_PPJU]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text255" Left="198.45" Top="264.6" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NRETRIBUTION_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text264" Left="585.9" Top="283.5" Width="141.75" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility1.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUtility1.NSUB_TOTAL_AMT]" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text192" Left="9.45" Top="245.7" Width="151.2" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Label.Label_BiayaTambahan]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text256" Left="198.45" Top="245.7" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NADDITIONAL_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text320" Left="9.45" Top="9.45" Width="595.35" Height="18.9" Text="[ResponseDataModel.Label.Label_InvoiceNo] : [ResponseDataModel.Datas.DataUtility1.CINVOICE_NO] | [ResponseDataModel.Datas.DataUtility1.CREF_NO] | [ResponseDataModel.Datas.DataUtility1.CUNIT_DESCRIPTION]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text326" Left="396.9" Top="321.3" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_TotalBiayaListrik]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text327" Left="585.9" Top="321.3" Width="141.75" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NTOTAL_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text328" Left="396.9" Top="302.4" Width="151.2" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility1.LTAXABLE]" CanBreak="false" Text="[ResponseDataModel.Label.Label_Tax]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text329" Left="585.9" Top="302.4" Width="141.75" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility1.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUtility1.NTAX_AMT]" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text348" Left="548.1" Top="283.5" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility1.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUtility1.CCURRENCY_CODE] " Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text349" Left="548.1" Top="302.4" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility1.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUtility1.CCURRENCY_CODE] " Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text350" Left="548.1" Top="321.3" Width="37.8" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.CCURRENCY_CODE] " Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text361" Left="633.15" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.DREF_DATE]" Format="Date" Format.Format="d" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text447" Left="9.45" Top="302.4" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_BebanBersama]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text449" Left="198.45" Top="302.4" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NBEBAN_BERSAMA]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text450" Left="198.45" Top="170.1" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NSTANDING_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text452" Left="9.45" Top="170.1" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_StandingAmount]" Font="Arial Unicode MS, 8pt"/>
+        <LineObject Name="Line62" Left="548.1" Top="321.3" Width="189"/>
+        <TextObject Name="Text462" Left="9.45" Top="321.3" Width="151.2" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Label.Label_BiayaAdmin]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text463" Left="198.45" Top="321.3" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NADMIN_FEE_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text465" Left="9.45" Top="283.5" Width="151.2" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Label.Label_BiayaTransformator]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text466" Left="198.45" Top="283.5" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NTRANSFORMATOR_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text492" Left="302.4" Top="103.95" Width="85.05" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NBLOCK2_START]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text493" Left="302.4" Top="122.85" Width="85.05" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NBLOCK2_END]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text494" Left="302.4" Top="141.75" Width="85.05" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NBLOCK2_USAGE_CF]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text495" Left="585.9" Top="141.75" Width="141.75" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility1.NBLOCK2_CHARGE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text496" Left="396.9" Top="141.75" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_TarifBlock2]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text504" Left="217.35" Top="85.05" Width="85.05" Height="18.9" Text="[ResponseDataModel.Label.Label_Block1]" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text505" Left="302.4" Top="85.05" Width="85.05" Height="18.9" Text="[ResponseDataModel.Label.Label_Block2]" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+        <ChildBand Name="Child2" Top="1459" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility1IsEmpty]==false"/>
+      </DataBand>
+      <DataBand Name="Data7" Top="1481.9" Width="737.1" Height="349.65" VisibleExpression="[ResponseDataModel.Datas.DataUtility2IsEmpty]==false" Border.Lines="All" DataSource="DataUtility2">
+        <LineObject Name="Line38" Top="37.8" Width="737.1"/>
+        <TextObject Name="Text205" Left="37.8" Top="66.15" Width="113.4" Height="18.9" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Label.Label_MeterNo]" AutoWidth="true" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text206" Left="9.45" Top="47.25" Width="141.75" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Datas.DataUtility2.CCHARGES_NAME]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text207" Left="9.45" Top="85.05" Width="207.9" Height="18.9" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Label.Label_CatatanMeter]" AutoWidth="true" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text208" Left="9.45" Top="103.95" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_MeterAwal]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text209" Left="9.45" Top="122.85" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_MeterAkhir]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text210" Left="9.45" Top="141.75" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_PenggunaanChiller]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text215" Left="396.9" Top="103.95" Width="151.2" Height="18.9" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Label.Label_DayaTerpasang]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text220" Left="170.1" Top="66.15" Width="217.35" Height="18.9" CanShrink="true" CanBreak="false" Text=": [ResponseDataModel.Datas.DataUtility2.CMETER_NO]" AutoWidth="true" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text257" Left="396.9" Top="66.15" Width="189" Height="18.9" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Label.Label_CalculationFactor]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text258" Left="585.9" Top="66.15" Width="141.75" Height="18.9" CanShrink="true" CanBreak="false" Text=": [ResponseDataModel.Datas.DataUtility2.NCF]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text269" Left="198.45" Top="189" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NBLOCK1_BLOCK2_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text270" Left="198.45" Top="207.9" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NSTANDING_CONSUMP_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text271" Left="198.45" Top="264.6" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NRETRIBUTION_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text272" Left="198.45" Top="245.7" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NADDITIONAL_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text268" Left="198.45" Top="226.8" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NUSAGE_MIN_CHARGE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text267" Left="217.35" Top="141.75" Width="85.05" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NUSAGE_CF]" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text265" Left="217.35" Top="103.95" Width="85.05" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NMETER_START]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text266" Left="217.35" Top="122.85" Width="85.05" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NMETER_END]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text273" Left="9.45" Top="226.8" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_RekeningMinimum]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text274" Left="9.45" Top="189" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_TotalPemakaian]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text275" Left="9.45" Top="207.9" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_SubTotal]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text276" Left="9.45" Top="245.7" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_BiayaTambahan]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text277" Left="9.45" Top="264.6" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_PPJU]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text279" Left="585.9" Top="122.85" Width="141.75" Height="18.9" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Datas.DataUtility2.NMETER_CHARGE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text280" Left="585.9" Top="103.95" Width="141.75" Height="18.9" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Datas.DataUtility2.NCAPACITY]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text286" Left="396.9" Top="122.85" Width="151.2" Height="18.9" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Label.Label_TarifBlock1]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text315" Left="170.1" Top="47.25" Width="217.35" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.CTRANS_DESC]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text321" Left="9.45" Top="9.45" Width="595.35" Height="18.9" Text="[ResponseDataModel.Label.Label_InvoiceNo] : [ResponseDataModel.Datas.DataUtility2.CINVOICE_NO] | [ResponseDataModel.Datas.DataUtility2.CREF_NO] | [ResponseDataModel.Datas.DataUtility2.CUNIT_DESCRIPTION]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text330" Left="396.9" Top="283.5" Width="151.2" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility2.LTAXABLE]" CanBreak="false" Text="[ResponseDataModel.Label.Label_SubTotalBiayaChiller]" Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text331" Left="585.9" Top="283.5" Width="141.75" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility2.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUtility2.NSUB_TOTAL_AMT]" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text334" Left="396.9" Top="302.4" Width="151.2" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility2.LTAXABLE]" CanBreak="false" Text="[ResponseDataModel.Label.Label_Tax]" Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text335" Left="585.9" Top="302.4" Width="141.75" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility2.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUtility2.NTAX_AMT]" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text332" Left="396.9" Top="321.3" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_TotalBiayaChiller]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text333" Left="585.9" Top="321.3" Width="141.75" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NTOTAL_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text351" Left="548.1" Top="283.5" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility2.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUtility2.CCURRENCY_CODE] " Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text352" Left="548.1" Top="302.4" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility2.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUtility2.CCURRENCY_CODE] " Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text353" Left="548.1" Top="321.3" Width="37.8" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.CCURRENCY_CODE] " Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text362" Left="633.15" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.DREF_DATE]" Format="Date" Format.Format="d" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text443" Left="198.45" Top="302.4" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NBEBAN_BERSAMA]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text446" Left="9.45" Top="302.4" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_BebanBersama]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text453" Left="198.45" Top="170.1" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NSTANDING_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text455" Left="9.45" Top="170.1" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_StandingAmount]" Font="Arial Unicode MS, 8pt"/>
+        <LineObject Name="Line59" Left="548.1" Top="321.3" Width="189"/>
+        <TextObject Name="Text468" Left="9.45" Top="321.3" Width="151.2" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Label.Label_BiayaAdmin]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text469" Left="198.45" Top="321.3" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NADMIN_FEE_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text471" Left="9.45" Top="283.5" Width="151.2" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Label.Label_BiayaTransformator]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text472" Left="198.45" Top="283.5" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NTRANSFORMATOR_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text498" Left="585.9" Top="141.75" Width="141.75" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NBLOCK2_CHARGE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text499" Left="396.9" Top="141.75" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_TarifBlock2]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text501" Left="302.4" Top="103.95" Width="85.05" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NBLOCK2_START]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text502" Left="302.4" Top="122.85" Width="85.05" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NBLOCK2_END]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text503" Left="302.4" Top="141.75" Width="85.05" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NBLOCK2_USAGE_CF]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text506" Left="217.35" Top="85.05" Width="85.05" Height="18.9" Text="[ResponseDataModel.Label.Label_Block1]" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text507" Left="302.4" Top="85.05" Width="85.05" Height="18.9" Text="[ResponseDataModel.Label.Label_Block2]" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+        <ChildBand Name="Child3" Top="1835.55" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility2IsEmpty]==false"/>
+      </DataBand>
+      <DataBand Name="Data8" Top="1858.45" Width="737.1" Height="311.85" VisibleExpression="[ResponseDataModel.Datas.DataUtility3IsEmpty]==false" Border.Lines="All" DataSource="DataUtility3">
+        <LineObject Name="Line39" Top="37.8" Width="737.1"/>
+        <TextObject Name="Text235" Left="9.45" Top="47.25" Width="151.2" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility3.CCHARGES_NAME]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text236" Left="28.35" Top="66.15" Width="132.3" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_MeterNo]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text237" Left="9.45" Top="85.05" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_CatatanMeter]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text238" Left="170.1" Top="66.15" Width="217.35" Height="18.9" CanShrink="true" CanBreak="false" Text=": [ResponseDataModel.Datas.DataUtility3.CMETER_NO]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text239" Left="9.45" Top="103.95" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_MeterAwal]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text240" Left="9.45" Top="122.85" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_MeterAkhir]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text241" Left="9.45" Top="141.75" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_PenggunaanAir]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text281" Left="198.45" Top="141.75" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility3.NUSAGE_CF]" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text282" Left="198.45" Top="103.95" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility3.NMETER_START]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text283" Left="198.45" Top="122.85" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility3.NMETER_END]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text316" Left="170.1" Top="47.25" Width="217.35" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility3.CTRANS_DESC]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text242" Left="9.45" Top="207.9" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_SubTotal]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text243" Left="9.45" Top="245.7" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_BiayaTetap]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text244" Left="9.45" Top="264.6" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_BiayaOperasional]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text284" Left="198.45" Top="207.9" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility3.NSTANDING_CONSUMP_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text285" Left="198.45" Top="245.7" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility2.NSTANDING_CONSUMP_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text313" Left="198.45" Top="264.6" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility3.NMAINTENANCE_FEE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text322" Left="9.45" Top="9.45" Width="595.35" Height="18.9" Text="[ResponseDataModel.Label.Label_InvoiceNo] : [ResponseDataModel.Datas.DataUtility3.CINVOICE_NO] | [ResponseDataModel.Datas.DataUtility3.CREF_NO] | [ResponseDataModel.Datas.DataUtility3.CUNIT_DESCRIPTION]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text336" Left="396.9" Top="245.7" Width="151.2" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility3.LTAXABLE]" CanBreak="false" Text="[ResponseDataModel.Label.Label_SubTotalBiayaAir]" Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text337" Left="585.9" Top="245.7" Width="141.75" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility3.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUtility3.NSUB_TOTAL_AMT]" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text338" Left="396.9" Top="283.5" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_TotalBiayaAir]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text339" Left="585.9" Top="283.5" Width="141.75" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility3.NTOTAL_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text340" Left="396.9" Top="264.6" Width="151.2" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility3.LTAXABLE]" CanBreak="false" Text="[ResponseDataModel.Label.Label_Tax]" Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text341" Left="585.9" Top="264.6" Width="141.75" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility3.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUtility3.NTAX_AMT]" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text354" Left="548.1" Top="245.7" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility3.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUtility3.CCURRENCY_CODE] " Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text355" Left="548.1" Top="264.6" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility3.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUtility3.CCURRENCY_CODE] " Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text356" Left="548.1" Top="283.5" Width="37.8" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility3.CCURRENCY_CODE] " Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text363" Left="633.15" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility3.DREF_DATE]" Format="Date" Format.Format="d" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text456" Left="198.45" Top="170.1" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility3.NSTANDING_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text458" Left="9.45" Top="170.1" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_StandingAmount]" Font="Arial Unicode MS, 8pt"/>
+        <LineObject Name="Line60" Left="548.1" Top="283.5" Width="189"/>
+        <TextObject Name="Text474" Left="198.45" Top="189" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility3.NUSAGE_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text475" Left="9.45" Top="189" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_TotalPemakaian]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text477" Left="198.45" Top="226.8" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility3.NUSAGE_MIN_CHARGE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text478" Left="9.45" Top="226.8" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_RekeningMinimum]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text480" Left="9.45" Top="283.5" Width="151.2" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Label.Label_BiayaAdmin]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text481" Left="198.45" Top="283.5" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility3.NADMIN_FEE_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <SubreportObject Name="Subreport2" Left="396.9" Top="103.95" Width="330.75" Height="18.9" ReportPage="Page3" PrintOnParent="true"/>
+        <ChildBand Name="Child4" Top="2174.3" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility3IsEmpty]==false"/>
+      </DataBand>
+      <DataBand Name="Data9" Top="2197.2" Width="737.1" Height="302.4" VisibleExpression="[ResponseDataModel.Datas.DataUtility4IsEmpty]==false" Border.Lines="All" DataSource="DataUtility4">
+        <LineObject Name="Line40" Top="37.8" Width="737.1"/>
+        <TextObject Name="Text323" Left="9.45" Top="9.45" Width="557.55" Height="18.9" Text="[ResponseDataModel.Label.Label_InvoiceNo] : [ResponseDataModel.Datas.DataUtility4.CINVOICE_NO] | [ResponseDataModel.Datas.DataUtility4.CREF_NO] | [ResponseDataModel.Datas.DataUtility4.CUNIT_DESCRIPTION]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text364" Left="633.15" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility4.DREF_DATE]" Format="Date" Format.Format="d" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text343" Left="585.9" Top="236.25" Width="141.75" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility4.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUtility4.NSUB_TOTAL_AMT]" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text342" Left="396.9" Top="236.25" Width="151.2" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility4.LTAXABLE]" CanBreak="false" Text="[ResponseDataModel.Label.Label_SubTotalBiayaGas]" Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text357" Left="548.1" Top="236.25" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility4.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUtility4.CCURRENCY_CODE] " Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text347" Left="585.9" Top="255.15" Width="141.75" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility4.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUtility4.NTAX_AMT]" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold" Trimming="EllipsisCharacter">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text346" Left="396.9" Top="255.15" Width="151.2" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility4.LTAXABLE]" CanBreak="false" Text="[ResponseDataModel.Label.Label_Tax]" Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text358" Left="548.1" Top="255.15" Width="37.8" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility4.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUtility4.CCURRENCY_CODE] " Font="Arial Unicode MS, 8pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text344" Left="396.9" Top="274.05" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_TotalBiayaGas]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text345" Left="585.9" Top="274.05" Width="141.75" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility4.NTOTAL_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text359" Left="548.1" Top="274.05" Width="37.8" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility4.CCURRENCY_CODE] " Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <LineObject Name="Line61" Left="548.1" Top="274.05" Width="189"/>
+        <TextObject Name="Text528" Left="9.45" Top="47.25" Width="151.2" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility4.CCHARGES_NAME]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text529" Left="28.35" Top="66.15" Width="132.3" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_MeterNo]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text530" Left="9.45" Top="85.05" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_CatatanMeter]" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text531" Left="170.1" Top="66.15" Width="217.35" Height="18.9" CanShrink="true" CanBreak="false" Text=": [ResponseDataModel.Datas.DataUtility4.CMETER_NO]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text532" Left="9.45" Top="103.95" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_MeterAwal]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text533" Left="9.45" Top="122.85" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_MeterAkhir]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text534" Left="9.45" Top="141.75" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_PenggunaanGas]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text536" Left="198.45" Top="141.75" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility4.NMETER_CHARGE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text537" Left="198.45" Top="103.95" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility4.NMETER_START]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text538" Left="198.45" Top="122.85" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility4.NMETER_END]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text544" Left="170.1" Top="47.25" Width="217.35" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility4.CTRANS_DESC]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text548" Left="198.45" Top="160.65" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility4.NSTANDING_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text550" Left="9.45" Top="160.65" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_StandingAmount]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text551" Left="198.45" Top="179.55" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility4.NUSAGE_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text552" Left="9.45" Top="179.55" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_TotalPemakaian]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text535" Left="9.45" Top="198.45" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_SubTotal]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text539" Left="198.45" Top="198.45" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility4.NSTANDING_CONSUMP_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text554" Left="198.45" Top="217.35" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility4.NUSAGE_MIN_CHARGE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text555" Left="9.45" Top="217.35" Width="151.2" Height="18.9" Text="[ResponseDataModel.Label.Label_RekeningMinimum]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text540" Left="9.45" Top="236.25" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_BiayaTetap]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text542" Left="198.45" Top="236.25" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility4.NSTANDING_CONSUMP_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text541" Left="9.45" Top="255.15" Width="151.2" Height="18.9" CanBreak="false" Text="[ResponseDataModel.Label.Label_BiayaOperasional]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text543" Left="198.45" Top="255.15" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility4.NMAINTENANCE_FEE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text557" Left="9.45" Top="274.05" Width="151.2" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Label.Label_BiayaAdmin]" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text558" Left="198.45" Top="274.05" Width="189" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility4.NADMIN_FEE_AMT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+        <SubreportObject Name="Subreport3" Left="396.9" Top="103.95" Width="330.75" Height="18.9" ReportPage="Page4" PrintOnParent="true"/>
+      </DataBand>
+    </DataBand>
+  </ReportPage>
+  <ReportPage Name="Page3" RawPaperSize="9" LeftMargin="0" TopMargin="0" RightMargin="0" BottomMargin="0" Watermark.Font="Arial, 60pt">
+    <DataBand Name="Data2" Width="793.8" Height="18.9" DataSource="BusinessObjectDataSource17">
+      <TextObject Name="Text560" Left="189" Width="141.75" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility3.RateWGList.NUSAGE_CHARGE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text561" Width="151.2" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility3.CUSAGE_RATE_MODE] == &quot;HM&quot;" Text="[ResponseDataModel.Label.Label_TarifPemakaian] [ResponseDataModel.Datas.DataUtility3.RateWGList.IUP_TO_USAGE]" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <NumberFormat UseLocale="false" DecimalDigits="0"/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text564" Width="151.2" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility3.CUSAGE_RATE_MODE] == &quot;SM&quot;" Text="[ResponseDataModel.Label.Label_Tarif]" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+    </DataBand>
+  </ReportPage>
+  <ReportPage Name="Page4" RawPaperSize="9" LeftMargin="0" TopMargin="0" RightMargin="0" BottomMargin="0" Watermark.Font="Arial, 60pt">
+    <DataBand Name="Data5" Width="793.8" Height="18.9" CanGrow="true" CanShrink="true" DataSource="BusinessObjectDataSource18">
+      <TextObject Name="Text565" Left="189" Width="141.75" Height="18.9" Text="[ResponseDataModel.Datas.DataUtility4.RateWGList.NUSAGE_CHARGE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text566" Width="151.2" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility4.CUSAGE_RATE_MODE] == &quot;HM&quot;" Text="[ResponseDataModel.Label.Label_TarifPemakaian] [ResponseDataModel.Datas.DataUtility4.RateWGList.IUP_TO_USAGE]" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <CurrencyFormat UseLocale="false" DecimalDigits="0" CurrencySymbol=""/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text568" Width="151.2" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUtility4.CUSAGE_RATE_MODE] == &quot;SM&quot;" Text="[ResponseDataModel.Label.Label_Tarif]" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter"/>
+    </DataBand>
+  </ReportPage>
+  <ReportPage Name="Page2" Watermark.Font="Arial, 60pt">
+    <DataBand Name="Data38" Width="718.2" Height="133.4">
+      <TextObject Name="Text664" Width="302.4" Height="18.9" VisibleExpression="Length([ResponseDataModel.Datas.CTENANT_ID]) &gt; 0" CanGrow="true" CanBreak="false" Text="[ResponseDataModel.Datas.CTENANT_ID] - [ResponseDataModel.Datas.CTENANT_NAME] " AutoWidth="true" Font="Arial Unicode MS, 8pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text665" Top="18.9" Width="302.4" Height="18.9" VisibleExpression="Length([ResponseDataModel.Datas.CBILLING_ADDRESS]) &gt; 0" CanGrow="true" Text="[ResponseDataModel.Datas.CBILLING_ADDRESS]" AutoWidth="true" Font="Arial Unicode MS, 8pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text666" Top="47.25" Width="302.4" Height="18.9" VisibleExpression="Length([ResponseDataModel.Datas.CBUILDING_ID]) &gt; 0" CanGrow="true" Text="[ResponseDataModel.Datas.CBUILDING_ID] - [ResponseDataModel.Datas.CBUILDING_NAME]" AutoWidth="true" Font="Arial Unicode MS, 8pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text668" Top="75.6" Width="302.4" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Label.Label_VirtualAccount]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold"/>
+      <TextObject Name="Text667" Top="94.5" Width="302.4" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Label.Label_VirtualAccount_En]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Italic"/>
+    </DataBand>
+    <DataBand Name="Data39" Top="137.4" Width="718.2" Height="18.9" DataSource="VirtualAccountData">
+      <TextObject Name="Text669" Top="-0.35" Width="160.65" Height="18.9" Text="[ResponseDataModel.Datas.VirtualAccountData.CBANK_NAME]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
+      <TextObject Name="Text670" Left="160.65" Top="-0.35" Width="141.75" Height="18.9" Text="[ResponseDataModel.Datas.VirtualAccountData.CVA_CODE]" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+    </DataBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GS_MAINTAIN_PROPERTY_DEPTResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:49198;http://localhost:49200"
+    }
+  }
+}

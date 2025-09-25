@@ -1,0 +1,1 @@
+NOEMAIL=This Tenant({0}) don't have email

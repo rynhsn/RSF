@@ -1,0 +1,129 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Confirmed")]
+@using PMT02100COMMON.DTOs.PMT02100
+@using PMT02100COMMON.DTOs.PMT02120
+@using PMT02100COMMON.DTOs
+@using PMT02100COMMON
+@using PMT02100MODEL
+@using PMT02100MODEL.FrontDTOs.PMT02100
+
+<R_StackLayout Row>
+    <R_ItemLayout col="3">
+        <R_Grid @ref="@_gridHandoverBuildingRef"
+                DataSource="@loViewModel.loHandoverBuildingList"
+                Pageable="true"
+                R_ConductorGridSource="@_conductorHandoverBuildingRef"
+                R_GridType="@R_eGridType.Original"
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false"
+                Height="450px"
+                R_Display="@Grid_Handover_Building_Display"
+                R_ServiceGetListRecord="@Grid_Handover_Building_R_ServiceGetListRecord">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName=@nameof(PMT02100HandoverBuildingDTO.CBUILDING_DISPLAY_NAME) HeaderText="@_localizer["_Building"]"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+    <R_ItemLayout col="9">
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_Grid @ref="@_gridHandoverRef"
+                        DataSource="@loViewModel.loHandoverList"
+                        Pageable="true"
+                        R_ConductorGridSource="@_conductorHandoverRef"
+                        R_GridType="@R_eGridType.Original"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false"
+                        AllowDeleteRow="false"
+                        Height="200px"
+                        R_Display="@Grid_Handover_Display"
+                        R_ServiceGetListRecord="@Grid_Handover_R_ServiceGetListRecord">
+                    <R_GridColumns>
+                        <R_GridDateTimePickerColumn FieldName=@nameof(PMT02100HandoverDTO.DSCHEDULED_HO_DATE) HeaderText="@_localizer["_ConfirmedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                        <R_GridCheckBoxColumn FieldName="@nameof(PMT02100HandoverDTO.LEXPIRED)" HeaderText="@_localizer["_ForceHO"]" Width="100px"></R_GridCheckBoxColumn>
+                        <R_GridDatePickerColumn FieldName=@nameof(PMT02100HandoverDTO.DHO_EXPIRY_DATE) HeaderText="@_localizer["_ExpiryDate"]" Width="150px"></R_GridDatePickerColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CUNIT_TYPE_CATEGORY_ID) HeaderText="@_localizer["_UnitTypeCategory"]" Width="250px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CUNIT_ID) HeaderText="@_localizer["_UnitId"]" Width="175px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CTENANT_NAME) HeaderText="@_localizer["_Tenant"]" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CTENANT_PHONE_NO) HeaderText="@_localizer["_PhoneNo"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CTENANT_EMAIL) HeaderText="@_localizer["_EmailAddress"]" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CTENANT_CITY_DESCRIPTION) HeaderText="@_localizer["_City"]" Width="250px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CDEPT_CODE) HeaderText="@_localizer["_Department"]" Width="150px"></R_GridTextColumn>
+                        <R_GridNumericColumn TValue="int" FieldName=@nameof(PMT02100HandoverDTO.IPRINT_COUNT) HeaderText="@_localizer["_PrintCount"]" Width="150px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="int" FieldName=@nameof(PMT02100HandoverDTO.IREINVITATION_COUNT) HeaderText="@_localizer["_ReinvitationCount"]" Width="175px"></R_GridNumericColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CREF_NO) HeaderText="@_localizer["_RefNo"]" Width="200px"></R_GridTextColumn>
+                        <R_GridDatePickerColumn FieldName=@nameof(PMT02100HandoverDTO.DREF_DATE) HeaderText="@_localizer["_RefDate"]" Width="150px"></R_GridDatePickerColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02100HandoverDTO.CSCHEDULED_HO_BY) HeaderText="@_localizer["_ConfirmedBy"]" Width="150px"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="7">
+                <R_Grid @ref="@_gridRescheduleRef"
+                        DataSource="@loViewModel.loRescheduleList"
+                        Pageable="true"
+                        R_ConductorGridSource="@_conductorRescheduleRef"
+                        R_GridType="@R_eGridType.Original"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false"
+                        AllowDeleteRow="false"
+                        Height="225px"
+                        R_Display="@Grid_Reschedule_Display"
+                        R_ServiceGetListRecord="@Grid_Reschedule_R_ServiceGetListRecord">
+                    <R_GridColumns>
+                        <R_GridDateTimePickerColumn FieldName=@nameof(PMT02120RescheduleListDTO.DSCHEDULED_HO_DATE) HeaderText="@_localizer["_RescheduledDate"]" Width="210px"></R_GridDateTimePickerColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02120RescheduleListDTO.CREASON) HeaderText="@_localizer["_Reason"]" Width="250px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02120RescheduleListDTO.CCREATE_BY) HeaderText="@_localizer["_RescheduledBy"]" Width="150px"></R_GridTextColumn>
+                        <R_GridDatePickerColumn FieldName=@nameof(PMT02120RescheduleListDTO.DCREATE_DATE) HeaderText="@_localizer["_CreatedDate"]" Width="150px"></R_GridDatePickerColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_Grid @ref="@_gridEmployeeRef"
+                        DataSource="@loViewModel.loEmployeeList"
+                        Pageable="true"
+                        R_ConductorGridSource="@_conductorEmployeeRef"
+                        R_GridType="@R_eGridType.Original"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false"
+                        AllowDeleteRow="false"
+                        Height="225px"
+                        R_Display="@Grid_Employee_Display"
+                        R_ServiceGetListRecord="@Grid_Employee_R_ServiceGetListRecord">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName=@nameof(PMT02120EmployeeListDTO.CEMPLOYEE_DISPLAY) HeaderText="@_localizer["_AssignedEmployee1"]" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02120EmployeeListDTO.CEMPLOYEE_TYPE) HeaderText="@_localizer["_EmployeeType"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02120EmployeeListDTO.CEMPLOYEE_PHONE_NO) HeaderText="@_localizer["_PhoneNo"]" Width="150px"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="justify-content-between">
+            <R_ItemLayout>
+                <R_Popup R_ConductorGridSource="@_conductorHandoverBuildingRef" Enabled="@(_gridHandoverRef.DataSource.Count > 0)" R_Before_Open_Popup="Before_Open_Assign_Employee_Popup" R_After_Open_Popup="After_Open_Assign_Employee_Popup">@_localizer["_AssignEmployee"]</R_Popup>
+                <R_PrintButton R_PrintMode="@R_ePrintMode.Popup" R_Conductor="@_conductorPrintRef"  Enabled="@(_gridHandoverRef.DataSource.Count > 0)" R_Before_Open_Popup="Before_Open_Print_Popup" R_After_Open_Popup="After_Open_Print_Popup">@_localizer["_PrintAssignmentChecklist"]</R_PrintButton>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Button R_ConductorGridSource="@_conductorHandoverBuildingRef" Enabled="@(_gridHandoverRef.DataSource.Count > 0)" OnClick="OnClickReinvite">@_localizer["_Reinvite"]</R_Button>
+                <R_Popup R_ConductorGridSource="@_conductorHandoverBuildingRef" Enabled="@((_gridRescheduleRef.DataSource.Count < loViewModel.loPMSystemParam.IMAX_ATTEMPTS) && (loViewModel.loHandover.DHO_EXPIRY_DATE > DateTime.Now))" R_Before_Open_Popup="Before_Open_Reschedule_Popup" R_After_Open_Popup="After_Open_Reschedule_Popup">@_localizer["_Reschedule"]</R_Popup>
+                <R_Popup R_ConductorGridSource="@_conductorHandoverBuildingRef" Enabled="@((!loViewModel.loPMSystemParam.LPRIORITY) && _gridHandoverRef.DataSource.Count > 0)" R_Before_Open_Popup="Before_Open_Handover_Popup" R_After_Open_Popup="After_Open_Handover_Popup">@_localizer["_Handover"]</R_Popup>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_ConductorGrid @ref="_conductorHandoverBuildingRef"
+                 R_IsHeader>
+</R_ConductorGrid>
+
+<R_ConductorGrid @ref="@_conductorHandoverRef"
+                 R_ConductorParent="@_conductorHandoverBuildingRef">
+</R_ConductorGrid>
+
+<R_Conductor @ref="_conductorPrintRef"
+             R_ViewModel="@loViewModel"
+             R_ConductorParent="@_conductorHandoverBuildingRef">
+</R_Conductor>

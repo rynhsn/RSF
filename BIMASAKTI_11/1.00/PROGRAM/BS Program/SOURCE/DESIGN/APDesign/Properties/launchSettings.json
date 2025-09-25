@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "APDesign": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64869;http://localhost:64870"
+    }
+  }
+}

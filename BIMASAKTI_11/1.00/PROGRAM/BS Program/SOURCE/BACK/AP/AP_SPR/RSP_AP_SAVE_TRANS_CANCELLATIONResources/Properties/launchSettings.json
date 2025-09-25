@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_AP_SAVE_TRANS_CANCELLATIONResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57068;http://localhost:57069"
+    }
+  }
+}

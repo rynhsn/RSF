@@ -1,0 +1,217 @@
+@page "/PMT06500"
+
+@using R_BlazorFrontEnd.Interfaces
+@using PMT06500FrontResources
+@using PMT06500Common.DTOs
+@using R_BlazorFrontEnd.Controls.Events
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label FontColor="R_eFontColor.Danger">@_localizer["PROPERTY_UPPR"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@_viewModel.PropertyList"
+                    Value="@_viewModel.SelectedPropertyId"
+                    ValueField="@nameof(PMT06500PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(PMT06500PropertyDTO.CPROPERTY_NAME)"
+                    ValueChanged="@((string value) => OnChangedCombo(value, "property"))"
+                    Enabled="@_enProperty"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_TabStrip OnActiveTabIndexChanging="OnTabChanging">
+    <R_TabStripTab Id="@nameof(PMT06500)" Title="@_localizer["OVERTIME_LIST"]">
+        <R_StackLayout Row>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["INVOICE_PERIOD"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_NumericTextBox @bind-Value="_viewModel.SelectedYear"
+                                  Min="_viewModel.YearRange.IMIN_YEAR"
+                                  Max="_viewModel.YearRange.IMAX_YEAR"
+                                  ThousandSeparator="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_ComboBox Data="@_viewModel.PeriodList"
+                            Value="@_viewModel.SelectedPeriodNo"
+                            ValueField="@nameof(PMT06500PeriodDTO.CPERIOD_NO)"
+                            TextField="@nameof(PMT06500PeriodDTO.CPERIOD_NO)"
+                            ValueChanged="@((string value) => OnChangedCombo(value, "periodNo"))"/>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Button OnClick="OnClickRefresh">@_localizer["REFRESH"]</R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Grid @ref="_gridRefAgreement"
+                        DataSource="_viewModel.AgreementGridList"
+                        R_ConductorSource="_conductorRefAgreement"
+                        R_GridType="R_eGridType.Navigator"
+                        R_ServiceGetListRecord="GetAgreementListRecord"
+                        Pageable
+                        Width="100%"
+                        Height="500px"
+                        PageSize="22">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(PMT06500AgreementDTO.CAGREEMENT_NO)" HeaderText="@_localizer["AGREEMENT_NO"]" Width="165px"/>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="10">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="4">
+                        <R_StackLayout Row>
+                            <R_ItemLayout>
+                                <R_Label>@_localizer["TENANT"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="4">
+                                <R_TextBox @bind-Value="_viewModel.EntityAgreement.CTENANT_ID" Enabled="false"/>
+                            </R_ItemLayout>
+                            <R_ItemLayout>
+                                <R_TextBox @bind-Value="_viewModel.EntityAgreement.CTENANT_NAME" Enabled="false"/>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4">
+                        <R_StackLayout Row>
+                            <R_ItemLayout>
+                                <R_Label>@_localizer["BUILDING"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="4">
+                                <R_TextBox @bind-Value="_viewModel.EntityAgreement.CBUILDING_ID" Enabled="false"/>
+                            </R_ItemLayout>
+                            <R_ItemLayout>
+                                <R_TextBox @bind-Value="_viewModel.EntityAgreement.CBUILDING_NAME" Enabled="false"/>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4">
+                        <R_StackLayout Row>
+                            <R_ItemLayout>
+                                <R_Label>@_localizer["UNIT_DESCRIPTION"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout>
+                                <R_TextBox @bind-Value="_viewModel.EntityAgreement.CUNIT_DESCRIPTION" Enabled="false"/>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout>
+                    <R_ItemLayout>
+                        <R_Grid @ref="_gridRefOvertime"
+                                DataSource="_viewModel.OvertimeGridList"
+                                R_ConductorGridSource="_conductorRefOvertime"
+                                R_GridType="R_eGridType.Original"
+                                R_ServiceGetListRecord="GetOvertimeListRecord"
+                                R_Display="DisplayOvertime"
+                                Pageable
+                                PageSize="3"
+                                AllowAddNewRow="false"
+                                AllowDeleteRow="false"
+                                AllowEditRow="false"
+                                Width="100%"
+                                Height="150px">
+                            <R_GridColumns>
+                                <R_GridDatePickerColumn FieldName="@nameof(PMT06500OvtDTO.DREF_DATE)" HeaderText="@_localizer["REF_DATE"]" Width="150px"/>
+                                <R_GridTextColumn FieldName="@nameof(PMT06500OvtDTO.CREF_NO)" HeaderText="@_localizer["REF_NO"]" Width="180px"/>
+                                <R_GridTextColumn FieldName="@nameof(PMT06500OvtDTO.CREQUEST_NAME)" HeaderText="@_localizer["REQUEST_NAME"]" Width="200px"/>
+                                <R_GridTextColumn FieldName="@nameof(PMT06500OvtDTO.CDESCRIPTION)" HeaderText="@_localizer["DESCRIPTION"]" Width="200px"/>
+                                <R_GridTextColumn FieldName="@nameof(PMT06500OvtDTO.CUPDATE_BY)" HeaderText="@_localizer["UPDATED_BY"]" Width="120px"/>
+                                <R_GridDateTimePickerColumn FieldName="@nameof(PMT06500OvtDTO.DUPDATE_DATE)" HeaderText="@_localizer["UPDATED_DATE"]" Width="180px"/>
+                                <R_GridTextColumn FieldName="@nameof(PMT06500OvtDTO.CCREATE_BY)" HeaderText="@_localizer["CREATED_BY"]" Width="120px"/>
+                                <R_GridDateTimePickerColumn FieldName="@nameof(PMT06500OvtDTO.DCREATE_DATE)" HeaderText="@_localizer["CREATED_DATE"]" Width="180px"/>
+                            </R_GridColumns>
+                        </R_Grid>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout>
+                    <R_ItemLayout>
+                        <R_Grid @ref="_gridRefService"
+                                DataSource="_viewModel.ServiceGridList"
+                                R_ConductorGridSource="_conductorRefService"
+                                R_GridType="R_eGridType.Original"
+                                R_ServiceGetListRecord="GetServiceListRecord"
+                                R_Display="DisplayService"
+                                Pageable
+                                PageSize="3"
+                                AllowAddNewRow="false"
+                                AllowDeleteRow="false"
+                                AllowEditRow="false"
+                                Width="100%"
+                                Height="150px">
+                            <R_GridColumns> 
+                                <R_GridTextColumn FieldName="@nameof(PMT06500ServiceDTO.CSEQ_NO)" HeaderText="@_localizer["SEQ_NO"]" Width="100px"/>
+                                <R_GridTextColumn FieldName="@nameof(PMT06500ServiceDTO.CSERVICE_DISPLAY)" HeaderText="@_localizer["SERVICE"]" Width="200px"/>
+                                <R_GridDateTimePickerColumn FieldName="@nameof(PMT06500ServiceDTO.DDATE_IN)" HeaderText="@_localizer["DATE_IN"]" Width="160px"/>
+                                <R_GridDateTimePickerColumn FieldName="@nameof(PMT06500ServiceDTO.DDATE_OUT)" HeaderText="@_localizer["DATE_OUT"]" Width="160px"/>
+                                <R_GridTextColumn FieldName="@nameof(PMT06500ServiceDTO.CSERVICE_DESCR)" HeaderText="@_localizer["DESCRIPTION"]" Width="200px"/>
+                                <R_GridTextColumn FieldName="@nameof(PMT06500OvtDTO.CUPDATE_BY)" HeaderText="@_localizer["UPDATED_BY"]" Width="120px"/>
+                                <R_GridDateTimePickerColumn FieldName="@nameof(PMT06500OvtDTO.DUPDATE_DATE)" HeaderText="@_localizer["UPDATED_DATE"]" Width="180px"/>
+                                <R_GridTextColumn FieldName="@nameof(PMT06500OvtDTO.CCREATE_BY)" HeaderText="@_localizer["CREATED_BY"]" Width="120px"/>
+                                <R_GridDateTimePickerColumn FieldName="@nameof(PMT06500OvtDTO.DCREATE_DATE)" HeaderText="@_localizer["CREATED_DATE"]" Width="180px"/>
+                            </R_GridColumns>
+                        </R_Grid>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout>
+                    <R_ItemLayout>
+                        <R_Grid @ref="_gridRefUnit"
+                                DataSource="_viewModel.UnitGridList"
+                                R_ConductorGridSource="_conductorRefUnit"
+                                R_GridType="R_eGridType.Original"
+                                R_ServiceGetListRecord="GetUnitListRecord"
+                                Pageable
+                                PageSize="3"
+                                AllowAddNewRow="false"
+                                AllowDeleteRow="false"
+                                AllowEditRow="false"
+                                Width="100%"
+                                Height="150px">
+                            <R_GridColumns> 
+                                <R_GridTextColumn FieldName="@nameof(PMT06500UnitDTO.CUNIT_ID)" HeaderText="@_localizer["UNIT_ID"]" Width="100px"/>
+                                <R_GridTextColumn FieldName="@nameof(PMT06500UnitDTO.CUNIT_NAME)" HeaderText="@_localizer["UNIT_NAME"]" Width="200px"/>
+                                <R_GridTextColumn FieldName="@nameof(PMT06500UnitDTO.CFLOOR_NAME)" HeaderText="@_localizer["FLOOR"]" Width="200px"/>
+                                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT06500UnitDTO.NGROSS_AREA_SIZE)" HeaderText="@_localizer["SQM"]" Width="100px"/>
+                                <R_GridTextColumn FieldName="@nameof(PMT06500OvtDTO.CUPDATE_BY)" HeaderText="@_localizer["UPDATED_BY"]" Width="120px"/>
+                                <R_GridDateTimePickerColumn FieldName="@nameof(PMT06500OvtDTO.DUPDATE_DATE)" HeaderText="@_localizer["UPDATED_DATE"]" Width="180px"/>
+                                <R_GridTextColumn FieldName="@nameof(PMT06500OvtDTO.CCREATE_BY)" HeaderText="@_localizer["CREATED_BY"]" Width="120px"/>
+                                <R_GridDateTimePickerColumn FieldName="@nameof(PMT06500OvtDTO.DCREATE_DATE)" HeaderText="@_localizer["CREATED_DATE"]" Width="180px"/>
+                            </R_GridColumns>
+                        </R_Grid>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout>
+                        <R_Popup R_Before_Open_Popup="BeforeOpenInvoicePopup" R_After_Open_Popup="AfterOpenInvoicePopup" Enabled="@(_viewModel.AgreementGridList.Count > 0)">@_localizer["PROCESS"]</R_Popup>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_TabStripTab>
+    <R_TabStripTab Id="@nameof(PMT06500Invoice)" Title="@_localizer["INVOICE_PLAN"]">
+        <R_TabPage R_Before_Open_TabPage="BeforeOpenTabInvoice" R_After_Open_TabPage="AfterOpenTabInvoice"/>
+    </R_TabStripTab>
+    @* <R_TabStripTab Id="@nameof(PMT06500InvoicePopup)" Title="Inv Popup"> *@
+    @*     <R_TabPage R_Before_Open_TabPage="BeforeOpenTabInvoicePopup"/> *@
+    @* </R_TabStripTab> *@
+</R_TabStrip>
+
+<R_Conductor @ref="_conductorRefAgreement"
+             R_ViewModel="_viewModel"
+             R_IsHeader
+             R_ServiceGetRecord="GetRecordAgreement"/>
+
+<R_ConductorGrid @ref="_conductorRefOvertime"
+                 R_ConductorParent="_conductorRefAgreement"/>
+<R_ConductorGrid @ref="_conductorRefService"
+                 R_ConductorParent="_conductorRefAgreement"/>
+<R_ConductorGrid @ref="_conductorRefUnit"
+                 R_ConductorParent="_conductorRefAgreement"/>

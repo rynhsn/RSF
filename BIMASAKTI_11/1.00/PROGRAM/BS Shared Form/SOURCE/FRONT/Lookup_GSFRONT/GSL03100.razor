@@ -1,0 +1,68 @@
+﻿@using Lookup_GSCOMMON.DTOs
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_ExpenditureLookup")]
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Style="width: 900px">
+    <R_StackLayout Row>
+        <R_ItemLayout>
+            <R_RadioGroup Data="@_viewModel.CategoryOptionsList"
+                          Value="@_viewModel.CategoryOption"
+                          ValueField="Key"
+                          TextField="Value"
+                          Layout="@R_eRadioGroupLayout.Horizontal"
+                          ValueChanged="@((string value) => OnChanged(value))">
+            </R_RadioGroup>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@_viewModel.ExpenditureParameter.CCATEGORY_ID"
+                       OnLostFocus="@Category_OnLostFocus"
+                       Enabled="@(_viewModel.CategoryOption == "S")" />
+        </R_ItemLayout>
+
+        <R_ItemLayout>
+            <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupCategory" R_After_Open_Lookup="R_After_Open_LookupCategory"
+                      Enabled="@(_viewModel.CategoryOption == "S")">
+                ...
+            </R_Lookup>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@_ExpenditureName"
+                       Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Button OnClick="OnClickRefresh">
+                @_localizer["_Refresh"]
+            </R_Button>
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.ExpenditureGrid"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                Height="300px"
+                Pageable="true">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GSL03100DTO.CEXPENDITURE_ID)" HeaderText="@_localizer["_ExpenditureID"]" Width="190px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL03100DTO.CEXPENDITURE_NAME)" HeaderText="@_localizer["_ExpenditureName"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL03100DTO.CCATEGORY_NAME)" HeaderText="@_localizer["_Category"]" Width="120px"></R_GridTextColumn>
+                <R_GridCheckBoxColumn FieldName="@nameof(GSL03100DTO.LTAXABLE)" HeaderText="@_localizer["_Taxable"]" Width="100px"></R_GridCheckBoxColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL03100DTO.CWITHHOLDING_TAX_NAME)" HeaderText="@_localizer["_WithholdingTax"]" Width="190px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+        <R_Button OnClick="Button_OnClickOkAsync" Enabled="@(_viewModel.ExpenditureGrid.Count > 0)">
+            @_localizer["_OkBtn"]
+            </R_Button>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                @_localizer["_CancelBtn"]
+            </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>

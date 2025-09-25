@@ -1,6 +1,6 @@
 ﻿using BlazorMenu.Services;
 using BlazorMenu.Shared.Tabs;
-using BlazorMenuCommon;
+using BlazorMenuCommon.DTOs;
 using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Exceptions;
 
@@ -83,7 +83,8 @@ namespace BlazorMenu.Shared
 
         private void GoTo(MenuListDTO poMenu)
         {
-            TabSetTool.AddTab(poMenu.CSUB_MENU_NAME, poMenu.CSUB_MENU_ID, poMenu.CSUB_MENU_ACCESS);
+            //TabSetTool.AddTab(poMenu.CSUB_MENU_NAME, poMenu.CSUB_MENU_ID, poMenu.CSUB_MENU_ACCESS);
+            TabSetTool.AddTab(poMenu.CSUB_MENU_NAME, poMenu.CSUB_MENU_ID, "A,U,D,P,V");
         }
     }
 }

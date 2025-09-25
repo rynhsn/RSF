@@ -1,0 +1,70 @@
+﻿@using GST00500Common
+@inherits R_Page
+@attribute [R_Page(Title = "Reject Pop Up")]
+@inject R_ILocalizer<Resources_GST00500_Class> _localizer
+
+
+<div hidden="@IsRejectModalHidden">
+    <R_StackLayout Style="width: 450px">
+        <R_ItemLayout>
+            <R_Label Class="fw-bold">
+                @_localizer["_Reject"]
+            </R_Label>
+        </R_ItemLayout>
+        <R_StackLayout Class="mb-4">
+            @*Dropdown Reason of Rejection*@
+            <R_StackLayout Row>
+                <R_ItemLayout col="5">
+                    <R_Label Class="fw-bold">
+                        @_localizer["_ReasonReject"]
+                    </R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="6">
+                    <R_DropDownList Data="@_viewModelGST00500Inbox.ReasonOfRejectList"
+                                    @bind-Value="_viewModelGST00500Inbox.ParamRejectTransactionStatus.CREASON_CODE"
+                                    ValueField="@nameof(GST00500RejectDTO.CCODE)"
+                                    TextField="@nameof(GST00500RejectDTO.CDESCRIPTION)"
+                                    R_ConductorGridSource="@_conductorRejectPopUp"
+                                    Width="250px">
+                    </R_DropDownList>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @*Reject Note*@
+            <R_StackLayout Row>
+                <R_ItemLayout col="5">
+                    <R_Label Class="fw-bold">
+                        @_localizer["_RejectNote"]
+                    </R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="6">
+                    <R_TextArea @bind-Value="_viewModelGST00500Inbox.ParamRejectTransactionStatus.TNOTES"
+                                R_ConductorGridSource="@_conductorRejectPopUp"
+                                Width="250px">
+                    </R_TextArea>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+        </R_StackLayout>
+        <R_StackLayout Row Class="justify-content-end">
+            <R_ItemLayout>
+                <R_Button R_ConductorGridSource="@_conductorRejectPopUp"
+                          OnClick="OnClickOKRejectButton">
+                    OK
+                </R_Button>
+
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Button OnClick="OnClickCancelButton">
+                    Cancel
+                </R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_ConductorGrid R_ViewModel="_viewModelGST00500Inbox">
+
+        </R_ConductorGrid>
+        </R_StackLayout>
+    </div>

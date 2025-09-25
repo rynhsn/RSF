@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+
+    <data name="LABEL_TAHUN" xml:space="preserve">
+        <value>Tahun</value>
+    </data>
+    <data name="LABEL_BULAN" xml:space="preserve">
+        <value>bulan</value>
+    </data>
+    <data name="LABEL_HARI" xml:space="preserve">
+        <value>hari</value>
+    </data>
+    <data name="LABEL_M2" xml:space="preserve">
+        <value>m2</value>
+    </data>
+    <data name="LABEL_NOMOR" xml:space="preserve">
+        <value>Nomor</value>
+    </data>
+    <data name="LABEL_PERIHAL" xml:space="preserve">
+        <value>Perihal</value>
+    </data>
+    <data name="LABEL_PENAWARAN_LEASING_SEWA_RUANG_DI" xml:space="preserve">
+        <value>Penawaran Leasing (Sewa Ruang) di</value>
+    </data>
+
+    <!-- public string? LABEL_LETTER_OF_INTENT { get; set; } = "Letter of Intent Sewa Menyewa "; -->
+    <data name="LABEL_LETTER_OF_INTENT" xml:space="preserve">
+        <value>Letter of Intent Sewa Menyewa</value>
+    </data>
+    
+    <!-- public string? LABEL_DI { get; set; } = "di "; -->
+    <data name="LABEL_DI" xml:space="preserve">
+        <value>di</value>
+    </data>
+    <data name="LABEL_KEPADA_YTH" xml:space="preserve">
+        <value>Kepada Yth</value>
+    </data>
+    <data name="LABEL_NAMA" xml:space="preserve">
+        <value>Nama</value>
+    </data>
+    <data name="LABEL_BRAND" xml:space="preserve">
+        <value>Brand</value>
+    </data>
+    <data name="LABEL_TELP" xml:space="preserve">
+        <value>Telp</value>
+    </data>
+    <data name="LABEL_ALAMAT" xml:space="preserve">
+        <value>Alamat</value>
+    </data>
+    <data name="LABEL_SALAM_SEJAHTERA" xml:space="preserve">
+        <value>Salam sejahtera dan sukses selalu,</value>
+    </data>
+    <data name="LABEL_TERIMA_KASIH_KAMI_UCAPKAN" xml:space="preserve">
+        <value>Terima kasih kami ucapkan atas kepercayaan bapak/ibu telah memilih:</value>
+    </data>
+    <data name="LABEL_SELANJUTNYA_DISEBUT_LANDLORD" xml:space="preserve">
+        <value>(selanjutnya disebut Landlord),</value>
+    </data>
+    <data name="LABEL_SEBAGAI_REKAN_BISNIS" xml:space="preserve">
+        <value>sebagai rekan bisnis di Kota </value>
+    </data>
+    <data name="LABEL_MENINDAKLANJUTI_KOMUNIKASI_KITA" xml:space="preserve">
+        <value>Menindaklajuti komunikasi kita terakhir, maka kami</value>
+    </data>
+    <data name="LABEL_SELAKU_MARKETING_AGENT_DARI" xml:space="preserve">
+        <value>selaku marketing agent dari Landlord, bermaksud untuk menguraikan hasil kesepakatan yang telah kita diskusikan. Adapun kesepakatan yang dimaksud adalah sebagai berikut:</value>
+    </data>
+    <data name="LABEL_NAMA_BRAND_TENANT" xml:space="preserve">
+        <value>1. NAMA BRAND TENANT:</value>
+    </data>
+    <data name="LABEL_NAMA_BRAND_TENANT_DESC" xml:space="preserve">
+        <value>(Selanjutnya disebut Tenant)</value>
+    </data>
+    <data name="LABEL_DETAIL_RUANG_SEWA" xml:space="preserve">
+        <value>2. DETAIL RUANG SEWA: (terlampir) </value>
+    </data>
+    <data name="LABEL_DETAIL_RUANG_SEWA_A" xml:space="preserve">
+        <value>a. Lokasi:</value>
+    </data>
+    <data name="LABEL_DETAIL_RUANG_B" xml:space="preserve">
+        <value>b. Lantai:</value>
+    </data>
+    <data name="LABEL_DETAIL_RUANG_C" xml:space="preserve">
+        <value>c. No. Retail:</value>
+    </data>
+    <data name="LABEL_DETAIL_RUANG_D" xml:space="preserve">
+        <value>d. Luasan Area:</value>
+    </data>
+    <data name="LABEL_DETAIL_RUANG_DESC" xml:space="preserve">
+        <value>Luasan ruang sewa akan disesuaikan dengan pengukuran bersama Landlord dan Tenant agar dapat dituangkan dalam Berita Acara Serah Terima dan Berita Acara Pengukuran Retail, sehingga perhitungan luasan tersebut digunakan sebagai acuan kerjasama.</value>
+    </data>
+    <data name="LABEL_JANGKA_WAKTU_SEWA" xml:space="preserve">
+        <value>3. JANGKA WAKTU SEWA: </value>
+    </data>
+    <data name="LABEL_JANGKA_WAKTU_SEWA_DESC" xml:space="preserve">
+        <value>tanggal awal sewa </value>
+    </data>
+    <data name="LABEL_BIAYA_SEWA" xml:space="preserve">
+        <value>4. BIAYA SEWA (tidak termasuk pajak):</value>
+    </data>
+    <data name="LABEL_BIAYA_SEWA_A" xml:space="preserve">
+        <value>a. Luasan Area:</value>
+    </data>
+    <data name="LABEL_BIAYA_SEWA_B" xml:space="preserve">
+        <value>b. Biaya sewa:</value>
+    </data>
+    <data name="LABEL_BIAYA_SEWA_C" xml:space="preserve">
+        <value>c. Jangka waktu sewa:</value>
+    </data>
+    <data name="LABEL_BIAYA_SEWA_D" xml:space="preserve">
+        <value>d. Total biaya sewa: Rp. </value>
+    </data>
+    <data name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA" xml:space="preserve">
+        <value>5. CARA PEMBAYARAN BIAYA SEWA (tidak termasuk pajak): </value>
+    </data>
+    <data name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_A" xml:space="preserve">
+        <value>a. DP, dibayarkan:</value>
+    </data>
+    <data name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_A_DESC" xml:space="preserve">
+        <value>% dari nilai total biaya sewa diatas, sebesar: Rp </value>
+    </data>
+    <data name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_DP_DESC2" xml:space="preserve">
+        <value>Cara pembayaran DP diangsur </value>
+    </data>
+    <data name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_B" xml:space="preserve">
+        <value>b. Pembayaran sisa angsuran (setelah dipotong amortisasi pembayaran uang muka), yaitu sebesar: Rp. </value>
+    </data>
+    <data name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_C" xml:space="preserve">
+        <value>c. Dibayarkan setiap bulannya, selama </value>
+    </data>
+    <data name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_C_DESC" xml:space="preserve">
+        <value>bulan, sebesar: Rp. </value>
+    </data>
+    <data name="LABEL_BIAYA_SERVICE_CHARGE" xml:space="preserve">
+        <value>6. BIAYA SERVICE CHARGE (tidak termasuk pajak):</value>
+    </data>
+    <data name="LABEL_BIAYA_SERVICE_CHARGE_A" xml:space="preserve">
+        <value>a. Luasan Area:</value>
+    </data>
+    <data name="LABEL_BIAYA_SERVICE_CHARGE_B" xml:space="preserve">
+        <value>b. Biaya service charge : Rp. </value>
+    </data>
+    <data name="LABEL_BIAYA_SERIVCE_CHARGE_C" xml:space="preserve">
+        <value>c. Jangka waktu sewa:</value>
+    </data>
+    <data name="LABEL_BIAYA_SERVICE_CHARGE_D" xml:space="preserve">
+        <value>d. Total biaya service charge: Rp</value>
+    </data>
+    <data name="LABEL_CARA_PEMBAYARAN_SERVICE_CHARGES" xml:space="preserve">
+        <value>7. CARA PEMBAYARAN BIAYA SERVICE CHARGE (tidak termasuk pajak):</value>
+    </data>
+    <data name="LABEL_CARA_PEMBAYARAN_SERVICE_CHARGES_A" xml:space="preserve">
+        <value>a. Pembayaran biaya service charge, selama </value>
+    </data>
+    <data name="LABEL_CARA_PEMBAYARAN_SERVICE_CHARGES_A_DESC" xml:space="preserve">
+        <value>bulan, sebesar: Rp </value>
+    </data>
+    <data name="LABEL_UANG_JAMINAN" xml:space="preserve">
+        <value>8. UANG JAMINAN / SECURITY DEPOSIT:</value>
+    </data>
+    <data name="LABEL_UANG_JAMINAN_A" xml:space="preserve">
+        <value>a. Total uang jaminan/security deposit: Rp </value>
+    </data>
+    <data name="LABEL_UANG_JAMINAN_A_DESC" xml:space="preserve">
+        <value>Biaya uang jaminan/security deposit ini dibayarkan saat penandatanganan Surat Konfirmasi ini, dan akan dikembalikan saat masa sewa berakhir setelah dikurangi tunggakan tagihan/denda (jika ada).</value>
+    </data>
+    <data name="LABEL_UANG_JAMINAN_A_DESC2" xml:space="preserve">
+        <value>Note: Security deposit menggunakan security deposit sebelumnya (jaminan existing), apabila ada perubahan harga tenant membayarkan selisihnya saja.</value>
+    </data>
+    <data name="LABEL_AREA_MEDIA_PROMOSI" xml:space="preserve">
+        <value>9. AREA MEDIA PROMOSI DAN RUANG PAMERAN</value>
+    </data>
+    <data name="LABEL_AREA_MEDIA_PROMOSI_A" xml:space="preserve">
+        <value>a. Area media promosi diberikan secara cuma - cuma (tanpa biaya), selama </value>
+    </data>
+    <data name="LABEL_AREA_MEDIA_PROMOSI_A_DESC" xml:space="preserve">
+        <value>minggu untuk keperluan pembukaan outlet (opening store).</value>
+    </data>
+    <data name="LABEL_AREA_MEDIA_PROMOSI_B" xml:space="preserve">
+        <value>b. Area media pameran diberikan secara cuma-cuma (tanpa biaya) </value>
+    </data>
+    <data name="LABEL_AREA_MEDIA_PROMOSI_B_DESC" xml:space="preserve">
+        <value>minggu untuk keperluan pembukaan outlet (opening store).</value>
+    </data>
+    <data name="LABEL_AREA_MEDIA_PROMOSI_C" xml:space="preserve">
+        <value>c. Penggunaan media promosi dan ruang pameran akan mengikuti jadwal yang tersedia.</value>
+    </data>
+    <data name="LABEL_AREA_MEDIA_PROMOSI_D" xml:space="preserve">
+        <value>d. Tenant bertanggungjawab atas izin dan biaya yang timbul atas penggunaan area media promosi dan ruang pameran.</value>
+    </data>
+    <data name="LABEL_MECHANICAL_LISTRIK_AIR" xml:space="preserve">
+        <value>10. MECHANICAL, LISTRIK DAN AIR</value>
+    </data>
+    <data name="LABEL_MECHANICAL_LISTRIK_AIR_DESC" xml:space="preserve">
+        <value>Akan disediakan oleh Landlord, sebagai berikut:</value>
+    </data>
+    <data name="LABEL_MECHANICAL_LISTRIK_AIR_A" xml:space="preserve">
+        <value>a. Daya Listrik sebesar: </value>
+    </data>
+    <data name="LABEL_MECHANICAL_LISTRIK_AIR_B" xml:space="preserve">
+        <value>b. Penggunaan daya listrik diluar kapasitas yang disediakan oleh landlord akan dibebankan kepada tenant sebagai biaya tambahan sesuai penggunaan.</value>
+    </data>
+    <data name="LABEL_MECHANICAL_LISTRIK_AIR_C" xml:space="preserve">
+        <value>c. AC sentral dari gedung.</value>
+    </data>
+    <data name="LABEL_PENGGUNAAN_RUANG_SEWA" xml:space="preserve">
+        <value>11.PENGGUNAAN RUANG SEWA</value>
+    </data>
+    <data name="LABEL_PENGGUNAAN_RUANG_SEWA_DESC" xml:space="preserve">
+        <value>Penggunaan ruang sewa wajib sesuai dengan detail yang akan tertuang pada Perjanjian Sewa menyewa.</value>
+    </data>
+    <data name="LABEL_FITTING_OUT" xml:space="preserve">
+        <value>12. FITTING OUT DAN OPENING RUANG SEWA</value>
+    </data>
+    <data name="LABEL_FITTING_OUT_A" xml:space="preserve">
+        <value>a. Waktu yang diberikan Landlord kepada Tenant untuk fitting out adalah: </value>
+    </data>
+    <data name="LABEL_FITTING_OUT_B" xml:space="preserve">
+        <value>b. Selama kegiatan fitting out, Tenant diwajibkan membayar penggunaan listrik dan air sesuai penggunaan.</value>
+    </data>
+    <data name="LABEL_FITTING_OUT_C" xml:space="preserve">
+        <value>c. Dalam kegiatan fitting out, Tenant dan Landlord wajib berkoordinasi.</value>
+    </data>
+    <data name="LABEL_FITTING_OUT_D" xml:space="preserve">
+        <value>d. Tenant wajib menjalankan kegiatan operasionalnya di ruang sewa, terhitung sejak berakhirnya masa fitting out.</value>
+    </data>
+    <data name="LABEL_FITTING_OUT_E" xml:space="preserve">
+        <value>e. Tenant wajib mengikuti tata tertib kegiatan operasional yang disediakan oleh Landlord.</value>
+    </data>
+    <data name="LABEL_DOKUMEN_PELENGKAP" xml:space="preserve">
+        <value>13. DOKUMEN PELENGKAP</value>
+    </data>
+    <data name="LABEL_DOKUMEN_PELENGKAP_DESC" xml:space="preserve">
+        <value>Sebagai pelengkap pembuatan Perjanjian Sewa Menyewa maka Tenant wajib menyerahkan dan atau melampirkannya saat penandatanganan Surat Konfirmasi ini</value>
+    </data>
+    <data name="LABEL_DOKUMEN_PELENGKAP_A" xml:space="preserve">
+        <value>a. Akte perusahaan + SK Persetujuan Menkeh</value>
+    </data>
+    <data name="LABEL_DOKUMEN_PELENGKAP_B" xml:space="preserve">
+        <value>b. Surat keterangan domisili Perusahaan</value>
+    </data>
+    <data name="LABEL_DOKUMEN_PELENGKAP_C" xml:space="preserve">
+        <value>c. TDP (Tanda Daftar Perusahaan)</value>
+    </data>
+    <data name="LABEL_DOKUMEN_PELENGKAP_D" xml:space="preserve">
+        <value>d. SIUP (surat Izin Usaha Perdagangan)</value>
+    </data>
+    <data name="LABEL_DOKUMEN_PELENGKAP_E" xml:space="preserve">
+        <value>e. NIB (Nomor Induk Berusaha)</value>
+    </data>
+    <data name="LABEL_DOKUMEN_PELENGKAP_F" xml:space="preserve">
+        <value>f. NPWP (Nomor Pokok Wajib Pajak)</value>
+    </data>
+    <data name="LABEL_DOKUMEN_PELENGKAP_G" xml:space="preserve">
+        <value>g. KTP (Direksi) atau yang diberi kuasa</value>
+    </data>
+    <data name="LABEL_DOKUMEN_PELENGKAP_H" xml:space="preserve">
+        <value>h. Surat kuasa apabila bukan Direksi yang bertandatangan</value>
+    </data>
+    <data name="LABEL_LAIN_LAIN" xml:space="preserve">
+        <value>14. LAIN-LAIN</value>
+    </data>
+    <data name="LABEL_LAIN_LAIN_A" xml:space="preserve">
+        <value>a. Semua cara pembayaran yang dimaksud dalam surat konfirmasi penawaran leasing ini oleh Tenant langsung kepada Landlord.</value>
+    </data>
+    <data name="LABEL_LAIN_LAIN_B" xml:space="preserve">
+        <value>b. kebijakan - kebijakan yang timbul sehingga terjadinya perubahan nilai dalam penawaran ini selanjutnya akan diberikan oleh Landlord dalam bentuk addendum terpisah mengikuti perkembangan yang ada dengan selalu mengutamakan keberlangsungan bersama.</value>
+    </data>
+    <data name="LABEL_PENUTUP" xml:space="preserve">
+        <value>15. PENUTUP</value>
+    </data>
+    <data name="LABEL_PENUTUP_A" xml:space="preserve">
+        <value>a. Dengan ditandatanganinya surat konfirmasi penawaran ini, maka surat ini ekan menjadi bukti konfirmasi atas butir — butir penawaran yang disepakati diatas sehingga selanjutnya dapat menjadi acuan yang akan dituangkan secara lebih rinci ke dalam Perjanjian Sewa Menyewa oleh dan antara Tenant dan Landlord.</value>
+    </data>
+    <data name="LABEL_PENUTUP_B" xml:space="preserve">
+        <value>b. Tenant dianggap menolak atau mundur dari penawaran ini apabila surat konfirmasi penawaran tidak ditandatangani dalam kurun waktu 14 hari sejak Surat Konfirmasi ini diterima oleh Tenant, sehingga selanjutnya Landlord dan rekan agen marketing berhak untuk menawarkan ruang sewa yang dimaksud dalam penawaran ini kepada pihak lain tanpa pemberitahuan atau persetujuan terlebih dahulu kepada Tenant.</value>
+    </data>
+    <data name="LABEL_DIBUAT_OLEH" xml:space="preserve">
+        <value>Dibuat oleh,</value>
+    </data>
+    <data name="LABEL_MENYETUJUI" xml:space="preserve">
+        <value>Menyetujui, </value>
+    </data>
+    <data name="LABEL_MENGETAHUI" xml:space="preserve">
+        <value>Mengetahui</value>
+    </data>
+</root>

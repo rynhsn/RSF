@@ -1,0 +1,32 @@
+@inherits R_Page
+
+<R_StackLayout>
+    <R_ItemLayout>
+        <R_Grid @ref="_gridPricelist"
+                DataSource="@_viewModel._pricelist_List"
+                R_GridType="@R_eGridType.Original"
+                R_ServiceGetListRecord="@CurrentPricelist_GetList"
+                AllowAddNewRow="false"
+                AllowDeleteRow="false"
+                AllowEditRow="false"
+                Pageable
+                @bind-PageSize="@_pageSize_Pricelist"
+                Height="500px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CPRICELIST_ID)" HeaderText="@(_localizer["_col_pricelistid"])" Width="130px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CPRICELIST_NAME)" HeaderText="@(_localizer["_col_pricelistname"])" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CDEPT_CODE)" HeaderText="@(_localizer["_col_dept"])" Width="130px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CCHARGES_ID)" HeaderText="@(_localizer["_col_chargesid"])" Width="130px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CINVGRP_CODE)" HeaderText="@(_localizer["_col_invoicegrp"])" Width="130px"></R_GridTextColumn>
+                <R_GridCheckBoxColumn FieldName="@nameof(PricelistDTO.LTAXABLE)" HeaderText="@(_localizer["_col_taxable"])" Width="100px"></R_GridCheckBoxColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CUNIT)" HeaderText="@(_localizer["_col_unit"])" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CCURRENCY_CODE)" HeaderText="@(_localizer["_col_curr"])" Width="100px"></R_GridTextColumn>
+                <R_GridNumericColumn FieldName="@nameof(PricelistDTO.IPRICE)" TValue="int" HeaderText="@(_localizer["_col_price"])" Width="150px"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CDESCRIPTION)" HeaderText="@(_localizer["_col_desc"])" Width="200px"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(PricelistDTO.DSTART_DATE)" HeaderText="@(_localizer["_col_startdate"])" Width="200px"></R_GridDatePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_ConductorGrid @ref="@_conPricelist"
+                 R_IsHeader></R_ConductorGrid>

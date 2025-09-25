@@ -1,0 +1,39 @@
+﻿@inherits R_Page
+@attribute [R_Page(ResourceId = "_Warehouse")]
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
+@using Lookup_GSCOMMON.DTOs
+
+<R_StackLayout Style="width: 800px">
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.WarehouseGrid"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                Height="300px"
+                Pageable="true">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GSL03500DTO.CWAREHOUSE_ID)" HeaderText="@_localizer["_WarehouseID"]" Width="130px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL03500DTO.CWAREHOUSE_NAME)" HeaderText="@_localizer["_WarehouseName"]" Width="160px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL03500DTO.CWAREHOUSE_TYPE_NAME)" HeaderText="@_localizer["_Type"]" Width="120px"></R_GridTextColumn>
+                <R_GridCheckBoxColumn FieldName="LACTIVE" HeaderText="@_localizer["_Active"]" Width="90px"></R_GridCheckBoxColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-between"> 
+        <R_ItemLayout>
+            <R_CheckBox Value="@_viewModel.LACTIVE_CHECKBOX"
+                        ValueChanged="@((bool value) => OnChangeInactiveWarehouse(value))">
+            </R_CheckBox>
+            <R_Label>@_localizer["_IncludeInactiveWarehouse"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Button OnClick="Button_OnClickOkAsync">
+                @_localizer["_OkBtn"]
+            </R_Button>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                @_localizer["_CancelBtn"]
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>

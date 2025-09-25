@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+	  <Reference Include="BaseHeaderReportCOMMON">
+	    <HintPath>..\..\..\..\BS Program\SOURCE\COMMON\BaseHeaderReportCOMMON.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+</Project>

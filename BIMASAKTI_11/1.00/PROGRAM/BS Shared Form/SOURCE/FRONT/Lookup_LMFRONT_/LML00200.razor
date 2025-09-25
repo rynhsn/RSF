@@ -1,0 +1,44 @@
+
+@inherits R_Page
+@attribute [R_Page(Title = "Unit Charges")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupPM> _localizer
+
+
+<R_StackLayout Row>
+    <R_Grid @ref="@GridRef"
+            DataSource="_viewModelLML00200.UnitChargesList"
+            R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+            R_GridType="@R_eGridType.Navigator"
+            Pageable
+            @bind-PageSize="@_pageSize"
+            Height="300px"
+            Width="900px">
+        <R_GridColumns>
+            <R_GridTextColumn Width="200px" 
+                              FieldName="@nameof(LML00200DTO.CCHARGES_ID)"  
+                              HeaderText=@_localizer["_ChargesId"]></R_GridTextColumn>
+            <R_GridTextColumn Width="250px" 
+                              FieldName="@nameof(LML00200DTO.CCHARGES_NAME)" 
+                              HeaderText=@_localizer["_ChargesName"]></R_GridTextColumn>
+            <R_GridTextColumn Width="200px"
+                              FieldName="@nameof(LML00200DTO.CCHARGES_TYPE)"
+                              HeaderText=@_localizer["_ChargeType"]></R_GridTextColumn>
+            <R_GridTextColumn Width="250px"
+                              FieldName="@nameof(LML00200DTO.CCHARGES_TYPE_DESCR)"
+                              HeaderText=@_localizer["_ChargesTypeDesc"]></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout xs="2">
+        <R_Button  OnClick="Button_OnClickOkAsync">
+            OK
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            Cancel
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

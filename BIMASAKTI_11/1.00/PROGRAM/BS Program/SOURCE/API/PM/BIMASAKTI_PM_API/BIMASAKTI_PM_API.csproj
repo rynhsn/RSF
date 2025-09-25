@@ -1,0 +1,199 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <AssemblyName>BIMASAKTI_PM_API</AssemblyName>
+        <RootNamespace>BIMASAKTI_PM_API</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.2" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Remove="Template\Salesman.xlsx" />
+    </ItemGroup>
+    <ItemGroup>
+        <Reference Include="BackExtension">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\BackExtension.dll</HintPath>
+        </Reference>
+        <Reference Include="BlazorMenuBack">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\BlazorMenuBack.dll</HintPath>
+        </Reference>
+        <Reference Include="BlazorMenuCommon">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\BlazorMenuCommon.dll</HintPath>
+        </Reference>
+        <Reference Include="BlazorMenuService">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\BlazorMenuService.dll</HintPath>
+        </Reference>
+        <Reference Include="R_APIBackEnd">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+        </Reference>
+        <Reference Include="R_APICommon">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+        </Reference>
+        <Reference Include="R_APIStartUp">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIStartUp.dll</HintPath>
+        </Reference>
+        <Reference Include="R_CrossPlatformSecurity">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CrossPlatformSecurity.dll</HintPath>
+        </Reference>
+        <Reference Include="R_HelperController">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_HelperController.dll</HintPath>
+        </Reference>
+        <Reference Include="R_SecurityPolicyBack">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\R_SecurityPolicyBack.dll</HintPath>
+        </Reference>
+        <Reference Include="R_SecurityPolicyCommon">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\R_SecurityPolicyCommon.dll</HintPath>
+        </Reference>
+        <Reference Include="R_SecurityPolicyService">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\R_SecurityPolicyService.dll</HintPath>
+        </Reference>
+        <Reference Include="R_SecurityTokenBack">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\R_SecurityTokenBack.dll</HintPath>
+        </Reference>
+        <Reference Include="R_SecurityTokenCommon">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\R_SecurityTokenCommon.dll</HintPath>
+        </Reference>
+        <Reference Include="R_StorageCommon">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_StorageCommon.dll</HintPath>
+        </Reference><Reference Include="R_ReportServerClient">
+        <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportServerClient.dll</HintPath>
+    </Reference>
+        <Reference Include="R_ReportServerCommon">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportServerCommon.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="Template\UtilityUsage.xlsx">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Template\Salesman.xlsx">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="Reports\BaseHeaderCommon.frx">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\BaseHeaderLandscapeCommon.frx">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\LetterOfIntent.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMB04000.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMM00500UnitCharges.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00150Detail.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00150Summary.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00170Detail.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00170Summary.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00200Detail.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00200Summary.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00210Detail.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00210Summary.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00220Detail.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00220Summary.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00400Unit.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00460Handover.frx">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00600DetailByCharge.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00600DetailByTenant.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00600SummaryByCharges.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00600SummaryByTenant.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR00800.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR02000Detail.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR02000Summary.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR02400Detail.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR02400Summary.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR02600Occupancy.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMR03100.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMT01100.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Reports\PMT01700Event.frx">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Global_PMSERVICES\Global_PMSERVICES.csproj" />
+        <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_LMSERVICES\Lookup_PMSERVICES.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\LMM01500SERVICE\PMM01500SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\LMM04500SERVICE\PMM04500SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\LMT03500Service\PMT03500Service.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMB00300Service\PMB00300Service.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMB01600Service\PMB01600Service.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMB04000SERVICE\PMB04000SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMB05000Service\PMB05000Service.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMI00500Service\PMI00500Service.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMM00100SERVICE\PMM00100SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMM09000SERVICE\PMM09000SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR00150SERVICE\PMR00150SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR00170SERVICE\PMR00170SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR00200SERVICE\PMR00200SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR00210SERVICE\PMR00210SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR00220SERVICE\PMR00220SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR00460Service\PMR00460Service.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR00600SERVICE\PMR00600SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR00800SERVICE\PMR00800SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR02000SERVICE\PMR02000SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR02400SERVICE\PMR02400SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR02600Service\PMR02600Service.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMR03000Service\PMR03000Service.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMT01300SERVICE\PMT01300SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMT06000Service\PMT06000Service.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMT06500Service\PMT06500Service.csproj" />
+    </ItemGroup>
+</Project>

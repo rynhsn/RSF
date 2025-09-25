@@ -1,0 +1,67 @@
+@using R_BlazorFrontEnd.Enums
+@inherits R_Page
+@attribute [R_Page(Title = "Add Pricelist")]
+
+<R_StackLayout Row Style="width:1020px">
+    <R_ItemLayout col="12">
+
+        <R_StackLayout Row>
+            <R_ItemLayout><R_Label>@_localizer["_lbl_property"]</R_Label></R_ItemLayout>
+            <R_ItemLayout><R_TextBox @bind-Value="@_viewModel._propertyId" Enabled="@false"></R_TextBox></R_ItemLayout>
+            <R_ItemLayout><R_TextBox @bind-Value="@_viewModel._propertyName" Enabled="@false"></R_TextBox></R_ItemLayout>
+        </R_StackLayout>
+
+        <R_Grid @ref="@_gridPricelist"
+                DataSource="@_viewModel._pricelist_List"
+                R_ConductorGridSource="@_conPricelist"
+                R_GridType="@R_eGridType.Batch"
+                R_ServiceGetListRecord="@Pricelist_Getlist"
+                R_ServiceGetRecord="@Pricelist_GetRecord"
+                R_Validation="@Pricelist_Validation"
+                R_AfterAdd="@Pricelist_AfterAdd"
+                R_Saving="@Pricelist_Saving"
+                R_ServiceDelete="@Pricelist_Delete"
+                R_Before_Open_Grid_Lookup="@Pricelist_BeforeOpenGridLookup"
+                R_After_Open_Grid_Lookup="@Pricelist_AfterOpenGridLookup"
+                R_CellLostFocused="@Pricelist_CellLostFocused"
+                AllowAddNewRow
+                AllowDeleteRow
+                AllowEditRow
+                Pageable
+                @bind-PageSize="@_pageSize_Pricelist"
+                Height="400px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CPRICELIST_ID)" HeaderText="@(_localizer["_col_pricelistid"])" Width="130px" R_EnableAdd R_EnableEdit MaxLength="20"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CPRICELIST_NAME)" HeaderText="@(_localizer["_col_pricelistname"])" Width="200px" R_EnableAdd R_EnableEdit MaxLength="100"></R_GridTextColumn>
+                <R_GridLookupColumn FieldName="@nameof(PricelistDTO.CDEPT_CODE)"
+                                    Name="@nameof(PricelistDTO.CDEPT_CODE)"
+                                    HeaderText="@(_localizer["_col_dept"])"
+                                    R_EnableAdd
+                                    R_EnableEdit
+                                    TextboxEnabled
+                                    Width="150px"></R_GridLookupColumn>
+                <R_GridLookupColumn FieldName="@nameof(PricelistDTO.CCHARGES_ID)"
+                                    Name="@nameof(PricelistDTO.CCHARGES_ID)"
+                                    HeaderText="@(_localizer["_col_chargesid"])"
+                                    R_EnableAdd
+                                    R_EnableEdit
+                                    TextboxEnabled
+                                    Width="150px"></R_GridLookupColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CINVGRP_CODE)" HeaderText="@(_localizer["_col_invoicegrp"])" Width="130px" R_EnableAdd="@false" R_EnableEdit="@false"></R_GridTextColumn>
+                <R_GridCheckBoxColumn FieldName="@nameof(PricelistDTO.LTAXABLE)" HeaderText="@(_localizer["_col_taxable"])" Width="100px" R_EnableAdd="@false" R_EnableEdit="@false"></R_GridCheckBoxColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CUNIT)" HeaderText="@(_localizer["_col_unit"])" Width="150px" R_EnableAdd R_EnableEdit MaxLength="10"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CCURRENCY_CODE)" HeaderText="@(_localizer["_col_curr"])" Width="100px" R_EnableAdd="@false" R_EnableEdit="@false"></R_GridTextColumn>
+                <R_GridNumericColumn FieldName="@nameof(PricelistDTO.IPRICE)" TValue="int" HeaderText="@(_localizer["_col_price"])" Width="150px" R_EnableAdd R_EnableEdit Arrows="@false" ThousandSeparator></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CDESCRIPTION)" HeaderText="@(_localizer["_col_desc"])" Width="250px" R_EnableAdd R_EnableEdit MaxLength="500"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(PricelistDTO.DSTART_DATE)" HeaderText="@(_localizer["_col_startdate"])" Width="200px" R_EnableAdd R_EnableEdit></R_GridDatePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Justify="@R_eJustify.FlexEnd">
+    <R_ItemLayout><R_Button OnClick="@OnClick_Cancel" Enabled="@(_conPricelist.R_ConductorMode==R_eConductorMode.Normal)">@_localizer["_btn_cancel"]</R_Button></R_ItemLayout>
+    <R_ItemLayout><R_Button OnClick="@OnClick_Process" Enabled="@(_conPricelist.R_ConductorMode==R_eConductorMode.Normal)">@_localizer["_btn_process"]</R_Button></R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conPricelist" R_IsHeader></R_ConductorGrid>

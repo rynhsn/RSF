@@ -1,0 +1,86 @@
+@page "/BMM00500"
+@using BMM00500COMMON.DTO
+@attribute [R_Page(Title = "Master Mobile Program")]
+@inherits R_Page
+
+<R_StackLayout>
+    <R_ItemLayout col="12">
+        <R_Grid @ref="_gridRef"
+                DataSource="_viewModel.loMobileProgramList"
+                R_GridType="R_eGridType.Original"
+                R_ConductorGridSource="_conductorGridRef"
+                R_ServiceGetListRecord="R_ServiceGetListRecord"
+                R_ServiceGetRecord="R_ServiceGetRecord"
+                R_ServiceSave="R_ServiceSave"
+                R_ServiceDelete="R_ServiceDelete"
+                AllowAddNewRow="false"
+                AllowDeleteRow="false"
+                AllowEditRow
+                Height="550px"
+                Pageable
+                PageSize="20">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(BMM00500DTO.CPROGRAM_ID)"
+                                  HeaderText="@_localizer["_ProgramId"]"
+                                  MaxLength="8"
+                                  Width="125px"
+                                  >
+                </R_GridTextColumn>
+
+                <R_GridTextColumn FieldName="@nameof(BMM00500DTO.CPROGRAM_NAME)"
+                                  MaxLength="800"
+                                  Width="150px"
+                                  HeaderText="@_localizer["_ProgramName"]"
+                                  >
+                </R_GridTextColumn>
+
+                <R_GridMultiHeaderColumn HeaderText="@_localizer["_UseIn"]">
+                    <R_GridCheckBoxColumn FieldName="@nameof(BMM00500DTO.LPRIORITY)"
+                                          Width="90px"
+                                          HeaderText="@_localizer["_Priority"]"
+                                          R_EnableEdit/>
+
+                    <R_GridCheckBoxColumn FieldName="@nameof(BMM00500DTO.LTENANT)"
+                                          Width="85px"
+                                          HeaderText="@_localizer["_Tenant"]"
+                                          R_EnableEdit/>
+
+                    <R_GridCheckBoxColumn FieldName="@nameof(BMM00500DTO.LPORTAL)"
+                                          Width="85px"
+                                          HeaderText="@_localizer["_Portal"]"
+                                          R_EnableEdit/>
+                </R_GridMultiHeaderColumn>
+
+                <R_GridCheckBoxColumn FieldName="@nameof(BMM00500DTO.LACTIVE)"
+                                      Width="85px"
+                                      HeaderText="@_localizer["_Active"]"
+                                      R_EnableEdit/>
+
+                <R_GridTextColumn FieldName="@nameof(BMM00500DTO.CUPDATE_BY)"
+                                  Width="125px"
+                                  HeaderText="@_localizer["_UpdatedBy"]">
+                </R_GridTextColumn>
+
+                <R_GridDateTimePickerColumn FieldName="@nameof(BMM00500DTO.DUPDATE_DATE)"
+                                            Width="150px"
+                                            HeaderText="@_localizer["_UpdatedDate"]">
+                </R_GridDateTimePickerColumn>
+
+                <R_GridTextColumn FieldName="@nameof(BMM00500DTO.CCREATE_BY)"
+                                  Width="125px"
+                                  HeaderText="@_localizer["_CreatedBy"]">
+                </R_GridTextColumn>
+
+                <R_GridDateTimePickerColumn FieldName="@nameof(BMM00500DTO.DCREATE_DATE)"
+                                            Width="150px"
+                                            HeaderText="@_localizer["_CreatedDate"]">
+                </R_GridDateTimePickerColumn>
+
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="_conductorGridRef"
+                 R_IsHeader>
+</R_ConductorGrid>

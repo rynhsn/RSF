@@ -1,0 +1,163 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\_Work\\Projects\\Console and API\\Console And General\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4FE159C4-32BA-4781-8221-D2A7279322E3}|PMA00400\\PMA00400Console\\PMA00400Console.csproj|d:\\_work\\projects\\console and api\\console and general\\pma00400\\pma00400console\\consolemain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4FE159C4-32BA-4781-8221-D2A7279322E3}|PMA00400\\PMA00400Console\\PMA00400Console.csproj|solutionrelative:pma00400\\pma00400console\\consolemain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2605E909-59EE-4908-B864-9A467848A485}|PMA00400\\PMA00400Back\\PMA00400Back.csproj|d:\\_work\\projects\\console and api\\console and general\\pma00400\\pma00400back\\pma00400cls.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2605E909-59EE-4908-B864-9A467848A485}|PMA00400\\PMA00400Back\\PMA00400Back.csproj|solutionrelative:pma00400\\pma00400back\\pma00400cls.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FE159C4-32BA-4781-8221-D2A7279322E3}|PMA00400\\PMA00400Console\\PMA00400Console.csproj|d:\\_work\\projects\\console and api\\console and general\\pma00400\\pma00400console\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4FE159C4-32BA-4781-8221-D2A7279322E3}|PMA00400\\PMA00400Console\\PMA00400Console.csproj|solutionrelative:pma00400\\pma00400console\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FE159C4-32BA-4781-8221-D2A7279322E3}|PMA00400\\PMA00400Console\\PMA00400Console.csproj|d:\\_work\\projects\\console and api\\console and general\\pma00400\\pma00400console\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4FE159C4-32BA-4781-8221-D2A7279322E3}|PMA00400\\PMA00400Console\\PMA00400Console.csproj|solutionrelative:pma00400\\pma00400console\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FE159C4-32BA-4781-8221-D2A7279322E3}|PMA00400\\PMA00400Console\\PMA00400Console.csproj|d:\\_work\\projects\\console and api\\console and general\\pma00400\\pma00400console\\pma00400console.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{4FE159C4-32BA-4781-8221-D2A7279322E3}|PMA00400\\PMA00400Console\\PMA00400Console.csproj|solutionrelative:pma00400\\pma00400console\\pma00400console.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4CE301-96C7-4F6D-9B09-E70FA129018E}|PMA00400\\PMA00400Common\\PMA00400Common.csproj|d:\\_work\\projects\\console and api\\console and general\\pma00400\\pma00400common\\parameter\\paramtosavestoragedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D4CE301-96C7-4F6D-9B09-E70FA129018E}|PMA00400\\PMA00400Common\\PMA00400Common.csproj|solutionrelative:pma00400\\pma00400common\\parameter\\paramtosavestoragedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4CE301-96C7-4F6D-9B09-E70FA129018E}|PMA00400\\PMA00400Common\\PMA00400Common.csproj|d:\\_work\\projects\\console and api\\console and general\\pma00400\\pma00400common\\dto\\pma00400getimagedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D4CE301-96C7-4F6D-9B09-E70FA129018E}|PMA00400\\PMA00400Common\\PMA00400Common.csproj|solutionrelative:pma00400\\pma00400common\\dto\\pma00400getimagedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4CE301-96C7-4F6D-9B09-E70FA129018E}|PMA00400\\PMA00400Common\\PMA00400Common.csproj|d:\\_work\\projects\\console and api\\console and general\\pma00400\\pma00400common\\dto\\pma00400headerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D4CE301-96C7-4F6D-9B09-E70FA129018E}|PMA00400\\PMA00400Common\\PMA00400Common.csproj|solutionrelative:pma00400\\pma00400common\\dto\\pma00400headerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 250,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PMA00400Console",
+              "DocumentMoniker": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Console\\PMA00400Console.csproj",
+              "RelativeDocumentMoniker": "PMA00400\\PMA00400Console\\PMA00400Console.csproj",
+              "ToolTip": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Console\\PMA00400Console.csproj",
+              "RelativeToolTip": "PMA00400\\PMA00400Console\\PMA00400Console.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-12T09:54:15.748Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PMA00400GetImageDTO.cs",
+              "DocumentMoniker": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Common\\DTO\\PMA00400GetImageDTO.cs",
+              "RelativeDocumentMoniker": "PMA00400\\PMA00400Common\\DTO\\PMA00400GetImageDTO.cs",
+              "ToolTip": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Common\\DTO\\PMA00400GetImageDTO.cs",
+              "RelativeToolTip": "PMA00400\\PMA00400Common\\DTO\\PMA00400GetImageDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T07:38:05.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PMA00400HeaderDTO.cs",
+              "DocumentMoniker": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Common\\DTO\\PMA00400HeaderDTO.cs",
+              "RelativeDocumentMoniker": "PMA00400\\PMA00400Common\\DTO\\PMA00400HeaderDTO.cs",
+              "ToolTip": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Common\\DTO\\PMA00400HeaderDTO.cs",
+              "RelativeToolTip": "PMA00400\\PMA00400Common\\DTO\\PMA00400HeaderDTO.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAA9wCQAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T07:34:05.273Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ParamToSaveStorageDTO.cs",
+              "DocumentMoniker": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Common\\Parameter\\ParamToSaveStorageDTO.cs",
+              "RelativeDocumentMoniker": "PMA00400\\PMA00400Common\\Parameter\\ParamToSaveStorageDTO.cs",
+              "ToolTip": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Common\\Parameter\\ParamToSaveStorageDTO.cs",
+              "RelativeToolTip": "PMA00400\\PMA00400Common\\Parameter\\ParamToSaveStorageDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA4AAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T07:33:26.766Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PMA00400Cls.cs",
+              "DocumentMoniker": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Back\\PMA00400Cls.cs",
+              "RelativeDocumentMoniker": "PMA00400\\PMA00400Back\\PMA00400Cls.cs",
+              "ToolTip": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Back\\PMA00400Cls.cs",
+              "RelativeToolTip": "PMA00400\\PMA00400Back\\PMA00400Cls.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAswM4AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T07:11:28.046Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Console\\appsettings.json",
+              "RelativeDocumentMoniker": "PMA00400\\PMA00400Console\\appsettings.json",
+              "ToolTip": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Console\\appsettings.json",
+              "RelativeToolTip": "PMA00400\\PMA00400Console\\appsettings.json",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAABAAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-12T04:48:32.201Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ConsoleMain.cs",
+              "DocumentMoniker": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Console\\ConsoleMain.cs",
+              "RelativeDocumentMoniker": "PMA00400\\PMA00400Console\\ConsoleMain.cs",
+              "ToolTip": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Console\\ConsoleMain.cs",
+              "RelativeToolTip": "PMA00400\\PMA00400Console\\ConsoleMain.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowC8AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T02:20:23.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Console\\Program.cs",
+              "RelativeDocumentMoniker": "PMA00400\\PMA00400Console\\Program.cs",
+              "ToolTip": "D:\\_Work\\Projects\\Console and API\\Console And General\\PMA00400\\PMA00400Console\\Program.cs",
+              "RelativeToolTip": "PMA00400\\PMA00400Console\\Program.cs",
+              "ViewState": "AgIAAGsAAAAAAAAAAAAUwHwAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T02:20:23.764Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

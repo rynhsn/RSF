@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+
+
+    <data name="PROPERTY_UPPR" xml:space="preserve">
+        <value>PROPERTY</value>
+        <comment>PROPERTY</comment>
+    </data>
+    <!-- Property -->
+    <data name="PROPERTY" xml:space="preserve">
+        <value>Property</value>
+        <comment>Property</comment>
+    </data>
+    <data name="REFRESH" xml:space="preserve">
+        <value>Refresh</value>
+        <comment>Refresh</comment>
+    </data>
+    <data name="INVOICE_PERIOD" xml:space="preserve">
+        <value>Invoice Period</value>
+        <comment>Invoice Period</comment>
+    </data>
+    <data name="AGREEMENT_NO" xml:space="preserve">
+        <value>Agreement No</value>
+        <comment>Agreement No</comment>
+    </data>
+    <!-- Tenant -->
+    <data name="TENANT" xml:space="preserve">
+        <value>Tenant</value>
+        <comment>Tenant</comment>
+    </data>
+    <!-- building -->
+    <data name="BUILDING" xml:space="preserve">
+        <value>Building</value>
+        <comment>Building</comment>
+    </data>
+    <!-- Unit Description -->
+    <data name="UNIT_DESCRIPTION" xml:space="preserve">
+        <value>Unit Description</value>
+        <comment>Unit Description</comment>
+    </data>
+
+    <!-- Ref Date -->
+    <data name="REF_DATE" xml:space="preserve">
+        <value>Ref Date</value>
+        <comment>Ref Date</comment>
+    </data>
+    <!-- Ref No -->
+    <data name="REF_NO" xml:space="preserve">
+        <value>Ref No</value>
+        <comment>Ref No</comment>
+    </data>
+    <!-- Request Name -->
+    <data name="REQUEST_NAME" xml:space="preserve">
+        <value>Request Name</value>
+        <comment>Request Name</comment>
+    </data>
+    <!-- Description -->
+    <data name="DESCRIPTION" xml:space="preserve">
+        <value>Description</value>
+        <comment>Description</comment>
+    </data>
+    <!-- Updated By -->
+    <data name="UPDATED_BY" xml:space="preserve">
+        <value>Updated By</value>
+        <comment>Updated By</comment>
+    </data>
+    <!-- Updated Date -->
+    <data name="UPDATED_DATE" xml:space="preserve">
+        <value>Updated Date</value>
+        <comment>Updated Date</comment>
+    </data>
+    <!-- Created By -->
+    <data name="CREATED_BY" xml:space="preserve">
+        <value>Created By</value>
+        <comment>Created By</comment>
+    </data>
+    <!-- Created Date -->
+    <data name="CREATED_DATE" xml:space="preserve">
+        <value>Created Date</value>
+        <comment>Created Date</comment>
+    </data>
+    <data name="SEQ_NO" xml:space="preserve">
+        <value>Seq No</value>
+        <comment>Seq No</comment>
+    </data>
+    <data name="SERVICE" xml:space="preserve">
+        <value>Service</value>
+        <comment>Service</comment>
+    </data>
+    <data name="DATE_IN" xml:space="preserve">
+        <value>Date In</value>
+        <comment>Date In</comment>
+    </data>
+    <data name="DATE_OUT" xml:space="preserve">
+        <value>Date Out</value>
+        <comment>Date Out</comment>
+    </data>
+    <data name="UNIT_ID" xml:space="preserve">
+        <value>Unit Id</value>
+        <comment>Unit Id</comment>
+    </data>
+    <data name="UNIT_NAME" xml:space="preserve">
+        <value>Unit Name</value>
+        <comment>Unit Name</comment>
+    </data>
+    <data name="FLOOR" xml:space="preserve">
+        <value>Floor</value>
+        <comment>Floor</comment>
+    </data>
+    <data name="SQM" xml:space="preserve">
+        <value>Sqm</value>
+        <comment>Sqm</comment>
+    </data>
+    <!-- Process -->
+    <data name="PROCESS" xml:space="preserve">
+        <value>Process</value>
+        <comment>Process</comment>
+    </data>
+    <!-- Summary -->
+    <data name="SUMMARY" xml:space="preserve">
+        <value>Summary</value>
+        <comment>Summary</comment>
+    </data>
+    <!-- Invoice Plan -->
+    <data name="INVOICE_PLAN" xml:space="preserve">
+        <value>Invoice Plan</value>
+        <comment>Invoice Plan</comment>
+    </data>
+    <!-- STATUS -->
+    <data name="STATUS" xml:space="preserve">
+        <value>Status</value>
+        <comment>Status</comment>
+    </data>
+    <!-- DEPARTMENT -->
+    <data name="DEPARTMENT" xml:space="preserve">
+        <value>Department</value>
+        <comment>Department</comment>
+    </data>
+    <!-- OVERTIME LIST -->
+    <data name="OVERTIME_LIST" xml:space="preserve">
+        <value>Overtime List</value>
+        <comment>Overtime List</comment>
+    </data>
+    <!-- REF_NO -->
+    <!-- <data name="REF_NO" xml:space="preserve"> -->
+    <!--     <value>Ref No</value> -->
+    <!--     <comment>Ref No</comment> -->
+    <!-- </data> -->
+    <!-- INVOICE_PERIOD -->
+    <!-- <data name="INVOICE_PERIOD" xml:space="preserve"> -->
+    <!--     <value>Invoice Period</value> -->
+    <!--     <comment>Invoice Period</comment> -->
+    <!-- </data> -->
+    <!-- TENANT -->
+    <!-- <data name="TENANT" xml:space="preserve"> -->
+    <!--     <value>Tenant</value> -->
+    <!--     <comment>Tenant</comment> -->
+    <!-- </data> -->
+    <!-- BUILDING -->
+    <!-- <data name="BUILDING" xml:space="preserve"> -->
+    <!--     <value>Building</value> -->
+    <!--     <comment>Building</comment> -->
+    <!-- </data> -->
+    <!-- LOI_AGRMT_NO -->
+    <data name="LOI_AGRMT_NO" xml:space="preserve">
+        <value>LOI/Agrmt. No</value>
+        <comment>LOI/Agrmt. No</comment>
+    </data>
+    <!-- SERVICE -->
+    <!-- <data name="SERVICE" xml:space="preserve"> -->
+    <!--     <value>Service</value> -->
+    <!--     <comment>Service</comment> -->
+    <!-- </data> -->
+    <!-- UNIT -->
+    <data name="UNIT" xml:space="preserve">
+        <value>Unit</value>
+        <comment>Unit</comment>
+    </data>
+    <!-- CANCEL -->
+    <data name="CANCEL" xml:space="preserve">
+        <value>Cancel</value>
+        <comment>Cancel</comment>
+    </data>
+    <!-- RATE_HOURS -->
+    <data name="RATE_HOURS" xml:space="preserve">
+        <value>Rate Hours</value>
+        <comment>Rate Hours</comment>
+    </data>
+    <!-- TOTAL_HOURS -->
+    <data name="TOTAL_HOURS" xml:space="preserve">
+        <value>Total Hours</value>
+        <comment>Total Hours</comment>
+    </data>
+    <!-- TOTAL_AMOUNT -->
+    <data name="TOTAL_AMOUNT" xml:space="preserve">
+        <value>Total Amount</value>
+        <comment>Total Amount</comment>
+    </data>
+    
+    <!-- Reference No -->
+    <data name="REFERENCE_NO" xml:space="preserve">
+        <value>Reference No</value>
+        <comment>Reference No</comment>
+    </data>
+    <!-- Reference Date -->
+    <data name="REFERENCE_DATE" xml:space="preserve">
+        <value>Reference Date</value>
+        <comment>Reference Date</comment>
+    </data>
+    
+    <data name="SUBMIT" xml:space="preserve">
+        <value>Submit</value><comment>Submit</comment>
+    </data>
+    <data name="DRAFT" xml:space="preserve">
+        <value>Draft</value><comment>Draft</comment>
+    </data>
+    
+    <data name="MSG_BEFORE_DELETE" xml:space="preserve">
+        <value>Are you sure want to delete this Invoice Plan?</value><comment>Are you sure want to delete this Invoice Plan?</comment>
+    </data>
+    <data name="MSG_AFTER_DELETE" xml:space="preserve">
+        <value>Invoice Plan Deleted Successfully!</value><comment>Invoice Plan Deleted Successfully!</comment>
+    </data>
+    
+    <!-- Please select Department ! -->
+    <data name="MSG_SELECT_DEPT" xml:space="preserve">
+        <value>Please select Department !</value>
+        <comment>Please select Department !</comment>
+    </data>
+
+    <!-- Please input Ref No ! -->
+    <data name="MSG_INPUT_REF_NO" xml:space="preserve">
+        <value>Please input Ref No !</value>
+        <comment>Please input Ref No !</comment>
+    </data>
+
+    <!-- Please choose property ! -->
+    <data name="MSG_CHOOSE_PROPERTY" xml:space="preserve">
+        <value>Please choose property !</value>
+        <comment>Please choose property !</comment>
+    </data>
+
+    <!-- Please choose year period ! -->
+    <data name="MSG_CHOOSE_YEAR_PERIOD" xml:space="preserve">
+        <value>Please choose year period !</value>
+        <comment>Please choose year period !</comment>
+    </data>
+    
+    <!-- Please choose month period ! -->
+    <data name="MSG_CHOOSE_MONTH_PERIOD" xml:space="preserve">
+        <value>Please choose month period !</value>
+        <comment>Please choose month period !</comment>
+    </data>
+
+    <!-- You haven’t saved your changes. Are you sure want to cancel? -->
+    <data name="MSG_BEFORE_CANCEL" xml:space="preserve">
+        <value>You haven’t saved your changes. Are you sure want to cancel?</value>
+        <comment>You haven’t saved your changes. Are you sure want to cancel?</comment>
+    </data>
+    
+    <data name="MSG_BEFORE_SUBMIT" xml:space="preserve">
+        <value>Are you sure want to submit this Invoice Plan?</value><comment>Are you sure want to submit this Invoice Plan?</comment>
+    </data>
+    <data name="MSG_BEFORE_REDRAFT" xml:space="preserve">
+        <value>Are you sure want to redraft this Invoice Plan?</value><comment>Are you sure want to redraft this Invoice Plan?</comment>
+    </data>
+    <data name="MSG_AFTER_SUBMIT" xml:space="preserve">
+        <value>Invoice Plan Submit Successfully!</value><comment>Invoice Plan Submit Successfully!</comment>
+    </data>
+    <data name="MSG_AFTER_REDRAFT" xml:space="preserve">
+        <value>Invoice Plan Redraft Successfully!</value><comment>Invoice  Redraft Successfully!</comment>
+    </data>
+</root>

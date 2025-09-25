@@ -1,0 +1,5 @@
+2531	= Error process, please contact your administrator!
+2532	= Duplicate Building Id!
+2533	= Cannot Delete, Building already in used!
+
+

@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\GS\BIMASAKTI_GS_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="07/21/2025 14:16:58" ReportInfo.CreatorVersion="2023.2.21.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="Data" DataType="GSM04000Common.DTO_s.Print.GSM04000ReportResultDTO, GSM04000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Label" DataType="GSM04000Common.DTO_s.Print.GSM04000ReportLabelDTO, GSM04000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="DEPARTMENT" DataType="System.String"/>
+          <Column Name="CENTER" DataType="System.String"/>
+          <Column Name="BRANCH" DataType="System.String"/>
+          <Column Name="MANAGER" DataType="System.String"/>
+          <Column Name="EVERYONE" DataType="System.String"/>
+          <Column Name="ACTIVE" DataType="System.String"/>
+          <Column Name="EMAIL_1" DataType="System.String"/>
+          <Column Name="EMAIL_2" DataType="System.String"/>
+          <Column Name="ASSIGNED_USER" DataType="System.String"/>
+        </Column>
+        <BusinessObjectDataSource Name="Data" DataType="System.Collections.Generic.List`1[[GSM04000Common.DTO_s.Print.GSM04000ReportDataDTO, GSM04000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="Department" DataType="GSM04000Common.DepartmentDTO, GSM04000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Column Name="CCOMPANY_ID" DataType="System.String"/>
+            <Column Name="CDEPT_CODE" DataType="System.String"/>
+            <Column Name="CDEPT_NAME" DataType="System.String"/>
+            <Column Name="CCENTER_CODE" DataType="System.String"/>
+            <Column Name="CCENTER_NAME" DataType="System.String"/>
+            <Column Name="CMANAGER_CODE" DataType="System.String"/>
+            <Column Name="CMANAGER_NAME" DataType="System.String"/>
+            <Column Name="CBRANCH_CODE" DataType="System.String"/>
+            <Column Name="CBRANCH_NAME" DataType="System.String"/>
+            <Column Name="LEVERYONE" DataType="System.Boolean" BindableControl="CheckBox"/>
+            <Column Name="LACTIVE" DataType="System.Boolean" BindableControl="CheckBox"/>
+            <Column Name="CEMAIL1" DataType="System.String"/>
+            <Column Name="CEMAIL2" DataType="System.String"/>
+            <Column Name="CUPDATE_BY" DataType="System.String"/>
+            <Column Name="DUPDATE_DATE" DataType="System.DateTime"/>
+            <Column Name="CCREATE_BY" DataType="System.String"/>
+            <Column Name="DCREATE_DATE" DataType="System.DateTime"/>
+            <Column Name="CUSER_ID" DataType="System.String"/>
+          </Column>
+          <BusinessObjectDataSource Name="Users" DataType="System.Collections.Generic.List`1[[GSM04000Common.UserDepartmentDTO, GSM04000Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+            <Column Name="CCOMPANY_ID" DataType="System.String"/>
+            <Column Name="CDEPT_CODE" DataType="System.String"/>
+            <Column Name="CDEPT_NAME" DataType="System.String"/>
+            <Column Name="CUSER_ID" DataType="System.String"/>
+            <Column Name="CUSER_NAME" DataType="System.String"/>
+            <Column Name="CACTION" DataType="System.String"/>
+            <Column Name="CUSER_LOGIN_ID" DataType="System.String"/>
+            <Column Name="CUPDATE_BY" DataType="System.String"/>
+            <Column Name="DUPDATE_DATE" DataType="System.DateTime"/>
+          </BusinessObjectDataSource>
+        </BusinessObjectDataSource>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="DPRINT_DATE_COMPANY" DataType="System.DateTime"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+      <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Page" DataType="System.String"/>
+        <Column Name="Of" DataType="System.String"/>
+        <Column Name="Print_Date" DataType="System.String"/>
+        <Column Name="Print_By" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="BaseHeaderLogo"/>
+      <inherited Name="Text33"/>
+      <inherited Name="LabelNoPage">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="BaseHeaderDate"/>
+      <inherited Name="LabelDateTime"/>
+      <inherited Name="BaseHeaderLabel"/>
+      <inherited Name="BaseHeaderUserId"/>
+      <inherited Name="LabelUserId"/>
+      <inherited Name="BaseHeaderDateTime"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="79.6" Width="1047.06" Height="37.8"/>
+    </inherited>
+    <DataBand Name="Data1" ZOrder="0" Top="163.2" Width="1047.06" Height="28.35" DataSource="Data" KeepDetail="true">
+      <TextObject Name="Text35" Left="9.45" Top="4" Width="160.65" Height="18.9" Text="[ResponseDataModel.Data.Data.Department.CDEPT_CODE] - [ResponseDataModel.Data.Data.Department.CDEPT_NAME]" VertAlign="Center" Font="Arial Unicode MS, 8pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text42" Left="444.15" Top="4" Width="122.85" Height="18.9" Text="[ResponseDataModel.Data.Data.Department.CMANAGER_NAME]" VertAlign="Center" Font="Arial Unicode MS, 8pt"/>
+      <TextObject Name="Text39" Left="170.1" Top="4" Width="160.65" Height="18.9" Text="[ResponseDataModel.Data.Data.Department.CCENTER_CODE] - [ResponseDataModel.Data.Data.Department.CCENTER_NAME]" VertAlign="Center" Font="Arial Unicode MS, 8pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text41" Left="330.75" Top="4" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Data.Department.CBRANCH_NAME]" VertAlign="Center" Font="Arial Unicode MS, 8pt"/>
+      <TextObject Name="Text54" Left="680.4" Top="4" Width="170.1" Height="18.9" Text="[ResponseDataModel.Data.Data.Department.CEMAIL1]" VertAlign="Center" Font="Arial Unicode MS, 8pt"/>
+      <TextObject Name="Text55" Left="850.5" Top="4" Width="189" Height="18.9" Text="[ResponseDataModel.Data.Data.Department.CEMAIL2]" VertAlign="Center" Font="Arial Unicode MS, 8pt"/>
+      <CheckBoxObject Name="CheckBox1" Left="585.9" Top="4" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.Data.Data.Department.LEVERYONE"/>
+      <CheckBoxObject Name="CheckBox2" Left="642.6" Top="4" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.Data.Data.Department.LACTIVE"/>
+      <DataHeaderBand Name="DataHeader1" Top="121.4" Width="1047.06" Height="37.8" Fill.Color="LightSteelBlue" RepeatOnEveryPage="true">
+        <TextObject Name="Text34" Left="9.45" Top="9.45" Width="160.65" Height="18.9" Text="[ResponseDataModel.Data.Label.DEPARTMENT]" VertAlign="Center" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text44" Left="170.1" Top="9.45" Width="160.65" Height="18.9" Text="[ResponseDataModel.Data.Label.CENTER]" VertAlign="Center" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text46" Left="330.75" Top="9.45" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Label.BRANCH]" VertAlign="Center" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text47" Left="444.15" Top="9.45" Width="122.85" Height="18.9" Text="[ResponseDataModel.Data.Label.MANAGER]" VertAlign="Center" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text48" Left="567" Top="9.45" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.EVERYONE]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text49" Left="623.7" Top="9.45" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.ACTIVE]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text52" Left="680.4" Top="9.45" Width="170.1" Height="18.9" Text="[ResponseDataModel.Data.Label.EMAIL_1]" VertAlign="Center" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        <TextObject Name="Text53" Left="850.5" Top="9.45" Width="189" Height="18.9" Text="[ResponseDataModel.Data.Label.EMAIL_2]" VertAlign="Center" Font="Arial Unicode MS, 8pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataBand Name="Data2" Top="235.9" Width="1047.06" Height="30.9" DataSource="Users">
+        <TextObject Name="Text37" Left="689.85" Top="12" Width="359.1" Height="18.9" Text="[ResponseDataModel.Data.Data.Users.CUSER_ID] - [ResponseDataModel.Data.Data.Users.CUSER_NAME]" Font="Arial Unicode MS, 8pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <DataHeaderBand Name="DataHeader2" Top="195.55" Width="1047.06" Height="36.35">
+          <ShapeObject Name="Shape1" Left="680.4" Top="8" Width="368.55" Height="28.35" Border.Color="LightSteelBlue" Fill.Color="LightSteelBlue"/>
+          <TextObject Name="Text36" Left="689.85" Top="8" Width="359.1" Height="28.35" Text="[ResponseDataModel.Data.Label.ASSIGNED_USER]" VertAlign="Center" Font="Arial Unicode MS, 8pt, style=Bold"/>
+        </DataHeaderBand>
+        <DataFooterBand Name="DataFooter1" Top="270.8" Width="1047.06" Border.Lines="Top" Border.Color="LightSteelBlue"/>
+      </DataBand>
+    </DataBand>
+  </inherited>
+</inherited>

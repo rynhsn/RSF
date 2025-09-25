@@ -1,0 +1,4 @@
+4501	= Error process, please contact your administrator!
+4502	= Duplicate Charges Id!
+4503	= Cannot Active this date, There''s already active date!
+4504	= Cannot Edit / Delete this Pricing already used in Agreement Transaction!

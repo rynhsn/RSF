@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "HDR00200BackResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64886;http://localhost:64887"
+    }
+  }
+}

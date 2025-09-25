@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    
+    <!-- Property -->
+    <data name="Property" xml:space="preserve">
+        <value>Property</value><comment>Property</comment>
+    </data>
+    <!-- Category -->
+    <data name="Category" xml:space="preserve">
+        <value>Category</value><comment>Category</comment>
+    </data>
+    <!-- Area -->
+    <data name="Area" xml:space="preserve">
+        <value>Area</value><comment>Area</comment>
+    </data>
+    <!-- Department -->
+    <data name="Department" xml:space="preserve">
+        <value>Department</value><comment>Department</comment>
+    </data>
+    <!-- Period -->
+    <data name="Period" xml:space="preserve">
+        <value>Period</value><comment>Period</comment>
+    </data>
+    <!-- Status -->
+    <data name="Status" xml:space="preserve">
+        <value>Status</value><comment>Status</comment>
+    </data>
+    <!-- From -->
+    <data name="From" xml:space="preserve">
+        <value>From</value><comment>From</comment>
+    </data>
+    <!-- To -->
+    <data name="To" xml:space="preserve">
+        <value>To</value><comment>To</comment>
+    </data>
+    <!-- CARE -->
+    <data name="CARE" xml:space="preserve">
+        <value>CARE</value><comment>CARE</comment>
+    </data>
+    <!-- Maintenance -->
+    <data name="Maintenance" xml:space="preserve">
+        <value>Maintenance</value><comment>Maintenance</comment>
+    </data>
+    
+    <!-- Complaint -->
+    <!-- Request -->
+    <!-- Inquiry -->
+    <!-- Handover -->
+    <data name="Complaint" xml:space="preserve">
+        <value>Complaint</value><comment>Complaint</comment>
+    </data>
+    <data name="Request" xml:space="preserve">
+        <value>Request</value><comment>Request</comment>
+    </data>
+    <data name="Inquiry" xml:space="preserve">
+        <value>Inquiry</value><comment>Inquiry</comment>
+    </data>
+    <data name="Handover" xml:space="preserve">
+        <value>Handover</value><comment>Handover</comment>
+    </data>
+
+    <!-- Submitted -->
+    <!-- Received -->
+    <!-- On Progress-->
+    <!-- Solved -->
+    <!-- Completed -->
+    <!-- Confirmed -->
+    <!-- Closed -->
+    <!-- Cancelled -->
+    <!-- Terminated -->
+    <data name="Open" xml:space="preserve">
+        <value>Open</value><comment>Open</comment>
+    </data>
+    <data name="Submitted" xml:space="preserve">
+        <value>Submitted</value><comment>Submitted</comment>
+    </data>
+    <data name="OnProgress" xml:space="preserve">
+        <value>On Progress</value><comment>On Progress</comment>
+    </data>
+    <data name="Solved" xml:space="preserve">
+        <value>Solved</value><comment>Solved</comment>
+    </data>
+    <data name="Completed" xml:space="preserve">
+        <value>Completed</value><comment>Completed</comment>
+    </data>
+    <data name="Confirmed" xml:space="preserve">
+        <value>Confirmed</value><comment>Confirmed</comment>
+    </data>
+    <data name="Closed" xml:space="preserve">
+        <value>Closed</value><comment>Closed</comment>
+    </data>
+    <data name="Cancelled" xml:space="preserve">
+        <value>Cancelled</value><comment>Cancelled</comment>
+    </data>
+    <data name="Terminated" xml:space="preserve">
+        <value>Terminated</value><comment>Terminated</comment>
+    </data>
+
+
+    <!-- Print -->
+    <data name="Print" xml:space="preserve">
+        <value>Print</value><comment>Print</comment>
+    </data>
+    <!-- Save As -->
+    <data name="SaveAs" xml:space="preserve">
+        <value>Save As</value><comment>Save As</comment>
+    </data>
+    <!-- Save -->
+    <data name="Save" xml:space="preserve">
+        <value>Save</value><comment>Save</comment>
+    </data>
+    <!-- Cancel -->
+    <data name="Cancel" xml:space="preserve">
+        <value>Cancel</value><comment>Cancel</comment>
+    </data>
+
+    <!-- PleaseSelectCategory -->
+    <data name="PleaseSelectCategory" xml:space="preserve">
+        <value>Please select Category!</value><comment>Please select Category!</comment>
+    </data>
+    <!-- PleaseSelectBuildingFrom -->
+    <data name="PleaseSelectBuildingFrom" xml:space="preserve">
+        <value>Please select Building From!</value><comment>Please select Building From!</comment>
+    </data>
+    <!-- PleaseSelectBuildingTo -->
+    <data name="PleaseSelectBuildingTo" xml:space="preserve">
+        <value>Please select Building To!</value><comment>Please select Building To!</comment>
+    </data>
+
+    <!-- PleaseSelectDeptFrom -->
+    <data name="PleaseSelectDeptFrom" xml:space="preserve">
+        <value>Please select Department From!</value><comment>Please select Department From!</comment>
+    </data>
+    
+    <!-- PleaseSelectDeptTo -->
+    <data name="PleaseSelectDeptTo" xml:space="preserve">
+        <value>Please select Department To!</value><comment>Please select Department To!</comment>
+    </data>
+
+    <!-- PleaseFillPeriodFrom -->
+    <data name="PleaseFillPeriodFrom" xml:space="preserve">
+        <value>Please fill Period From!</value><comment>Please fill Period From!</comment>
+    </data>
+    
+    <!-- PleaseFillPeriodTo -->
+    <data name="PleaseFillPeriodTo" xml:space="preserve">
+        <value>Please fill Period To!</value><comment>Please fill Period To!</comment>
+    </data>
+    <!-- PeriodFromCannotBeAfterPeriodTo -->
+    <data name="PeriodFromCannotBeAfterPeriodTo" xml:space="preserve">
+        <value>Period From cannot be after Period To!</value><comment>Period From cannot be after Period To!</comment>
+    </data>
+
+    <!-- Please check at least one status! -->
+    <data name="PleaseCheckAtLeastOneStatus" xml:space="preserve">
+        <value>Please check at least one status!</value><comment>Please check at least one status!</comment>
+    </data>
+</root>

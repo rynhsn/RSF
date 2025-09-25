@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GL_SAVE_RECURRING_JRNResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57113;http://localhost:57114"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+2551	= Error process, please contact your administrator!
+2552	= Duplicate Unit Promotion Type Id!
+2553	= Cannot Delete, Unit Promotion Type Already in used!
+
+

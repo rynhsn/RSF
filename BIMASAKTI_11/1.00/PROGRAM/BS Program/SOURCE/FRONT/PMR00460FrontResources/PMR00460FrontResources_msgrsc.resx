@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    
+    <!-- Property -->
+    <data name="Property" xml:space="preserve">
+        <value>Property</value><comment>Property</comment>
+    </data>
+    <!-- Summary -->
+    <data name="Summary" xml:space="preserve">
+        <value>Summary</value><comment>Summary</comment>
+    </data>
+    <!-- Detail -->
+    <data name="Detail" xml:space="preserve">
+        <value>Detail</value><comment>Detail</comment>
+    </data>
+    <!-- Strata -->
+    <data name="Strata" xml:space="preserve">
+        <value>Strata</value><comment>Strata</comment>
+    </data>
+    <!-- Owner -->
+    <data name="Owner" xml:space="preserve">
+        <value>Owner</value><comment>Owner</comment>
+    </data>
+    <!-- Lease -->
+    <data name="Lease" xml:space="preserve">
+        <value>Lease</value><comment>Lease</comment>
+    </data>
+    <!-- Building -->
+    <data name="Building" xml:space="preserve">
+        <value>Building</value><comment>Building</comment>
+    </data>
+    <!-- Period -->
+    <data name="Period" xml:space="preserve">
+        <value>Period</value><comment>Period</comment>
+    </data>
+    <!-- Report Type -->
+    <data name="ReportType" xml:space="preserve">
+        <value>Report Type</value><comment>Report Type</comment>
+    </data>
+    <!-- Report -->
+    <data name="Report" xml:space="preserve">
+        <value>Report</value><comment>Report</comment>
+    </data>
+    <!-- Type -->
+    <data name="Type" xml:space="preserve">
+        <value>Type</value><comment>Type</comment>
+    </data>
+    <!-- Agreement -->
+    <data name="Agreement" xml:space="preserve">
+        <value>Agreement</value><comment>Agreement</comment>
+    </data>
+    <!-- Status -->
+    <data name="Status" xml:space="preserve">
+        <value>Status</value><comment>Status</comment>
+    </data>
+    <!-- Open -->
+    <data name="Open" xml:space="preserve">
+        <value>Open</value><comment>Open</comment>
+    </data>
+    <!-- Scheduled -->
+    <data name="Scheduled" xml:space="preserve">
+        <value>Scheduled</value><comment>Scheduled</comment>
+    </data>
+    <!-- Confirmed -->
+    <data name="Confirmed" xml:space="preserve">
+        <value>Confirmed</value><comment>Confirmed</comment>
+    </data>
+    <!-- Closed -->
+    <data name="Closed" xml:space="preserve">
+        <value>Closed</value><comment>Closed</comment>
+    </data>
+    <!-- From -->
+    <data name="From" xml:space="preserve">
+        <value>From</value><comment>From</comment>
+    </data>
+    <!-- To -->
+    <data name="To" xml:space="preserve">
+        <value>To</value><comment>To</comment>
+    </data>
+    
+    <!-- Print -->
+    <data name="Print" xml:space="preserve">
+        <value>Print</value><comment>Print</comment>
+    </data>
+    <!-- Save As -->
+    <data name="SaveAs" xml:space="preserve">
+        <value>Save As</value><comment>Save As</comment>
+    </data>
+    <!-- Save -->
+    <data name="Save" xml:space="preserve">
+        <value>Save</value><comment>Save</comment>
+    </data>
+    <!-- Cancel -->
+    <data name="Cancel" xml:space="preserve">
+        <value>Cancel</value><comment>Cancel</comment>
+    </data>
+
+    <data name="January" xml:space="preserve">
+        <value>January</value><comment>January</comment>
+    </data>
+    <data name="February" xml:space="preserve">
+        <value>February</value><comment>February</comment>
+    </data>
+    <data name="March" xml:space="preserve">
+        <value>March</value><comment>March</comment>
+    </data>
+    <data name="April" xml:space="preserve">
+        <value>April</value><comment>April</comment>
+    </data>
+    <data name="May" xml:space="preserve">
+        <value>May</value><comment>May</comment>
+    </data>
+    <data name="June" xml:space="preserve">
+        <value>June</value><comment>June</comment>
+    </data>
+    <data name="July" xml:space="preserve">
+        <value>July</value><comment>July</comment>
+    </data>
+    <data name="August" xml:space="preserve">
+        <value>August</value><comment>August</comment>
+    </data>
+    <data name="September" xml:space="preserve">
+        <value>September</value><comment>September</comment>
+    </data>
+    <data name="October" xml:space="preserve">
+        <value>October</value><comment>October</comment>
+    </data>
+    <data name="November" xml:space="preserve">
+        <value>November</value><comment>November</comment>
+    </data>
+    <data name="December" xml:space="preserve">
+        <value>December</value><comment>December</comment>
+    </data>
+    
+    <!-- Property cannot be empty -->
+    <data name="PropertyCannotBeEmpty" xml:space="preserve">
+        <value>Property cannot be empty</value><comment>Property cannot be empty</comment>
+    </data>
+    
+    <!-- From Building cannot be empty -->
+    <data name="FromBuildingCannotBeEmpty" xml:space="preserve">
+        <value>From Building cannot be empty</value><comment>From Building cannot be empty</comment>
+    </data>
+    
+    <!-- To Building cannot be empty -->
+    <data name="ToBuildingCannotBeEmpty" xml:space="preserve">
+        <value>To Building cannot be empty</value><comment>To Building cannot be empty</comment>
+    </data>
+
+    <!-- PleaseSelectStatus -->
+    <data name="PleaseSelectStatus" xml:space="preserve">
+        <value>Please select at least 1 status</value><comment>Please select at least 1 status</comment>
+    </data>
+</root>

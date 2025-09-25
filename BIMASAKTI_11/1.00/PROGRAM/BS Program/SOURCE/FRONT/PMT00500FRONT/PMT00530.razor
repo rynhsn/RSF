@@ -1,0 +1,442 @@
+﻿@inherits R_Page
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_gridLOIChargeListRef"
+                    DataSource="@_viewModel.LOIChargeGrid"
+                    R_ConductorSource="@_conductorRef"
+                    R_GridType="@R_eGridType.Navigator"
+                    Pageable="true"
+                    Height="125px"
+                    Enabled="@(EnableNormalMode)"
+                    R_ServiceGetListRecord="@Charge_ServiceGetListRecord">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(PMT00530DTO.CSEQ_NO)" HeaderText="@_localizer["_SeqNo"]" Width="90px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(PMT00530DTO.CCHARGES_TYPE_DESCR)" HeaderText="@_localizer["_ChargeType"]" Width="120px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(PMT00530DTO.CCHARGES_ID_NAME)" HeaderText="@_localizer["_Charge"]" Width="165px"></R_GridTextColumn>
+                    <R_GridCheckBoxColumn TextAlignment="@R_eTextAlignment.Center" FieldName="@nameof(PMT00530DTO.LBASED_OPEN_DATE)" HeaderText="*" Width="60px"></R_GridCheckBoxColumn>
+                    <R_GridDatePickerColumn FieldName="@nameof(PMT00530DTO.DSTART_DATE)" HeaderText="@_localizer["_StartDate"]" Width="120px"></R_GridDatePickerColumn>
+                    <R_GridDatePickerColumn FieldName="@nameof(PMT00530DTO.DEND_DATE)" HeaderText="@_localizer["_EndDate"]" Width="120px"></R_GridDatePickerColumn>
+                    <R_GridNumericColumn TValue="int" FieldName="@nameof(PMT00530DTO.IINTERVAL)" ThousandSeparator="false" Arrows="false" HeaderText="@_localizer["_Interval"]" Width="100px"></R_GridNumericColumn>
+                    <R_GridTextColumn FieldName="@nameof(PMT00530DTO.CINVOICE_PERIOD_DESCR)" HeaderText="@_localizer["_PeriodMode"]" Width="120px"></R_GridTextColumn>
+                    <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT00530DTO.NFEE_AMT)" Arrows="false" HeaderText="@_localizer["_FeeAmount"]" Width="120px"></R_GridNumericColumn>
+                    <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT00530DTO.NINVOICE_AMT)" Arrows="false" HeaderText="@_localizer["_InvoiceAmount"]" Width="140px"></R_GridNumericColumn>
+                    <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT00530DTO.NTOTAL_AMT)" Arrows="false" HeaderText="@_localizer["_TotalAmount"]" Width="140px"></R_GridNumericColumn>
+                    <R_GridCheckBoxColumn TextAlignment="@R_eTextAlignment.Center" FieldName="@nameof(PMT00530DTO.LACTIVE)" HeaderText="@_localizer["_Active"]" Width="90px"></R_GridCheckBoxColumn>
+
+                    <R_GridTextColumn FieldName="@nameof(PMT00530DTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="120px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(PMT00530DTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]" Width="180px"></R_GridDateTimePickerColumn>
+                    <R_GridTextColumn FieldName="@nameof(PMT00530DTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="120px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(PMT00530DTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]" Width="180px"></R_GridDateTimePickerColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="9">
+            <R_StackLayout Row>
+                <R_ItemLayout Style="width: 13%">
+                    <R_Label>@_localizer["_SeqNo"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="1">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CSEQ_NO"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Label></R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout>
+                    <R_Label>@_localizer["_ChargeType"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_TYPE_DESCR"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 20%">
+                    <R_StackLayout Row Class="justify-content-end">
+                        <R_Label>@_localizer["_Active"]</R_Label>
+                        <R_CheckBox @bind-Value="@_viewModel.Data.LACTIVE"
+                                    Enabled="false">
+                        </R_CheckBox>
+                    </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout Style="width: 13%">
+                    <R_Label>@_localizer["_ChargeId"]*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @ref="@ChargesId_TextBox" @bind-Value="@_viewModel.Data.CCHARGES_ID" R_ConductorSource="@_conductorRef" OnLostFocus="@Charges_OnLostFocus" R_EnableAdd MaxLength="20"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="0">
+                    <R_Lookup R_ConductorSource="@_conductorRef"
+                              R_Before_Open_Lookup="@R_Before_Open_LookupCharges"
+                              R_After_Open_Lookup="@R_After_Open_LookupCharges"
+                              R_EnableAdd>...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="7">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_NAME"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout Style="width: 13%">
+                    <R_Label>@_localizer["_InvoiceGroup"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CINVGRP_CODE"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CINVGRP_NAME"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout Style="width: 13%">
+                    <R_Label>@_localizer["_TaxID"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CTAX_ID" OnLostFocus="@Tax_OnLostFocus" MaxLength="20" R_ConductorSource="@_conductorRef" Enabled="@(!EnableNormalMode && !string.IsNullOrWhiteSpace(_viewModel.Data.CCHARGES_ID) && _viewModel.Data.LTAXABLE)"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="0">
+                    <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupTax"
+                              R_After_Open_Lookup="@R_After_Open_LookupTax"
+                              R_ConductorSource="@_conductorRef" Enabled="@(!EnableNormalMode && !string.IsNullOrWhiteSpace(_viewModel.Data.CCHARGES_ID) && _viewModel.Data.LTAXABLE)">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="7">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CTAX_NAME"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout Style="width: 13%">
+                    <R_Label>@_localizer["_Tenure"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_NumericTextBox Value="@_viewModel.Data.IYEARS"
+                                      ValueChanged="@((int value) => YearInt_ValueChanged(value))"
+                                      R_ConductorSource="@_conductorRef"
+                                      ThousandSeparator="false"
+                                      Arrows="false"
+                                      Decimals="0"
+                                      Min="0"
+                                      Max="100"
+                                      R_EnableAdd
+                                      R_EnableEdit>
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Label>@_localizer["_Year"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_NumericTextBox Value="@_viewModel.Data.IMONTHS"
+                                      ValueChanged="@((int value) => MonthInt_ValueChanged(value))"
+                                      R_ConductorSource="@_conductorRef"
+                                      Arrows="false"
+                                      Min="0"
+                                      Max="1200"
+                                      Decimals="0"
+                                      R_EnableAdd
+                                      R_EnableEdit>
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Label>@_localizer["_Month"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_NumericTextBox Value="@_viewModel.Data.IDAYS"
+                                      ValueChanged="@((int value) => DayInt_ValueChanged(value))"
+                                      R_ConductorSource="@_conductorRef"
+                                      Arrows="false"
+                                      Decimals="0"
+                                      Min="0"
+                                      Max="4380"
+                                      R_EnableAdd
+                                      R_EnableEdit>
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Label>@_localizer["_Day"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Label></R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_CheckBox Value="@_viewModel.Data.LBASED_OPEN_DATE"
+                                R_ConductorSource="@_conductorRef"
+                                ValueChanged="@((bool value) => BaseOpeningDate_ValueChange(value))"
+                                R_EnableAdd
+                                R_EnableEdit>
+                    </R_CheckBox>
+                    <R_Label>@_localizer["_BasedOnOpeningDate"]</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout Style="width: 13%">
+                    <R_Label>@_localizer["_StartDate"]*</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout Style="width: 25.5%">
+                    <R_DatePicker @ref="@StartDate_DatePicker"
+                                  Value="@_viewModel.Data.DSTART_DATE"
+                                  R_ConductorSource="@_conductorRef"
+                                  ValueChanged="@((DateTime? value) => PlanStartDate_ValueChanged(value))"
+                                  Enabled="@(!EnableNormalMode && _viewModel.Data.LBASED_OPEN_DATE == false)"
+                                  >
+                    </R_DatePicker>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_EndDate"]*</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout Style="width: 25%">
+                    <R_DatePicker Value="@_viewModel.Data.DEND_DATE"
+                                  R_ConductorSource="@_conductorRef"
+                                  ValueChanged="@((DateTime? value) => PlanEndDate_ValueChanged(value))"
+                                  Enabled="@(!EnableNormalMode && _viewModel.Data.LBASED_OPEN_DATE == false)"
+                                  >
+                    </R_DatePicker>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout Style="width: 13%">
+                    <R_Label>@_localizer["_BillingMode"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 25.4%">
+                    <R_RadioGroup Data="@_viewModel.BillingModeList"
+                                  @bind-Value="@_viewModel.Data.CBILLING_MODE"
+                                  R_ConductorSource="@_conductorRef"
+                                  R_EnableAdd
+                                  R_EnableEdit
+                                  Layout="@R_eRadioGroupLayout.Horizontal"
+                                  ValueField="Key"
+                                  TextField="Value" />
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Currency"]*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                               R_ConductorSource="@_conductorRef"
+                               OnLostFocus="@Currency_OnLostFocus"
+                               MaxLength="3"
+                               R_EnableAdd
+                               R_EnableEdit>
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="0">
+                    <R_Lookup R_Before_Open_Lookup="@Currency_Before_Open_Lookup"
+                              R_After_Open_Lookup="@Currency_After_Open_Lookup"
+                              R_ConductorSource="@_conductorRef"
+                              R_EnableAdd
+                              R_EnableEdit>
+                        ...
+                    </R_Lookup>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout Style="width: 13%">
+                    <R_Label>@_localizer["_FeeMethod"]*</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_ComboBox Data="@_viewModel.VAR_FEE_METHOD"
+                                Value="@_viewModel.Data.CFEE_METHOD"
+                                PopupMaxHeight="140px"
+                                ValueField="@nameof(PMT00500UniversalDTO.CCODE)"
+                                TextField="@nameof(PMT00500UniversalDTO.CDESCRIPTION)"
+                                Enabled="@(EnableNormalMode == false)"
+                                ValueChanged="@((string value) => FeeMethodComboBox_ValueChange(value))"
+                                >
+                    </R_ComboBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Label></R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_FeeAmount"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 8%">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_NumericTextBox Value="@_viewModel.Data.NFEE_AMT"
+                                      ValueChanged="@((decimal value) => FeeAmountDecimal_ValueChanged(value))"
+                                      Arrows="false"
+                                      Min="0"
+                                      Enabled="@((_conductorRef.R_ConductorMode == R_eConductorMode.Add || (_conductorRef.R_ConductorMode == R_eConductorMode.Edit && _viewModel.Data.LOVERWRITE)) && _gridLOIChargeCallChargeListRef.DataSource.Count <= 0)">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout Style="width: 13%">
+                    <R_Label>@_localizer["_PeriodMode"]*</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_ComboBox Data="@_viewModel.VAR_PERIOD_MODE"
+                                Value="@_viewModel.Data.CINVOICE_PERIOD"
+                                ValueChanged="@((string value) => PeriodMethodComboBox_ValueChange(value))"
+                                PopupMaxHeight="140px"
+                                ValueField="@nameof(PMT00500UniversalDTO.CCODE)"
+                                TextField="@nameof(PMT00500UniversalDTO.CDESCRIPTION)"
+                                Enabled="@((_viewModel.Data.CFEE_METHOD == "01" || _viewModel.Data.CFEE_METHOD == "02") && EnableNormalMode == false)">
+                    </R_ComboBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_CheckBox @bind-Value="@_viewModel.Data.LPRORATE"
+                                R_ConductorSource="@_conductorRef"
+                                R_EnableAdd
+                                R_EnableEdit>
+                    </R_CheckBox>
+                    <R_Label>@_localizer["_Prorate"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_InvoiceAmount"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 8%">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_NumericTextBox @bind-Value="@_viewModel.Data.NINVOICE_AMT"
+                                      R_ConductorSource="@_conductorRef"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout Style="width: 13%">
+                    <R_Label>@_localizer["_Description"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="10">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CDESCRIPTION"
+                                R_ConductorSource="@_conductorRef"
+                                R_EnableAdd
+                                R_EnableEdit>
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_StackLayout Row>
+                <R_ItemLayout col="5">
+                    <R_CheckBox Value="@_viewModel.Data.LCAL_UNIT"
+                                ValueChanged="@((bool value) => CallUnitBool_ValueChanged(value))"
+                                Enabled="@(EnableNormalMode == false && _viewModel.Data.LTOTAL_PRICE == false)">
+                    </R_CheckBox>
+                    <R_Label>@_localizer["_ForTotalArea"]</R_Label>
+                    <R_Label Class="text-muted">@_localizer["_FeeCalculation"]</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="12">
+                    <R_StackLayout hidden="@(EnableNormalMode == true)">
+                        <R_Grid @ref="_gridLOIChargeCallChargeListRef"
+                                DataSource="_viewModel.ChargeCalUnitGrid"
+                                R_ConductorGridSource="_conductorGridRef"
+                                R_GridType="R_eGridType.Batch"
+                                R_ServiceGetListRecord="ChargesCallUnit_ServiceGetListRecord"
+                                Height="190px"
+                                Enabled="@(_viewModel.Data.LCAL_UNIT  && _viewModel.Data.LTOTAL_PRICE == false)"
+                                AllowAddNewRow
+                                AllowDeleteRow
+                                AllowEditRow
+                                R_ServiceGetRecord="@ChargesCallUnit_ServiceGetRecord"
+                                R_Saving="@ChargesCallUnit_Saving"
+                                R_AfterSave="@ChargesCallUnit_AfterSave"
+                                R_Before_Open_Grid_Lookup="@ChargesCallUnit_Before_Open_Grid_Lookup"
+                                R_After_Open_Grid_Lookup="@ChargesCallUnit_After_Open_Grid_Lookup"
+                                R_AfterDelete="@ChargesCallUnit_AfterDelete"
+                                >
+                            <R_GridColumns>
+                                <R_GridLookupColumn TextboxEnabled="false" MaxLength="30" FieldName="@nameof(PMT00500AgreementChargeCalUnitDTO.CUNIT_ID)" HeaderText="@_localizer["_UnitId"]" R_EnableAdd R_EnableEdit Width="150px"></R_GridLookupColumn>
+                                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT00500AgreementChargeCalUnitDTO.NTOTAL_AREA)" ThousandSeparator="false" Arrows="false" HeaderText="@_localizer["_TotalArea"]" Width="160px"></R_GridNumericColumn>
+                                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT00500AgreementChargeCalUnitDTO.NFEE_PER_AREA)" ThousandSeparator="false" Arrows="false" R_EnableAdd R_EnableEdit HeaderText="@_localizer["_FeeArea"]" Width="160px"></R_GridNumericColumn>
+                            </R_GridColumns>
+                        </R_Grid>
+                    </R_StackLayout>
+
+
+                    <R_StackLayout hidden="@(EnableNormalMode == false)">
+                        <R_Grid @ref="_gridLOIChargeCallChargeListDisplayRef"
+                                DataSource="_viewModel.ChargeCalUnitDisplayGrid"
+                                R_ServiceGetListRecord="ChargesCallUnitDisplay_ServiceGetListRecord"
+                                Height="190px"
+                                >
+                            <R_GridColumns>
+                                <R_GridTextColumn FieldName="@nameof(PMT00500AgreementChargeCalUnitDTO.CUNIT_ID)" HeaderText="@_localizer["_UnitId"]" Width="150px"></R_GridTextColumn>
+                                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT00500AgreementChargeCalUnitDTO.NTOTAL_AREA)" ThousandSeparator="false" Arrows="false" HeaderText="@_localizer["_TotalArea"]" Width="160px"></R_GridNumericColumn>
+                                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT00500AgreementChargeCalUnitDTO.NFEE_PER_AREA)" ThousandSeparator="false" Arrows="false" HeaderText="@_localizer["_FeeArea"]" Width="160px"></R_GridNumericColumn>
+                            </R_GridColumns>
+                        </R_Grid>
+                    </R_StackLayout>
+
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-between">
+        <R_ItemLayout>
+            <R_AddButton R_Conductor="@_conductorRef" Enabled="@(EnableNormalMode && EnableGreaterClosesSts)"></R_AddButton>
+            <R_EditButton R_Conductor="@_conductorRef" Enabled="@(EnableNormalMode && EnableGreaterClosesSts && _viewModel.LOIChargeGrid.Count > 0)"></R_EditButton>
+            <R_DeleteButton R_Conductor="@_conductorRef" Enabled="@(EnableNormalMode && EnableGreaterClosesSts && _viewModel.LOIChargeGrid.Count > 0)"></R_DeleteButton>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Popup R_ConductorSource="@_conductorRef" R_Before_Open_Popup="@Charge_Activate_Before_Open_Popup" R_After_Open_Popup="@Charge_Activate_After_Open_Popup" Enabled="@(EnableNormalMode && _viewModel.LOIChargeGrid.Count > 0)">@LabelActiveInactive</R_Popup>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+            <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Charge_ServiceGetRecord"
+             R_ServiceSave="@Charge_ServiceSave"
+             R_ServiceDelete="@Charge_ServiceDelete"
+             R_Validation="@Charge_Validation"
+             R_SetHasData="@Grid_SetHasData"
+             R_SetOther="@Grid_R_SetOther"
+             R_AfterAdd="@Charge_AfterAdd"
+             R_AfterDelete="@Charge_AfterDelete"
+             R_BeforeCancel="@Charge_BeforeCancel"
+             R_Display="@Charge_Display" />
+
+<R_ConductorGrid @ref="@_conductorGridRef"
+                 R_ConductorParent="@_conductorRef"
+                 >
+</R_ConductorGrid>

@@ -1,0 +1,154 @@
+﻿@page "/HDM00400PopupUpload"
+@using HDM00400Common.DTOs.Upload
+@using HDM00400FrontResources
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_Page
+@attribute [R_Page(Title = "Upload Public Location")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="2" Class="d-inline">
+            <R_Label>@_localizer["Property"]</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_TextBox Value="@_viewModel.UploadParam.CPROPERTY_ID"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_TextBox Value="@_viewModel.UploadParam.CPROPERTY_NAME"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>@_localizer["SourceFile"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="8">
+            <R_InputFile OnChange="@OnChangeUploadSrc" Accepts="@_accepts"/>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.GridListUpload"
+                Pageable
+                R_GridType="@R_eGridType.Navigator"
+                Height="450px"
+                Width="1000px"
+                R_RowRender="@RowRender"
+                R_ServiceGetListRecord="@GetListRecord">
+            <R_GridColumns>
+                <R_GridNumericColumn TValue="int" FieldName="@nameof(HDM00400UploadForSystemDTO.NO)" HeaderText="@_localizer["No"]" Width="70px"/>
+                <R_GridTextColumn FieldName="@nameof(HDM00400UploadForSystemDTO.PublicLocId)" Width="150px" HeaderText="@_localizer["PublicLocationId"]"/>
+                <R_GridTextColumn FieldName="@nameof(HDM00400UploadForSystemDTO.PublicLocName)" Width="200px" HeaderText="@_localizer["PublicLocationName"]"/>
+                <R_GridTextColumn FieldName="@nameof(HDM00400UploadForSystemDTO.BuildingId)" Width="150px" HeaderText="@_localizer["BuildingId"]"/>
+                <R_GridTextColumn FieldName="@nameof(HDM00400UploadForSystemDTO.FloorId)" Width="150px" HeaderText="@_localizer["FloorId"]"/>
+                <R_GridTextColumn FieldName="@nameof(HDM00400UploadForSystemDTO.Description)" Width="150px" HeaderText="@_localizer["Description"]"/>
+                <R_GridTextColumn FieldName="@nameof(HDM00400UploadForSystemDTO.Active)" Width="100px" HeaderText="@_localizer["Active"]"/>
+                <R_GridDatePickerColumn FieldName="@nameof(HDM00400UploadForSystemDTO.DNonActiveDate)" Width="150px" HeaderText="@_localizer["NonActiveDate"]"/>
+
+                <R_GridTextColumn FieldName="@nameof(HDM00400UploadForSystemDTO.ValidFlag)" HeaderText="@_localizer["Valid"]" Width="100px" Visible="@_viewModel.IsError"/>
+                <R_GridTextColumn FieldName="@nameof(HDM00400UploadForSystemDTO.ErrorMessage)" HeaderText="@_localizer["Notes"]" Width="300px" Visible="@_viewModel.IsError"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_ProgressBar Label="@_viewModel.Message" MaxValue="100" Value="@_viewModel.Percentage"></R_ProgressBar>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+
+    <R_StackLayout Row Class="justify-content-between">
+        <R_ItemLayout col="8">
+            <R_StackLayout Row Spacing="3" Class="justify-content-start">
+                <R_ItemLayout col="4">
+                    <R_StackLayout Row>
+                        <R_ItemLayout>
+                            <R_Label>@_localizer["TotalRow"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_NumericTextBox @bind-Value="_viewModel.TotalRows" Enabled="false" Arrows="false"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="4">
+                    <R_StackLayout Row>
+                        <R_ItemLayout>
+                            <R_Label>@_localizer["Valid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_NumericTextBox class="bg-success" @bind-Value="_viewModel.ValidRows" ReadOnly Arrows="false"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="4">
+                    <R_StackLayout Row>
+                        <R_ItemLayout>
+                            <R_Label>@_localizer["Invalid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_NumericTextBox class="bg-danger" @bind-Value="_viewModel.InvalidRows" ReadOnly Arrows="false"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        <R_StackLayout Row Spacing="2" Class="justify-content-end">
+            <R_ItemLayout>
+                <R_Button OnClick="OnClickCancelAsync">@_localizer["Cancel"]</R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout hidden="@_viewModel.IsError">
+                <R_Button OnClick="OnClickProcessAsync" Enabled="@_viewModel.FileHasData">@_localizer["Process"]</R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout hidden="@(!_viewModel.IsError)">
+                <R_Button OnClick="OnClickSaveAsync">@_localizer["SaveToExcel"]</R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_StackLayout>
+
+
+</R_StackLayout>
+
+
+@* <style> *@
+@*     /*the following selectors target the locked/frozen columns*/ *@
+@*     /*===*/ *@
+@*     .k-grid .k-master-row.myCustomRowFormatting .k-grid-content-sticky, *@
+@*     .k-grid .k-master-row.myCustomRowFormatting.k-alt .k-grid-content-sticky *@
+@*     /*===*/ { *@
+@*         background-color: inherit; *@
+@*     } *@
+@* *@
+@*     .k-grid .k-master-row.myCustomRowFormatting:hover { *@
+@*         background-color: #fff58a !important; *@
+@*     } *@
+@* *@
+@*     .k-grid .k-master-row.myCustomRowFormatting { *@
+@*         background-color: #fff000; *@
+@*     } *@
+@* </style> *@
+<style >
+    .k-grid .k-master-row.errorDataLValidIsFalse:hover {
+        background-color: red !important;
+        color: white;
+    }
+
+    .k-grid .k-master-row.errorDataLValidIsFalse {
+        background-color: red;
+        color: white !important
+    }
+
+    .k-grid .k-table-row.k-selected.errorDataLValidIsFalse > .k-table-td {
+        color: white !important;
+    }
+</style>

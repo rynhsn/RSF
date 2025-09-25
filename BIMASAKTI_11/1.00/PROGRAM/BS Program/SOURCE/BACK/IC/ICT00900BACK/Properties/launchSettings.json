@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "ICT00900BACK": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57149;http://localhost:57150"
+    }
+  }
+}

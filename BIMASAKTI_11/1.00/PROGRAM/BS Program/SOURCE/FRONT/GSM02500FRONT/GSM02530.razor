@@ -1,0 +1,320 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Unit")]
+@using GSM02500COMMON.DTOs.GSM02500
+@using GSM02500COMMON.DTOs.GSM02530
+@using GSM02500COMMON.DTOs;
+@using GSM02500MODEL
+@using GSM02500MODEL.View_Model;
+
+<R_StackLayout>
+        <R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label Class="fw-bold" FontSize="15">@_localizer["_Property"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@loUnitInfoViewModel.SelectedProperty.CPROPERTY_ID"
+                               R_ConductorSource="@_conductorUnitInfoRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout  col="7">
+                    <R_TextBox @bind-Value="@loUnitInfoViewModel.SelectedProperty.CPROPERTY_NAME"
+                               R_ConductorSource="@_conductorUnitInfoRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label Class="fw-bold" FontSize="15">@_localizer["_Building"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@loUnitInfoViewModel.SelectedBuilding.CBUILDING_ID"
+                           R_ConductorSource="@_conductorUnitInfoRef"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout  col="7">
+                <R_TextBox @bind-Value="@loUnitInfoViewModel.SelectedBuilding.CBUILDING_NAME"
+                           R_ConductorSource="@_conductorUnitInfoRef"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label Class="fw-bold" FontSize="15">@_localizer["_Floor"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@loUnitInfoViewModel.SelectedFloor.CFLOOR_ID"
+                           R_ConductorSource="@_conductorUnitInfoRef"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout  col="7">
+                <R_TextBox @bind-Value="@loUnitInfoViewModel.SelectedFloor.CFLOOR_NAME"
+                           R_ConductorSource="@_conductorUnitInfoRef"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+
+<R_TabStrip>
+    <R_TabStripTab Title="@_localizer["_UnitInfo"]" Id="UnitInfo">
+        <R_StackLayout Spacing="3" Row="true">
+            <R_ItemLayout col="12">
+                <R_Grid @ref="@_gridUnitInfoRef"
+                        DataSource="@loUnitInfoViewModel.loUnitInfoList"
+                        R_ConductorSource="@_conductorUnitInfoRef"
+                        R_GridType="@R_eGridType.Navigator"
+                        Height="130px"
+                        R_ServiceGetListRecord="@Grid_R_ServiceGetUnitInfoListRecord">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CUNIT_ID)" HeaderText="@_localizer["_UnitId"]" Width="100px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CUNIT_NAME)" HeaderText="@_localizer["_UnitName"]" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CUNIT_TYPE_NAME)" HeaderText="@_localizer["_UnitType"]" Width="150px"></R_GridTextColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GSM02530DTO.NGROSS_AREA_SIZE)" HeaderText="@_localizer["_Gross"]" Width="100px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GSM02530DTO.NNET_AREA_SIZE)" HeaderText="@_localizer["_Net"]" Width="100px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GSM02530DTO.NACTUAL_AREA_SIZE)" HeaderText="@_localizer["_Actual"]" Width="100px"></R_GridNumericColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CUNIT_VIEW_NAME)" HeaderText="@_localizer["_UnitView"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CUNIT_CATEGORY_NAME)" HeaderText="@_localizer["_UnitCategory"]" Width="150px"></R_GridTextColumn>
+                        <R_GridCheckBoxColumn FieldName="@nameof(GSM02530DTO.LACTIVE)" HeaderText="@_localizer["_Active"]" Width="100px"></R_GridCheckBoxColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="125px"></R_GridTextColumn>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(GSM02530DTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM02530DTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="125px"></R_GridTextColumn>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(GSM02530DTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Unit"]*</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@loUnitInfoViewModel.Data.CUNIT_ID"
+                            R_ConductorSource="@_conductorUnitInfoRef"
+                            MaxLength="20"
+                            R_EnableAdd="true"
+                            R_EnableEdit="false"
+                            @ref="@_unitInfoIdRef">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="@loUnitInfoViewModel.Data.CUNIT_NAME"
+                            R_ConductorSource="@_conductorUnitInfoRef"
+                            @ref="@_unitInfoNameRef"
+                            MaxLength="200"
+                            R_EnableAdd="true"
+                            R_EnableEdit="true">
+                </R_TextBox>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="1">
+            </R_ItemLayout>
+            <R_ItemLayout Style="15px">
+                <R_CheckBox @bind-Value="@loUnitInfoViewModel.Data.LACTIVE"
+                            R_ConductorSource="@_conductorUnitInfoRef"
+                            Enabled="false">
+                </R_CheckBox>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_Active"]</R_Label>
+            </R_ItemLayout>
+
+        </R_StackLayout>
+
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Description"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="7">
+                    <R_TextArea @bind-Value="@loUnitInfoViewModel.Data.CDESCRIPTION"
+                                R_ConductorSource="@_conductorUnitInfoRef"
+                                R_EnableAdd="true" R_EnableEdit="true"></R_TextArea>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_UnitType"]*</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_DropDownList Data="@loUnitInfoViewModel.loUnitTypeList"
+                                    Value="loUnitInfoViewModel.Data.CUNIT_TYPE_ID"
+                                    ValueField="@nameof(GetUnitTypeDTO.CUNIT_TYPE_ID)"
+                                    TextField="@nameof(GetUnitTypeDTO.CUNIT_TYPE_NAME)"
+                                    R_ConductorSource="@_conductorUnitInfoRef"
+                                    ValueChanged="@((string value) => UnitTypeDropdown_ValueChanged(value))"
+                                    PopupMaxHeight="175px"
+                                    R_EnableAdd="true" R_EnableEdit="true">
+                    </R_DropDownList>
+                </R_ItemLayout>
+                
+                <R_ItemLayout col="1">
+                    <R_Label>@_localizer["_GrossSize"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="@loUnitInfoViewModel.Data.NGROSS_AREA_SIZE"
+                                  R_ConductorSource="@_conductorUnitInfoRef"
+                                  R_EnableAdd="true" R_EnableEdit="true">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:40px">
+                    <R_Label FontStyle="R_eFontStyle.Italic">@lcCUOMLabel</R_Label>
+                </R_ItemLayout>
+            
+                <R_ItemLayout col="1">
+                    <R_Label>@_localizer["_NetSize"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="@loUnitInfoViewModel.Data.NNET_AREA_SIZE"
+                                  R_ConductorSource="@_conductorUnitInfoRef"
+                                  R_EnableAdd="true" R_EnableEdit="true">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:40px">
+                    <R_Label FontStyle="R_eFontStyle.Italic">@lcCUOMLabel</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+    
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_UnitView"]*</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_DropDownList Data="@loUnitInfoViewModel.loUnitViewList"
+                                    @bind-Value="loUnitInfoViewModel.Data.CUNIT_VIEW_ID"
+                                    ValueField="@nameof(GetUnitViewDTO.CUNIT_VIEW_ID)"
+                                    TextField="@nameof(GetUnitViewDTO.CUNIT_VIEW_NAME)"
+                                    R_ConductorSource="@_conductorUnitInfoRef"
+                                    PopupMaxHeight="175px"
+                                    R_EnableAdd="true" R_EnableEdit="true">
+                    </R_DropDownList>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="1">
+                    <R_Label>@_localizer["_ActualSize"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="@loUnitInfoViewModel.Data.NCOMMON_AREA_SIZE"
+                                  R_ConductorSource="@_conductorUnitInfoRef"
+                                  Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:40px">
+                    <R_Label FontStyle="R_eFontStyle.Italic">@lcCUOMLabel</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_UnitCategory"]*</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="8">
+                    <R_RadioGroup Data="@loUnitInfoViewModel.loUnitCategoryList"
+                                    @bind-Value="@loUnitInfoViewModel.Data.CUNIT_CATEGORY_ID"
+                                    ValueField="@nameof(GetUnitCategoryDTO.CCODE)"
+                                    TextField="@nameof(GetUnitCategoryDTO.CDESCRIPTION)"
+                                    R_ConductorSource="@_conductorUnitInfoRef"
+                                    R_EnableAdd="true" R_EnableEdit="true"></R_RadioGroup>
+                </R_ItemLayout>
+            </R_StackLayout>
+            
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_StrataStatus"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_DropDownList Data="@loUnitInfoViewModel.loStrataList"
+                                    @bind-Value="loUnitInfoViewModel.Data.CSTRATA_STATUS"
+                                    ValueField="@nameof(GetStrataLeaseDTO.CCODE)"
+                                    TextField="@nameof(GetStrataLeaseDTO.CDESCRIPTION)"
+                                    R_ConductorSource="@_conductorUnitInfoRef"
+                                    Enabled="@(loUnitInfoViewModel.Data.CUNIT_CATEGORY_ID != "02" && _conductorUnitInfoRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)">
+                    </R_DropDownList>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="1">
+                    <R_Label>@_localizer["_LeaseStatus"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_DropDownList Data="@loUnitInfoViewModel.loLeaseList"
+                                    @bind-Value="loUnitInfoViewModel.Data.CLEASE_STATUS"
+                                    ValueField="@nameof(GetStrataLeaseDTO.CCODE)"
+                                    TextField="@nameof(GetStrataLeaseDTO.CDESCRIPTION)"
+                                    R_ConductorSource="@_conductorUnitInfoRef"
+                                    Enabled="@(loUnitInfoViewModel.Data.CUNIT_CATEGORY_ID != "01" && _conductorUnitInfoRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)">
+                    </R_DropDownList>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:40px">
+                    <R_Label FontStyle="R_eFontStyle.Italic">@lcCUOMLabel</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+
+        <R_StackLayout Row Class="justify-content-between">
+            <R_ItemLayout>
+                <R_AddButton R_Conductor="@_conductorUnitInfoRef"></R_AddButton>
+                <R_EditButton R_Conductor="@_conductorUnitInfoRef"></R_EditButton>
+                <R_DeleteButton R_Conductor="@_conductorUnitInfoRef"></R_DeleteButton>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Button R_ConductorSource="@_conductorUnitInfoRef"
+                          R_EnableOther
+                          OnClick="OnClickTemplate">@_localizer["_Template"]</R_Button>
+                <R_Popup R_ConductorSource="@_conductorUnitInfoRef"
+                         R_EnableOther
+                         R_Before_Open_Popup="Before_Open_Upload_Popup"
+                         R_After_Open_Popup="After_Open_Upload_Popup">@_localizer["_Upload"]</R_Popup>
+                <R_Popup R_ConductorSource="@_conductorUnitInfoRef"
+                         R_Before_Open_Popup="@R_Before_Open_Popup_ActivateInactiveUnitInfo"
+                         R_After_Open_Popup="@R_After_Open_Popup_ActivateInactiveUnitInfo"
+                         Enabled="@IsActiveInactiveEnable">@loUnitInfoLabel</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_CancelButton R_Conductor="@_conductorUnitInfoRef"></R_CancelButton>
+                <R_SaveButton R_Conductor="@_conductorUnitInfoRef"></R_SaveButton>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_TabStripTab>
+                <R_TabStripTab Title="@_localizer["_Utilities"]" Id="Utilities" Enabled="@IsUnitInfoListExit">
+        <R_TabPage R_Before_Open_TabPage="R_Before_Open_UtilitiesTabPage">
+            <GSM02531></GSM02531>
+        </R_TabPage>
+    </R_TabStripTab>
+</R_TabStrip>
+
+<R_Conductor @ref="@_conductorUnitInfoRef"
+             R_ViewModel="@loUnitInfoViewModel"
+             R_Display="Grid_DisplayUnitInfo"
+             R_Saving="Grid_SavingUnitInfo"
+             R_ServiceSave="@Grid_ServiceSaveUnitInfo"
+             R_Validation="@Grid_ValidationUnitInfo"
+             R_AfterAdd="Grid_AfterAdd"@*
+             R_BeforeEdit="Grid_BeforeEdit"*@
+             R_SetEdit="Grid_SetEdit"
+             R_BeforeCancel="Grid_BeforeCancel"
+             R_AfterDelete="Grid_AfterDelete"
+             R_ServiceDelete="@Grid_ServiceDeleteUnitInfo"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Grid_ServiceGetUnitInfoRecord">
+</R_Conductor>

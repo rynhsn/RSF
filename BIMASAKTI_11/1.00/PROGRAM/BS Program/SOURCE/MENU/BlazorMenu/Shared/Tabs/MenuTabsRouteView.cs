@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using R_BlazorFrontEnd.Controls;
+using R_BlazorFrontEnd.Controls.Enums;
 using System.Reflection;
 
 namespace BlazorMenu.Shared.Tabs
@@ -31,8 +33,8 @@ namespace BlazorMenu.Shared.Tabs
                 b.AddAttribute(21, "Body", body);
                 b.CloseComponent();
             }));
-
             builder.CloseComponent();
+
             var url = "/" + NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
 
             if (!url.Equals("/"))
@@ -73,9 +75,28 @@ namespace BlazorMenu.Shared.Tabs
                 foreach (var routeValue in routeData.RouteValues)
                 {
                     builder.AddAttribute(1, routeValue.Key, routeValue.Value);
+                    if (routeData.PageType.IsSubclassOf(typeof(R_Page)))
+                    {
+                        var loAccess = GetFullFormAccess();
+                        builder.AddAttribute(2, "R_FormAccess", loAccess);
+                    }
                 }
                 builder.CloseComponent();
             };
+        }
+
+        private R_eFormAccess[] GetFullFormAccess()
+        {
+            R_eFormAccess[] loFormAccess =
+            {
+                R_eFormAccess.Add,
+                R_eFormAccess.Update,
+                R_eFormAccess.Delete,
+                R_eFormAccess.Print,
+                R_eFormAccess.View
+            };
+
+            return loFormAccess;
         }
     }
 }

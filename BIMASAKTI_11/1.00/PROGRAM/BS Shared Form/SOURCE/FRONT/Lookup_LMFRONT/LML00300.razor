@@ -1,0 +1,38 @@
+@inherits R_Page
+@attribute [R_Page(Title = "Supervisor")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupPM> _localizer
+
+<R_StackLayout Row>
+    <R_Grid @ref="@GridRef"
+            DataSource="_viewModelLML00300.SupervisorList"
+            R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+            R_GridType="@R_eGridType.Navigator"
+            Pageable
+            @bind-PageSize="@_pageSize"
+            Height="300px"
+            Width="600px">
+        <R_GridColumns>
+            <R_GridTextColumn Width="150px" 
+                              FieldName= "@nameof(LML00300DTO.CSUPERVISOR)" HeaderText=@_localizer["_SPVId"]></R_GridTextColumn>
+            <R_GridTextColumn Width="200px" 
+                              FieldName="@nameof(LML00300DTO.CSUPERVISOR_NAME)"  HeaderText=@_localizer["_SPVName"]></R_GridTextColumn>
+            <R_GridTextColumn Width="200px" 
+                              FieldName="@nameof(LML00300DTO.DEPTCODE_AND_NAME)" HeaderText=@_localizer["_Dept"]></R_GridTextColumn>
+            <R_GridTextColumn Width="200px"
+                              FieldName="@nameof(LML00300DTO.CTYPE_AND_DESC)" HeaderText=@_localizer["_Type"]></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            OK
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            Cancel
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

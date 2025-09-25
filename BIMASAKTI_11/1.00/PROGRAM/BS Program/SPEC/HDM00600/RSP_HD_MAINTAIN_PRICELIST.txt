@@ -1,0 +1,17 @@
+8001 -- Error process, please contact your administrator!
+8002 -- Pricelist ID is empty!
+8003 -- Pricelist ID is not found!
+8004 -- Pricelist Name is empty!
+8005 -- Charges ID is empty!
+8006 -- Charges ID is not found!
+8007 -- Unit is empty!
+8008 -- Currency is empty!
+8009 -- Currency is not the same as Currency in Property Profile!
+8010 -- Price cannot be 0 or negative value!
+8011 -- Valid ID is empty!
+8012 -- Start Date is empty!
+8013 -- Start Date format must be YYYYMMDD!
+8014 -- Start Date cannot be before latest CARE Date or Current Start Date!
+8015 -- Department is empty!
+8016 -- Department is not found!
+

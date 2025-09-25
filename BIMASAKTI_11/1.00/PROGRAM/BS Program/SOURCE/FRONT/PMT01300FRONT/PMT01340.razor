@@ -1,0 +1,222 @@
+﻿@using Lookup_GSCOMMON.DTOs
+@inherits R_Page
+
+<R_StackLayout Row>
+    <R_ItemLayout col="5">
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_RefNo"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextBox @bind-Value="@_viewModel.LOI.CREF_NO"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_ItemLayout>
+    <R_ItemLayout col="5">
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Tenant"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModel.LOI.CTENANT_ID"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_viewModel.LOI.CTENANT_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row="true">
+    <R_Grid @ref="@_gridLOIDepositListRef"
+            DataSource="@_viewModel.LOIDepositGrid"
+            R_ConductorSource="@_conductorRef"
+            R_GridType="@R_eGridType.Navigator"
+            Pageable="true"
+            Height="150px"
+            Enabled="@(EnableNormalMode)"
+            R_ServiceGetListRecord="@Deposit_ServiceGetListRecord">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="@nameof(PMT01340DTO.CSEQ_NO)" HeaderText="@_localizer["_SeqNo"]" Width="90px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(PMT01340DTO.CDEPOSIT_ID)" HeaderText="@_localizer["_DepositId"]" Width="120px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="@nameof(PMT01340DTO.CDEPOSIT_NAME)" HeaderText="@_localizer["_DepositName"]" Width="200px"></R_GridTextColumn>
+            <R_GridDateTimePickerColumn FieldName="@nameof(PMT01340DTO.DDEPOSIT_DATE)" HeaderText="@_localizer["_DepositDate"]" Width="150px"></R_GridDateTimePickerColumn>
+            <R_GridTextColumn FieldName="@nameof(PMT01340DTO.CCURRENCY_CODE)" HeaderText="@_localizer["_Currency"]" Width="100px"></R_GridTextColumn>
+            <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT01340DTO.NDEPOSIT_AMT)" HeaderText="@_localizer["_DepositAmount"]" Width="150px"></R_GridNumericColumn>
+
+            <R_GridTextColumn FieldName="@nameof(PMT01300DTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="120px"></R_GridTextColumn>
+            <R_GridDateTimePickerColumn FieldName="@nameof(PMT01300DTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]" Width="180px"></R_GridDateTimePickerColumn>
+            <R_GridTextColumn FieldName="@nameof(PMT01300DTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="120px"></R_GridTextColumn>
+            <R_GridDateTimePickerColumn FieldName="@nameof(PMT01300DTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]" Width="180px"></R_GridDateTimePickerColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["_SeqNo"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="@_viewModel.Data.CSEQ_NO"
+                    Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["_DepositId"]*</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @ref="@(DepositId_TextBox)"
+                   @bind-Value="@_viewModel.Data.CDEPOSIT_ID"
+                   R_ConductorSource="_conductorRef"
+                   OnLostFocus="@Charges_OnLostFocus"
+                   MaxLength="20"
+                   R_EnableAdd>
+        </R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="0">
+        <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupCharges"
+                  R_After_Open_Lookup="@R_After_Open_LookupCharges"
+                  R_ConductorSource="_conductorRef"
+                  R_EnableAdd>...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="5">
+        <R_TextBox @bind-Value="@_viewModel.Data.CDEPOSIT_NAME"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["_TaxID"]*</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @ref="@(DepositId_TextBox)"
+                   @bind-Value="@_viewModel.Data.CTAX_ID"
+                   OnLostFocus="@Tax_OnLostFocus"
+                   MaxLength="20"
+                   Enabled="@(!EnableNormalMode && !string.IsNullOrWhiteSpace(_viewModel.Data.CDEPOSIT_ID) && _viewModel.Data.LTAXABLE)"
+                   >
+        </R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="0">
+        <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupTax"
+                  R_After_Open_Lookup="@R_After_Open_LookupTax"
+                  Enabled="@(!EnableNormalMode && !string.IsNullOrWhiteSpace(_viewModel.Data.CDEPOSIT_ID) && _viewModel.Data.LTAXABLE)">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="5">
+        <R_TextBox @bind-Value="@_viewModel.Data.CTAX_NAME"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["_DepositDate"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_DatePicker @ref="@DepositDate_DatePicker"
+                      @bind-Value="@_viewModel.Data.DDEPOSIT_DATE"
+                      R_ConductorSource="@_conductorRef"
+                      R_EnableAdd
+                      R_EnableEdit>
+        </R_DatePicker>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["_Currency"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_ComboBox Data="@_viewModel.VAR_CURRENCY_LIST"
+                    Value="@_viewModel.Data.CCURRENCY_CODE"
+                    PopupMaxHeight="140px"
+                    ValueChanged="@((string value) => CurrencyCode_ValueChanged(value))"
+                    ValueField="@nameof(GSL00300DTO.CCURRENCY_CODE)"
+                    TextField="@nameof(GSL00300DTO.CCURRENCY_CODE)"
+                    R_ConductorSource="@_conductorRef"
+                    R_EnableAdd
+                    R_EnableEdit>
+        </R_ComboBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_NAME"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["_DepositAmount"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_NumericTextBox @bind-Value="@_viewModel.Data.NDEPOSIT_AMT"
+                          R_ConductorSource="@_conductorRef"
+                          Arrows="false"
+                          R_EnableAdd
+                          R_EnableEdit>
+        </R_NumericTextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["_Description"]</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="8">
+        <R_TextArea @bind-Value="@_viewModel.Data.CDESCRIPTION"
+                    R_ConductorSource="@_conductorRef"
+                    R_EnableAdd
+                    R_EnableEdit>
+        </R_TextArea>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-between">
+    <R_ItemLayout>
+        <R_AddButton R_Conductor="@_conductorRef" Enabled=@(EnableNormalMode && EnableHasHeaderData && EnableGreaterClosesSts)></R_AddButton>
+        <R_EditButton R_Conductor="@_conductorRef" Enabled=@(EnableNormalMode && _viewModel.LOIDepositGrid.Count > 0 && EnableGreaterClosesSts)></R_EditButton>
+        <R_DeleteButton R_Conductor="@_conductorRef" Enabled=@(EnableNormalMode && _viewModel.LOIDepositGrid.Count > 0 && EnableGreaterClosesSts)></R_DeleteButton>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+        <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Deposit_ServiceGetRecord"
+             R_ServiceSave="@Deposit_ServiceSave"
+             R_ServiceDelete="@Deposit_ServiceDelete"
+             R_Validation="@Deposit_Validation"
+             R_SetOther="@Grid_R_SetOther"
+             R_AfterAdd="@Deposit_AfterAdd"
+             R_Display="@Deposit_Display"
+             R_DisableCancelConfirmation
+             R_BeforeCancel="@Deposit_BeforeCancel"
+            >
+</R_Conductor>

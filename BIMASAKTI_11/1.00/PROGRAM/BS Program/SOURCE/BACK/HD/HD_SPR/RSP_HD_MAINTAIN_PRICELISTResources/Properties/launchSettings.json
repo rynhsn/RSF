@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_HD_MAINTAIN_PRICELISTResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64500;http://localhost:64503"
+    }
+  }
+}

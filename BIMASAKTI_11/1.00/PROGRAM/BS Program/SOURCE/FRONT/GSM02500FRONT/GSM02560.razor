@@ -1,0 +1,65 @@
+﻿@page "/GSM02560"
+@attribute [R_Page(Title = "Departments")]
+@inherits R_Page
+@using GSM02500COMMON.DTOs.GSM02560
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label Class="fw-bold" FontSize="15">@_localizer["_Property"]</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@loViewModel.SelectedProperty.CPROPERTY_ID"
+                       R_ConductorGridSource="@_conductorRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="7">
+            <R_TextBox @bind-Value="@loViewModel.SelectedProperty.CPROPERTY_NAME"
+                       R_ConductorGridSource="@_conductorRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_Grid @ref="@_gridRef"
+                DataSource="@loViewModel.loDepartmentList"
+                Pageable="true"
+                R_ConductorGridSource="@_conductorRef"
+                R_GridType="@R_eGridType.Original"
+                AllowAddNewRow="true"
+                AllowEditRow="false"
+                AllowDeleteRow="true"
+                Height="410px"
+                R_CellLostFocused="@DepartmentOnLostFocused"
+                R_After_Open_Grid_Lookup="@Grid_AfterLookupDepartment"
+                R_Before_Open_Grid_Lookup="@Grid_BeforeLookupDepartment"
+                R_Display="@Grid_Display"
+                R_ServiceGetRecord="@Grid_ServiceGetRecord"
+                R_AfterSave="@Grid_AfterSave"
+                R_ServiceSave="@Grid_ServiceSave"
+                R_Saving="@Grid_SavingDepartments"
+                R_ServiceDelete="@Grid_ServiceDelete"
+                R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
+            <R_GridColumns>
+                <R_GridLookupColumn FieldName=@nameof(GSM02560DTO.CDEPT_CODE)
+                                    R_EnableAdd
+                                    Width="150px"
+                                    MaxLength="20"
+                                    HeaderText="@_localizer["_DepartmentCode"]">
+                </R_GridLookupColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM02560DTO.CDEPT_NAME) @ref="@DepartmentNameRef" Width="350px" HeaderText="@_localizer["_DepartmentName"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM02560DTO.CCREATE_BY) Width="125px" HeaderText="@_localizer["_CreatedBy"]"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName=@nameof(GSM02560DTO.DCREATE_DATE) Width="200px" HeaderText="@_localizer["_CreatedDate"]"></R_GridDateTimePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorRef"
+                 R_ViewModel="@loViewModel"
+                 R_IsHeader></R_ConductorGrid>

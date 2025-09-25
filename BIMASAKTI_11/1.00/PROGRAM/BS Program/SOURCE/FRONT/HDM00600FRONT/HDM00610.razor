@@ -1,0 +1,59 @@
+@inherits R_Page
+
+<R_StackLayout>
+    <R_ItemLayout>
+        <R_Grid @ref="_gridPricelist"
+                DataSource="@_viewModel._pricelist_List"
+                R_GridType="@R_eGridType.Original"
+                R_ConductorGridSource="@_conPricelist"
+                R_ServiceGetListRecord="@Pricelist_GetlistAsync"
+                R_ServiceGetRecord="@Pricelist_GetRecordAsync"
+                R_Display="@Pricelist_Display"
+                R_AfterAdd="@Pricelist_Afteradd"
+                R_Validation="@Pricelist_Validation"
+                R_Saving="@Pricelist_Saving"
+                R_ServiceSave="@Pricelist_SaveAsync"
+                R_ServiceDelete="@Pricelist_DeleteAsync"
+                R_Before_Open_Grid_Lookup="@Pricelist_BeforeOpenGridLookup"
+                R_After_Open_Grid_Lookup="@Pricelist_AfterOpenGridLookup"
+                R_CellLostFocused="@Pricelist_CellLostFocused"
+                AllowAddNewRow
+                AllowDeleteRow
+                AllowEditRow
+                Pageable
+                @bind-PageSize="@_pageSize_Pricelist"
+                Height="500px">
+            <R_GridColumns>
+                <R_GridLookupColumn FieldName="@nameof(PricelistDTO.CPRICELIST_ID)"
+                                    Name="@nameof(PricelistDTO.CPRICELIST_ID)"
+                                    HeaderText="@(_localizer["_col_pricelistid"])"
+                                    Width="130px"
+                                    R_EnableAdd
+                                    R_EnableEdit="@false"
+                                    TextboxEnabled
+                                    MaxLength="20"></R_GridLookupColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CPRICELIST_NAME)" HeaderText="@(_localizer["_col_pricelistname"])" Width="200px" R_EnableAdd="@false" R_EnableEdit="@false" MaxLength="100"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CDEPT_CODE)"
+                                  HeaderText="@(_localizer["_col_dept"])"
+                                  R_EnableAdd="@false" R_EnableEdit="@false"
+                                  Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CCHARGES_ID)"
+                                  HeaderText="@(_localizer["_col_chargesid"])"
+                                  R_EnableAdd="@false" R_EnableEdit="@false"
+                                  Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CINVGRP_CODE)" HeaderText="@(_localizer["_col_invoicegrp"])" Width="130px" R_EnableAdd="@false" R_EnableEdit="@false"></R_GridTextColumn>
+                <R_GridCheckBoxColumn FieldName="@nameof(PricelistDTO.LTAXABLE)" HeaderText="@(_localizer["_col_taxable"])" Width="100px" R_EnableAdd="@false" R_EnableEdit="@false"></R_GridCheckBoxColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CUNIT)" HeaderText="@(_localizer["_col_unit"])" Width="150px" R_EnableAdd="@false" R_EnableEdit="@false" MaxLength="10"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CCURRENCY_CODE)" HeaderText="@(_localizer["_col_curr"])" Width="100px" R_EnableAdd="@false" R_EnableEdit="@false"></R_GridTextColumn>
+                <R_GridNumericColumn FieldName="@nameof(PricelistDTO.IPRICE)" TValue="int" HeaderText="@(_localizer["_col_price"])" Width="150px" R_EnableAdd R_EnableEdit ThousandSeparator Arrows="@false"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="@nameof(PricelistDTO.CDESCRIPTION)" HeaderText="@(_localizer["_col_desc"])" Width="250px" R_EnableAdd="@false" R_EnableEdit="@false" MaxLength="500"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(PricelistDTO.DSTART_DATE)" HeaderText="@(_localizer["_col_startdate"])" Width="200px" R_EnableAdd R_EnableEdit></R_GridDatePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conPricelist"
+                 R_IsHeader
+                 R_SetOther="@Pricelist_SetOtherAsync"></R_ConductorGrid>

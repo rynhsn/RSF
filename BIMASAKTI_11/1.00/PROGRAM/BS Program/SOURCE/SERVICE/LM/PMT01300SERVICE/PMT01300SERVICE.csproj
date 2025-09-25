@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\BACK\LM\PMT01300BACK\PMT01300BACK.csproj" />
+	  <ProjectReference Include="..\..\..\COMMON\BaseHeaderResources\BaseHeaderResources.csproj" />
+	  <ProjectReference Include="..\..\..\COMMON\LM\PMT01300COMMON\PMT01300COMMON.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="BaseHeaderReportCOMMON">
+			<HintPath>..\..\..\COMMON\BaseHeaderReportCOMMON.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APIBackEnd">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_Cache">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_Cache.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CommonFrontBackAPI">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ReportFastReportBack">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportFastReportBack.dll</HintPath>
+		</Reference>
+		<Reference Include="R_OpenTelemetry">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ReportServerClient">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportServerClient.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ReportServerCommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportServerCommon.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

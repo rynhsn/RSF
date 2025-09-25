@@ -1,0 +1,5 @@
+1511= Error process, please contact your administrator!
+1512= Duplicate Penalty Date!
+1513= Cannot delete, penalty date is bigger than GL Start Period!
+1514= Cannot delete back date penalty!
+

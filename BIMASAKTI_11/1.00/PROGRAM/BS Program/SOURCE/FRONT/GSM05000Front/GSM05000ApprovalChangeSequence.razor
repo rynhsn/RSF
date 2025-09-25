@@ -1,0 +1,85 @@
+﻿@page "/GSM05000ApprovalChangeSequence"
+@using GSM05000FrontResources
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+@attribute [R_Page(Title = "Change User Sequence")];
+
+
+<R_StackLayout Row Spacing="3" Class="d-flex justify-content-between mb-2">
+    <R_ItemLayout>
+        <R_Label>@_localizer["LABEL_DEPARTMENT"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout xs="10" Class="d-flex align-items-end">
+        <R_ComboBox Data="@_viewModel.DeptSeqList"
+                    Value="_viewModel.DepartmentEntity.CDEPT_CODE"
+                    ValueField="@nameof(GSM05000ApprovalDepartmentDTO.CDEPT_CODE)"
+                    TextField="@nameof(GSM05000ApprovalDepartmentDTO.CDEPT_NAME)"
+                    ValueChanged="@((string value) => ChangedDept(value))"
+        />
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Class="mb-2">
+    <R_Grid @ref="@_grid"
+           DataSource="@_viewModel.ApproverList"
+           Pageable
+           R_ConductorGridSource="@_conductor"
+           R_GridType="@R_eGridType.Batch"
+           R_ServiceGetListRecord="@GetList"
+           Width="650px"
+           DragDrop
+           AllowAddNewRow="false"
+           AllowEditRow="false"
+           AllowDeleteRow="false"
+           DragClueField="@nameof(GSM05000ApprovalUserDTO.CDEPT_CODE)" 
+           
+             R_Display="Display"
+             R_BeforeSaveBatch="BeforeSaveBatch"
+             R_ServiceSaveBatch="SaveBatch">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CDEPT_CODE)"
+                              HeaderText="@_localizer["LABEL_DEPARTMENT"]"
+                              Width="150px"/>
+            <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CUSER_ID)"
+                              HeaderText="@_localizer["LABEL_USERID"]"
+                              Width="150px"/>
+            <R_GridTextColumn FieldName="@nameof(GSM05000ApprovalUserDTO.CUSER_NAME)"
+                              HeaderText="@_localizer["LABEL_USERNAME"]"
+                              Width="150px"/>
+            <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GSM05000ApprovalUserDTO.NLIMIT_AMOUNT)"
+                              HeaderText="@_localizer["LABEL_LIMITAMOUNT"]"
+                              Width="175px"/>
+        </R_GridColumns>
+    </R_Grid>
+
+<R_ConductorGrid @ref="_conductor"
+             R_IsHeader/>
+</R_StackLayout>
+
+<R_StackLayout Row Class="d-flex justify-content-between mb-5">
+    
+    <R_ItemLayout>
+        <R_Label>@_localizer["LABEL_CHANGESEQ"]</R_Label>
+    </R_ItemLayout>
+    
+    <R_ItemLayout Class="d-flex align-items-end">
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Button R_ConductorGridSource="_conductor" Enabled="@_viewModel.EnableUpBtn" OnClick="OnClickNext">@_localizer["BTN_MOVENEXT"]</R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Button R_ConductorGridSource="_conductor" Enabled="@_viewModel.EnableDownBtn" OnClick="OnClickPrevious">@_localizer["BTN_MOVEPREVIOUS"]</R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="d-flex justify-content-end">
+    <R_ItemLayout>
+        <R_Button R_ConductorGridSource="_conductor" OnClick="OnClickSave">@_localizer["BTN_SAVE"]</R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="OnClickCancel">@_localizer["BTN_CANCEL"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

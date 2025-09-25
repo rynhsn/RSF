@@ -1,0 +1,129 @@
+@using Lookup_PMCOMMON.DTOs.LML01900;
+@using Lookup_PMCOMMON.DTOs.UtilityDTO;
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_Staff")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupPM> _localizer
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label FontStyle="R_eFontStyle.Bold">
+                @_localizer["_Dept"]
+            </R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_ComboBox Data="@_viewModel.DepartmentList"
+                        Value="_viewModel.Parameter.CDEPT_CODE"
+                        ValueField="@nameof(DepartmentDTO.CDEPT_CODE)"
+                        TextField="@nameof(DepartmentDTO.CDEPT_NAME)"
+                        ValueChanged="@((string value) => DepartmentDropdown_OnChange(value))"
+                        Enabled="@_viewModel.LenabledFilter_Department"
+                        PopupMaxHeight="150px">
+            </R_ComboBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="3" Class="ms-3">
+            <R_CheckBox @bind-Value="@_viewModel.LIncludeSupervisor">
+            </R_CheckBox>
+            <R_Label>@_localizer["_IncludeSupervisor"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout Class="d-flex justify-content-end" Style="width:100%">
+            <R_Button OnClick="@BtnRefresh">
+                @_localizer["_refresh"]
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label FontStyle="R_eFontStyle.Bold">
+                @_localizer["_Supervisor"]
+            </R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_ComboBox Data="@_viewModel.SupervisorList"
+                        Value="_viewModel.Parameter.CSUPERVISOR_ID"
+                        ValueField="@nameof(SupervisorDTO.CSUPERVISOR)"
+                        TextField="@nameof(SupervisorDTO.CSUPERVISOR_NAME)"
+                        ValueChanged="@((string value) => SupervisorDropdown_OnChange(value))"
+                        Enabled="@_viewModel.LenabledFilter_Supervisor"
+                        PopupMaxHeight="150px">
+            </R_ComboBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="3" Class="ms-3">
+            <R_CheckBox @bind-Value="@_viewModel.LIncludeInactive">
+            </R_CheckBox>
+            <R_Label>@_localizer["_IncludeInactive"]</R_Label>
+        </R_ItemLayout>
+
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label FontStyle="R_eFontStyle.Bold">
+                @_localizer["_StaffType"]
+            </R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_ComboBox Data="@_viewModel.StaffTypeList"
+                        Value="_viewModel.Parameter.CSTAFF_TYPE_ID"
+                        ValueField="@nameof(StaffTypeDTO.CCODE)"
+                        TextField="@nameof(StaffTypeDTO.CNAME)"
+                        ValueChanged="@((string value) => StaffTypeDropdown_OnChange(value))"
+                        Enabled="@_viewModel.LenabledFilter_StaffType"
+                        PopupMaxHeight="150px">
+            </R_ComboBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_Grid @ref="@GridRef"
+            DataSource="_viewModel.GetList"
+            R_ServiceGetListRecord="@R_ServiceGetListRecordAsync"
+            R_GridType="@R_eGridType.Original"
+            Pageable
+            @bind-PageSize="@_pageSize"
+            Height="300px"
+            Width="1100px">
+        <R_GridColumns>
+            <R_GridTextColumn Width="120px"
+                              FieldName="@nameof(LML01900DTO.CSTAFF_ID)"
+                              HeaderText=@_localizer["_StaffId"] />
+            <R_GridTextColumn Width="155px"
+                              FieldName="@nameof(LML01900DTO.CSTAFF_NAME)"
+                              HeaderText=@_localizer["_StaffName"] />
+            <R_GridTextColumn Width="140px"
+                              FieldName="@nameof(LML01900DTO.CDEPT_CODE)"
+                              HeaderText=@_localizer["_Dept"] />
+            <R_GridTextColumn Width="150px"
+                              FieldName="@nameof(LML01900DTO.CSUPERVISOR)"
+                              HeaderText=@_localizer["_Supervisor"] />
+            <R_GridTextColumn Width="140px"
+                              FieldName="@nameof(LML01900DTO.CPOSITION_DESCRIPTION)"
+                              HeaderText=@_localizer["_Position"] />
+            <R_GridTextColumn Width="140px"
+                              FieldName="@nameof(LML01900DTO.CTYPE_DESCRIPTION)"
+                              HeaderText=@_localizer["_Type"] />
+            <R_GridTextColumn Width="120px"
+                              FieldName="@nameof(LML01900DTO.CMOBILE_PHONE1)"
+                              HeaderText=@_localizer["_Phone1"] />
+            <R_GridTextColumn Width="140px"
+                              FieldName="@nameof(LML01900DTO.CEMAIL)"
+                              HeaderText=@_localizer["_Email"] />
+        </R_GridColumns>
+    </R_Grid>
+    </R_StackLayout>
+    <R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            OK
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            Cancel
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

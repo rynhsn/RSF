@@ -1,0 +1,106 @@
+﻿@inherits R_Page
+@attribute [R_Page(ResourceId = "_Agreement")]
+
+<R_TabStrip @ref="@_TabLOIList">
+    <R_TabStripTab @ref="@_TabLOIListStrip" Title="@_localizer["_AgreementList"]" Id="LOIList" Enabled="_pageCRUDmode">
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_RadioGroup Data="@_viewModel.TransStatusList"
+                              Value="@_viewModel.CPAR_TRANS_STS"
+                              ValueField="Key"
+                              TextField="Value"
+                              Layout="R_eRadioGroupLayout.Horizontal"
+                              ValueChanged="@((string value) => TransStatusRadioButton_ValueChanged(value))"></R_RadioGroup>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_Grid @ref="@_gridLOIListRef"
+                        DataSource="@_viewModel.LOIGrid"
+                        Pageable="true"
+                        R_ConductorSource="@_conRef"
+                        R_GridType="@R_eGridType.Navigator"
+                        R_ServiceGetListRecord="@Grid_LOI_ServiceGetListRecord"
+                        Height="290px">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(PMT00500DTO.CDEPT_NAME)" HeaderText="@_localizer["_Department"]" Width="130px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(PMT00500DTO.CREF_NO)" HeaderText="@_localizer["_RefNo"]" Width="200px"></R_GridTextColumn>
+                        <R_GridDatePickerColumn FieldName="@nameof(PMT00500DTO.DREF_DATE)" HeaderText="@_localizer["_RefDate"]" Width="120px"></R_GridDatePickerColumn>
+                        <R_GridTextColumn FieldName="@nameof(PMT00500DTO.CTENANT_NAME)" HeaderText="@_localizer["_Tenant"]" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(PMT00500DTO.CSALESMAN_NAME)" HeaderText="@_localizer["_Salesman"]" Width="200px"></R_GridTextColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT00500DTO.NBOOKING_FEE)" HeaderText="@_localizer["_BookingFee"]" Width="120px"></R_GridNumericColumn>
+                        <R_GridCheckBoxColumn FieldName="@nameof(PMT00500DTO.LPAID)" HeaderText="@_localizer["_Paid"]" Width="80px"></R_GridCheckBoxColumn>
+                        <R_GridTextColumn FieldName="@nameof(PMT00500DTO.CTRANS_STATUS_DESCR)" HeaderText="@_localizer["_Status"]" Width="100px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(PMT00500DTO.CDOC_TYPE)" HeaderText="@_localizer["_Document"]" Width="120px"></R_GridTextColumn>
+                        <R_GridDatePickerColumn FieldName="@nameof(PMT00500DTO.DHO_ACTUAL_DATE)" HeaderText="@_localizer["_ActualHODate"]" Width="150px"></R_GridDatePickerColumn>
+                        <R_GridDatePickerColumn FieldName="@nameof(PMT00500DTO.DOPEN_DATE)" HeaderText="@_localizer["_OpeningDate"]" Width="130px"></R_GridDatePickerColumn>
+                        <R_GridTextColumn FieldName="@nameof(PMT00500DTO.CUNIT_NAME)" HeaderText="@_localizer["_UnitName"]" Width="120px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(PMT00500DTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="120px"></R_GridTextColumn>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(PMT00500DTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]" Width="180px"></R_GridDateTimePickerColumn>
+                        <R_GridTextColumn FieldName="@nameof(PMT00500DTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="120px"></R_GridTextColumn>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(PMT00500DTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]" Width="180px"></R_GridDateTimePickerColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="6">
+                <R_Grid @ref="@_gridLOIUnitListRef"
+                        DataSource="@_viewModel.LOIUNITGrid"
+                        Pageable="true"
+                        AllowDeleteRow="false"
+                        AllowEditRow="false"
+                        AllowAddNewRow="false"
+                        R_ServiceGetListRecord="@Grid_LOI_Unit_ServiceGetListRecord"
+                        Height="190px">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(PMT00510DTO.CFLOOR_ID)" HeaderText="@_localizer["_Floor"]" Width="90px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(PMT00510DTO.CUNIT_ID)" HeaderText="@_localizer["_UnitId"]" Width="120px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(PMT00510DTO.CUNIT_TYPE_ID)" HeaderText="@_localizer["_UnitType"]" Width="110px"></R_GridTextColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT00510DTO.NGROSS_AREA_SIZE)" HeaderText="@_localizer["_Gross"]" Width="95px"></R_GridNumericColumn>
+                        <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMT00510DTO.NNET_AREA_SIZE)" HeaderText="@_localizer["_Net"]" Width="95px"></R_GridNumericColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Button Enabled="@(_viewModel.LOIGrid.Count > 0)">@_localizer["_Print"]</R_Button>
+                <R_Button Enabled="@(_viewModel.LOIGrid.Count > 0 && EnableDraftSts)" OnClick="@SubmitProcess">@_localizer["_Submit"]</R_Button>
+                <R_Button Enabled="@(_viewModel.LOIGrid.Count > 0 && EnableOpenSts)" OnClick="@RedraftProcess">@_localizer["_Redraft"]</R_Button>
+                <R_Button Enabled="@(_viewModel.LOIGrid.Count > 0 && EnableApproveSts)" OnClick="@CloseLOIProcess">@_localizer["_CloseAgreement"]</R_Button>
+
+                <R_Button Class="ms-8" OnClick="@TemplateBtn_OnClick">@_localizer["_BTNTemplate"]</R_Button>
+                <R_Popup Enabled="@(string.IsNullOrWhiteSpace(_viewModel.PROPERTY_DATA.CPROPERTY_ID) == false)" R_Before_Open_Popup="@Upload_Before_Open_Popup" R_After_Open_Popup="@Upload_After_Open_Popup">@_localizer["_BTNUpload"]</R_Popup>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_TabStripTab>
+
+    <R_TabStripTab @ref="@_TabLOIStrip" Title="@_localizer["_Agreement"]" Id="LOI" Enabled="@(!string.IsNullOrWhiteSpace(_viewModel.PROPERTY_DATA.CPROPERTY_ID) && _pageCRUDmode)">
+        <R_TabPage @ref="@_TabPageLOI" R_Before_Open_TabPage="@LOITab_Before_Open_TabPage" R_After_Open_TabPage="@LOITab_After_Open_TabPage" R_TabEventCallback="@R_TabEventCallback"></R_TabPage>
+    </R_TabStripTab>
+    <R_TabStripTab @ref="@_TabLOIUnitStrip" Title="@_localizer["_UnitAndCharges"]" Id="UnitCharges" Enabled="@(_viewModel.LOIGrid.Count > 0 && !string.IsNullOrWhiteSpace(_viewModel.PROPERTY_DATA.CPROPERTY_ID) && _pageCRUDmode)">
+        <R_TabPage @ref="@_TabPageUnitAndCharges" R_Before_Open_TabPage="@UnitUtilitiesTab_Before_Open_TabPage" R_After_Open_TabPage="@LOITab_After_Open_TabPage" R_TabEventCallback="@R_TabEventCallback"></R_TabPage>
+    </R_TabStripTab>
+    <R_TabStripTab @ref="@_TabLOIInvoiceStrip" Title="@_localizer["_InvoicePlan"]" Id="InvoicePlan" Enabled="@(_viewModel.LOIGrid.Count > 0 && HasUnitData && !string.IsNullOrWhiteSpace(_viewModel.PROPERTY_DATA.CPROPERTY_ID) && _pageCRUDmode)">
+        <R_TabPage @ref="@_TabPageInvoicePlan" R_After_Open_TabPage="@LOITab_After_Open_TabPage" R_Before_Open_TabPage="@InvoicePlanTab_Before_Open_TabPage"></R_TabPage>
+    </R_TabStripTab>
+    <R_TabStripTab @ref="@_TabLOIDepositStrip" Title="@_localizer["_Deposit"]" Id="Deposit" Enabled="@(_viewModel.LOIGrid.Count > 0 && HasUnitData && !string.IsNullOrWhiteSpace(_viewModel.PROPERTY_DATA.CPROPERTY_ID) && _pageCRUDmode)">
+        <R_TabPage @ref="@_TabPageDeposit" R_Before_Open_TabPage="@DepositTab_Before_Open_TabPage" R_After_Open_TabPage="@LOITab_After_Open_TabPage" R_TabEventCallback="@R_TabEventCallback"></R_TabPage>
+    </R_TabStripTab>
+    <R_TabStripTab @ref="@_TabLOIDocumentStrip" Title="@_localizer["_Document"]" Id="Document" Enabled="@(_viewModel.LOIGrid.Count > 0 && !string.IsNullOrWhiteSpace(_viewModel.PROPERTY_DATA.CPROPERTY_ID)&& _pageCRUDmode )">
+        <R_TabPage @ref="@_TabPageDocument" R_Before_Open_TabPage="@DocumentTab_Before_Open_TabPage" R_After_Open_TabPage="@LOITab_After_Open_TabPage" R_TabEventCallback="@R_TabEventCallback"></R_TabPage>
+    </R_TabStripTab>
+</R_TabStrip>
+
+
+
+<R_Conductor @ref="@_conRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Grid_LOI_ServiceGetRecord"
+             R_Display="@Grid_LOI_Display"></R_Conductor>

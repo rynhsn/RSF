@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>PMT03500Front</RootNamespace>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <SupportedPlatform Include="browser" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.15" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="BlazorClientHelper">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
+        </Reference>
+        <Reference Include="R_APICommonDTO">
+          <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_APICommonDTO.dll</HintPath>
+        </Reference>
+        <Reference Include="R_BlazorFrontEnd">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.dll</HintPath>
+        </Reference>
+        <Reference Include="R_BlazorFrontEnd.Controls">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Controls.dll</HintPath>
+        </Reference>
+        <Reference Include="R_CommonFrontBackAPI">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CommonFrontBackAPI.dll</HintPath>
+        </Reference>
+        <Reference Include="R_ProcessAndUploadFront">
+          <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_ProcessAndUploadFront.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\COMMON\GS\GSM02500COMMON\GSM02500COMMON.csproj" />
+      <ProjectReference Include="..\..\COMMON\LM\LMT03500Common\PMT03500Common.csproj" />
+      <ProjectReference Include="..\GSM02500FRONT\GSM02500FRONT.csproj" />
+      <ProjectReference Include="..\LMT03500FrontResources\PMT03500FrontResources.csproj" />
+      <ProjectReference Include="..\LMT03500Model\PMT03500Model.csproj" />
+    </ItemGroup>
+
+</Project>

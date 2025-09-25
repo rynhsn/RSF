@@ -1,0 +1,7 @@
+0401 = Error process, please contact your administrator!
+0402 = Duplicate Public Location Id!
+0403 = Cannot Delete, Public Location already in used!
+0404 = Public Location Id cannot be empty!
+0405 = Public Location Name cannot be empty!
+
+

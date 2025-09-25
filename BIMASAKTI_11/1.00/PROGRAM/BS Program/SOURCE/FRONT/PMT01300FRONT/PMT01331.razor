@@ -1,0 +1,148 @@
+﻿@inherits R_Page
+@attribute [R_Page(ResourceId = "_RevenueSharing")]
+
+<R_StackLayout Style="width: 1250px">
+    <R_StackLayout >
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_StackLayout Row>
+                    <R_Grid @ref="@_gridRevenueSharingHDRef"
+                            DataSource="@_viewModel.RevenueSharingHDGrid"
+                            Pageable="true"
+                            R_ConductorGridSource="@_conductorRef"
+                            R_GridType="@R_eGridType.Original"
+                            AllowAddNewRow="true"
+                            AllowEditRow="true"
+                            AllowDeleteRow="true"
+                            Height="410px"
+                            Enabled="@(EnableRevenueMintRent && EnableRevenueSharing)"
+                            R_ServiceGetListRecord="@RevenueSharingHD_ServiceGetListRecord"
+                            R_ServiceGetRecord="@RevenueSharingHD_ServiceGetRecord"
+                            R_Display="@RevenueSharingHD_Display"
+                            R_Validation="@RevenueSharingHD_Validation"
+                            R_ServiceSave="@RevenueSharingHD_ServiceSave"
+                            R_ServiceDelete="@RevenueSharingHD_ServiceDelete"
+                            R_CheckGridAdd="@RevenueSharingHD_CheckGridAdd"
+                            R_CheckGridEdit="@RevenueSharingHD_CheckGridEdit"
+                            R_CheckGridDelete="@RevenueSharingHD_CheckGridDelete">
+                        <R_GridColumns>
+                            <R_GridTextColumn FieldName=@nameof(PMT01331DTO.CREVENUE_SHARING_ID) R_EnableEdit R_EnableAdd HeaderText="@_localizer["_RevenueSharingId"]" Width="200px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT01331DTO.CREVENUE_SHARING_NAME) R_EnableEdit R_EnableAdd HeaderText="@_localizer["_RevenueSharingName"]" Width="300px"></R_GridTextColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_StackLayout hidden="@(_viewModel.LOI_Charges.LIS_CLOSE_STATUS == false)">
+                    <R_GroupBox Title="@_localizer["_RevenueSharingSchema"]">
+                        <R_StackLayout Row>
+                            <R_Grid @ref="@_gridRevenueSharingRef"
+                                    DataSource="@_viewModel.RevenueSharingGrid"
+                                    Pageable="true"
+                                    R_ConductorGridSource="@_conductorDetail1Ref"
+                                    R_GridType="@R_eGridType.Original"
+                                    AllowAddNewRow="true"
+                                    AllowEditRow="true"
+                                    AllowDeleteRow="true"
+                                    Enabled="@(EnableRevenueSharingHD && EnableRevenueMintRent && _viewModel.RevenueSharingHDGrid.Count > 0)"
+                                    Height="180px"
+                                    R_ServiceGetListRecord="@RevenueSharing_ServiceGetListRecord"
+                                    R_ServiceGetRecord="@RevenueSharing_ServiceGetRecord"
+                                    R_Validation="@RevenueSharing_Validation"
+                                    R_ServiceSave="@RevenueSharing_ServiceSave"
+                                    R_ServiceDelete="@RevenueSharing_ServiceDelete"
+                                    R_AfterAdd="@RevenueSharing_AfterAdd"
+                                    >
+                                <R_GridColumns>
+                                    <R_GridMultiHeaderColumn HeaderText="@_localizer["_MonthlyRevenue"]">
+                                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT01332DTO.NMONTHLY_REVENUE_FROM) Min="0" Arrows="false" R_EnableEdit R_EnableAdd HeaderText="@_localizer["_From"]" Width="180px"></R_GridNumericColumn>
+                                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT01332DTO.NMONTHLY_REVENUE_TO) Min="0" Arrows="false" R_EnableEdit R_EnableAdd HeaderText="@_localizer["_To"]" Width="180px"></R_GridNumericColumn>
+                                    </R_GridMultiHeaderColumn>
+                                    <R_GridMultiHeaderColumn HeaderText="@_localizer["_Landlord"]">
+                                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT01332DTO.NSHARE_PCT) Arrows="false" Min="1" Max="100" R_EnableEdit R_EnableAdd HeaderText="@(_localizer["_Share"] + " (%)")" Width="180px"></R_GridNumericColumn>
+                                    </R_GridMultiHeaderColumn>
+                                </R_GridColumns>
+                            </R_Grid>
+                        </R_StackLayout>
+                    </R_GroupBox>
+
+                    <R_GroupBox Title="@_localizer["_MinimumRent"]">
+                        <R_StackLayout Row>
+                            <R_Grid @ref="@_gridRevenueMintRentRef"
+                                    DataSource="@_viewModel.RevenueMintRentGrid"
+                                    Pageable="true"
+                                    R_ConductorGridSource="@_conductorDetail2Ref"
+                                    R_GridType="@R_eGridType.Original"
+                                    AllowAddNewRow="false"
+                                    AllowEditRow="true"
+                                    AllowDeleteRow="false"
+                                    Enabled="@(EnableRevenueSharing && EnableRevenueSharingHD)"
+                                    Height="180px"
+                                    R_ServiceGetListRecord="@RevenueMintRent_ServiceGetListRecord"
+                                    R_ServiceGetRecord="@RevenueMintRent_ServiceGetRecord"
+                                    R_ServiceSave="@RevenueMintRent_ServiceSave"
+                                    R_CheckGridEdit="@RevenueSharingHD_CheckGridEdit">
+                                <R_GridColumns>
+                                    <R_GridNumericColumn TValue="int" FieldName=@nameof(PMT01333DTO.IYEAR) Min="1" Arrows="false" HeaderText="@_localizer["_Year"]" Width="180px"></R_GridNumericColumn>
+                                    <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT01333DTO.NRENT_RATE) Min="0" Arrows="false" R_EnableEdit R_EnableAdd HeaderText="@_localizer["_RentRent"]" Width="180px"></R_GridNumericColumn>
+                                    <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT01333DTO.NMINIMUM_RENT) Min="0" Arrows="false" R_EnableEdit R_EnableAdd HeaderText="@(_localizer["_MinimumRent"])" Width="180px"></R_GridNumericColumn>
+                                </R_GridColumns>
+                            </R_Grid>
+                        </R_StackLayout>
+                    </R_GroupBox>
+                </R_StackLayout>
+                <R_StackLayout hidden="@(_viewModel.LOI_Charges.LIS_CLOSE_STATUS == true)">
+                    <R_GroupBox Title="@_localizer["_RevenueSharingSchema"]">
+                        <R_StackLayout Row>
+                            <R_Grid @ref="@_gridRevenueSharingDisplayOnlyRef"
+                                    DataSource="@_viewModel.RevenueSharingGrid"
+                                    Pageable="true"
+                                    R_GridType="@R_eGridType.Navigator"
+                                    Height="180px"
+                                    R_ServiceGetListRecord="@RevenueSharing_ServiceGetListRecord">
+                                <R_GridColumns>
+                                    <R_GridMultiHeaderColumn HeaderText="@_localizer["_MonthlyRevenue"]">
+                                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT01332DTO.NMONTHLY_REVENUE_FROM) Min="0" Arrows="false" HeaderText="@_localizer["_From"]" Width="180px"></R_GridNumericColumn>
+                                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT01332DTO.NMONTHLY_REVENUE_TO) Min="0" Arrows="false" HeaderText="@_localizer["_To"]" Width="180px"></R_GridNumericColumn>
+                                    </R_GridMultiHeaderColumn>
+                                    <R_GridMultiHeaderColumn HeaderText="@_localizer["_Landlord"]">
+                                        <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT01332DTO.NSHARE_PCT) Arrows="false" Min="1" Max="100" HeaderText="@(_localizer["_Share"] + " (%)")" Width="180px"></R_GridNumericColumn>
+                                    </R_GridMultiHeaderColumn>
+                                </R_GridColumns>
+                            </R_Grid>
+                        </R_StackLayout>
+                    </R_GroupBox>
+
+                    <R_GroupBox Title="@_localizer["_MinimumRent"]">
+                        <R_StackLayout Row>
+                            <R_Grid @ref="@_gridRevenueMintRentDisplayOnlyRef"
+                                    DataSource="@_viewModel.RevenueMintRentGrid"
+                                    Pageable="true"
+                                    R_GridType="@R_eGridType.Navigator"
+                                    Height="180px"
+                                    R_ServiceGetListRecord="@RevenueMintRent_ServiceGetListRecord">
+                                <R_GridColumns>
+                                    <R_GridNumericColumn TValue="int" FieldName=@nameof(PMT01333DTO.IYEAR) Min="1" Arrows="false" HeaderText="@_localizer["_Year"]" Width="180px"></R_GridNumericColumn>
+                                    <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT01333DTO.NRENT_RATE) Min="0" Arrows="false" HeaderText="@_localizer["_RentRent"]" Width="180px"></R_GridNumericColumn>
+                                    <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT01333DTO.NMINIMUM_RENT) Min="0" Arrows="false" HeaderText="@(_localizer["_MinimumRent"])" Width="180px"></R_GridNumericColumn>
+                                </R_GridColumns>
+                            </R_Grid>
+                        </R_StackLayout>
+                    </R_GroupBox>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorRef"
+                 R_IsHeader="true"
+                 R_SetOther="@RevenueSharingHD_SetOther" />
+
+<R_ConductorGrid @ref="@_conductorDetail1Ref"
+                 R_ConductorParent="@_conductorRef"
+                 R_SetOther="@RevenueSharing_SetOther" />
+
+<R_ConductorGrid @ref="@_conductorDetail2Ref"
+                 R_ConductorParent="@_conductorRef"
+                 R_SetOther="@RevenueMintRent_SetOther" />

@@ -1,105 +1,118 @@
 ﻿using BlazorMenu.Shared.Tabs;
 using Microsoft.AspNetCore.Components;
+using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.Enums;
 using R_BlazorFrontEnd.Controls.Menu;
+using R_BlazorFrontEnd.Controls.Menu.Tab;
 
 namespace BlazorMenu.Shared
 {
-    public partial class MainBody : R_IMainBody
+    public partial class MainBody : ComponentBase, R_IMainBody
     {
         [Parameter] public RenderFragment ChildContent { get; set; }
 
-        public List<R_Tab> Tabs { get; set; } = new();
+        public List<R_TabProgram> Tabs { get; set; } = new();
 
         [CascadingParameter(Name = "currentTabMenu")]
         public MenuTab CurrentTab { get; set; }
 
-        private int ActiveTabIndex;
+        private R_Tabs _tabRef;
 
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
             if (CurrentTab != null)
-                R_AddTab(CurrentTab.Title, CurrentTab.Body, plSetActive: true, peFormModel: R_eFormModel.MainForm, pcFormAccess: CurrentTab.Access);
+                await R_AddTab(
+                    CurrentTab.Title,
+                    CurrentTab.Body,
+                    true,
+                    false,
+                    null,
+                    R_eFormModel.MainForm,
+                    CurrentTab.Access,
+                    null,
+                    null);
         }
 
-        public void R_AddTab(string pcTitle, RenderFragment poBody, bool plSetActive = false, bool plCloseable = false, object poParameter = null, R_eFormModel peFormModel = R_eFormModel.None, string pcFormAccess = "V")
+        public async Task R_AddTab(
+            string pcTitle,
+            RenderFragment poBody,
+            bool plSetActive,
+            bool plCloseable,
+            object poParameter,
+            R_eFormModel peFormModel,
+            string pcFormAccess,
+            R_Page poParentPage,
+            R_Detail poDetailButton)
         {
-            Tabs.ForEach(x =>
-            {
-                x.IsActive = false;
-            });
-
-            R_Tab loNewTab = null;
+            R_TabProgram loNewTab = null;
             var selTab = Tabs.FirstOrDefault(m => m.Title == pcTitle || string.IsNullOrEmpty(m.Title));
             if (selTab == null)
             {
-                loNewTab = new R_Tab
+                loNewTab = new R_TabProgram
                 {
                     Title = pcTitle,
-                    IsActive = true,
+                    IsActive = plSetActive,
                     Body = poBody,
                     Closeable = plCloseable,
                     Parameter = poParameter,
                     FormModel = peFormModel,
-                    Access = pcFormAccess
+                    Access = pcFormAccess,
+                    ParentPage = poParentPage,
+                    DetailButton = poDetailButton
                 };
 
                 Tabs.Add(loNewTab);
             }
             else
             {
-                if (string.IsNullOrEmpty(selTab.Title))
-                    selTab.Title = pcTitle;
-
-                selTab.IsActive = true;
+                loNewTab = selTab;
             }
 
-            if (plSetActive && loNewTab != null)
+            if (loNewTab.FormModel == R_eFormModel.Detail ||
+                loNewTab.FormModel == R_eFormModel.Predefine)
             {
-                ActivateTab(loNewTab);
-            }
-
-            if (!plSetActive && loNewTab != null)
-            {
-                StateHasChanged();
+                if (selTab != null)
+                {
+                    var loTab = _tabRef.GetTabById(selTab.Id.ToString());
+                    await _tabRef.SetActiveTabAsync(loTab);
+                }
+                else
+                    _tabRef.NotifyStateHasChanged();
             }
         }
 
-        private async Task OnTabClose(R_Tab poTab)
+        private async Task OnTabRemoving(R_TabRemovingEventArgs eventArgs)
         {
-            if (poTab.Close != null)
+            var poRemovedTab = Tabs.FirstOrDefault(x => x.Id == Guid.Parse(eventArgs.Tab.Id));
+
+            if (poRemovedTab.Close != null)
             {
-                var llResult = await poTab.Close(true, null);
+                var llResult = await poRemovedTab.Close(true, null);
 
-                if (!llResult)
-                    return;
-            }
-
-            var liTabIndex = Tabs.IndexOf(poTab);
-            Tabs.Remove(poTab);
-
-            if (poTab.IsActive)
-            {
-                R_Tab activeTab = null;
-                if (liTabIndex > 0)
-                    activeTab = Tabs[liTabIndex - 1];
-                else if (Tabs.Count > 0)
-                    activeTab = Tabs[0];
-
-                if (activeTab != null)
-                    await ActivateTab(activeTab);
+                eventArgs.Cancel = !llResult;
             }
         }
 
-        private Task ActivateTab(R_Tab poTab)
+        private void OnTabRemoved(R_Tab tab)
         {
-            if (ActiveTabIndex != Tabs.IndexOf(poTab))
-            {
-                ActiveTabIndex = Tabs.IndexOf(poTab);
-                StateHasChanged();
-            }
+            var poRemovedTab = Tabs.FirstOrDefault(x => x.Id == Guid.Parse(tab.Id));
 
-            return Task.CompletedTask;
+            Tabs.Remove(poRemovedTab);
+
+            if (poRemovedTab.FormModel == R_eFormModel.Detail && poRemovedTab.DetailButton != null)
+            {
+                if (poRemovedTab.DetailButton.R_After_Open_Detail.HasDelegate)
+                    poRemovedTab.DetailButton.R_After_Open_Detail.InvokeAsync();
+            }
+        }
+
+        private void OnActiveTabChanged(R_Tab tab)
+        {
+            Tabs.ForEach(x => { x.IsActive = false; });
+
+            var poActiveTab = Tabs.FirstOrDefault(x => x.Id == Guid.Parse(tab.Id));
+
+            poActiveTab.IsActive = true;
         }
     }
 }

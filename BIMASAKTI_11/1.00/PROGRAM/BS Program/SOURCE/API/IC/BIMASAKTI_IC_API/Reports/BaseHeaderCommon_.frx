@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="04/24/2025 11:27:52" ReportInfo.CreatorVersion="2023.2.21.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+        <Column Name="DPRINT_DATE_COMPANY" DataType="System.DateTime"/>
+      </Column>
+      <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Page" DataType="System.String"/>
+        <Column Name="Of" DataType="System.String"/>
+        <Column Name="Print_Date" DataType="System.String"/>
+        <Column Name="Print_By" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" Watermark.Font="Arial, 60pt">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="75.6" CanGrow="true">
+      <PictureObject Name="LogoCompany" Left="9.45" Top="9.45" Width="132.3" Height="66.15" DataColumn="ResponseDataModel.BaseHeaderData.BLOGO_COMPANY"/>
+      <TextObject Name="Text33" Left="170.1" Top="9.45" Width="264.6" Height="18.9" Text="[ResponseDataModel.BaseHeaderData.CCOMPANY_NAME]" HorzAlign="Center" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="LabelNoPage" Left="444.15" Top="9.45" Width="236.25" Height="18.9" Text="[ResponseDataModel.BaseHeaderColumn.Page] [Page] [ResponseDataModel.BaseHeaderColumn.Of] [TotalPages#]" Font="Arial Unicode MS, 10pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="BaseHeaderDate" Left="529.2" Top="28.35" Width="113.4" Height="18.9" Text=": [ResponseDataModel.BaseHeaderData.DPRINT_DATE_COMPANY]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 9pt"/>
+      <TextObject Name="LabelDate" Left="444.15" Top="28.35" Width="85.05" Height="18.9" Text="[ResponseDataModel.BaseHeaderColumn.Print_Date]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="BaseHeaderLabel" Left="170.1" Top="37.8" Width="264.6" Height="37.8" CanGrow="true" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.BaseHeaderData.CPRINT_NAME]" HorzAlign="Center" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="BaseHeaderUserId" Left="529.2" Top="47.25" Width="189" Height="18.9" Text=": [ResponseDataModel.BaseHeaderData.CUSER_ID]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="LabelUserId" Left="444.15" Top="47.25" Width="85.05" Height="18.9" Text="[ResponseDataModel.BaseHeaderColumn.Print_By]" Font="Arial Unicode MS, 10pt"/>
+      <TextObject Name="BaseHeaderDateTime" Left="642.6" Top="28.35" Width="75.6" Height="18.9" Text="[ResponseDataModel.BaseHeaderData.DPRINT_DATE_COMPANY]" Format="Time" Format.Format="t" Font="Arial Unicode MS, 9pt"/>
+    </PageHeaderBand>
+  </ReportPage>
+</Report>

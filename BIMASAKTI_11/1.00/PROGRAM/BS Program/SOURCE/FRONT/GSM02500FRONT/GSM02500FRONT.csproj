@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\GFF00900FRONT\GFF00900FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\Lookup_PMFRONT.csproj" />
+    <ProjectReference Include="..\..\COMMON\GS\GSM02500COMMON\GSM02500COMMON.csproj" />
+    <ProjectReference Include="..\GSM02500FrontResources\GSM02500FrontResources.csproj" />
+    <ProjectReference Include="..\GSM02500MODEL\GSM02500MODEL.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="R_APICommonDTO">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_APICommonDTO.dll</HintPath>
+		</Reference>
+		<Reference Include="BlazorClientHelper">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
+		</Reference>
+		<Reference Include="Lookup_GSCOMMON">
+			<HintPath>..\..\..\..\BS Shared Form\SOURCE\BACK\Lookup_GSCOMMON\bin\Debug\netstandard2.1\Lookup_GSCOMMON.dll</HintPath>
+		</Reference>
+		<Reference Include="Lookup_LMCOMMON">
+			<HintPath>..\..\..\..\BS Shared Form\SOURCE\BACK\Lookup_LMCOMMON\bin\Debug\netstandard2.1\Lookup_PMCOMMON.dll</HintPath>
+		</Reference>
+		<Reference Include="R_BlazorFrontEnd">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_BlazorFrontEnd.Controls">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Controls.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CommonFrontBackAPI">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CommonFrontBackAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ProcessAndUploadFront">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_ProcessAndUploadFront.dll</HintPath>
+		</Reference>
+		<Reference Include="R_LockingFront">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_LockingFront.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+0201 = Error process, please contact your administrator!
+0202 = Selected Period cannot be smaller than Current Close Period!
+0203 = Cannot Jump Period!
+
+
+
+
+

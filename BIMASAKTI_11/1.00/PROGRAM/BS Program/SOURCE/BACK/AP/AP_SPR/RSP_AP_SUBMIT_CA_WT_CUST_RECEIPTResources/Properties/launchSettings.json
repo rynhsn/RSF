@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_AP_SUBMIT_CA_WT_CUST_RECEIPTResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57059;http://localhost:57061"
+    }
+  }
+}

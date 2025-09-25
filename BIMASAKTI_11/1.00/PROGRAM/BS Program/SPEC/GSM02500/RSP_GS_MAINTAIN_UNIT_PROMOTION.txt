@@ -1,0 +1,5 @@
+2561	= Error process, please contact your administrator!
+2562	= Duplicate Unit Promotion Id!
+2563	= Cannot Delete, Unit Promotion Already in used!
+
+

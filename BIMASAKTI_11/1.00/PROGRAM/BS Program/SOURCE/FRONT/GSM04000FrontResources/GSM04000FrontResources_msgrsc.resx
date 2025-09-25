@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="_btnTemplate" xml:space="preserve">
+    <value>Template</value>
+  </data>
+  <data name="_gridColumnActive" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="_gridColumnEmail2" xml:space="preserve">
+    <value>Email 2</value>
+  </data>
+  <data name="_gridColumnEmail1" xml:space="preserve">
+    <value>Email 1</value>
+  </data>
+  <data name="_gridColumnBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="_gridColumnCenterCode" xml:space="preserve">
+    <value>Center Code</value>
+  </data>
+  <data name="_gridColumnCenterName" xml:space="preserve">
+    <value>Center Name</value>
+  </data>
+  <data name="_gridColumnCreatedBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="_gridColumnCreatedDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="_gridColumnDeptCode" xml:space="preserve">
+    <value>Department Code</value>
+  </data>
+  <data name="_gridColumnDeptName" xml:space="preserve">
+    <value>Department Name</value>
+  </data>
+  <data name="_gridColumnEveryone" xml:space="preserve">
+    <value>Everyone</value>
+  </data>
+  <data name="_gridColumnManager" xml:space="preserve">
+    <value>Manager</value>
+  </data>
+  <data name="_gridColumnNonActiveDate" xml:space="preserve">
+    <value>Non Active Date</value>
+  </data>
+  <data name="_gridColumnNotes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="_gridColumnUpdBy" xml:space="preserve">
+    <value>Updated By</value>
+  </data>
+  <data name="_gridColumnUpdDate" xml:space="preserve">
+    <value>Updated Date</value>
+  </data>
+  <data name="_gridColumnValid" xml:space="preserve">
+    <value>Valid</value>
+  </data>
+  <data name="_gridDetColumnUpdateBy" xml:space="preserve">
+    <value>Updated By</value>
+  </data>
+  <data name="_gridDetColumnUpdateDate" xml:space="preserve">
+    <value>Updated Date</value>
+  </data>
+  <data name="_gridDetColumnUserName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="_gridDtColumnUserID" xml:space="preserve">
+    <value>User ID</value>
+  </data>
+  <data name="_lblActive" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="_lblAssignedUsers" xml:space="preserve">
+    <value>Assigned Users</value>
+  </data>
+  <data name="_lblDefaultActiveInactive" xml:space="preserve">
+    <value>Active/Inactive</value>
+  </data>
+  <data name="_lblDept" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_lblInactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="_msgConfirmation1" xml:space="preserve">
+    <value>Changing Value Everyone will delete User for this Department</value>
+  </data>
+  <data name="_msgConfirmation2" xml:space="preserve">
+    <value>Changing this will delete all assinged user on this department</value>
+  </data>
+  <data name="_msgConfirmation3" xml:space="preserve">
+    <value>Are you sure want to import data?</value>
+  </data>
+  <data name="_msgConfirmation4" xml:space="preserve">
+    <value>Are you sure want to save to excel ?</value>
+  </data>
+  <data name="_msgWarning1" xml:space="preserve">
+    <value>No selected user</value>
+  </data>
+  <data name="_pageTitleAssignUser" xml:space="preserve">
+    <value>Assign User Department</value>
+  </data>
+  <data name="_pageTitleDepartment" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_pageTitleUpload" xml:space="preserve">
+    <value>Upload Department</value>
+  </data>
+  <data name="_popupAssignUser" xml:space="preserve">
+    <value>Assign User</value>
+  </data>
+  <data name="_pupupUpload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="_valSave1" xml:space="preserve">
+    <value>Department Code can not be empty</value>
+  </data>
+  <data name="_valSave2" xml:space="preserve">
+    <value>Department Name can not be empty</value>
+  </data>
+  <data name="_valSave3" xml:space="preserve">
+    <value>Center can not be empty</value>
+  </data>
+  <data name="_valSave4" xml:space="preserve">
+    <value>Branch can not be empty</value>
+  </data>
+  <!-- Print -->
+    <data name="_btnPrint" xml:space="preserve">
+        <value>Print</value>
+    </data>
+</root>

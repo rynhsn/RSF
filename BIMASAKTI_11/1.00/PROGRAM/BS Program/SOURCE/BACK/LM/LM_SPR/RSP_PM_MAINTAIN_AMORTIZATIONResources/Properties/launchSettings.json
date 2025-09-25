@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_PM_MAINTAIN_AMORTIZATIONResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64510;http://localhost:64511"
+    }
+  }
+}

@@ -1,0 +1,154 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+    <BlazorCacheBootResources>false</BlazorCacheBootResources>
+    <BlazorEnableCompression>false</BlazorEnableCompression>
+    <!--old msbuild-->
+    <CompressionEnabled>false</CompressionEnabled>
+    <!--new msbuild-->
+    <PublishTrimmed>false</PublishTrimmed>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.14" PrivateAssets="all" />
+    <PackageReference Include="Realta.BlazorMenuCollectionNuget" Version="1.0.6-alpha" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\APR00100FRONT\APR00100FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\APR00300Front\APR00300Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\APR00500Front\APR00500Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\BMM00500FRONT\BMM00500FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\CBB00200Front\CBB00200Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLI00100Front\GLI00100Front.csproj" />
+    <!--		<ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLM00200FRONT\GLM00200Front.csproj" />-->
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLM00500Front\GLM00500Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLR00100Front\GLR00100Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM00300FRONT\GSM00300FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM02000Front\GSM02000Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM04000FRONT\GSM04000Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM04500Front\GSM04500Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM05000Front\GSM05000Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM12000FRONT\GSM12000FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GST00500Front\GST00500Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\HDI00100Front\HDI00100Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\HDM00400Front\HDM00400Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\HDM00600FRONT\HDM00600FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\HDR00200Front\HDR00200Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\ICB00100Front\ICB00100Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\ICB00300Front\ICB00300Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\ICI00200Front\ICI00200Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\ICR00100Front\ICR00100Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\ICR00600Front\ICR00600Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\ICT00900FRONT\ICT00900FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\LMM01500FRONT\PMM01500FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\LMM04500FRONT\PMM04500FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\LMT03500Front\PMT03500Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB00300Front\PMB00300Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB03000Front\PMB03000Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB04000FRONT\PMB04000FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB05000Front\PMB05000Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMI00500Front\PMI00500Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMM00100FRONT\PMM00100FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMM02000Front\PMM02000Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMM09000FRONT\PMM09000FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR00460Front\PMR00460Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR00460Model\PMR00460Model.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR02000FRONT\PMR02000FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR02600Front\PMR02600Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR03000Front\PMR03000Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMT01300FRONT\PMT01300FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMT06000Front\PMT06000Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMT06500Front\PMT06500Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\TXB00200Front\TXB00200Front.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Reference Include="BlazorClientHelper">
+      <HintPath>..\..\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="BlazorMenu.Components">
+      <HintPath>..\..\LIBRARY\Front\BlazorMenu.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="BlazorMenuCommon">
+      <HintPath>..\..\LIBRARY\Menu\BlazorMenuCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="BlazorMenuModel">
+      <HintPath>..\..\LIBRARY\Menu\BlazorMenuModel.dll</HintPath>
+    </Reference>
+    <Reference Include="R_APIClient">
+      <HintPath>..\..\LIBRARY\Front\R_APIClient.dll</HintPath>
+    </Reference>
+    <Reference Include="R_APICommonDTO">
+      <HintPath>..\..\LIBRARY\Front\R_APICommonDTO.dll</HintPath>
+    </Reference>
+    <Reference Include="R_AuthenticationEnumAndInterface">
+      <HintPath>..\..\LIBRARY\Front\R_AuthenticationEnumAndInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="R_AuthenticationFront">
+      <HintPath>..\..\LIBRARY\Front\R_AuthenticationFront.dll</HintPath>
+    </Reference>
+    <Reference Include="R_BlazorCommon">
+      <HintPath>..\..\LIBRARY\Front\R_BlazorCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="R_BlazorFrontEnd">
+      <HintPath>..\..\LIBRARY\Front\R_BlazorFrontEnd.dll</HintPath>
+    </Reference>
+    <Reference Include="R_BlazorFrontEnd.Authentication">
+      <HintPath>..\..\LIBRARY\Front\R_BlazorFrontEnd.Authentication.dll</HintPath>
+    </Reference>
+    <Reference Include="R_BlazorFrontEnd.Controls">
+      <HintPath>..\..\LIBRARY\Front\R_BlazorFrontEnd.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="R_BlazorFrontEnd.Controls.Captcha">
+      <HintPath>..\..\LIBRARY\Front\R_BlazorFrontEnd.Controls.Captcha.dll</HintPath>
+    </Reference>
+    <Reference Include="R_BlazorFrontEnd.Excel">
+      <HintPath>..\..\LIBRARY\Front\R_BlazorFrontEnd.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="R_BlazorFrontEnd.Report">
+      <HintPath>..\..\LIBRARY\Front\R_BlazorFrontEnd.Report.dll</HintPath>
+    </Reference>
+    <Reference Include="R_BlazorFrontEnd.Tenant">
+      <HintPath>..\..\LIBRARY\Front\R_BlazorFrontEnd.Tenant.dll</HintPath>
+    </Reference>
+    <Reference Include="R_BlazorStartup">
+      <HintPath>..\..\LIBRARY\Front\R_BlazorStartup.dll</HintPath>
+    </Reference>
+    <Reference Include="R_BusinessObjectFront">
+      <HintPath>..\..\LIBRARY\Front\R_BusinessObjectFront.dll</HintPath>
+    </Reference>
+    <Reference Include="R_CommonFrontBackAPI">
+      <HintPath>..\..\LIBRARY\Front\R_CommonFrontBackAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="R_ContextEnumAndInterface">
+      <HintPath>..\..\LIBRARY\Front\R_ContextEnumAndInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="R_ContextFrontEnd">
+      <HintPath>..\..\LIBRARY\Front\R_ContextFrontEnd.dll</HintPath>
+    </Reference>
+    <Reference Include="R_CrossPlatformSecurity">
+      <HintPath>..\..\LIBRARY\Front\R_CrossPlatformSecurity.dll</HintPath>
+    </Reference>
+    <Reference Include="R_ProcessAndUploadFront">
+      <HintPath>..\..\LIBRARY\Front\R_ProcessAndUploadFront.dll</HintPath>
+    </Reference>
+    <Reference Include="R_SecurityPolicyCommon">
+      <HintPath>..\..\LIBRARY\Menu\R_SecurityPolicyCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="R_BlazorFrontEnd.FileConverter">
+      <HintPath>..\..\LIBRARY\Front\R_BlazorFrontEnd.FileConverter.dll</HintPath>
+    </Reference>
+    <Reference Include="R_SecurityPolicyModel">
+      <HintPath>..\..\LIBRARY\Menu\R_SecurityPolicyModel.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+
+</Project>

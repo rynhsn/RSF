@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GS_MAINTAIN_OTHER_CHARGESResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:52254;http://localhost:52255"
+    }
+  }
+}

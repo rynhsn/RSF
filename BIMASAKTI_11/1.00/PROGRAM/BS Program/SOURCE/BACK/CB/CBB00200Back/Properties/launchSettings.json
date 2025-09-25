@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "CBB00200Back": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57025;http://localhost:57026"
+    }
+  }
+}

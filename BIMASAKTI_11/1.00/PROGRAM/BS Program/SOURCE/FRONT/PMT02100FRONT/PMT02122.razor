@@ -1,0 +1,29 @@
+﻿@attribute [R_Page(ResourceId = "Print Assignment $ Checklist")]
+@using PMT02100COMMON.DTOs.PMT02120;
+@inherits R_Page
+
+<R_StackLayout Style="width: 500px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Label>@_localizer["_PrintMessage"]</R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_CheckBox @bind-Value="loCheckbox.LASSIGNMENT"></R_CheckBox>
+            <R_Label>@_localizer["_Assignment"]</R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_CheckBox @bind-Value="loCheckbox.LCHECKLIST"></R_CheckBox>
+            <R_Label>@_localizer["_Checklist"]</R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout>
+            <R_Button OnClick="OnClose">Cancel</R_Button>
+            <R_PrintButton OnClick="OnClickPrintButton">Print</R_PrintButton>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>

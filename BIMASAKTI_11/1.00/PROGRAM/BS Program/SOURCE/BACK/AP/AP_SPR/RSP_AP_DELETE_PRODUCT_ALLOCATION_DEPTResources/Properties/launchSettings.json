@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_AP_DELETE_PRODUCT_ALLOCATION_DEPTResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56994;http://localhost:56995"
+    }
+  }
+}

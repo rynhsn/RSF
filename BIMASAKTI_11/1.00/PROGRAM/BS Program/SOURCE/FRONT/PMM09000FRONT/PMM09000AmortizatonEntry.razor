@@ -1,0 +1,502 @@
+@inherits R_Page
+@attribute [R_Page(Title = "Amortization Entry")]
+@inject R_ILocalizer<Resources_PMM09000_Class> _localizer
+
+<!-- Filtering -->
+<R_StackLayout Row>
+
+    <R_ItemLayout col="3" Class="mb-2">
+        <R_RadioGroup Data="@_AmortizationEntryViewModel._UnitOptionList"
+                      Value="@_AmortizationEntryViewModel._UnitOptionValueEntry"
+                      ValueField="@nameof(RadionButtonDTO.Id)"
+                      TextField="@nameof(RadionButtonDTO.Name)"
+                      ValueChanged="@((string value) => RadioButton_OnChange(value))"
+                      Enabled="@(lControlCRUDMode)" />
+    </R_ItemLayout>
+</R_StackLayout>
+
+@*ROW1*@
+<R_StackLayout Row>
+    @* Building *@
+    <R_ItemLayout col="5">
+        <R_ItemLayout Class="d-flex" col="12">
+
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_Building"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CBUILDING_ID"
+                           MaxLength="20"
+                           OnLostFocus="OnLostFocusBuilding"
+                           R_ConductorSource="@_conductorHeader"
+                           Enabled="@(_lIsUnit && lControlCRUDMode)"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ps-1" col="1">
+                <R_Lookup R_ConductorSource="@_conductorHeader"
+                          @ref="@R_LookupBuildingLookup"
+                          R_Before_Open_Lookup="@BeforeOpenLookUpBuildingLookup"
+                          R_After_Open_Lookup="@AfterOpenLookUpBuildingLookup"
+                          Enabled="@(_lIsUnit && lControlCRUDMode)"
+                          R_EnableAdd="true"
+                          R_EnableEdit="true">
+                    ...
+                </R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CBUILDING_NAME"
+                           MaxLength="200"
+                           R_ConductorSource="@_conductorHeader"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_ItemLayout>
+    </R_ItemLayout>
+    @* Department *@
+    <R_ItemLayout col="5" Class="ms-5">
+        <R_ItemLayout Class="d-flex" col="12">
+
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_DeptName"]*
+                </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CTRANS_DEPT_CODE"
+                           MaxLength="20"
+                           OnLostFocus="OnLostFocusDepartmentTransaction"
+                           R_ConductorSource="@_conductorHeader"
+                           R_EnableAdd="true"
+                           R_EnableEdit="false">
+                </R_TextBox>
+            </R_ItemLayout>
+
+            <R_ItemLayout Class="ps-1" col="1">
+                <R_Lookup R_ConductorSource="@_conductorHeader"
+                          @ref="@R_LookupDepartmentTransactionLookup"
+                          R_Before_Open_Lookup="@BeforeOpenLookUpDepartmentTransactionLookup"
+                          R_After_Open_Lookup="@AfterOpenLookUpDepartmentTransactionLookup"
+                          R_EnableAdd="true"
+                          R_EnableEdit="false">
+                    ...
+                </R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CTRANS_DEPT_NAME"
+                           MaxLength="200"
+                           R_ConductorSource="@_conductorHeader"
+                           Enabled="false" />
+
+            </R_ItemLayout>
+        </R_ItemLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@*ROW2*@
+<R_StackLayout Row>
+    @* Tenant *@
+    <R_ItemLayout col="5">
+        <R_ItemLayout Class="d-flex" col="12">
+
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_Tenant"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CTENANT_ID"
+                           MaxLength="20"
+                           OnLostFocus="OnLostFocusTenant"
+                           R_ConductorSource="@_conductorHeader"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ps-1" col="1">
+                <R_Lookup R_ConductorSource="@_conductorHeader"
+                          @ref="@R_LookupTenantLookup"
+                          R_Before_Open_Lookup="@BeforeOpenLookUpTenantLookup"
+                          R_After_Open_Lookup="@AfterOpenLookUpTenantLookupAsync"
+                          R_EnableAdd="true"
+                          R_EnableEdit="true">
+                    ...
+                </R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CTENANT_NAME"
+                           MaxLength="200"
+                           R_ConductorSource="@_conductorHeader"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_ItemLayout>
+    </R_ItemLayout>
+    @* Amortization *@
+    <R_ItemLayout col="5" Class="ms-5">
+        <R_ItemLayout Class="d-flex" col="12">
+
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_AmortizationNo"]*
+                </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CAMORTIZATION_NO"
+                           MaxLength="20"
+                           R_ConductorSource="@_conductorHeader"
+                           R_EnableAdd="true"
+                           R_EnableEdit="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_ItemLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@*ROW3*@
+<R_StackLayout Row>
+    @* Department *@
+    <R_ItemLayout col="5">
+
+        <R_ItemLayout Class="d-flex" col="12">
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_DeptNameLOI"]*
+                </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CDEPT_CODE"
+                           MaxLength="20"
+                           OnLostFocus="OnLostFocusDepartment"
+                           R_ConductorSource="@_conductorHeader"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true">
+                </R_TextBox>
+            </R_ItemLayout>
+
+            <R_ItemLayout Class="ps-1" col="1">
+                <R_Lookup R_ConductorSource="@_conductorHeader"
+                          @ref="@R_LookupDepartmentLookup"
+                          R_Before_Open_Lookup="@BeforeOpenLookUpDepartmentLookup"
+                          R_After_Open_Lookup="@AfterOpenLookUpDepartmentLookup"
+                          R_EnableAdd="true"
+                          R_EnableEdit="true">
+                    ...
+                </R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CDEPT_NAME"
+                           MaxLength="200"
+                           R_ConductorSource="@_conductorHeader"
+                           Enabled="false" />
+
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+    </R_ItemLayout>
+    @* CutOffPeriod *@
+    <R_ItemLayout col="5" Class="ms-5">
+        <R_ItemLayout Class="d-flex" col="12">
+
+            <R_ItemLayout col="3">
+                <R_CheckBox Value="_AmortizationEntryViewModel.Data.Header.LCUT_OFF_PRD"
+                            ValueChanged="@((bool value) => CuttOfPeriod_OnChange(value))"
+                            R_ConductorSource="@_conductorHeader"
+                            R_EnableAdd="true"
+                            R_EnableEdit="true" />
+                <R_Label>
+                    @_localizer["_CutOffPeriod"]
+                </R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2">
+                <R_NumericTextBox R_ConductorSource="@_conductorHeader"
+                                  @bind-Value="_AmortizationEntryViewModel.Data.Header.IPERIOD_YEAR"
+                                  TValue="int"
+                                  ThousandSeparator="false"
+                                  Arrows="true"
+                                  R_EnableAdd="true"
+                                  R_EnableEdit="true" />
+            </R_ItemLayout>
+
+            <R_ItemLayout col="2" Class="pe-2">
+                <R_ComboBox R_ConductorSource="@_conductorHeader"
+                            Data="@_AmortizationEntryViewModel.GetMonthList"
+                            @bind-Value="_AmortizationEntryViewModel.Data.Header.CPERIOD_MONTH"
+                            ValueField="@nameof(PeriodMonthDTO.Id)"
+                            TextField="@nameof(PeriodMonthDTO.Id)"
+                            PopupMaxHeight="100px"
+                            R_EnableAdd="true"
+                            R_EnableEdit="true">
+                </R_ComboBox>
+            </R_ItemLayout>
+        </R_ItemLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@*ROW4*@
+<R_StackLayout Row>
+    @* LOI *@
+    <R_ItemLayout col="5">
+        <R_ItemLayout Class="d-flex" col="12">
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_LOI_AgreementNo"]*
+                </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CREF_NO"
+                           MaxLength="20"
+                           OnLostFocus="OnLostFocusLOIAgreement"
+                           R_ConductorSource="@_conductorHeader"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true">
+                </R_TextBox>
+            </R_ItemLayout>
+
+            <R_ItemLayout Class="ps-1" col="1">
+                <R_Lookup R_ConductorSource="@_conductorHeader"
+                          @ref="@R_LookupLOIAgreementLookup"
+                          R_Before_Open_Lookup="@BeforeOpenLookUpLOIAgreementLookup"
+                          R_After_Open_Lookup="@AfterOpenLookUpLOIAgreementLookup"
+                          R_EnableAdd="true"
+                          R_EnableEdit="true">
+                    ...
+                </R_Lookup>
+            </R_ItemLayout>
+        </R_ItemLayout>
+    </R_ItemLayout>
+    @* StartDate *@
+    <R_ItemLayout col="5" Class="ms-5">
+        <R_ItemLayout Class="d-flex" col="12">
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_StartDate"]*</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="6">
+                <R_DatePicker @bind-Value="@_AmortizationEntryViewModel.Data.Header.DSTART_DATE"
+                              R_ConductorSource="_conductorHeader"
+                                R_EnableAdd
+                                R_EnableEdit>
+                </R_DatePicker>
+            </R_ItemLayout>
+        </R_ItemLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+@*ROW5*@
+<R_StackLayout Row>
+    @* LOI *@
+    <R_ItemLayout col="5">
+        <R_ItemLayout Class="d-flex" col="12">
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_Description"]
+                </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="9">
+                <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CDESCRIPTION"
+                           MaxLength="200"
+                           R_ConductorSource="@_conductorHeader"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_ItemLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="5" Class="ms-5">
+        <R_ItemLayout Class="d-flex" col="12">
+
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_EndDate"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_DatePicker @bind-Value="@_AmortizationEntryViewModel.Data.Header.DEND_DATE"
+                              R_ConductorSource="_conductorHeader"
+                                R_EnableAdd
+                                R_EnableEdit>
+                </R_DatePicker>
+            </R_ItemLayout>
+        </R_ItemLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@*ROW6*@
+<R_StackLayout Row>
+    @* CHARGES*@
+    <R_ItemLayout col="5">
+    </R_ItemLayout>
+    <R_ItemLayout col="5" Class="ms-5">
+        <R_ItemLayout Class="d-flex" col="12">
+            <R_ItemLayout col="3">
+                <R_Label>
+                    @_localizer["_ChargeAccrual"]
+                </R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CCHARGES_ID"
+                           MaxLength="20"
+                           OnLostFocus="OnLostFocusCharges"
+                           R_ConductorSource="@_conductorHeader"
+                           R_EnableAdd="true"
+                           R_EnableEdit="true">
+                </R_TextBox>
+            </R_ItemLayout>
+
+            <R_ItemLayout Class="ps-1" col="1">
+                <R_Lookup R_ConductorSource="@_conductorHeader"
+                          @ref="@R_LookupChargesLookup"
+                          R_Before_Open_Lookup="@BeforeOpenLookUpChargesLookup"
+                          R_After_Open_Lookup="@AfterOpenLookUpChargesLookup"
+                          R_EnableAdd="true"
+                          R_EnableEdit="true">
+                    ...
+                </R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CCHARGES_NAME"
+                           R_ConductorSource="@_conductorHeader"
+                           Enabled="false" />
+
+            </R_ItemLayout>
+        </R_ItemLayout>
+
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout>
+    <R_Grid @ref="@_gridAmortizationSchedule"
+            DataSource="_AmortizationEntryViewModel._AmortizationChargesList"
+            R_ConductorGridSource="@_conGridAmortizationShedule"
+            R_ConductorSource="@_conductorHeader"
+            R_GridType="R_eGridType.Batch"
+            R_ServiceGetListRecord="R_ServiceAmortizationScheduleListRecord"
+            R_ServiceGetRecord="@R_ServiceGetRecordAmorSch"
+            R_Display="@R_ServiceDisplayAmorSch"
+            R_AfterSave="@AfterSaveAmorSch"
+            R_Before_Open_Grid_Lookup="BeforeOpenLookUpCharge"
+            R_After_Open_Grid_Lookup="AfterOpenLookCharge"
+            R_CellLostFocused="@R_CellLostFocusedCharge"
+            @bind-PageSize="@_pageSizeAmortizationShedule"
+            R_AfterAdd="@AfterAddAmorSch"
+            AllowDeleteRow
+            AllowAddNewRow
+            AllowEditRow
+            Pageable
+            R_Validation="ValidationDetail"
+            Height="260px"
+            R_EnableAdd
+            R_EnableEdit>
+
+
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="@nameof(PMM09000AmortizationChargesDTO.CSEQ_NO)"
+                              HeaderText=@_localizer["_SeqNo"] Width="120px" />
+                   
+            <R_GridTextColumn FieldName="@nameof(PMM09000AmortizationChargesDTO.CCHARGES_TYPE_NAME)"
+                              HeaderText=@_localizer["_ChargeType"]
+                              Width="120px" />
+            <R_GridLookupColumn FieldName="@nameof(PMM09000AmortizationChargesDTO.CCHARGES_ID)"
+                                HeaderText=@_localizer["_ChargesId"]
+                                Name="Charge"
+                                Width="155px"
+                                            R_EnableAdd
+                                            R_EnableEdit />
+            <R_GridTextColumn FieldName="@nameof(PMM09000AmortizationChargesDTO.CCHARGES_NAME)"
+                              HeaderText=@_localizer["_ChargesName"]
+                              Width="140px"
+                              Enabled="false" />
+            <R_GridDatePickerColumn Width="150px"
+                                    FieldName="@nameof(PMM09000AmortizationChargesDTO.DSTART_DATE)"
+                                    HeaderText=@_localizer["_StartDate"]
+                                                    R_EnableAdd
+                                                    R_EnableEdit />
+            <R_GridDatePickerColumn Width="150px"
+                                    FieldName="@nameof(PMM09000AmortizationChargesDTO.DEND_DATE)"
+                                    HeaderText=@_localizer["_EndDate"]
+                                      R_EnableAdd
+                                            R_EnableEdit/>
+            <R_GridNumericColumn Width="140px"
+                                 FieldName="@nameof(PMM09000AmortizationChargesDTO.NAMOUNT)"
+                                 TValue="decimal"
+                                 Min="0"
+                                 HeaderText=@_localizer["_Amount"]
+                                              R_EnableAdd
+                                              R_EnableEdit />
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mt-3 d-flex justify-content-end">
+    <R_ItemLayout>
+        <R_Label>@_localizer["_TotalAmount"]:  </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <h5>@NTotalAmount</h5>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mt-5 d-flex justify-content-between">
+    <R_StackLayout Row>
+
+        <R_ItemLayout>
+            <R_AddButton R_Conductor="@_conductorHeader" />
+        </R_ItemLayout>
+
+        <R_ItemLayout>
+            <R_EditButton 
+                R_Conductor="@_conductorHeader" />
+        </R_ItemLayout>
+
+        <R_ItemLayout>
+            <R_DeleteButton 
+                R_Conductor="@_conductorHeader" />
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Button R_Conductor="@_conductorHeader"
+                          Enabled="lControlButtonClose"
+                          OnClick="@OnClose">
+                    @_localizer["_Close"]
+                </R_Button>
+
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Button R_Conductor="@_conductorHeader"
+                          Enabled="lControlButtonReopen"
+                          OnClick="@OnReOpen">
+                    @_localizer["_ReOpen"]
+                </R_Button>
+
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_CancelButton R_Conductor="@_conductorHeader" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_SaveButton R_Conductor="@_conductorHeader" />
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conGridAmortizationShedule"
+                 R_ConductorParent="_conductorHeader" />
+
+<R_Conductor @ref="_conductorHeader"
+              R_IsHeader
+             R_ViewModel="_AmortizationEntryViewModel"
+             R_ServiceDelete="DeleteAllData"
+             R_ServiceSave="@ServiceSaveAllData"
+             R_ServiceGetRecord="@GetRecordHeaderDetail"
+             R_Validation="@ValidationHeader"
+              R_CheckAdd="R_CheckAddAmorSch"
+             R_CheckEdit="R_CheckEdit"
+             R_CheckDelete="R_CheckDelete"
+             R_AfterAdd="@AfterAddAsync"
+             R_BeforeCancel="@R_BeforeCancel"
+             R_SetOther="R_SetOtherHeaderDetailAsync" />

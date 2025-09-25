@@ -1,0 +1,14 @@
+{EMPTY_PRICELIST_ID}                -- Pricelist ID is empty!
+{DUPLICATE_PRICELIST_ID}            -- Found duplicate Pricelist ID!
+{EMPTY_PRICELIST_NAME}              -- Pricelist Name is empty!
+{EMPTY_CHARGES_ID}                  -- Charges ID is empty!
+{INVALID_CHARGES_ID}                -- Charges ID is not found!
+{EMPTY_UNIT}                        -- Unit is empty!
+{EMPTY_CURRENCY}                    -- Currency is empty!
+{INVALID_CURRENCY}                  -- Currency is not the same as Currency in Property Profile!
+{INVALID_PRICE}                     -- Price cannot be 0 or negative value!
+{EMPTY_START_DATE}                  -- Start Date is empty!
+{INVALID_START_DATE_FORMAT}         -- Start Date format must be YYYYMMDD!
+{EMPTY_DEPT_CODE}		    -- Department is empty!
+{INVALID_DEPT_CODE}		    -- Department is not found!
+

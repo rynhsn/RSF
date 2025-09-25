@@ -1,0 +1,65 @@
+@inherits R_Page
+@attribute [R_Page(Title = "Reference No. Lookup")]
+@inject R_ILocalizer<Resources_GLLookup_Class> _localizer
+
+
+<R_StackLayout Row>
+    <R_Grid @ref="@_gridRef"
+            DataSource="_viewModel.loList"
+            R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+            R_GridType="@R_eGridType.Navigator"
+            Pageable
+            PageSize="10"
+            Height="300px"
+            Width="900px">
+        <R_GridColumns>
+
+            <R_GridTextColumn Width="200px"
+                              FieldName="@nameof(GLL00110DTO.CREF_NO)"
+                              HeaderText=@_localizer["_ReferenceNo"] />
+
+            <R_GridDatePickerColumn Width="200px"
+                                    FieldName="@nameof(GLL00110DTO.DREF_DATE)"
+                                    HeaderText=@_localizer["_ReferenceDate"] />
+
+            <R_GridTextColumn Width="200px"
+                              FieldName="@nameof(GLL00110DTO.CDOC_NO)"
+                              HeaderText=@_localizer["_DocumentNo"] />
+
+            <R_GridDatePickerColumn Width="200px"
+                                    FieldName="@nameof(GLL00110DTO.DDOC_DATE)"
+                                    HeaderText=@_localizer["_DocumentDate"] />
+
+            <R_GridTextColumn Width="200px"
+                              FieldName="@nameof(GLL00110DTO.CDEPT_CODE)"
+                              HeaderText=@_localizer["_Dept"] />
+
+            <R_GridTextColumn Width="200px"
+                              FieldName="@nameof(GLL00110DTO.CCURRENCY)"
+                              HeaderText=@_localizer["_Currency"] />
+
+            <R_GridNumericColumn Width="200px"
+                                 FieldName="@nameof(GLL00110DTO.NTRANS_AMOUNT)"
+                                 TValue="decimal"
+                                 HeaderText=@_localizer["_Amount"] />
+
+            <R_GridTextColumn Width="200px"
+                              FieldName="@nameof(GLL00110DTO.CSTATUS_NAME)"
+                              HeaderText=@_localizer["_Status"] />
+
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            @_localizer["_Ok"]
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            @_localizer["_Cancel"]
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

@@ -1,0 +1,90 @@
+﻿@inherits R_Page
+@attribute [R_Page(ResourceId = "_pageTitlePricingRate")]
+
+<R_StackLayout Row Spacing="2" Class="mt-0">
+    <R_ItemLayout col="2">
+        <R_Grid @ref="@_gridPricingRateDate"
+                DataSource="@_viewModelPricingRate._pricingRateDateList"
+                R_ConductorSource="@_conPricingRateDate"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="@PricingRateDate_ServiceGetListRecord"
+                AllowAddNewRow="false"
+                AllowDeleteRow="false"
+                AllowEditRow="false"
+                Height="400px">
+            <R_GridColumns>
+                @* <R_GridTextColumn FieldName="@nameof(PricingRateDTO.CRATE_DATE)" HeaderText="Rate Date" Width="300px"></R_GridTextColumn> *@
+                <R_GridDatePickerColumn TextAlignment="R_eTextAlignment.Right" FieldName="@nameof(PricingRateDTO.DRATE_DATE)" HeaderText="@_localizer["_col_rate_date"]" Width="150px"></R_GridDatePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+
+        @* add button *@
+        <R_Popup @ref="Popup_PricingRate"
+                 R_Before_Open_Popup="@BeforeOpenPopup_PricingRate"
+                 R_After_Open_Popup="@AfterOpenPopup_PricingRate"
+                 Enabled
+                 Class="mt-4">
+            <R_Label>@_localizer["_btn_add"]</R_Label>
+        </R_Popup>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="9">
+        <R_Grid @ref="_gridPricingRate"
+                DataSource="@_viewModelPricingRate._pricingRateList"
+                R_ConductorSource="_conPricingRate"
+                Pageable="true"
+                R_GridType="R_eGridType.Navigator"
+                AllowAddNewRow="false"
+                AllowDeleteRow="false"
+                AllowEditRow="false"
+                R_ServiceGetListRecord="PricingRate_ServiceGetListRecord"
+                Height="450px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(PricingRateDTO.CCURRENCY_CODE)"
+                                  HeaderText="@_localizer["_col_currency_code"]"
+                                  Width="150px"></R_GridTextColumn>
+                <R_GridNumericColumn FieldName="@nameof(PricingRateDTO.NBASE_RATE_AMOUNT)"
+                                     TValue="decimal"
+                                     HeaderText="@_localizer["_col_base_rate"]"
+                                     Width="150px"></R_GridNumericColumn>
+                <R_GridNumericColumn FieldName="@nameof(PricingRateDTO.NCURRENCY_RATE_AMOUNT)"
+                                     TValue="decimal"
+                                     HeaderText="@_localizer["_col_curr_rate"]"
+                                     Width="150px"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="@nameof(PricingRateDTO.CUPDATE_BY)"
+                                  HeaderText="@(_localizer["_col_update_by"])"
+                                  Width="120px"
+                                  R_EnableAdd="false"
+                                  R_EnableEdit="false"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricingRateDTO.DUPDATE_DATE)"
+                                  HeaderText="@(_localizer["_col_update_date"])"
+                                  Width="130px"
+                                  R_EnableAdd="false"
+                                  R_EnableEdit="false"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricingRateDTO.CCREATE_BY)"
+                                  HeaderText="@(_localizer["_col_create_by"])"
+                                  Width="120px"
+                                  R_EnableAdd="false"
+                                  R_EnableEdit="false"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(PricingRateDTO.DCREATE_DATE)"
+                                  HeaderText="@(_localizer["_col_create_date"])"
+                                  Width="130px"
+                                  R_EnableAdd="false"
+                                  R_EnableEdit="false"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+
+    <R_Conductor @ref="@_conPricingRateDate"
+                 R_IsHeader="true"
+                 R_ViewModel="@_viewModelPricingRate"
+                 R_ServiceGetRecord="@PricingRateDate_ServiceGetRecord"
+                 R_Display="@PricingRateDate_ServiceDisplay">
+    </R_Conductor>
+
+    <R_Conductor @ref="@_conPricingRate"
+                 R_ConductorParent="@_conPricingRateDate"
+                 R_ViewModel="@_viewModelPricingRate"
+                 R_ServiceGetRecord="@PricingRate_ServiceGetRecord">
+    </R_Conductor>
+</R_StackLayout>

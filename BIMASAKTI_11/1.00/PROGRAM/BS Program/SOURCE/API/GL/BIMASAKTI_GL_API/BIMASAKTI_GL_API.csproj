@@ -4,10 +4,79 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>BIMASAKTI_GL_API</RootNamespace>
+    <AssemblyName>BIMASAKTI_GL_API</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Template\GL_ACCOUNT_BUDGET_UPLOAD.xlsx" />
+    <None Update="Reports\GLM00200.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Template\GL_ACCOUNT_BUDGET_UPLOAD.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Template\GL_ACCOUNT_BUDGET_UPLOAD2.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Template\GL_ACCOUNT_BUDGET_UPLOAD2.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.2" />
+    <PackageReference Include="Realta.CommonCollectionNuGet" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_GLSERVICES\Lookup_GLSERVICES.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GL\GLI00100Service\GLI00100Service.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GL\GLM00200SERVICE\GLM00200SERVICE.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GL\GLM00500Service\GLM00500Service.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GL\GLR00100Service\GLR00100Service.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GL\GLT00100SERVICE\GLT00100Service.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GL\GLT00200SERVICE\GLT00200SERVICE.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GL\GLTR00100SERVICE\GLTR00100SERVICE.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\LM\PMB05000Service\PMB05000Service.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <Reference Include="R_APIBackEnd">
+      <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+    </Reference>
+    <Reference Include="R_APICommon">
+      <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+    </Reference>
+    <Reference Include="R_APIStartUp">
+      <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIStartUp.dll</HintPath>
+    </Reference>
+    <Reference Include="R_CrossPlatformSecurity">
+      <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CrossPlatformSecurity.dll</HintPath>
+    </Reference>
+    <Reference Include="R_HelperController">
+      <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_HelperController.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Update="Reports\BaseHeaderCommon.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Reports\BaseHeaderLandscapeCommon.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

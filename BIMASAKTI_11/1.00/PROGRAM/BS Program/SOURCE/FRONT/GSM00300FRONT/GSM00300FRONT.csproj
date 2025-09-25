@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.32" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\BACK\Lookup_GSCOMMON\Lookup_GSCOMMON.csproj" />
+		<ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFrontResources\Lookup_GSFrontResources.csproj" />
+		<ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj" />
+		<ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSModel\Lookup_GSModel.csproj" />
+		<ProjectReference Include="..\..\COMMON\GS\GSM00300COMMON\GSM00300COMMON.csproj" />
+		<ProjectReference Include="..\GSM00300FrontResources\GSM00300FrontResources.csproj" />
+		<ProjectReference Include="..\GSM00300MODEL\GSM00300MODEL.csproj" />
+		<Reference Include="BlazorClientHelper">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommonDTO">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_APICommonDTO.dll</HintPath>
+		</Reference>
+		<Reference Include="R_BlazorFrontEnd">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_BlazorFrontEnd.Controls">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Controls.dll</HintPath>
+		</Reference>
+		<Reference Include="R_BlazorFrontEnd.Excel">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Excel.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CommonFrontBackAPI">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CommonFrontBackAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="R_LockingFront">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_LockingFront.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="GSM00301.razor">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	  </Content>
+	</ItemGroup>
+
+</Project>

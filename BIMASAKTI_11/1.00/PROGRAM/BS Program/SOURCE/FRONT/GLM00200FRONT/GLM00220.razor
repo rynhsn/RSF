@@ -1,0 +1,285 @@
+﻿@using GLM00200FrontResources
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_GroupBox Title="Journal Description" TitleClass="text-danger">
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>Department</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox @bind-Value="_journalVM.Data.CDEPT_CODE"
+                       R_ConductorSource="_conJournalNavigator"
+                       Enabled="false"
+                       CharacterCasing="R_eCharacterCasing.Upper"
+                       MaxLength="5" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox @bind-value="_journalVM.Data.CDEPT_NAME"
+                       R_ConductorSource="_conJournalNavigator"
+                       Enabled="false"
+                       CharacterCasing="R_eCharacterCasing.Upper" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1"></R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Label>Currency*</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@_journalVM.Data.CCURRENCY_CODE"
+                       R_ConductorSource="_conJournalNavigator"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_CheckBox @bind-Value="@_journalVM.Data.LFIX_RATE"
+                        R_ConductorSource="@_conJournalNavigator"
+                        Enabled="false"></R_CheckBox>
+            <R_Label>Fixed Exchange Rate</R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>Reference No. *</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox @bind-value="@_journalVM.Data.CREF_NO"
+                       R_ConductorSource="_conJournalNavigator"
+                       Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Label>Ref Date. *</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_DateTimePicker @bind-Value="_journalVM.RefDate"
+                              R_ConductorSource="_conJournalNavigator"
+                              Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1" />
+        <R_ItemLayout col="1" />
+        <R_ItemLayout col="1" />
+        <R_ItemLayout col="1">
+            <R_Label>Base Rate</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1" />
+        <R_ItemLayout col="1">
+            <R_Label>Currency Rate</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1" />
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>Document No.</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox @bind-Value="@_journalVM.Data.CDOC_NO"
+                       R_ConductorSource="_conJournalNavigator"
+                       Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Label>Doc Date.</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_DateTimePicker @bind-Value="_journalVM.DocDate"
+                              R_ConductorSource="_conJournalNavigator"
+                              Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1"></R_ItemLayout>
+        <R_ItemLayout col="1"></R_ItemLayout>
+
+        <R_ItemLayout col="1">
+            <R_Label>Local Currency</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_NumericTextBox @bind-Value="_journalVM.Data.NLBASE_RATE"
+                              TValue="decimal"
+                              R_ConductorSource="_conJournalNavigator"
+                              Enabled="false"
+                              Decimals="9"
+                              Min="0" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox @bind-value="@_journalVM.Data.CCURRENCY_CODE"
+                       R_ConductorSource="_conJournalNavigator"
+                       Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_NumericTextBox @bind-Value="@_journalVM.Data.NLCURRENCY_RATE"
+                              TValue="decimal"
+                              R_ConductorSource="_conJournalNavigator"
+                              Enabled="false"
+                              Decimals="9"
+                              Min="0" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox @bind-value="@_journalVM.GSM_COMPANY.CLOCAL_CURRENCY_CODE"
+                       R_ConductorSource="_conJournalNavigator"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>Frequency*</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_NumericTextBox @bind-Value="@_journalVM.Data.IFREQUENCY"
+                              TValue="int"
+                              R_ConductorSource="_conJournalNavigator"
+                              Min="2"
+                              Max="99"
+                              Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Label>Applied</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_NumericTextBox @bind-Value="@_journalVM.Data.IAPPLIED"
+                              TValue="int"
+                              R_ConductorSource="_conJournalNavigator"
+                              Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Label>Interval</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_NumericTextBox @bind-Value="@_journalVM.Data.IPERIOD"
+                              TValue="int"
+                              R_ConductorSource="_conJournalNavigator"
+                              Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Label>Base Currency</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_NumericTextBox @bind-Value="_journalVM.Data.NBBASE_RATE"
+                              TValue="decimal"
+                              R_ConductorSource="_conJournalNavigator"
+                              Enabled="false"
+                              Decimals="9"
+                              Min="0" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox @bind-Value="@_journalVM.Data.CCURRENCY_CODE"
+                       R_ConductorSource="_conJournalNavigator"
+                       Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_NumericTextBox @bind-Value="_journalVM.Data.NBCURRENCY_RATE"
+                              TValue="decimal"
+                              R_ConductorSource="_conJournalNavigator"
+                              Enabled="false"
+                              Decimals="9"
+                              Min="0" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox @bind-Value="@_journalVM.GSM_COMPANY.CBASE_CURRENCY_CODE"
+                       R_ConductorSource="_conJournalNavigator"
+                       Enabled="false" />
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>Start Date</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_DatePicker @bind-Value="_journalVM.StartDate"
+                          R_ConductorSource="_conJournalNavigator"
+                          Enabled="false" />
+        </R_ItemLayout>
+
+        <R_ItemLayout col="1">
+            <R_Label>Next Date</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_DatePicker @bind-Value="_journalVM.NextDate"
+                          R_ConductorSource="_conJournalNavigator"
+                          Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Label>Last Date</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_DatePicker @bind-Value="_journalVM.LastDate"
+                          R_ConductorSource="_conJournalNavigator"
+                          Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1" Class="ms-6">
+            <R_Label>Updated By</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox @bind-value="@_journalVM.Data.CUPDATE_BY"
+                       R_ConductorSource="_conJournalNavigator"
+                       Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_DatePicker @bind-Value="_journalVM.Data.DUPDATE_DATE"
+                          R_ConductorSource="_conJournalNavigator"
+                          Enabled="false" />
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>Description*</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_TextBox @bind-value="@_journalVM.Data.CTRANS_DESC"
+                       R_ConductorSource="_conJournalNavigator"
+                       MaxLength="200"
+                       Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1" Class="ms-7">
+            <R_Label>Created By</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox @bind-value="@_journalVM.Data.CCREATE_BY"
+                       R_ConductorSource="_conJournalNavigator"
+                       Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_DatePicker @bind-Value="_journalVM.Data.DCREATE_DATE"
+                          R_ConductorSource="_conJournalNavigator"
+                          Enabled="false" />
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_GroupBox>
+
+<R_GroupBox Title="Journal Detail" TitleClass="text-danger">
+    <R_Grid @ref="@_gridJournalDet"
+            DataSource="@_journalVM.JournaDetailActualGrid"
+            Pageable
+            Height="250px"
+            AllowAddNewRow="false"
+            AllowEditRow="false"
+            AllowDeleteRow="false"
+            R_ConductorGridSource="@_conJournalDetail"
+            R_GridType="R_eGridType.Original"
+            R_ServiceGetListRecord="JournalDetGrid_ServiceGetListRecord"
+            R_ServiceGetRecord="JournalDetGrid_ServiceGetRecord">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="@nameof(JournalDetailActualGridDTO.CREF_NO)" HeaderText="Reference No." Width="200px" />
+            <R_GridTextColumn FieldName="@nameof(JournalDetailActualGridDTO.CDOC_SEQ_NO)" HeaderText="Seq." Width="100px" />
+            <R_GridDatePickerColumn FieldName="@nameof(JournalDetailActualGridDTO.DREF_PRD)" HeaderText="Period" Width="150px" />
+            <R_GridDatePickerColumn FieldName="@nameof(JournalDetailActualGridDTO.DREF_DATE)" HeaderText="Reference Date" Width="200px" />
+            <R_GridNumericColumn FieldName="@nameof(JournalDetailActualGridDTO.NTRANS_AMOUNT)" TValue="decimal" HeaderText="Original Amount" Width="200px" />
+            <R_GridNumericColumn FieldName="@nameof(JournalDetailActualGridDTO.NLTRANS_AMOUNT)" TValue="decimal" HeaderText="Local Amount" Width="200px" />
+            <R_GridNumericColumn FieldName="@nameof(JournalDetailActualGridDTO.NBTRANS_AMOUNT)" TValue="decimal" HeaderText="Base Amount" Width="150px" />
+            <R_GridTextColumn FieldName="@nameof(JournalDetailActualGridDTO.CCREATE_BY)" HeaderText="Posted By" Width="150px" />
+            <R_GridDateTimePickerColumn FieldName="@nameof(JournalDetailActualGridDTO.DCREATE_DATE)" HeaderText="Posted Date" Width="200px" />
+        </R_GridColumns>
+    </R_Grid>
+</R_GroupBox>
+
+<R_StackLayout Row>
+    <R_ItemLayout>
+        <R_Popup R_Before_Open_Popup="@BtnJournalActual_PrintList" Enabled="true">Print List</R_Popup>
+        <R_Popup  R_Before_Open_Popup="@BtnJournalActual_PrintJournal">Print Journal</R_Popup>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="_conJournalNavigator"
+             R_ViewModel="_journalVM"
+             R_IsHeader
+             R_ServiceGetRecord="JournalForm_GetRecord"
+             R_Display="JournalForm_Display">
+</R_Conductor>
+
+<R_ConductorGrid @ref="_conJournalDetail" R_ConductorParent="@_conJournalNavigator">
+</R_ConductorGrid>

@@ -1,0 +1,161 @@
+﻿@using ICI00200FrontResources
+@inherits R_Page
+@attribute [R_Page(Title = "Last Info")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Style="width: 45vw">
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["Product"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="@_viewModel.LastInfoDetail.CPRODUCT_ID" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="@_viewModel.LastInfoDetail.CPRODUCT_NAME" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_TextBox Value="@_localizer["LastInfo"]" TextAlignment="R_eTextAlignment.Center" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox Value="@_localizer["Date"]" TextAlignment="R_eTextAlignment.Center" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextBox Value="@_localizer["Amount"]" TextAlignment="R_eTextAlignment.Center" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["PO"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_DateInput @bind-Value="@_viewModel.LastInfoDetail.DLAST_PO_DATE" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.LastInfoDetail.NLAST_PO_AMT" TextAlignment="R_eTextAlignment.Right" Enabled="false" Arrows="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["Purchase"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_DateInput @bind-Value="@_viewModel.LastInfoDetail.DLAST_PURCHASE_DATE" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.LastInfoDetail.NLAST_PURCHASE_AMT" TextAlignment="R_eTextAlignment.Right" Enabled="false" Arrows="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["Receipt"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_DateInput @bind-Value="@_viewModel.LastInfoDetail.DLAST_RECEIPT_DATE" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.LastInfoDetail.NLAST_RECEIPT_AMT" TextAlignment="R_eTextAlignment.Right" Enabled="false" Arrows="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["Issue"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_DateInput @bind-Value="@_viewModel.LastInfoDetail.DLAST_ISSUE_DATE" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.LastInfoDetail.NLAST_ISSUE_AMT" TextAlignment="R_eTextAlignment.Right" Enabled="false" Arrows="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["Movement"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_DateInput @bind-Value="@_viewModel.LastInfoDetail.DLAST_MOVE_DATE" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.LastInfoDetail.NLAST_MOVE_AMT" TextAlignment="R_eTextAlignment.Right" Enabled="false" Arrows="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_viewModel.LastInfoDetail.CLAST_MOVE_TYPE</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["StockTake"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_DateInput @bind-Value="@_viewModel.LastInfoDetail.DLAST_STOCK_DATE" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.LastInfoDetail.NLAST_STOCK_AMT" TextAlignment="R_eTextAlignment.Right" Enabled="false" Arrows="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["Recalculate"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_DateInput @bind-Value="@_viewModel.LastInfoDetail.DLAST_RECALC_DATE" Enabled="false"/>
+            </R_ItemLayout>
+            @* <R_ItemLayout col="5"> *@
+            @*     <R_NumericTextBox @bind-Value="@_viewModel.LastInfoDetail.NLAST_RECALC_AMT" TextAlignment="R_eTextAlignment.Right" Enabled="false" Arrows="false"/> *@
+            @* </R_ItemLayout> *@
+        </R_StackLayout>
+    </R_ItemLayout>
+    
+    <R_ItemLayout Class="mt-2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="2"/>
+            <R_ItemLayout col="4">
+                <R_TextBox Value="@_localizer["Date"]" TextAlignment="R_eTextAlignment.Center" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextBox Value="@_localizer["Cost"]" TextAlignment="R_eTextAlignment.Center" Enabled="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["Replacement"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_DateInput @bind-Value="@_viewModel.LastInfoDetail.DREPLACEMENT_DATE" Enabled="false"/>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.LastInfoDetail.NREPLACEMENT_COST" TextAlignment="R_eTextAlignment.Right" Enabled="false" Arrows="false"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>

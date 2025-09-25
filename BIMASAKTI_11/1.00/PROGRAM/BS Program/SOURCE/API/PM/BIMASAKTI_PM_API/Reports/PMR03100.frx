@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\LM\BIMASAKTI_LM_API\Reports\BaseHeaderCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="10/30/2024 11:45:22" ReportInfo.CreatorVersion="2023.2.21.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="ReportData" DataType="PMR03100COMMON.DTO_s.Print.ReportDataDTO, PMR03100COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Header" DataType="System.String"/>
+        <Column Name="Label" DataType="PMR03100COMMON.DTO_s.Print.LabelDTO, PMR03100COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="PARAM_PROPERTY" DataType="System.String"/>
+          <Column Name="PARAM_CUTOFF_YEAR" DataType="System.String"/>
+          <Column Name="HEADER_INVAMTEXCL" DataType="System.String"/>
+          <Column Name="HEADER_DPPNETO" DataType="System.String"/>
+          <Column Name="HEADER_CACUTTEDAMT" DataType="System.String"/>
+          <Column Name="HEADER_CAREFNO" DataType="System.String"/>
+          <Column Name="HEADER_PPHAMOUNT" DataType="System.String"/>
+          <Column Name="HEADER_MONTHYEAR" DataType="System.String"/>
+          <Column Name="FOOTER_TOTPPHAMT" DataType="System.String"/>
+        </Column>
+        <Column Name="Param" DataType="PMR03100COMMON.DTO_s.Print.ParamDTO, PMR03100COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="CPROPERTY_NAME" DataType="System.String"/>
+          <Column Name="CREPORT_FILENAME" DataType="System.String"/>
+          <Column Name="CREPORT_FILEEXT" DataType="System.String"/>
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CCUT_OFF_YEAR" DataType="System.String"/>
+          <Column Name="CUSER_ID" DataType="System.String"/>
+        </Column>
+        <BusinessObjectDataSource Name="Data" DataType="System.Collections.Generic.List`1[[PMR03100COMMON.DTO_s.DB.SPResultDTO, PMR03100COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="NINVOICE_AMT" DataType="System.Decimal"/>
+          <Column Name="NDPP" DataType="System.Decimal"/>
+          <Column Name="NBUKTI_POTONG_AMT" DataType="System.Decimal"/>
+          <Column Name="CREF_NO" DataType="System.String"/>
+          <Column Name="NPPH_AMOUNT" DataType="System.Decimal"/>
+          <Column Name="CMONTH_YEAR" DataType="System.String"/>
+        </BusinessObjectDataSource>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+      <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Page" DataType="System.String"/>
+        <Column Name="Of" DataType="System.String"/>
+        <Column Name="Print_Date" DataType="System.String"/>
+        <Column Name="Print_By" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+    <Total Name="SumOfPPhAmount" Expression="[ResponseDataModel.ReportData.Data.NPPH_AMOUNT]" Evaluator="Data1" PrintOn="DataFooter1"/>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="LogoCompany"/>
+      <inherited Name="Text33"/>
+      <inherited Name="LabelNoPage">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="BaseHeaderDate"/>
+      <inherited Name="LabelDate"/>
+      <inherited Name="BaseHeaderLabel"/>
+      <inherited Name="BaseHeaderUserId"/>
+      <inherited Name="LabelUserId"/>
+      <inherited Name="BaseHeaderDateTime"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="78.8" Width="718.2" Height="75.6" CanGrow="true" CanShrink="true">
+        <TextObject Name="Text42" Left="-9.45" Top="9.45" Width="378" Height="18.9" Text="[ResponseDataModel.ReportData.Label.PARAM_PROPERTY] : [ResponseDataModel.ReportData.Param.CPROPERTY_NAME]([ResponseDataModel.ReportData.Param.CPROPERTY_ID])" Font="Arial Unicode MS, 7pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text43" Left="-9.45" Top="28.35" Width="378" Height="18.9" Text="[ResponseDataModel.ReportData.Label.PARAM_CUTOFF_YEAR] : [ResponseDataModel.ReportData.Param.CCUT_OFF_YEAR]" Font="Arial Unicode MS, 7pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+      </ChildBand>
+    </inherited>
+    <DataBand Name="Data1" ZOrder="0" Top="189.15" Width="718.2" Height="37.8" CanGrow="true" CanShrink="true" DataSource="Data">
+      <TextObject Name="Text50" Left="-56.7" Width="132.3" Height="18.9" Text="[ResponseDataModel.ReportData.Data.NINVOICE_AMT]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text51" Left="75.6" Width="132.3" Height="18.9" Text="[ResponseDataModel.ReportData.Data.NDPP]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text52" Left="207.9" Width="132.3" Height="18.9" Text="[ResponseDataModel.ReportData.Data.NBUKTI_POTONG_AMT]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text53" Left="340.2" Width="141.75" Height="18.9" Text="[ResponseDataModel.ReportData.Data.CREF_NO]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+      <TextObject Name="Text54" Left="481.95" Width="122.85" Height="18.9" Text="[ResponseDataModel.ReportData.Data.NPPH_AMOUNT]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text55" Left="604.8" Width="132.3" Height="18.9" Text="[ResponseDataModel.ReportData.Data.CMONTH_YEAR]" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+      <DataHeaderBand Name="DataHeader1" Top="157.6" Width="718.2" Height="28.35" CanGrow="true" CanShrink="true">
+        <LineObject Name="Line1" Left="-37.8" Width="793.8" Diagonal="true"/>
+        <LineObject Name="Line2" Left="-37.8" Top="18.9" Width="793.8" Diagonal="true"/>
+        <TextObject Name="Text44" Left="-56.7" Width="132.3" Height="18.9" Text="[ResponseDataModel.ReportData.Label.HEADER_INVAMTEXCL]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text45" Left="75.6" Width="132.3" Height="18.9" Text="[ResponseDataModel.ReportData.Label.HEADER_DPPNETO]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text46" Left="207.9" Width="132.3" Height="18.9" Text="[ResponseDataModel.ReportData.Label.HEADER_CACUTTEDAMT]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text47" Left="340.2" Width="141.75" Height="18.9" Text="[ResponseDataModel.ReportData.Label.HEADER_CAREFNO]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text48" Left="481.95" Width="122.85" Height="18.9" Text="[ResponseDataModel.ReportData.Label.HEADER_PPHAMOUNT]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text49" Left="604.8" Width="132.3" Height="18.9" Text="[ResponseDataModel.ReportData.Label.HEADER_MONTHYEAR]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="DataFooter1" Top="230.15" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true">
+        <TextObject Name="Text56" Left="217.35" Width="264.6" Height="18.9" Text="[ResponseDataModel.ReportData.Label.FOOTER_TOTPPHAMT] [ResponseDataModel.ReportData.Param.CCUT_OFF_YEAR] : " HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt, style=Bold">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <LineObject Name="Line3" Left="-37.8" Width="793.8" Diagonal="true"/>
+        <LineObject Name="Line4" Left="-37.8" Top="18.9" Width="793.8" Diagonal="true"/>
+        <TextObject Name="Text57" Left="481.95" Width="122.85" Height="18.9" Text="[SumOfPPhAmount]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt, style=Bold"/>
+      </DataFooterBand>
+    </DataBand>
+  </inherited>
+</inherited>

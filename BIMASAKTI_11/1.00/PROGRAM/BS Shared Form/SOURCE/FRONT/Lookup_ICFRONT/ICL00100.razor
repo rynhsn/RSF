@@ -1,0 +1,43 @@
+﻿
+@using Lookup_ICCOMMON.DTOs.ICL00100
+@using Lookup_ICFrontResources
+@inherits R_BlazorFrontEnd.Controls.R_Page
+@attribute [R_Page(Title = "Request Lookup")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupIC> _localizer
+<R_StackLayout Style="width: 1200px">
+
+    <R_StackLayout Row>
+        <R_ItemLayout Class="col-12">
+            <R_Grid @ref="@GridRef"
+                    DataSource="_viewModel.RequestLookup"
+                    R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                    Pageable
+                    Height="400px"
+                    R_GridType="R_eGridType.Navigator"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false"
+                    PageSize="17">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(ICL00100DTO.CREQUEST_CODE)" Width="162px" HeaderText="@_localizer["REQUEST_CODE"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(ICL00100DTO.CREQUEST_NAME)" Width="205px" HeaderText="@_localizer["REQUEST_DESCRIPTION"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(ICL00100DTO.CALLOC_ID)" Width="153px" HeaderText="@_localizer["ALLOCATION_ID"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(ICL00100DTO.CALLOC_NAME)" Width="210px" HeaderText="@_localizer["ALLOCATION_DESCRIPTION"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(ICL00100DTO.CWAREHOUSE_CODE)" Width="162px" HeaderText="@_localizer["WAREHOUSE_ID"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(ICL00100DTO.CWAREHOUSE_NAME)" Width="187px" HeaderText="@_localizer["WAREHOUSE_NAME"]"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+        <R_Button Enabled="@(_viewModel.RequestLookup.Count != 0)"
+                  OnClick="Button_OnClickOkAsync">
+            @_localizer["OK"]
+        </R_Button>
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            @_localizer["CANCEL"]
+        </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>

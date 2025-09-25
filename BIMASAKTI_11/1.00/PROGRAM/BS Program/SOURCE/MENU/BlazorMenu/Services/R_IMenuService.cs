@@ -1,4 +1,4 @@
-﻿using BlazorMenuCommon;
+﻿using BlazorMenuCommon.DTOs;
 
 namespace BlazorMenu.Services
 {

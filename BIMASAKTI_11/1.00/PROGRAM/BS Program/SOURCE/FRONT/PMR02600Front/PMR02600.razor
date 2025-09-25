@@ -1,0 +1,76 @@
+﻿@page "/PMR02600"
+@using R_BlazorFrontEnd.Interfaces
+@using PMR02600FrontResources
+@using PMR02600Common.DTOs
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["PROPERTY"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@_viewModel.PropertyList"
+                    Value="@_viewModel.ReportParam.CPROPERTY"
+                    ValueField="@nameof(PMR02600PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(PMR02600PropertyDTO.CPROPERTY_NAME)"
+                    ValueChanged="@((string value) => _valueChangedProperty(value))" />
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Class="mb-1">
+    <R_ItemLayout>
+        <R_GroupBox Title="Building" ShowBorder Class="p-2">
+            <R_StackLayout Row>
+                <R_ItemLayout col="1">
+                    <R_Label>@_localizer["FROM"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_BUILDING"
+                               MaxLength="20"
+                               OnLostFocus="OnLostFocusFromBuilding"/>
+                </R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupFromBuilding"
+                          R_After_Open_Lookup="AfterOpenLookupFromBuilding">
+                    ...
+                </R_Lookup>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_BUILDING_NAME" Enabled="false"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+            
+            <R_StackLayout Row>
+                <R_ItemLayout col="1">
+                    <R_Label>@_localizer["TO"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_BUILDING"
+                               MaxLength="20"
+                               OnLostFocus="OnLostFocusToBuilding"/>
+                </R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupToBuilding"
+                          R_After_Open_Lookup="AfterOpenLookupToBuilding">
+                    ...
+                </R_Lookup>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_BUILDING_NAME" Enabled="false"/>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_GroupBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+            <R_Label>@_localizer["CUTOFFDATE"]</R_Label>
+        </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_DatePicker @bind-Value="_viewModel.ReportParam.DPERIOD"/>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_PrintButton OnClick="OnClickPrint">@_localizer["PRINT"]</R_PrintButton>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_Before_Open_Lookup="BeforeOpenPopupSaveAs">@_localizer["SAVE_AS"]</R_Lookup>
+    </R_ItemLayout>
+</R_StackLayout>

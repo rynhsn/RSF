@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "PMM04500BackResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64931;http://localhost:64933"
+    }
+  }
+}

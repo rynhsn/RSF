@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <!-- PPAP_GLNO_NOT_FOUND=PPAP GL Account No. not found! -->
+    
+    <data name="PPAP_GLNO_NOT_FOUND" xml:space="preserve">
+        <value>PPAP GL Account No. not found!</value>
+    </data>
+    
+    <!-- ERROR_PROCESS=Process failed! unable to process scheduled payment {0} -->
+    
+    <data name="ERROR_PROCESS" xml:space="preserve">
+        <value>Process failed! unable to process scheduled payment {0}</value>
+    </data>
+    
+    <!-- DATA_EXISTS=Reference No. already exists {0} -->
+    
+    <data name="DATA_EXISTS" xml:space="preserve">
+        <value>Reference No. already exists {0}</value>
+    </data>
+    
+    <!-- REF_NO_NOT_SET=Transaction Code Numbering Setting not found for {0} -->
+    
+    <data name="REF_NO_NOT_SET" xml:space="preserve">
+        <value>Transaction Code Numbering Setting not found for {0}</value>
+    </data>
+    
+    <!-- CB_NO_NOT_SET=Cash/Bank Code Numbering Setting not found for {0} -->
+    
+    <data name="CB_NO_NOT_SET" xml:space="preserve">
+        <value>Cash/Bank Code Numbering Setting not found for {0}</value>
+    </data>
+    
+    <!-- CB_GL_ACC_NOT_FOUND=GL Account No. not found for selected CB Account {0} -->
+    
+    <data name="CB_GL_ACC_NOT_FOUND" xml:space="preserve">
+        <value>GL Account No. not found for selected CB Account {0}</value>
+    </data>
+    
+    <!-- ALLOC_NO_NOT_SET=Allocation Transaction Numbering must be set to Auto Increment -->
+    
+    <data name="ALLOC_NO_NOT_SET" xml:space="preserve">
+        <value>Allocation Transaction Numbering must be set to Auto Increment</value>
+    </data>
+    
+</root>

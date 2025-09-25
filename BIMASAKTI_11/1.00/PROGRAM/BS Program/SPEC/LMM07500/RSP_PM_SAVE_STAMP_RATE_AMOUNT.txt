@@ -1,0 +1,2 @@
+ERROR_PROCESS=Process failed! unable to save Stamp Rate Amount {0}
+DATA_EXISTS=Minimum Amount {0} already exists!

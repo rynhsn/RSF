@@ -1,0 +1,19 @@
+8001 -- Error process, please contact your administrator!
+8002 -- Building ID is empty!
+8003 -- Building ID already has record!
+8004 -- Electricity Charges ID is empty!
+8005 -- Electricity Charges ID is not found!
+8006 -- Electricity Tax ID is empty!
+8007 -- Electricity Tax ID is not found!
+8008 -- Gas Charges ID is empty!
+8009 -- Gas Charges ID is not found!
+8010 -- Gas Tax ID is empty!
+8011 -- Gas Tax ID is not found!
+8012 -- Water Charges ID is empty!
+8013 -- Water Charges ID is not found!
+8014 -- Water Tax ID is empty!
+8015 -- Water Tax ID is not found!
+8016 -- Chiller Charges ID is empty!
+8017 -- Chiller Charges ID is not found!
+8018 -- Chiller Tax ID is empty!
+8019 -- Chiller Tax ID is not found!

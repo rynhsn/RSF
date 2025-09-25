@@ -1,0 +1,150 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console And General\\PMA00300\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4D767309-D197-483E-AECD-5B95989DC084}|PMA00300BACK\\PMA00300BACK.csproj|d:\\vs2022\\simulationreal\\live_jun_2025\\console and general\\pma00300\\pma00300back\\pma00300cls.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D767309-D197-483E-AECD-5B95989DC084}|PMA00300BACK\\PMA00300BACK.csproj|solutionrelative:pma00300back\\pma00300cls.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43AA6396-440E-4C62-98B5-9EB42F282FBC}|PMA00300Console\\PMA00300Console.csproj|d:\\vs2022\\simulationreal\\live_jun_2025\\console and general\\pma00300\\pma00300console\\consolemain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43AA6396-440E-4C62-98B5-9EB42F282FBC}|PMA00300Console\\PMA00300Console.csproj|solutionrelative:pma00300console\\consolemain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43AA6396-440E-4C62-98B5-9EB42F282FBC}|PMA00300Console\\PMA00300Console.csproj|d:\\vs2022\\simulationreal\\live_jun_2025\\console and general\\pma00300\\pma00300console\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{43AA6396-440E-4C62-98B5-9EB42F282FBC}|PMA00300Console\\PMA00300Console.csproj|solutionrelative:pma00300console\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43AA6396-440E-4C62-98B5-9EB42F282FBC}|PMA00300Console\\PMA00300Console.csproj|d:\\vs2022\\simulationreal\\live_jun_2025\\console and general\\pma00300\\pma00300console\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43AA6396-440E-4C62-98B5-9EB42F282FBC}|PMA00300Console\\PMA00300Console.csproj|solutionrelative:pma00300console\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43AA6396-440E-4C62-98B5-9EB42F282FBC}|PMA00300Console\\PMA00300Console.csproj|d:\\vs2022\\simulationreal\\live_jun_2025\\console and general\\pma00300\\pma00300console\\dto\\propertydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43AA6396-440E-4C62-98B5-9EB42F282FBC}|PMA00300Console\\PMA00300Console.csproj|solutionrelative:pma00300console\\dto\\propertydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43AA6396-440E-4C62-98B5-9EB42F282FBC}|PMA00300Console\\PMA00300Console.csproj|d:\\vs2022\\simulationreal\\live_jun_2025\\console and general\\pma00300\\pma00300console\\dto\\companydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43AA6396-440E-4C62-98B5-9EB42F282FBC}|PMA00300Console\\PMA00300Console.csproj|solutionrelative:pma00300console\\dto\\companydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D767309-D197-483E-AECD-5B95989DC084}|PMA00300BACK\\PMA00300BACK.csproj|d:\\vs2022\\simulationreal\\live_jun_2025\\console and general\\pma00300\\pma00300back\\pma00300back.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{4D767309-D197-483E-AECD-5B95989DC084}|PMA00300BACK\\PMA00300BACK.csproj|solutionrelative:pma00300back\\pma00300back.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 223,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PropertyDTO.cs",
+              "DocumentMoniker": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console And General\\PMA00300\\PMA00300Console\\DTO\\PropertyDTO.cs",
+              "RelativeDocumentMoniker": "PMA00300Console\\DTO\\PropertyDTO.cs",
+              "ToolTip": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console And General\\PMA00300\\PMA00300Console\\DTO\\PropertyDTO.cs",
+              "RelativeToolTip": "PMA00300Console\\DTO\\PropertyDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T07:54:17.057Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CompanyDTO.cs",
+              "DocumentMoniker": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console And General\\PMA00300\\PMA00300Console\\DTO\\CompanyDTO.cs",
+              "RelativeDocumentMoniker": "PMA00300Console\\DTO\\CompanyDTO.cs",
+              "ToolTip": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console And General\\PMA00300\\PMA00300Console\\DTO\\CompanyDTO.cs",
+              "RelativeToolTip": "PMA00300Console\\DTO\\CompanyDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T07:44:59.093Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ConsoleMain.cs",
+              "DocumentMoniker": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console And General\\PMA00300\\PMA00300Console\\ConsoleMain.cs",
+              "RelativeDocumentMoniker": "PMA00300Console\\ConsoleMain.cs",
+              "ToolTip": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console And General\\PMA00300\\PMA00300Console\\ConsoleMain.cs",
+              "RelativeToolTip": "PMA00300Console\\ConsoleMain.cs",
+              "ViewState": "AQIAAFUAAAAAAAAAAAAQwFsAAABNAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T04:43:14.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PMA00300BACK.csproj",
+              "DocumentMoniker": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console And General\\PMA00300\\PMA00300BACK\\PMA00300BACK.csproj",
+              "RelativeDocumentMoniker": "PMA00300BACK\\PMA00300BACK.csproj",
+              "ToolTip": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console And General\\PMA00300\\PMA00300BACK\\PMA00300BACK.csproj",
+              "RelativeToolTip": "PMA00300BACK\\PMA00300BACK.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-12T04:38:19.425Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console And General\\PMA00300\\PMA00300Console\\appsettings.json",
+              "RelativeDocumentMoniker": "PMA00300Console\\appsettings.json",
+              "ToolTip": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console And General\\PMA00300\\PMA00300Console\\appsettings.json",
+              "RelativeToolTip": "PMA00300Console\\appsettings.json",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAgwCgAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-12T04:29:07.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PMA00300Cls.cs",
+              "DocumentMoniker": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console And General\\PMA00300\\PMA00300BACK\\PMA00300Cls.cs",
+              "RelativeDocumentMoniker": "PMA00300BACK\\PMA00300Cls.cs",
+              "ToolTip": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console And General\\PMA00300\\PMA00300BACK\\PMA00300Cls.cs",
+              "RelativeToolTip": "PMA00300BACK\\PMA00300Cls.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAkwDYAAABFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T04:28:21.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console And General\\PMA00300\\PMA00300Console\\Program.cs",
+              "RelativeDocumentMoniker": "PMA00300Console\\Program.cs",
+              "ToolTip": "D:\\VS2022\\SimulationReal\\Live_Jun_2025\\Console And General\\PMA00300\\PMA00300Console\\Program.cs",
+              "RelativeToolTip": "PMA00300Console\\Program.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAAADAAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T04:27:49.203Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 325,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

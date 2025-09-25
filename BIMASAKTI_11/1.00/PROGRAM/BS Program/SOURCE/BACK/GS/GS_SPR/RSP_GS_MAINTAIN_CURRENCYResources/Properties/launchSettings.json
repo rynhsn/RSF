@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GS_MAINTAIN_CURRENCYResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:52252;http://localhost:52253"
+    }
+  }
+}

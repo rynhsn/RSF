@@ -1,0 +1,32 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Save As")]
+
+
+<R_StackLayout Row>
+    <R_ItemLayout>
+        <R_Label>
+            @_localizer["SAVE_AS"]
+        </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="@_viewModel.PrintParam.CREPORT_FILENAME"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_ComboBox Data="@_viewModel.FileType"
+                    @bind-Value="_viewModel.PrintParam.CREPORT_FILETYPE"
+                    ValueField="Value"
+                    TextField="Text"></R_ComboBox>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="@OnClickOk"
+                  Enabled="!string.IsNullOrWhiteSpace(_viewModel.PrintParam.CREPORT_FILENAME)&&!string.IsNullOrWhiteSpace(_viewModel.PrintParam.CREPORT_FILETYPE)">
+            @_localizer["_btn_save"]
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="@OnClickCancel">
+            @_localizer["_btn_cancel"]
+        </R_Button>
+    </R_ItemLayout>
+
+</R_StackLayout>

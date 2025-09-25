@@ -1,12 +1,15 @@
 ﻿using BlazorClientHelper;
 using Blazored.LocalStorage;
-using BlazorMenu.Clients;
 using BlazorMenu.Constants.Storage;
 using BlazorMenu.Services;
-using BlazorMenuCommon;
+using BlazorMenu.Shared.Tabs;
+using BlazorMenuCommon.DTOs;
+using BlazorMenuModel;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using R_AuthenticationEnumAndInterface;
 using R_BlazorFrontEnd.Exceptions;
+using R_CommonFrontBackAPI;
 using System.Security.Claims;
 using System.Text.Json;
 
@@ -17,18 +20,24 @@ namespace BlazorMenu.Authentication
         private readonly R_ITokenRepository _tokenRepository;
         private readonly ISyncLocalStorageService _localStorageService;
         private readonly R_IMenuService _menuService;
+        private readonly NavigationManager _navigationManager;
+        private readonly MenuTabSetTool _menuTabSetTool;
         private readonly IClientHelper _clientHelper;
 
         public BlazorMenuAuthenticationStateProvider(
             R_ITokenRepository tokenRepository,
             ISyncLocalStorageService localStorageService,
+            IClientHelper clientHelper,
             R_IMenuService menuService,
-            IClientHelper clientHelper)
+            NavigationManager navigationManager,
+            MenuTabSetTool menuTabSetTool)
         {
             _tokenRepository = tokenRepository;
             _localStorageService = localStorageService;
-            _menuService = menuService;
             _clientHelper = clientHelper;
+            _menuService = menuService;
+            _navigationManager = navigationManager;
+            _menuTabSetTool = menuTabSetTool;
         }
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
@@ -47,6 +56,23 @@ namespace BlazorMenu.Authentication
 
                 _clientHelper.Set_CompanyId(loUserClaim.Where(x => x.Type == "COMPANY_ID").FirstOrDefault().Value);
                 _clientHelper.Set_UserId(loUserClaim.Where(x => x.Type == "USER_ID").FirstOrDefault().Value);
+
+                var lcCultureId = _localStorageService.GetItemAsString(StorageConstants.Culture);
+                if (!string.IsNullOrWhiteSpace(lcCultureId))
+                {
+                    var leLoginCulture = R_Culture.R_GetCultureEnum(lcCultureId);
+
+                    _clientHelper.Set_CultureUI(leLoginCulture);
+                }
+                else
+                {
+                    _clientHelper.Set_CultureUI(eCulture.English);
+                }
+
+                //if (!_navigationManager.Uri.Equals(_navigationManager.BaseUri, StringComparison.InvariantCultureIgnoreCase))
+                //{
+                //    _navigationManager.NavigateTo(_navigationManager.BaseUri);
+                //}
 
                 if (_menuService.MenuAccess == null)
                     await _menuService.SetMenuAccessAsync();
@@ -103,8 +129,8 @@ namespace BlazorMenu.Authentication
                 CUSER_ID = loUserClaim.Where(x => x.Type == "USER_ID").FirstOrDefault().Value
             };
 
-            var loClientWrapper = new R_LoginServiceClient();
-            await loClientWrapper.UserLockingFlushAsync(loParam);
+            R_LoginViewModel _loginViewModel = new R_LoginViewModel();
+            await _loginViewModel.UserLockingFlushAsync(loParam);
 
             ClearLocalStorage();
         }

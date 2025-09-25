@@ -1,0 +1,110 @@
+﻿@using Lookup_CBCOMMON.DTOs.CBL00100
+@using Lookup_CBFrontResources
+@inherits R_Page
+@attribute [R_Page(Title = "Receipt Customer Lookup")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupCB> _localizer
+<R_StackLayout Style="width: 1200px">
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="6">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label> Property</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="5" Class="pe-3">
+                    <R_TextBox Value="@_viewModel.ParameterLookup.CPROPERTY_NAME"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false"/>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Label></R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="1">
+                    <R_Label> Period</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="4" Class="ps-2">
+                    <R_RadioGroup Data="@_viewModel.RadioButton"
+                                  @bind-Value="@_viewModel.ReceiptFromCustomerLookupEntity.RadioButton"
+                                  ValueField="@nameof(CBL00100DTO.Code)"
+                                  TextField="@nameof(CBL00100DTO.Desc)"
+                                  Enabled="true"
+                                  OnChanged="@OnchangedPeriod">
+                    </R_RadioGroup>
+                </R_ItemLayout>
+                <R_ItemLayout col="3" Class="d-flex align-items-center">
+                    <R_NumericTextBox
+                        @bind-Value="@_viewModel.ReceiptFromCustomerLookupEntity.VAR_GSM_PERIOD"
+                        Min="@_viewModel.PeriodLookup.IMIN_YEAR"
+                        Max="@_viewModel.PeriodLookup.IMAX_YEAR"
+                        R_ConductorSource="@_conductorRef"
+                        Step="1" ThousandSeparator="false"
+                        Enabled="@(_viewModel.ReceiptFromCustomerLookupEntity.RadioButton != "A")"/>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_DropDownList Data="@_viewModel.Month"
+                                    @bind-Value="@_viewModel.ReceiptFromCustomerLookupEntity.Month"
+                                    ValueField="@nameof(CBL00100DTO.Code)"
+                                    TextField="@nameof(CBL00100DTO.Desc)"
+                                    R_ConductorSource="@_conductorRef"
+                                    Enabled="@(_viewModel.ReceiptFromCustomerLookupEntity.RadioButton != "A")"></R_DropDownList>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Button OnClick="Refresh_Button">
+                        @_localizer["RFSH"]
+                    </R_Button>
+                </R_ItemLayout>
+
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.ReceiptFromCustomerLookupGrid"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                R_GridType="R_eGridType.Navigator"
+                Pageable
+                Height="300px"
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false"
+                PageSize="5"
+                Enabled="@(_viewModel.ReceiptFromCustomerLookupGrid.Count > 0)">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CTENANT_ID_NAME" Width="143px"
+                                  HeaderText="@_localizer["CUSTOMER"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CUNIT_DESCRIPTION" Width="89px"
+                                  HeaderText="@_localizer["UNIT_DESCRIPTION"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CDEPT_CODE" Width="140px"
+                                  HeaderText="@_localizer["DEPT"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CREF_NO" Width="140px"
+                                  HeaderText="@_localizer["REFERENCE_NO"]"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="DREF_DATE" Width="147px"
+                                        HeaderText="@_localizer["REFERENCE_DATE"]"></R_GridDatePickerColumn>
+                <R_GridTextColumn FieldName="CCURRENCY_CODE" Width="140px"
+                                  HeaderText="@_localizer["CURR"]"></R_GridTextColumn>
+                <R_GridNumericColumn TValue="decimal" FieldName="NTRANS_AMOUNT" Width="178px"
+                                     HeaderText="@_localizer["AMOUNT"]"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="CPAYMENT_TYPE_NAME" Width="140px"
+                                  HeaderText="@_localizer["CB_TYPE"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CTRANS_DESC" Width="140px"
+                                  HeaderText="@_localizer["DESCRIPTION"]"></R_GridTextColumn>
+
+
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+
+        <R_Button Enabled="@(_viewModel.ReceiptFromCustomerLookupGrid.Count != 0)" OnClick="Button_OnClickOkAsync">
+            @_localizer["OK"]
+        </R_Button>
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            @_localizer["CNCL"]
+        </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>

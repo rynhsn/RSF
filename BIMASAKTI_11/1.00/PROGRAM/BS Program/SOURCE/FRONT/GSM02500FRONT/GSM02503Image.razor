@@ -1,0 +1,62 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Image")]
+@using GSM02500COMMON.DTOs.GSM02503
+@using GSM02500MODEL
+
+<R_StackLayout Class="mb-4">
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label Class="fw-bold" FontSize="15">@_localizer["_UnitType"]</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@loImageViewModel.SelectedUnitType.CUNIT_TYPE_ID"
+                       R_ConductorSource="@_conductorImageRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="7">
+            <R_TextBox @bind-Value="@loImageViewModel.SelectedUnitType.CUNIT_TYPE_NAME"
+                       R_ConductorSource="@_conductorImageRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout Spacing="3" Class="mb-4" Row="true">
+    <R_ItemLayout col="12">
+        <R_Grid @ref="@_gridImageRef"
+                DataSource="@loImageViewModel.loImageList"
+                R_ConductorSource="@_conductorImageRef"
+                R_GridType="@R_eGridType.Navigator"
+                Height="155px"
+                R_ServiceGetListRecord="@Grid_R_ServiceGetImageListRecord">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GSM02503ImageDTO.CIMAGE_ID)" HeaderText="@_localizer["_ImageId"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM02503ImageDTO.CIMAGE_NAME)" HeaderText="@_localizer["_Name"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM02503ImageDTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GSM02503ImageDTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]"></R_GridDateTimePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+
+<R_StackLayout Row Class="justify-content-start">
+    <R_ItemLayout>
+        <R_Popup R_ConductorSource="@_conductorImageRef" R_Before_Open_Popup="BeforeOpenAddPopUp" R_After_Open_Popup="AfterOpenAddPopUp">@_localizer["_Add"]</R_Popup>
+        <R_DeleteButton R_Conductor="@_conductorImageRef"></R_DeleteButton>
+        <R_Popup R_ConductorSource="@_conductorImageRef" R_Before_Open_Popup="BeforeOpenShowPopUp" R_After_Open_Popup="AfterOpenShowPopUp" Enabled="@IsShowEnabled">@_localizer["_Show"]</R_Popup>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorImageRef"
+             R_ViewModel="@loImageViewModel"
+             R_Display="Grid_DisplayImage"
+             R_ServiceDelete="Grid_ServiceDeleteImage"
+             R_AfterDelete="Grid_AfterDeleteImage"
+             R_IsHeader
+             R_ServiceGetRecord="@Grid_ServiceGetImageRecord">
+</R_Conductor>

@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="R_APIBackEnd">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommonDTO">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommonDTO.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CommonFrontBackAPI">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="R_EmailEngine">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_EmailEngine.dll</HintPath>
+		</Reference>
+		<Reference Include="R_EmailEngineCommon">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_EmailEngineCommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_OpenTelemetry">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll</HintPath>
+		</Reference>
+		<Reference Include="R_Processor">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_Processor.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ProcessorJob">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ProcessorJob.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ReportServerClient">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportServerClient.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ReportServerCommon">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportServerCommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_Storage">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_Storage.dll</HintPath>
+		</Reference>
+		<Reference Include="R_StorageCommon">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_StorageCommon.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\COMMON\LM\PMB04000COMMON\PMB04000COMMONPrintBatch\PMB04000COMMONPrintBatch.csproj" />
+		<ProjectReference Include="..\..\..\COMMON\LM\PMB04000COMMON\PMB04000\PMB04000COMMON.csproj" />
+		<ProjectReference Include="..\..\GS\GS_SPR\RSP_GS_GET_STORAGE_TYPEResources\RSP_GS_GET_STORAGE_TYPEResources.csproj" />
+		<ProjectReference Include="..\LM_SPR\RSP_PM_CANCEL_OFFICIAL_RECEIPTResources\RSP_PM_CANCEL_OFFICIAL_RECEIPTResources.csproj" />
+		<ProjectReference Include="..\LM_SPR\RSP_PM_CREATE_OFFICIAL_RECEIPTResources\RSP_PM_CREATE_OFFICIAL_RECEIPTResources.csproj" />
+		<ProjectReference Include="..\LM_SPR\RSP_PM_SEND_RECEIPTResources\RSP_PM_SEND_RECEIPTResources.csproj" />
+		<ProjectReference Include="..\PMB04000BackResources\PMB04000BackResources.csproj" />
+	</ItemGroup>
+
+</Project>
