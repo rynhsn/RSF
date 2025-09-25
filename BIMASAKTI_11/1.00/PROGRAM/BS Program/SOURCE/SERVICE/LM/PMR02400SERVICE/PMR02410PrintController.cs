@@ -183,10 +183,12 @@ namespace PMR02400SERVICE
                 loParam.CUSER_ID = R_BackGlobalVar.USER_ID;
 
                 var loCls = new PMR02400Cls();
-                var loBaseHeader = loCls.GetBaseHeaderLogoCompany(R_BackGlobalVar.COMPANY_ID);
+                var loBaseHeader = loCls.GetBaseHeaderLogoCompany(poParam);
                 loParam.BLOGO_COMPANY = loBaseHeader.CLOGO;
                 loParam.CCOMPANY_NAME = loBaseHeader.CCOMPANY_NAME;
-                loParam.DPRINT_DATE_COMPANY = DateTime.ParseExact(loBaseHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture);
+                //loParam.DPRINT_DATE_COMPANY = DateTime.ParseExact(loBaseHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture);
+                loParam.CPRINT_DATE_COMPANY = DateTime.ParseExact(loBaseHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture).ToString(R_BackGlobalVar.REPORT_FORMAT_SHORT_DATE + " " + R_BackGlobalVar.REPORT_FORMAT_SHORT_TIME);
+
 
                 // Create an instance
                 PMR02400ReportDataDTO loData = new()
