@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "HDA00100Console": {
+      "commandName": "Project",
+      "commandLineArgs": "false"
+    }
+  }
+}
