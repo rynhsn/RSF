@@ -163,13 +163,27 @@ public class PMR02600PrintController : R_ReportControllerBase
             var lcUser = R_BackGlobalVar.USER_ID;
             var lcLang = R_BackGlobalVar.CULTURE;
 
+
+            _logger.LogInfo("Set Parameter");
+            var loDbParam = new PMR02600ParameterDb
+            {
+                CCOMPANY_ID = lcCompany,
+                CUSER_ID = lcUser,
+                CLANG_ID = lcLang,
+                CPROPERTY_ID = poParam.CPROPERTY,
+                CFROM_BUILDING = poParam.CFROM_BUILDING,
+                CTO_BUILDING = poParam.CTO_BUILDING,
+                CCUT_OFF_DATE = poParam.CPERIOD,
+            };
+
             var loCls = new PMR02600Cls();
-            var loHeader = loCls.GetBaseHeaderLogoCompany(lcCompany);
+            var loHeader = loCls.GetBaseHeaderLogoCompany(loDbParam);
             loRtn.BaseHeaderData = new BaseHeaderDTO
             {
                 BLOGO_COMPANY = loHeader.BLOGO,
                 CCOMPANY_NAME = loHeader.CCOMPANY_NAME!,
-                DPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
+                //DPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
+                CPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture).ToString(R_BackGlobalVar.REPORT_FORMAT_SHORT_DATE + " " + R_BackGlobalVar.REPORT_FORMAT_SHORT_TIME),
                 CPRINT_CODE = "PMR02600",
                 CPRINT_NAME = "Occupancy Report",
                 CUSER_ID = lcUser,                
@@ -183,17 +197,6 @@ public class PMR02600PrintController : R_ReportControllerBase
                 Data = new List<PMR02600DataResultDTO>(),
             };
 
-            _logger.LogInfo("Set Parameter");
-            var loDbParam = new PMR02600ParameterDb
-            {
-                CCOMPANY_ID = lcCompany,
-                CUSER_ID = lcUser,
-                CLANG_ID = lcLang,
-                CPROPERTY_ID = poParam.CPROPERTY,
-                CFROM_BUILDING = poParam.CFROM_BUILDING,
-                CTO_BUILDING = poParam.CTO_BUILDING,
-                CCUT_OFF_DATE = poParam.CPERIOD,
-            };
 
             _logger.LogInfo("Get Detail Activity Report");
 

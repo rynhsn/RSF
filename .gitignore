@@ -1,14 +1,15 @@
 **\.idea
 **\.vs
 **\.vscode
-<<<<<<< HEAD
-
-BIMASAKTI
-BIMASAKTI_11/1.00/PROGRAM/SYSTEM/SOURCE/RealtaBlazorLibrary
-=======
+**\obj
+**\bin
+**\obj\
+**\bin\
+\obj\
+\bin\
 BIMASAKTI
 **\RealtaBlazorLibrary
 BIMASAKTI_11\1.00\PROGRAM\SYSTEM\SOURCE\RealtaBlazorLibrary
 BSP
 SIAPP
->>>>>>> 695d8841ae9ef88e42af041d36d2b08c00c96391
+/BIMASAKTI_11/1.00/PROGRAM/SYSTEM/SOURCE/RealtaBlazorLibrary
