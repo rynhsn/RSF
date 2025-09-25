@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+
+    <!-- PROPERTY -->
+    <data name="PROPERTY" xml:space="preserve">
+        <value>Property</value>
+        <comment>Property</comment> 
+    </data>
+
+    <!-- Period -->
+    <data name="Period" xml:space="preserve">
+        <value>Period</value>
+        <comment>Period</comment>
+    </data>
+    
+    <!-- From Customer -->
+    <data name="FromCustomer" xml:space="preserve">
+        <value>From Customer</value>
+        <comment>From Customer</comment>
+    </data>
+
+    <!-- To Customer -->
+    <data name="ToCustomer" xml:space="preserve">
+        <value>To Customer</value>
+        <comment>To Customer</comment>
+    </data>
+
+    <!-- Invoice Message -->
+    <data name="InvoiceMessage" xml:space="preserve">
+        <value>Invoice Message</value>
+        <comment>Invoice Message</comment>
+    </data>
+
+    <!-- Template Name -->
+    <data name="TemplateName" xml:space="preserve">
+        <value>Template Name</value>
+        <comment>Template Name</comment>
+    </data>
+
+    <data name="Print" xml:space="preserve">
+        <value>Print</value>
+        <comment>Print</comment>
+    </data>
+    <data name="SaveAs" xml:space="preserve">
+        <value>Save As</value>
+        <comment>Save As</comment>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>Cancel</value>
+        <comment>Cancel</comment>
+    </data>
+    <data name="Save" xml:space="preserve">
+        <value>Save</value>
+        <comment>Save</comment>
+    </data>
+    <!-- Send Email -->
+    <!-- <data name="SendEmail" xml:space="preserve"> -->
+    <!--     <value>Send Email</value> -->
+    <!--     <comment>Send Email</comment> -->
+    <!-- </data> -->
+
+    <data name="ConfirmSendEmail" xml:space="preserve">
+        <value>Are you sure want to Send Email?</value>
+        <comment>Are you sure want to Send Email?</comment>
+    </data>
+    
+    <!-- Confirmation -->
+    <data name="Confirmation" xml:space="preserve">
+        <value>Confirmation</value>
+        <comment>Confirmation</comment>
+    </data>
+    
+    <!-- Distribute -->
+    <data name="Distribute" xml:space="preserve">
+        <value>Distribute</value>
+        <comment>Distribute</comment>
+    </data> 
+    <!-- SuccessDistribute -->
+    <data name="SuccessDistribute" xml:space="preserve">
+        <value>Distribute Billing Statement has Successfully.</value>
+        <comment>Distribute Billing Statement has Successfully.</comment>
+    </data>
+</root>

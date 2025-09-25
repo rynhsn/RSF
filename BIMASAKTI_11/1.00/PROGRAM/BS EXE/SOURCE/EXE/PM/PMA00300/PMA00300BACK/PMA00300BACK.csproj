@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+	<!--<ItemGroup>
+		<PackageReference Include="Mindbox.Data.Linq" Version="3.0.0" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+	</ItemGroup>-->
+
+	<ItemGroup>
+	  <ProjectReference Include="..\PMA00300BackResources\PMA00300BackResources.csproj" />
+	  <ProjectReference Include="..\PMA00300COMMON\PMA00300COMMON.csproj" />
+	  <ProjectReference Include="..\PMA00300Logger\PMA00300Logger.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="R_APIBackEnd">
+			<HintPath>..\..\..\Library\R_APIBackEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommon">
+			<HintPath>..\..\..\Library\R_APICommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommonDTO">
+			<HintPath>..\..\..\Library\R_APICommonDTO.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CommonFrontBackAPI">
+			<HintPath>..\..\..\Library\R_CommonFrontBackAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="R_EmailEngine">
+			<HintPath>..\..\..\Library\R_EmailEngine.dll</HintPath>
+		</Reference>
+		<Reference Include="R_EmailEngineCommon">
+			<HintPath>..\..\..\Library\R_EmailEngineCommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_OpenTelemetry">
+			<HintPath>..\..\..\Library\R_OpenTelemetry.dll</HintPath>
+		</Reference>
+		<Reference Include="R_Processor">
+			<HintPath>..\..\..\Library\R_Processor.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ProcessorJob">
+			<HintPath>..\..\..\Library\R_ProcessorJob.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ReportServerClient">
+			<HintPath>..\..\..\Library\R_ReportServerClient.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ReportServerCommon">
+			<HintPath>..\..\..\Library\R_ReportServerCommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_Storage">
+			<HintPath>..\..\..\Library\R_Storage.dll</HintPath>
+		</Reference>
+		<Reference Include="R_StorageCommon">
+			<HintPath>..\..\..\Library\R_StorageCommon.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

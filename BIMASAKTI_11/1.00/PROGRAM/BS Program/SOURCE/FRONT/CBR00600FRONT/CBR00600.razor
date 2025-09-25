@@ -1,0 +1,248 @@
+﻿@page "/CBR00600" 
+@attribute [R_Page(ResourceId = "_PrintCBTransaction")]
+@inherits R_Page
+@inject R_ILocalizer<CBR00600FrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Style="@PageWidth">
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>@_localizer["_Property"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_ComboBox Data="@_viewModel.VAR_PROPERTY_LIST"
+                        Value="@_viewModel.ReportParameter.CPROPERTY_ID"
+                        ValueField="@nameof(CBR00600PropetyDTO.CPROPERTY_ID)"
+                        TextField="@nameof(CBR00600PropetyDTO.CPROPERTY_NAME)"
+                        ValueChanged="@((string value) => PropertyComboBox_ValueChanged(value))"
+                        Enabled="@(string.IsNullOrWhiteSpace(loCallerParameter.CREF_NO))"
+                        >
+            </R_ComboBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>@_localizer["_Department"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@_viewModel.ReportParameter.CDEPT_CODE"
+                       OnLostFocus="OnLostFocusDepartment"
+                       MaxLength="20"
+                       Enabled="@(!string.IsNullOrWhiteSpace(_viewModel.ReportParameter.CPROPERTY_ID) && string.IsNullOrWhiteSpace(loCallerParameter.CREF_NO))">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="0">
+            <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupDepartment"
+                      R_After_Open_Lookup="@R_After_Open_LookupDepartment"
+                      Enabled="@(!string.IsNullOrWhiteSpace(_viewModel.ReportParameter.CPROPERTY_ID) && string.IsNullOrWhiteSpace(loCallerParameter.CREF_NO))"
+                      >...</R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout col="4" Style="padding-right:14px">
+            <R_TextBox @bind-Value="@CDEPT_NAME"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>@_localizer["_TransactionType"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_ComboBox Data="@_viewModel.VAR_TRX_TYPE_LIST"
+                        Value="@_viewModel.ReportParameter.CTRANS_CODE"
+                        ValueField="@nameof(CBR00600TrxTypeDTO.CTRANS_CODE)"
+                        TextField="@nameof(CBR00600TrxTypeDTO.CTRANS_NAME)"
+                        ValueChanged="@((string value) => TransactionTypeComboBox_ValueChanged(value))"
+                        Enabled="@(string.IsNullOrWhiteSpace(loCallerParameter.CREF_NO))"
+                        >
+            </R_ComboBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_GroupBox Title="@_localizer["_FilteredBy"]" TitleClass="text-danger">
+        <R_StackLayout Row>
+            <R_ItemLayout col="9">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="4">
+                        <R_RadioGroup Data="@_viewModel.FilterByList"
+                                      Value="@_viewModel.ReportParameter.CFILTER_BY"
+                                      Layout="R_eRadioGroupLayout.Horizontal"
+                                      ValueField="Key"
+                                      TextField="Value" 
+                                      Enabled="@(string.IsNullOrWhiteSpace(loCallerParameter.CREF_NO))"
+                                      ValueChanged="@((string value) => FilterByRadioButton_ValueChanged(value))">
+                        </R_RadioGroup>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout col="1">
+                        <R_CheckBox @bind-Value="@_viewModel.LbForPeriod" Enabled="@(_viewModel.ReportParameter.CFILTER_BY == "REF_NO" && string.IsNullOrWhiteSpace(loCallerParameter.CREF_NO))"></R_CheckBox>
+                        <R_Label>@_localizer["_Period"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox Value="@_viewModel.LiPeriodYear"
+                                   Enabled="@(_viewModel.LbForPeriod && _viewModel.ReportParameter.CFILTER_BY == "REF_NO" && string.IsNullOrWhiteSpace(loCallerParameter.CREF_NO))"
+                                   ValueChanged="@((int value) => YearNumericTexBox_ValueChanged(value))"
+                                   ThousandSeparator="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_ComboBox Data="@_viewModel.VAR_PERIOD_MONTH_LIST"
+                                      @bind-Value="@_viewModel.LcPeriodMonth"
+                                      ValueField="@nameof(CBR00600PeriodDTO.CPERIOD_NO)"
+                                      TextField="@nameof(CBR00600PeriodDTO.CPERIOD_NO)"
+                                      PopupMaxHeight="150px"
+                                      Enabled="@(_viewModel.LbForPeriod && _viewModel.ReportParameter.CFILTER_BY == "REF_NO" && string.IsNullOrWhiteSpace(loCallerParameter.CREF_NO))">
+                        </R_ComboBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Label>@_localizer["_From"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="@_viewModel.CFROM_REF_NO"
+                                   OnLostFocus="OnLostFocusFromRefNo"
+                                   MaxLength="20"
+                                   Enabled="@(_viewModel.ReportParameter.CFILTER_BY == "REF_NO" && !string.IsNullOrWhiteSpace(_viewModel.ReportParameter.CDEPT_CODE) && string.IsNullOrWhiteSpace(loCallerParameter.CREF_NO))">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupFromRefNo"
+                                  R_After_Open_Lookup="@R_After_Open_LookupFromRefNo"
+                                  Enabled="@(_viewModel.ReportParameter.CFILTER_BY == "REF_NO" && !string.IsNullOrWhiteSpace(_viewModel.ReportParameter.CDEPT_CODE) && string.IsNullOrWhiteSpace(loCallerParameter.CREF_NO))"
+                                  >...</R_Lookup>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Label>@_localizer["_To"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="@_viewModel.CTO_REF_NO"
+                                   OnLostFocus="OnLostFocusToRefNo"
+                                   MaxLength="20"
+                                   Enabled="@(_viewModel.ReportParameter.CFILTER_BY == "REF_NO" && !string.IsNullOrWhiteSpace(_viewModel.ReportParameter.CDEPT_CODE) && string.IsNullOrWhiteSpace(loCallerParameter.CREF_NO))">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupToRefNo"
+                                  R_After_Open_Lookup="@R_After_Open_LookupToRefNo"
+                                  Enabled="@(_viewModel.ReportParameter.CFILTER_BY == "REF_NO" && !string.IsNullOrWhiteSpace(_viewModel.ReportParameter.CDEPT_CODE) && string.IsNullOrWhiteSpace(loCallerParameter.CREF_NO))"
+                                  >...</R_Lookup>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["_From"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_DatePicker @bind-Value="@_viewModel.DFROM_DATE"
+                                      Enabled="@(_viewModel.ReportParameter.CFILTER_BY == "REF_DATE")">
+                        </R_DatePicker>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["_To"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_DatePicker @bind-Value="@_viewModel.DTO_DATE"
+                                      Enabled="@(_viewModel.ReportParameter.CFILTER_BY == "REF_DATE")">
+                        </R_DatePicker>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="12">
+                        <R_Label>@_localizer["_Include"]</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout col="12">
+                        <R_CheckBox @bind-Value="@_viewModel.ReportParameter.LRECEIPT" Enabled="@(_viewModel.ReportParameter.CTRANS_CODE == "991000")"></R_CheckBox>
+                        <R_Label>@_localizer["_Receipt"]</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout col="12">
+                        <R_CheckBox @bind-Value="@_viewModel.ReportParameter.LALLOCATION" Enabled="@(_viewModel.ReportParameter.CTRANS_CODE == "991000" || _viewModel.ReportParameter.CTRANS_CODE == "191000")"></R_CheckBox>
+                        <R_Label>@_localizer["_Allocation"]</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout col="12">
+                        <R_CheckBox @bind-Value="@_viewModel.ReportParameter.LJOURNAL" Enabled="@(!EnableJournal)"></R_CheckBox>
+                        <R_Label>@_localizer["_Journal"]</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_GroupBox>
+
+    <R_GroupBox Title="@_localizer["_MessageType"]" TitleClass="text-danger">
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_RadioGroup Data="@_viewModel.MessageTypeList"
+                              Value="@_viewModel.ReportParameter.CMESSAGE_TYPE"
+                              Layout="R_eRadioGroupLayout.Horizontal"
+                              ValueField="Key"
+                              TextField="Value" 
+                              ValueChanged="@((string value) => MessageTypeRadioButton_ValueChanged(value))">
+                </R_RadioGroup>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_CashBankMessage"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.ReportParameter.CMESSAGE_NO"
+                           OnLostFocus="OnLostFocusMessage"
+                           MaxLength="20"
+                           >
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupMessage"
+                          R_After_Open_Lookup="@R_After_Open_LookupMessage"
+                          >...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="4" Style="padding-right:14px">
+                <R_TextBox @bind-Value="@CMESSAGE_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Description"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextEditor @bind-Value="@CMESSAGE_DESC"
+                              Height="100px"
+                              R_TextEditorToolMode="R_eTextEditorToolMode.None"
+                              ReadOnly="true" />
+            </R_ItemLayout>
+        </R_StackLayout>
+         <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_AdditionalInfo"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextEditor @bind-Value="@CMESSAGE_ADDITIONAL"
+                              Height="100px"
+                              R_TextEditorToolMode="R_eTextEditorToolMode.None"
+                              ReadOnly="true" />
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_GroupBox>
+
+    <R_StackLayout Row>
+        <R_ItemLayout>
+            <R_Button OnClick="Button_OnClickOkAsync">
+                @_localizer["_Print"]
+            </R_Button>
+            <R_Popup R_Before_Open_Popup="@SaveAs_Before_Open_Popup" R_After_Open_Popup="@SaveAs_After_Open_Popup">@_localizer["_SaveAs"]</R_Popup>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+

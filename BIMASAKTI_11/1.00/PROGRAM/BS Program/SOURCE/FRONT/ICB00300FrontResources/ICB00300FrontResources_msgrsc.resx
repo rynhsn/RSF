@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    
+    <!-- PROPERTY -->
+    <data name="PROPERTY" xml:space="preserve">
+        <value>PROPERTY</value>
+        <comment>PROPERTY</comment>
+    </data>
+    
+    <!-- Recalculate Type -->
+    <data name="RecalculateType" xml:space="preserve">
+        <value>Recalculate Type</value>
+        <comment>Recalculate Type</comment>
+    </data>
+    
+    <!-- Process Type -->
+    <data name="ProcessType" xml:space="preserve">
+        <value>Process Type</value>
+        <comment>Process Type</comment>
+    </data>
+    
+    <!-- Coasting Type -->
+    <data name="CoastingType" xml:space="preserve">
+        <value>Coasting Type</value>
+        <comment>Coasting Type</comment>
+    </data>
+    
+    <!-- New Process -->
+    <data name="NewProcess" xml:space="preserve">
+        <value>New Process</value>
+        <comment>New Process</comment>
+    </data>
+    
+    <!-- Fail Product in Last Recalculate Process -->
+    <data name="FailProductInLastRecalculateProcess" xml:space="preserve">
+        <value>Fail Product in Last Recalculate Process</value>
+        <comment>Fail Product in Last Recalculate Process</comment>
+    </data>
+    
+    <!-- Update Balance -->
+    <data name="UpdateBalance" xml:space="preserve">
+        <value>Update Balance</value>
+        <comment>Update Balance</comment>
+    </data>
+    
+    <!-- Fail Facility -->
+    <data name="FailFacility" xml:space="preserve">
+        <value>Fail Facility</value>
+        <comment>Fail Facility</comment>
+    </data>
+    
+    <!-- Average -->
+    <data name="Average" xml:space="preserve">
+        <value>Average</value>
+        <comment>Average</comment>
+    </data>
+    
+    <!-- Product -->
+    <data name="Product" xml:space="preserve">
+        <value>Product</value>
+        <comment>Product</comment>
+    </data>
+    
+    <!-- Product Id -->
+    <data name="ProductId" xml:space="preserve">
+        <value>Product Id</value>
+        <comment>Product Id</comment>
+    </data>
+    
+    <!-- Product Name -->
+    <data name="ProductName" xml:space="preserve">
+        <value>Product Name</value>
+        <comment>Product Name</comment>
+    </data>
+    
+    <!-- Failed -->
+    <data name="Failed" xml:space="preserve">
+        <value>Failed</value>
+        <comment>Failed</comment>
+    </data>
+    
+    <!-- Total Selected -->
+    <data name="TotalSelected" xml:space="preserve">
+        <value>Total Selected</value>
+        <comment>Total Selected</comment>
+    </data>
+    
+    <!-- Total Product -->
+    <data name="TotalProduct" xml:space="preserve">
+        <value>Total Product</value>
+        <comment>Total Product</comment>
+    </data>
+    
+    <!-- Progress -->
+    <data name="Progress" xml:space="preserve">
+        <value>Progress</value>
+        <comment>Progress</comment>
+    </data>
+    
+    <!-- Cancel -->
+    <data name="Cancel" xml:space="preserve">
+        <value>Cancel</value>
+        <comment>Cancel</comment>
+    </data>
+    
+    <!-- Process -->
+    <data name="Process" xml:space="preserve">
+        <value>Process</value>
+        <comment>Process</comment>
+    </data>
+
+    <!-- Recalculate Stock Successfully! -->
+    <data name="RecalculateStockSuccessfully" xml:space="preserve">
+        <value>Recalculate Stock Successfully!</value>
+        <comment>Recalculate Stock Successfully!</comment>
+    </data>
+    
+    <!-- Please select at least one record! -->
+    <data name="PleaseSelectAtLeastOneRecord" xml:space="preserve">
+        <value>Please select at least one record!</value>
+        <comment>Please select at least one record!</comment>
+    </data>
+</root>

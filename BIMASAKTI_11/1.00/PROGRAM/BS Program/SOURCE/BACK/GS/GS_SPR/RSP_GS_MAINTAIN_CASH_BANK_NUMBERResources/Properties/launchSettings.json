@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GS_MAINTAIN_CASH_BANK_NUMBERResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56738;http://localhost:56739"
+    }
+  }
+}

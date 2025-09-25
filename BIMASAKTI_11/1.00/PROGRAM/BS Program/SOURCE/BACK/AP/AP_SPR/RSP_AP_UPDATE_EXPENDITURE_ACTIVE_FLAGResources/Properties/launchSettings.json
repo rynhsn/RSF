@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_AP_UPDATE_EXPENDITURE_ACTIVE_FLAGResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57004;http://localhost:57005"
+    }
+  }
+}

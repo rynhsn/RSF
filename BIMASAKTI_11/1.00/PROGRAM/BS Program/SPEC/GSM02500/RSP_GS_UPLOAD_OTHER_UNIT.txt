@@ -1,0 +1,12 @@
+EXCESS_OTHER_UNIT_ID	= Other Unit Type Id is bigger than 20 Character
+EMPTY_OTHER_UNIT_ID	= Other Unit Type Id can not be empty
+EXCESS_OTHER_UNIT_NAME	= Other Unit Type Name is bigger than 100 Character
+EMPTY_OTHER_UNIT_NAME	= Other Unit Type Name can not be empty
+INVALID_ACTIVE_FLAG	= Invalid Active Flag, Active Flag value is not 1 / 0	
+EMPTY_NONACTIVE_DATE	= If Active Flag = 0, Non Active Date can not be empty	
+EMPTY_FLOOR_CODE	= Floor can not be empty
+INVALID_FLOOR_CODE	= Invalid Floor Code
+EMPTY_BUILDING_CODE	= Building can not be empty
+INVALID_BUILDING_CODE	= Invalid Building Code
+INVALID_OTHER_UNIT_TYPE	= Invalid Other Unit Type		
+INVALID_OTHER_UNIT_VIEW	= Invalid Other Unit View

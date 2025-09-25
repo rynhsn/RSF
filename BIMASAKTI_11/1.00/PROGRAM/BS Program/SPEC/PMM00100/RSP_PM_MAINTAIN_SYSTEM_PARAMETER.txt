@@ -1,0 +1,17 @@
+6501 -- Error process, please contact your administrator!
+6502 -- Duplicate Property Id!
+8001 -- Soft Period is empty!
+8002 -- Current Period is empty!
+8003 -- Invoice Period is empty!
+8004 -- Electric Period is empty!
+8005 -- Water Period is empty!
+8006 -- Gas Period is empty!
+8007 -- Electric end of the month date is empty!
+8008 -- Water end of the month date is empty!
+8009 -- Gas end of the month date is empty!
+8010 -- Maximum Reschedule Days is empty!
+8011 -- Maximum Reschedule Attempts is empty!
+8012 -- Maximum Reschedule Days cannot be negative!
+8013 -- Maximum Reschedule Attempt cannot be negative!
+8014 -- SLA Call Type ID is empty!
+8015 -- SLA Call Type ID not found!

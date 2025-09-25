@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+
+    <!-- Property -->
+    <data name="Property" xml:space="preserve">
+        <value>Property</value>
+        <comment>Property</comment>
+    </data>
+    <!-- Department -->
+    <data name="Department" xml:space="preserve">
+        <value>Department</value>
+        <comment>Department</comment>
+    </data>
+    
+    <!-- Period -->
+    <data name="Period" xml:space="preserve">
+        <value>Period</value>
+        <comment>Period</comment>
+    </data>
+    
+    <!-- Reference No -->
+    <data name="ReferenceNo" xml:space="preserve">
+        <value>Reference No</value>
+        <comment>Reference No</comment>
+    </data>
+    
+    <!-- To -->
+    <data name="To" xml:space="preserve">
+        <value>To</value>
+        <comment>To</comment>
+    </data>
+    
+    <!-- Option Print -->
+    <data name="OptionPrint" xml:space="preserve">
+        <value>Option Print</value>
+        <comment>Option Print</comment>
+    </data>
+    
+    <!-- Print -->
+    <data name="Print" xml:space="preserve">
+        <value>Print</value>
+        <comment>Print</comment>
+    </data>
+    
+    <!-- Save -->
+    <data name="Save" xml:space="preserve">
+        <value>Save</value>
+        <comment>Save</comment>
+    </data>
+    
+    <!-- Save As -->
+    <data name="SaveAs" xml:space="preserve">
+        <value>Save As</value>
+        <comment>Save As</comment>
+    </data>
+    
+    <!-- By Qty Unit -->
+    <data name="ByQtyUnit" xml:space="preserve">
+        <value>By Qty Unit</value>
+        <comment>By Qty Unit</comment>
+    </data>
+    
+    <!-- By Unit 1 -->
+    <data name="ByUnit1" xml:space="preserve">
+        <value>By Unit 1</value>
+        <comment>By Unit 1</comment>
+    </data>
+
+    <!-- Please select Property ! -->
+    <data name="PleaseSelectProperty" xml:space="preserve">
+        <value>Please select Property !</value>
+        <comment>Please select Property !</comment>
+    </data>
+    
+    <!-- Please select Department ! -->
+    <data name="PleaseSelectDepartment" xml:space="preserve">
+        <value>Please select Department !</value>
+        <comment>Please select Department !</comment>
+    </data>
+    
+    <!-- Please select Period Year! -->
+    <data name="PleaseSelectPeriodYear" xml:space="preserve">
+        <value>Please select Period Year!</value>
+        <comment>Please select Period Year!</comment>
+    </data>
+    
+    <!-- Please select Period Month! -->
+    <data name="PleaseSelectPeriodMonth" xml:space="preserve">
+        <value>Please select Period Month!</value>
+        <comment>Please select Period Month!</comment>
+    </data>
+
+</root>

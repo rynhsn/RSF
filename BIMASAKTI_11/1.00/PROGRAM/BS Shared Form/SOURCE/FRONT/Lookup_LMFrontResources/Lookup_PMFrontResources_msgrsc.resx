@@ -1,0 +1,460 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="00901" xml:space="preserve">
+    <value>Period Year is required!</value>
+  </data>
+  <data name="00902" xml:space="preserve">
+    <value>Please select Period!</value>
+  </data>
+  <data name="_Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="_agreementNo" xml:space="preserve">
+    <value>Agreement No</value>
+  </data>
+  <data name="_agreementStatus" xml:space="preserve">
+    <value>Agreement Status</value>
+  </data>
+  <data name="_Amount" xml:space="preserve">
+    <value>Amount</value>
+    <comment>Amount</comment>
+  </data>
+  <data name="_BiilingRuleCode" xml:space="preserve">
+    <value>Billing Rule Code</value>
+  </data>
+  <data name="_BiilingRuleName" xml:space="preserve">
+    <value>Billing Rule Name</value>
+  </data>
+  <data name="_btnCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="_btnSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="_Building" xml:space="preserve">
+    <value>Building</value>
+    <comment>Building</comment>
+  </data>
+  <data name="_callTypeId" xml:space="preserve">
+    <value>Call Type Id</value>
+    <comment>Call Type Id</comment>
+  </data>
+  <data name="_callTypeName" xml:space="preserve">
+    <value>Call Type Name</value>
+    <comment>Call Type Name</comment>
+  </data>
+  <data name="_CancelReceiptFromCustomer" xml:space="preserve">
+    <value>Cancel Receipt from Customer</value>
+    <comment>Cancel Receipt from Customer</comment>
+  </data>
+  <data name="_category" xml:space="preserve">
+    <value>Category</value>
+    <comment>Category</comment>
+  </data>
+  <data name="_CBCode" xml:space="preserve">
+    <value>CB Code</value>
+    <comment>CB Code</comment>
+  </data>
+  <data name="_CCBAccountNo" xml:space="preserve">
+    <value>CB Account No.</value>
+    <comment>CB Account No.</comment>
+  </data>
+  <data name="_ChargesId" xml:space="preserve">
+    <value>Charges Id</value>
+  </data>
+  <data name="_ChargesName" xml:space="preserve">
+    <value>Charges Name</value>
+  </data>
+  <data name="_ChargesTypeDesc" xml:space="preserve">
+    <value>Charges Type Description</value>
+  </data>
+  <data name="_ChargeType" xml:space="preserve">
+    <value>Charges Type</value>
+  </data>
+  <data name="_CLOIAgreement" xml:space="preserve">
+    <value>LOI/Aggrement No.</value>
+    <comment>LOI/Aggrement No.</comment>
+  </data>
+  <data name="_curr" xml:space="preserve">
+    <value>Curr.</value>
+  </data>
+  <data name="_cust" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="_customer" xml:space="preserve">
+    <value>Customer</value>
+    <comment>Customer</comment>
+  </data>
+  <data name="_Dept" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_dept." xml:space="preserve">
+    <value>Dept.</value>
+  </data>
+  <data name="_desc" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="_discountId" xml:space="preserve">
+    <value>Discount Id</value>
+  </data>
+  <data name="_discountName" xml:space="preserve">
+    <value>Discount Name</value>
+  </data>
+  <data name="_discountType" xml:space="preserve">
+    <value>Discount Type</value>
+  </data>
+  <data name="_docDate" xml:space="preserve">
+    <value>Document Date</value>
+  </data>
+  <data name="_docNo" xml:space="preserve">
+    <value>Document No.</value>
+  </data>
+  <data name="_dueDate" xml:space="preserve">
+    <value>Due Date</value>
+  </data>
+  <data name="_dueMode" xml:space="preserve">
+    <value>Due Mode</value>
+  </data>
+  <data name="_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="_ErrLookup01" xml:space="preserve">
+    <value>Not found data by search text!!</value>
+  </data>
+  <data name="_Floor" xml:space="preserve">
+    <value>Floor</value>
+  </data>
+  <data name="_IncludeInactive" xml:space="preserve">
+    <value>Include Inactive</value>
+    <comment>Include Inactive</comment>
+  </data>
+  <data name="_IncludeSupervisor" xml:space="preserve">
+    <value>Include Supervisor</value>
+    <comment>Include Supervisor</comment>
+  </data>
+  <data name="_InvGroupCode" xml:space="preserve">
+    <value>Inv. Group Code</value>
+  </data>
+  <data name="_InvGroupMode" xml:space="preserve">
+    <value>Inv. Group Mode</value>
+  </data>
+  <data name="_InvGroupName" xml:space="preserve">
+    <value>Inv. Group Name</value>
+  </data>
+  <data name="_labelSaveAs" xml:space="preserve">
+    <value>Save As</value>
+  </data>
+  <data name="_notes" xml:space="preserve">
+    <value>Notes</value>
+    <comment>Notes</comment>
+  </data>
+  <data name="_NotFound" xml:space="preserve">
+    <value>Data Not Found!</value>
+    <comment>Data Not Found!</comment>
+  </data>
+  <data name="_Owner/Tenant" xml:space="preserve">
+    <value>Owner/Tenant</value>
+  </data>
+  <data name="_parentCategory" xml:space="preserve">
+    <value>Parent Category</value>
+    <comment>Parent Category</comment>
+  </data>
+  <data name="_period" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="_Phone" xml:space="preserve">
+    <value>Phone 1</value>
+  </data>
+  <data name="_Phone1" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="_Position" xml:space="preserve">
+    <value>Position</value>
+    <comment>Position</comment>
+  </data>
+  <data name="_prerequisiteReceipt" xml:space="preserve">
+    <value>Prerequisite Receipt(s)</value>
+    <comment>Prerequisite Receipt(s)</comment>
+  </data>
+  <data name="_Property" xml:space="preserve">
+    <value>Property</value>
+  </data>
+  <data name="_refDate" xml:space="preserve">
+    <value>Reference Date</value>
+  </data>
+  <data name="_refNo" xml:space="preserve">
+    <value>Reference No.</value>
+  </data>
+  <data name="_refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="_transAmount" xml:space="preserve">
+    <value>Trans. Amount</value>
+  </data>
+  <data name="_remainingAmount" xml:space="preserve">
+    <value>Remaining Amount</value>
+  </data>
+  <data name="_SalesmanId" xml:space="preserve">
+    <value>Salesman Id</value>
+  </data>
+  <data name="_SalesmanName" xml:space="preserve">
+    <value>Salesman Name</value>
+  </data>
+  <data name="_SLACallType" xml:space="preserve">
+    <value>SLA Call Type</value>
+    <comment>SLA Call Type</comment>
+  </data>
+  <data name="_SLACategory" xml:space="preserve">
+    <value>SLA Category</value>
+    <comment>SLA Category</comment>
+  </data>
+  <data name="_SPVId" xml:space="preserve">
+    <value>Supervisor Id</value>
+  </data>
+  <data name="_SPVName" xml:space="preserve">
+    <value>Supervisor Name</value>
+  </data>
+  <data name="_Staff" xml:space="preserve">
+    <value>Staff</value>
+    <comment>Staff</comment>
+  </data>
+  <data name="_StaffId" xml:space="preserve">
+    <value>Staff Id</value>
+    <comment>Staff Id</comment>
+  </data>
+  <data name="_StaffName" xml:space="preserve">
+    <value>Staff Name</value>
+    <comment>Staff Name</comment>
+  </data>
+  <data name="_StaffType" xml:space="preserve">
+    <value>Staff Type</value>
+    <comment>Staff Type</comment>
+  </data>
+  <data name="_Supervisor" xml:space="preserve">
+    <value>Supervisor</value>
+    <comment>Supervisor</comment>
+  </data>
+  <data name="_Tax%" xml:space="preserve">
+    <value>Tax %</value>
+  </data>
+  <data name="_TaxId" xml:space="preserve">
+    <value>Tax Id</value>
+  </data>
+  <data name="_TaxName" xml:space="preserve">
+    <value>Tax Name</value>
+  </data>
+  <data name="_Tenant" xml:space="preserve">
+    <value>Tenant</value>
+  </data>
+  <data name="_TenantCat" xml:space="preserve">
+    <value>Tenant Category</value>
+  </data>
+  <data name="_TenantGroup" xml:space="preserve">
+    <value>Tenant Group</value>
+  </data>
+  <data name="_TenantId" xml:space="preserve">
+    <value>Tenant Id</value>
+  </data>
+  <data name="_TenantName" xml:space="preserve">
+    <value>Tenant Name</value>
+  </data>
+  <data name="_TenantType" xml:space="preserve">
+    <value>Tenant Type</value>
+  </data>
+  <data name="_TermNConditionCode" xml:space="preserve">
+    <value>Term and Condition Code</value>
+  </data>
+  <data name="_TermNConditionName" xml:space="preserve">
+    <value>Term and Condition Name</value>
+  </data>
+  <data name="_titleSaveAs" xml:space="preserve">
+    <value>Save As</value>
+  </data>
+  <data name="_transType" xml:space="preserve">
+    <value>Transaction Type</value>
+  </data>
+  <data name="_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="_Typeee" xml:space="preserve">
+    <value />
+  </data>
+  <data name="_Unit" xml:space="preserve">
+    <value>Unit Name</value>
+  </data>
+  <data name="_unitDescription" xml:space="preserve">
+    <value>Unit Description</value>
+  </data>
+  <data name="_Units" xml:space="preserve">
+    <value>Units</value>
+  </data>
+  <data name="_UnitTenant" xml:space="preserve">
+    <value>Unit Tenant</value>
+    <comment>Unit Tenant</comment>
+  </data>
+  <data name="_ValidationBuilding" xml:space="preserve">
+    <value>Building is empty!</value>
+    <comment>Building is empty!</comment>
+  </data>
+  <data name="_ValidationCustomer" xml:space="preserve">
+    <value>Customer Id is required!</value>
+    <comment>Customer Id is required!</comment>
+  </data>
+  <data name="_ValidationDepartment" xml:space="preserve">
+    <value>Department is empty!</value>
+    <comment>Department is empty!</comment>
+  </data>
+  <data name="_ValidationFloor" xml:space="preserve">
+    <value>Floor is empty!</value>
+    <comment>Floor is empty!</comment>
+  </data>
+  <data name="_ValidationPeriod" xml:space="preserve">
+    <value>Period Year is required!</value>
+    <comment>Period Year is required!</comment>
+  </data>
+  <data name="_ValidationPeriodMonth" xml:space="preserve">
+    <value>Period Month is required!</value>
+    <comment>Period Month is required!</comment>
+  </data>
+  <data name="_ValidationPrerequisite" xml:space="preserve">
+    <value>Selected Receipt is not valid for Cancellation as it has prerequisite Receipt(s) required to cancel first!</value>
+    <comment>Selected Receipt is not valid for Cancellation as it has prerequisite Receipt(s) required to cancel first!</comment>
+  </data>
+  <data name="_ValidationProperty" xml:space="preserve">
+    <value>Property is empty!</value>
+    <comment>Property is empty!</comment>
+  </data>
+  <data name="_ValidationStaffType" xml:space="preserve">
+    <value>Staff Type is empty!</value>
+    <comment>Staff Type is empty!</comment>
+  </data>
+  <data name="_ValidationSupervisor" xml:space="preserve">
+    <value>Supervisor is empty!</value>
+    <comment>Supervisor is empty!</comment>
+  </data>
+  <data name="_ValidationTenant" xml:space="preserve">
+    <value>Customer Id is required!</value>
+    <comment>Customer Id is required!</comment>
+  </data>
+  <data name="_ValidationUnit" xml:space="preserve">
+    <value>Unit is empty!</value>
+    <comment>Unit is empty!</comment>
+  </data>
+</root>

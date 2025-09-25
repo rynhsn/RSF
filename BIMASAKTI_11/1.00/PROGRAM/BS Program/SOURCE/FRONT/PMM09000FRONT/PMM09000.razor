@@ -1,0 +1,203 @@
+@page "/PMM09000"
+@inherits R_Page
+@attribute [R_Page(Title = "Amortization")]
+@inject R_ILocalizer<Resources_PMM09000_Class> _localizer
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label FontStyle="R_eFontStyle.Bold"
+                 FontColor="R_eFontColor.Danger">
+            @_localizer["_Prop"]
+        </R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@_ListDataViewModel._PropertyList"
+                    Value="_ListDataViewModel._PropertyValue.CPROPERTY_ID"
+                    ValueField="@nameof(PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(PropertyDTO.CPROPERTY_NAME)"
+                    ValueChanged="@((string value) => PropertyDropdown_OnChange(value))"
+                    Enabled="_ListDataViewModel._dropdownProperty">
+        </R_ComboBox>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_TabStrip @ref="_tabStrip" Class="mt-1" OnActiveTabIndexChanging="@TabChanging">
+    <R_TabStripTab Title="@_localizer["_TabAmortization"]" Id="TabAmortization">
+        <!-- Filtering -->
+        <R_StackLayout Row>
+
+            <R_ItemLayout col="3" Class="mb-2">
+                <R_RadioGroup Data="@_ListDataViewModel._UnitOptionList"
+                              Value="@_ListDataViewModel._UnitOptionValue"
+                              ValueField="@nameof(RadionButtonDTO.Id)"
+                              TextField="@nameof(RadionButtonDTO.Name)"
+                              ValueChanged="@((string value) => Filtering_OnChange(value))" />
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout>
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="3">
+                    <R_Grid @ref="@_gridBuilding"
+                            DataSource="_ListDataViewModel._BuildingList"
+                            R_ConductorGridSource="@_conGridBuilding"
+                            R_GridType="R_eGridType.Original"
+                            R_ServiceGetListRecord="R_ServiceBuildingListRecord"
+                            R_Display="@Grid_DisplayBuilding"
+                            AllowDeleteRow="false"
+                            AllowAddNewRow="false"
+                            AllowEditRow="false"
+                            Pageable
+                            @bind-PageSize="@_pageSizeBuilding"
+                            Height="510px"
+                            Enabled="@_lGridBuildingEnabled">
+                        <R_GridColumns>
+                            <R_GridTextColumn Width="150px"
+                                              FieldName="@nameof(PMM09000BuildingDTO.CBUILDING_NAME)"
+                                              HeaderText=@_localizer["_Building"]>
+                            </R_GridTextColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="9">
+                    <R_Grid @ref="@_gridAmortization"
+                            DataSource="_ListDataViewModel._AmortizationList"
+                            R_ConductorGridSource="@_conGridAmortization"
+                            R_GridType="R_eGridType.Original"
+                            R_ServiceGetListRecord="R_ServiceAmortizationListRecord"
+                            R_Display="@Grid_DisplayAmortizaton"
+                            @bind-PageSize="@_pageSizeAmortization"
+                            AllowDeleteRow="false"
+                            AllowAddNewRow="false"
+                            AllowEditRow="false"
+                            Pageable
+                            Height="230px">
+
+                        @*List Of Billing Rule*@
+                        <R_GridColumns>
+                            <R_GridTextColumn FieldName="@nameof(PMM09000AmortizationDTO.CTENANT_NAME)"
+                                              HeaderText=@_localizer["_TenantName"] Width="155px" />
+                            <R_GridTextColumn FieldName="@nameof(PMM09000AmortizationDTO.CTRANS_TYPE)"
+                                              HeaderText=@_localizer["_TransType"] Width="155px" />
+                            <R_GridTextColumn FieldName="@nameof(PMM09000AmortizationDTO.CREF_NO)"
+                                              HeaderText=@_localizer["_RefNo"] Width="175px" />
+
+                            <R_GridTextColumn FieldName="@nameof(PMM09000AmortizationDTO.CCHARGES_TYPE_NAME)"
+                                              HeaderText=@_localizer["_ChargeType"] Width="155px" />
+                            <R_GridTextColumn FieldName="@nameof(PMM09000AmortizationDTO.CCHARGES_NAME)"
+                                              HeaderText=@_localizer["_Charge"] Width="155px" />
+                            <R_GridTextColumn FieldName="@nameof(PMM09000AmortizationDTO.CINV_NO)"
+                                              HeaderText=@_localizer["_InvoiceNo"] Width="140px" />
+
+                            <R_GridDatePickerColumn Width="150px"
+                                                    FieldName="@nameof(PMM09000AmortizationDTO.DSTART_DATE)"
+                                                    HeaderText=@_localizer["_StartDate"] />
+                            <R_GridDatePickerColumn Width="150px"
+                                                    FieldName="@nameof(PMM09000AmortizationDTO.DEND_DATE)"
+                                                    HeaderText=@_localizer["_EndDate"] />
+                            <R_GridNumericColumn Width="140px"
+                                                 FieldName="@nameof(PMM09000AmortizationDTO.NCHARGES_AMOUNT)"
+                                                 TValue="decimal"
+                                                 HeaderText=@_localizer["_ChargeAmount"] />
+                            <R_GridTextColumn Width="140px"
+                                              FieldName="@nameof(PMM09000AmortizationDTO.CUPDATE_BY)"
+                                              HeaderText=@_localizer["_UpdateBy"] />
+                            <R_GridDateTimePickerColumn Width="190px"
+                                                        FieldName="@nameof(PMM09000AmortizationDTO.DUPDATE_DATE)"
+                                                        HeaderText=@_localizer["_UpdDate"] />
+                            <R_GridTextColumn Width="140px"
+                                              FieldName="@nameof(PMM09000AmortizationDTO.CCREATE_BY)"
+                                              HeaderText=@_localizer["_CreatedBy"] />
+                            <R_GridDateTimePickerColumn Width="190px"
+                                                        FieldName="@nameof(PMM09000AmortizationDTO.DUPDATE_DATE)"
+                                                        HeaderText=@_localizer["_CreatedDate"] />
+                        </R_GridColumns>
+                    </R_Grid>
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="2">
+                            <R_Label Class="ms-2">@_localizer["_UnitDesc"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_TextBox @bind-Value="@_AmortizationDetail.CUNIT_DESCRIPTION"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+
+                    <R_Grid @ref="@_gridAmortizationSchedule"
+                            DataSource="_ListDataViewModel._AmortizationScheduleList"
+                            R_ConductorGridSource="@_conGridAmortizationShedule"
+                            R_GridType="R_eGridType.Original"
+                            R_ServiceGetListRecord="R_ServiceAmortizationScheduleListRecord"
+                            @bind-PageSize="@_pageSizeAmortizationShedule"
+                            AllowDeleteRow="false"
+                            AllowAddNewRow="false"
+                            AllowEditRow="false"
+                            Pageable
+                            Height="230px">
+
+                        @*List Of Billing Rule*@
+                        <R_GridColumns>
+                            <R_GridTextColumn FieldName="@nameof(PMM09000AmortizationSheduleDetailDTO.CSEQ_NO)"
+                                              HeaderText=@_localizer["_SeqNo"] Width="120px" />
+                            <R_GridDatePickerColumn Width="150px"
+                                                    FieldName="@nameof(PMM09000AmortizationSheduleDetailDTO.DSTART_DATE)"
+                                                    HeaderText=@_localizer["_StartDate"] />
+                            <R_GridDatePickerColumn Width="150px"
+                                                    FieldName="@nameof(PMM09000AmortizationSheduleDetailDTO.DEND_DATE)"
+                                                    HeaderText=@_localizer["_EndDate"] />
+                            <R_GridTextColumn FieldName="@nameof(PMM09000AmortizationSheduleDetailDTO.CPERIOD)"
+                                              HeaderText=@_localizer["_Period"]
+                                              Width="145px" />
+                            <R_GridNumericColumn Width="130px"
+                                                 FieldName="@nameof(PMM09000AmortizationSheduleDetailDTO.NAMOUNT)"
+                                                 TValue="decimal"
+                                                 HeaderText=@_localizer["_Amount"] />
+                            <R_GridTextColumn FieldName="@nameof(PMM09000AmortizationSheduleDetailDTO.CDEPT_NAME)"
+                                              HeaderText=@_localizer["_DeptName"]
+                                              Width="160px" />
+                            <R_GridTextColumn FieldName="@nameof(PMM09000AmortizationSheduleDetailDTO.CREF_NO)"
+                                              HeaderText=@_localizer["_RefNo"]
+                                              Width="175px" />
+                            <R_GridTextColumn FieldName="@nameof(PMM09000AmortizationSheduleDetailDTO.CSTATUS_DESCR)"
+                                              HeaderText=@_localizer["_Status"]
+                                              Width="155px" />
+                        </R_GridColumns>
+                    </R_Grid>
+                    </R_ItemLayout>
+
+                    </R_StackLayout>
+                    </R_StackLayout>
+
+                    <R_StackLayout>
+                    <R_StackLayout Row>
+                <R_ItemLayout>
+                    <R_Button OnClick="@Btn_CloseAsync"
+                              Enabled=@(_lDataExist && lControlButtonClose)>
+                        @_localizer["_Close"]
+                    </R_Button>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Button OnClick="@Btn_ReOpenAsync"
+                              Enabled=@(_lDataExist && lControlButtonReopen)>
+                        @_localizer["_ReOpen"]
+                    </R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_StackLayout>
+
+    </R_TabStripTab>
+    <R_TabStripTab Title="@_localizer["_TabAmortizationEntry"]"
+                   Id="TabAmortizationEntry"
+                   Enabled="_ListDataViewModel._enabledTabEntry">
+        <R_TabPage @ref="@_tabPageAmortizationEntry" R_Before_Open_TabPage="Before_Open_AmotizationEntry"
+                   R_TabEventCallback="@R_TabEventCallback">
+        </R_TabPage>
+    </R_TabStripTab>
+</R_TabStrip>
+
+<R_ConductorGrid @ref="@_conGridBuilding"
+                      R_IsHeader />
+<R_ConductorGrid @ref="@_conGridAmortization"
+                 R_ConductorParent="_conGridBuilding" />
+<R_ConductorGrid @ref="@_conGridAmortizationShedule"
+                 R_ConductorParent="_conGridAmortization" />

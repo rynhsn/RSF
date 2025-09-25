@@ -1,0 +1,46 @@
+Error900=Process failed! unable to preview Recurring Journal {0}
+Error901=Failed to validate data {0}
+
+
+DEPT_EMPTY=Department is mandatory!
+DEPT_NOT_FOUND=Depatment does not exist!
+
+RECUR_NO_EMPTY=Recurring No. is mandatory!
+RECUR_NO_LENGTH=Recurring No. is more than 30 characters!
+RECUR_NO_EXIST=Recurring No. aleady exists!
+
+RECUR_NAME_EMPTY=Recurring Name is mandatory!
+RECUR_NAME_LENGTH=Recurring Name. is more than 200 characters!
+
+DOC_NO_EMPTY=Document No. is mandatory!
+DOC_NO_LENGTH=Document No. is more than 30 characters!
+
+CURRENCY_EMPTY=Currency Code is mandatory!
+CURRENTY_LENGTH=Currency Code is more than 3 characters!
+CURRENCY_NOT_FOUND=Currency Code does not exist!
+
+FIXED_RATE_INVALID=Invalid Fixed Rate Value! Valid Fixed Rate value: 0,1!
+
+LC_BASE_INVALID=Local Currency Base Rate must be > 0!
+LC_CURRENCY_INVALID=Local Currency Rate must be > 0!
+
+BC_BASE_INVALID=Base Currency Base Rate must be > 0!
+BC_CURRENCY_INVALID=Base Currency Rate must be > 0!
+
+FREQUENCY_INVALID=Frequency must be > 0!
+INTERVAL_INVALID=Interval must be > 0!
+
+START_DATE_EMPTY=Start Date is mandatory!
+START_DATE_INVALID=Invalid Start Date value!
+
+GLNO_EMPTY=Account No. is mandatory!
+GLNO_LENGTH=Account No. is more than 20 characters!
+GLNO_NOT_FOUND=Account No. does not exist!
+
+CENTER_NOT_FOUND=Center Code does not exist!
+AMOUNT_INVALID=Journal Amount cannot be 0!
+
+AMOUNT_ZERO=Journal Amount cannot be 0!
+AMOUNT_INVALID=Invalid Journal Amount! Journal Amount can only be either Debit or Credit
+
+DESC_EMPTY=Description is mandatory!

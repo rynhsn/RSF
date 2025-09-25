@@ -1,0 +1,76 @@
+﻿@page "/ICB00300"
+@using ICB00300Common.DTOs
+@using ICB00300FrontResources
+@inherits R_BlazorFrontEnd.Controls.R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout>
+    <R_ItemLayout col="5">
+        
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_Label FontColor="R_eFontColor.Danger">@_localizer["PROPERTY"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_ComboBox Data="@_viewModel.PropertyList"
+                            @bind-Value="@_viewModel.Param.CPROPERTY_ID"
+                            ValueField="@nameof(ICB00300PropertyDTO.CPROPERTY_ID)"
+                            TextField="@nameof(ICB00300PropertyDTO.CPROPERTY_NAME)"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+        
+        <R_StackLayout Row Class="mt-3">
+            <R_ItemLayout col="4">
+                <R_Label>@_localizer["RecalculateType"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_RadioGroup  Data="@_viewModel.RecTypeList"
+                               @bind-Value="@_viewModel.Param.CRECALCULATE_TYPE"
+                               ValueField="Key"
+                               TextField="Value"
+                               Layout="R_eRadioGroupLayout.Vertical"></R_RadioGroup>
+            </R_ItemLayout>
+        </R_StackLayout>
+        
+        <R_StackLayout Row Class="mt-3">
+            <R_ItemLayout col="4">
+                <R_Label>@_localizer["ProcessType"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_StackLayout Row>
+                    <R_ItemLayout>
+                        <R_CheckBox @bind-Value="@_viewModel.Param.LUPDATE_BALANCE"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Label>@_localizer["UpdateBalance"]</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout>
+                        <R_CheckBox @bind-Value="@_viewModel.Param.LFAIL_FACILITY"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Label>@_localizer["FailFacility"]</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+        
+        <R_StackLayout Row Class="mt-3">
+            <R_ItemLayout col="4">
+                <R_Label>@_localizer["CostingType"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_Label>@_localizer["Average"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        
+        <R_StackLayout AlignItems="R_eAlignItems.End" Class="mt-3">
+            <R_ItemLayout>
+                <R_Popup R_Before_Open_Popup="BeforeOpenProcess">Process</R_Popup>
+            </R_ItemLayout>
+        </R_StackLayout>
+        
+        
+    </R_ItemLayout>
+</R_StackLayout>

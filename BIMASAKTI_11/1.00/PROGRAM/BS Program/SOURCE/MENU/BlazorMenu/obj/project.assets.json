@@ -14,10 +14,10 @@
           "lib/net6.0/Blazored.LocalStorage.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Authorization/6.0.16": {
+      "Microsoft.AspNetCore.Authorization/6.0.15": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Metadata": "6.0.16",
+          "Microsoft.AspNetCore.Metadata": "6.0.15",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.3",
           "Microsoft.Extensions.Options": "6.0.0"
         },
@@ -32,11 +32,11 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components/6.0.16": {
+      "Microsoft.AspNetCore.Components/6.0.15": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Authorization": "6.0.16",
-          "Microsoft.AspNetCore.Components.Analyzers": "6.0.16"
+          "Microsoft.AspNetCore.Authorization": "6.0.15",
+          "Microsoft.AspNetCore.Components.Analyzers": "6.0.15"
         },
         "compile": {
           "lib/net6.0/Microsoft.AspNetCore.Components.dll": {
@@ -49,7 +49,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Analyzers/6.0.16": {
+      "Microsoft.AspNetCore.Components.Analyzers/6.0.15": {
         "type": "package",
         "build": {
           "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
@@ -72,10 +72,10 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Forms/6.0.16": {
+      "Microsoft.AspNetCore.Components.Forms/6.0.15": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "6.0.16"
+          "Microsoft.AspNetCore.Components": "6.0.15"
         },
         "compile": {
           "lib/net6.0/Microsoft.AspNetCore.Components.Forms.dll": {
@@ -88,13 +88,13 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Web/6.0.16": {
+      "Microsoft.AspNetCore.Components.Web/6.0.15": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "6.0.16",
-          "Microsoft.AspNetCore.Components.Forms": "6.0.16",
+          "Microsoft.AspNetCore.Components": "6.0.15",
+          "Microsoft.AspNetCore.Components.Forms": "6.0.15",
           "Microsoft.Extensions.DependencyInjection": "6.0.1",
-          "Microsoft.JSInterop": "6.0.16",
+          "Microsoft.JSInterop": "6.0.15",
           "System.IO.Pipelines": "6.0.3"
         },
         "compile": {
@@ -137,7 +137,7 @@
           "build/Microsoft.AspNetCore.Components.WebAssembly.DevServer.targets": {}
         }
       },
-      "Microsoft.AspNetCore.Metadata/6.0.16": {
+      "Microsoft.AspNetCore.Metadata/6.0.15": {
         "type": "package",
         "compile": {
           "lib/net6.0/Microsoft.AspNetCore.Metadata.dll": {
@@ -503,7 +503,7 @@
           }
         }
       },
-      "Microsoft.JSInterop/6.0.16": {
+      "Microsoft.JSInterop/6.0.15": {
         "type": "package",
         "compile": {
           "lib/net6.0/Microsoft.JSInterop.dll": {
@@ -572,6 +572,19 @@
         },
         "compile": {
           "ref/netstandard1.3/System.Collections.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "System.ComponentModel.Annotations/6.0.0-preview.4.21253.7": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/System.ComponentModel.Annotations.dll": {
             "related": ".xml"
           }
         }
@@ -1138,53 +1151,174 @@
           }
         }
       },
-      "Toolbelt.Blazor.HttpClientInterceptor/10.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Components.WebAssembly": "3.2.0-preview2.20160.5"
-        },
-        "compile": {
-          "lib/netstandard2.1/Toolbelt.Blazor.HttpClientInterceptor.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.1/Toolbelt.Blazor.HttpClientInterceptor.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "BlazorClientHelper/1.0.0": {
+      "GFF00900COMMON/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
+        "framework": ".NETStandard,Version=v2.1",
         "compile": {
-          "bin/placeholder/BlazorClientHelper.dll": {}
+          "bin/placeholder/GFF00900COMMON.dll": {}
         },
         "runtime": {
-          "bin/placeholder/BlazorClientHelper.dll": {}
+          "bin/placeholder/GFF00900COMMON.dll": {}
         }
       },
-      "BlazorMenuCommon/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/BlazorMenuCommon.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BlazorMenuCommon.dll": {}
-        }
-      },
-      "GSM03000Front/1.0.0": {
+      "GFF00900FRONT/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Microsoft.AspNetCore.Components.Web": "6.0.16"
+          "GFF00900COMMON": "1.0.0",
+          "GFF00900Model": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
         },
         "compile": {
-          "bin/placeholder/GSM03000Front.dll": {}
+          "bin/placeholder/GFF00900FRONT.dll": {}
         },
         "runtime": {
-          "bin/placeholder/GSM03000Front.dll": {}
+          "bin/placeholder/GFF00900FRONT.dll": {}
+        }
+      },
+      "GFF00900Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "GFF00900COMMON": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GFF00900Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GFF00900Model.dll": {}
+        }
+      },
+      "GSM02000Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "System.ComponentModel.Annotations": "6.0.0-preview.4.21253.7"
+        },
+        "compile": {
+          "bin/placeholder/GSM02000Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02000Common.dll": {}
+        }
+      },
+      "GSM02000Front/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GFF00900FRONT": "1.0.0",
+          "GSM02000FrontResources": "1.0.0",
+          "GSM02000Model": "1.0.0",
+          "Lookup_GSCOMMON": "1.0.0",
+          "Lookup_GSFRONT": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+        },
+        "compile": {
+          "bin/placeholder/GSM02000Front.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02000Front.dll": {}
+        }
+      },
+      "GSM02000FrontResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GSM02000FrontResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02000FrontResources.dll": {}
+        }
+      },
+      "GSM02000Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "GSM02000Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GSM02000Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02000Model.dll": {}
+        }
+      },
+      "GSM05000Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GSM05000Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM05000Common.dll": {}
+        }
+      },
+      "GSM05000Front/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GFF00900FRONT": "1.0.0",
+          "GSM05000Model": "1.0.0",
+          "Lookup_GSCOMMON": "1.0.0",
+          "Lookup_GSFRONT": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+        },
+        "compile": {
+          "bin/placeholder/GSM05000Front.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM05000Front.dll": {}
+        }
+      },
+      "GSM05000Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "GSM05000Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GSM05000Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM05000Model.dll": {}
+        }
+      },
+      "Lookup_GSCOMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Lookup_GSCOMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GSCOMMON.dll": {}
+        }
+      },
+      "Lookup_GSFRONT/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Lookup_GSCOMMON": "1.0.0",
+          "Lookup_GSModel": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+        },
+        "compile": {
+          "bin/placeholder/Lookup_GSFRONT.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GSFRONT.dll": {}
+        }
+      },
+      "Lookup_GSModel/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "Lookup_GSCOMMON": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Lookup_GSModel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GSModel.dll": {}
         }
       }
     },
@@ -1201,10 +1335,10 @@
           "lib/net6.0/Blazored.LocalStorage.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Authorization/6.0.16": {
+      "Microsoft.AspNetCore.Authorization/6.0.15": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Metadata": "6.0.16",
+          "Microsoft.AspNetCore.Metadata": "6.0.15",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.3",
           "Microsoft.Extensions.Options": "6.0.0"
         },
@@ -1219,11 +1353,11 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components/6.0.16": {
+      "Microsoft.AspNetCore.Components/6.0.15": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Authorization": "6.0.16",
-          "Microsoft.AspNetCore.Components.Analyzers": "6.0.16"
+          "Microsoft.AspNetCore.Authorization": "6.0.15",
+          "Microsoft.AspNetCore.Components.Analyzers": "6.0.15"
         },
         "compile": {
           "lib/net6.0/Microsoft.AspNetCore.Components.dll": {
@@ -1236,7 +1370,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Analyzers/6.0.16": {
+      "Microsoft.AspNetCore.Components.Analyzers/6.0.15": {
         "type": "package",
         "build": {
           "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
@@ -1259,10 +1393,10 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Forms/6.0.16": {
+      "Microsoft.AspNetCore.Components.Forms/6.0.15": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "6.0.16"
+          "Microsoft.AspNetCore.Components": "6.0.15"
         },
         "compile": {
           "lib/net6.0/Microsoft.AspNetCore.Components.Forms.dll": {
@@ -1275,13 +1409,13 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Web/6.0.16": {
+      "Microsoft.AspNetCore.Components.Web/6.0.15": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "6.0.16",
-          "Microsoft.AspNetCore.Components.Forms": "6.0.16",
+          "Microsoft.AspNetCore.Components": "6.0.15",
+          "Microsoft.AspNetCore.Components.Forms": "6.0.15",
           "Microsoft.Extensions.DependencyInjection": "6.0.1",
-          "Microsoft.JSInterop": "6.0.16",
+          "Microsoft.JSInterop": "6.0.15",
           "System.IO.Pipelines": "6.0.3"
         },
         "compile": {
@@ -1324,7 +1458,7 @@
           "build/Microsoft.AspNetCore.Components.WebAssembly.DevServer.targets": {}
         }
       },
-      "Microsoft.AspNetCore.Metadata/6.0.16": {
+      "Microsoft.AspNetCore.Metadata/6.0.15": {
         "type": "package",
         "compile": {
           "lib/net6.0/Microsoft.AspNetCore.Metadata.dll": {
@@ -1690,7 +1824,7 @@
           }
         }
       },
-      "Microsoft.JSInterop/6.0.16": {
+      "Microsoft.JSInterop/6.0.15": {
         "type": "package",
         "compile": {
           "lib/net6.0/Microsoft.JSInterop.dll": {
@@ -1856,6 +1990,19 @@
         },
         "compile": {
           "ref/netstandard1.3/System.Collections.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "System.ComponentModel.Annotations/6.0.0-preview.4.21253.7": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/System.ComponentModel.Annotations.dll": {
             "related": ".xml"
           }
         }
@@ -2429,53 +2576,174 @@
           }
         }
       },
-      "Toolbelt.Blazor.HttpClientInterceptor/10.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Components.WebAssembly": "3.2.0-preview2.20160.5"
-        },
-        "compile": {
-          "lib/netstandard2.1/Toolbelt.Blazor.HttpClientInterceptor.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.1/Toolbelt.Blazor.HttpClientInterceptor.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "BlazorClientHelper/1.0.0": {
+      "GFF00900COMMON/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
+        "framework": ".NETStandard,Version=v2.1",
         "compile": {
-          "bin/placeholder/BlazorClientHelper.dll": {}
+          "bin/placeholder/GFF00900COMMON.dll": {}
         },
         "runtime": {
-          "bin/placeholder/BlazorClientHelper.dll": {}
+          "bin/placeholder/GFF00900COMMON.dll": {}
         }
       },
-      "BlazorMenuCommon/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/BlazorMenuCommon.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BlazorMenuCommon.dll": {}
-        }
-      },
-      "GSM03000Front/1.0.0": {
+      "GFF00900FRONT/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Microsoft.AspNetCore.Components.Web": "6.0.16"
+          "GFF00900COMMON": "1.0.0",
+          "GFF00900Model": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
         },
         "compile": {
-          "bin/placeholder/GSM03000Front.dll": {}
+          "bin/placeholder/GFF00900FRONT.dll": {}
         },
         "runtime": {
-          "bin/placeholder/GSM03000Front.dll": {}
+          "bin/placeholder/GFF00900FRONT.dll": {}
+        }
+      },
+      "GFF00900Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "GFF00900COMMON": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GFF00900Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GFF00900Model.dll": {}
+        }
+      },
+      "GSM02000Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "System.ComponentModel.Annotations": "6.0.0-preview.4.21253.7"
+        },
+        "compile": {
+          "bin/placeholder/GSM02000Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02000Common.dll": {}
+        }
+      },
+      "GSM02000Front/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GFF00900FRONT": "1.0.0",
+          "GSM02000FrontResources": "1.0.0",
+          "GSM02000Model": "1.0.0",
+          "Lookup_GSCOMMON": "1.0.0",
+          "Lookup_GSFRONT": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+        },
+        "compile": {
+          "bin/placeholder/GSM02000Front.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02000Front.dll": {}
+        }
+      },
+      "GSM02000FrontResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GSM02000FrontResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02000FrontResources.dll": {}
+        }
+      },
+      "GSM02000Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "GSM02000Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GSM02000Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM02000Model.dll": {}
+        }
+      },
+      "GSM05000Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GSM05000Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM05000Common.dll": {}
+        }
+      },
+      "GSM05000Front/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GFF00900FRONT": "1.0.0",
+          "GSM05000Model": "1.0.0",
+          "Lookup_GSCOMMON": "1.0.0",
+          "Lookup_GSFRONT": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+        },
+        "compile": {
+          "bin/placeholder/GSM05000Front.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM05000Front.dll": {}
+        }
+      },
+      "GSM05000Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "GSM05000Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GSM05000Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GSM05000Model.dll": {}
+        }
+      },
+      "Lookup_GSCOMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Lookup_GSCOMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GSCOMMON.dll": {}
+        }
+      },
+      "Lookup_GSFRONT/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Lookup_GSCOMMON": "1.0.0",
+          "Lookup_GSModel": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+        },
+        "compile": {
+          "bin/placeholder/Lookup_GSFRONT.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GSFRONT.dll": {}
+        }
+      },
+      "Lookup_GSModel/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "Lookup_GSCOMMON": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Lookup_GSModel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GSModel.dll": {}
         }
       }
     }
@@ -2496,10 +2764,10 @@
         "lib/netstandard2.1/Blazored.LocalStorage.dll"
       ]
     },
-    "Microsoft.AspNetCore.Authorization/6.0.16": {
-      "sha512": "cH4jU2xuNptO6HXl2gyF/+lWvIOLXj53x8YPPLQ9vcvSDJwZmdI5+l8MXm/Yk31EI626KwWJr4hxbfZiPw3WhQ==",
+    "Microsoft.AspNetCore.Authorization/6.0.15": {
+      "sha512": "STjQZVKTwbvwKJXR5agYUOgDbi2ZOYtFgRVnVOWZFD+4VxEOgNrP6MWsur3v9jiM0gRCGxczRCB6M65byJ8L+w==",
       "type": "package",
-      "path": "microsoft.aspnetcore.authorization/6.0.16",
+      "path": "microsoft.aspnetcore.authorization/6.0.15",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2511,14 +2779,14 @@
         "lib/net6.0/Microsoft.AspNetCore.Authorization.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.xml",
-        "microsoft.aspnetcore.authorization.6.0.16.nupkg.sha512",
+        "microsoft.aspnetcore.authorization.6.0.15.nupkg.sha512",
         "microsoft.aspnetcore.authorization.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components/6.0.16": {
-      "sha512": "AB/AKDLXqdTpA3qIFOgjlfZ2gufGTIiVxLOLURbKkj9goNUWBEZXLM3eqa1XyUL+QNU11D5gANT6V9UzYeZ9Iw==",
+    "Microsoft.AspNetCore.Components/6.0.15": {
+      "sha512": "IEzta5yOeq558iB1e442vfOjGh9F6/yTYCrvgQjSldrOjplSmtunnHE8v0tJwZTk07PlxP4jeGJOo81f+4b5kw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components/6.0.16",
+      "path": "microsoft.aspnetcore.components/6.0.15",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2526,14 +2794,14 @@
         "THIRD-PARTY-NOTICES.txt",
         "lib/net6.0/Microsoft.AspNetCore.Components.dll",
         "lib/net6.0/Microsoft.AspNetCore.Components.xml",
-        "microsoft.aspnetcore.components.6.0.16.nupkg.sha512",
+        "microsoft.aspnetcore.components.6.0.15.nupkg.sha512",
         "microsoft.aspnetcore.components.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components.Analyzers/6.0.16": {
-      "sha512": "p4imFdqu/RFa3sX5H579SdfnkKizdZ+Jg14psxgJ9Oaa2Mo1VM/RbcatZrf/PEP32ofi3WBWXgvzdNxF6FPyeg==",
+    "Microsoft.AspNetCore.Components.Analyzers/6.0.15": {
+      "sha512": "SY3lpvgNeGiCHbBi+B8yIB/LhfvXUtXdHLEasFf+ervZ0qEaGyN+qF92Xk70rVpmXZrK3bxAtr1Fez2ufepU6w==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components.analyzers/6.0.16",
+      "path": "microsoft.aspnetcore.components.analyzers/6.0.15",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2542,7 +2810,7 @@
         "analyzers/dotnet/cs/Microsoft.AspNetCore.Components.Analyzers.dll",
         "build/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
         "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
-        "microsoft.aspnetcore.components.analyzers.6.0.16.nupkg.sha512",
+        "microsoft.aspnetcore.components.analyzers.6.0.15.nupkg.sha512",
         "microsoft.aspnetcore.components.analyzers.nuspec"
       ]
     },
@@ -2561,10 +2829,10 @@
         "microsoft.aspnetcore.components.authorization.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components.Forms/6.0.16": {
-      "sha512": "nPi3GkXKy/sbuH0pKumKuJljcsG9c7yqb9gqsIy6YPdAQOhSyPUIjIeVS7WFqLqCrPQRaouT34m6m0efLYevxg==",
+    "Microsoft.AspNetCore.Components.Forms/6.0.15": {
+      "sha512": "eYn6YId3ImDjkL0Rleno5bNf131IQVfa4p0XajJYfVfXoReQqHqJFQOOLaKboObXFcbLtR+5zTTH9yc7SN1HSA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components.forms/6.0.16",
+      "path": "microsoft.aspnetcore.components.forms/6.0.15",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2572,14 +2840,14 @@
         "THIRD-PARTY-NOTICES.txt",
         "lib/net6.0/Microsoft.AspNetCore.Components.Forms.dll",
         "lib/net6.0/Microsoft.AspNetCore.Components.Forms.xml",
-        "microsoft.aspnetcore.components.forms.6.0.16.nupkg.sha512",
+        "microsoft.aspnetcore.components.forms.6.0.15.nupkg.sha512",
         "microsoft.aspnetcore.components.forms.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components.Web/6.0.16": {
-      "sha512": "k7wdV85awVY+BMKhdrUYan/GeOrJyETKHgot96kk2jS3Fk/qMHGmL14Y0juEgwJIT/zDjIPGQRYI0Dd3of5SSQ==",
+    "Microsoft.AspNetCore.Components.Web/6.0.15": {
+      "sha512": "nRqJv7KTc+uSgbfBfGAfQyQB4W2st+DpTFygNDnu1C+7TLSIT7rLI/VACraHimXPmCRkB0gFuTz1mKPbVylKSg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components.web/6.0.16",
+      "path": "microsoft.aspnetcore.components.web/6.0.15",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2587,7 +2855,7 @@
         "THIRD-PARTY-NOTICES.txt",
         "lib/net6.0/Microsoft.AspNetCore.Components.Web.dll",
         "lib/net6.0/Microsoft.AspNetCore.Components.Web.xml",
-        "microsoft.aspnetcore.components.web.6.0.16.nupkg.sha512",
+        "microsoft.aspnetcore.components.web.6.0.15.nupkg.sha512",
         "microsoft.aspnetcore.components.web.nuspec"
       ]
     },
@@ -2730,10 +2998,10 @@
         "tools/x86/aspnetcorev2_inprocess.dll"
       ]
     },
-    "Microsoft.AspNetCore.Metadata/6.0.16": {
-      "sha512": "nXuClg3284DKBwVp6Dfai+tVDLsqkOMB87mPNocCLjSlgfYRBnf0XpdrJCHKmAipabG75S2HGhUjawYEHJKhVA==",
+    "Microsoft.AspNetCore.Metadata/6.0.15": {
+      "sha512": "J1+dXw+8nI/FZ5RO7eKWJcBDC2ywCns1sbhk9f+RT1QjLqH7GLGHDHUpYlEy59Lf0DBZT7PHQzTeq9ZKAPk8yQ==",
       "type": "package",
-      "path": "microsoft.aspnetcore.metadata/6.0.16",
+      "path": "microsoft.aspnetcore.metadata/6.0.15",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2745,7 +3013,7 @@
         "lib/net6.0/Microsoft.AspNetCore.Metadata.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.xml",
-        "microsoft.aspnetcore.metadata.6.0.16.nupkg.sha512",
+        "microsoft.aspnetcore.metadata.6.0.15.nupkg.sha512",
         "microsoft.aspnetcore.metadata.nuspec"
       ]
     },
@@ -3308,10 +3576,10 @@
         "microsoft.identitymodel.tokens.nuspec"
       ]
     },
-    "Microsoft.JSInterop/6.0.16": {
-      "sha512": "57qernFFApJ+CsA/Mn53TJ9QSreucgfyf91ESBwsIifaG6o9hN56y4VsJ9P0RFbNRbpz+KstKUj/U1HK5tqiGQ==",
+    "Microsoft.JSInterop/6.0.15": {
+      "sha512": "0pGIlgMfwFKOsaxCdGNIlftIUbWW8FdF5EYiewYfENgArmlHfwWHF629M14Hv6+6KsOnnKjulN8/VxdTov27Eg==",
       "type": "package",
-      "path": "microsoft.jsinterop/6.0.16",
+      "path": "microsoft.jsinterop/6.0.15",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3319,7 +3587,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net6.0/Microsoft.JSInterop.dll",
         "lib/net6.0/Microsoft.JSInterop.xml",
-        "microsoft.jsinterop.6.0.16.nupkg.sha512",
+        "microsoft.jsinterop.6.0.15.nupkg.sha512",
         "microsoft.jsinterop.nuspec"
       ]
     },
@@ -3339,7 +3607,7 @@
       ]
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
-      "sha512": "x6cMzSzfJIcwqY9pXI+7bjhTb/+Ko+oJ0cRSC7UUt1NaZhcbuHUGKhvF7Rb4e3ZVQ2p9ZaVwpxtS7ZyeZyhUZQ==",
+      "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
       "type": "package",
       "path": "microsoft.netcore.platforms/1.1.0",
       "files": [
@@ -3354,11 +3622,12 @@
       ]
     },
     "Microsoft.NETCore.Targets/1.1.0": {
-      "sha512": "TH6/0HJwof2yGcTjUv7eIMWDcgqX0FZOBbjG1DaJllBoHjdTRZoU8HvSDZNXfQbxAp9/dP0swLCBxrpB0d5Nmw==",
+      "sha512": "aOZA3BWfz9RXjpzt0sRJJMjAscAUm3Hoa4UWAfceV9UTYxgwZ1lZt5nO2myFf+/jetYQo4uTP7zS8sJY67BBxg==",
       "type": "package",
       "path": "microsoft.netcore.targets/1.1.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
@@ -3664,11 +3933,12 @@
       ]
     },
     "System.Collections/4.3.0": {
-      "sha512": "NCP4pIFY7qk7JtGa6yshKb8kZsLgznGQmkahHu8FM1pV70PRZRKDMMtp0a+l/24zkmTxBKBh0aolt3nqLXHULQ==",
+      "sha512": "3Dcj85/TBdVpL5Zr+gEEBUuFe2icOnLalmEh9hfck1PTYbbyWuZgh4fmm2ysCLTrqLQw6t3TgTyJ+VLp+Qb+Lw==",
       "type": "package",
       "path": "system.collections/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -3730,6 +4000,94 @@
         "system.collections.nuspec"
       ]
     },
+    "System.ComponentModel.Annotations/6.0.0-preview.4.21253.7": {
+      "sha512": "h0eWBYUk1rLI31AAmLMgmVzy6UBMUBvRfAqB9VH+O8pMT5GBFpBJoTEIdhBfzcn7VS+aPPDzpLlASHXdjt2qXQ==",
+      "type": "package",
+      "path": "system.componentmodel.annotations/6.0.0-preview.4.21253.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/net461/System.ComponentModel.Annotations.dll",
+        "lib/netcore50/System.ComponentModel.Annotations.dll",
+        "lib/netstandard1.4/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.0/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.1/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.1/System.ComponentModel.Annotations.xml",
+        "lib/portable-net45+win8/_._",
+        "lib/win8/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/net461/System.ComponentModel.Annotations.dll",
+        "ref/net461/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/System.ComponentModel.Annotations.dll",
+        "ref/netcore50/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/de/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/es/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/fr/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/it/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ja/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ko/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ru/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.1/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.3/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.4/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard2.0/System.ComponentModel.Annotations.dll",
+        "ref/netstandard2.0/System.ComponentModel.Annotations.xml",
+        "ref/netstandard2.1/System.ComponentModel.Annotations.dll",
+        "ref/netstandard2.1/System.ComponentModel.Annotations.xml",
+        "ref/portable-net45+win8/_._",
+        "ref/win8/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.componentmodel.annotations.6.0.0-preview.4.21253.7.nupkg.sha512",
+        "system.componentmodel.annotations.nuspec"
+      ]
+    },
     "System.Data.Common/4.3.0": {
       "sha512": "lm6E3T5u7BOuEH0u18JpbJHxBfOJPuCyl4Kg1RH10ktYLp5uEEE1xKrHW56/We4SnZpGAuCc9N0MJpSDhTHZGQ==",
       "type": "package",
@@ -3782,11 +4140,12 @@
       ]
     },
     "System.Diagnostics.Debug/4.3.0": {
-      "sha512": "jYwL6zzCWK4oDClJTJPMu1FXdvQhYN4n5gZEGEHnGTspQ4wED1VGV3nrX22oPz3FWi2zaWDDYZ8qP/2UByFtnQ==",
+      "sha512": "ZUhUOdqmaG5Jk3Xdb8xi5kIyQYAA4PnTNlHx1mu9ZY3qv4ELIdKbnL/akbGaKi2RnNUWaZsAs31rvzFdewTj2g==",
       "type": "package",
       "path": "system.diagnostics.debug/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -3849,11 +4208,12 @@
       ]
     },
     "System.Globalization/4.3.0": {
-      "sha512": "I4bKF9Fpvpd4eGTTQky5bM9Xn1hLGSW2ltN/uGEM7MdqRag4pOEs3sj2EgpOjsQciqOGjA/fZ8ryfviW0MMA1A==",
+      "sha512": "kYdVd2f2PAdFGblzFswE4hkNANJBKRmsfa2X5LG2AcWE1c7/4t0pYae1L8vfZ5xvE2nK/R9JprtToA61OSHWIg==",
       "type": "package",
       "path": "system.globalization/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4043,11 +4403,12 @@
       ]
     },
     "System.Linq/4.3.0": {
-      "sha512": "+yP61OQgGLdPveEQoynQkTmlMFezz1fxcEp3zrNg5+Ah6B08UdrlOw5fmUaqnexyxnjkfQTTZcO5RPVReiVUyQ==",
+      "sha512": "5DbqIUpsDp0dFftytzuMmc0oeMdQwjcP/EWxsksIz/w1TcFRkZ3yKKz0PqiYFMmEwPSWw+qNVqD7PJ889JzHbw==",
       "type": "package",
       "path": "system.linq/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4114,11 +4475,12 @@
       ]
     },
     "System.Linq.Expressions/4.3.0": {
-      "sha512": "VdlwCA9QZ/MWp8Wzi7wH8rS8+jlddGr5f23PTDGrbm8d18tgVAaMB7U/yXWUXYGpWmjHMU4BmnIGeAAVf/9nzA==",
+      "sha512": "PGKkrd2khG4CnlyJwxwwaWWiSiWFNBGlgXvJpeO0xCXrZ89ODrQ6tjEWS/kOqZ8GwEOUATtKtzp1eRgmYNfclg==",
       "type": "package",
       "path": "system.linq.expressions/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4256,11 +4618,12 @@
       ]
     },
     "System.ObjectModel/4.3.0": {
-      "sha512": "yM1rNePe0QyaJN1ssqcmu+KClLxvyp8gAupS5VBgn8jM4UkYEQVR2ijWTQGxnsrbLARGSclBhTkGeDcW8m0NWg==",
+      "sha512": "bdX+80eKv9bN6K4N+d77OankKHGn6CH711a6fcOpMQu2Fckp/Ft4L/kW9WznHpyR0NRAvJutzOMHNNlBGvxQzQ==",
       "type": "package",
       "path": "system.objectmodel/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4339,11 +4702,12 @@
       ]
     },
     "System.Reflection/4.3.0": {
-      "sha512": "ttq8vHmsNDkOfig6xXtVzC28PuLyBIcbUQ/UsOK9Ft2UGt2Ve6Qj4Sk2U9asrzp/aU42U2rdFYBNQuD0o74tlg==",
+      "sha512": "KMiAFoW7MfJGa9nDFNcfu+FpEdiHpWgTcS2HdMpDvt9saK3y/G4GwprPyzqjFH9NTaGPQeWNHU+iDlDILj96aQ==",
       "type": "package",
       "path": "system.reflection/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4419,11 +4783,12 @@
       ]
     },
     "System.Reflection.Emit/4.3.0": {
-      "sha512": "MnUs7yVVOhAYRsgclU+bKY8rHJwhUBd/WVJ92KqPR1OE2pV5TAvw8sPtY8Wl7Ha37Ya6XtXgOw0EBNi5pqm3MA==",
+      "sha512": "228FG0jLcIwTVJyz8CLFKueVqQK36ANazUManGaJHkO0icjiIypKW7YLWLIWahyIkdh5M7mV2dJepllLyA1SKg==",
       "type": "package",
       "path": "system.reflection.emit/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4454,7 +4819,7 @@
       ]
     },
     "System.Reflection.Emit.ILGeneration/4.3.0": {
-      "sha512": "/i73saHta/NbZyapTwmUH/5we+n4Hb2zOsCVg1WnjJbcexss/sMf4/Ku8sQSh5N0FzDQC54gdHU9I4qtj+NCzQ==",
+      "sha512": "59tBslAk9733NXLrUJrwNZEzbMAcu8k344OYo+wfSVygcgZ9lgBdGIzH/nrg3LYhXceynyvTc8t5/GD4Ri0/ng==",
       "type": "package",
       "path": "system.reflection.emit.ilgeneration/4.3.0",
       "files": [
@@ -4499,7 +4864,7 @@
       ]
     },
     "System.Reflection.Emit.Lightweight/4.3.0": {
-      "sha512": "EcQ1RVeodRJmLb4Er0dZhD98pnOXEmO3C0yImwyhSoloSJy9YxecJGSmbsUb1K/73BKV7blEECh4OxbfQUKC9w==",
+      "sha512": "oadVHGSMsTmZsAF864QYN1t1QzZjIcuKU3l2S9cZOwDdDueNTrqq1yRj7koFfIGEnKpt6NjpL3rOzRhs4ryOgA==",
       "type": "package",
       "path": "system.reflection.emit.lightweight/4.3.0",
       "files": [
@@ -4544,11 +4909,12 @@
       ]
     },
     "System.Reflection.Extensions/4.3.0": {
-      "sha512": "j7TxY4V07pZjvwN+qHHme37xBYgGNYN6vAEp/6xz4BlmHbbYHSYi82+5KUsU9V4Zo0bvsX+4Klz8ETNYx2Xttw==",
+      "sha512": "rJkrJD3kBI5B712aRu4DpSIiHRtr6QlfZSQsb0hYHrDCZORXCFjQfoipo2LaMUHoT9i1B7j7MnfaEKWDFmFQNQ==",
       "type": "package",
       "path": "system.reflection.extensions/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4600,11 +4966,12 @@
       ]
     },
     "System.Reflection.Primitives/4.3.0": {
-      "sha512": "MqF88HZ5qYx7AcaqlhYiVwI++ZdvV1CRPWBaolWCOHhSDDjdmkv3h9pfvNM9IHwxE+0pP/ZgT/FG2OfyBxmbJQ==",
+      "sha512": "5RXItQz5As4xN2/YUDxdpsEkMhvw3e6aNveFXUn4Hl/udNTCNhnKp8lT9fnc3MhvGKh1baak5CovpuQUXHAlIA==",
       "type": "package",
       "path": "system.reflection.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4656,7 +5023,7 @@
       ]
     },
     "System.Reflection.TypeExtensions/4.3.0": {
-      "sha512": "RkUXLAVfo++p1KAPPGuQ9DDX2dIHczp4hTRj5dl6/SK3rl284va4+KBijKsw41dqLSt60uIl+tGRCFfGn1HHWA==",
+      "sha512": "7u6ulLcZbyxB5Gq0nMkQttcdBTx57ibzw+4IOXEfR+sXYQoHvjW5LTLyNr8O22UIMrqYbchJQJnos4eooYzYJA==",
       "type": "package",
       "path": "system.reflection.typeextensions/4.3.0",
       "files": [
@@ -4710,11 +5077,12 @@
       ]
     },
     "System.Resources.ResourceManager/4.3.0": {
-      "sha512": "CoCCVXBjYH2Z+qe4/cXQTCA+1UVcq15kQeE1MBgnKzD+ZzRN9PXmteHHuw1p1ch9ZCftrddmcxhCuXwPoIQ9AA==",
+      "sha512": "/zrcPkkWdZmI4F92gL/TPumP98AVDu/Wxr3CSJGQQ+XN6wbRZcyfSKVoPo17ilb3iOr0cCRqJInGwNMolqhS8A==",
       "type": "package",
       "path": "system.resources.resourcemanager/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4883,11 +5251,12 @@
       ]
     },
     "System.Runtime.Extensions/4.3.0": {
-      "sha512": "19p97MCix4o/VoVQqu+dQ5DfrgVsxnjSrjd7Rkx7YVCbzzwDOVLApQwQRvBaTw43qGyeZkZqT/mlFmvDUxCw8Q==",
+      "sha512": "guW0uK0fn5fcJJ1tJVXYd7/1h5F+pea1r7FLSOz/f8vPEqbR2ZAknuRDvTQ8PzAilDveOxNjSfr0CHfIQfFk8g==",
       "type": "package",
       "path": "system.runtime.extensions/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5058,11 +5427,12 @@
       ]
     },
     "System.Text.Encoding/4.3.0": {
-      "sha512": "Ci6Lf8dFM1Gb6qKfmpcw9NYolJq+8vlmvr6B4hJxTBPGAu29SMZcneuitJrME/rhZHbAUWbEA1U0jUCeM22QDw==",
+      "sha512": "BiIg+KWaSDOITze6jGQynxg64naAPtqGHBwDrLaCtixsa5bKiR8dpPOHA7ge3C0JJQizJE+sfkz1wV+BAKAYZw==",
       "type": "package",
       "path": "system.text.encoding/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5206,11 +5576,12 @@
       ]
     },
     "System.Text.RegularExpressions/4.3.0": {
-      "sha512": "FD6P6Ws2boK54+JBo9z06Qix8ugjEcYyCZMYAVQccxu9SS0+Xv4Jg8gWpmE9PwCNa4MSFIvpENwBBwdNN60aWQ==",
+      "sha512": "RpT2DA+L660cBt1FssIE9CAGpLFdFPuheB7pLpKpn6ZXNby7jDERe8Ua/Ne2xGiwLVG2JOqziiaVCGDon5sKFA==",
       "type": "package",
       "path": "system.text.regularexpressions/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5289,11 +5660,12 @@
       ]
     },
     "System.Threading/4.3.0": {
-      "sha512": "nM4lKnIv6pfGhCAyk21TS9UFWCHzYbHZpIf3XhTK6hNS7p2OtgJB0kNJ/ojDcSAY78pcGXWB/RNEv5DbKCU1hQ==",
+      "sha512": "VkUS0kOBcUf3Wwm0TSbrevDDZ6BlM+b/HRiapRFWjM5O0NS0LviG0glKmFK+hhPDd1XFeSdU1GmlLhb2CoVpIw==",
       "type": "package",
       "path": "system.threading/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5359,11 +5731,12 @@
       ]
     },
     "System.Threading.Tasks/4.3.0": {
-      "sha512": "BQVNb95Tz3IZO2yt64qGoNvD09Dnl9HMxrtxAKYRWcDj1FRtPaJGfFxOcAUzVm8yj40TEB8lv0NDdEPJFmvegg==",
+      "sha512": "LbSxKEdOUhVe8BezB/9uOGGppt+nZf6e1VFyw6v3DN6lqitm0OSn2uXMOdtP0M3W4iMcqcivm2J6UgqiwwnXiA==",
       "type": "package",
       "path": "system.threading.tasks/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5426,7 +5799,7 @@
       ]
     },
     "Telerik.DataSource/2.1.3": {
-      "sha512": "ebuFCvI95DyQ28hVFHUzmD9AstzhV8T7rMdL7q2wEXy6J8TT3ere6exRPRVnaTSs73nFqgeY5a6Z5WC7fBYx1Q==",
+      "sha512": "Fbtfm/nviRCh1LNBEpEKrsmAyuzn4/oNf3jZ4U1Y7qRepxB2+/NfVuak+jWVUZEs9bXCXXeYADwWDyAvly6sNA==",
       "type": "package",
       "path": "telerik.datasource/2.1.3",
       "files": [
@@ -5457,7 +5830,7 @@
       ]
     },
     "Telerik.Recurrence/0.2.0": {
-      "sha512": "7MPHiubchbAqglmT4eg40EJVHlSKklBpJJf0TtndzTiq9T/OaqP1Ku7X7PH4itEO3cDPxfw1VFIOWM4lhU18BQ==",
+      "sha512": "jIJv9YIzUNhyfXSZ2TJwQDXI75rlRstxqm0Pmft1kxUd0JP6lED7lMgcxNh8n9JBdWGiHUw66s/NrvdA73Ix1A==",
       "type": "package",
       "path": "telerik.recurrence/0.2.0",
       "files": [
@@ -5510,71 +5883,105 @@
         "telerik.zip.nuspec"
       ]
     },
-    "Toolbelt.Blazor.HttpClientInterceptor/10.1.0": {
-      "sha512": "rHJzJzBm3rYchA2Lzb7Fr46Xspr2cbE4p9jIYvj60rl+x5+5oiOh3QT2Cmn/u8/zuQ914k3AepH/FdFS1UfDew==",
-      "type": "package",
-      "path": "toolbelt.blazor.httpclientinterceptor/10.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "lib/netstandard2.1/Toolbelt.Blazor.HttpClientInterceptor.dll",
-        "lib/netstandard2.1/Toolbelt.Blazor.HttpClientInterceptor.xml",
-        "nupkg-icon.png",
-        "toolbelt.blazor.httpclientinterceptor.10.1.0.nupkg.sha512",
-        "toolbelt.blazor.httpclientinterceptor.nuspec"
-      ]
-    },
-    "BlazorClientHelper/1.0.0": {
+    "GFF00900COMMON/1.0.0": {
       "type": "project",
-      "path": "../BlazorClientHelper/BlazorClientHelper.csproj",
-      "msbuildProject": "../BlazorClientHelper/BlazorClientHelper.csproj"
+      "path": "../../../../BS Shared Form/SOURCE/BACK/GFF00900COMMON/GFF00900COMMON.csproj",
+      "msbuildProject": "../../../../BS Shared Form/SOURCE/BACK/GFF00900COMMON/GFF00900COMMON.csproj"
     },
-    "BlazorMenuCommon/1.0.0": {
+    "GFF00900FRONT/1.0.0": {
       "type": "project",
-      "path": "../BlazorMenuCommon/BlazorMenuCommon.vbproj",
-      "msbuildProject": "../BlazorMenuCommon/BlazorMenuCommon.vbproj"
+      "path": "../../../../BS Shared Form/SOURCE/FRONT/GFF00900FRONT/GFF00900FRONT.csproj",
+      "msbuildProject": "../../../../BS Shared Form/SOURCE/FRONT/GFF00900FRONT/GFF00900FRONT.csproj"
     },
-    "GSM03000Front/1.0.0": {
+    "GFF00900Model/1.0.0": {
       "type": "project",
-      "path": "../../FRONT/GS/GSM03000Front/GSM03000Front.csproj",
-      "msbuildProject": "../../FRONT/GS/GSM03000Front/GSM03000Front.csproj"
+      "path": "../../../../BS Shared Form/SOURCE/FRONT/GFF00900Model/GFF00900Model.csproj",
+      "msbuildProject": "../../../../BS Shared Form/SOURCE/FRONT/GFF00900Model/GFF00900Model.csproj"
+    },
+    "GSM02000Common/1.0.0": {
+      "type": "project",
+      "path": "../../COMMON/GS/GSM02000Common/GSM02000Common.csproj",
+      "msbuildProject": "../../COMMON/GS/GSM02000Common/GSM02000Common.csproj"
+    },
+    "GSM02000Front/1.0.0": {
+      "type": "project",
+      "path": "../../FRONT/GSM02000Front/GSM02000Front.csproj",
+      "msbuildProject": "../../FRONT/GSM02000Front/GSM02000Front.csproj"
+    },
+    "GSM02000FrontResources/1.0.0": {
+      "type": "project",
+      "path": "../../FRONT/GSM02000FrontResources/GSM02000FrontResources.csproj",
+      "msbuildProject": "../../FRONT/GSM02000FrontResources/GSM02000FrontResources.csproj"
+    },
+    "GSM02000Model/1.0.0": {
+      "type": "project",
+      "path": "../../FRONT/GSM02000Model/GSM02000Model.csproj",
+      "msbuildProject": "../../FRONT/GSM02000Model/GSM02000Model.csproj"
+    },
+    "GSM05000Common/1.0.0": {
+      "type": "project",
+      "path": "../../COMMON/GS/GSM05000Common/GSM05000Common.csproj",
+      "msbuildProject": "../../COMMON/GS/GSM05000Common/GSM05000Common.csproj"
+    },
+    "GSM05000Front/1.0.0": {
+      "type": "project",
+      "path": "../../FRONT/GSM05000Front/GSM05000Front.csproj",
+      "msbuildProject": "../../FRONT/GSM05000Front/GSM05000Front.csproj"
+    },
+    "GSM05000Model/1.0.0": {
+      "type": "project",
+      "path": "../../FRONT/GSM05000Model/GSM05000Model.csproj",
+      "msbuildProject": "../../FRONT/GSM05000Model/GSM05000Model.csproj"
+    },
+    "Lookup_GSCOMMON/1.0.0": {
+      "type": "project",
+      "path": "../../../../BS Shared Form/SOURCE/BACK/Lookup_GSCOMMON/Lookup_GSCOMMON.csproj",
+      "msbuildProject": "../../../../BS Shared Form/SOURCE/BACK/Lookup_GSCOMMON/Lookup_GSCOMMON.csproj"
+    },
+    "Lookup_GSFRONT/1.0.0": {
+      "type": "project",
+      "path": "../../../../BS Shared Form/SOURCE/FRONT/Lookup_GSFRONT/Lookup_GSFRONT.csproj",
+      "msbuildProject": "../../../../BS Shared Form/SOURCE/FRONT/Lookup_GSFRONT/Lookup_GSFRONT.csproj"
+    },
+    "Lookup_GSModel/1.0.0": {
+      "type": "project",
+      "path": "../../../../BS Shared Form/SOURCE/FRONT/Lookup_GSModel/Lookup_GSModel.csproj",
+      "msbuildProject": "../../../../BS Shared Form/SOURCE/FRONT/Lookup_GSModel/Lookup_GSModel.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "BlazorClientHelper >= 1.0.0",
-      "BlazorMenuCommon >= 1.0.0",
       "Blazored.LocalStorage >= 4.2.0",
-      "GSM03000Front >= 1.0.0",
+      "GSM02000Front >= 1.0.0",
+      "GSM05000Front >= 1.0.0",
       "Microsoft.AspNetCore.Components.Authorization >= 6.0.14",
       "Microsoft.AspNetCore.Components.WebAssembly >= 6.0.14",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 6.0.14",
       "Microsoft.Extensions.Http >= 7.0.0",
       "Newtonsoft.Json >= 13.0.1",
       "System.IdentityModel.Tokens.Jwt >= 6.23.1",
-      "Telerik.UI.for.Blazor >= 3.7.0",
-      "Toolbelt.Blazor.HttpClientInterceptor >= 10.1.0"
+      "Telerik.UI.for.Blazor >= 3.7.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sihol\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\riyan.codeid\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj",
+      "projectUniqueName": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj",
       "projectName": "BlazorMenu",
-      "projectPath": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj",
-      "packagesPath": "C:\\Users\\sihol\\.nuget\\packages\\",
-      "outputPath": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\obj\\",
+      "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\BlazorMenu.csproj",
+      "packagesPath": "C:\\Users\\riyan.codeid\\.nuget\\packages\\",
+      "outputPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenu\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\sihol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\riyan.codeid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5590,14 +5997,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000Front\\GSM03000Front.csproj": {
-              "projectPath": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000Front\\GSM03000Front.csproj"
+            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM02000Front\\GSM02000Front.csproj": {
+              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM02000Front\\GSM02000Front.csproj"
             },
-            "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj": {
-              "projectPath": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj"
-            },
-            "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
-              "projectPath": "D:\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorMenuCommon\\BlazorMenuCommon.vbproj"
+            "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM05000Front\\GSM05000Front.csproj": {
+              "projectPath": "D:\\4. Work\\1. SOURCECODE\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM05000Front\\GSM05000Front.csproj"
             }
           }
         }
@@ -5644,10 +6048,6 @@
           "Telerik.UI.for.Blazor": {
             "target": "Package",
             "version": "[3.7.0, )"
-          },
-          "Toolbelt.Blazor.HttpClientInterceptor": {
-            "target": "Package",
-            "version": "[10.1.0, )"
           }
         },
         "imports": [
@@ -5661,12 +6061,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-            "version": "[6.0.16, 6.0.16]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="CURRENT_PERIOD" xml:space="preserve">
+        <value>Current Period</value><comment>Current Period</comment>
+    </data>
+    <data name="CURRENT_SOFT_PERIOD" xml:space="preserve">
+        <value>Current Soft Period</value><comment>Current Soft Period</comment>
+    </data>
+    <data name="PROCESS" xml:space="preserve">
+        <value>Process</value><comment>Process</comment>
+    </data>
+    <data name="LAST_UPDATED_BY" xml:space="preserve">
+        <value>Last Updated By</value><comment>Last Updated By</comment>
+    </data>
+    <data name="CONFIRM_SOFT_CLOSING" xml:space="preserve">
+        <value>Are you sure want to proceed Soft Closing?</value><comment>Are you sure want to proceed Soft Closing?</comment>
+    </data>
+
+
+    <data name="MSG_NEW_SOFT_PERIOD_NOT_LATER_THAN_CURRENT_SOFT_PERIOD" xml:space="preserve">
+        <!-- <value>New Soft Period may not be later than Current Soft Period!</value> -->
+        <value>Changing the Soft Period cannot be done without completing the necessary closing procedures</value>
+    </data>
+    <data name="MSG_NEW_SOFT_PERIOD_NOT_EARLIER_THAN_CURRENT_SOFT_PERIOD" xml:space="preserve">
+        <!-- <value>New Soft Period may not be earlier than Current Soft Period!</value> -->
+        <value>New Soft Period may not be earlier than Current Period!</value>
+    </data>
+    <!-- Soft Closing process is in progress by another user! -->
+    <data name="MSG_SOFT_CLOSING_PROCESS_IN_PROGRESS" xml:space="preserve">
+        <value>Soft Closing process is in progress by another user!</value>
+    </data>
+    <!-- Soft Closing processed successfully! -->
+    <data name="MSG_SOFT_CLOSING_PROCESSED_SUCCESSFULLY" xml:space="preserve">
+        <value>Soft Closing processed successfully!</value>
+    </data>
+    <!-- To do list to be resolved before Soft Closing! -->
+    <data name="MSG_TODO_LIST_TO_BE_RESOLVED_BEFORE_SOFT_CLOSING" xml:space="preserve">
+        <value>Todo list to be resolved before Soft Closing!</value>
+    </data>
+    <!-- You haven’t saved your changes. Are you sure want to cancel? -->
+    <data name="MSG_UNSAVED_CHANGES" xml:space="preserve">
+        <value>You haven't saved your changes. Are you sure want to cancel?</value>
+    </data>
+
+    <!-- NO -->
+    <!-- DEPT -->
+    <!-- TRANSACTION_TYPE -->
+    <!-- REF_NO -->
+    <!-- REF_DATE -->
+    <!-- STATUS -->
+    <!-- DESCRIPTION -->
+    <!-- SOLUTION -->
+    <data name="NO" xml:space="preserve">
+        <value>No.</value>
+    </data>
+    <data name="DEPT" xml:space="preserve">
+        <value>Dept</value>
+    </data>
+    <data name="TRANSACTION_TYPE" xml:space="preserve">
+        <value>Transaction Type</value>
+    </data>
+    <data name="REF_NO" xml:space="preserve">
+        <value>Ref No</value>
+    </data>
+    <data name="REF_DATE" xml:space="preserve">
+        <value>Ref Date</value>
+    </data>
+    <data name="STATUS" xml:space="preserve">
+        <value>Status</value>
+    </data>
+    <data name="DESCRIPTION" xml:space="preserve">
+        <value>Description</value>
+    </data>
+    <data name="SOLUTION" xml:space="preserve">
+        <value>Solution</value>
+    </data>
+    <!-- SAVE_TO_EXCEL -->
+    <data name="SAVE_TO_EXCEL" xml:space="preserve">
+        <value>Save to Excel</value>
+    </data>
+</root>

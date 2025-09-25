@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Lookup_APCOMMON": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57056;http://localhost:57057"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+Error100=Journal No. {0} already exists!
+Error200=Process failed! CB GL Account No. is not valid for Journal Period {0}
+Error900=Process failed! unable to save Journal transaction {0}
+
+JOURNAL_EXISTS=Journal No. {0} already exists!
+ERROR_PROCESS=Process failed! unable to save Journal transaction {0}
+CB_ACCOUNT_FOUND=Process failed! CB GL Account No. is not valid for Journal Period {0}

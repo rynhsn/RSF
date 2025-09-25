@@ -1,0 +1,888 @@
+2025-04-28 00:54:04,246 INFO  Program - Application starting...
+2025-04-28 00:54:04,292 INFO  Program - Configuring application settings...
+2025-04-28 00:54:04,334 INFO  Program - Application configuration loaded successfully.
+2025-04-28 00:54:04,348 INFO  Program - Adding services...
+2025-04-28 00:54:04,377 INFO  Program - Services added successfully.
+2025-04-28 00:54:04,461 INFO  Program - Get data config parameter
+2025-04-28 00:54:04,465 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 00:54:04,527 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 00:54:04,653 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 00:54:04,665 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 00:54:04,665 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 00:54:04,666 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 00:54:04,666 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 00:54:04,666 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 00:54:04,668 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 00:54:04,670 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 00:54:05,447 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 00:54:05,622 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 00:54:05,622 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 00:54:05,622 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 00:54:05,623 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 00:54:05,624 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 00:54:05,917 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 00:54:05,917 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 00:54:05,917 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 00:54:05,917 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 00:54:05,918 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 00:54:06,032 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 00:54:06,032 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 00:54:06,039 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 00:54:06,040 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 00:54:06,040 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 00:54:06,044 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 00:54:06,044 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 00:54:06,044 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 00:54:06,720 INFO  Program - Application executed successfully.
+2025-04-28 01:54:03,309 INFO  Program - Application starting...
+2025-04-28 01:54:03,333 INFO  Program - Configuring application settings...
+2025-04-28 01:54:03,355 INFO  Program - Application configuration loaded successfully.
+2025-04-28 01:54:03,364 INFO  Program - Adding services...
+2025-04-28 01:54:03,383 INFO  Program - Services added successfully.
+2025-04-28 01:54:03,461 INFO  Program - Get data config parameter
+2025-04-28 01:54:03,465 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 01:54:03,491 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 01:54:03,589 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 01:54:03,597 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 01:54:03,598 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 01:54:03,598 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 01:54:03,598 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 01:54:03,598 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 01:54:03,600 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 01:54:03,602 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 01:54:03,867 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 01:54:03,867 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 01:54:03,867 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 01:54:03,867 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 01:54:03,868 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 01:54:03,868 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 01:54:03,941 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 01:54:03,941 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 01:54:03,941 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 01:54:03,942 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 01:54:03,942 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 01:54:04,014 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 01:54:04,014 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 01:54:04,023 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 01:54:04,023 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 01:54:04,024 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 01:54:04,028 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 01:54:04,029 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 01:54:04,029 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 01:54:04,029 INFO  Program - Application executed successfully.
+2025-04-28 02:54:03,377 INFO  Program - Application starting...
+2025-04-28 02:54:03,402 INFO  Program - Configuring application settings...
+2025-04-28 02:54:03,424 INFO  Program - Application configuration loaded successfully.
+2025-04-28 02:54:03,433 INFO  Program - Adding services...
+2025-04-28 02:54:03,445 INFO  Program - Services added successfully.
+2025-04-28 02:54:03,499 INFO  Program - Get data config parameter
+2025-04-28 02:54:03,501 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 02:54:03,524 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 02:54:03,614 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 02:54:03,622 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 02:54:03,622 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 02:54:03,622 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 02:54:03,623 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 02:54:03,623 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 02:54:03,625 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 02:54:03,627 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 02:54:03,900 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 02:54:03,901 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 02:54:03,901 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 02:54:03,901 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 02:54:03,902 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 02:54:03,903 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 02:54:03,975 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 02:54:03,975 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 02:54:03,976 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 02:54:03,976 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 02:54:03,977 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 02:54:04,048 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 02:54:04,048 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 02:54:04,056 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 02:54:04,057 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 02:54:04,058 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 02:54:04,062 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 02:54:04,062 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 02:54:04,062 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 02:54:04,062 INFO  Program - Application executed successfully.
+2025-04-28 03:54:03,358 INFO  Program - Application starting...
+2025-04-28 03:54:03,381 INFO  Program - Configuring application settings...
+2025-04-28 03:54:03,402 INFO  Program - Application configuration loaded successfully.
+2025-04-28 03:54:03,410 INFO  Program - Adding services...
+2025-04-28 03:54:03,423 INFO  Program - Services added successfully.
+2025-04-28 03:54:03,476 INFO  Program - Get data config parameter
+2025-04-28 03:54:03,478 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 03:54:03,499 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 03:54:03,583 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 03:54:03,590 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 03:54:03,590 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 03:54:03,591 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 03:54:03,591 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 03:54:03,591 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 03:54:03,592 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 03:54:03,594 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 03:54:03,871 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 03:54:03,871 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 03:54:03,871 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 03:54:03,872 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 03:54:03,872 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 03:54:03,873 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 03:54:03,944 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 03:54:03,944 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 03:54:03,944 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 03:54:03,945 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 03:54:03,945 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 03:54:04,015 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 03:54:04,015 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 03:54:04,020 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 03:54:04,020 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 03:54:04,021 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 03:54:04,025 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 03:54:04,025 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 03:54:04,025 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 03:54:04,025 INFO  Program - Application executed successfully.
+2025-04-28 04:54:03,382 INFO  Program - Application starting...
+2025-04-28 04:54:03,405 INFO  Program - Configuring application settings...
+2025-04-28 04:54:03,426 INFO  Program - Application configuration loaded successfully.
+2025-04-28 04:54:03,434 INFO  Program - Adding services...
+2025-04-28 04:54:03,447 INFO  Program - Services added successfully.
+2025-04-28 04:54:03,499 INFO  Program - Get data config parameter
+2025-04-28 04:54:03,500 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 04:54:03,522 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 04:54:03,613 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 04:54:03,620 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 04:54:03,621 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 04:54:03,621 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 04:54:03,622 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 04:54:03,622 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 04:54:03,624 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 04:54:03,627 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 04:54:03,891 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 04:54:03,891 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 04:54:03,892 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 04:54:03,892 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 04:54:03,892 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 04:54:03,893 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 04:54:03,966 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 04:54:03,967 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 04:54:03,967 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 04:54:03,967 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 04:54:03,968 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 04:54:04,041 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 04:54:04,042 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 04:54:04,050 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 04:54:04,051 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 04:54:04,051 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 04:54:04,055 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 04:54:04,056 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 04:54:04,056 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 04:54:04,056 INFO  Program - Application executed successfully.
+2025-04-28 05:54:03,390 INFO  Program - Application starting...
+2025-04-28 05:54:03,411 INFO  Program - Configuring application settings...
+2025-04-28 05:54:03,432 INFO  Program - Application configuration loaded successfully.
+2025-04-28 05:54:03,440 INFO  Program - Adding services...
+2025-04-28 05:54:03,451 INFO  Program - Services added successfully.
+2025-04-28 05:54:03,510 INFO  Program - Get data config parameter
+2025-04-28 05:54:03,511 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 05:54:03,535 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 05:54:03,628 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 05:54:03,636 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 05:54:03,636 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 05:54:03,636 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 05:54:03,636 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 05:54:03,637 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 05:54:03,638 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 05:54:03,641 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 05:54:03,906 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 05:54:03,906 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 05:54:03,906 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 05:54:03,906 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 05:54:03,907 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 05:54:03,908 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 05:54:03,978 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 05:54:03,978 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 05:54:03,978 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 05:54:03,979 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 05:54:03,979 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 05:54:04,053 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 05:54:04,053 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 05:54:04,062 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 05:54:04,063 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 05:54:04,063 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 05:54:04,068 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 05:54:04,068 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 05:54:04,069 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 05:54:04,069 INFO  Program - Application executed successfully.
+2025-04-28 06:54:03,369 INFO  Program - Application starting...
+2025-04-28 06:54:03,392 INFO  Program - Configuring application settings...
+2025-04-28 06:54:03,414 INFO  Program - Application configuration loaded successfully.
+2025-04-28 06:54:03,423 INFO  Program - Adding services...
+2025-04-28 06:54:03,437 INFO  Program - Services added successfully.
+2025-04-28 06:54:03,494 INFO  Program - Get data config parameter
+2025-04-28 06:54:03,497 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 06:54:03,522 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 06:54:03,620 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 06:54:03,629 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 06:54:03,629 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 06:54:03,629 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 06:54:03,629 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 06:54:03,629 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 06:54:03,631 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 06:54:03,634 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 06:54:03,899 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 06:54:03,900 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 06:54:03,900 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 06:54:03,900 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 06:54:03,901 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 06:54:03,903 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 06:54:03,974 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 06:54:03,974 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 06:54:03,974 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 06:54:03,975 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 06:54:03,975 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 06:54:04,050 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 06:54:04,050 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 06:54:04,056 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 06:54:04,056 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 06:54:04,057 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 06:54:04,061 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 06:54:04,061 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 06:54:04,061 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 06:54:04,061 INFO  Program - Application executed successfully.
+2025-04-28 07:54:04,428 INFO  Program - Application starting...
+2025-04-28 07:54:04,966 INFO  Program - Configuring application settings...
+2025-04-28 07:54:05,064 INFO  Program - Application configuration loaded successfully.
+2025-04-28 07:54:05,467 INFO  Program - Adding services...
+2025-04-28 07:54:05,587 INFO  Program - Services added successfully.
+2025-04-28 07:54:05,760 INFO  Program - Get data config parameter
+2025-04-28 07:54:05,849 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 07:54:06,011 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 07:54:06,136 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 07:54:06,229 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 07:54:06,229 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 07:54:06,229 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 07:54:06,229 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 07:54:06,230 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 07:54:06,231 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 07:54:06,234 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 07:54:06,536 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 07:54:06,537 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 07:54:06,537 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 07:54:06,537 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 07:54:06,538 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 07:54:06,539 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 07:54:06,608 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 07:54:06,608 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 07:54:06,608 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 07:54:06,609 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 07:54:06,609 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 07:54:06,678 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 07:54:06,679 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 07:54:06,683 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 07:54:06,683 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 07:54:06,684 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 07:54:06,688 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 07:54:06,689 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 07:54:06,689 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 07:54:06,689 INFO  Program - Application executed successfully.
+2025-04-28 08:54:03,454 INFO  Program - Application starting...
+2025-04-28 08:54:03,475 INFO  Program - Configuring application settings...
+2025-04-28 08:54:03,494 INFO  Program - Application configuration loaded successfully.
+2025-04-28 08:54:03,501 INFO  Program - Adding services...
+2025-04-28 08:54:03,513 INFO  Program - Services added successfully.
+2025-04-28 08:54:03,563 INFO  Program - Get data config parameter
+2025-04-28 08:54:03,564 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 08:54:03,588 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 08:54:03,680 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 08:54:03,688 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 08:54:03,689 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 08:54:03,689 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 08:54:03,689 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 08:54:03,689 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 08:54:03,691 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 08:54:03,693 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 08:54:03,966 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 08:54:03,967 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 08:54:03,967 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 08:54:03,967 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 08:54:03,968 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 08:54:03,968 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 08:54:04,041 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 08:54:04,041 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 08:54:04,041 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 08:54:04,042 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 08:54:04,042 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 08:54:04,116 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 08:54:04,116 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 08:54:04,124 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 08:54:04,124 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 08:54:04,125 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 08:54:04,130 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 08:54:04,130 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 08:54:04,131 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 08:54:04,131 INFO  Program - Application executed successfully.
+2025-04-28 09:54:03,710 INFO  Program - Application starting...
+2025-04-28 09:54:03,754 INFO  Program - Configuring application settings...
+2025-04-28 09:54:03,794 INFO  Program - Application configuration loaded successfully.
+2025-04-28 09:54:03,807 INFO  Program - Adding services...
+2025-04-28 09:54:03,836 INFO  Program - Services added successfully.
+2025-04-28 09:54:03,919 INFO  Program - Get data config parameter
+2025-04-28 09:54:03,923 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 09:54:03,989 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 09:54:04,113 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 09:54:04,124 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 09:54:04,125 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 09:54:04,125 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 09:54:04,125 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 09:54:04,125 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 09:54:04,127 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 09:54:04,129 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 09:54:04,395 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 09:54:04,395 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 09:54:04,395 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 09:54:04,395 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 09:54:04,396 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 09:54:04,397 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 09:54:04,477 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 09:54:04,477 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 09:54:04,477 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 09:54:04,477 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 09:54:04,478 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 09:54:04,546 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 09:54:04,546 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 09:54:04,551 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 09:54:04,552 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 09:54:04,552 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 09:54:04,556 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 09:54:04,556 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 09:54:04,556 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 09:54:04,556 INFO  Program - Application executed successfully.
+2025-04-28 10:54:03,339 INFO  Program - Application starting...
+2025-04-28 10:54:03,364 INFO  Program - Configuring application settings...
+2025-04-28 10:54:03,386 INFO  Program - Application configuration loaded successfully.
+2025-04-28 10:54:03,395 INFO  Program - Adding services...
+2025-04-28 10:54:03,410 INFO  Program - Services added successfully.
+2025-04-28 10:54:03,521 INFO  Program - Get data config parameter
+2025-04-28 10:54:03,524 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 10:54:03,553 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 10:54:03,647 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 10:54:03,655 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 10:54:03,655 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 10:54:03,655 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 10:54:03,655 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 10:54:03,655 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 10:54:03,657 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 10:54:03,660 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 10:54:03,925 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 10:54:03,925 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 10:54:03,925 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 10:54:03,925 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 10:54:03,926 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 10:54:03,926 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 10:54:04,001 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 10:54:04,001 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 10:54:04,001 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 10:54:04,001 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 10:54:04,002 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 10:54:04,074 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 10:54:04,075 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 10:54:04,082 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 10:54:04,082 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 10:54:04,083 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 10:54:04,086 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 10:54:04,087 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 10:54:04,087 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 10:54:04,087 INFO  Program - Application executed successfully.
+2025-04-28 11:54:03,314 INFO  Program - Application starting...
+2025-04-28 11:54:03,335 INFO  Program - Configuring application settings...
+2025-04-28 11:54:03,356 INFO  Program - Application configuration loaded successfully.
+2025-04-28 11:54:03,364 INFO  Program - Adding services...
+2025-04-28 11:54:03,376 INFO  Program - Services added successfully.
+2025-04-28 11:54:03,431 INFO  Program - Get data config parameter
+2025-04-28 11:54:03,433 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 11:54:03,457 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 11:54:03,551 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 11:54:03,559 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 11:54:03,559 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 11:54:03,559 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 11:54:03,559 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 11:54:03,559 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 11:54:03,561 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 11:54:03,563 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 11:54:03,844 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 11:54:03,845 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 11:54:03,845 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 11:54:03,845 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 11:54:03,846 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 11:54:03,846 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 11:54:03,916 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 11:54:03,916 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 11:54:03,916 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 11:54:03,917 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 11:54:03,917 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 11:54:03,990 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 11:54:03,990 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 11:54:03,996 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 11:54:03,996 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 11:54:03,997 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 11:54:04,001 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 11:54:04,001 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 11:54:04,001 INFO  PMA00300BACK.PMA00300Cls - Assign Tenant id for param
+2025-04-28 11:54:04,002 INFO  PMA00300BACK.PMA00300Cls - Get data VA
+2025-04-28 11:54:04,002 INFO  PMA00300BACK.PMA00300Cls - START process method GetVAList on Cls
+2025-04-28 11:54:04,003 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetVAList
+2025-04-28 11:54:04,006 INFO  PMA00300BACK.PMA00300Cls - END process method GetVAList on Cls
+2025-04-28 11:54:04,006 INFO  PMA00300BACK.PMA00300Cls - Get data Unit
+2025-04-28 11:54:04,006 INFO  PMA00300BACK.PMA00300Cls - Get data Utility
+2025-04-28 11:54:04,007 INFO  PMA00300BACK.PMA00300Cls - Seprated with different ChargeType
+2025-04-28 11:54:04,049 INFO  PMA00300BACK.PMA00300Cls - Success get Parameter
+2025-04-28 11:54:04,359 INFO  PMA00300BACK.PMA00300Cls - Declare param to save storage
+2025-04-28 11:54:04,359 INFO  PMA00300BACK.PMA00300Cls - Start Transaction Block
+2025-04-28 11:54:04,363 INFO  PMA00300BACK.PMA00300Cls - Start transcope
+2025-04-28 11:54:04,363 INFO  PMA00300BACK.PMA00300Cls - Get connection in transcope [Connectiin and COnecction attribute]
+2025-04-28 11:54:04,502 INFO  PMA00300BACK.PMA00300Cls - START process method SaveReportToAzure on Cls
+2025-04-28 11:54:04,502 INFO  PMA00300BACK.PMA00300Cls - Get storage type
+2025-04-28 11:54:04,503 INFO  PMA00300BACK.PMA00300Cls - START process method GetStorageType on Cls
+2025-04-28 11:54:04,503 INFO  PMA00300BACK.PMA00300Cls - before exec RSP_GS_GET_STORAGE_TYPE
+2025-04-28 11:54:04,508 INFO  PMA00300BACK.PMA00300Cls - END process method GetStorageType on Cls
+2025-04-28 11:54:04,508 INFO  PMA00300BACK.PMA00300Cls - Add  storage id to save cause storage id not exist:
+2025-04-28 11:54:04,509 INFO  PMA00300BACK.PMA00300Cls - Call R_StorageUtility.AddFile to storage table
+2025-04-28 11:54:04,517 INFO  PMA00300BACK.PMA00300Cls - END process method SaveReportToAzure on Cls
+2025-04-28 11:54:04,518 INFO  PMA00300BACK.PMA00300Cls - START process method SaveBillingStatementList on Cls
+2025-04-28 11:54:04,518 INFO  PMA00300BACK.PMA00300Cls - Execute query on method SaveBillingStatementList
+2025-04-28 11:54:04,521 INFO  PMA00300BACK.PMA00300Cls - END process method SaveBillingStatementList on Cls
+2025-04-28 11:54:04,524 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 11:54:04,524 INFO  Program - Application executed successfully.
+2025-04-28 12:54:04,445 INFO  Program - Application starting...
+2025-04-28 12:54:05,088 INFO  Program - Configuring application settings...
+2025-04-28 12:54:05,186 INFO  Program - Application configuration loaded successfully.
+2025-04-28 12:54:05,578 INFO  Program - Adding services...
+2025-04-28 12:54:05,655 INFO  Program - Services added successfully.
+2025-04-28 12:54:05,864 INFO  Program - Get data config parameter
+2025-04-28 12:54:05,980 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 12:54:06,182 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 12:54:06,346 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 12:54:06,425 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 12:54:06,426 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 12:54:06,426 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 12:54:06,426 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 12:54:06,426 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 12:54:06,429 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 12:54:06,433 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 12:54:06,747 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 12:54:06,747 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 12:54:06,748 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 12:54:06,748 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 12:54:06,748 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 12:54:06,749 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 12:54:06,824 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 12:54:06,825 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 12:54:06,825 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 12:54:06,826 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 12:54:06,826 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 12:54:06,896 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 12:54:06,896 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 12:54:06,902 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 12:54:06,902 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 12:54:06,903 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 12:54:06,908 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 12:54:06,908 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 12:54:06,908 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 12:54:06,908 INFO  Program - Application executed successfully.
+2025-04-28 13:54:03,649 INFO  Program - Application starting...
+2025-04-28 13:54:03,694 INFO  Program - Configuring application settings...
+2025-04-28 13:54:03,732 INFO  Program - Application configuration loaded successfully.
+2025-04-28 13:54:03,744 INFO  Program - Adding services...
+2025-04-28 13:54:03,774 INFO  Program - Services added successfully.
+2025-04-28 13:54:03,847 INFO  Program - Get data config parameter
+2025-04-28 13:54:03,852 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 13:54:03,904 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 13:54:04,025 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 13:54:04,050 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 13:54:04,051 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 13:54:04,051 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 13:54:04,051 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 13:54:04,051 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 13:54:04,054 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 13:54:04,057 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 13:54:04,325 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 13:54:04,325 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 13:54:04,326 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 13:54:04,326 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 13:54:04,326 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 13:54:04,327 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 13:54:04,403 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 13:54:04,403 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 13:54:04,403 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 13:54:04,404 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 13:54:04,404 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 13:54:04,475 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 13:54:04,476 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 13:54:04,484 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 13:54:04,484 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 13:54:04,484 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 13:54:04,488 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 13:54:04,488 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 13:54:04,489 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 13:54:04,489 INFO  Program - Application executed successfully.
+2025-04-28 14:54:04,551 INFO  Program - Application starting...
+2025-04-28 14:54:05,265 INFO  Program - Configuring application settings...
+2025-04-28 14:54:05,361 INFO  Program - Application configuration loaded successfully.
+2025-04-28 14:54:05,801 INFO  Program - Adding services...
+2025-04-28 14:54:05,936 INFO  Program - Services added successfully.
+2025-04-28 14:54:06,125 INFO  Program - Get data config parameter
+2025-04-28 14:54:06,160 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 14:54:06,192 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 14:54:06,307 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 14:54:06,357 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 14:54:06,357 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 14:54:06,357 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 14:54:06,357 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 14:54:06,357 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 14:54:06,359 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 14:54:06,362 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 14:54:06,647 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 14:54:06,647 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 14:54:06,647 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 14:54:06,647 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 14:54:06,648 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 14:54:06,648 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 14:54:06,720 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 14:54:06,721 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 14:54:06,721 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 14:54:06,721 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 14:54:06,721 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 14:54:06,793 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 14:54:06,794 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 14:54:06,799 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 14:54:06,800 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 14:54:06,800 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 14:54:06,804 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 14:54:06,804 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 14:54:06,805 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 14:54:06,805 INFO  Program - Application executed successfully.
+2025-04-28 15:54:03,722 INFO  Program - Application starting...
+2025-04-28 15:54:03,764 INFO  Program - Configuring application settings...
+2025-04-28 15:54:03,804 INFO  Program - Application configuration loaded successfully.
+2025-04-28 15:54:03,818 INFO  Program - Adding services...
+2025-04-28 15:54:03,847 INFO  Program - Services added successfully.
+2025-04-28 15:54:03,924 INFO  Program - Get data config parameter
+2025-04-28 15:54:03,927 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 15:54:03,980 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 15:54:04,102 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 15:54:04,114 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 15:54:04,114 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 15:54:04,114 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 15:54:04,114 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 15:54:04,114 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 15:54:04,116 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 15:54:04,119 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 15:54:04,386 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 15:54:04,386 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 15:54:04,386 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 15:54:04,386 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 15:54:04,387 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 15:54:04,388 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 15:54:04,465 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 15:54:04,465 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 15:54:04,465 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 15:54:04,466 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 15:54:04,466 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 15:54:04,535 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 15:54:04,536 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 15:54:04,541 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 15:54:04,541 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 15:54:04,542 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 15:54:04,546 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 15:54:04,546 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 15:54:04,546 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 15:54:04,546 INFO  Program - Application executed successfully.
+2025-04-28 16:54:03,635 INFO  Program - Application starting...
+2025-04-28 16:54:03,664 INFO  Program - Configuring application settings...
+2025-04-28 16:54:03,697 INFO  Program - Application configuration loaded successfully.
+2025-04-28 16:54:03,709 INFO  Program - Adding services...
+2025-04-28 16:54:03,893 INFO  Program - Services added successfully.
+2025-04-28 16:54:03,970 INFO  Program - Get data config parameter
+2025-04-28 16:54:03,974 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 16:54:04,007 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 16:54:04,118 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 16:54:04,127 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 16:54:04,128 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 16:54:04,128 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 16:54:04,128 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 16:54:04,128 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 16:54:04,130 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 16:54:04,133 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 16:54:04,404 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 16:54:04,405 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 16:54:04,405 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 16:54:04,405 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 16:54:04,405 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 16:54:04,406 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 16:54:04,477 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 16:54:04,478 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 16:54:04,478 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 16:54:04,478 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 16:54:04,479 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 16:54:04,549 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 16:54:04,549 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 16:54:04,554 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 16:54:04,555 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 16:54:04,555 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 16:54:04,560 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 16:54:04,560 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 16:54:04,560 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 16:54:04,560 INFO  Program - Application executed successfully.
+2025-04-28 17:54:03,367 INFO  Program - Application starting...
+2025-04-28 17:54:03,388 INFO  Program - Configuring application settings...
+2025-04-28 17:54:03,408 INFO  Program - Application configuration loaded successfully.
+2025-04-28 17:54:03,416 INFO  Program - Adding services...
+2025-04-28 17:54:03,428 INFO  Program - Services added successfully.
+2025-04-28 17:54:03,478 INFO  Program - Get data config parameter
+2025-04-28 17:54:03,479 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 17:54:03,502 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 17:54:03,592 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 17:54:03,600 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 17:54:03,600 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 17:54:03,601 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 17:54:03,601 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 17:54:03,601 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 17:54:03,603 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 17:54:03,605 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 17:54:03,883 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 17:54:03,883 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 17:54:03,883 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 17:54:03,883 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 17:54:03,883 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 17:54:03,884 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 17:54:03,955 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 17:54:03,956 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 17:54:03,956 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 17:54:03,956 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 17:54:03,957 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 17:54:04,030 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 17:54:04,031 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 17:54:04,039 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 17:54:04,040 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 17:54:04,040 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 17:54:04,044 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 17:54:04,045 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 17:54:04,045 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 17:54:04,045 INFO  Program - Application executed successfully.
+2025-04-28 18:54:03,354 INFO  Program - Application starting...
+2025-04-28 18:54:03,374 INFO  Program - Configuring application settings...
+2025-04-28 18:54:03,395 INFO  Program - Application configuration loaded successfully.
+2025-04-28 18:54:03,403 INFO  Program - Adding services...
+2025-04-28 18:54:03,415 INFO  Program - Services added successfully.
+2025-04-28 18:54:03,468 INFO  Program - Get data config parameter
+2025-04-28 18:54:03,470 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 18:54:03,493 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 18:54:03,581 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 18:54:03,589 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 18:54:03,589 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 18:54:03,589 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 18:54:03,590 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 18:54:03,590 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 18:54:03,591 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 18:54:03,594 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 18:54:03,864 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 18:54:03,864 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 18:54:03,864 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 18:54:03,864 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 18:54:03,865 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 18:54:03,866 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 18:54:03,941 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 18:54:03,941 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 18:54:03,941 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 18:54:03,942 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 18:54:03,942 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 18:54:04,015 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 18:54:04,016 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 18:54:04,022 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 18:54:04,022 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 18:54:04,023 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 18:54:04,027 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 18:54:04,027 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 18:54:04,027 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 18:54:04,027 INFO  Program - Application executed successfully.
+2025-04-28 19:54:04,356 INFO  Program - Application starting...
+2025-04-28 19:54:04,941 INFO  Program - Configuring application settings...
+2025-04-28 19:54:05,025 INFO  Program - Application configuration loaded successfully.
+2025-04-28 19:54:05,443 INFO  Program - Adding services...
+2025-04-28 19:54:05,563 INFO  Program - Services added successfully.
+2025-04-28 19:54:05,709 INFO  Program - Get data config parameter
+2025-04-28 19:54:05,733 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 19:54:05,783 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 19:54:05,906 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 19:54:05,998 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 19:54:05,999 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 19:54:05,999 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 19:54:05,999 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 19:54:05,999 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 19:54:06,001 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 19:54:06,004 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 19:54:06,283 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 19:54:06,283 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 19:54:06,283 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 19:54:06,283 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 19:54:06,284 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 19:54:06,287 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 19:54:06,359 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 19:54:06,359 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 19:54:06,359 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 19:54:06,361 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 19:54:06,362 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 19:54:06,433 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 19:54:06,433 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 19:54:06,440 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 19:54:06,440 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 19:54:06,441 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 19:54:06,445 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 19:54:06,445 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 19:54:06,445 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 19:54:06,445 INFO  Program - Application executed successfully.
+2025-04-28 20:54:03,363 INFO  Program - Application starting...
+2025-04-28 20:54:03,384 INFO  Program - Configuring application settings...
+2025-04-28 20:54:03,406 INFO  Program - Application configuration loaded successfully.
+2025-04-28 20:54:03,414 INFO  Program - Adding services...
+2025-04-28 20:54:03,427 INFO  Program - Services added successfully.
+2025-04-28 20:54:03,481 INFO  Program - Get data config parameter
+2025-04-28 20:54:03,483 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 20:54:03,506 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 20:54:03,596 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 20:54:03,604 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 20:54:03,604 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 20:54:03,604 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 20:54:03,604 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 20:54:03,605 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 20:54:03,606 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 20:54:03,608 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 20:54:03,889 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 20:54:03,889 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 20:54:03,889 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 20:54:03,889 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 20:54:03,890 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 20:54:03,891 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 20:54:03,961 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 20:54:03,961 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 20:54:03,961 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 20:54:03,962 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 20:54:03,962 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 20:54:04,033 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 20:54:04,034 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 20:54:04,040 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 20:54:04,040 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 20:54:04,041 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 20:54:04,045 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 20:54:04,045 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 20:54:04,046 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 20:54:04,046 INFO  Program - Application executed successfully.
+2025-04-28 21:54:03,347 INFO  Program - Application starting...
+2025-04-28 21:54:03,369 INFO  Program - Configuring application settings...
+2025-04-28 21:54:03,391 INFO  Program - Application configuration loaded successfully.
+2025-04-28 21:54:03,399 INFO  Program - Adding services...
+2025-04-28 21:54:03,411 INFO  Program - Services added successfully.
+2025-04-28 21:54:03,464 INFO  Program - Get data config parameter
+2025-04-28 21:54:03,466 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 21:54:03,488 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 21:54:03,581 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 21:54:03,589 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 21:54:03,589 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 21:54:03,589 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 21:54:03,589 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 21:54:03,590 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 21:54:03,591 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 21:54:03,594 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 21:54:03,866 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 21:54:03,866 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 21:54:03,866 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 21:54:03,866 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 21:54:03,867 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 21:54:03,868 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 21:54:03,936 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 21:54:03,936 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 21:54:03,936 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 21:54:03,937 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 21:54:03,937 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 21:54:04,008 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 21:54:04,009 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 21:54:04,017 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 21:54:04,017 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 21:54:04,018 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 21:54:04,023 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 21:54:04,024 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 21:54:04,024 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 21:54:04,024 INFO  Program - Application executed successfully.
+2025-04-28 22:54:03,355 INFO  Program - Application starting...
+2025-04-28 22:54:03,377 INFO  Program - Configuring application settings...
+2025-04-28 22:54:03,400 INFO  Program - Application configuration loaded successfully.
+2025-04-28 22:54:03,409 INFO  Program - Adding services...
+2025-04-28 22:54:03,424 INFO  Program - Services added successfully.
+2025-04-28 22:54:03,479 INFO  Program - Get data config parameter
+2025-04-28 22:54:03,481 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 22:54:03,504 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 22:54:03,591 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 22:54:03,598 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 22:54:03,598 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 22:54:03,598 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 22:54:03,598 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 22:54:03,598 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 22:54:03,600 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 22:54:03,602 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 22:54:03,873 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 22:54:03,874 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 22:54:03,874 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 22:54:03,874 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 22:54:03,875 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 22:54:03,875 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 22:54:03,948 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 22:54:03,949 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 22:54:03,949 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 22:54:03,949 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 22:54:03,950 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 22:54:04,018 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 22:54:04,018 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 22:54:04,022 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 22:54:04,023 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 22:54:04,023 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 22:54:04,028 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 22:54:04,028 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 22:54:04,028 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 22:54:04,028 INFO  Program - Application executed successfully.
+2025-04-28 23:54:02,328 INFO  Program - Application starting...
+2025-04-28 23:54:02,349 INFO  Program - Configuring application settings...
+2025-04-28 23:54:02,371 INFO  Program - Application configuration loaded successfully.
+2025-04-28 23:54:02,380 INFO  Program - Adding services...
+2025-04-28 23:54:02,394 INFO  Program - Services added successfully.
+2025-04-28 23:54:02,449 INFO  Program - Get data config parameter
+2025-04-28 23:54:02,450 INFO  PMA00300BACK.PMA00300Cls - START process method GetClientReportFormat on Cls
+2025-04-28 23:54:02,475 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetClientReportFormat
+2025-04-28 23:54:02,573 INFO  PMA00300BACK.PMA00300Cls - END process method GetClientReportFormat on Cls
+2025-04-28 23:54:02,581 INFO  PMA00300BACK.PMA00300Cls - START process method ProcessReport on Cls
+2025-04-28 23:54:02,581 INFO  PMA00300BACK.PMA00300Cls - assign loReportRule
+2025-04-28 23:54:02,582 INFO  PMA00300BACK.PMA00300Cls - Get file Frx
+2025-04-28 23:54:02,582 INFO  PMA00300BACK.PMA00300Cls - Create object Report Parameter
+2025-04-28 23:54:02,582 INFO  PMA00300BACK.PMA00300Cls - Get Data Billing
+2025-04-28 23:54:02,584 INFO  PMA00300BACK.PMA00300Cls - START process method GetDataBilling on Cls
+2025-04-28 23:54:02,586 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetDataBilling
+2025-04-28 23:54:02,853 INFO  PMA00300BACK.PMA00300Cls - Convert string to datetime format on method
+2025-04-28 23:54:02,853 INFO  PMA00300BACK.PMA00300Cls - END process method GetDataBilling on Cls
+2025-04-28 23:54:02,853 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail unit
+2025-04-28 23:54:02,854 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Unit
+2025-04-28 23:54:02,855 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 23:54:02,856 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 23:54:02,930 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 23:54:02,930 INFO  PMA00300BACK.PMA00300Cls - Assign parameter for detail utility
+2025-04-28 23:54:02,931 INFO  PMA00300BACK.PMA00300Cls - Get Data Detail Utility
+2025-04-28 23:54:02,932 INFO  PMA00300BACK.PMA00300Cls - START process method GeDataDetailUnitList on Cls
+2025-04-28 23:54:02,934 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GeDataDetailUnitList
+2025-04-28 23:54:03,006 INFO  PMA00300BACK.PMA00300Cls - END process method GeDataDetailUnitList on Cls
+2025-04-28 23:54:03,006 INFO  PMA00300BACK.PMA00300Cls - Set Label Report
+2025-04-28 23:54:03,013 INFO  PMA00300BACK.PMA00300Cls - Get Data Logo
+2025-04-28 23:54:03,013 INFO  PMA00300BACK.PMA00300Cls - START process method GetLogoCompany on Cls
+2025-04-28 23:54:03,015 INFO  PMA00300BACK.PMA00300Cls - Execute query on method GetLogoCompany
+2025-04-28 23:54:03,019 INFO  PMA00300BACK.PMA00300Cls - END process method GetLogoCompany on Cls
+2025-04-28 23:54:03,019 INFO  PMA00300BACK.PMA00300Cls - Get Connection Attribute
+2025-04-28 23:54:03,019 INFO  PMA00300BACK.PMA00300Cls - END process method ProcessReport on Cls
+2025-04-28 23:54:03,020 INFO  Program - Application executed successfully.

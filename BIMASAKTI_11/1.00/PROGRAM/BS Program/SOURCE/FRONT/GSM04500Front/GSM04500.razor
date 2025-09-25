@@ -1,0 +1,87 @@
+﻿@page "/GSM04500"
+@inherits R_Page
+@attribute [R_Page(Title = "Journal Group")]
+@inject R_ILocalizer<Resources_GSM04500_Class> _localizer
+
+
+<R_StackLayout Class="d-flex justify-content-between col-10" Row>
+    <R_StackLayout Row>
+        <R_ItemLayout col="6">
+            <R_Label Class="fw-bold">@_localizer["_JGrpType"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_ComboBox Enabled="@journalGroupViewModel.DropdownGroupType"
+                        Data="@journalGroupViewModel.JournalGroupTypeList"
+                        Value="@journalGroupViewModel.JournalGroupTypeValue"
+                        ValueField="@nameof(GSM04500JournalGroupTypeDTO.CCODE)"
+                        TextField="@nameof(GSM04500JournalGroupTypeDTO.CDESCRIPTION)"
+                        R_ConductorSource="@_conductorRef"
+                        ValueChanged="@((string value) => JournalGroupDropdown_OnChange(value))"
+                        PopupMaxHeight="100px">
+            </R_ComboBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+
+<R_TabStrip @ref="_tabStrip" Class="mt-1" OnActiveTabIndexChanging="@onTabChange">
+    <R_TabStripTab Title="Journal Group" Id="TabJournal_Group">
+        <R_StackLayout>
+            <R_Grid @ref="@_gridRef"
+                    DataSource="journalGroupViewModel.JournalGroupList"
+                    Pageable="true"
+                    PageSize="15"
+                    R_ConductorGridSource="@_conJournalGroupRef"
+                    R_GridType="@R_eGridType.Original"
+                    R_ServiceGetListRecord="@R_ServiceGetListRecord"
+                    R_ServiceGetRecord="@R_ServiceGetRecordAsync"
+                    R_ServiceDelete="@ServiceDelete"
+                    R_ServiceSave="@ServiceSave"
+                    R_AfterAdd="@AfterAdd"
+                    R_AfterDelete="@AfterDelete"
+                    R_Validation="@ServiceValidation"
+                    R_Display="@Grid_Display"
+                    AllowDeleteRow="true"
+                    AllowAddNewRow="true"
+                    AllowEditRow="true"
+                    Height="455px">
+
+                <R_GridColumns>
+                    <R_GridTextColumn MaxLength="8" Width="150px" FieldName="CJRNGRP_CODE"
+                                      HeaderText=@_localizer["_JGrpCode"] R_EnableAdd />
+                    <R_GridTextColumn MaxLength="80" Width="250px" FieldName="CJRNGRP_NAME"
+                                      HeaderText=@_localizer["_JGrpName"] R_EnableAdd R_EnableEdit />
+                    <R_GridCheckBoxColumn Width="150px" Visible="@journalGroupViewModel.VisibleColumn_LACCRUAL" FieldName="LACCRUAL"
+                                          HeaderText=@_localizer["_LAccrual"] R_EnableAdd R_EnableEdit />
+                    <R_GridTextColumn Width="150px" FieldName="CUPDATE_BY" HeaderText=@_localizer["_UpdBy"] />
+                    <R_GridDateTimePickerColumn Width="200px" FieldName="DUPDATE_DATE" HeaderText=@_localizer["_UpdDate"] />
+                    <R_GridTextColumn Width="150px" FieldName="CCREATE_BY" HeaderText=@_localizer["_CreatedBy"] />
+                    <R_GridDateTimePickerColumn Width="200px" FieldName="DCREATE_DATE" HeaderText=@_localizer["_CreatedDate"] />
+                </R_GridColumns>
+
+            </R_Grid>
+
+        </R_StackLayout>
+
+        <R_StackLayout Class="mt-1" Row="true">
+            <R_ItemLayout>
+                <R_Button R_ConductorGridSource="@_conJournalGroupRef" Enabled="@journalGroupViewModel._lGroupTypeExist" OnClick="@TemplateBtn_OnClick">@_localizer["_BtnTemplate"]</R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Popup R_ConductorGridSource="@_conJournalGroupRef" Enabled="@journalGroupViewModel._lGroupTypeExist" R_Before_Open_Popup="@Before_Open_Upload"
+                         R_After_Open_Popup="@After_Open_Upload">@_localizer["_BtnUpload"]</R_Popup>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+
+    </R_TabStripTab>
+
+    <R_TabStripTab Title="Account Setting" Id="Tab_AccountSetting" Enabled="@(journalGroupViewModel.JournalGroupList.Count != 0)">
+        <R_TabPage @ref="@_tabPageAccountSetting"
+                   R_Before_Open_TabPage="Before_Open_AccountSetting">
+        </R_TabPage>
+    </R_TabStripTab>
+
+</R_TabStrip>
+<R_ConductorGrid @ref="@_conJournalGroupRef"
+                 R_IsHeader />

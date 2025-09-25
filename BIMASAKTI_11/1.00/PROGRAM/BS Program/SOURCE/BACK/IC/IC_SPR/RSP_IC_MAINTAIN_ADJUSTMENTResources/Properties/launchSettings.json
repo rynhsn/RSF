@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_IC_MAINTAIN_ADJUSTMENTResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57147;http://localhost:57148"
+    }
+  }
+}

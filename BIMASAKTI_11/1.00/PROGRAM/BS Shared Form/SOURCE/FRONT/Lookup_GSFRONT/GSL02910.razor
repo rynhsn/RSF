@@ -1,0 +1,30 @@
+﻿@using Lookup_GSCOMMON.DTOs
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_SupplierInfoLookup")]
+@inject R_ILocalizer<Lookup_GSFrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Style="width: 800px">
+    <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.SupplierInfoGrid"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                Height="300px"
+                Pageable="true">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GSL02910DTO.CSEQ_NO)" HeaderText="@_localizer["_SeqNo"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSL02910DTO.CSUPPLIER_NAME)" HeaderText="@_localizer["_SupplierName"]" Width="300px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+            <R_Button OnClick="Button_OnClickOkAsync">
+                @_localizer["_OkBtn"]
+            </R_Button>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                @_localizer["_CancelBtn"]
+            </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>

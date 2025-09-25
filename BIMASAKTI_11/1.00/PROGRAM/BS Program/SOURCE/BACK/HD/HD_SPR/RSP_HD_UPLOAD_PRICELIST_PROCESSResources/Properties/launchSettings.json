@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_HD_UPLOAD_PRICELIST_PROCESSResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64499;http://localhost:64501"
+    }
+  }
+}

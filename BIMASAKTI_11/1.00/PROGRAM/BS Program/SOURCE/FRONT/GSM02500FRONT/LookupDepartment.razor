@@ -1,0 +1,32 @@
+﻿@inherits R_Page
+@using GSM02500COMMON.DTOs.GSM02560
+@attribute [R_Page(Title = "Department")]
+
+<R_StackLayout Style="width:800px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_gridDepartmentRef"
+                    DataSource="loDepartmentViewModel.loDepartmentList"
+                    R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                    Pageable
+                    Height="300px"
+                    PageSize="5">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(GetDepartmentLookupListDTO.CDEPT_CODE)" HeaderText="@_localizer["_DepartmentCode"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(GetDepartmentLookupListDTO.CDEPT_NAME)" HeaderText="@_localizer["_DepartmentName"]"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+            </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout>
+            <R_Button OnClick="Button_OnClickOkAsync">
+                OK
+            </R_Button>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                Cancel
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+    </R_StackLayout>

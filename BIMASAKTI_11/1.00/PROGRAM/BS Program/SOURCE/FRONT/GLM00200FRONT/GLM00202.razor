@@ -1,0 +1,126 @@
+@using GLM00200FrontResources
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row Style="width:1020px">
+    <R_ItemLayout col="12">
+        <R_InputFile OnChange="@Onchange_InputFIleRecurringUpload" Accepts="@_accepts" TabIndex="0" Class="mb-2"></R_InputFile>
+        <R_Grid @ref="@_gridRecurringUpload"
+                DataSource="@_viewModel.RecurringUploadErrors"
+                R_ConductorGridSource="@_conRecurringUpload"
+                R_GridType="@R_eGridType.Batch"
+                R_ServiceGetListRecord="@RecurringUpload_GetlistAsync"
+                AllowAddNewRow="@false"
+                AllowDeleteRow="@false"
+                AllowEditRow="@false"
+                R_RowRender="@RecurringUpload_RowRender"
+                Pageable
+                @bind-PageSize="@_pageSize_RecurringUpload"
+                Height="400px">
+            <R_GridColumns>
+                <R_GridNumericColumn TValue="int" FieldName="@nameof(RecurringUploadErrorDTO.SEQ_NO)" HeaderText="@(_localizer["_col_seqNo"])" Width="130px"/>
+                <R_GridTextColumn FieldName="@nameof(RecurringUploadErrorDTO.Department)" HeaderText="@(_localizer["_col_dept"])" Width="200px"/>
+                <R_GridTextColumn FieldName="@nameof(RecurringUploadErrorDTO.Recurring_No)" HeaderText="@(_localizer["_col_recurringNo"])" Width="150px" />
+                <R_GridTextColumn FieldName="@nameof(RecurringUploadErrorDTO.Recurring_Name)" HeaderText="@(_localizer["_col_recurringName"])" Width="200px" />
+                <R_GridTextColumn FieldName="@nameof(RecurringUploadErrorDTO.Document_No)" HeaderText="@(_localizer["_col_docNo"])" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(RecurringUploadErrorDTO.Currency_Code)" HeaderText="@(_localizer["_col_currencyCode"])" Width="150px" />
+                <R_GridNumericColumn TValue="int" FieldName="@nameof(RecurringUploadErrorDTO.Fixed_Rate)" HeaderText="@(_localizer["_col_fixedRate"])" Width="150px"/>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(RecurringUploadErrorDTO.Local_Currency_Base)" HeaderText="@(_localizer["_col_localCurrencyBase"])" Width="150px" ThousandSeparator Decimals="6"></R_GridNumericColumn>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(RecurringUploadErrorDTO.Local_Currency_Rate)" HeaderText="@(_localizer["_col_localCurrencyRate"])" Width="250px" ThousandSeparator Decimals="6"></R_GridNumericColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(RecurringUploadErrorDTO.Base_Currency_Base_Rate)" HeaderText="@(_localizer["_col_baseCurrencyBase"])" Width="200px"></R_GridDatePickerColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(RecurringUploadErrorDTO.Base_Currency_Rate)" HeaderText="@(_localizer["_col_localCurrencyRate"])" Width="200px"></R_GridDatePickerColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(RecurringUploadErrorDTO.Frequency)" HeaderText="@(_localizer["_col_uploadFreq"])" Width="200px"></R_GridDatePickerColumn>
+                <R_GridTextColumn FieldName="@nameof(RecurringUploadErrorDTO.Interval)" HeaderText="@(_localizer["_col_interval"])" Width="200px" />
+                <R_GridTextColumn FieldName="@nameof(RecurringUploadErrorDTO.Start_Date)" HeaderText="@(_localizer["_col_startdate"])" Width="200px" />
+                <R_GridTextColumn FieldName="@nameof(RecurringUploadErrorDTO.Account_No)" HeaderText="@(_localizer["_col_AccountNo"])" Width="200px" />
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(RecurringUploadErrorDTO.Debit_Amount)" HeaderText="@(_localizer["_col_DebitAmount"])" Width="200px" ThousandSeparator Decimals="6" />
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(RecurringUploadErrorDTO.Credit_Amount)" HeaderText="@(_localizer["_col_CreditAmount"])" Width="200px" ThousandSeparator Decimals="6" />
+                <R_GridTextColumn FieldName="@nameof(RecurringUploadErrorDTO.Description)" HeaderText="@(_localizer["_col_Description"])" Width="250px" />
+                <R_GridTextColumn FieldName=@nameof(RecurringUploadErrorDTO.Valid) HeaderText="@_localizer["_col_valid"]" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(RecurringUploadErrorDTO.Notes) HeaderText="@_localizer["_col_notes"]" Width="300px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_ProgressBar Label="@_viewModel._progressBarMessage"
+                               MaxValue="100"
+                               Value="@_viewModel._progressBarPercentage"></R_ProgressBar>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row class="mt-2">
+            <R_ItemLayout col="8">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["_lbl_totalRows"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@_viewModel._sumList_RecurringExcel"
+                                          Arrows="false"
+                                          Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["_lbl_vaildupload"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2" Class="">
+                        <R_NumericTextBox @bind-Value="@_viewModel._sumValidData_RecurringExcel"
+                                          Arrows="false"
+                                          ReadOnly
+                                          Class="bg-success">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["_lbl_validupload"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@_viewModel._sumInvalidData_RecurringExcel"
+                                          Arrows="false"
+                                          ReadOnly
+                                          Class="bg-danger">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="4" Class="@(_viewModel._visibleError?"d-none":"d-block")">
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Button OnClick="OnClick_ButtonClose">
+                            @_localizer["_btn_Cancel"]
+                        </R_Button>
+                        <R_Button @ref="_btnProcess" OnClick="OnClick_ButtonOK" Enabled="@_isFileHasData">
+                            @_localizer["_btn_process"]
+                        </R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="4" Class="@(_viewModel._visibleError?"d-block":"d-none")">
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Button OnClick="OnClick_ButtonClose">
+                            @_localizer["_btn_Cancel"]
+                        </R_Button>
+                        <R_Button @ref="_btnSaveToExcel" OnClick="@OnClick_ButtonSaveExcelAsync">
+                            @_localizer["_btn_savetoexcel"]
+                        </R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+<style>
+    .k-grid .k-master-row.rowErrorData:hover {
+        background-color: var(--falcon-red) !important;
+        color: white;
+    }
+
+    .k-grid .k-master-row.rowErrorData {
+        background-color: var(--falcon-red);
+        color: white !important;
+    }
+
+    .k-grid .k-table-row.k-selected.rowErrorData > .k-table-td {
+        color: white !important;
+    }
+
+</style>

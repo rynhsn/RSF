@@ -1,0 +1,355 @@
+﻿@inherits R_Page
+@attribute [R_Page(ResourceId = "_Agreement")]
+
+<R_StackLayout Style="@_StyleCallPopup">
+    <R_StackLayout Row>
+        <R_ItemLayout col="8">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_RefNo"]*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CREF_NO"
+                               MaxLength="30"
+                               Enabled="@(_viewModel.VAR_GSM_TRANS_CODE_LOI.LINCREMENT_FLAG == false && EnableAddMode)">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 2.5%">
+                    <R_Label> </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 18%">
+                    <R_Label>@_localizer["_RefDate"]*</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3">
+                    <R_DatePicker @ref="@RefDate_DatePicker"
+                                  @bind-Value="@_viewModel.Data.DREF_DATE"
+                                  Enabled="@(EnableAddMode && loCallerParameter.BUTTON_FROM_TAB_UNIT_LIST != "CHANGE_OWNER")">
+                    </R_DatePicker>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Department"]*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @ref="@(DeptCode_TextBox)"
+                               @bind-Value="@_viewModel.Data.CDEPT_CODE"
+                               OnLostFocus="@DeptCode_OnLostFocus"
+                               MaxLength="20"
+                               Enabled="@(EnableAddMode && loCallerParameter.BUTTON_FROM_TAB_UNIT_LIST != "CHANGE_OWNER")">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="0">
+                    <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupDepartment"
+                              R_After_Open_Lookup="@R_After_Open_LookupDepartment"
+                              Enabled="@(EnableAddMode && loCallerParameter.BUTTON_FROM_TAB_UNIT_LIST != "CHANGE_OWNER")">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CDEPT_NAME"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Tenant"]*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @ref="@TenantCode_TextBox"
+                               @bind-Value="@_viewModel.Data.CTENANT_ID"
+                               R_ConductorSource="@_conductorRef"
+                               MaxLength="20"
+                               OnLostFocus="@(Tenant_OnLostFocus)"
+                               Enabled="@(EnableAddMode)">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="0">
+                    <R_Lookup R_ConductorSource="@_conductorRef"
+                              R_Before_Open_Lookup="@Tenant_Before_Open_Lookup"
+                              R_After_Open_Lookup="@Tenant_After_Open_Lookup"
+                              Enabled="@(EnableAddMode)">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CTENANT_NAME"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Building"]*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CBUILDING_ID"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="@(EnableAddMode && string.IsNullOrWhiteSpace(loCallerParameter.BUTTON_FROM_TAB_UNIT_LIST))"
+                               MaxLength="20"
+                               OnLostFocus="@(Building_OnLostFocus)">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="0">
+                    <R_Lookup R_ConductorSource="@_conductorRef"
+                              R_Before_Open_Lookup="@Building_Before_Open_Lookup"
+                              R_After_Open_Lookup="@Building_After_Open_Lookup"
+                              Enabled="@(EnableAddMode && string.IsNullOrWhiteSpace(loCallerParameter.BUTTON_FROM_TAB_UNIT_LIST))">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CBUILDING_NAME"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Salesman"]*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CSALESMAN_ID"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="@(EnableAddMode && loCallerParameter.BUTTON_FROM_TAB_UNIT_LIST != "CHANGE_OWNER")"
+                               MaxLength="20"
+                               OnLostFocus="@(Salesman_OnLostFocus)">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="0">
+                    <R_Lookup R_ConductorSource="@_conductorRef"
+                              R_Before_Open_Lookup="@Salesman_Before_Open_Lookup"
+                              R_After_Open_Lookup="@Salesman_After_Open_Lookup"
+                              Enabled="@(EnableAddMode && loCallerParameter.BUTTON_FROM_TAB_UNIT_LIST != "CHANGE_OWNER")">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CSALESMAN_NAME"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_PlanHODate"]*</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3">
+                    <R_DatePicker @bind-Value="@_viewModel.Data.DHO_PLAN_DATE"
+                                  R_ConductorSource="@_conductorRef"
+                                  R_EnableAdd
+                                  R_EnableEdit>
+                    </R_DatePicker>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 11%">
+                    <R_CheckBox @bind-Value="@_viewModel.Data.LWITH_FO"
+                                Enabled="@(!EnableNormalMode && loCallerParameter.BUTTON_FROM_TAB_UNIT_LIST != "CHANGE_OWNER")">
+                    </R_CheckBox>
+                    <R_Label>@_localizer["_WithFO"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 18%">
+                    <R_Label>@_localizer["_HODate"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3">
+                    <R_DatePicker @bind-Value="@_viewModel.Data.DHO_ACTUAL_DATE"
+                                      Enabled="false" ShowPickerButton="false">
+                    </R_DatePicker>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_StartDate"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3">
+                    <R_DatePicker @bind-Value="@_viewModel.Data.DSTART_DATE"
+                                  R_ConductorSource="@_conductorRef"
+                                  R_EnableAdd
+                                  R_EnableEdit>
+                    </R_DatePicker>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_UnitDescription"]*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 80%">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CUNIT_DESCRIPTION"
+                               R_ConductorSource="@_conductorRef"
+                               MaxLength="255"
+                               R_EnableAdd
+                               R_EnableEdit>
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Note"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 80%">
+                    <R_TextArea @bind-Value="@_viewModel.Data.CNOTES"
+                                R_ConductorSource="@_conductorRef"
+                                MaxLength="int.MaxValue"
+                                R_EnableAdd
+                                R_EnableEdit>
+                    </R_TextArea>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="4" Class="ms-3">
+            <R_StackLayout Row>
+                <R_ItemLayout col="12">
+                    <R_Label>@_viewModel.Data.CTRANS_STATUS_DESCR</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_Label>@_localizer["_DocumentStatus"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CAGREEMENT_STATUS_DESCR"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+
+            <R_StackLayout Row><R_ItemLayout col="12"><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+            <R_StackLayout Row><R_ItemLayout col="12"><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+            <R_StackLayout Row><R_ItemLayout col="12"><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_Label>@_localizer["_Currency"]*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                               OnLostFocus="@Currency_OnLostFocus"
+                               MaxLength="3"
+                               Enabled="@(!EnableNormalMode && loCallerParameter.BUTTON_FROM_TAB_UNIT_LIST != "CHANGE_OWNER")">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="0">
+                    <R_Lookup R_Before_Open_Lookup="@Currency_Before_Open_Lookup"
+                              R_After_Open_Lookup="@Currency_After_Open_Lookup"
+                              Enabled="@(!EnableNormalMode && loCallerParameter.BUTTON_FROM_TAB_UNIT_LIST != "CHANGE_OWNER")">
+                        ...
+                    </R_Lookup>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_Label>@_localizer["_ChargeMode"]*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_ComboBox Data="@_viewModel.VAR_CHARGE_MODE"
+                                @bind-Value="@_viewModel.Data.CCHARGE_MODE"
+                                PopupMaxHeight="140px"
+                                ValueField="@nameof(PMT00500UniversalDTO.CCODE)"
+                                TextField="@nameof(PMT00500UniversalDTO.CDESCRIPTION)"
+                                Enabled="@(!EnableNormalMode && loCallerParameter.BUTTON_FROM_TAB_UNIT_LIST != "CHANGE_OWNER")">
+                    </R_ComboBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row><R_ItemLayout col="12"><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+            <R_StackLayout Row><R_ItemLayout col="12"><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_Label>@_localizer["_BillingRule"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CBILLING_RULE_CODE"
+                               OnLostFocus="@BillingRule_OnLostFocus"
+                               MaxLength="20"
+                               Enabled="@(!EnableNormalMode && loCallerParameter.BUTTON_FROM_TAB_UNIT_LIST != "CHANGE_OWNER")">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="0">
+                    <R_Lookup R_Before_Open_Lookup="@BillingRule_Before_Open_Lookup"
+                              R_After_Open_Lookup="@BillingRule_After_Open_Lookup"
+                              Enabled="@(!EnableNormalMode && loCallerParameter.BUTTON_FROM_TAB_UNIT_LIST != "CHANGE_OWNER")">
+                        ...
+                    </R_Lookup>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_Label>@_localizer["_BookingFee"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_NumericTextBox @bind-Value="@_viewModel.Data.NBOOKING_FEE"
+                                      Arrows="false"
+                                      Enabled="@(!EnableNormalMode && loCallerParameter.BUTTON_FROM_TAB_UNIT_LIST != "CHANGE_OWNER")">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_Label>@_localizer["_TC"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CTC_CODE"
+                               OnLostFocus="@TC_OnLostFocus"
+                               MaxLength="20"
+                               Enabled="@(!EnableNormalMode && loCallerParameter.BUTTON_FROM_TAB_UNIT_LIST != "CHANGE_OWNER")">
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="0">
+                    <R_Lookup R_Before_Open_Lookup="@TC_Before_Open_Lookup"
+                              R_After_Open_Lookup="@TC_After_Open_Lookup"
+                              Enabled="@(!EnableNormalMode && loCallerParameter.BUTTON_FROM_TAB_UNIT_LIST != "CHANGE_OWNER")">
+                        ...
+                    </R_Lookup>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-between mt-2" hidden="@(HiddenButtonProgram)">
+        <R_ItemLayout>
+            <R_AddButton R_Conductor="@_conductorRef" Enabled="@(EnableNormalMode && loCallerParameter.LPOP_UP_MODE == false)"></R_AddButton>
+            <R_EditButton R_Conductor="@_conductorRef" Enabled="@(EnableNormalMode && EnableDraftSts)"></R_EditButton>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Button R_ConductorSource="@_conductorRef" R_EnableHasData>@_localizer["_Print"]</R_Button>
+            <R_Button Enabled="@(EnableNormalMode && EnableDraftSts)" OnClick="@SubmitProcess">@_localizer["_Submit"]</R_Button>
+            <R_Button Enabled="@(EnableNormalMode && EnableOpenSts)" OnClick="@RedraftProcess">@_localizer["_Redraft"]</R_Button>
+            <R_Button Enabled="@(EnableNormalMode && EnableApproveSts)" OnClick="@CloseLOIProcess">@_localizer["_CloseAgreement"]</R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+            <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_DisableCancelConfirmation
+             R_AfterAdd="@LOI_AfterAdd"
+             R_ServiceGetRecord="@LOI_ServiceGetRecord"
+             R_ServiceSave="@LOI_ServiceSave"
+             R_BeforeCancel="@LOI_BeforeCancel"
+             R_Validation="@LOI_Validation"
+             R_SetOther="@Grid_R_SetOther"
+             R_Display="@LOI_Display"
+             R_SetAdd="@LOI_SetAdd">
+</R_Conductor>
+

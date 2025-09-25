@@ -1,0 +1,209 @@
+﻿@using Lookup_GSCOMMON.DTOs
+@inherits R_Page
+
+<R_StackLayout Row>
+    <R_ItemLayout col="5">
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_RefNo"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextBox @bind-Value="@_viewModel.LOI.CREF_NO"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_StartDate"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_DatePicker ShowPickerButton="false" @bind-Value="@_viewModel.LOI.DSTART_DATE"
+                              Enabled="false">
+                </R_DatePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Tenant"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModel.LOI.CTENANT_ID"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_viewModel.LOI.CTENANT_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Building"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModel.LOI.CBUILDING_ID"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_viewModel.LOI.CBUILDING_NAME"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_Label>@_localizer["_TotalGrossArea"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.LOI.NTOTAL_NET_AREA"
+                                  TextAlignment="@R_eTextAlignment.Right"
+                                  Arrows="false"
+                                  Enabled="false">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_Label>@_localizer["_TotalNetArea"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_NumericTextBox @bind-Value="@_viewModel.LOI.NTOTAL_NET_AREA"
+                                  TextAlignment="@R_eTextAlignment.Right"
+                                  Arrows="false"
+                                  Enabled="false">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<hr />
+
+<R_StackLayout Row="true">
+    <R_Grid @ref="@_gridLOIDocumentListRef"
+            DataSource="@_viewModel.LOIDocumentGrid"
+            R_ConductorSource="@_conductorRef"
+            R_GridType="@R_eGridType.Navigator"
+            Pageable="true"
+            Height="150px"
+            Enabled="@(EnableNormalMode)"
+            R_ServiceGetListRecord="@Document_ServiceGetListRecord">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="@nameof(PMT00560DTO.CDOC_NO)" HeaderText="@_localizer["_DocumentNo"]" Width="180px"></R_GridTextColumn>
+            <R_GridDatePickerColumn FieldName="@nameof(PMT00560DTO.DDOC_DATE)" HeaderText="@_localizer["_DocumentDate"]" Width="150px"></R_GridDatePickerColumn>
+            <R_GridDatePickerColumn FieldName="@nameof(PMT00560DTO.DEXPIRED_DATE)" HeaderText="@_localizer["_ExpiredDate"]" Width="150px"></R_GridDatePickerColumn>
+
+            <R_GridTextColumn FieldName="@nameof(PMT00560DTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="120px"></R_GridTextColumn>
+            <R_GridDateTimePickerColumn FieldName="@nameof(PMT00560DTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]" Width="180px"></R_GridDateTimePickerColumn>
+            <R_GridTextColumn FieldName="@nameof(PMT00560DTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="120px"></R_GridTextColumn>
+            <R_GridDateTimePickerColumn FieldName="@nameof(PMT00560DTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]" Width="180px"></R_GridDateTimePickerColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["_DocumentNo"]*</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="5">
+        <R_TextBox @ref="@(DocumentId_TextBox)"
+                   @bind-Value="@_viewModel.Data.CDOC_NO"
+                   R_ConductorSource="_conductorRef"
+                   MaxLength="50"
+                   R_EnableAdd>
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["_DocumentDate"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_DatePicker @ref="@DocumentDate_DatePicker"
+                      @bind-Value="@_viewModel.Data.DDOC_DATE"
+                      R_ConductorSource="@_conductorRef"
+                      R_EnableAdd
+                      R_EnableEdit>
+        </R_DatePicker>
+    </R_ItemLayout>
+    <R_ItemLayout Style="width: 15.66666667%">
+        <R_Label></R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["_ExpiredDate"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_DatePicker @bind-Value="@_viewModel.Data.DEXPIRED_DATE"
+                      R_ConductorSource="@_conductorRef"
+                      R_EnableAdd
+                      R_EnableEdit>
+        </R_DatePicker>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-1">
+    <R_ItemLayout col="2" >
+        <R_Label>@_localizer["_Description"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="8">
+        <R_TextArea @bind-Value="@_viewModel.Data.CDESCRIPTION"
+                    R_ConductorSource="@_conductorRef"
+                    R_EnableAdd
+                    R_EnableEdit >
+        </R_TextArea>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label >@(_localizer["_DocumentFile"])</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="7">
+        <R_TextBox @bind-Value="@_viewModel.Data.FileNameExtension"
+                   R_ConductorSource="@_conductorRef"
+                   Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout Style="width: 8%">
+        <R_InputFile  Class="text-white bg-dark" OnChange="@DocumentFileUpload_OnChange" R_ConductorSource="@_conductorRef" R_EnableAdd R_EnableEdit></R_InputFile>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-between">
+    <R_ItemLayout>
+        <R_AddButton R_Conductor="@_conductorRef" Enabled=@(EnableNormalMode && EnableHasHeaderData && EnableGreaterClosesSts)></R_AddButton>
+        <R_EditButton R_Conductor="@_conductorRef" Enabled=@(EnableNormalMode && _viewModel.LOIDocumentGrid.Count > 0 && EnableGreaterClosesSts)></R_EditButton>
+        <R_DeleteButton R_Conductor="@_conductorRef" Enabled=@(EnableNormalMode && _viewModel.LOIDocumentGrid.Count > 0 && EnableGreaterClosesSts)></R_DeleteButton>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+        <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Document_ServiceGetRecord"
+             R_ServiceSave="@Document_ServiceSave"
+             R_ServiceDelete="@Document_ServiceDelete"
+             R_Validation="@Document_Validation"
+             R_SetOther="@Grid_R_SetOther"
+             R_AfterAdd="@Document_AfterAdd"
+             R_Display="@Document_Display"
+             R_DisableCancelConfirmation
+             R_BeforeCancel="@Document_BeforeCancel"
+            >
+</R_Conductor>

@@ -1,0 +1,37 @@
+
+@inherits R_Page
+@attribute [R_Page(Title = "TAX NO LOOKUP")]
+@inject R_ILocalizer<Resources_TXLookup_Class> _localizer
+
+
+<R_StackLayout Row>
+    <R_Grid @ref="@_gridRef"
+            DataSource="_viewModel.loList"
+            R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+            R_GridType="@R_eGridType.Navigator"
+            Pageable
+            PageSize="10"
+            Height="300px"
+            Width="900px">
+        <R_GridColumns>
+
+            <R_GridTextColumn Width="400px"
+                              FieldName="@nameof(TXL00200DTO.CBOOKING_TAX_NO)"
+                              HeaderText=@_localizer["_TaxNo"] />
+
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout xs="2">
+        <R_Button Enabled="_viewModel.lHasData" OnClick="Button_OnClickOkAsync">
+            OK
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            Cancel
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

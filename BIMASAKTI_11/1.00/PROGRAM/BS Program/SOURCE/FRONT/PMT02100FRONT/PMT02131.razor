@@ -1,0 +1,71 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "View Checklist")]
+@using PMT02100COMMON.DTOs.PMT02100
+@using PMT02100COMMON.DTOs
+@using PMT02100COMMON
+@using PMT02100COMMON.DTOs.PMT02130;
+@using PMT02100MODEL
+@using PMT02100MODEL.FrontDTOs.PMT02100
+
+<R_StackLayout Style="width:1000px">
+    <R_ItemLayout col="12">
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Grid @ref="@_gridHandoverUnitRef"
+                        DataSource="@loViewModel.loHandoverUnitList"
+                        Pageable="true"
+                        R_ConductorGridSource="@_conductorHandoverUnitRef"
+                        R_GridType="@R_eGridType.Original"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false"
+                        AllowDeleteRow="false"
+                        Height="350px"
+                        R_Display="@Grid_Handover_Unit_Display"
+                        R_ServiceGetListRecord="@Grid_Handover_Unit_R_ServiceGetListRecord">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName=@nameof(PMT02130HandoverUnitDTO.CFLOOR_ID) HeaderText="@_localizer["_Floor"]"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02130HandoverUnitDTO.CUNIT_ID) HeaderText="@_localizer["_Unit"]"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+            <R_ItemLayout col="9">
+                <R_Grid @ref="@_gridHandoverUnitChecklistRef"
+                        DataSource="@loViewModel.loHandoverUnitChecklistList"
+                        Pageable="true"
+                        R_ConductorGridSource="@_conductorHandoverUnitChecklistRef"
+                        R_GridType="@R_eGridType.Original"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false"
+                        AllowDeleteRow="false"
+                        Height="300px"
+                        R_Display="@Grid_Handover_Unit_Checklist_Display"
+                        R_ServiceGetListRecord="@Grid_Handover_Unit_Checklist_R_ServiceGetListRecord">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName=@nameof(PMT02130HandoverUnitChecklistDTO.CCHECKLIST_ITEM_NAME) HeaderText="@_localizer["_ChecklistDescription"]" Width="180px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02130HandoverUnitChecklistDTO.CNOTES) HeaderText="@_localizer["_Notes"]" Width="210px"></R_GridTextColumn>
+                        <R_GridCheckBoxColumn FieldName=@nameof(PMT02130HandoverUnitChecklistDTO.LSTATUS) HeaderText="@_localizer["_Status"]" Width="85px"></R_GridCheckBoxColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02130HandoverUnitChecklistDTO.CBASE_QUANTITY) HeaderText="@_localizer["_Quantity"]" Width="100px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02130HandoverUnitChecklistDTO.CACTUAL_QUANTITY) HeaderText="@_localizer["_ActualQuantity"]" Width="140px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02130HandoverUnitChecklistDTO.CUNIT) HeaderText="@_localizer["_Unit"]" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(PMT02130HandoverUnitChecklistDTO.CCARE_REF_NO) HeaderText="@_localizer["_CARENo"]" Width="200px"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Button OnClick="@OnClose">@_localizer["_Close"]</R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_ConductorGrid @ref="_conductorHandoverUnitRef"
+                 R_IsHeader>
+</R_ConductorGrid>
+
+<R_ConductorGrid @ref="@_conductorHandoverUnitChecklistRef"
+                 R_ConductorParent="@_conductorHandoverUnitRef">
+</R_ConductorGrid>

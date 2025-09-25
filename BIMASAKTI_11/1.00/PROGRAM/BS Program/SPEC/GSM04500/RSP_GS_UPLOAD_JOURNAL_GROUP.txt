@@ -1,0 +1,5 @@
+EXCESS_JOURNAL_GROUP		= Journal Group Id is bigger than 8 Character
+EMPTY_JOURNAL_GROUP		= Journal Group Id can not be empty
+EXCESS_JOURNAL_GROUP_NAME	= Journal Group Id is bigger than 40 Character
+EMPTY_JOURNAL_GROUP_NAME	= Journal Group Name can not be empty
+INVALID_ENABLE_ACCRUAL		= Invalid Enable Accrual, Enable Accrual value is not 1 / 0

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="CURRENT_SOFT_PERIOD" xml:space="preserve">
+        <value>Current Soft Period</value>
+    </data>
+    <data name="CURRENT_PERIOD" xml:space="preserve">
+        <value>Current Period</value>
+    </data>
+    <data name="LAST_CLOSED_BY" xml:space="preserve">
+        <value>Last Closed By</value>
+    </data>
+    <data name="WARN_CANNOT_UNDONE" xml:space="preserve">
+        <value>Warning! This Process CANNOT be undone!</value>
+    </data>
+    <data name="PROCESS" xml:space="preserve">
+        <value>Process</value>
+    </data>
+    <data name="NO" xml:space="preserve">
+        <value>No.</value>
+    </data>
+    <data name="DESCRIPTION" xml:space="preserve">
+        <value>Description</value>
+    </data>
+    <data name="SOLUTION" xml:space="preserve">
+        <value>Solution</value>
+    </data>
+    <data name="SAVE_TO_EXCEL" xml:space="preserve">
+        <value>Save to Excel</value>
+    </data>
+    <data name="MSG_CONFLICT" xml:space="preserve">
+        <value>Closing process is in progress by another user!</value>
+    </data>
+    <data name="MSG_REQUIRE" xml:space="preserve">
+        <value>Soft Close CB Period should be done prior to Close CB Period!</value>
+    </data>
+    <data name="MSG_CONFIRM" xml:space="preserve">
+        <value>Are you sure want to proceed Closing CB Period?</value>
+    </data>
+    <data name="MSG_SUCCESS" xml:space="preserve">
+        <value>Closing CB Period processed successfully!</value>
+    </data>
+    <data name="MSG_TODO_LIST_FOUND" xml:space="preserve">
+        <value>Todo List found that need(s) to be resolved before Soft Closing!</value>
+    </data>
+</root>

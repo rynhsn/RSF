@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Lookup_ICFrontResources</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Lookup_ICFrontResources_msgrsc.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Lookup_ICFrontResources_msgrsc.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Lookup_ICFrontResources_msgrsc.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Lookup_ICFrontResources_msgrsc.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+</Project>

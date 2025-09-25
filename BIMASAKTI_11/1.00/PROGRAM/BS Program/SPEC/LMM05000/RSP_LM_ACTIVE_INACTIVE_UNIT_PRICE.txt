@@ -1,0 +1,4 @@
+5001 = Error process, please contact your administrator!
+5002 = Cannot Active this price, There''s already active price for this valid date!
+
+

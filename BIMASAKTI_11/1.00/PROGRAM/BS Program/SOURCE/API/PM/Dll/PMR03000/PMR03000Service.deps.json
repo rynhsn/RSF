@@ -1,0 +1,377 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "PMR03000Service/1.0.0": {
+        "dependencies": {
+          "BaseHeaderResources": "1.0.0",
+          "PMR03000Back": "1.0.0",
+          "PMR03000Common": "1.0.0",
+          "BaseHeaderReportCOMMON": "1.0.0.0",
+          "R_APIBackEnd": "1.0.0.0",
+          "R_APICommon": "1.0.0.0",
+          "R_APICommonDTO": "1.0.0.0",
+          "R_Cache": "1.0.0.0",
+          "R_CommonFrontBackAPI": "1.0.0.0",
+          "R_OpenTelemetry": "1.0.0.0",
+          "R_ReportFastReportBack": "1.0.0.0",
+          "R_ReportServerClient": "1.0.0.0",
+          "R_ReportServerCommon": "1.0.0.0"
+        },
+        "runtime": {
+          "PMR03000Service.dll": {}
+        }
+      },
+      "BaseHeaderResources/1.0.0": {
+        "runtime": {
+          "BaseHeaderResources.dll": {}
+        },
+        "resources": {
+          "id/BaseHeaderResources.resources.dll": {
+            "locale": "id"
+          }
+        }
+      },
+      "PMR03000Back/1.0.0": {
+        "dependencies": {
+          "PMR03000BackResources": "1.0.0",
+          "PMR03000Common": "1.0.0",
+          "RSP_GS_GET_STORAGE_TYPEResources": "1.0.0",
+          "RSP_PM_PMA00300Resources": "1.0.0"
+        },
+        "runtime": {
+          "PMR03000Back.dll": {}
+        }
+      },
+      "PMR03000BackResources/1.0.0": {
+        "runtime": {
+          "PMR03000BackResources.dll": {}
+        }
+      },
+      "PMR03000Common/1.0.0": {
+        "runtime": {
+          "PMR03000Common.dll": {}
+        }
+      },
+      "RSP_GS_GET_STORAGE_TYPEResources/1.0.0": {
+        "runtime": {
+          "RSP_GS_GET_STORAGE_TYPEResources.dll": {}
+        }
+      },
+      "RSP_PM_PMA00300Resources/1.0.0": {
+        "runtime": {
+          "RSP_PM_PMA00300Resources.dll": {}
+        }
+      },
+      "BaseHeaderReportCOMMON/1.0.0.0": {
+        "runtime": {
+          "BaseHeaderReportCOMMON.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_APIBackEnd/1.0.0.0": {
+        "runtime": {
+          "R_APIBackEnd.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "resources": {
+          "id/R_APIBackEnd.resources.dll": {
+            "locale": "id"
+          },
+          "ja/R_APIBackEnd.resources.dll": {
+            "locale": "ja"
+          }
+        }
+      },
+      "R_APICommon/1.0.0.0": {
+        "runtime": {
+          "R_APICommon.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_APICommonDTO/1.0.0.0": {
+        "runtime": {
+          "R_APICommonDTO.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_Cache/1.0.0.0": {
+        "runtime": {
+          "R_Cache.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_CommonFrontBackAPI/1.0.0.0": {
+        "runtime": {
+          "R_CommonFrontBackAPI.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_OpenTelemetry/1.0.0.0": {
+        "runtime": {
+          "R_OpenTelemetry.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_ReportFastReportBack/1.0.0.0": {
+        "runtime": {
+          "R_ReportFastReportBack.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_ReportServerClient/1.0.0.0": {
+        "runtime": {
+          "R_ReportServerClient.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_ReportServerCommon/1.0.0.0": {
+        "runtime": {
+          "R_ReportServerCommon.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_StorageCommon/1.0.0.0": {
+        "runtime": {
+          "R_StorageCommon.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_ProcessorJob/1.0.0.0": {
+        "runtime": {
+          "R_ProcessorJob.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_Processor/1.0.0.0": {
+        "runtime": {
+          "R_Processor.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_Storage/1.0.0.0": {
+        "runtime": {
+          "R_Storage.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_MultiTenantDb.Abstract/1.0.0.0": {
+        "runtime": {
+          "R_MultiTenantDb.Abstract.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_ContextBackEnd/1.0.0.0": {
+        "runtime": {
+          "R_ContextBackEnd.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_AuthorizationBack.Abstract/1.0.0.0": {
+        "runtime": {
+          "R_AuthorizationBack.Abstract.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_MultiTenantDb/1.0.0.0": {
+        "runtime": {
+          "R_MultiTenantDb.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_Security/1.0.0.0": {
+        "runtime": {
+          "R_Security.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_ContextEnumAndInterface/1.0.0.0": {
+        "runtime": {
+          "R_ContextEnumAndInterface.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PMR03000Service/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BaseHeaderResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PMR03000Back/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PMR03000BackResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PMR03000Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_GS_GET_STORAGE_TYPEResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_PM_PMA00300Resources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BaseHeaderReportCOMMON/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_APIBackEnd/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_APICommon/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_APICommonDTO/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_Cache/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_CommonFrontBackAPI/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_OpenTelemetry/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ReportFastReportBack/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ReportServerClient/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ReportServerCommon/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_StorageCommon/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ProcessorJob/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_Processor/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_Storage/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_MultiTenantDb.Abstract/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ContextBackEnd/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_AuthorizationBack.Abstract/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_MultiTenantDb/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_Security/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ContextEnumAndInterface/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

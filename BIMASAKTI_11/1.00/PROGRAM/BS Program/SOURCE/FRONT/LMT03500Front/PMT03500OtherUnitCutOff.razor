@@ -1,0 +1,242 @@
+﻿@page "/PMT03500OtherUnitCutOff"
+@using PMT03500Common.DTOs
+@using PMT03500FrontResources
+@using R_BlazorFrontEnd.Enums
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_StackLayout Row>
+            <R_ItemLayout col="6">
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="4">
+                        <R_Label>@(_localizer["LBL_UTILITYTYPE"] + "*")</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_ComboBox Data="@_viewModelUtility.UtilityTypeList"
+                                    Value="_viewModelUtility.UtilityTypeId"
+                                    ValueField="@nameof(PMT03500FunctDTO.CCODE)"
+                                    TextField="@nameof(PMT03500FunctDTO.CDESCRIPTION)"
+                                    Enabled="true"
+                                    ValueChanged="@((string value) => OnChangeParam(value, eParamType.UtilityType))"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="4">
+                        <R_Label>@(_localizer["LBL_STARTINVPRD"] + "*")</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_ComboBox Data="@_viewModelUtility.InvYearList"
+                                    Value="_viewModelUtility.InvPeriodYear"
+                                    ValueField="@nameof(PMT03500YearDTO.CYEAR)"
+                                    TextField="@nameof(PMT03500YearDTO.CYEAR)"
+                                    Enabled
+                                    ValueChanged="@((string value) => OnChangeParam(value, eParamType.InvYear))"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2" Class="pe-1">
+                        <R_ComboBox Data="@_viewModelUtility.InvPeriodList"
+                                    Value="_viewModelUtility.InvPeriodNo"
+                                    ValueField="@nameof(PMT03500PeriodDTO.CPERIOD_NO)"
+                                    TextField="@nameof(PMT03500PeriodDTO.CPERIOD_NO)"
+                                    Enabled
+                                    ValueChanged="@((string value) => OnChangeParam(value, eParamType.InvPeriod))"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="4"></R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Button OnClick="OnClickRefresh">@_localizer["LBL_REFRESH"]</R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            
+            <R_ItemLayout col="5">
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="3">
+                        <R_RadioGroup Data="_viewModelUtility.RADIO_BUILDING0"
+                                      Value="_viewModelUtility.IsBuildingSelected"
+                                      ValueField="Key"
+                                      TextField="Value"
+                                      ValueChanged="@((bool value) => OnChangedRadio(value, eParamType.Building))"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_RadioGroup Data="_viewModelUtility.RADIO_BUILDING1"
+                                      Value="_viewModelUtility.IsBuildingSelected"
+                                      ValueField="Key"
+                                      TextField="Value"
+                                      ValueChanged="@((bool value) => OnChangedRadio(value, eParamType.Building))"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="7">
+                        <R_ComboBox @ref="_comboBuildingRef"
+                                    Data="@_viewModelUtility.BuildingList"
+                                    @bind-Value="_viewModelUtility.Entity.CBUILDING_ID"
+                                    ValueField="@nameof(PMT03500BuildingDTO.CBUILDING_ID)"
+                                    TextField="@nameof(PMT03500BuildingDTO.CBUILDING_NAME)"
+                                    Enabled="@(_viewModelUtility.IsBuildingSelected)"
+                                    OnLostFocused="OnLostFocusedBuilding"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="3">
+                        <R_RadioGroup Data="_viewModelUtility.RADIO_FLOOR0"
+                                      Value="_viewModelUtility.IsFloorSelected"
+                                      ValueField="Key"
+                                      TextField="Value"
+                                      ValueChanged="@((bool value) => OnChangedRadio(value, eParamType.Floor))"/>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="2">
+                        <R_RadioGroup Data="_viewModelUtility.RADIO_FLOOR1"
+                                      Value="_viewModelUtility.IsFloorSelected"
+                                      ValueField="Key"
+                                      TextField="Value"
+                                      ValueChanged="@((bool value) => OnChangedRadio(value, eParamType.Floor))"
+                                      Enabled="@(!string.IsNullOrEmpty(_viewModelUtility.Entity.CBUILDING_ID))"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="7">
+                        <R_ComboBox @ref="_comboFloorRef"
+                                    Data="@_viewModelUtility.FloorList"
+                                    @bind-Value="_viewModelUtility.FloorId"
+                                    ValueField="@nameof(PMT03500FloorDTO.CFLOOR_ID)"
+                                    TextField="@nameof(PMT03500FloorDTO.CFLOOR_NAME)"
+                                    Enabled="@(_viewModelUtility.IsFloorSelected)"
+                                    OnLostFocused="OnLostFocusedFloor"/>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="5">
+                        <R_Label>@(_localizer["LBL_ENDDTUTILITY"] + "*")</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_DatePicker Max="_viewModelUtility.UtilityPeriodDtMax" 
+                                      @bind-Value="_viewModelUtility.UtilityPeriodFromDtDt"/>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Button Enabled="@_gridRefUtility.HasData" OnClick="@OnClickProcess">@_localizer["LBL_PROCESS"]</R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            
+        </R_StackLayout>
+
+        <R_StackLayout Class="mb-2">
+            <R_ItemLayout Class="@_display">
+                <R_Label FontColor="R_eFontColor.Success" FontStyle="R_eFontStyle.Bold">@_dataLabel</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout>
+            <R_ItemLayout Class="@_display">
+                <R_Grid @ref="_gridRefUtility"
+                        DataSource="_viewModelUtility.GridUtilityUsageList"
+                        Pageable
+                        PageSize="14"
+                        R_ConductorGridSource="_conductorRefUtility"
+                        R_GridType="R_eGridType.Batch"
+                        R_ServiceGetListRecord="GetUtilityListRecord"
+                        AllowDeleteRow="false"
+                        AllowEditRow
+                        AllowAddNewRow="false"
+                        Width="100%"
+                        Height="400px"
+                        R_Display="@DisplayUtility"
+                        R_ServiceGetRecord="@GetUtilityRecord"
+                        R_Validation="ValidationUtility"
+                        R_CheckBoxSelectValueChanged="CheckBoxSelectValueChanged"
+                        R_ServiceSaveBatch="SaveBatch">
+                    <R_GridColumns>
+                        <R_GridCheckBoxSelectColumn FieldName="@nameof(PMT03500UtilityUsageDTO.LSELECTED)" Width="30px" ShowSelectAllHeader Filterable="false" Resizable="false"/>
+                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CBUILDING_NAME)" HeaderText="@_localizer["LBL_BUILDING"]" TextAlignment="R_eTextAlignment.Left" Width="130px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CREF_NO)" HeaderText="@_localizer["LBL_LOIAGREEMENT"]" TextAlignment="R_eTextAlignment.Left" Width="160px" />
+                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CFLOOR_NAME)" HeaderText="@_localizer["LBL_FLOOR"]" TextAlignment="R_eTextAlignment.Left" Width="130px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUNIT_NAME)" HeaderText="@_localizer["LBL_UNITID"]" TextAlignment="R_eTextAlignment.Left" Width="130px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CMETER_NO)" HeaderText="@_localizer["LBL_METERNO"]" TextAlignment="R_eTextAlignment.Left" Width="130px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CBASMETER_NO)" HeaderText="@_localizer["LBL_BASMETERNO"]" TextAlignment="R_eTextAlignment.Left" Width="200px"/>
+                        
+                        <R_GridNumericColumn TValue="decimal" Min="0" FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK1_START)" HeaderText="@_localizer["LBL_BLOCK1START"]" Width="130px" Visible="@_visibleColumnEC" R_EnableEdit Max="_maxValueStart"/>
+                        <R_GridNumericColumn TValue="decimal" Min="0" FieldName="@nameof(PMT03500UtilityUsageDTO.NBLOCK2_START)" HeaderText="@_localizer["LBL_BLOCK2START"]" Width="130px" Visible="@_visibleColumnEC" R_EnableEdit/>
+                        <R_GridNumericColumn TValue="decimal" Min="0" FieldName="@nameof(PMT03500UtilityUsageDTO.NMETER_START)" HeaderText="@_localizer["LBL_METERSTART"]" Width="130px" Visible="@_visibleColumnWG" R_EnableEdit/>
+                        
+                        <R_GridDatePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DSTART_DATE)" HeaderText="@_localizer["LBL_STARTDATE"]" Width="150px" R_EnableEdit/>
+
+                        <R_GridMultiHeaderColumn HeaderText="@_localizer["LBL_INVPERIOD"]">
+                            <R_GridComboBoxColumn Data="_viewModelUtility.InvYearList"
+                                                  TextField="@nameof(PMT03500YearDTO.CYEAR)"
+                                                  ValueField="@nameof(PMT03500YearDTO.CYEAR)"
+                                                  FieldName="@nameof(PMT03500UtilityUsageDTO.CINV_PRD_YEAR)"
+                                                  HeaderText="@_localizer["LBL_YEAR"]"
+                                                  TextAlignment="R_eTextAlignment.Left"
+                                                  Width="100px"/>
+
+                            <R_GridComboBoxColumn Data="_viewModelUtility.InvPeriodList"
+                                                  TextField="@nameof(PMT03500PeriodDTO.CPERIOD_NO)"
+                                                  ValueField="@nameof(PMT03500PeriodDTO.CPERIOD_NO)"
+                                                  FieldName="@nameof(PMT03500UtilityUsageDTO.CINV_PRD_MONTH)"
+                                                  HeaderText="@_localizer["LBL_MONTH"]"
+                                                  TextAlignment="R_eTextAlignment.Left"
+                                                  Width="100px"/>
+                        </R_GridMultiHeaderColumn>
+                        
+                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUNIT_DESCRIPTION)" HeaderText="@_localizer["LBL_UNITDESCRIPTION"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUPDATE_BY)" HeaderText="@_localizer["LBL_UPDBY"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DUPDATE_DATE)" HeaderText="@_localizer["LBL_UPDDT"]" Width="180px"/>
+                        <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CCREATE_BY)" HeaderText="@_localizer["LBL_CRTBY"]" TextAlignment="R_eTextAlignment.Left" Width="150px"/>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(PMT03500UtilityUsageDTO.DCREATE_DATE)" HeaderText="@_localizer["LBL_CRTDT"]" Width="180px"/>
+                    </R_GridColumns>
+                </R_Grid>
+                
+                <R_StackLayout Row>
+                    <R_ItemLayout col="12">
+                        <R_ProgressBar Label="@_viewModelUpload.Message" MaxValue="100" Value="@_viewModelUpload.Percentage"></R_ProgressBar>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="justify-content-between">
+            <R_ItemLayout Class="@_display">
+                <R_StackLayout Row>
+                    <R_ItemLayout>
+                        <R_Button Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0 && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit)" OnClick="DownloadTemplate">
+                            @_localizer["LBL_DOWNLOAD"]
+                        </R_Button>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Popup R_Before_Open_Popup="BeforeOpenUpload" R_After_Open_Popup="AfterOpenUpload" Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0 && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit)">
+                            @_localizer["LBL_UPLOAD"]
+                        </R_Popup>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout Class="@_display">
+                <R_StackLayout Row>
+                    <R_ItemLayout>
+                        @* <R_CancelButton  R_Conductor="_conductorRefUtility" OnClick="OnClickSave">@_localizer["LBL_SAVE"]</R_CancelButton> *@
+                        <R_Button OnClick="OnClickCancel" Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0 && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit && _enabledBtn)">
+                            @_localizer["LBL_CANCEL"]
+                        </R_Button>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        @* <R_SaveButton  R_Conductor="_conductorRefUtility" OnClick="OnClickSave">@_localizer["LBL_SAVE"]</R_SaveButton> *@
+                        <R_Button OnClick="OnClickSave" Enabled="@(_viewModelUtility.GridUtilityUsageList.Count != 0 && _conductorRefUtility.CurrentConductorStatus != R_eConductorStatus.Edit && _enabledBtn)">
+                            @_localizer["LBL_SAVE"]
+                        </R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorRefUtility"
+                 R_IsHeader/>
+

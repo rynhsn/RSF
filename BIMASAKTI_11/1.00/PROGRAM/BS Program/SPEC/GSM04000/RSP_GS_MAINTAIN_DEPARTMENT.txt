@@ -1,0 +1,8 @@
+4001	= Error process, please contact your administrator!
+4002	= Duplicate Dept Code!
+4003	= Cannot Delete, Dept Already in used!
+4004	= Dept Code cannot be empty!
+4005	= Dept Name cannot be empty!
+4006	= Center Code cannot be empty!
+4007	= Dept Code cannot be greater than 20 character!
+4008	= Dept Name cannot be greater than 100 character!

@@ -1,0 +1,120 @@
+﻿@using Microsoft.JSInterop;
+@using R_BlazorFrontEnd.Controls.Events
+@inherits R_Page
+@inject IJSRuntime _JSRuntime
+@attribute [R_Page(Title = "Upload Department", ResourceId = "_pageTitleUpload")]
+
+<R_StackLayout Row Style="width:1000px">
+    <R_ItemLayout col="12">
+        <R_InputFile OnChange="@UploadExcel" Accepts="@_accepts" TabIndex="0"></R_InputFile>
+        <R_Grid @ref="_gridDeptExcelRef"
+                DataSource="@_deptUploadViewModel._DepartmentExcelGridData"
+                R_ConductorGridSource="_conGridDeptExcelRef"
+                R_GridType="R_eGridType.Batch"
+                Pageable="true"
+                R_ServiceGetListRecord="DeptExcelGrid_ServiceGetListRecord"
+                Class="m-1 p-2"
+                Height="400px"
+                R_RowRender="@((R_GridRowRenderEventArgs args)=> R_RowRender(args))">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GSM04000ExcelGridDTO.INO)" HeaderText="No" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM04000ExcelGridDTO.CDEPT_CODE)" HeaderText="@_localizer["_gridColumnDeptCode"]" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM04000ExcelGridDTO.CDEPT_NAME)" HeaderText="@_localizer["_gridColumnDeptName"]" Width="250px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM04000ExcelGridDTO.CCENTER_CODE)" HeaderText="@_localizer["_gridColumnCenterCode"]" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM04000ExcelGridDTO.CMANAGER_CODE)" HeaderText="@_localizer["_gridColumnManager"]" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM04000ExcelGridDTO.CBRANCH_CODE)" HeaderText="@_localizer["_gridColumnBranch"]" Width="150px"></R_GridTextColumn>
+                <R_GridCheckBoxColumn FieldName="@nameof(GSM04000ExcelGridDTO.LEVERYONE)" HeaderText="@_localizer["_gridColumnEveryone"]" Width="100px"></R_GridCheckBoxColumn>
+                <R_GridCheckBoxColumn FieldName="@nameof(GSM04000ExcelGridDTO.LACTIVE)" HeaderText="@_localizer["_gridColumnActive"]" Width="100px"></R_GridCheckBoxColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM04000ExcelGridDTO.CNON_ACTIVE_DATE)" HeaderText="@_localizer["_gridColumnNonActiveDate"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM04000ExcelGridDTO.CEMAIL1)" HeaderText="@_localizer["_gridColumnEmail1"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM04000ExcelGridDTO.CEMAIL2)" HeaderText="@_localizer["_gridColumnEmail2"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM04000ExcelGridDTO.CVALID)" HeaderText="@_localizer["_gridColumnValid"]" Visible="@_deptUploadViewModel._visibleError" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM04000ExcelGridDTO.CNOTES)" HeaderText="@_localizer["_gridColumnNotes"]" Visible="@_deptUploadViewModel._visibleError" Width="300px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_ProgressBar Label="@_deptUploadViewModel._progressBarMessage"
+                               MaxValue="100"
+                               Value="@_deptUploadViewModel._progressBarPercentage"></R_ProgressBar>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="8">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>Total Row(s)</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@_deptUploadViewModel._sumListDeptExcel"
+                                          Arrows="false"
+                                          Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>Valid</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@_deptUploadViewModel._sumValidDataDeptExcel"
+                                          Arrows="false"
+                                          ReadOnly
+                                          Class="bg-success">
+
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>Invalid</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@_deptUploadViewModel._sumInvalidDataDeptExcel"
+                                          Arrows="false"
+                                          ReadOnly
+                                          Class="badge bg-danger">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="4" hidden="@_deptUploadViewModel._visibleError">
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Button OnClick="OnClick_ButtonClose">
+                            Cancel
+                        </R_Button>
+                        <R_Button @ref="_btnProcess" OnClick="OnClick_ButtonOK" Enabled="@_isFileHasData">
+                            Process
+                        </R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="4" hidden="@(!_deptUploadViewModel._visibleError)">
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Button OnClick="OnClick_ButtonClose">
+                            Cancel
+                        </R_Button>
+                        <R_Button @ref="_btnSaveToExcel" OnClick="@OnClick_ButtonSaveExcelAsync">
+                            Save To Excel
+                        </R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<style>
+    .k-grid .k-master-row.errorDataLValidIsFalse:hover {
+        background-color: red !important;
+        color: white;
+    }
+
+    .k-grid .k-master-row.errorDataLValidIsFalse {
+        background-color: red;
+        color: white !important
+    }
+
+    .k-grid .k-table-row.k-selected.errorDataLValidIsFalse > .k-table-td {
+        color: white !important;
+    }
+
+</style>

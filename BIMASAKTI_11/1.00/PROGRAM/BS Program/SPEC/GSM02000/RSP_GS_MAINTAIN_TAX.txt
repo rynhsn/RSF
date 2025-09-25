@@ -1,0 +1,11 @@
+2001	= Error process, please contact your administrator!
+2002	= Duplicate Tax Id!
+2003	= Cannot Delete, Tax Already in used!
+2004	= Tax Id cannot be empty!
+2005	= Tax Name cannot be empty!
+2006	= Tax Id cannot be greater than 20 character!
+2007	= Tax Name cannot be greater than 100 character!
+2008	= Tax In GL Account cannot be empty!
+2009	= Tax Out GL Account cannot be empty!
+2010	= Deduction Tax Id cannot be empty!
+

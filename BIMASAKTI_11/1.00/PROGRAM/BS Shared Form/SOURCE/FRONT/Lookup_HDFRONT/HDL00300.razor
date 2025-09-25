@@ -1,0 +1,43 @@
+﻿@using Lookup_HDCOMMON.DTOs.HDL00300
+@using Lookup_HDFrontResources
+@using R_BlazorFrontEnd.Controls.Attributes
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_BlazorFrontEnd.Controls.R_Page
+@attribute [R_Page(Title = "Public Location Lookup")]
+@inject R_ILocalizer<Resources_Dummy_Class_LookupHD> _localizer
+<R_StackLayout Style="width: 1200px">
+
+    <R_StackLayout Row>
+        <R_ItemLayout Class="col-12">
+            <R_Grid @ref="@GridRef"
+                    DataSource="_viewModel.PublicLocationLookup"
+                    R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                    Pageable
+                    Height="400px"
+                    R_GridType="R_eGridType.Navigator"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false"
+                    PageSize="5">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(HDL00300DTO.CPUBLIC_LOC_ID)" Width="143px" HeaderText="@_localizer["PUBLIC_LOCATION_ID"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00300DTO.CPUBLIC_LOC_NAME)" Width="193px" HeaderText="@_localizer["PUBLIC_LOCATION_NAME"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00300DTO.CLOCATION_DESCR)" Width="193px" HeaderText="@_localizer["PUBLIC_LOCATION_DESC"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00300DTO.CBUILDING_NAME)" Width="193px" HeaderText="@_localizer["BUILDING_NAMR"]"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(HDL00300DTO.CFLOOR_NAME)" Width="193px" HeaderText="@_localizer["FLOOR_NAME"]"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+        <R_Button Enabled="@(_viewModel.PublicLocationLookup.Count != 0)"
+                  OnClick="Button_OnClickOkAsync">
+            @_localizer["OK"]
+        </R_Button>
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            @_localizer["CANCEL"]
+        </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>

@@ -1,0 +1,95 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	  <RootNamespace>BIMASAKTI_HD_API</RootNamespace>
+	  <AssemblyName>BIMASAKTI_HD_API</AssemblyName>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.2" />
+		<PackageReference Include="Realta.CommonCollectionNuGet" Version="1.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Template\PublicLocation.xlsx">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Update="Reports\BaseHeaderCommon.frx">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Reports\BaseHeaderLandscapeCommon.frx">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Reports\HDR00200CareReportMaintenance.frx">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Report\HDR00200CareReportMaintenance.frx">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="BackExtension">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\BackExtension.dll</HintPath>
+		</Reference>
+		<Reference Include="BlazorMenuBack">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\BlazorMenuBack.dll</HintPath>
+		</Reference>
+		<Reference Include="BlazorMenuCommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\BlazorMenuCommon.dll</HintPath>
+		</Reference>
+		<Reference Include="BlazorMenuService">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\BlazorMenuService.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APIBackEnd">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APIStartUp">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIStartUp.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CrossPlatformSecurity">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CrossPlatformSecurity.dll</HintPath>
+		</Reference>
+		<Reference Include="R_HelperController">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_HelperController.dll</HintPath>
+		</Reference>
+		<Reference Include="R_SecurityPolicyBack">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\R_SecurityPolicyBack.dll</HintPath>
+		</Reference>
+		<Reference Include="R_SecurityPolicyCommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\R_SecurityPolicyCommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_SecurityPolicyService">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\R_SecurityPolicyService.dll</HintPath>
+		</Reference>
+		<Reference Include="R_SecurityTokenBack">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\R_SecurityTokenBack.dll</HintPath>
+		</Reference>
+		<Reference Include="R_SecurityTokenCommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\MenuBack\R_SecurityTokenCommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_StorageCommon">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_StorageCommon.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_HDSERVICES\Lookup_HDSERVICES.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\HD\HDI00100Service\HDI00100Service.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\HD\HDM00400Service\HDM00400Service.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\HD\HDM00600SERVICE\HDM00600SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\HD\HDR00200Service\HDR00200Service.csproj" />
+	</ItemGroup>
+
+</Project>

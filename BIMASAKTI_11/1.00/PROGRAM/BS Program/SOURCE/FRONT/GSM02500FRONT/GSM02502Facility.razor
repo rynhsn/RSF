@@ -1,0 +1,48 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Facility")]
+@using GSM02500COMMON.DTOs.GSM02502Facility
+@using GSM02500MODEL
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_Grid @ref="@_gridFacilityRef"
+                DataSource="@loFacilityViewModel.loFacilityList"
+                Pageable="true"
+                R_ConductorGridSource="@_conductorFacilityRef"
+                R_GridType="@R_eGridType.Original"
+                AllowAddNewRow
+                Height="200px"
+                AllowEditRow
+                AllowDeleteRow
+                R_Display="Grid_DisplayFacility"
+                R_ServiceSave="@Grid_ServiceSaveFacility"
+                R_ServiceDelete="@Grid_ServiceDeleteFacility"
+                R_ServiceGetRecord="@Grid_ServiceGetRecordFacility"
+                R_ServiceGetListRecord="@Grid_R_ServiceGetFacilityListRecord">
+            <R_GridColumns>
+                <R_GridComboBoxColumn Width="200px" Data="@loFacilityViewModel.loFacilityTypeList"
+                                      FieldName="@nameof(GSM02502FacilityDTO.CFACILITY_TYPE)"
+                                      ValueField="@nameof(GSM02502FacilityTypeDTO.CCODE)"
+                                      TextField="@nameof(GSM02502FacilityTypeDTO.CDESCRIPTION)"
+                                      PopupMaxHeight="120px"
+                                      HeaderText="@_localizer["_FacilityType"]"
+                                      R_EnableAdd/>
+                <R_GridNumericColumn TValue="int" FieldName=@nameof(GSM02502FacilityDTO.IQTY) Min="0" HeaderText="@_localizer["_Qty"]" R_EnableAdd R_EnableEdit Width="100px"></R_GridNumericColumn>
+                <R_GridNumericColumn TValue="int" FieldName=@nameof(GSM02502FacilityDTO.IYEARS) Min="0" HeaderText="@_localizer["_Year"]" R_EnableAdd R_EnableEdit Width="100px"></R_GridNumericColumn>
+                <R_GridNumericColumn TValue="int" FieldName=@nameof(GSM02502FacilityDTO.IMONTHS) Min="0" HeaderText="@_localizer["_Month"]" R_EnableAdd R_EnableEdit Width="100px"></R_GridNumericColumn>
+                <R_GridNumericColumn TValue="int" FieldName=@nameof(GSM02502FacilityDTO.IDAYS) Min="0" HeaderText="@_localizer["_Days"]" R_EnableAdd R_EnableEdit Width="100px"></R_GridNumericColumn>
+                <R_GridCheckBoxColumn FieldName="@nameof(GSM02502FacilityDTO.LACTIVE)" HeaderText="@_localizer["_Active"]" R_EnableAdd R_EnableEdit Width="75px"></R_GridCheckBoxColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM02502FacilityDTO.CUPDATE_BY) HeaderText="@_localizer["_UpdatedBy"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName=@nameof(GSM02502FacilityDTO.DUPDATE_DATE) HeaderText="@_localizer["_UpdatedDate"]" Enabled="false" Width="200px"></R_GridDateTimePickerColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM02502FacilityDTO.CCREATE_BY) HeaderText="@_localizer["_CreatedBy"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName=@nameof(GSM02502FacilityDTO.DCREATE_DATE) HeaderText="@_localizer["_CreatedDate"]" Enabled="false" Width="200px"></R_GridDateTimePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorFacilityRef"
+                 R_ViewModel="@loFacilityViewModel"
+                 R_SetOther="Grid_R_SetOther"
+                 R_IsHeader>
+</R_ConductorGrid>

@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    
+    <data name="CDEPT" xml:space="preserve">
+        <value>Depatement</value>
+        <comment>Depatement</comment>
+    </data>
+    <data name="CREF_NO" xml:space="preserve">
+        <value>Reference No.</value>
+        <comment>Reference No.</comment>
+    </data>
+    <data name="CDATE" xml:space="preserve">
+        <value>Date</value>
+        <comment>Date</comment>
+    </data>
+    <data name="CCURRENCY" xml:space="preserve">
+        <value>Currency</value>
+        <comment>Currency</comment>
+    </data>
+    <data name="CEXCHANGE_RATE" xml:space="preserve">
+        <value>Exchange Rate</value>
+        <comment>Exchange Rate</comment>
+    </data>
+    <data name="CFIXED_EXCHANGE_RATE" xml:space="preserve">
+        <value>Fixed Exchange Rate</value>
+        <comment>Fixed Exchange Rate</comment>
+    </data>
+    <data name="CLOCAL_CURRENCY" xml:space="preserve">
+        <value>Local Currency</value>
+        <comment>Local Currency</comment>
+    </data>
+    <data name="CBASE_CURRENCY" xml:space="preserve">
+        <value>Base Currency</value>
+        <comment>Base Currency</comment>
+    </data>
+    <data name="CTOTAL_DEBIT" xml:space="preserve">
+        <value>Total Debit</value>
+        <comment>Total Debit</comment>
+    </data>
+    <data name="CTOTAL_CREDIT" xml:space="preserve">
+        <value>Total Credit</value>
+        <comment>Total Credit</comment>
+    </data>
+    <data name="CFREQUENCY" xml:space="preserve">
+        <value>Frequency</value>
+        <comment>Frequency</comment>
+    </data>
+    <data name="CINTERVAL_MONTH" xml:space="preserve">
+        <value>Interval (Month)</value>
+        <comment>Interval (Month)</comment>
+    </data>
+    <data name="CAPPLIED" xml:space="preserve">
+        <value>Applied</value>
+        <comment>Applied</comment>
+    </data>
+    <data name="CSTARTING_DATE" xml:space="preserve">
+        <value>Starting Date</value>
+        <comment>Starting Date</comment>
+    </data>
+    <data name="CNEXT_DATE" xml:space="preserve">
+        <value>Next Date</value>
+        <comment>Next Date</comment>
+    </data>
+    <data name="CLAST_DATE" xml:space="preserve">
+        <value>Last Date</value>
+        <comment>Last Date</comment>
+    </data>
+    <data name="CSTATUS" xml:space="preserve">
+        <value>Status</value>
+        <comment>Status</comment>
+    </data>
+    <data name="CUPDATED_BY" xml:space="preserve">
+        <value>Updated By</value>
+        <comment>Updated By</comment>
+    </data>
+    <data name="CDESC" xml:space="preserve">
+        <value>Description</value>
+        <comment>Description</comment>
+    </data>
+    <data name="CSEQ" xml:space="preserve">
+        <value>Seq.</value>
+        <comment>Seq.</comment>
+    </data>
+    <data name="CJOURNAL_NO" xml:space="preserve">
+        <value>Journal No.</value>
+        <comment>Journal No.</comment>
+    </data>
+    <data name="CPERIOD" xml:space="preserve">
+        <value>Period</value>
+        <comment>Period</comment>
+    </data>
+    <data name="CORIGINAL_AMOUNT" xml:space="preserve">
+        <value>Original Amount</value>
+        <comment>Original Amount</comment>
+    </data>
+    <data name="CLOCAL_AMOUNT" xml:space="preserve">
+        <value>Local Amount</value>
+        <comment>Local Amount</comment>
+    </data>
+    <data name="CBASE_AMOUNT" xml:space="preserve">
+        <value>Base Amount</value>
+        <comment>Base Amount</comment>
+    </data>
+    <data name="CPOSTED_DATE" xml:space="preserve">
+        <value>Posted Date</value>
+        <comment>Posted Date</comment>
+    </data>
+    <data name="CPOSTED_BY" xml:space="preserve">
+        <value>Posted By</value>
+        <comment>Posted By</comment>
+    </data>
+</root>

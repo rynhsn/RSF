@@ -1,0 +1,36 @@
+﻿@page "/TXB00200PopupToDoList"
+@using R_BlazorFrontEnd.Interfaces
+@using TXB00200FrontResources
+@using TXB00200Common.DTOs
+@inherits R_Page
+@attribute [R_Page(Title = "Todo List prior to Soft Close TX Period")]
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Justify="R_eJustify.Center">
+    <R_ItemLayout>
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.SoftClosePeriodToDoList"
+                Pageable
+                R_ConductorSource="@_conductorRef"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="@ServiceGetListRecord"
+                Enabled
+                Height="270px"
+                Width="800px">
+            <R_GridColumns>
+                <R_GridNumericColumn TValue="long" FieldName="@nameof(TXB00200SoftClosePeriodToDoListDTO.ISEQ_NO)" HeaderText="@_localizer["NO"]" Width="60px"/>  
+                <R_GridTextColumn FieldName="@nameof(TXB00200SoftClosePeriodToDoListDTO.CDEPT_NAME)" HeaderText="@_localizer["DEPT"]" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(TXB00200SoftClosePeriodToDoListDTO.CTRANS_DESCR)" HeaderText="@_localizer["TRANSACTION_TYPE"]" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(TXB00200SoftClosePeriodToDoListDTO.CMODULE)" HeaderText="@_localizer["MODULE"]" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(TXB00200SoftClosePeriodToDoListDTO.CREF_NO)" HeaderText="@_localizer["REF_NO"]" Width="150px"/>
+                <R_GridDatePickerColumn FieldName="@nameof(TXB00200SoftClosePeriodToDoListDTO.DREF_DATE)" HeaderText="@_localizer["REF_DATE"]" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(TXB00200SoftClosePeriodToDoListDTO.CTRANS_STATUS_DESCR)" HeaderText="@_localizer["STATUS"]" Width="150px"/>
+                <R_GridTextColumn FieldName="@nameof(TXB00200SoftClosePeriodToDoListDTO.CDESCRIPTION)" HeaderText="@_localizer["DESCRIPTION"]" Width="350px"/>
+                <R_GridTextColumn FieldName="@nameof(TXB00200SoftClosePeriodToDoListDTO.CSOLUTION_DESCR)" HeaderText="@_localizer["SOLUTION"]" Width="350px"/>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="_saveToExcel" Enabled="@(_viewModel.SoftClosePeriodToDoList.Count > 0)">@_localizer["SAVE_TO_EXCEL"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

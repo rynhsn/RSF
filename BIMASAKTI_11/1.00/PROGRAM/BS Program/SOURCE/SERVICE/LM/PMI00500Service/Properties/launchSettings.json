@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "PMI00500Service": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64396;http://localhost:64397"
+    }
+  }
+}

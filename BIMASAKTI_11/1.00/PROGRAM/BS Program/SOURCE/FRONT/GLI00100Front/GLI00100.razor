@@ -1,0 +1,489 @@
+﻿@page "/GLI00100"
+@using GLI00100Common.DTOs
+@using GLI00100FrontResources
+@using R_BlazorFrontEnd.Interfaces
+@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row Spacing="2">
+
+<R_ItemLayout>
+    <R_Grid @ref="_gridRef"
+            DataSource="_viewModel.GLAccountList"
+            Pageable
+            PageSize="22"
+            R_ConductorSource="_conductorRef"
+            R_GridType="R_eGridType.Navigator"
+            R_ServiceGetListRecord="GetListRecord"
+            Width="350px"
+            Height="520px">
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="@nameof(GLI00100AccountGridDTO.CGLACCOUNT_NO)" HeaderText="@_localizer["LABEL_ACCNO"]" Width="120px" TextAlignment="R_eTextAlignment.Left"/>
+            <R_GridTextColumn FieldName="@nameof(GLI00100AccountGridDTO.CGLACCOUNT_NAME)" HeaderText="@_localizer["LABEL_ACCNAME"]" Width="270px" TextAlignment="R_eTextAlignment.Left"/>
+        </R_GridColumns>
+    </R_Grid>
+
+    <R_StackLayout Row Spacing="2" Class="mb-2">
+        <R_ItemLayout col="4">
+            <R_Label>@_localizer["LABEL_ACCTYPE"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_RadioGroup Data="@_viewModel.CBSIS"
+                          @bind-Value="_viewModel.Data.CBSIS"
+                          ValueField="Key"
+                          TextField="Value"
+                          Layout="R_eRadioGroupLayout.Vertical"
+                          Enabled="false"/>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Spacing="2">
+        <R_ItemLayout col="4">
+            <R_Label>@_localizer["LABEL_NRMLJOURNAL"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_RadioGroup Data="@_viewModel.CDBCR"
+                          @bind-Value="_viewModel.Data.CDBCR"
+                          ValueField="Key"
+                          TextField="Value"
+                          Layout="R_eRadioGroupLayout.Horizontal"
+                          Enabled="false"/>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_ItemLayout>
+
+<R_ItemLayout>
+
+<R_GroupBox ShowBorder Class="p-2">
+<R_StackLayout Row Spacing="1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["LABEL_ACC"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_TextBox @bind-Value="_viewModel.Data.CGLACCOUNT_NO" Enabled="false"/>
+    </R_ItemLayout>
+    <R_ItemLayout col="5">
+        <R_TextBox @bind-Value="_viewModel.Data.CGLACCOUNT_NAME" Enabled="false"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Spacing="7">
+    <R_ItemLayout col="4">
+        <R_StackLayout Row Spacing="1">
+            <R_ItemLayout col="6">
+                <R_Label>@_localizer["LABEL_YEAR"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_NumericTextBox @bind-Value="_viewModel.Year"
+                                  ThousandSeparator="false"
+                                  Min="@_viewModel.GSMPeriod.IMIN_YEAR"
+                                  Max="@_viewModel.GSMPeriod.IMAX_YEAR"
+                                  OnChanged="RefreshBudgetCombo"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    
+    <R_ItemLayout col="7">
+        <R_StackLayout Row Spacing="1">
+            <R_ItemLayout Class="mx-2">
+                <R_Label>@_localizer["LABEL_CURRTYPE"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_RadioGroup Data="@_viewModel.CCURRENCY_TYPE"
+                              @bind-Value="_viewModel.CurrencyTypeValue"
+                              ValueField="Key"
+                              TextField="Value"
+                              Enabled="true"
+                              OnChanged="RefreshBudgetCombo"/>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Spacing="1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["LABEL_CENTER"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_TextBox @bind-Value="_viewModel.CenterCode" Enabled OnLostFocus="OnLostFocusCenter"/>
+    </R_ItemLayout>
+    <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupCenter"
+              R_After_Open_Lookup="AfterOpenLookupCenter">
+        ...
+    </R_Lookup>
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="_viewModel.CenterName" Enabled="false"/>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Spacing="1" Class="mb-1">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["LABEL_BUDGETNO"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="8">
+        <R_ComboBox Data="@_viewModel.BudgetList"
+                    @bind-Value="_viewModel.BudgetNo"
+                    ValueField="@nameof(GLI00100BudgetDTO.CBUDGET_NO)"
+                    TextField="@nameof(GLI00100BudgetDTO.CBUDGET_NAME_DISPLAY)"
+                    Enabled="true"/>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button Enabled="@(_viewModel.GLAccountList.Count > 0)"
+                  OnClick="RefreshAccountAnalysis">
+            @_localizer["LABEL_BTNREFRESH"]
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Popup Enabled="@(_viewModel.GLAccountList.Count > 0)"
+                 R_Before_Open_Popup="BeforeOpenPopupPrint">
+            @_localizer["LABEL_BTNPRINT"]
+        </R_Popup>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Spacing="1">
+<R_ItemLayout col="2">
+    <R_GroupBox ShowBorder="false">
+        <R_ItemLayout Class="mt-4"/>
+        <R_StackLayout Class="mb-2 ms-5">
+            <R_ItemLayout>
+                <R_Label>@_localizer["LABEL_OPENING"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 1)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_01">...</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD01"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 2)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_02">...</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD02"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 3)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_03">...</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD03"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 4)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_04">...</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD04"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 5)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_05">...</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD05"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 6)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_06">...</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD06"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 7)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_07">...</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD07"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 8)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_08">...</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD08"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 9)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_09">...</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD09"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 10)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_10">...</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD10"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 11)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_11">...</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD11"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 12)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_12">...</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD12"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 13)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_13">...</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD13"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 14)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_14">...</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD14"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_Popup Enabled="@(_viewModel.PeriodCount.INO_PERIOD >= 15)" R_Before_Open_Popup="BeforeOpenPopupAccountJournal_15">...</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="ms-1">
+                <R_Label>@_localizer["LABEL_PERIOD15"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_GroupBox>
+</R_ItemLayout>
+<R_ItemLayout Class="d-flex">
+    <R_GroupBox Title="@_localizer["LABEL_GROUPCRNTMNTH"]" Class="px-2">
+        <R_ItemLayout Class="mb-1" Style="height: 25px"/>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH1" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH2" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH3" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH4" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH5" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH6" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH7" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH8" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH9" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH10" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH11" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH12" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH13" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH14" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-1">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NMONTH15" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+    </R_GroupBox>
+</R_ItemLayout>
+<R_ItemLayout>
+    <R_GroupBox Title="@_localizer["LABEL_GROUPBUDGET"]" Class="px-2">
+        <R_ItemLayout Class="mb-1" Style="height: 25px"/>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET1" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET2" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET3" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET4" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET5" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET6" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET7" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET8" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET9" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET10" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET11" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET12" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET13" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET14" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-1">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NBUDGET15" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+    </R_GroupBox>
+</R_ItemLayout>
+<R_ItemLayout>
+    <R_GroupBox Title="@_localizer["LABEL_GROUPCRNTYEAR"]" Class="px-2">
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT_OPENING" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT1" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT2" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT3" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT4" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT5" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT6" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT7" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT8" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT9" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT10" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT11" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT12" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT13" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT14" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-1">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NCURRENT15" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+    </R_GroupBox>
+</R_ItemLayout>
+<R_ItemLayout>
+    <R_GroupBox Title="@_localizer["LABEL_GROUPLASTYEAR"]" Class="px-2">
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST_OPENING" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST1" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST2" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST3" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST4" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST5" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST6" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST7" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST8" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST9" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST10" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST11" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST12" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST13" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-2">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST14" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+        <R_ItemLayout Class="mb-1">
+            <R_NumericTextBox Enabled="false" @bind-Value="_viewModel.GLAccountAnalysisDetail.NLAST15" TextAlignment="R_eTextAlignment.Right" Arrows="false"/>
+        </R_ItemLayout>
+    </R_GroupBox>
+</R_ItemLayout>
+</R_StackLayout>
+</R_GroupBox>
+
+</R_ItemLayout>
+
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@GetDetailRecord"/>

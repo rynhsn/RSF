@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Lookup_TXSERVICES": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57101;http://localhost:57103"
+    }
+  }
+}

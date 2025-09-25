@@ -1,0 +1,439 @@
+﻿@using CBT01100COMMON.DTO_s.CBT01110
+@using CBT01100COMMON.DTO_s
+@inherits R_Page
+<R_GroupBox Title="@_localizer["_grpBoxTitleTransEntry"]" TitleClass="text-danger">
+    @* row for dept-> bank code *@
+    <R_StackLayout Row>
+        <R_ItemLayout col="6">
+            @*Department*@
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_Departement"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @ref="_DeptCode_TextBox"
+                               @bind-Value="_TransactionListViewModel.Data.CDEPT_CODE"
+                               R_ConductorSource="_conductorRef"
+                               R_EnableAdd="true"
+                               R_EnableEdit="false"
+                               OnLostFocus="@DeptCode_OnLostFocus"
+                               MaxLength="20" />
+                </R_ItemLayout>
+                <R_ItemLayout Class="col d-flex justify-content-center">
+                    <R_Lookup R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@Before_Open_lookupDept" R_After_Open_Lookup="@After_Open_lookupDept" R_EnableAdd>...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="_TransactionListViewModel.Data.CDEPT_NAME"
+                               R_ConductorSource="_conductorRef"
+                               Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @*Reference No*@
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@(_localizer["_ReferenceNo"])*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="_TransactionListViewModel.Data.CREF_NO"
+                               R_ConductorSource="_conductorRef"
+                               MaxLength="30"
+                               Enabled="@(_conductorRef.R_ConductorMode == R_eConductorMode.Add
+                                && _TransactionEntryViewModel.VAR_GSM_TRANSACTION_CODE.LINCREMENT_FLAG == false
+                                && _TransactionEntryViewModel.VAR_CB_SYSTEM_PARAM.LCB_NUMBERING == false)" />
+                </R_ItemLayout>
+                <R_ItemLayout col="2" Class="d-flex justify-content-end">
+                    <R_Label>@(_localizer["_RefDate"])*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_DatePicker Value="@_TransactionListViewModel.RefDate"
+                                  R_ConductorSource="_conductorRef"
+                                  ValueChanged="@((DateTime? value) => @RefDate_ValueChange(value))"
+                                  R_EnableAdd
+                                  R_EnableEdit />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @* Bank Code *@
+            <R_StackLayout Row Class="pt-1">
+                <R_ItemLayout col="3">
+                    <R_Label>@(_localizer["_BankCode"])*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="_TransactionListViewModel.Data.CCB_CODE"
+                               Enabled="@(!string.IsNullOrWhiteSpace(_TransactionListViewModel.Data.CDEPT_CODE) && _conductorRef.R_ConductorMode != R_eConductorMode.Normal)"
+                               OnLostFocus="@CashCode_OnLostFocus"
+                               MaxLength="20" />
+                </R_ItemLayout>
+                <R_ItemLayout Class="col d-flex justify-content-center">
+                    <R_Lookup R_Before_Open_Lookup="@BeforeOpenLookup_BankCode" R_After_Open_Lookup="@AfterOpenLookup_BankCode" Enabled="@(!string.IsNullOrWhiteSpace(_TransactionListViewModel.Data.CDEPT_CODE) && _conductorRef.R_ConductorMode != R_eConductorMode.Normal)">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="_TransactionListViewModel.Data.CCB_NAME"
+                               R_ConductorSource="_conductorRef"
+                               Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        @* Half form column *@
+        <R_ItemLayout col="6">
+
+            @*(blank half filler)Department*@
+            <R_StackLayout>
+                <R_ItemLayout />
+            </R_StackLayout>
+
+            @*(blank half filler)Reference No*@
+            <R_StackLayout>
+                <R_ItemLayout />
+            </R_StackLayout>
+
+            @*(blank half filler)bank code*@
+            <R_StackLayout>
+                <R_ItemLayout />
+            </R_StackLayout>
+
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    @* row for glaccount no - doc no *@
+    <R_StackLayout Row>
+        <R_ItemLayout col="6">
+            @* GL Account No *@
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@(_localizer["_AccountNo*"])</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="_TransactionListViewModel.Data.CCB_ACCOUNT_NO"
+                               Enabled="@(!string.IsNullOrWhiteSpace(_TransactionListViewModel.Data.CCB_CODE) && _conductorRef.R_ConductorMode != R_eConductorMode.Normal)"
+                               OnLostFocus="@GlAccountNo_OnLostFocus"
+                               MaxLength="20" />
+                </R_ItemLayout>
+                <R_ItemLayout Class="col d-flex justify-content-center">
+                    <R_Lookup R_Before_Open_Lookup="@BeforeOpenLookup_GLAccountNo"
+                              R_After_Open_Lookup="@AfterOpenLookup_GLAccountNo"
+                              Enabled="@(!string.IsNullOrWhiteSpace(_TransactionListViewModel.Data.CCB_CODE) && _conductorRef.R_ConductorMode != R_eConductorMode.Normal)">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="_TransactionListViewModel.Data.CCB_ACCOUNT_NAME"
+                               R_ConductorSource="_conductorRef"
+                               Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @* Receipt Amount *@
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@(_localizer["_ReceiptAmount"])*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_TransactionListViewModel.Data.CCURRENCY_CODE" Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_NumericTextBox R_ConductorSource="_conductorRef" Arrows="false" @bind-Value="_TransactionListViewModel.Data.NTRANS_AMOUNT" TValue="decimal" TextAlignment="@R_eTextAlignment.Right" R_EnableAdd R_EnableEdit></R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1"></R_ItemLayout>
+                <R_ItemLayout col="3" Class="ps-1">
+                    <R_Label>@(_localizer["_LocalCurrency"])</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @* (col fill label currency) *@
+            <R_StackLayout Row>
+                <R_ItemLayout col="9"></R_ItemLayout>
+                <R_ItemLayout col="3" Class="ps-3">
+                    <R_Label>@(_localizer["_BaseCurrency"])</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @* Document No *@
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@(_localizer["_DocumentNo"])*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="_TransactionListViewModel.Data.CDOC_NO"
+                               R_ConductorSource="_conductorRef"
+                               MaxLength="30"
+                               R_EnableAdd R_EnableEdit />
+                </R_ItemLayout>
+                <R_ItemLayout col="2" Class="d-flex justify-content-end">
+                    <R_Label>@(_localizer["_DocDate"])*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_DatePicker @bind-Value="@_TransactionListViewModel.DocDate"
+                                  R_ConductorSource="_conductorRef"
+                                  R_EnableAdd
+                                  R_EnableEdit />
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="6" Class="ps-2">
+            @* label for Base rate & Currency Rate *@
+            <R_StackLayout Row>
+                <R_ItemLayout col="4">
+                    <R_Label>@(_localizer["_BaseRate"])</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="4" Class="ps-3">
+                    <R_Label>@(_localizer["_CurrencyRate"])</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @* & local currency : base, currency & tot debit *@
+            <R_StackLayout Row>
+
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="_TransactionListViewModel.Data.NLBASE_RATE"
+                                      TValue="decimal"
+                                      Arrows="false"
+                                      Decimals="6"
+                                      TextAlignment="@R_eTextAlignment.Right"
+                                      Enabled="@(_conductorRef.R_ConductorMode != R_eConductorMode.Normal
+                                        && _TransactionListViewModel.Data.CCURRENCY_CODE != _TransactionEntryViewModel.VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE
+                                        && !string.IsNullOrWhiteSpace(_TransactionListViewModel.Data.CCURRENCY_CODE))" />
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:75">
+                    <R_TextBox @bind-Value="_TransactionListViewModel.Data.CCURRENCY_CODE" Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Label>=</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="_TransactionListViewModel.Data.NLCURRENCY_RATE"
+                                      TValue="decimal"
+                                      Arrows="false"
+                                      Decimals="6"
+                                      TextAlignment="@R_eTextAlignment.Right"
+                                      Enabled="@(_conductorRef.R_ConductorMode != R_eConductorMode.Normal
+                                        && _TransactionListViewModel.Data.CCURRENCY_CODE != _TransactionEntryViewModel.VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE
+                                        && !string.IsNullOrWhiteSpace(_TransactionListViewModel.Data.CCURRENCY_CODE))" />
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:75">
+                    <R_TextBox @bind-Value="_TransactionEntryViewModel.VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE" Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="2" Class="d-flex justify-content-end">
+                    <R_Label>@(_localizer["_TotalDebit"])</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="_TransactionListViewModel.Data.NDEBIT_AMOUNT"
+                                      TValue="decimal"
+                                      Arrows="false"
+                                      TextAlignment="@R_eTextAlignment.Right"
+                                      Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @* & base currency : base, currency & tot credit*@
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="_TransactionListViewModel.Data.NBBASE_RATE"
+                                      TValue="decimal"
+                                      Arrows="false"
+                                      Decimals="6"
+                                      TextAlignment="@R_eTextAlignment.Right"
+                                      Enabled="@(_conductorRef.R_ConductorMode != R_eConductorMode.Normal
+                                        && _TransactionListViewModel.Data.CCURRENCY_CODE != _TransactionEntryViewModel.VAR_GSM_COMPANY.CBASE_CURRENCY_CODE
+                                        && !string.IsNullOrWhiteSpace(_TransactionListViewModel.Data.CCURRENCY_CODE))" />
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:75">
+                    <R_TextBox @bind-Value="_TransactionListViewModel.Data.CCURRENCY_CODE" Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Label>=</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="_TransactionListViewModel.Data.NBCURRENCY_RATE"
+                                      TValue="decimal"
+                                      Arrows="false"
+                                      Decimals="6"
+                                      TextAlignment="@R_eTextAlignment.Right"
+                                      Enabled="@(_conductorRef.R_ConductorMode != R_eConductorMode.Normal
+                                        && _TransactionListViewModel.Data.CCURRENCY_CODE != _TransactionEntryViewModel.VAR_GSM_COMPANY.CBASE_CURRENCY_CODE
+                                        && !string.IsNullOrWhiteSpace(_TransactionListViewModel.Data.CCURRENCY_CODE))" />
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:75">
+                    <R_TextBox @bind-Value="_TransactionEntryViewModel.VAR_GSM_COMPANY.CBASE_CURRENCY_CODE" Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="2" Class="d-flex justify-content-end">
+                    <R_Label>@(_localizer["_TotalCredit"])</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="_TransactionListViewModel.Data.NCREDIT_AMOUNT"
+                                      TValue="decimal"
+                                      Arrows="false"
+                                      TextAlignment="@R_eTextAlignment.Right"
+                                      Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+    @* end row *@
+
+    @* row for description -> status *@
+    <R_StackLayout Row Class="pt-2">
+        <R_ItemLayout col="6">
+            @* Description *@
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@(_localizer["_Description"])*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Class="col">
+                    <R_TextArea @bind-Value="_TransactionListViewModel.Data.CTRANS_DESC"
+                                R_ConductorSource="_conductorRef"
+                                MaxLength="200"
+                                R_EnableAdd
+                                R_EnableEdit />
+                </R_ItemLayout>
+            </R_StackLayout>
+            @* Status *@
+            <R_StackLayout Row Class="pt-2">
+                <R_ItemLayout col="3">
+                    <R_Label>@(_localizer["_Status"])</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_TransactionListViewModel.Data.CSTATUS_NAME" Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            @* updated by *@
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_UpdatedBy"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="_TransactionListViewModel.Data.CUPDATE_BY"
+                               R_ConductorSource="_conductorRef"
+                               Enabled="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_DateTimePicker @bind-Value="_TransactionListViewModel.Data.DUPDATE_DATE"
+                                      R_ConductorSource="_conductorRef"
+                                      Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+            @* created by *@
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_CreatedBy"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="_TransactionListViewModel.Data.CCREATE_BY"
+                               R_ConductorSource="_conductorRef"
+                               Enabled="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_DateTimePicker @bind-Value="_TransactionListViewModel.Data.DCREATE_DATE"
+                                      R_ConductorSource="_conductorRef"
+                                      Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+    @* end row *@
+
+</R_GroupBox>
+
+@* button *@
+<R_StackLayout Row Class="mt-2">
+    <R_ItemLayout col="4">
+        <R_AddButton R_Conductor="_conductorRef" Enabled="@_isGridDetailOnCrudMode"></R_AddButton>
+        <R_Button OnClick="JournalForm_CopyProcess" Enabled="@((EnableHaveRecId && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)&& _isGridDetailOnCrudMode)">@_localizer["_Copy"]</R_Button>
+        <R_EditButton R_Conductor="_conductorRef" Enabled="@((EnableEdit && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)&& _isGridDetailOnCrudMode)"></R_EditButton>
+        <R_Button Enabled="@((EnableEdit && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)&& _isGridDetailOnCrudMode)" OnClick="@BtnDelete_OnClick">@_localizer["_Delete"]</R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_CancelButton R_Conductor="_conductorRef"></R_CancelButton>
+        <R_SaveButton R_Conductor="_conductorRef"></R_SaveButton>
+        <R_Lookup R_Before_Open_Lookup="@Before_Open_lookupPrint" Enabled="@((EnableHaveRecId && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)&& _isGridDetailOnCrudMode && EnabledPrintButton)">@_localizer["_Print"]</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="2"></R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_Button Enabled="@((EnableSubmit && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)&& _isGridDetailOnCrudMode)" OnClick="SubmitJournalProcess">@lcLabelSubmit</R_Button>
+        <R_Button Enabled="@((EnableApprove && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)&& _isGridDetailOnCrudMode)" OnClick="ApproveJournalProcess">@_localizer["_Approve"]</R_Button>
+        <R_Button Enabled="@((EnableCommit && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)&& _conductorDetailRef.R_ConductorMode==R_eConductorMode.Normal)" OnClick="CommitJournalProcess">@lcLabelCommit</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_GroupBox Title="Transaction Detail" TitleClass="text-danger">
+    <R_StackLayout Row>
+        <R_Grid @ref="_gridDetailRef"
+                DataSource="_TransactionEntryViewModel.JournalDetailGrid"
+                Pageable
+                R_ConductorGridSource="_conductorDetailRef"
+                R_GridType="R_eGridType.Original"
+                R_ServiceGetListRecord="JournalDet_ServiceGetListRecord"
+                Height="230px"
+                Enabled="@(EnableHaveRecId && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)"
+                R_EnableAdd="true"
+                R_EnableEdit="true"
+                AllowAddNewRow
+                AllowEditRow
+                AllowDeleteRow
+                R_ServiceGetRecord="@JournalDet_ServiceGetRecord"
+                R_Display="@JournalDet_RDisplay"
+                R_AfterAdd="@JournalDet_AfterAdd"
+                R_Validation="@JournalDet_Validation"
+                R_ServiceDelete="@JournalDet_ServiceDelete"
+                R_BeforeEdit="@JournalDet_BeforeEdit"
+                R_BeforeDelete="@JournalDet_BeforeDelete"
+                R_Saving="@JournalDet_Saving"
+                R_ServiceSave="@JournalDet_ServiceSave"
+                R_AfterSave="@JournalDetail_AfterSave"
+                R_Before_Open_Grid_Lookup="@JournalDet_BeforeOpenGridLookupColumn"
+                R_After_Open_Grid_Lookup="@JournalDet_AfterOpenGridLookupColumn"
+                R_CellValueChanged="@JournalDet_CellValueChangedAsync"
+                R_CheckGridAdd="@JournalDet_CheckGrid"
+                R_CheckGridDelete="@JournalDet_CheckGrid"
+                R_CheckGridEdit="@JournalDet_CheckGrid"
+                R_SetEditGridColumn="@JournalDet_SetEditGridColumn"
+                R_DisableCancelConfirmation>
+            <R_GridColumns>
+                <R_GridNumericColumn Width="67px" FieldName="@nameof(CBT01110ParamDTO.INO)" TValue="int" HeaderText="@_localizer["_No"]"></R_GridNumericColumn>
+                <R_GridLookupColumn Width="200px" FieldName="@nameof(CBT01110ParamDTO.CGLACCOUNT_NO)" R_EnableAdd="true" R_EnableEdit="true" HeaderText="@_localizer["_AccountNo"]" MaxLength="20"></R_GridLookupColumn>
+                <R_GridTextColumn Width="250px" FieldName="@nameof(CBT01110ParamDTO.CGLACCOUNT_NAME)" R_EnableAdd="false" R_EnableEdit="false" HeaderText="@_localizer["_AccountName"]"></R_GridTextColumn>
+                <R_GridComboBoxColumn Width="180px"
+                                      Data="@_TransactionEntryViewModel.VAR_CENTER_LIST"
+                                      FieldName="@nameof(CBT01110ParamDTO.CCENTER_CODE)"
+                                      ValueField="@nameof(CBT01100GSCenterDTO.CCENTER_CODE)"
+                                      TextField="@nameof(CBT01100GSCenterDTO.CCENTER_NAME)"
+                                      PopupMaxHeight="120px"
+                                      HeaderText="@_localizer["_Center"]"
+                                      R_EnableAdd
+                                      R_EnableEdit />
+                <R_GridLookupColumn Width="200px" FieldName="@nameof(CBT01110ParamDTO.CCASH_FLOW_CODE)" R_EnableAdd="true" R_EnableEdit="true" HeaderText="@_localizer["_CashFlowCode"]" TextboxEnabled="@false"></R_GridLookupColumn>
+                <R_GridTextColumn Width="250px" FieldName="@nameof(CBT01110ParamDTO.CCASH_FLOW_NAME)" Enabled="false" HeaderText="@_localizer["_CashFlowName"]"></R_GridTextColumn>
+                <R_GridNumericColumn Width="180px" Decimals="2" FieldName="@nameof(CBT01110ParamDTO.NDEBIT)" TValue="decimal" R_EnableAdd R_EnableEdit HeaderText="@_localizer["_Debit"]"></R_GridNumericColumn>
+                <R_GridNumericColumn Width="180px" Decimals="2" FieldName="@nameof(CBT01110ParamDTO.NCREDIT)" TValue="decimal" R_EnableAdd R_EnableEdit HeaderText="@_localizer["_Credit"]"></R_GridNumericColumn>
+                <R_GridTextColumn Width="500px" FieldName="@nameof(CBT01110ParamDTO.CDETAIL_DESC)" R_EnableAdd R_EnableEdit HeaderText="@_localizer["_Description"]"></R_GridTextColumn>
+                <R_GridTextColumn Width="120px" FieldName="@nameof(CBT01110ParamDTO.CDOCUMENT_NO)" MaxLength="30" R_EnableAdd R_EnableEdit HeaderText="@_localizer["_VoucherNo"]"></R_GridTextColumn>
+                <R_GridDatePickerColumn Width="150px" FieldName="@nameof(CBT01110ParamDTO.DDOCUMENT_DATE)" R_EnableAdd R_EnableEdit HeaderText="@_localizer["_VoucherDate"]"></R_GridDatePickerColumn>
+                <R_GridNumericColumn Width="150px" FieldName="@nameof(CBT01110ParamDTO.NLDEBIT)" TValue="decimal" Enabled="false" HeaderText="@_localizer["_DbLocal"]"></R_GridNumericColumn>
+                <R_GridNumericColumn Width="150px" FieldName="@nameof(CBT01110ParamDTO.NLCREDIT)" TValue="decimal" Enabled="false" HeaderText="@_localizer["_CrLocal"]"></R_GridNumericColumn>
+                <R_GridNumericColumn Width="150px" FieldName="@nameof(CBT01110ParamDTO.NBDEBIT)" TValue="decimal" Enabled="false" HeaderText="@_localizer["_DbBase"]"></R_GridNumericColumn>
+                <R_GridNumericColumn Width="150px" FieldName="@nameof(CBT01110ParamDTO.NBCREDIT)" TValue="decimal" Enabled="false" HeaderText="@_localizer["_CrBase"]"></R_GridNumericColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+</R_GroupBox>
+
+<R_Conductor @ref="_conductorRef"
+             R_ViewModel="_TransactionListViewModel"
+             R_IsHeader
+             R_ServiceGetRecord="@JournalForm_GetRecord"
+             R_ServiceSave="@JournalForm_ServiceSave"
+             R_AfterAdd="@JournalForm_AfterAdd"
+             R_Display="@JournalForm_RDisplay"
+             R_BeforeCancel="@JournalForm_BeforeCancel"
+             R_Validation="@ValidationFormCBT01100TransactionEntry"
+             R_ConvertToGridEntity="@JrnForm_ConvertToGridEntity"
+             R_SetOther="@JournalForm_SetOther">
+</R_Conductor>
+
+<R_ConductorGrid @ref="@_conductorDetailRef"
+                 R_ConductorParent="_conductorRef"
+                 R_SetOther="@JournalDet_SetOther" />

@@ -1,10 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+		<PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
+    </ItemGroup>
 
     <ItemGroup>
       <Reference Include="R_APIBackEnd">
@@ -16,10 +21,15 @@
       <Reference Include="R_CommonFrontBackAPI">
         <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
       </Reference>
+      <Reference Include="R_OpenTelemetry">
+        <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\COMMON\GS\GSM02000Common\GSM02000Common.csproj" />
+      <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_TAXResources\RSP_GS_MAINTAIN_TAXResources.csproj" />
+      <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_TAX_PCTResources\RSP_GS_MAINTAIN_TAX_PCTResources.csproj" />
     </ItemGroup>
 
 </Project>

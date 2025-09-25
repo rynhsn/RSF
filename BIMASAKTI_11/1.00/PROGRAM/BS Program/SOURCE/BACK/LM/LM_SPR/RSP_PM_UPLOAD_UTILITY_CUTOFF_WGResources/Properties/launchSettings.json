@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_PM_UPLOAD_UTILITY_CUTOFF_WGResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64844;http://localhost:64845"
+    }
+  }
+}

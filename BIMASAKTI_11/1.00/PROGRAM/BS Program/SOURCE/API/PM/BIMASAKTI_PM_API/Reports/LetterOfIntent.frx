@@ -1,0 +1,611 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="02/19/2025 15:03:10" ReportInfo.Modified="05/22/2025 14:47:28" ReportInfo.CreatorVersion="2023.2.21.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="Title" DataType="System.String"/>
+      <Column Name="LabelReport" DataType="PMT01300ReportCommon.PMT01300ReportLabelDTO, PMT01300ReportCommon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="LABEL_TAHUN" DataType="System.String"/>
+        <Column Name="LABEL_BULAN" DataType="System.String"/>
+        <Column Name="LABEL_HARI" DataType="System.String"/>
+        <Column Name="LABEL_M2" DataType="System.String"/>
+        <Column Name="LABEL_NOMOR" DataType="System.String"/>
+        <Column Name="LABEL_PERIHAL" DataType="System.String"/>
+        <Column Name="LABEL_PENAWARAN_LEASING_SEWA_RUANG_DI" DataType="System.String"/>
+        <Column Name="LABEL_KEPADA_YTH" DataType="System.String"/>
+        <Column Name="LABEL_NAMA" DataType="System.String"/>
+        <Column Name="LABEL_ALAMAT" DataType="System.String"/>
+        <Column Name="LABEL_SALAM_SEJAHTERA" DataType="System.String"/>
+        <Column Name="LABEL_TERIMA_KASIH_KAMI_UCAPKAN" DataType="System.String"/>
+        <Column Name="LABEL_SELANJUTNYA_DISEBUT_LANDLORD" DataType="System.String"/>
+        <Column Name="LABEL_SEBAGAI_REKAN_BISNIS" DataType="System.String"/>
+        <Column Name="LABEL_MENINDAKLANJUTI_KOMUNIKASI_KITA" DataType="System.String"/>
+        <Column Name="LABEL_SELAKU_MARKETING_AGENT_DARI" DataType="System.String"/>
+        <Column Name="LABEL_NAMA_BRAND_TENANT" DataType="System.String"/>
+        <Column Name="LABEL_NAMA_BRAND_TENANT_DESC" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_RUANG_SEWA" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_RUANG_SEWA_A" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_RUANG_B" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_RUANG_C" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_RUANG_D" DataType="System.String"/>
+        <Column Name="LABEL_DETAIL_RUANG_DESC" DataType="System.String"/>
+        <Column Name="LABEL_JANGKA_WAKTU_SEWA" DataType="System.String"/>
+        <Column Name="LABEL_JANGKA_WAKTU_SEWA_DESC" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SEWA" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SEWA_A" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SEWA_B" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SEWA_C" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SEWA_D" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_A" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_A_DESC" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_DP_DESC2" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_B" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_C" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_C_DESC" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SERVICE_CHARGE" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SERVICE_CHARGE_A" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SERVICE_CHARGE_B" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SERIVCE_CHARGE_C" DataType="System.String"/>
+        <Column Name="LABEL_BIAYA_SERVICE_CHARGE_D" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_SERVICE_CHARGES" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_SERVICE_CHARGES_A" DataType="System.String"/>
+        <Column Name="LABEL_CARA_PEMBAYARAN_SERVICE_CHARGES_A_DESC" DataType="System.String"/>
+        <Column Name="LABEL_UANG_JAMINAN" DataType="System.String"/>
+        <Column Name="LABEL_UANG_JAMINAN_A" DataType="System.String"/>
+        <Column Name="LABEL_UANG_JAMINAN_A_DESC" DataType="System.String"/>
+        <Column Name="LABEL_UANG_JAMINAN_A_DESC2" DataType="System.String"/>
+        <Column Name="LABEL_AREA_MEDIA_PROMOSI" DataType="System.String"/>
+        <Column Name="LABEL_AREA_MEDIA_PROMOSI_A" DataType="System.String"/>
+        <Column Name="LABEL_AREA_MEDIA_PROMOSI_A_DESC" DataType="System.String"/>
+        <Column Name="LABEL_AREA_MEDIA_PROMOSI_B" DataType="System.String"/>
+        <Column Name="LABEL_AREA_MEDIA_PROMOSI_B_DESC" DataType="System.String"/>
+        <Column Name="LABEL_AREA_MEDIA_PROMOSI_C" DataType="System.String"/>
+        <Column Name="LABEL_AREA_MEDIA_PROMOSI_D" DataType="System.String"/>
+        <Column Name="LABEL_MECHANICAL_LISTRIK_AIR" DataType="System.String"/>
+        <Column Name="LABEL_MECHANICAL_LISTRIK_AIR_DESC" DataType="System.String"/>
+        <Column Name="LABEL_MECHANICAL_LISTRIK_AIR_A" DataType="System.String"/>
+        <Column Name="LABEL_MECHANICAL_LISTRIK_AIR_B" DataType="System.String"/>
+        <Column Name="LABEL_MECHANICAL_LISTRIK_AIR_C" DataType="System.String"/>
+        <Column Name="LABEL_PENGGUNAAN_RUANG_SEWA" DataType="System.String"/>
+        <Column Name="LABEL_PENGGUNAAN_RUANG_SEWA_DESC" DataType="System.String"/>
+        <Column Name="LABEL_FITTING_OUT" DataType="System.String"/>
+        <Column Name="LABEL_FITTING_OUT_A" DataType="System.String"/>
+        <Column Name="LABEL_FITTING_OUT_B" DataType="System.String"/>
+        <Column Name="LABEL_FITTING_OUT_C" DataType="System.String"/>
+        <Column Name="LABEL_FITTING_OUT_D" DataType="System.String"/>
+        <Column Name="LABEL_FITTING_OUT_E" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_DESC" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_A" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_B" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_C" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_D" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_E" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_F" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_G" DataType="System.String"/>
+        <Column Name="LABEL_DOKUMEN_PELENGKAP_H" DataType="System.String"/>
+        <Column Name="LABEL_LAIN_LAIN" DataType="System.String"/>
+        <Column Name="LABEL_LAIN_LAIN_A" DataType="System.String"/>
+        <Column Name="LABEL_LAIN_LAIN_B" DataType="System.String"/>
+        <Column Name="LABEL_PENUTUP" DataType="System.String"/>
+        <Column Name="LABEL_PENUTUP_A" DataType="System.String"/>
+        <Column Name="LABEL_PENUTUP_B" DataType="System.String"/>
+        <Column Name="LABEL_DIBUAT_OLEH" DataType="System.String"/>
+        <Column Name="LABEL_MENYETUJUI" DataType="System.String"/>
+        <Column Name="LABEL_MENGETAHUI" DataType="System.String"/>
+        <Column Name="LABEL_LETTER_OF_INTENT" DataType="System.String"/>
+        <Column Name="LABEL_DI" DataType="System.String"/>
+        <Column Name="LABEL_BRAND" DataType="System.String"/>
+        <Column Name="LABEL_TELP" DataType="System.String"/>
+      </Column>
+      <Column Name="Data" DataType="PMT01300ReportCommon.PMT01300ReportDataDTO, PMT01300ReportCommon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="CCOMPANY_ID" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPROPERTY_ID" DataType="System.String"/>
+        <Column Name="CPROPERTY_NAME" DataType="System.String"/>
+        <Column Name="CDEPT_CODE" DataType="System.String"/>
+        <Column Name="CTRANS_CODE" DataType="System.String"/>
+        <Column Name="CREF_NO" DataType="System.String"/>
+        <Column Name="CREF_DATE" DataType="System.String"/>
+        <Column Name="CPROPERTY_CITY" DataType="System.String"/>
+        <Column Name="CPROPERTY_PROVINCE" DataType="System.String"/>
+        <Column Name="CBUILDING_ID" DataType="System.String"/>
+        <Column Name="CBUILDING_NAME" DataType="System.String"/>
+        <Column Name="CSTART_DATE" DataType="System.String"/>
+        <Column Name="CSTART_TIME" DataType="System.String"/>
+        <Column Name="CEND_DATE" DataType="System.String"/>
+        <Column Name="CEND_TIME" DataType="System.String"/>
+        <Column Name="IMONTHS" DataType="System.Int32"/>
+        <Column Name="IYEARS" DataType="System.Int32"/>
+        <Column Name="IDAYS" DataType="System.Int32"/>
+        <Column Name="IHOURS" DataType="System.Int32"/>
+        <Column Name="CSALESMAN_ID" DataType="System.String"/>
+        <Column Name="CSALESMAN_NAME" DataType="System.String"/>
+        <Column Name="CTENANT_ID" DataType="System.String"/>
+        <Column Name="CTENANT_NAME" DataType="System.String"/>
+        <Column Name="CTENANT_GROUP_NAME" DataType="System.String"/>
+        <Column Name="CUNIT_DESCRIPTION" DataType="System.String"/>
+        <Column Name="CNOTES" DataType="System.String"/>
+        <Column Name="CCURRENCY_CODE" DataType="System.String"/>
+        <Column Name="CCURRENCY_NAME" DataType="System.String"/>
+        <Column Name="CUNIT_LIST" DataType="System.String"/>
+        <Column Name="NTOTAL_GROSS_AREA" DataType="System.Decimal"/>
+        <Column Name="NTOTAL_NET_AREA" DataType="System.Decimal"/>
+        <Column Name="NTOTAL_ACTUAL_AREA" DataType="System.Decimal"/>
+        <Column Name="NTOTAL_COMMON_AREA" DataType="System.Decimal"/>
+        <Column Name="NBOOKING_FEE" DataType="System.Decimal"/>
+        <Column Name="CLEASE_MODE" DataType="System.String"/>
+        <Column Name="CLEASE_MODE_DESCR" DataType="System.String"/>
+        <Column Name="CCHARGE_MODE" DataType="System.String"/>
+        <Column Name="CCHARGE_MODE_DESCR" DataType="System.String"/>
+        <Column Name="CTRANS_STATUS" DataType="System.String"/>
+        <Column Name="CTRANS_STATUS_DESCR" DataType="System.String"/>
+        <Column Name="CAGREEMENT_STATUS" DataType="System.String"/>
+        <Column Name="CAGREEMENT_STATUS_DESCR" DataType="System.String"/>
+        <Column Name="CUNIT_TYPE_CATEGORY_ID" DataType="System.String"/>
+        <Column Name="CUNIT_TYPE_CATEGORY_NAME" DataType="System.String"/>
+        <Column Name="ITOTAL_UNIT" DataType="System.Int32"/>
+        <Column Name="CEXPIRED_DATE" DataType="System.String"/>
+        <Column Name="CBILLING_RULE_TYPE" DataType="System.String"/>
+        <Column Name="CBILLING_RULE_CODE" DataType="System.String"/>
+        <Column Name="CBILLING_RULE_NAME" DataType="System.String"/>
+        <Column Name="LWITH_DP" DataType="System.Boolean"/>
+        <Column Name="IDP_PERCENTAGE" DataType="System.Int32"/>
+        <Column Name="IDP_INTERVAL" DataType="System.Int32"/>
+        <Column Name="CDP_PERIOD_MODE" DataType="System.String"/>
+        <Column Name="IINSTALLMENT_PERCENTAGE" DataType="System.Int32"/>
+        <Column Name="IINSTALLMENT_INTERVAL" DataType="System.Int32"/>
+        <Column Name="CINSTALLMENT_PERIOD_MODE" DataType="System.String"/>
+        <Column Name="NLEASE_AMT" DataType="System.Decimal"/>
+        <Column Name="NLEASE_TOTAL_AMT" DataType="System.Decimal"/>
+        <Column Name="NLEASE_DP_AMT" DataType="System.Decimal"/>
+        <Column Name="NLEASE_INSTALLMENT_AMT" DataType="System.Decimal"/>
+        <Column Name="NCHARGES_AMT" DataType="System.Decimal"/>
+        <Column Name="NCHARGES_TOTAL_AMT" DataType="System.Decimal"/>
+        <Column Name="NDEPOSIT_TOTAL_AMT" DataType="System.Decimal"/>
+        <Column Name="NCAPACITY" DataType="System.Decimal"/>
+        <Column Name="CTC_CODE" DataType="System.String"/>
+        <Column Name="IREVISE_SEQ_NO" DataType="System.Int32"/>
+        <Column Name="LWITH_FO" DataType="System.Boolean"/>
+        <Column Name="CHO_PLAN_DATE" DataType="System.String"/>
+        <Column Name="CHO_ACTUAL_DATE" DataType="System.String"/>
+        <Column Name="CACTUAL_START_DATE" DataType="System.String"/>
+        <Column Name="CACTUAL_START_TIME" DataType="System.String"/>
+        <Column Name="CACTUAL_END_DATE" DataType="System.String"/>
+        <Column Name="CACTUAL_END_TIME" DataType="System.String"/>
+        <Column Name="CREC_ID" DataType="System.String"/>
+        <Column Name="CSOLD_DATE" DataType="System.String"/>
+        <Column Name="NACTUAL_PRICE" DataType="System.Decimal"/>
+        <Column Name="NSELL_PRICE" DataType="System.Decimal"/>
+        <Column Name="CUNIT_ID" DataType="System.String"/>
+        <Column Name="CUNIT_NAME" DataType="System.String"/>
+        <Column Name="CFLOOR_NAME" DataType="System.String"/>
+        <Column Name="CCOMPANY_ADDRESS" DataType="System.String"/>
+        <Column Name="CPROPERTY_CADDRESS" DataType="System.String"/>
+        <Column Name="CTENANT_ADDRESS" DataType="System.String"/>
+        <Column Name="CTENANT_CITY" DataType="System.String"/>
+        <Column Name="CTENANT_POSTAL_CODE" DataType="System.String"/>
+        <Column Name="CTENANT_EMAIL" DataType="System.String"/>
+        <Column Name="CTENANT_PHONE1" DataType="System.String"/>
+        <Column Name="CTENANT_PHONE2" DataType="System.String"/>
+        <Column Name="CTENANT_ATTENTION1_NAME" DataType="System.String"/>
+        <Column Name="CTENANT_ATTENTION1_POSITION" DataType="System.String"/>
+        <Column Name="DREF_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="DSTART_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="DEND_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="DEXPIRED_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="DHO_PLAN_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="DHO_ACTUAL_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="DACTUAL_START_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="DACTUAL_END_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="DSOLD_DATE" DataType="System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"/>
+        <Column Name="CLOCATION" DataType="System.String"/>
+        <Column Name="CNAME01" DataType="System.String"/>
+        <Column Name="CNAME02" DataType="System.String"/>
+        <Column Name="CNAME03" DataType="System.String"/>
+        <Column Name="CNAME04" DataType="System.String"/>
+        <Column Name="CNAME05" DataType="System.String"/>
+        <Column Name="CNAME06" DataType="System.String"/>
+        <Column Name="CPOSITION01" DataType="System.String"/>
+        <Column Name="CPOSITION02" DataType="System.String"/>
+        <Column Name="CPOSITION03" DataType="System.String"/>
+        <Column Name="CPOSITION04" DataType="System.String"/>
+        <Column Name="CPOSITION05" DataType="System.String"/>
+        <Column Name="CPOSITION06" DataType="System.String"/>
+        <Column Name="OSIGN01" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="OSIGN02" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="OSIGN03" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="OSIGN04" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="OSIGN05" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="OSIGN06" DataType="System.Byte[]" BindableControl="Picture"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8">
+      <TextObject Name="Text1" Left="18.9" Width="680.4" Height="28.35" Text="[ResponseDataModel.Title]" HorzAlign="Center" Font="Arial Unicode MS, 14pt, style=Bold, Underline"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="41.8" Width="718.2" Height="47.25">
+      <TextObject Name="Text2" Left="9.45" Width="330.75" Height="28.35" Text="[ResponseDataModel.Data.CPROPERTY_CITY], [ResponseDataModel.Data.DREF_DATE]" Font="Arial Unicode MS, 12pt, style=Bold">
+        <Formats>
+          <GeneralFormat/>
+          <DateFormat/>
+        </Formats>
+      </TextObject>
+      <ChildBand Name="Child1" Top="93.05" Width="718.2" Height="28.35">
+        <TextObject Name="Text190" Left="9.45" Width="94.5" Height="20.9" CanShrink="true" Text="[ResponseDataModel.LabelReport.LABEL_NOMOR]" Font="Arial Unicode MS, 12pt"/>
+        <TextObject Name="Text191" Left="103.95" Width="595.35" Height="20.9" CanShrink="true" Text=": [ResponseDataModel.Data.CREF_NO]" AutoWidth="true" Font="Arial Unicode MS, 12pt, style=Bold"/>
+        <ChildBand Name="Child2" Top="125.4" Width="718.2" Height="30.35">
+          <TextObject Name="Text192" Left="9.45" Width="94.5" Height="20.9" CanShrink="true" Text="[ResponseDataModel.LabelReport.LABEL_PERIHAL]" Font="Arial Unicode MS, 12pt"/>
+          <TextObject Name="Text193" Left="103.95" Width="595.35" Height="20.9" CanShrink="true" Text=": [ResponseDataModel.LabelReport.LABEL_LETTER_OF_INTENT] [ResponseDataModel.Data.CUNIT_DESCRIPTION] [ResponseDataModel.LabelReport.LABEL_DI] [ResponseDataModel.Data.CPROPERTY_NAME]" AutoWidth="true" Font="Arial Unicode MS, 12pt, style=Bold">
+            <Formats>
+              <GeneralFormat/>
+              <GeneralFormat/>
+              <GeneralFormat/>
+              <GeneralFormat/>
+            </Formats>
+          </TextObject>
+          <ChildBand Name="Child3" Top="159.75" Width="718.2" Height="47.25">
+            <TextObject Name="Text3" Left="9.45" Top="18.9" Width="689.85" Height="28.35" Text="[ResponseDataModel.LabelReport.LABEL_KEPADA_YTH]," AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+            <ChildBand Name="Child4" Top="211" Width="718.2" Height="28.35">
+              <TextObject Name="Text194" Left="9.45" Width="94.5" Height="20.9" CanShrink="true" Text="[ResponseDataModel.LabelReport.LABEL_NAMA] " Font="Arial Unicode MS, 12pt"/>
+              <TextObject Name="Text195" Left="103.95" Width="595.35" Height="20.9" CanShrink="true" Text=": [ResponseDataModel.Data.CTENANT_NAME]" AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+              <ChildBand Name="Child5" Top="243.35" Width="718.2" Height="28.35">
+                <TextObject Name="Text196" Left="9.45" Width="94.5" Height="20.9" CanShrink="true" Text="[ResponseDataModel.LabelReport.LABEL_BRAND] " Font="Arial Unicode MS, 12pt"/>
+                <TextObject Name="Text197" Left="103.95" Width="595.35" Height="20.9" CanShrink="true" Text=": [ResponseDataModel.Data.CUNIT_DESCRIPTION]" AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+                <ChildBand Name="Child6" Top="275.7" Width="718.2" Height="28.35">
+                  <TextObject Name="Text200" Left="9.45" Width="94.5" Height="20.9" CanShrink="true" Text="[ResponseDataModel.LabelReport.LABEL_ALAMAT]	" Font="Arial Unicode MS, 12pt"/>
+                  <TextObject Name="Text201" Left="103.95" Width="595.35" Height="20.9" CanShrink="true" Text=": [ResponseDataModel.Data.CTENANT_ADDRESS]" AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+                  <ChildBand Name="Child7" Top="308.05" Width="718.2" Height="28.35">
+                    <TextObject Name="Text198" Left="9.45" Width="94.5" Height="20.9" CanShrink="true" Text="[ResponseDataModel.LabelReport.LABEL_TELP]" Font="Arial Unicode MS, 12pt"/>
+                    <TextObject Name="Text199" Left="103.95" Width="595.35" Height="20.9" CanShrink="true" Text=": [ResponseDataModel.Data.CTENANT_PHONE1]" AutoWidth="true" Font="Arial Unicode MS, 12pt"/>
+                    <ChildBand Name="Child8" Top="340.4" Width="718.2" Height="37.8">
+                      <TextObject Name="Text202" Left="9.45" Top="18.9" Width="689.85" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_SALAM_SEJAHTERA]" Font="Arial Unicode MS, 12pt"/>
+                      <ChildBand Name="Child9" Top="382.2" Width="718.2" Height="28.35" CanGrow="true">
+                        <TextObject Name="Text203" Left="9.45" Top="9.45" Width="689.85" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_TERIMA_KASIH_KAMI_UCAPKAN] [ResponseDataModel.Data.CPROPERTY_NAME] [ResponseDataModel.LabelReport.LABEL_SELANJUTNYA_DISEBUT_LANDLORD] [ResponseDataModel.LabelReport.LABEL_SEBAGAI_REKAN_BISNIS] [ResponseDataModel.Data.CPROPERTY_CITY], [ResponseDataModel.Data.CPROPERTY_PROVINCE]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt">
+                          <Formats>
+                            <GeneralFormat/>
+                            <GeneralFormat/>
+                            <GeneralFormat/>
+                            <GeneralFormat/>
+                            <GeneralFormat/>
+                            <GeneralFormat/>
+                          </Formats>
+                        </TextObject>
+                        <ChildBand Name="Child10" Top="414.55" Width="718.2" Height="28.35" CanGrow="true">
+                          <TextObject Name="Text204" Left="9.45" Top="9.45" Width="689.85" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_MENINDAKLANJUTI_KOMUNIKASI_KITA] [ResponseDataModel.Data.CCOMPANY_NAME] [ResponseDataModel.LabelReport.LABEL_SELAKU_MARKETING_AGENT_DARI]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt">
+                            <Formats>
+                              <GeneralFormat/>
+                              <GeneralFormat/>
+                              <GeneralFormat/>
+                            </Formats>
+                          </TextObject>
+                        </ChildBand>
+                      </ChildBand>
+                    </ChildBand>
+                  </ChildBand>
+                </ChildBand>
+              </ChildBand>
+            </ChildBand>
+          </ChildBand>
+        </ChildBand>
+      </ChildBand>
+    </DataBand>
+    <DataBand Name="Data16" Top="446.9" Width="718.2" Height="47.25">
+      <TextObject Name="Text11" Left="18.9" Top="18.9" Width="207.9" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_NAMA_BRAND_TENANT]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text12" Left="226.8" Top="18.9" Width="472.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.CUNIT_DESCRIPTION] [ResponseDataModel.LabelReport.LABEL_NAMA_BRAND_TENANT_DESC]" AutoWidth="true" Font="Arial Unicode MS, 12pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+    </DataBand>
+    <DataBand Name="Data2" Top="498.15" Width="718.2" Height="37.8" CanGrow="true">
+      <TextObject Name="Text105" Left="18.9" Width="444.15" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_DETAIL_RUANG_SEWA]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text106" Left="37.8" Top="18.9" Width="661.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_DETAIL_RUANG_SEWA_A] [ResponseDataModel.Data.CPROPERTY_NAME]" Font="Arial Unicode MS, 12pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <ChildBand Name="Child11" Top="539.95" Width="718.2" Height="18.9">
+        <TextObject Name="Text107" Left="37.8" Width="661.5" Height="18.9" Text="[ResponseDataModel.LabelReport.LABEL_DETAIL_RUANG_B] [ResponseDataModel.Data.CFLOOR_NAME]" Font="Arial Unicode MS, 12pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <ChildBand Name="Child12" Top="562.85" Width="718.2" Height="18.9">
+          <TextObject Name="Text108" Left="37.8" Width="661.5" Height="18.9" Text="[ResponseDataModel.LabelReport.LABEL_DETAIL_RUANG_C] [ResponseDataModel.Data.CUNIT_LIST]" Font="Arial Unicode MS, 12pt">
+            <Formats>
+              <GeneralFormat/>
+              <GeneralFormat/>
+            </Formats>
+          </TextObject>
+          <ChildBand Name="Child13" Top="585.75" Width="718.2" Height="18.9">
+            <TextObject Name="Text109" Left="37.8" Width="661.5" Height="18.9" Text="[ResponseDataModel.LabelReport.LABEL_DETAIL_RUANG_D] [ResponseDataModel.Data.NTOTAL_GROSS_AREA] [ResponseDataModel.LabelReport.LABEL_M2]" Font="Arial Unicode MS, 12pt">
+              <Formats>
+                <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+                <GeneralFormat/>
+                <GeneralFormat/>
+              </Formats>
+            </TextObject>
+            <ChildBand Name="Child14" Top="608.65" Width="718.2" Height="18.9" CanGrow="true">
+              <TextObject Name="Text110" Left="37.8" Width="661.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_DETAIL_RUANG_DESC]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+            </ChildBand>
+          </ChildBand>
+        </ChildBand>
+      </ChildBand>
+    </DataBand>
+    <DataBand Name="Data3" Top="631.55" Width="718.2" Height="47.25">
+      <TextObject Name="Text114" Left="18.9" Top="9.45" Width="255.15" Height="18.9" Text="[ResponseDataModel.LabelReport.LABEL_JANGKA_WAKTU_SEWA]" AutoWidth="true" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text115" Left="37.8" Top="28.35" Width="680.4" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.IYEARS] [ResponseDataModel.LabelReport.LABEL_TAHUN] [ResponseDataModel.Data.IMONTHS] [ResponseDataModel.LabelReport.LABEL_BULAN],  [ResponseDataModel.LabelReport.LABEL_JANGKA_WAKTU_SEWA_DESC] [ResponseDataModel.Data.DSTART_DATE]" Font="Arial Unicode MS, 12pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <DateFormat/>
+        </Formats>
+      </TextObject>
+    </DataBand>
+    <DataBand Name="Data4" Top="682.8" Width="718.2" Height="56.7">
+      <TextObject Name="Text116" Left="18.9" Top="9.45" Width="330.75" Height="18.9" Text="[ResponseDataModel.LabelReport.LABEL_BIAYA_SEWA]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text117" Left="37.8" Top="33.35" Width="661.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_BIAYA_SEWA_A] [ResponseDataModel.Data.NTOTAL_GROSS_AREA] [ResponseDataModel.LabelReport.LABEL_M2]" Font="Arial Unicode MS, 12pt">
+        <Formats>
+          <GeneralFormat/>
+          <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <ChildBand Name="Child17" Top="743.5" Width="718.2" Height="18.9" CanGrow="true">
+        <TextObject Name="Text118" Left="37.8" Width="661.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_BIAYA_SEWA_B] [ResponseDataModel.Data.NLEASE_AMT] /[ResponseDataModel.LabelReport.LABEL_M2]/[ResponseDataModel.LabelReport.LABEL_BULAN]" Font="Arial Unicode MS, 12pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <ChildBand Name="Child18" Top="766.4" Width="718.2" Height="18.9" CanGrow="true">
+          <TextObject Name="Text119" Left="37.8" Width="661.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_BIAYA_SEWA_C] [ResponseDataModel.Data.IYEARS] [ResponseDataModel.LabelReport.LABEL_TAHUN] [ResponseDataModel.Data.IMONTHS] [ResponseDataModel.LabelReport.LABEL_BULAN]" Font="Arial Unicode MS, 12pt">
+            <Formats>
+              <GeneralFormat/>
+              <GeneralFormat/>
+              <GeneralFormat/>
+              <GeneralFormat/>
+              <GeneralFormat/>
+            </Formats>
+          </TextObject>
+          <ChildBand Name="Child19" Top="789.3" Width="718.2" Height="18.9" CanGrow="true">
+            <TextObject Name="Text120" Left="37.8" Width="661.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_BIAYA_SEWA_D] [ResponseDataModel.Data.NLEASE_TOTAL_AMT]" Font="Arial Unicode MS, 12pt">
+              <Formats>
+                <GeneralFormat/>
+                <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+              </Formats>
+            </TextObject>
+          </ChildBand>
+        </ChildBand>
+      </ChildBand>
+    </DataBand>
+    <DataBand Name="Data5" Top="812.2" Width="718.2" Height="66.15" CanGrow="true">
+      <TextObject Name="Text127" Left="18.9" Top="9.45" Width="567" Height="18.9" Text="[ResponseDataModel.LabelReport.LABEL_CARA_PEMBAYARAN_BIAYA_SEWA]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text128" Left="37.8" Top="37.8" Width="661.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_A] [ResponseDataModel.Data.IDP_PERCENTAGE] [ResponseDataModel.LabelReport.LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_A_DESC] [ResponseDataModel.Data.NLEASE_DP_AMT] [ResponseDataModel.LabelReport.LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_DP_DESC2] [ResponseDataModel.Data.IDP_INTERVAL] x ([ResponseDataModel.LabelReport.LABEL_BULAN] )" Font="Arial Unicode MS, 12pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <ChildBand Name="Child21" Top="882.35" Width="718.2" Height="18.9" CanGrow="true">
+        <TextObject Name="Text129" Left="37.8" Width="661.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_B] [ResponseDataModel.Data.NLEASE_INSTALLMENT_AMT]" Font="Arial Unicode MS, 12pt">
+          <Formats>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+          </Formats>
+        </TextObject>
+        <ChildBand Name="Child22" Top="905.25" Width="718.2" Height="18.9" CanGrow="true">
+          <TextObject Name="Text131" Left="37.8" Width="661.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_C] [ResponseDataModel.Data.IINSTALLMENT_INTERVAL] [ResponseDataModel.LabelReport.LABEL_CARA_PEMBAYARAN_BIAYA_SEWA_C_DESC] [ResponseDataModel.Data.NLEASE_INSTALLMENT_AMT]" Font="Arial Unicode MS, 12pt">
+            <Formats>
+              <GeneralFormat/>
+              <GeneralFormat/>
+              <GeneralFormat/>
+              <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            </Formats>
+          </TextObject>
+        </ChildBand>
+      </ChildBand>
+    </DataBand>
+    <DataBand Name="Data6" Top="928.15" Width="718.2" Height="56.7" CanGrow="true">
+      <TextObject Name="Text132" Left="18.9" Top="9.45" Width="519.75" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_BIAYA_SERVICE_CHARGE]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text133" Left="37.8" Top="37.8" Width="661.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_BIAYA_SERVICE_CHARGE_A] [ResponseDataModel.Data.NTOTAL_GROSS_AREA] [ResponseDataModel.LabelReport.LABEL_M2]" Font="Arial Unicode MS, 12pt">
+        <Formats>
+          <CurrencyFormat/>
+          <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <ChildBand Name="Child24" Top="988.85" Width="718.2" Height="18.9" CanGrow="true">
+        <TextObject Name="Text134" Left="37.8" Width="661.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_BIAYA_SERVICE_CHARGE_B] [ResponseDataModel.Data.NCHARGES_AMT] /[ResponseDataModel.LabelReport.LABEL_M2]/[ResponseDataModel.LabelReport.LABEL_BULAN]" Font="Arial Unicode MS, 12pt">
+          <Formats>
+            <GeneralFormat/>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <ChildBand Name="Child25" Top="1011.75" Width="718.2" Height="18.9" CanGrow="true">
+          <TextObject Name="Text135" Left="37.8" Width="661.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_BIAYA_SERIVCE_CHARGE_C] [ResponseDataModel.Data.IYEARS] [ResponseDataModel.LabelReport.LABEL_TAHUN] [ResponseDataModel.Data.IMONTHS] [ResponseDataModel.LabelReport.LABEL_BULAN]" Font="Arial Unicode MS, 12pt">
+            <Formats>
+              <GeneralFormat/>
+              <GeneralFormat/>
+              <GeneralFormat/>
+              <GeneralFormat/>
+              <GeneralFormat/>
+            </Formats>
+          </TextObject>
+          <ChildBand Name="Child26" Top="1034.65" Width="718.2" Height="18.9" CanGrow="true">
+            <TextObject Name="Text136" Left="37.8" Width="661.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_BIAYA_SERVICE_CHARGE_D] [ResponseDataModel.Data.NCHARGES_TOTAL_AMT]" Font="Arial Unicode MS, 12pt">
+              <Formats>
+                <CurrencyFormat/>
+                <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+              </Formats>
+            </TextObject>
+          </ChildBand>
+        </ChildBand>
+      </ChildBand>
+    </DataBand>
+    <DataBand Name="Data7" Top="1057.55" Width="718.2" Height="56.7" CanGrow="true">
+      <TextObject Name="Text143" Left="18.9" Top="9.45" Width="614.25" Height="18.9" Text="[ResponseDataModel.LabelReport.LABEL_CARA_PEMBAYARAN_SERVICE_CHARGES]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text144" Left="37.8" Top="37.8" Width="642.6" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_CARA_PEMBAYARAN_SERVICE_CHARGES_A] [ResponseDataModel.Data.IYEARS] [ResponseDataModel.LabelReport.LABEL_TAHUN] [ResponseDataModel.Data.IMONTHS] [ResponseDataModel.LabelReport.LABEL_BULAN] [ResponseDataModel.LabelReport.LABEL_CARA_PEMBAYARAN_SERVICE_CHARGES_A_DESC] [ResponseDataModel.Data.NCHARGES_AMT]" Font="Arial Unicode MS, 12pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <GeneralFormat/>
+          <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+        </Formats>
+      </TextObject>
+    </DataBand>
+    <DataBand Name="Data8" Top="1118.25" Width="718.2" Height="56.7">
+      <TextObject Name="Text145" Left="18.9" Top="9.45" Width="614.25" Height="18.9" Text="[ResponseDataModel.LabelReport.LABEL_UANG_JAMINAN]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text146" Left="37.8" Top="37.8" Width="661.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_UANG_JAMINAN_A] [ResponseDataModel.Data.NDEPOSIT_TOTAL_AMT]" Font="Arial Unicode MS, 12pt">
+        <Formats>
+          <GeneralFormat/>
+          <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+        </Formats>
+      </TextObject>
+      <ChildBand Name="Child29" Top="1178.95" Width="718.2" Height="18.9" CanGrow="true">
+        <TextObject Name="Text147" Left="37.8" Width="661.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_UANG_JAMINAN_A_DESC]" Font="Arial Unicode MS, 12pt"/>
+        <ChildBand Name="Child30" Top="1201.85" Width="718.2" Height="18.9" CanGrow="true">
+          <TextObject Name="Text148" Left="37.8" Width="661.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_UANG_JAMINAN_A_DESC2]" Font="Arial Unicode MS, 12pt"/>
+        </ChildBand>
+      </ChildBand>
+    </DataBand>
+    <DataBand Name="Data9" Top="1224.75" Width="718.2" Height="56.7">
+      <TextObject Name="Text149" Left="18.9" Top="9.45" Width="614.25" Height="28.35" Text="[ResponseDataModel.LabelReport.LABEL_AREA_MEDIA_PROMOSI]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text150" Left="37.8" Top="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_AREA_MEDIA_PROMOSI_A]" Font="Arial Unicode MS, 12pt"/>
+      <ChildBand Name="Child32" Top="1285.45" Width="718.2" Height="18.9" CanGrow="true">
+        <TextObject Name="Text151" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_AREA_MEDIA_PROMOSI_A_DESC]" Font="Arial Unicode MS, 12pt"/>
+        <ChildBand Name="Child33" Top="1308.35" Width="718.2" Height="18.9" CanGrow="true">
+          <TextObject Name="Text152" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_AREA_MEDIA_PROMOSI_B]" Font="Arial Unicode MS, 12pt"/>
+          <ChildBand Name="Child34" Top="1331.25" Width="718.2" Height="18.9" CanGrow="true">
+            <TextObject Name="Text153" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_AREA_MEDIA_PROMOSI_B_DESC]" Font="Arial Unicode MS, 12pt"/>
+            <ChildBand Name="Child35" Top="1354.15" Width="718.2" Height="18.9" CanGrow="true">
+              <TextObject Name="Text154" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_AREA_MEDIA_PROMOSI_C]" Font="Arial Unicode MS, 12pt"/>
+              <ChildBand Name="Child36" Top="1377.05" Width="718.2" Height="18.9" CanGrow="true">
+                <TextObject Name="Text155" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_AREA_MEDIA_PROMOSI_D]" Font="Arial Unicode MS, 12pt"/>
+              </ChildBand>
+            </ChildBand>
+          </ChildBand>
+        </ChildBand>
+      </ChildBand>
+    </DataBand>
+    <DataBand Name="Data10" Top="1399.95" Width="718.2" Height="56.7">
+      <TextObject Name="Text156" Left="18.9" Top="9.45" Width="670.95" Height="28.35" Text="[ResponseDataModel.LabelReport.LABEL_MECHANICAL_LISTRIK_AIR]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text157" Left="37.8" Top="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_MECHANICAL_LISTRIK_AIR_DESC]" Font="Arial Unicode MS, 12pt"/>
+      <ChildBand Name="Child38" Top="1460.65" Width="718.2" Height="18.9" CanGrow="true">
+        <TextObject Name="Text158" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_MECHANICAL_LISTRIK_AIR_A] [ResponseDataModel.Data.NCAPACITY]" Font="Arial Unicode MS, 12pt">
+          <Formats>
+            <GeneralFormat/>
+            <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
+          </Formats>
+        </TextObject>
+        <ChildBand Name="Child39" Top="1483.55" Width="718.2" Height="18.9" CanGrow="true">
+          <TextObject Name="Text159" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_MECHANICAL_LISTRIK_AIR_B]" Font="Arial Unicode MS, 12pt"/>
+          <ChildBand Name="Child40" Top="1506.45" Width="718.2" Height="18.9" CanGrow="true">
+            <TextObject Name="Text160" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_MECHANICAL_LISTRIK_AIR_C]" Font="Arial Unicode MS, 12pt"/>
+          </ChildBand>
+        </ChildBand>
+      </ChildBand>
+    </DataBand>
+    <DataBand Name="Data11" Top="1529.35" Width="718.2" Height="56.7" CanGrow="true">
+      <TextObject Name="Text161" Left="18.9" Top="9.45" Width="689.85" Height="28.35" Text="[ResponseDataModel.LabelReport.LABEL_PENGGUNAAN_RUANG_SEWA]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text162" Left="37.8" Top="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_PENGGUNAAN_RUANG_SEWA_DESC]" Font="Arial Unicode MS, 12pt"/>
+    </DataBand>
+    <DataBand Name="Data12" Top="1590.05" Width="718.2" Height="56.7">
+      <TextObject Name="Text163" Left="18.9" Top="9.45" Width="689.85" Height="28.35" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_FITTING_OUT]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text164" Left="37.8" Top="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_FITTING_OUT_A] [ResponseDataModel.LabelReport.LABEL_HARI]" Font="Arial Unicode MS, 12pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <ChildBand Name="Child43" Top="1650.75" Width="718.2" Height="18.9" CanGrow="true">
+        <TextObject Name="Text165" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_FITTING_OUT_B]" Font="Arial Unicode MS, 12pt"/>
+        <ChildBand Name="Child44" Top="1673.65" Width="718.2" Height="18.9" CanGrow="true">
+          <TextObject Name="Text166" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_FITTING_OUT_C]" Font="Arial Unicode MS, 12pt"/>
+          <ChildBand Name="Child45" Top="1696.55" Width="718.2" Height="18.9" CanGrow="true">
+            <TextObject Name="Text167" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_FITTING_OUT_D]" Font="Arial Unicode MS, 12pt"/>
+            <ChildBand Name="Child46" Top="1719.45" Width="718.2" Height="18.9" CanGrow="true">
+              <TextObject Name="Text168" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_FITTING_OUT_E]" Font="Arial Unicode MS, 12pt"/>
+            </ChildBand>
+          </ChildBand>
+        </ChildBand>
+      </ChildBand>
+    </DataBand>
+    <DataBand Name="Data13" Top="1742.35" Width="718.2" Height="47.25" CanGrow="true">
+      <TextObject Name="Text169" Left="18.9" Top="9.45" Width="699.3" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_DOKUMEN_PELENGKAP]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text170" Left="37.8" Top="28.35" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_DOKUMEN_PELENGKAP_DESC]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+      <ChildBand Name="Child15" Top="1793.6" Width="718.2" Height="18.9" CanGrow="true">
+        <TextObject Name="Text171" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_DOKUMEN_PELENGKAP_A]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+        <ChildBand Name="Child16" Top="1816.5" Width="718.2" Height="18.9" CanGrow="true">
+          <TextObject Name="Text172" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_DOKUMEN_PELENGKAP_B]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+          <ChildBand Name="Child20" Top="1839.4" Width="718.2" Height="18.9" CanGrow="true">
+            <TextObject Name="Text173" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_DOKUMEN_PELENGKAP_C]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+            <ChildBand Name="Child23" Top="1862.3" Width="718.2" Height="18.9" CanGrow="true">
+              <TextObject Name="Text174" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_DOKUMEN_PELENGKAP_D]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+              <ChildBand Name="Child27" Top="1885.2" Width="718.2" Height="18.9" CanGrow="true">
+                <TextObject Name="Text175" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_DOKUMEN_PELENGKAP_E]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+                <ChildBand Name="Child28" Top="1908.1" Width="718.2" Height="18.9" CanGrow="true">
+                  <TextObject Name="Text176" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_DOKUMEN_PELENGKAP_F]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+                  <ChildBand Name="Child31" Top="1931" Width="718.2" Height="18.9" CanGrow="true">
+                    <TextObject Name="Text177" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_DOKUMEN_PELENGKAP_G]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+                    <ChildBand Name="Child37" Top="1953.9" Width="718.2" Height="18.9" CanGrow="true">
+                      <TextObject Name="Text178" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_DOKUMEN_PELENGKAP_H]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+                    </ChildBand>
+                  </ChildBand>
+                </ChildBand>
+              </ChildBand>
+            </ChildBand>
+          </ChildBand>
+        </ChildBand>
+      </ChildBand>
+    </DataBand>
+    <DataBand Name="Data14" Top="1976.8" Width="718.2" Height="56.7" CanGrow="true">
+      <TextObject Name="Text180" Left="37.8" Top="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_LAIN_LAIN_A]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+      <TextObject Name="Text179" Left="18.9" Top="9.45" Width="689.85" Height="28.35" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_LAIN_LAIN]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <ChildBand Name="Child41" Top="2037.5" Width="718.2" Height="18.9" CanGrow="true">
+        <TextObject Name="Text181" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_LAIN_LAIN_B]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+      </ChildBand>
+    </DataBand>
+    <DataBand Name="Data15" Top="2060.4" Width="718.2" Height="56.7" CanGrow="true">
+      <TextObject Name="Text182" Left="18.9" Top="9.45" Width="689.85" Height="28.35" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_PENUTUP]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text183" Left="37.8" Top="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_PENUTUP_A]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+      <ChildBand Name="Child42" Top="2121.1" Width="718.2" Height="18.9" CanGrow="true">
+        <TextObject Name="Text184" Left="37.8" Width="670.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.LabelReport.LABEL_PENUTUP_B]" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+      </ChildBand>
+    </DataBand>
+    <DataBand Name="Data17" Top="2144" Width="718.2" Height="198.45" CanGrow="true" CanShrink="true" DataSource="ResponseDataModel">
+      <TextObject Name="Text185" Left="18.9" Top="28.35" Width="103.95" Height="28.35" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.LabelReport.LABEL_DIBUAT_OLEH]" AutoWidth="true" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+      <TextObject Name="Text186" Left="255.15" Top="28.35" Width="103.95" Height="28.35" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.LabelReport.LABEL_MENYETUJUI]" AutoWidth="true" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+      <TextObject Name="Text187" Left="491.4" Top="28.35" Width="103.95" Height="28.35" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.LabelReport.LABEL_MENGETAHUI]" AutoWidth="true" HorzAlign="Justify" Font="Arial Unicode MS, 12pt"/>
+      <PictureObject Name="Picture1" Left="18.9" Top="56.7" Width="103.95" Height="85.05" DataColumn="ResponseDataModel.Data.OSIGN01"/>
+      <PictureObject Name="Picture2" Left="255.15" Top="56.7" Width="103.95" Height="85.05" DataColumn="ResponseDataModel.Data.OSIGN02"/>
+      <PictureObject Name="Picture3" Left="491.4" Top="56.7" Width="103.95" Height="85.05" DataColumn="ResponseDataModel.Data.OSIGN03"/>
+      <TextObject Name="Text205" Left="18.9" Top="141.75" Width="226.8" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.CNAME01]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text206" Left="18.9" Top="160.65" Width="226.8" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.CPOSITION01]" Font="Arial Unicode MS, 12pt, style=Italic"/>
+      <TextObject Name="Text207" Left="255.15" Top="160.65" Width="226.8" Height="18.9" Text="[ResponseDataModel.Data.CPOSITION02]" Font="Arial Unicode MS, 12pt, style=Italic"/>
+      <TextObject Name="Text208" Left="255.15" Top="141.75" Width="226.8" Height="18.9" Text="[ResponseDataModel.Data.CNAME02]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text209" Left="491.4" Top="141.75" Width="217.35" Height="18.9" Text="[ResponseDataModel.Data.CNAME03]" Font="Arial Unicode MS, 12pt, style=Bold"/>
+      <TextObject Name="Text210" Left="491.4" Top="160.65" Width="217.35" Height="18.9" Text="[ResponseDataModel.Data.CPOSITION03]" Font="Arial Unicode MS, 12pt, style=Italic"/>
+    </DataBand>
+  </ReportPage>
+</Report>

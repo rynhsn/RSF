@@ -1,0 +1,34 @@
+2025-06-04 23:55:03,033 INFO  Program - Application starting...
+2025-06-04 23:55:03,197 INFO  Program - Configuring application settings...
+2025-06-04 23:55:03,217 INFO  Program - Application configuration loaded successfully.
+2025-06-04 23:55:04,225 INFO  Program - Finished Configured Service at program cs
+2025-06-04 23:55:04,225 INFO  Program - Configure service Succesfully
+2025-06-04 23:55:04,296 DEBUG Program - {"CORRELATION_ID":"ad97f9d4-5424-4a46-b5cc-961d2044469a","APPLICATION_ID":"Bimasakti","TENANT_ID":"All","COMPANY_ID":"All","PROGRAM_ID":"DatabaseAndMultiTenantConsole","USER_ID":"System","USER_NAME":"ConsoleSystem"}
+2025-06-04 23:55:04,300 INFO  Program - Try to get Args on main
+2025-06-04 23:55:04,301 INFO  Program - Get Helper MultiTenantHelper
+2025-06-04 23:55:04,396 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - START process method InjectMultiTenantConnectionString on Cls
+2025-06-04 23:55:04,530 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - Start Get connecction InjectMultiTenantConnectionString on Cls
+2025-06-04 23:55:04,530 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command Select CTENANT_ID, CCONNECTIONSTRING, CPROVIDER_NAME, CKEYWORD_FOR_PASSWORD  from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0}
+2025-06-04 23:55:04,531 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-06-04 23:55:04,891 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Execute Command select distinct  CTENANT_ID from( Select CTENANT_ID=REPLACE(REPLACE(CTENANT_ID,'_report_connectionstring',''),'_connectionstring','') from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0} ) as final
+2025-06-04 23:55:04,891 DEBUG HDA00100Console.MulltiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-06-04 23:55:04,897 INFO  HDA00100Console.MulltiTenant.MultiTenantHelper - END process method InjectMultiTenantConnectionString on Cls
+2025-06-04 23:55:04,898 INFO  Program - Get Service ConsoleMain
+2025-06-04 23:55:04,898 INFO  Program - Call Method Main
+2025-06-04 23:55:04,900 INFO  HDA00100Console.ConsoleMain - START process method Main 
+2025-06-04 23:55:04,900 INFO  HDA00100Console.ConsoleMain - Multi Tenant Database Connection
+2025-06-04 23:55:04,900 INFO  HDA00100Console.ConsoleMain - Get Tenants
+2025-06-04 23:55:04,900 INFO  HDA00100Console.ConsoleMain - Tenant REALTA-BSI
+2025-06-04 23:55:04,901 INFO  HDA00100Console.ConsoleMain - START process method _getConnectionName 
+2025-06-04 23:55:04,901 INFO  HDA00100Console.ConsoleMain - END process method _getConnectionName 
+2025-06-04 23:55:04,901 INFO  HDA00100Console.HDA00100Process - START process method Process_HD_SCHEDULER_ACTION on Cls
+2025-06-04 23:55:04,903 INFO  HDA00100Console.HDA00100Process - Execute query on method Process_HD_SCHEDULER_ACTION
+2025-06-04 23:55:04,903 DEBUG HDA00100Console.HDA00100Process - Execute query RSP_HD_SCHEDULER_ACTION 
+2025-06-04 23:55:05,172 ERROR HDA00100Console.HDA00100Process - Log Error R_Common.R_Exception: Exception of type 'R_Common.R_Exception' was thrown.
+   at R_Common.R_Exception.ThrowExceptionIfErrors()
+   at R_BackEnd.R_Db.SqlExecNonQuery(DbConnection poDbConnection, DbCommand poDbCommand, Boolean plAutoCloseConnection)
+   at HDA00100Console.HDA00100Process.Process_HD_SCHEDULER_ACTION(String ConnectionString) 
+2025-06-04 23:55:05,172 ERROR HDA00100Console.HDA00100Process - R_Common.R_Exception: Exception of type 'R_Common.R_Exception' was thrown.
+2025-06-04 23:55:05,174 ERROR HDA00100Console.ConsoleMain - R_Common.R_Exception: Exception of type 'R_Common.R_Exception' was thrown.
+2025-06-04 23:55:05,174 INFO  HDA00100Console.ConsoleMain - END process method Main 
+2025-06-04 23:55:05,174 INFO  Program - End Console Program

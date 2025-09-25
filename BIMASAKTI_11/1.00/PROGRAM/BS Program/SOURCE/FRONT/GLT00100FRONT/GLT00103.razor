@@ -1,0 +1,87 @@
+﻿@inherits R_Page
+@using GLT00100COMMON;
+@attribute [R_Page(Title = "Rapid Commit", ResourceId = "_pageTitleRapitCommit")]
+
+<R_StackLayout Style="width: 900px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>Department</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox @bind-Value="@_LoHeader.CDEPT_CODE"
+                       Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@_LoHeader.CDEPT_NAME"
+                       Enabled="false" />
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_Label>Journal Period</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox @bind-Value="lcPeriodYear"
+                       Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox @bind-Value="lcPeriodMonth"
+                       Enabled="false" />
+        </R_ItemLayout>
+
+        <R_ItemLayout col="1">
+            <R_Label>Status</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@lcStatusName"
+                       Enabled="false" />
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="mt-2">
+        <R_Grid @ref="_gridRef"
+                DataSource="@_viewModel.JournalGrid"
+                R_ConductorGridSource="_conductorGridRef"
+                R_GridType="R_eGridType.Batch"
+                R_ServiceGetListRecord="ServiceGetListRecord"
+                Pageable
+                AllowAddNewRow="false"
+                AllowDeleteRow="false"
+                AllowEditRow="false"
+                Height="400px"
+                R_ServiceGetRecord="@ServiceGetRecord"
+                R_ServiceSaveBatch="@ServiceSaveBatchApprove"
+                R_CheckBoxSelectValueChanged="@CheckBoxSelectValueChanged">
+            <R_GridColumns>
+                <R_GridCheckBoxSelectColumn Width="32px" FieldName="@nameof(GLT00100DTO.LSELECTED)"
+                                            ShowSelectAllHeader Filterable="false" />
+
+                <R_GridTextColumn Width="180px" FieldName="@nameof(GLT00100DTO.CREF_NO)"
+                                  HeaderText="Reference No." />
+
+                <R_GridDatePickerColumn Width="130px" FieldName="@nameof(GLT00100DTO.DREF_DATE)" HeaderText="Reference Date"></R_GridDatePickerColumn>
+                <R_GridTextColumn Width="130px" FieldName="@nameof(GLT00100DTO.CDOC_NO)" HeaderText="Document No."></R_GridTextColumn>
+
+                <R_GridTextColumn Width="500px" FieldName="@nameof(GLT00100DTO.CTRANS_DESC)"
+                                  HeaderText="Description" />
+
+                <R_GridTextColumn Width="100px" FieldName="@nameof(GLT00100DTO.CCURRENCY_CODE)"
+                                  HeaderText="Currency" />
+
+                <R_GridTextColumn Width="150px" FieldName="@nameof(GLT00100DTO.NTRANS_AMOUNT)"
+                                  HeaderText="Amount" />
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+    <R_StackLayout Row="true">
+        <R_ItemLayout>
+            <R_Button Enabled="@(_gridRef.DataSource.Count() > 0)" OnClick="OnChangeRapidApprove">Commit</R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Button OnClick="OnClose">Cancel</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="_conductorGridRef"
+                 R_ViewModel="_viewModel"
+                 R_IsHeader />

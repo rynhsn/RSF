@@ -1,0 +1,62 @@
+﻿@page "/LMM02500"
+@using LMM02500Common.DTOs
+@inherits R_Page
+
+<R_StackLayout Row Spacing="2" Class="mb-2">
+    <R_ItemLayout>
+        <R_Label>Property</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_ComboBox R_ConductorSource="@_conductorRef"
+                    Data="@_viewModel.PropertyList"
+                    Value="@_viewModel.PropertyId"
+                    ValueField="@nameof(LMM02500PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(LMM02500PropertyDTO.CPROPERTY_NAME)"
+                    ValueChanged="@((string value) => OnChangeParam(value))"
+                    Enabled="@_flagCombo"/>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_TabStrip @ref="_tab" OnActiveTabIndexChanging="OnChangeTab">
+    <R_TabStripTab Title="List">
+        <R_StackLayout Row Spacing="2">
+            <R_ItemLayout>
+                <R_Grid @ref="_gridRef"
+                        DataSource="_viewModel.GridList"
+                        Pageable
+                        R_ConductorSource="_conductorRef"
+                        R_GridType="R_eGridType.Navigator"
+                        R_ServiceGetListRecord="GetListRecord"
+                        Width="1100px"
+                        Height="530px">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(LMM02500TenantGroupDTO.CTENANT_GROUP_ID)" HeaderText="Tenant Group Id" Width="250px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(LMM02500TenantGroupDTO.CTENANT_GROUP_NAME)" HeaderText="Tenant Group Name" Width="250px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(LMM02500TenantGroupDTO.CPHONE1)" HeaderText="Phone No. (1)" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(LMM02500TenantGroupDTO.CPHONE2)" HeaderText="Phone No. (2)" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(LMM02500TenantGroupDTO.CEMAIL)" HeaderText="Email" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(LMM02500TenantGroupDTO.CPIC_NAME)" HeaderText="PIC Name" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(LMM02500TenantGroupDTO.CPIC_EMAIL)" HeaderText="PIC Email" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(LMM02500TenantGroupDTO.CUPDATE_BY)" HeaderText="Updated By" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(LMM02500TenantGroupDTO.DUPDATE_DATE)" HeaderText="Updated By" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridTextColumn FieldName="@nameof(LMM02500TenantGroupDTO.CCREATE_BY)" HeaderText="Created By" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                        <R_GridDateTimePickerColumn FieldName="@nameof(LMM02500TenantGroupDTO.DCREATE_DATE)" HeaderText="Created By" Width="200px" TextAlignment="R_eTextAlignment.Left"/>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        
+        </R_StackLayout>
+        
+        <R_Conductor @ref="@_conductorRef"
+                     R_ViewModel="@_viewModel"
+                     R_IsHeader="true"
+                     R_ServiceGetRecord="GetRecord"/>
+    </R_TabStripTab>
+    <R_TabStripTab Title="Profile">
+        <R_TabStrip>
+            <R_TabStripTab Title="Profile"></R_TabStripTab>
+        </R_TabStrip>
+        <R_TabStrip>
+            <R_TabStripTab Title="Tax Info"></R_TabStripTab>
+        </R_TabStrip>
+    </R_TabStripTab>
+</R_TabStrip>

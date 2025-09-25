@@ -1,0 +1,392 @@
+﻿@inherits R_Page
+@using PMM00100COMMON.DTO_s
+@using PMM00100COMMON.DTO_s.General
+@using PMM00100COMMON.DTO_s.Helper
+@using R_BlazorFrontEnd.Enums
+
+@* current property *@
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["_lbl_property"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox Enabled="false" @bind-Value="@_viewModel.SystemParamDetails.CPROPERTY_ID"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="5">
+        <R_TextBox Enabled="false" @bind-Value="@_viewModel.SystemParamDetails.CPROPERTY_NAME"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout Class="ps-2">
+        <R_CheckBox Enabled="false" @bind-Value="@_viewModel.SystemParamDetails.LALL_BUILDING"></R_CheckBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_Label FontSize="10">@_localizer["_chk_allbuilding"]</R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* grid & form row *@
+<R_StackLayout Row="true" class="pt-2" Spacing="4">
+
+    @* grid layout *@
+    <R_ItemLayout col="3">
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.HoUtilBuildingMappings"
+                R_GridType="@R_eGridType.Original"
+                R_ServiceGetListRecord="@HoUtilBuildingMappingGrid_GetListAsync"
+                R_Display="@HoUtilBuildingMappingGrid_DisplayAsync"
+                Height="560px"
+                Enabled="_enableGrid"
+                Pageable
+                @bind-PageSize="@_pageSize">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(HoUtilBuildingMappingDTO.CBUILDING_DISPLAY)"
+                                  HeaderText="@_localizer["_column_building"]" />
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+
+    @* form layout *@
+    <R_ItemLayout class="col">
+
+        <R_StackLayout Justify="R_eJustify.SpaceBetween" Style="height:100%">
+            <R_StackLayout Spacing="2">
+                <R_StackLayout>
+                    @* elec charges *@
+                    <R_StackLayout Row>
+                        <R_ItemLayout>
+                            <R_CheckBox R_ConductorSource="@_conRef"
+                                        @bind-Value="@_viewModel.HoUtilBuildingMapping.LELECTRICITY"
+                                        R_EnableAdd
+                                        R_EnableEdit
+                                        OnChanged="@OnChanged_CheckUtilityEnabled"
+                                        TabIndex="0"></R_CheckBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Label>@_localizer["_chk_electricity"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2" Class="d-flex justify-content-end">
+                            <R_Label>@_localizer["_lbl_chargesid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_TextBox @bind-Value="_viewModel.Data.CELECTRICITY_CHARGES_ID"
+                                       R_ConductorSource="@_conRef"
+                                       Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LELECTRICITY))"
+                                       CharacterCasing="R_eCharacterCasing.Upper"
+                                       MaxLength="20"
+                                       OnLostFocus="@OnLostFocus_ElecChargesAsync"
+                                       TabIndex="1" />
+                        </R_ItemLayout>
+                        <R_ItemLayout>
+                            <R_Lookup R_Before_Open_Lookup="@BeforeOpen_ElecChargesAsync"
+                                      R_After_Open_Lookup="@AfterOpen_ElecChargesAsync"
+                                      R_ConductorSource="@_conRef"
+                                      Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LELECTRICITY))"
+                                      TabIndex="2">...</R_Lookup>
+                        </R_ItemLayout>
+                        <R_ItemLayout Class="col">
+                            <R_TextBox @bind-Value="_viewModel.Data.CELECTRICITY_CHARGES_NAME"
+                                       Enabled="false" />
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    @* elec charge tax *@
+                    <R_StackLayout Row>
+                        <R_ItemLayout>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2" Class="ms-3 d-flex justify-content-end">
+                            <R_Label>@_localizer["_lbl_taxid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_TextBox @bind-Value="_viewModel.Data.CELECTRICITY_TAX_ID"
+                                       R_ConductorSource="@_conRef"
+                                       Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LELECTRICITY)&&(_viewModel.HoUtilBuildingMapping.LELECTRICITY_CHARGES_TAXABLE))"
+                                       CharacterCasing="R_eCharacterCasing.Upper"
+                                       MaxLength="20"
+                                       OnLostFocus="@OnLostFocus_ElecChargesTaxAsync"
+                                       TabIndex="3" />
+                        </R_ItemLayout>
+                        <R_ItemLayout>
+                            <R_Lookup R_Before_Open_Lookup="@BeforeOpen_ElecChargesTaxAsync"
+                                      R_After_Open_Lookup="@AfterOpen_ElecChargesTaxAsync"
+                                      R_ConductorSource="@_conRef"
+                                      Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LELECTRICITY)&&(_viewModel.HoUtilBuildingMapping.LELECTRICITY_CHARGES_TAXABLE))"
+                                      TabIndex="4">...</R_Lookup>
+                        </R_ItemLayout>
+                        <R_ItemLayout Class="col">
+                            <R_TextBox @bind-Value="_viewModel.Data.CELECTRICITY_TAX_NAME"
+                                       Enabled="false" />
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_StackLayout>
+                <R_StackLayout>
+                    @* chiller charges *@
+                    <R_StackLayout Row Class="mt-2">
+                        <R_ItemLayout>
+                            <R_CheckBox R_ConductorSource="@_conRef"
+                                        @bind-Value="@_viewModel.HoUtilBuildingMapping.LCHILLER"
+                                        R_EnableAdd
+                                        R_EnableEdit
+                                        OnChanged="@OnChanged_CheckUtilityEnabled"
+                                        TabIndex="0"></R_CheckBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Label>@_localizer["_chk_chiller"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2" Class="d-flex justify-content-end">
+                            <R_Label>@_localizer["_lbl_chargesid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_TextBox @bind-Value="_viewModel.Data.CCHILLER_CHARGES_ID"
+                                       R_ConductorSource="@_conRef"
+                                       Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LCHILLER))"
+                                       CharacterCasing="R_eCharacterCasing.Upper"
+                                       MaxLength="int.MaxValue"
+                                       OnLostFocus="@OnLostFocus_ChillerChargesAsync"
+                                       TabIndex="1" />
+                        </R_ItemLayout>
+                        <R_ItemLayout>
+                            <R_Lookup R_Before_Open_Lookup="@BeforeOpen_ChillerChargesAsync"
+                                      R_After_Open_Lookup="@AfterOpen_ChillerChargesAsync"
+                                      R_ConductorSource="@_conRef"
+                                      Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LCHILLER))"
+                                      TabIndex="2">...</R_Lookup>
+                        </R_ItemLayout>
+                        <R_ItemLayout Class="col">
+                            <R_TextBox @bind-Value="_viewModel.Data.CCHILLER_CHARGES_NAME"
+                                       Enabled="false" />
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    @* chiller charge tax *@
+                    <R_StackLayout Row>
+                        <R_ItemLayout>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2" Class="ms-3 d-flex justify-content-end">
+                            <R_Label>@_localizer["_lbl_taxid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_TextBox @bind-Value="_viewModel.Data.CCHILLER_TAX_ID"
+                                       R_ConductorSource="@_conRef"
+                                       Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LCHILLER)&&(_viewModel.HoUtilBuildingMapping.LCHILLER_CHARGES_TAXABLE))"
+                                       CharacterCasing="R_eCharacterCasing.Upper"
+                                       MaxLength="20"
+                                       OnLostFocus="@OnLostFocus_ChillerChargesTaxAsync"
+                                       TabIndex="3" />
+                        </R_ItemLayout>
+                        <R_ItemLayout>
+                            <R_Lookup R_Before_Open_Lookup="@BeforeOpen_ChillerChargesTaxAsync"
+                                      R_After_Open_Lookup="@AfterOpen_ChillerChargesTaxAsync"
+                                      R_ConductorSource="@_conRef"
+                                      Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LCHILLER)&&(_viewModel.HoUtilBuildingMapping.LCHILLER_CHARGES_TAXABLE))"
+                                      TabIndex="4">...</R_Lookup>
+                        </R_ItemLayout>
+                        <R_ItemLayout Class="col">
+                            <R_TextBox @bind-Value="_viewModel.Data.CCHILLER_TAX_NAME"
+                                       Enabled="false" />
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_StackLayout>
+                <R_StackLayout>
+                    @* gas charges *@
+                    <R_StackLayout Row Class="mt-2">
+                        <R_ItemLayout>
+                            <R_CheckBox R_ConductorSource="@_conRef"
+                                        R_EnableAdd
+                                        R_EnableEdit
+                                        @bind-Value="@_viewModel.HoUtilBuildingMapping.LGAS"
+                                        OnChanged="@OnChanged_CheckUtilityEnabled"
+                                        TabIndex="5"></R_CheckBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Label>@_localizer["_chk_gas"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2" Class="d-flex justify-content-end">
+                            <R_Label>@_localizer["_lbl_chargesid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_TextBox @bind-Value="_viewModel.Data.CGAS_CHARGES_ID"
+                                       R_ConductorSource="@_conRef"
+                                       Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&_viewModel.HoUtilBuildingMapping.LGAS)"
+                                       CharacterCasing="R_eCharacterCasing.Upper"
+                                       MaxLength="20"
+                                       OnLostFocus="@OnLostFocus_GasChargesAsync"
+                                       TabIndex="6" />
+                        </R_ItemLayout>
+                        <R_ItemLayout>
+                            <R_Lookup R_Before_Open_Lookup="@BeforeOpen_GasChargesAsync"
+                                      R_After_Open_Lookup="@AfterOpen_GasChargesAsync"
+                                      R_ConductorSource="@_conRef"
+                                      Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&_viewModel.HoUtilBuildingMapping.LGAS)"
+                                      TabIndex="7">...</R_Lookup>
+                        </R_ItemLayout>
+                        <R_ItemLayout Class="col">
+                            <R_TextBox @bind-Value="_viewModel.Data.CGAS_CHARGES_NAME"
+                                       Enabled="false" />
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    @* gas charge tax *@
+                    <R_StackLayout Row>
+                        <R_ItemLayout>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2" Class="ms-3 d-flex justify-content-end">
+                            <R_Label>@_localizer["_lbl_taxid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_TextBox @bind-Value="_viewModel.Data.CGAS_TAX_ID"
+                                       R_ConductorSource="@_conRef"
+                                       Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LGAS)&&(_viewModel.HoUtilBuildingMapping.LGAS_CHARGES_TAXABLE))"
+                                       CharacterCasing="R_eCharacterCasing.Upper"
+                                       MaxLength="20"
+                                       OnLostFocus="@OnLostFocus_GasChargesTaxAsync"
+                                       TabIndex="8" />
+                        </R_ItemLayout>
+                        <R_ItemLayout>
+                            <R_Lookup R_Before_Open_Lookup="@BeforeOpen_GasChargesTaxAsync"
+                                      R_After_Open_Lookup="@AfterOpen_GasChargesTaxAsync"
+                                      R_ConductorSource="@_conRef"
+                                      Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LGAS)&&(_viewModel.HoUtilBuildingMapping.LGAS_CHARGES_TAXABLE))"
+                                      TabIndex="9">...</R_Lookup>
+                        </R_ItemLayout>
+                        <R_ItemLayout Class="col">
+                            <R_TextBox @bind-Value="_viewModel.Data.CGAS_TAX_NAME"
+                                       Enabled="false" />
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_StackLayout>
+                <R_StackLayout>
+                    @* water charges*@
+                    <R_StackLayout Row Class="mt-2">
+                        <R_ItemLayout>
+                            <R_CheckBox @bind-Value="@_viewModel.HoUtilBuildingMapping.LWATER"
+                                        R_ConductorSource="@_conRef"
+                                        R_EnableAdd
+                                        R_EnableEdit
+                                        OnChanged="@OnChanged_CheckUtilityEnabled"
+                                        TabIndex="10"></R_CheckBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Label>@_localizer["_chk_water"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2" Class="d-flex justify-content-end">
+                            <R_Label>@_localizer["_lbl_chargesid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_TextBox @bind-Value="_viewModel.Data.CWATER_CHARGES_ID"
+                                       R_ConductorSource="@_conRef"
+                                       Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&_viewModel.HoUtilBuildingMapping.LWATER)"
+                                       CharacterCasing="R_eCharacterCasing.Upper"
+                                       MaxLength="20"
+                                       OnLostFocus="@OnLostFocus_WaterChargesAsync"
+                                       TabIndex="11" />
+                        </R_ItemLayout>
+                        <R_ItemLayout>
+                            <R_Lookup R_Before_Open_Lookup="@BeforeOpen_WaterChargesAsync"
+                                      R_After_Open_Lookup="@AfterOpen_WaterChargesAsync"
+                                      R_ConductorSource="@_conRef"
+                                      Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&_viewModel.HoUtilBuildingMapping.LWATER)"
+                                      TabIndex="12">...</R_Lookup>
+                        </R_ItemLayout>
+                        <R_ItemLayout Class="col">
+                            <R_TextBox @bind-Value="@_viewModel.Data.CWATER_CHARGES_NAME"
+                                       Enabled="false" />
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    @* water charge tax *@
+                    <R_StackLayout Row>
+                        <R_ItemLayout>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2" Class="ms-3 d-flex justify-content-end">
+                            <R_Label>@_localizer["_lbl_taxid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_TextBox @bind-Value="_viewModel.Data.CWATER_TAX_ID"
+                                       R_ConductorSource="@_conRef"
+                                       Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LWATER)&&(_viewModel.HoUtilBuildingMapping.LWATER_CHARGES_TAXABLE))"
+                                       CharacterCasing="R_eCharacterCasing.Upper"
+                                       MaxLength="20"
+                                       OnLostFocus="@OnLostFocus_WaterChargesTaxAsync"
+                                       TabIndex="13" />
+                        </R_ItemLayout>
+                        <R_ItemLayout>
+                            <R_Lookup R_Before_Open_Lookup="@BeforeOpen_WaterChargesTaxAsync"
+                                      R_After_Open_Lookup="@AfterOpen_WaterChargesTaxAsync"
+                                      R_ConductorSource="@_conRef"
+                                      Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LWATER)&&(_viewModel.HoUtilBuildingMapping.LWATER_CHARGES_TAXABLE))"
+                                      TabIndex="14">...</R_Lookup>
+                        </R_ItemLayout>
+                        <R_ItemLayout Class="col">
+                            <R_TextBox @bind-Value="_viewModel.Data.CWATER_TAX_NAME"
+                                       Enabled="false" />
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_StackLayout>
+            </R_StackLayout>
+            <R_StackLayout>
+                @* last updated & created *@
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_lbl_updatedby"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox @bind-Value="_viewModel.Data.CUPDATE_BY"
+                                   Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_DateTimePicker @bind-Value="_viewModel.Data.DUPDATE_DATE"
+                                          Enabled="false" ShowPickerButton="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_lbl_createdby"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox @bind-Value="_viewModel.Data.CCREATE_BY"
+                                   Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_DateTimePicker @bind-Value="_viewModel.Data.DCREATE_DATE"
+                                          Enabled="false" ShowPickerButton="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+                @* button *@
+                <R_StackLayout Row Justify="R_eJustify.SpaceBetween">
+                    <R_ItemLayout>
+                        <R_StackLayout Row>
+                            <R_ItemLayout Class="@(_viewModel.IsBuildingMappingFound?"d-none":"d-block")">
+                                <R_AddButton R_Conductor="@_conRef"></R_AddButton>
+                            </R_ItemLayout>
+                            <R_ItemLayout Class="@(_viewModel.IsBuildingMappingFound?"d-block":"d-none")">
+                                <R_EditButton R_Conductor="@_conRef"></R_EditButton>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_StackLayout Row>
+                            <R_ItemLayout><R_CancelButton R_Conductor="@_conRef"></R_CancelButton></R_ItemLayout>
+                            <R_ItemLayout><R_SaveButton R_Conductor="@_conRef"></R_SaveButton></R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_StackLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+</R_StackLayout>
+
+<R_Conductor @ref="_conRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader
+             R_ServiceGetRecord="@HoUtilBuildingMapping_GetRecordAsync"
+             R_SetOther="@HoUtilBuildingMapping_SetOtherAsync"
+             R_CheckAdd="@HoUtilBuildingMapping_CheckAdd"
+             R_CheckEdit="@HoUtilBuildingMapping_CheckEdit"
+             R_Validation="@HoUtilBuildingMapping_Validation"
+             R_Saving="@HoUtilBuildingMapping_Saving"
+             R_ServiceSave="@HoUtilBuildingMapping_SaveAsync"
+             R_AfterSave="@HoUtilBuildingMapping_AfterSave"></R_Conductor>

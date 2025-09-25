@@ -1,0 +1,14 @@
+﻿@attribute [R_Page(Title = "Rich Text Editor")]
+@inherits R_Page
+
+<R_StackLayout Style="width: 1000px">
+    <R_TextEditor @bind-Value="@lcContent" Height="600px"
+                  R_TextEditorToolMode="R_eTextEditorToolMode.All">
+    </R_TextEditor>
+    <R_StackLayout Row Justify="R_eJustify.FlexEnd">
+        <R_StackLayout Row>
+            <R_Button OnClick="@OnClickOK">@_localizer["_OK"]</R_Button>
+            <R_Button OnClick="@OnClickCancel">@_localizer["_Cancel"]</R_Button>
+        </R_StackLayout>
+    </R_StackLayout>
+</R_StackLayout>

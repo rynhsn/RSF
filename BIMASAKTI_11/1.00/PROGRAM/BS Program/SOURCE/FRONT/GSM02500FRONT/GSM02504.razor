@@ -1,0 +1,60 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Unit View")]
+@using GSM02500COMMON.DTOs
+@using GSM02500COMMON.DTOs.GSM02504;
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label Class="fw-bold" FontSize="15">@_localizer["_Property"]</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@loUnitViewViewModel.SelectedProperty.CPROPERTY_ID"
+                       R_ConductorGridSource="@_conGridUnitViewRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="7">
+            <R_TextBox @bind-Value="@loUnitViewViewModel.SelectedProperty.CPROPERTY_NAME"
+                       R_ConductorGridSource="@_conGridUnitViewRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout>
+    <R_ItemLayout col="12">
+        <R_Grid @ref="@_gridUnitViewRef"
+                DataSource="@loUnitViewViewModel.loUnitViewList"
+                Pageable="true"
+                R_ConductorGridSource="@_conGridUnitViewRef"
+                R_GridType="@R_eGridType.Original"
+                AllowAddNewRow="true"
+                AllowEditRow="true"
+                AllowDeleteRow="true"
+                Height="350px"
+                R_Display="@Grid_DisplayUnitView"
+                R_ServiceGetRecord="@Grid_ServiceGetUnitViewRecord"
+                R_ServiceSave="@Grid_ServiceSaveUnitView"
+                R_Saving="@Grid_SavingUnitView"
+                R_ServiceDelete="@Grid_ServiceDeleteUnitView"
+                R_ServiceGetListRecord="@Grid_R_ServiceGetUnitViewListRecord">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName=@nameof(GSM02504DTO.CUNIT_VIEW_ID) Width="100px" HeaderText="@_localizer["_ViewId"]" MaxLength="20" R_EnableAdd></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM02504DTO.CUNIT_VIEW_NAME) Width="250px" HeaderText="@_localizer["_ViewName"]" MaxLength="200" R_EnableAdd R_EnableEdit></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM02504DTO.CUPDATE_BY) Width="125px" HeaderText="@_localizer["_UpdatedBy"]"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName=@nameof(GSM02504DTO.DUPDATE_DATE) Width="200px" HeaderText="@_localizer["_UpdatedDate"]"></R_GridDateTimePickerColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM02504DTO.CCREATE_BY) Width="125px" HeaderText="@_localizer["_CreatedBy"]"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName=@nameof(GSM02504DTO.DCREATE_DATE) Width="200px" HeaderText="@_localizer["_CreatedDate"]"></R_GridDateTimePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_ConductorGrid @ref="@_conGridUnitViewRef"
+                 R_ViewModel="@loUnitViewViewModel"
+                 R_SetOther="UnitView_SetOther"
+                 R_IsHeader></R_ConductorGrid>

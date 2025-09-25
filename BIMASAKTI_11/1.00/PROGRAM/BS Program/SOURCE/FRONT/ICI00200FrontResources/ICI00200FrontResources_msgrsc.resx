@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+
+    <data name="Category" xml:space="preserve">
+        <value>Category</value>
+        <comment>Category</comment>
+    </data>
+    
+    <!-- Product Id -->
+    <data name="ProductId" xml:space="preserve">
+        <value>Product Id</value>
+        <comment>Product Id</comment>
+    </data>
+    
+    <!-- Product Name -->
+    <data name="ProductName" xml:space="preserve">
+        <value>Product Name</value>
+        <comment>Product Name</comment>
+    </data>
+    
+    <!-- Dept Code -->
+    <data name="DeptCode" xml:space="preserve">
+        <value>Dept Code</value>
+        <comment>Dept Code</comment>
+    </data>
+    
+    <data name="Dept" xml:space="preserve">
+        <value>Department</value>
+        <comment>Department</comment>
+    </data>
+    
+    <!-- Dept Name -->
+    <data name="DeptName" xml:space="preserve">
+        <value>Dept Name</value>
+        <comment>Dept Name</comment>
+    </data>
+    
+    <!-- Warehouse -->
+    <data name="Warehouse" xml:space="preserve">
+        <value>Warehouse</value>
+        <comment>Warehouse</comment>
+    </data>
+    
+    <!-- Warehouse Id -->
+    <data name="WarehouseId" xml:space="preserve">
+        <value>Warehouse Id</value>
+        <comment>Warehouse Id</comment>
+    </data>
+    
+    <!-- Warehouse Name -->
+    <data name="WarehouseName" xml:space="preserve">
+        <value>Warehouse Name</value>
+        <comment>Warehouse Name</comment>
+    </data>
+    
+    <!-- Qty Pre Out -->
+    <data name="QtyPreOut" xml:space="preserve">
+        <value>Qty Pre Out</value>
+        <comment>Qty Pre Out</comment>
+    </data>
+    
+    <!-- Available Out -->
+    <data name="AvailableOut" xml:space="preserve">
+        <value>Available Out</value>
+        <comment>Available Out</comment>
+    </data>
+    
+    <!-- Qty Order -->
+    <data name="QtyOrder" xml:space="preserve">
+        <value>Qty Order</value>
+        <comment>Qty Order</comment>
+    </data>
+    
+    <!-- Qty Pre In -->
+    <data name="QtyPreIn" xml:space="preserve">
+        <value>Qty Pre In</value>
+        <comment>Qty Pre In</comment>
+    </data>
+    
+    <!-- Available In -->
+    <data name="AvailableIn" xml:space="preserve">
+        <value>Available In</value>
+        <comment>Available In</comment>
+    </data>
+    
+    <!-- Value On Hand -->
+    <data name="ValueOnHand" xml:space="preserve">
+        <value>Value On Hand</value>
+        <comment>Value On Hand</comment>
+    </data>
+    
+    
+    
+    <!-- Qty On Hand -->
+    <data name="QtyOnHand" xml:space="preserve">
+        <value>Qty On Hand</value>
+        <comment>Qty On Hand</comment>
+    </data>
+    
+    <!-- Journal Group -->
+    <data name="JournalGroup" xml:space="preserve">
+        <value>Journal Group</value>
+        <comment>Journal Group</comment>
+    </data>
+    
+    <!-- Unit -->
+    <data name="Unit" xml:space="preserve">
+        <value>Unit</value>
+        <comment>Unit</comment>
+    </data>
+    
+    <!-- Purchase Unit -->
+    <data name="PurchaseUnit" xml:space="preserve">
+        <value>Purchase Unit</value>
+        <comment>Purchase Unit</comment>
+    </data>
+    
+    <!-- Unit Cost -->
+    <data name="UnitCost" xml:space="preserve">
+        <value>Unit Cost</value>
+        <comment>Unit Cost</comment>
+    </data>
+    
+    <!-- Product Desc -->
+    <data name="ProductDesc" xml:space="preserve">
+        <value>Product Desc</value>
+        <comment>Product Desc</comment>
+    </data>
+    
+    <!-- Lead Time -->
+    <data name="LeadTime" xml:space="preserve">
+        <value>Lead Time</value>
+        <comment>Lead Time</comment>
+    </data>
+    
+    <!-- Day(s) -->
+    <data name="Day" xml:space="preserve">
+        <value>Day(s)</value>
+        <comment>Day(s)</comment>
+    </data>
+    
+    <!-- Department -->
+    <data name="Department" xml:space="preserve">
+        <value>Department</value>
+        <comment>Department</comment>
+    </data>
+    
+    <!-- Last Info -->
+    <data name="LastInfo" xml:space="preserve">
+        <value>Last Info</value>
+        <comment>Last Info</comment>
+    </data>
+    
+    <!-- Product -->
+    <data name="Product" xml:space="preserve">
+        <value>Product</value>
+        <comment>Product</comment>
+    </data>
+    
+    <!-- Date -->
+    <data name="Date" xml:space="preserve">
+        <value>Date</value>
+        <comment>Date</comment>
+    </data>
+    
+    <!-- Amount -->
+    <data name="Amount" xml:space="preserve">
+        <value>Amount</value>
+        <comment>Amount</comment>
+    </data>
+    
+    <!-- PO -->
+    <data name="PO" xml:space="preserve">
+        <value>PO</value>
+        <comment>PO</comment>
+    </data>
+    
+    <!-- Purchase -->
+    <data name="Purchase" xml:space="preserve">
+        <value>Purchase</value>
+        <comment>Purchase</comment>
+    </data>
+    
+    <!-- Receipt -->
+    <data name="Receipt" xml:space="preserve">
+        <value>Receipt</value>
+        <comment>Receipt</comment>
+    </data>
+    
+    <!-- Issue -->
+    <data name="Issue" xml:space="preserve">
+        <value>Issue</value>
+        <comment>Issue</comment>
+    </data>
+    
+    <!-- Movement -->
+    <data name="Movement" xml:space="preserve">
+        <value>Movement</value>
+        <comment>Movement</comment>
+    </data>
+    
+    <!-- Stock Take -->
+    <data name="StockTake" xml:space="preserve">
+        <value>Stock Take</value>
+        <comment>Stock Take</comment>
+    </data>
+    
+    <!-- Recalculate -->
+    <data name="Recalculate" xml:space="preserve">
+        <value>Recalculate</value>
+        <comment>Recalculate</comment>
+    </data>
+    
+    <!-- Replacement -->
+    <data name="Replacement" xml:space="preserve">
+        <value>Replacement</value>
+        <comment>Replacement</comment>
+    </data>
+    
+    <!-- OUT -->
+    <data name="OUT" xml:space="preserve">
+        <value>OUT</value>
+        <comment>OUT</comment>
+    </data>
+</root>

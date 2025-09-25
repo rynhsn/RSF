@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "HDM00400Common": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57070;http://localhost:57072"
+    }
+  }
+}

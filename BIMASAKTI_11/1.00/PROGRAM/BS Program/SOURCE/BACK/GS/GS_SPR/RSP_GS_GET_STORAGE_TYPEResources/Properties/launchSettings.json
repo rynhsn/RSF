@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GS_GET_STORAGE_TYPEResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64508;http://localhost:64509"
+    }
+  }
+}

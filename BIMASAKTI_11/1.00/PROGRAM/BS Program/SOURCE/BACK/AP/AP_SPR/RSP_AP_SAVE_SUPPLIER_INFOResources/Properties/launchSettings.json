@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_AP_SAVE_SUPPLIER_INFOResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64829;http://localhost:64832"
+    }
+  }
+}

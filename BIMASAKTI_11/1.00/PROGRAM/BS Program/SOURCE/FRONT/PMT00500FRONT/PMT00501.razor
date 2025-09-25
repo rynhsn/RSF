@@ -1,0 +1,450 @@
+﻿@inherits R_Page
+@attribute [R_Page(ResourceId = "_BTNUpload")]
+
+<R_StackLayout Style="width: 1000px">
+    <R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Property"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox Enabled="false" @bind-Value="_viewModel.Property.CPROPERTY_ID">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextBox Enabled="false"  @bind-Value="_viewModel.Property.CPROPERTY_NAME">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_InputFile OnChange="OnChangeInputFileStrata" Accepts="@accepts"></R_InputFile>
+        </R_StackLayout>
+    </R_StackLayout>
+    <R_TabStrip @ref="_tabStripRef">
+        <R_TabStripTab Title="@_localizer["_Agreement"]" Id="Agreement">
+            <R_StackLayout Row>
+                <R_ItemLayout col="12">
+                    <R_Grid @ref="@_gridUploadAgreementRef"
+                            DataSource="@_viewModel.AgreementGrid"
+                            Pageable="true"
+                            Height="350px"
+                            R_ServiceGetListRecord="@Grid_R_ServiceGetAgreementListRecord"
+                            R_GridType="@R_eGridType.Batch"
+                            R_ConductorGridSource="@_conductorGridAgreementRef"
+                            R_ServiceGetRecord="@ServiceGetRecord"
+                            AllowAddNewRow="false"
+                            AllowDeleteRow="false"
+                            AllowEditRow="false"
+                            R_RowRender="@Agreement_RowRender"
+                            >
+                        <R_GridColumns>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.NO) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.Building) HeaderText="@_localizer["_Building"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.Department) HeaderText="@_localizer["_Department"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.AgreementNo) HeaderText="@_localizer["_AgreementNo"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                            <R_GridDatePickerColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.AgreementDateDisplay) HeaderText="@_localizer["_AgreementDate"]" Enabled="false" Width="180px"></R_GridDatePickerColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.DocNo) HeaderText="@_localizer["_DocumentNo"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                            <R_GridDatePickerColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.DocDateDisplay) HeaderText="@_localizer["_DocumentDate"]" Enabled="false" Width="180px"></R_GridDatePickerColumn>
+                            <R_GridDatePickerColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.PlanHODateDisplay) HeaderText="@_localizer["_PlanHODate"]" Enabled="false" Width="200px"></R_GridDatePickerColumn>
+                            <R_GridDatePickerColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.StartDateDisplay) HeaderText="@_localizer["_StartDate"]" Enabled="false" Width="180px"></R_GridDatePickerColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.Currency) HeaderText="@_localizer["_Currency"]" Enabled="false" Width="100px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.ChargeMode) HeaderText="@_localizer["_ChargeMode"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.Salesman) HeaderText="@_localizer["_Salesman"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.Tenant) HeaderText="@_localizer["_Tenant"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.UnitDescription) HeaderText="@_localizer["_UnitDescription"]" Enabled="false" Width="350px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.Notes) HeaderText="@_localizer["_Notes"]" Enabled="false" Width="350px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.BillingRule) HeaderText="@_localizer["_BillingRule"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                            <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT00500UploadAgreementExcelDTO.BookingFee) HeaderText="@_localizer["_BookingFee"]" Enabled="false" Width="150px"></R_GridNumericColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.TCCode) HeaderText="@_localizer["_TC"]" Enabled="false" Width="150px"></R_GridTextColumn>
+                            <R_GridDatePickerColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.ActualHODateDisplay) HeaderText="@_localizer["_ActualHODate"]" Enabled="false" Width="190px"></R_GridDatePickerColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.Valid) HeaderText="@_localizer["_Valid"]" Enabled="false" Width="75px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadAgreementExcelDTO.ErrorNotes) HeaderText="@_localizer["_ErrorNotes"]" Enabled="false" Width="350px"></R_GridTextColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="8">
+                    <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_TotalRows"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="@_viewModel.SumDataAgreementExcel"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Label>@_localizer["_Valid"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="@_viewModel.SumValidDataAgreementExcel"
+                                      TValue="int"
+                                      Arrows="false"
+                                      ReadOnly Class="bg-success">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Label>@_localizer["_Invalid"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="@_viewModel.SumInvalidDataAgreementExcel"
+                                      TValue="int"
+                                      Arrows="false"
+                                      ReadOnly Class="badge bg-danger">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_TabStripTab>
+        <R_TabStripTab Title="@_localizer["_Unit"]" Id="Unit">
+            <R_StackLayout Row>
+                <R_ItemLayout col="12">
+                    <R_Grid @ref="@_gridUploadUnitRef"
+                            DataSource="@_viewModel.UnitGrid"
+                            Pageable="true"
+                            Height="350px"
+                            R_ServiceGetListRecord="@Grid_R_ServiceGetUnitListRecord"
+                            R_GridType="@R_eGridType.Batch"
+                            R_ConductorGridSource="@_conductorGridUnitRef"
+                            R_ServiceGetRecord="@ServiceGetRecord"
+                            AllowAddNewRow="false"
+                            AllowDeleteRow="false"
+                            AllowEditRow="false"
+                            R_RowRender="@Unit_RowRender">
+                        <R_GridColumns>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadUnitExcelDTO.NO) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadUnitExcelDTO.DocNo) HeaderText="@_localizer["_DocumentNo"]" Enabled="false" Width="200px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadUnitExcelDTO.UnitId) HeaderText="@_localizer["_UnitId"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadUnitExcelDTO.FloorId) HeaderText="@_localizer["_FloorId"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadUnitExcelDTO.BuildingId) HeaderText="@_localizer["_BuildingId"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadUnitExcelDTO.Valid) HeaderText="@_localizer["_Valid"]" Enabled="false" Width="75px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadUnitExcelDTO.ErrorNotes) HeaderText="@_localizer["_ErrorNotes"]" Enabled="false" Width="350px"></R_GridTextColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="8">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="3">
+                            <R_Label>@_localizer["_TotalRows"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_NumericTextBox @bind-Value="@_viewModel.SumDataUnitExcel"
+                                              Arrows="false"
+                                              Enabled="false">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Label>@_localizer["_Valid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_NumericTextBox @bind-Value="@_viewModel.SumValidDataUnitExcel"
+                                              TValue="int"
+                                              Arrows="false"
+                                              ReadOnly Class="bg-success">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Label>@_localizer["_Invalid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_NumericTextBox @bind-Value="@_viewModel.SumInvalidDataUnitExcel"
+                                              TValue="int"
+                                              Arrows="false"
+                                              ReadOnly Class="badge bg-danger">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_TabStripTab>
+        <R_TabStripTab Title="@_localizer["_Utility"]" Id="Utility">
+            <R_StackLayout Row>
+                <R_ItemLayout col="12">
+                    <R_Grid @ref="@_gridUploadUtilityRef"
+                            DataSource="@_viewModel.UtilityGrid"
+                            Pageable="true"
+                            Height="350px"
+                            R_ServiceGetListRecord="@Grid_R_ServiceGetUtilityListRecord"
+                            R_GridType="@R_eGridType.Batch"
+                            R_ConductorGridSource="@_conductorGridUtilityRef"
+                            R_ServiceGetRecord="@ServiceGetRecord"
+                            AllowAddNewRow="false"
+                            AllowDeleteRow="false"
+                            AllowEditRow="false"
+                            R_RowRender="@Utility_RowRender">
+                        <R_GridColumns>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadUtilityExcelDTO.NO) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadUtilityExcelDTO.DocNo) HeaderText="@_localizer["_DocumentNo"]" Enabled="false" Width="200px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadUtilityExcelDTO.UnitId) HeaderText="@_localizer["_UnitId"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadUtilityExcelDTO.UtilityType) HeaderText="@_localizer["_UtilityType"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadUtilityExcelDTO.MeterNo) HeaderText="@_localizer["_MeterNo"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadUtilityExcelDTO.ChargesId) HeaderText="@_localizer["_ChargesId"]" Enabled="false" Width="250px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadUtilityExcelDTO.TaxId) HeaderText="@_localizer["_TaxId"]" Enabled="false" Width="200px"></R_GridTextColumn>
+                            <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT00500UploadUtilityExcelDTO.MeterStart) HeaderText="@_localizer["_MeterStart"]" Enabled="false" Width="125px"></R_GridNumericColumn>
+                            <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT00500UploadUtilityExcelDTO.Block1Start) HeaderText="@_localizer["_Block1Start"]" Enabled="false" Width="125px"></R_GridNumericColumn>
+                            <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT00500UploadUtilityExcelDTO.Block2Start) HeaderText="@_localizer["_Block2Start"]" Enabled="false" Width="125px"></R_GridNumericColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadUtilityExcelDTO.Valid) HeaderText="@_localizer["_Valid"]" Enabled="false" Width="75px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadUtilityExcelDTO.ErrorNotes) HeaderText="@_localizer["_ErrorNotes"]" Enabled="false" Width="350px"></R_GridTextColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="8">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="3">
+                            <R_Label>@_localizer["_TotalRows"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_NumericTextBox @bind-Value="@_viewModel.SumDataUtilityExcel"
+                                              Arrows="false"
+                                              Enabled="false">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Label>@_localizer["_Valid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_NumericTextBox @bind-Value="@_viewModel.SumValidDataUtilityExcel"
+                                              TValue="int"
+                                              Arrows="false"
+                                              ReadOnly Class="bg-success">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Label>@_localizer["_Invalid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_NumericTextBox @bind-Value="@_viewModel.SumInvalidDataUtilityExcel"
+                                              TValue="int"
+                                              Arrows="false"
+                                              ReadOnly Class="badge bg-danger">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_TabStripTab>
+        <R_TabStripTab Title="@_localizer["_Charges"]" Id="Charges">
+            <R_StackLayout Row>
+                <R_ItemLayout col="12">
+                    <R_Grid @ref="@_gridUploadChargesRef"
+                            DataSource="@_viewModel.ChargesGrid"
+                            Pageable="true"
+                            Height="350px"
+                            R_ServiceGetListRecord="@Grid_R_ServiceGetChargesListRecord"
+                            R_GridType="@R_eGridType.Batch"
+                            R_ConductorGridSource="@_conductorGridChargesRef"
+                            R_ServiceGetRecord="@ServiceGetRecord"
+                            AllowAddNewRow="false"
+                            AllowDeleteRow="false"
+                            AllowEditRow="false"
+                            R_RowRender="@Charges_RowRender">
+                        <R_GridColumns>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.NO) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.DocNo) HeaderText="@_localizer["_DocumentNo"]" Enabled="false" Width="200px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.UnitId) HeaderText="@_localizer["_UnitId"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.FloorId) HeaderText="@_localizer["_FloorId"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.ChargesId) HeaderText="@_localizer["_ChargesId"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.TaxId) HeaderText="@_localizer["_TaxId"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.TenureYear) HeaderText="@_localizer["_TenureYear"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.TenureMonth) HeaderText="@_localizer["_TenureMonth"]" Enabled="false" Width="140px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.TenureDays) HeaderText="@_localizer["_TenureDays"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridCheckBoxColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.BaseonOpeningDateDisplay) HeaderText="@_localizer["_BaseonOpeningDate"]" Enabled="false" Width="180px"></R_GridCheckBoxColumn>
+                            <R_GridDatePickerColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.StartDateDisplay) HeaderText="@_localizer["_StartDate"]" Enabled="false" Width="180px"></R_GridDatePickerColumn>
+                            <R_GridDatePickerColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.EndDateDisplay) HeaderText="@_localizer["_EndDate"]" Enabled="false" Width="180px"></R_GridDatePickerColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.BillingMode) HeaderText="@_localizer["_BillingMode"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.Currency) HeaderText="@_localizer["_Currency"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.FeeMethod) HeaderText="@_localizer["_FeeMethod"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT00500UploadChargesExcelDTO.FeeAmount) HeaderText="@_localizer["_FeeAmount"]" Enabled="false" Width="125px"></R_GridNumericColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.PeriodMode) HeaderText="@_localizer["_PeriodMode"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridCheckBoxColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.ProrateDisplay) HeaderText="@_localizer["_Prorate"]" Enabled="false" Width="125px"></R_GridCheckBoxColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.Description) HeaderText="@_localizer["_Description"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.Valid) HeaderText="@_localizer["_Valid"]" Enabled="false" Width="75px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadChargesExcelDTO.ErrorNotes) HeaderText="@_localizer["_ErrorNotes"]" Enabled="false" Width="350px"></R_GridTextColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="8">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="3">
+                            <R_Label>@_localizer["_TotalRows"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_NumericTextBox @bind-Value="@_viewModel.SumDataChargesExcel"
+                                              Arrows="false"
+                                              Enabled="false">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Label>@_localizer["_Valid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_NumericTextBox @bind-Value="@_viewModel.SumValidDataChargesExcel"
+                                              TValue="int"
+                                              Arrows="false"
+                                              ReadOnly Class="bg-success">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Label>@_localizer["_Invalid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_NumericTextBox @bind-Value="@_viewModel.SumInvalidDataChargesExcel"
+                                              TValue="int"
+                                              Arrows="false"
+                                              ReadOnly Class="badge bg-danger">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_TabStripTab>
+        <R_TabStripTab Title="@_localizer["_Deposit"]" Id="Deposit">
+            <R_StackLayout Row>
+                <R_ItemLayout col="12">
+                    <R_Grid @ref="@_gridUploadDepositRef"
+                            DataSource="@_viewModel.DepositGrid"
+                            Pageable="true"
+                            Height="350px"
+                            R_ServiceGetListRecord="@Grid_R_ServiceGetDepositListRecord"
+                            R_GridType="@R_eGridType.Batch"
+                            R_ConductorGridSource="@_conductorGridDepositRef"
+                            R_ServiceGetRecord="@ServiceGetRecord"
+                            AllowAddNewRow="false"
+                            AllowDeleteRow="false"
+                            AllowEditRow="false"
+                            R_RowRender="@Deposit_RowRender">
+                        <R_GridColumns>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadDepositExcelDTO.NO) HeaderText="@_localizer["_No"]" Enabled="false" Width="75px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadDepositExcelDTO.DocNo) HeaderText="@_localizer["_DocumentNo"]" Enabled="false" Width="200px"></R_GridTextColumn>
+                            <R_GridCheckBoxColumn FieldName=@nameof(PMT00500UploadDepositExcelDTO.FlagContractorDisplay) HeaderText="@_localizer["_FlagContractor"]" Enabled="false" Width="140px"></R_GridCheckBoxColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadDepositExcelDTO.ContractorId) HeaderText="@_localizer["_ContractorId"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadDepositExcelDTO.DepositId) HeaderText="@_localizer["_DepositId"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridDatePickerColumn FieldName=@nameof(PMT00500UploadDepositExcelDTO.DepositDateDisplay) HeaderText="@_localizer["_DepositDate"]" Enabled="false" Width="125px"></R_GridDatePickerColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadDepositExcelDTO.Currency) HeaderText="@_localizer["_Currency"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridNumericColumn TValue="decimal" FieldName=@nameof(PMT00500UploadDepositExcelDTO.DepositAmount) HeaderText="@_localizer["_DepositAmount"]" Enabled="false" Width="150px"></R_GridNumericColumn>
+                            <R_GridCheckBoxColumn FieldName=@nameof(PMT00500UploadDepositExcelDTO.FlagPaidDisplay) HeaderText="@_localizer["_FlagPaid"]" Enabled="false" Width="125px"></R_GridCheckBoxColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadDepositExcelDTO.TaxId) HeaderText="@_localizer["_TaxId"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadDepositExcelDTO.Description) HeaderText="@_localizer["_Description"]" Enabled="false" Width="125px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadDepositExcelDTO.Valid) HeaderText="@_localizer["_Valid"]" Enabled="false" Width="75px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName=@nameof(PMT00500UploadDepositExcelDTO.ErrorNotes) HeaderText="@_localizer["_ErrorNotes"]" Enabled="false" Width="350px"></R_GridTextColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="8">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="3">
+                            <R_Label>@_localizer["_TotalRows"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_NumericTextBox @bind-Value="@_viewModel.SumDataDepositExcel"
+                                              Arrows="false"
+                                              Enabled="false">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Label>@_localizer["_Valid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_NumericTextBox @bind-Value="@_viewModel.SumValidDataDepositExcel"
+                                              TValue="int"
+                                              Arrows="false"
+                                              ReadOnly Class="bg-success">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Label>@_localizer["_Invalid"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_NumericTextBox @bind-Value="@_viewModel.SumInvalidDataDepositExcel"
+                                              TValue="int"
+                                              Arrows="false"
+                                              ReadOnly Class="badge bg-danger">
+                            </R_NumericTextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_TabStripTab>
+    </R_TabStrip>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_ProgressBar Label="@_viewModel.Message" MaxValue="100" Value="@_viewModel.Percentage"></R_ProgressBar>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="8">
+            
+        </R_ItemLayout>
+        <R_ItemLayout col="4" hidden="@_viewModel.VisibleError">
+            <R_StackLayout Row Class="justify-content-end">
+                <R_ItemLayout>
+                    <R_Button OnClick="Button_OnClickCloseAsync">
+                        @_localizer["_CancelBtn"]
+                    </R_Button>
+                    <R_Button OnClick="Button_OnClickOkAsync" Enabled="@FileHasData">
+                        @_localizer["_ProcessBtn"]
+                    </R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="4" hidden="@(!_viewModel.VisibleError)">
+            <R_StackLayout Row Class="justify-content-end">
+                <R_ItemLayout>
+                    <R_Button OnClick="Button_OnClickCloseAsync">
+                        @_localizer["_CancelBtn"]
+                    </R_Button>
+                    <R_Button OnClick="@Button_OnClickSaveExcelAsync">
+                        @_localizer["_SaveToExcelBtn"]
+                    </R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorGridAgreementRef"
+             R_IsHeader="true"
+              />
+<R_ConductorGrid @ref="@_conductorGridUnitRef"
+             R_IsHeader="true"
+              />
+<R_ConductorGrid @ref="@_conductorGridUtilityRef"
+             R_IsHeader="true"
+              />
+<R_ConductorGrid @ref="@_conductorGridChargesRef"
+             R_IsHeader="true"
+              />
+<R_ConductorGrid @ref="@_conductorGridDepositRef"
+             R_IsHeader="true"
+              />
+
+<style>
+    /*the following selectors target the locked/frozen columns*/
+    /*===*/
+     .k-grid .k-master-row.errorDataLValidIsFalse:hover {
+                    background-color: red !important;
+                    color: white;
+                }
+
+                .k-grid .k-master-row.errorDataLValidIsFalse {
+                    background-color: red;
+                    color: white !important
+                }
+
+                .k-grid .k-table-row.k-selected.errorDataLValidIsFalse > .k-table-td {
+                    color: white !important;
+                }
+
+</style>

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    
+    <data name="PROPERTY" xml:space="preserve">
+        <value>Property</value>
+        <comment>Property</comment>
+    </data> 
+    <data name="DEPARTMENT" xml:space="preserve">
+        <value>Department</value>
+        <comment>Department</comment>
+    </data> 
+    <data name="PERIOD" xml:space="preserve">
+        <value>Period</value>
+        <comment>Period</comment>
+    </data> 
+    <data name="OPTION_PRINT" xml:space="preserve">
+        <value>Option Print</value>
+        <comment>Option Print</comment>
+    </data> 
+    <data name="REF_NO" xml:space="preserve">
+        <value>Ref No</value>
+        <comment>Ref No</comment>
+    </data> 
+    <data name="STATUS" xml:space="preserve">
+        <value>Status</value>
+        <comment>Status</comment>
+    </data> 
+    <data name="REF_DATE" xml:space="preserve">
+        <value>Ref Date</value>
+        <comment>Ref Date</comment>
+    </data> 
+    <data name="WAREHOUSE" xml:space="preserve">
+        <value>Warehouse</value>
+        <comment>Warehouse</comment>
+    </data> 
+    <data name="DESCRIPTION" xml:space="preserve">
+        <value>Description</value>
+        <comment>Description</comment>
+    </data> 
+    <data name="PRODUCT" xml:space="preserve">
+        <value>Product</value>
+        <comment>Product</comment>
+    </data> 
+    <data name="PRODUCT_DEPT" xml:space="preserve">
+        <value>Product Dept</value>
+        <comment>Product Dept</comment>
+    </data> 
+    <data name="UNIT" xml:space="preserve">
+        <value>Unit</value>
+        <comment>Unit</comment>
+    </data> 
+    <data name="STOCK_TAKE" xml:space="preserve">
+        <value>Stock Take</value>
+        <comment>Stock Take</comment>
+    </data> 
+    <data name="VARIANCE" xml:space="preserve">
+        <value>Variance</value>
+        <comment>Variance</comment>
+    </data> 
+    <data name="VARIANCE_COST" xml:space="preserve">
+        <value>Variance Cost</value>
+        <comment>Variance Cost</comment>
+    </data> 
+    <data name="QUANTITY" xml:space="preserve">
+        <value>Quantity</value>
+        <comment>Quantity</comment>
+    </data> 
+    <data name="ALL" xml:space="preserve">
+        <value>All</value>
+        <comment>All</comment>
+    </data> 
+</root>

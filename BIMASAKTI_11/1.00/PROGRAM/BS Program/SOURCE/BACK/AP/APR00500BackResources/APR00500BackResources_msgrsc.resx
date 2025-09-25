@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+
+    <data name="PROPERTY" xml:space="preserve">
+        <value>Property</value><comment>Property</comment>
+    </data>
+
+    <!-- CUT_OFF_DATE -->
+    <data name="CUT_OFF_DATE" xml:space="preserve">
+        <value>Cut Off Date</value><comment>Cut Off Date</comment>
+    </data>
+    
+    <!-- DEPT -->
+    <data name="DEPT" xml:space="preserve">
+        <value>Department</value><comment>Department</comment>
+    </data>
+    
+    <!-- TOTAL_DEPT -->
+    <!-- <data name="TOTAL_DEPT" xml:space="preserve"> -->
+    <!--     <value>Total Department</value><comment>Total Department</comment> -->
+    <!-- </data> -->
+    
+    <!-- GRAND_TOTAL -->
+    <data name="GRAND_TOTAL" xml:space="preserve">
+        <value>Grand Total</value><comment>Grand Total</comment>
+    </data>
+    
+    <!-- REF_NO -->
+    <data name="REF_NO" xml:space="preserve">
+        <value>Reference No</value><comment>Reference No</comment>
+    </data>
+    
+    <!-- REF_DATE -->
+    <data name="REF_DATE" xml:space="preserve">
+        <value>Ref. Date</value><comment>Ref. Date</comment>
+    </data>
+    
+    <!-- SUPPLIER -->
+    <data name="SUPPLIER" xml:space="preserve">
+        <value>Supplier</value><comment>Supplier</comment>
+    </data>
+    
+    <!-- INV_PRD -->
+    <data name="INVOICE_PRD" xml:space="preserve">
+        <value>Invoice Period</value><comment>Invoice Period</comment>
+    </data>
+    
+    <!-- public string SUB_TOTAL { get; set; } = "Sub Total"; -->
+    <data name="SUB_TOTAL" xml:space="preserve">
+        <value>Sub Total</value><comment>Sub Total</comment>
+    </data>
+    
+    <!-- public string TOTAL_PRD { get; set; } = "Total Period"; -->
+    <data name="TOTAL_PRD" xml:space="preserve">
+        <value>Total Period</value><comment>Total Period</comment>
+    </data>
+    
+    <!-- DUE_DATE -->
+    <data name="DUE_DATE" xml:space="preserve">
+        <value>Due Date</value><comment>Due Date</comment>
+    </data>
+    
+    <!-- CURRENCY -->
+    <data name="CURRENCY" xml:space="preserve">
+        <value>Currency</value><comment>Currency</comment>
+    </data>
+    
+    <!-- CURR. -->
+    <data name="CURR" xml:space="preserve">
+        <value>Curr.</value><comment>Curr.</comment>
+    </data>
+    
+    <!-- TOTAL_AMT -->
+    <data name="TOTAL_AMT" xml:space="preserve">
+        <value>Total Amount</value><comment>Total Amount</comment>
+    </data>
+    
+    <!-- DISCOUNT -->
+    <data name="DISCOUNT" xml:space="preserve">
+        <value>Discount</value><comment>Discount</comment>
+    </data>
+    
+    <!-- TAX -->
+    <data name="TAX" xml:space="preserve">
+        <value>Tax</value><comment>Tax</comment>
+    </data>
+    
+    <!-- ADD_ON -->
+    <data name="ADD_ON" xml:space="preserve">
+        <value>Add On</value><comment>Add On</comment>
+    </data>
+    
+    <!-- ADDITION -->
+    <data name="ADDITION" xml:space="preserve">
+        <value>Addition</value><comment>Addition</comment>
+    </data>
+    
+    <!-- DEDUCTION -->
+    <data name="DEDUCTION" xml:space="preserve">
+        <value>Deduction</value><comment>Deduction</comment>
+    </data>
+    
+    <!-- INV_AMT -->
+    <data name="INV_AMT" xml:space="preserve">
+        <value>Invoice Amount</value><comment>Invoice Amount</comment>
+    </data>
+    
+    <!-- REMAINING -->
+    <data name="REMAINING" xml:space="preserve">
+        <value>Remaining</value><comment>Remaining</comment>
+    </data>
+    
+    <!-- DAYS_LATE -->
+    <data name="DAYS_LATE" xml:space="preserve">
+        <value>Days Late</value><comment>Days Late</comment>
+    </data>
+    
+    <!-- UNIT -->
+    <data name="UNIT" xml:space="preserve">
+        <value>Unit</value><comment>Unit</comment>
+    </data>
+</root>

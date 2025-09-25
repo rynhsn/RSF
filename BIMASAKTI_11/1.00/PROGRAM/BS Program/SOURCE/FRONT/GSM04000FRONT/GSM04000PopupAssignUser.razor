@@ -1,0 +1,33 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Assign User Department", ResourceId = "_pageTitleAssignUser")]
+@using GSM04000Common;
+
+<R_StackLayout Row Style="width:1000px">
+    <R_ItemLayout col="12">
+        <R_Grid @ref="@_gridDeptUserToAssignRef"
+                DataSource="_deptUserViewModel._UsersToAssignList"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                R_GridType="R_eGridType.Batch"
+                Pageable
+                PageSize="10">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(UserDepartmentDTO.CUSER_ID)" HeaderText="User Id"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(UserDepartmentDTO.CUSER_NAME)" HeaderText="User Name"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+        <R_StackLayout Row Class="justify-content-start">
+            <R_ItemLayout col="2">
+                <R_Button OnClick="Button_OnClickOkAsync">
+                    Process
+                </R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_Button OnClick="Button_OnClickCloseAsync">
+                    Cancel
+                </R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+    </R_ItemLayout>
+</R_StackLayout>
+

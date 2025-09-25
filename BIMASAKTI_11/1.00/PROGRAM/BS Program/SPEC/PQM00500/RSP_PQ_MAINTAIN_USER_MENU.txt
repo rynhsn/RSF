@@ -1,0 +1,2 @@
+0100=Error process, pleas contact your administrator!
+EXIST=This user already exist for this menu!

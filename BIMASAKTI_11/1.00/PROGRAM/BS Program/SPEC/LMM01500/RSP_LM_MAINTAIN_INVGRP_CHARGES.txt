@@ -1,0 +1,4 @@
+1501	= Error process, please contact your administrator!
+1504	= This Charges is already assigned to another Invoice Group, please choose another Charges Id!
+1505	= Cannot Delete, Charges already in used!
+

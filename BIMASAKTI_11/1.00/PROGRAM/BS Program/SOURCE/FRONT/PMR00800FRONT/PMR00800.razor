@@ -1,0 +1,104 @@
+﻿@page "/PMR00800"
+@using PMR00800COMMON.DTO_s
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_pageTitle", Title = "Lease Revenue Analysis")]
+
+
+<R_StackLayout Class="p-2">
+
+    @* property *@
+    <R_StackLayout Row Class="ps-3">
+        <R_ItemLayout col="1">
+            <R_Label>
+                @_localizer["_lbl_property"]
+            </R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_ComboBox Data="@_viewModel.PropertyList"
+                        Value="@_viewModel.ReportParam.CPROPERTY_ID"
+                        ValueField="@nameof(PropertyDTO.CPROPERTY_ID)"
+                        TextField="@nameof(PropertyDTO.CPROPERTY_NAME)"
+                        ValueChanged="@((string value) => ComboboxPropertyValueChanged(value))"
+                        TabIndex="0">
+            </R_ComboBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="6" />
+    </R_StackLayout>
+
+    @* building *@
+    <R_GroupBox Title="@_localizer["_grpbox_building"]" Class="px-2 py-1 m-2">
+        <R_StackLayout Row>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_lbl_from"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_BUILDING"
+                           Enabled
+                           CharacterCasing="R_eCharacterCasing.Upper"
+                           MaxLength="int.MaxValue"
+                           OnLostFocus="OnLostFocus_LookupFromBuilding"
+                           TabIndex="1" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupFromBuilding" R_After_Open_Lookup="@AfterOpen_lookupFromBuildingAsync" TabIndex="2">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_BUILDING_NAME"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_lbl_to"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_BUILDING"
+                           Enabled
+                           CharacterCasing="R_eCharacterCasing.Upper"
+                           MaxLength="int.MaxValue"
+                           OnLostFocus="OnLostFocus_LookupToBuilding"
+                           TabIndex="3" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupToBuilding" R_After_Open_Lookup="@AfterOpen_lookupToBuildingAsync" TabIndex="4">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_BUILDING_NAME"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_GroupBox>
+
+    @* period & print button*@
+    <R_StackLayout Row Class="ps-3">
+        <R_ItemLayout col="1">
+            <R_Label>@_localizer["_lbl_period"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_NumericTextBox @bind-Value="_viewModel.PickedPeriodYear"
+                              TValue="int"
+                              Max="_viewModel.PeriodYearRange.IMAX_YEAR"
+                              Min="_viewModel.PeriodYearRange.IMIN_YEAR"
+                              ThousandSeparator="false"
+                              Arrows="true"
+                              OnChanged="@OnChanged_NumericTextBoxPeriodYear"
+                              TabIndex="5" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_ComboBox @bind-Value="@_viewModel.SelectedPeriodMonth"
+                        Data="_viewModel.PeriodDTList"
+                        ValueField="@nameof(PeriodDtDTO.CPERIOD_NO)"
+                        TextField="@nameof(PeriodDtDTO.CPERIOD_NO)"
+                        TabIndex="6" />
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Button OnClick="@Btn_Print" TabIndex="7" Class="ps-2">@_localizer["_btn_print"]</R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Popup R_Before_Open_Popup="@BeforeOpen_PopupSaveAsAsync"
+                     R_After_Open_Popup="@AfterOpen_PopupSaveAs"
+                     TabIndex="8">@_localizer["_btn_save"]</R_Popup>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>

@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <SupportedPlatform Include="browser" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.15" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="BlazorClientHelper">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
+        </Reference>
+        <Reference Include="R_BlazorFrontEnd">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.dll</HintPath>
+        </Reference>
+        <Reference Include="R_BlazorFrontEnd.Controls">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Controls.dll</HintPath>
+        </Reference>
+        <Reference Include="R_CommonFrontBackAPI">
+            <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CommonFrontBackAPI.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\COMMON\LM\PMB00300Common\PMB00300Common.csproj" />
+      <ProjectReference Include="..\PMB00300FrontResources\PMB00300FrontResources.csproj" />
+      <ProjectReference Include="..\PMB00300Model\PMB00300Model.csproj" />
+    </ItemGroup>
+
+</Project>

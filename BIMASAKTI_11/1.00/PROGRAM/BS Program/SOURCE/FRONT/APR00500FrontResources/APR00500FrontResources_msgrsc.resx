@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+
+    <data name="PROPERTY" xml:space="preserve">
+        <value>Property</value>
+        <comment>Property</comment>
+    </data>
+    <data name="CUT_OFF_DATE" xml:space="preserve">
+        <value>Cut Off Date</value>
+        <comment>Cut Off Date</comment>
+    </data>
+    <data name="DEPARTMENT" xml:space="preserve">
+        <value>Department</value>
+        <comment>Department</comment>
+    </data>
+    <data name="PERIOD" xml:space="preserve">
+        <value>Period</value>
+        <comment>Period</comment>
+    </data>
+    <data name="REFERENCE_DATE" xml:space="preserve">
+        <value>Reference Date</value>
+        <comment>Reference Date</comment>
+    </data>
+    <data name="DUE_DATE" xml:space="preserve">
+        <value>Due Date</value>
+        <comment>Due Date</comment>
+    </data>
+    <data name="SUPPLIER" xml:space="preserve">
+        <value>Supplier</value>
+        <comment>Supplier</comment>
+    </data>
+    <data name="REFERENCE_NO" xml:space="preserve">
+        <value>Reference No</value>
+        <comment>Reference No</comment>
+    </data>
+    <data name="CURRENCY" xml:space="preserve">
+        <value>Currency</value>
+        <comment>Currency</comment>
+    </data>
+    <data name="TOTAL_AMOUNT" xml:space="preserve">
+        <value>Total Amount</value>
+        <comment>Total Amount</comment>
+    </data>
+    <data name="REMAINING_AMOUNT" xml:space="preserve">
+        <value>Remaining Amt</value>
+        <comment>Remaining Amt</comment>
+    </data>
+    <data name="DAYS_LATE" xml:space="preserve">
+        <value>Days Late</value>
+        <comment>Days Late</comment>
+    </data>
+    <data name="TO" xml:space="preserve">
+        <value>To</value>
+        <comment>To</comment>
+    </data>
+    <data name="BETWEEN" xml:space="preserve">
+        <value>between</value>
+        <comment>between</comment>
+    </data>
+    <data name="AND" xml:space="preserve">
+        <value>and</value>
+        <comment>and</comment>
+    </data>
+    <data name="ERR_PROPERTY_EMPTY" xml:space="preserve">
+        <value>Please select property !</value>
+        <comment>Please select property !</comment>
+    </data>
+    <data name="ERR_DEPT_EMPTY" xml:space="preserve">
+        <value>Please select Department !</value>
+        <comment>Please select Department !</comment>
+    </data>
+    <data name="ERR_SUPPL_EMPTY" xml:space="preserve">
+        <value>Please select Supplier !</value>
+        <comment>Please select Supplier !</comment>
+    </data>
+
+    <!-- ERR_CUTOFF_EMPTY -->
+    <data name="ERR_CUTOFF_EMPTY" xml:space="preserve">
+        <value>Please select Cut Off Date !</value>
+        <comment>Please select Cut Off Date !</comment>
+    </data>
+
+    <!-- ERR_FROMPERIOD_EMPTY -->
+    <data name="ERR_FROMPERIOD_EMPTY" xml:space="preserve">
+        <value>Please select From Period !</value>
+        <comment>Please select From Period !</comment>
+    </data>
+
+    <!-- ERR_TOPERIOD_EMPTY -->
+    <data name="ERR_TOPERIOD_EMPTY" xml:space="preserve">
+        <value>Please select To Period !</value>
+        <comment>Please select To Period !</comment>
+    </data>
+
+    <!-- ERR_FROMREFDATE_EMPTY -->
+    <data name="ERR_FROMREFDATE_EMPTY" xml:space="preserve">
+        <value>Please select From Reference Date !</value>
+        <comment>Please select From Reference Date !</comment>
+    </data>
+
+    <!-- ERR_TOREFDATE_EMPTY -->
+    <data name="ERR_TOREFDATE_EMPTY" xml:space="preserve">
+        <value>Please select To Reference Date !</value>
+        <comment>Please select To Reference Date !</comment>
+    </data>
+
+    <!-- ERR_FROMDUEDATE_EMPTY -->
+    <data name="ERR_FROMDUEDATE_EMPTY" xml:space="preserve">
+        <value>Please select From Due Date !</value>
+        <comment>Please select From Due Date !</comment>
+    </data>
+
+    <!-- ERR_TODUEDATE_EMPTY -->
+    <data name="ERR_TODUEDATE_EMPTY" xml:space="preserve">
+        <value>Please select To Due Date !</value>
+        <comment>Please select To Due Date !</comment>
+    </data>
+
+    <!-- ERR_FROMREFNO_EMPTY -->
+    <data name="ERR_FROMREFNO_EMPTY" xml:space="preserve">
+        <value>Please select From Reference No !</value>
+        <comment>Please select From Reference No !</comment>
+    </data>
+
+    <!-- ERR_TOREFNO_EMPTY -->
+    <data name="ERR_TOREFNO_EMPTY" xml:space="preserve">
+        <value>Please select To Reference No !</value>
+        <comment>Please select To Reference No !</comment>
+    </data>
+
+    <!-- ERR_CURRENCY_EMPTY -->
+    <data name="ERR_CURRENCY_EMPTY" xml:space="preserve">
+        <value>Please select Currency !</value>
+        <comment>Please select Currency !</comment>
+    </data>
+
+    <!-- ERR_FROMPERIOD_GREATERTHAN_TOPERIOD -->
+    <data name="ERR_FROMPERIOD_GREATERTHAN_TOPERIOD" xml:space="preserve">
+        <value>To Period cannot be early than From Period !</value>
+        <comment>From Period should be less than To Period !</comment>
+    </data>
+    
+    <!-- ERR_FROMREFDATE_GREATERTHAN_TOREFDATE -->
+    <data name="ERR_FROMREFDATE_GREATERTHAN_TOREFDATE" xml:space="preserve">
+        <value>To Reference Date cannot be early than From Reference Date !</value>
+        <comment>From Reference Date should be less than To Reference Date !</comment>
+    </data>
+    
+    <!-- ERR_FROMDUEDATE_GREATERTHAN_TODUEDATE -->
+    <data name="ERR_FROMDUEDATE_GREATERTHAN_TODUEDATE" xml:space="preserve">
+        <value>To Due Date cannot be early than From Due Date !</value>
+        <comment>From Due Date should be less than To Due Date !</comment>
+    </data>
+
+    <!-- Report Button -->
+    <data name="PRINT" xml:space="preserve">
+        <value>Print</value>
+        <comment>Print</comment>
+    </data>
+    <data name="SAVE_AS" xml:space="preserve">
+        <value>Save As</value>
+        <comment>Save As</comment>
+    </data>
+    <data name="CANCEL" xml:space="preserve">
+        <value>Cancel</value>
+        <comment>Cancel</comment>
+    </data>
+    <data name="SAVE" xml:space="preserve">
+        <value>Save</value>
+        <comment>Save</comment>
+    </data>
+</root>

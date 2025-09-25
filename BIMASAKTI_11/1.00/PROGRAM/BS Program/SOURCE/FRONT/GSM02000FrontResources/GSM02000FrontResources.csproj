@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="GSM02000FrontResources_msgrsc.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GSM02000FrontResources_msgrsc.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="GSM02000FrontResources_msgrsc.id.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GSM02000FrontResources_msgrsc.id.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="GSM02000FrontResources_msgrsc.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GSM02000FrontResources_msgrsc.resx</DependentUpon>
+    </Compile>
+    <Compile Update="GSM02000FrontResources_msgrsc.id.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GSM02000FrontResources_msgrsc.id.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="RSP_CB_SAVE_CHEQUE_HD_DEPOSITResources_msgrsc.Designer.cs">
+      <DependentUpon>RSP_CB_SAVE_CHEQUE_HD_DEPOSITResources_msgrsc.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="RSP_CB_SAVE_CHEQUE_HD_DEPOSITResources_msgrsc.resx">
+      <LastGenOutput>RSP_CB_SAVE_CHEQUE_HD_DEPOSITResources_msgrsc.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

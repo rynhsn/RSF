@@ -1,0 +1,32 @@
+2025-06-13 13:33:18,498 INFO  PMA00400Back.PMA00400Cls - START process method GetDataDomainType_URL on Cls
+2025-06-13 13:33:18,511 INFO  PMA00400Back.PMA00400Cls - before exec RSP_SA_GET_DOMAIN_TYPE_URL
+2025-06-13 13:33:18,558 INFO  PMA00400Back.PMA00400Cls - Execute query on method GetDataDomainType_URL
+2025-06-13 13:33:18,558 DEBUG PMA00400Back.PMA00400Cls - Execute Command RSP_SA_GET_DOMAIN_TYPE_URL
+2025-06-13 13:33:18,716 INFO  PMA00400Back.PMA00400Cls - END process method GetDataDomainType_URL on Cls
+2025-06-13 13:33:18,717 INFO  PMA00400Console.MultiTenant.MultiTenantHelper - START process method InjectMultiTenantConnectionString on Cls
+2025-06-13 13:33:18,718 INFO  PMA00400Console.MultiTenant.MultiTenantHelper - Start Get connecction InjectMultiTenantConnectionString on Cls
+2025-06-13 13:33:18,719 DEBUG PMA00400Console.MultiTenant.MultiTenantHelper - Execute Command Select CTENANT_ID, CCONNECTIONSTRING, CPROVIDER_NAME, CKEYWORD_FOR_PASSWORD  from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0}
+2025-06-13 13:33:18,719 DEBUG PMA00400Console.MultiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-06-13 13:33:18,861 DEBUG PMA00400Console.MultiTenant.MultiTenantHelper - Execute Command select distinct  CTENANT_ID from( Select CTENANT_ID=REPLACE(REPLACE(CTENANT_ID,'_report_connectionstring',''),'_connectionstring','') from SAB_MULTI_TENANT_DB(nolock) where CAPPLICATION_ID={0} ) as final
+2025-06-13 13:33:18,862 DEBUG PMA00400Console.MultiTenant.MultiTenantHelper - Parameter Bimasakti : 
+2025-06-13 13:33:18,868 INFO  PMA00400Console.MultiTenant.MultiTenantHelper - END process method InjectMultiTenantConnectionString on Cls
+2025-06-13 13:33:18,868 INFO  Program - Get Service ConsoleMain
+2025-06-13 13:33:18,869 INFO  Program - Call Method Main
+2025-06-13 13:33:18,875 INFO  PMA00400Console.MultiTenant.MultiTenantHelper - Multi Tenant Database Connection
+2025-06-13 13:33:18,875 INFO  PMA00400Console.MultiTenant.MultiTenantHelper - Get Tenants
+2025-06-13 13:33:18,876 INFO  PMA00400Console.MultiTenant.MultiTenantHelper - START process method REALTA-BSI on Cls
+2025-06-13 13:33:18,892 INFO  PMA00400Back.PMA00400Cls - START process method ProcessHandoverDistribute on Cls
+2025-06-13 13:33:18,893 INFO  PMA00400Back.PMA00400Cls - Get file Frx
+2025-06-13 13:33:18,899 INFO  PMA00400Back.PMA00400Cls - START process method GetDataHeader on Cls
+2025-06-13 13:33:18,899 INFO  PMA00400Back.PMA00400Cls - Execute query on method GetDataHeader 
+2025-06-13 13:33:18,972 INFO  PMA00400Back.PMA00400Cls - Convert string to datetime format on method GetDataHeader 
+2025-06-13 13:33:18,972 INFO  PMA00400Back.PMA00400Cls - END process method GetDataHeader on Cls
+2025-06-13 13:33:18,972 INFO  PMA00400Console.MultiTenant.MultiTenantHelper - START process method realta-bsi_connectionstring on Cls
+2025-06-13 13:33:18,973 INFO  PMA00400Back.PMA00400Cls - START process method SendEmail on Cls
+2025-06-13 13:33:18,990 ERROR PMA00400Back.PMA00400Cls - Error R_Common.R_Exception: Exception of type 'R_Common.R_Exception' was thrown.
+   at R_Common.R_Exception.ThrowExceptionIfErrors()
+   at R_BackEnd.R_Db._GetConnectionAttribute(String pcConnectionName, eDbConnectionStringType peDbConnectionStringType)
+   at R_BackEnd.R_Db.GetConnection(String pcConnectionName)
+   at PMA00400Back.PMA00400Cls.SendEmail(ParamSendEmailDTO poParam)
+2025-06-13 13:33:18,990 ERROR PMA00400Console.MultiTenant.MultiTenantHelper - R_Common.R_Exception: Exception of type 'R_Common.R_Exception' was thrown.
+2025-06-13 13:33:18,992 INFO  Program - End Console Program

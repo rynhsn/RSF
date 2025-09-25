@@ -1,0 +1,800 @@
+﻿@inherits R_Page
+@using GSM02500COMMON.DTOs.GSM02501
+@using GSM02500COMMON.DTOs.GSM02502
+@using GSM02500COMMON.DTOs.GSM02503
+@using GSM02500COMMON.DTOs.GSM02504
+@using GSM02500MODEL
+
+<R_TabStrip OnActiveTabIndexChanged="@OnParentTabChanged">
+    <R_TabStripTab Title="General Info">
+        <R_StackLayout Spacing="3" Class="mb-4" Row="true">
+            @* Lay-Out Table Grid List *@
+            <R_StackLayout Class="col-2">
+                <R_Grid @ref="@_gridGeneralInfoRef"
+                        DataSource="@loGeneralInfoViewModel.loPropertyList"
+                        R_ConductorSource="@_conductorGeneralInfoRef"
+                        R_GridType="@R_eGridType.Navigator"
+                        R_ServiceGetListRecord="@Grid_R_ServiceGetGeneralInfoListRecord">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(GSM02501PropertyDTO.CPROPERTY_NAME)" HeaderText="Property"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_StackLayout>
+
+
+            @* Lay-Out Navigator *@
+            <R_StackLayout Class="col-7">
+
+                <R_StackLayout Row="true" Class="justify-content-end">
+                    <R_ItemLayout col="1">
+                        <R_CheckBox @bind-Value="@loGeneralInfoViewModel.Data.LACTIVE"
+                                    R_ConductorSource="@_conductorGeneralInfoRef"
+                                    Enabled="false">
+                        </R_CheckBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>Active</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout Class="col-2">
+                        <R_Label>Property*</R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout Class="col-3">
+                        <R_TextBox @bind-Value="@loGeneralInfoViewModel.Data.CPROPERTY_ID"
+                                   R_ConductorSource="@_conductorGeneralInfoRef"
+                                   R_EnableAdd="true"
+                                   R_EnableEdit="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4" Class="col-7">
+                        <R_TextBox @bind-Value="@loGeneralInfoViewModel.Data.CPROPERTY_NAME"
+                                   R_ConductorSource="@_conductorGeneralInfoRef"
+                                   R_EnableAdd="true"
+                                   R_EnableEdit="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout Class="col-2">
+                        <R_Label>Address*</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-2">
+                        <R_TextArea @bind-Value="@loGeneralInfoViewModel.Data.CADDRESS"
+                                    R_ConductorSource="@_conductorGeneralInfoRef"
+                                    R_EnableAdd="true" R_EnableEdit="true"></R_TextArea>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout Class="col-2">
+                        <R_Label>Province</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-6">
+                        <R_TextBox @bind-Value="@loGeneralInfoViewModel.Data.CPROVINCE"
+                                   R_ConductorSource="@_conductorGeneralInfoRef"
+                                   R_EnableAdd="true"
+                                   R_EnableEdit="true">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout Class="col-2">
+                        <R_Label>City</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-2">
+                        <R_TextBox @bind-Value="@loGeneralInfoViewModel.Data.CCITY"
+                                    R_ConductorSource="@_conductorGeneralInfoRef"
+                                    R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout Class="col-2">
+                        <R_Label>District</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-2">
+                        <R_TextBox @bind-Value="@loGeneralInfoViewModel.Data.CDISTRICT"
+                                    R_ConductorSource="@_conductorGeneralInfoRef"
+                                    R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout Class="col-2">
+                        <R_Label>Sub District</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-2">
+                        <R_TextBox @bind-Value="@loGeneralInfoViewModel.Data.CSUBDISTRICT"
+                                    R_ConductorSource="@_conductorGeneralInfoRef"
+                                    R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout Class="col-2">
+                        <R_Label Class="ms-2">Sales Tax Id*</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-3">
+                        <R_TextBox @bind-Value="@loGeneralInfoViewModel.Data.CSALES_TAX_ID"
+                                   R_ConductorSource="@_conductorGeneralInfoRef"
+                                   R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Lookup R_After_Open_Lookup="R_After_Open_LookupSalesTaxId" R_Before_Open_Lookup="R_Before_Open_LookupSalesTaxId" R_EnableAdd="true" R_EnableEdit="true">...</R_Lookup>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-7">
+                        <R_TextBox @bind-Value="@loGeneralInfoViewModel.Data.CSALES_TAX_NAME"
+                                   R_ConductorSource="@_conductorGeneralInfoRef"
+                                   R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-2">
+                        <R_NumericTextBox @bind-Value="@loGeneralInfoViewModel.Data.NTAX_PERCENTAGE"
+                                          R_ConductorSource="@_conductorGeneralInfoRef"
+                                          R_EnableAdd="true" R_EnableEdit="true"></R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout Class="col-2">
+                        <R_Label Class="ms-2">Currency*</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-3">
+                        <R_TextBox @bind-Value="@loGeneralInfoViewModel.Data.CCURRENCY"
+                                   R_ConductorSource="@_conductorGeneralInfoRef"
+                                   R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Lookup R_After_Open_Lookup="R_After_Open_LookupCurrency" R_Before_Open_Lookup="R_Before_Open_LookupCurrency" R_EnableAdd="true" R_EnableEdit="true">...</R_Lookup>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-7">
+                        <R_TextBox @bind-Value="@loGeneralInfoViewModel.Data.CCURRENCY_NAME"
+                                   R_ConductorSource="@_conductorGeneralInfoRef"
+                                   R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout Class="col-2">
+                        <R_Label Class="ms-2">UOM*</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-3">
+                        <R_TextBox @bind-Value="@loGeneralInfoViewModel.Data.CUOM"
+                                   R_ConductorSource="@_conductorGeneralInfoRef"
+                                   R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-5">
+                        <R_Label Class="ms-2">(unit of meaasurement)*</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout Class="col-2">
+                        <R_Label>Updated By</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-4">
+                        <R_TextBox @bind-Value="@loGeneralInfoViewModel.Data.CUPDATE_BY"
+                                   R_ConductorSource="@_conductorGeneralInfoRef"
+                                   R_EnableAdd="true" R_EnableEdit="false"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-1">
+                        <R_Label>Date</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-3">
+                        <R_DateTimePicker @bind-Value="@loGeneralInfoViewModel.Data.DUPDATE_DATE"
+                                          R_ConductorSource="@_conductorGeneralInfoRef"
+                                          R_EnableAdd="true" R_EnableEdit="false"></R_DateTimePicker>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout Class="col-2">
+                        <R_Label>Created By</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-4">
+                        <R_TextBox @bind-Value="@loGeneralInfoViewModel.Data.CCREATE_BY"
+                                   R_ConductorSource="@_conductorGeneralInfoRef"
+                                   R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-1">
+                        <R_Label>Date</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-3">
+                        <R_DateTimePicker @bind-Value="@loGeneralInfoViewModel.Data.DCREATE_DATE"
+                                          R_ConductorSource="@_conductorGeneralInfoRef"
+                                          R_EnableAdd="true" R_EnableEdit="true"></R_DateTimePicker>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_StackLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="justify-content-around">
+            <R_ItemLayout Class="col-1">
+                <R_AddButton R_Conductor="@_conductorGeneralInfoRef"></R_AddButton>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col-1">
+                <R_EditButton R_Conductor="@_conductorGeneralInfoRef"></R_EditButton>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col-1">
+                <R_DeleteButton R_Conductor="@_conductorGeneralInfoRef"></R_DeleteButton>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col-1">
+                <R_Popup R_ConductorSource="@_conductorGeneralInfoRef"
+                         R_Before_Open_Popup="@R_Before_Open_Popup_ActivateInactiveGeneralInfo"
+                         R_After_Open_Popup="@R_After_Open_Popup_ActivateInactiveGeneralInfo"
+                                  R_EnableOther>@loGeneralInfoLabel</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col-1">
+                <R_CancelButton R_Conductor="@_conductorGeneralInfoRef"></R_CancelButton>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col-1">
+                <R_SaveButton R_Conductor="@_conductorGeneralInfoRef"></R_SaveButton>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col-1">
+                <R_Detail R_ConductorSource="_conductorGeneralInfoRef" R_Before_Open_Detail="R_Before_OpenBuilding_Detail" R_After_Open_Detail="R_After_OpenBuilding_Detail">Building</R_Detail>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_TabStripTab>
+
+    <R_TabStripTab Title="Unit Type Category">
+
+
+        <R_StackLayout Class="mb-4">
+            <R_StackLayout Row>
+                <R_ItemLayout Class="col-1">
+                    <R_Label Class="fw-bold" FontSize="15">Property</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout Class="col-3">
+                    <R_TextBox @bind-Value="@loUnitTypeCategoryViewModel.SelectedProperty.CPROPERTY_ID"
+                               R_ConductorSource="@_conductorUnitTypeCategoryRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="4" Class="col-7">
+                    <R_TextBox @bind-Value="@loUnitTypeCategoryViewModel.SelectedProperty.CPROPERTY_NAME"
+                               R_ConductorSource="@_conductorUnitTypeCategoryRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Spacing="3" Class="mb-4" Row="true">
+
+            @* Lay-Out Table Grid List *@
+            <R_StackLayout Class="col-2">
+                <R_Grid @ref="@_gridUnitTypeCategoryRef"
+                        DataSource="@loUnitTypeCategoryViewModel.loUnitTypeCategoryList"
+                        R_ConductorSource="@_conductorUnitTypeCategoryRef"
+                        R_GridType="@R_eGridType.Navigator"
+                        R_ServiceGetListRecord="@Grid_R_ServiceGetUnitTypeCategoryListRecord">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(GSM02502DTO.CUNIT_TYPE_CATEGORY_NAME)" HeaderText="Unit Type Category"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_StackLayout>
+
+
+            @* Lay-Out Navigator *@
+            <R_StackLayout Class="col-7">
+
+                <R_StackLayout Row="true" Class="justify-content-end">
+                    <R_ItemLayout col="1">
+                        <R_CheckBox @bind-Value="@loUnitTypeCategoryViewModel.Data.LACTIVE"
+                                    R_ConductorSource="@_conductorUnitTypeCategoryRef"
+                                    Enabled="false">
+                        </R_CheckBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>Active</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout Class="col-2">
+                        <R_Label>Unit Type Category*</R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout Class="col-3">
+                        <R_TextBox @bind-Value="@loUnitTypeCategoryViewModel.Data.CUNIT_TYPE_CATEGORY_ID"
+                                   R_ConductorSource="@_conductorUnitTypeCategoryRef"
+                                   R_EnableAdd="true"
+                                   R_EnableEdit="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4" Class="col-7">
+                        <R_TextBox @bind-Value="@loUnitTypeCategoryViewModel.Data.CUNIT_TYPE_CATEGORY_NAME"
+                                   R_ConductorSource="@_conductorUnitTypeCategoryRef"
+                                   R_EnableAdd="true"
+                                   R_EnableEdit="true">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout Class="col-2">
+                        <R_Label>Description</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-8">
+                        <R_TextArea @bind-Value="@loUnitTypeCategoryViewModel.Data.CDESCRIPTION"
+                                    R_ConductorSource="@_conductorUnitTypeCategoryRef"
+                                    R_EnableAdd="true" R_EnableEdit="true"></R_TextArea>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout Class="col-2">
+                        <R_Label>Updated By</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-4">
+                        <R_TextBox @bind-Value="@loUnitTypeCategoryViewModel.Data.CUPDATE_BY"
+                                   R_ConductorSource="@_conductorUnitTypeCategoryRef"
+                                   Enabled="false"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-1">
+                        <R_Label>Date</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-3">
+                        <R_DateTimePicker @bind-Value="@loUnitTypeCategoryViewModel.Data.DUPDATE_DATE"
+                                          R_ConductorSource="@_conductorUnitTypeCategoryRef"
+                                          Enabled="false"></R_DateTimePicker>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout Class="col-2">
+                        <R_Label>Created By</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-4">
+                        <R_TextBox @bind-Value="@loUnitTypeCategoryViewModel.Data.CCREATE_BY"
+                                   R_ConductorSource="@_conductorUnitTypeCategoryRef"
+                                   R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-1">
+                        <R_Label>Date</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-3">
+                        <R_DateTimePicker @bind-Value="@loUnitTypeCategoryViewModel.Data.DCREATE_DATE"
+                                          R_ConductorSource="@_conductorUnitTypeCategoryRef"
+                                          R_EnableAdd="true" R_EnableEdit="true"></R_DateTimePicker>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+
+            </R_StackLayout>
+
+
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="justify-content-around">
+            <R_ItemLayout Class="col-1">
+                <R_AddButton R_Conductor="@_conductorUnitTypeCategoryRef"></R_AddButton>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col-1">
+                <R_EditButton R_Conductor="@_conductorUnitTypeCategoryRef"></R_EditButton>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col-1">
+                <R_DeleteButton R_Conductor="@_conductorUnitTypeCategoryRef"></R_DeleteButton>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col-1">
+                <R_Button R_ConductorSource="@_conductorUnitTypeCategoryRef">Template</R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col-1">
+                <R_Button R_ConductorSource="@_conductorUnitTypeCategoryRef">Upload</R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col-1">
+                <R_Popup R_ConductorSource="@_conductorUnitTypeCategoryRef"
+                         R_Before_Open_Popup="@R_Before_Open_Popup_UnitTypeCategoryActivateInactive"
+                         R_After_Open_Popup="@R_After_Open_Popup_UnitTypeCategoryActivateInactive"
+                         R_EnableOther>@loUnitTypeCategoryLabel</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col-1">
+                <R_CancelButton R_Conductor="@_conductorUnitTypeCategoryRef"></R_CancelButton>
+            </R_ItemLayout>
+            <R_ItemLayout Class="col-1">
+                <R_SaveButton R_Conductor="@_conductorUnitTypeCategoryRef"></R_SaveButton>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_TabStripTab>
+    <R_TabStripTab Title="Unit Type">
+
+        <R_TabStrip @ref="UnitTypeTabStripRef" OnActiveTabIndexChanged="@OnUnitTypeTabChanged">
+            <R_TabStripTab Title="Unit Type">
+
+                <R_StackLayout Class="mb-4">
+                    <R_StackLayout Row>
+                        <R_ItemLayout Class="col-1">
+                            <R_Label Class="fw-bold" FontSize="15">Property</R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout Class="col-3">
+                            <R_TextBox @bind-Value="@loUnitTypeViewModel.SelectedProperty.CPROPERTY_ID"
+                                       R_ConductorSource="@_conductorUnitTypeRef"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4" Class="col-7">
+                            <R_TextBox @bind-Value="@loUnitTypeViewModel.SelectedProperty.CPROPERTY_NAME"
+                                       R_ConductorSource="@_conductorUnitTypeRef"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Class="mb-4">
+                    <R_StackLayout Row>
+                        <R_ItemLayout Class="col-1">
+                            <R_Label Class="fw-bold" FontSize="15">Unit Type Category</R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout Class="col-3">
+                            <R_TextBox @bind-Value="@loUnitTypeViewModel.SelectedUnitTypeCategory.CUNIT_TYPE_CATEGORY_ID"
+                                       R_ConductorSource="@_conductorUnitTypeRef"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_Lookup R_After_Open_Lookup="R_After_Open_Lookup_UnitType_UnitTypeCategory" R_Before_Open_Lookup="R_Before_Open_Lookup_UnitType_UnitTypeCategory" R_EnableAdd R_EnableEdit>...</R_Lookup>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4" Class="col-6">
+                            <R_TextBox @bind-Value="@loUnitTypeViewModel.SelectedUnitTypeCategory.CUNIT_TYPE_CATEGORY_NAME"
+                                       R_ConductorSource="@_conductorUnitTypeRef"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Spacing="3" Class="mb-4" Row="true">
+
+                    @* Lay-Out Table Grid List *@
+                    <R_StackLayout Class="col-2">
+                        <R_Grid @ref="@_gridUnitTypeRef"
+                                DataSource="@loUnitTypeViewModel.loUnitTypeList"
+                                R_ConductorSource="@_conductorUnitTypeRef"
+                                R_GridType="@R_eGridType.Navigator"
+                                R_ServiceGetListRecord="@Grid_R_ServiceGetUnitTypeListRecord">
+                            <R_GridColumns>
+                                <R_GridTextColumn FieldName="@nameof(GSM02503UnitTypeDTO.CUNIT_TYPE_NAME)" HeaderText="Unit Type"></R_GridTextColumn>
+                            </R_GridColumns>
+                        </R_Grid>
+                    </R_StackLayout>
+
+
+                    @* Lay-Out Navigator *@
+                    <R_StackLayout Class="col-7">
+
+                        <R_StackLayout Row="true" Class="justify-content-end">
+                            <R_ItemLayout col="1">
+                                <R_CheckBox @bind-Value="@loUnitTypeViewModel.Data.LACTIVE"
+                                            R_ConductorSource="@_conductorUnitTypeRef"
+                                            Enabled="false">
+                                </R_CheckBox>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="1">
+                                <R_Label>Active</R_Label>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout Class="col-2">
+                                <R_Label>Unit Type*</R_Label>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout Class="col-3">
+                                <R_TextBox @bind-Value="@loUnitTypeViewModel.Data.CUNIT_TYPE_ID"
+                                           R_ConductorSource="@_conductorUnitTypeRef"
+                                           R_EnableAdd="true"
+                                           R_EnableEdit="false">
+                                </R_TextBox>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="4" Class="col-7">
+                                <R_TextBox @bind-Value="@loUnitTypeViewModel.Data.CUNIT_TYPE_NAME"
+                                           R_ConductorSource="@_conductorUnitTypeRef"
+                                           R_EnableAdd="true"
+                                           R_EnableEdit="true">
+                                </R_TextBox>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout Class="col-2">
+                                <R_Label>Description</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout Class="col-8">
+                                <R_TextArea @bind-Value="@loUnitTypeViewModel.Data.CDESCRIPTION"
+                                            R_ConductorSource="@_conductorUnitTypeRef"
+                                            R_EnableAdd="true" R_EnableEdit="true"></R_TextArea>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row="true">
+                            <R_Label FontColor="R_eFontColor.Danger" FontSize="12">Default Size</R_Label>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout Class="col-2">
+                                <R_Label>Gross Area Size*</R_Label>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout Class="col-3">
+                                <R_NumericTextBox @bind-Value="@loUnitTypeViewModel.Data.NGROSS_AREA_SIZE"
+                                                  R_ConductorSource="@_conductorUnitTypeRef"
+                                                  R_EnableAdd="true"
+                                                  R_EnableEdit="true">
+                                </R_NumericTextBox>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout Class="col-1">
+                                <R_Label>sqm</R_Label>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout Class="col-2">
+                                <R_Label>Net Area Size*</R_Label>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout Class="col-3">
+                                <R_NumericTextBox @bind-Value="@loUnitTypeViewModel.Data.NNET_AREA_SIZE"
+                                                  R_ConductorSource="@_conductorUnitTypeRef"
+                                                  R_EnableAdd="true"
+                                                  R_EnableEdit="true">
+                                </R_NumericTextBox>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout Class="col-1">
+                                <R_Label>sqm</R_Label>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout Class="col-2">
+                                <R_Label>Updated By</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout Class="col-4">
+                                <R_TextBox @bind-Value="@loUnitTypeViewModel.Data.CUPDATE_BY"
+                                           R_ConductorSource="@_conductorUnitTypeRef"
+                                           Enabled="false"></R_TextBox>
+                            </R_ItemLayout>
+                            <R_ItemLayout Class="col-1">
+                                <R_Label>Date</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout Class="col-3">
+                                <R_DateTimePicker @bind-Value="@loUnitTypeViewModel.Data.DUPDATE_DATE"
+                                                  R_ConductorSource="@_conductorUnitTypeRef"
+                                                  Enabled="false"></R_DateTimePicker>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        <R_StackLayout Row="true">
+                            <R_ItemLayout Class="col-2">
+                                <R_Label>Created By</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout Class="col-4">
+                                <R_TextBox @bind-Value="@loUnitTypeViewModel.Data.CCREATE_BY"
+                                           R_ConductorSource="@_conductorUnitTypeRef"
+                                           R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                            </R_ItemLayout>
+                            <R_ItemLayout Class="col-1">
+                                <R_Label>Date</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout Class="col-3">
+                                <R_DateTimePicker @bind-Value="@loUnitTypeViewModel.Data.DCREATE_DATE"
+                                                  R_ConductorSource="@_conductorUnitTypeRef"
+                                                  R_EnableAdd="true" R_EnableEdit="true"></R_DateTimePicker>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+
+                    </R_StackLayout>
+
+
+                </R_StackLayout>
+
+                <R_StackLayout Row Class="justify-content-around">
+                    <R_ItemLayout Class="col-1">
+                        <R_AddButton R_Conductor="@_conductorUnitTypeRef"></R_AddButton>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-1">
+                        <R_EditButton R_Conductor="@_conductorUnitTypeRef"></R_EditButton>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-1">
+                        <R_DeleteButton R_Conductor="@_conductorUnitTypeRef"></R_DeleteButton>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-1">
+                        <R_Button R_ConductorSource="@_conductorUnitTypeRef">Template</R_Button>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-1">
+                        <R_Button R_ConductorSource="@_conductorUnitTypeRef">Upload</R_Button>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-1">
+                        <R_Popup R_ConductorSource="@_conductorUnitTypeRef"
+                                 R_Before_Open_Popup="@R_Before_Open_Popup_ActivateInactiveUnitType"
+                                 R_After_Open_Popup="@R_After_Open_Popup_ActivateInactiveUnitType"
+                                 R_EnableOther>@loUnitTypeLabel</R_Popup>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-1">
+                        <R_CancelButton R_Conductor="@_conductorUnitTypeRef"></R_CancelButton>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-1">
+                        <R_SaveButton R_Conductor="@_conductorUnitTypeRef"></R_SaveButton>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_TabStripTab>
+
+            <R_TabStripTab Title="Image">
+
+                <R_StackLayout Class="mb-4">
+                    <R_StackLayout Row>
+                        <R_ItemLayout Class="col-1">
+                            <R_Label Class="fw-bold" FontSize="15">Property</R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout Class="col-3">
+                            <R_TextBox @bind-Value="@loImageViewModel.SelectedProperty.CPROPERTY_ID"
+                                       R_ConductorSource="@_conductorImageRef"
+                                       Enabled="false">
+                                loImageViewModel
+                            </R_TextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4" Class="col-7">
+                            <R_TextBox @bind-Value="@loImageViewModel.SelectedProperty.CPROPERTY_NAME"
+                                       R_ConductorSource="@_conductorImageRef"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Class="mb-4">
+                    <R_StackLayout Row>
+                        <R_ItemLayout Class="col-1">
+                            <R_Label Class="fw-bold" FontSize="15">Unit Type</R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout Class="col-3">
+                            <R_TextBox @bind-Value="@loImageViewModel.SelectedUnitType.CUNIT_TYPE_ID"
+                                       R_ConductorSource="@_conductorImageRef"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4" Class="col-7">
+                            <R_TextBox @bind-Value="@loImageViewModel.SelectedUnitType.CUNIT_TYPE_NAME"
+                                       R_ConductorSource="@_conductorImageRef"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Spacing="3" Class="mb-4" Row="true">
+                    <R_Grid @ref="@_gridImageRef"
+                            DataSource="@loImageViewModel.loImageList"
+                            R_ConductorSource="@_conductorImageRef"
+                            R_GridType="@R_eGridType.Navigator"
+                            R_ServiceGetListRecord="@Grid_R_ServiceGetImageListRecord">
+                        <R_GridColumns>
+                            <R_GridTextColumn FieldName="@nameof(GSM02503ImageDTO.CIMAGE_ID)" HeaderText="Image Id"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName="@nameof(GSM02503ImageDTO.CIMAGE_NAME)" HeaderText="Name"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName="@nameof(GSM02503ImageDTO.CCREATE_BY)" HeaderText="Created By"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName="@nameof(GSM02503ImageDTO.DCREATE_DATE)" HeaderText="Created Date"></R_GridTextColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+                </R_StackLayout>
+
+
+                <R_StackLayout Row Class="justify-content-around">
+                    <R_ItemLayout Class="col-1">
+                        <R_Button R_ConductorSource="@_conductorImageRef">Add</R_Button>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-1">
+                        <R_DeleteButton R_Conductor="@_conductorImageRef"></R_DeleteButton>
+                    </R_ItemLayout>
+                    <R_ItemLayout Class="col-1">
+                        <R_Button R_ConductorSource="@_conductorImageRef">Show</R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                </R_TabStripTab>
+
+        </R_TabStrip>
+
+    </R_TabStripTab>
+    <R_TabStripTab Title="Unit View">
+        <R_StackLayout Class="mb-4">
+            <R_StackLayout Row>
+                <R_ItemLayout Class="col-1">
+                    <R_Label Class="fw-bold" FontSize="15">Property</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout Class="col-3">
+                    <R_TextBox @bind-Value="@loUnitViewViewModel.SelectedProperty.CPROPERTY_ID"
+                               R_ConductorGridSource="@_conGridUnitViewRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="4" Class="col-7">
+                    <R_TextBox @bind-Value="@loUnitViewViewModel.SelectedProperty.CPROPERTY_NAME"
+                               R_ConductorGridSource="@_conGridUnitViewRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_StackLayout>
+
+        <R_StackLayout>
+            <R_Grid @ref="@_gridUnitViewRef"
+                    DataSource="@loUnitViewViewModel.loUnitViewList"
+                    Pageable="true"
+                    R_ConductorGridSource="@_conGridUnitViewRef"
+                    R_GridType="@R_eGridType.Original"
+                    AllowAddNewRow="true"
+                    AllowEditRow="true"
+                    AllowDeleteRow="true"
+                    R_Display="@Grid_DisplayUnitView"
+                    R_ServiceGetRecord="@Grid_ServiceGetUnitViewRecord"
+                    R_ServiceSave="@Grid_ServiceSaveUnitView"
+                    R_ServiceDelete="@Grid_ServiceDeleteUnitView"
+                    R_ServiceGetListRecord="@Grid_R_ServiceGetUnitViewListRecord">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName=@nameof(GSM02504DTO.CUNIT_VIEW_ID) HeaderText="View Id" R_EnableAdd></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(GSM02504DTO.CUNIT_VIEW_NAME) HeaderText="View name" R_EnableAdd R_EnableEdit></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(GSM02504DTO.CUPDATE_BY) HeaderText="Updated By"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(GSM02504DTO.DUPDATE_DATE) HeaderText="Updated Date"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(GSM02504DTO.CCREATE_BY) HeaderText="Created By"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(GSM02504DTO.DCREATE_DATE) HeaderText="Created Date"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_StackLayout>
+    </R_TabStripTab>
+</R_TabStrip>
+
+
+<R_Conductor @ref="@_conductorGeneralInfoRef"
+             R_ViewModel="@loGeneralInfoViewModel"
+             R_Display="Grid_DisplayGeneralInfo"
+             R_ServiceSave="@Grid_ServiceSaveGeneralInfo"
+             R_ServiceDelete="@Grid_ServiceDeleteGeneralInfo"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Grid_ServiceGetGeneralInfoRecord">
+</R_Conductor>
+
+<R_Conductor @ref="@_conductorUnitTypeCategoryRef"
+             R_ViewModel="@loUnitTypeCategoryViewModel"
+             R_Display="Grid_DisplayUnitTypeCategory"
+             R_ServiceSave="@Grid_ServiceSaveUnitTypeCategory"
+             R_ServiceDelete="@Grid_ServiceDeleteUnitTypeCategory"
+             R_ConductorParent="@_conductorGeneralInfoRef"
+             R_ServiceGetRecord="@Grid_ServiceGetRecordUnitTypeCategory">
+</R_Conductor>
+
+<R_Conductor @ref="@_conductorImageRef"
+                R_ViewModel="@loImageViewModel"
+                R_Display="Grid_DisplayImage"
+                R_IsHeader
+                R_ServiceSave="@Grid_ServiceSaveImage"
+                R_ServiceDelete="@Grid_ServiceDeleteImage"
+                R_ServiceGetRecord="@Grid_ServiceGetImageRecord">
+</R_Conductor>
+
+<R_Conductor @ref="@_conductorUnitTypeRef"
+                R_ViewModel="@loUnitTypeViewModel"
+                R_Display="Grid_DisplayUnitType"
+                R_ServiceSave="@Grid_ServiceSaveUnitType"
+                R_BeforeAdd="Grid_BeforeAddUnitType"
+                R_BeforeEdit="Grid_BeforeEditUnitType"
+                R_BeforeCancel="Grid_BeforeCancelUnitType"
+                R_AfterSave="Grid_AfterSaveUnitType"
+                R_ServiceDelete="@Grid_ServiceDeleteUnitType"
+                R_IsHeader="true"
+                R_ServiceGetRecord="@Grid_ServiceGetUnitTypeRecord">
+</R_Conductor>
+
+<R_ConductorGrid @ref="@_conGridUnitViewRef"
+                 R_ViewModel="@loUnitViewViewModel"
+                 R_ConductorParent="@_conductorGeneralInfoRef"></R_ConductorGrid>

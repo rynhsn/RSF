@@ -1,0 +1,30 @@
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_title_PopupUser")]
+
+
+<R_StackLayout Style="width: 800px">
+    <R_StackLayout Row>
+        <R_Grid @ref="@_gridUser"
+                DataSource="_viewModelUserMenu.UserList"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="GridUser_GetListAsync"
+                Height="@PQM00500ContextConstant.GRID_SIZEHEIGHT_POPUPUSER"
+                @bind-PageSize="@_pageSizeGridUserPopup"
+                Pageable>
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(UserDTO.CUSER_ID)" HeaderText="@_localizer["_col_userid"]" />
+                <R_GridTextColumn FieldName="@nameof(UserDTO.CUSER_NAME)" HeaderText="@_localizer["_col_username"]" />
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Justify="@R_eJustify.FlexEnd">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            @_localizer["_btn_ok"]
+        </R_Button>
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            @_localizer["_btn_cancel"]
+        </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>

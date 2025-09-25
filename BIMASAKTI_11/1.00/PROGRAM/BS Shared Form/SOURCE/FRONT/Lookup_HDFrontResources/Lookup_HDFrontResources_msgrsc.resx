@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="test" xml:space="preserve">
+        <value>te</value>
+    </data>
+    <data name="PRICELIST_ID" xml:space="preserve">
+        <value>Pricelist ID</value>
+    </data>
+    <data name="PRICELIST_NAME" xml:space="preserve">
+        <value>Pricelist Name</value>
+    </data>
+    <data name="CHARGES_ID" xml:space="preserve">
+        <value>Charges ID</value>
+    </data>
+    <data name="INVOICE_GROUP" xml:space="preserve">
+        <value>Invoice Group</value>
+    </data>
+    <data name="TAXABLE" xml:space="preserve">
+        <value>Taxable</value>
+    </data>
+    <data name="UNIT" xml:space="preserve">
+        <value>Unit</value>
+    </data>
+    <data name="DESCRIPTION" xml:space="preserve">
+        <value>Description</value>
+    </data>
+    <data name="PRICE" xml:space="preserve">
+        <value>Price</value>
+    </data>
+    <data name="OK" xml:space="preserve">
+        <value>OK</value>
+    </data>
+    <data name="CANCEL" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="START_DATE" xml:space="preserve">
+        <value>Start Date</value>
+    </data>
+    <data name="CURRENCY" xml:space="preserve">
+        <value>Currency</value>
+    </data>
+    <data name="PUBLIC_LOCATION_ID" xml:space="preserve">
+        <value>Public Location ID</value>
+    </data>
+    <data name="PUBLIC_LOCATION_NAME" xml:space="preserve">
+        <value>Public Location Name</value>
+    </data>
+    <data name="PUBLIC_LOCATION_DESC" xml:space="preserve">
+        <value>Public Location Desc.</value>
+    </data>
+    <data name="DEPT" xml:space="preserve">
+        <value>Dept.</value>
+    </data>
+    <data name="ASSET_CODE" xml:space="preserve">
+        <value>Asset Code</value>
+    </data>
+    <data name="ASSET_NAME" xml:space="preserve">
+        <value>Asset Name</value>
+    </data>
+    <data name="LOCATION" xml:space="preserve">
+        <value>Location</value>
+    </data>
+    <data name="BUILDING_ID" xml:space="preserve">
+        <value>Building ID</value>
+    </data>
+    <data name="FLOOR_ID" xml:space="preserve">
+        <value>Floor ID</value>
+    </data>
+    <data name="UNIT_ID" xml:space="preserve">
+        <value>UNIT ID</value>
+    </data>
+</root>

@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CACTUAL_QUANTITY" xml:space="preserve">
+    <value>Actual Quantity</value>
+    <comment>Actual Quantity</comment>
+  </data>
+  <data name="CAGREEMENT_INFORMATION" xml:space="preserve">
+    <value>Agreement Information</value>
+    <comment>Agreement Information</comment>
+  </data>
+  <data name="CAREA_SIZE" xml:space="preserve">
+    <value>Area Size</value>
+    <comment>Area Size</comment>
+  </data>
+  <data name="CASSIGNED_EMPLOYEE" xml:space="preserve">
+    <value>Assigned Employee</value>
+    <comment>Assigned Employee</comment>
+  </data>
+  <data name="CBUILDING_ID" xml:space="preserve">
+    <value>Building </value>
+    <comment>Building </comment>
+  </data>
+  <data name="CCATEGORY" xml:space="preserve">
+    <value>Category</value>
+    <comment>Category</comment>
+  </data>
+  <data name="CCHECKLIST" xml:space="preserve">
+    <value>Checklist</value>
+    <comment>Checklist</comment>
+  </data>
+  <data name="CCONFIRMATION" xml:space="preserve">
+    <value>Confirmation</value>
+    <comment>Confirmation</comment>
+  </data>
+  <data name="CCONFIRMED_BY" xml:space="preserve">
+    <value>Confirmed By</value>
+    <comment>Confirmed By</comment>
+  </data>
+  <data name="CCONFIRMED_DATE" xml:space="preserve">
+    <value>Confirmed Date</value>
+    <comment>Confirmed Date</comment>
+  </data>
+  <data name="CDATE" xml:space="preserve">
+    <value>Date</value>
+    <comment>Date</comment>
+  </data>
+  <data name="CDEPARTMENT" xml:space="preserve">
+    <value>Department</value>
+    <comment>Department</comment>
+  </data>
+  <data name="CDESCRIPTION" xml:space="preserve">
+    <value>Description</value>
+    <comment>Description</comment>
+  </data>
+  <data name="CDUTIES_AND_RESPONSIBILITIES" xml:space="preserve">
+    <value>Duties and Responsibilities</value>
+    <comment>Duties and Responsibilities</comment>
+  </data>
+  <data name="CEMAIL" xml:space="preserve">
+    <value>Email</value>
+    <comment>Email</comment>
+  </data>
+  <data name="CEMPLOYEE" xml:space="preserve">
+    <value>Employee</value>
+    <comment>Employee</comment>
+  </data>
+  <data name="CFEE" xml:space="preserve">
+    <value>Fee (per Area sqm)</value>
+    <comment>Fee (per Area sqm)</comment>
+  </data>
+  <data name="CFINAL_MESSAGE" xml:space="preserve">
+    <value>Please proceed with the required payment so that the handover can be completed on the confirmed date. Thank you for your attention and cooperation.</value>
+    <comment>Please proceed with the required payment so that the handover can be completed on the confirmed date. Thank you for your attention and cooperation.</comment>
+  </data>
+  <data name="CFIRST_PRINT" xml:space="preserve">
+    <value>First Print</value>
+    <comment>First Print</comment>
+  </data>
+  <data name="CFLOOR_ID" xml:space="preserve">
+    <value>Floor </value>
+    <comment>Floor </comment>
+  </data>
+  <data name="CGRAND_TOTAL" xml:space="preserve">
+    <value>Grand Total (before tax)</value>
+    <comment>Grand Total (before tax)</comment>
+  </data>
+  <data name="CHANDOVER_INFORMATION" xml:space="preserve">
+    <value>Handover Information</value>
+    <comment>Handover Information</comment>
+  </data>
+  <data name="CHERE_IS_THE_DETAILED_BREAKDOWN" xml:space="preserve">
+    <value>Here is the detailed breakdown</value>
+    <comment>Here is the detailed breakdown</comment>
+  </data>
+  <data name="CITEM" xml:space="preserve">
+    <value>Item</value>
+    <comment>Item</comment>
+  </data>
+  <data name="CMESSAGE_1" xml:space="preserve">
+    <value>* Each item's total in the detailed breakdown is calculated as:</value>
+    <comment>* Each item's total in the detailed breakdown is calculated as:</comment>
+  </data>
+  <data name="CMESSAGE_2" xml:space="preserve">
+    <value>Fee × Area Size × Total Months to be Paid in Advance.</value>
+    <comment>Fee × Area Size × Total Months to be Paid in Advance.</comment>
+  </data>
+  <data name="CMESSAGE_CONFIRMATION" xml:space="preserve">
+    <value>Both parties confirm that the handover has been carried out in accordance with the checklist.</value>
+    <comment>Both parties confirm that the handover has been carried out in accordance with the checklist.</comment>
+  </data>
+  <data name="CMESSAGE_DUTIES_1" xml:space="preserve">
+    <value>The employees listed above are assigned to carry out the handover procedure according to the prepared checklist. Ensure all items are thoroughly inspected and their status recorded.</value>
+    <comment>The employees listed above are assigned to carry out the handover procedure according to the prepared checklist. Ensure all items are thoroughly inspected and their status recorded.</comment>
+  </data>
+  <data name="CMESSAGE_DUTIES_2" xml:space="preserve">
+    <value>The employees listed above are assigned to carry out the handover procedure accordingly. Ensure everything is thoroughly inspected and their status recorded.</value>
+    <comment>The employees listed above are assigned to carry out the handover procedure accordingly. Ensure everything is thoroughly inspected and their status recorded.</comment>
+  </data>
+  <data name="CNAME" xml:space="preserve">
+    <value>Name</value>
+    <comment>Name</comment>
+  </data>
+  <data name="CNOTES" xml:space="preserve">
+    <value>Notes</value>
+    <comment>Notes</comment>
+  </data>
+  <data name="COK_NOTOK" xml:space="preserve">
+    <value>OK / Not OK</value>
+  </data>
+  <data name="CPAYMENT_INFORMATION" xml:space="preserve">
+    <value>Payment Information</value>
+    <comment>Payment Information</comment>
+  </data>
+  <data name="CPAYMENT_INFORMATION_LINE_1" xml:space="preserve">
+    <value>Please note that, prior to the handover, you are required to make an advance payment of charges for</value>
+    <comment>Please note that, prior to the handover, you are required to make an advance payment of charges for</comment>
+  </data>
+  <data name="CPAYMENT_INFORMATION_LINE_2" xml:space="preserve">
+    <value>months</value>
+    <comment>months</comment>
+  </data>
+  <data name="CPAYMENT_INFORMATION_LINE_3" xml:space="preserve">
+    <value>totaling</value>
+    <comment>totaling</comment>
+  </data>
+  <data name="CPAYMENT_INFORMATION_LINE_4" xml:space="preserve">
+    <value>(before tax)</value>
+    <comment>(before tax)</comment>
+  </data>
+  <data name="CPHONE_NO" xml:space="preserve">
+    <value>Phone No.</value>
+    <comment>Phone No.</comment>
+  </data>
+  <data name="CPROPERTY" xml:space="preserve">
+    <value>Property</value>
+    <comment>Property</comment>
+  </data>
+  <data name="CPROPERTY_ID" xml:space="preserve">
+    <value>Property</value>
+    <comment>Property</comment>
+  </data>
+  <data name="CQUANTITY" xml:space="preserve">
+    <value>Quantity</value>
+    <comment>Quantity</comment>
+  </data>
+  <data name="CREF_DATE" xml:space="preserve">
+    <value>Reference Date</value>
+    <comment>Reference Date</comment>
+  </data>
+  <data name="CREF_NO" xml:space="preserve">
+    <value>Reference No.</value>
+    <comment>Reference No.</comment>
+  </data>
+  <data name="CREPRINT_NO" xml:space="preserve">
+    <value>Re-Print No</value>
+    <comment>Re-Print No</comment>
+  </data>
+  <data name="CRESCHEDULED_COUNT" xml:space="preserve">
+    <value>Rescheduled Count</value>
+    <comment>Rescheduled Count</comment>
+  </data>
+  <data name="CSCHEDULED_DATE" xml:space="preserve">
+    <value>Scheduled Date</value>
+    <comment>Scheduled Date</comment>
+  </data>
+  <data name="CSTATUS" xml:space="preserve">
+    <value>Status</value>
+    <comment>Status</comment>
+  </data>
+  <data name="CTAXABLE" xml:space="preserve">
+    <value>Taxable</value>
+    <comment>Taxable</comment>
+  </data>
+  <data name="CTENANT" xml:space="preserve">
+    <value>Tenant</value>
+    <comment>Tenant</comment>
+  </data>
+  <data name="CTENANT_INFORMATION" xml:space="preserve">
+    <value>Tenant Information</value>
+    <comment>Tenant Information</comment>
+  </data>
+  <data name="CTOTAL" xml:space="preserve">
+    <value>Total</value>
+    <comment>Total</comment>
+  </data>
+  <data name="CTOTAL_QUANTITY" xml:space="preserve">
+    <value>Total Quantity</value>
+    <comment>Total Quantity</comment>
+  </data>
+  <data name="CTYPE" xml:space="preserve">
+    <value>Type</value>
+    <comment>Type</comment>
+  </data>
+  <data name="CUNIT" xml:space="preserve">
+    <value>Unit</value>
+    <comment>Unit</comment>
+  </data>
+  <data name="CUNIT_ID" xml:space="preserve">
+    <value>Unit </value>
+    <comment>Unit </comment>
+  </data>
+  <data name="CUNIT_INFORMATION" xml:space="preserve">
+    <value>Unit Information</value>
+    <comment>Unit Information</comment>
+  </data>
+  <data name="CUNIT_TYPE" xml:space="preserve">
+    <value>Unit Type</value>
+    <comment>Unit Type</comment>
+  </data>
+  <data name="CUNIT_TYPE_CATEGORY" xml:space="preserve">
+    <value>Unit Type Category</value>
+    <comment>Unit Type Category</comment>
+  </data>
+</root>

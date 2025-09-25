@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="BaseHeaderReportCOMMON">
+            <HintPath>..\..\..\COMMON\BaseHeaderReportCOMMON.dll</HintPath>
+        </Reference>
+        <Reference Include="R_APIBackEnd">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
+        </Reference>
+        <Reference Include="R_APICommon">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
+        </Reference>
+        <Reference Include="R_APICommonDTO">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommonDTO.dll</HintPath>
+        </Reference>
+        <Reference Include="R_Cache">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_Cache.dll</HintPath>
+        </Reference>
+        <Reference Include="R_CommonFrontBackAPI">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
+        </Reference>
+        <Reference Include="R_OpenTelemetry">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll</HintPath>
+        </Reference>
+        <Reference Include="R_ReportFastReportBack">
+            <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_ReportFastReportBack.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\BACK\AP\APR00500BackResources\APR00500BackResources.csproj" />
+        <ProjectReference Include="..\..\..\COMMON\BaseHeaderResources\BaseHeaderResources.csproj"/>
+        <ProjectReference Include="..\..\..\BACK\AP\APR00500Back\APR00500Back.csproj"/>
+        <ProjectReference Include="..\..\..\COMMON\AP\APR00500Common\APR00500Common.csproj"/>
+    </ItemGroup>
+</Project>

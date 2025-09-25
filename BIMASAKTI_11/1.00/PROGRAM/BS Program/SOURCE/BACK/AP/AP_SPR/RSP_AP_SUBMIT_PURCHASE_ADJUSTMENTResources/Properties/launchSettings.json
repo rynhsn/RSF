@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_AP_SUBMIT_PURCHASE_ADJUSTMENTResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57021;http://localhost:57022"
+    }
+  }
+}

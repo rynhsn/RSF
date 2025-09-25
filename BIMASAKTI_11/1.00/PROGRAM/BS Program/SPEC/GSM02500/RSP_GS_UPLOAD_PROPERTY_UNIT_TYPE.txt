@@ -1,0 +1,6 @@
+EMPTY_UNIT_TYPE_CODE	= Unit Type Code cannot be empty
+EXCESS_UNIT_TYPE_CODE	= Unit Type Code is bigger than 20 Character
+EMPTY_UNIT_TYPE_NAME	= Unit Type Name cannot be empty
+INVALID_ACTIVE_FLAG	= Active Flag is not valid [1/0]
+EMPTY_NONACTIVE_DATE	= Non Active Date cannot be empty for this inactive Unit Type
+INVALID_UNIT_TYPE_CTG	= Invalid Unit Type

@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    
+    
+  <data name="_btn_search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="_btn_showAll" xml:space="preserve">
+    <value>Show All</value>
+  </data>
+  <data name="_col_Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="_col_CreatedBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="_col_Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="_col_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="_col_DocumentDate" xml:space="preserve">
+    <value>Document Date</value>
+  </data>
+  <data name="_col_DocumentNo" xml:space="preserve">
+    <value>Document No.</value>
+  </data>
+  <data name="_col_Freq" xml:space="preserve">
+    <value>Freq.</value>
+  </data>
+  <data name="_col_Intv" xml:space="preserve">
+    <value>Interval(Month)</value>
+  </data>
+  <data name="_col_ReferenceNo" xml:space="preserve">
+    <value>Reference No.</value>
+  </data>
+  <data name="_col_StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="_col_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="_col_UpdatedBy" xml:space="preserve">
+    <value>Updated By</value>
+  </data>
+  <data name="_col_UpdatedDate" xml:space="preserve">
+    <value>Updated Date</value>
+  </data>
+  <data name="_lbl_dept" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_lbl_NextJournalPeriod" xml:space="preserve">
+    <value>Next Journal Period</value>
+  </data>
+  <data name="_lbl_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="_msgCloseJrnConfirmation" xml:space="preserve">
+    <value>Are you sure want to close this recurring journal?</value>
+  </data>
+  <data name="_msgDeleteConfirmation" xml:space="preserve">
+    <value>Are you sure want to delete this Recurring Journal?</value>
+  </data>
+  <data name="_msgDeleteSuccess" xml:space="preserve">
+    <value>Recurring Journal Deleted Successfully!</value>
+  </data>
+  <data name="_msgJrnApproveSuccess" xml:space="preserve">
+    <value>Recurring Journal Approved Successfully!</value>
+  </data>
+  <data name="_msgJrnCancelConfirmation" xml:space="preserve">
+    <value>You haven’t saved your changes. Are you sure want to cancel?</value>
+  </data>
+  <data name="_msgJrnClosedSuccess" xml:space="preserve">
+    <value>Recurring Journal Closed Successfully!</value>
+  </data>
+  <data name="_msgJrnCommitSuccess" xml:space="preserve">
+    <value>Recurring Journal Committed Successfully!</value>
+  </data>
+  <data name="_msgJrnDeleteConfirmation" xml:space="preserve">
+    <value>Delete Selected Journal Detail?</value>
+  </data>
+  <data name="_msgJrnSubmitConfirmation" xml:space="preserve">
+    <value>Are you want to submit this journal?</value>
+  </data>
+  <data name="_msgJrnUndoSubmitConfirmation" xml:space="preserve">
+    <value>Are you want to undo submit this journal?</value>
+  </data>
+  <data name="_msgSelectedJrnApproveSuccess" xml:space="preserve">
+    <value>Selected Recurring Journal approved successfully!</value>
+  </data>
+  <data name="_msgSelectedJrnCommitConfirmation" xml:space="preserve">
+    <value>Are you sure want to commit selected journal? </value>
+  </data>
+  <data name="_msgSelectedJrnCommitSuccess" xml:space="preserve">
+    <value>Selected Recurring Journal Committed Successfully!</value>
+  </data>
+  <data name="_msgSelectedJrnUndoCommitConfirmation" xml:space="preserve">
+    <value>Are you sure want to undo commit selected journal?</value>
+  </data>
+  <data name="_msgSelectedJrnUndoCommitSuccess" xml:space="preserve">
+    <value>Selected Recurring Journal Undo Committed Successfully!</value>
+  </data>
+  <data name="_msgUndoCommitSuccess" xml:space="preserve">
+    <value>Recurring Journal Undo Committed Successfully!</value>
+  </data>
+  <data name="_msgUploadJrnSuccess" xml:space="preserve">
+    <value>Recurring Journal(s) uploaded successfully!</value>
+  </data>
+  <data name="_pageTitleActualRecurringList" xml:space="preserve">
+    <value>Actual Journal List</value>
+  </data>
+  <data name="_pageTitlePrintPopup" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="_pageTitleReccuringEntry" xml:space="preserve">
+    <value>Recurring Entry</value>
+  </data>
+  <data name="_pageTitleReccuringList" xml:space="preserve">
+    <value>Recurring List</value>
+  </data>
+  <data name="_valApproveClosePeriod" xml:space="preserve">
+    <value>Cannot Approve Recurring Journal with Starting Date earlier than Soft Close Period!</value>
+  </data>
+  <data name="_valApproveRight" xml:space="preserve">
+    <value>You don’t have right to approve this journal!</value>
+  </data>
+  <data name="_valDeptSelect" xml:space="preserve">
+    <value>Please Select Department!</value>
+  </data>
+  <data name="_valJrn1" xml:space="preserve">
+    <value>Reference No is required!</value>
+  </data>
+  <data name="_valJrn10" xml:space="preserve">
+    <value>Document Date may not be later than today!</value>
+  </data>
+  <data name="_valJrn11" xml:space="preserve">
+    <value>Document Date may not be earlier than Current Period!</value>
+  </data>
+  <data name="_valJrn12" xml:space="preserve">
+    <value>Please input Document Date!</value>
+  </data>
+  <data name="_valJrn13" xml:space="preserve">
+    <value>Document Date may not be later than Start Date!</value>
+  </data>
+  <data name="_valJrn14" xml:space="preserve">
+    <value>Description is required!</value>
+  </data>
+  <data name="_valJrn15" xml:space="preserve">
+    <value>Journal amount is not equal to Prelist!</value>
+  </data>
+  <data name="_valJrn16" xml:space="preserve">
+    <value>Local Currency Base Rate must be greater than 0!</value>
+  </data>
+  <data name="_valJrn17" xml:space="preserve">
+    <value>Local Currency Rate must be greater than 0!</value>
+  </data>
+  <data name="_valJrn18" xml:space="preserve">
+    <value>Base Currency Base Rate must be greater than 0!</value>
+  </data>
+  <data name="_valJrn19" xml:space="preserve">
+    <value>Base Currency Rate must be greater than 0!</value>
+  </data>
+  <data name="_valJrn2" xml:space="preserve">
+    <value>Reference Date is required!</value>
+  </data>
+  <data name="_valJrn3" xml:space="preserve">
+    <value>Reference Date may not be earlier than Current Period!</value>
+  </data>
+  <data name="_valJrn4" xml:space="preserve">
+    <value>Reference Date may not be later than Start Date!</value>
+  </data>
+  <data name="_valJrn5" xml:space="preserve">
+    <value>Reference Date may not be later than today!</value>
+  </data>
+  <data name="_valJrn6" xml:space="preserve">
+    <value>Start Date may not be earlier than Soft Close Period!</value>
+  </data>
+  <data name="_valJrn7" xml:space="preserve">
+    <value>Start Date may not be earlier than today!</value>
+  </data>
+  <data name="_valJrn9" xml:space="preserve">
+    <value>Please input Document No.!</value>
+  </data>
+  <data name="_valJrnCommitClosePeriod" xml:space="preserve">
+    <value>Cannot Commit Recurring Journal with Starting Date earlier than Soft Close Period!</value>
+  </data>
+  <data name="_valJrnCommitConfirmation" xml:space="preserve">
+    <value>Are you sure want to commit this journal?</value>
+  </data>
+  <data name="_valJrnDet1" xml:space="preserve">
+    <value>Account No. is required!</value>
+  </data>
+  <data name="_valJrnDet2" xml:space="preserve">
+    <value>Account No. </value>
+  </data>
+  <data name="_valJrnDet3" xml:space="preserve">
+    <value>already exists!</value>
+  </data>
+  <data name="_valJrnDet4" xml:space="preserve">
+    <value>Center Code is required for Account No. </value>
+  </data>
+  <data name="_valJrnDet5" xml:space="preserve">
+    <value>Journal amount cannot be 0!</value>
+  </data>
+  <data name="_valJrnDet6" xml:space="preserve">
+    <value>Journal amount can only be either Debit or Credit!</value>
+  </data>
+  <data name="_valJrnTypeApproveRight" xml:space="preserve">
+    <value>You don’t have right to approve this journal type!</value>
+  </data>
+  <data name="_valJrnUndoCommitConfirmation" xml:space="preserve">
+    <value>Are you sure want to undo committed this journal?</value>
+  </data>
+  <data name="_valNoDataFound" xml:space="preserve">
+    <value>No data found!</value>
+  </data>
+  <data name="_valSearch1" xml:space="preserve">
+    <value>Please Select Department!</value>
+  </data>
+  <data name="_valSearch2" xml:space="preserve">
+    <value>Please input keyword to search!</value>
+  </data>
+  <data name="_valSearch3" xml:space="preserve">
+    <value>Minimum search keyword is 3 characters!</value>
+  </data>
+  <data name="_valSelectedJrnCommitClosePeriod" xml:space="preserve">
+    <value>Cannot Commit Recurring Journal with Starting Date earlier than Soft Close Period!</value>
+  </data>
+  <data name="_valSubmitClosePeriod" xml:space="preserve">
+    <value>Cannot Submit Recurring Journal with Starting Date earlier than Soft Close Period!</value>
+  </data>
+  <data name="_col_CreatedDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="_col_NextDate" xml:space="preserve">
+    <value>Next Date</value>
+  </data>
+  <data name="_col_No" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="_col_AccountNo" xml:space="preserve">
+    <value>Account No.</value>
+  </data>
+  <data name="_col_AccountName" xml:space="preserve">
+    <value>Account Name</value>
+  </data>
+  <data name="_col_Center" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="_col_DC" xml:space="preserve">
+    <value>D/C</value>
+  </data>
+  <data name="_col_Debit" xml:space="preserve">
+    <value>Debit</value>
+  </data>
+  <data name="_col_DebitAmount" xml:space="preserve">
+    <value>Debit Amount</value>
+  </data>
+  <data name="_col_Credit" xml:space="preserve">
+    <value>Credit</value>
+  </data>
+  <data name="_col_CreditAmount" xml:space="preserve">
+    <value>Credit Amount</value>
+  </data>
+  <data name="_col_DBLocal" xml:space="preserve">
+    <value>DB (Local)</value>
+  </data>
+  <data name="_col_CRLocal" xml:space="preserve">
+    <value>CR (Local)</value>
+  </data>
+  <data name="_col_DBBase" xml:space="preserve">
+    <value>DB (Base)</value>
+  </data>
+  <data name="_col_CRBase" xml:space="preserve">
+    <value>CR (Base)</value>
+  </data>
+  <data name="_btn_Approve" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="_btn_Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="_btn_Template" xml:space="preserve">
+    <value>Template</value>
+  </data>
+  <data name="_tabtitle_RecurringEntry" xml:space="preserve">
+    <value>Recurring Entry</value>
+  </data>
+  <data name="_col_ActualJournalList" xml:space="preserve">
+    <value>Actual Journal List</value>
+  </data>
+  <data name="_txt_Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_txt_ReferenceNo" xml:space="preserve">
+    <value>Reference No. *</value>
+  </data>
+  <data name="_txt_RefDate" xml:space="preserve">
+    <value>Ref. Date *</value>
+  </data>
+  <data name="_txt_DocumentNo" xml:space="preserve">
+    <value>Document No.</value>
+  </data>
+  <data name="_txt_DocDate" xml:space="preserve">
+    <value>Doc Date.</value>
+  </data>
+  <data name="_txt_Frequency" xml:space="preserve">
+    <value>Frequency*</value>
+  </data>
+  <data name="_txt_Applied" xml:space="preserve">
+    <value>Applied</value>
+  </data>
+  <data name="_txt_Interval" xml:space="preserve">
+    <value>Interval*</value>
+  </data>
+  <data name="_txt_Month" xml:space="preserve">
+    <value>Month(s)</value>
+  </data>
+  <data name="_txt_StartDate" xml:space="preserve">
+    <value>Start Date*</value>
+  </data>
+  <data name="_txt_NextDate" xml:space="preserve">
+    <value>Next Date</value>
+  </data>
+  <data name="_txt_LastDate" xml:space="preserve">
+    <value>Last Date</value>
+  </data>
+  <data name="_txt_Description" xml:space="preserve">
+    <value>Description*</value>
+  </data>
+  <data name="_txt_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="_txt_Currency" xml:space="preserve">
+    <value>Currency*</value>
+  </data>
+  <data name="_chk_FixedExchangeRate" xml:space="preserve">
+    <value>Fixed Exchange Rate</value>
+  </data>
+  <data name="_txt_BaseRate" xml:space="preserve">
+    <value>Base Rate</value>
+  </data>
+  <data name="_txt_CurrencyRate" xml:space="preserve">
+    <value>Currency Rate</value>
+  </data>
+  <data name="_txt_LocalCurrency" xml:space="preserve">
+    <value>Local Currency</value>
+  </data>
+  <data name="_txt_BaseCurrency" xml:space="preserve">
+    <value>Base Currency</value>
+  </data>
+  <data name="_col_Prelist" xml:space="preserve">
+    <value>Prelist</value>
+  </data>
+  <data name="_txt_TotalDebit" xml:space="preserve">
+    <value>Total Debit</value>
+  </data>
+  <data name="_col_TotalCredit" xml:space="preserve">
+    <value>Total Credit</value>
+  </data>
+  <data name="_txt_UpdatedBy" xml:space="preserve">
+    <value>Updated By</value>
+  </data>
+  <data name="_txt_CreatedBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="_btn_Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="_btn_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="_btn_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="_btn_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="_btn_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="_grp_JournalDescription" xml:space="preserve">
+    <value>Journal Description</value>
+  </data>
+  <data name="_col_JournalDetail" xml:space="preserve">
+    <value>Journal Detail</value>
+  </data>
+  <data name="_btn_submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="_btn_UndoCommit" xml:space="preserve">
+    <value>Undo Commit</value>
+  </data>
+  <data name="_btn_UndoSubmit" xml:space="preserve">
+    <value>Undo Submit</value>
+  </data>
+  <data name="_btn_Commit" xml:space="preserve">
+    <value>Commit</value>
+  </data>
+  <data name="_msg_search1" xml:space="preserve">
+    <value>Data Not Found!</value>
+  </data>
+  <data name="_msg_search2" xml:space="preserve">
+    <value>Please input keyword to search!</value>
+  </data>
+  <data name="_msg_search3" xml:space="preserve">
+    <value>"Minimum search keyword is 3 characters!"</value>
+  </data>
+  <data name="_lbl_totalRows" xml:space="preserve">
+    <value>Total Row(s)</value>
+  </data>
+  <data name="_lbl_vaildupload" xml:space="preserve">
+    <value>Valid</value>
+  </data>
+  <data name="_lbl_validupload" xml:space="preserve">
+    <value>Invalid</value>
+  </data>
+  <data name="_btn_process" xml:space="preserve">
+    <value>Process</value>
+  </data>
+  <data name="_btn_savetoexcel" xml:space="preserve">
+    <value>Save To Excel</value>
+  </data>
+  <data name="_pageTitleRecurringUploadPopup" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="_col_seqNo" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="_col_recurringName" xml:space="preserve">
+    <value>Recurring Name</value>
+  </data>
+  <data name="_col_dept" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_col_recurringNo" xml:space="preserve">
+    <value>Recurring No.</value>
+  </data>
+  <data name="_col_docNo" xml:space="preserve">
+    <value>Document No.</value>
+  </data>
+  <data name="_col_currencyCode" xml:space="preserve">
+    <value>Currency Code</value>
+  </data>
+  <data name="_col_fixedRate" xml:space="preserve">
+    <value>Fixed Rate</value>
+  </data>
+  <data name="_col_uploadFreq" xml:space="preserve">
+    <value>Frequency</value>
+  </data>
+  <data name="_col_interval" xml:space="preserve">
+    <value>Interval</value>
+  </data>
+
+
+
+
+
+
+
+  <data name="_msg_batchComplete" xml:space="preserve">
+    <value>_msg_batchComplete</value>
+  </data>
+  <data name="_msg_confirmupload" xml:space="preserve">
+    <value>_msg_confirmupload</value>
+  </data>
+  <data name="_msg_confirmasavetoexcel" xml:space="preserve">
+    <value>_msg_confirmasavetoexcel</value>
+  </data>
+  <data name="Q03" xml:space="preserve">
+    <value>Q03</value>
+  </data>
+  
+</root>
