@@ -27,7 +27,10 @@
       },
       "BaseHeaderResources/1.0.0": {
         "runtime": {
-          "BaseHeaderResources.dll": {}
+          "BaseHeaderResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         },
         "resources": {
           "id/BaseHeaderResources.resources.dll": {
@@ -41,17 +44,26 @@
           "PMR00210COMMON": "1.0.0"
         },
         "runtime": {
-          "PMR00210BACK.dll": {}
+          "PMR00210BACK.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "PMR00210BackResources/1.0.0": {
         "runtime": {
-          "PMR00210BackResources.dll": {}
+          "PMR00210BackResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "PMR00210COMMON/1.0.0": {
         "runtime": {
-          "PMR00210COMMON.dll": {}
+          "PMR00210COMMON.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "BaseHeaderReportCOMMON/1.0.0.0": {
@@ -67,14 +79,6 @@
           "R_APIBackEnd.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
-          }
-        },
-        "resources": {
-          "id/R_APIBackEnd.resources.dll": {
-            "locale": "id"
-          },
-          "ja/R_APIBackEnd.resources.dll": {
-            "locale": "ja"
           }
         }
       },
@@ -121,6 +125,22 @@
       "R_ReportFastReportBack/1.0.0.0": {
         "runtime": {
           "R_ReportFastReportBack.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_StorageCommon/1.0.0.0": {
+        "runtime": {
+          "R_StorageCommon.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_Storage/1.0.0.0": {
+        "runtime": {
+          "R_Storage.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -238,6 +258,16 @@
       "sha512": ""
     },
     "R_ReportFastReportBack/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_StorageCommon/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_Storage/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

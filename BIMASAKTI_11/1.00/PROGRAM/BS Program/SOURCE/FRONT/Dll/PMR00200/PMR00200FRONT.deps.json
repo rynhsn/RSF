@@ -1,0 +1,576 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "PMR00200FRONT/1.0.0": {
+        "dependencies": {
+          "Lookup_GSFRONT": "1.0.0",
+          "Lookup_GSModel": "1.0.0",
+          "Lookup_PMFRONT": "1.0.0",
+          "Lookup_PMModel": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.29",
+          "PMR00200COMMON": "1.0.0",
+          "PMR00200FrontResources": "1.0.0",
+          "PMR00200MODEL": "1.0.0",
+          "BlazorClientHelper": "1.0.0.0",
+          "R_BlazorFrontEnd.Controls": "1.0.0.0",
+          "R_BlazorFrontEnd": "1.0.0.0",
+          "R_CommonFrontBackAPI": "1.0.0.0"
+        },
+        "runtime": {
+          "PMR00200FRONT.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Authorization/6.0.29": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Metadata": "6.0.29",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.4",
+          "Microsoft.Extensions.Options": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authorization.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.2924.17108"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components/6.0.29": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "6.0.29",
+          "Microsoft.AspNetCore.Components.Analyzers": "6.0.29"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.2924.17108"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Analyzers/6.0.29": {},
+      "Microsoft.AspNetCore.Components.Forms/6.0.29": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "6.0.29"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Forms.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.2924.17108"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Web/6.0.29": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "6.0.29",
+          "Microsoft.AspNetCore.Components.Forms": "6.0.29",
+          "Microsoft.Extensions.DependencyInjection": "6.0.1",
+          "Microsoft.JSInterop": "6.0.29",
+          "System.IO.Pipelines": "6.0.3"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Web.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.2924.17108"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Metadata/6.0.29": {
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Metadata.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.2924.17108"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection/6.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.DependencyInjection.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1022.47605"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/6.0.4": {
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1823.26907"
+          }
+        }
+      },
+      "Microsoft.Extensions.Options/6.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Primitives": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.Extensions.Options.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "Microsoft.Extensions.Primitives/6.0.0": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Primitives.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "Microsoft.JSInterop/6.0.29": {
+        "runtime": {
+          "lib/net6.0/Microsoft.JSInterop.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.2924.17108"
+          }
+        }
+      },
+      "System.IO.Pipelines/6.0.3": {
+        "runtime": {
+          "lib/net6.0/System.IO.Pipelines.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.522.21309"
+          }
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
+      "Lookup_GSCOMMON/1.0.0": {
+        "runtime": {
+          "Lookup_GSCOMMON.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Lookup_GSFRONT/1.0.0": {
+        "dependencies": {
+          "Lookup_GSModel": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.29"
+        },
+        "runtime": {
+          "Lookup_GSFRONT.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Lookup_GSFrontResources/1.0.0": {
+        "runtime": {
+          "Lookup_GSFrontResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Lookup_GSModel/1.0.0": {
+        "dependencies": {
+          "Lookup_GSCOMMON": "1.0.0",
+          "Lookup_GSFrontResources": "1.0.0"
+        },
+        "runtime": {
+          "Lookup_GSModel.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Lookup_PMCOMMON/1.0.0": {
+        "runtime": {
+          "Lookup_PMCOMMON.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Lookup_PMFRONT/1.0.0": {
+        "dependencies": {
+          "Lookup_PMCOMMON": "1.0.0",
+          "Lookup_PMFrontResources": "1.0.0",
+          "Lookup_PMModel": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.29"
+        },
+        "runtime": {
+          "Lookup_PMFRONT.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Lookup_PMFrontResources/1.0.0": {
+        "runtime": {
+          "Lookup_PMFrontResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Lookup_PMModel/1.0.0": {
+        "dependencies": {
+          "Lookup_PMCOMMON": "1.0.0",
+          "Lookup_PMFrontResources": "1.0.0"
+        },
+        "runtime": {
+          "Lookup_PMModel.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "PMR00200COMMON/1.0.0": {
+        "runtime": {
+          "PMR00200COMMON.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "PMR00200FrontResources/1.0.0": {
+        "runtime": {
+          "PMR00200FrontResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "PMR00200MODEL/1.0.0": {
+        "dependencies": {
+          "PMR00200COMMON": "1.0.0",
+          "PMR00200FrontResources": "1.0.0"
+        },
+        "runtime": {
+          "PMR00200MODEL.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "BlazorClientHelper/1.0.0.0": {
+        "runtime": {
+          "BlazorClientHelper.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_BlazorFrontEnd.Controls/1.0.0.0": {
+        "runtime": {
+          "R_BlazorFrontEnd.Controls.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "resources": {
+          "id/R_BlazorFrontEnd.Controls.resources.dll": {
+            "locale": "id"
+          }
+        }
+      },
+      "R_BlazorFrontEnd/1.0.0.0": {
+        "runtime": {
+          "R_BlazorFrontEnd.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_CommonFrontBackAPI/1.0.0.0": {
+        "runtime": {
+          "R_CommonFrontBackAPI.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_BusinessObjectFront/1.0.0.0": {
+        "runtime": {
+          "R_BusinessObjectFront.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_APIClient/1.0.0.0": {
+        "runtime": {
+          "R_APIClient.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "BaseHeaderReportCOMMON/1.0.0.0": {
+        "runtime": {
+          "BaseHeaderReportCOMMON.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_APICommonDTO/1.0.0.0": {
+        "runtime": {
+          "R_APICommonDTO.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_ContextFrontEnd/1.0.0.0": {
+        "runtime": {
+          "R_ContextFrontEnd.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_ContextEnumAndInterface/1.0.0.0": {
+        "runtime": {
+          "R_ContextEnumAndInterface.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_AuthenticationEnumAndInterface/1.0.0.0": {
+        "runtime": {
+          "R_AuthenticationEnumAndInterface.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PMR00200FRONT/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.AspNetCore.Authorization/6.0.29": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1GbePh5YLbjNJjluHPiD2Nc3Y6TSPxWIa6zDxq4vsHrFESspXwRlMD73pd/9LYwQra9+4BgWz3qUFYiBHbBKKQ==",
+      "path": "microsoft.aspnetcore.authorization/6.0.29",
+      "hashPath": "microsoft.aspnetcore.authorization.6.0.29.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components/6.0.29": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gKxEKtF2Yo0BxOALqb/C9fKAMWid69bv1wB3Gfq+ZJ+738rEg745aTgH8cYZVE+quEu+srZWJQV9HiLsgu45xA==",
+      "path": "microsoft.aspnetcore.components/6.0.29",
+      "hashPath": "microsoft.aspnetcore.components.6.0.29.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Analyzers/6.0.29": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XxaP69TMJojgBNfp0HkQXr1i2ulhxb1Snf8w1Cp2dSFMD0J+77308hNH5QD8HLkasKwTjd/ECTwKyVTO8y9ngg==",
+      "path": "microsoft.aspnetcore.components.analyzers/6.0.29",
+      "hashPath": "microsoft.aspnetcore.components.analyzers.6.0.29.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Forms/6.0.29": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HU+wgWqDybHYVo0d0xmj0HnsyQXUjlm5wSDjWy83XD1SxQ6bkHP51uhFOLOA8rEzCon9T5MdbTENwLQAR+j6NQ==",
+      "path": "microsoft.aspnetcore.components.forms/6.0.29",
+      "hashPath": "microsoft.aspnetcore.components.forms.6.0.29.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Web/6.0.29": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NjOkG9RIETtEK/oQetPsXEPfONvc8yM8bW/JPWrO7bhX36Klq3U7eodQXfCe2hLhz3R16hopQ7AzfsQal6Fnlw==",
+      "path": "microsoft.aspnetcore.components.web/6.0.29",
+      "hashPath": "microsoft.aspnetcore.components.web.6.0.29.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Metadata/6.0.29": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NKIduYKzggjJPh00AjhTEJ9MWRUf3y67zwRVy08mB/QtctwcYS1i5Nx3u7UurcudH1J0l904IY8SXnJJ/PMszQ==",
+      "path": "microsoft.aspnetcore.metadata/6.0.29",
+      "hashPath": "microsoft.aspnetcore.metadata.6.0.29.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection/6.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vWXPg3HJQIpZkENn1KWq8SfbqVujVD7S7vIAyFXXqK5xkf1Vho+vG0bLBCHxU36lD1cLLtmGpfYf0B3MYFi9tQ==",
+      "path": "microsoft.extensions.dependencyinjection/6.0.1",
+      "hashPath": "microsoft.extensions.dependencyinjection.6.0.1.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xlzi2IYREJH3/m6+lUrQlujzX8wDitm4QGnUu6kUXTQAWPuZY8i+ticFJbzfqaetLA6KR/rO6Ew/HuYD+bxifg==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/6.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Abstractions/6.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-K14wYgwOfKVELrUh5eBqlC8Wvo9vvhS3ZhIvcswV2uS/ubkTRPSQsN557EZiYUSSoZNxizG+alN4wjtdyLdcyw==",
+      "path": "microsoft.extensions.logging.abstractions/6.0.4",
+      "hashPath": "microsoft.extensions.logging.abstractions.6.0.4.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Options/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dzXN0+V1AyjOe2xcJ86Qbo233KHuLEY0njf/P2Kw8SfJU+d45HNS2ctJdnEnrWbM9Ye2eFgaC5Mj9otRMU6IsQ==",
+      "path": "microsoft.extensions.options/6.0.0",
+      "hashPath": "microsoft.extensions.options.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Primitives/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9+PnzmQFfEFNR9J2aDTfJGGupShHjOuGw4VUv+JB044biSHrnmCIMD+mJHmb2H7YryrfBEXDurxQ47gJZdCKNQ==",
+      "path": "microsoft.extensions.primitives/6.0.0",
+      "hashPath": "microsoft.extensions.primitives.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.JSInterop/6.0.29": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SOGezowQCY3bxL4lMFk18EbC1OlZ8ea8XJ2e+/eCKapLrarI47XqoGN9WVfAeB0QiT+dynOhAxrMWpTi2fpZPg==",
+      "path": "microsoft.jsinterop/6.0.29",
+      "hashPath": "microsoft.jsinterop.6.0.29.nupkg.sha512"
+    },
+    "System.IO.Pipelines/6.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ryTgF+iFkpGZY1vRQhfCzX0xTdlV3pyaTTqRu2ETbEv+HlV7O6y7hyQURnghNIXvctl5DuZ//Dpks6HdL/Txgw==",
+      "path": "system.io.pipelines/6.0.3",
+      "hashPath": "system.io.pipelines.6.0.3.nupkg.sha512"
+    },
+    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0",
+      "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    },
+    "Lookup_GSCOMMON/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lookup_GSFRONT/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lookup_GSFrontResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lookup_GSModel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lookup_PMCOMMON/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lookup_PMFRONT/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lookup_PMFrontResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lookup_PMModel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PMR00200COMMON/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PMR00200FrontResources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PMR00200MODEL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BlazorClientHelper/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_BlazorFrontEnd.Controls/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_BlazorFrontEnd/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_CommonFrontBackAPI/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_BusinessObjectFront/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_APIClient/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BaseHeaderReportCOMMON/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_APICommonDTO/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ContextFrontEnd/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ContextEnumAndInterface/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_AuthenticationEnumAndInterface/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

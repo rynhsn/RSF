@@ -188,12 +188,15 @@ namespace PMR00200SERVICE
                 // Set base header data
                 _logger.LogDebug("Deserialized Print Parameters: {@PrintParameters}");
                 var loCls = new PMR00200Cls();
+                var loBaseHeader = loCls.GetCompanyName(R_BackGlobalVar.COMPANY_ID);
+
                 loParam.CCOMPANY_NAME = R_BackGlobalVar.COMPANY_ID.ToUpper();
                 loParam.CPRINT_CODE = "PMR00200";
                 loParam.CPRINT_NAME = PMR00200ContextConstant.CPROGRAM_NAME;
                 loParam.CUSER_ID = R_BackGlobalVar.USER_ID.ToUpper();
-                loParam.BLOGO_COMPANY = loCls.GetCompanyLogo(R_BackGlobalVar.COMPANY_ID).CLOGO;
+                loParam.BLOGO_COMPANY = loCls.GetCompanyLogo(poParam).CLOGO;
                 loParam.CCOMPANY_NAME = loCls.GetCompanyName(R_BackGlobalVar.COMPANY_ID).CCOMPANY_NAME;
+                loParam.CPRINT_DATE_COMPANY = DateTime.ParseExact(loBaseHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture).ToString(R_BackGlobalVar.REPORT_FORMAT_SHORT_DATE + " " + R_BackGlobalVar.REPORT_FORMAT_SHORT_TIME);
 
                 // Create an instance 
                 PMR00210ReportDataDTO loData = new()

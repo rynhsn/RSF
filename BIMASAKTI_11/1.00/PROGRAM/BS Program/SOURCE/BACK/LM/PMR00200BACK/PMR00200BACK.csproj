@@ -24,6 +24,12 @@
 		<Reference Include="R_OpenTelemetry">
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_OpenTelemetry.dll</HintPath>
 		</Reference>
+		<Reference Include="R_Storage">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_Storage.dll</HintPath>
+		</Reference>
+		<Reference Include="R_StorageCommon">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_StorageCommon.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 
 </Project>
