@@ -186,14 +186,17 @@ namespace PMR00210SERVICE
                 // Set base header data
                 _logger.LogDebug("Deserialized Print Parameters: {@PrintParameters}");
 
+                var loCls = new PMR00210Cls();
+                var loBaseHeader = loCls.GetCompanyName(R_BackGlobalVar.COMPANY_ID);
+
                 loParam.CCOMPANY_NAME = R_BackGlobalVar.COMPANY_ID.ToUpper();
                 loParam.CPRINT_CODE = "PMR00210";
                 loParam.CPRINT_NAME = PMR00210ContextConstant.CPROGRAM_NAME;
                 loParam.CUSER_ID = R_BackGlobalVar.USER_ID.ToUpper();
+                loParam.CPRINT_DATE_COMPANY = DateTime.ParseExact(loBaseHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture).ToString(R_BackGlobalVar.REPORT_FORMAT_SHORT_DATE + " " + R_BackGlobalVar.REPORT_FORMAT_SHORT_TIME);
 
                 // Create an instance 
-                var loCls = new PMR00210Cls();
-                loParam.BLOGO_COMPANY = loCls.GetCompanyLogo(R_BackGlobalVar.COMPANY_ID).CLOGO;
+                loParam.BLOGO_COMPANY = loCls.GetCompanyLogo(poParam).CLOGO;
                 loParam.CCOMPANY_NAME = loCls.GetCompanyName(R_BackGlobalVar.COMPANY_ID).CCOMPANY_NAME;
 
                 // Create an instance 

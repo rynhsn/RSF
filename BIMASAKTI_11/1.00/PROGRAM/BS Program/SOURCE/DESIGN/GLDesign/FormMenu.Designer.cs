@@ -42,6 +42,9 @@
             groupBox1 = new GroupBox();
             GLM00200 = new Button();
             groupBox2 = new GroupBox();
+            button4 = new Button();
+            button3 = new Button();
+            button2 = new Button();
             button1 = new Button();
             PMR03000 = new Button();
             PMR02000Detail = new Button();
@@ -61,7 +64,6 @@
             ICR00600 = new Button();
             groupBox6 = new GroupBox();
             GSM04000 = new Button();
-            button2 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -220,6 +222,8 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(button4);
+            groupBox2.Controls.Add(button3);
             groupBox2.Controls.Add(button2);
             groupBox2.Controls.Add(button1);
             groupBox2.Controls.Add(PMR03000);
@@ -234,10 +238,40 @@
             groupBox2.Margin = new Padding(3, 4, 3, 4);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(3, 4, 3, 4);
-            groupBox2.Size = new Size(112, 523);
+            groupBox2.Size = new Size(112, 663);
             groupBox2.TabIndex = 12;
             groupBox2.TabStop = false;
             groupBox2.Text = "PM Report";
+            // 
+            // button4
+            // 
+            button4.Location = new Point(6, 558);
+            button4.Name = "button4";
+            button4.Size = new Size(100, 53);
+            button4.TabIndex = 20;
+            button4.Text = "PMR00210 Detail";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += PMR00210Detail_Click;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(7, 498);
+            button3.Name = "button3";
+            button3.Size = new Size(99, 54);
+            button3.TabIndex = 19;
+            button3.Text = "PMR00210 Summary";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += PMR00210Summary_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(7, 438);
+            button2.Name = "button2";
+            button2.Size = new Size(99, 54);
+            button2.TabIndex = 18;
+            button2.Text = "PMR00220 Detail";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += PMR00220Detail_Click;
             // 
             // button1
             // 
@@ -461,21 +495,11 @@
             GSM04000.UseVisualStyleBackColor = true;
             GSM04000.Click += GSM04000_Click;
             // 
-            // button2
-            // 
-            button2.Location = new Point(7, 438);
-            button2.Name = "button2";
-            button2.Size = new Size(99, 54);
-            button2.TabIndex = 18;
-            button2.Text = "PMR00220 Detail";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += PMR00220Detail_Click;
-            // 
             // FormMenu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(851, 556);
+            ClientSize = new Size(851, 826);
             Controls.Add(groupBox6);
             Controls.Add(groupBox5);
             Controls.Add(Refresh);
@@ -535,5 +559,7 @@
         private Button PMR02000Detail;
         private Button button1;
         private Button button2;
+        private Button button4;
+        private Button button3;
     }
 }
