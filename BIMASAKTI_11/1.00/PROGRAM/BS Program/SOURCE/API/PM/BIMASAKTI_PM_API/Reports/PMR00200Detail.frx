@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\LM\BIMASAKTI_LM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="11/08/2024 14:17:38" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="C:\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="09/26/2025 17:30:42" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="DetailData" DataType="PMR00200COMMON.Print_DTO.Detail.PMR00210ReportDataDTO, PMR00200COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -179,12 +179,16 @@
         <Column Name="CCOMPANY_NAME" DataType="System.String"/>
         <Column Name="CPRINT_NAME" DataType="System.String"/>
         <Column Name="CUSER_ID" DataType="System.String"/>
+        <Column Name="CPRINT_DATE_COMPANY" DataType="System.String"/>
+        <Column Name="DPRINT_DATE_COMPANY" DataType="System.DateTime"/>
       </Column>
       <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
         <Column Name="Page" DataType="System.String"/>
         <Column Name="Of" DataType="System.String"/>
         <Column Name="Print_Date" DataType="System.String"/>
         <Column Name="Print_By" DataType="System.String"/>
+        <Column Name="Printed" DataType="System.String"/>
+        <Column Name="By" DataType="System.String"/>
       </Column>
     </BusinessObjectDataSource>
     <Total Name="TotalUnitGross" Expression="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.UnitDetail.NUNIT_DETAIL_GROSS_AREA_SIZE]" Evaluator="Data4" PrintOn="DataFooter1"/>
@@ -199,7 +203,7 @@
   <inherited Name="Page1">
     <inherited Name="PageHeader1">
       <inherited Name="BaseHeaderLogo"/>
-      <inherited Name="Text33"/>
+      <inherited Name="BaseHeaderCompany"/>
       <inherited Name="LabelNoPage">
         <Formats>
           <GeneralFormat/>
@@ -208,51 +212,38 @@
           <GeneralFormat/>
         </Formats>
       </inherited>
-      <inherited Name="BaseHeaderDate"/>
       <inherited Name="LabelDateTime"/>
       <inherited Name="BaseHeaderLabel"/>
       <inherited Name="BaseHeaderUserId"/>
       <inherited Name="LabelUserId"/>
-      <inherited Name="BaseHeaderDateTime"/>
-      <ChildBand Name="Child1" ZOrder="-1" Top="77.38" Width="1047.06" Height="85.05" CanGrow="true" CanShrink="true">
-        <TextObject Name="Text45" Left="-27.3" Top="61" Width="926.1" Height="18.9" Text="[ResponseDataModel.DetailData.Column.LABEL_CPERIOD] : [ResponseDataModel.DetailData.HeaderParam.CPERIOD_DISPLAY]" Font="Arial, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-        <TextObject Name="Text43" Left="-27.3" Top="23.2" Width="926.1" Height="18.9" Text="[ResponseDataModel.DetailData.Column.LABEL_CDEPARTMENT_NAME] : [ResponseDataModel.DetailData.HeaderParam.CDEPT_REPORT_DISPLAY]" Font="Arial, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-        <TextObject Name="Text44" Left="-27.3" Top="42.1" Width="926.1" Height="18.9" Text="[ResponseDataModel.DetailData.Column.LABEL_CSALESMAN_NAME] : [ResponseDataModel.DetailData.HeaderParam.CSALESMAN_REPORT_DISPLAY]" Font="Arial, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
+      <inherited Name="BaseHeaderDate"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="87.61" Width="1047.06" Height="85.05" CanGrow="true" CanShrink="true">
+        <TextObject Name="Text45" Left="-28.35" Top="56.7" Width="103.95" Height="18.9" Text="[ResponseDataModel.DetailData.Column.LABEL_CPERIOD]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text43" Left="-28.35" Top="18.9" Width="103.95" Height="18.9" Text="[ResponseDataModel.DetailData.Column.LABEL_CDEPARTMENT_NAME]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text44" Left="-28.35" Top="37.8" Width="103.95" Height="18.9" Text="[ResponseDataModel.DetailData.Column.LABEL_CSALESMAN_NAME]" Font="Arial Unicode MS, 7pt"/>
         <TextObject Name="Text162" Left="927.15" Top="23.2" Width="217.35" Height="18.9" Text="[ResponseDataModel.DetailData.Column.LABEL_LIS_OUTSTANDING]" Font="Arial Unicode MS, 7pt"/>
         <CheckBoxObject Name="CheckBox1" Left="917.7" Top="23.2" Width="9.45" Height="9.45" Border.Lines="All" Border.Width="0.25" DataColumn="ResponseDataModel.DetailData.HeaderParam.LIS_OUTSTANDING"/>
-        <TextObject Name="Text42" Left="-27.3" Top="4.3" Width="926.1" Height="18.9" Text="[ResponseDataModel.DetailData.Column.LABEL_CPROPERTY_NAME] : [ResponseDataModel.DetailData.HeaderParam.CPROPERTY_ID] - [ResponseDataModel.DetailData.HeaderParam.CPROPERTY_NAME]" Font="Arial, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
+        <TextObject Name="Text42" Left="-28.35" Width="103.95" Height="18.9" Text="[ResponseDataModel.DetailData.Column.LABEL_CPROPERTY_NAME]" Font="Arial Unicode MS, 7pt"/>
         <TextObject Name="Text163" Left="917.7" Top="4.3" Width="217.35" Height="18.9" Text="[ResponseDataModel.DetailData.Column.LABEL_CREPORT_TYPE] : [ResponseDataModel.DetailData.HeaderParam.CREPORT_TYPE_DISPLAY]" Font="Arial Unicode MS, 7pt">
           <Formats>
             <GeneralFormat/>
             <GeneralFormat/>
           </Formats>
         </TextObject>
+        <TextObject Name="Text291" Left="75.6" Width="718.2" Height="18.9" Text=" : [ResponseDataModel.DetailData.HeaderParam.CPROPERTY_ID] - [ResponseDataModel.DetailData.HeaderParam.CPROPERTY_NAME]" AutoWidth="true" Font="Arial Unicode MS, 7pt">
+          <Formats>
+            <GeneralFormat/>
+            <GeneralFormat/>
+          </Formats>
+        </TextObject>
+        <TextObject Name="Text292" Left="75.6" Top="18.9" Width="718.2" Height="18.9" Text=" : [ResponseDataModel.DetailData.HeaderParam.CDEPT_REPORT_DISPLAY]" AutoWidth="true" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text293" Left="75.6" Top="37.8" Width="718.2" Height="18.9" Text=" : [ResponseDataModel.DetailData.HeaderParam.CSALESMAN_REPORT_DISPLAY]" AutoWidth="true" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text294" Left="75.6" Top="56.7" Width="718.2" Height="18.9" Text=" : [ResponseDataModel.DetailData.HeaderParam.CPERIOD_DISPLAY]" AutoWidth="true" Font="Arial Unicode MS, 7pt"/>
       </ChildBand>
     </inherited>
-    <DataBand Name="Data1" ZOrder="0" Top="222.68" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Data">
+    <DataBand Name="Data1" ZOrder="0" Top="234.48" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Data">
       <TextObject Name="Text177" Left="-28.35" Width="472.5" Height="18.9" Text="[ResponseDataModel.DetailData.Data.CTRANS_NAME]" Font="Arial Unicode MS, 7pt"/>
-      <DataHeaderBand Name="DataHeader6" Top="164.21" Width="1047.06" Height="56.7" KeepWithData="true">
+      <DataHeaderBand Name="DataHeader6" Top="175.22" Width="1047.06" Height="56.7" KeepWithData="true">
         <LineObject Name="Line2" Left="-37.8" Top="56.7" Width="1122.66"/>
         <TextObject Name="Text169" Left="-9.45" Top="37.8" Width="151.2" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_CREF_NO]" Font="Arial Unicode MS, 7pt"/>
         <TextObject Name="Text170" Left="141.75" Top="37.8" Width="132.3" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_CREF_DATE]" Font="Arial Unicode MS, 7pt"/>
@@ -265,7 +256,7 @@
         <TextObject Name="Text167" Left="-28.35" Width="472.5" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_CTRANS_NAME]" Font="Arial Unicode MS, 7pt"/>
         <LineObject Name="Line23" Left="-37.8" Width="1122.66"/>
       </DataHeaderBand>
-      <DataBand Name="Data2" Top="243.36" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="TransactionDetail">
+      <DataBand Name="Data2" Top="255.94" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="TransactionDetail">
         <TextObject Name="Text179" Left="-28.35" Width="1020.6" Height="18.9" Text="[ResponseDataModel.DetailData.Column.LABEL_CSALESMAN_NAME] : [ResponseDataModel.DetailData.Data.TransactionDetail.CSALESMAN_ID] - [ResponseDataModel.DetailData.Data.TransactionDetail.CSALESMAN_NAME]" Font="Arial Unicode MS, 7pt">
           <Formats>
             <GeneralFormat/>
@@ -273,7 +264,7 @@
             <GeneralFormat/>
           </Formats>
         </TextObject>
-        <DataBand Name="Data3" Top="264.04" Width="1047.06" Height="28.35" DataSource="SalesmanDetail">
+        <DataBand Name="Data3" Top="277.4" Width="1047.06" Height="28.35" DataSource="SalesmanDetail">
           <TextObject Name="Text182" Left="274.05" Width="170.1" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.CTENURE]" Font="Arial Unicode MS, 7pt"/>
           <TextObject Name="Text183" Left="444.15" Width="94.5" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.CTRANS_STATUS_NAME]" Font="Arial Unicode MS, 7pt"/>
           <TextObject Name="Text184" Left="538.65" Width="94.5" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.NTOTAL_PRICE]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
@@ -286,13 +277,13 @@
           <TextObject Name="Text186" Left="850.5" Width="217.35" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.CTC_MESSAGE]" Font="Arial Unicode MS, 7pt"/>
           <TextObject Name="Text281" Left="141.75" Width="132.3" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.DREF_DATE]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 7pt"/>
           <TextObject Name="Text286" Left="-9.45" Width="151.2" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.CREF_NO]" Font="Arial Unicode MS, 7pt"/>
-          <DataBand Name="Data4" Top="343.19" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="UnitDetail">
+          <DataBand Name="Data4" Top="358.12" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="UnitDetail">
             <TextObject Name="Text193" Width="141.75" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.UnitDetail.CUNIT_DETAIL_NAME]" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text194" Left="141.75" Width="94.5" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.UnitDetail.NUNIT_DETAIL_GROSS_AREA_SIZE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text195" Left="236.25" Width="94.5" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.UnitDetail.NUNIT_DETAIL_NET_AREA_SIZE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text196" Left="330.75" Width="94.5" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.UnitDetail.NUNIT_DETAIL_COMMON_AREA_SIZE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text197" Left="425.25" Width="132.3" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.UnitDetail.NUNIT_DETAIL_PRICE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-            <DataHeaderBand Name="DataHeader1" Top="294.17" Width="1047.06" Height="47.25" CanGrow="true" CanShrink="true" KeepWithData="true" RepeatOnEveryPage="true">
+            <DataHeaderBand Name="DataHeader1" Top="308.31" Width="1047.06" Height="47.25" CanGrow="true" CanShrink="true" KeepWithData="true" RepeatOnEveryPage="true">
               <TextObject Name="Text187" Top="18.9" Width="141.75" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_DT_UNIT]" Font="Arial Unicode MS, 7pt"/>
               <TextObject Name="Text188" Left="141.75" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_DT_GROSS]" HorzAlign="Center" Font="Arial Unicode MS, 7pt"/>
               <TextObject Name="Text189" Left="236.25" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_DT_NET]" HorzAlign="Center" Font="Arial Unicode MS, 7pt"/>
@@ -303,7 +294,7 @@
               <LineObject Name="Line25" Top="9.45" Width="557.55" Diagonal="true"/>
               <LineObject Name="Line26" Top="47.25" Width="557.55" Diagonal="true"/>
             </DataHeaderBand>
-            <DataFooterBand Name="DataFooter1" Top="363.87" Width="1047.06" Height="37.8" KeepWithData="true">
+            <DataFooterBand Name="DataFooter1" Top="379.58" Width="1047.06" Height="37.8" KeepWithData="true">
               <TextObject Name="Text251" Left="47.25" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.DetailData.Column.LABEL_TOTAL]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
               <LineObject Name="Line34" Width="557.55" Diagonal="true"/>
               <TextObject Name="Text262" Left="141.75" Top="9.45" Width="94.5" Height="18.9" Text="[TotalUnitGross]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
@@ -312,8 +303,8 @@
               <TextObject Name="Text265" Left="425.25" Top="9.45" Width="132.3" Height="18.9" Text="[TotalUnitPrice]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
             </DataFooterBand>
           </DataBand>
-          <DataBand Name="Data5" Top="443.03" Width="1047.06" Height="9.45" CanGrow="true" CanShrink="true" DataSource="UtilityDetail">
-            <DataHeaderBand Name="DataHeader2" Top="403.45" Width="1047.06" Height="37.8" KeepWithData="true">
+          <DataBand Name="Data5" Top="460.3" Width="1047.06" Height="9.45" CanGrow="true" CanShrink="true" DataSource="UtilityDetail">
+            <DataHeaderBand Name="DataHeader2" Top="419.94" Width="1047.06" Height="37.8" KeepWithData="true">
               <TextObject Name="Text205" Top="18.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_UTILITY_TYPE]" Font="Arial Unicode MS, 7pt"/>
               <LineObject Name="Line27" Top="9.45" Width="954.45" Diagonal="true"/>
               <TextObject Name="Text206" Left="94.5" Top="18.9" Width="103.95" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_UTILITY_UNIT]" Font="Arial Unicode MS, 7pt"/>
@@ -327,8 +318,8 @@
               <TextObject Name="Text288" Left="661.5" Top="18.9" Width="75.6" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_UTILITY_BLOCK2_START]" Font="Arial Unicode MS, 7pt"/>
               <LineObject Name="Line28" Top="37.8" Width="954.45" Diagonal="true"/>
             </DataHeaderBand>
-            <DataBand Name="Data9" Top="454.26" Width="1047.06" Height="9.45" CanGrow="true" CanShrink="true" DataSource="UtilityTypeDetail">
-              <DataBand Name="Data10" Top="465.48" Width="1047.06" Height="28.35" DataSource="UtilityTypeUnitDetail">
+            <DataBand Name="Data9" Top="472.31" Width="1047.06" Height="9.45" CanGrow="true" CanShrink="true" DataSource="UtilityTypeDetail">
+              <DataBand Name="Data10" Top="484.32" Width="1047.06" Height="28.35" DataSource="UtilityTypeUnitDetail">
                 <TextObject Name="Text202" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.UtilityDetail.CUTILITY_DETAIL_TYPE_NAME]" Duplicates="Hide" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
                 <TextObject Name="Text203" Left="94.5" Top="9.45" Width="103.95" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.UtilityDetail.UtilityTypeDetail.CUTILITY_DETAIL_UNIT_NAME]" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
                 <TextObject Name="Text204" Left="198.45" Top="9.45" Width="122.85" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.UtilityDetail.UtilityTypeDetail.UtilityTypeUnitDetail.CUTILITY_DETAIL_CHARGE_NAME]" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
@@ -342,8 +333,8 @@
               </DataBand>
             </DataBand>
           </DataBand>
-          <DataBand Name="Data6" Top="535.19" Width="1047.06" Height="9.45" CanGrow="true" CanShrink="true" DataSource="ChargeDetail">
-            <DataHeaderBand Name="DataHeader3" Top="495.61" Width="1047.06" Height="37.8" KeepWithData="true">
+          <DataBand Name="Data6" Top="555.59" Width="1047.06" Height="9.45" CanGrow="true" CanShrink="true" DataSource="ChargeDetail">
+            <DataHeaderBand Name="DataHeader3" Top="515.23" Width="1047.06" Height="37.8" KeepWithData="true">
               <TextObject Name="Text221" Top="18.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_CHARGE_TYPE]" Font="Arial Unicode MS, 7pt"/>
               <LineObject Name="Line29" Top="9.45" Width="1067.85" Diagonal="true"/>
               <TextObject Name="Text222" Left="94.5" Top="18.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_CHARGE_UNIT]" Font="Arial Unicode MS, 7pt"/>
@@ -357,8 +348,8 @@
               <TextObject Name="Text230" Left="945" Top="9.45" Width="122.85" Height="28.35" Text="[ResponseDataModel.DetailData.Column.COLUMN_CHARGE_CALCULATED_FEE_AMOUNT]" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
               <LineObject Name="Line30" Top="37.8" Width="1067.85" Diagonal="true"/>
             </DataHeaderBand>
-            <DataBand Name="Data11" Top="546.42" Width="1047.06" Height="9.45" CanGrow="true" CanShrink="true" DataSource="ChargeTypeDetail">
-              <DataBand Name="Data12" Top="557.64" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true" DataSource="ChargeTypeUnitDetail">
+            <DataBand Name="Data11" Top="567.6" Width="1047.06" Height="9.45" CanGrow="true" CanShrink="true" DataSource="ChargeTypeDetail">
+              <DataBand Name="Data12" Top="579.61" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true" DataSource="ChargeTypeUnitDetail">
                 <TextObject Name="Text233" Left="207.9" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.ChargeDetail.ChargeTypeDetail.ChargeTypeUnitDetail.CCHARGE_DETAIL_CHARGE_NAME]" Duplicates="Hide" Font="Arial Unicode MS, 7pt"/>
                 <TextObject Name="Text234" Left="302.4" Top="9.45" Width="75.6" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.ChargeDetail.ChargeTypeDetail.ChargeTypeUnitDetail.CCHARGE_DETAIL_TAX_NAME]" Font="Arial Unicode MS, 7pt"/>
                 <TextObject Name="Text237" Left="585.9" Top="9.45" Width="179.55" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.ChargeDetail.ChargeTypeDetail.ChargeTypeUnitDetail.CCHARGE_DETAIL_TENURE]" Font="Arial Unicode MS, 7pt"/>
@@ -370,19 +361,19 @@
                 <TextObject Name="Text279" Left="378" Top="9.45" Width="103.95" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.ChargeDetail.ChargeTypeDetail.ChargeTypeUnitDetail.DCHARGE_DETAIL_START_DATE]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 7pt"/>
                 <TextObject Name="Text280" Left="481.95" Top="9.45" Width="103.95" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.ChargeDetail.ChargeTypeDetail.ChargeTypeUnitDetail.DCHARGE_DETAIL_END_DATE]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 7pt"/>
               </DataBand>
-              <DataFooterBand Name="DataFooter2" Top="587.77" Width="1047.06" Height="18.9">
+              <DataFooterBand Name="DataFooter2" Top="610.52" Width="1047.06" Height="18.9">
                 <LineObject Name="Line37" Left="850.5" Width="217.35" Diagonal="true"/>
                 <TextObject Name="Text250" Left="850.5" Width="94.5" Height="18.9" Text="[ResponseDataModel.DetailData.Column.LABEL_TOTAL] :" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
                 <TextObject Name="Text278" Left="945" Width="122.85" Height="18.9" Text="[TotalChargeCalculated]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
               </DataFooterBand>
             </DataBand>
           </DataBand>
-          <DataBand Name="Data7" Top="648.03" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="DepositDetail">
+          <DataBand Name="Data7" Top="672.34" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="DepositDetail">
             <TextObject Name="Text246" Width="103.95" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.DepositDetail.CDEPOSIT_DETAIL_ID]" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text248" Left="217.35" Width="103.95" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.DepositDetail.NDEPOSIT_DETAIL_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text249" Left="321.3" Width="321.3" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.DepositDetail.CDEPOSIT_DETAIL_DESCRIPTION]" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text282" Left="103.95" Width="113.4" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.DepositDetail.DDEPOSIT_DETAIL_DATE]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 7pt"/>
-            <DataHeaderBand Name="DataHeader4" Top="608.45" Width="1047.06" Height="37.8" KeepWithData="true">
+            <DataHeaderBand Name="DataHeader4" Top="631.98" Width="1047.06" Height="37.8" KeepWithData="true">
               <TextObject Name="Text242" Top="18.9" Width="103.95" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_DEPOSIT_ID]" Font="Arial Unicode MS, 7pt"/>
               <TextObject Name="Text243" Left="103.95" Top="18.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_DEPOSIT_DATE]" Font="Arial Unicode MS, 7pt"/>
               <TextObject Name="Text244" Left="217.35" Top="18.9" Width="103.95" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_DEPOSIT_AMOUNT]" HorzAlign="Center" Font="Arial Unicode MS, 7pt"/>
@@ -391,13 +382,13 @@
               <LineObject Name="Line32" Top="37.8" Width="642.6" Diagonal="true"/>
             </DataHeaderBand>
           </DataBand>
-          <DataBand Name="Data8" Top="708.28" Width="1047.06" Height="18.9" DataSource="DocumentDetail">
+          <DataBand Name="Data8" Top="734.16" Width="1047.06" Height="18.9" DataSource="DocumentDetail">
             <TextObject Name="Text257" Width="113.4" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.DocumentDetail.CDOCUMENT_DETAIL_NO]" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text260" Left="340.2" Width="113.4" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.DocumentDetail.CDOCUMENT_DETAIL_FILE]" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text261" Left="453.6" Width="122.85" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.DocumentDetail.CDOCUMENT_DETAIL_DESCRIPTION]" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text283" Left="113.4" Width="113.4" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.DocumentDetail.DDOCUMENT_DETAIL_DATE]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text284" Left="226.8" Width="113.4" Height="18.9" Text="[ResponseDataModel.DetailData.Data.TransactionDetail.SalesmanDetail.DocumentDetail.DDOCUMENT_DETAIL_EXPIRED_DATE]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 7pt"/>
-            <DataHeaderBand Name="DataHeader5" Top="668.71" Width="1047.06" Height="37.8" KeepWithData="true">
+            <DataHeaderBand Name="DataHeader5" Top="693.8" Width="1047.06" Height="37.8" KeepWithData="true">
               <TextObject Name="Text252" Top="18.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_DOCUMENT_NO]" Font="Arial Unicode MS, 7pt"/>
               <TextObject Name="Text253" Left="113.4" Top="18.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_DOCUMENT_DATE]" Font="Arial Unicode MS, 7pt"/>
               <TextObject Name="Text254" Left="226.8" Top="18.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.DetailData.Column.COLUMN_DOCUMENT_EXPIRED_DATE]" Font="Arial Unicode MS, 7pt"/>
@@ -407,7 +398,7 @@
               <LineObject Name="Line36" Top="37.8" Width="576.45" Diagonal="true"/>
             </DataHeaderBand>
           </DataBand>
-          <DataFooterBand Name="DataFooter3" Top="728.96" Width="1047.06" Height="28.35">
+          <DataFooterBand Name="DataFooter3" Top="755.62" Width="1047.06" Height="28.35">
             <TextObject Name="Text271" Left="453.6" Top="9.45" Width="491.4" Height="18.9" Text="[ResponseDataModel.DetailData.Column.LABEL_TOTAL_AGGR_BASED_ON] [ResponseDataModel.DetailData.Data.TransactionDetail.CSALESMAN_ID] :" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold">
               <Formats>
                 <GeneralFormat/>
@@ -418,7 +409,7 @@
             <LineObject Name="Line38" Left="-9.45" Top="9.45" Width="1058.4" Diagonal="true"/>
           </DataFooterBand>
         </DataBand>
-        <DataFooterBand Name="DataFooter4" Top="759.09" Width="1047.06" Height="28.35">
+        <DataFooterBand Name="DataFooter4" Top="786.53" Width="1047.06" Height="28.35">
           <TextObject Name="Text272" Left="453.6" Top="9.45" Width="491.4" Height="18.9" Text="[ResponseDataModel.DetailData.Column.LABEL_TOTAL_AGGR_BASED_ON] [ResponseDataModel.DetailData.Data.CTRANS_NAME] :" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold">
             <Formats>
               <GeneralFormat/>
@@ -429,7 +420,7 @@
           <LineObject Name="Line39" Left="-18.9" Top="9.45" Width="1067.85" Diagonal="true"/>
         </DataFooterBand>
       </DataBand>
-      <DataFooterBand Name="DataFooter5" Top="789.22" Width="1047.06" Height="37.8">
+      <DataFooterBand Name="DataFooter5" Top="817.44" Width="1047.06" Height="37.8">
         <TextObject Name="Text273" Left="453.6" Width="491.4" Height="18.9" Text="[ResponseDataModel.DetailData.Column.LABEL_GRAND_TOTAL_AGGR] :" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
         <TextObject Name="Text275" Left="945" Top="9.45" Width="103.95" Height="18.9" Text="[GrandCountOfAgrr]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
         <LineObject Name="Line40" Left="453.6" Width="595.35" Diagonal="true"/>

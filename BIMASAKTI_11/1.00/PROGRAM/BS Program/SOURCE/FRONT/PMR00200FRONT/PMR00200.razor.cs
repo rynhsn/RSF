@@ -20,6 +20,7 @@ using R_BlazorFrontEnd.Interfaces;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace PMR00200FRONT
 {
@@ -39,6 +40,8 @@ namespace PMR00200FRONT
             try
             {
                 await _viewModel.InitProcess(_localizer);
+                await _setDefaultDepartment();
+                await _setDefaultSalesman();
             }
             catch (Exception ex)
             {
@@ -48,20 +51,27 @@ namespace PMR00200FRONT
         }
 
         #region PropertyDropdown
-        public void ComboboxPropertyValueChanged(string poParam)
+        public async Task ComboboxPropertyValueChanged(string poParam)
         {
             R_Exception loEx = new R_Exception();
             try
             {
-                _viewModel._ReportParam.CPROPERTY_ID = string.IsNullOrWhiteSpace(poParam) ? "" : poParam;
-                _viewModel._ReportParam.CFROM_SALESMAN_ID = "";
-                _viewModel._ReportParam.CFROM_SALESMAN_NAME = "";
-                _viewModel._ReportParam.CTO_SALESMAN_ID = "";
-                _viewModel._ReportParam.CTO_SALESMAN_NAME = "";
-                _viewModel._ReportParam.CFROM_DEPARTMENT_ID = "";
-                _viewModel._ReportParam.CFROM_DEPARTMENT_NAME = "";
-                _viewModel._ReportParam.CTO_DEPARTMENT_ID = "";
-                _viewModel._ReportParam.CTO_DEPARTMENT_NAME = "";
+                if (!string.IsNullOrEmpty(poParam))
+                {
+                    _viewModel._ReportParam.CPROPERTY_ID = poParam ?? "";
+                    _viewModel._ReportParam.CFROM_SALESMAN_ID = "";
+                    _viewModel._ReportParam.CFROM_SALESMAN_NAME = "";
+                    _viewModel._ReportParam.CTO_SALESMAN_ID = "";
+                    _viewModel._ReportParam.CTO_SALESMAN_NAME = "";
+                    _viewModel._ReportParam.CFROM_DEPARTMENT_ID = "";
+                    _viewModel._ReportParam.CFROM_DEPARTMENT_NAME = "";
+                    _viewModel._ReportParam.CTO_DEPARTMENT_ID = "";
+                    _viewModel._ReportParam.CTO_DEPARTMENT_NAME = "";
+
+                    await _setDefaultDepartment();
+                    await _setDefaultSalesman();
+                }
+                    
             }
             catch (Exception ex)
             {
@@ -74,12 +84,15 @@ namespace PMR00200FRONT
         #region lookupFromDept
         private void BeforeOpen_lookupFromDept(R_BeforeOpenLookupEventArgs eventArgs)
         {
-            eventArgs.Parameter = new GSL00700ParameterDTO();
-            eventArgs.TargetPageType = typeof(GSL00700);
+            eventArgs.Parameter = new GSL00710ParameterDTO()
+            {
+                CPROPERTY_ID = _viewModel._ReportParam.CPROPERTY_ID ?? "",
+            };
+            eventArgs.TargetPageType = typeof(GSL00710);
         }
         private async Task AfterOpen_lookupFromDeptAsync(R_AfterOpenLookupEventArgs eventArgs)
         {
-            var loTempResult = (GSL00700DTO)eventArgs.Result;
+            var loTempResult = (GSL00710DTO)eventArgs.Result;
             if (loTempResult == null)
             {
                 var loValidate = await R_MessageBox.Show("", _localizer["_validationDeptFromResult"], R_eMessageBoxButtonType.OK);
@@ -97,12 +110,12 @@ namespace PMR00200FRONT
                 if (!string.IsNullOrWhiteSpace(_viewModel._ReportParam.CFROM_DEPARTMENT_ID))
                 {
 
-                    LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel(); //use GSL's model
-                    var loParam = new GSL00700ParameterDTO // use match param as GSL's dto, send as type in search texbox
+                    LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel(); //use GSL's model
+                    var loParam = new GSL00710ParameterDTO // use match param as GSL's dto, send as type in search texbox
                     {
                         CSEARCH_TEXT = _viewModel._ReportParam.CFROM_DEPARTMENT_ID, // property that bindded to search textbox
                     };
-                    var loResult = await loLookupViewModel.GetDepartment(loParam); //retrive single record 
+                    var loResult = await loLookupViewModel.GetDepartmentProperty(loParam); //retrive single record 
 
                     //show result & show name/related another fields
                     if (loResult == null)
@@ -130,12 +143,15 @@ namespace PMR00200FRONT
         #region lookupFromDept
         private void BeforeOpen_lookupToDept(R_BeforeOpenLookupEventArgs eventArgs)
         {
-            eventArgs.Parameter = new GSL00700ParameterDTO();
-            eventArgs.TargetPageType = typeof(GSL00700);
+            eventArgs.Parameter = new GSL00710ParameterDTO()
+            {
+                CPROPERTY_ID = _viewModel._ReportParam.CPROPERTY_ID ?? "",
+            };
+            eventArgs.TargetPageType = typeof(GSL00710);
         }
         private async Task AfterOpen_lookupToDeptAsync(R_AfterOpenLookupEventArgs eventArgs)
         {
-            var loTempResult = (GSL00700DTO)eventArgs.Result;
+            var loTempResult = (GSL00710DTO)eventArgs.Result;
             if (loTempResult == null)
             {
                 var loValidate = await R_MessageBox.Show("", _localizer["_validationDeptToResult"], R_eMessageBoxButtonType.OK);
@@ -153,13 +169,13 @@ namespace PMR00200FRONT
                 if (!string.IsNullOrWhiteSpace(_viewModel._ReportParam.CTO_DEPARTMENT_ID))
                 {
 
-                    LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel(); //use GSL's model
-                    var loParam = new GSL00700ParameterDTO // use match param as GSL's dto, send as type in search texbox
+                    LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel(); //use GSL's model
+                    var loParam = new GSL00710ParameterDTO // use match param as GSL's dto, send as type in search texbox
                     {
                         CSEARCH_TEXT = _viewModel._ReportParam.CTO_DEPARTMENT_ID, // property that bindded to search textbox
                     };
 
-                    var loResult = await loLookupViewModel.GetDepartment(loParam); //retrive single record 
+                    var loResult = await loLookupViewModel.GetDepartmentProperty(loParam); //retrive single record 
 
                     //show result & show name/related another fields
                     if (loResult == null)
@@ -314,6 +330,80 @@ namespace PMR00200FRONT
 
             R_DisplayException(loEx);
         }
+        #endregion
+
+        #region defaultValue
+
+        private async Task _setDefaultDepartment()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (string.IsNullOrEmpty(_viewModel._ReportParam.CPROPERTY_ID)) return;
+
+                var loLookupViewModel = new LookupGSL00710ViewModel();
+                var param = new GSL00710ParameterDTO
+                {
+                    CPROPERTY_ID = _viewModel._ReportParam.CPROPERTY_ID,
+
+                };
+                await loLookupViewModel.GetDepartmentPropertyList(param);
+                if (loLookupViewModel.DepartmentPropertyGrid.Count > 0)
+                {
+                    _viewModel._ReportParam.CFROM_DEPARTMENT_ID = loLookupViewModel.DepartmentPropertyGrid.FirstOrDefault()?.CDEPT_CODE;
+                    _viewModel._ReportParam.CFROM_DEPARTMENT_NAME = loLookupViewModel.DepartmentPropertyGrid
+                        .Where(x => x.CDEPT_CODE == _viewModel._ReportParam.CFROM_DEPARTMENT_ID)
+                        .Select(x => x.CDEPT_NAME).FirstOrDefault() ?? string.Empty;
+                    _viewModel._ReportParam.CTO_DEPARTMENT_ID = loLookupViewModel.DepartmentPropertyGrid.LastOrDefault()?.CDEPT_CODE;
+                    _viewModel._ReportParam.CTO_DEPARTMENT_NAME = loLookupViewModel.DepartmentPropertyGrid
+                        .Where(x => x.CDEPT_CODE == _viewModel._ReportParam.CTO_DEPARTMENT_ID)
+                        .Select(x => x.CDEPT_NAME).FirstOrDefault() ?? string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+        private async Task _setDefaultSalesman()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (string.IsNullOrEmpty(_viewModel._ReportParam.CPROPERTY_ID)) return;
+
+                var loLookupViewModel = new LookupLML00500ViewModel();
+                var param = new LML00500ParameterDTO
+                {
+                    CPROPERTY_ID = _viewModel._ReportParam.CPROPERTY_ID,
+
+                };
+                await loLookupViewModel.GetSalesmanList(param);
+                if (loLookupViewModel.SalesmanList.Count > 0)
+                {
+                    _viewModel._ReportParam.CFROM_SALESMAN_ID = loLookupViewModel.SalesmanList.FirstOrDefault()?.CSALESMAN_ID;
+                    _viewModel._ReportParam.CFROM_SALESMAN_NAME = loLookupViewModel.SalesmanList
+                        .Where(x => x.CSALESMAN_ID == _viewModel._ReportParam.CFROM_SALESMAN_ID)
+                        .Select(x => x.CSALESMAN_NAME).FirstOrDefault() ?? string.Empty;
+                    _viewModel._ReportParam.CTO_SALESMAN_ID = loLookupViewModel.SalesmanList.LastOrDefault()?.CSALESMAN_ID;
+                    _viewModel._ReportParam.CTO_SALESMAN_NAME = loLookupViewModel.SalesmanList
+                        .Where(x => x.CSALESMAN_ID == _viewModel._ReportParam.CTO_SALESMAN_ID)
+                        .Select(x => x.CSALESMAN_NAME).FirstOrDefault() ?? string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+
         #endregion
 
         #region PeriodOnchange

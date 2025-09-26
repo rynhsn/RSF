@@ -42,6 +42,8 @@
             groupBox1 = new GroupBox();
             GLM00200 = new Button();
             groupBox2 = new GroupBox();
+            PMR00200Detail = new Button();
+            PMR00200Summary = new Button();
             button4 = new Button();
             button3 = new Button();
             button2 = new Button();
@@ -222,6 +224,8 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(PMR00200Detail);
+            groupBox2.Controls.Add(PMR00200Summary);
             groupBox2.Controls.Add(button4);
             groupBox2.Controls.Add(button3);
             groupBox2.Controls.Add(button2);
@@ -238,10 +242,30 @@
             groupBox2.Margin = new Padding(3, 4, 3, 4);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(3, 4, 3, 4);
-            groupBox2.Size = new Size(112, 663);
+            groupBox2.Size = new Size(112, 797);
             groupBox2.TabIndex = 12;
             groupBox2.TabStop = false;
             groupBox2.Text = "PM Report";
+            // 
+            // PMR00200Detail
+            // 
+            PMR00200Detail.Location = new Point(9, 675);
+            PMR00200Detail.Name = "PMR00200Detail";
+            PMR00200Detail.Size = new Size(97, 52);
+            PMR00200Detail.TabIndex = 22;
+            PMR00200Detail.Text = "PMR00200 Detail";
+            PMR00200Detail.UseVisualStyleBackColor = true;
+            PMR00200Detail.Click += PMR00200Detail_Click;
+            // 
+            // PMR00200Summary
+            // 
+            PMR00200Summary.Location = new Point(7, 617);
+            PMR00200Summary.Name = "PMR00200Summary";
+            PMR00200Summary.Size = new Size(99, 52);
+            PMR00200Summary.TabIndex = 21;
+            PMR00200Summary.Text = "PMR00200 Summary";
+            PMR00200Summary.UseVisualStyleBackColor = true;
+            PMR00200Summary.Click += PMR00200Summary_Click;
             // 
             // button4
             // 
@@ -561,5 +585,7 @@
         private Button button2;
         private Button button4;
         private Button button3;
+        private Button PMR00200Detail;
+        private Button PMR00200Summary;
     }
 }
