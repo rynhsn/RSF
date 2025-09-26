@@ -133,7 +133,8 @@ namespace PMR00220MODEL.View_Models
                 R_FrontContext.R_SetStreamingContext(PMR00220ContextConstant.CYEAR, pcYear);
                 var loResult = await _PMR00220model.GetPeriodDtListAsync();
                 loRtn = loResult.ToList();
-                loRtn.ForEach(x => x.CPERIOD_NAME_DISPLAY = loDateTimeFormatInfo.GetMonthName(int.Parse(x.CPERIOD_NO)));
+                //loRtn.ForEach(x => x.CPERIOD_NAME_DISPLAY = loDateTimeFormatInfo.GetMonthName(int.Parse(x.CPERIOD_NO)));
+                loRtn.ForEach(x => x.CPERIOD_NAME_DISPLAY = x.CPERIOD_NO);
             }
             catch (Exception ex)
             {

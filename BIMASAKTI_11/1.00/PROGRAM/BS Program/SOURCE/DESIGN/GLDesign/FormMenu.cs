@@ -243,10 +243,18 @@ namespace GLDesign
             loReport.Design();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void PMR00220Summary_Click(object sender, EventArgs e)
         {
             var loData = new ArrayList();
-            loData.Add(PMR02600Common.Model.PMR02600ModelReportDummyData.DefaultDataWithHeader());
+            loData.Add(PMR00220COMMON.Model.PMR00200DummyData.PMR00200PrintDislpayWithBaseHeader());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
+
+        private void PMR00220Detail_Click(object sender, EventArgs e)
+        {
+            var loData = new ArrayList();
+            loData.Add(PMR00220COMMON.Model.PMR00220DummyData.PMR00220PrintDislpayWithBaseHeader());
             loReport.RegisterData(loData, "ResponseDataModel");
             loReport.Design();
         }

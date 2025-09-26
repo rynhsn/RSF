@@ -20,6 +20,7 @@
       <ProjectReference Include="..\..\COMMON\IC\ICR00100Common\ICR00100Common.csproj" />
       <ProjectReference Include="..\..\COMMON\IC\ICR00600Common\ICR00600Common.csproj" />
       <ProjectReference Include="..\..\COMMON\LM\PMB04000COMMON\PMB04000\PMB04000COMMON.csproj" />
+      <ProjectReference Include="..\..\COMMON\LM\PMR00220COMMON\PMR00220COMMON.csproj" />
       <ProjectReference Include="..\..\COMMON\LM\PMR00400Common\PMR00400Common.csproj" />
       <ProjectReference Include="..\..\COMMON\LM\PMR00460Common\PMR00460Common.csproj" />
       <ProjectReference Include="..\..\COMMON\LM\PMR02000COMMON\PMR02000COMMON.csproj" />
