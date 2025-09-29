@@ -42,6 +42,8 @@
             groupBox1 = new GroupBox();
             GLM00200 = new Button();
             groupBox2 = new GroupBox();
+            PMR00170Detail = new Button();
+            PMR00170Summary = new Button();
             PMR00200Detail = new Button();
             PMR00200Summary = new Button();
             button4 = new Button();
@@ -224,6 +226,8 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(PMR00170Detail);
+            groupBox2.Controls.Add(PMR00170Summary);
             groupBox2.Controls.Add(PMR00200Detail);
             groupBox2.Controls.Add(PMR00200Summary);
             groupBox2.Controls.Add(button4);
@@ -242,10 +246,30 @@
             groupBox2.Margin = new Padding(3, 4, 3, 4);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(3, 4, 3, 4);
-            groupBox2.Size = new Size(112, 797);
+            groupBox2.Size = new Size(112, 864);
             groupBox2.TabIndex = 12;
             groupBox2.TabStop = false;
             groupBox2.Text = "PM Report";
+            // 
+            // PMR00170Detail
+            // 
+            PMR00170Detail.Location = new Point(6, 789);
+            PMR00170Detail.Name = "PMR00170Detail";
+            PMR00170Detail.Size = new Size(100, 50);
+            PMR00170Detail.TabIndex = 24;
+            PMR00170Detail.Text = "PMR00170 Detail";
+            PMR00170Detail.UseVisualStyleBackColor = true;
+            PMR00170Detail.Click += PMR00170Detail_Click;
+            // 
+            // PMR00170Summary
+            // 
+            PMR00170Summary.Location = new Point(6, 733);
+            PMR00170Summary.Name = "PMR00170Summary";
+            PMR00170Summary.Size = new Size(100, 50);
+            PMR00170Summary.TabIndex = 23;
+            PMR00170Summary.Text = "PMR00170 Summary";
+            PMR00170Summary.UseVisualStyleBackColor = true;
+            PMR00170Summary.Click += PMR00170Summary_Click;
             // 
             // PMR00200Detail
             // 
@@ -523,7 +547,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(851, 826);
+            ClientSize = new Size(851, 893);
             Controls.Add(groupBox6);
             Controls.Add(groupBox5);
             Controls.Add(Refresh);
@@ -587,5 +611,7 @@
         private Button button3;
         private Button PMR00200Detail;
         private Button PMR00200Summary;
+        private Button PMR00170Detail;
+        private Button PMR00170Summary;
     }
 }

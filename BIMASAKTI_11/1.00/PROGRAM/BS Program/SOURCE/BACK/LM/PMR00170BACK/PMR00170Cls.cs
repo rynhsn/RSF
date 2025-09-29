@@ -6,6 +6,8 @@ using System.Data;
 using System.Diagnostics;
 using PMR00170COMMON.Utility_Report;
 using System.Reflection;
+using R_StorageCommon;
+using R_Storage;
 
 namespace PMR00170BACK
 {
@@ -237,7 +239,7 @@ namespace PMR00170BACK
 
             return loResult!;
         }
-        public PMR00170DataSummaryDbDTO GetCompanyLogo(string pcCompanyId)
+        public PMR00170DataSummaryDbDTO GetCompanyLogo(PMR00170DBParamDTO poParam)
         {
             using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
             var loEx = new R_Exception();
@@ -247,15 +249,45 @@ namespace PMR00170BACK
                 R_Db loDb = new();
                 var loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
                 var loCmd = loDb.GetCommand();
-                var lcQuery = "SELECT dbo.RFN_GET_COMPANY_LOGO(@CCOMPANY_ID) as CLOGO";
-                loCmd.CommandText = lcQuery;
-                loCmd.CommandType = CommandType.Text;
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, int.MaxValue, pcCompanyId);
 
-                //Debug Logs
-                ShowLogDebug(lcQuery, loCmd.Parameters);
-                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+                //var lcQuery = "SELECT dbo.RFN_GET_COMPANY_LOGO(@CCOMPANY_ID) as CLOGO";
+                //loCmd.CommandText = lcQuery;
+                //loCmd.CommandType = CommandType.Text;
+                //loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, int.MaxValue, pcCompanyId);
+
+                ////Debug Logs
+                //ShowLogDebug(lcQuery, loCmd.Parameters);
+                //var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+                //loResult = R_Utility.R_ConvertTo<PMR00170DataSummaryDbDTO>(loDataTable).FirstOrDefault();
+
+                var lcQuery = "RSP_GS_GET_PROPERTY_DETAIL";
+                loCmd = loDb.GetCommand();
+                loCmd.CommandType = CommandType.StoredProcedure;
+                loCmd.CommandText = lcQuery;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParam.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poParam.CPROPERTY_ID);
+
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                    .Where(x =>
+                        x != null && x.ParameterName.StartsWith("@"))
+                    .Select(x => x.Value);
+                _logger.LogDebug("EXEC {lcQuery} {@Parameters}", lcQuery, loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
                 loResult = R_Utility.R_ConvertTo<PMR00170DataSummaryDbDTO>(loDataTable).FirstOrDefault();
+
+                if (string.IsNullOrEmpty(loResult.CSTORAGE_ID) == false)
+                {
+                    var loReadParameter = new R_ReadParameter()
+                    {
+                        StorageId = loResult.CSTORAGE_ID
+                    };
+
+                    var loReadResult = R_StorageUtility.ReadFile(loReadParameter, loConn);
+
+                    loResult.CLOGO = loReadResult.Data;
+                }
             }
             catch (Exception ex)
             {
@@ -276,7 +308,7 @@ namespace PMR00170BACK
                 R_Db loDb = new();
                 var loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
                 var loCmd = loDb.GetCommand();
-                var lcQuery = "SELECT CCOMPANY_NAME FROM SAM_COMPANIES WHERE CCOMPANY_ID = @CCOMPANY_ID";
+                var lcQuery = $"EXEC RSP_GS_GET_COMPANY_INFO '{pcCompanyId}'";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.Text;
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, int.MaxValue, pcCompanyId);

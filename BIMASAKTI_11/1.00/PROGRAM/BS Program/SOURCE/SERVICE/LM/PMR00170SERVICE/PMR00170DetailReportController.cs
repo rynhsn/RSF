@@ -200,8 +200,9 @@ namespace PMR00170SERVICE
                     CUSER_ID = R_BackGlobalVar.USER_ID!,
                 };
                 //GETLOGO
-                loBaseHeader.BLOGO_COMPANY = loCls.GetCompanyLogo(R_BackGlobalVar.COMPANY_ID).CLOGO!;
+                loBaseHeader.BLOGO_COMPANY = loCls.GetCompanyLogo(poParam).CLOGO!;
                 loBaseHeader.CCOMPANY_NAME = loCls.GetCompanyName(R_BackGlobalVar.COMPANY_ID).CCOMPANY_NAME!;
+                loBaseHeader.CPRINT_DATE_COMPANY = DateTime.ParseExact(loCls.GetCompanyName(R_BackGlobalVar.COMPANY_ID).CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture).ToString(R_BackGlobalVar.REPORT_FORMAT_SHORT_DATE + " " + R_BackGlobalVar.REPORT_FORMAT_SHORT_TIME);
 
                 _logger.LogInfo("Set Header Report");
                 DateTime ldFromDate = DateTime.ParseExact(poParam.CFROM_PERIOD, "yyyyMM", null), ldToDate = DateTime.ParseExact(poParam.CTO_PERIOD, "yyyyMM", null);
@@ -209,7 +210,7 @@ namespace PMR00170SERVICE
                 {
                     PROPERTY = $"{poParam.CPROPERTY_ID} - {poParam.CPROPERTY_NAME}",
                     CDEPT_REPORT_DISPLAY = poParam.CFROM_DEPARTMENT_ID != poParam.CTO_DEPARTMENT_ID
-                    ? $"{poParam.CFROM_DEPARTMENT_NAME} ({poParam.CFROM_DEPARTMENT_ID}) - {poParam.CTO_DEPARTMENT_NAME}({poParam.CTO_DEPARTMENT_ID})"
+                    ? $"{poParam.CFROM_DEPARTMENT_NAME} ({poParam.CFROM_DEPARTMENT_ID}) - {poParam.CTO_DEPARTMENT_NAME} ({poParam.CTO_DEPARTMENT_ID})"
                     : $"{poParam.CFROM_DEPARTMENT_NAME} ({poParam.CFROM_DEPARTMENT_ID})",
                     CSALESMAN_REPORT_DISPLAY = poParam.CFROM_SALESMAN_ID != poParam.CTO_SALESMAN_ID ? $"{poParam.CFROM_SALESMAN_NAME} ({poParam.CFROM_SALESMAN_ID}) - {poParam.CTO_SALESMAN_NAME} ({poParam.CTO_SALESMAN_ID})" : $"{poParam.CFROM_SALESMAN_NAME} ({poParam.CFROM_SALESMAN_ID})",
                     CPERIOD_DISPLAY = ldFromDate != ldToDate ? $"{ldFromDate:MMM yyyy} – {ldToDate:MMM yyyy}" : $"{ldFromDate:MMM yyyy}",
