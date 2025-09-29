@@ -16,6 +16,7 @@ using System.Collections;
 using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace PMR00800SERVICE
 {
@@ -180,12 +181,32 @@ namespace PMR00800SERVICE
                 // Set base header data
                 _logger.LogDebug("Deserialized Print Parameters: {@PrintParameters}");
 
-                loParam.CPRINT_CODE = PMR00800ContextConstant.CPROGRAM_ID;
-                loParam.CPRINT_NAME = PMR00800ContextConstant.CPROGRAM_NAME;
-                loParam.CUSER_ID = poParam.CUSER_ID.ToUpper();
+                var lcCompany = R_BackGlobalVar.COMPANY_ID;
+                var lcUser = R_BackGlobalVar.USER_ID;
+                var lcLang = R_BackGlobalVar.CULTURE;
+
+                _logger.LogInfo("Set Parameter");
+                var loDbParam = new PMR00800SpParamDTO
+                {
+                    CCOMPANY_ID = lcCompany,
+                    CUSER_ID = lcUser,
+                    CLANG_ID = lcLang,
+                    CPROPERTY_ID = poParam.CPROPERTY_ID,
+                    CFROM_BUILDING = poParam.CFROM_BUILDING,
+                    CTO_BUILDING = poParam.CTO_BUILDING
+                };
                 var loCls = new PMR00800Cls();
-                loParam.BLOGO_COMPANY = loCls.GetCompanyLogo(R_BackGlobalVar.COMPANY_ID).CLOGO;
-                loParam.CCOMPANY_NAME = loCls.GetCompanyName(R_BackGlobalVar.COMPANY_ID).CCOMPANY_NAME;
+                var loHeader = loCls.GetBaseHeaderLogoCompany(loDbParam);
+                loRtn.BaseHeaderData = new BaseHeaderDTO
+                {
+                    BLOGO_COMPANY = loHeader.BLOGO,
+                    CCOMPANY_NAME = loHeader.CCOMPANY_NAME!,
+                    //DPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
+                    CPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture).ToString(R_BackGlobalVar.REPORT_FORMAT_SHORT_DATE + " " + R_BackGlobalVar.REPORT_FORMAT_SHORT_TIME),
+                    CPRINT_CODE = PMR00800ContextConstant.CPROGRAM_ID,
+                    CPRINT_NAME = PMR00800ContextConstant.CPROGRAM_NAME,
+                    CUSER_ID = poParam.CUSER_ID.ToUpper()
+                };
 
                 // Create an instance
                 PMR00800ReportDataDTO loData = new()
@@ -204,7 +225,6 @@ namespace PMR00800SERVICE
                 // Set the generated data in loRtn
                 _logger.LogInfo("Data processed successfully. Generating print output.");
                 loData.Data = new List<PMR00800SpResultDTO>(loCollData);
-                loRtn.BaseHeaderData = loParam;
                 loRtn.ReportData = loData;
 
                 _logger.LogInfo("Print output generated successfully. Saving print file.");

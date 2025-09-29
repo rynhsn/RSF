@@ -12,7 +12,7 @@ namespace PMR00800COMMON.DTO_s
         public string CFROM_BUILDING_NAME { get; set; }
         public string CTO_BUILDING_NAME { get; set; }
         public string CPROPERTY_NAME { get; set; }
-        public string CBUILDING_DISPLAY => CFROM_BUILDING != CTO_BUILDING ? $"{CFROM_BUILDING_NAME} ({CFROM_BUILDING}) - {CTO_BUILDING_NAME}({CTO_BUILDING})" : $"{CFROM_BUILDING_NAME} ({CFROM_BUILDING})";
+        public string CBUILDING_DISPLAY => CFROM_BUILDING != CTO_BUILDING ? $"{CFROM_BUILDING_NAME} ({CFROM_BUILDING}) - {CTO_BUILDING_NAME} ({CTO_BUILDING})" : $"{CFROM_BUILDING_NAME} ({CFROM_BUILDING})";
         public bool LIS_PRINT { get; set; }
         public string CREPORT_FILENAME { get; set; }
         public string CREPORT_FILETYPE { get; set; }
