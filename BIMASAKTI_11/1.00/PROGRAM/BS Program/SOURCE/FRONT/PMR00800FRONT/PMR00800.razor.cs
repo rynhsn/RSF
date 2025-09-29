@@ -12,6 +12,7 @@ using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_BlazorFrontEnd.Interfaces;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace PMR00800FRONT
 {
@@ -31,6 +32,7 @@ namespace PMR00800FRONT
             try
             {
                 await _viewModel.InitialProcess();
+                await _setDefaultBuilding();
             }
             catch (Exception ex)
             {
@@ -39,7 +41,7 @@ namespace PMR00800FRONT
             R_DisplayException(loEx);
         }
 
-        public void ComboboxPropertyValueChanged(string poParam)
+        public async Task ComboboxPropertyValueChanged(string poParam)
         {
             R_Exception loEx = new R_Exception();
             try
@@ -51,6 +53,7 @@ namespace PMR00800FRONT
                 _viewModel.ReportParam.CTO_BUILDING_NAME = "";
                 _viewModel.ReportParam.CFROM_BUILDING = "";
                 _viewModel.ReportParam.CFROM_BUILDING_NAME = "";
+                await _setDefaultBuilding();
             }
             catch (Exception ex)
             {
@@ -58,6 +61,41 @@ namespace PMR00800FRONT
             }
             R_DisplayException(loEx);
         }
+
+        private async Task _setDefaultBuilding()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            if (string.IsNullOrEmpty(_viewModel.ReportParam.CPROPERTY_ID)) return;
+
+            var loLookupViewModel = new LookupGSL02200ViewModel();
+            var param = new GSL02200ParameterDTO
+            {
+                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID
+            };
+
+            await loLookupViewModel.GetBuildingList(param);
+            if (loLookupViewModel.BuildingGrid.Count > 0)
+            {
+                _viewModel.ReportParam.CFROM_BUILDING = loLookupViewModel.BuildingGrid.FirstOrDefault()?.CBUILDING_ID;
+                _viewModel.ReportParam.CFROM_BUILDING_NAME = loLookupViewModel.BuildingGrid
+                    .Where(x => x.CBUILDING_ID == _viewModel.ReportParam.CFROM_BUILDING)
+                    .Select(x => x.CBUILDING_NAME).FirstOrDefault() ?? string.Empty;
+                _viewModel.ReportParam.CTO_BUILDING = loLookupViewModel.BuildingGrid.LastOrDefault()?.CBUILDING_ID;
+                _viewModel.ReportParam.CTO_BUILDING_NAME = loLookupViewModel.BuildingGrid
+                    .Where(x => x.CBUILDING_ID == _viewModel.ReportParam.CTO_BUILDING)
+                    .Select(x => x.CBUILDING_NAME).FirstOrDefault() ?? string.Empty;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
 
         public async void OnChanged_NumericTextBoxPeriodYear()
         {

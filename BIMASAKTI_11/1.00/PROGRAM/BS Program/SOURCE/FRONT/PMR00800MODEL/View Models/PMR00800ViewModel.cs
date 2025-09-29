@@ -43,7 +43,8 @@ namespace PMR00800MODEL.View_Models
                 DateTime loTodayDate = DateTime.Today;
 
                 // Get from back
-                PropertyList = new List<PropertyDTO>(await _initModel.GetPropertyListAsync());
+                //PropertyList = new List<PropertyDTO>(await _initModel.GetPropertyListAsync());
+                await GetPropertyList();
                 await GetMonthDTListAsync();
                 PeriodYearRange = await _initModel.GetPeriodYearRangeRecordAsync(new PeriodYearRangeParamDTO() { CMODE = "", CYEAR = "" });
 
@@ -65,6 +66,24 @@ namespace PMR00800MODEL.View_Models
             {
                 loEx.Add(ex);
             }
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        public async Task GetPropertyList()
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loReturn = new List<PropertyDTO>(await _initModel.GetPropertyListAsync());
+                PropertyList = loReturn;
+                ReportParam.CREPORT_FILETYPE = FileType[0];
+                ReportParam.CPROPERTY_ID = PropertyList.Count > 0 ? PropertyList[0].CPROPERTY_ID : ReportParam.CPROPERTY_ID;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
             loEx.ThrowExceptionIfErrors();
         }
 
