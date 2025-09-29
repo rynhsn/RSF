@@ -40,6 +40,8 @@ namespace PMR00600FRONT
             try
             {
                 await _viewModel.InitProcess(_localizer);
+                await _setDefaultBuilding();
+                await _setDefaultDepartment();
             }
             catch (Exception ex)
             {
@@ -48,8 +50,81 @@ namespace PMR00600FRONT
             R_DisplayException(loEx);
         }
 
+        private async Task _setDefaultBuilding()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                
+                if (string.IsNullOrEmpty(_viewModel._ReportParam.CPROPERTY_ID)) return;
+
+                var loLookupViewModel = new LookupGSL02200ViewModel();
+                var param = new GSL02200ParameterDTO
+                {
+                    CPROPERTY_ID = _viewModel._ReportParam.CPROPERTY_ID
+                };
+
+                await loLookupViewModel.GetBuildingList(param);
+                if (loLookupViewModel.BuildingGrid.Count > 0)
+                {   
+                    _viewModel._ReportParam.CFROM_BUILDING_ID = loLookupViewModel.BuildingGrid.FirstOrDefault()?.CBUILDING_ID;
+                    _viewModel._ReportParam.CFROM_BUILDING_NAME = loLookupViewModel.BuildingGrid
+                        .Where(x => x.CBUILDING_ID == _viewModel._ReportParam.CFROM_BUILDING_ID)
+                        .Select(x => x.CBUILDING_NAME).FirstOrDefault() ?? string.Empty;
+                    _viewModel._ReportParam.CTO_BUILDING_ID = loLookupViewModel.BuildingGrid.LastOrDefault()?.CBUILDING_ID;
+                    _viewModel._ReportParam.CTO_BUILDING_NAME = loLookupViewModel.BuildingGrid
+                        .Where(x => x.CBUILDING_ID == _viewModel._ReportParam.CTO_BUILDING_ID)
+                        .Select(x => x.CBUILDING_NAME).FirstOrDefault() ?? string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task _setDefaultDepartment()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (string.IsNullOrEmpty(_viewModel._ReportParam.CPROPERTY_ID)) return;
+
+                var loLookupViewModel = new LookupGSL00710ViewModel();
+
+                var param = new GSL00710ParameterDTO
+                {
+                    CPROPERTY_ID = _viewModel._ReportParam.CPROPERTY_ID
+                };
+                
+                await loLookupViewModel.GetDepartmentPropertyList(param);
+                if (loLookupViewModel.DepartmentPropertyGrid.Count > 0)
+                {
+                    _viewModel._ReportParam.CFROM_DEPT_CODE = loLookupViewModel.DepartmentPropertyGrid.FirstOrDefault()?.CDEPT_CODE;
+                    _viewModel._ReportParam.CFROM_DEPT_NAME = loLookupViewModel.DepartmentPropertyGrid
+                        .Where(x => x.CDEPT_CODE == _viewModel._ReportParam.CFROM_DEPT_CODE)
+                        .Select(x => x.CDEPT_NAME).FirstOrDefault() ?? string.Empty;
+                    _viewModel._ReportParam.CTO_DEPT_CODE = loLookupViewModel.DepartmentPropertyGrid.LastOrDefault()?.CDEPT_CODE;
+                    _viewModel._ReportParam.CTO_DEPT_NAME = loLookupViewModel.DepartmentPropertyGrid
+                        .Where(x => x.CDEPT_CODE == _viewModel._ReportParam.CTO_DEPT_CODE)
+                        .Select(x => x.CDEPT_NAME).FirstOrDefault() ?? string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+
         #region PropertyDropdown
-        public void ComboboxPropertyValueChanged(string poParam)
+        public async Task ComboboxPropertyValueChanged(string poParam)
         {
             R_Exception loEx = new R_Exception();
             try
@@ -71,6 +146,8 @@ namespace PMR00600FRONT
                 _viewModel._ReportParam.CFROM_SERVICE_NAME = "";
                 _viewModel._ReportParam.CTO_SERVICE_ID = "";
                 _viewModel._ReportParam.CTO_SERVICE_NAME = "";
+                await _setDefaultBuilding();
+                await _setDefaultDepartment();
             }
             catch (Exception ex)
             {
@@ -83,12 +160,12 @@ namespace PMR00600FRONT
         #region lookupFromDept
         private void BeforeOpen_lookupFromDept(R_BeforeOpenLookupEventArgs eventArgs)
         {
-            eventArgs.Parameter = new GSL00700ParameterDTO();
-            eventArgs.TargetPageType = typeof(GSL00700);
+            eventArgs.Parameter = new GSL00710ParameterDTO() { CPROPERTY_ID = _viewModel._ReportParam.CPROPERTY_ID };
+            eventArgs.TargetPageType = typeof(GSL00710);
         }
         private void AfterOpen_lookupFromDeptAsync(R_AfterOpenLookupEventArgs eventArgs)
         {
-            var loTempResult = (GSL00700DTO)eventArgs.Result;
+            var loTempResult = (GSL00710DTO)eventArgs.Result;
             if (loTempResult != null)
             {
                 _viewModel._ReportParam.CFROM_DEPT_CODE = loTempResult.CDEPT_CODE;
@@ -144,12 +221,12 @@ namespace PMR00600FRONT
         }
         private void BeforeOpen_lookupToDept(R_BeforeOpenLookupEventArgs eventArgs)
         {
-            eventArgs.Parameter = new GSL00700ParameterDTO();
-            eventArgs.TargetPageType = typeof(GSL00700);
+            eventArgs.Parameter = new GSL00710ParameterDTO() { CPROPERTY_ID = _viewModel._ReportParam.CPROPERTY_ID };
+            eventArgs.TargetPageType = typeof(GSL00710);
         }
         private void AfterOpen_lookupToDeptAsync(R_AfterOpenLookupEventArgs eventArgs)
         {
-            var loTempResult = (GSL00700DTO)eventArgs.Result;
+            var loTempResult = (GSL00710DTO)eventArgs.Result;
             if (loTempResult != null)
             {
                 _viewModel._ReportParam.CTO_DEPT_CODE = loTempResult.CDEPT_CODE;

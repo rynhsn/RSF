@@ -185,14 +185,42 @@ namespace PMR00600SERVICE
                 // Set base header data
                 _logger.LogDebug("Deserialized Print Parameters: {@PrintParameters}");
 
-                loParam.CPRINT_CODE = "621";
-                loParam.CPRINT_NAME = PMR00600ContextConstant.CPROGRAM_NAME;
-                loParam.CUSER_ID = R_BackGlobalVar.USER_ID.ToUpper();
-                //get logo & company name
+                //loParam.CPRINT_CODE = "621";
+                //loParam.CPRINT_NAME = PMR00600ContextConstant.CPROGRAM_NAME;
+                //loParam.CUSER_ID = R_BackGlobalVar.USER_ID.ToUpper();
+                ////get logo & company name
+                //var loCls = new PMR00600Cls();
+                //loParam.BLOGO_COMPANY = loCls.GetCompanyLogo(R_BackGlobalVar.COMPANY_ID).CLOGO;
+                //loParam.CCOMPANY_NAME = loCls.GetCompanyName(R_BackGlobalVar.COMPANY_ID).CCOMPANY_NAME;
+
                 var loCls = new PMR00600Cls();
-                loParam.BLOGO_COMPANY = loCls.GetCompanyLogo(R_BackGlobalVar.COMPANY_ID).CLOGO;
-                loParam.CCOMPANY_NAME = loCls.GetCompanyName(R_BackGlobalVar.COMPANY_ID).CCOMPANY_NAME;
-                
+                var lcCompany = R_BackGlobalVar.COMPANY_ID;
+                var lcUser = R_BackGlobalVar.USER_ID;
+                var lcLang = R_BackGlobalVar.CULTURE;
+
+                _logger.LogInfo("Set Parameter");
+                var loDbParam = new PMR00600SPParamDTO
+                {
+                    CCOMPANY_ID = lcCompany,
+                    CLANG_ID = lcLang,
+                    CPROPERTY_ID = poParam.CPROPERTY_ID,
+                    CFROM_BUILDING_ID = poParam.CFROM_BUILDING_ID,
+                    CTO_BUILDING_ID = poParam.CTO_BUILDING_ID
+
+                };
+                var loHeader = loCls.GetBaseHeaderLogoCompany(loDbParam);
+                loRtn.BaseHeaderData = new BaseHeaderDTO
+                {
+                    BLOGO_COMPANY = loHeader.BLOGO,
+                    CCOMPANY_NAME = loHeader.CCOMPANY_NAME!,
+                    //DPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
+                    CPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture).ToString(R_BackGlobalVar.REPORT_FORMAT_SHORT_DATE + " " + R_BackGlobalVar.REPORT_FORMAT_SHORT_TIME),
+                    CPRINT_CODE = "621",
+                    CPRINT_NAME = PMR00600ContextConstant.CPROGRAM_NAME,
+                    CUSER_ID = poParam.CUSER_ID.ToUpper()
+                };
+
+
                 PMR00601ReportDataDTO loData = new()
                 {
                     Title = PMR00600ContextConstant.CPROGRAM_NAME,
@@ -218,7 +246,7 @@ namespace PMR00600SERVICE
                     loItem.DOVERTIME_DATE = DateTime.TryParseExact(loItem.COVERTIME_DATE, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var loResultOvt) ? loResultOvt : null;
                 }
                 loData.Data = new List<PMR00601DataDTO>(loMappingData);
-                loRtn.BaseHeaderData = loParam;
+                //loRtn.BaseHeaderData = loParam;
                 loRtn.ReportDataDTO = loData;
 
                 _logger.LogInfo("Print output generated successfully. Saving print file.");

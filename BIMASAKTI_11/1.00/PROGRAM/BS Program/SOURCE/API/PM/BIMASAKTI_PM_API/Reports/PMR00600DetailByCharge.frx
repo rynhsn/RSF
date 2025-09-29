@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\LM\BIMASAKTI_LM_API\Reports\BaseHeaderCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="01/20/2025 19:27:37" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="09/26/2025 15:47:22" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="ReportDataDTO" DataType="PMR00600COMMON.DTO_s.PrintDetail.PMR00601ReportDataDTO, PMR00600COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -121,12 +121,16 @@
         <Column Name="CCOMPANY_NAME" DataType="System.String"/>
         <Column Name="CPRINT_NAME" DataType="System.String"/>
         <Column Name="CUSER_ID" DataType="System.String"/>
+        <Column Name="CPRINT_DATE_COMPANY" DataType="System.String"/>
+        <Column Name="DPRINT_DATE_COMPANY" DataType="System.DateTime"/>
       </Column>
       <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
         <Column Name="Page" DataType="System.String"/>
         <Column Name="Of" DataType="System.String"/>
         <Column Name="Print_Date" DataType="System.String"/>
         <Column Name="Print_By" DataType="System.String"/>
+        <Column Name="Printed" DataType="System.String"/>
+        <Column Name="By" DataType="System.String"/>
       </Column>
     </BusinessObjectDataSource>
     <Total Name="TotalOfAgr" Expression="[ResponseDataModel.ReportDataDTO.Data.NUNIT_ACTUAL_AMOUNT]" Evaluator="Data1" PrintOn="GroupFooter6"/>
@@ -138,9 +142,9 @@
     <Total Name="TotalOfInvoice" Expression="[TotalOfTenant]" Evaluator="Data1" PrintOn="GroupFooter2"/>
   </Dictionary>
   <inherited Name="Page1">
-    <inherited Name="PageHeader1" Height="94.5">
+    <inherited Name="PageHeader1" Height="103.95">
       <inherited Name="LogoCompany"/>
-      <inherited Name="Text33"/>
+      <inherited Name="BaseHeaderCompany"/>
       <inherited Name="LabelNoPage">
         <Formats>
           <GeneralFormat/>
@@ -149,96 +153,55 @@
           <GeneralFormat/>
         </Formats>
       </inherited>
-      <inherited Name="BaseHeaderDate"/>
       <inherited Name="LabelDate"/>
       <inherited Name="BaseHeaderLabel"/>
       <inherited Name="BaseHeaderUserId"/>
       <inherited Name="LabelUserId"/>
-      <inherited Name="BaseHeaderDateTime"/>
-      <ChildBand Name="Child1" ZOrder="-1" Top="97.7" Width="718.2" Height="207.9" CanGrow="true" CanShrink="true">
-        <TextObject Name="Text42" Left="-28.35" Top="18.9" Width="689.85" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.PERIOD_LABEL] : [ResponseDataModel.ReportDataDTO.Param.CPERIOD_DISPLAY]" Font="Arial Unicode MS, 7pt">
+      <inherited Name="BaseHeaderDate"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="105.47" Width="718.2" Height="207.9" CanGrow="true" CanShrink="true">
+        <TextObject Name="Text42" Left="94.5" Top="18.9" Width="689.85" Height="18.9" Text=": [ResponseDataModel.ReportDataDTO.Param.CPERIOD_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text43" Left="94.5" Top="37.8" Width="689.85" Height="18.9" Text=": [ResponseDataModel.ReportDataDTO.Param.CBUILDING_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text44" Left="94.5" Top="56.7" Width="689.85" Height="18.9" Text=": [ResponseDataModel.ReportDataDTO.Param.CDEPT_REPORT_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text45" Left="94.5" Top="75.6" Width="1285.2" Height="18.9" Text=": [ResponseDataModel.ReportDataDTO.Param.CREPORT_TYPE_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text46" Left="94.5" Top="94.5" Width="689.85" Height="18.9" Text=": [ResponseDataModel.ReportDataDTO.Param.CGROUP_TYPE_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text108" Left="94.5" Width="746.55" Height="18.9" Text=": [ResponseDataModel.ReportDataDTO.Param.CPROPERTY_NAME] ([ResponseDataModel.ReportDataDTO.Param.CPROPERTY_ID])" Font="Arial Unicode MS, 7pt">
           <Formats>
             <GeneralFormat/>
             <GeneralFormat/>
           </Formats>
         </TextObject>
-        <TextObject Name="Text43" Left="-28.35" Top="37.8" Width="689.85" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.BUILDING_LABEL] : [ResponseDataModel.ReportDataDTO.Param.CBUILDING_DISPLAY]" Font="Arial Unicode MS, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-        <TextObject Name="Text44" Left="-28.35" Top="56.7" Width="689.85" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.DEPARTMENT_LABEL] : [ResponseDataModel.ReportDataDTO.Param.CDEPT_REPORT_DISPLAY]" Font="Arial Unicode MS, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-        <TextObject Name="Text45" Left="-28.35" Top="75.6" Width="1285.2" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.REPORT_TYPE_LABEL] :[ResponseDataModel.ReportDataDTO.Param.CREPORT_TYPE_DISPLAY]" Font="Arial Unicode MS, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-        <TextObject Name="Text46" Left="-28.35" Top="94.5" Width="689.85" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.GROUP_BY_LABEL] : [ResponseDataModel.ReportDataDTO.Param.CGROUP_TYPE_DISPLAY]" Font="Arial Unicode MS, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-        <TextObject Name="Text108" Left="-28.35" Width="746.55" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.PROPERTY_LABEL] : [ResponseDataModel.ReportDataDTO.Param.CPROPERTY_NAME] ([ResponseDataModel.ReportDataDTO.Param.CPROPERTY_ID])" Font="Arial Unicode MS, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-        <ChildBand Name="Child2" Top="308.8" Width="718.2" Height="37.8" VisibleExpression="[ResponseDataModel.ReportDataDTO.Param.LTENANT]" CanGrow="true" CanShrink="true">
-          <TextObject Name="Text47" Left="-28.35" Width="689.85" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.TENANT_LABEL] : [ResponseDataModel.ReportDataDTO.Param.CTENANT_DISPLAY]" Font="Arial Unicode MS, 7pt">
-            <Formats>
-              <GeneralFormat/>
-              <GeneralFormat/>
-              <GeneralFormat/>
-            </Formats>
-          </TextObject>
-          <ChildBand Name="Child3" Top="349.8" Width="718.2" Height="37.8" VisibleExpression="[ResponseDataModel.ReportDataDTO.Param.LSERVICE]" CanGrow="true" CanShrink="true">
-            <TextObject Name="Text48" Left="-28.35" Width="689.85" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.SERVICE_LABEL] : [ResponseDataModel.ReportDataDTO.Param.CSERVICE_DISPLAY]" WordWrap="false" Font="Arial Unicode MS, 7pt">
-              <Formats>
-                <GeneralFormat/>
-                <GeneralFormat/>
-                <GeneralFormat/>
-              </Formats>
-            </TextObject>
-            <ChildBand Name="Child4" Top="390.8" Width="718.2" Height="37.8" VisibleExpression="[ResponseDataModel.ReportDataDTO.Param.LSTATUS]" CanGrow="true" CanShrink="true">
-              <TextObject Name="Text49" Left="-28.35" Width="689.85" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.STATUS_LABEL] : [ResponseDataModel.ReportDataDTO.Param.CSTATUS_DISPLAY]" Font="Arial Unicode MS, 7pt">
-                <Formats>
-                  <GeneralFormat/>
-                  <GeneralFormat/>
-                  <GeneralFormat/>
-                </Formats>
-              </TextObject>
-              <ChildBand Name="Child5" Top="431.8" Width="718.2" Height="18.9" VisibleExpression="[ResponseDataModel.ReportDataDTO.Param.LINVOICE]" CanGrow="true" CanShrink="true">
-                <TextObject Name="Text50" Left="-28.35" Width="689.85" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.INVOICE_STATUS_LABEL] : [ResponseDataModel.ReportDataDTO.Param.CINVOICE_DISPLAY]" Font="Arial Unicode MS, 7pt">
-                  <Formats>
-                    <GeneralFormat/>
-                    <GeneralFormat/>
-                    <GeneralFormat/>
-                  </Formats>
-                </TextObject>
+        <TextObject Name="Text120" Top="18.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.PERIOD_LABEL]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text121" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.PROPERTY_LABEL]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text122" Top="37.8" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.BUILDING_LABEL]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text123" Top="56.7" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.DEPARTMENT_LABEL]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text124" Top="75.6" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.REPORT_TYPE_LABEL]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text125" Top="94.5" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.GROUP_BY_LABEL]" Font="Arial Unicode MS, 7pt"/>
+        <ChildBand Name="Child2" Top="314.9" Width="718.2" Height="37.8" VisibleExpression="[ResponseDataModel.ReportDataDTO.Param.LTENANT]" CanGrow="true" CanShrink="true">
+          <TextObject Name="Text47" Left="94.5" Width="689.85" Height="18.9" Text=": [ResponseDataModel.ReportDataDTO.Param.CTENANT_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text126" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.TENANT_LABEL]" Font="Arial Unicode MS, 7pt"/>
+          <ChildBand Name="Child3" Top="354.22" Width="718.2" Height="37.8" VisibleExpression="[ResponseDataModel.ReportDataDTO.Param.LSERVICE]" CanGrow="true" CanShrink="true">
+            <TextObject Name="Text48" Left="94.5" Width="689.85" Height="18.9" Text=": [ResponseDataModel.ReportDataDTO.Param.CSERVICE_DISPLAY]" WordWrap="false" Font="Arial Unicode MS, 7pt"/>
+            <TextObject Name="Text127" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.SERVICE_LABEL]" Font="Arial Unicode MS, 7pt"/>
+            <ChildBand Name="Child4" Top="393.55" Width="718.2" Height="37.8" VisibleExpression="[ResponseDataModel.ReportDataDTO.Param.LSTATUS]" CanGrow="true" CanShrink="true">
+              <TextObject Name="Text49" Left="94.5" Width="689.85" Height="18.9" Text=": [ResponseDataModel.ReportDataDTO.Param.CSTATUS_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+              <TextObject Name="Text128" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.STATUS_LABEL]" Font="Arial Unicode MS, 7pt"/>
+              <ChildBand Name="Child5" Top="432.87" Width="718.2" Height="18.9" VisibleExpression="[ResponseDataModel.ReportDataDTO.Param.LINVOICE]" CanGrow="true" CanShrink="true">
+                <TextObject Name="Text50" Left="94.5" Width="689.85" Height="18.9" Text=": [ResponseDataModel.ReportDataDTO.Param.CINVOICE_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+                <TextObject Name="Text129" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.INVOICE_STATUS_LABEL]" Font="Arial Unicode MS, 7pt"/>
               </ChildBand>
             </ChildBand>
           </ChildBand>
         </ChildBand>
       </ChildBand>
     </inherited>
-    <GroupHeaderBand Name="GroupHeader1" ZOrder="0" Top="579.95" Width="718.2" Height="28.35" CanGrow="true" CanShrink="true" Condition="[ResponseDataModel.ReportDataDTO.Data.CBUILDING_ID]">
+    <GroupHeaderBand Name="GroupHeader1" ZOrder="0" Top="577.67" Width="718.2" Height="28.35" CanGrow="true" CanShrink="true" Condition="[ResponseDataModel.ReportDataDTO.Data.CBUILDING_ID]">
       <TextObject Name="Text61" Left="-28.35" Top="9.45" Width="585.9" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Data.CBUILDING_ID] - [ResponseDataModel.ReportDataDTO.Data.CBUILDING_NAME]" Font="Arial Unicode MS, 7pt">
         <Formats>
           <GeneralFormat/>
           <GeneralFormat/>
         </Formats>
       </TextObject>
-      <DataHeaderBand Name="DataHeader1" Top="453.9" Width="718.2" Height="122.85" CanGrow="true" CanShrink="true" RepeatOnEveryPage="true">
+      <DataHeaderBand Name="DataHeader1" Top="453.29" Width="718.2" Height="122.85" CanGrow="true" CanShrink="true" RepeatOnEveryPage="true">
         <TextObject Name="Text52" Left="-18.9" Top="28.35" Width="103.95" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.DEPARTMENT_LABEL]" Font="Arial Unicode MS, 7pt"/>
         <TextObject Name="Text53" Left="-9.45" Top="47.25" Width="122.85" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.CHARGE_LABEL]" Font="Arial Unicode MS, 7pt"/>
         <TextObject Name="Text54" Left="9.45" Top="85.05" Width="103.95" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.AGREEMENT_LABEL]" Font="Arial Unicode MS, 7pt" TextRenderType="Inline"/>
@@ -262,34 +225,34 @@
         <LineObject Name="Line2" Left="-37.8" Width="793.8" Diagonal="true"/>
         <LineObject Name="Line14" Left="-37.8" Top="122.85" Width="793.8" Diagonal="true"/>
       </DataHeaderBand>
-      <GroupHeaderBand Name="GroupHeader4" Top="611.5" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" Condition="[ResponseDataModel.ReportDataDTO.Data.CDEPT_CODE]">
+      <GroupHeaderBand Name="GroupHeader4" Top="607.54" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" Condition="[ResponseDataModel.ReportDataDTO.Data.CDEPT_CODE]">
         <TextObject Name="Text62" Left="-18.9" Width="576.45" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Data.CDEPT_CODE] - [ResponseDataModel.ReportDataDTO.Data.CDEPT_NAME]" Font="Arial Unicode MS, 7pt">
           <Formats>
             <GeneralFormat/>
             <GeneralFormat/>
           </Formats>
         </TextObject>
-        <GroupHeaderBand Name="GroupHeader3" Top="633.6" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" Guides="0" Condition="[ResponseDataModel.ReportDataDTO.Data.CCHARGE_ID]">
+        <GroupHeaderBand Name="GroupHeader3" Top="627.96" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" Guides="0" Condition="[ResponseDataModel.ReportDataDTO.Data.CCHARGE_ID]">
           <TextObject Name="Text105" Left="-9.45" Width="567" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Data.CCHARGE_ID] - [ResponseDataModel.ReportDataDTO.Data.CCHARGE_NAME]" Font="Arial Unicode MS, 7pt">
             <Formats>
               <GeneralFormat/>
               <GeneralFormat/>
             </Formats>
           </TextObject>
-          <GroupHeaderBand Name="GroupHeader2" Top="655.7" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" Condition="[ResponseDataModel.ReportDataDTO.Data.CINVOICE_NO]">
+          <GroupHeaderBand Name="GroupHeader2" Top="648.39" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" Condition="[ResponseDataModel.ReportDataDTO.Data.CINVOICE_NO]">
             <TextObject Name="Text64" Width="122.85" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Data.CINVOICE_NO]" Font="Arial Unicode MS, 7pt"/>
             <TextObject Name="Text65" Left="122.85" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Data.NINVOICE_AMOUNT]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
             <TextObject Name="Text66" Left="217.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Data.NINVOICE_TAX_AMOUNT]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
             <TextObject Name="Text67" Left="311.85" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Data.NINVOICE_TOTAL_AMOUNT]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
-            <GroupHeaderBand Name="GroupHeader5" Top="677.8" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" Condition="[ResponseDataModel.ReportDataDTO.Data.CTENANT_ID]">
+            <GroupHeaderBand Name="GroupHeader5" Top="668.81" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" Condition="[ResponseDataModel.ReportDataDTO.Data.CTENANT_ID]">
               <TextObject Name="Text68" Left="9.45" Width="548.1" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Data.CTENANT_ID] - [ResponseDataModel.ReportDataDTO.Data.CTENANT_NAME]" Font="Arial Unicode MS, 7pt">
                 <Formats>
                   <GeneralFormat/>
                   <GeneralFormat/>
                 </Formats>
               </TextObject>
-              <GroupHeaderBand Name="GroupHeader6" Top="699.9" Width="718.2" Height="9.45" CanGrow="true" CanShrink="true" Condition="[ResponseDataModel.ReportDataDTO.Data.CAGREEMENT_NO]">
-                <DataBand Name="Data1" Top="712.55" Width="718.2" Height="37.8" CanGrow="true" CanShrink="true" DataSource="Data" KeepTogether="true" KeepDetail="true">
+              <GroupHeaderBand Name="GroupHeader6" Top="689.24" Width="718.2" Height="9.45" CanGrow="true" CanShrink="true" Condition="[ResponseDataModel.ReportDataDTO.Data.CAGREEMENT_NO]">
+                <DataBand Name="Data1" Top="700.21" Width="718.2" Height="37.8" CanGrow="true" CanShrink="true" DataSource="Data" KeepTogether="true" KeepDetail="true">
                   <TextObject Name="Text70" Left="122.85" Width="122.85" Height="37.8" Text="[ResponseDataModel.ReportDataDTO.Data.CUNIT_ID] - [ResponseDataModel.ReportDataDTO.Data.CUNIT_NAME]" Font="Arial Unicode MS, 7pt">
                     <Formats>
                       <GeneralFormat/>
@@ -306,7 +269,7 @@
                   <TextObject Name="Text104" Left="18.9" Width="103.95" Height="37.8" Text="[ResponseDataModel.ReportDataDTO.Data.CAGREEMENT_NO]" Duplicates="Hide" Font="Arial Unicode MS, 7pt"/>
                   <TextObject Name="Text119" Left="245.7" Width="75.6" Height="37.8" Text="[ResponseDataModel.ReportDataDTO.Data.DOVERTIME_DATE]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 7pt"/>
                 </DataBand>
-                <GroupFooterBand Name="GroupFooter6" Top="753.55" Width="718.2" Height="37.8">
+                <GroupFooterBand Name="GroupFooter6" Top="739.53" Width="718.2" Height="37.8">
                   <TextObject Name="Text94" Left="18.9" Top="9.45" Width="472.5" Height="28.35" Text="[ResponseDataModel.ReportDataDTO.Label.SUBTOTAL_LABEL] [ResponseDataModel.ReportDataDTO.Data.CAGREEMENT_NO] : " HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold">
                     <Formats>
                       <GeneralFormat/>
@@ -317,7 +280,7 @@
                   <TextObject Name="Text110" Left="491.4" Top="9.45" Width="151.2" Height="18.9" Text="[TotalOfAgr]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
                 </GroupFooterBand>
               </GroupHeaderBand>
-              <GroupFooterBand Name="GroupFooter5" Top="794.55" Width="718.2" Height="47.25" CanGrow="true" CanShrink="true">
+              <GroupFooterBand Name="GroupFooter5" Top="778.86" Width="718.2" Height="47.25" CanGrow="true" CanShrink="true">
                 <LineObject Name="Line9" Left="18.9" Width="727.65" Diagonal="true"/>
                 <TextObject Name="Text97" Left="18.9" Top="9.45" Width="472.5" Height="28.35" Text="[ResponseDataModel.ReportDataDTO.Label.SUBTOTAL_LABEL] [ResponseDataModel.ReportDataDTO.Data.CTENANT_ID] - [ResponseDataModel.ReportDataDTO.Data.CTENANT_NAME] : " HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold">
                   <Formats>
@@ -329,7 +292,7 @@
                 <TextObject Name="Text111" Left="491.4" Top="9.45" Width="151.2" Height="28.35" Text="[TotalOfTenant]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
               </GroupFooterBand>
             </GroupHeaderBand>
-            <GroupFooterBand Name="GroupFooter2" Top="845" Width="718.2" Height="47.25" CanGrow="true" CanShrink="true">
+            <GroupFooterBand Name="GroupFooter2" Top="827.63" Width="718.2" Height="47.25" CanGrow="true" CanShrink="true">
               <LineObject Name="Line10" Left="9.45" Width="737.1" Diagonal="true"/>
               <TextObject Name="Text113" Left="18.9" Top="9.45" Width="472.5" Height="28.35" Text="[ResponseDataModel.ReportDataDTO.Label.SUBTOTAL_LABEL] [ResponseDataModel.ReportDataDTO.Data.CINVOICE_NO] : " HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold">
                 <Formats>
@@ -340,7 +303,7 @@
               <TextObject Name="Text114" Left="491.4" Top="9.45" Width="151.2" Height="28.35" Text="[TotalOfInvoice]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
             </GroupFooterBand>
           </GroupHeaderBand>
-          <GroupFooterBand Name="GroupFooter3" Top="895.45" Width="718.2" Height="47.25" CanGrow="true" CanShrink="true">
+          <GroupFooterBand Name="GroupFooter3" Top="876.4" Width="718.2" Height="47.25" CanGrow="true" CanShrink="true">
             <LineObject Name="Line11" Width="746.55" Diagonal="true"/>
             <TextObject Name="Text92" Left="18.9" Top="9.45" Width="472.5" Height="28.35" Text="[ResponseDataModel.ReportDataDTO.Label.SUBTOTAL_LABEL] [ResponseDataModel.ReportDataDTO.Data.CCHARGE_ID] - [ResponseDataModel.ReportDataDTO.Data.CCHARGE_NAME] : " HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold">
               <Formats>
@@ -352,7 +315,7 @@
             <TextObject Name="Text115" Left="491.4" Top="9.45" Width="151.2" Height="28.35" Text="[TotalOfCharge]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
           </GroupFooterBand>
         </GroupHeaderBand>
-        <GroupFooterBand Name="GroupFooter4" Top="945.9" Width="718.2" Height="47.25" CanGrow="true" CanShrink="true">
+        <GroupFooterBand Name="GroupFooter4" Top="925.18" Width="718.2" Height="47.25" CanGrow="true" CanShrink="true">
           <TextObject Name="Text99" Left="18.9" Top="9.45" Width="472.5" Height="28.35" Text="[ResponseDataModel.ReportDataDTO.Label.SUBTOTAL_LABEL] [ResponseDataModel.ReportDataDTO.Data.CDEPT_CODE] - [ResponseDataModel.ReportDataDTO.Data.CDEPT_NAME]  : " HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold">
             <Formats>
               <GeneralFormat/>
@@ -364,7 +327,7 @@
           <TextObject Name="Text116" Left="491.4" Top="9.45" Width="151.2" Height="28.35" Text="[TotalOfDept]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
         </GroupFooterBand>
       </GroupHeaderBand>
-      <GroupFooterBand Name="GroupFooter1" Top="996.35" Width="718.2" Height="47.25" CanGrow="true" CanShrink="true">
+      <GroupFooterBand Name="GroupFooter1" Top="973.95" Width="718.2" Height="47.25" CanGrow="true" CanShrink="true">
         <TextObject Name="Text101" Left="18.9" Top="9.45" Width="472.5" Height="28.35" Text="[ResponseDataModel.ReportDataDTO.Label.SUBTOTAL_LABEL] [ResponseDataModel.ReportDataDTO.Data.CBUILDING_ID] - [ResponseDataModel.ReportDataDTO.Data.CBUILDING_NAME] :  " HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold">
           <Formats>
             <GeneralFormat/>
@@ -375,7 +338,7 @@
         <LineObject Name="Line13" Left="-18.9" Width="774.9" Diagonal="true"/>
         <TextObject Name="Text117" Left="491.4" Top="9.45" Width="151.2" Height="28.35" Text="[TotalOfBuilding]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
       </GroupFooterBand>
-      <DataFooterBand Name="DataFooter1" Top="1046.8" Width="718.2" Height="37.8">
+      <DataFooterBand Name="DataFooter1" Top="1022.73" Width="718.2" Height="37.8">
         <LineObject Name="Line8" Left="189" Width="453.6" Diagonal="true"/>
         <TextObject Name="Text102" Left="189" Top="9.45" Width="302.4" Height="18.9" Text="[ResponseDataModel.ReportDataDTO.Label.GRANDTOTAL_LABEL]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
         <TextObject Name="Text118" Left="491.4" Top="9.45" Width="151.2" Height="18.9" Text="[GrandTotal]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
