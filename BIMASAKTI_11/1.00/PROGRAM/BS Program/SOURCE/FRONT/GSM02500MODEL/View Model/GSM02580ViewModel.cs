@@ -58,6 +58,7 @@ namespace GSM02500MODEL.View_Model
                 };
 
                 loResult = await loModel.R_ServiceGetRecordAsync(loParam);
+                loResult.Data.CNOTES = string.IsNullOrWhiteSpace(loResult.Data.CNOTES) ? "" : loResult.Data.CNOTES;
                 loOperationalHourDetail = loResult.Data;
 
                 if (loResult.Data != null)

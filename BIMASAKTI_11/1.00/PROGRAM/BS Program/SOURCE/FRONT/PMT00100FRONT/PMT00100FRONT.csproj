@@ -48,6 +48,7 @@
 		<ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_LMFrontResources\Lookup_PMFrontResources.csproj" />
 		<ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\Lookup_PMFRONT.csproj" />
 		<ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_LMModel\Lookup_PMModel.csproj" />
+		<ProjectReference Include="..\..\COMMON\GS\GSM02500COMMON\GSM02500COMMON.csproj" />
 		<ProjectReference Include="..\..\COMMON\LM\PMT00100COMMON\PMT00100COMMON.csproj" />
 		<ProjectReference Include="..\PMT00100FrontResources\PMT00100FrontResources.csproj" />
 		<ProjectReference Include="..\PMT00100MODEL\PMT00100MODEL.csproj" />
