@@ -619,6 +619,47 @@ FROM GST_UPLOAD_PROCESS_STATUS
 WHERE CKEY_GUID = 'RHC'
 ROLLBACK
 
+begin transaction
+
+CREATE TABLE #UTILITY_USAGE_EC( NO int,
+                                CCOMPANY_ID varchar(8),
+                                CPROPERTY_ID varchar(20),
+                                CDEPT_CODE varchar(20),
+                                CTRANS_CODE varchar(10),
+                                CREF_NO varchar(30),
+                                CUTILITY_TYPE varchar(2),
+                                CUNIT_ID varchar(20),
+                                CFLOOR_ID varchar(20),
+                                CBUILDING_ID varchar(20),
+                                CCHARGES_TYPE varchar(2),
+                                CCHARGES_ID varchar(20),
+                                CSEQ_NO varchar(3),
+                                CINV_PRD varchar(6),
+                                CUTILITY_PRD varchar(6),
+                                CSTART_DATE varchar(8),
+                                CEND_DATE varchar(8),
+                                CMETER_NO varchar(50),
+                                NBLOCK1_START numeric(16,2),
+                                NBLOCK2_START numeric(16,2));
+
+INSERT INTO #UTILITY_USAGE_EC VALUES (1, 'BSI', 'ASHMD', '00', '802032', 'AGRC-20241000002-AC', '01', 'PC003', '', '', '01', 'EC01', '001', '202408', '', '20240525', '', 'ELE-PC003', 2.00, 2.00);
+
+EXEC RSP_PM_UPLOAD_UTILITY_CUTOFF_EC 'BSI', 'ASHMD', '', 'ZF', '43a91b827daa4a288512eb2b45acd049'
+
+select *
+from SAM_COMPANIES
+where CCOMPANY_ID = 'BSI';
+DROP TABLE #UTILITY_USAGE_EC
+
+SELECT *
+FROM GST_UPLOAD_ERROR_STATUS
+WHERE CKEY_GUID = '43a91b827daa4a288512eb2b45acd049'
+
+SELECT *
+FROM GST_UPLOAD_PROCESS_STATUS
+WHERE CKEY_GUID = '43a91b827daa4a288512eb2b45acd049'
+ROLLBACK
+
 begin
     transaction
 EXEC RSP_PM_PMA00300 'BSI', 'ASHMD', '202508', 'TNT14', 'TNT14', 'S', '', true, 'RHC'

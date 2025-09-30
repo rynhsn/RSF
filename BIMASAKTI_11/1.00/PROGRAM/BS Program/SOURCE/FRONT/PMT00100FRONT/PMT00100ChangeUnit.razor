@@ -1,0 +1,363 @@
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_ChangeUnit")]
+@inject R_ILocalizer<Resources_PMT00100_Class> _localizer
+
+<R_StackLayout Style="width: 1000px">
+
+    <R_GroupBox>
+        @*Tenant*@
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_Tenant"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.ChangeUnitValue.CTENANT_ID"
+                           R_ConductorSource="@_conductor"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_viewModel.ChangeUnitValue.CTENANT_NAME"
+                           R_ConductorSource="@_conductor"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_GroupBox Title=@_localizer["_FromUnit"]>
+            @*Tenant*@
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Building"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModel.ChangeUnitValue.CBUILDING_ID"
+                               R_ConductorSource="@_conductor"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModel.ChangeUnitValue.CBUILDING_NAME"
+                               R_ConductorSource="@_conductor"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            @*Floor*@
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Floor"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModel.ChangeUnitValue.CFLOOR_ID"
+                               R_ConductorSource="@_conductor"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModel.ChangeUnitValue.CFLOOR_NAME"
+                               R_ConductorSource="@_conductor"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            @*Unit Id*@
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_UnitId"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModel.ChangeUnitValue.CUNIT_ID"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModel.ChangeUnitValue.CUNIT_NAME"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            @*Unit Type*@
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_UnitType"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModel.ChangeUnitValue.CUNIT_TYPE_ID"
+                               R_ConductorSource="@_conductor"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModel.ChangeUnitValue.CUNIT_TYPE_NAME"
+                               R_ConductorSource="@_conductor"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            @*Gross Size*@
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_GrossSize"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_NumericTextBox @bind-Value="@_viewModel.ChangeUnitValue.NGROSS_AREA_SIZE"
+                                      TValue="decimal"
+                                      R_ConductorSource="@_conductor"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="2" Class="ps-7">
+                    <R_Label>@_localizer["_NetSize"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_NumericTextBox @bind-Value="@_viewModel.ChangeUnitValue.NNET_AREA_SIZE"
+                                      TValue="decimal"
+                                      R_ConductorSource="@_conductor"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            @*Actual Size*@
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_ActualSize"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_NumericTextBox @bind-Value="@_viewModel.ChangeUnitValue.NACTUAL_PRICE"
+                                      TValue="decimal"
+                                      R_ConductorSource="@_conductor"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="2" Class="ps-7">
+                    <R_Label>@_localizer["_SellingPrice"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_NumericTextBox @bind-Value="@_viewModel.ChangeUnitValue.NSELL_PRICE"
+                                      TValue="decimal"
+                                      R_ConductorSource="@_conductor"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            @*Booking*@
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_BookingFee"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_NumericTextBox @bind-Value="@_viewModel.ChangeUnitValue.NBOOKING_FEE"
+                                      TValue="decimal"
+                                      R_ConductorSource="@_conductor"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_GroupBox>
+
+        <R_GroupBox Title=@_localizer["_ToUnit"]>
+            @*Tenant*@
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Building"]*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CBUILDING_ID"
+                               R_ConductorSource="@_conductor"
+                               OnLostFocus="@OnLostBuilding"
+                               R_EnableAdd>
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Lookup R_ConductorSource="@_conductor"
+                              @ref="@R_LookupBillingRule"
+                              R_Before_Open_Lookup="@BeforeOpenLookUpBuilding"
+                              R_After_Open_Lookup="@AfterOpenLookUpBuilding">
+                        ...
+                    </R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="6" Class="pe-5">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CBUILDING_NAME"
+                               R_ConductorSource="@_conductor"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            @*Floor*@
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Floor"]*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CFLOOR_ID"
+                               R_ConductorSource="@_conductor"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="6" Class="pe-1">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CFLOOR_NAME"
+                               R_ConductorSource="@_conductor"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            @*Unit Id*@
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_UnitId"]*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CUNIT_ID"
+                               R_ConductorSource="@_conductor"
+                               OnLostFocus="@OnLostUnit"
+                               R_EnableAdd>
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Lookup R_ConductorSource="@_conductor"
+                              @ref="@R_LookupBillingRule"
+                              R_Before_Open_Lookup="@BeforeOpenLookUpUnit"
+                              R_After_Open_Lookup="@AfterOpenLookUpUnit">
+                        ...
+                    </R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="6" Class="pe-5">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CUNIT_NAME"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            @*Unit Type*@
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_UnitType"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CUNIT_TYPE_ID"
+                               Enabled="false">
+
+                    </R_TextBox>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="6" Class="pe-1">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CUNIT_TYPE_NAME"
+                               R_ConductorSource="@_conductor"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            @*Gross Size*@
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_GrossSize"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_NumericTextBox @bind-Value="@_viewModel.Data.NGROSS_AREA_SIZE"
+                                      TValue="decimal"
+                                      R_ConductorSource="@_conductor"
+                                      Enabled="false"
+                                      Arrows="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="2" Class="ps-7">
+                    <R_Label>@_localizer["_NetSize"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3" Class="pe-2">
+                    <R_NumericTextBox @bind-Value="@_viewModel.Data.NNET_AREA_SIZE"
+                                      TValue="decimal"
+                                      R_ConductorSource="@_conductor"
+                                      Enabled="false"
+                                      Arrows="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            @*Billing Rule*@
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_BillingRule"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CBILLING_RULE_CODE"
+                               R_ConductorSource="@_conductor"
+                               OnLostFocus="@OnLostBillingRule"
+                               R_EnableAdd>
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Lookup R_ConductorSource="@_conductor"
+                              @ref="@R_LookupBillingRule"
+                              R_Before_Open_Lookup="@BeforeOpenLookUpBillingRuleLookup"
+                              R_After_Open_Lookup="@AfterOpenLookUpBillingRuleLookup">
+                        ...
+                    </R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="6" Class="pe-5">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CBILLING_RULE_NAME"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @*Actual Size*@
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_ActualSize"]*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_NumericTextBox @bind-Value="@_viewModel.Data.NACTUAL_PRICE"
+                                      TValue="decimal"
+                                      R_ConductorSource="@_conductor"
+                                            R_EnableAdd
+                                      Arrows="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="2" Class="ps-7">
+                    <R_Label>@_localizer["_SellingPrice"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3"Class="pe-2">
+                    <R_NumericTextBox @bind-Value="@_viewModel.Data.NSELL_PRICE"
+                                      TValue="decimal"
+                                      R_ConductorSource="@_conductor"
+                                      Enabled="false"
+                                      Arrows="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            @*Booking*@
+            <R_StackLayout Row="true">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_BookingFee"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_NumericTextBox @bind-Value="@_viewModel.Data.NBOOKING_FEE"
+                                      TValue="decimal"
+                                      R_ConductorSource="@_conductor"
+                                            R_EnableAdd
+                    Arrows="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_GroupBox>
+
+    </R_GroupBox>
+
+    <R_StackLayout Row Class="d-flex justify-content-end">
+        <R_ItemLayout>
+            <R_CancelButton R_Conductor="@_conductor" />
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_SaveButton R_Conductor="@_conductor" />
+        </R_ItemLayout>
+    </R_StackLayout>
+    </R_StackLayout>
+
+
+    <R_Conductor @ref="@_conductor"
+             R_ViewModel="@_viewModel"
+              R_IsHeader
+             R_ServiceGetRecord="@ServiceGetRecord"
+             R_AfterAdd="@AfterAdd"
+             R_ServiceSave="@ServiceSave"
+             R_AfterSave="AfterSave"
+             R_BeforeCancel="@R_BeforeCancel"
+             R_Validation="@ServiceValidation" />
