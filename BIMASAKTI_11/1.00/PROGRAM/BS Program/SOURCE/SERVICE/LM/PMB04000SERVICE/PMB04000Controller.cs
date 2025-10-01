@@ -39,8 +39,8 @@ namespace PMB04000SERVICE
             _logger!.LogInfo(string.Format("START process method {0} on Controller", lcMethodName));
 
             var loEx = new R_Exception();
-            IAsyncEnumerable<PMB04000DTO> loRtn = null;
-            List<PMB04000DTO> loRtnTemp;
+            IAsyncEnumerable<PMB04000DTO>? loRtn = null;
+            List<PMB04000DTO>? loRtnTemp = null;
             try
             {
                 var loDbParameter = new PMB04000ParamDTO();
@@ -60,8 +60,8 @@ namespace PMB04000SERVICE
                 _logger.LogInfo(string.Format("Call method {0}", lcMethodName));
                 loRtnTemp = loCls.GetInvoiceReceiptList(loDbParameter); ;
 
-                _logger.LogInfo("Call method to streaming data");
-                loRtn = HelperStream(loRtnTemp);
+                //_logger.LogInfo("Call method to streaming data");
+                //loRtn = HelperStream(loRtnTemp);
             }
             catch (Exception ex)
             {
@@ -72,7 +72,7 @@ namespace PMB04000SERVICE
             _logger.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
 
 #pragma warning disable CS8603 // Possible null reference return.
-            return loRtn;
+            return HelperStream(loRtnTemp!);
 #pragma warning restore CS8603 // Possible null reference return.
         }
         [HttpPost]

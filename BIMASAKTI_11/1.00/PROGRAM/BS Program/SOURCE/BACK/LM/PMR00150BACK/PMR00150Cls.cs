@@ -1,10 +1,13 @@
 ﻿using PMR00150COMMON;
+using PMR00150COMMON.Utility_Report;
 using R_BackEnd;
 using R_Common;
-using System.Data.Common;
+using R_Storage;
+using R_StorageCommon;
 using System.Data;
+using System.Data.Common;
 using System.Diagnostics;
-using PMR00150COMMON.Utility_Report;
+using System.Reflection;
 
 namespace PMR00150BACK
 {
@@ -304,5 +307,69 @@ namespace PMR00150BACK
 
             return loResult;
         }
+
+        public PMR00150DataSummaryDbDTO GetPropertyLogo(PMR00150DBParamDTO poParam)
+        {
+            using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
+            var loEx = new R_Exception();
+            PMR00150DataSummaryDbDTO loResult = null;
+            try
+            {
+                R_Db loDb = new();
+                var loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
+                var loCmd = loDb.GetCommand();
+
+
+
+                var lcQuery = "RSP_GS_GET_PROPERTY_DETAIL";
+                loCmd = loDb.GetCommand();
+                loCmd.CommandType = CommandType.StoredProcedure;
+                loCmd.CommandText = lcQuery;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParam.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poParam.CPROPERTY_ID);
+
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                    .Where(x =>
+                        x != null && x.ParameterName.StartsWith("@"))
+                    .Select(x => x.Value);
+                _logger.LogDebug("EXEC {lcQuery} {@Parameters}", lcQuery, loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+                loResult = R_Utility.R_ConvertTo<PMR00150DataSummaryDbDTO>(loDataTable).FirstOrDefault();
+
+                if (string.IsNullOrEmpty(loResult.CSTORAGE_ID) == false)
+                {
+                    var loReadParameter = new R_ReadParameter()
+                    {
+                        StorageId = loResult.CSTORAGE_ID
+                    };
+
+                    var loReadResult = R_StorageUtility.ReadFile(loReadParameter, loConn);
+
+                    loResult.CLOGO = loReadResult.Data;
+                }
+                lcQuery = "RSP_GS_GET_COMPANY_INFO";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+                loCmd.Parameters.Clear();
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParam.CCOMPANY_ID);
+
+                //Debug Logs
+                _logger.LogDebug(string.Format("RSP_GS_GET_COMPANY_INFO", loDbParam));
+                loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+                var loCompanyNameResult = R_Utility.R_ConvertTo<PMR00150DataSummaryDbDTO>(loDataTable).FirstOrDefault();
+                loResult.CDATETIME_NOW = loCompanyNameResult.CDATETIME_NOW;
+                loResult.CCOMPANY_NAME = loCompanyNameResult.CCOMPANY_NAME;
+
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+
     }
 }
