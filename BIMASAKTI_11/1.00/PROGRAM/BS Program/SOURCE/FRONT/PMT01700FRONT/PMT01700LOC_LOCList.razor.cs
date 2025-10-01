@@ -56,7 +56,7 @@ namespace PMT01700FRONT
             {
                 _viewModel.lControlButton = false;
                 _viewModel.oParameter = R_FrontUtility.ConvertObjectToObject<PMT01700ParameterFrontChangePageDTO>(poParameter);
-                _viewModel.oParameter.CTRANS_CODE = "802053";
+                   _viewModel.oParameter.CTRANS_CODE = "802053";
                 if (!string.IsNullOrEmpty(_viewModel.oParameter.CPROPERTY_ID))
                 {
                     _viewModel.lControlButton = true;
@@ -357,7 +357,7 @@ namespace PMT01700FRONT
 
                 if (llConfirmation)
                 {
-                    var loReturn = await _viewModel.ProcessUpdateAgreement(lcNewStatus: "10");
+                   var loReturn =  await _viewModel.ProcessUpdateAgreement(lcNewStatus: "10");
                     if (loReturn.IS_PROCESS_SUCCESS)
                     {
                         await R_MessageBox.Show(R_FrontUtility.R_GetMessage(typeof(Resources_PMT01700_Class), "_SuccessMessageOfferSubmit"));
