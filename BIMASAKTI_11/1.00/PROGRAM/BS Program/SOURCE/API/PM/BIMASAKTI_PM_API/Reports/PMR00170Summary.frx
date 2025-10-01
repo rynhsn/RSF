@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\LM\BIMASAKTI_LM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="10/25/2024 15:56:19" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="C:\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="09/26/2025 18:58:56" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="PMR00170SummaryResulDataFormatDTO" DataType="PMR00170COMMON.PMR00170SummaryResultDTO, PMR00170COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -77,12 +77,16 @@
         <Column Name="CCOMPANY_NAME" DataType="System.String"/>
         <Column Name="CPRINT_NAME" DataType="System.String"/>
         <Column Name="CUSER_ID" DataType="System.String"/>
+        <Column Name="CPRINT_DATE_COMPANY" DataType="System.String"/>
+        <Column Name="DPRINT_DATE_COMPANY" DataType="System.DateTime"/>
       </Column>
       <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
         <Column Name="Page" DataType="System.String"/>
         <Column Name="Of" DataType="System.String"/>
         <Column Name="Print_Date" DataType="System.String"/>
         <Column Name="Print_By" DataType="System.String"/>
+        <Column Name="Printed" DataType="System.String"/>
+        <Column Name="By" DataType="System.String"/>
       </Column>
     </BusinessObjectDataSource>
     <Total Name="TotalBasedOnSM" TotalType="Count" Evaluator="Data3" PrintOn="DataFooter1"/>
@@ -92,7 +96,7 @@
   <inherited Name="Page1">
     <inherited Name="PageHeader1">
       <inherited Name="BaseHeaderLogo"/>
-      <inherited Name="Text33"/>
+      <inherited Name="BaseHeaderCompany"/>
       <inherited Name="LabelNoPage">
         <Formats>
           <GeneralFormat/>
@@ -101,46 +105,29 @@
           <GeneralFormat/>
         </Formats>
       </inherited>
-      <inherited Name="BaseHeaderDate"/>
       <inherited Name="LabelDateTime"/>
       <inherited Name="BaseHeaderLabel"/>
       <inherited Name="BaseHeaderUserId"/>
       <inherited Name="LabelUserId"/>
-      <inherited Name="BaseHeaderDateTime"/>
-      <ChildBand Name="Child1" ZOrder="-1" Top="78.8" Width="1047.06" Height="85.05">
-        <TextObject Name="Text45" Left="-18.9" Top="9.45" Width="642.6" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Label.Label_Property] : [ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Header.PROPERTY]" Font="Arial Unicode MS, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-        <TextObject Name="Text46" Left="-18.9" Top="28.35" Width="642.6" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Label.Label_Department] : [ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Header.CDEPT_REPORT_DISPLAY]" Font="Arial Unicode MS, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-        <TextObject Name="Text47" Left="-18.9" Top="47.25" Width="642.6" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Label.Label_Salesman] : [ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Header.CSALESMAN_REPORT_DISPLAY]" Font="Arial Unicode MS, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-        <TextObject Name="Text48" Left="-18.9" Top="66.15" Width="642.6" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Label.Label_Period] :  [ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Header.CPERIOD_DISPLAY]" Font="Arial Unicode MS, 7pt">
-          <Formats>
-            <GeneralFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
+      <inherited Name="BaseHeaderDate"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="87.61" Width="1047.06" Height="85.05">
+        <TextObject Name="Text45" Left="-18.9" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Label.Label_Property]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text46" Left="-18.9" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Label.Label_Department]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text47" Left="-18.9" Top="47.25" Width="94.5" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Label.Label_Salesman]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text48" Left="-18.9" Top="66.15" Width="94.5" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Label.Label_Period]" Font="Arial Unicode MS, 7pt"/>
         <TextObject Name="Text115" Left="784.35" Top="9.45" Width="255.15" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Label.Label_ReportType] : [ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Header.CREPORT_NAME]" Font="Arial Unicode MS, 7pt">
           <Formats>
             <GeneralFormat/>
             <GeneralFormat/>
           </Formats>
         </TextObject>
+        <TextObject Name="Text116" Left="75.6" Top="9.45" Width="567" Height="18.9" Text=" : [ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Header.PROPERTY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text117" Left="75.6" Top="28.35" Width="567" Height="18.9" Text=" : [ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Header.CDEPT_REPORT_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text118" Left="75.6" Top="47.25" Width="567" Height="18.9" Text=" : [ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Header.CSALESMAN_REPORT_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text119" Left="75.6" Top="66.15" Width="567" Height="18.9" Text=" :  [ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Header.CPERIOD_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
       </ChildBand>
     </inherited>
-    <ColumnHeaderBand Name="ColumnHeader1" ZOrder="-1" Top="167.05" Width="1047.06" Height="66.15">
+    <ColumnHeaderBand Name="ColumnHeader1" ZOrder="-1" Top="175.22" Width="1047.06" Height="66.15">
       <LineObject Name="Line1" Left="-18.9" Top="9.45" Width="708.75" Diagonal="true"/>
       <LineObject Name="Line2" Left="689.85" Top="9.45" Width="368.55" Diagonal="true"/>
       <LineObject Name="Line4" Left="-18.9" Top="56.7" Width="1077.3" Diagonal="true"/>
@@ -161,9 +148,9 @@
       <TextObject Name="Text92" Left="189" Top="28.35" Width="151.2" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.ColumnSummary.Col_CTENURE]" Font="Arial Unicode MS, 7pt"/>
       <TextObject Name="Text97" Left="122.85" Top="28.35" Width="66.15" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.ColumnSummary.Col_CREF_DATE]" Format="Date" Format.Format="MMMM dd, yyyy" Font="Arial Unicode MS, 7pt"/>
     </ColumnHeaderBand>
-    <DataBand Name="Data1" ZOrder="0" Top="236.4" Width="1047.06" Height="18.9" DataSource="Data">
+    <DataBand Name="Data1" ZOrder="0" Top="243.93" Width="1047.06" Height="18.9" DataSource="Data">
       <TextObject Name="Text103" Left="-18.9" Width="283.5" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.CTRANS_NAME]" Font="Arial Unicode MS, 7pt"/>
-      <DataBand Name="Data2" Top="258.5" Width="1047.06" Height="18.9" DataSource="TransactionDetail">
+      <DataBand Name="Data2" Top="265.39" Width="1047.06" Height="18.9" DataSource="TransactionDetail">
         <TextObject Name="Text70" Left="-18.9" Width="283.5" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Label.Label_Salesman] : [ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.CSALESMAN_ID] - [ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.CSALESMAN_NAME]" Font="Arial Unicode MS, 7pt">
           <Formats>
             <GeneralFormat/>
@@ -171,7 +158,7 @@
             <GeneralFormat/>
           </Formats>
         </TextObject>
-        <DataBand Name="Data3" Top="280.6" Width="1047.06" Height="18.9" DataSource="SalesmanDetail">
+        <DataBand Name="Data3" Top="286.85" Width="1047.06" Height="18.9" DataSource="SalesmanDetail">
           <TextObject Name="Text82" Left="926.1" Width="141.75" Height="18.9" CanGrow="true" GrowToBottom="true" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.CTC_MESSAGE]" Font="Arial Unicode MS, 7pt"/>
           <TextObject Name="Text83" Left="737.1" Width="189" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.CTENANT_ID] - [ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.CTENANT_NAME]" Font="Arial Unicode MS, 7pt">
             <Formats>
@@ -188,7 +175,7 @@
           <TextObject Name="Text93" Left="189" Width="151.2" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.CTENURE]" Font="Arial Unicode MS, 7pt"/>
           <TextObject Name="Text94" Left="-9.45" Width="132.3" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.CREF_NO]" Font="Arial Unicode MS, 7pt"/>
           <TextObject Name="Text96" Left="122.85" Width="66.15" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.DREF_DATE]" Format="Date" Format.Format="MMMM dd, yyyy" Font="Arial Unicode MS, 7pt"/>
-          <DataFooterBand Name="DataFooter1" Top="302.7" Width="1047.06" Height="37.8">
+          <DataFooterBand Name="DataFooter1" Top="308.31" Width="1047.06" Height="37.8">
             <LineObject Name="Line7" Left="-18.9" Top="9.45" Width="1077.3" Diagonal="true"/>
             <TextObject Name="Text98" Left="661.5" Top="18.9" Width="396.9" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Label.Label_TotalOfAggreements] [ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.CSALESMAN_ID] : [TotalBasedOnSM]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold">
               <Formats>
@@ -199,7 +186,7 @@
             </TextObject>
           </DataFooterBand>
         </DataBand>
-        <DataFooterBand Name="DataFooter3" Top="343.7" Width="1047.06" Height="37.8">
+        <DataFooterBand Name="DataFooter3" Top="348.67" Width="1047.06" Height="37.8">
           <LineObject Name="Line9" Left="-18.9" Top="9.45" Width="1077.3" Diagonal="true"/>
           <TextObject Name="Text105" Left="661.5" Top="18.9" Width="396.9" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Label.Label_TotalOfAggreements] [ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.CTRANS_NAME] : [TotalBasedOnTransName]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold">
             <Formats>
@@ -210,7 +197,7 @@
           </TextObject>
         </DataFooterBand>
       </DataBand>
-      <DataFooterBand Name="DataFooter2" Top="384.7" Width="1047.06" Height="47.25">
+      <DataFooterBand Name="DataFooter2" Top="389.03" Width="1047.06" Height="47.25">
         <LineObject Name="Line8" Left="661.5" Top="9.45" Width="396.9" Diagonal="true"/>
         <TextObject Name="Text106" Left="661.5" Top="18.9" Width="396.9" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Label.Label_GrandTotalOfAggreements] : [TotalBaedOnAggreements]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold">
           <Formats>

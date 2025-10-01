@@ -35,6 +35,8 @@ namespace PMR00170FRONT
                 await _viewModel.GetInitialProcess();
                 _viewModel.GetMonth();
 
+                await _setDefaultDepartment();
+                await _setDefaultSalesman();
 
             }
             catch (Exception ex)
@@ -45,21 +47,27 @@ namespace PMR00170FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
-        private void OnChangedProperty(object? poParam)
+        private async Task OnChangedProperty(string poParam)
         {
             var loEx = new R_Exception();
-            string lsProperty = (string)poParam!;
             try
             {
-                _viewModel.PropertyCode = lsProperty!;
-                _viewModel.lcDeptCodeFrom = "";
-                _viewModel.lcDeptNameFrom = "";
-                _viewModel.lcDeptCodeTo = "";
-                _viewModel.lcDeptNameTo = "";
-                _viewModel.lcSalesmanCodeTo = "";
-                _viewModel.lcSalesmanNameTo = "";
-                _viewModel.lcSalesmanCodeFrom = "";
-                _viewModel.lcSalesmanNameFrom = "";
+                if (!string.IsNullOrEmpty(poParam))
+                {
+                    _viewModel.PropertyCode = poParam ?? "";
+                    _viewModel.lcDeptCodeFrom = "";
+                    _viewModel.lcDeptNameFrom = "";
+                    _viewModel.lcDeptCodeTo = "";
+                    _viewModel.lcDeptNameTo = "";
+                    _viewModel.lcSalesmanCodeTo = "";
+                    _viewModel.lcSalesmanNameTo = "";
+                    _viewModel.lcSalesmanCodeFrom = "";
+                    _viewModel.lcSalesmanNameFrom = "";
+
+                    await _setDefaultDepartment();
+                    await _setDefaultSalesman();
+                }
+                    
             }
             catch (Exception ex)
             {
@@ -162,17 +170,16 @@ namespace PMR00170FRONT
         private R_TextBox R_TextBoxBtnDeptFrom;
         private async Task Before_Open_lookupDeptFrom(R_BeforeOpenLookupEventArgs eventArgs)
         {
-            var param = new GSL00700ParameterDTO
+            var param = new GSL00710ParameterDTO
             {
-                CUSER_ID = clientHelper.UserId,
-                CCOMPANY_ID = clientHelper.CompanyId
+                CPROPERTY_ID = _viewModel.PropertyCode ?? "",
             };
             eventArgs.Parameter = param;
-            eventArgs.TargetPageType = typeof(GSL00700);
+            eventArgs.TargetPageType = typeof(GSL00710);
         }
         private void After_Open_lookupDeptFrom(R_AfterOpenLookupEventArgs eventArgs)
         {
-            var loTempResult = (GSL00700DTO)eventArgs.Result;
+            var loTempResult = (GSL00710DTO)eventArgs.Result;
             if (loTempResult == null)
             {
                 return;
@@ -195,14 +202,12 @@ namespace PMR00170FRONT
                 }
 
 
-                LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
-                var param = new GSL00700ParameterDTO
+                LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
+                var param = new GSL00710ParameterDTO
                 {
-                    CUSER_ID = clientHelper!.UserId,
-                    CCOMPANY_ID = clientHelper.CompanyId,
-                    CSEARCH_TEXT = _viewModel.lcDeptCodeFrom,
+                    CPROPERTY_ID = _viewModel.PropertyCode ?? "",
                 };
-                var loResult = await loLookupViewModel.GetDepartment(param);
+                var loResult = await loLookupViewModel.GetDepartmentProperty(param);
 
                 if (loResult == null)
                 {
@@ -232,17 +237,16 @@ namespace PMR00170FRONT
         private R_TextBox R_TextBoxBtnDeptTo;
         private async Task Before_Open_lookupDeptTo(R_BeforeOpenLookupEventArgs eventArgs)
         {
-            var param = new GSL00700ParameterDTO
+            var param = new GSL00710ParameterDTO
             {
-                CUSER_ID = clientHelper.UserId,
-                CCOMPANY_ID = clientHelper.CompanyId
+                CPROPERTY_ID = _viewModel.PropertyCode ?? "",
             };
             eventArgs.Parameter = param;
-            eventArgs.TargetPageType = typeof(GSL00700);
+            eventArgs.TargetPageType = typeof(GSL00710);
         }
         private void After_Open_lookupDeptTo(R_AfterOpenLookupEventArgs eventArgs)
         {
-            var loTempResult = (GSL00700DTO)eventArgs.Result;
+            var loTempResult = (GSL00710DTO)eventArgs.Result;
             if (loTempResult == null)
             {
                 return;
@@ -265,14 +269,12 @@ namespace PMR00170FRONT
                 }
 
 
-                LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
-                var param = new GSL00700ParameterDTO
+                LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
+                var param = new GSL00710ParameterDTO
                 {
-                    CUSER_ID = clientHelper!.UserId,
-                    CCOMPANY_ID = clientHelper.CompanyId,
-                    CSEARCH_TEXT = _viewModel.lcDeptCodeTo,
+                    CPROPERTY_ID = _viewModel.PropertyCode ?? "",
                 };
-                var loResult = await loLookupViewModel.GetDepartment(param);
+                var loResult = await loLookupViewModel.GetDepartmentProperty(param);
 
                 if (loResult == null)
                 {
@@ -369,6 +371,7 @@ namespace PMR00170FRONT
             R_DisplayException(loEx);
         }
         #endregion
+
         #region lookupSalesmanTo
         private R_Lookup R_LookupBtnSalesmanTo;
         private R_TextBox R_TextBoxBtnSalesmanTo;
@@ -440,6 +443,81 @@ namespace PMR00170FRONT
 
             R_DisplayException(loEx);
         }
+        #endregion
+
+        #region defaultValue
+
+        private async Task _setDefaultDepartment()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (string.IsNullOrEmpty(_viewModel.PropertyCode)) return;
+
+                var loLookupViewModel = new LookupGSL00710ViewModel();
+                var param = new GSL00710ParameterDTO
+                {
+                    CPROPERTY_ID = _viewModel.PropertyCode
+
+                };
+                await loLookupViewModel.GetDepartmentPropertyList(param);
+                if (loLookupViewModel.DepartmentPropertyGrid.Count > 0)
+                {
+                    _viewModel.lcDeptCodeFrom = loLookupViewModel.DepartmentPropertyGrid.FirstOrDefault()?.CDEPT_CODE;
+                    _viewModel.lcDeptNameFrom = loLookupViewModel.DepartmentPropertyGrid
+                        .Where(x => x.CDEPT_CODE == _viewModel.lcDeptCodeFrom)
+                        .Select(x => x.CDEPT_NAME).FirstOrDefault() ?? string.Empty;
+                    _viewModel.lcDeptCodeTo = loLookupViewModel.DepartmentPropertyGrid.LastOrDefault()?.CDEPT_CODE;
+                    _viewModel.lcDeptNameTo = loLookupViewModel.DepartmentPropertyGrid
+                        .Where(x => x.CDEPT_CODE == _viewModel.lcDeptCodeTo)
+                        .Select(x => x.CDEPT_NAME).FirstOrDefault() ?? string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task _setDefaultSalesman()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (string.IsNullOrEmpty(_viewModel.PropertyCode)) return;
+
+                var loLookupViewModel = new LookupLML00500ViewModel();
+                var param = new LML00500ParameterDTO
+                {
+                    CPROPERTY_ID = _viewModel.PropertyCode,
+
+                };
+                await loLookupViewModel.GetSalesmanList(param);
+                if (loLookupViewModel.SalesmanList.Count > 0)
+                {
+                    _viewModel.lcSalesmanCodeFrom = loLookupViewModel.SalesmanList.FirstOrDefault()?.CSALESMAN_ID;
+                    _viewModel.lcSalesmanNameFrom = loLookupViewModel.SalesmanList
+                        .Where(x => x.CSALESMAN_ID == _viewModel.lcSalesmanCodeFrom)
+                        .Select(x => x.CSALESMAN_NAME).FirstOrDefault() ?? string.Empty;
+                    _viewModel.lcSalesmanCodeTo = loLookupViewModel.SalesmanList.LastOrDefault()?.CSALESMAN_ID;
+                    _viewModel.lcSalesmanNameTo = loLookupViewModel.SalesmanList
+                        .Where(x => x.CSALESMAN_ID == _viewModel.lcSalesmanCodeTo)
+                        .Select(x => x.CSALESMAN_NAME).FirstOrDefault() ?? string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+
         #endregion
 
         #region Popup save as

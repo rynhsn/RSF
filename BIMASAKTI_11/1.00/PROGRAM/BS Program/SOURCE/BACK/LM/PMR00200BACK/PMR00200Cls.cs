@@ -179,7 +179,7 @@ namespace PMR00200BACK
                 R_Db loDb = new();
                 var loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
                 var loCmd = loDb.GetCommand();
-                var lcQuery = $"EXEC RSP_GS_GET_COMPANY_INFO '{pcCompanyId}'"; ;
+                var lcQuery = $"EXEC RSP_GS_GET_COMPANY_INFO '{pcCompanyId}'";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.Text;
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, int.MaxValue, pcCompanyId);

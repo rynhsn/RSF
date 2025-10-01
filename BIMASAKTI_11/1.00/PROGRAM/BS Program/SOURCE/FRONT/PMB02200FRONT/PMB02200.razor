@@ -1,0 +1,234 @@
+﻿@page "/PMB02200"
+@inherits R_Page
+
+
+<R_GroupBox ShowBorder Class="p-2">
+
+    <R_StackLayout Row>
+        @* col *@
+        <R_ItemLayout col="6">
+
+            @* property *@
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>
+                        @_localizer["_label_Property"]
+                    </R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_ComboBox Data="@_viewModel.Properties"
+                                Value="@_viewModel.UtilityChargesParam.CPROPERTY_ID"
+                                ValueField="@nameof(PropertyDTO.CPROPERTY_ID)"
+                                TextField="@nameof(PropertyDTO.CPROPERTY_NAME)"
+                                ValueChanged="@((string value) => ComboboxProperty_ValueChanged(value))"
+                                TabIndex="0">
+                    </R_ComboBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @* department *@
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_label_Dept"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_TextBox @bind-Value="_viewModel.UtilityChargesParam.CDEPT_CODE"
+                               Enabled
+                               CharacterCasing="R_eCharacterCasing.Upper"
+                               MaxLength="int.MaxValue"
+                               OnLostFocus="OnLostFocus_LookupDept" />
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupDept" R_After_Open_Lookup="@AfterOpen_lookupDeptAsync">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_TextBox @bind-Value="_viewModel.UtilityChargesParam.CDEPT_NAME"
+                               Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @* building *@
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_label_Building"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_TextBox @bind-Value="_viewModel.UtilityChargesParam.CBUILDING_ID"
+                               Enabled="@(!_viewModel.UtilityChargesParam.LALL_BUILDING)"
+                               CharacterCasing="R_eCharacterCasing.Upper"
+                               MaxLength="int.MaxValue"
+                               OnLostFocus="OnLostFocus_LookupBuilding" />
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupBuilding"
+                              R_After_Open_Lookup="@AfterOpen_lookupBuilding"
+                              Enabled="@(!_viewModel.UtilityChargesParam.LALL_BUILDING)">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_TextBox @bind-Value="_viewModel.UtilityChargesParam.CBUILDING_NAME"
+                               Enabled="false" />
+                </R_ItemLayout>
+                <R_ItemLayout Class="ps-2">
+                    <R_CheckBox @bind-Value="_viewModel.UtilityChargesParam.LALL_BUILDING"
+                                OnChanged="@CheckBoxAllBuilding_OnChange" />
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Label>@_localizer["_checkbox_All"]</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        @* col *@
+        <R_ItemLayout col="6">
+
+            @* tenant *@
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_label_TenantId"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_TextBox @bind-Value="_viewModel.UtilityChargesParam.CTENANT_ID"
+                               CharacterCasing="R_eCharacterCasing.Upper"
+                               MaxLength="int.MaxValue"
+                               OnLostFocus="OnLostFocus_LookupTenant"
+                               TabIndex="14" />
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupTenant"
+                              R_After_Open_Lookup="@AfterOpen_lookupTenantAsync">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_TextBox @bind-Value="_viewModel.UtilityChargesParam.CTENANT_NAME"
+                               Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @* util type *@
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_label_UtilType"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_ComboBox Data="@_viewModel.UtilityTypes"
+                                Value="@_viewModel.UtilityChargesParam.CUTILITY_TYPE"
+                                ValueField="@nameof(GeneralTypeDTO.CCODE)"
+                                TextField="@nameof(GeneralTypeDTO.CNAME)"
+                                ValueChanged="@((string value) => ComboboxUtilType_ValueChanged(value))" />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            @* refresh btn *@
+            <R_StackLayout>
+                <R_ItemLayout>
+                    <R_Button OnClick="@BtnOnclick_UtilChrgRefresh">@_localizer["_btn_Refresh"]</R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+    </R_StackLayout>
+</R_GroupBox>
+
+<R_StackLayout Row Class="pt-2">
+
+    @* change charges *@
+    <R_ItemLayout Class="col">
+        <R_Label>@_localizer["_label_ChangeChrgId"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="_viewModel.OldChargeId"
+                   OnLostFocus="@OnLostFocus_OldChargesAsync"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupOldCharges"
+                  R_After_Open_Lookup="@AfterOpen_lookupOldChargesAsync">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout Class="col">
+        <R_Label>@_localizer["_label_WithNewChrgId"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="_viewModel.NewChargeId"
+                   OnLostFocus="@OnLostFocus_NewChargesAsync"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupNewCharges"
+                  R_After_Open_Lookup="@AfterOpen_lookupNewChargesAsync">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="@BtnOnclick_ChangeChargeAsync">@_localizer["_btn_Apply"]</R_Button>
+    </R_ItemLayout>
+
+    @* change tax *@
+    <R_ItemLayout Class="col ps-2">
+        <R_Label>@_localizer["_label_ChangeTaxId"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="_viewModel.OldTaxId"
+                   OnLostFocus="@OnLostFocus_OldTaxAsync"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupOldTax"
+                  R_After_Open_Lookup="@AfterOpen_lookupOldTaxAsync">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout Class="col">
+        <R_Label>@_localizer["_label_WithNewTaxId"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="_viewModel.NewTaxId"
+                   OnLostFocus="@OnLostFocus_NewTaxAsync"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupNewTax"
+                  R_After_Open_Lookup="@AfterOpen_lookupNewTaxAsync">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="@BtnOnclick_ChangeTaxAsync">@_localizer["_btn_Apply"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* grid utility charges*@
+<R_Grid @ref="@_gridRef"
+        DataSource="_viewModel._utilityChargesList"
+        R_ConductorGridSource="_conductorGridRef"
+        R_GridType="@R_eGridType.Batch"
+        R_ServiceGetListRecord="ChargesList_GetListRecord"
+        R_ServiceGetRecord="ChargesList_GetRecord"
+        Height="400px"
+        Pageable
+        AllowAddNewRow="false"
+        @bind-PageSize="_pageUtilCharge">
+    <R_GridColumns>
+        <R_GridCheckBoxSelectColumn FieldName="@nameof(UtilityChargesDTO.LSELECTED)" ShowSelectAllHeader="true" Width="100px" />
+        <R_GridTextColumn FieldName="@nameof(UtilityChargesDTO.CREF_NO)" HeaderText="@_localizer["_column_AgreementNo"]" Width="150px" />
+        <R_GridTextColumn FieldName="@nameof(UtilityChargesDTO.CBUILDING_ID)" HeaderText="@_localizer["_column_Building"]" Width="150px" Visible="false" />
+        <R_GridTextColumn FieldName="@nameof(UtilityChargesDTO.CBUILDING_NAME)" HeaderText="@_localizer["_column_Building"]" Width="150px" Visible="true" />
+        <R_GridTextColumn FieldName="@nameof(UtilityChargesDTO.CTENANT_ID)" HeaderText="@_localizer["_column_Tenant"]" Width="150px" Visible="false" />
+        <R_GridTextColumn FieldName="@nameof(UtilityChargesDTO.CTENANT_NAME)" HeaderText="@_localizer["_column_Tenant"]" Width="150px" />
+        <R_GridTextColumn FieldName="@nameof(UtilityChargesDTO.CUNIT_DESCRIPTION)" HeaderText="@_localizer["_column_UnitDesc"]" Width="200px" />
+        <R_GridTextColumn FieldName="@nameof(UtilityChargesDTO.CUNIT_ID)" HeaderText="@_localizer["_column_Unit"]" Width="200px" Visible="false" />
+        <R_GridTextColumn FieldName="@nameof(UtilityChargesDTO.CUNIT_NAME)" HeaderText="@_localizer["_column_Unit"]" Width="150px" />
+        <R_GridTextColumn FieldName="@nameof(UtilityChargesDTO.CSEQ_NO)" HeaderText="@_localizer["_column_UtilSeqNo"]" Width="150px" />
+        <R_GridTextColumn FieldName="@nameof(UtilityChargesDTO.CMETER_NO)" HeaderText="@_localizer["_column_MeterNo"]" Width="150px" TextAlignment="R_eTextAlignment.Right" />
+        <R_GridTextColumn FieldName="@nameof(UtilityChargesDTO.CCHARGES_ID)" HeaderText="@_localizer["_column_ChargeId"]" Width="150px" />
+        <R_GridTextColumn FieldName="@nameof(UtilityChargesDTO.CNEW_CHARGES_ID)" HeaderText="@_localizer["_column_NewChargeId"]" Width="150px" />
+        <R_GridTextColumn FieldName="@nameof(UtilityChargesDTO.CTAX_ID)" HeaderText="@_localizer["_column_TaxId"]" Width="150px" />
+        <R_GridTextColumn FieldName="@nameof(UtilityChargesDTO.CNEW_TAX_ID)" HeaderText="@_localizer["_column_NewTaxId"]" Width="150px" />
+    </R_GridColumns>
+</R_Grid>
+
+@* progress bar *@
+<R_StackLayout Row Class="mt-3">
+    <R_ItemLayout col="12">
+        <R_ProgressBar Label="@_viewModel.Message" MaxValue="100" Value="@_viewModel.Percentage"></R_ProgressBar>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* btnprocess *@
+<R_StackLayout Row Class="mt-1">
+    <R_ItemLayout col="12">
+        <R_Button OnClick="@BtnOnclick_ProcessAsync">@_localizer["_btn_Process"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* conductor *@
+<R_ConductorGrid @ref="@_conductorGridRef"
+                 R_IsHeader />

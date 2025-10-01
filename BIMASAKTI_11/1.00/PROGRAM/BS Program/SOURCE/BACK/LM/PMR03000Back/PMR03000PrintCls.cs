@@ -960,20 +960,7 @@ public class PMR03000PrintCls
 
         try
         {
-            //byte[]? loFileBytes = null;
-
-            //var loAsm = Assembly.GetExecutingAssembly();
-            //var lcResourceFile = "PMR03000Back.BillingStatement.rtf";
-            //using (Stream resFilestream = loAsm.GetManifestResourceStream(lcResourceFile))
-            //{
-            //    var ms = new MemoryStream();
-            //    resFilestream.CopyTo(ms);
-            //    var bytes = ms.ToArray();
-
-            //    loFileBytes = bytes;
-            //}
-
-            //poParam.TMESSAGE_DESCR_RTF = System.Text.Encoding.Default.GetString(loFileBytes);
+            
 
             _logger.LogDebug("Generated parameters for data print", poParam);
 

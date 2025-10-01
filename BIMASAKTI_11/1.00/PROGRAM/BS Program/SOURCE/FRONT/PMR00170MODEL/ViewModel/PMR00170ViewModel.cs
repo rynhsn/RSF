@@ -100,7 +100,8 @@ namespace PMR00170MODEL.ViewModel
             for (int i = 1; i <= 12; i++)
             {
                 string monthId = i.ToString("D2");
-                string monthName = R_FrontUtility.R_GetMessage(typeof(Resources_PMR00170_Class), $"_labelMonth{i}");
+                string monthName = i.ToString("D2");
+                //string monthName = R_FrontUtility.R_GetMessage(typeof(Resources_PMR00170_Class), $"_labelMonth{i}");
                 PMR00170GetMonthDTO month = new PMR00170GetMonthDTO { Id = monthId, Name = monthName };
                 GetMonthList.Add(month);
             }

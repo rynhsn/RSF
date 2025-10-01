@@ -19,7 +19,8 @@
             <R_ItemLayout col="3">
                 <R_DatePicker @ref="@_validDateForm"
                               @bind-Value="_pricingAdd_ViewModel._validDateForm"
-                              R_ConductorGridSource="@_conGridPricing"></R_DatePicker>
+                              R_ConductorGridSource="@_conGridPricing"
+                              Min="@(DateTime.Now.AddDays(1))"></R_DatePicker>
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_CheckBox @ref="@_checkBoxActive"

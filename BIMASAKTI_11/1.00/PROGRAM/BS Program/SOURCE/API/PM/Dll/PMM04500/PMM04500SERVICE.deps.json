@@ -104,27 +104,42 @@
           "System.Data.SqlClient": "4.8.5"
         },
         "runtime": {
-          "PMM04500BACK.dll": {}
+          "PMM04500BACK.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "PMM04500COMMON/1.0.0": {
         "runtime": {
-          "PMM04500COMMON.dll": {}
+          "PMM04500COMMON.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "RSP_PM_ACTIVE_INACTIVE_PRICINGResources/1.0.0": {
         "runtime": {
-          "RSP_PM_ACTIVE_INACTIVE_PRICINGResources.dll": {}
+          "RSP_PM_ACTIVE_INACTIVE_PRICINGResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "RSP_PM_MAINTAIN_PRICINGResources/1.0.0": {
         "runtime": {
-          "RSP_PM_MAINTAIN_PRICINGResources.dll": {}
+          "RSP_PM_MAINTAIN_PRICINGResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "RSP_PM_MAINTAIN_PRICING_RATEResources/1.0.0": {
         "runtime": {
-          "RSP_PM_MAINTAIN_PRICING_RATEResources.dll": {}
+          "RSP_PM_MAINTAIN_PRICING_RATEResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "R_APIBackEnd/1.0.0.0": {
@@ -132,14 +147,6 @@
           "R_APIBackEnd.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
-          }
-        },
-        "resources": {
-          "id/R_APIBackEnd.resources.dll": {
-            "locale": "id"
-          },
-          "ja/R_APIBackEnd.resources.dll": {
-            "locale": "ja"
           }
         }
       },
