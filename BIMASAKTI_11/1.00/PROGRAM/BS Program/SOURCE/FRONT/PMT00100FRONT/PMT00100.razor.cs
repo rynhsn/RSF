@@ -1,5 +1,6 @@
 ﻿using BlazorClientHelper;
 using Global_PMCOMMON.DTOs.Response.Property;
+using GSM02500COMMON.DTOs.GSM02503;
 using Microsoft.AspNetCore.Components;
 using PMT00100COMMON.Booking;
 using PMT00100COMMON.UnitList;
@@ -197,7 +198,7 @@ namespace PMT00100FRONT
             }
             loEx.ThrowExceptionIfErrors();
         }
-        private void R_DisplayAgreementByUnit(R_DisplayEventArgs eventArgs)
+        private async Task R_DisplayAgreementByUnit(R_DisplayEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
@@ -221,30 +222,39 @@ namespace PMT00100FRONT
                     case "00":
                         _viewModel.lControlButtonRedraft = false;
                         _viewModel.lControlButtonSubmit = true;
+                        //_viewModel.lControlButtonChangeUnit = true;
                         break;
                     case "10":
                         _viewModel.lControlButtonSubmit = false;
                         _viewModel.lControlButtonRedraft = true;
+                        //_viewModel.lControlButtonChangeUnit = true;
                         break;
                     case "30":
-                        _viewModel.lControlButtonRedraft = _viewModel.lControlButtonSubmit = false;
+                        _viewModel.lControlButtonRedraft = false;
+                        _viewModel.lControlButtonSubmit = false;
+                        //_viewModel.lControlButtonChangeUnit = false;
                         break;
                     case "80":
+                        //_viewModel.lControlButtonChangeUnit = false;
+                        _viewModel.lControlButtonRedraft = false;
+                        _viewModel.lControlButtonSubmit = false;
+                        break;
                     case "98":
-                        _viewModel.lControlButtonRedraft =
+                        _viewModel.lControlButtonRedraft = false;
                         _viewModel.lControlButtonSubmit = false;
                         break;
                     default:
-                        _viewModel.lControlButtonRedraft =
+                        _viewModel.lControlButtonRedraft = false;
                         _viewModel.lControlButtonSubmit = false;
                         break;
                 }
+                await Task.CompletedTask;
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
             }
-            R_DisplayException(loEx);
+            await R_DisplayExceptionAsync(loEx);
         }
         #endregion
 
@@ -309,7 +319,12 @@ namespace PMT00100FRONT
 
             try
             {
-                eventArgs.Parameter = _viewModel.Parameter;
+                var loParam = new ImageTabParameterDTO()
+                {
+                    CSELECTED_PROPERTY_ID = _viewModel.Parameter.CPROPERTY_ID,
+                    CSELECTED_UNIT_TYPE_ID = _viewModel.Parameter.CUNIT_TYPE_ID
+                };
+                eventArgs.Parameter = loParam;
                 eventArgs.PageNamespace = "GSM02500FRONT.GSM02503Image";
             }
             catch (Exception ex)

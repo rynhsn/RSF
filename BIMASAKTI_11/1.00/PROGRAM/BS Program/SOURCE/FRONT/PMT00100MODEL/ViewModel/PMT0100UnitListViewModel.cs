@@ -35,6 +35,7 @@ namespace PMT00100MODEL.ViewModel
         public bool btnViewImage = true;
         public bool lControlButtonRedraft;
         public bool lControlButtonSubmit;
+        //public bool lControlButtonChangeUnit;
         public async Task GetPropertyList()
         {
             R_Exception loEx = new R_Exception();
