@@ -287,6 +287,7 @@ namespace PMT01700FRONT
                     CUSER_ID = _clientHelper.UserId,
                     CPROPERTY_ID = _viewModel.oParameter.CPROPERTY_ID,
                     CCHARGE_TYPE_ID = "03",
+                    CTAXABLE_TYPE = _viewModel.oHeaderEntity.CTAXABLE_TYPE,
                 };
             }
             eventArgs.Parameter = param;

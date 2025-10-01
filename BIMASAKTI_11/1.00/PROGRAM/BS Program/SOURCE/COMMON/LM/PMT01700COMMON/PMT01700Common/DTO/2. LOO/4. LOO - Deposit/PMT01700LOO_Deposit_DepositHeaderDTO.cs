@@ -12,5 +12,6 @@ namespace PMT01700COMMON.DTO._2._LOO._4._LOO___Deposit
         public string? CTENANT_NAME { get; set; }
         public string? CCURRENCY_CODE { get; set; }
         public string? CCURRENCY_NAME { get; set; }
+        public string? CTAXABLE_TYPE { get; set; }
     }
 }
