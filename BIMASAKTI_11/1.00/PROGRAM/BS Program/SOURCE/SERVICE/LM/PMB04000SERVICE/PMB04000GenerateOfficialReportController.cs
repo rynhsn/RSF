@@ -186,7 +186,7 @@ namespace PMB04000Service
                 leReportOutputType = R_ReportServerCommon.R_FileType.PDF;
                 lcExtension = Enum.GetName(typeof(R_ReportServerCommon.R_FileType), leReportOutputType)!;
                 _loggerPMB04000.LogInfo("Create object Report Parameter");
-                var loReportFortmat = GetReportFormat();
+                var loReportFormat = GetReportFormat();
 
                 var loParameter = new R_GenerateReportParameter()
                 {
@@ -194,9 +194,16 @@ namespace PMB04000Service
                     ReportFileName = lcReportFileName,
                     ReportData = JsonSerializer.Serialize<PMB04000ResultDataDTO>(loData),
                     ReportDataSourceName = "ResponseDataModel",
-                    ReportFormat =
-                        R_Utility.R_ConvertObjectToObject<ReportFormatDTO, R_ReportServerCommon.R_ReportFormatDTO>(
-                            loReportFortmat),
+                    ReportFormat = new R_ReportServerCommon.R_ReportFormatDTO()
+                    {
+                        DecimalSeparator = loReportFormat._DecimalSeparator,
+                        DecimalPlaces = loReportFormat._DecimalPlaces,
+                        GroupSeparator = loReportFormat._GroupSeparator,
+                        ShortDate = loReportFormat._ShortDate,
+                        ShortTime = loReportFormat._ShortTime,
+                        LongDate = loReportFormat._LongDate,
+                        LongTime = loReportFormat._LongTime,
+                    },
                     ReportDataType = typeof(PMB04000ResultDataDTO).ToString(),
                     ReportOutputType = leReportOutputType,
                     ReportAssemblyName = "PMB04000COMMONPrintBatch.dll",
@@ -285,15 +292,28 @@ namespace PMB04000Service
                     : new List<PMB04000DataReportDTO>();
 
                 #region GetOsign Byte Array
-                
 
-                var osign01 = poParam.CSTORAGE_ID01 != null || poParam.CSIGN_ID01 != null ? loCls.GetSignStorage(poParam.CSTORAGE_ID01).Data : null;
-                var osign02 = poParam.CSTORAGE_ID02 != null || poParam.CSIGN_ID01 != null ? loCls.GetSignStorage(poParam.CSTORAGE_ID02).Data : null;
-                var osign03 = poParam.CSTORAGE_ID03 != null || poParam.CSIGN_ID01 != null ? loCls.GetSignStorage(poParam.CSTORAGE_ID03).Data : null;
-                var osign04 = poParam.CSTORAGE_ID04 != null || poParam.CSIGN_ID01 != null ? loCls.GetSignStorage(poParam.CSTORAGE_ID04).Data : null;
-                var osign05 = poParam.CSTORAGE_ID05 != null || poParam.CSIGN_ID01 != null ? loCls.GetSignStorage(poParam.CSTORAGE_ID05).Data : null;
-                var osign06 = poParam.CSTORAGE_ID06 != null || poParam.CSIGN_ID01 != null ? loCls.GetSignStorage(poParam.CSTORAGE_ID06).Data : null;
-                
+
+                var osign01 = !string.IsNullOrEmpty(poParam.CSTORAGE_ID01) || !string.IsNullOrEmpty(poParam.CSIGN_ID01)
+                             ? loCls.GetSignStorage(poParam.CSTORAGE_ID01).Data
+                             : null;
+                var osign02 = !string.IsNullOrEmpty(poParam.CSTORAGE_ID02) || !string.IsNullOrEmpty(poParam.CSIGN_ID02)
+                              ? loCls.GetSignStorage(poParam.CSTORAGE_ID02).Data
+                              : null;
+                var osign03 = !string.IsNullOrEmpty(poParam.CSTORAGE_ID03) || !string.IsNullOrEmpty(poParam.CSIGN_ID03)
+                              ? loCls.GetSignStorage(poParam.CSTORAGE_ID03).Data
+                              : null;
+                var osign04 = !string.IsNullOrEmpty(poParam.CSTORAGE_ID04) || !string.IsNullOrEmpty(poParam.CSIGN_ID04)
+                              ? loCls.GetSignStorage(poParam.CSTORAGE_ID04).Data
+                              : null;
+                var osign05 = !string.IsNullOrEmpty(poParam.CSTORAGE_ID05) || !string.IsNullOrEmpty(poParam.CSIGN_ID05)
+                              ? loCls.GetSignStorage(poParam.CSTORAGE_ID05).Data
+                              : null;
+                var osign06 = !string.IsNullOrEmpty(poParam.CSTORAGE_ID06) || !string.IsNullOrEmpty(poParam.CSIGN_ID06)
+                              ? loCls.GetSignStorage(poParam.CSTORAGE_ID06).Data
+                              : null;
+
+
 
                 oListData.ForEach(x =>
                 {

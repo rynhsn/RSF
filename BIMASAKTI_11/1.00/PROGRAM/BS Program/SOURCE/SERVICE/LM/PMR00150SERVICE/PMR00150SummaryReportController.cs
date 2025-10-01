@@ -205,7 +205,7 @@ namespace PMR00150SERVICE
 
                 _logger.LogInfo("Set BaseHeader Report");
                 //GETLOGO
-                var loBaseHeader = loCls.GetBaseHeaderLogoCompany(poParam);
+                var loBaseHeader = loCls.GetPropertyLogo(poParam);
                 var loParamHeader = new BaseHeaderDTO()
                 {
                     CCOMPANY_NAME = loBaseHeader.CCOMPANY_NAME!,

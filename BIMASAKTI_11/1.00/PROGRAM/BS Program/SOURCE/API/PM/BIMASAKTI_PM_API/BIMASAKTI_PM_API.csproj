@@ -75,6 +75,7 @@
         </EmbeddedResource>
     </ItemGroup>
 
+
     <ItemGroup>
         <None Update="Reports\BaseHeaderCommon.frx">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -193,6 +194,7 @@
         <ProjectReference Include="..\..\..\SERVICE\LM\PMR02600Service\PMR02600Service.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMR03000Service\PMR03000Service.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMT01300SERVICE\PMT01300SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMT01700SERVICE\PMT01700SERVICE.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMT06000Service\PMT06000Service.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMT06500Service\PMT06500Service.csproj" />
     </ItemGroup>

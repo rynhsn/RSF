@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="07/31/2024 14:43:45" ReportInfo.Modified="02/27/2025 10:23:33" ReportInfo.CreatorVersion="2023.2.21.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="07/31/2024 14:43:45" ReportInfo.Modified="09/30/2025 16:49:02" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="Column" DataType="PMB04000COMMONPrintBatch.PMB04000ColumnDTO, PMB04000COMMONPrintBatch, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -69,9 +69,9 @@
   <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
     <PageHeaderBand Name="PageHeader1" Width="718.2" Height="103.95">
       <PictureObject Name="Picture1" Left="18.9" Top="9.45" Width="113.4" Height="94.5" DataColumn="ResponseDataModel.Header.CLOGO"/>
-      <TextObject Name="Text1" Left="113.4" Top="47.25" Width="491.4" Height="18.9" Text="[ResponseDataModel.Header.KWITANSI]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 14pt"/>
+      <TextObject Name="Text1" Left="113.4" Top="47.25" Width="491.4" Height="18.9" Text="[ResponseDataModel.Header.KWITANSI]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 14pt, style=Bold"/>
     </PageHeaderBand>
-    <GroupHeaderBand Name="GroupHeader1" Top="109.28" Width="718.2" Height="85.05" StartNewPage="true" RepeatOnEveryPage="true" Condition="[ResponseDataModel.Data.CREF_NO]">
+    <GroupHeaderBand Name="GroupHeader1" Top="107.15" Width="718.2" Height="85.05" StartNewPage="true" RepeatOnEveryPage="true" Condition="[ResponseDataModel.Data.CREF_NO]">
       <TextObject Name="Text5" Left="18.9" Top="56.7" Width="132.3" Height="18.9" Text="[ResponseDataModel.Label.Label_CUNIT_DESCRIPTION]" VertAlign="Center" Font="Arial Unicode MS, 9pt"/>
       <TextObject Name="Text9" Left="151.2" Top="56.7" Width="538.65" Height="18.9" Text=": [ResponseDataModel.Data.CTRANS_DESC]" VertAlign="Center" Font="Arial Unicode MS, 9pt"/>
       <TextObject Name="Text4" Left="18.9" Top="37.8" Width="132.3" Height="18.9" Text="[ResponseDataModel.Label.Label_CNOMINAL]" VertAlign="Center" Font="Arial Unicode MS, 9pt"/>
@@ -80,7 +80,7 @@
       <TextObject Name="Text7" Left="151.2" Top="18.9" Width="538.65" Height="18.9" Text=": [ResponseDataModel.Data.CTENANT_NAME]" VertAlign="Center" Font="Arial Unicode MS, 9pt"/>
       <TextObject Name="Text2" Left="18.9" Width="132.3" Height="18.9" Text="[ResponseDataModel.Label.Label_CREF_NO]" VertAlign="Center" Font="Arial Unicode MS, 9pt"/>
       <TextObject Name="Text6" Left="151.2" Width="538.65" Height="18.9" Text=": [ResponseDataModel.Data.CREF_NO]" VertAlign="Center" Font="Arial Unicode MS, 9pt"/>
-      <DataBand Name="Data1" Top="233.35" Width="718.2" Height="28.35" DataSource="Data">
+      <DataBand Name="Data1" Top="226.95" Width="718.2" Height="28.35" DataSource="Data">
         <TableObject Name="Table2" Left="18.9" Width="699.05" Height="28.35">
           <TableColumn Name="Column5" Width="191.3"/>
           <TableColumn Name="Column6" Width="153.5"/>
@@ -93,7 +93,7 @@
             <TableCell Name="Cell8" Border.Lines="Left, Right" Text="[ResponseDataModel.Data.NINV_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial, 10pt"/>
           </TableRow>
         </TableObject>
-        <DataHeaderBand Name="DataHeader1" Top="199.67" Width="718.2" Height="28.35">
+        <DataHeaderBand Name="DataHeader1" Top="195.4" Width="718.2" Height="28.35">
           <TableObject Name="Table1" Left="18.9" Width="699.05" Height="28.35">
             <TableColumn Name="Column1" Width="191.3"/>
             <TableColumn Name="Column2" Width="153.5"/>
@@ -107,18 +107,18 @@
             </TableRow>
           </TableObject>
         </DataHeaderBand>
-        <DataFooterBand Name="DataFooter1" Top="267.03" Width="718.2" Height="47.25">
+        <DataFooterBand Name="DataFooter1" Top="258.5" Width="718.2" Height="47.25">
           <LineObject Name="Line1" Left="18.9" Width="699.3"/>
           <LineObject Name="Line2" Left="18.9" Top="18.9" Width="207.9"/>
           <LineObject Name="Line3" Left="18.9" Top="37.8" Width="207.9"/>
           <TextObject Name="Text10" Left="18.9" Top="18.9" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.CCURRENCY_SYMBOL]" Font="Arial Unicode MS, 9pt"/>
           <TextObject Name="Text11" Left="66.15" Top="18.9" Width="160.65" Height="18.9" Text="[ResponseDataModel.Data.NTRANS_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 9pt" Trimming="EllipsisCharacter"/>
           <LineObject Name="Line4" Left="500.85" Top="37.8" Width="207.9"/>
-          <TextObject Name="Text14" Left="500.85" Top="18.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.CCITY] ," HorzAlign="Right" Font="Arial Unicode MS, 9pt"/>
-          <TextObject Name="Text15" Left="595.35" Top="18.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.DTODAY_DATE]" Format="Date" Format.Format="MMMM dd, yyyy" Font="Arial Unicode MS, 9pt"/>
+          <TextObject Name="Text14" Left="500.85" Top="18.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.CCITY]," HorzAlign="Right" Font="Arial Unicode MS, 9pt"/>
+          <TextObject Name="Text15" Left="595.35" Top="18.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.DTODAY_DATE]" Format="Date" Format.Format="MMMM dd, yyyy" AutoWidth="true" Font="Arial Unicode MS, 9pt"/>
         </DataFooterBand>
       </DataBand>
-      <GroupFooterBand Name="GroupFooter1" Top="319.62" Width="718.2" Height="340.2">
+      <GroupFooterBand Name="GroupFooter1" Top="308.95" Width="718.2" Height="340.2">
         <PictureObject Name="Picture2" Left="47.25" Top="28.35" Width="75.6" Height="75.6" VisibleExpression="Length([ResponseDataModel.Data.CSIGN_ID01]) &gt; 0" DataColumn="ResponseDataModel.Data.OSIGN01"/>
         <TextObject Name="Text16" Left="18.9" Top="113.4" Width="132.3" Height="18.9" VisibleExpression="Length([ResponseDataModel.Data.CSIGN_ID01]) &gt; 0" Text="[ResponseDataModel.Data.CNAME01]" AutoWidth="true" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 10pt"/>
         <LineObject Name="Line6" Left="18.9" Top="132.3" Width="132.3" VisibleExpression="Length([ResponseDataModel.Data.CSIGN_ID01]) &gt; 0"/>
@@ -145,6 +145,6 @@
         <TextObject Name="Text27" Left="378" Top="292.95" Width="132.3" Height="18.9" VisibleExpression="Length([ResponseDataModel.Data.CSIGN_ID06]) &gt; 0" Text="[ResponseDataModel.Data.CPOSITION06]" AutoWidth="true" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 10pt"/>
       </GroupFooterBand>
     </GroupHeaderBand>
-    <PageFooterBand Name="PageFooter1" Top="665.15" Width="718.2" Height="18.9"/>
+    <PageFooterBand Name="PageFooter1" Top="652.35" Width="718.2" Height="18.9"/>
   </ReportPage>
 </Report>
