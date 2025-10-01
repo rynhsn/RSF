@@ -102,7 +102,11 @@ namespace PMB04000MODEL.ViewModel
                 var loResult = await _model.GetTemplateListAsync();
 
                 loTemplateList = new ObservableCollection<TemplateDTO>(loResult.Data) ?? new ObservableCollection<TemplateDTO>();
-                llEnabledComboTemplate = loResult.Data?.Any() == true;
+                llEnabledComboTemplate = loResult.Data.Any();
+                if (llEnabledComboTemplate)
+                {
+                    pcValueTemplate = loTemplateList.FirstOrDefault().CTEMPLATE_ID!;
+                }
 
             }
             catch (Exception ex)
