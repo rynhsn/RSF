@@ -224,6 +224,7 @@ namespace PMB04000FRONT
                 var loTempParam = R_FrontUtility.ConvertObjectToObject<PMB04000ParamDTO>(poParam);
                 _viewModelReceipt.ValidationTabReceipt();
                 _viewModelReceipt.oParameterFromInvoice = loTempParam;
+                await _viewModelReceipt.GetTemplateList();
                 await _grid!.R_RefreshGrid(null);
             }
             catch (Exception ex)
@@ -384,12 +385,13 @@ namespace PMB04000FRONT
                 if (eventArgs.Success)
                 {
                     var loReturn = R_FrontUtility.ConvertObjectToObject<SaveAsDTO>(eventArgs.Result);
+                    string RefnoMergerd = _viewModelInvoice._mergeRefNoParamater;
                     PMB04000ParamReportDTO loParam = new PMB04000ParamReportDTO
                     {
                         CCOMPANY_ID = _clientHelper!.CompanyId,
                         CPROPERTY_ID = _viewModelReceipt.oParameterFromInvoice.CPROPERTY_ID,
                         CDEPT_CODE = _viewModelReceipt.oParameterFromInvoice.CDEPT_CODE,
-                        CREF_NO = _viewModelReceipt._mergeRefNoParamater,
+                        CREF_NO = RefnoMergerd,
                         CUSER_ID = _clientHelper!.UserId,
                         CLANG_ID = _clientHelper.ReportCulture,
                         LPRINT = true,
