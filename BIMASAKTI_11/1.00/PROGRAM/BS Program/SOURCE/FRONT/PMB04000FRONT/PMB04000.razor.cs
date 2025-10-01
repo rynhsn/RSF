@@ -21,6 +21,7 @@ using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -100,7 +101,8 @@ namespace PMB04000FRONT
                     _viewModel.oParameterInvoice.CDEPT_CODE = "";
                     _viewModel.oParameterInvoice.CDEPT_NAME = "";
                     _viewModel.loInvoiceList.Clear();
-                };
+                }
+                ;
             }
             catch (Exception ex)
             {
@@ -265,8 +267,9 @@ namespace PMB04000FRONT
             var loEx = new R_Exception();
             try
             {
-                var loList = (List<PMB04000DTO>)eventArgs.Data;
-                List<PMB04000DTO> poDataSelected = _viewModel.ValidationProcessData(loList);
+                ObservableCollection<PMB04000DTO> loList = _viewModel.loInvoiceList;
+
+                List<PMB04000DTO> poDataSelected = _viewModel.ValidationProcessData(loList.ToList());
                 _viewModel.pcTYPE_PROCESS = "CREATE_RECEIPT";
 
                 if (await R_MessageBox.Show("Confirmation",
@@ -352,7 +355,7 @@ namespace PMB04000FRONT
         }
         private void AfterOpenLookUpDepartmentLookup(R_AfterOpenLookupEventArgs eventArgs)
         {
-            R_Exception loException = new ();
+            R_Exception loException = new();
             try
             {
                 var loTempResult = (GSL00710DTO)eventArgs.Result;
@@ -369,7 +372,7 @@ namespace PMB04000FRONT
         }
         private async Task OnLostFocusDepartment()
         {
-            R_Exception loEx = new ();
+            R_Exception loEx = new();
             try
             {
                 var loGetData = _viewModel.oParameterInvoice;
@@ -380,7 +383,7 @@ namespace PMB04000FRONT
                     return;
                 }
 
-                LookupGSL00710ViewModel loLookupViewModel = new ();
+                LookupGSL00710ViewModel loLookupViewModel = new();
                 GSL00710ParameterDTO loParam = new GSL00710ParameterDTO()
                 {
                     CPROPERTY_ID = loGetData.CPROPERTY_ID!,

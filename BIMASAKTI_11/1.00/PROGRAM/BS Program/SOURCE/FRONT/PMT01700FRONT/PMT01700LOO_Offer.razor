@@ -10,14 +10,14 @@
                           Data="@_viewModel.oDataChoose"
                           @bind-Value="@_viewModel.cDataChoosen"
                           OnChanged="FuncRadioGroupChoosenData"
-                          R_EnableAdd
+                            R_EnableAdd
                           R_EnableEdit="false"
                           ValueField="@nameof(PMT01700ComboBoxDTO.CCODE)"
                           TextField="@nameof(PMT01700ComboBoxDTO.CDESCRIPTION)"
                           Layout="R_eRadioGroupLayout.Vertical" />
-        </R_ItemLayout>
+            </R_ItemLayout>
 
-        <R_ItemLayout col="10" Class="d-flex">
+            <R_ItemLayout col="10" Class="d-flex">
 
             <R_ItemLayout col="2" Class="d-flex">
 
@@ -52,13 +52,13 @@
 
             </R_ItemLayout>
 
-        </R_ItemLayout>
+            </R_ItemLayout>
 
-    </R_StackLayout>
+            </R_StackLayout>
 
-    <R_ItemLayout>
+            <R_ItemLayout>
 
-        <R_StackLayout>
+            <R_StackLayout>
             <R_ItemLayout Class="d-flex" col="12">
 
                 <R_ItemLayout col="1" Class="ps-4">
@@ -74,9 +74,9 @@
                                R_EnableAdd
                                R_EnableEdit
                                Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
-                </R_ItemLayout>
+                    </R_ItemLayout>
 
-                <R_ItemLayout col="4" Class="ps-1">
+                    <R_ItemLayout col="4" Class="ps-1">
 
                     <R_TextBox @bind-Value="@_viewModel.Data.CTENANT_NAME"
                                R_ConductorSource="@_conductor"
@@ -84,9 +84,9 @@
                                R_EnableEdit
                                Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
 
-                </R_ItemLayout>
+                    </R_ItemLayout>
 
-                <R_ItemLayout col="5" Class="ps-1 d-flex">
+                    <R_ItemLayout col="5" Class="ps-1 d-flex">
 
                     <R_ItemLayout col="3">
                         <R_Label>
@@ -101,32 +101,32 @@
                                    R_EnableAdd
                                    R_EnableEdit
                                    Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                </R_ItemLayout>
+                        </R_ItemLayout>
 
-            </R_ItemLayout>
+                        </R_ItemLayout>
 
-            <R_ItemLayout Class="d-flex" col="12">
+                        <R_ItemLayout Class="d-flex" col="12">
 
-                <R_ItemLayout col="1" Class="ps-4">
-                    <R_Label>
+                        <R_ItemLayout col="1" Class="ps-4">
+                        <R_Label>
                         @_localizer["_Address"]*
-                    </R_Label>
-                </R_ItemLayout>
+                        </R_Label>
+                        </R_ItemLayout>
 
-                <R_ItemLayout col="6">
+                        <R_ItemLayout col="6">
 
-                    <R_TextArea @bind-Value="@_viewModel.Data.CADDRESS"
+                        <R_TextArea @bind-Value="@_viewModel.Data.CADDRESS"
                                 MaxLength="255"
                                 R_ConductorSource="@_conductor"
                                 R_EnableAdd
                                 R_EnableEdit
                                 Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
 
-                </R_ItemLayout>
+                    </R_ItemLayout>
 
-                <R_ItemLayout col="5" Class="ps-1">
+                    <R_ItemLayout col="5" Class="ps-1">
 
                     <R_ItemLayout col="12" Class="d-flex">
 
@@ -143,38 +143,38 @@
                                        R_EnableAdd
                                        R_EnableEdit
                                        Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
-                        </R_ItemLayout>
+                            </R_ItemLayout>
 
-                    </R_ItemLayout>
+                            </R_ItemLayout>
 
-                    <R_ItemLayout col="12" Class="d-flex pt-1">
+                            <R_ItemLayout col="12" Class="d-flex pt-1">
 
-                        <R_ItemLayout col="3">
+                            <R_ItemLayout col="3">
                             <R_Label>
                                 @_localizer["_PhoneNo2"]
                             </R_Label>
-                        </R_ItemLayout>
+                            </R_ItemLayout>
 
-                        <R_ItemLayout col="5">
+                            <R_ItemLayout col="5">
                             <R_TextBox @bind-Value="@_viewModel.Data.CPHONE2"
                                        MaxLength="30"
                                        R_ConductorSource="@_conductor"
                                        R_EnableAdd
                                        R_EnableEdit
                                        Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
-                        </R_ItemLayout>
+                            </R_ItemLayout>
 
-                    </R_ItemLayout>
+                            </R_ItemLayout>
 
-                    <R_ItemLayout col="12" Class="d-flex pt-1">
+                            <R_ItemLayout col="12" Class="d-flex pt-1">
 
-                        <R_ItemLayout col="3">
+                            <R_ItemLayout col="3">
                             <R_Label>
                                 @_localizer["_TenantCategory"]
                             </R_Label>
-                        </R_ItemLayout>
+                            </R_ItemLayout>
 
-                        <R_ItemLayout col="5">
+                            <R_ItemLayout col="5">
 
                             <R_DropDownList Data="@_viewModel.oComboBoxTenantCategory"
                                             @bind-Value="_viewModel.Data.CTENANT_CATEGORY_ID"
@@ -182,22 +182,22 @@
                                             TextField="@nameof(PMT01700ResponseTenantCategoryDTO.CCATEGORY_NAME)"
                                             PopupMaxHeight="200px"
                                             R_ConductorSource="@_conductor"
-                                            R_EnableAdd
-                                            R_EnableEdit
+                                                R_EnableAdd
+                                                R_EnableEdit
                                             Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
 
-                        </R_ItemLayout>
+                            </R_ItemLayout>
 
-                    </R_ItemLayout>
+                            </R_ItemLayout>
 
-                </R_ItemLayout>
+                            </R_ItemLayout>
 
-            </R_ItemLayout>
+                            </R_ItemLayout>
 
-        </R_StackLayout>
+                            </R_StackLayout>
 
 
-        <R_StackLayout Row>
+                            <R_StackLayout Row>
             <R_GroupBox ShowBorder Title="@_localizer["_TaxInfo"]" Class="col-7">
 
                 @* Tax Type *@
@@ -219,22 +219,22 @@
                                         TextField="@nameof(PMT01700ComboBoxDTO.CDESCRIPTION)"
                                         PopupMaxHeight="200px"
                                         R_ConductorSource="@_conductor"
-                                        R_EnableAdd
-                                        R_EnableEdit
+                                            R_EnableAdd
+                                            R_EnableEdit
                                         Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                    <R_ItemLayout col="1" />
+                        <R_ItemLayout col="1" />
 
-                    <R_ItemLayout col="2">
+                        <R_ItemLayout col="2">
 
                         <R_Label>
                             @_localizer["_IdType"]
                         </R_Label>
 
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                    <R_ItemLayout col="3">
+                        <R_ItemLayout col="3">
 
                         <R_DropDownList Data="@_viewModel.oComboBoxIdType"
                                         @bind-Value="_viewModel.Data.CID_TYPE"
@@ -242,25 +242,25 @@
                                         TextField="@nameof(PMT01700ComboBoxDTO.CDESCRIPTION)"
                                         PopupMaxHeight="200px"
                                         R_ConductorSource="@_conductor"
-                                        R_EnableAdd
-                                        R_EnableEdit
+                                            R_EnableAdd
+                                            R_EnableEdit
                                         Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                </R_ItemLayout>
+                        </R_ItemLayout>
 
                         @* Tax ID *@
-                <R_ItemLayout Class="d-flex pt-1">
+                        <R_ItemLayout Class="d-flex pt-1">
 
-                    <R_ItemLayout col="2">
+                        <R_ItemLayout col="2">
 
                         <R_Label>
                             @_localizer["_TaxId"]
                         </R_Label>
 
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                    <R_ItemLayout col="4">
+                        <R_ItemLayout col="4">
 
                         <R_TextBox @bind-Value="@_viewModel.Data.CTAX_ID"
                                    R_ConductorSource="@_conductor"
@@ -269,18 +269,18 @@
                                    R_EnableEdit
                                    Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
 
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
 
-                    <R_ItemLayout col="2">
+                        <R_ItemLayout col="2">
 
                         <R_Label>
                             @_localizer["_IdNumber"]
                         </R_Label>
 
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                    <R_ItemLayout col="4">
+                        <R_ItemLayout col="4">
 
                         <R_TextBox @bind-Value="@_viewModel.Data.CID_NO"
                                    R_ConductorSource="@_conductor"
@@ -288,22 +288,22 @@
                                    R_EnableAdd
                                    R_EnableEdit
                                    Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                </R_ItemLayout>
+                        </R_ItemLayout>
 
                         @* Tax Name *@
-                <R_ItemLayout Class="d-flex">
+                        <R_ItemLayout Class="d-flex">
 
-                    <R_ItemLayout col="2">
+                        <R_ItemLayout col="2">
 
                         <R_Label>
                             @_localizer["_TaxName"]
                         </R_Label>
 
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                    <R_ItemLayout col="4">
+                        <R_ItemLayout col="4">
 
                         <R_TextBox @bind-Value="@_viewModel.Data.CTAX_NAME"
                                    R_ConductorSource="@_conductor"
@@ -312,40 +312,40 @@
                                    R_EnableEdit
                                    Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
 
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                    <R_ItemLayout col="2">
+                        <R_ItemLayout col="2">
 
                         <R_Label>
                             @_localizer["_IdExpiredDate"]
                         </R_Label>
 
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                    <R_ItemLayout col="4">
+                        <R_ItemLayout col="4">
 
                         <R_DatePicker Value="@_viewModel.Data.DID_EXPIRED_DATE"
                                       R_ConductorSource="@_conductor"
                                       ValueChanged="@((DateTime? value) => OnChangedDID_EXPIRED_DATE(value))"
-                                      R_EnableAdd
-                                      R_EnableEdit
+                                        R_EnableAdd
+                                        R_EnableEdit
                                       Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                </R_ItemLayout>
+                        </R_ItemLayout>
 
                         @* Tax Address *@
-                <R_ItemLayout Class="d-flex pt-1">
+                        <R_ItemLayout Class="d-flex pt-1">
 
-                    <R_ItemLayout col="2">
+                        <R_ItemLayout col="2">
 
                         <R_Label>
                             @_localizer["_TaxAddress"]
                         </R_Label>
 
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                    <R_ItemLayout col="10">
+                        <R_ItemLayout col="10">
 
                         <R_TextBox @bind-Value="@_viewModel.Data.CTAX_ADDRESS"
                                    R_ConductorSource="@_conductor"
@@ -354,13 +354,13 @@
                                    R_EnableEdit
                                    Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
 
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                </R_ItemLayout>
+                        </R_ItemLayout>
 
-            </R_GroupBox>
+                        </R_GroupBox>
 
-            <R_GroupBox ShowBorder Title="@_localizer["_Attention"]" Class="col-5">
+                        <R_GroupBox ShowBorder Title="@_localizer["_Attention"]" Class="col-5">
 
                 @* Name *@
                 <R_ItemLayout Class="d-flex">
@@ -380,59 +380,59 @@
                                    R_EnableAdd
                                    R_EnableEdit
                                    Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                </R_ItemLayout>
+                        </R_ItemLayout>
 
                         @* Email *@
-                <R_ItemLayout Class="d-flex pt-1">
+                        <R_ItemLayout Class="d-flex pt-1">
 
-                    <R_ItemLayout col="3">
+                        <R_ItemLayout col="3">
 
                         <R_Label>
                             @_localizer["_Email"]
                         </R_Label>
 
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                    <R_ItemLayout col="5">
+                        <R_ItemLayout col="5">
                         <R_TextBox @bind-Value="@_viewModel.Data.CATTENTION1_EMAIL"
                                    R_ConductorSource="@_conductor"
                                    MaxLength="100"
                                    R_EnableAdd
                                    R_EnableEdit
                                    Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                </R_ItemLayout>
+                        </R_ItemLayout>
 
                         @* Name *@
-                <R_ItemLayout Class="d-flex pt-1">
+                        <R_ItemLayout Class="d-flex pt-1">
 
-                    <R_ItemLayout col="3">
+                        <R_ItemLayout col="3">
 
                         <R_Label>
                             @_localizer["_MobileNo"]
                         </R_Label>
 
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                    <R_ItemLayout col="5">
+                        <R_ItemLayout col="5">
                         <R_TextBox @bind-Value="@_viewModel.Data.CATTENTION1_MOBILE_PHONE1"
                                    R_ConductorSource="@_conductor"
                                    MaxLength="30"
                                    R_EnableAdd
                                    R_EnableEdit
                                    Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenantOriginal)" />
-                    </R_ItemLayout>
-                </R_ItemLayout>
-            </R_GroupBox>
-        </R_StackLayout>
-    </R_ItemLayout>
+                        </R_ItemLayout>
+                        </R_ItemLayout>
+                        </R_GroupBox>
+                        </R_StackLayout>
+                        </R_ItemLayout>
 
 
                         @*-----------------EVENT NAME-----------------------*@
-    <R_StackLayout Row>
+                        <R_StackLayout Row>
 
         <R_ItemLayout col="9">
 
@@ -516,9 +516,9 @@
                                R_EnableAdd
                                R_EnableEdit="false" />
 
-                </R_ItemLayout>
+                    </R_ItemLayout>
 
-                <R_ItemLayout col="7" Class="d-flex">
+                    <R_ItemLayout col="7" Class="d-flex">
 
                     <R_ItemLayout col="1" Class="ps-1">
 
@@ -530,33 +530,33 @@
                                   R_After_Open_Lookup="@AfterOpenLookUpDepartmentLookup">
                             ...
                         </R_Lookup>
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                    <R_ItemLayout col="11" Class="ps-1">
+                        <R_ItemLayout col="11" Class="ps-1">
 
                         <R_TextBox @bind-Value="@_viewModel.Data.CDEPT_NAME"
                                    MaxLength="200"
                                    R_ConductorSource="@_conductor"
                                    Enabled="false" />
 
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                </R_ItemLayout>
+                        </R_ItemLayout>
 
-            </R_ItemLayout>
+                        </R_ItemLayout>
 
                         @* Salesman *@
-            <R_ItemLayout Class="d-flex" col="12">
+                        <R_ItemLayout Class="d-flex" col="12">
 
-                <R_ItemLayout col="2">
-                    <R_Label>
+                        <R_ItemLayout col="2">
+                        <R_Label>
                         @_localizer["_Salesman"]*
-                    </R_Label>
-                </R_ItemLayout>
+                        </R_Label>
+                        </R_ItemLayout>
 
-                <R_ItemLayout col="3">
+                        <R_ItemLayout col="3">
 
-                    <R_TextBox @bind-Value="@_viewModel.Data.CSALESMAN_ID"
+                        <R_TextBox @bind-Value="@_viewModel.Data.CSALESMAN_ID"
                                MaxLength="8"
                                OnLostFocus="OnLostFocusSalesman"
                                R_ConductorSource="@_conductor"
@@ -655,8 +655,8 @@
                             <R_DatePicker Value="@_viewModel.Data.DREF_DATE"
                                           R_ConductorSource="@_conductor"
                                           ValueChanged="@((DateTime? value) => OnChangedDREF_DATE(value))"
-                                          R_EnableAdd
-                                          R_EnableEdit />
+                                            R_EnableAdd
+                                            R_EnableEdit />
                         </R_ItemLayout>
 
                         <R_ItemLayout col="5" Class="ps-1">
@@ -674,8 +674,8 @@
                             <R_DatePicker Value="@_viewModel.Data.DFOLLOW_UP_DATE"
                                           R_ConductorSource="@_conductor"
                                           ValueChanged="@((DateTime? value) => OnChangedDFOLLOW_UP_DATE(value))"
-                                          R_EnableAdd
-                                          R_EnableEdit />
+                                            R_EnableAdd
+                                            R_EnableEdit />
 
                         </R_ItemLayout>
 
@@ -689,8 +689,8 @@
                             <R_DatePicker Value="@_viewModel.Data.DEXPIRED_DATE"
                                           R_ConductorSource="@_conductor"
                                           ValueChanged="@((DateTime? value) => OnChangedDEXPIRED_DATE(value))"
-                                          R_EnableAdd
-                                          R_EnableEdit />
+                                            R_EnableAdd
+                                            R_EnableEdit />
 
                         </R_ItemLayout>
 
@@ -718,8 +718,8 @@
                                           ValueChanged="@((Int32 value) => OnChangedCYEAR(value))"
                                           Min="0"
                                           Arrows="false"
-                                          R_EnableAdd
-                                          R_EnableEdit />
+                                                R_EnableAdd
+                                                R_EnableEdit />
                     </R_ItemLayout>
 
                     <R_ItemLayout col="1" Class="ps-1">
@@ -735,8 +735,8 @@
                                           ValueChanged="@((Int32 value) => OnChangedCMONTH(value))"
                                           Min="0"
                                           Arrows="false"
-                                          R_EnableAdd
-                                          R_EnableEdit />
+                                                R_EnableAdd
+                                                R_EnableEdit />
                     </R_ItemLayout>
 
                     <R_ItemLayout col="1" Class="ps-1">
@@ -752,8 +752,8 @@
                                           ValueChanged="@((Int32 value) => OnChangedCDAY(value))"
                                           Min="0"
                                           Arrows="false"
-                                          R_EnableAdd
-                                          R_EnableEdit />
+                                                R_EnableAdd
+                                                R_EnableEdit />
                     </R_ItemLayout>
 
                     <R_ItemLayout col="1" Class="ps-1">
@@ -769,8 +769,8 @@
                                           Min="0"
                                           Max="24"
                                           Arrows="false"
-                                          R_EnableAdd
-                                          R_EnableEdit />
+                                                R_EnableAdd
+                                                R_EnableEdit />
                     </R_ItemLayout>
 
                     <R_ItemLayout col="1" Class="ps-1">
@@ -800,8 +800,8 @@
                             <R_DateTimePicker Value="@_viewModel.Data.DSTART_DATE"
                                               R_ConductorSource="@_conductor"
                                               ValueChanged="@((DateTime? value) => OnChangedDSTART_DATE(value))"
-                                              R_EnableAdd
-                                              R_EnableEdit />
+                                                    R_EnableAdd
+                                                    R_EnableEdit />
                         </R_ItemLayout>
 
                         <R_ItemLayout col="3">
@@ -823,8 +823,8 @@
                                               R_ConductorSource="@_conductor"
                                               ValueChanged="@((DateTime? value) => OnChangedDEND_DATE(value))"
                                               Min="@tStartDate"
-                                              R_EnableAdd
-                                              R_EnableEdit />
+                                                    R_EnableAdd
+                                                    R_EnableEdit />
 
                         </R_ItemLayout>
 
@@ -940,48 +940,48 @@
                                   R_After_Open_Lookup="@AfterOpenLookUpCurrencyLookup">
                             ...
                         </R_Lookup>
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                </R_ItemLayout>
+                        </R_ItemLayout>
 
-            </R_ItemLayout>
+                        </R_ItemLayout>
 
                         @* Booking Fee *@
-            <R_ItemLayout col="12" Class="d-flex">
+                        <R_ItemLayout col="12" Class="d-flex">
 
-                <R_ItemLayout col="4">
+                        <R_ItemLayout col="4">
 
-                    <R_Label>
+                        <R_Label>
                         @_localizer["_BookingFee"]
-                    </R_Label>
+                        </R_Label>
 
-                </R_ItemLayout>
+                        </R_ItemLayout>
 
-                <R_ItemLayout col="7" Class="pe-1">
-                    <R_NumericTextBox @bind-Value="@_viewModel.Data.NBOOKING_FEE"
+                        <R_ItemLayout col="7" Class="pe-1">
+                        <R_NumericTextBox @bind-Value="@_viewModel.Data.NBOOKING_FEE"
                                       R_ConductorSource="@_conductor"
                                       TValue="decimal"
                                       Arrows="false"
-                                      R_EnableAdd
-                                      R_EnableEdit
+                                            R_EnableAdd
+                                            R_EnableEdit
                                       Min="1" />
 
-                </R_ItemLayout>
+                    </R_ItemLayout>
 
-            </R_ItemLayout>
+                    </R_ItemLayout>
 
                     @* T * C *@
-            <R_ItemLayout col="12" Class="d-flex">
+                    <R_ItemLayout col="12" Class="d-flex">
 
-                <R_ItemLayout col="4">
+                    <R_ItemLayout col="4">
 
                     <R_Label>
                         @_localizer["_TandC"]
                     </R_Label>
 
-                </R_ItemLayout>
+                    </R_ItemLayout>
 
-                <R_ItemLayout col="7" Class="d-flex">
+                    <R_ItemLayout col="7" Class="d-flex">
 
                     <R_ItemLayout col="9">
                         <R_TextBox @bind-Value="@_viewModel.Data.CTC_CODE"
@@ -1002,23 +1002,23 @@
                                   R_After_Open_Lookup="@AfterOpenLookUpTandCLookup">
                             ...
                         </R_Lookup>
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                </R_ItemLayout>
+                        </R_ItemLayout>
 
-            </R_ItemLayout>
+                        </R_ItemLayout>
 
-        </R_ItemLayout>
+                        </R_ItemLayout>
 
-    </R_StackLayout>
-</R_StackLayout>
+                        </R_StackLayout>
+                        </R_StackLayout>
                         @* Button CRUD *@
 
 
-<R_ItemLayout hidden="@(_lViewMode)">
-    <R_ItemLayout Class="d-flex justify-content-between" hidden=@_LOpenCustomPage>
+                        <R_ItemLayout hidden="@(_lViewMode)">
+                        <R_ItemLayout Class="d-flex justify-content-between" hidden=@_LOpenCustomPage>
 
-        <R_StackLayout Row>
+                        <R_StackLayout Row>
             <R_ItemLayout>
                 <R_AddButton R_Conductor="@_conductor" />
             </R_ItemLayout>
@@ -1032,11 +1032,10 @@
 
         <R_StackLayout Row>
             <R_ItemLayout>
-                <R_PrintButton Enabled="@((_viewModel.Data.CTENANT_ID!=null) && _conductor.R_Access.Contains(R_eFormAccess.Print))"
-                               R_Conductor="_conductor"
-                               R_Before_Open_Popup="@BeforeOpen_PopupPrint">
+                <R_Popup Enabled="@(_viewModel.Data.CTENANT_ID!=null)"
+                    R_Before_Open_Popup="@BeforeOpen_PopupPrint">
                     @_localizer["_Print"]
-                </R_PrintButton>
+                </R_Popup>
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Button R_Conductor="@_conductor"
@@ -1069,7 +1068,7 @@
         <div hidden=@(!_LOpenCustomPage)>
             <R_Popup R_Before_Open_Popup="@BeforeOpenPMT01700"
                      R_After_Open_Popup="@R_After_ServiceOpenOthersProgram"
-                     Enabled>
+                      Enabled>
                 @_localizer["_CreateLOC"]
             </R_Popup>
         </div>
@@ -1078,7 +1077,7 @@
 
 <R_Conductor @ref="@_conductor"
              R_ViewModel="@_viewModel"
-             R_IsHeader
+              R_IsHeader
              R_ServiceGetRecord="@ServiceGetRecord"
              R_ServiceDelete="@ServiceDelete"
              R_ServiceSave="@ServiceSave"

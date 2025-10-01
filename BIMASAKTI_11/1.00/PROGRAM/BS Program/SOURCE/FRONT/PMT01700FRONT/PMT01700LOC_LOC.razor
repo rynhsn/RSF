@@ -252,8 +252,8 @@
                             <R_DatePicker Value="@_viewModel.Data.DREF_DATE"
                                           R_ConductorSource="@_conductor"
                                           ValueChanged="@((DateTime? value) => OnChangedDREF_DATE(value))"
-                                          R_EnableAdd
-                                          R_EnableEdit />
+                                            R_EnableAdd
+                                            R_EnableEdit />
                         </R_ItemLayout>
 
                         <R_ItemLayout col="5" Class="ps-1">
@@ -271,8 +271,8 @@
                             <R_DatePicker Value="@_viewModel.Data.DFOLLOW_UP_DATE"
                                           R_ConductorSource="@_conductor"
                                           ValueChanged="@((DateTime? value) => OnChangedDFOLLOW_UP_DATE(value))"
-                                          R_EnableAdd
-                                          R_EnableEdit />
+                                            R_EnableAdd
+                                            R_EnableEdit />
 
                         </R_ItemLayout>
                     </R_ItemLayout>
@@ -299,8 +299,8 @@
                                           ValueChanged="@((Int32 value) => OnChangedCYEAR(value))"
                                           Min="0"
                                           Arrows="false"
-                                          R_EnableAdd
-                                          R_EnableEdit />
+                                                R_EnableAdd
+                                                R_EnableEdit />
                     </R_ItemLayout>
 
                     <R_ItemLayout col="1" Class="ps-1">
@@ -316,8 +316,8 @@
                                           ValueChanged="@((Int32 value) => OnChangedCMONTH(value))"
                                           Min="0"
                                           Arrows="false"
-                                          R_EnableAdd
-                                          R_EnableEdit />
+                                                R_EnableAdd
+                                                R_EnableEdit />
                     </R_ItemLayout>
 
                     <R_ItemLayout col="1" Class="ps-1">
@@ -333,8 +333,8 @@
                                           ValueChanged="@((Int32 value) => OnChangedCDAY(value))"
                                           Min="0"
                                           Arrows="false"
-                                          R_EnableAdd
-                                          R_EnableEdit />
+                                                R_EnableAdd
+                                                R_EnableEdit />
                     </R_ItemLayout>
 
                     <R_ItemLayout col="1" Class="ps-1">
@@ -350,8 +350,8 @@
                                           ValueChanged="@((Int32 value) => OnChangedIHOUR(value))"
                                           Min="0"
                                           Arrows="false"
-                                          R_EnableAdd
-                                          R_EnableEdit />
+                                                R_EnableAdd
+                                                R_EnableEdit />
                     </R_ItemLayout>
 
                     <R_ItemLayout col="1" Class="ps-1">
@@ -381,8 +381,8 @@
                             <R_DateTimePicker Value="@_viewModel.Data.DSTART_DATE"
                                               R_ConductorSource="@_conductor"
                                               ValueChanged="@((DateTime? value) => OnChangedDSTART_DATE(value))"
-                                              R_EnableAdd
-                                              R_EnableEdit />
+                                                    R_EnableAdd
+                                                    R_EnableEdit />
                         </R_ItemLayout>
                     </R_ItemLayout>
 
@@ -400,8 +400,8 @@
                                               R_ConductorSource="@_conductor"
                                               ValueChanged="@((DateTime? value) => OnChangedDEND_DATE(value))"
                                               Min="@tStartDate"
-                                              R_EnableAdd
-                                              R_EnableEdit />
+                                                    R_EnableAdd
+                                                    R_EnableEdit />
 
                         </R_ItemLayout>
 
@@ -517,30 +517,30 @@
                                   R_After_Open_Lookup="@AfterOpenLookUpCurrencyLookup">
                             ...
                         </R_Lookup>
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                </R_ItemLayout>
+                        </R_ItemLayout>
 
-            </R_ItemLayout>
+                        </R_ItemLayout>
 
                         @* Booking Fee *@
-            <R_ItemLayout col="12" Class="d-flex">
+                        <R_ItemLayout col="12" Class="d-flex">
 
-                <R_ItemLayout col="4">
+                        <R_ItemLayout col="4">
 
-                    <R_Label>
+                        <R_Label>
                         @_localizer["_BookingFee"]
-                    </R_Label>
+                        </R_Label>
 
-                </R_ItemLayout>
+                        </R_ItemLayout>
 
-                <R_ItemLayout col="7" Class="pe-1">
-                    <R_NumericTextBox @bind-Value="@_viewModel.Data.NBOOKING_FEE"
+                        <R_ItemLayout col="7" Class="pe-1">
+                        <R_NumericTextBox @bind-Value="@_viewModel.Data.NBOOKING_FEE"
                                       R_ConductorSource="@_conductor"
                                       TValue="decimal"
                                       Arrows="false"
-                                      R_EnableAdd
-                                      R_EnableEdit />
+                                            R_EnableAdd
+                                            R_EnableEdit />
 
                 </R_ItemLayout>
 
@@ -578,18 +578,18 @@
                                   R_After_Open_Lookup="@AfterOpenLookUpTandCLookup">
                             ...
                         </R_Lookup>
-                    </R_ItemLayout>
+                        </R_ItemLayout>
 
-                </R_ItemLayout>
+                        </R_ItemLayout>
 
-            </R_ItemLayout>
+                        </R_ItemLayout>
 
-        </R_ItemLayout>
+                        </R_ItemLayout>
 
-    </R_StackLayout>
+                        </R_StackLayout>
 
                         @* Button CRUD *@
-    <R_StackLayout Row Class="d-flex justify-content-between">
+<R_StackLayout Row Class="d-flex justify-content-between">
 
         <R_StackLayout Row>
             <R_ItemLayout>
@@ -599,11 +599,10 @@
 
         <R_StackLayout Row>
             <R_ItemLayout>
-                <R_PrintButton Enabled="@((_viewModel.Data.CTENANT_ID!=null) && _conductor.R_Access.Contains(R_eFormAccess.Print))"
-                               R_Conductor="@_conductor"
-                               R_Before_Open_Popup="@BeforeOpen_PopupPrint">
+                <R_Popup Enabled="@(_viewModel.Data.CTENANT_ID!=null)"
+                         R_Before_Open_Popup="@BeforeOpen_PopupPrint">
                     @_localizer["_Print"]
-                </R_PrintButton>
+                </R_Popup>
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Button R_Conductor="@_conductor"
@@ -638,7 +637,7 @@
 </R_StackLayout>
 
 <R_Conductor @ref="@_conductor"
-             R_IsHeader
+              R_IsHeader
              R_ViewModel="@_viewModel"
              R_ServiceGetRecord="@ServiceGetRecord"
              R_ServiceDelete="@ServiceDelete"
