@@ -18,6 +18,8 @@ using R_BlazorFrontEnd.Helpers;
 using R_BlazorFrontEnd.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -194,12 +196,62 @@ namespace PMB04000FRONT
             try
             {
                 _viewModelInvoice.pcTYPE_PROCESS = "PRINT";
-                await _grid.R_SaveBatch();
+
+                ObservableCollection<PMB04000DTO> loList = _viewModelReceipt.loOfficialReceipt;
+
+                List<PMB04000DTO> poDataSelected = _viewModelInvoice.ValidationProcessData(loList.ToList());
+
+                _viewModelInvoice._mergeRefNoParamater = string.Join(",", poDataSelected.Select(item => item.CREF_NO));
+
+                if (_viewModelInvoice.pcTYPE_PROCESS == "PRINT")
+                {
+                    if (poDataSelected.Any(data => data.IPRINT > 0) && _viewModelInvoice.oParameterPrintReceipt.LPRINT_ONE_TIME)
+                    {
+                        var loErr = R_FrontUtility.R_GetError(typeof(Resources_PMB0400_Class), "ValidationPrintOneTimePrint");
+                        loEx.Add(loErr);
+                        goto EndBlock;
+                    }
+
+                    var loParam = new PMB04000ParamReportDTO
+                    {
+                        CCOMPANY_ID = _clientHelper!.CompanyId,
+                        CPROPERTY_ID = _viewModelReceipt.oParameterFromInvoice.CPROPERTY_ID,
+                        CDEPT_CODE = _viewModelReceipt.oParameterFromInvoice.CDEPT_CODE,
+                        CREF_NO = _viewModelInvoice._mergeRefNoParamater,
+                        CUSER_ID = _clientHelper!.UserId,
+                        CLANG_ID = _clientHelper.ReportCulture,
+                        LPRINT = true,
+                        CTEMPLATE_ID = _viewModelInvoice.pcValueTemplate,
+                        LIS_PRINT = true,
+                        CREPORT_FILENAME = "",
+                        CREPORT_FILETYPE = "",
+                    };
+
+                    var storageIds = new[] { nameof(TemplateDTO.CSTORAGE_ID01), nameof(TemplateDTO.CSTORAGE_ID02), nameof(TemplateDTO.CSTORAGE_ID03), nameof(TemplateDTO.CSTORAGE_ID04), nameof(TemplateDTO.CSTORAGE_ID05), nameof(TemplateDTO.CSTORAGE_ID06) };
+                    var signNames = new[] { nameof(TemplateDTO.CSIGN_NAME01), nameof(TemplateDTO.CSIGN_NAME02), nameof(TemplateDTO.CSIGN_NAME03), nameof(TemplateDTO.CSIGN_NAME04), nameof(TemplateDTO.CSIGN_NAME05), nameof(TemplateDTO.CSIGN_NAME06) };
+                    var signPositions = new[] { nameof(TemplateDTO.CSIGN_POSITION01), nameof(TemplateDTO.CSIGN_POSITION02), nameof(TemplateDTO.CSIGN_POSITION03), nameof(TemplateDTO.CSIGN_POSITION04), nameof(TemplateDTO.CSIGN_POSITION05), nameof(TemplateDTO.CSIGN_POSITION06) };
+
+                    for (var i = 0; i < storageIds.Length; i++)
+                    {
+                        loParam.GetType().GetProperty(storageIds[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(storageIds[i])!.GetValue(x)).FirstOrDefault());
+                        loParam.GetType().GetProperty(signNames[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(signNames[i])!.GetValue(x)).FirstOrDefault());
+                        loParam.GetType().GetProperty(signPositions[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(signPositions[i])!.GetValue(x)).FirstOrDefault());
+                    }
+
+                    var abc = loParam;
+                    await _reportService!.GetReport(
+                                "R_DefaultServiceUrlPM",
+                                "PM",
+                                "rpt/PMB04000PrintReportInvoice/PMB04000ReportPost",
+                                "rpt/PMB04000PrintReportInvoice/PMB04000ReportGet",
+                                loParam);
+                }
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
             }
+        EndBlock:
             R_DisplayException(loEx);
         }
         private async Task BtnDistribute()
@@ -240,9 +292,10 @@ namespace PMB04000FRONT
             var loEx = new R_Exception();
             try
             {
-                var loList = (List<PMB04000DTO>)eventArgs.Data;
 
-                List<PMB04000DTO> poDataSelected = _viewModelInvoice.ValidationProcessData(loList);
+                ObservableCollection<PMB04000DTO> loList = _viewModelReceipt.loOfficialReceipt;
+
+                List<PMB04000DTO> poDataSelected = _viewModelInvoice.ValidationProcessData(loList.ToList());
 
                 _viewModelInvoice._mergeRefNoParamater = string.Join(",", poDataSelected.Select(item => item.CREF_NO));
 
@@ -287,7 +340,7 @@ namespace PMB04000FRONT
                         CREPORT_FILENAME = "",
                         CREPORT_FILETYPE = "",
                     };
-                    
+
                     var storageIds = new[] { nameof(TemplateDTO.CSTORAGE_ID01), nameof(TemplateDTO.CSTORAGE_ID02), nameof(TemplateDTO.CSTORAGE_ID03), nameof(TemplateDTO.CSTORAGE_ID04), nameof(TemplateDTO.CSTORAGE_ID05), nameof(TemplateDTO.CSTORAGE_ID06) };
                     var signNames = new[] { nameof(TemplateDTO.CSIGN_NAME01), nameof(TemplateDTO.CSIGN_NAME02), nameof(TemplateDTO.CSIGN_NAME03), nameof(TemplateDTO.CSIGN_NAME04), nameof(TemplateDTO.CSIGN_NAME05), nameof(TemplateDTO.CSIGN_NAME06) };
                     var signPositions = new[] { nameof(TemplateDTO.CSIGN_POSITION01), nameof(TemplateDTO.CSIGN_POSITION02), nameof(TemplateDTO.CSIGN_POSITION03), nameof(TemplateDTO.CSIGN_POSITION04), nameof(TemplateDTO.CSIGN_POSITION05), nameof(TemplateDTO.CSIGN_POSITION06) };
@@ -298,7 +351,7 @@ namespace PMB04000FRONT
                         loParam.GetType().GetProperty(signNames[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(signNames[i])!.GetValue(x)).FirstOrDefault());
                         loParam.GetType().GetProperty(signPositions[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(signPositions[i])!.GetValue(x)).FirstOrDefault());
                     }
-                    
+
                     var abc = loParam;
                     await _reportService!.GetReport(
                                 "R_DefaultServiceUrlPM",
@@ -325,7 +378,7 @@ namespace PMB04000FRONT
                         CLANG_ID = _clientHelper.ReportCulture,
                         LPRINT = true
                     };
-                    
+
                     var storageIds = new[] { nameof(TemplateDTO.CSTORAGE_ID01), nameof(TemplateDTO.CSTORAGE_ID02), nameof(TemplateDTO.CSTORAGE_ID03), nameof(TemplateDTO.CSTORAGE_ID04), nameof(TemplateDTO.CSTORAGE_ID05), nameof(TemplateDTO.CSTORAGE_ID06) };
                     var signNames = new[] { nameof(TemplateDTO.CSIGN_NAME01), nameof(TemplateDTO.CSIGN_NAME02), nameof(TemplateDTO.CSIGN_NAME03), nameof(TemplateDTO.CSIGN_NAME04), nameof(TemplateDTO.CSIGN_NAME05), nameof(TemplateDTO.CSIGN_NAME06) };
                     var signPositions = new[] { nameof(TemplateDTO.CSIGN_POSITION01), nameof(TemplateDTO.CSIGN_POSITION02), nameof(TemplateDTO.CSIGN_POSITION03), nameof(TemplateDTO.CSIGN_POSITION04), nameof(TemplateDTO.CSIGN_POSITION05), nameof(TemplateDTO.CSIGN_POSITION06) };
