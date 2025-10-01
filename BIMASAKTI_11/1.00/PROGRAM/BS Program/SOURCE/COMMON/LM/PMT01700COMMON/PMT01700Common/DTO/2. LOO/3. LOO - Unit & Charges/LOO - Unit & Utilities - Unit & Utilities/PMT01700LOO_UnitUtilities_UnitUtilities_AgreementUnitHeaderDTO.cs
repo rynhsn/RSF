@@ -28,5 +28,7 @@ namespace PMT01700COMMON.DTO._2._LOO._3._LOO___Unit___Charges.LOO___Unit___Charg
         public string? CTRANS_STATUS { get; set; }
         public string? CCURRENCY_CODE { get; set; }
 
+        public string? CTAXABLE_TYPE { get; set; }
+
     }
 }
