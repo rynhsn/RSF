@@ -1,0 +1,32 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "AP Close Period Error List", ResourceId = "_title_errorList")]
+@using APB00200COMMON.DTO_s;
+
+<R_Grid @ref="@_gridAPProcessError"
+        DataSource="@_viewModel.ListErrorProcess"
+        Pageable="true"
+        R_ConductorGridSource="@_conAPProcessError"
+        R_GridType="@R_eGridType.Batch"
+        AllowAddNewRow="false"
+        AllowEditRow="false"
+        AllowDeleteRow="false"
+        Height="400px"
+        Width="1000px"
+        R_ServiceGetListRecord="@GridAPCloseError_ServiceGetListRecord"
+        PageSize="10">
+    <R_GridColumns>
+        <R_GridNumericColumn TValue="int" FieldName=@nameof(ErrorCloseAPProcessDTO.ISEQ_NO) HeaderText=@_localizer["_col_ino"] Enabled="false" Width="60px"></R_GridNumericColumn>
+        <R_GridTextColumn FieldName=@nameof(ErrorCloseAPProcessDTO.CDESCRIPTION) HeaderText=@_localizer["_col_desc"] Enabled="false" Width="150px"></R_GridTextColumn>
+        <R_GridTextColumn FieldName=@nameof(ErrorCloseAPProcessDTO.CSOLUTION_DESCR) HeaderText=@_localizer["_col_solution"] Enabled="false" Width="200px"></R_GridTextColumn>
+    </R_GridColumns>
+</R_Grid>
+<R_StackLayout Row>
+    <R_ItemLayout>
+        <R_Button Enabled="@(_viewModel.ListErrorProcess.Count>0)" OnClick="@SaveToExcel_OnclickAsync">
+            @_localizer["_btn_saveToExcel"]
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_ConductorGrid @ref="@_conAPProcessError"
+                 R_IsHeader>
+</R_ConductorGrid>
