@@ -711,8 +711,7 @@ namespace PMT01700FRONT
                     loParam.CTRANS_CODE = _viewModel.oParameter.CTRANS_CODE;
                     loParam.CCOMPANY_ID = _clientHelper.CompanyId;
                     loParam.CUSER_ID = _clientHelper.UserId;
-                }
-                ;
+                };
                 await _viewModel.GetEntity(loParam);
 
                 eventArgs.Result = _viewModel.oEntity;
