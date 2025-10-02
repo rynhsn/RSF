@@ -1,7 +1,8 @@
 delete
 from SAT_LOCKING
-where cuser_id = 'rhc'
-
+where cuser_id = 'vfm'
+EXEC RSP_AP_CLOSE_PROCESS
+exec RSP_AP_GET_CLOSE_PERIOD
 begin
     transaction
 IF (OBJECT_ID('tempdb..#__SP_ERR_Table') is null)
