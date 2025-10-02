@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="..\..\..\..\..\..\..\..\..\..\Users\Lenovo\Documents\Work\Training\Training .NET CORE FRONT BACK\Solution\API\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="C:\Users\Lenovo\Documents\Work\Training\Training .NET CORE FRONT BACK\Solution\API\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="09/26/2025 14:16:09" ReportInfo.CreatorVersion="2023.2.21.0">
-  <Dictionary>
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="10/17/2024 17:01:50" ReportInfo.CreatorVersion="2023.2.21.0">
+	<Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="DetailData" DataType="PMR00220COMMON.Print_DTO.Detail.PMR00221ReportDataDTO, PMR00220COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
         <Column Name="Title" DataType="System.String"/>

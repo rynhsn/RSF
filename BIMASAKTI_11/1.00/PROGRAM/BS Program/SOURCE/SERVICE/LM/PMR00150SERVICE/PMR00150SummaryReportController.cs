@@ -205,7 +205,7 @@ namespace PMR00150SERVICE
 
                 _logger.LogInfo("Set BaseHeader Report");
                 //GETLOGO
-                var loBaseHeader = loCls.GetBaseHeaderLogoCompany(poParam);
+                var loBaseHeader = loCls.GetPropertyLogo(poParam);
                 var loParamHeader = new BaseHeaderDTO()
                 {
                     CCOMPANY_NAME = loBaseHeader.CCOMPANY_NAME!,
@@ -213,8 +213,9 @@ namespace PMR00150SERVICE
                     CPRINT_NAME = "LOC List",
                     CUSER_ID = !string.IsNullOrEmpty(poParam.CUSER_ID) ? poParam.CUSER_ID : "",
                     BLOGO_COMPANY = loBaseHeader.CLOGO!,
-                    DPRINT_DATE_COMPANY = DateTime.ParseExact(loBaseHeader.CDATETIME_NOW!, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture)
-                };
+                    //DPRINT_DATE_COMPANY = DateTime.ParseExact(loBaseHeader.CDATETIME_NOW!, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
+                    CPRINT_DATE_COMPANY = DateTime.ParseExact(loBaseHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture).ToString(R_BackGlobalVar.REPORT_FORMAT_SHORT_DATE + " " + R_BackGlobalVar.REPORT_FORMAT_SHORT_TIME)
+            };
                 _logger.LogInfo("Set Header Report");
                 var loHeader = new PMR00150DataHeaderDTO()
                 {

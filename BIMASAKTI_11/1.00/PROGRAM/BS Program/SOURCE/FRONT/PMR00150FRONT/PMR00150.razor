@@ -10,7 +10,7 @@
             <R_Label>@_localizer["_labelProperty"]</R_Label>
         </R_ItemLayout>
 
-        <R_ItemLayout col="3">
+        <R_ItemLayout col="6">
             <R_ComboBox Data="@_viewModel.PropertyList"
                         Value="_viewModel.PropertyCode"
                         ValueField="@nameof(PMR00150PropertyDTO.CPROPERTY_ID)"
@@ -236,7 +236,7 @@
 
 <R_StackLayout Row="true" Class="mt-2 ms-3">
     <R_ItemLayout>
-        <R_PrintButton OnClick="OnPrint" R_Conductor="@_conductorRef">
+        <R_PrintButton OnClick="OnPrint">
             @_localizer["_labelPrint"]
             </R_PrintButton>
     </R_ItemLayout>
