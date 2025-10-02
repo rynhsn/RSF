@@ -133,7 +133,7 @@
     <value>Process</value>
   </data>
   <data name="_msg_success" xml:space="preserve">
-    <value>AP Close Period Successfully</value>
+    <value>Closing AP Period processed successfully!</value>
   </data>
   <data name="_col_ino" xml:space="preserve">
     <value>No.</value>
@@ -149,5 +149,11 @@
   </data>
   <data name="_btn_saveToExcel" xml:space="preserve">
     <value>Save to Excel</value>
+  </data>
+  <data name="_confirmation" xml:space="preserve">
+    <value>Are you sure want to proceed Closing AP Period?</value>
+  </data>
+  <data name="_periodErrMsg" xml:space="preserve">
+    <value>Soft Close AP Period should be done prior to Close AP Period!</value>
   </data>
 </root>

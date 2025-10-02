@@ -106,6 +106,15 @@ namespace APB00200FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure want to proceed Closing AP Period?.
+        /// </summary>
+        internal static string _confirmation {
+            get {
+                return ResourceManager.GetString("_confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Period.
         /// </summary>
         internal static string _lbl_currPeriod {
@@ -142,11 +151,20 @@ namespace APB00200FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AP Close Period Successfully.
+        ///   Looks up a localized string similar to Closing AP Period processed successfully!.
         /// </summary>
         internal static string _msg_success {
             get {
                 return ResourceManager.GetString("_msg_success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Soft Close AP Period should be done prior to Close AP Period!.
+        /// </summary>
+        internal static string _periodErrMsg {
+            get {
+                return ResourceManager.GetString("_periodErrMsg", resourceCulture);
             }
         }
         

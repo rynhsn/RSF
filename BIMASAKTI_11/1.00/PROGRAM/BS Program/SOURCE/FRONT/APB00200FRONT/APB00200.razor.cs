@@ -45,7 +45,22 @@ namespace APB00200FRONT
             R_Exception loEx = new();
             try
             {
-                await _viewModel.ProcessCloseAPPeriodAsync();
+                
+
+
+                if (_viewModel.CurrPeriod >= _viewModel.SoftPeriod)
+                {
+                    loEx.Add("ER01", _localizer["_periodErrMsg"]);
+                }
+                else
+                {
+                    var confirmation = await R_MessageBox.Show("", _localizer["_confirmation"], R_eMessageBoxButtonType.YesNo);
+                    
+                    if (confirmation == R_eMessageBoxResult.Yes)
+                    {
+                        await _viewModel.ProcessCloseAPPeriodAsync();
+                    }
+                }
             }
             catch (Exception ex)
             {
