@@ -5,7 +5,7 @@
 <R_TabStrip @ref="@_tabStripRef"
             OnActiveTabIndexChanged="OnActiveTabIndexChanged">
 
-    <R_TabStripTab Title="@_localizer["_OfferList"]" Id="OfferList" Enabled="_viewModel.lControlTabOfferList">
+             <R_TabStripTab Title="@_localizer["_OfferList"]" Id="OfferList" Enabled="_viewModel.lControlTabOfferList">
 
         <!-- From Offer Date -->
         <R_StackLayout Row>
@@ -21,7 +21,7 @@
                 <R_ItemLayout col="6">
                     <R_DatePicker Value="@_viewModel.dFilterFromOfferDate"
                                   ValueChanged="@((DateTime? value) => OnChangedFromOfferDateAsync(value))"
-                                  Enabled />
+                                    Enabled />
 
                 </R_ItemLayout>
 
@@ -62,7 +62,7 @@
 
                 <R_GridCheckBoxSelectColumn Width="80px"
                                             FieldName="@nameof(PMT01700LOO_OfferList_OfferListDTO.LSELECTED_UNIT)"
-                                            ShowSelectAllHeader />
+                                                                ShowSelectAllHeader />
 
                 <R_GridTextColumn Width="195px"
                                   FieldName="@nameof(PMT01700LOO_OfferList_OfferListDTO.CDEPT_NAME)"
@@ -176,46 +176,46 @@
        @* <R_StackLayout Row hidden>*@
         <R_StackLayout Row Class="d-flex justify-content-center">
             <!-- Revise -->
+                <R_ItemLayout>
+                    <R_Button R_ConductorGridSource="@_conductorOfferList"
+                              Enabled="@_viewModel.lControlButtonRevise"
+                              OnClick="@ReviseBtn">
+                        @_localizer["_Revise"]
+                    </R_Button>
+                </R_ItemLayout>
             <R_ItemLayout>
-                <R_Button R_ConductorGridSource="@_conductorOfferList"
-                          Enabled="@_viewModel.lControlButtonRevise"
-                          OnClick="@ReviseBtn">
-                    @_localizer["_Revise"]
-                </R_Button>
-            </R_ItemLayout>
-            <R_ItemLayout>
-                <R_PrintButton Enabled="@(_gridOfferList.HasData)"
-                               R_Before_Open_Popup="@BeforeOpen_PopupPrint">
+                <R_Popup Enabled="@(_gridOfferList.HasData)"
+                         R_Before_Open_Popup="@BeforeOpen_PopupPrint">
                     @_localizer["_Print"]
-                </R_PrintButton>
+                </R_Popup>
             </R_ItemLayout>
 
             <!-- Submit -->
-            <R_ItemLayout>
-                <R_Button R_ConductorGridSource="@_conductorOfferList"
-                          Enabled="_viewModel.lControlButtonSubmit"
-                          OnClick="@SubmitBtn">
-                    @_localizer["_Submit"]
-                </R_Button>
-            </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Button R_ConductorGridSource="@_conductorOfferList"
+                              Enabled="_viewModel.lControlButtonSubmit"
+                              OnClick="@SubmitBtn">
+                        @_localizer["_Submit"]
+                    </R_Button>
+                </R_ItemLayout>
 
-            <R_ItemLayout>
-                <R_Button R_ConductorGridSource="@_conductorOfferList"
-                          Enabled="_viewModel.lControlButtonRedraft"
-                          OnClick="@RedraftBtn">
-                    @_localizer["_Redraft"]
-                </R_Button>
-            </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Button R_ConductorGridSource="@_conductorOfferList"
+                              Enabled="_viewModel.lControlButtonRedraft"
+                              OnClick="@RedraftBtn">
+                        @_localizer["_Redraft"]
+                    </R_Button>
+                </R_ItemLayout>
 
             <!-- Cancel LOO -->
 
-            <R_ItemLayout>
-                <R_Button R_ConductorGridSource="@_conductorOfferList"
-                          Enabled="@_viewModel.lControlButtonCancelLOO_LOC"
-                          OnClick="@CancelLOOBtn">
-                    @_localizer["_CancelLOO"]
-                </R_Button>
-            </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Button R_ConductorGridSource="@_conductorOfferList"
+                              Enabled="@_viewModel.lControlButtonCancelLOO_LOC"
+                              OnClick="@CancelLOOBtn">
+                        @_localizer["_CancelLOO"]
+                    </R_Button>
+                </R_ItemLayout>
 
         </R_StackLayout>
 
@@ -226,7 +226,7 @@
                    R_TabEventCallback="@R_TabEventCallbackAsync"
                    @ref="_tabOffer" />
     </R_TabStripTab>
-    <!-- Offer -->
+        <!-- Offer -->
     <R_TabStripTab Title="@_localizer["_UnitAndCharges"]" Id="UnitNCharges" Enabled="_viewModel.lControlTabUnit">
         <R_TabPage R_Before_Open_TabPage="General_Before_Open_OtherUnit_TabPage"
                    R_TabEventCallback="@R_TabEventCallbackAsync"
@@ -239,10 +239,10 @@
                    @ref="_tabDeposit" />
     </R_TabStripTab>
 
-</R_TabStrip>
+            </R_TabStrip>
 
 <R_ConductorGrid @ref="@_conductorOfferList"
-                 R_IsHeader />
+                      R_IsHeader />
 
 <R_ConductorGrid @ref="@_conductorUnitList"
                  R_ConductorParent="_conductorOfferList" />

@@ -154,8 +154,7 @@ namespace PMB04000BACK
                 _logger.LogDebug("{@ObjectQuery} {@Parameter}", loCommand.CommandText, loDbParam);
 
                 var loReturnTemp = loDb.SqlExecQuery(loConn, loCommand, true);
-                loResult = R_Utility.R_ConvertTo<List<TemplateDTO>>(loReturnTemp).ToList().Any() ?
-                           R_Utility.R_ConvertTo<List<TemplateDTO>>(loReturnTemp).FirstOrDefault()! : new List<TemplateDTO>();
+                loResult = R_Utility.R_ConvertTo<TemplateDTO>(loReturnTemp).ToList();
             }
 
             catch (Exception ex)

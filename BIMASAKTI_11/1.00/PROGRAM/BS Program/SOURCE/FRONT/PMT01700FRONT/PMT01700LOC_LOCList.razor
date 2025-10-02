@@ -88,6 +88,7 @@
                 R_GridType="@R_eGridType.Original"
                 R_ServiceGetListRecord="@R_ServiceGetListUnitListRecord"
                 Pageable
+                
                 Height="200px"
                 @bind-PageSize="@_pageSizeAggUnitInfo"
                 AllowDeleteRow="false"
@@ -126,10 +127,10 @@
         <!-- Button -->
         <R_StackLayout Row Class="d-flex justify-content-center">
             <R_ItemLayout>
-                <R_PrintButton Enabled="@(_gridLOCList.HasData)"
-                               R_Before_Open_Popup="@BeforeOpen_PopupPrint">
+                <R_Popup Enabled="@(_gridLOCList.HasData)"
+                                  R_Before_Open_Popup="@BeforeOpen_PopupPrint">
                     @_localizer["_Print"]
-                </R_PrintButton>
+                </R_Popup>
             </R_ItemLayout>
             <!-- Submit -->
             <R_ItemLayout>
@@ -156,31 +157,31 @@
             </R_ItemLayout>
         </R_StackLayout>
 
-    </R_TabStripTab>
-    <!-- LOC -->
-    <R_TabStripTab Title="@_localizer["_LOC"]" Id="LOC" Enabled="_viewModel.lControlTabOffer">
+        </R_TabStripTab>
+        <!-- LOC -->
+        <R_TabStripTab Title="@_localizer["_LOC"]" Id="LOC" Enabled="_viewModel.lControlTabOffer">
         <R_TabPage R_Before_Open_TabPage="Before_Open_LOC_TabPage"
                    R_TabEventCallback="@R_TabEventCallbackAsync"
                    @ref="_tabOffer" />
-    </R_TabStripTab>
+        </R_TabStripTab>
 
-    <!-- UNITCHARGES -->
-    <R_TabStripTab Title="@_localizer["_UnitAndCharges"]" Id="UnitNCharges" Enabled="_viewModel.lControlTabUnit">
+        <!-- UNITCHARGES -->
+        <R_TabStripTab Title="@_localizer["_UnitAndCharges"]" Id="UnitNCharges" Enabled="_viewModel.lControlTabUnit">
         <R_TabPage R_Before_Open_TabPage="General_Before_Open_UnitCharges_TabPage"
                    R_TabEventCallback="@R_TabEventCallbackAsync"
                    @ref="_tabUnit" />
-    </R_TabStripTab>
-    <!-- Offer -->
-    <R_TabStripTab Title="@_localizer["_Deposit"]" Id="Deposit" Enabled="_viewModel.lControlTabDeposit">
+        </R_TabStripTab>
+        <!-- Offer -->
+        <R_TabStripTab Title="@_localizer["_Deposit"]" Id="Deposit" Enabled="_viewModel.lControlTabDeposit">
         <R_TabPage R_Before_Open_TabPage="General_Before_Open_Deposit_TabPage"
                    R_TabEventCallback="@R_TabEventCallbackAsync"
                    @ref="_tabDeposit" />
-    </R_TabStripTab>
+        </R_TabStripTab>
 
-</R_TabStrip>
+        </R_TabStrip>
 
-<R_ConductorGrid @ref="@_conductorLOCList"
-                 R_IsHeader />
+        <R_ConductorGrid @ref="@_conductorLOCList"
+                      R_IsHeader />
 
 <R_ConductorGrid @ref="@_conductorUnitList"
                  R_ConductorParent="_conductorLOCList" />

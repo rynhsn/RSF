@@ -1,0 +1,53 @@
+﻿@page "/APB00200"
+@using APB00200COMMON.DTO_s;
+@inherits R_Page
+
+@* current period *@
+<R_StackLayout Row Class="ms-3">
+    <R_ItemLayout col="3">
+        <R_Label FontSize="20px">@_localizer["_lbl_currSoftPeriod"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_Label FontColor="R_eFontColor.Primary" FontSize="20px"> @_viewModel.ClosePeriod.CSOFT_PERIOD</R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* soft period *@
+<R_StackLayout Row Class="ms-3">
+    <R_ItemLayout col="3">
+        <R_Label FontSize="20px">@_localizer["_lbl_currPeriod"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_Label FontColor="R_eFontColor.Primary" FontSize="20px"> @_viewModel.ClosePeriod.CCURRENT_PERIOD</R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* timestamp *@
+<R_StackLayout Row Class="mt-3 ms-3">
+    <R_ItemLayout col="2">
+        <R_Label FontSize="14px">@_localizer["_lbl_lastClosedBy"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_DateTimePicker @bind-Value="_viewModel.ClosePeriod.DCLOSING_DATE"
+                          Enabled="false"
+                          ShowPickerButton="false" />
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="_viewModel.ClosePeriod.CCLOSE_END_BY"
+                   Enabled="false" />
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* warning label*@
+<R_StackLayout Row Class="mt-3 ms-3">
+    <R_ItemLayout col="6">
+        <R_Label FontColor="R_eFontColor.Danger" FontSize="18px"> @_localizer["_lbl_warning"]</R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+@* button *@
+<R_StackLayout Class="ms-3">
+    <R_ItemLayout>
+        <R_Button OnClick="@OnClick_BtnProcessAsync">@_localizer["_btn_process"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

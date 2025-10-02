@@ -1054,7 +1054,9 @@ namespace PMT01700FRONT
                     CCOMPANY_ID = _clientHelper.CompanyId,
                     CPROPERTY_ID = _viewModelUtilities.oParameterUtilities.CPROPERTY_ID!,
                     CCHARGE_TYPE_ID = _viewModelUtilities.Data.CCHARGES_TYPE!,
-                    CUSER_ID = _clientHelper.UserId
+                    CUSER_ID = _clientHelper.UserId,
+                    CTAXABLE_TYPE = _viewModel.oHeaderEntity.CTAXABLE_TYPE ,
+                  
                 };
                 eventArgs.Parameter = param;
                 eventArgs.TargetPageType = typeof(LML00400);
