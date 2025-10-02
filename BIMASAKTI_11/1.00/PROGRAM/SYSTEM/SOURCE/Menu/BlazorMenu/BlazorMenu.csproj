@@ -22,6 +22,7 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\APB00200FRONT\APB00200FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\APR00100FRONT\APR00100FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\APR00300Front\APR00300Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\APR00500Front\APR00500Front.csproj" />
