@@ -1,0 +1,124 @@
+﻿@page "/PMB01800"
+@using PMB01800COMMON.DTOs
+@using PMB01800Common.DTOs
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_pageTitle", Title = "Generate Deposit Adjustment")]
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label FontColor="R_eFontColor.Danger">@_localizer["CPROPERTY_ID"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="_viewModel.PropertyList"
+                    Value="_viewModel.Param.CPROPERTY_ID"
+                    ValueField="@nameof(PMB01800PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(PMB01800PropertyDTO.CPROPERTY_NAME)"
+                    ValueChanged="@((string value) => _valueChangedProperty(value))"
+                    Enabled />
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["CPAR_TRANS_TYPE"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="_viewModel.TransTypeList"
+                    Value="_viewModel.Param.CTRANS_TYPE"
+                    ValueField="@nameof(PMB01800TransTypeDTO.CCODE)"
+                    TextField="@nameof(PMB01800TransTypeDTO.CNAME)"
+                    ValueChanged="@((string value) => _valueChangedTransType(value))"
+                    Enabled />
+    </R_ItemLayout>
+    <R_ItemLayout auto="false">
+        <R_RadioGroup Data="@_viewModel.TransTypeCodeList"
+                      TextField="@nameof(PMB01800TransTypeDTO.CNAME)"
+                      ValueField="@nameof(PMB01800TransTypeDTO.CCODE)"
+                      Value="@_viewModel.Param.CPAR_TRANS_CODE"
+                      ValueChanged="@((string value) => _valueChangedTransTypeCode(value))">
+                  </R_RadioGroup>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="3">
+        <R_RadioGroup Data="@_viewModel.DepartmentTypeList"
+                      TextField="@nameof(PMB01800TransTypeDTO.CNAME)"
+                      ValueField="@nameof(PMB01800TransTypeDTO.CCODE)"
+                      Value="@_viewModel.selectedRadioDeptType"
+                      ValueChanged="@((string value) => _valueChangedDeptType(value))">
+        </R_RadioGroup>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="_viewModel.Param.CPAR_DEPT_CODE"
+                   R_ConductorSource="_conductorRef"
+                   Enabled="@(_viewModel.selectedRadioDeptType=="2")"
+                   CharacterCasing="R_eCharacterCasing.Upper"
+                   MaxLength="int.MaxValue"
+                   OnLostFocus="@OnLostFocus_LookupDept" TabIndex="9" />
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup Enabled="@(_viewModel.selectedRadioDeptType=="2")" R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupDept" R_After_Open_Lookup="@AfterOpen_lookupDeptAsync" TabIndex="10">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_TextBox @bind-Value="_viewModel.Param.CPAR_DEPT_NAME"
+                   R_ConductorSource="_conductorRef"
+                   Enabled="false" />
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="@onClickBtnRefresh" TabIndex="7" Class="ps-2">@_localizer["BTN_REFRESH"]</R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button OnClick="@onClickBtnProcess" TabIndex="7" Class="ps-2" Enabled="@_gridDepositList.DataSource.Any(x=> x.LSELECTED)">@_localizer["BTN_PROCESS"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row>
+    <R_Grid @ref="@_gridDepositList"
+            DataSource="@_viewModel.DepositList"
+            Pageable
+            PageSize="12"
+            R_ConductorGridSource="@_conductorGrid"
+            R_GridType="@R_eGridType.Batch"
+            R_ServiceGetListRecord="@Deposit_List"
+            AllowEditRow
+            R_ServiceGetRecord="@Deposit_GetRecord"
+            R_Display="@DisplayUtility"
+            R_Validation="@Deposit_Validation"
+            R_CheckBoxSelectValueChanged="CheckBoxSelectValueChanged"
+            AllowAddNewRow="false"
+            Width="100%"
+            Height="320px"
+            R_ServiceSaveBatch="@SaveBatch">
+        <R_GridColumns>
+            <R_GridCheckBoxSelectColumn FieldName="@nameof(PMB01800GetDepositListDTO.LSELECTED)" Width="30px" ShowSelectAllHeader Filterable="false" Resizable="false" />
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CDEPT)" HeaderText="@_localizer["CDEPT"]" Width="150px" />
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CTRANS_TYPE)" HeaderText="@_localizer["CTRANS_TYPE"]" Width="100px" />
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CREF_NO)" HeaderText="@_localizer["CREF_NO"]" Width="250px" />
+            <R_GridDatePickerColumn FieldName="@nameof(PMB01800GetDepositListDTO.DSTART_DATE)" HeaderText="@_localizer["CSTART_DATE"]" Width="150px"></R_GridDatePickerColumn>
+            <R_GridDatePickerColumn FieldName="@nameof(PMB01800GetDepositListDTO.DEND_DATE)" HeaderText="@_localizer["CSTART_DATE"]" Width="150px"></R_GridDatePickerColumn>
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CTENANT)" HeaderText="@_localizer["CTENANT"]" Width="250px" />
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CDEPOSIT)" HeaderText="@_localizer["CDEPOSIT"]" Width="250px" />
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CDEPOSIT_DATE)" HeaderText="@_localizer["CDEPOSIT_DATE"]" Width="250px" />
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.NDEPOSIT_AMOUNT)" HeaderText="@_localizer["NDEPOSIT_AMOUNT"]" Width="250px" />
+            <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMB01800GetDepositListDTO.NDEPOSIT_AMOUNT)" HeaderText="@_localizer["NDEPOSIT_AMOUNT"]" Width="150px" Arrows="@false" ThousandSeparator></R_GridNumericColumn>
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CINVOICE_NO)" HeaderText="@_localizer["CINVOICE_NO"]" Width="250px" />
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CCONTRACTOR_NAME)" HeaderText="@_localizer["CCONTRACTOR_NAME"]" Width="250px" />
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CBUILDING_NAME)" HeaderText="@_localizer["CBUILDING_NAME"]" Width="250px" />
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CCATEGORY)" HeaderText="@_localizer["CCATEGORY"]" Width="250px" />
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CDOC_NO)" HeaderText="@_localizer["CDOC_NO"]" Width="250px" />
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CDOC_DATE)" HeaderText="@_localizer["CDOC_DATE"]" Width="250px" />
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CUPDATE_BY)" HeaderText="@_localizer["CUPDATE_BY"]" Width="250px" />
+            <R_GridDateTimePickerColumn FieldName="@nameof(PMB01800GetDepositListDTO.DUPDATE_DATE)" HeaderText="@_localizer["DUPDATE_DATE"]" Width="150px"></R_GridDateTimePickerColumn>
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CCREATE_BY)" HeaderText="@_localizer["CCREATE_BY"]" Width="250px" />
+            <R_GridDateTimePickerColumn FieldName="@nameof(PMB01800GetDepositListDTO.DCREATE_DATE)" HeaderText="@_localizer["DCREATE_DATE"]" Width="150px"></R_GridDateTimePickerColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+<R_StackLayout Class="mt-1">
+    <R_ItemLayout col="12">
+        <R_ProgressBar Label="@_viewModel01.Message" MaxValue="100"
+                       Value="@_viewModel01.Percentage"></R_ProgressBar>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorGrid" R_IsHeader></R_ConductorGrid>
