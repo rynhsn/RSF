@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="07/31/2024 14:43:45" ReportInfo.Modified="09/30/2025 16:49:02" ReportInfo.CreatorVersion="2023.2.21.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="07/31/2024 14:43:45" ReportInfo.Modified="10/01/2025 14:14:07" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="Column" DataType="PMB04000COMMONPrintBatch.PMB04000ColumnDTO, PMB04000COMMONPrintBatch, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -115,7 +115,7 @@
           <TextObject Name="Text11" Left="66.15" Top="18.9" Width="160.65" Height="18.9" Text="[ResponseDataModel.Data.NTRANS_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 9pt" Trimming="EllipsisCharacter"/>
           <LineObject Name="Line4" Left="500.85" Top="37.8" Width="207.9"/>
           <TextObject Name="Text14" Left="500.85" Top="18.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.CCITY]," HorzAlign="Right" Font="Arial Unicode MS, 9pt"/>
-          <TextObject Name="Text15" Left="595.35" Top="18.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.DTODAY_DATE]" Format="Date" Format.Format="MMMM dd, yyyy" AutoWidth="true" Font="Arial Unicode MS, 9pt"/>
+          <TextObject Name="Text15" Left="595.35" Top="18.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.CTODAY_DATE]" AutoWidth="true" Font="Arial Unicode MS, 9pt"/>
         </DataFooterBand>
       </DataBand>
       <GroupFooterBand Name="GroupFooter1" Top="308.95" Width="718.2" Height="340.2">

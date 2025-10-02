@@ -273,7 +273,7 @@ namespace PMB04000FRONT
                 _viewModel.pcTYPE_PROCESS = "CREATE_RECEIPT";
 
                 if (await R_MessageBox.Show("Confirmation",
-                    $"Are you sure want to create receipt selected Data?",
+                    $"Are you sure want to create Receipt selected Data?",
                      R_eMessageBoxButtonType.YesNo) == R_eMessageBoxResult.Yes)
                 {
                     var loParam = new PMB04000ParamDTO

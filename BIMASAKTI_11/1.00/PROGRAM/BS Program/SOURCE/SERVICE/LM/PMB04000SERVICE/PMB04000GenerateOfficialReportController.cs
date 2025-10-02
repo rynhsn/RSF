@@ -373,8 +373,13 @@ namespace PMB04000Service
                 foreach (var item in loReturn)
                 {
                     item.DINVOICE_DATE = ConvertStringToDateTimeFormat(item.CINVOICE_DATE);
-                    item.DTODAY_DATE = ConvertStringToDateTimeFormat(item.CTODAY_DATE);
+                    item.DTODAY_DATE = ConvertStringToDateTimeFormat(item.CTODAY_DATE); //20251019
+                    item.CTODAY_DATE = ConvertStringToDateTimeFormat(item.CTODAY_DATE)?.ToString(R_BackGlobalVar.REPORT_FORMAT_LONG_DATE);
+                    //item.DTODAY_DATE = item.DTODAY_DATE// 19 Oktober 2025
                 }
+
+                //loReturn.ForEach(
+                    //item => item.CTODAY_DATE = item.DTODAY_DATE?.ToString(R_BackGlobalVar.REPORT_FORMAT_LONG_DATE));
             }
             catch (Exception ex)
             {
