@@ -1,5 +1,6 @@
 ﻿using APB00200COMMON.DTO_s;
 using R_BlazorFrontEnd.Exceptions;
+using R_BlazorFrontEnd.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,6 +22,9 @@ namespace APB00200MODEL.View_Model
 
         public Func<Task> ShowSuccessPopup { get; set; }
 
+        public int CurrPeriod { get; set; }
+        public int SoftPeriod { get; set; }
+
         //methods
         public async Task InitialProcessAsync()
         {
@@ -28,6 +32,10 @@ namespace APB00200MODEL.View_Model
             try
             {
                 await GetClosePeriodAsync();
+
+                CurrPeriod = int.Parse(ClosePeriod.CCURRENT_PERIOD);
+                SoftPeriod = int.Parse(ClosePeriod.CSOFT_PERIOD);
+
                 ClosePeriod.CCURRENT_PERIOD = ConvertToDashFormat(ClosePeriod.CCURRENT_PERIOD) ?? "";
                 ClosePeriod.CSOFT_PERIOD = ConvertToDashFormat(ClosePeriod.CSOFT_PERIOD) ?? "";
             }
@@ -64,15 +72,18 @@ namespace APB00200MODEL.View_Model
                     CPERIOD_YEAR = ClosePeriod.CPERIOD_YEAR
                 });
                 CloseAPProcessResultDTO loResult = loListError.Data;
-                if (loResult.LERROR)
-                {
-                    await ShowErrorPopup();
-                }
-                else
-                {
+                //if (loResult.LERROR)
+                //{
+                //    await ShowErrorPopup();
+                //}
+                //else
+                //{
                     await ShowSuccessPopup();
                     await GetClosePeriodAsync();
-                }
+
+                    ClosePeriod.CCURRENT_PERIOD = ConvertToDashFormat(ClosePeriod.CCURRENT_PERIOD) ?? "";
+                    ClosePeriod.CSOFT_PERIOD = ConvertToDashFormat(ClosePeriod.CSOFT_PERIOD) ?? "";
+                //}
             }
             catch (Exception ex)
             {
