@@ -28,7 +28,7 @@ namespace Lookup_PMModel.ViewModel.LML00900
         public List<PeriodDTO> Period { get; set; } = new List<PeriodDTO>
             { new PeriodDTO { CCODE = "A", CNAME = "All" },
               new PeriodDTO { CCODE = "P", CNAME = "For Period" } };
-        public string PeriodValue = "A";
+        public string PeriodValue = "P";
         string lcPeriodParam = "";
         public bool _btnOk = false;
         public bool _enableYearMonthField = false;

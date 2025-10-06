@@ -151,12 +151,18 @@
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
       "Lookup_PMCOMMON/1.0.0": {
         "runtime": {
-          "Lookup_PMCOMMON.dll": {}
+          "Lookup_PMCOMMON.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Lookup_PMFrontResources/1.0.0": {
         "runtime": {
-          "Lookup_PMFrontResources.dll": {}
+          "Lookup_PMFrontResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Lookup_PMModel/1.0.0": {
@@ -165,7 +171,10 @@
           "Lookup_PMFrontResources": "1.0.0"
         },
         "runtime": {
-          "Lookup_PMModel.dll": {}
+          "Lookup_PMModel.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "R_BlazorFrontEnd.Controls/1.0.0.0": {
