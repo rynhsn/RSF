@@ -23,9 +23,10 @@ namespace PMB01800MODEL.ViewModel
         public PMB01800GetDepositListDTO Entity = new PMB01800GetDepositListDTO();
         public List<PMB01800PropertyDTO> PropertyList = new List<PMB01800PropertyDTO>();
         public static string CPAR_TRANS_CODE_UNIT { get; set; } = "802061,802030";
-        public  string CPROGRAM_ID { get; set; } = "PMB01800";
-        public PMB01800GetDepositListParamDTO Param = new PMB01800GetDepositListParamDTO() {
-            CTRANS_TYPE ="A",
+        public string CPROGRAM_ID { get; set; } = "PMB01800";
+        public PMB01800GetDepositListParamDTO Param = new PMB01800GetDepositListParamDTO()
+        {
+            CTRANS_TYPE = "A",
             CPAR_TRANS_CODE = CPAR_TRANS_CODE_UNIT,
             CPAR_DEPT_CODE = ""
         };
@@ -88,6 +89,12 @@ namespace PMB01800MODEL.ViewModel
                 loResult.Select(x =>
                     x.DEND_DATE = DateTime.ParseExact(x.CEND_DATE, "yyyyMMdd", CultureInfo.InvariantCulture)).ToList();
                 DepositList = new ObservableCollection<PMB01800GetDepositListDTO>(loResult);
+                loResult.Select(x =>
+                    x.DDEPOSIT_DATE = DateTime.ParseExact(x.CDEPOSIT_DATE, "yyyyMMdd", CultureInfo.InvariantCulture)).ToList();
+                DepositList = new ObservableCollection<PMB01800GetDepositListDTO>(loResult);
+                loResult.Select(x =>
+                    x.DDOC_DATE = DateTime.ParseExact(x.CDOC_DATE, "yyyyMMdd", CultureInfo.InvariantCulture)).ToList();
+                DepositList = new ObservableCollection<PMB01800GetDepositListDTO>(loResult);
             }
             catch (Exception ex)
             {
@@ -96,7 +103,7 @@ namespace PMB01800MODEL.ViewModel
             loEx.ThrowExceptionIfErrors();
         }
 
-        
+
 
     }
 }

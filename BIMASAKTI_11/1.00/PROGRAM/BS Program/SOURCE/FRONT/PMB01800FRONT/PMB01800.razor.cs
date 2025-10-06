@@ -85,6 +85,7 @@ namespace PMB01800FRONT
                     if (value == _viewModel.Param.CPROPERTY_ID) return;
 
                     _viewModel.Param.CPROPERTY_ID = value;
+                    await _setDefaultDepartment();
                 }
             }
             catch (Exception ex)
@@ -131,19 +132,38 @@ namespace PMB01800FRONT
             R_DisplayException(loEx);
         }
 
-        private void _valueChangedDeptType(string value)
+        private async Task _valueChangedDeptType(string value)
         {
             R_Exception loEx = new R_Exception();
             var loOldValue = _viewModel.Param.CPAR_DEPT_CODE;
             try
             {
+                _viewModel.selectedRadioDeptType = value;
                 if (value == "1")
                 {
-                    
+
                     _viewModel.Param.CPAR_DEPT_CODE = "";
                     _viewModel.Param.CPAR_DEPT_NAME = "";
                 }
-                _viewModel.selectedRadioDeptType = value;
+                else
+                {
+                    //var loLookupViewModel = new LookupGSL00710ViewModel();
+
+                    //var param = new GSL00710ParameterDTO
+                    //{
+                    //    CPROPERTY_ID = _viewModel.Param.CPROPERTY_ID
+                    //};
+                    //await loLookupViewModel.GetDepartmentPropertyList(param);
+                    //if (loLookupViewModel.DepartmentPropertyGrid.Count > 0)
+                    //{
+                    //    _viewModel.Param.CPAR_DEPT_CODE = loLookupViewModel.DepartmentPropertyGrid.FirstOrDefault()?.CDEPT_CODE;
+                    //    _viewModel.Param.CPAR_DEPT_NAME = loLookupViewModel.DepartmentPropertyGrid
+                    //        .Where(x => x.CDEPT_CODE == _viewModel.Param.CPAR_DEPT_CODE)
+                    //        .Select(x => x.CDEPT_NAME).FirstOrDefault() ?? string.Empty;
+                    //}
+                    await _setDefaultDepartment();
+                }
+
             }
             catch (Exception ex)
             {
@@ -152,6 +172,40 @@ namespace PMB01800FRONT
                 _viewModel.selectedRadioDeptType = loOldValue;
             }
             R_DisplayException(loEx);
+        }
+
+        private async Task _setDefaultDepartment()
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                if (_viewModel.selectedRadioDeptType == "2")
+                {
+                    var loLookupViewModel = new LookupGSL00710ViewModel();
+                    var param = new GSL00710ParameterDTO
+                    {
+                        CPROPERTY_ID = _viewModel.Param.CPROPERTY_ID
+                    };
+                    await loLookupViewModel.GetDepartmentPropertyList(param);
+                    if (loLookupViewModel.DepartmentPropertyGrid.Count > 0)
+                    {
+                        _viewModel.Param.CPAR_DEPT_CODE = loLookupViewModel.DepartmentPropertyGrid.FirstOrDefault()?.CDEPT_CODE;
+                        _viewModel.Param.CPAR_DEPT_NAME = loLookupViewModel.DepartmentPropertyGrid
+                            .Where(x => x.CDEPT_CODE == _viewModel.Param.CPAR_DEPT_CODE)
+                            .Select(x => x.CDEPT_NAME).FirstOrDefault() ?? string.Empty;
+                    }
+                    else
+                    {
+                        _viewModel.Param.CPAR_DEPT_CODE = "";
+                        _viewModel.Param.CPAR_DEPT_NAME = "";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
         }
 
         private async Task OnLostFocus_LookupDept()
@@ -167,7 +221,7 @@ namespace PMB01800FRONT
                     var loParam = new GSL00700ParameterDTO // use match param as GSL's dto, send as type in search texbox
                     {
                         CSEARCH_TEXT = _viewModel.Param.CPAR_DEPT_CODE, // property that bindded to search textbox
-                        CPROGRAM_ID=_viewModel.CPROGRAM_ID,
+                        CPROGRAM_ID = _viewModel.CPROGRAM_ID,
                     };
                     var loResult = await loLookupViewModel.GetDepartment(loParam); //retrive single record 
 
@@ -259,7 +313,7 @@ namespace PMB01800FRONT
             try
             {
                 var loData = R_FrontUtility.ConvertObjectToObject<PMB01800GetDepositListDTO>(eventArgs.Data);
-                
+
                 eventArgs.Result = loData;
             }
             catch (Exception ex)
@@ -293,7 +347,7 @@ namespace PMB01800FRONT
 
         private void CheckBoxSelectValueChanged(R_CheckBoxSelectValueChangedEventArgs eventArgs)
         {
-            
+
             eventArgs.Enabled = true;
         }
 
@@ -306,7 +360,7 @@ namespace PMB01800FRONT
                 // await _viewModelUtility.SaveBatch((List<PMT03500UtilityUsageDTO>)eventArgs.Data, ClientHelper.CompanyId, ClientHelper.UserId);
                 var loTempDataList = (List<PMB01800GetDepositListDTO>)eventArgs.Data;
 
-                
+
                 var loDataList =
                     R_FrontUtility.ConvertCollectionToCollection<PMB01800BatchDTO>(loTempDataList.Where(x => x.LSELECTED).ToList());
 

@@ -36,7 +36,7 @@
                       ValueField="@nameof(PMB01800TransTypeDTO.CCODE)"
                       Value="@_viewModel.Param.CPAR_TRANS_CODE"
                       ValueChanged="@((string value) => _valueChangedTransTypeCode(value))">
-                  </R_RadioGroup>
+        </R_RadioGroup>
     </R_ItemLayout>
 </R_StackLayout>
 
@@ -92,25 +92,25 @@
         <R_GridColumns>
             <R_GridCheckBoxSelectColumn FieldName="@nameof(PMB01800GetDepositListDTO.LSELECTED)" Width="30px" ShowSelectAllHeader Filterable="false" Resizable="false" />
             <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CDEPT)" HeaderText="@_localizer["CDEPT"]" Width="150px" />
-            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CTRANS_TYPE)" HeaderText="@_localizer["CTRANS_TYPE"]" Width="100px" />
-            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CREF_NO)" HeaderText="@_localizer["CREF_NO"]" Width="250px" />
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CTRANS_TYPE)" HeaderText="@_localizer["CTRANS_TYPE"]" Width="150px" />
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CREF_NO)" HeaderText="@_localizer["CREF_NO"]" Width="200px" />
             <R_GridDatePickerColumn FieldName="@nameof(PMB01800GetDepositListDTO.DSTART_DATE)" HeaderText="@_localizer["CSTART_DATE"]" Width="150px"></R_GridDatePickerColumn>
-            <R_GridDatePickerColumn FieldName="@nameof(PMB01800GetDepositListDTO.DEND_DATE)" HeaderText="@_localizer["CSTART_DATE"]" Width="150px"></R_GridDatePickerColumn>
+            <R_GridDatePickerColumn FieldName="@nameof(PMB01800GetDepositListDTO.DEND_DATE)" HeaderText="@_localizer["CEND_DATE"]" Width="150px"></R_GridDatePickerColumn>
             <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CTENANT)" HeaderText="@_localizer["CTENANT"]" Width="250px" />
             <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CDEPOSIT)" HeaderText="@_localizer["CDEPOSIT"]" Width="250px" />
-            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CDEPOSIT_DATE)" HeaderText="@_localizer["CDEPOSIT_DATE"]" Width="250px" />
-            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.NDEPOSIT_AMOUNT)" HeaderText="@_localizer["NDEPOSIT_AMOUNT"]" Width="250px" />
-            <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMB01800GetDepositListDTO.NDEPOSIT_AMOUNT)" HeaderText="@_localizer["NDEPOSIT_AMOUNT"]" Width="150px" Arrows="@false" ThousandSeparator></R_GridNumericColumn>
-            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CINVOICE_NO)" HeaderText="@_localizer["CINVOICE_NO"]" Width="250px" />
+            <R_GridDatePickerColumn FieldName="@nameof(PMB01800GetDepositListDTO.DDEPOSIT_DATE)" HeaderText="@_localizer["CDEPOSIT_DATE"]" Width="150px"></R_GridDatePickerColumn>
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.NDEPOSIT_AMOUNT)" HeaderText="@_localizer["NDEPOSIT_AMOUNT"]" Width="130px" />
+            <R_GridNumericColumn TValue="decimal" FieldName="@nameof(PMB01800GetDepositListDTO.NDEPOSIT_AMOUNT)" HeaderText="@_localizer["NDEPOSIT_AMOUNT"]" Width="130px" Arrows="@false" ThousandSeparator></R_GridNumericColumn>
+            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CINVOICE_NO)" HeaderText="@_localizer["CINVOICE_NO"]" Width="150px" />
             <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CCONTRACTOR_NAME)" HeaderText="@_localizer["CCONTRACTOR_NAME"]" Width="250px" />
             <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CBUILDING_NAME)" HeaderText="@_localizer["CBUILDING_NAME"]" Width="250px" />
             <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CCATEGORY)" HeaderText="@_localizer["CCATEGORY"]" Width="250px" />
             <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CDOC_NO)" HeaderText="@_localizer["CDOC_NO"]" Width="250px" />
-            <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CDOC_DATE)" HeaderText="@_localizer["CDOC_DATE"]" Width="250px" />
+            <R_GridDatePickerColumn FieldName="@nameof(PMB01800GetDepositListDTO.DDOC_DATE)" HeaderText="@_localizer["CDOC_DATE"]" Width="150px"></R_GridDatePickerColumn>
             <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CUPDATE_BY)" HeaderText="@_localizer["CUPDATE_BY"]" Width="250px" />
-            <R_GridDateTimePickerColumn FieldName="@nameof(PMB01800GetDepositListDTO.DUPDATE_DATE)" HeaderText="@_localizer["DUPDATE_DATE"]" Width="150px"></R_GridDateTimePickerColumn>
+            <R_GridDateTimePickerColumn FieldName="@nameof(PMB01800GetDepositListDTO.DUPDATE_DATE)" HeaderText="@_localizer["DUPDATE_DATE"]" Width="250px"></R_GridDateTimePickerColumn>
             <R_GridTextColumn FieldName="@nameof(PMB01800GetDepositListDTO.CCREATE_BY)" HeaderText="@_localizer["CCREATE_BY"]" Width="250px" />
-            <R_GridDateTimePickerColumn FieldName="@nameof(PMB01800GetDepositListDTO.DCREATE_DATE)" HeaderText="@_localizer["DCREATE_DATE"]" Width="150px"></R_GridDateTimePickerColumn>
+            <R_GridDateTimePickerColumn FieldName="@nameof(PMB01800GetDepositListDTO.DCREATE_DATE)" HeaderText="@_localizer["DCREATE_DATE"]" Width="250px"></R_GridDateTimePickerColumn>
         </R_GridColumns>
     </R_Grid>
 </R_StackLayout>

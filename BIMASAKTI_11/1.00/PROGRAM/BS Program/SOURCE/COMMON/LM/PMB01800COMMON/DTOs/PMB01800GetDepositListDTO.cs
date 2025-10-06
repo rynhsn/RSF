@@ -18,6 +18,7 @@ namespace PMB01800COMMON.DTOs
         public string CTENANT { get; set; }
         public string CDEPOSIT { get; set; }
         public string CDEPOSIT_DATE { get; set; }
+        public DateTime DDEPOSIT_DATE { get; set; }
         public decimal NDEPOSIT_AMOUNT { get; set; }
         public string CINVOICE_NO { get; set; }
         public string CCONTRACTOR_NAME { get; set; }
@@ -25,6 +26,7 @@ namespace PMB01800COMMON.DTOs
         public string CCATEGORY { get; set; }
         public string CDOC_NO { get; set; }
         public string CDOC_DATE { get; set; }
+        public DateTime DDOC_DATE { get; set; }
         public string CUPDATE_BY { get; set; }
         public DateTime DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; }
