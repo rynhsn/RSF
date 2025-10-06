@@ -8,5 +8,6 @@
         public string? CSTART_DATE { get; set; }
         public string? CEND_DATE { get; set; }
         public decimal NTOTAL_GROSS_AREA { get; set; }
+        public string CTAXABLE_TYPE { get; set; }
     }
 }

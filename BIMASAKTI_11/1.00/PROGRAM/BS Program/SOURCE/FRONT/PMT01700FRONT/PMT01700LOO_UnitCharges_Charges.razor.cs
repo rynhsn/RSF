@@ -727,7 +727,8 @@ namespace PMT01700FRONT
                     CCOMPANY_ID = _clientHelper.CompanyId,
                     CUSER_ID = _clientHelper.UserId,
                     CPROPERTY_ID = _viewModel.oParameterChargeTab.CPROPERTY_ID,
-                    CCHARGE_TYPE_ID = "01,02,05"
+                    CCHARGE_TYPE_ID = "01,02,05",
+                    CTAXABLE_TYPE = _viewModel.oParameterChargeTab.CTAXABLE_TYPE
                 };
             }
             eventArgs.Parameter = param;
@@ -786,6 +787,8 @@ namespace PMT01700FRONT
                     CPROPERTY_ID = _viewModel.oParameterChargeTab.CPROPERTY_ID!,
                     CCHARGE_TYPE_ID = "01,02,05",
                     CSEARCH_TEXT = loGetData.CCHARGES_ID ?? "",
+                    CTAXABLE_TYPE = _viewModel.oParameterChargeTab.CTAXABLE_TYPE
+
                 };
 
                 var loResult = await loLookupViewModel.GetUnitCharges(loParam);

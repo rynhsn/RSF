@@ -775,6 +775,7 @@ namespace PMT01700FRONT
             loParamChargeTab.CEND_DATE = _viewModel.oParameterChargesTab.CEND_DATE;
             loParamChargeTab.CCURRENCY_CODE = _viewModel.oParameterChargesTab.CCURRENCY_CODE;
             loParamChargeTab.NTOTAL_GROSS_AREA = _viewModel.oHeaderEntity.NTOTAL_GROSS_AREA;
+            loParamChargeTab.CTAXABLE_TYPE = _viewModel.oHeaderEntity.CTAXABLE_TYPE;
 
             eventArgs.Parameter = loParamChargeTab;
             eventArgs.TargetPageType = typeof(PMT01700LOO_UnitCharges_Charges);
