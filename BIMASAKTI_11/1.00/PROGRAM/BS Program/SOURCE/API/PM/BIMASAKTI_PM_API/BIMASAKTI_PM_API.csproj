@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.2" />
+        <PackageReference Include="Realta.BackCollectionNuGet" Version="1.1.0" />
     </ItemGroup>
     <ItemGroup>
         <None Remove="Template\Salesman.xlsx" />
