@@ -1416,7 +1416,15 @@ public class PMR03000DistributeReportCls : R_IBatchProcessAsync, R_IProcessJobAs
             };
             await loCls.SaveBillingStatementList(loSaveBillingParam, loConn);
 
-            var loBillingStatement = await loCls.GetBillingStatementList(_poParamReport, loConn);
+            var loParameterBillingStatement = new PMR03000ReportParamDTO()
+            {
+                CCOMPANY_ID = _oKey.COMPANY_ID,
+                CPROPERTY_ID = _poParamReport.CPROPERTY_ID,
+                CFROM_TENANT = poParameter.CTENANT_ID,
+                CTO_TENANT = poParameter.CTENANT_ID,
+                CPERIOD = _poParamReport.CPERIOD
+            };
+            var loBillingStatement = await loCls.GetBillingStatementList(loParameterBillingStatement, loConn);
 
             // Transaction block to save 
             _logger.LogInfo("Starting transaction");
@@ -1927,33 +1935,37 @@ public class PMR03000DistributeReportCls : R_IBatchProcessAsync, R_IProcessJobAs
             poSendToData.CDUE_DATE_DISPLAY = poSendToData.DDUE_DATE.ToString(_LongDate);
             poSendToData.CTOTAL_AMT_DISPLAY = poSendToData.NTOTAL_AMT.ToString("N2", new CultureInfo(_cReportCulture));
 
-            loEmailPar = new R_EmailEngineBackCommandPar()
+            if (string.IsNullOrWhiteSpace(poSendToData.CBILLING_EMAIL) == false)
             {
-                COMPANY_ID = _oKey.COMPANY_ID,
-                USER_ID = _oKey.USER_ID,
-                PROGRAM_ID = "PMR03000",
-                Message = new R_EmailEngineMessage()
+                loEmailPar = new R_EmailEngineBackCommandPar()
                 {
-                    EMAIL_FROM = loEmailTemplate.CGENERAL_EMAIL_ADDRESS!,
-                    EMAIL_BODY = string.Format(loEmailTemplate.CTEMPLATE_BODY, poSendToData.CTENANT_NAME,
+                    COMPANY_ID = _oKey.COMPANY_ID,
+                    USER_ID = _oKey.USER_ID,
+                    PROGRAM_ID = "PMR03000",
+                    Message = new R_EmailEngineMessage()
+                    {
+                        EMAIL_FROM = loEmailTemplate.CGENERAL_EMAIL_ADDRESS!,
+                        EMAIL_BODY = string.Format(loEmailTemplate.CTEMPLATE_BODY, poSendToData.CTENANT_NAME,
                         poSendToData.CUNIT_NAME,
                         poSendToData.CPERIOD_DISPLAY, poSendToData.CCURRENCY_CODE, poSendToData.CTOTAL_AMT_DISPLAY,
                         poSendToData.CDUE_DATE_DISPLAY),
-                    EMAIL_SUBJECT = string.Format(
+                        EMAIL_SUBJECT = string.Format(
                         R_Utility.R_GetMessage(typeof(PMR03000BackResources.Resources_Dummy_Class), "EmailSubject",
                             new CultureInfo(_cReportCulture)), poSendToData.CPROPERTY_NAME, poSendToData.CTENANT_ID,
                         poSendToData.CTENANT_NAME),
-                    EMAIL_TO = poSendToData.CBILLING_EMAIL!,
-                    EMAIL_CC = "", //"ericsonwen123@gmail.com",//"hafizmursiddd@gmail.com", // hafiz.codeid@realta.net
-                    EMAIL_BCC = "",
-                    FLAG_HTML = true
-                }
-            };
-            _logger.LogInfo("Get data to send to email engine");
-            _logger.LogDebug("Data loEmailPar to send to email engine: {@Parameter}", loEmailPar);
-            loConn = poConnection;
-            loEmailPar.Attachments = loEmailFiles;
-            lcRtn = await R_EmailEngineBack.R_EmailEngineSaveFromBackAsync(loEmailPar, loConn);
+                        EMAIL_TO = poSendToData.CBILLING_EMAIL!,
+                        EMAIL_CC = "", //"ericsonwen123@gmail.com",//"hafizmursiddd@gmail.com", // hafiz.codeid@realta.net
+                        EMAIL_BCC = "",
+                        FLAG_HTML = true
+                    }
+                };
+
+                _logger.LogInfo("Get data to send to email engine");
+                _logger.LogDebug("Data loEmailPar to send to email engine: {@Parameter}", loEmailPar);
+                loConn = poConnection;
+                loEmailPar.Attachments = loEmailFiles;
+                lcRtn = await R_EmailEngineBack.R_EmailEngineSaveFromBackAsync(loEmailPar, loConn);
+            }
         }
         catch (Exception ex)
         {
