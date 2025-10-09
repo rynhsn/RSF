@@ -150,12 +150,18 @@
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
       "ICI00200Common/1.0.0": {
         "runtime": {
-          "ICI00200Common.dll": {}
+          "ICI00200Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "ICI00200FrontResources/1.0.0": {
         "runtime": {
-          "ICI00200FrontResources.dll": {}
+          "ICI00200FrontResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "ICI00200Model/1.0.0": {
@@ -163,12 +169,18 @@
           "ICI00200Common": "1.0.0"
         },
         "runtime": {
-          "ICI00200Model.dll": {}
+          "ICI00200Model.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Lookup_GSCOMMON/1.0.0": {
         "runtime": {
-          "Lookup_GSCOMMON.dll": {}
+          "Lookup_GSCOMMON.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Lookup_GSFRONT/1.0.0": {
@@ -177,12 +189,18 @@
           "Microsoft.AspNetCore.Components.Web": "6.0.33"
         },
         "runtime": {
-          "Lookup_GSFRONT.dll": {}
+          "Lookup_GSFRONT.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Lookup_GSFrontResources/1.0.0": {
         "runtime": {
-          "Lookup_GSFrontResources.dll": {}
+          "Lookup_GSFrontResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Lookup_GSModel/1.0.0": {
@@ -191,7 +209,10 @@
           "Lookup_GSFrontResources": "1.0.0"
         },
         "runtime": {
-          "Lookup_GSModel.dll": {}
+          "Lookup_GSModel.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "R_BlazorFrontEnd.Controls/1.0.0.0": {

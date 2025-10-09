@@ -22,11 +22,11 @@ namespace Lookup_PMModel.ViewModel.LML00200
 
             try
             {
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParam.CPROPERTY_ID);
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCHARGE_TYPE_ID, poParam.CCHARGE_TYPE_ID);
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTAXABLE_TYPE, poParam.CTAXABLE_TYPE);
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CACTIVE_TYPE, poParam.CACTIVE_TYPE);
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTAX_DATE, poParam.CTAX_DATE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, string.IsNullOrWhiteSpace(poParam.CPROPERTY_ID) ? "" : poParam.CPROPERTY_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCHARGE_TYPE_ID, string.IsNullOrWhiteSpace(poParam.CCHARGE_TYPE_ID) ? "" : poParam.CCHARGE_TYPE_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTAXABLE_TYPE, string.IsNullOrWhiteSpace(poParam.CTAXABLE_TYPE) ? "0" : poParam.CTAXABLE_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CACTIVE_TYPE, string.IsNullOrWhiteSpace(poParam.CACTIVE_TYPE) ? "0" : poParam.CACTIVE_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CTAX_DATE, string.IsNullOrWhiteSpace(poParam.CTAX_DATE) ? "" : poParam.CTAX_DATE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LACCRUAL, poParam.LACCRUAL);
 
                 var loResult = await _model.LML00200GetUnitChargesListAsync();

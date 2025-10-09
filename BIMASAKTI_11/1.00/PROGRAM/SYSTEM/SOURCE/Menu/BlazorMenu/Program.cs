@@ -16,8 +16,8 @@ builder.Services.R_AddBlazorFrontEndControls();
 
 builder.R_RegisterBlazorServices(option =>
 {
-    //if (!builder.HostEnvironment.IsDevelopment())
-    //    option.R_WithMultiTenant();
+    if (!builder.HostEnvironment.IsDevelopment())
+        option.R_WithMultiTenant();
 });
 
 builder.Services.R_AddBlazorMenuServices();
