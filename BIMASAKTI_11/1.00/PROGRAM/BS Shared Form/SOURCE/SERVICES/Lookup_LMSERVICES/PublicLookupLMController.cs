@@ -18,6 +18,7 @@ using Lookup_PMCOMMON.DTOs.LML01700;
 using Lookup_PMCOMMON.DTOs.LML01800;
 using Lookup_PMCOMMON.DTOs.LML01900;
 using Lookup_PMCOMMON.DTOs.UtilityDTO;
+using Lookup_PMCOMMON.DTOs.LML02000;
 
 namespace Lookup_PMSERVICES
 {
@@ -779,6 +780,44 @@ namespace Lookup_PMSERVICES
                 _loggerLookup.LogInfo($"Call method {0}", lcMethodName);
 
                 loReturnTemp = loCls.LML01900Staff(poParameter);
+                loRtn = GetStreaming(loReturnTemp);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _loggerLookup.LogError(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+            _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
+            return loRtn!;
+        }
+        [HttpPost]
+        public IAsyncEnumerable<LML02000DTO> LML02000LML02000TenantCategoryList()
+        {
+            string lcMethodName = nameof(LML02000LML02000TenantCategoryList);
+            using Activity activity = _activitySource.StartActivity(lcMethodName)!;
+            _loggerLookup.LogInfo(string.Format("START process method {0} on Controller", lcMethodName));
+
+            var loEx = new R_Exception();
+            IAsyncEnumerable<LML02000DTO> loRtn = null;
+            List<LML02000DTO> loReturnTemp;
+
+            try
+            {
+                var loCls = new PublicLookupLMCls();
+                var poParameter = new LML02000ParameterDTO();
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
+                poParameter.CPARENT_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPARENT_ID);
+                poParameter.LCHILD_ONLY = R_Utility.R_GetStreamingContext<bool>(ContextConstantPublicLookup.LCHILD_ONLY);
+                poParameter.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
+                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+                _loggerLookup.LogInfo(string.Format("Get Parameter {0} on Controller", lcMethodName));
+                _loggerLookup.LogDebug("DbParameter {@Parameter} ", poParameter);
+                _loggerLookup.LogInfo($"Call method {0}", lcMethodName);
+
+                loReturnTemp = loCls.LML02000TenantCategory(poParameter);
                 loRtn = GetStreaming(loReturnTemp);
             }
             catch (Exception ex)

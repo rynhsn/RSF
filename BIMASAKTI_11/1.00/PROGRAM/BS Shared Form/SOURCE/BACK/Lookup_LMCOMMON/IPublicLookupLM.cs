@@ -10,6 +10,7 @@ using Lookup_PMCOMMON.DTOs.LML01600;
 using Lookup_PMCOMMON.DTOs.LML01700;
 using Lookup_PMCOMMON.DTOs.LML01800;
 using Lookup_PMCOMMON.DTOs.LML01900;
+using Lookup_PMCOMMON.DTOs.LML02000;
 using Lookup_PMCOMMON.DTOs.UtilityDTO;
 
 namespace Lookup_PMCOMMON
@@ -35,6 +36,7 @@ namespace Lookup_PMCOMMON
         IAsyncEnumerable<LML01700DTO> LML01700PrerequisiteCustReceiptList();
         IAsyncEnumerable<LML01800DTO> LML01800UnitTenantList();
         IAsyncEnumerable<LML01900DTO> LML01900StaffList();
+        IAsyncEnumerable<LML02000DTO> LML02000LML02000TenantCategoryList();
         IAsyncEnumerable<PropertyDTO> PropertyList();
         IAsyncEnumerable<BuildingDTO> BuildingList();
         IAsyncEnumerable<FloorDTO> FloorList();
