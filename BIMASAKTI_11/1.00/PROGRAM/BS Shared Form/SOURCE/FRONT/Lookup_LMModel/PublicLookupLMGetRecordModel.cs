@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Lookup_PMCOMMON.DTOs.LML01700;
+using Lookup_PMCOMMON.DTOs.LML02000;
 
 namespace Lookup_PMModel
 {
@@ -120,6 +121,11 @@ namespace Lookup_PMModel
             throw new NotImplementedException();
         }
         public LMLGenericRecord<LML01900DTO> LML01900Staff(LML01900ParamaterDTO poParam)
+        {
+            throw new NotImplementedException();
+        }
+
+       public LMLGenericRecord<LML02000DTO> LML02000TenantCategory(LML02000ParameterDTO poParam)
         {
             throw new NotImplementedException();
         }
@@ -665,6 +671,38 @@ namespace Lookup_PMModel
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
 
                 var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<LMLGenericRecord<LML01900DTO>, LML01900ParamaterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGetRecordLookupLM.LML01900Staff),
+                    poParam,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult!;
+        }
+        #endregion
+
+        #region LML02000GetRecord       
+        public async Task<LML02000DTO> LML02000TenantCategoryAsync(LML02000ParameterDTO poParam)
+        {
+
+            var loEx = new R_Exception();
+            LML02000DTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<LMLGenericRecord<LML02000DTO>, LML02000ParameterDTO>(
                     _RequestServiceEndPoint,
                     nameof(IGetRecordLookupLM.LML01900Staff),
                     poParam,

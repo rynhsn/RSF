@@ -15,5 +15,8 @@ namespace Lookup_PMCOMMON.DTOs.LML02000
         public int ILEVEL { get; set; }
         public int IQUERY_LEVEL { get; set; }
         public bool? LHAS_CHILD { get; set; }
+        public string? ILEVEL_CCATEGORY_ID_CCATEGORY_NAME_DISPLAY { get; set; }
+        public string? CPARENT_ID { get; set; }
+        public string? CPARENT_NAME { get; set; }
     }
 }

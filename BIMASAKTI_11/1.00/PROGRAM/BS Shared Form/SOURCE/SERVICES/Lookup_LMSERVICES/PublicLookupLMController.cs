@@ -792,9 +792,9 @@ namespace Lookup_PMSERVICES
             return loRtn!;
         }
         [HttpPost]
-        public IAsyncEnumerable<LML02000DTO> LML02000LML02000TenantCategoryList()
+        public IAsyncEnumerable<LML02000DTO> LML02000TenantCategoryList()
         {
-            string lcMethodName = nameof(LML02000LML02000TenantCategoryList);
+            string lcMethodName = nameof(LML02000TenantCategoryList);
             using Activity activity = _activitySource.StartActivity(lcMethodName)!;
             _loggerLookup.LogInfo(string.Format("START process method {0} on Controller", lcMethodName));
 

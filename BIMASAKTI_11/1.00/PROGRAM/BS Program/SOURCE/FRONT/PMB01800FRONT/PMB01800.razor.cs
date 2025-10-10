@@ -20,6 +20,8 @@ using R_BlazorFrontEnd.Controls.Events;
 using System.Globalization;
 using R_APICommonDTO;
 using R_BlazorFrontEnd.Controls.MessageBox;
+using Lookup_PMCOMMON.DTOs.LML02000;
+using Lookup_PMFRONT;
 
 namespace PMB01800FRONT
 {
@@ -271,6 +273,29 @@ namespace PMB01800FRONT
                 _viewModel.Param.CPAR_DEPT_NAME = "";
             }
         }
+
+        #region tes
+        private void BeforeOpen_lookupTest(R_BeforeOpenLookupEventArgs eventArgs)
+        {
+            eventArgs.Parameter = new LML02000ParameterDTO() { CPROPERTY_ID = _viewModel.Param.CPROPERTY_ID, LCHILD_ONLY=true };
+            eventArgs.TargetPageType = typeof(LML02000);
+        }
+        private void AfterOpen_lookupTes(R_AfterOpenLookupEventArgs eventArgs)
+        {
+            var loTempResult = (LML02000DTO)eventArgs.Result;
+            if (loTempResult != null)
+            {
+                _viewModel.Param.CPAR_DEPT_CODE = loTempResult.CCATEGORY_ID;
+                _viewModel.Param.CPAR_DEPT_NAME = loTempResult.CCATEGORY_NAME;
+            }
+            else
+            {
+                _viewModel.Param.CPAR_DEPT_CODE = "";
+                _viewModel.Param.CPAR_DEPT_NAME = "";
+            }
+        }
+        #endregion
+
 
         private async Task onClickBtnRefresh()
         {

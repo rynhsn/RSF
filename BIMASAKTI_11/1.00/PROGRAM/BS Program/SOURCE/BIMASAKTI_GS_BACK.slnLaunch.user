@@ -7,27 +7,7 @@
         "Action": "Start"
       },
       {
-        "Path": "API\\GL\\BIMASAKTI_GL_API\\BIMASAKTI_GL_API.csproj",
-        "Action": "Start"
-      },
-      {
         "Path": "API\\PM\\BIMASAKTI_PM_API\\BIMASAKTI_PM_API.csproj",
-        "Action": "Start"
-      },
-      {
-        "Path": "API\\CB\\BIMASAKTI_CB_API\\BIMASAKTI_CB_API.csproj",
-        "Action": "Start"
-      },
-      {
-        "Path": "API\\TX\\BIMASAKTI_TX_API\\BIMASAKTI_TX_API.csproj",
-        "Action": "Start"
-      },
-      {
-        "Path": "API\\BM\\BIMASAKTI_BM_API\\BIMASAKTI_BM_API.csproj",
-        "Action": "Start"
-      },
-      {
-        "Path": "API\\AP\\BIMASAKTI_AP_API\\BIMASAKTI_AP_API.csproj",
         "Action": "Start"
       },
       {

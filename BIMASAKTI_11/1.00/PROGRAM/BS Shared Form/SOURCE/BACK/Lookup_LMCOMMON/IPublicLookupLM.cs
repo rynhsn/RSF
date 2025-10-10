@@ -36,7 +36,7 @@ namespace Lookup_PMCOMMON
         IAsyncEnumerable<LML01700DTO> LML01700PrerequisiteCustReceiptList();
         IAsyncEnumerable<LML01800DTO> LML01800UnitTenantList();
         IAsyncEnumerable<LML01900DTO> LML01900StaffList();
-        IAsyncEnumerable<LML02000DTO> LML02000LML02000TenantCategoryList();
+        IAsyncEnumerable<LML02000DTO> LML02000TenantCategoryList();
         IAsyncEnumerable<PropertyDTO> PropertyList();
         IAsyncEnumerable<BuildingDTO> BuildingList();
         IAsyncEnumerable<FloorDTO> FloorList();
