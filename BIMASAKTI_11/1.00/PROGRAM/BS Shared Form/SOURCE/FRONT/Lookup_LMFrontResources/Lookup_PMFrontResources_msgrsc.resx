@@ -457,4 +457,20 @@
     <value>Unit is empty!</value>
     <comment>Unit is empty!</comment>
   </data>
+  <data name="_TenantCategory" xml:space="preserve">
+    <value>Tenant Category</value>
+    <comment>Tenant Category</comment>
+  </data>
+  <data name="_Filter" xml:space="preserve">
+    <value>Filter</value>
+    <comment>Filter</comment>
+  </data>
+  <data name="_OkBtn" xml:space="preserve">
+    <value>OK</value>
+    <comment>OK</comment>
+  </data>
+  <data name="_ValidationTenantCategory" xml:space="preserve">
+    <value>Selection invalid! Only Category without sub-category can be selected!</value>
+    <comment>Selection invalid! Only Category without sub-category can be selected!</comment>
+  </data>
 </root>

@@ -1,0 +1,42 @@
+﻿@inherits R_Page
+@attribute [R_Page(ResourceId = "_TenantCategory")]
+@using Lookup_PMModel.DTOs
+@inject R_ILocalizer<Lookup_PMFrontResources.Resources_Dummy_Class_LookupPM> _localizer
+
+<R_StackLayout Style="width: 800px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="5">
+            <R_TextBox @bind-Value="@_lcSeacrhTree"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Button R_ConductorSource="@_conductorRef" OnClick="@FilterTree" Enabled="@(_viewModel.TenantCategoryGrid.Count > 0)">@_localizer["_Filter"]</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_TreeView @ref="@_treeRef"
+                    TextField="Description"
+                    IdField="Id"
+                    ParentIdField="ParentId"
+                    HasChildrenField="HasChildren"
+                    Height="400px"
+                    R_ServiceGetListRecord="@R_ServiceGetListRecordAsync"
+                    TModel="PML02000TreeDTO">
+        </R_TreeView>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+            <R_Button OnClick="Button_OnClickOkAsync">
+                @_localizer["_OkBtn"]
+            </R_Button>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+            @_localizer["_btnCancel"]
+            </R_Button>
+    </R_StackLayout>
+
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Conductor_ServiceGetRecord"
+             R_ConvertToGridEntity="@ProductCategory_ConvertToGridEntity"></R_Conductor>
