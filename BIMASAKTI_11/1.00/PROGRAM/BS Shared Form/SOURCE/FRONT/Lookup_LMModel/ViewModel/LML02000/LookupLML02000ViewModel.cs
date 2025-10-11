@@ -37,23 +37,38 @@ namespace Lookup_PMModel.ViewModel.LML02000
 
                 if (poParam.LCHILD_ONLY == true)
                 {
-                    TenantCategoryListResult[1].LHAS_CHILD = true;
-                    TenantCategoryListResult[0].CPARENT_ID = null;
+                    var loGridData = loResult.Select(x =>
+                    new PML02000TreeDTO
+                    {
+                        ParentId = null,
+                        ParentName = x.CPARENT_NAME,
+                        Id = x.CCATEGORY_ID,
+                        Name = x.CCATEGORY_NAME,
+                        Description = x.CCATEGORY_ID_NAME,
+                        Level = x.ILEVEL,
+                        Note = x.CCATEGORY_NAME
+                    }).ToList();
+
+                    TenantCategoryGrid = new ObservableCollection<PML02000TreeDTO>(loGridData);
+                }
+                else
+                {
+                    var loGridData = loResult.Select(x =>
+                    new PML02000TreeDTO
+                    {
+                        ParentId = (x.ILEVEL == 0) ? null : x.CPARENT_ID,
+                        ParentName = x.CPARENT_NAME,
+                        Id = x.CCATEGORY_ID,
+                        Name = x.CCATEGORY_NAME,
+                        Description = x.CCATEGORY_ID_NAME,
+                        Level = x.ILEVEL,
+                        Note = x.CCATEGORY_NAME
+                    }).ToList();
+
+                    TenantCategoryGrid = new ObservableCollection<PML02000TreeDTO>(loGridData);
                 }
 
-                var loGridData = loResult.Select(x =>
-                new PML02000TreeDTO
-                {
-                    ParentId = (x.ILEVEL==0)?null:x.CPARENT_ID,
-                    ParentName = x.CPARENT_NAME,
-                    Id = x.CCATEGORY_ID,
-                    Name = x.CCATEGORY_NAME,
-                    Description = x.CCATEGORY_ID_NAME,
-                    Level = x.ILEVEL,
-                    Note = x.CCATEGORY_NAME
-                }).ToList();
-
-                TenantCategoryGrid = new ObservableCollection<PML02000TreeDTO>(loGridData);
+                    
             }
             catch (Exception ex)
             {
