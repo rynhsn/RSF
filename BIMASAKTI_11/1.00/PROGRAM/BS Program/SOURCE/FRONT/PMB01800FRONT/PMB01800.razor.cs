@@ -277,7 +277,7 @@ namespace PMB01800FRONT
         #region tes
         private void BeforeOpen_lookupTest(R_BeforeOpenLookupEventArgs eventArgs)
         {
-            eventArgs.Parameter = new LML02000ParameterDTO() { CPROPERTY_ID = _viewModel.Param.CPROPERTY_ID, LCHILD_ONLY=true };
+            eventArgs.Parameter = new LML02000ParameterDTO() { CPROPERTY_ID = _viewModel.Param.CPROPERTY_ID };
             eventArgs.TargetPageType = typeof(LML02000);
         }
         private void AfterOpen_lookupTes(R_AfterOpenLookupEventArgs eventArgs)
