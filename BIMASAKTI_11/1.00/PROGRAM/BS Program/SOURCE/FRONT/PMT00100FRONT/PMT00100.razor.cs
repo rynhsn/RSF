@@ -207,7 +207,7 @@ namespace PMT00100FRONT
                 var loData = (PMT00100AgreementByUnitDTO)eventArgs.Data;
                 if (loData != null)
                 {
-                    _viewModel.btnChangeUnitAndRealease = loData.CBOOK_STATUS == "01" || loData.CBOOK_STATUS == "02";
+                    _viewModel.btnChangeUnitAndRealease = (loData.CBOOK_STATUS == "01" || loData.CBOOK_STATUS == "02") && loData.CTRANS_STATUS == "00";
 
                     _viewModel.Parameter.CDEPT_CODE = loData.CDEPT_CODE;
                     _viewModel.Parameter.CTRANS_CODE = loData.CTRANS_CODE;
@@ -222,20 +222,16 @@ namespace PMT00100FRONT
                     case "00":
                         _viewModel.lControlButtonRedraft = false;
                         _viewModel.lControlButtonSubmit = true;
-                        //_viewModel.lControlButtonChangeUnit = true;
                         break;
                     case "10":
                         _viewModel.lControlButtonSubmit = false;
                         _viewModel.lControlButtonRedraft = true;
-                        //_viewModel.lControlButtonChangeUnit = true;
                         break;
                     case "30":
                         _viewModel.lControlButtonRedraft = false;
                         _viewModel.lControlButtonSubmit = false;
-                        //_viewModel.lControlButtonChangeUnit = false;
                         break;
                     case "80":
-                        //_viewModel.lControlButtonChangeUnit = false;
                         _viewModel.lControlButtonRedraft = false;
                         _viewModel.lControlButtonSubmit = false;
                         break;

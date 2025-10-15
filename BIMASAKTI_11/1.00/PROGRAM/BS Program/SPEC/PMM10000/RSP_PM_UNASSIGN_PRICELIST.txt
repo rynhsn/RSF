@@ -1,0 +1,3 @@
+8001 -- Error process, please contact your administrator!
+8002 -- Call Type ID is empty!
+8003 -- Call Type ID is not found!

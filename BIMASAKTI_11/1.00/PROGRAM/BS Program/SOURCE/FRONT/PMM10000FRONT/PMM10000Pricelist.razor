@@ -1,0 +1,182 @@
+@using PMM10000COMMON.Call_Type_Pricelist;
+@using PMM10000COMMON.SLA_Call_Type;
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_TabPriceList")]
+@inject R_ILocalizer<Resources_PMM10000_Class> _localizer
+
+<R_StackLayout>
+    <R_Grid @ref="@_gridCallType"
+            DataSource="_viewModel.CallTypeList"
+            Pageable="true"
+            @bind-PageSize="@_pageSizeCallType"
+            R_ConductorGridSource="@_conGridSLACallType"
+            R_GridType="@R_eGridType.Original"
+            R_ServiceGetListRecord="@R_CallTypeList"
+            R_Display="@R_DisplayAsync"
+            AllowAddNewRow="false"
+            AllowEditRow="false"
+            AllowDeleteRow="false"
+            Height="210px">
+
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="@nameof(PMM10000SLACallTypeDTO.CCALL_TYPE_ID)"
+                              HeaderText=@_localizer["_TypeId"] Width="150px"
+                                        R_EnableAdd />
+            <R_GridTextColumn FieldName="@nameof(PMM10000SLACallTypeDTO.CCALL_TYPE_NAME)"
+                              HeaderText=@_localizer["_TypeName"] Width="170px"
+                                        R_EnableAdd
+                                        R_EnableEdit />
+
+            <R_GridLookupColumn FieldName="@nameof(PMM10000SLACallTypeDTO.CCATEGORY_ID)"
+                                HeaderText=@_localizer["_CategoryId"] Width="130px"
+                                Name="Category"
+                                            R_EnableAdd
+                                            R_EnableEdit />
+            <R_GridTextColumn FieldName="@nameof(PMM10000SLACallTypeDTO.CCATEGORY_NAME)"
+                              HeaderText=@_localizer["_CategoryName"] Width="170px"
+                              Enabled="false" />
+
+            <R_GridNumericColumn HeaderText=@_localizer["_Days"]
+                                 FieldName="@nameof(PMM10000SLACallTypeDTO.IDAYS)"
+                                 TValue="int"
+                                 Width="95px"
+                                              R_EnableAdd
+                                              R_EnableEdit />
+            <R_GridNumericColumn HeaderText=@_localizer["_Hours"]
+                                 FieldName="@nameof(PMM10000SLACallTypeDTO.IHOURS)"
+                                 TValue="int"
+                                 Width="100px"
+                                              R_EnableAdd
+                                              R_EnableEdit />
+            <R_GridNumericColumn HeaderText=@_localizer["_Minutes"]
+                                 FieldName="@nameof(PMM10000SLACallTypeDTO.IMINUTES)"
+                                 TValue="int"
+                                 Width="100px"
+                                              R_EnableAdd
+                                              R_EnableEdit />
+            <R_GridCheckBoxColumn HeaderText=@_localizer["_Priority"]
+                                  FieldName="@nameof(PMM10000SLACallTypeDTO.LPRIORITY)"
+                                  Width="180px"
+                                                R_EnableAdd
+                                                R_EnableEdit />
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout Style="width: 47.5%">
+        <R_GroupBox Title="@_localizer["_ListAllPricelist"]" TitleClass="d-flex justify-content-center mb-2 mt-2">
+            <R_Grid @ref="@_AssignPricelistGrid_gridRef"
+                    @bind-PageSize="@_pageSizePricelist"
+                    DataSource="@_viewModel.PricelistList"
+                    R_ConductorGridSource="@_Pricelist_conGrid"
+                    R_GridType="@R_eGridType.Batch"
+                    R_ServiceGetListRecord="@R_PricelistList"
+                    DragClueField="@nameof(PMM10000PricelistDTO.CPRICELIST_NAME)"
+                    DragDrop="true"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false"
+                    TargetGridDrop="@_UnassignPricelist_gridRef"
+                    Pageable="true"
+                    R_ServiceGetRecord="@R_ServiceGetRecord"
+                    R_Display="@R_DisplayAssignAsync"
+                    R_CheckBoxSelectRender="@R_CheckBoxSelectRender"
+                    R_GridDragDropAfterDrop="@((R_GridDragDropAfterDropEventArgs<PMM10000PricelistDTO> args) => R_GridRowAfterDropAsync(args))"
+                    Height="295px">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(PMM10000PricelistDTO.CPRICELIST_ID)"
+                                      HeaderText=@_localizer["_CPricelistId"] Width="120px" />
+                    <R_GridTextColumn FieldName="@nameof(PMM10000PricelistDTO.CPRICELIST_NAME)"
+                                      HeaderText=@_localizer["_CPricelistName"] Width="150px" />
+                    <R_GridTextColumn FieldName="@nameof(PMM10000PricelistDTO.CCHARGES_ID)"
+                                      HeaderText=@_localizer["_CChargesId"] Width="120px" />
+                    <R_GridCheckBoxColumn FieldName="@nameof(PMM10000PricelistDTO.LTAXABLE)"
+                                          HeaderText=@_localizer["_LTaxable"] Width="110px" />
+                    <R_GridTextColumn FieldName="@nameof(PMM10000PricelistDTO.CUNIT)"
+                                      HeaderText=@_localizer["_CUnit"] Width="130px" />
+                    <R_GridTextColumn FieldName="@nameof(PMM10000PricelistDTO.CCURRENCY_CODE)"
+                                      HeaderText=@_localizer["_CCurrencyCode"] Width="90px" />
+                    <R_GridNumericColumn FieldName="@nameof(PMM10000PricelistDTO.IPRICE)"
+                                         TValue="int" ThousandSeparator="true" Decimals="2"
+                                         HeaderText=@_localizer["_IPrice"] Width="160px" />
+                </R_GridColumns>
+            </R_Grid>
+        </R_GroupBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout Style="width: 5%" Class=" d-flex flex-column justify-content-center  height: 100%;, min-height: 100vh;">
+
+        <R_StackLayout Row Class="d-flex justify-content-center" Style="width: 100%">
+            <R_ItemLayout col="10" Class="d-grid gap-2">
+                <R_Button R_ConductorGridSource="@_Pricelist_conGrid" OnClick="@Allocation_BtnAllMoveRight" Enabled="@_viewModel.Enable_DoubleArrowRight"> @labelDoubleright </R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="d-flex justify-content-center" Style="width: 100%">
+            <R_ItemLayout col="10" Class="d-grid gap-2">
+                <R_Button R_ConductorGridSource="@_Pricelist_conGrid" OnClick="@Allocation_BtnMoveRight" Enabled="@_viewModel.Enable_ArrowRight"> @labelright </R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="d-flex justify-content-center">
+            <R_ItemLayout col="10" Class="d-grid gap-2">
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="d-flex justify-content-center">
+            <R_ItemLayout col="10" Class="d-grid gap-2">
+                <R_Button R_ConductorGridSource="@_UnAssignPricelist_conGrid" OnClick="@Allocation_BtnMoveLeft" Enabled="@_viewModel.Enable_ArrowLeft">  @labelleft </R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="d-flex justify-content-center">
+            <R_ItemLayout col="10" Class="d-grid gap-2">
+                <R_Button R_ConductorGridSource="@_UnAssignPricelist_conGrid" OnClick="@Allocation_BtnAllMoveLeft" Enabled="@_viewModel.Enable_DoubleArrowLeft"> @labelDoubleleft </R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+        </R_ItemLayout>
+
+        <R_ItemLayout Style="width: 47.5%">
+        <R_GroupBox Title="@_localizer["_AssignPricelist"]" TitleClass="d-flex justify-content-center mb-2 mt-2">
+            <R_Grid @ref="@_UnassignPricelist_gridRef"
+                    DataSource="@_viewModel.AssignPricelistList"
+                    @bind-PageSize="@_pageSizePricelist"
+                    R_ConductorGridSource="@_UnAssignPricelist_conGrid"
+                    R_GridType="@R_eGridType.Batch"
+                    R_ServiceGetListRecord="@R_UnAssignPricelistList"
+                    DragClueField="@nameof(PMM10000PricelistDTO.CPRICELIST_NAME)"
+                    DragDrop="true"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false"
+                    TargetGridDrop="@_AssignPricelistGrid_gridRef"
+                    Pageable="true"
+                    R_ServiceGetRecord="@R_ServiceGetRecord"
+                    R_Display="@R_DisplayUnAssignAsync"
+                    R_GridDragDropAfterDrop="@((R_GridDragDropAfterDropEventArgs<PMM10000PricelistDTO> args) => R_GridRowAfterDropAsync(args))"
+                    Height="295px">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(PMM10000PricelistDTO.CPRICELIST_ID)"
+                                      HeaderText=@_localizer["_CPricelistId"] Width="120px" />
+                    <R_GridTextColumn FieldName="@nameof(PMM10000PricelistDTO.CPRICELIST_NAME)"
+                                      HeaderText=@_localizer["_CPricelistName"] Width="150px" />
+                    <R_GridTextColumn FieldName="@nameof(PMM10000PricelistDTO.CCHARGES_ID)"
+                                      HeaderText=@_localizer["_CChargesId"] Width="120px" />
+                    <R_GridCheckBoxColumn FieldName="@nameof(PMM10000PricelistDTO.LTAXABLE)"
+                                          HeaderText=@_localizer["_LTaxable"] Width="110px" />
+                    <R_GridTextColumn FieldName="@nameof(PMM10000PricelistDTO.CUNIT)"
+                                      HeaderText=@_localizer["_CUnit"] Width="130px" />
+                    <R_GridTextColumn FieldName="@nameof(PMM10000PricelistDTO.CCURRENCY_CODE)"
+                                      HeaderText=@_localizer["_CCurrencyCode"] Width="90px" />
+                    <R_GridNumericColumn FieldName="@nameof(PMM10000PricelistDTO.IPRICE)"
+                                         TValue="int" ThousandSeparator="true" Decimals="2"
+                                         HeaderText=@_localizer["_IPrice"] Width="160px" />
+                </R_GridColumns>
+            </R_Grid>
+        </R_GroupBox>
+        </R_ItemLayout>
+
+        </R_StackLayout>
+        <R_ConductorGrid @ref="@_conGridSLACallType"
+                      R_IsHeader />
+<R_ConductorGrid @ref="@_Pricelist_conGrid"
+                 R_ConductorParent="_conGridSLACallType" />
+<R_ConductorGrid @ref="@_UnAssignPricelist_conGrid"
+                 R_ConductorParent="_conGridSLACallType" />

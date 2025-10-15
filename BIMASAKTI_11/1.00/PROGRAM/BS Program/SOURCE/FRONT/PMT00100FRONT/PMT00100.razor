@@ -172,19 +172,19 @@
                 </R_ItemLayout>
                 <R_ItemLayout>
                     <R_Popup R_Before_Open_Popup="@BeforeOpenPopupView" R_After_Open_Popup="@AfterOpenPopupView"
-                             Enabled="@_viewModel.btnChangeUnitAndRealease">
+                             >
                         @_localizer["_View"]
                     </R_Popup>
                 </R_ItemLayout>
                 <R_ItemLayout>
                     <R_Button
-                        Enabled="@(_viewModel.btnChangeUnitAndRealease && _viewModel.lControlButtonSubmit)"
+                        Enabled="@(_viewModel.lControlButtonSubmit)"
                               OnClick="@SubmitBtn">
                         @_localizer["_Submit"]
                     </R_Button>
                 </R_ItemLayout>
                 <R_ItemLayout>
-                    <R_Button Enabled="@(_viewModel.btnChangeUnitAndRealease && _viewModel.lControlButtonRedraft)"
+                    <R_Button Enabled="@(_viewModel.lControlButtonRedraft)"
                               OnClick="@RedraftBtn">
                         @_localizer["_Redraft"]
                     </R_Button>
