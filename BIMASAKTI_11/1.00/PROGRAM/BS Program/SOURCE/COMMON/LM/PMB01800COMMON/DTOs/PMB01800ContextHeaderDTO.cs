@@ -10,5 +10,6 @@ namespace PMB01800COMMON.DTOs
         public const string CTRANS_TYPE = "CTRANS_TYPE";
         public const string CPAR_TRANS_CODE = "CPAR_TRANS_CODE";
         public const string CPAR_DEPT_CODE = "CPAR_DEPT_CODE";
+        public const string CREF_DATE = "CREF_DATE";
     }
 }
