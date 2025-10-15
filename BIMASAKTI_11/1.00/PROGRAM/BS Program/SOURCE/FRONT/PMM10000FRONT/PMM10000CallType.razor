@@ -1,0 +1,90 @@
+@using PMM10000COMMON.SLA_Call_Type;
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_SLACallTypeList")]
+@inject R_ILocalizer<Resources_PMM10000_Class> _localizer
+
+<R_StackLayout>
+    <R_Grid @ref="@_gridSLACallType"
+            DataSource="_viewModelSLA._CallTypeList"
+            Pageable="true"
+            @bind-PageSize="@_pageSizeSLA"
+            R_ConductorGridSource="@_conGridSLACallType"
+            R_GridType="@R_eGridType.Original"
+            R_ServiceGetListRecord="@R_ServiceGetListRecord"
+            R_ServiceSave="@ServiceSave"
+            R_ServiceDelete="@ServiceDelete"
+            R_ServiceGetRecord="@R_ServiceGetRecordAsync"
+            R_Validation="@ServiceValidation"
+            R_AfterDelete="@ServiceAfterDelete"
+            R_AfterAdd="AfterAdd"
+            R_Before_Open_Grid_Lookup="BeforeOpenLookSLACategory"
+            R_After_Open_Grid_Lookup="AfterOpenLookSLACategory"
+            R_CellLostFocused="@R_CellLostFocusedSLACategory"
+            AllowDeleteRow="true"
+            AllowAddNewRow="true"
+            AllowEditRow="true"
+            Height="500px">
+
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="@nameof(PMM10000SLACallTypeDTO.CCALL_TYPE_ID)"
+                              HeaderText=@_localizer["_TypeId"] Width="150px"
+                                        R_EnableAdd />
+            <R_GridTextColumn FieldName="@nameof(PMM10000SLACallTypeDTO.CCALL_TYPE_NAME)"
+                              HeaderText=@_localizer["_TypeName"] Width="170px"
+                                        R_EnableAdd
+                                        R_EnableEdit />
+
+            <R_GridLookupColumn FieldName="@nameof(PMM10000SLACallTypeDTO.CCATEGORY_ID)"
+                                HeaderText=@_localizer["_CategoryId"] Width="130px"
+                              Name="Category"
+                                        R_EnableAdd
+                                        R_EnableEdit />
+            <R_GridTextColumn FieldName="@nameof(PMM10000SLACallTypeDTO.CCATEGORY_NAME)"
+                              HeaderText=@_localizer["_CategoryName"] Width="170px"
+                                        Enabled= "false" />
+
+            <R_GridNumericColumn HeaderText=@_localizer["_Days"]
+                                 FieldName="@nameof(PMM10000SLACallTypeDTO.IDAYS)"
+                                 TValue="int"
+                                 Width="95px"
+                                              R_EnableAdd
+                                              R_EnableEdit />
+            <R_GridNumericColumn HeaderText=@_localizer["_Hours"]
+                                 FieldName="@nameof(PMM10000SLACallTypeDTO.IHOURS)"
+                                 TValue="int"
+                                 Width="100px"
+                                              R_EnableAdd
+                                              R_EnableEdit />
+            <R_GridNumericColumn HeaderText=@_localizer["_Minutes"]
+                                 FieldName="@nameof(PMM10000SLACallTypeDTO.IMINUTES)"
+                                 TValue="int"
+                                 Width="100px"
+                                              R_EnableAdd
+                                              R_EnableEdit />
+            <R_GridCheckBoxColumn HeaderText=@_localizer["_Priority"]
+                                  FieldName="@nameof(PMM10000SLACallTypeDTO.LPRIORITY)"
+                                  Width="180px"
+                                                R_EnableAdd
+                                                R_EnableEdit />
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Class="mt-1 d-flex justify-content-end" Row="true">
+    <R_ItemLayout>
+        <R_Button R_ConductorGridSource="@_conGridSLACallType"
+                  OnClick="@TemplateBtn_OnClick">
+            @_localizer["_Template"]
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Popup R_ConductorGridSource="@_conGridSLACallType"
+                 R_Before_Open_Popup="@Before_Open_Upload"
+                 R_After_Open_Popup="@After_Open_Upload">
+            @_localizer["_Upload"]
+        </R_Popup>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conGridSLACallType"
+                      R_IsHeader />

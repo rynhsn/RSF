@@ -1,0 +1,133 @@
+@using PMM10000COMMON.Upload;
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_UPloadSLACallTypeList")]
+@inject R_ILocalizer<Resources_PMM10000_Class> _localizer
+
+<R_StackLayout Style="width:1000px;">
+    <R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_Property"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox Enabled="false" @bind-Value="_viewModel._parameterUpload.CPROPERTY_ID">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextBox Enabled="false" @bind-Value="_viewModel._parameterUpload.CPROPERTY_NAME">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_InputFile OnChange="SourceUpload_OnChange" Accepts="@accepts"></R_InputFile>
+        </R_StackLayout>
+    </R_StackLayout>
+
+
+    <R_StackLayout Row>
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.CallTypeGrid"
+                Pageable
+                R_GridType="@R_eGridType.Batch"
+                Height="375px"
+                R_ServiceGetListRecord="@Upload_ServiceGetListRecord"
+                R_RowRender="@((R_GridRowRenderEventArgs args)=> R_RowRender(args))">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName=@nameof(CallTypeErrorDTO.No) Width="75px" HeaderText="No"></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(CallTypeErrorDTO.CallTypeId) Width="150px" HeaderText="@_localizer["_TypeId"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(CallTypeErrorDTO.CallTypeName) Width="150px" HeaderText=@_localizer["_TypeName"]></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(CallTypeErrorDTO.Category) Width="140px" HeaderText=@_localizer["_Category"]></R_GridTextColumn>
+
+                <R_GridNumericColumn FieldName=@nameof(CallTypeErrorDTO.Days) TValue="int" Width="120px" HeaderText=@_localizer["_Days"]></R_GridNumericColumn>
+                <R_GridNumericColumn FieldName=@nameof(CallTypeErrorDTO.Hours) TValue="int" Width="120px" HeaderText=@_localizer["_Hours"]></R_GridNumericColumn>
+                <R_GridNumericColumn FieldName=@nameof(CallTypeErrorDTO.Minutes) TValue="int" Width="120px" HeaderText=@_localizer["_Minutes"]></R_GridNumericColumn>
+                <R_GridCheckBoxColumn FieldName=@nameof(CallTypeErrorDTO.LinkToPriorityApps) Width="170px" HeaderText=@_localizer["_Priority"]></R_GridCheckBoxColumn>
+                <R_GridTextColumn FieldName=@nameof(CallTypeErrorDTO.ErrorFlag) Width="150px" HeaderText=@_localizer["_Valid"] Visible="@_viewModel.IsError"></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(CallTypeErrorDTO.ErrorMessage) Width="300px" HeaderText=@_localizer["_Notes"] Visible="@_viewModel.IsError"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_ProgressBar Label="@_viewModel.Message" MaxValue="100" Value="@_viewModel.Percentage"></R_ProgressBar>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="8">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_TotalRows"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="@_viewModel.SumListExcel"
+                                      TValue="int"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1" Class="ms-6">
+                    <R_Label>@_localizer["_Valid"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="@_viewModel.SumValidDataExcel"
+                                      TValue="int"
+                                      Arrows="false"
+                                            ReadOnly Class="bg-success">
+                    </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1" Class="ms-2">
+                    <R_Label>@_localizer["_Invalid"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="@_viewModel.SumInvalidDataExcel"
+                                      TValue="int"
+                                      Arrows="false"
+                                            ReadOnly Class="badge bg-danger">
+                    </R_NumericTextBox>
+                    </R_ItemLayout>
+                    </R_StackLayout>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4" hidden="@_viewModel.IsError">
+                    <R_StackLayout Row Class="justify-content-end">
+                <R_ItemLayout>
+                    <R_Button OnClick="@Button_OnClickCloseAsync">
+                        @_localizer["_Cancel"]
+                    </R_Button>
+                    <R_Button OnClick="Button_OnClickOkAsync" Enabled="@FileHasData">
+                        @_localizer["_Process"]
+                    </R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="4" hidden="@(!_viewModel.IsError)">
+            <R_StackLayout Row Class="justify-content-end">
+                <R_ItemLayout>
+                    <R_Button OnClick="@Button_OnClickCloseAsync">
+                        @_localizer["_Cancel"]
+                    </R_Button>
+                    <R_Button OnClick="@Button_OnClickSaveExcelAsync">
+                        Save To Excel
+                    </R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+            </R_ItemLayout>
+            </R_StackLayout>
+
+            </R_StackLayout>
+
+            <style>
+                .k-grid .k-master-row.errorDataLValidIsFalse:hover {
+                    background-color: red !important;
+                    color: white;
+                }
+
+                .k-grid .k-master-row.errorDataLValidIsFalse {
+                    background-color: red;
+                    color: white !important
+                }
+
+                .k-grid .k-table-row.k-selected.errorDataLValidIsFalse > .k-table-td {
+                    color: white !important;
+                }
+            </style>

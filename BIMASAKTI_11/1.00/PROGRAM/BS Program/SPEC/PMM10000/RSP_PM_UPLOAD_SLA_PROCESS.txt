@@ -1,0 +1,9 @@
+DUPLICATE_CALL_TYPE_ID_DB		-- Found duplicate call type id	in Database
+DUPLICATE_CALL_TYPE_ID_EXCEL		-- Found duplicate call type id in Uploaded Data
+EMPTY_CALL_TYPE_ID			-- Call type Id cannot be empty
+EMPTY_CALL_TYPE_NAME			-- Call type name cannot be empty
+INVALID_CATEGORY			-- Found invalid category
+EMPTY_CATEGORY				-- Category cannot be empty
+NEGATIVE_DAYS_VALUE			-- Negative days value is not allowed
+NEGATIVE_HOURS_VALUE			-- Negative hours value is not allowed
+NEGATIVE_MINUTES_VALUE			-- Negative minutes value is not allowed
