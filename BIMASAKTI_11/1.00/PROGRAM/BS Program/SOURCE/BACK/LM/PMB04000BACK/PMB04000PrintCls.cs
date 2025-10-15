@@ -316,16 +316,21 @@ namespace PMB04000BACK
             R_ReadResult loReadResult = null;
             try
             {
-                loDb = new R_Db();
-                loConn = loDb.GetConnection();
-                
-                loReadParameter = new R_ReadParameter()
-                {
-                    StorageId = pcGUID
-                };
 
-                loReadResult = R_StorageUtility.ReadFile(loReadParameter, loConn);
-                _logger!.LogInfo(string.Format("Image with storage {0} found ", loReadParameter.StorageId));
+                if (string.IsNullOrWhiteSpace(pcGUID)==false)
+                {
+                    loDb = new R_Db();
+                    loConn = loDb.GetConnection();
+
+                    loReadParameter = new R_ReadParameter()
+                    {
+                        StorageId = pcGUID
+                    };
+
+                    loReadResult = R_StorageUtility.ReadFile(loReadParameter, loConn);
+                    _logger!.LogInfo(string.Format("Image with storage {0} found ", loReadParameter.StorageId));
+                }
+                
             }
             catch (Exception ex)
             {

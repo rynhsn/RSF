@@ -95,6 +95,7 @@ namespace PMT01700SERVICE
                 loDbParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
                 loDbParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(PMT01700ContextDTO.CPROPERTY_ID);
                 loDbParameter.LEVENT = R_Utility.R_GetStreamingContext<bool>(PMT01700ContextDTO.LEVENT);
+                loDbParameter.CPROGRAM_CODE = R_Utility.R_GetStreamingContext<string>(PMT01700ContextDTO.CPROGRAM_CODE);
                 _logger.LogDebug("DbParameter {@Parameter} ", loDbParameter);
 
                 _logger.LogInfo(string.Format("Call method {0}", lcMethodName));
