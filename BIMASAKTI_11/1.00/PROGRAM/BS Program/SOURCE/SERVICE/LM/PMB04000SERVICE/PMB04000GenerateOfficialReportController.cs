@@ -163,6 +163,30 @@ namespace PMB04000Service
                     CUSER_ID = loParam.CUSER_ID,
                     CLANG_ID = loParam.CLANG_ID,
                     LPRINT = loParam.LPRINT,
+                    CSTORAGE_ID01 = loParam.CSTORAGE_ID01,
+                    CSTORAGE_ID02 = loParam.CSTORAGE_ID02,
+                    CSTORAGE_ID03 = loParam.CSTORAGE_ID03,
+                    CSTORAGE_ID04 = loParam.CSTORAGE_ID04,
+                    CSTORAGE_ID05 = loParam.CSTORAGE_ID05,
+                    CSTORAGE_ID06 = loParam.CSTORAGE_ID06,
+                    CSIGN_ID01 = loParam.CSIGN_ID01,
+                    CSIGN_ID02 = loParam.CSIGN_ID02,
+                    CSIGN_ID03 = loParam.CSIGN_ID03,
+                    CSIGN_ID04 = loParam.CSIGN_ID04,
+                    CSIGN_ID05 = loParam.CSIGN_ID05,
+                    CSIGN_ID06 = loParam.CSIGN_ID06,
+                    CSIGN_NAME01 = loParam.CSIGN_NAME01,
+                    CSIGN_NAME02 = loParam.CSIGN_NAME02,
+                    CSIGN_NAME03 = loParam.CSIGN_NAME03,
+                    CSIGN_NAME04 = loParam.CSIGN_NAME04,
+                    CSIGN_NAME05 = loParam.CSIGN_NAME05,
+                    CSIGN_NAME06 = loParam.CSIGN_NAME06,
+                    CSIGN_POSITION01 = loParam.CSIGN_POSITION01,
+                    CSIGN_POSITION02 = loParam.CSIGN_POSITION02,
+                    CSIGN_POSITION03 = loParam.CSIGN_POSITION03,
+                    CSIGN_POSITION04 = loParam.CSIGN_POSITION04,
+                    CSIGN_POSITION05 = loParam.CSIGN_POSITION05,
+                    CSIGN_POSITION06 = loParam.CSIGN_POSITION06,
                 };
 
                 var loCls = new PMB04000PrintCls();
@@ -294,22 +318,22 @@ namespace PMB04000Service
                 #region GetOsign Byte Array
 
 
-                var osign01 = !string.IsNullOrEmpty(poParam.CSTORAGE_ID01) || !string.IsNullOrEmpty(poParam.CSIGN_ID01)
+                var osign01 = !string.IsNullOrWhiteSpace(poParam.CSTORAGE_ID01) 
                              ? loCls.GetSignStorage(poParam.CSTORAGE_ID01).Data
                              : null;
-                var osign02 = !string.IsNullOrEmpty(poParam.CSTORAGE_ID02) || !string.IsNullOrEmpty(poParam.CSIGN_ID02)
+                var osign02 = !string.IsNullOrWhiteSpace(poParam.CSTORAGE_ID02) 
                               ? loCls.GetSignStorage(poParam.CSTORAGE_ID02).Data
                               : null;
-                var osign03 = !string.IsNullOrEmpty(poParam.CSTORAGE_ID03) || !string.IsNullOrEmpty(poParam.CSIGN_ID03)
+                var osign03 = !string.IsNullOrWhiteSpace(poParam.CSTORAGE_ID03) 
                               ? loCls.GetSignStorage(poParam.CSTORAGE_ID03).Data
                               : null;
-                var osign04 = !string.IsNullOrEmpty(poParam.CSTORAGE_ID04) || !string.IsNullOrEmpty(poParam.CSIGN_ID04)
+                var osign04 = !string.IsNullOrWhiteSpace(poParam.CSTORAGE_ID04) 
                               ? loCls.GetSignStorage(poParam.CSTORAGE_ID04).Data
                               : null;
-                var osign05 = !string.IsNullOrEmpty(poParam.CSTORAGE_ID05) || !string.IsNullOrEmpty(poParam.CSIGN_ID05)
+                var osign05 = !string.IsNullOrWhiteSpace(poParam.CSTORAGE_ID05) 
                               ? loCls.GetSignStorage(poParam.CSTORAGE_ID05).Data
                               : null;
-                var osign06 = !string.IsNullOrEmpty(poParam.CSTORAGE_ID06) || !string.IsNullOrEmpty(poParam.CSIGN_ID06)
+                var osign06 = !string.IsNullOrWhiteSpace(poParam.CSTORAGE_ID06) 
                               ? loCls.GetSignStorage(poParam.CSTORAGE_ID06).Data
                               : null;
 

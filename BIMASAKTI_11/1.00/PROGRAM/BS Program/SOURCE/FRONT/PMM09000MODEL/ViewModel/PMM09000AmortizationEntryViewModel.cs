@@ -9,6 +9,7 @@ using R_CommonFrontBackAPI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Common;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -276,14 +277,31 @@ namespace PMM09000MODEL.ViewModel
         #endregion
 
         #region Amortization Schedule
-        public void GetAmortizationChargesList()
+        public async Task GetAmortizationChargesList()
         {
             R_Exception loException = new R_Exception();
             try
             {
+                R_FrontContext.R_SetStreamingContext(ContextConstant.CPROPERTY_ID, oParameter.CPROPERTY_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstant.CUNIT_OPTION, oParameter.CUNIT_OPTION);
+                R_FrontContext.R_SetStreamingContext(ContextConstant.CBUILDING_ID, oParameter.CBUILDING_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstant.CTRANS_TYPE, oParameter.CTRANS_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstant.CREF_NO, oParameter.CREF_NO);
 
-                var loDataDetails = _EntityHeaderDetail.Details;
-                _AmortizationChargesList = new ObservableCollection<PMM09000AmortizationChargesDTO>(loDataDetails);
+                var loResult = await _ListModel.GetAmortizationScheduleListAsyncModel();
+                if (loResult.Data.Any())
+                {
+                    loResult.Data = loResult.Data!.Select(item =>
+                    {
+                        item.DSTART_DATE = ConvertStringToDateTimeFormat(item.CSTART_DATE!);
+                        item.DEND_DATE = ConvertStringToDateTimeFormat(item.CEND_DATE!);
+                        return item;
+                    }).ToList();
+
+                }
+                var lotemp = R_FrontUtility.ConvertCollectionToCollection<PMM09000AmortizationChargesDTO>(loResult.Data);
+                _AmortizationChargesList = new ObservableCollection<PMM09000AmortizationChargesDTO>(lotemp);
+
             }
             catch (Exception ex)
             {

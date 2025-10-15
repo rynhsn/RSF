@@ -10,5 +10,6 @@ namespace PMT01700COMMON.DTO.Utilities.ParamDb
         public string? CUSER_ID { get; set; }
         public string? CPROPERTY_ID { get; set; }
         public string? CLANGUAGE { get; set; }
+        public string? CPROGRAM_CODE { get; set;}
     }
 }

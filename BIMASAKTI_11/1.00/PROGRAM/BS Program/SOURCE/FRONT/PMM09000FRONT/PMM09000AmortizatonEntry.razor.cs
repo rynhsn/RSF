@@ -68,8 +68,13 @@ namespace PMM09000FRONT
                 if (_AmortizationEntryViewModel.oParameter.CREF_NO != null)
                 {
                     await _AmortizationEntryViewModel.ChargesTypeList();
+
+
                     _AmortizationEntryViewModel.GetMonth();
                     await _conductorHeader!.R_GetEntity(null);
+
+                    await _gridAmortizationSchedule.R_RefreshGrid(null);
+
                 }
                 else
                 {
@@ -320,12 +325,12 @@ namespace PMM09000FRONT
         }
 
         #region AmortizationScheduleList
-        private void R_ServiceAmortizationScheduleListRecord(R_ServiceGetListRecordEventArgs eventArgs)
+        private async Task R_ServiceAmortizationScheduleListRecord(R_ServiceGetListRecordEventArgs eventArgs)
         {
             var loEx = new R_Exception();
             try
             {
-                _AmortizationEntryViewModel.GetAmortizationChargesList();
+                await _AmortizationEntryViewModel.GetAmortizationChargesList();
                 eventArgs.ListEntityResult = _AmortizationEntryViewModel._AmortizationChargesList;
 
                 decimal tempTotal = 0;
