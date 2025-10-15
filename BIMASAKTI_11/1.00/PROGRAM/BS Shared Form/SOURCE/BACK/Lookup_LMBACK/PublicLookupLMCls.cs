@@ -19,6 +19,7 @@ using Lookup_PMCOMMON.DTOs.LML01700;
 using Lookup_PMCOMMON.DTOs.LML01800;
 using Lookup_PMCOMMON.DTOs.LML01900;
 using Lookup_PMCOMMON.DTOs.UtilityDTO;
+using Lookup_PMCOMMON.DTOs.LML02000;
 
 namespace Lookup_PMBACK
 {
@@ -840,6 +841,49 @@ namespace Lookup_PMBACK
             _loggerLookup.LogInfo(string.Format("END process method {0} on Cls", lcMethodName));
             return loResult!;
         }
+
+        public List<LML02000DTO> LML02000TenantCategory(LML02000ParameterDTO poEntity)
+        {
+            string lcMethodName = nameof(LML02000TenantCategory);
+            using Activity activity = _activitySource.StartActivity(lcMethodName)!;
+            _loggerLookup.LogInfo(string.Format("START process method {0} on Cls", lcMethodName));
+
+            var loEx = new R_Exception();
+            List<LML02000DTO>? loResult = null;
+            R_Db loDb;
+            try
+            {
+                loDb = new R_Db();
+                var loConn = loDb.GetConnection();
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = @"RSP_PM_GET_HIERARCHY_TENANT_CATEGORY_LIST";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poEntity.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poEntity.CPROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPARENT_ID", DbType.String, 50, poEntity.CPARENT_ID);
+                loDb.R_AddCommandParameter(loCmd, "@LCHILD_ONLY", DbType.Boolean, 50, poEntity.LCHILD_ONLY);
+                loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, poEntity.CLANGUAGE_ID);
+
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                    .Where(x => x != null && x.ParameterName.StartsWith("@"))
+                    .ToDictionary(x => x.ParameterName, x => x.Value);
+                _loggerLookup.LogDebug("{@ObjectQuery} {@Parameter}", loCmd.CommandText, loDbParam);
+                var loReturnTemp = loDb.SqlExecQuery(loConn, loCmd, true);
+                loResult = R_Utility.R_ConvertTo<LML02000DTO>(loReturnTemp).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+            _loggerLookup.LogInfo(string.Format("END process method {0} on Cls", lcMethodName));
+            return loResult!;
+        }
+
+
         public List<PropertyDTO> PropertyList(ParameterBaseDTO poEntity)
         {
             string lcMethodName = nameof(PropertyList);

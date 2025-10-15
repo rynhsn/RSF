@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using R_BlazorFrontEnd.Helpers;
 
 namespace Lookup_PMFRONT
 {
@@ -37,7 +38,7 @@ namespace Lookup_PMFRONT
             var loEx = new R_Exception();
             try
             {
-                var loParam = (LML00200ParameterDTO)eventArgs.Parameter;
+                var loParam = R_FrontUtility.ConvertObjectToObject<LML00200ParameterDTO>(eventArgs.Parameter);
                 await _viewModelLML00200.GetUnitChargesList(loParam);
                 eventArgs.ListEntityResult = _viewModelLML00200.UnitChargesList;
             }

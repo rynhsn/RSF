@@ -83,6 +83,9 @@ namespace PMB01800BACK
                 var loVar = poBatchProcessPar.UserParameters.Where((x) => x.Key.Equals(Batch_ContextConstant.CPROPERTY_ID)).FirstOrDefault().Value;
                 var lcPropertyId = ((System.Text.Json.JsonElement)loVar).GetString();
 
+                var loVarRefDate = poBatchProcessPar.UserParameters.Where((x) => x.Key.Equals(Batch_ContextConstant.CREF_DATE)).FirstOrDefault().Value;
+                var lcRefDate = ((System.Text.Json.JsonElement)loVarRefDate).GetString();
+
                 lcQuery = "CREATE TABLE #SELECTED_DEPOSIT(" +
                     "INO INT" +
                     ",CDEPT_CODE VARCHAR(20)" +
@@ -114,12 +117,13 @@ namespace PMB01800BACK
                 loCommand.CommandText = lcQuery;
                 loCommand.CommandType = CommandType.StoredProcedure;
 
-                loDb.R_AddCommandParameter(loCommand, "@CCOMPANY_ID", DbType.String, int.MaxValue, poBatchProcessPar.Key.COMPANY_ID);
-                loDb.R_AddCommandParameter(loCommand, "@CPROPERTY_ID", DbType.String, int.MaxValue, lcPropertyId);
-                loDb.R_AddCommandParameter(loCommand, "@CUSER_ID", DbType.String, int.MaxValue, poBatchProcessPar.Key.USER_ID);
-                loDb.R_AddCommandParameter(loCommand, "@CKEY_GUID", DbType.String, int.MaxValue, poBatchProcessPar.Key.KEY_GUID);
+                loDb.R_AddCommandParameter(loCommand, "@CCOMPANY_ID", DbType.String, 8, poBatchProcessPar.Key.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCommand, "@CPROPERTY_ID", DbType.String, 20, lcPropertyId);
+                loDb.R_AddCommandParameter(loCommand, "@CREF_DATE", DbType.String, 8, lcRefDate);
+                loDb.R_AddCommandParameter(loCommand, "@CUSER_ID", DbType.String, 8, poBatchProcessPar.Key.USER_ID);
+                loDb.R_AddCommandParameter(loCommand, "@CKEY_GUID", DbType.String, 100, poBatchProcessPar.Key.KEY_GUID);
 
-                _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCommand.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} '{p.Value}'")));
+                _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCommand.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
                 var loRtn = loDb.SqlExecNonQuery(loConn, loCommand, false);
             }
             catch (Exception ex)

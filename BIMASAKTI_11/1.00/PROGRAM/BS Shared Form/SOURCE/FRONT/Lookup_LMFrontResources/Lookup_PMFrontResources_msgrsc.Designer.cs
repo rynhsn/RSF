@@ -394,6 +394,15 @@ namespace Lookup_PMFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        internal static string _Filter {
+            get {
+                return ResourceManager.GetString("_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Floor.
         /// </summary>
         internal static string _Floor {
@@ -471,6 +480,15 @@ namespace Lookup_PMFrontResources {
         internal static string _NotFound {
             get {
                 return ResourceManager.GetString("_NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string _OkBtn {
+            get {
+                return ResourceManager.GetString("_OkBtn", resourceCulture);
             }
         }
         
@@ -727,6 +745,15 @@ namespace Lookup_PMFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tenant Category.
+        /// </summary>
+        internal static string _TenantCategory {
+            get {
+                return ResourceManager.GetString("_TenantCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tenant Group.
         /// </summary>
         internal static string _TenantGroup {
@@ -957,6 +984,15 @@ namespace Lookup_PMFrontResources {
         internal static string _ValidationTenant {
             get {
                 return ResourceManager.GetString("_ValidationTenant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selection invalid! Only Category without sub-category can be selected!.
+        /// </summary>
+        internal static string _ValidationTenantCategory {
+            get {
+                return ResourceManager.GetString("_ValidationTenantCategory", resourceCulture);
             }
         }
         

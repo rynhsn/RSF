@@ -24,11 +24,13 @@ namespace PMB01800MODEL.ViewModel
         public List<PMB01800PropertyDTO> PropertyList = new List<PMB01800PropertyDTO>();
         public static string CPAR_TRANS_CODE_UNIT { get; set; } = "802061,802030";
         public string CPROGRAM_ID { get; set; } = "PMB01800";
+        
         public PMB01800GetDepositListParamDTO Param = new PMB01800GetDepositListParamDTO()
         {
             CTRANS_TYPE = "A",
             CPAR_TRANS_CODE = CPAR_TRANS_CODE_UNIT,
-            CPAR_DEPT_CODE = ""
+            CPAR_DEPT_CODE = "",
+            DREF_DATE= DateTime.Today
         };
         public List<PMB01800TransTypeDTO> TransTypeList = new List<PMB01800TransTypeDTO>
         {

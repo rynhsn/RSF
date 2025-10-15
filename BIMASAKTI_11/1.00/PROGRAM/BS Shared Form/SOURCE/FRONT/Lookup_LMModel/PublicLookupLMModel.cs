@@ -16,6 +16,8 @@ using Lookup_PMCOMMON.DTOs.LML01700;
 using Lookup_PMCOMMON.DTOs.LML01800;
 using Lookup_PMCOMMON.DTOs.LML01900;
 using Lookup_PMCOMMON.DTOs.UtilityDTO;
+using Lookup_PMCOMMON.DTOs.LML02000;
+using R_BlazorFrontEnd;
 
 namespace Lookup_PMModel
 {
@@ -121,6 +123,10 @@ namespace Lookup_PMModel
         }
 
         public IAsyncEnumerable<LML01900DTO> LML01900StaffList()
+        {
+            throw new NotImplementedException();
+        }
+        public IAsyncEnumerable<LML02000DTO> LML02000TenantCategoryList()
         {
             throw new NotImplementedException();
         }
@@ -658,6 +664,60 @@ namespace Lookup_PMModel
             loEx.ThrowExceptionIfErrors();
             return loResult;
         }
+        #endregion
+        #region LML02000
+        public async Task<LMLGenericList<LML02000DTO>> LML02000TenantCategoryListAsync()
+        {
+            var loEx = new R_Exception();
+            LMLGenericList<LML02000DTO> loResult = new LMLGenericList<LML02000DTO>();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<LML02000DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupLM.LML02000TenantCategoryList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult.Data = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+
+        public async Task<List<LML02000DTO>> LML02000TenantCategoryListdata()
+        {
+            var loEx = new R_Exception();
+            List<LML02000DTO> loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<LML02000DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupLM.LML02000TenantCategoryList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+
         #endregion
 
         #region Utility

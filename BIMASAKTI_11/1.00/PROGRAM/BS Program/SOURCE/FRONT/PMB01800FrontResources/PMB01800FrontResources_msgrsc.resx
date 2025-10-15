@@ -216,4 +216,12 @@
   <data name="_pageTitle" xml:space="preserve">
     <value>Generate Deposit Adjustment</value>
   </data>
+  <data name="DREF_DATE" xml:space="preserve">
+    <value>Ref Date</value>
+    <comment>Ref Date</comment>
+  </data>
+  <data name="CCURRENCY_CODE" xml:space="preserve">
+    <value>Currency</value>
+    <comment>Currency</comment>
+  </data>
 </root>

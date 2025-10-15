@@ -74,7 +74,10 @@ namespace PMT01700MODEL.ViewModel
                 if (!string.IsNullOrEmpty(oProperty_oDataOtherUnit.CPROPERTY_ID))
                 {
                     R_FrontContext.R_SetStreamingContext(PMT01700ContextDTO.CPROPERTY_ID, oProperty_oDataOtherUnit.CPROPERTY_ID);
+                    R_FrontContext.R_SetStreamingContext(PMT01700ContextDTO.CPROGRAM_CODE, "PMT01700");
+
                     R_FrontContext.R_SetStreamingContext(PMT01700ContextDTO.LEVENT, true);
+
 
                     var loResult = await _model.OtherUnitListStreamAsyncModel();
                     if (loResult.Data.Any())

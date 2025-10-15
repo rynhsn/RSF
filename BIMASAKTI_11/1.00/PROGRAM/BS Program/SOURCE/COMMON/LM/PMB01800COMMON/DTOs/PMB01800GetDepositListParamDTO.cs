@@ -14,5 +14,7 @@ namespace PMB01800COMMON.DTOs
         public string CPAR_DEPT_CODE { get; set; }
         public string CPAR_DEPT_NAME { get; set; }
         public string CUSER_ID { get; set; }
+        public DateTime DREF_DATE { get; set; }
+        public string CREF_DATE { get; set; }
     }
 }

@@ -91,7 +91,9 @@ namespace PMT01700BACK
 
                 loDb.R_AddCommandParameter(loCommand, "@CCOMPANY_ID", DbType.String, 20, poParameter.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCommand, "@CUSER_ID", DbType.String, 20, poParameter.CUSER_ID);
+                loDb.R_AddCommandParameter(loCommand, "@CPROGRAM_CODE", DbType.String, 20,poParameter.CPROGRAM_CODE );
                 loDb.R_AddCommandParameter(loCommand, "@LEVENT", DbType.Boolean, 2, poParameter.LEVENT);
+                
                 loDb.R_AddCommandParameter(loCommand, "@CPROPERTY_ID", DbType.String, 20, poParameter.CPROPERTY_ID);
 
                 var loDbParam = loCommand.Parameters.Cast<DbParameter>()

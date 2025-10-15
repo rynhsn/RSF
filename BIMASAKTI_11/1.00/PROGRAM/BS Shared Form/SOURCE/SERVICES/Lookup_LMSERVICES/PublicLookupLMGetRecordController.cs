@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lookup_PMCOMMON.DTOs.LML01700;
+using Lookup_PMCOMMON.DTOs.LML02000;
 
 namespace Lookup_PMSERVICES
 {
@@ -661,6 +662,42 @@ namespace Lookup_PMSERVICES
 #pragma warning disable CS8601 // Possible null reference assignment.
                 loReturn.Data = loTempList.Find(x =>
                     x.CSTAFF_ID!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
+#pragma warning restore CS8601 // Possible null reference assignment.
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _loggerLookup.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
+            return loReturn;
+        }
+
+        [HttpPost]
+        public LMLGenericRecord<LML02000DTO> LML02000TenantCategory(LML02000ParameterDTO poParam)
+        {
+            string lcMethodName = nameof(LML01900Staff);
+            using Activity activity = _activitySource.StartActivity(lcMethodName)!;
+            _loggerLookup.LogInfo(string.Format("START process method {0} on Controller", lcMethodName));
+
+            var loEx = new R_Exception();
+            LMLGenericRecord<LML02000DTO> loReturn = new();
+            try
+            {
+                var loCls = new PublicLookupLMCls();
+                poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParam.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
+                poParam.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+                _loggerLookup.LogInfo($"Call method {0}", lcMethodName);
+                var loTempList = loCls.LML02000TenantCategory(poParam);
+
+                _loggerLookup.LogInfo("Filter Search by ID");
+#pragma warning disable CS8601 // Possible null reference assignment.
+                loReturn.Data = loTempList.Find(x =>
+                    x.CCATEGORY_ID!.Equals(poParam.CSEARCH_TEXT!.Trim(), StringComparison.OrdinalIgnoreCase));
 #pragma warning restore CS8601 // Possible null reference assignment.
             }
             catch (Exception ex)

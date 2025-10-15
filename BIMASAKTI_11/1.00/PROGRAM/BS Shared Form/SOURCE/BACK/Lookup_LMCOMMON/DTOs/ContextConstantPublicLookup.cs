@@ -59,5 +59,10 @@ namespace Lookup_PMCOMMON.DTOs
         //CR 01/09/25
         public const string LNON_ACCRUAL = "LNON_ACCRUAL";
 
+        //CR26  09 Ot 2025
+        public const string CPARENT_ID = "CPARENT_ID";
+        public const string LCHILD_ONLY = "LCHILD_ONLY";
+
+
     }
 }

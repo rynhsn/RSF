@@ -211,7 +211,7 @@ namespace PMB04000FRONT
                         loEx.Add(loErr);
                         goto EndBlock;
                     }
-
+                    var loselected_template = _viewModelReceipt.loTemplateList.FirstOrDefault(x => x.CTEMPLATE_ID == _viewModelReceipt.pcValueTemplate);
                     var loParam = new PMB04000ParamReportDTO
                     {
                         CCOMPANY_ID = _clientHelper!.CompanyId,
@@ -225,18 +225,33 @@ namespace PMB04000FRONT
                         LIS_PRINT = true,
                         CREPORT_FILENAME = "",
                         CREPORT_FILETYPE = "",
+                        CSTORAGE_ID01 = loselected_template.CSIGN_STORAGE_ID01,
+                        CSTORAGE_ID02 = loselected_template.CSIGN_STORAGE_ID02,
+                        CSTORAGE_ID03 = loselected_template.CSIGN_STORAGE_ID03,
+                        CSTORAGE_ID04 = loselected_template.CSIGN_STORAGE_ID04,
+                        CSTORAGE_ID05 = loselected_template.CSIGN_STORAGE_ID05,
+                        CSTORAGE_ID06 = loselected_template.CSIGN_STORAGE_ID06,
+                        CSIGN_ID01 =loselected_template.CSIGN_ID01,
+                        CSIGN_ID02 =loselected_template.CSIGN_ID02,
+                        CSIGN_ID03 =loselected_template.CSIGN_ID03,
+                        CSIGN_ID04 =loselected_template.CSIGN_ID04,
+                        CSIGN_ID05 =loselected_template.CSIGN_ID05,
+                        CSIGN_ID06 =loselected_template.CSIGN_ID06,
+                        CSIGN_NAME01 = loselected_template.CSIGN_NAME01,
+                        CSIGN_NAME02 = loselected_template.CSIGN_NAME02,
+                        CSIGN_NAME03 = loselected_template.CSIGN_NAME03,
+                        CSIGN_NAME04 = loselected_template.CSIGN_NAME04,
+                        CSIGN_NAME05 = loselected_template.CSIGN_NAME05,
+                        CSIGN_NAME06 = loselected_template.CSIGN_NAME06,
+                        CSIGN_POSITION01 = loselected_template.CSIGN_POSITION01,
+                        CSIGN_POSITION02 = loselected_template.CSIGN_POSITION02,
+                        CSIGN_POSITION03 = loselected_template.CSIGN_POSITION03,
+                        CSIGN_POSITION04 = loselected_template.CSIGN_POSITION04,
+                        CSIGN_POSITION05 = loselected_template.CSIGN_POSITION05,
+                        CSIGN_POSITION06 = loselected_template.CSIGN_POSITION06,
                     };
 
-                    var storageIds = new[] { nameof(TemplateDTO.CSTORAGE_ID01), nameof(TemplateDTO.CSTORAGE_ID02), nameof(TemplateDTO.CSTORAGE_ID03), nameof(TemplateDTO.CSTORAGE_ID04), nameof(TemplateDTO.CSTORAGE_ID05), nameof(TemplateDTO.CSTORAGE_ID06) };
-                    var signNames = new[] { nameof(TemplateDTO.CSIGN_NAME01), nameof(TemplateDTO.CSIGN_NAME02), nameof(TemplateDTO.CSIGN_NAME03), nameof(TemplateDTO.CSIGN_NAME04), nameof(TemplateDTO.CSIGN_NAME05), nameof(TemplateDTO.CSIGN_NAME06) };
-                    var signPositions = new[] { nameof(TemplateDTO.CSIGN_POSITION01), nameof(TemplateDTO.CSIGN_POSITION02), nameof(TemplateDTO.CSIGN_POSITION03), nameof(TemplateDTO.CSIGN_POSITION04), nameof(TemplateDTO.CSIGN_POSITION05), nameof(TemplateDTO.CSIGN_POSITION06) };
-
-                    for (var i = 0; i < storageIds.Length; i++)
-                    {
-                        loParam.GetType().GetProperty(storageIds[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(storageIds[i])!.GetValue(x)).FirstOrDefault());
-                        loParam.GetType().GetProperty(signNames[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(signNames[i])!.GetValue(x)).FirstOrDefault());
-                        loParam.GetType().GetProperty(signPositions[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(signPositions[i])!.GetValue(x)).FirstOrDefault());
-                    }
+                  
 
                     var abc = loParam;
                     await _reportService!.GetReport(
@@ -325,6 +340,7 @@ namespace PMB04000FRONT
                         loEx.Add(loErr);
                         goto EndBlock;
                     }
+                    var loselected_template = _viewModelReceipt.loTemplateList.FirstOrDefault(x => x.CTEMPLATE_ID == _viewModelReceipt.pcValueTemplate);
 
                     var loParam = new PMB04000ParamReportDTO
                     {
@@ -339,18 +355,42 @@ namespace PMB04000FRONT
                         LIS_PRINT = true,
                         CREPORT_FILENAME = "",
                         CREPORT_FILETYPE = "",
+                        CSTORAGE_ID01 = loselected_template.CSIGN_STORAGE_ID01,
+                        CSTORAGE_ID02 = loselected_template.CSIGN_STORAGE_ID02,
+                        CSTORAGE_ID03 = loselected_template.CSIGN_STORAGE_ID03,
+                        CSTORAGE_ID04 = loselected_template.CSIGN_STORAGE_ID04,
+                        CSTORAGE_ID05 = loselected_template.CSIGN_STORAGE_ID05,
+                        CSTORAGE_ID06 = loselected_template.CSIGN_STORAGE_ID06,
+                        CSIGN_ID01 = loselected_template.CSIGN_ID01,
+                        CSIGN_ID02 = loselected_template.CSIGN_ID02,
+                        CSIGN_ID03 = loselected_template.CSIGN_ID03,
+                        CSIGN_ID04 = loselected_template.CSIGN_ID04,
+                        CSIGN_ID05 = loselected_template.CSIGN_ID05,
+                        CSIGN_ID06 = loselected_template.CSIGN_ID06,
+                        CSIGN_NAME01 = loselected_template.CSIGN_NAME01,
+                        CSIGN_NAME02 = loselected_template.CSIGN_NAME02,
+                        CSIGN_NAME03 = loselected_template.CSIGN_NAME03,
+                        CSIGN_NAME04 = loselected_template.CSIGN_NAME04,
+                        CSIGN_NAME05 = loselected_template.CSIGN_NAME05,
+                        CSIGN_NAME06 = loselected_template.CSIGN_NAME06,
+                        CSIGN_POSITION01 = loselected_template.CSIGN_POSITION01,
+                        CSIGN_POSITION02 = loselected_template.CSIGN_POSITION02,
+                        CSIGN_POSITION03 = loselected_template.CSIGN_POSITION03,
+                        CSIGN_POSITION04 = loselected_template.CSIGN_POSITION04,
+                        CSIGN_POSITION05 = loselected_template.CSIGN_POSITION05,
+                        CSIGN_POSITION06 = loselected_template.CSIGN_POSITION06,
                     };
 
-                    var storageIds = new[] { nameof(TemplateDTO.CSTORAGE_ID01), nameof(TemplateDTO.CSTORAGE_ID02), nameof(TemplateDTO.CSTORAGE_ID03), nameof(TemplateDTO.CSTORAGE_ID04), nameof(TemplateDTO.CSTORAGE_ID05), nameof(TemplateDTO.CSTORAGE_ID06) };
-                    var signNames = new[] { nameof(TemplateDTO.CSIGN_NAME01), nameof(TemplateDTO.CSIGN_NAME02), nameof(TemplateDTO.CSIGN_NAME03), nameof(TemplateDTO.CSIGN_NAME04), nameof(TemplateDTO.CSIGN_NAME05), nameof(TemplateDTO.CSIGN_NAME06) };
-                    var signPositions = new[] { nameof(TemplateDTO.CSIGN_POSITION01), nameof(TemplateDTO.CSIGN_POSITION02), nameof(TemplateDTO.CSIGN_POSITION03), nameof(TemplateDTO.CSIGN_POSITION04), nameof(TemplateDTO.CSIGN_POSITION05), nameof(TemplateDTO.CSIGN_POSITION06) };
+                    //var storageIds = new[] { nameof(TemplateDTO.CSTORAGE_ID01), nameof(TemplateDTO.CSTORAGE_ID02), nameof(TemplateDTO.CSTORAGE_ID03), nameof(TemplateDTO.CSTORAGE_ID04), nameof(TemplateDTO.CSTORAGE_ID05), nameof(TemplateDTO.CSTORAGE_ID06) };
+                    //var signNames = new[] { nameof(TemplateDTO.CSIGN_NAME01), nameof(TemplateDTO.CSIGN_NAME02), nameof(TemplateDTO.CSIGN_NAME03), nameof(TemplateDTO.CSIGN_NAME04), nameof(TemplateDTO.CSIGN_NAME05), nameof(TemplateDTO.CSIGN_NAME06) };
+                    //var signPositions = new[] { nameof(TemplateDTO.CSIGN_POSITION01), nameof(TemplateDTO.CSIGN_POSITION02), nameof(TemplateDTO.CSIGN_POSITION03), nameof(TemplateDTO.CSIGN_POSITION04), nameof(TemplateDTO.CSIGN_POSITION05), nameof(TemplateDTO.CSIGN_POSITION06) };
 
-                    for (var i = 0; i < storageIds.Length; i++)
-                    {
-                        loParam.GetType().GetProperty(storageIds[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(storageIds[i])!.GetValue(x)).FirstOrDefault());
-                        loParam.GetType().GetProperty(signNames[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(signNames[i])!.GetValue(x)).FirstOrDefault());
-                        loParam.GetType().GetProperty(signPositions[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(signPositions[i])!.GetValue(x)).FirstOrDefault());
-                    }
+                    //for (var i = 0; i < storageIds.Length; i++)
+                    //{
+                    //    loParam.GetType().GetProperty(storageIds[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(storageIds[i])!.GetValue(x)).FirstOrDefault());
+                    //    loParam.GetType().GetProperty(signNames[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(signNames[i])!.GetValue(x)).FirstOrDefault());
+                    //    loParam.GetType().GetProperty(signPositions[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(signPositions[i])!.GetValue(x)).FirstOrDefault());
+                    //}
 
                     var abc = loParam;
                     await _reportService!.GetReport(
@@ -368,6 +408,8 @@ namespace PMB04000FRONT
                         loEx.Add(loErr);
                         goto EndBlock;
                     }
+                    var loselected_template = _viewModelReceipt.loTemplateList.FirstOrDefault(x => x.CTEMPLATE_ID == _viewModelReceipt.pcValueTemplate);
+
                     var loParam = new PMB04000ParamReportDTO
                     {
                         CCOMPANY_ID = _clientHelper!.CompanyId,
@@ -376,19 +418,43 @@ namespace PMB04000FRONT
                         CREF_NO = _viewModelInvoice._mergeRefNoParamater,
                         CUSER_ID = _clientHelper!.UserId,
                         CLANG_ID = _clientHelper.ReportCulture,
-                        LPRINT = true
+                        LPRINT = true,
+                        CSTORAGE_ID01 = loselected_template.CSIGN_STORAGE_ID01,
+                        CSTORAGE_ID02 = loselected_template.CSIGN_STORAGE_ID02,
+                        CSTORAGE_ID03 = loselected_template.CSIGN_STORAGE_ID03,
+                        CSTORAGE_ID04 = loselected_template.CSIGN_STORAGE_ID04,
+                        CSTORAGE_ID05 = loselected_template.CSIGN_STORAGE_ID05,
+                        CSTORAGE_ID06 = loselected_template.CSIGN_STORAGE_ID06,
+                        CSIGN_ID01 = loselected_template.CSIGN_ID01,
+                        CSIGN_ID02 = loselected_template.CSIGN_ID02,
+                        CSIGN_ID03 = loselected_template.CSIGN_ID03,
+                        CSIGN_ID04 = loselected_template.CSIGN_ID04,
+                        CSIGN_ID05 = loselected_template.CSIGN_ID05,
+                        CSIGN_ID06 = loselected_template.CSIGN_ID06,
+                        CSIGN_NAME01 = loselected_template.CSIGN_NAME01,
+                        CSIGN_NAME02 = loselected_template.CSIGN_NAME02,
+                        CSIGN_NAME03 = loselected_template.CSIGN_NAME03,
+                        CSIGN_NAME04 = loselected_template.CSIGN_NAME04,
+                        CSIGN_NAME05 = loselected_template.CSIGN_NAME05,
+                        CSIGN_NAME06 = loselected_template.CSIGN_NAME06,
+                        CSIGN_POSITION01 = loselected_template.CSIGN_POSITION01,
+                        CSIGN_POSITION02 = loselected_template.CSIGN_POSITION02,
+                        CSIGN_POSITION03 = loselected_template.CSIGN_POSITION03,
+                        CSIGN_POSITION04 = loselected_template.CSIGN_POSITION04,
+                        CSIGN_POSITION05 = loselected_template.CSIGN_POSITION05,
+                        CSIGN_POSITION06 = loselected_template.CSIGN_POSITION06,
                     };
 
-                    var storageIds = new[] { nameof(TemplateDTO.CSTORAGE_ID01), nameof(TemplateDTO.CSTORAGE_ID02), nameof(TemplateDTO.CSTORAGE_ID03), nameof(TemplateDTO.CSTORAGE_ID04), nameof(TemplateDTO.CSTORAGE_ID05), nameof(TemplateDTO.CSTORAGE_ID06) };
-                    var signNames = new[] { nameof(TemplateDTO.CSIGN_NAME01), nameof(TemplateDTO.CSIGN_NAME02), nameof(TemplateDTO.CSIGN_NAME03), nameof(TemplateDTO.CSIGN_NAME04), nameof(TemplateDTO.CSIGN_NAME05), nameof(TemplateDTO.CSIGN_NAME06) };
-                    var signPositions = new[] { nameof(TemplateDTO.CSIGN_POSITION01), nameof(TemplateDTO.CSIGN_POSITION02), nameof(TemplateDTO.CSIGN_POSITION03), nameof(TemplateDTO.CSIGN_POSITION04), nameof(TemplateDTO.CSIGN_POSITION05), nameof(TemplateDTO.CSIGN_POSITION06) };
+                    //var storageIds = new[] { nameof(TemplateDTO.CSTORAGE_ID01), nameof(TemplateDTO.CSTORAGE_ID02), nameof(TemplateDTO.CSTORAGE_ID03), nameof(TemplateDTO.CSTORAGE_ID04), nameof(TemplateDTO.CSTORAGE_ID05), nameof(TemplateDTO.CSTORAGE_ID06) };
+                    //var signNames = new[] { nameof(TemplateDTO.CSIGN_NAME01), nameof(TemplateDTO.CSIGN_NAME02), nameof(TemplateDTO.CSIGN_NAME03), nameof(TemplateDTO.CSIGN_NAME04), nameof(TemplateDTO.CSIGN_NAME05), nameof(TemplateDTO.CSIGN_NAME06) };
+                    //var signPositions = new[] { nameof(TemplateDTO.CSIGN_POSITION01), nameof(TemplateDTO.CSIGN_POSITION02), nameof(TemplateDTO.CSIGN_POSITION03), nameof(TemplateDTO.CSIGN_POSITION04), nameof(TemplateDTO.CSIGN_POSITION05), nameof(TemplateDTO.CSIGN_POSITION06) };
 
-                    for (var i = 0; i < storageIds.Length; i++)
-                    {
-                        loParam.GetType().GetProperty(storageIds[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(storageIds[i])!.GetValue(x)).FirstOrDefault());
-                        loParam.GetType().GetProperty(signNames[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(signNames[i])!.GetValue(x)).FirstOrDefault());
-                        loParam.GetType().GetProperty(signPositions[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(signPositions[i])!.GetValue(x)).FirstOrDefault());
-                    }
+                    //for (var i = 0; i < storageIds.Length; i++)
+                    //{
+                    //    loParam.GetType().GetProperty(storageIds[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(storageIds[i])!.GetValue(x)).FirstOrDefault());
+                    //    loParam.GetType().GetProperty(signNames[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(signNames[i])!.GetValue(x)).FirstOrDefault());
+                    //    loParam.GetType().GetProperty(signPositions[i])!.SetValue(loParam, _viewModelReceipt.loTemplateList.Where(x => x.CTEMPLATE_ID == _viewModelInvoice.pcValueTemplate).Select(x => x.GetType().GetProperty(signPositions[i])!.GetValue(x)).FirstOrDefault());
+                    //}
 
                     await _viewModelInvoice.DistributeProcess(poParam: loParam);
 

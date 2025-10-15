@@ -271,7 +271,6 @@ namespace PMB01800FRONT
                 _viewModel.Param.CPAR_DEPT_NAME = "";
             }
         }
-
         private async Task onClickBtnRefresh()
         {
             R_Exception loEx = new();
@@ -313,7 +312,7 @@ namespace PMB01800FRONT
             try
             {
                 var loData = R_FrontUtility.ConvertObjectToObject<PMB01800GetDepositListDTO>(eventArgs.Data);
-
+                _viewModel.Entity = loData;
                 eventArgs.Result = loData;
             }
             catch (Exception ex)
