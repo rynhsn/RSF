@@ -133,6 +133,15 @@ namespace PMB01800FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        internal static string CCURRENCY_CODE {
+            get {
+                return ResourceManager.GetString("CCURRENCY_CODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deposit.
         /// </summary>
         internal static string CDEPOSIT {
@@ -291,6 +300,15 @@ namespace PMB01800FrontResources {
         internal static string DCREATE_DATE {
             get {
                 return ResourceManager.GetString("DCREATE_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ref Date.
+        /// </summary>
+        internal static string DREF_DATE {
+            get {
+                return ResourceManager.GetString("DREF_DATE", resourceCulture);
             }
         }
         

@@ -35,6 +35,8 @@ namespace PMB01800COMMON.DTOs
         public string CSEQ_NO { get; set; }
         public bool LSELECTED { get; set; }
 
+        public string CCURRENCY_CODE { get; set; }
+
     }
 
 }

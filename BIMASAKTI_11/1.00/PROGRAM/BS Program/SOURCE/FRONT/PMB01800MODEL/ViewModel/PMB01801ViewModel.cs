@@ -81,9 +81,12 @@ namespace PMB01800MODEL.ViewModel
                 // set Param
                 _companyId = Param.CCOMPANY_ID;
                 _userId = Param.CUSER_ID;
+                Param.CREF_DATE = Param.DREF_DATE.ToString("yyyyMMdd");
                 loBatchParUserParameters = new List<R_KeyValue>();
                 loBatchParUserParameters.Add(new R_KeyValue
                 { Key = Batch_ContextConstant.CPROPERTY_ID, Value = Param.CPROPERTY_ID });
+                loBatchParUserParameters.Add(new R_KeyValue
+                { Key = Batch_ContextConstant.CREF_DATE, Value = Param.CREF_DATE });
 
                 //Instantiate ProcessClient
                 loCls = new R_ProcessAndUploadClient(

@@ -12,5 +12,6 @@ namespace PMB01800COMMON.DTOs
         public const string CSTATUS = "CSTATUS";
         public const string PROGRAM_ID = "PMB01800";
         public const string TABLE_NAME = "";
+        public const string CREF_DATE = "";
     }
 }
