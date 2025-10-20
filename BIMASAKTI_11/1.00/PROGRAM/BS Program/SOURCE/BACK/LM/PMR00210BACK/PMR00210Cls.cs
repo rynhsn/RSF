@@ -32,13 +32,12 @@ namespace PMR00210BACK
             using Activity activity = _activitySource.StartActivity(MethodBase.GetCurrentMethod().Name);
             R_Exception loEx = new R_Exception();
             List<PMR00210SPResultDTO> loRtn = null;
-            R_Db loDB = null;
             DbConnection loConn = null;
             DbCommand loCmd = null;
             string lcQuery = "";
             try
             {
-                loDB = new R_Db();
+                R_Db loDB = new R_Db();
                 loConn = loDB.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
                 loCmd = loDB.GetCommand();
 

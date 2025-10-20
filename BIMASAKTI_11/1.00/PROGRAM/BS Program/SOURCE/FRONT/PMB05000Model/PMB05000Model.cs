@@ -15,7 +15,7 @@ namespace PMB05000Model
     {
         private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrlPM";
         private const string DEFAULT_SERVICEPOINT_NAME = "api/PMB05000";
-        private const string DEFAULT_MODULE = "pm";
+        private const string DEFAULT_MODULE = "PM";
 
         public PMB05000Model(
             string pcHttpClientName = DEFAULT_HTTP_NAME,
