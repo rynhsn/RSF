@@ -16,6 +16,7 @@
     <ProjectReference Include="..\..\COMMON\LM\PMR00400Common\PMR00400Common.csproj" />
     <ProjectReference Include="..\..\COMMON\LM\PMR02600Common\PMR02600Common.csproj" />
 	  <ProjectReference Include="..\..\COMMON\LM\PMR00460Common\PMR00460Common.csproj" />
+	  <ProjectReference Include="..\..\COMMON\LM\PMR03400COMMON\PMR03400COMMON.csproj" />
   </ItemGroup>
 
   <ItemGroup>
