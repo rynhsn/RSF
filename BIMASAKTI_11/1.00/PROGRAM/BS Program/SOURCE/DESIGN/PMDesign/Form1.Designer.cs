@@ -32,6 +32,7 @@
             PMR02600Button = new Button();
             PMR00460 = new Button();
             BTN_PMR03300 = new Button();
+            PMR03400 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -76,6 +77,15 @@
             BTN_PMR03300.Text = "PMR03300";
             BTN_PMR03300.UseVisualStyleBackColor = true;
             BTN_PMR03300.Click += BTN_PMR03300_Click;
+            // PMR03400
+            // 
+            PMR03400.Location = new Point(315, 167);
+            PMR03400.Name = "PMR03400";
+            PMR03400.Size = new Size(75, 23);
+            PMR03400.TabIndex = 3;
+            PMR03400.Text = "PMR03400";
+            PMR03400.UseVisualStyleBackColor = true;
+            PMR03400.Click += PMR03400_Click;
             // 
             // Form1
             // 
@@ -83,6 +93,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(454, 353);
             Controls.Add(BTN_PMR03300);
+            ClientSize = new Size(702, 405);
+            Controls.Add(PMR03400);
             Controls.Add(PMR00460);
             Controls.Add(PMR02600Button);
             Controls.Add(button1);
@@ -99,5 +111,6 @@
         private Button PMR02600Button;
         private Button PMR00460;
         private Button BTN_PMR03300;
+        private Button PMR03400;
     }
 }

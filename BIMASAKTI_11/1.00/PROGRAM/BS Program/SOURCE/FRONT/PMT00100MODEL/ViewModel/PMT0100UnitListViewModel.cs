@@ -30,12 +30,11 @@ namespace PMT00100MODEL.ViewModel
         public List<PropertyDTO> PropertyList = new List<PropertyDTO>();
         public PropertyDTO PropertyValue = new PropertyDTO();
         public bool lPropertyExist = true;
-        public bool btnChangeUnitAndRealease = true;
+        public bool btnChangeUnitAndRealease = false;
         public bool btnSold_Booking = true;
         public bool btnViewImage = true;
         public bool lControlButtonRedraft;
         public bool lControlButtonSubmit;
-        //public bool lControlButtonChangeUnit;
         public async Task GetPropertyList()
         {
             R_Exception loEx = new R_Exception();
@@ -140,7 +139,6 @@ namespace PMT00100MODEL.ViewModel
 
                 if (loResult.Data.Any())
                 {
-                    btnChangeUnitAndRealease = true;
                     foreach (var item in loResult.Data)
                     {
                         item.DREF_DATE = ConvertStringToDateTimeFormat(item.CREF_DATE);
@@ -149,7 +147,6 @@ namespace PMT00100MODEL.ViewModel
                 }
                 else
                 {
-                    btnChangeUnitAndRealease = false;
                     AgreementByUnitList = new ObservableCollection<PMT00100AgreementByUnitDTO>();
                 }
             }

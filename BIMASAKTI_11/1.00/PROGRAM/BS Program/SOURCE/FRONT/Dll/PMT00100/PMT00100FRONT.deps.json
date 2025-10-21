@@ -163,10 +163,7 @@
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
       "Global_PMCOMMON/1.0.0": {
         "runtime": {
-          "Global_PMCOMMON.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Global_PMCOMMON.dll": {}
         }
       },
       "Global_PMModel/1.0.0": {
@@ -174,26 +171,17 @@
           "Global_PMCOMMON": "1.0.0"
         },
         "runtime": {
-          "Global_PMModel.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Global_PMModel.dll": {}
         }
       },
       "GSM02500COMMON/1.0.0": {
         "runtime": {
-          "GSM02500COMMON.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "GSM02500COMMON.dll": {}
         }
       },
       "Lookup_GSCOMMON/1.0.0": {
         "runtime": {
-          "Lookup_GSCOMMON.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Lookup_GSCOMMON.dll": {}
         }
       },
       "Lookup_GSFRONT/1.0.0": {
@@ -202,18 +190,12 @@
           "Microsoft.AspNetCore.Components.Web": "6.0.15"
         },
         "runtime": {
-          "Lookup_GSFRONT.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Lookup_GSFRONT.dll": {}
         }
       },
       "Lookup_GSFrontResources/1.0.0": {
         "runtime": {
-          "Lookup_GSFrontResources.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Lookup_GSFrontResources.dll": {}
         }
       },
       "Lookup_GSModel/1.0.0": {
@@ -222,18 +204,12 @@
           "Lookup_GSFrontResources": "1.0.0"
         },
         "runtime": {
-          "Lookup_GSModel.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Lookup_GSModel.dll": {}
         }
       },
       "Lookup_PMCOMMON/1.0.0": {
         "runtime": {
-          "Lookup_PMCOMMON.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Lookup_PMCOMMON.dll": {}
         }
       },
       "Lookup_PMFRONT/1.0.0": {
@@ -244,18 +220,12 @@
           "Microsoft.AspNetCore.Components.Web": "6.0.15"
         },
         "runtime": {
-          "Lookup_PMFRONT.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Lookup_PMFRONT.dll": {}
         }
       },
       "Lookup_PMFrontResources/1.0.0": {
         "runtime": {
-          "Lookup_PMFrontResources.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Lookup_PMFrontResources.dll": {}
         }
       },
       "Lookup_PMModel/1.0.0": {
@@ -264,26 +234,17 @@
           "Lookup_PMFrontResources": "1.0.0"
         },
         "runtime": {
-          "Lookup_PMModel.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Lookup_PMModel.dll": {}
         }
       },
       "PMT00100COMMON/1.0.0": {
         "runtime": {
-          "PMT00100COMMON.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "PMT00100COMMON.dll": {}
         }
       },
       "PMT00100FrontResources/1.0.0": {
         "runtime": {
-          "PMT00100FrontResources.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "PMT00100FrontResources.dll": {}
         }
       },
       "PMT00100MODEL/1.0.0": {
@@ -294,10 +255,7 @@
           "PMT00100FrontResources": "1.0.0"
         },
         "runtime": {
-          "PMT00100MODEL.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "PMT00100MODEL.dll": {}
         }
       },
       "BlazorClientHelper/1.0.0.0": {

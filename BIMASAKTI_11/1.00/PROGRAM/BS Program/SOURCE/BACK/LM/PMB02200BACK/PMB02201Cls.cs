@@ -94,6 +94,25 @@ namespace PMB02200BACK
                     $",CNEW_TAX_ID varchar(20)" +
                     $")";
                 _logger.LogDebug("{@ObjectQuery} ", lcQuery);
+
+                for (var i = 0; i < loObject.Count; i++)
+                {
+                    _logger.LogDebug($"INSERT INTO #UTILITY_CHARGES_LIST" +
+                                     $"VALUES (" +
+                                     $"'{loObject[i].CCOMPANY_ID}', " +
+                                     $"'{loObject[i].CPROPERTY_ID}', " +
+                                     $"'{loObject[i].CDEPT_CODE}', " +
+                                     $"'{loObject[i].CTRANS_CODE}', " +
+                                     $"'{loObject[i].CREF_NO}', " +
+                                     $"'{loObject[i].CSEQ_NO}', " +
+                                     $"'{loObject[i].CUNIT_ID}', " +
+                                     $"'{loObject[i].CCHARGES_ID}', " +
+                                     $"'{loObject[i].CNEW_CHARGES_ID}', " +
+                                     $"'{loObject[i].CTAX_ID}', " +
+                                     $"'{loObject[i].CNEW_TAX_ID}' " +
+                                     $")");
+                }
+
                 loDb.SqlExecNonQuery(lcQuery, loConn, false);
                 loDb.R_BulkInsert((SqlConnection)loConn, "#UTILITY_CHARGES_LIST", loObject);
 
@@ -131,6 +150,12 @@ namespace PMB02200BACK
             //HANDLE EXCEPTION IF THERE ANY ERROR ON TRY CATCH paling luar
             if (loException.Haserror)
             {
+                string lcMessageError = loException.ErrorList[0].ErrDescp.Replace("'", "`");
+                lcQuery = "INSERT INTO GST_UPLOAD_ERROR_STATUS(CCOMPANY_ID,CUSER_ID,CKEY_GUID,ISEQ_NO,CERROR_MESSAGE) VALUES" +
+                    string.Format("('{0}', '{1}', ", poBatchProcessPar.Key.COMPANY_ID, poBatchProcessPar.Key.USER_ID) +
+                    string.Format("'{0}', -1, '{1}')", poBatchProcessPar.Key.KEY_GUID, lcMessageError);
+                await loDb.SqlExecNonQueryAsync(lcQuery);
+
                 lcQuery = string.Format("EXEC RSP_WRITEUPLOADPROCESSSTATUS '{0}', '{1}', '{2}', 100, '{3}', {4}", poBatchProcessPar.Key.COMPANY_ID, poBatchProcessPar.Key.USER_ID, poBatchProcessPar.Key.KEY_GUID, loException.ErrorList[0].ErrDescp, 9);
                 loCommand.CommandText = lcQuery;
                 loCommand.CommandType = CommandType.Text;
