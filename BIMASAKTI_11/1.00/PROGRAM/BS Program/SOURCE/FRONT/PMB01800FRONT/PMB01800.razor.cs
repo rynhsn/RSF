@@ -20,6 +20,8 @@ using R_BlazorFrontEnd.Controls.Events;
 using System.Globalization;
 using R_APICommonDTO;
 using R_BlazorFrontEnd.Controls.MessageBox;
+using System.Xml.Linq;
+using System.Diagnostics.Tracing;
 
 namespace PMB01800FRONT
 {
@@ -208,6 +210,7 @@ namespace PMB01800FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
+        #region refresh lookup department
         private async Task OnLostFocus_LookupDept()
         {
             var loEx = new R_Exception();
@@ -217,13 +220,13 @@ namespace PMB01800FRONT
                 if (!string.IsNullOrWhiteSpace(_viewModel.Param.CPAR_DEPT_CODE))
                 {
 
-                    LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel(); //use GSL's model
-                    var loParam = new GSL00700ParameterDTO // use match param as GSL's dto, send as type in search texbox
+                    LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
+                    var loParam = new GSL00710ParameterDTO
                     {
-                        CSEARCH_TEXT = _viewModel.Param.CPAR_DEPT_CODE, // property that bindded to search textbox
-                        CPROGRAM_ID = _viewModel.CPROGRAM_ID,
+                        CSEARCH_TEXT = _viewModel.Param.CPAR_DEPT_CODE,
+                        CPROPERTY_ID = _viewModel.Param.CPROPERTY_ID,
                     };
-                    var loResult = await loLookupViewModel.GetDepartment(loParam); //retrive single record 
+                    var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
 
                     //show result & show name/related another fields
                     if (loResult == null)
@@ -271,6 +274,142 @@ namespace PMB01800FRONT
                 _viewModel.Param.CPAR_DEPT_NAME = "";
             }
         }
+        #endregion
+
+        #region process lookup department
+        private async Task OnLostFocus_LookupDeptProcess()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(_viewModel.Param.CDEPT_CODE))
+                {
+
+                    LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel(); 
+                    var loParam = new GSL00710ParameterDTO 
+                    {
+                        CSEARCH_TEXT = _viewModel.Param.CDEPT_CODE, 
+                        CPROPERTY_ID = _viewModel.Param.CPROPERTY_ID,
+                    };
+                    var loResult = await loLookupViewModel.GetDepartmentProperty(loParam); 
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        _viewModel.Param.CDEPT_NAME = ""; //kosongin bind textbox name kalo gaada
+                        goto EndBlock;
+                    }
+                    _viewModel.Param.CDEPT_CODE = loResult.CDEPT_CODE;
+                    _viewModel.Param.CDEPT_NAME = loResult.CDEPT_NAME; //assign bind textbox name kalo ada
+                }
+                else
+                {
+                    _viewModel.Param.CDEPT_NAME = ""; //kosongin bind textbox name kalo gaada
+
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
+
+        }
+
+        private void BeforeOpen_lookupDeptProcess(R_BeforeOpenLookupEventArgs eventArgs)
+        {
+            eventArgs.Parameter = new GSL00710ParameterDTO() { CPROPERTY_ID = _viewModel.Param.CPROPERTY_ID };
+            eventArgs.TargetPageType = typeof(GSL00710);
+        }
+        private void AfterOpen_lookupDeptAsyncProcess(R_AfterOpenLookupEventArgs eventArgs)
+        {
+            var loTempResult = (GSL00710DTO)eventArgs.Result;
+            if (loTempResult != null)
+            {
+                _viewModel.Param.CDEPT_CODE = loTempResult.CDEPT_CODE;
+                _viewModel.Param.CDEPT_NAME = loTempResult.CDEPT_NAME;
+            }
+            else
+            {
+                _viewModel.Param.CDEPT_CODE = "";
+                _viewModel.Param.CDEPT_NAME = "";
+            }
+        }
+        #endregion
+
+        #region lookup chargeid
+        private async Task OnLostFocus_LookupChargesId()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(_viewModel.Param.CCHARGES_ID))
+                {
+                    var param = new GSL01400ParameterDTO
+                    {
+                        CCHARGES_TYPE_ID = "D",
+                        CPROPERTY_ID = _viewModel.Param.CPROPERTY_ID,
+                        CSEARCH_TEXT = _viewModel.Param.CCHARGES_ID
+                    };
+
+                    LookupGSL01400ViewModel loLookupViewModel = new LookupGSL01400ViewModel();
+
+                    var loResult = await loLookupViewModel.GetOtherCharges(param);
+
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                            "_ErrLookup01"));
+                        _viewModel.Param.CCHARGES_NAME = "";
+                        //await GLAccount_TextBox.FocusAsync();
+                        goto EndBlock;
+                    }
+
+                    _viewModel.Param.CCHARGES_ID= loResult.CCHARGES_ID;
+                    _viewModel.Param.CCHARGES_NAME= loResult.CCHARGES_NAME;
+                }
+                else
+                {
+                    _viewModel.Param.CCHARGES_NAME = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+        EndBlock:
+            R_DisplayException(loEx);
+        }
+
+        private void BeforeOpen_lookupChargesId(R_BeforeOpenLookupEventArgs eventArgs)
+        {
+            var param = new GSL01400ParameterDTO()
+            {
+                CPROPERTY_ID = _viewModel.Param.CPROPERTY_ID,
+                CCHARGES_TYPE_ID = "D",
+            };
+            eventArgs.Parameter = param;
+            eventArgs.TargetPageType = typeof(GSL01400);
+        }
+
+        private void AfterOpen_lookupChargesId(R_AfterOpenLookupEventArgs eventArgs)
+        {
+            var loTempResult = (GSL01400DTO)eventArgs.Result;
+            if (loTempResult == null)
+            {
+                return;
+            }
+
+            _viewModel.Param.CCHARGES_ID = loTempResult.CCHARGES_ID;
+            _viewModel.Param.CCHARGES_NAME = loTempResult.CCHARGES_NAME;
+        }
+        #endregion
         private async Task onClickBtnRefresh()
         {
             R_Exception loEx = new();
@@ -341,6 +480,8 @@ namespace PMB01800FRONT
 
         private void Deposit_Validation(R_ValidationEventArgs eventArgs)
         {
+            
+
 
         }
 
@@ -348,6 +489,35 @@ namespace PMB01800FRONT
         {
 
             eventArgs.Enabled = true;
+        }
+
+        private void R_BeforeSaveBatch(R_BeforeSaveBatchEventArgs events)
+        {
+            R_Exception loEx = new R_Exception();
+            try
+            {
+                var loData = (List<PMB01800GetDepositListDTO>)events.Data;
+
+                events.Cancel = loData.Count == 0;
+                if (loData.Count == 0) {
+                    loEx.Add("", _localizer["ValidationNoData"]);
+                }
+                if (string.IsNullOrWhiteSpace(_viewModel.Param.CDEPT_CODE))
+                {
+                    loEx.Add("", _localizer["ValidationDepartment"]);
+                }
+                if (string.IsNullOrWhiteSpace(_viewModel.Param.CCHARGES_ID))
+                {
+                    loEx.Add("", _localizer["ValidationChargeId"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            if (loEx.HasError)
+                events.Cancel = true;
+            loEx.ThrowExceptionIfErrors();
         }
 
         private async Task SaveBatch(R_ServiceSaveBatchEventArgs eventArgs)

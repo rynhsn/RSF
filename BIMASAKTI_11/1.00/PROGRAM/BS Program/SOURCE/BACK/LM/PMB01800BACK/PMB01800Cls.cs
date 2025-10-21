@@ -16,61 +16,44 @@ namespace PMB01800BACK
 {
     public class PMB01800Cls
     {
-        private readonly LoggerPMB01800? _logger;
+        private readonly LoggerPMB01800 _logger;
         private readonly ActivitySource _activitySource;
 
-        /*
-         * Constructor
-         * Digunakan untuk inisialisasi logger dan activity source
-         * kemudian mendapatkan instance logger
-         * dan instance activity source
-         */
+        
         public PMB01800Cls()
         {
-            _logger = LoggerPMB01800.R_GetInstanceLogger(); // Get instance of logger
-            _activitySource = PMB01800Activity.R_GetInstanceActivitySource(); // Get instance of activity source
+            _logger = LoggerPMB01800.R_GetInstanceLogger(); 
+            _activitySource = PMB01800Activity.R_GetInstanceActivitySource(); 
         }
 
-        /*
-         * Get Property List
-         * Digunakan untuk mendapatkan daftar property
-         * kemudian dikirim sebagai response ke controller dalam bentuk List<PMB01600PropertyDTO>
-         */
         public async Task<List<PMB01800PropertyDTO>> GetPropertyList(PMB01800PropertyParamDTO poParam)
         {
-            using var loActivity = _activitySource.StartActivity(nameof(GetPropertyList)); // Start activity
-            R_Exception loEx = new(); // Create new exception object
-            List<PMB01800PropertyDTO> loRtn = null; // Create new list of PMB01600PropertyDTO
-            R_Db loDb; // Database object
-            DbConnection loConn; // Database connection object
-            DbCommand loCmd; // Database command object
-            string lcQuery; // Query
+            using var loActivity = _activitySource.StartActivity(nameof(GetPropertyList)); 
+            R_Exception loEx = new(); 
+            List<PMB01800PropertyDTO> loRtn = new List<PMB01800PropertyDTO>(); 
             try
             {
-                loDb = new R_Db(); // Create new instance of R_Db
-                loConn = await loDb.GetConnectionAsync(); // Get database connection
-                loCmd = loDb.GetCommand(); // Get database command
+                R_Db loDb  = new R_Db(); 
+                DbConnection loConn = await loDb.GetConnectionAsync(); 
+                DbCommand loCmd = loDb.GetCommand(); 
 
-                lcQuery = @$"EXEC RSP_GS_GET_PROPERTY_LIST '{poParam.CCOMPANY_ID}', '{poParam.CUSER_ID}'"; // Query to get property list
-                loCmd.CommandType = CommandType.Text; // Set command type to text
-                loCmd.CommandText = lcQuery; // Set command text to query
+                string lcQuery = @$"EXEC RSP_GS_GET_PROPERTY_LIST 
+                                '{poParam.CCOMPANY_ID}',
+                                '{poParam.CUSER_ID}'"; 
+                loCmd.CommandType = CommandType.Text; 
+                loCmd.CommandText = lcQuery; 
 
-                _logger.LogDebug("{pcQuery}", lcQuery); // Log the query
-
-                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true); // Execute the query
-
-                loRtn = R_Utility.R_ConvertTo<PMB01800PropertyDTO>(loDataTable).ToList(); // Convert the data table to list of PMB01600PropertyDTO
+                _logger.LogDebug("{pcQuery}", lcQuery); 
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true); 
+                loRtn = R_Utility.R_ConvertTo<PMB01800PropertyDTO>(loDataTable).ToList();
             }
             catch (Exception ex)
             {
-                loEx.Add(ex); // Add the exception to the exception object
-                _logger.LogError(loEx); // Log the exception
+                loEx.Add(ex);
+                _logger.LogError(loEx); 
             }
-
-        EndBlock:
-            loEx.ThrowExceptionIfErrors(); // Throw exception if there are errors
-
-            return loRtn; // Return the property list
+            loEx.ThrowExceptionIfErrors(); 
+            return loRtn; 
         }
 
         public async Task<List<PMB01800GetDepositListDTO>> PMB01800GetDepositList(PMB01800GetDepositListParamDTO poParam)
@@ -98,16 +81,11 @@ namespace PMB01800BACK
                 loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 10, poParam.CPAR_DEPT_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 10, poParam.CUSER_ID);
 
+
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                     .Where(x =>
-                        x.ParameterName is
-                            "@CCOMPANY_ID" or
-                            "@CPROPERTY_ID" or
-                            "@CTRANS_TYPE" or
-                            "@CTRANS_CODE" or
-                            "@CDEPT_CODE" or
-                            "@CUSER_ID"
-                    ).Select(x => x.Value);
+                    x != null && x.ParameterName.StartsWith("@"))
+                    .Select(x => x.Value);
 
                 _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
 
