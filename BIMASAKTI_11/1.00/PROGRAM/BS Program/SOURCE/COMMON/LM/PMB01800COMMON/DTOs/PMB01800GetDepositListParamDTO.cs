@@ -16,5 +16,9 @@ namespace PMB01800COMMON.DTOs
         public string CUSER_ID { get; set; }
         public DateTime DREF_DATE { get; set; }
         public string CREF_DATE { get; set; }
+        public string CDEPT_CODE { get; set; }
+        public string CDEPT_NAME { get; set; }
+        public string CCHARGES_ID { get; set; }
+        public string CCHARGES_NAME { get; set; }
     }
 }

@@ -7,13 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
     
     <ItemGroup>
         <ProjectReference Include="..\..\..\BACK\LM\PMR03000Back\PMR03000Back.csproj" />
+        <ProjectReference Include="..\..\..\BACK\LM\PMR03300BACK\PMR03300BACK.csproj" />
         <ProjectReference Include="..\..\..\COMMON\BaseHeaderResources\BaseHeaderResources.csproj" />
-        <ProjectReference Include="..\..\..\COMMON\LM\PMR03000Common\PMR03000Common.csproj" />
     </ItemGroup>
 
     <ItemGroup>
