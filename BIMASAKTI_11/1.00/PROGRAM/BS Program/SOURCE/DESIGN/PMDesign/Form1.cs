@@ -45,6 +45,9 @@ namespace PMDesign
         {
             var loData = new ArrayList();
             loData.Add(PMR03300COMMON.Model.PMR03300DummyData.DefaultDataWithHeader());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
         private void PMR03400_Click(object sender, EventArgs e)
         {
             var loData = new ArrayList();
