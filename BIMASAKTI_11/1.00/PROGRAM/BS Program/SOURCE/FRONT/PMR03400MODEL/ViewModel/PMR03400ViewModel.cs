@@ -79,20 +79,19 @@ namespace PMR03400MODEL.ViewModel
 
         }
 
-        public async Task<PeriodYearDTO> GetPeriodYearAsync()
+        public async Task GetPeriodYearAsync()
         {
             R_Exception loEx = new R_Exception();
-            PeriodYearDTO loRtn = null;
             try
             {
-                loRtn = await _PMR03400model.GetPeriodYearRecordAsync(new PeriodYearDTO() { CMODE = "", CYEAR = "" });
+                var loRtn = await _PMR03400model.GetPeriodYearRecordAsync(new PeriodYearDTO() { CMODE = "", CYEAR = "" });
+                _PeriodYear = loRtn;
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
             }
             loEx.ThrowExceptionIfErrors();
-            return loRtn;
         }
 
         public async Task GetSystemParam(string pcPropertyId)

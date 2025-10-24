@@ -44,6 +44,7 @@ namespace PMR03400FRONT
             try
             {
                 await _viewModel.GetPropertyAsync();
+                await _viewModel.GetPeriodYearAsync();
 
                 //set default data
                 if (_viewModel._properties.Count > 0)
@@ -53,19 +54,34 @@ namespace PMR03400FRONT
 
                     if (_viewModel.SystemParam != null)
                     {
-                        _viewModel._YearFromPeriod = int.Parse(_viewModel.SystemParam.CCURRENT_PERIOD_YY);
-                        _viewModel._YearToPeriod = int.Parse(_viewModel.SystemParam.CCURRENT_PERIOD_YY);
-
                         //get period
                         var loCurrentPeriodFrom = await _viewModel.GetPeriodDtAsync(_viewModel.SystemParam.CCURRENT_PERIOD_YY);
                         _viewModel._fromPeriods = new ObservableCollection<PeriodDtDTO>(loCurrentPeriodFrom);
-                        _viewModel._MonthFromPeriod = _viewModel.SystemParam.CCURRENT_PERIOD_MM;
 
                         var loCurrentPeriodTo = await _viewModel.GetPeriodDtAsync(_viewModel.SystemParam.CCURRENT_PERIOD_YY);
                         _viewModel._toPeriods = new ObservableCollection<PeriodDtDTO>(loCurrentPeriodTo);
+
+                        _viewModel._YearFromPeriod = int.Parse(_viewModel.SystemParam.CCURRENT_PERIOD_YY);
+                        _viewModel._YearToPeriod = int.Parse(_viewModel.SystemParam.CCURRENT_PERIOD_YY);
+                        _viewModel._MonthFromPeriod = _viewModel.SystemParam.CCURRENT_PERIOD_MM;
                         _viewModel._MonthToPeriod = _viewModel.SystemParam.CCURRENT_PERIOD_MM;
                     }
+                    else
+                    {
+                        _viewModel._YearFromPeriod = DateTime.Now.Year;
+                        _viewModel._MonthFromPeriod = DateTime.Now.Month.ToString("D2");
+                        _viewModel._YearToPeriod = DateTime.Now.Year;
+                        _viewModel._MonthToPeriod = DateTime.Now.Month.ToString("D2");
+
+                        //get period
+                        var loCurrentPeriodFrom = await _viewModel.GetPeriodDtAsync(DateTime.Now.Year.ToString());
+                        _viewModel._fromPeriods = new ObservableCollection<PeriodDtDTO>(loCurrentPeriodFrom);
+                        var loCurrentPeriodTo = await _viewModel.GetPeriodDtAsync(DateTime.Now.Year.ToString());
+                        _viewModel._toPeriods = new ObservableCollection<PeriodDtDTO>(loCurrentPeriodTo);
+                    }
                 }
+
+
                 _viewModel._ReportParam.CCURRENCY_TYPE = "L";
 
                 await _setDefaultCustomer();
@@ -101,10 +117,16 @@ namespace PMR03400FRONT
                 }
                 else
                 {
-                    _viewModel._YearFromPeriod = 0;
-                    _viewModel._MonthFromPeriod = "";
-                    _viewModel._YearToPeriod = 0;
-                    _viewModel._MonthToPeriod = "";
+                    _viewModel._YearFromPeriod = DateTime.Now.Year;
+                    _viewModel._MonthFromPeriod = DateTime.Now.Month.ToString("D2");
+                    _viewModel._YearToPeriod = DateTime.Now.Year;
+                    _viewModel._MonthToPeriod = DateTime.Now.Month.ToString("D2");
+
+                    //get period
+                    var loCurrentPeriodFrom = await _viewModel.GetPeriodDtAsync(DateTime.Now.Year.ToString());
+                    _viewModel._fromPeriods = new ObservableCollection<PeriodDtDTO>(loCurrentPeriodFrom);
+                    var loCurrentPeriodTo = await _viewModel.GetPeriodDtAsync(DateTime.Now.Year.ToString());
+                    _viewModel._toPeriods = new ObservableCollection<PeriodDtDTO>(loCurrentPeriodTo);
                 }
                 await _setDefaultCustomer();
             }
@@ -150,6 +172,8 @@ namespace PMR03400FRONT
                     var loParam = new LML00600ParameterDTO // use match param as GSL's dto, send as type in search texbox
                     {
                         CSEARCH_TEXT = _viewModel._ReportParam.CFR_CODE, // property that bindded to search textbox
+                        CPROPERTY_ID = _viewModel._ReportParam.CPROPERTY_ID ?? "",
+                        CCUSTOMER_TYPE = "01"
                     };
                     var loResult = await loLookupViewModel.GetTenant(loParam); //retrive single record
 
@@ -157,7 +181,7 @@ namespace PMR03400FRONT
                     if (loResult == null)
                     {
                         loEx.Add(R_FrontUtility.R_GetError(
-                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                typeof(Lookup_PMFrontResources.Resources_Dummy_Class_LookupPM),
                                 "_ErrLookup01"));
                         _viewModel._ReportParam.CFR_CODE_NAME = ""; //kosongin bind textbox name kalo gaada
                         goto EndBlock;
@@ -210,6 +234,8 @@ namespace PMR03400FRONT
                     var loParam = new LML00600ParameterDTO // use match param as GSL's dto, send as type in search texbox
                     {
                         CSEARCH_TEXT = _viewModel._ReportParam.CTO_CODE, // property that bindded to search textbox
+                        CPROPERTY_ID = _viewModel._ReportParam.CPROPERTY_ID ?? "",
+                        CCUSTOMER_TYPE = "01"
                     };
 
                     var loResult = await loLookupViewModel.GetTenant(loParam); //retrive single record 
@@ -218,7 +244,7 @@ namespace PMR03400FRONT
                     if (loResult == null)
                     {
                         loEx.Add(R_FrontUtility.R_GetError(
-                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                typeof(Lookup_PMFrontResources.Resources_Dummy_Class_LookupPM),
                                 "_ErrLookup01"));
                         _viewModel._ReportParam.CTO_CODE_NAME = ""; //kosongin bind textbox name kalo gaada
                         goto EndBlock;
@@ -272,6 +298,45 @@ namespace PMR03400FRONT
 
         #endregion
 
+        #region PeriodOnchange
+        public async Task NumOnChanged_FromPeriod()
+        {
+            R_Exception loEx = new R_Exception();
+            try
+            {
+                _viewModel._fromPeriods = new ObservableCollection<PeriodDtDTO>(
+                    await _viewModel.GetPeriodDtAsync(
+                        string.IsNullOrWhiteSpace(_viewModel._YearFromPeriod.ToString())
+                        ? _viewModel._InitToday.Year.ToString()
+                        : _viewModel._YearFromPeriod.ToString())
+                    );
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+        }
+        public async Task NumOnChanged_ToPeriod()
+        {
+            R_Exception loEx = new R_Exception();
+            try
+            {
+                _viewModel._toPeriods = new ObservableCollection<PeriodDtDTO>(
+                    await _viewModel.GetPeriodDtAsync(
+                        string.IsNullOrWhiteSpace(_viewModel._YearToPeriod.ToString())
+                        ? _viewModel._InitToday.Year.ToString()
+                        : _viewModel._YearToPeriod.ToString()));
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+        }
+        #endregion
+
+
         #region print
 
         private async Task OnclickBtn_Print()
@@ -298,21 +363,24 @@ namespace PMR03400FRONT
             {
                 loParam = new PMR03400ParamDTO()
                 {
-                    CLANGUAGE_ID = _clientHelper.Culture.Name,
                     CCOMPANY_ID = _clientHelper.CompanyId,
-                    CREPORT_CULTURE = _clientHelper.ReportCulture.ToString(),
                     CUSER_ID = _clientHelper.UserId,
                     CPROPERTY_ID = _viewModel._ReportParam.CPROPERTY_ID,
                     CPROPERTY_NAME = _viewModel._properties.Where(x => x.CPROPERTY_ID == _viewModel._ReportParam.CPROPERTY_ID).FirstOrDefault().CPROPERTY_NAME,
+                    CFR_PERIOD = _viewModel._YearFromPeriod + _viewModel._MonthFromPeriod, //yyyyMM
+                    CTO_PERIOD = _viewModel._YearToPeriod + _viewModel._MonthToPeriod, //yyyyMM
+                    CCURRENCY_TYPE = _viewModel._ReportParam.CCURRENCY_TYPE,
                     CFR_CODE = _viewModel._ReportParam.CFR_CODE,
                     CFR_CODE_NAME = _viewModel._ReportParam.CFR_CODE_NAME,
                     CTO_CODE = _viewModel._ReportParam.CTO_CODE,
                     CTO_CODE_NAME = _viewModel._ReportParam.CTO_CODE_NAME,
-                    
-                    CFR_PERIOD = _viewModel._YearFromPeriod + _viewModel._MonthFromPeriod, //yyyyMM
-                    CTO_PERIOD = _viewModel._YearToPeriod + _viewModel._MonthToPeriod, //yyyyMM
+
                     LDESC = _viewModel._ReportParam.LDESC,
-                    LPROFORMA = _viewModel._ReportParam.LPROFORMA
+                    LPROFORMA = _viewModel._ReportParam.LPROFORMA,
+
+                    CLANGUAGE_ID = _clientHelper.Culture.Name,
+                    CREPORT_CULTURE = _clientHelper.ReportCulture.ToString(),
+                    
                 };
             }
             catch (Exception ex)

@@ -181,7 +181,7 @@
     <value>Local Currency</value>
   </data>
   <data name="_pageTitle" xml:space="preserve">
-    <value>LOI List</value>
+    <value>Customer Ledger</value>
   </data>
   <data name="_radioDetail" xml:space="preserve">
     <value>Detail</value>
@@ -193,10 +193,10 @@
     <value>Save As</value>
   </data>
   <data name="_validationDeptFromResult" xml:space="preserve">
-    <value>Department [From] [INPUT Department Code] not found!</value>
+    <value>Customer [From] [INPUT Customer Code] not found!</value>
   </data>
   <data name="_validationDeptToResult" xml:space="preserve">
-    <value>Department [To] [INPUT Department Code] not found!</value>
+    <value>Customer [To] [INPUT Customer Code] not found!</value>
   </data>
   <data name="_validationEmptyFromCustomer" xml:space="preserve">
     <value>Please select From Customer ID</value>

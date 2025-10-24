@@ -250,7 +250,7 @@ namespace PMR03400FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LOI List.
+        ///   Looks up a localized string similar to Customer Ledger.
         /// </summary>
         internal static string _pageTitle {
             get {
@@ -286,7 +286,7 @@ namespace PMR03400FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department [From] [INPUT Department Code] not found!.
+        ///   Looks up a localized string similar to Customer [From] [INPUT Customer Code] not found!.
         /// </summary>
         internal static string _validationDeptFromResult {
             get {
@@ -295,7 +295,7 @@ namespace PMR03400FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department [To] [INPUT Department Code] not found!.
+        ///   Looks up a localized string similar to Customer [To] [INPUT Customer Code] not found!.
         /// </summary>
         internal static string _validationDeptToResult {
             get {
