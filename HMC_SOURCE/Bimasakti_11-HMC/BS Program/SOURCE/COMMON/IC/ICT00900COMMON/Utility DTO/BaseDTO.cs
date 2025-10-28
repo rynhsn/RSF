@@ -10,6 +10,7 @@ namespace ICT00900COMMON.Utility_DTO
         public string CUSER_ID { get; set; } = "";
         public string CPROPERTY_ID { get; set; } = "";
         public string CLANG_ID { get; set; } = "";
+        public string CREC_ID { get; set; } = "";
         public string CUPDATE_BY { get; set; } = "";
         public DateTime DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; } = "";

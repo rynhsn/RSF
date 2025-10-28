@@ -47,7 +47,8 @@ namespace ICT00900FRONT
             try
             {
                 ICT00900AdjustmentDTO loParam = R_FrontUtility.ConvertObjectToObject<ICT00900AjustmentDetailDTO>(poParameter);
-                _viewModel.ParameterGetDetail = R_FrontUtility.ConvertObjectToObject<ICT00900AjustmentDetailDTO>(loParam);
+                _viewModel.ParameterGetDetail = R_FrontUtility.ConvertObjectToObject<ICT00900AjustmentDetailDTO>(poParameter);
+                await _viewModel.GetICSystemParam();
                 await _viewModel.GetVarTransactionCode();
                 await _viewModel.GetVarCompanyInfo();
                 await _viewModel.GetCurrencyList();
@@ -190,22 +191,50 @@ namespace ICT00900FRONT
         }
         private async Task AfterAdd(R_AfterAddEventArgs eventArgs)
         {
-            _viewModel._lDataCREF_NO = !_viewModel.VarTransaction.LINCREMENT_FLAG;
-            eventArgs.Data = new ICT00900AjustmentDetailDTO()
+            var loEx = new R_Exception();
+            try
             {
-                CCOMPANY_ID = _clientHelper.CompanyId,
-                CUSER_ID = _clientHelper.UserId,
-                CPROPERTY_ID = _viewModel.ParameterGetDetail.CPROPERTY_ID,
-                CTRANS_CODE = TransactionCode,
-                CTRANS_CODE_DESCR = TransactionCodeDesc,
-                CLOCAL_CURRENCY_CODE = _viewModel.VarCompanyInfo.CLOCAL_CURRENCY_CODE,
-                CBASE_CURRENCY_CODE = _viewModel.VarCompanyInfo.CBASE_CURRENCY_CODE,
+                var loData = (ICT00900AjustmentDetailDTO)eventArgs.Data;
+                loData.CCOMPANY_ID = _clientHelper.CompanyId;
+                loData.CUSER_ID = _clientHelper.UserId;
+                loData.CPROPERTY_ID = _viewModel.ParameterGetDetail.CPROPERTY_ID;
+                loData.CTRANS_CODE = TransactionCode;
+                loData.CTRANS_CODE_DESCR = TransactionCodeDesc;
+                loData.CCURRENCY_CODE = _viewModel.VarCompanyInfo.CLOCAL_CURRENCY_CODE;
+                loData.CLOCAL_CURRENCY_CODE = _viewModel.VarCompanyInfo.CLOCAL_CURRENCY_CODE;
+                loData.CBASE_CURRENCY_CODE = _viewModel.VarCompanyInfo.CBASE_CURRENCY_CODE;
+                loData.CADJUST_METHOD = "C";
+                loData.NLBASE_RATE = 1;
+                loData.NLCURRENCY_RATE = 1;
+                loData.DREF_DATE = DateTime.Now;
 
-            };
-            // Focus Async
-            await FocusLabel!.FocusAsync();
-            #endregion
+                var loLastCurrency = await _viewModel.GetLastCurrency(DateTime.Now);
+                if (loLastCurrency == null)
+                {
+                    loData.NLBASE_RATE = 1;
+                    loData.NLCURRENCY_RATE = 1;
+                    loData.NBBASE_RATE = 1;
+                    loData.NBCURRENCY_RATE = 1;
+                }
+                else
+                {
+                    loData.NLBASE_RATE = loLastCurrency.NLBASE_RATE_AMOUNT;
+                    loData.NLCURRENCY_RATE = loLastCurrency.NLCURRENCY_RATE_AMOUNT;
+                    loData.NBBASE_RATE = loLastCurrency.NBBASE_RATE_AMOUNT;
+                    loData.NBCURRENCY_RATE = loLastCurrency.NBCURRENCY_RATE_AMOUNT;
+                }
+                // Focus Async
+                await FocusLabel!.FocusAsync();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+           
         }
+        #endregion
+
         private async Task AfterDelete()
         {
             var loEx = new R_Exception();
@@ -262,24 +291,6 @@ namespace ICT00900FRONT
             R_DisplayException(loException);
         }
 
-        private async Task R_SetEditAsync(R_SetEventArgs eventArgs)
-        {
-            R_Exception loException = new R_Exception();
-
-            try
-            {
-                _viewModel._lDataCREF_NO = false;
-                _viewModel.lControlCRUDMode = eventArgs.Enable;
-                //_oEventCallBack.LCRUD_MODE = _viewModel.lControlCRUDMode = eventArgs.Enable;
-                //await InvokeTabEventCallbackAsync(_viewModel.lControlCRUDMode);
-            }
-            catch (Exception ex)
-            {
-                loException.Add(ex);
-            }
-
-            R_DisplayException(loException);
-        }
         private void R_CheckEdit(R_CheckEditEventArgs eventArgs)
         {
             var loException = new R_Exception();
@@ -310,23 +321,7 @@ namespace ICT00900FRONT
 
             R_DisplayException(loException);
         }
-        private void OnChangedCurrencyCode(string pcParam)
-        {
-            R_Exception loException = new R_Exception();
-            ICT00900AjustmentDetailDTO? loData = _viewModel.Data;
 
-            try
-            {
-                loData.CCURRENCY_CODE = pcParam;
-                loData.CCURRENCY_NAME = _viewModel.CurrencyList.FirstOrDefault(c => c.CCURRENCY_CODE == pcParam)?.CCURRENCY_NAME;
-            }
-            catch (Exception ex)
-            {
-                loException.Add(ex);
-            }
-
-            R_DisplayException(loException);
-        }
         #region Button
         private async Task SubmitBtn()
         {
@@ -346,7 +341,7 @@ namespace ICT00900FRONT
                     _viewModel.ParameterChangeStatus.CTRANS_CODE = TransactionCode;
 
 
-                    var loReturn = await _viewModel.ChangeStatusAdjustment(lcNewStatus: "10");
+                    var loReturn = await _viewModel.SubmitAdjustment();
                     if (loReturn.IS_PROCESS_CHANGESTS_SUCCESS)
                     {
                         await R_MessageBox.Show(R_FrontUtility.R_GetMessage(typeof(Resources_ICT00900_Class), "_SuccessMessageOfferSubmit"));
@@ -415,25 +410,25 @@ namespace ICT00900FRONT
         #region LookUp
         private void BeforeOpenLookUp_Department(R_BeforeOpenLookupEventArgs eventArgs)
         {
-            var param = new GSL00700ParameterDTO()
+            var param = new GSL00710ParameterDTO()
             {
                 CCOMPANY_ID = _clientHelper!.CompanyId,
-                CUSER_ID = _clientHelper.UserId,
+                CPROPERTY_ID = _viewModel.ParameterGetDetail.CPROPERTY_ID,
             };
             eventArgs.Parameter = param;
-            eventArgs.TargetPageType = typeof(GSL00700);
+            eventArgs.TargetPageType = typeof(GSL00710);
 
         }
         private void AfterOpenLookUpDepartment(R_AfterOpenLookupEventArgs eventArgs)
         {
             R_Exception loException = new R_Exception();
-            GSL00700DTO? loTempResult = null;
+            GSL00710DTO? loTempResult = null;
             //PMT01100LOO_Offer_SelectedOfferDTO? loGetData = null;
 
 
             try
             {
-                loTempResult = (GSL00700DTO)eventArgs.Result;
+                loTempResult = (GSL00710DTO)eventArgs.Result;
                 if (loTempResult == null)
                     return;
 
@@ -465,14 +460,14 @@ namespace ICT00900FRONT
                     return;
                 }
 
-                LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
-                GSL00700ParameterDTO loParam = new GSL00700ParameterDTO()
+                LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
+                GSL00710ParameterDTO loParam = new GSL00710ParameterDTO()
                 {
                     CCOMPANY_ID = _clientHelper.CompanyId,
-                    CUSER_ID = _clientHelper.UserId,
+                    CPROPERTY_ID = _viewModel.ParameterGetDetail.CPROPERTY_ID,
                     CSEARCH_TEXT = loGetData.CDEPT_CODE ?? "",
                 };
-                var loResult = await loLookupViewModel.GetDepartment(loParam);
+                var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
                 if (loResult == null)
                 {
                     loEx.Add(R_FrontUtility.R_GetError(
@@ -660,11 +655,10 @@ namespace ICT00900FRONT
             R_DisplayException(loEx);
         }
         #endregion
-        #region Locking
 
+        #region Locking
         private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrlIC";
         private const string DEFAULT_MODULE_NAME = "IC";
-
         protected async override Task<bool> R_LockUnlock(R_LockUnlockEventArgs eventArgs)
         {
             var loEx = new R_Exception();
@@ -720,8 +714,6 @@ namespace ICT00900FRONT
 
             return llRtn;
         }
-
-
         private async Task lockingButton(bool param)
         {
             var loEx = new R_Exception();
@@ -766,7 +758,41 @@ namespace ICT00900FRONT
             }
             loEx.ThrowExceptionIfErrors();
         }
+        #endregion
 
+        #region ValueChange
+        private async Task RefDate_OnChange(DateTime? poParam)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                _viewModel.Data.DREF_DATE = poParam;
+                if (poParam != null)
+                {
+                    var loLastCurrency = await _viewModel.GetLastCurrency(poParam.Value);
+                    if (loLastCurrency == null)
+                    {
+                        _viewModel.Data.NLBASE_RATE = 1;
+                        _viewModel.Data.NLCURRENCY_RATE = 1;
+                        _viewModel.Data.NBBASE_RATE = 1;
+                        _viewModel.Data.NBCURRENCY_RATE = 1;
+                    }
+                    else
+                    {
+                        _viewModel.Data.NLBASE_RATE = loLastCurrency.NLBASE_RATE_AMOUNT;
+                        _viewModel.Data.NLCURRENCY_RATE = loLastCurrency.NLCURRENCY_RATE_AMOUNT;
+                        _viewModel.Data.NBBASE_RATE = loLastCurrency.NBBASE_RATE_AMOUNT;
+                        _viewModel.Data.NBCURRENCY_RATE = loLastCurrency.NBCURRENCY_RATE_AMOUNT;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            await R_DisplayExceptionAsync(loEx);
+        }
         #endregion
     }
 
