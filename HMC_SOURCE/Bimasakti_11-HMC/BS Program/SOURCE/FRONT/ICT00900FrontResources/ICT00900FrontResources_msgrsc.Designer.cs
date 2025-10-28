@@ -430,6 +430,15 @@ namespace ICT00900FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adjustment Value cannot be less than 0.
+        /// </summary>
+        internal static string ValidationAdjustmentValueMin {
+            get {
+                return ResourceManager.GetString("ValidationAdjustmentValueMin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allocation is required.
         /// </summary>
         internal static string ValidationAllocation {
