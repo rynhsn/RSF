@@ -38,8 +38,8 @@ namespace ICT00900MODEL.ICT00900ViewModel
         public ICT00900ParameterChangeStatusDTO ParameterChangeStatus = new ICT00900ParameterChangeStatusDTO();
         public List<ComboBoxDTO> AdjustmentMethodList = new List<ComboBoxDTO>
         {
-            new ComboBoxDTO{CCODE = "C",  CDESCRIPTION = R_FrontUtility.R_GetMessage(typeof(Resources_ICT00900_Class), $"_labelUnitCost") },
-            new ComboBoxDTO{CCODE = "V",  CDESCRIPTION = R_FrontUtility.R_GetMessage(typeof(Resources_ICT00900_Class), $"_labelTotalValue") },
+            new ComboBoxDTO{CCODE = "U",  CDESCRIPTION = R_FrontUtility.R_GetMessage(typeof(Resources_ICT00900_Class), $"_labelUnitCost") },
+            new ComboBoxDTO{CCODE = "T",  CDESCRIPTION = R_FrontUtility.R_GetMessage(typeof(Resources_ICT00900_Class), $"_labelTotalValue") },
             new ComboBoxDTO{CCODE = "A",  CDESCRIPTION = R_FrontUtility.R_GetMessage(typeof(Resources_ICT00900_Class), $"_labelTotalAdjustment") },
         };
         public bool lPropertyExist = true;
