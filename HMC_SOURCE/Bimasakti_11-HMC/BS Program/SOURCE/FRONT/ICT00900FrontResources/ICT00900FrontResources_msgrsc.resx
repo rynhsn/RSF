@@ -129,6 +129,9 @@
   <data name="ValidationAdjustmentValue" xml:space="preserve">
     <value>Adjustment Value cannot be 0 for Unit Price Adjustment Method!</value>
   </data>
+  <data name="ValidationAdjustmentValueMin" xml:space="preserve">
+    <value>Adjustment Value cannot be less than 0</value>
+  </data>
   <data name="ValidationAllocation" xml:space="preserve">
     <value>Allocation is required</value>
   </data>
