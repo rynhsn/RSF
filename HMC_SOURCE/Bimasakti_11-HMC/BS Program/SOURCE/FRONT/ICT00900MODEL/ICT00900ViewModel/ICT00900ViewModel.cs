@@ -328,6 +328,15 @@ namespace ICT00900MODEL.ICT00900ViewModel
                     var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationRefDate");
                     loEx.Add(loErr);
                 }
+                else
+                {
+                    var loSoftClosePeriod = int.Parse(ICSystemParameter.CSOFT_PERIOD);
+                    if (int.Parse(poEntity.DREF_DATE.Value.ToString("yyyyMMdd")) < loSoftClosePeriod)
+                    {
+                        var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationRefDateSoftClose");
+                        loEx.Add(loErr);
+                    }
+                }
                 if (string.IsNullOrWhiteSpace(poEntity.CPRODUCT_ID))
                 {
                     var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationProductId");
@@ -338,16 +347,21 @@ namespace ICT00900MODEL.ICT00900ViewModel
                     var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationAdjustmentMethod");
                     loEx.Add(loErr);
                 }
+                else
+                {
+                    if (poEntity.CADJUST_METHOD == "A" && poEntity.NADJUST_AMOUNT < 0)
+                    {
+                        var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationAdjustmentValue");
+                        loEx.Add(loErr);
+                    }
+                }
+
                 if (string.IsNullOrWhiteSpace(poEntity.CCURRENCY_CODE))
                 {
                     var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationCurrency");
                     loEx.Add(loErr);
                 }
-                if (poEntity.NADJUST_AMOUNT < 0)
-                {
-                    var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationAdjustmentValue");
-                    loEx.Add(loErr);
-                }
+                
                 if (string.IsNullOrWhiteSpace(poEntity.CALLOC_ID))
                 {
                     var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationAllocation");

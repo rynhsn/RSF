@@ -127,7 +127,7 @@
     <value>Adjustment Method is required</value>
   </data>
   <data name="ValidationAdjustmentValue" xml:space="preserve">
-    <value>Adjustment Value cannot be less than 0</value>
+    <value>Adjustment Value cannot be 0 for Unit Price Adjustment Method!</value>
   </data>
   <data name="ValidationAllocation" xml:space="preserve">
     <value>Allocation is required</value>
@@ -146,6 +146,9 @@
   </data>
   <data name="ValidationRefDate" xml:space="preserve">
     <value>Reference Date is required</value>
+  </data>
+  <data name="ValidationRefDateSoftClose" xml:space="preserve">
+    <value>Reference Date may not be earlier than Soft Period!</value>
   </data>
   <data name="ValidationRefNo" xml:space="preserve">
     <value>Reference No is required</value>
