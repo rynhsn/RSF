@@ -349,7 +349,7 @@ namespace ICT00900MODEL.ICT00900ViewModel
                 }
                 else
                 {
-                    if (poEntity.CADJUST_METHOD == "A" && poEntity.NADJUST_AMOUNT < 0)
+                    if (poEntity.CADJUST_METHOD == "A" && poEntity.NADJUST_AMOUNT == 0)
                     {
                         var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationAdjustmentValue");
                         loEx.Add(loErr);
