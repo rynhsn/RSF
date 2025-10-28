@@ -8,7 +8,7 @@
         <R_ItemLayout col="9">
             <R_StackLayout Row>
                 <R_ItemLayout col="2">
-                    <R_Label>@_localizer["_Departement"]</R_Label>
+                    <R_Label>@_localizer["_Departement"]*</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_TextBox @bind-Value="@_viewModel.Data.CDEPT_CODE"
@@ -55,47 +55,25 @@
         <R_ItemLayout col="9">
             <R_StackLayout Row>
                 <R_ItemLayout col="2">
-                    <R_Label>@_localizer["_Transaction"]</R_Label>
-                </R_ItemLayout>
-                <R_ItemLayout col="2">
-                    <R_TextBox @bind-Value="@_viewModel.Data.CTRANS_CODE"
-                               R_ConductorSource="_conducorAdjDetail"
-                               Enabled="false">
-                    </R_TextBox>
-                </R_ItemLayout>
-                <R_ItemLayout col="7" Class="pe-5">
-                    <R_TextBox @bind-Value="@_viewModel.Data.CTRANS_CODE_DESCR"
-                               R_ConductorSource="_conducorAdjDetail"
-                               Enabled="false">
-                    </R_TextBox>
-                </R_ItemLayout>
-            </R_StackLayout>
-        </R_ItemLayout>
-
-    </R_StackLayout>
-
-    <R_StackLayout Row>
-        <R_ItemLayout col="9">
-            <R_StackLayout Row>
-                <R_ItemLayout col="2">
                     <R_Label>@_localizer["_RefNo"]*</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
                     <R_TextBox @bind-Value="@_viewModel.Data.CREF_NO"
                                R_ConductorSource="_conducorAdjDetail"
-                               Enabled="@(!_viewModel.lControlCRUDMode && _viewModel._lDataCREF_NO)">
+                               Enabled="@(!_viewModel.lControlCRUDMode && !_viewModel.VarTransaction.LINCREMENT_FLAG)">
                     </R_TextBox>
                 </R_ItemLayout>
                 <R_ItemLayout col="1">
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
-                    <R_Label>@_localizer["_RefDateDetail"]</R_Label>
+                    <R_Label>@_localizer["_RefDateDetail"]*</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="3" Class="pe-5">
-                    <R_DatePicker @bind-Value="@_viewModel.Data.DREF_DATE"
+                    <R_DatePicker Value="@_viewModel.Data.DREF_DATE"
                                   R_ConductorSource="_conducorAdjDetail"
-                                    R_EnableAdd
-                                    R_EnableEdit>
+                                  ValueChanged="@((DateTime? value) => RefDate_OnChange(value))"
+                                  R_EnableAdd
+                                  R_EnableEdit>
                     </R_DatePicker>
                 </R_ItemLayout>
             </R_StackLayout>
@@ -108,33 +86,7 @@
         <R_ItemLayout col="9">
             <R_StackLayout Row>
                 <R_ItemLayout col="2">
-                    <R_Label>@_localizer["_AdjustmentMethod"]</R_Label>
-                </R_ItemLayout>
-
-                <R_ItemLayout col="7">
-                    <R_ItemLayout col="12">
-
-                        <R_ItemLayout>
-                            <R_RadioGroup R_ConductorSource="@_conducorAdjDetail"
-                                          Data="@_viewModel.AdjustmentMethodList"
-                                          @bind-Value="@_viewModel.Data.CADJUST_METHOD"
-                                          Layout="@R_eRadioGroupLayout.Horizontal"
-                                            R_EnableAdd
-                                            R_EnableEdit
-                                          ValueField="@nameof(ComboBoxDTO.CCODE)"
-                                          TextField="@nameof(ComboBoxDTO.CDESCRIPTION)" />
-                            </R_ItemLayout>
-                            </R_ItemLayout>
-                            </R_ItemLayout>
-                            </R_StackLayout>
-                            </R_ItemLayout>
-                            </R_StackLayout>
-
-                            <R_StackLayout Row>
-        <R_ItemLayout col="9">
-            <R_StackLayout Row>
-                <R_ItemLayout col="2">
-                    <R_Label>@_localizer["_Product"]</R_Label>
+                    <R_Label>@_localizer["_Product"]*</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_TextBox @bind-Value="@_viewModel.Data.CPRODUCT_ID"
@@ -155,20 +107,53 @@
                     </R_Lookup>
                     </R_ItemLayout>
                     <R_ItemLayout col="6">
-                    <R_TextBox @bind-Value="@_viewModel.Data.CPRODUCT_NAME"
-                               R_ConductorSource="_conducorAdjDetail"
-                               Enabled="false">
-                    </R_TextBox>
+                        <R_TextBox @bind-Value="@_viewModel.Data.CPRODUCT_NAME"
+                                   R_ConductorSource="_conducorAdjDetail"
+                                   Enabled="false">
+                        </R_TextBox>
                     </R_ItemLayout>
-                    </R_StackLayout>
-                    </R_ItemLayout>
-                    </R_StackLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+    </R_StackLayout>
 
-        <R_StackLayout Row>
+    <R_StackLayout Row>
         <R_ItemLayout col="9">
             <R_StackLayout Row>
                 <R_ItemLayout col="2">
-                    <R_Label>@_localizer["_AdjValue"]</R_Label>
+                    <R_Label>@_localizer["_AdjustmentMethod"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="7">
+                    <R_ItemLayout col="12">
+
+                        <R_ItemLayout>
+                            <R_RadioGroup R_ConductorSource="@_conducorAdjDetail"
+                                          Data="@_viewModel.AdjustmentMethodList"
+                                          @bind-Value="@_viewModel.Data.CADJUST_METHOD"
+                                          Layout="@R_eRadioGroupLayout.Horizontal"
+                                            R_EnableAdd
+                                            R_EnableEdit
+                                          ValueField="@nameof(ComboBoxDTO.CCODE)"
+                                          TextField="@nameof(ComboBoxDTO.CDESCRIPTION)" />
+                        </R_ItemLayout>
+                    </R_ItemLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="9">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_AdjValue"]*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_TextBox @bind-Value="@_viewModel.VarCompanyInfo.CLOCAL_CURRENCY_CODE"
+                               R_ConductorSource="_conducorAdjDetail"
+                               Enabled="false">
+                    </R_TextBox>
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
                     <R_NumericTextBox @bind-Value="@_viewModel.Data.NADJUST_AMOUNT"
@@ -188,27 +173,6 @@
         <R_ItemLayout col="9">
             <R_StackLayout Row>
                 <R_ItemLayout col="2">
-                    <R_Label>@_localizer["_Currency"]</R_Label>
-                </R_ItemLayout>
-                <R_ItemLayout col="3">
-                    <R_DropDownList Data="@_viewModel.CurrencyList"
-                                    Value="@_viewModel.Data.CCURRENCY_CODE"
-                                        ValueField="@nameof(CurrencyDTO.CCURRENCY_CODE)"
-                                        TextField="@nameof(CurrencyDTO.CCURRENCY_DISPLAY)"
-                                    R_ConductorSource="@_conducorAdjDetail"
-                                    ValueChanged="@((string value) => OnChangedCurrencyCode(value))"
-                                            R_EnableAdd
-                                        R_EnableEdit
-                                        PopupMaxHeight="150px"/>
-                </R_ItemLayout>
-            </R_StackLayout>
-        </R_ItemLayout>
-    </R_StackLayout>
-
-        <R_StackLayout Row>
-        <R_ItemLayout col="9">
-            <R_StackLayout Row>
-                <R_ItemLayout col="2">
                     <R_Label>@_localizer["_CurrencyRate"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
@@ -217,7 +181,7 @@
                 <R_ItemLayout col="6">
                     <R_StackLayout Row>
                          <R_ItemLayout col="4">
-                            <R_NumericTextBox  @bind-Value="@_viewModel.Data.NLBASE_RATE"
+                            <R_NumericTextBox @bind-Value="@_viewModel.Data.NLBASE_RATE"
                                 R_ConductorSource="_conducorAdjDetail"
                                 TValue="decimal"
                                 Enabled="false"
@@ -271,7 +235,7 @@
                             <R_NumericTextBox @bind-Value="@_viewModel.Data.NBBASE_RATE"
                                               R_ConductorSource="_conducorAdjDetail"
                                               TValue="decimal"
-                                              Enabled="false"
+                                              Enabled="@(_viewModel.Data.CCURRENCY_CODE != _viewModel.Data.CBASE_CURRENCY_CODE && !_viewModel.lControlCRUDMode)"
                                               Arrows="false">
 
                             </R_NumericTextBox>
@@ -290,7 +254,7 @@
                             <R_NumericTextBox @bind-Value="@_viewModel.Data.NBCURRENCY_RATE"
                                               R_ConductorSource="_conducorAdjDetail"
                                               TValue="decimal"
-                                              Enabled="false"
+                                              Enabled="@(_viewModel.Data.CCURRENCY_CODE != _viewModel.Data.CBASE_CURRENCY_CODE && !_viewModel.lControlCRUDMode)"
                                               Arrows="false">
 
                             </R_NumericTextBox>
@@ -312,24 +276,7 @@
         <R_ItemLayout col="9">
             <R_StackLayout Row>
                 <R_ItemLayout col="2">
-                    <R_Label>@_localizer["_Description"]</R_Label>
-                </R_ItemLayout>
-                <R_ItemLayout col="9" Class="pe-5">
-                    <R_TextArea @bind-Value="@_viewModel.Data.CNOTES"
-                                R_ConductorSource="_conducorAdjDetail"
-                                R_EnableAdd
-                                R_EnableEdit>
-                    </R_TextArea>
-                </R_ItemLayout>
-            </R_StackLayout>
-        </R_ItemLayout>
-    </R_StackLayout>
-
-    <R_StackLayout Row>
-        <R_ItemLayout col="9">
-            <R_StackLayout Row>
-                <R_ItemLayout col="2">
-                    <R_Label>@_localizer["_Allocation"]</R_Label>
+                    <R_Label>@_localizer["_Allocation"]*</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_TextBox @bind-Value="@_viewModel.Data.CALLOC_ID"
@@ -358,6 +305,25 @@
             </R_StackLayout>
         </R_ItemLayout>
     </R_StackLayout>
+
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="9">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_Description"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="9" Class="pe-5">
+                    <R_TextArea @bind-Value="@_viewModel.Data.CNOTES"
+                                R_ConductorSource="_conducorAdjDetail"
+                                R_EnableAdd
+                                R_EnableEdit>
+                    </R_TextArea>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
 
 </R_StackLayout>
     @* Button CRUD *@
@@ -416,7 +382,6 @@
              R_Display="@ServiceDisplay"
              R_Validation="@R_Validation"
              R_AfterDelete="@AfterDelete"
-             R_SetEdit="@R_SetEditAsync"
              R_BeforeCancel="@R_BeforeCancel"
              R_CheckEdit="@R_CheckEdit"
              R_CheckDelete="@R_CheckDelete"/>
