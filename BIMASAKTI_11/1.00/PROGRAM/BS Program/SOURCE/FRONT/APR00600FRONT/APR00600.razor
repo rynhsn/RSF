@@ -1,0 +1,170 @@
+﻿@page "/APR00600"
+@using APR00600COMMON.DTOs
+@using APR00600MODEL.DTO
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_pageTitle", Title = "AP Supplier Analisys")]
+
+<R_StackLayout Row Class="ps-2">
+    <R_ItemLayout col="1">
+        <R_Label FontColor="R_eFontColor.Danger">@_localizer["CPROPERTY_ID"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@_viewModel.PropertyList"
+                    Value="@_viewModel.PoReportParam.CPROPERTY_ID"
+                    ValueField="@nameof(APR00600PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(APR00600PropertyDTO.CPROPERTY_NAME)"
+                    ValueChanged="@((string value) => _valueChangedProperty(value))" 
+                    TabIndex="0" />
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row>
+    <R_ItemLayout col="6">
+        <R_GroupBox TitleClass="text-danger" Title="@_localizer["GROUP_BOX_PERIOD"]" Class="p-2">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["CYEAR_FROM"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_NumericTextBox @bind-Value="@_viewModel._IFromYear"
+                                      Arrows="true"
+                                      TValue="int"
+                                      Max="@_viewModel.PeriodeYearRange.IMAX_YEAR"
+                                      Min="@_viewModel.PeriodeYearRange.IMIN_YEAR"
+                                      ThousandSeparator="false" 
+                                      TabIndex="1" Enabled="@_viewModel.LEnableBtn" />
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_ComboBox @bind-Value="@_viewModel._CFromMonth"
+                                Data="_viewModel.PeriodListFrom"
+                                ValueField="@nameof(APR00600GetPeriodDtListDTO.CPERIOD_NO)"
+                                TextField="@nameof(APR00600GetPeriodDtListDTO.CPERIOD_NO)"
+                                TabIndex="2"  Enabled="@_viewModel.LEnableBtn" />
+                </R_ItemLayout>
+                <R_ItemLayout class="col"></R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["CYEAR_TO"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_NumericTextBox Arrows="true"
+                                      TValue="int"
+                                      @bind-Value="@_viewModel._IToYear"
+                                      Max="@_viewModel.PeriodeYearRange.IMAX_YEAR"
+                                      Min="@_viewModel.PeriodeYearRange.IMIN_YEAR"
+                                      ThousandSeparator="false"
+                                      Style="height:25px"
+                                      TabIndex="3" Enabled="@_viewModel.LEnableBtn" />
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_ComboBox @bind-Value="@_viewModel._CToMonth"
+                                Data="_viewModel.PeriodListTo"
+                                ValueField="@nameof(APR00600GetPeriodDtListDTO.CPERIOD_NO)"
+                                TextField="@nameof(APR00600GetPeriodDtListDTO.CPERIOD_NO)"
+                                TabIndex="4"  Enabled="@_viewModel.LEnableBtn" />
+                    <R_ItemLayout class="col"></R_ItemLayout>
+                </R_ItemLayout>
+                <R_ItemLayout class="col"></R_ItemLayout>
+            </R_StackLayout>
+        </R_GroupBox>
+    </R_ItemLayout>
+    <R_ItemLayout auto="false">
+        <R_GroupBox TitleClass="text-danger" Title="@_localizer["GROUP_BOX_CURRENCY_TYPE"]" Class="p-2">
+            <R_StackLayout Row>
+                <R_RadioGroup Data="@_viewModel.TypeList"
+                              @bind-Value="@_viewModel.PoReportParam.CCURRENCY_TYPE"
+                              ValueField="Key"
+                              TextField="Value"
+                              Layout="R_eRadioGroupLayout.Vertical"
+                              LabelPosition="R_eRadioGroupLabelPosition.After"
+                              TabIndex="5">
+                </R_RadioGroup>
+            </R_StackLayout>
+        </R_GroupBox>
+    </R_ItemLayout>
+    
+
+</R_StackLayout>
+<R_GroupBox TitleClass="text-danger" Title="@_localizer["GROUP_BOX_FILTER_BY"]" Class="p-2">
+    <R_StackLayout Row>
+        <R_RadioGroup Data="@_viewModel.FilterByList"
+                      TextField="@nameof(APR00600TempDTO.CNAME)"
+                      ValueField="@nameof(APR00600TempDTO.CCODE)"
+                      Value="@_viewModel.PoReportParam.CFILTER_BY"
+                      ValueChanged="@((string value) => _valueChangedFilterBy(value))"
+                      TabIndex="6">
+        </R_RadioGroup>
+    </R_StackLayout>
+</R_GroupBox>
+<R_StackLayout Row Class="ps-2 pt-2">
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["CFROM"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="_viewModel.PoReportParam.CFR_CODE"
+                   R_ConductorSource="_conductorRef"
+                   Enabled
+                   CharacterCasing="R_eCharacterCasing.Upper"
+                   MaxLength="int.MaxValue"
+                   OnLostFocus="@OnLostFocus_LookupFromCustomer"
+                   TabIndex="7" />
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupFromCustomer" R_After_Open_Lookup="@AfterOpen_lookupFromCustomer" TabIndex="8">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="_viewModel.CFR_CODE_NAME"
+                   R_ConductorSource="_conductorRef"
+                   Enabled="false" />
+    </R_ItemLayout>
+    <R_ItemLayout col="4"></R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row Class="ps-2">
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["CTO"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="_viewModel.PoReportParam.CTO_CODE"
+                   R_ConductorSource="_conductorRef"
+                   Enabled="_viewModel.LEnableToCode"
+                   CharacterCasing="R_eCharacterCasing.Upper"
+                   MaxLength="int.MaxValue"
+                   OnLostFocus="@OnLostFocus_LookupToCustomer"
+                   TabIndex="7" />
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Lookup R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupToCustomer" R_After_Open_Lookup="@AfterOpen_lookupToCustomer" TabIndex="8" Enabled="_viewModel.LEnableToCode">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="_viewModel.CTO_CODE_NAME"
+                   R_ConductorSource="_conductorRef"
+                   Enabled="false" />
+    </R_ItemLayout>
+    <R_ItemLayout col="4"></R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="ps-2">
+        <R_ItemLayout>
+            <R_CheckBox @bind-Value="@_viewModel.PoReportParam.LSUPPRESS" />
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Label>
+            @_localizer["CHECK_BOX_SUPRESS"]
+            </R_Label>
+        </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row Class="ps-2">
+    <R_ItemLayout>
+        <R_PrintButton OnClick="@(() => OnclickBtn_Print(null))">
+            @_localizer["BTN_PRINT"]
+        </R_PrintButton>
+    </R_ItemLayout>
+    <R_ItemLayout class="col-1">
+        <R_Popup R_Before_Open_Popup="@BeforeOpen_PopupSaveAsAsync"
+                 R_After_Open_Popup="@AfterOpen_PopupSaveAs"
+                 TabIndex="8">@_localizer["BTN_SAVE_AS"] </R_Popup>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+        

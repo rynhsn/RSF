@@ -158,12 +158,12 @@
     <comment>Customer Name</comment>
   </data>
   <data name="CCUSTOMER_CATEGORY" xml:space="preserve">
-    <value>Custormer Category</value>
-    <comment>Custormer Category</comment>
+    <value>Customer Category</value>
+    <comment>Customer Category</comment>
   </data>
   <data name="CJURNAL_GROUP" xml:space="preserve">
-    <value>Jurnal Group</value>
-    <comment>Jurnal Group</comment>
+    <value>Journal Group</value>
+    <comment>Journal Group</comment>
   </data>
   <data name="CFROM" xml:space="preserve">
     <value>From*</value>
@@ -186,8 +186,8 @@
     <comment>Save As</comment>
   </data>
   <data name="_pageTitle" xml:space="preserve">
-    <value>AR Customer Analisys</value>
-    <comment>AR Customer Analisys</comment>
+    <value>AR Customer Analysis</value>
+    <comment>AR Customer Analysis</comment>
   </data>
   <data name="Validation_From_Customer_Id" xml:space="preserve">
     <value>Please select From Customer ID</value>

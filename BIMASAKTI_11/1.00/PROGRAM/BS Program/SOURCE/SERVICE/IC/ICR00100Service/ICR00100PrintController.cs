@@ -172,13 +172,13 @@ public class ICR00100PrintController : R_ReportControllerBase
             var lcLang = R_BackGlobalVar.CULTURE;
 
             var loCls = new ICR00100Cls();
-            var loHeader = loCls.GetBaseHeaderLogoCompany(lcCompany);
+            var loHeader = loCls.GetBaseHeaderLogoCompany(lcCompany, poParam.CPROPERTY_ID);
             loRtn.BaseHeaderData = new BaseHeaderDTO
             {
                 BLOGO_COMPANY = loHeader.BLOGO,
                 CCOMPANY_NAME = loHeader.CCOMPANY_NAME ?? string.Empty,
-                DPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss",
-                    CultureInfo.InvariantCulture),
+                //DPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
+                CPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture).ToString(R_BackGlobalVar.REPORT_FORMAT_SHORT_DATE + " " + R_BackGlobalVar.REPORT_FORMAT_SHORT_TIME),
                 CPRINT_CODE = "ICR00100",
                 CPRINT_NAME = "Product Card",
                 CUSER_ID = lcUser,

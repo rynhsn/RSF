@@ -37,7 +37,7 @@ namespace PMR03300SERVICE
         {
             LoggerPMR03300Print.R_InitializeLogger(logger);
             _logger = LoggerPMR03300Print.R_GetInstanceLogger();
-            _activitySource = PMR03300Activity.R_InitializeAndGetActivitySource(nameof(PMR03300PrintController));
+            _activitySource = PMR03300Activity.R_InitializeAndGetActivitySource(nameof(PMR03300PrintCustomerIdController));
             _ReportCls = new R_ReportFastReportBackClass();
             _ReportCls.R_InstantiateMainReportWithFileName += _ReportCls_R_InstantiateMainReportWithFileName;
             _ReportCls.R_GetMainDataAndName += _ReportCls_R_GetMainDataAndName;
@@ -99,7 +99,7 @@ namespace PMR03300SERVICE
         }
 
         [HttpGet, AllowAnonymous]
-        public FileStreamResult UserActivitySummary_ReportListGet(string pcGuid)
+        public FileStreamResult CustomerId_ReportListGet(string pcGuid)
         {
             using Activity activity = _activitySource.StartActivity($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
 
@@ -197,38 +197,27 @@ namespace PMR03300SERVICE
                     CCOMPANY_NAME = loHeader.CCOMPANY_NAME!,
                     //DPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
                     CPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture).ToString(R_BackGlobalVar.REPORT_FORMAT_SHORT_DATE + " " + R_BackGlobalVar.REPORT_FORMAT_SHORT_TIME),
-                    CPRINT_CODE = "PMR02600",
-                    CPRINT_NAME = "Occupancy Report",
+                    CPRINT_CODE = "PMR03300",
+                    CPRINT_NAME = "AR CUSTOMER ANALYSIS",
                     CUSER_ID = poParam.CUSER_ID,
                 };
 
                 var loData = new PMR03300ReportResultDTO()
                 {
-                    Title = "Occupancy Report",
+                    Title = "AR CUSTOMER ANALYSIS",
                     Label = (PMR03300ReportLabelDTO)loLabel,
                     Header = null,
                     Data = new List<PMR03300DataResultDTO>(),
                 };
 
-
-                _logger.LogInfo("Get Detail Activity Report");
-
                 loData.Data = loCls.GetReportData(poParam);
-                var displayFromPeriod = DateTime.TryParseExact(poParam.CFR_PERIOD, "yyyyMM",
-                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
-                        ? refDate.ToString("MMM yyyy")
-                        : null;
-                var displayToPeriod = DateTime.TryParseExact(poParam.CTO_PERIOD, "yyyyMM",
-                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refToDate)
-                        ? refToDate.ToString("MMM yyyy")
-                        : null;
                 loData.Header = new PMR03300ReportHeaderDTO
                 {
                     CPROPERTY = poParam.CPROPERTY_NAME + $"({poParam.CPROPERTY_ID})",
-                    CCUSTOMER_DISPLAY = loData.Data[0].CFILTER_VALUE,
-                    CPERIOD_DISPLAY = displayFromPeriod +" - "+ displayToPeriod,
-                    CCURRENCY = loData.Data[0].CCURRENCY,
-                    CFILTER_BY= loData.Data[0].CFILTER_BY
+                    CCUSTOMER_DISPLAY = poParam.CFR_CODE + "-" + $"{poParam.CFR_CODE_NAME}" + " to " + $"{poParam.CTO_CODE}" + "-" + $"{poParam.CTO_CODE_NAME}",
+                    CPERIOD_DISPLAY = poParam.CFR_PERIOD_DISPLAY + " - " + $"{poParam.CTO_PERIOD_DISPLAY}",
+                    CCURRENCY = poParam.CCURRENCY_TYPE_NAME,
+                    CFILTER_BY = poParam.CFILTER_BY_NAME
                 };
 
                 loRtn.Data = loData;

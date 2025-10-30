@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Lookup_PMCOMMON.DTOs.LML01700;
 using Lookup_PMCOMMON.DTOs.LML02000;
+using Lookup_PMCOMMON.DTOs.LMLTODAYDATE;
 
 namespace Lookup_PMModel
 {
@@ -129,6 +130,12 @@ namespace Lookup_PMModel
         {
             throw new NotImplementedException();
         }
+
+        public LMLGenericRecord<LMLTODAYDATEDTO> GetTodayDateTime()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
 
@@ -752,6 +759,39 @@ namespace Lookup_PMModel
 
             return loResult!;
         }
+
+        #region get today date
+        public async Task<LMLTODAYDATEDTO> GetTodayDateTimeAsync()
+        {
+            var loEx = new R_Exception();
+            LMLTODAYDATEDTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<LMLGenericRecord<LMLTODAYDATEDTO>, LMLTODAYDATEDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGetRecordLookupLM.GetTodayDateTime),
+                    null,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult!;
+        }
+        #endregion
+
+
 
         #endregion
 

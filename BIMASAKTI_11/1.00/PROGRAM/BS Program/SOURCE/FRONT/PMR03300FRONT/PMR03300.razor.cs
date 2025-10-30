@@ -44,6 +44,7 @@ namespace PMR03300FRONT
             try
             {
                 await _viewModel.Init();
+                await _setDefaultLookup();
             }
             catch (Exception ex)
             {
@@ -75,6 +76,7 @@ namespace PMR03300FRONT
                     _viewModel.PoReportParam.CTO_CODE = string.Empty;
                     _viewModel.CTO_CODE_NAME = string.Empty;
                     _viewModel.PoReportParam.LSUPPRESS = false;
+                    await _setDefaultLookup();
                 }
             }
             catch (Exception ex)
@@ -85,7 +87,7 @@ namespace PMR03300FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
-        private void _valueChangedFilterBy(string value)
+        private async Task _valueChangedFilterBy(string value)
         {
             R_Exception loEx = new R_Exception();
             var loOldValue = _viewModel.PoReportParam.CFILTER_BY;
@@ -97,6 +99,7 @@ namespace PMR03300FRONT
                 _viewModel.CFR_CODE_NAME = "";
                 _viewModel.PoReportParam.CTO_CODE = "";
                 _viewModel.CTO_CODE_NAME = "";
+                await _setDefaultLookup();
             }
             catch (Exception ex)
             {
@@ -135,7 +138,7 @@ namespace PMR03300FRONT
                             goto EndBlock;
                         }
                         _viewModel.PoReportParam.CFR_CODE = loResult.CTENANT_ID??"";
-                        _viewModel.CFR_CODE_NAME = loResult.CUNIT_NAME??"";
+                        _viewModel.CFR_CODE_NAME = loResult.CTENANT_NAME??"";
                     }
                     else if (_viewModel.PoReportParam.CFILTER_BY == "CUSTOMER_CATEGORY")
                     {
@@ -200,6 +203,86 @@ namespace PMR03300FRONT
 
         }
 
+        private async Task _setDefaultLookup()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (string.IsNullOrEmpty(_viewModel.PoReportParam.CPROPERTY_ID)) return;
+
+                if (_viewModel.PoReportParam.CFILTER_BY == "CUSTOMER_ID" || _viewModel.PoReportParam.CFILTER_BY == "CUSTOMER_NAME")
+                {
+                    LookupLML00600ViewModel loLookupViewModel = new LookupLML00600ViewModel();
+                    var loParam = new LML00600ParameterDTO
+                    {
+                        CPROPERTY_ID = _viewModel.PoReportParam.CPROPERTY_ID,
+                        CCUSTOMER_TYPE = "01"
+                    };
+                    await loLookupViewModel.GetTenantList(loParam);
+                    if (loLookupViewModel.TenantList.Count > 0)
+                    {
+                        _viewModel.PoReportParam.CFR_CODE = loLookupViewModel.TenantList.FirstOrDefault()?.CTENANT_ID;
+                        _viewModel.CFR_CODE_NAME = loLookupViewModel.TenantList
+                            .Where(x => x.CTENANT_ID == _viewModel.PoReportParam.CFR_CODE)
+                            .Select(x => x.CTENANT_NAME).FirstOrDefault() ?? string.Empty;
+                        _viewModel.PoReportParam.CTO_CODE = loLookupViewModel.TenantList.LastOrDefault()?.CTENANT_ID;
+                        _viewModel.CTO_CODE_NAME = loLookupViewModel.TenantList
+                            .Where(x => x.CTENANT_ID == _viewModel.PoReportParam.CTO_CODE)
+                            .Select(x => x.CTENANT_NAME).FirstOrDefault() ?? string.Empty;
+                    }
+                } else if (_viewModel.PoReportParam.CFILTER_BY == "CUSTOMER_CATEGORY")
+                {
+
+                    LookupLML02000ViewModel loLookupViewModel = new LookupLML02000ViewModel();
+                    var loParam = new LML02000ParameterDTO
+                    {
+                        CSEARCH_TEXT = _viewModel.PoReportParam.CFR_CODE,
+                        CPROPERTY_ID = _viewModel.PoReportParam.CPROPERTY_ID
+                    };
+                    await loLookupViewModel.LML02000TenantCategoryList(loParam);
+                    if (loLookupViewModel.TenantCategoryListResult.Count > 0)
+                    {
+                        _viewModel.PoReportParam.CFR_CODE = loLookupViewModel.TenantCategoryListResult.FirstOrDefault()?.CCATEGORY_ID;
+                        _viewModel.CFR_CODE_NAME = loLookupViewModel.TenantCategoryListResult
+                            .Where(x => x.CCATEGORY_ID == _viewModel.PoReportParam.CFR_CODE)
+                            .Select(x => x.CCATEGORY_NAME).FirstOrDefault() ?? string.Empty;
+                        _viewModel.PoReportParam.CTO_CODE = "";
+                        _viewModel.CTO_CODE_NAME = "";
+                    }
+                }
+                else if (_viewModel.PoReportParam.CFILTER_BY == "JOURNAL_GROUP")
+                {
+                    LookupGSL00400ViewModel loLookupViewModel = new LookupGSL00400ViewModel();
+                    var loParam = new GSL00400ParameterDTO
+                    {
+                        CPROPERTY_ID = _viewModel.PoReportParam.CPROPERTY_ID,
+                        CJRNGRP_TYPE = "20"
+                    };
+                    await loLookupViewModel.GetJournalGroupList(loParam);
+                    if (loLookupViewModel.JournalGroupGrid.Count > 0)
+                    {
+                        _viewModel.PoReportParam.CFR_CODE = loLookupViewModel.JournalGroupGrid.FirstOrDefault()?.CJRNGRP_CODE;
+                        _viewModel.CFR_CODE_NAME = loLookupViewModel.JournalGroupGrid
+                            .Where(x => x.CJRNGRP_CODE == _viewModel.PoReportParam.CFR_CODE)
+                            .Select(x => x.CJRNGRP_NAME).FirstOrDefault() ?? string.Empty;
+                        _viewModel.PoReportParam.CTO_CODE = loLookupViewModel.JournalGroupGrid.LastOrDefault()?.CJRNGRP_CODE;
+                        _viewModel.CTO_CODE_NAME = loLookupViewModel.JournalGroupGrid
+                            .Where(x => x.CJRNGRP_CODE == _viewModel.PoReportParam.CTO_CODE)
+                            .Select(x => x.CJRNGRP_NAME).FirstOrDefault() ?? string.Empty;
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
         private void BeforeOpen_lookupFromCustomer(R_BeforeOpenLookupEventArgs eventArgs)
         {
             if (_viewModel.PoReportParam.CFILTER_BY == "CUSTOMER_ID" || _viewModel.PoReportParam.CFILTER_BY == "CUSTOMER_NAME")
@@ -241,7 +324,7 @@ namespace PMR03300FRONT
                 if (loTempResult != null)
                 {
                     _viewModel.PoReportParam.CFR_CODE = loTempResult.CTENANT_ID??"";
-                    _viewModel.CFR_CODE_NAME = loTempResult.CUNIT_NAME ?? "";
+                    _viewModel.CFR_CODE_NAME = loTempResult.CTENANT_NAME ?? "";
                 }
                 else
                 {
@@ -309,7 +392,7 @@ namespace PMR03300FRONT
                             goto EndBlock;
                         }
                         _viewModel.PoReportParam.CTO_CODE = loResult.CTENANT_ID ?? "";
-                        _viewModel.CTO_CODE_NAME = loResult.CUNIT_NAME ?? "";
+                        _viewModel.CTO_CODE_NAME = loResult.CTENANT_NAME ?? "";
                     }
                     else if (_viewModel.PoReportParam.CFILTER_BY == "CUSTOMER_CATEGORY")
                     {
@@ -417,7 +500,7 @@ namespace PMR03300FRONT
                 if (loTempResult != null)
                 {
                     _viewModel.PoReportParam.CTO_CODE = loTempResult.CTENANT_ID ?? "";
-                    _viewModel.CTO_CODE_NAME = loTempResult.CUNIT_NAME ?? "";
+                    _viewModel.CTO_CODE_NAME = loTempResult.CTENANT_NAME ?? "";
                 }
                 else
                 {
@@ -504,18 +587,24 @@ namespace PMR03300FRONT
             PMR03300ReportParamDTO loRtn = new();
             try
             {
-                var prop = _viewModel.PropertyList? .FirstOrDefault(x => x.CPROPERTY_ID == loRtn.CPROPERTY_ID);
+                var prop = _viewModel.PropertyList?.FirstOrDefault(x => x.CPROPERTY_ID == loRtn.CPROPERTY_ID);
                 loRtn.CCOMPANY_ID = ClientHelper.CompanyId ?? string.Empty;
                 loRtn.CUSER_ID = ClientHelper.UserId ?? string.Empty;
                 loRtn.CREPORT_CULTURE = ClientHelper.ReportCulture.ToString();
                 loRtn.CPROPERTY_ID = _viewModel.PoReportParam.CPROPERTY_ID ?? string.Empty;
                 loRtn.CPROPERTY_NAME = prop?.CPROPERTY_NAME ?? "";
-                loRtn.CFR_PERIOD = _viewModel._IFromYear.ToString() +""+ _viewModel._CFromMonth.ToString();
+                loRtn.CFR_PERIOD = _viewModel._IFromYear.ToString() + "" + _viewModel._CFromMonth.ToString();
+                loRtn.CFR_PERIOD_DISPLAY = _viewModel._IFromYear.ToString() + "-" + _viewModel._CFromMonth.ToString();
                 loRtn.CTO_PERIOD = _viewModel._IToYear.ToString() + "" + _viewModel._CToMonth.ToString();
+                loRtn.CTO_PERIOD_DISPLAY = _viewModel._IToYear.ToString() + "-" + _viewModel._CToMonth.ToString();
                 loRtn.CCURRENCY_TYPE = _viewModel.PoReportParam.CCURRENCY_TYPE ?? string.Empty;
+                loRtn.CCURRENCY_TYPE_NAME = _viewModel.TypeList.FirstOrDefault(x => x.Key == _viewModel.PoReportParam.CCURRENCY_TYPE).Value ?? "Local Currency";
                 loRtn.CFILTER_BY = _viewModel.PoReportParam.CFILTER_BY ?? string.Empty;
+                loRtn.CFILTER_BY_NAME = _viewModel.FilterByList.FirstOrDefault(x => x.CCODE == _viewModel.PoReportParam.CFILTER_BY).CNAME ?? "Customer ID";
                 loRtn.CFR_CODE = _viewModel.PoReportParam.CFR_CODE ?? string.Empty;
+                loRtn.CFR_CODE_NAME = _viewModel.CFR_CODE_NAME ?? string.Empty;
                 loRtn.CTO_CODE = _viewModel.PoReportParam.CTO_CODE ?? string.Empty;
+                loRtn.CTO_CODE_NAME = _viewModel.CTO_CODE_NAME ?? string.Empty;
                 loRtn.LSUPPRESS = _viewModel.PoReportParam.LSUPPRESS;
                 loRtn.CLANG_ID = ClientHelper.Culture?.TwoLetterISOLanguageName ?? string.Empty;
                 loRtn.LIS_PRINT = true;
@@ -549,7 +638,7 @@ namespace PMR03300FRONT
                         "R_DefaultServiceUrlPM",
                         "PM",
                         "rpt/PMR03300PrintCustomerId/DownloadResultPrintPost",
-                        "rpt/PMR03300PrintCustomerId/UserActivitySummary_ReportListGet",
+                        "rpt/PMR03300PrintCustomerId/CustomerId_ReportListGet",
                         loParam);
                 }
                 if (loParam.CFILTER_BY == "CUSTOMER_CATEGORY")
@@ -558,7 +647,7 @@ namespace PMR03300FRONT
                         "R_DefaultServiceUrlPM",
                         "PM",
                         "rpt/PMR03300PrintCustomerCategory/DownloadResultPrintPost",
-                        "rpt/PMR03300PrintCustomerCategory/UserActivitySummary_ReportListGet",
+                        "rpt/PMR03300PrintCustomerCategory/CustomerCategory_ReportListGet",
                         loParam);
                 }
                 if (loParam.CFILTER_BY == "JOURNAL_GROUP")
@@ -567,7 +656,7 @@ namespace PMR03300FRONT
                         "R_DefaultServiceUrlPM",
                         "PM",
                         "rpt/PMR03300PrintJournalGroup/DownloadResultPrintPost",
-                        "rpt/PMR03300PrintJournalGroup/UserActivitySummary_ReportListGet",
+                        "rpt/PMR03300PrintJournalGroup/JournalGroup_ReportListGet",
                         loParam);
                 }
                 //await _reportService.GetReport(
