@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.ComponentModel;
 using R_BlazorFrontEnd.Enums;
+using System.Collections.ObjectModel;
 
 namespace APR00600FRONT
 {
@@ -253,6 +254,14 @@ namespace APR00600FRONT
                     await loLookupViewModel.GetSupplierList();
                     if (loLookupViewModel.SupplierGrid.Count > 0)
                     {
+                        if (_viewModel.PoReportParam.CFILTER_BY == "SUPPLIER_NAME")
+                        {
+                            loLookupViewModel.SupplierGrid = new ObservableCollection<GSL02900DTO>(
+                                                                loLookupViewModel.SupplierGrid
+                                                                    .OrderBy(x => x.CSUPPLIER_NAME)
+                                                              );
+                        }
+
                         _viewModel.PoReportParam.CFR_CODE = loLookupViewModel.SupplierGrid.FirstOrDefault()?.CSUPPLIER_ID;
                         _viewModel.CFR_CODE_NAME = loLookupViewModel.SupplierGrid
                             .Where(x => x.CSUPPLIER_ID == _viewModel.PoReportParam.CFR_CODE)

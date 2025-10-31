@@ -210,11 +210,12 @@ namespace APR00600SERVICE
                 };
 
                 loData.Data = loCls.GetReportData(poParam);
+                var str_to = R_Utility.R_GetMessage(typeof(APR00600BackResources.Resources_Dummy_Class), "to", loCultureInfo);
                 loData.Header = new APR00600ReportHeaderDTO
                 {
                     CPROPERTY = poParam.CPROPERTY_NAME + $"({poParam.CPROPERTY_ID})",
-                    CSUPPLIER_DISPLAY = poParam.CFR_CODE + "-" + $"{poParam.CFR_CODE_NAME}" + " to " + $"{poParam.CTO_CODE}" + "-" + $"{poParam.CTO_CODE_NAME}",
-                    CPERIOD_DISPLAY = poParam.CFR_PERIOD_DISPLAY + " - " + $"{poParam.CTO_PERIOD_DISPLAY}",
+                    CSUPPLIER_DISPLAY = poParam.CFR_CODE + "-" + $"{poParam.CFR_CODE_NAME} " + str_to + $" {poParam.CTO_CODE}" + "-" + $"{poParam.CTO_CODE_NAME}",
+                    CPERIOD_DISPLAY = poParam.CFR_PERIOD_DISPLAY + " "+ str_to + $" {poParam.CTO_PERIOD_DISPLAY}",
                     CCURRENCY = poParam.CCURRENCY_TYPE_NAME,
                     CFILTER_BY = poParam.CFILTER_BY_NAME
                 };

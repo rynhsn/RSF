@@ -14,6 +14,7 @@
                     @bind-Value="@_viewModel.ReportParam.CPROPERTY_ID"
                     ValueField="@nameof(ICR00600PropertyDTO.CPROPERTY_ID)"
                     TextField="@nameof(ICR00600PropertyDTO.CPROPERTY_NAME)"
+                    ValueChanged="@((string value) => _valueChangedProperty(value))"
                     Enabled/>
     </R_ItemLayout>
 </R_StackLayout>

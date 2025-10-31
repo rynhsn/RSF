@@ -290,14 +290,17 @@ namespace APR00600BACK
                 loCmd.CommandType = CommandType.StoredProcedure;
                 loCmd.CommandText = lcQuery;
 
+                var CFR_CODE= poParam.CFILTER_BY== "SUPPLIER_NAME" ? poParam.CFR_CODE_NAME : poParam.CFR_CODE;
+                var CTO_CODE = poParam.CFILTER_BY == "SUPPLIER_NAME" ? poParam.CTO_CODE_NAME : poParam.CTO_CODE;
+
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParam.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParam.CPROPERTY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CFR_PERIOD", DbType.String, 6, poParam.CFR_PERIOD);
                 loDb.R_AddCommandParameter(loCmd, "@CTO_PERIOD", DbType.String, 6, poParam.CTO_PERIOD);
                 loDb.R_AddCommandParameter(loCmd, "@CCURRENCY_TYPE", DbType.String, 1, poParam.CCURRENCY_TYPE);
                 loDb.R_AddCommandParameter(loCmd, "@CFILTER_BY", DbType.String, 30, poParam.CFILTER_BY);
-                loDb.R_AddCommandParameter(loCmd, "@CFR_CODE", DbType.String, 30, poParam.CFR_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CTO_CODE", DbType.String, 30, poParam.CTO_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CFR_CODE", DbType.String, 30,CFR_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CTO_CODE", DbType.String, 30, CTO_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@LSUPPRESS", DbType.Boolean, 1, poParam.LSUPPRESS);
                 loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 10, poParam.CLANG_ID);
 

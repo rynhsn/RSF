@@ -61,11 +61,308 @@ namespace APR00600BackResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to tes.
+        ///   Looks up a localized string similar to Building.
         /// </summary>
-        internal static string tes {
+        internal static string BUILDING {
             get {
-                return ResourceManager.GetString("tes", resourceCulture);
+                return ResourceManager.GetString("BUILDING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        internal static string CCATEGORY_ID {
+            get {
+                return ResourceManager.GetString("CCATEGORY_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Journal Group.
+        /// </summary>
+        internal static string CJRNGRP_CODE {
+            get {
+                return ResourceManager.GetString("CJRNGRP_CODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supplier.
+        /// </summary>
+        internal static string CSUPPLIER_ID_NAME {
+            get {
+                return ResourceManager.GetString("CSUPPLIER_ID_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        internal static string CURRENCY {
+            get {
+                return ResourceManager.GetString("CURRENCY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter by.
+        /// </summary>
+        internal static string FILTER_BY {
+            get {
+                return ResourceManager.GetString("FILTER_BY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grand Total .
+        /// </summary>
+        internal static string Grand_Total {
+            get {
+                return ResourceManager.GetString("Grand_Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grand Total Beginning Balance.
+        /// </summary>
+        internal static string Grand_Total_Beginning_Balance {
+            get {
+                return ResourceManager.GetString("Grand_Total_Beginning_Balance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #Inv..
+        /// </summary>
+        internal static string IINVOICE {
+            get {
+                return ResourceManager.GetString("IINVOICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #C/A.
+        /// </summary>
+        internal static string IPURCHASE_CREDIT_ADJ {
+            get {
+                return ResourceManager.GetString("IPURCHASE_CREDIT_ADJ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #C/N.
+        /// </summary>
+        internal static string IPURCHASE_CREDIT_NOTE {
+            get {
+                return ResourceManager.GetString("IPURCHASE_CREDIT_NOTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #D/A.
+        /// </summary>
+        internal static string IPURCHASE_DEBIT_ADJ {
+            get {
+                return ResourceManager.GetString("IPURCHASE_DEBIT_ADJ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #D/N.
+        /// </summary>
+        internal static string IPURCHASE_DEBIT_NOTEA {
+            get {
+                return ResourceManager.GetString("IPURCHASE_DEBIT_NOTEA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #DP.
+        /// </summary>
+        internal static string IPURCHASE_DP {
+            get {
+                return ResourceManager.GetString("IPURCHASE_DP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #Ret..
+        /// </summary>
+        internal static string IPURCHASE_RETURN {
+            get {
+                return ResourceManager.GetString("IPURCHASE_RETURN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Pymt..
+        /// </summary>
+        internal static string ISUPP_PAYMENT {
+            get {
+                return ResourceManager.GetString("ISUPP_PAYMENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Discount.
+        /// </summary>
+        internal static string NALLOC_DISCOUNT {
+            get {
+                return ResourceManager.GetString("NALLOC_DISCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alloc.DP.
+        /// </summary>
+        internal static string NALLOC_DP {
+            get {
+                return ResourceManager.GetString("NALLOC_DP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beginning Balance.
+        /// </summary>
+        internal static string NBEG_BAL {
+            get {
+                return ResourceManager.GetString("NBEG_BAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ending Balance.
+        /// </summary>
+        internal static string NEND_BAL {
+            get {
+                return ResourceManager.GetString("NEND_BAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gain (Loss).
+        /// </summary>
+        internal static string NGAIN_LOSS {
+            get {
+                return ResourceManager.GetString("NGAIN_LOSS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credit Adjustment.
+        /// </summary>
+        internal static string NPURCHASE_CREDIT_ADJT {
+            get {
+                return ResourceManager.GetString("NPURCHASE_CREDIT_ADJT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credit Note.
+        /// </summary>
+        internal static string NPURCHASE_CREDIT_NOTE {
+            get {
+                return ResourceManager.GetString("NPURCHASE_CREDIT_NOTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debit Adjustment.
+        /// </summary>
+        internal static string NPURCHASE_DEBIT_ADJ {
+            get {
+                return ResourceManager.GetString("NPURCHASE_DEBIT_ADJ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debit Note.
+        /// </summary>
+        internal static string NPURCHASE_DEBIT_NOTE {
+            get {
+                return ResourceManager.GetString("NPURCHASE_DEBIT_NOTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Down Payment.
+        /// </summary>
+        internal static string NPURCHASE_DP {
+            get {
+                return ResourceManager.GetString("NPURCHASE_DP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invoice.
+        /// </summary>
+        internal static string NPURCHASE_INVOICE {
+            get {
+                return ResourceManager.GetString("NPURCHASE_INVOICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Return.
+        /// </summary>
+        internal static string NPURCHASE_RETURN {
+            get {
+                return ResourceManager.GetString("NPURCHASE_RETURN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment.
+        /// </summary>
+        internal static string NSUPP_PAYMENT {
+            get {
+                return ResourceManager.GetString("NSUPP_PAYMENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Period.
+        /// </summary>
+        internal static string PERIOD {
+            get {
+                return ResourceManager.GetString("PERIOD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property.
+        /// </summary>
+        internal static string PROPERTY {
+            get {
+                return ResourceManager.GetString("PROPERTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supplier.
+        /// </summary>
+        internal static string SUPPLIER {
+            get {
+                return ResourceManager.GetString("SUPPLIER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to to.
+        /// </summary>
+        internal static string to {
+            get {
+                return ResourceManager.GetString("to", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        internal static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
             }
         }
     }

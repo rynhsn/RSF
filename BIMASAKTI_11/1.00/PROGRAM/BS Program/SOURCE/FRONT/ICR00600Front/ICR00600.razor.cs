@@ -42,6 +42,27 @@ public partial class ICR00600 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
+    private async Task _valueChangedProperty(string value)
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            if (!string.IsNullOrEmpty(value))
+            {
+                if (value == _viewModel.ReportParam.CPROPERTY_ID) return;
+                _viewModel.ReportParam.CPROPERTY_ID = value;
+                _viewModel.ReportParam.CPROPERTY_NAME = _viewModel.PropertyList.Find(x => x.CPROPERTY_ID == _viewModel.ReportParam.CPROPERTY_ID)?.CPROPERTY_NAME;
+                await _setDefaultDept();
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
 
     #region Lookup Dept
 
@@ -49,7 +70,7 @@ public partial class ICR00600 : R_Page
     {
         var loEx = new R_Exception();
 
-        var loLookupViewModel = new LookupGSL00700ViewModel();
+        var loLookupViewModel = new LookupGSL00710ViewModel();
         try
         {
             if (_viewModel.ReportParam.CDEPT_CODE == null || _viewModel.ReportParam.CDEPT_CODE.Trim().Length <= 0)
@@ -58,12 +79,13 @@ public partial class ICR00600 : R_Page
                 return;
             }
 
-            var param = new GSL00700ParameterDTO
+            var param = new GSL00710ParameterDTO
             {
-                CSEARCH_TEXT = _viewModel.ReportParam.CDEPT_CODE
+                CSEARCH_TEXT = _viewModel.ReportParam.CDEPT_CODE,
+                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID?? ""
             };
 
-            var loResult = await loLookupViewModel.GetDepartment(param);
+            var loResult = await loLookupViewModel.GetDepartmentProperty(param);
 
             if (loResult == null)
             {
@@ -93,10 +115,10 @@ public partial class ICR00600 : R_Page
 
         try
         {
-            var loParameter = new GSL00700ParameterDTO();
+            var loParameter = new GSL00710ParameterDTO() {CPROPERTY_ID=_viewModel.ReportParam.CPROPERTY_ID??"" };
 
             eventArgs.Parameter = loParameter;
-            eventArgs.TargetPageType = typeof(GSL00700);
+            eventArgs.TargetPageType = typeof(GSL00710);
         }
         catch (Exception ex)
         {
@@ -114,7 +136,7 @@ public partial class ICR00600 : R_Page
         {
             if (eventArgs.Result == null) return;
 
-            var loTempResult = (GSL00700DTO)eventArgs.Result;
+            var loTempResult = (GSL00710DTO)eventArgs.Result;
             _viewModel.ReportParam.CDEPT_CODE = loTempResult.CDEPT_CODE;
             _viewModel.ReportParam.CDEPT_NAME = loTempResult.CDEPT_NAME;
         }
@@ -404,18 +426,24 @@ public partial class ICR00600 : R_Page
 
         try
         {
-            var loLookupViewModel = new LookupGSL00700ViewModel();
-            var loParameter = new GSL00700ParameterDTO();
-
-            await loLookupViewModel.GetDepartmentList(loParameter);
-            if (loLookupViewModel.DepartmentGrid.Count > 0)
+            
+            var loLookupViewModel = new LookupGSL00710ViewModel();
+            var param = new GSL00710ParameterDTO
             {
-                _viewModel.ReportParam.CDEPT_CODE =
-                    loLookupViewModel.DepartmentGrid.FirstOrDefault()?.CDEPT_CODE;
-                _viewModel.ReportParam.CDEPT_NAME = loLookupViewModel.DepartmentGrid
+                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID
+            };
+            await loLookupViewModel.GetDepartmentPropertyList(param);
+            if (loLookupViewModel.DepartmentPropertyGrid.Count > 0)
+            {
+                _viewModel.ReportParam.CDEPT_CODE = loLookupViewModel.DepartmentPropertyGrid.FirstOrDefault()?.CDEPT_CODE;
+                _viewModel.ReportParam.CDEPT_NAME = loLookupViewModel.DepartmentPropertyGrid
                     .Where(x => x.CDEPT_CODE == _viewModel.ReportParam.CDEPT_CODE)
                     .Select(x => x.CDEPT_NAME).FirstOrDefault() ?? string.Empty;
-
+            }
+            else
+            {
+                _viewModel.ReportParam.CDEPT_CODE = "";
+                _viewModel.ReportParam.CDEPT_NAME = "";
             }
         }
         catch (Exception ex)
