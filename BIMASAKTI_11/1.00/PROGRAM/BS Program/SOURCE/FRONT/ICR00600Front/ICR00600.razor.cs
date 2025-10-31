@@ -52,7 +52,11 @@ public partial class ICR00600 : R_Page
                 if (value == _viewModel.ReportParam.CPROPERTY_ID) return;
                 _viewModel.ReportParam.CPROPERTY_ID = value;
                 _viewModel.ReportParam.CPROPERTY_NAME = _viewModel.PropertyList.Find(x => x.CPROPERTY_ID == _viewModel.ReportParam.CPROPERTY_ID)?.CPROPERTY_NAME;
-                await _setDefaultDept();
+                if (_viewModel.ReportParam.LDEPT == true)
+                {
+                    await _setDefaultDept();
+                }
+                
             }
         }
         catch (Exception ex)
@@ -61,6 +65,47 @@ public partial class ICR00600 : R_Page
         }
 
         loEx.ThrowExceptionIfErrors();
+    }
+
+    //private async Task _valueChangedCheckDept2(bool value)
+    //{
+    //    R_Exception loEx = new R_Exception();
+    //    var loOldValue = _viewModel.ReportParam.LDEPT;
+    //    try
+    //    {
+    //        _viewModel.ReportParam.LDEPT = value;
+    //        if (value)
+    //        {
+    //            await _setDefaultDept();
+    //        }
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        loEx.Add(ex);
+    //        _viewModel.ReportParam.LDEPT = loOldValue;
+    //    }
+    //    R_DisplayException(loEx);
+    //}
+
+    private async Task _valueChangedCheckDept(object obj)
+    {
+        var llValue = (bool)obj;
+        R_Exception loEx = new R_Exception();
+        var loOldValue = _viewModel.ReportParam.LDEPT;
+        try
+        {
+            _viewModel.ReportParam.LDEPT = llValue;
+            if (llValue)
+            {
+                await _setDefaultDept();
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _viewModel.ReportParam.LDEPT = loOldValue;
+        }
+        R_DisplayException(loEx);
     }
 
 
