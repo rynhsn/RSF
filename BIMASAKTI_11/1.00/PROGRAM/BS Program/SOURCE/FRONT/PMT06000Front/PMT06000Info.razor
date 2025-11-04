@@ -253,7 +253,7 @@
                     Height="185px">
                 <R_GridColumns>
                     <R_GridTextColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.CSEQ_NO)" HeaderText="@_localizer["SEQ_NO"]" Width="100px"/>
-                    <R_GridTextColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.CSERVICE_DISPLAY)" HeaderText="@_localizer["SERVICE"]" Width="210px"/>
+                    <R_GridTextColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.CSERVICE_NAME)" HeaderText="@_localizer["SERVICE"]" Width="210px"/>
                     <R_GridDateTimePickerColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.DDATE_IN)" HeaderText="@_localizer["DATE_IN"]" Width="140px"/>
                     <R_GridDateTimePickerColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.DDATE_OUT)" HeaderText="@_localizer["DATE_OUT"]" Width="140px"/>
                     <R_GridTextColumn FieldName="@nameof(PMT06000OvtServiceGridDTO.CSERVICE_DESCR)" HeaderText="@_localizer["DESCRIPTION"]" Width="200px"/>
@@ -311,7 +311,8 @@
                         <R_DateTimePicker @bind-Value="@_viewModelService.Data.DDATE_IN"
                                           R_ConductorSource="@_conductorRefService"
                                           R_EnableAdd
-                                          R_EnableEdit/>
+                                          R_EnableEdit
+                                          Format="dd MMM yyyy HH:mm"/>
 
                     </R_ItemLayout>
                     <R_ItemLayout col="1" Class="text-center">
@@ -321,7 +322,8 @@
                         <R_DateTimePicker @bind-Value="@_viewModelService.Data.DDATE_OUT"
                                           R_ConductorSource="@_conductorRefService"
                                           R_EnableAdd
-                                          R_EnableEdit/>
+                                          R_EnableEdit
+                                          Format="dd MMM yyyy HH:mm"/>
                     </R_ItemLayout>
                 </R_StackLayout>
 

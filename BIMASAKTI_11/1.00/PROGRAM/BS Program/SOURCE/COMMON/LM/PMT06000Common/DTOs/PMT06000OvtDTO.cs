@@ -4,6 +4,7 @@ namespace PMT06000Common.DTOs
 {
     public class PMT06000OvtDTO
     {
+        public string CTAXABLE_TYPE { get; set; } = "";
         public string CCOMPANY_ID { get; set; } = "";
         public string CUSER_ID { get; set; } = "";
         public string CACTION { get; set; } = "";
@@ -41,5 +42,6 @@ namespace PMT06000Common.DTOs
 
         public string CLINK_DEPT_CODE { get; set; } = "";
         public string CLINK_TRANS_CODE { get; set; } = "";
+        
     }
 }

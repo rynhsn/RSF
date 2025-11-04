@@ -880,7 +880,7 @@ public partial class PMT06000Info : R_Page
             {
                 CPROPERTY_ID = _viewModel.Data.CPROPERTY_ID,
                 CCHARGE_TYPE_ID = "08",
-                CTAXABLE_TYPE = "1",
+                CTAXABLE_TYPE = _viewModel.Data.CTAXABLE_TYPE,
                 CACTIVE_TYPE = "1",
                 CTAX_DATE = _viewModel.Data.DREF_DATE?.ToString("yyyyMMdd"),
                 CSEARCH_TEXT = _viewModelService.Data.CSERVICE_ID
@@ -920,7 +920,7 @@ public partial class PMT06000Info : R_Page
             {
                 CPROPERTY_ID = _viewModel.Data.CPROPERTY_ID,
                 CCHARGE_TYPE_ID = "08",
-                CTAXABLE_TYPE = "1",
+                CTAXABLE_TYPE = _viewModel.Data.CTAXABLE_TYPE,
                 CACTIVE_TYPE = "1",
                 CTAX_DATE = _viewModel.Data.DREF_DATE?.ToString("yyyyMMdd"),
             };
