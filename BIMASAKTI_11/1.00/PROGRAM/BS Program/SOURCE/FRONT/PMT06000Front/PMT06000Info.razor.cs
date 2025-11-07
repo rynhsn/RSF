@@ -900,6 +900,7 @@ public partial class PMT06000Info : R_Page
 
             _viewModelService.Data.CSERVICE_ID = loResult.CCHARGES_ID;
             _viewModelService.Data.CSERVICE_NAME = loResult.CCHARGES_NAME;
+            _viewModelService.Data.LTAXABLE = loResult.LTAXABLE;
         }
         catch (Exception ex)
         {
@@ -947,6 +948,7 @@ public partial class PMT06000Info : R_Page
             var loTempResult = (LML00400DTO)eventArgs.Result;
             _viewModelService.Data.CSERVICE_ID = loTempResult.CCHARGES_ID;
             _viewModelService.Data.CSERVICE_NAME = loTempResult.CCHARGES_NAME;
+            _viewModelService.Data.LTAXABLE = loTempResult.LTAXABLE;
         }
         catch (Exception ex)
         {
@@ -956,6 +958,100 @@ public partial class PMT06000Info : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
+    #endregion
+
+    #region Lookup Button Tax Code Lookup
+    private void BeforeOpenLookUpTaxCodeLookup(R_BeforeOpenLookupEventArgs eventArgs)
+    {
+        GSL00110ParameterDTO? param = null;
+        if (!string.IsNullOrEmpty(_viewModel.Data.CPROPERTY_ID))
+        {
+            param = new GSL00110ParameterDTO
+            {
+                CCOMPANY_ID = _clientHelper.CompanyId,
+                CUSER_ID = _clientHelper.UserId,
+                CTAX_DATE = DateTime.Now.ToString("yyyyMMdd")
+            };
+        }
+        eventArgs.Parameter = param;
+        eventArgs.TargetPageType = typeof(GSL00110);
+    }
+
+    private void AfterOpenLookUpTaxCodeLookup(R_AfterOpenLookupEventArgs eventArgs)
+    {
+        R_Exception loException = new R_Exception();
+        GSL00110DTO? loTempResult = null;
+        //LMM01500AgreementDetailDTO? loGetData = null;
+
+
+        try
+        {
+            loTempResult = (GSL00110DTO)eventArgs.Result;
+            if (loTempResult == null)
+                return;
+
+            //loGetData = (LMM01500AgreementDetailDTO)_conductorFullPMT02500Agreement.R_GetCurrentData();
+
+            _viewModelService.Data.CTAX_ID = loTempResult.CTAX_ID;
+            _viewModelService.Data.CTAX_NAME = loTempResult.CTAX_NAME;
+        }
+        catch (Exception ex)
+        {
+            loException.Add(ex);
+        }
+
+        R_DisplayException(loException);
+
+    }
+
+    private async Task OnLostFocusTaxCode()
+    {
+        R_Exception loEx = new R_Exception();
+
+        try
+        {
+            var loGetData = _viewModelService.Data;
+
+            if (string.IsNullOrWhiteSpace(_viewModelService.Data.CTAX_ID))
+            {
+                loGetData.CTAX_ID = "";
+                loGetData.CTAX_NAME = "";
+                return;
+            }
+
+            LookupGSL00110ViewModel loLookupViewModel = new LookupGSL00110ViewModel();
+            GSL00110ParameterDTO loParam = new GSL00110ParameterDTO()
+            {
+                CCOMPANY_ID = _clientHelper.CompanyId,
+                CUSER_ID = _clientHelper.UserId,
+                CTAX_DATE = DateTime.Now.ToString("yyyyMMdd"),
+                CSEARCH_TEXT = loGetData.CTAX_ID ?? "",
+            };
+
+            var loResult = await loLookupViewModel.GetTaxByDate(loParam);
+
+            if (loResult == null)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                loGetData.CTAX_ID = "";
+                loGetData.CTAX_NAME = "";
+                //await GLAccount_TextBox.FocusAsync();
+            }
+            else
+            {
+                loGetData.CTAX_ID = loResult.CTAX_ID;
+                loGetData.CTAX_NAME = loResult.CTAX_NAME;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        R_DisplayException(loEx);
+    }
     #endregion
 
     #region CRUD Service
@@ -1036,6 +1132,11 @@ public partial class PMT06000Info : R_Page
                 loEx.Add(new Exception(_localizer["PLEASE_SELECT_DATE_IN"]));
             }
 
+            if (string.IsNullOrEmpty(loEntity.CTAX_ID) && (loEntity.LTAXABLE))
+            {
+                loEx.Add(new Exception(_localizer["PLEASE_SELECT_TAX_ID"]));
+            }
+
             loEntity.CDATE_OUT = loEntity.DDATE_OUT?.ToString("yyyyMMdd");
             if (string.IsNullOrEmpty(loEntity.CDATE_OUT))
             {
@@ -1069,6 +1170,7 @@ public partial class PMT06000Info : R_Page
             loEntity.CDEPT_CODE = _viewModel.Entity.CDEPT_CODE;
             loEntity.CTRANS_CODE = _viewModel.TRANS_CODE;
             loEntity.CSERVICE_ID = loEntity.CSERVICE_ID;
+            loEntity.CTAX_ID = loEntity.CTAX_ID;
             loEntity.CDATE_IN = loEntity.DDATE_IN?.ToString("yyyyMMdd");
             loEntity.CTIME_IN = loEntity.DDATE_IN?.ToString("HH:mm");
             loEntity.CDATE_OUT = loEntity.DDATE_OUT?.ToString("yyyyMMdd");

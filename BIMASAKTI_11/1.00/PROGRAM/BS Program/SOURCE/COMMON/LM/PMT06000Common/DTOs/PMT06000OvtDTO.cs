@@ -5,6 +5,8 @@ namespace PMT06000Common.DTOs
     public class PMT06000OvtDTO
     {
         public string CTAXABLE_TYPE { get; set; } = "";
+        public string CTAX_ID { get; set; } = "";
+        public string CTAX_NAME { get; set; } = "";
         public string CCOMPANY_ID { get; set; } = "";
         public string CUSER_ID { get; set; } = "";
         public string CACTION { get; set; } = "";
