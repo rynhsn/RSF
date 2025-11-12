@@ -73,9 +73,9 @@ namespace PMB01800BACK
             DbCommand loCommand = null;
             try
             {
-                await Task.Delay(100);
+                
                 loCommand = loDb.GetCommand();
-                loConn = loDb.GetConnection();
+                loConn = await loDb.GetConnectionAsync();
                 //Get data from poBatchPRocessParam
                 var loObject = R_NetCoreUtility.R_DeserializeObjectFromByte<List<PMB01800BatchDTO>>(poBatchProcessPar.BigObject);
 
@@ -85,6 +85,12 @@ namespace PMB01800BACK
 
                 var loVarRefDate = poBatchProcessPar.UserParameters.Where((x) => x.Key.Equals(Batch_ContextConstant.CREF_DATE)).FirstOrDefault().Value;
                 var lcRefDate = ((System.Text.Json.JsonElement)loVarRefDate).GetString();
+
+                var loVarDeptCode = poBatchProcessPar.UserParameters.Where((x) => x.Key.Equals(Batch_ContextConstant.CDEPT_CODE)).FirstOrDefault().Value;
+                var lcDeptCode = ((System.Text.Json.JsonElement)loVarDeptCode).GetString();
+
+                var loVarChargesId = poBatchProcessPar.UserParameters.Where((x) => x.Key.Equals(Batch_ContextConstant.CCHARGES_ID)).FirstOrDefault().Value;
+                var lcChargesId = ((System.Text.Json.JsonElement)loVarChargesId).GetString();
 
                 lcQuery = "CREATE TABLE #SELECTED_DEPOSIT(" +
                     "INO INT" +
@@ -97,7 +103,7 @@ namespace PMB01800BACK
 
                 _logger.LogDebug("{@ObjectQuery} ", lcQuery);
 
-                loDb.SqlExecNonQuery(lcQuery, loConn, false);
+                await loDb.SqlExecNonQueryAsync(lcQuery, loConn, false);
 
                 for (var i = 0; i < loObject.Count; i++)
                 {
@@ -111,20 +117,21 @@ namespace PMB01800BACK
                                      $")");
                 }
 
-                loDb.R_BulkInsert((SqlConnection)loConn, "#SELECTED_DEPOSIT", loObject);
+               await loDb.R_BulkInsertAsync((SqlConnection)loConn, "#SELECTED_DEPOSIT", loObject);
 
                 lcQuery = "RSP_PM_GENERATE_DEPOSIT_ADJ ";
                 loCommand.CommandText = lcQuery;
                 loCommand.CommandType = CommandType.StoredProcedure;
-
                 loDb.R_AddCommandParameter(loCommand, "@CCOMPANY_ID", DbType.String, 8, poBatchProcessPar.Key.COMPANY_ID);
                 loDb.R_AddCommandParameter(loCommand, "@CPROPERTY_ID", DbType.String, 20, lcPropertyId);
+                loDb.R_AddCommandParameter(loCommand, "@CDEPT_CODE", DbType.String, 20, lcDeptCode);
+                loDb.R_AddCommandParameter(loCommand, "@CCHARGES_ID", DbType.String, 20, lcChargesId);
                 loDb.R_AddCommandParameter(loCommand, "@CREF_DATE", DbType.String, 8, lcRefDate);
                 loDb.R_AddCommandParameter(loCommand, "@CUSER_ID", DbType.String, 8, poBatchProcessPar.Key.USER_ID);
                 loDb.R_AddCommandParameter(loCommand, "@CKEY_GUID", DbType.String, 100, poBatchProcessPar.Key.KEY_GUID);
 
                 _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCommand.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
-                var loRtn = loDb.SqlExecNonQuery(loConn, loCommand, false);
+                var loRtn = await loDb.SqlExecNonQueryAsync(loConn, loCommand, false);
             }
             catch (Exception ex)
             {
@@ -150,10 +157,18 @@ namespace PMB01800BACK
             //HANDLE EXCEPTION IF THERE ANY ERROR ON TRY CATCH paling luar
             if (loException.Haserror)
             {
-                lcQuery = string.Format("EXEC RSP_WRITEUPLOADPROCESSSTATUS '{0}', '{1}', '{2}', 100, '{3}', {4}", poBatchProcessPar.Key.COMPANY_ID, poBatchProcessPar.Key.USER_ID, poBatchProcessPar.Key.KEY_GUID, loException.ErrorList[0].ErrDescp, 9);
-                loCommand.CommandText = lcQuery;
-                loCommand.CommandType = CommandType.Text;
-                loDb.SqlExecNonQuery(lcQuery);
+                string lcMessageError = loException.ErrorList[0].ErrDescp.Replace("'", "`");
+                lcQuery = "INSERT INTO GST_UPLOAD_ERROR_STATUS(CCOMPANY_ID,CUSER_ID,CKEY_GUID,ISEQ_NO,CERROR_MESSAGE) VALUES" +
+                    string.Format("('{0}', '{1}', ", poBatchProcessPar.Key.COMPANY_ID, poBatchProcessPar.Key.USER_ID) +
+                    string.Format("'{0}', -1, '{1}')", poBatchProcessPar.Key.KEY_GUID, lcMessageError);
+                await loDb.SqlExecNonQueryAsync(lcQuery);
+
+                lcQuery = string.Format("EXEC RSP_WriteUploadProcessStatus '{0}', ", poBatchProcessPar.Key.COMPANY_ID) +
+                   string.Format("'{0}', ", poBatchProcessPar.Key.USER_ID) +
+                   string.Format("'{0}', ", poBatchProcessPar.Key.KEY_GUID) +
+                   string.Format("100, '{0}', 9", lcMessageError);
+
+                await loDb.SqlExecNonQueryAsync(lcQuery);
             }
             _logger.LogInfo(string.Format("End process method on Cls", nameof(_BatchProcessAsync)));
             loException.ThrowExceptionIfErrors();
