@@ -25,7 +25,7 @@ namespace PMB01800MODEL.ViewModel
 
         public string Message = "";
         public int Percentage = 0;
-        public Action ShowSuccessAction { get; set; }
+        public Func<Task> ShowSuccessAction { get; set; }
         public Action StateChangeAction { get; set; }
         public DataSet ExcelDataSet { get; set; }
         public Func<Task> ActionDataSetExcel { get; set; }
@@ -37,7 +37,7 @@ namespace PMB01800MODEL.ViewModel
             {
                 if (poProcessResultMode == eProcessResultMode.Success)
                 {
-                    ShowSuccessAction();
+                    await ShowSuccessAction();
                 }
 
                 if (poProcessResultMode == eProcessResultMode.Fail)
@@ -85,6 +85,10 @@ namespace PMB01800MODEL.ViewModel
                 loBatchParUserParameters = new List<R_KeyValue>();
                 loBatchParUserParameters.Add(new R_KeyValue
                 { Key = Batch_ContextConstant.CPROPERTY_ID, Value = Param.CPROPERTY_ID });
+                loBatchParUserParameters.Add(new R_KeyValue
+                { Key = Batch_ContextConstant.CDEPT_CODE, Value = Param.CDEPT_CODE });
+                loBatchParUserParameters.Add(new R_KeyValue
+                { Key = Batch_ContextConstant.CCHARGES_ID, Value = Param.CCHARGES_ID });
                 loBatchParUserParameters.Add(new R_KeyValue
                 { Key = Batch_ContextConstant.CREF_DATE, Value = Param.CREF_DATE });
 

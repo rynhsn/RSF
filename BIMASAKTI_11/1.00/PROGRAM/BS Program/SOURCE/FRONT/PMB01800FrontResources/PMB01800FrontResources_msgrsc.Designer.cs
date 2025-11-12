@@ -115,6 +115,15 @@ namespace PMB01800FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Charge ID*.
+        /// </summary>
+        internal static string CCHARGES_ID {
+            get {
+                return ResourceManager.GetString("CCHARGES_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contractor.
         /// </summary>
         internal static string CCONTRACTOR_NAME {
@@ -165,6 +174,15 @@ namespace PMB01800FrontResources {
         internal static string CDEPT {
             get {
                 return ResourceManager.GetString("CDEPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department*.
+        /// </summary>
+        internal static string CDEPT_CODE {
+            get {
+                return ResourceManager.GetString("CDEPT_CODE", resourceCulture);
             }
         }
         
@@ -304,7 +322,7 @@ namespace PMB01800FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ref Date.
+        ///   Looks up a localized string similar to Ref Date*.
         /// </summary>
         internal static string DREF_DATE {
             get {
@@ -318,6 +336,15 @@ namespace PMB01800FrontResources {
         internal static string DUPDATE_DATE {
             get {
                 return ResourceManager.GetString("DUPDATE_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General Adjustment.
+        /// </summary>
+        internal static string GeneralAdjustment {
+            get {
+                return ResourceManager.GetString("GeneralAdjustment", resourceCulture);
             }
         }
         
@@ -372,6 +399,42 @@ namespace PMB01800FrontResources {
         internal static string UNIT_DESCRIPTION {
             get {
                 return ResourceManager.GetString("UNIT_DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charge Id Date is required.
+        /// </summary>
+        internal static string ValidationChargeId {
+            get {
+                return ResourceManager.GetString("ValidationChargeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department Date is required.
+        /// </summary>
+        internal static string ValidationDepartment {
+            get {
+                return ResourceManager.GetString("ValidationDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Data To Process.
+        /// </summary>
+        internal static string ValidationNoData {
+            get {
+                return ResourceManager.GetString("ValidationNoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Date is required.
+        /// </summary>
+        internal static string ValidationRefDate {
+            get {
+                return ResourceManager.GetString("ValidationRefDate", resourceCulture);
             }
         }
     }

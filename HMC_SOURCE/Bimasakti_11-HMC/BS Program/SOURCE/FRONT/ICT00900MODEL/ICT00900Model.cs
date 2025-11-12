@@ -15,7 +15,7 @@ namespace ICT00900MODEL
     public class ICT00900Model : R_BusinessObjectServiceClientBase<ICT00900AjustmentDetailDTO>, IICT00900
     {
         private const string DEFAULT_HTTP = "R_DefaultServiceUrlIC";
-        private const string DEFAULT_ENDPOINT = "api/ICT00100Adjustment";
+        private const string DEFAULT_ENDPOINT = "api/ICT00900";
         private const string DEFAULT_MODULE = "IC";
         public ICT00900Model(
          string pcHttpClientName = DEFAULT_HTTP,
@@ -169,6 +169,110 @@ namespace ICT00900MODEL
             loEx.ThrowExceptionIfErrors();
             return loResult;
         }
+        public async Task<ICT00900AjustmentDetailDTO> GetProdBalanceInfoAsync(ICT00900AjustmentDetailDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            ICT00900AjustmentDetailDTO loResult = new ICT00900AjustmentDetailDTO();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<ICT00900AjustmentDetailDTO, ICT00900AjustmentDetailDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IICT00900.GetProdBalanceInfo),
+                    poEntity,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken
+                );
+                loResult = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult!;
+        }
+        public async Task<ICSystemParameterDTO> GetICSystemParamAsync(BaseDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            ICSystemParameterDTO loResult = new ICSystemParameterDTO();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<ICT00900GenericRecord<ICSystemParameterDTO>, BaseDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IICT00900.GetICSystemParam),
+                    poEntity,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken
+                );
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult!;
+        }
+        public async Task<LastCurrencyRateDTO> GetLastCurrencyAsync(LastCurrencyRateDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            LastCurrencyRateDTO loResult = new LastCurrencyRateDTO();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<ICT00900GenericRecord<LastCurrencyRateDTO>, LastCurrencyRateDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IICT00900.GetLastCurrency),
+                    poEntity,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken
+                );
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult!;
+        }
+        public async Task<ICT00900AdjustmentDTO> SubmitAdjustmentAsync(ICT00900ParameterChangeStatusDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            ICT00900AdjustmentDTO loResult = new ICT00900AdjustmentDTO();
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<ICT00900AdjustmentDTO, ICT00900ParameterChangeStatusDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IICT00900.SubmitAdjustment),
+                    poEntity,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken
+                );
+                loResult = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult!;
+        }
 
         #region JustImpelement
         public ICT00900AdjustmentDTO ChangeStatusAdjustment(ICT00900ParameterChangeStatusDTO poEntity)
@@ -197,6 +301,22 @@ namespace ICT00900MODEL
         }
 
         public VarGsmCompanyInfoDTO GetVAR_GSM_COMPANY_INFO()
+        {
+            throw new NotImplementedException();
+        }
+        public ICT00900AjustmentDetailDTO GetProdBalanceInfo(ICT00900ParameterChangeStatusDTO poEntity)
+        {
+            throw new NotImplementedException();
+        }
+        public ICT00900GenericRecord<ICSystemParameterDTO> GetICSystemParam(BaseDTO poEntity)
+        {
+            throw new NotImplementedException();
+        }
+        public ICT00900GenericRecord<LastCurrencyRateDTO> GetLastCurrency(LastCurrencyRateDTO poEntity)
+        {
+            throw new NotImplementedException();
+        }
+        public ICT00900AdjustmentDTO SubmitAdjustment(ICT00900ParameterChangeStatusDTO poEntity)
         {
             throw new NotImplementedException();
         }

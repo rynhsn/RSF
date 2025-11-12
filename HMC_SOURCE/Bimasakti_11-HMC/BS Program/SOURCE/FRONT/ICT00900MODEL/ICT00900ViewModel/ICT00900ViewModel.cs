@@ -29,6 +29,7 @@ namespace ICT00900MODEL.ICT00900ViewModel
         public ICT00900AjustmentDetailDTO oEntityAdjustmentDetail = new ICT00900AjustmentDetailDTO();
         public VarGsmTransactionCodeDTO VarTransaction = new VarGsmTransactionCodeDTO();
         public VarGsmCompanyInfoDTO VarCompanyInfo = new VarGsmCompanyInfoDTO();
+        public ICSystemParameterDTO ICSystemParameter = new ICSystemParameterDTO();
 
         public PropertyDTO PropertyValue = new PropertyDTO();
         public CurrencyDTO CurrencyValue = new CurrencyDTO();
@@ -37,8 +38,8 @@ namespace ICT00900MODEL.ICT00900ViewModel
         public ICT00900ParameterChangeStatusDTO ParameterChangeStatus = new ICT00900ParameterChangeStatusDTO();
         public List<ComboBoxDTO> AdjustmentMethodList = new List<ComboBoxDTO>
         {
-            new ComboBoxDTO{CCODE = "C",  CDESCRIPTION = R_FrontUtility.R_GetMessage(typeof(Resources_ICT00900_Class), $"_labelUnitCost") },
-            new ComboBoxDTO{CCODE = "V",  CDESCRIPTION = R_FrontUtility.R_GetMessage(typeof(Resources_ICT00900_Class), $"_labelTotalValue") },
+            new ComboBoxDTO{CCODE = "U",  CDESCRIPTION = R_FrontUtility.R_GetMessage(typeof(Resources_ICT00900_Class), $"_labelUnitCost") },
+            new ComboBoxDTO{CCODE = "T",  CDESCRIPTION = R_FrontUtility.R_GetMessage(typeof(Resources_ICT00900_Class), $"_labelTotalValue") },
             new ComboBoxDTO{CCODE = "A",  CDESCRIPTION = R_FrontUtility.R_GetMessage(typeof(Resources_ICT00900_Class), $"_labelTotalAdjustment") },
         };
         public bool lPropertyExist = true;
@@ -217,8 +218,83 @@ namespace ICT00900MODEL.ICT00900ViewModel
 
                     var loResult = await _model.ChangeStatusAdjAsyncModel(currentCostAdjustment);
                     loReturn = loResult;
-
                 }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+            return loReturn;
+        }
+        public async Task<ICT00900AdjustmentDTO> SubmitAdjustment()
+        {
+            R_Exception loEx = new R_Exception();
+            ICT00900AdjustmentDTO loReturn = new ICT00900AdjustmentDTO();
+            try
+            {
+                if (!string.IsNullOrEmpty(oEntityAdjustmentDetail.CREF_NO))
+                {
+                    ICT00900ParameterChangeStatusDTO currentCostAdjustment = R_FrontUtility.ConvertObjectToObject<ICT00900ParameterChangeStatusDTO>(oEntityAdjustmentDetail);
+
+                    var loResult = await _model.SubmitAdjustmentAsync(currentCostAdjustment);
+                    loReturn = loResult;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+            return loReturn;
+        }
+
+        public async Task<ICT00900AjustmentDetailDTO> GetProdBalanceInfo(ICT00900AjustmentDetailDTO poEntity)
+        {
+            R_Exception loEx = new R_Exception();
+            ICT00900AjustmentDetailDTO loReturn = new ICT00900AjustmentDetailDTO();
+            try
+            {
+                var loResult = await _model.GetProdBalanceInfoAsync(poEntity);
+                loReturn = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+            return loReturn;
+        }
+        public async Task GetICSystemParam()
+        {
+            R_Exception loEx = new R_Exception();
+            try
+            {
+                var loParam = R_FrontUtility.ConvertObjectToObject<BaseDTO>(ParameterGetDetail);
+                var loResult = await _model.GetICSystemParamAsync(loParam);
+                ICSystemParameter = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+        }
+        public async Task<LastCurrencyRateDTO> GetLastCurrency(DateTime pdRefDate)
+        {
+            R_Exception loEx = new R_Exception();
+            LastCurrencyRateDTO loReturn = new LastCurrencyRateDTO();
+
+            try
+            {
+                LastCurrencyRateDTO loParam = new LastCurrencyRateDTO()
+                {
+                    CCURRENCY_CODE = VarCompanyInfo.CLOCAL_CURRENCY_CODE,
+                    CRATETYPE_CODE = ICSystemParameter.CRATETYPE_CODE,
+                    CRATE_DATE = pdRefDate.ToString("yyyyMMdd"),
+                };
+                var loResult = await _model.GetLastCurrencyAsync(loParam);
+                loReturn = loResult;
             }
             catch (Exception ex)
             {
@@ -234,7 +310,12 @@ namespace ICT00900MODEL.ICT00900ViewModel
             var loEx = new R_Exception();
             try
             {
-                if (_lDataCREF_NO)
+                if (string.IsNullOrWhiteSpace(poEntity.CDEPT_CODE))
+                {
+                    var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationDepartment");
+                    loEx.Add(loErr);
+                }
+                if (!VarTransaction.LINCREMENT_FLAG)
                 {
                     if (string.IsNullOrWhiteSpace(poEntity.CREF_NO))
                     {
@@ -242,14 +323,23 @@ namespace ICT00900MODEL.ICT00900ViewModel
                         loEx.Add(loErr);
                     }
                 }
-                if (string.IsNullOrWhiteSpace(poEntity.CDEPT_CODE))
-                {
-                    var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationDepartment");
-                    loEx.Add(loErr);
-                }
                 if (poEntity.DREF_DATE == null)
                 {
                     var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationRefDate");
+                    loEx.Add(loErr);
+                }
+                else
+                {
+                    var loSoftClosePeriod = int.Parse(ICSystemParameter.CSOFT_PERIOD);
+                    if (int.Parse(poEntity.DREF_DATE.Value.ToString("yyyyMMdd")) < loSoftClosePeriod)
+                    {
+                        var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationRefDateSoftClose");
+                        loEx.Add(loErr);
+                    }
+                }
+                if (string.IsNullOrWhiteSpace(poEntity.CPRODUCT_ID))
+                {
+                    var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationProductId");
                     loEx.Add(loErr);
                 }
                 if (string.IsNullOrWhiteSpace(poEntity.CADJUST_METHOD))
@@ -257,27 +347,31 @@ namespace ICT00900MODEL.ICT00900ViewModel
                     var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationAdjustmentMethod");
                     loEx.Add(loErr);
                 }
-                if (string.IsNullOrWhiteSpace(poEntity.CPRODUCT_ID))
+                else
                 {
-                    var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationProductId");
-                    loEx.Add(loErr);
+                    if (poEntity.CADJUST_METHOD == "A" && poEntity.NADJUST_AMOUNT == 0)
+                    {
+                        var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationAdjustmentValue");
+                        loEx.Add(loErr);
+                    }
+                    else if (poEntity.CADJUST_METHOD != "A" && poEntity.NADJUST_AMOUNT < 0)
+                    {
+                        var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationAdjustmentValueMin");
+                        loEx.Add(loErr);
+                    }
                 }
-                if (poEntity.NADJUST_AMOUNT < 0)
-                {
-                    var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationAdjustmentValue");
-                    loEx.Add(loErr);
-                }
+
                 if (string.IsNullOrWhiteSpace(poEntity.CCURRENCY_CODE))
                 {
                     var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationCurrency");
                     loEx.Add(loErr);
                 }
+                
                 if (string.IsNullOrWhiteSpace(poEntity.CALLOC_ID))
                 {
                     var loErr = R_FrontUtility.R_GetError(typeof(Resources_ICT00900_Class), "ValidationAllocation");
                     loEx.Add(loErr);
                 }
-
             }
             catch (Exception ex)
             {
