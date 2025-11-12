@@ -66,154 +66,149 @@ namespace PMR02000COMMON.Model
                 Data = new List<DeptDTO>(),
                 GrandTotal = new List<SubtotalCurrenciesDTO>()
             };
-            var loDummyDBData = new List<PMR02000SpResultDTO>();
+            var loDummyDBData = new List<APR00100SummaryBySupp1DTO>();
 
-            // Generate dummy data
+            // Dummy master data
             var departments = new List<(string Code, string Name)>
-            {
-                ("D001", "Sales"),
-                ("D002", "Marketing")
-            };
+{
+    ("D001", "Finance"),
+    ("D002", "Operations")
+};
 
-            var customers = new List<(string Id, string Name)>
-            {
-                ("CU001", "Customer A"),
-                ("CU002", "Customer B")
-            };
+            var suppliers = new List<(string Id, string Name)>
+{
+    ("SUP001", "Supplier A"),
+    ("SUP002", "Supplier B")
+};
 
-            var transactions = new List<(string Code, string Name)>
-            {
-                ("T001", "Invoice"),
-                ("T002", "Receipt")
-            };
-
-            var products = new List<(string Id, string Name)>
-            {
-                ("PCH001", "Product A"),
-                ("PCH002", "Product B")
-            };
+            var trxTypes = new List<(string Code, string Name)>
+{
+    ("INV", "Invoice"),
+    ("PAY", "Payment")
+};
 
             var currencies = new List<string>
-            {
-                ("USD"),
-                ("JPN"),
-                ("SGD"),
-            };
+{
+    "IDR", "USD"
+};
 
-            // Loop through each department
+            // Loop generate dummy
             foreach (var (deptCode, deptName) in departments)
             {
-                // Loop through each customer for the current department
-                foreach (var (custId, custName) in customers)
+                foreach (var (suppId, suppName) in suppliers)
                 {
-                    // Loop through each transaction for the current customer
-                    foreach (var (trxCode, trxName) in transactions)
+                    foreach (var (trxCode, trxName) in trxTypes)
                     {
-                        // Loop through each product for the current transaction
-                        foreach (var (prodId, prodName) in products)
+                        foreach (var currency in currencies)
                         {
-                            foreach (var currency in currencies)
+                            loDummyDBData.Add(new APR00100SummaryBySupp1DTO
                             {
-                                // Create and populate a new DTO
-                                loDummyDBData.Add(new PMR02000SpResultDTO
-                                {
-                                    CCOMPANY_ID = "C001", // Dummy company ID
-                                    CPROPERTY_ID = "P001", // Dummy property ID
-                                    CDEPT_CODE = deptCode,
-                                    CDEPT_NAME = deptName,
-                                    CDEPT_CODE_NAME = $"{deptCode} - {deptName}",
-                                    CCUSTOMER_ID = custId,
-                                    CCUSTOMER_NAME = custName,
-                                    CTRANS_CODE = trxCode,
-                                    CTRX_TYPE_NAME = trxName,
-                                    CREF_NO = $"REF-{trxCode}0000000000",
-                                    CREF_DATE = DateTime.Now.ToString("yyyyMMdd"),
-                                    DREF_DATE = DateTime.Now,
-                                    CTENANT_TYPE_ID = "TNT01",
-                                    CCUSTOMER_TYPE_NAME = "Regular",
-                                    CLOI_AGRMT_NO = "LOI0010000000000",
-                                    CCURRENCY_CODE = currency,
-                                    NBEGINNING_APPLY_AMOUNT = 1000m,
-                                    NREMAINING_AMOUNT = 500m,
-                                    NTAX_AMOUNT = 50m,
-                                    NGAINLOSS_AMOUNT = 20m,
-                                    NCASHBANK_AMOUNT = 200m,
-                                });
-                            }
+                                CSUPPLIER_ID = suppId,
+                                CSUPPLIER_NAME = suppName,
+                                CTRX_TYPE_NAME = trxName,
+                                CREF_NO = $"REF-{trxCode}-{Guid.NewGuid().ToString().Substring(0, 6)}",
+                                CREF_DATE = DateTime.Now.ToString("yyyyMMdd"),
+                                DREF_DATE = DateTime.Now,
+                                CSUPPLIER_TYPE_NAME = "Local",
+                                CLOI_AGRMT_NO = $"AGR-{suppId}",
+                                CCURRENCY_CODE = currency,
+                                NBEGINNING_APPLY_AMOUNT = 1000m,
+                                NREMAINING_AMOUNT = 500m,
+                                NTAX_AMOUNT = 100m,
+                                NGAINLOSS_AMOUNT = 20m,
+                                NCASHBANK_AMOUNT = 300m
+                            });
                         }
                     }
                 }
             }
 
-            //grouping data 
-            loRtn.ReportData.Data = loDummyDBData
-                .GroupBy(x => new { x.CDEPT_CODE, x.CDEPT_NAME }) // Group by Department
-                .Select(deptGroup => new DeptDTO
-                {
-                    CDEPT_CODE = deptGroup.Key.CDEPT_CODE,
-                    CDEPT_NAME = deptGroup.Key.CDEPT_NAME,
-                    Customers = deptGroup
-                        .GroupBy(c => new
-                        {
-                            c.CCUSTOMER_ID,
-                            c.CCUSTOMER_NAME,
-                            c.CTRX_TYPE_NAME,
-                            c.CREF_NO,
-                            c.CREF_DATE,
-                            c.CCUSTOMER_TYPE_NAME,
-                            c.CLOI_AGRMT_NO,
-                            c.CCURRENCY_CODE,
-                            c.NBEGINNING_APPLY_AMOUNT,
-                            c.NREMAINING_AMOUNT,
-                            c.NTAX_AMOUNT,
-                            c.NGAINLOSS_AMOUNT,
-                            c.NCASHBANK_AMOUNT,
+            // === GROUPING DATA ===
+            var loReport = new ReportSummaryDataDTO
+            {
+                Title = "Account Payable Summary",
+                Header = "Summary by Department and Supplier",
+                Label = new ReportLabelDTO { LabelName = "Example Report" },
+                Param = new ReportParamDTO { Period = "202511", Company = "BSI" },
+            };
 
-                        }) // Group by Customer
-                        .Select(customerGroup => new CustomerDTO
+            // Group by department
+            loReport.Data = departments
+                .Select(dept => new APR00100DataResultDTO
+                {
+                    CDEPT_CODE = dept.Code,
+                    CDEPT_NAME = dept.Name,
+                    Detail1 = loDummyDBData
+                        .GroupBy(x => new
                         {
-                            CDEPT_CODE=deptGroup.Key.CDEPT_CODE,
-                            CDEPT_NAME = deptGroup.Key.CDEPT_NAME,
-                            CCUSTOMER_ID = customerGroup.Key.CCUSTOMER_ID,
-                            CCUSTOMER_NAME = customerGroup.Key.CCUSTOMER_NAME,
-                            CTRX_TYPE_NAME = customerGroup.Key.CTRX_TYPE_NAME,
-                            CREF_NO = customerGroup.Key.CREF_NO,
-                            CREF_DATE = customerGroup.Key.CREF_DATE,
-                            DREF_DATE = DateTime.ParseExact(customerGroup.Key.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture),
-                            CCUSTOMER_TYPE_NAME = customerGroup.Key.CCUSTOMER_TYPE_NAME,
-                            CLOI_AGRMT_NO = customerGroup.Key.CLOI_AGRMT_NO,
-                            CCURRENCY_CODE = customerGroup.Key.CCURRENCY_CODE,
-                            NBEGINNING_APPLY_AMOUNT = customerGroup.Key.NBEGINNING_APPLY_AMOUNT,
-                            NREMAINING_AMOUNT = customerGroup.Key.NREMAINING_AMOUNT,
-                            NTAX_AMOUNT = customerGroup.Key.NTAX_AMOUNT,
-                            NGAINLOSS_AMOUNT = customerGroup.Key.NGAINLOSS_AMOUNT,
-                            NCASHBANK_AMOUNT = customerGroup.Key.NCASHBANK_AMOUNT
+                            x.CSUPPLIER_ID,
+                            x.CSUPPLIER_NAME,
+                            x.CTRX_TYPE_NAME,
+                            x.CREF_NO,
+                            x.CREF_DATE,
+                            x.CSUPPLIER_TYPE_NAME,
+                            x.CLOI_AGRMT_NO,
+                            x.CCURRENCY_CODE
+                        })
+                        .Select(g => new APR00100SummaryBySupp1DTO
+                        {
+                            CSUPPLIER_ID = g.Key.CSUPPLIER_ID,
+                            CSUPPLIER_NAME = g.Key.CSUPPLIER_NAME,
+                            CTRX_TYPE_NAME = g.Key.CTRX_TYPE_NAME,
+                            CREF_NO = g.Key.CREF_NO,
+                            CREF_DATE = g.Key.CREF_DATE,
+                            DREF_DATE = DateTime.ParseExact(g.Key.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture),
+                            CSUPPLIER_TYPE_NAME = g.Key.CSUPPLIER_TYPE_NAME,
+                            CLOI_AGRMT_NO = g.Key.CLOI_AGRMT_NO,
+                            CCURRENCY_CODE = g.Key.CCURRENCY_CODE,
+                            NBEGINNING_APPLY_AMOUNT = g.Sum(x => x.NBEGINNING_APPLY_AMOUNT),
+                            NREMAINING_AMOUNT = g.Sum(x => x.NREMAINING_AMOUNT),
+                            NTAX_AMOUNT = g.Sum(x => x.NTAX_AMOUNT),
+                            NGAINLOSS_AMOUNT = g.Sum(x => x.NGAINLOSS_AMOUNT),
+                            NCASHBANK_AMOUNT = g.Sum(x => x.NCASHBANK_AMOUNT),
+                            SuppSubtotalCurr = g
+                                .GroupBy(x => x.CCURRENCY_CODE)
+                                .Select(sub => new SubtotalCurrenciesDTO
+                                {
+                                    CDEPT_CODE = dept.Code,
+                                    CSUPPLIER_ID = g.Key.CSUPPLIER_ID,
+                                    CCURRENCY_CODE = sub.Key,
+                                    NBEGINNING_APPLY_AMOUNT = sub.Sum(x => x.NBEGINNING_APPLY_AMOUNT),
+                                    NREMAINING_AMOUNT = sub.Sum(x => x.NREMAINING_AMOUNT),
+                                    NTAX_AMOUNT = sub.Sum(x => x.NTAX_AMOUNT),
+                                    NGAINLOSS_AMOUNT = sub.Sum(x => x.NGAINLOSS_AMOUNT),
+                                    NCASHBANK_AMOUNT = sub.Sum(x => x.NCASHBANK_AMOUNT)
+                                }).ToList()
                         }).ToList(),
 
-                    DeptSubtotalCurrencies = deptGroup
-                        .GroupBy(d => d.CCURRENCY_CODE) // Group by Currency for Department Subtotal
-                        .Select(currencyGroup => new SubtotalCurrenciesDTO
+                    // Subtotal per dept by currency
+                    DeptSubtotalCurrencies = loDummyDBData
+                        .GroupBy(x => x.CCURRENCY_CODE)
+                        .Select(g => new SubtotalCurrenciesDTO
                         {
-                            CCURRENCY_CODE = currencyGroup.Key,
-                            NBEGINNING_APPLY_AMOUNT = currencyGroup.Sum(d => d.NBEGINNING_APPLY_AMOUNT),
-                            NREMAINING_AMOUNT = currencyGroup.Sum(d => d.NREMAINING_AMOUNT),
-                            NTAX_AMOUNT = currencyGroup.Sum(d => d.NTAX_AMOUNT),
-                            NGAINLOSS_AMOUNT = currencyGroup.Sum(d => d.NGAINLOSS_AMOUNT),
-                            NCASHBANK_AMOUNT = currencyGroup.Sum(d => d.NCASHBANK_AMOUNT)
+                            CDEPT_CODE = dept.Code,
+                            CCURRENCY_CODE = g.Key,
+                            NBEGINNING_APPLY_AMOUNT = g.Sum(x => x.NBEGINNING_APPLY_AMOUNT),
+                            NREMAINING_AMOUNT = g.Sum(x => x.NREMAINING_AMOUNT),
+                            NTAX_AMOUNT = g.Sum(x => x.NTAX_AMOUNT),
+                            NGAINLOSS_AMOUNT = g.Sum(x => x.NGAINLOSS_AMOUNT),
+                            NCASHBANK_AMOUNT = g.Sum(x => x.NCASHBANK_AMOUNT)
                         }).ToList()
                 }).ToList();
 
-            //grouping currency
-            loRtn.ReportData.GrandTotal = loDummyDBData.GroupBy(x => x.CCURRENCY_CODE)
-                .Select(currencyGroup => new SubtotalCurrenciesDTO
+            // === GRAND TOTAL ===
+            loReport.GrandTotal = loDummyDBData
+                .GroupBy(x => x.CCURRENCY_CODE)
+                .Select(g => new SubtotalCurrenciesDTO
                 {
-                    CCURRENCY_CODE = currencyGroup.Key,
-                    NBEGINNING_APPLY_AMOUNT = currencyGroup.Sum(c => c.NBEGINNING_APPLY_AMOUNT),
-                    NREMAINING_AMOUNT = currencyGroup.Sum(c => c.NREMAINING_AMOUNT),
-                    NTAX_AMOUNT = currencyGroup.Sum(c => c.NTAX_AMOUNT),
-                    NGAINLOSS_AMOUNT = currencyGroup.Sum(c => c.NGAINLOSS_AMOUNT),
-                    NCASHBANK_AMOUNT = currencyGroup.Sum(c => c.NCASHBANK_AMOUNT)
+                    CCURRENCY_CODE = g.Key,
+                    NBEGINNING_APPLY_AMOUNT = g.Sum(x => x.NBEGINNING_APPLY_AMOUNT),
+                    NREMAINING_AMOUNT = g.Sum(x => x.NREMAINING_AMOUNT),
+                    NTAX_AMOUNT = g.Sum(x => x.NTAX_AMOUNT),
+                    NGAINLOSS_AMOUNT = g.Sum(x => x.NGAINLOSS_AMOUNT),
+                    NCASHBANK_AMOUNT = g.Sum(x => x.NCASHBANK_AMOUNT)
                 }).ToList();
+
             return loRtn;
         }
     }

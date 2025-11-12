@@ -172,7 +172,8 @@ namespace PMT01700FRONT
                         }).ToList();
 
                         await _conductor.Add();
-
+                        lControlChoosenData = _viewModel.lControlExistingTenant = true;
+                        _viewModel.lControlExistingTenantOriginal = false;
                         goto EndBlock;
                     }
                     //Btn revise
@@ -1074,21 +1075,21 @@ namespace PMT01700FRONT
                 }
                 else
                 {
-                    loData.CTENANT_CATEGORY_ID = _viewModel.oComboBoxTenantCategory.FirstOrDefault().CCATEGORY_ID;
+                    //loData.CTENANT_CATEGORY_ID = _viewModel.oComboBoxTenantCategory.FirstOrDefault().CCATEGORY_ID ?? "";
 
-                    loData.CTAX_TYPE = _viewModel.oComboBoxTaxType.FirstOrDefault(x => x.CCODE == "02")?.CCODE;
-                    loData.CID_TYPE = _viewModel.oComboBoxIdType.FirstOrDefault().CCODE;
-                    tStartDate = DateTime.Now.AddDays(-1);
-                    loData.CLEASE_MODE = _viewModel.oComboBoxTaxType.First().CCODE;
-                    loData.CCHARGE_MODE = _viewModel.oComboBoxIdType.First().CCODE;
-                    _viewModel.lControlExistingTenant = true;
-                    _viewModel.lControlExistingTenantOriginal = false;
+                    //loData.CTAX_TYPE = _viewModel.oComboBoxTaxType.FirstOrDefault(x => x.CCODE == "02")?.CCODE;
+                    //loData.CID_TYPE = _viewModel.oComboBoxIdType.FirstOrDefault().CCODE;
+                    //tStartDate = DateTime.Now.AddDays(-1);
+                    //loData.CLEASE_MODE = _viewModel.oComboBoxTaxType.First().CCODE;
+                    //loData.CCHARGE_MODE = _viewModel.oComboBoxIdType.First().CCODE;
+                    //_viewModel.lControlExistingTenant = true;
+                    //_viewModel.lControlExistingTenantOriginal = false;
 
-                    loData.CBUILDING_ID = _viewModel.oParameter.CBUILDING_ID;
-                    loData.CBUILDING_NAME = _viewModel.oParameter.CBUILDING_NAME;
+                    //loData.CBUILDING_ID = _viewModel.oParameter.CBUILDING_ID;
+                    //loData.CBUILDING_NAME = _viewModel.oParameter.CBUILDING_NAME;
 
-                    loData.IDAYS = 1;
-                    loData.DEND_DATE = DateTime.Now.AddHours(23).AddMinutes(50);
+                    //loData.IDAYS = 1;
+                    //loData.DEND_DATE = DateTime.Now.AddHours(23).AddMinutes(50);
                 }
 
                 await _componentCTENANT_IDTextBox.FocusAsync();
