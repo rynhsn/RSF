@@ -63,6 +63,7 @@ namespace PMT05000FRONT
             var loEx = new R_Exception();
             try
             {
+                _agreementChrgDiscViewModel._ctype = "U";
                 await _agreementChrgDiscViewModel.InitAsync(_localizer);
                 _agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.CPROPERTY_ID =(string) poParameter.ToString();
                 _agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.CBUILDING_ID = "";

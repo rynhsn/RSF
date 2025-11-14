@@ -46,6 +46,7 @@ namespace PMT05000FRONT
             var loEx = new R_Exception();
             try
             {
+                _agreementChrgDiscViewModel._ctype = "A";
                 await _agreementChrgDiscViewModel.InitAsync(_localizer);
             }
             catch (Exception ex)

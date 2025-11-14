@@ -90,15 +90,14 @@ public class CBB00200Controller : ControllerBase, ICBB00200
     // }
 
     [HttpPost]
-    public IAsyncEnumerable<CBB00200ClosePeriodToDoListDTO> CBB00200SoftClosePeriodStream()
+    public CBB00200SingleDTO<CBB00200ClosePeriodResultDTO> CBB00200SoftClosePeriodStream()
     {
         using var loActivity = _activitySource.StartActivity(nameof(CBB00200SoftClosePeriodStream));
         _logger.LogInfo("Start - Get SoftClosePeriod List Stream");
         var loEx = new R_Exception();
         var loCls = new CBB00200Cls();
         var loDbParams = new CBB00200ParameterDb();
-        List<CBB00200ClosePeriodToDoListDTO> loResult = null;
-        IAsyncEnumerable<CBB00200ClosePeriodToDoListDTO> loReturn = null;
+        var loReturn = new CBB00200SingleDTO<CBB00200ClosePeriodResultDTO>();
 
         try
         {
@@ -107,16 +106,8 @@ public class CBB00200Controller : ControllerBase, ICBB00200
             loDbParams.CUSER_ID = R_BackGlobalVar.USER_ID;
             loDbParams.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
             loDbParams.CPERIOD = R_Utility.R_GetStreamingContext<string>(CBB00200ContextConstant.CPERIOD);
-
-            _logger.LogInfo("Get SoftClosePeriod List Stream");
-            loResult = loCls.CBB00200ValidateSoftClosePeriod(loDbParams);
-            loReturn = GetStream(loResult);
-
-            if (loResult.Count == 0)
-            {
-                _logger.LogInfo("Soft Close Period");
-                loCls.CBB00200SoftClosePeriod(loDbParams);
-            }
+            _logger.LogInfo("Soft Close Period");
+            loReturn.Data=loCls.CBB00200SoftClosePeriod(loDbParams);
         }
         catch (Exception ex)
         {
@@ -128,6 +119,8 @@ public class CBB00200Controller : ControllerBase, ICBB00200
         _logger.LogInfo("End - Get SoftClosePeriod List Stream");
         return loReturn;
     }
+
+
 
     #region "Helper ListStream Functions"
 

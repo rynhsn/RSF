@@ -40,6 +40,7 @@ namespace PMT05000MODEL.ViewModel_s
         public int _yearPeriod = DateTime.Now.Year;
 
         public string _discountName = "", _chargesName = "";
+        public string _ctype = "A";
 
         #region init
 
@@ -146,6 +147,8 @@ namespace PMT05000MODEL.ViewModel_s
                 R_FrontContext.R_SetStreamingContext(ContextConstantPMT05000.LALL_BUILDING, _AgreementChrgDiscProcessParam.LALL_BUILDING);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPMT05000.CBUILDING_ID, _AgreementChrgDiscProcessParam.CBUILDING_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPMT05000.CAGREEMENNT_TYPE, _AgreementChrgDiscProcessParam.CAGREEMENT_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPMT05000.CTYPE, _ctype);
+
 
                 var loRtn = await _model.GetAgreementChargesDiscountListAsync() ?? new List<AgreementChrgDiscDetailDTO>();
 

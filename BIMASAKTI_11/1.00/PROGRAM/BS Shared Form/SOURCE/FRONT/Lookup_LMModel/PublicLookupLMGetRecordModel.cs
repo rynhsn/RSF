@@ -711,7 +711,7 @@ namespace Lookup_PMModel
 
                 var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<LMLGenericRecord<LML02000DTO>, LML02000ParameterDTO>(
                     _RequestServiceEndPoint,
-                    nameof(IGetRecordLookupLM.LML01900Staff),
+                    nameof(IGetRecordLookupLM.LML02000TenantCategory),
                     poParam,
                     DEFAULT_MODULE,
                     _SendWithContext,

@@ -19,6 +19,7 @@ namespace PMT05000COMMON.DTO_s
         public string CBUILDING_ID { get; set; }
         public string CAGREEMENT_TYPE { get; set; }
         public string CACTION { get; set; }
+        public string CTYPE { get; set; }
         public string CUSER_ID { get; set; }
     }
 }

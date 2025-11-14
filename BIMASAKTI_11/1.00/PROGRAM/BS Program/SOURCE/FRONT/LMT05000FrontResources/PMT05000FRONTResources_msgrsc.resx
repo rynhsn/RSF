@@ -172,7 +172,7 @@
     <value>Unit Id</value>
   </data>
   <data name="_gridUnitName" xml:space="preserve">
-    <value>Unit Name</value>
+    <value>Unit Description</value>
   </data>
   <data name="_labelAgreementType" xml:space="preserve">
     <value>Agreement Type</value>

@@ -232,7 +232,7 @@ namespace PMT05000FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unit Name.
+        ///   Looks up a localized string similar to Unit Description.
         /// </summary>
         internal static string _gridUnitName {
             get {

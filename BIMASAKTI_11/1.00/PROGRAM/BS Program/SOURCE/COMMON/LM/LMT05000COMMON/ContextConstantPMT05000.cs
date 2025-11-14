@@ -32,6 +32,7 @@ namespace PMT05000COMMON
         public const string CLASS_APPLICATION = "BIMASAKTI";
         public const string CLASS_ID = "_BS_UNIT_CHARGES_TYPE";
         public const string REC_ID_LIST = "";
+        public const string CTYPE = "";
 
     }
 }

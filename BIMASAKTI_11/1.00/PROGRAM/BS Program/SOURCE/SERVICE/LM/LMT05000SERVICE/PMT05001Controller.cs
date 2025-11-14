@@ -64,6 +64,7 @@ namespace PMT05000SERVICE
                     LALL_BUILDING = R_Utility.R_GetStreamingContext<bool>(ContextConstantPMT05000.LALL_BUILDING),
                     CBUILDING_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPMT05000.CBUILDING_ID),
                     CAGREEMENT_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPMT05000.CAGREEMENNT_TYPE),
+                    CTYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPMT05000.CTYPE),
                     CUSER_ID = R_BackGlobalVar.USER_ID,
                 };
                 loRtnTemp = loCls.GetAgreementChargesDiscountList(loParam);

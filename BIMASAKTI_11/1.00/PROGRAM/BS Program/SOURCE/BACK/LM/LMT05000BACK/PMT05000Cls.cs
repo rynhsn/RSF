@@ -39,22 +39,22 @@ namespace PMT05000BACK
                 var loConn = loDb.GetConnection();
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_PM_GET_AGREEMENT_CHARGES_DISC_LIST";
+                var lcQuery = "RSP_PM_GET_AGREEMENT_CHARGES_DISC_LIST ";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, int.MaxValue, poParam.CCOMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, int.MaxValue, poParam.CPROPERTY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CCHARGES_TYPE", DbType.String, int.MaxValue, poParam.CCHARGES_TYPE);
-                loDb.R_AddCommandParameter(loCmd, "@CCHARGES_ID", DbType.String, int.MaxValue, poParam.CCHARGES_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CDISCOUNT_CODE", DbType.String, int.MaxValue, poParam.CDISCOUNT_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CDISCOUNT_TYPE", DbType.String, int.MaxValue, poParam.CDISCOUNT_TYPE);
-                loDb.R_AddCommandParameter(loCmd, "@CINV_PRD", DbType.String, int.MaxValue, poParam.CINV_PRD);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 20, poParam.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParam.CPROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCHARGES_TYPE", DbType.String, 20, poParam.CCHARGES_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CCHARGES_ID", DbType.String, 20, poParam.CCHARGES_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CDISCOUNT_CODE", DbType.String, 20, poParam.CDISCOUNT_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CDISCOUNT_TYPE", DbType.String, 20, poParam.CDISCOUNT_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CINV_PRD", DbType.String, 20, poParam.CINV_PRD);
                 loDb.R_AddCommandParameter(loCmd, "@LALL_BUILDING", DbType.Boolean, 2, poParam.LALL_BUILDING);
-                loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, int.MaxValue, poParam.CBUILDING_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CAGREEMENNT_TYPE", DbType.String, int.MaxValue, poParam.CAGREEMENT_TYPE);
-                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, int.MaxValue, poParam.CUSER_ID);
-
+                loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 20, poParam.CBUILDING_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CAGREEMENNT_TYPE", DbType.String, 20, poParam.CAGREEMENT_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CTYPE", DbType.String, 2, poParam.CTYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParam.CUSER_ID);
 
                 //Debug Logs
                 ShowLogDebug(lcQuery, loCmd.Parameters);
@@ -110,17 +110,38 @@ namespace PMT05000BACK
                     ShowLogDebug(lcQuery, loCmd.Parameters);//log create
                     loDb.SqlExecNonQuery(lcQuery, loConn, false);
 
-                    //logger
-                    foreach (var loItem in poEntity.AgreementChrgDiscDetail)
+                    
+                    string SqlStr(string s) => s == null ? "NULL" : $"'{s}'";
+                    string SqlNum(decimal? n) => n == null ? "NULL" : n.ToString();
+
+                    for (var i = 0; i < poEntity.AgreementChrgDiscDetail.Count; i++)
                     {
-                        _logger.LogDebug($"INSERT INTO #AGREEMENT_CHARGES_DISCOUNT {poEntity.AgreementChrgDiscDetail}");//log insert
+                        var d = poEntity.AgreementChrgDiscDetail[i];
+
+                        _logger.LogDebug(
+                            $"INSERT INTO #AGREEMENT_CHARGES_DISCOUNT VALUES (" +
+                            $"{SqlStr(d?.CCOMPANY_ID)}, " +
+                            $"{SqlStr(d?.CPROPERTY_ID)}, " +
+                            $"{SqlStr(d?.CFLOOR_ID)}, " +
+                            $"{SqlStr(d?.CUNIT_ID)}, " +
+                            $"{SqlStr(d?.CTENANT_ID)}, " +
+                            $"{SqlNum(d?.NCHARGES_AMOUNT)}, " +
+                            $"{SqlNum(d?.NCHARGES_DISCOUNT)}, " +
+                            $"{SqlNum(d?.NNET_CHARGES)}, " +
+                            $"{SqlStr(d?.CLINK_TRANS_CODE)}, " +
+                            $"{SqlStr(d?.CLINK_DEPT_CODE)}, " +
+                            $"{SqlStr(d?.CLINK_REF_NO)}, " +
+                            $"{SqlStr(d?.CSTART_DATE)}, " +
+                            $"{SqlStr(d?.CEND_DATE)})"
+                        );
                     }
+
 
                     //copybulk
                     loDb.R_BulkInsert<AgreementChrgDiscDetailBulkProcessDTO>((SqlConnection)loConn, "#AGREEMENT_CHARGES_DISCOUNT", poEntity.AgreementChrgDiscDetail);
 
                     //exec sp
-                    lcQuery = "RSP_PM_PROCESS_AGREEMENT_CHARGE_DISCOUNT";
+                    lcQuery = "RSP_PM_PROCESS_AGREEMENT_CHARGE_DISCOUNT ";
                     loCmd.CommandText = lcQuery;
                     loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -137,11 +158,12 @@ namespace PMT05000BACK
                     loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, int.MaxValue, poEntity.CACTION);
                     loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, int.MaxValue, poEntity.CUSER_ID);
 
+                    ShowLogDebug(lcQuery, loCmd.Parameters);
                     R_ExternalException.R_SP_Init_Exception(loConn);
 
                     try
                     {
-                        ShowLogDebug(lcQuery, loCmd.Parameters);
+                        //ShowLogDebug(lcQuery, loCmd.Parameters);
                         var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
                     }
                     catch (Exception ex)
@@ -183,7 +205,7 @@ namespace PMT05000BACK
 
         private void ShowLogDebug(string query, DbParameterCollection parameters)
         {
-            var paramValues = string.Join(", ", parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} '{p.Value}'"));
+            var paramValues = string.Join(", ", parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'"));
             _logger.LogDebug($"EXEC {query} {paramValues}");
         }
 
