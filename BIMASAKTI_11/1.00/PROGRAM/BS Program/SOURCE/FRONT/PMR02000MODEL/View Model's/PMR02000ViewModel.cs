@@ -110,7 +110,7 @@ namespace PMR02000MODEL.View_Models
                 {
                     _PeriodYear = new PeriodYearDTO() { IMAX_YEAR = 9999, IMIN_YEAR = 0 };
                 }
-                await GetCategoryTypeAsync(new CategoryTypeParamDTO() { CCATEGORY_TYPE = "20", CPROPERTY_ID = properties.FirstOrDefault().CPROPERTY_ID });
+                await GetCategoryTypeAsync(new CategoryTypeParamDTO() { CPARENT_ID = "", LCHILD_ONLY = false, CPROPERTY_ID = properties.FirstOrDefault().CPROPERTY_ID });
                 _enableFilterDept = false;
                 _enableFilterCustCtg = false;
                 _enableFilterTransType= false;
@@ -213,7 +213,9 @@ namespace PMR02000MODEL.View_Models
             try
             {
                 R_FrontContext.R_SetStreamingContext(PMR02000ContextConstant.CPROPERTY_ID, poParam.CPROPERTY_ID);
-                R_FrontContext.R_SetStreamingContext(PMR02000ContextConstant.CCATEGORY_TYPE, "20");
+                R_FrontContext.R_SetStreamingContext(PMR02000ContextConstant.CPARENT_ID, poParam.CPARENT_ID);
+                R_FrontContext.R_SetStreamingContext(PMR02000ContextConstant.LCHILD_ONLY, poParam.LCHILD_ONLY);
+                //R_FrontContext.R_SetStreamingContext(PMR02000ContextConstant.CCATEGORY_TYPE, "20");
                 _categoryTypeList = await PMR02000model.GetCustomerTypeListAsync();
             }
             catch (Exception ex)

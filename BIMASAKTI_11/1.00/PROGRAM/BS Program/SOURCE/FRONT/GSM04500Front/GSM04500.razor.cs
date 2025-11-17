@@ -49,7 +49,18 @@ namespace GSM04500Front
         private async Task JournalGroupDropdown_OnChange(object poParam)
         {
             var loEx = new R_Exception();
-            string lsJournalGrpType = (string)poParam;
+            string lsJournalGrpType;
+
+            if(poParam == null)
+            {
+                lsJournalGrpType = string.Empty;
+            }
+
+            else
+            {
+                lsJournalGrpType = (string)poParam;
+            }
+
             try
             {
                 journalGroupViewModel.JournalGroupTypeValue = lsJournalGrpType;

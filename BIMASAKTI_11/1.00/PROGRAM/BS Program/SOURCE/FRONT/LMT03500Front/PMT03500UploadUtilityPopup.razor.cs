@@ -161,7 +161,10 @@ public partial class PMT03500UploadUtilityPopup : R_Page
             //READ EXCEL
             var loExcel = ExcelInject;
 
-            var loDataSet = loExcel.R_ReadExcel(fileByte, option => { option.TableNames = new string[] { "UtilityUsage" }; });
+            var loDataSet = loExcel.R_ReadExcel(fileByte, action =>
+            {
+                action.TableNames = new[] { "UtilityUsage" };
+            });
             var loResult = R_FrontUtility.R_ConvertTo<PMT03500UploadUtilityExcelDTO>(loDataSet.Tables[0]);
 
             _viewModel.FileHasData = loResult.Count > 0 ? true : false;

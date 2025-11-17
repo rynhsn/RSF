@@ -31,6 +31,7 @@ partial class FormMenu
     {
         APR00500_Button = new Button();
         APR00300_Button = new Button();
+        APR00700 = new Button();
         BTN_APR00600 = new Button();
         SuspendLayout();
         // 
@@ -56,6 +57,15 @@ partial class FormMenu
         APR00300_Button.UseVisualStyleBackColor = true;
         APR00300_Button.Click += APR00300_Button_Click;
         // 
+        // APR00700
+        // 
+        APR00700.Location = new Point(115, 158);
+        APR00700.Name = "APR00700";
+        APR00700.Size = new Size(75, 23);
+        APR00700.TabIndex = 2;
+        APR00700.Text = "APR00700";
+        APR00700.UseVisualStyleBackColor = true;
+        APR00700.Click += APR00700_Click;
         // BTN_APR00600
         // 
         BTN_APR00600.Location = new Point(21, 110);
@@ -70,6 +80,8 @@ partial class FormMenu
         // 
         AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(737, 428);
+        Controls.Add(APR00700);
         ClientSize = new Size(386, 165);
         Controls.Add(BTN_APR00600);
         Controls.Add(APR00300_Button);
@@ -85,5 +97,6 @@ partial class FormMenu
 
     private Button APR00500_Button;
     private Button APR00300_Button;
+    private Button APR00700;
     private Button BTN_APR00600;
 }

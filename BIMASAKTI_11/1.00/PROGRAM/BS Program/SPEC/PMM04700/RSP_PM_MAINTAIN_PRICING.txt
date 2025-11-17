@@ -1,0 +1,3 @@
+4501	= Error process, please contact your administrator!
+4502	= Cannot Edit / Delete this Pricing already used in Agreement Transaction!
+

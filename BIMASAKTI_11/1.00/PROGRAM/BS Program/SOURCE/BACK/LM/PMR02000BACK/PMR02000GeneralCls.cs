@@ -148,14 +148,15 @@ namespace PMR02000BACK
                 loConn = loDB.GetConnection();
                 loCmd = loDB.GetCommand();
 
-                lcQuery = "RSP_GS_GET_CATEGORY_LIST";
+                lcQuery = "RSP_PM_GET_HIERARCHY_TENANT_CATEGORY_LIST";
                 loCmd.CommandType = CommandType.StoredProcedure;
                 loCmd.CommandText = lcQuery;
 
-                loDB.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, int.MaxValue, poParam.CCOMPANY_ID);
-                loDB.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, int.MaxValue, poParam.CPROPERTY_ID);
-                loDB.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, int.MaxValue, poParam.CUSER_ID);
-                loDB.R_AddCommandParameter(loCmd, "@CCATEGORY_TYPE", DbType.String, int.MaxValue, poParam.CCATEGORY_TYPE);
+                loDB.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 20, poParam.CCOMPANY_ID);
+                loDB.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParam.CPROPERTY_ID);
+                loDB.R_AddCommandParameter(loCmd, "@CPARENT_ID", DbType.String, 20, poParam.CPARENT_ID);
+                loDB.R_AddCommandParameter(loCmd, "@LCHILD_ONLY", DbType.Boolean, 1, poParam.LCHILD_ONLY);
+                loDB.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 8, poParam.CLANGUAGE_ID);
 
                 ShowLogDebug(lcQuery, loCmd.Parameters);
                 var loRtnTemp = loDB.SqlExecQuery(loConn, loCmd, true);

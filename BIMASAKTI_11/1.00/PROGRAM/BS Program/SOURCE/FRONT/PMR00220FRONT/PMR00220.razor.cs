@@ -97,7 +97,7 @@ namespace PMR00220FRONT
                 return;
             }
             _viewModel._ReportParam.CFROM_DEPARTMENT_ID = loTempResult.CDEPT_CODE;
-            _viewModel._ReportParam.CFROM_DEPARTMENT_NAME = loTempResult.CDEPT_CODE;
+            _viewModel._ReportParam.CFROM_DEPARTMENT_NAME = loTempResult.CDEPT_NAME;
         }
         private async Task OnLostFocus_LookupFromDept()
         {
@@ -125,8 +125,17 @@ namespace PMR00220FRONT
                         _viewModel._ReportParam.CFROM_DEPARTMENT_NAME = ""; //kosongin bind textbox name kalo gaada
                         goto EndBlock;
                     }
-                    _viewModel._ReportParam.CFROM_DEPARTMENT_ID = loResult.CDEPT_CODE;
-                    _viewModel._ReportParam.CFROM_DEPARTMENT_NAME = loResult.CDEPT_NAME; //assign bind textbox name kalo ada
+                    else
+                    {
+                        _viewModel._ReportParam.CFROM_DEPARTMENT_ID = loResult.CDEPT_CODE;
+                        _viewModel._ReportParam.CFROM_DEPARTMENT_NAME = loResult.CDEPT_NAME; //assign bind textbox name kalo ada
+                    }
+                }
+                else
+                {
+                    _viewModel._ReportParam.CFROM_DEPARTMENT_ID = "";
+                    _viewModel._ReportParam.CFROM_DEPARTMENT_NAME = "";
+                    return;
                 }
             }
             catch (Exception ex)
@@ -157,7 +166,7 @@ namespace PMR00220FRONT
                 return;
             }
             _viewModel._ReportParam.CTO_DEPARTMENT_ID = loTempResult.CDEPT_CODE;
-            _viewModel._ReportParam.CTO_DEPARTMENT_NAME = loTempResult.CDEPT_CODE;
+            _viewModel._ReportParam.CTO_DEPARTMENT_NAME = loTempResult.CDEPT_NAME;
         }
         private async Task OnLostFocus_LookupToDept()
         {
@@ -186,8 +195,17 @@ namespace PMR00220FRONT
                         _viewModel._ReportParam.CTO_DEPARTMENT_NAME = ""; //kosongin bind textbox name kalo gaada
                         goto EndBlock;
                     }
-                    _viewModel._ReportParam.CTO_DEPARTMENT_ID = loResult.CDEPT_CODE;
-                    _viewModel._ReportParam.CTO_DEPARTMENT_NAME = loResult.CDEPT_NAME; //assign bind textbox name kalo ada
+                    else
+                    {
+                        _viewModel._ReportParam.CTO_DEPARTMENT_ID = loResult.CDEPT_CODE;
+                        _viewModel._ReportParam.CTO_DEPARTMENT_NAME = loResult.CDEPT_NAME; //assign bind textbox name kalo ada
+                    }
+                }
+                else
+                {
+                    _viewModel._ReportParam.CTO_DEPARTMENT_ID = "";
+                    _viewModel._ReportParam.CTO_DEPARTMENT_NAME = "";
+                    return;
                 }
             }
             catch (Exception ex)
@@ -254,7 +272,12 @@ namespace PMR00220FRONT
                         _viewModel._ReportParam.CFROM_SALESMAN_ID = loResult.CSALESMAN_ID;
                         _viewModel._ReportParam.CFROM_SALESMAN_NAME = loResult.CSALESMAN_NAME;
                     }
-
+                }
+                else
+                {
+                    _viewModel._ReportParam.CFROM_SALESMAN_ID = "";
+                    _viewModel._ReportParam.CFROM_SALESMAN_NAME = "";
+                    return;
                 }
             }
             catch (Exception ex)
@@ -320,7 +343,12 @@ namespace PMR00220FRONT
                         _viewModel._ReportParam.CTO_SALESMAN_ID = loResult.CSALESMAN_ID;
                         _viewModel._ReportParam.CTO_SALESMAN_NAME = loResult.CSALESMAN_NAME;
                     }
-
+                }
+                else
+                {
+                    _viewModel._ReportParam.CTO_SALESMAN_ID = "";
+                    _viewModel._ReportParam.CTO_SALESMAN_NAME = "";
+                    return;
                 }
             }
             catch (Exception ex)

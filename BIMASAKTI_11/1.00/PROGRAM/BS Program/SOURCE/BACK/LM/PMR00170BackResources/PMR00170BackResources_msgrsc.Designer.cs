@@ -304,7 +304,7 @@ namespace PMR00170BackResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total Rent Prize.
+        ///   Looks up a localized string similar to Total Rent Price.
         /// </summary>
         internal static string Col_NTOTAL_PRIZE {
             get {

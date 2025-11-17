@@ -145,6 +145,7 @@ namespace APR00100SERVICE
             return StreamListHelper(loRtnTemp);
         }
 
+        [HttpPost]
         public IAsyncEnumerable<TransTypeSuppCattDTO> GetTransTypeList()
         {
             using Activity activity = _activitySource.StartActivity($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
@@ -172,6 +173,7 @@ namespace APR00100SERVICE
             return StreamListHelper(loRtnTemp);
         }
 
+        [HttpPost]
         public IAsyncEnumerable<TransTypeSuppCattDTO> GetSuppCattegoryList()
         {
             using Activity activity = _activitySource.StartActivity($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");

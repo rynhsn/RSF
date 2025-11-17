@@ -496,11 +496,10 @@ namespace PMT03500Model.ViewModel
                 loResult = await _model.GetAsync<PMT03500ExcelDTO>(nameof(IPMT03500UtilityUsage
                     .PMT03500DownloadTemplateFile));
 
-                // poExcel.R_ReadFromExcel();
-                //loDataSet = poExcel.R_ReadFromExcel(loResult.FileBytes, new[] { "Definition" });
-                loDataSet = poExcel.R_ReadExcel(loResult.FileBytes, option =>
+                // poExcel.R_ReadExcel();
+                loDataSet = poExcel.R_ReadExcel(loResult.FileBytes, action =>
                 {
-                    option.TableNames = new string[] { "Definition" };
+                    action.TableNames = new[] { "Definition" };
                 });
                 // loRtn = loDataSet.Tables[0];
             }

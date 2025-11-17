@@ -68,6 +68,7 @@
             ICR00600 = new Button();
             groupBox6 = new GroupBox();
             GSM04000 = new Button();
+            PMR00150Detail = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -78,10 +79,10 @@
             // 
             // BaseHeaderLandscape
             // 
-            BaseHeaderLandscape.Location = new Point(18, 596);
-            BaseHeaderLandscape.Margin = new Padding(4, 5, 4, 5);
+            BaseHeaderLandscape.Location = new Point(14, 477);
+            BaseHeaderLandscape.Margin = new Padding(3, 4, 3, 4);
             BaseHeaderLandscape.Name = "BaseHeaderLandscape";
-            BaseHeaderLandscape.Size = new Size(256, 39);
+            BaseHeaderLandscape.Size = new Size(205, 31);
             BaseHeaderLandscape.TabIndex = 1;
             BaseHeaderLandscape.Text = "Base Header Landscape";
             BaseHeaderLandscape.UseVisualStyleBackColor = true;
@@ -89,10 +90,10 @@
             // 
             // BaseHeader
             // 
-            BaseHeader.Location = new Point(18, 635);
-            BaseHeader.Margin = new Padding(4, 5, 4, 5);
+            BaseHeader.Location = new Point(14, 508);
+            BaseHeader.Margin = new Padding(3, 4, 3, 4);
             BaseHeader.Name = "BaseHeader";
-            BaseHeader.Size = new Size(256, 39);
+            BaseHeader.Size = new Size(205, 31);
             BaseHeader.TabIndex = 2;
             BaseHeader.Text = "Base Header";
             BaseHeader.UseVisualStyleBackColor = true;
@@ -100,10 +101,10 @@
             // 
             // GLI00100
             // 
-            GLI00100.Location = new Point(9, 36);
-            GLI00100.Margin = new Padding(4, 5, 4, 5);
+            GLI00100.Location = new Point(7, 29);
+            GLI00100.Margin = new Padding(3, 4, 3, 4);
             GLI00100.Name = "GLI00100";
-            GLI00100.Size = new Size(161, 66);
+            GLI00100.Size = new Size(129, 53);
             GLI00100.TabIndex = 3;
             GLI00100.Text = "GLI00100 - Account Status";
             GLI00100.UseVisualStyleBackColor = true;
@@ -111,10 +112,10 @@
             // 
             // GLR00100_3
             // 
-            GLR00100_3.Location = new Point(9, 354);
-            GLR00100_3.Margin = new Padding(4, 5, 4, 5);
+            GLR00100_3.Location = new Point(7, 283);
+            GLR00100_3.Margin = new Padding(3, 4, 3, 4);
             GLR00100_3.Name = "GLR00100_3";
-            GLR00100_3.Size = new Size(161, 124);
+            GLR00100_3.Size = new Size(129, 99);
             GLR00100_3.TabIndex = 6;
             GLR00100_3.Text = "GLR00100 - Activity Report (Based On Date)";
             GLR00100_3.UseVisualStyleBackColor = true;
@@ -122,10 +123,10 @@
             // 
             // GLR00100_2
             // 
-            GLR00100_2.Location = new Point(9, 250);
-            GLR00100_2.Margin = new Padding(4, 5, 4, 5);
+            GLR00100_2.Location = new Point(7, 200);
+            GLR00100_2.Margin = new Padding(3, 4, 3, 4);
             GLR00100_2.Name = "GLR00100_2";
-            GLR00100_2.Size = new Size(161, 94);
+            GLR00100_2.Size = new Size(129, 75);
             GLR00100_2.TabIndex = 5;
             GLR00100_2.Text = "GLR00100 - Activity Report (Based On Ref No)";
             GLR00100_2.UseVisualStyleBackColor = true;
@@ -133,10 +134,10 @@
             // 
             // GLR00100_1
             // 
-            GLR00100_1.Location = new Point(9, 114);
-            GLR00100_1.Margin = new Padding(4, 5, 4, 5);
+            GLR00100_1.Location = new Point(7, 91);
+            GLR00100_1.Margin = new Padding(3, 4, 3, 4);
             GLR00100_1.Name = "GLR00100_1";
-            GLR00100_1.Size = new Size(161, 126);
+            GLR00100_1.Size = new Size(129, 101);
             GLR00100_1.TabIndex = 4;
             GLR00100_1.Text = "GLR00100 - Activity Report (Based On Trans Code)";
             GLR00100_1.UseVisualStyleBackColor = true;
@@ -144,10 +145,10 @@
             // 
             // PMR02600
             // 
-            PMR02600.Location = new Point(9, 134);
-            PMR02600.Margin = new Padding(4, 5, 4, 5);
+            PMR02600.Location = new Point(7, 107);
+            PMR02600.Margin = new Padding(3, 4, 3, 4);
             PMR02600.Name = "PMR02600";
-            PMR02600.Size = new Size(124, 39);
+            PMR02600.Size = new Size(99, 31);
             PMR02600.TabIndex = 7;
             PMR02600.Text = "PMR02600";
             PMR02600.UseVisualStyleBackColor = true;
@@ -155,10 +156,10 @@
             // 
             // PMR00400
             // 
-            PMR00400.Location = new Point(9, 36);
-            PMR00400.Margin = new Padding(4, 5, 4, 5);
+            PMR00400.Location = new Point(7, 29);
+            PMR00400.Margin = new Padding(3, 4, 3, 4);
             PMR00400.Name = "PMR00400";
-            PMR00400.Size = new Size(124, 39);
+            PMR00400.Size = new Size(99, 31);
             PMR00400.TabIndex = 8;
             PMR00400.Text = "PMR00400";
             PMR00400.UseVisualStyleBackColor = true;
@@ -166,10 +167,10 @@
             // 
             // PMR00460
             // 
-            PMR00460.Location = new Point(9, 85);
-            PMR00460.Margin = new Padding(4, 5, 4, 5);
+            PMR00460.Location = new Point(7, 68);
+            PMR00460.Margin = new Padding(3, 4, 3, 4);
             PMR00460.Name = "PMR00460";
-            PMR00460.Size = new Size(124, 39);
+            PMR00460.Size = new Size(99, 31);
             PMR00460.TabIndex = 9;
             PMR00460.Text = "PMR00460";
             PMR00460.UseVisualStyleBackColor = true;
@@ -177,10 +178,10 @@
             // 
             // APR00300
             // 
-            APR00300.Location = new Point(9, 36);
-            APR00300.Margin = new Padding(4, 5, 4, 5);
+            APR00300.Location = new Point(7, 29);
+            APR00300.Margin = new Padding(3, 4, 3, 4);
             APR00300.Name = "APR00300";
-            APR00300.Size = new Size(108, 39);
+            APR00300.Size = new Size(86, 31);
             APR00300.TabIndex = 10;
             APR00300.Text = "APR00300";
             APR00300.UseVisualStyleBackColor = true;
@@ -188,10 +189,10 @@
             // 
             // APR00500
             // 
-            APR00500.Location = new Point(9, 85);
-            APR00500.Margin = new Padding(4, 5, 4, 5);
+            APR00500.Location = new Point(7, 68);
+            APR00500.Margin = new Padding(3, 4, 3, 4);
             APR00500.Name = "APR00500";
-            APR00500.Size = new Size(108, 39);
+            APR00500.Size = new Size(86, 31);
             APR00500.TabIndex = 11;
             APR00500.Text = "APR00500";
             APR00500.UseVisualStyleBackColor = true;
@@ -204,21 +205,21 @@
             groupBox1.Controls.Add(GLR00100_3);
             groupBox1.Controls.Add(GLR00100_1);
             groupBox1.Controls.Add(GLR00100_2);
-            groupBox1.Location = new Point(18, 20);
-            groupBox1.Margin = new Padding(4, 5, 4, 5);
+            groupBox1.Location = new Point(14, 16);
+            groupBox1.Margin = new Padding(3, 4, 3, 4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(4, 5, 4, 5);
-            groupBox1.Size = new Size(256, 566);
+            groupBox1.Padding = new Padding(3, 4, 3, 4);
+            groupBox1.Size = new Size(259, 453);
             groupBox1.TabIndex = 12;
             groupBox1.TabStop = false;
             groupBox1.Text = "GL Report";
             // 
             // GLM00200
             // 
-            GLM00200.Location = new Point(9, 486);
-            GLM00200.Margin = new Padding(4, 5, 4, 5);
+            GLM00200.Location = new Point(7, 389);
+            GLM00200.Margin = new Padding(3, 4, 3, 4);
             GLM00200.Name = "GLM00200";
-            GLM00200.Size = new Size(161, 36);
+            GLM00200.Size = new Size(129, 29);
             GLM00200.TabIndex = 7;
             GLM00200.Text = "GLM00200";
             GLM00200.UseVisualStyleBackColor = true;
@@ -226,6 +227,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(PMR00150Detail);
             groupBox2.Controls.Add(PMR00170Detail);
             groupBox2.Controls.Add(PMR00170Summary);
             groupBox2.Controls.Add(PMR00200Detail);
@@ -242,21 +244,20 @@
             groupBox2.Controls.Add(PMR00400);
             groupBox2.Controls.Add(PMR02600);
             groupBox2.Controls.Add(PMR00460);
-            groupBox2.Location = new Point(349, 20);
-            groupBox2.Margin = new Padding(4, 5, 4, 5);
+            groupBox2.Location = new Point(279, 16);
+            groupBox2.Margin = new Padding(3, 4, 3, 4);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(4, 5, 4, 5);
-            groupBox2.Size = new Size(140, 1080);
+            groupBox2.Padding = new Padding(3, 4, 3, 4);
+            groupBox2.Size = new Size(112, 864);
             groupBox2.TabIndex = 12;
             groupBox2.TabStop = false;
             groupBox2.Text = "PM Report";
             // 
             // PMR00170Detail
             // 
-            PMR00170Detail.Location = new Point(8, 986);
-            PMR00170Detail.Margin = new Padding(4, 4, 4, 4);
+            PMR00170Detail.Location = new Point(6, 789);
             PMR00170Detail.Name = "PMR00170Detail";
-            PMR00170Detail.Size = new Size(125, 62);
+            PMR00170Detail.Size = new Size(100, 50);
             PMR00170Detail.TabIndex = 24;
             PMR00170Detail.Text = "PMR00170 Detail";
             PMR00170Detail.UseVisualStyleBackColor = true;
@@ -264,10 +265,9 @@
             // 
             // PMR00170Summary
             // 
-            PMR00170Summary.Location = new Point(8, 916);
-            PMR00170Summary.Margin = new Padding(4, 4, 4, 4);
+            PMR00170Summary.Location = new Point(6, 733);
             PMR00170Summary.Name = "PMR00170Summary";
-            PMR00170Summary.Size = new Size(125, 62);
+            PMR00170Summary.Size = new Size(100, 50);
             PMR00170Summary.TabIndex = 23;
             PMR00170Summary.Text = "PMR00170 Summary";
             PMR00170Summary.UseVisualStyleBackColor = true;
@@ -275,10 +275,9 @@
             // 
             // PMR00200Detail
             // 
-            PMR00200Detail.Location = new Point(11, 844);
-            PMR00200Detail.Margin = new Padding(4, 4, 4, 4);
+            PMR00200Detail.Location = new Point(9, 675);
             PMR00200Detail.Name = "PMR00200Detail";
-            PMR00200Detail.Size = new Size(121, 65);
+            PMR00200Detail.Size = new Size(97, 52);
             PMR00200Detail.TabIndex = 22;
             PMR00200Detail.Text = "PMR00200 Detail";
             PMR00200Detail.UseVisualStyleBackColor = true;
@@ -286,10 +285,9 @@
             // 
             // PMR00200Summary
             // 
-            PMR00200Summary.Location = new Point(9, 771);
-            PMR00200Summary.Margin = new Padding(4, 4, 4, 4);
+            PMR00200Summary.Location = new Point(7, 617);
             PMR00200Summary.Name = "PMR00200Summary";
-            PMR00200Summary.Size = new Size(124, 65);
+            PMR00200Summary.Size = new Size(99, 52);
             PMR00200Summary.TabIndex = 21;
             PMR00200Summary.Text = "PMR00200 Summary";
             PMR00200Summary.UseVisualStyleBackColor = true;
@@ -297,10 +295,9 @@
             // 
             // button4
             // 
-            button4.Location = new Point(8, 698);
-            button4.Margin = new Padding(4, 4, 4, 4);
+            button4.Location = new Point(6, 558);
             button4.Name = "button4";
-            button4.Size = new Size(125, 66);
+            button4.Size = new Size(100, 53);
             button4.TabIndex = 20;
             button4.Text = "PMR00210 Detail";
             button4.UseVisualStyleBackColor = true;
@@ -308,10 +305,9 @@
             // 
             // button3
             // 
-            button3.Location = new Point(9, 622);
-            button3.Margin = new Padding(4, 4, 4, 4);
+            button3.Location = new Point(7, 498);
             button3.Name = "button3";
-            button3.Size = new Size(124, 68);
+            button3.Size = new Size(99, 54);
             button3.TabIndex = 19;
             button3.Text = "PMR00210 Summary";
             button3.UseVisualStyleBackColor = true;
@@ -319,10 +315,9 @@
             // 
             // button2
             // 
-            button2.Location = new Point(9, 548);
-            button2.Margin = new Padding(4, 4, 4, 4);
+            button2.Location = new Point(7, 438);
             button2.Name = "button2";
-            button2.Size = new Size(124, 68);
+            button2.Size = new Size(99, 54);
             button2.TabIndex = 18;
             button2.Text = "PMR00220 Detail";
             button2.UseVisualStyleBackColor = true;
@@ -330,10 +325,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(8, 478);
-            button1.Margin = new Padding(4, 5, 4, 5);
+            button1.Location = new Point(6, 382);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(125, 61);
+            button1.Size = new Size(100, 49);
             button1.TabIndex = 17;
             button1.Text = "PMR00220 Summary";
             button1.UseVisualStyleBackColor = true;
@@ -341,10 +336,10 @@
             // 
             // PMR03000
             // 
-            PMR03000.Location = new Point(11, 429);
-            PMR03000.Margin = new Padding(4, 5, 4, 5);
+            PMR03000.Location = new Point(9, 343);
+            PMR03000.Margin = new Padding(3, 4, 3, 4);
             PMR03000.Name = "PMR03000";
-            PMR03000.Size = new Size(124, 39);
+            PMR03000.Size = new Size(99, 31);
             PMR03000.TabIndex = 14;
             PMR03000.Text = "PMR03000";
             PMR03000.UseVisualStyleBackColor = true;
@@ -352,10 +347,10 @@
             // 
             // PMR02000Detail
             // 
-            PMR02000Detail.Location = new Point(9, 354);
-            PMR02000Detail.Margin = new Padding(4, 5, 4, 5);
+            PMR02000Detail.Location = new Point(7, 283);
+            PMR02000Detail.Margin = new Padding(3, 4, 3, 4);
             PMR02000Detail.Name = "PMR02000Detail";
-            PMR02000Detail.Size = new Size(124, 65);
+            PMR02000Detail.Size = new Size(99, 52);
             PMR02000Detail.TabIndex = 13;
             PMR02000Detail.Text = "PMR02000 Detail";
             PMR02000Detail.UseVisualStyleBackColor = true;
@@ -363,10 +358,10 @@
             // 
             // PMR02000Summary
             // 
-            PMR02000Summary.Location = new Point(9, 279);
-            PMR02000Summary.Margin = new Padding(4, 5, 4, 5);
+            PMR02000Summary.Location = new Point(7, 223);
+            PMR02000Summary.Margin = new Padding(3, 4, 3, 4);
             PMR02000Summary.Name = "PMR02000Summary";
-            PMR02000Summary.Size = new Size(124, 65);
+            PMR02000Summary.Size = new Size(99, 52);
             PMR02000Summary.TabIndex = 12;
             PMR02000Summary.Text = "PMR02000 Summary";
             PMR02000Summary.UseVisualStyleBackColor = true;
@@ -374,10 +369,10 @@
             // 
             // PMB04000
             // 
-            PMB04000.Location = new Point(9, 230);
-            PMB04000.Margin = new Padding(4, 5, 4, 5);
+            PMB04000.Location = new Point(7, 184);
+            PMB04000.Margin = new Padding(3, 4, 3, 4);
             PMB04000.Name = "PMB04000";
-            PMB04000.Size = new Size(124, 39);
+            PMB04000.Size = new Size(99, 31);
             PMB04000.TabIndex = 11;
             PMB04000.Text = "PMB04000";
             PMB04000.UseVisualStyleBackColor = true;
@@ -385,10 +380,10 @@
             // 
             // PMT01300
             // 
-            PMT01300.Location = new Point(9, 181);
-            PMT01300.Margin = new Padding(4, 5, 4, 5);
+            PMT01300.Location = new Point(7, 145);
+            PMT01300.Margin = new Padding(3, 4, 3, 4);
             PMT01300.Name = "PMT01300";
-            PMT01300.Size = new Size(124, 39);
+            PMT01300.Size = new Size(99, 31);
             PMT01300.TabIndex = 10;
             PMT01300.Text = "PMT01300";
             PMT01300.UseVisualStyleBackColor = true;
@@ -402,21 +397,21 @@
             groupBox3.Controls.Add(APR00100DetailByDate);
             groupBox3.Controls.Add(APR00300);
             groupBox3.Controls.Add(APR00500);
-            groupBox3.Location = new Point(496, 20);
-            groupBox3.Margin = new Padding(4, 5, 4, 5);
+            groupBox3.Location = new Point(397, 16);
+            groupBox3.Margin = new Padding(3, 4, 3, 4);
             groupBox3.Name = "groupBox3";
-            groupBox3.Padding = new Padding(4, 5, 4, 5);
-            groupBox3.Size = new Size(404, 289);
+            groupBox3.Padding = new Padding(3, 4, 3, 4);
+            groupBox3.Size = new Size(323, 231);
             groupBox3.TabIndex = 13;
             groupBox3.TabStop = false;
             groupBox3.Text = "AP Report";
             // 
             // APR00100SummaryByDate
             // 
-            APR00100SummaryByDate.Location = new Point(128, 85);
-            APR00100SummaryByDate.Margin = new Padding(4, 5, 4, 5);
+            APR00100SummaryByDate.Location = new Point(102, 68);
+            APR00100SummaryByDate.Margin = new Padding(3, 4, 3, 4);
             APR00100SummaryByDate.Name = "APR00100SummaryByDate";
-            APR00100SummaryByDate.Size = new Size(269, 39);
+            APR00100SummaryByDate.Size = new Size(215, 31);
             APR00100SummaryByDate.TabIndex = 15;
             APR00100SummaryByDate.Text = "APR00100SummaryByDate";
             APR00100SummaryByDate.TextAlign = ContentAlignment.MiddleLeft;
@@ -425,10 +420,10 @@
             // 
             // APR00100SummaryBySupplier
             // 
-            APR00100SummaryBySupplier.Location = new Point(128, 36);
-            APR00100SummaryBySupplier.Margin = new Padding(4, 5, 4, 5);
+            APR00100SummaryBySupplier.Location = new Point(102, 29);
+            APR00100SummaryBySupplier.Margin = new Padding(3, 4, 3, 4);
             APR00100SummaryBySupplier.Name = "APR00100SummaryBySupplier";
-            APR00100SummaryBySupplier.Size = new Size(269, 39);
+            APR00100SummaryBySupplier.Size = new Size(215, 31);
             APR00100SummaryBySupplier.TabIndex = 14;
             APR00100SummaryBySupplier.Text = "APR00100SummaryBySupplier";
             APR00100SummaryBySupplier.TextAlign = ContentAlignment.MiddleLeft;
@@ -437,10 +432,10 @@
             // 
             // APR00100DetailBySupplier
             // 
-            APR00100DetailBySupplier.Location = new Point(128, 134);
-            APR00100DetailBySupplier.Margin = new Padding(4, 5, 4, 5);
+            APR00100DetailBySupplier.Location = new Point(102, 107);
+            APR00100DetailBySupplier.Margin = new Padding(3, 4, 3, 4);
             APR00100DetailBySupplier.Name = "APR00100DetailBySupplier";
-            APR00100DetailBySupplier.Size = new Size(269, 39);
+            APR00100DetailBySupplier.Size = new Size(215, 31);
             APR00100DetailBySupplier.TabIndex = 13;
             APR00100DetailBySupplier.Text = "APR00100DetailBySupplier";
             APR00100DetailBySupplier.TextAlign = ContentAlignment.MiddleLeft;
@@ -449,10 +444,10 @@
             // 
             // APR00100DetailByDate
             // 
-            APR00100DetailByDate.Location = new Point(128, 181);
-            APR00100DetailByDate.Margin = new Padding(4, 5, 4, 5);
+            APR00100DetailByDate.Location = new Point(102, 145);
+            APR00100DetailByDate.Margin = new Padding(3, 4, 3, 4);
             APR00100DetailByDate.Name = "APR00100DetailByDate";
-            APR00100DetailByDate.Size = new Size(269, 39);
+            APR00100DetailByDate.Size = new Size(215, 31);
             APR00100DetailByDate.TabIndex = 12;
             APR00100DetailByDate.Text = "APR00100DetailByDate";
             APR00100DetailByDate.TextAlign = ContentAlignment.MiddleLeft;
@@ -462,21 +457,21 @@
             // groupBox4
             // 
             groupBox4.Controls.Add(HDR00200);
-            groupBox4.Location = new Point(909, 299);
-            groupBox4.Margin = new Padding(4, 5, 4, 5);
+            groupBox4.Location = new Point(727, 239);
+            groupBox4.Margin = new Padding(3, 4, 3, 4);
             groupBox4.Name = "groupBox4";
-            groupBox4.Padding = new Padding(4, 5, 4, 5);
-            groupBox4.Size = new Size(124, 104);
+            groupBox4.Padding = new Padding(3, 4, 3, 4);
+            groupBox4.Size = new Size(99, 83);
             groupBox4.TabIndex = 14;
             groupBox4.TabStop = false;
             groupBox4.Text = "HD Report";
             // 
             // HDR00200
             // 
-            HDR00200.Location = new Point(9, 36);
-            HDR00200.Margin = new Padding(4, 5, 4, 5);
+            HDR00200.Location = new Point(7, 29);
+            HDR00200.Margin = new Padding(3, 4, 3, 4);
             HDR00200.Name = "HDR00200";
-            HDR00200.Size = new Size(108, 39);
+            HDR00200.Size = new Size(86, 31);
             HDR00200.TabIndex = 0;
             HDR00200.Text = "HDR00200";
             HDR00200.UseVisualStyleBackColor = true;
@@ -484,10 +479,10 @@
             // 
             // Refresh
             // 
-            Refresh.Location = new Point(942, 636);
-            Refresh.Margin = new Padding(4, 5, 4, 5);
+            Refresh.Location = new Point(754, 509);
+            Refresh.Margin = new Padding(3, 4, 3, 4);
             Refresh.Name = "Refresh";
-            Refresh.Size = new Size(108, 39);
+            Refresh.Size = new Size(86, 31);
             Refresh.TabIndex = 15;
             Refresh.Text = "Refresh";
             Refresh.UseVisualStyleBackColor = true;
@@ -496,21 +491,21 @@
             // 
             groupBox5.Controls.Add(ICR00100);
             groupBox5.Controls.Add(ICR00600);
-            groupBox5.Location = new Point(909, 20);
-            groupBox5.Margin = new Padding(4, 5, 4, 5);
+            groupBox5.Location = new Point(727, 16);
+            groupBox5.Margin = new Padding(3, 4, 3, 4);
             groupBox5.Name = "groupBox5";
-            groupBox5.Padding = new Padding(4, 5, 4, 5);
-            groupBox5.Size = new Size(124, 165);
+            groupBox5.Padding = new Padding(3, 4, 3, 4);
+            groupBox5.Size = new Size(99, 132);
             groupBox5.TabIndex = 15;
             groupBox5.TabStop = false;
             groupBox5.Text = "IC Report";
             // 
             // ICR00100
             // 
-            ICR00100.Location = new Point(8, 85);
-            ICR00100.Margin = new Padding(4, 5, 4, 5);
+            ICR00100.Location = new Point(6, 68);
+            ICR00100.Margin = new Padding(3, 4, 3, 4);
             ICR00100.Name = "ICR00100";
-            ICR00100.Size = new Size(108, 39);
+            ICR00100.Size = new Size(86, 31);
             ICR00100.TabIndex = 1;
             ICR00100.Text = "ICR00100";
             ICR00100.UseVisualStyleBackColor = true;
@@ -518,10 +513,10 @@
             // 
             // ICR00600
             // 
-            ICR00600.Location = new Point(9, 36);
-            ICR00600.Margin = new Padding(4, 5, 4, 5);
+            ICR00600.Location = new Point(7, 29);
+            ICR00600.Margin = new Padding(3, 4, 3, 4);
             ICR00600.Name = "ICR00600";
-            ICR00600.Size = new Size(108, 39);
+            ICR00600.Size = new Size(86, 31);
             ICR00600.TabIndex = 0;
             ICR00600.Text = "ICR00600";
             ICR00600.UseVisualStyleBackColor = true;
@@ -530,31 +525,41 @@
             // groupBox6
             // 
             groupBox6.Controls.Add(GSM04000);
-            groupBox6.Location = new Point(909, 195);
-            groupBox6.Margin = new Padding(4, 5, 4, 5);
+            groupBox6.Location = new Point(727, 156);
+            groupBox6.Margin = new Padding(3, 4, 3, 4);
             groupBox6.Name = "groupBox6";
-            groupBox6.Padding = new Padding(4, 5, 4, 5);
-            groupBox6.Size = new Size(124, 94);
+            groupBox6.Padding = new Padding(3, 4, 3, 4);
+            groupBox6.Size = new Size(99, 75);
             groupBox6.TabIndex = 16;
             groupBox6.TabStop = false;
             groupBox6.Text = "GS Report";
             // 
             // GSM04000
             // 
-            GSM04000.Location = new Point(9, 36);
-            GSM04000.Margin = new Padding(4, 5, 4, 5);
+            GSM04000.Location = new Point(7, 29);
+            GSM04000.Margin = new Padding(3, 4, 3, 4);
             GSM04000.Name = "GSM04000";
-            GSM04000.Size = new Size(108, 39);
+            GSM04000.Size = new Size(86, 31);
             GSM04000.TabIndex = 2;
             GSM04000.Text = "GSM04000";
             GSM04000.UseVisualStyleBackColor = true;
             GSM04000.Click += GSM04000_Click;
             // 
+            // PMR00150Detail
+            // 
+            PMR00150Detail.Location = new Point(6, 635);
+            PMR00150Detail.Name = "PMR00150Detail";
+            PMR00150Detail.Size = new Size(86, 40);
+            PMR00150Detail.TabIndex = 17;
+            PMR00150Detail.Text = "PMR00150 Detail";
+            PMR00150Detail.UseVisualStyleBackColor = true;
+            PMR00150Detail.Click += PMR00150Detail_Click;
+            // 
             // FormMenu
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1064, 1050);
+            ClientSize = new Size(851, 893);
             Controls.Add(groupBox6);
             Controls.Add(groupBox5);
             Controls.Add(Refresh);
@@ -564,7 +569,7 @@
             Controls.Add(groupBox1);
             Controls.Add(BaseHeader);
             Controls.Add(BaseHeaderLandscape);
-            Margin = new Padding(4, 5, 4, 5);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormMenu";
             Text = "FormMenu";
             Load += FormMenu_Load;
@@ -620,5 +625,6 @@
         private Button PMR00200Summary;
         private Button PMR00170Detail;
         private Button PMR00170Summary;
+        private Button PMR00150Detail;
     }
 }

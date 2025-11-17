@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "PMR00220SERVICE": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:50571;http://localhost:50572"
+    }
+  }
+}

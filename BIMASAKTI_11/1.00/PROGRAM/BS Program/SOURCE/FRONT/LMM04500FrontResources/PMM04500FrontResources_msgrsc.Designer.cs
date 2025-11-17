@@ -455,5 +455,14 @@ namespace PMM04500FrontResources {
                 return ResourceManager.GetString("_tab_pricingRate", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate Rent Charges Type!.
+        /// </summary>
+        internal static string _validationDuplicateRent {
+            get {
+                return ResourceManager.GetString("_validationDuplicateRent", resourceCulture);
+            }
+        }
     }
 }

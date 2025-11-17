@@ -40,6 +40,7 @@ namespace GSM04500Model
             try
             {
                 var loResult = await _model.GetJournalGroupTypeListAsyncModel();
+                JournalGroupTypeList = loResult.Data;
                 if (loResult != null)
                 {
                     JournalGroupTypeValue = loResult.Data[0].CCODE;
@@ -49,7 +50,6 @@ namespace GSM04500Model
                 {
                     _lGroupTypeExist = false;
                 }
-                JournalGroupTypeList = loResult.Data;
             }
             catch (Exception ex)
             {

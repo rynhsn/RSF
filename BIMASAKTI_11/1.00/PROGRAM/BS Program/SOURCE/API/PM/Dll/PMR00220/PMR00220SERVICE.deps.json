@@ -27,10 +27,7 @@
       },
       "BaseHeaderResources/1.0.0": {
         "runtime": {
-          "BaseHeaderResources.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "BaseHeaderResources.dll": {}
         },
         "resources": {
           "id/BaseHeaderResources.resources.dll": {
@@ -44,26 +41,17 @@
           "PMR00220COMMON": "1.0.0"
         },
         "runtime": {
-          "PMR00220BACK.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "PMR00220BACK.dll": {}
         }
       },
       "PMR00220BackResources/1.0.0": {
         "runtime": {
-          "PMR00220BackResources.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "PMR00220BackResources.dll": {}
         }
       },
       "PMR00220COMMON/1.0.0": {
         "runtime": {
-          "PMR00220COMMON.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "PMR00220COMMON.dll": {}
         }
       },
       "BaseHeaderReportCOMMON/1.0.0.0": {
@@ -79,6 +67,14 @@
           "R_APIBackEnd.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
+          }
+        },
+        "resources": {
+          "id/R_APIBackEnd.resources.dll": {
+            "locale": "id"
+          },
+          "ja/R_APIBackEnd.resources.dll": {
+            "locale": "ja"
           }
         }
       },

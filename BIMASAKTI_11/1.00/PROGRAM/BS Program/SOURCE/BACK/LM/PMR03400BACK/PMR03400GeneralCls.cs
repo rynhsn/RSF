@@ -162,7 +162,7 @@ namespace PMR03400BACK
 
         private void ShowLogDebug(string pcQuery, DbParameterCollection poParam)
         {
-            var paramValues = string.Join(", ", poParam.Cast<DbParameter>().Select(p => $"{p.ParameterName} : '{p.Value}'"));
+            var paramValues = string.Join(", ", poParam.Cast<DbParameter>().Select(p => $"{p.ParameterName} = '{p.Value}'"));
             _logger.LogDebug($"EXEC {pcQuery} {paramValues}");
         }
 

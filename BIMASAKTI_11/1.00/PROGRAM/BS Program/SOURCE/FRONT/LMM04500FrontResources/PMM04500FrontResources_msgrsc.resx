@@ -249,4 +249,7 @@
   <data name="_tab_pricingRate" xml:space="preserve">
     <value>Pricing Rate</value>
   </data>
+  <data name="_validationDuplicateRent" xml:space="preserve">
+    <value>Duplicate Rent Charges Type!</value>
+  </data>
 </root>

@@ -225,6 +225,7 @@ namespace PMR03400SERVICE
                 _logger.LogInfo("Data processed successfully. Generating print output.");
                 
                 loData.Data = loCollData;
+                loData.HeaderData = loCollData.FirstOrDefault();
                 loRtn.BaseHeaderData = loParam;
                 loRtn.ReportData = loData;
 

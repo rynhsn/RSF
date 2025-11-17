@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "PMA00300Logger": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:50583;http://localhost:50584"
+    }
+  }
+}

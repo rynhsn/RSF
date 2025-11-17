@@ -88,11 +88,20 @@ namespace GSM04000FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Branch.
+        ///   Looks up a localized string similar to Branch ID.
         /// </summary>
-        internal static string _gridColumnBranch {
+        internal static string _gridColumnBranchId {
             get {
-                return ResourceManager.GetString("_gridColumnBranch", resourceCulture);
+                return ResourceManager.GetString("_gridColumnBranchId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch Name.
+        /// </summary>
+        internal static string _gridColumnBranchName {
+            get {
+                return ResourceManager.GetString("_gridColumnBranchName", resourceCulture);
             }
         }
         
@@ -178,11 +187,20 @@ namespace GSM04000FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manager.
+        ///   Looks up a localized string similar to Manager ID.
         /// </summary>
-        internal static string _gridColumnManager {
+        internal static string _gridColumnManagerId {
             get {
-                return ResourceManager.GetString("_gridColumnManager", resourceCulture);
+                return ResourceManager.GetString("_gridColumnManagerId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manager Name.
+        /// </summary>
+        internal static string _gridColumnManagerName {
+            get {
+                return ResourceManager.GetString("_gridColumnManagerName", resourceCulture);
             }
         }
         

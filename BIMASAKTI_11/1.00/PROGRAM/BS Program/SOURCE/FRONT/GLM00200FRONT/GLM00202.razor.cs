@@ -150,12 +150,10 @@ namespace GLM00200FRONT
 
                 //add filebyte to DTO
                 var loExcel = _excelProvider;
-                //var loDataSet = loExcel.R_ReadFromExcel(loFileByte, new string[] { "Recurring" });
-                var loDataSet = loExcel.R_ReadExcel(loFileByte, option =>
+                var loDataSet = loExcel.R_ReadExcel(loFileByte,  action =>
                 {
-                    option.TableNames = new string[] { "Recurring" };
+                    action.TableNames = new string[] { "Recurring" };
                 });
-
                 var loResult = R_FrontUtility.R_ConvertTo<RecurringUploadDTO>(loDataSet.Tables[0]);
                 _isFileHasData = loResult.Count > 0;
                 await _gridRecurringUpload.R_RefreshGrid(loResult);

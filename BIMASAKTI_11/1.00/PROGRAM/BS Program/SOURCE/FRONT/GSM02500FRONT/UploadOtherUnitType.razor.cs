@@ -104,7 +104,10 @@ namespace GSM02500FRONT
             List<UploadOtherUnitTypeExcelDTO> loExtract = new List<UploadOtherUnitTypeExcelDTO>();
             try
             {
-                var loDataSet = Excel.R_ReadExcel(loUploadOtherUnitTypeViewModel.fileByte, option => { option.TableNames = new string[] { "OtherUnitType" }; });
+                var loDataSet = Excel.R_ReadExcel(loUploadOtherUnitTypeViewModel.fileByte, action =>
+                {
+                    action.TableNames = new string[] { "OtherUnitType" };
+                });
 
                 var loResult = R_FrontUtility.R_ConvertTo<UploadOtherUnitTypeExcelDTO>(loDataSet.Tables[0]);
 

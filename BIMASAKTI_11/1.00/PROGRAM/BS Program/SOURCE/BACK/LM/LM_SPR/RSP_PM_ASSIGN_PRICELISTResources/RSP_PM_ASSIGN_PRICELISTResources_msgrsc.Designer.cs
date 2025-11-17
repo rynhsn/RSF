@@ -59,5 +59,32 @@ namespace RSP_PM_ASSIGN_PRICELISTResources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error process, please contact your administrator!.
+        /// </summary>
+        internal static string _8001 {
+            get {
+                return ResourceManager.GetString("8001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Call Type ID is empty!.
+        /// </summary>
+        internal static string _8002 {
+            get {
+                return ResourceManager.GetString("8002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Call Type ID is not found!.
+        /// </summary>
+        internal static string _8003 {
+            get {
+                return ResourceManager.GetString("8003", resourceCulture);
+            }
+        }
     }
 }

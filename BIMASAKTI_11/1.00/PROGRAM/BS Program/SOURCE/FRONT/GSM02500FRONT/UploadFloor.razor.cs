@@ -294,10 +294,9 @@ namespace GSM02500FRONT
             List<UploadUnitExcelDTO> loExtract = new List<UploadUnitExcelDTO>();
             try
             {
-                //var loDataSet = Excel.R_ReadFromExcel(loUploadFloorViewModel.fileByte, new string[] { "Unit" });
-                var loDataSet = Excel.R_ReadExcel(loUploadFloorViewModel.fileByte, option =>
+                var loDataSet = Excel.R_ReadExcel(loUploadFloorViewModel.fileByte, action =>
                 {
-                    option.TableNames = new string[] { "Unit" };
+                    action.TableNames = new string[] { "Unit" };
                 });
 
                 var loResult = R_FrontUtility.R_ConvertTo<UploadUnitExcelDTO>(loDataSet.Tables[0]);
@@ -347,10 +346,9 @@ namespace GSM02500FRONT
             List<UploadFloorExcelDTO> loExtract = new List<UploadFloorExcelDTO>();
             try
             {
-                //var loDataSet = Excel.R_ReadFromExcel(loUploadFloorViewModel.fileByte, new string[] { "Floor" });
-                var loDataSet = Excel.R_ReadExcel(loUploadFloorViewModel.fileByte, option =>
+                var loDataSet = Excel.R_ReadExcel(loUploadFloorViewModel.fileByte, action =>
                 {
-                    option.TableNames = new string[] { "Floor" };
+                    action.TableNames = new string[] { "Floor" };
                 });
 
                 var loResult = R_FrontUtility.R_ConvertTo<UploadFloorExcelDTO>(loDataSet.Tables[0]);
@@ -395,10 +393,9 @@ namespace GSM02500FRONT
             List<UploadUnitUtilityExcelDTO> loExtract = new List<UploadUnitUtilityExcelDTO>();
             try
             {
-                //var loDataSet = Excel.R_ReadFromExcel(loUploadFloorViewModel.fileByte, new string[] { "Utility" });
-                var loDataSet = Excel.R_ReadExcel(loUploadFloorViewModel.fileByte, option =>
+                var loDataSet = Excel.R_ReadExcel(loUploadFloorViewModel.fileByte, action =>
                 {
-                    option.TableNames = new string[] { "Utility" };
+                    action.TableNames = new string[] { "Utility" };
                 });
 
                 var loResult = R_FrontUtility.R_ConvertTo<UploadUnitUtilityExcelDTO>(loDataSet.Tables[0]);

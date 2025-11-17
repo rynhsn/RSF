@@ -198,12 +198,12 @@ namespace HDM00600FRONT
                 switch (eventArgs.ColumnName)
                 {
                     case nameof(PricelistDTO.CDEPT_CODE):
-                        eventArgs.Parameter = new GSL00700ParameterDTO()
+                        eventArgs.Parameter = new GSL00710ParameterDTO()
                         {
                             CCOMPANY_ID = _clientHelper.CompanyId,
-                            CUSER_ID = _clientHelper.UserId
+                            CPROPERTY_ID = _viewModel._propertyId ?? "",
                         };
-                        eventArgs.TargetPageType = typeof(GSL00700);
+                        eventArgs.TargetPageType = typeof(GSL00710);
                         break;
                     case nameof(PricelistDTO.CCHARGES_ID):
                         eventArgs.Parameter = new LML00200ParameterDTO()
@@ -237,7 +237,7 @@ namespace HDM00600FRONT
                 switch (eventArgs.ColumnName)
                 {
                     case nameof(PricelistDTO.CDEPT_CODE):
-                        var loDeptResult = R_FrontUtility.ConvertObjectToObject<GSL00700DTO>(eventArgs.Result);
+                        var loDeptResult = R_FrontUtility.ConvertObjectToObject<GSL00710DTO>(eventArgs.Result);
                         ((PricelistDTO)eventArgs.ColumnData).CDEPT_CODE = loDeptResult.CDEPT_CODE;
                         break;
                     case nameof(PricelistDTO.CCHARGES_ID):
@@ -266,11 +266,10 @@ namespace HDM00600FRONT
                     if (!string.IsNullOrWhiteSpace(eventArgs.Value.ToString()))
                     {
                         eventArgs.Value.ToString();
-                        LookupGSL00700ViewModel loHDVM = new();
-                        GSL00700DTO loResult = await loHDVM.GetDepartment(new GSL00700ParameterDTO()
+                        LookupGSL00710ViewModel loHDVM = new();
+                        GSL00710DTO loResult = await loHDVM.GetDepartmentProperty(new GSL00710ParameterDTO()
                         {
                             CCOMPANY_ID = _clientHelper.CompanyId,
-                            CUSER_ID = _viewModel._propertyName,
                             CSEARCH_TEXT = eventArgs.Value.ToString(),
                         });
 

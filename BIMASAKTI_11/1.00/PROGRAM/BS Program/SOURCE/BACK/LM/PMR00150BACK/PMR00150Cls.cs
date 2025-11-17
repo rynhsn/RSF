@@ -224,7 +224,7 @@ namespace PMR00150BACK
                 loDb.R_AddCommandParameter(loCommand, "@CLANG_ID", DbType.String, 2, poParameter.CLANG_ID);
 
                 var loDbParam = loCommand.Parameters.Cast<DbParameter>()
-                    .Where(x => x != null && x.ParameterName.StartsWith("@"))
+                    .Where(x => x != null && x.ParameterName.StartsWith('@'))
                     .ToDictionary(x => x.ParameterName, x => x.Value);
                 _logger.LogDebug("{@ObjectQuery} {@Parameter}", loCommand.CommandText, loDbParam);
 
