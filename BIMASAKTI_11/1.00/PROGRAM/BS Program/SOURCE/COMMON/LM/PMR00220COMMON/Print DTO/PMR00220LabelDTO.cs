@@ -53,6 +53,7 @@ namespace PMR00220COMMON.Print_DTO
         public string COLUMN_CHARGE_END_DATE { get; set; } = "End Date";
         public string COLUMN_CHARGE_TENURE { get; set; } = "Tenure";
         public string COLUMN_CHARGE_FEE_METHOD { get; set; } = "Fee Method";
+        public string COLUMN_TOTAL_AREA { get; set; } = "For Total Area";
         public string COLUMN_CHARGE_FEE_AMOUNT { get; set; } = "Fee Amount";
         public string COLUMN_CHARGE_CALCULATED_FEE_AMOUNT { get; set; } = "Total Amount";
         public string COLUMN_DEPOSIT_ID { get; set; } = "Deposit";

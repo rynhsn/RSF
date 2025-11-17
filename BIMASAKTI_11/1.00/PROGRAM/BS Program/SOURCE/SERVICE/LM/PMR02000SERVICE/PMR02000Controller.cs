@@ -129,9 +129,10 @@ namespace PMR02000SERVICE
                 loRtnTemp = loCls.GetCustomerTypeList(new CategoryTypeParamDTO()
                 {
                     CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
-                    CUSER_ID = R_BackGlobalVar.USER_ID,
                     CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(PMR02000ContextConstant.CPROPERTY_ID),
-                    CCATEGORY_TYPE = R_Utility.R_GetStreamingContext<string>(PMR02000ContextConstant.CCATEGORY_TYPE),
+                    CPARENT_ID = R_Utility.R_GetStreamingContext<string>(PMR02000ContextConstant.CPARENT_ID),
+                    LCHILD_ONLY = R_Utility.R_GetStreamingContext<bool>(PMR02000ContextConstant.LCHILD_ONLY),
+                    CLANGUAGE_ID = R_BackGlobalVar.CULTURE
                 });
             }
             catch (Exception ex)

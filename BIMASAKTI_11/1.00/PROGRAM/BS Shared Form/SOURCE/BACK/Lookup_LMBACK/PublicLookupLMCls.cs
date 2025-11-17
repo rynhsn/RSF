@@ -20,6 +20,8 @@ using Lookup_PMCOMMON.DTOs.LML01800;
 using Lookup_PMCOMMON.DTOs.LML01900;
 using Lookup_PMCOMMON.DTOs.UtilityDTO;
 using Lookup_PMCOMMON.DTOs.LML02000;
+using Lookup_PMCOMMON.DTOs.LMLTODAYDATE;
+using System.Reflection.Metadata;
 
 namespace Lookup_PMBACK
 {
@@ -1237,5 +1239,43 @@ namespace Lookup_PMBACK
             _loggerLookup.LogInfo(string.Format("END process method {0} on Cls", lcMethodName));
             return loResult!;
         }
+
+        public LMLTODAYDATEDTO GetTodayDateTime(string CCOMPANY_ID)
+        {
+            string lcMethodName = nameof(GetInitialProcess);
+            using Activity activity = _activitySource.StartActivity(lcMethodName)!;
+            _loggerLookup.LogInfo(string.Format("START process method {0} on Cls", lcMethodName));
+
+            var loEx = new R_Exception();
+            LMLTODAYDATEDTO? loResult = null;
+            R_Db loDb;
+            try
+            {
+                loDb = new R_Db();
+                var loConn = loDb.GetConnection();
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = "SELECT dbo.RFN_GET_DB_TODAY(@CCOMPANY_ID) as DTODAY_DATE_TIME";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.Text;
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 15, CCOMPANY_ID);
+
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                    .Where(x => x != null && x.ParameterName.StartsWith("@"))
+                    .ToDictionary(x => x.ParameterName, x => x.Value);
+                _loggerLookup.LogDebug("{@ObjectQuery} {@Parameter}", loCmd.CommandText, loDbParam);
+
+                var loReturnTemp = loDb.SqlExecQuery(loConn, loCmd, true);
+                loResult = R_Utility.R_ConvertTo<LMLTODAYDATEDTO>(loReturnTemp).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+            _loggerLookup.LogInfo(string.Format("END process method {0} on Cls", lcMethodName));
+            return loResult!;
+        }
+
     }
 }

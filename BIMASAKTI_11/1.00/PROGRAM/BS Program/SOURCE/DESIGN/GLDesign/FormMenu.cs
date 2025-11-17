@@ -306,5 +306,13 @@ namespace GLDesign
             loReport.RegisterData(loData, "ResponseDataModel");
             loReport.Design();
         }
+
+        private void PMR00150Detail_Click(object sender, EventArgs e)
+        {
+            var loData = new ArrayList();
+            loData.Add(PMR00150COMMON.GenerateDataModel.DefaultDataDetailWithHeader());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
     }
 }

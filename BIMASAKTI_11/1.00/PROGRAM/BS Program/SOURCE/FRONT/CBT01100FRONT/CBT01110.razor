@@ -16,7 +16,7 @@
                                R_ConductorSource="_conductorRef"
                                R_EnableAdd="true"
                                R_EnableEdit="false"
-                               OnLostFocus="@DeptCode_OnLostFocus"
+                               OnLostFocused="@DeptCode_OnLostFocus"
                                MaxLength="20" />
                 </R_ItemLayout>
                 <R_ItemLayout Class="col d-flex justify-content-center">
@@ -62,7 +62,7 @@
                 <R_ItemLayout col="3">
                     <R_TextBox @bind-Value="_TransactionListViewModel.Data.CCB_CODE"
                                Enabled="@(!string.IsNullOrWhiteSpace(_TransactionListViewModel.Data.CDEPT_CODE) && _conductorRef.R_ConductorMode != R_eConductorMode.Normal)"
-                               OnLostFocus="@CashCode_OnLostFocus"
+                               OnLostFocused="@CashCode_OnLostFocus"
                                MaxLength="20" />
                 </R_ItemLayout>
                 <R_ItemLayout Class="col d-flex justify-content-center">
@@ -107,7 +107,7 @@
                 <R_ItemLayout col="3">
                     <R_TextBox @bind-Value="_TransactionListViewModel.Data.CCB_ACCOUNT_NO"
                                Enabled="@(!string.IsNullOrWhiteSpace(_TransactionListViewModel.Data.CCB_CODE) && _conductorRef.R_ConductorMode != R_eConductorMode.Normal)"
-                               OnLostFocus="@GlAccountNo_OnLostFocus"
+                               OnLostFocused="@GlAccountNo_OnLostFocus"
                                MaxLength="20" />
                 </R_ItemLayout>
                 <R_ItemLayout Class="col d-flex justify-content-center">

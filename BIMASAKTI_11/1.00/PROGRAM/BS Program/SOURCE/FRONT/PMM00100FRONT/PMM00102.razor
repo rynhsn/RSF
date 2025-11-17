@@ -57,7 +57,7 @@
                         <R_ItemLayout col="3">
                             <R_TextBox @bind-Value="@_viewModel.Data.COL_PAY_CURRENCY"
                                        R_ConductorSource="@_conBillingRef"
-                                       OnLostFocus="@OnLostFocus_CurrencyAsync"
+                                       OnLostFocused="@OnLostFocus_CurrencyAsync"
                                        MaxLength="3"
                                        R_EnableAdd
                                        R_EnableEdit />
@@ -105,7 +105,7 @@
                         <R_ItemLayout col="3">
                             <R_TextBox @bind-Value="@_viewModel.Data.CBILLING_STATEMENT_TOP_CODE"
                                        R_ConductorSource="@_conBillingRef"
-                                       OnLostFocus="@OnLostFocus_TermOfPaymentAsync"
+                                       OnLostFocused="@OnLostFocus_TermOfPaymentAsync"
                                        MaxLength="8"
                                        R_EnableAdd
                                        R_EnableEdit />

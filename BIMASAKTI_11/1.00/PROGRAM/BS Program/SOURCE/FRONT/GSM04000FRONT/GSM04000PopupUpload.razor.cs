@@ -99,7 +99,10 @@ namespace GSM04000Front
                 //add filebyte to DTO
                 var loExcel = _excelProvider;
 
-                var loDataSet = loExcel.R_ReadFromExcel(loFileByte, new string[] { "Department" });
+                var loDataSet = loExcel.R_ReadExcel(loFileByte, action =>
+                {
+                    action.TableNames = new string[] { "Department" };
+                });
 
                 var loResult = R_FrontUtility.R_ConvertTo<GSM04000ExcelBatchDTO>(loDataSet.Tables[0]);
 

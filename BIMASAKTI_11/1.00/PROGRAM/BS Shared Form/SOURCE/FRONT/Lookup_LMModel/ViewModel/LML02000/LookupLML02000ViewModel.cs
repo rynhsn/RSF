@@ -28,14 +28,14 @@ namespace Lookup_PMModel.ViewModel.LML02000
             {
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParam.CPROPERTY_ID ?? "");
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPARENT_ID, poParam.CPARENT_ID ?? "");
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LCHILD_ONLY, poParam.LCHILD_ONLY);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LCHILD_ONLY, false);
 
                 var loResult = await _model.LML02000TenantCategoryListdata();
                 TenantCategoryListResult = loResult;
                 var loGridData = loResult.Select(x =>
                     new PML02000TreeDTO
                     {
-                        ParentId = poParam.LCHILD_ONLY ? null : (x.ILEVEL == 0 ? null : x.CPARENT_ID),
+                        ParentId = x.ILEVEL == 0 ? null : x.CPARENT_ID,
                         ParentName = x.CPARENT_NAME,
                         Id = x.CCATEGORY_ID,
                         Name = x.CCATEGORY_NAME,

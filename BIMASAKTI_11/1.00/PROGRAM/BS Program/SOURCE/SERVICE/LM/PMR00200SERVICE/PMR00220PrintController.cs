@@ -217,7 +217,6 @@ namespace PMR00200SERVICE
                 _logger.LogInfo("Data processed successfully. Generating print output.");
                 if (loCollData.Any())
                 {
-                    var loTempData = ConvertResultToFormatPrint(loCollData);
                     loData.Data = ConvertResultToFormatPrint(loCollData);
                 }
                 else
@@ -372,6 +371,7 @@ namespace PMR00200SERVICE
                                        Data9.DCHARGE_DETAIL_END_DATE,
                                        Data9.CCHARGE_DETAIL_TENURE,
                                        Data9.CCHARGE_DETAIL_FEE_METHOD,
+                                       Data9.LFOR_TOTAL_AREA,
                                        Data9.NCHARGE_DETAIL_FEE_AMOUNT,
                                        Data9.NCHARGE_DETAIL_CALCULATED_FEE_AMOUNT
                                    })
@@ -385,6 +385,7 @@ namespace PMR00200SERVICE
                                        DCHARGE_DETAIL_END_DATE = DateTime.TryParseExact(Data10.Key.CCHARGE_DETAIL_END_DATE, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var loResultEndDate) ? loResultEndDate : null!,
                                        CCHARGE_DETAIL_TENURE = Data10.Key.CCHARGE_DETAIL_TENURE,
                                        CCHARGE_DETAIL_FEE_METHOD = Data10.Key.CCHARGE_DETAIL_FEE_METHOD,
+                                       LFOR_TOTAL_AREA = Data10.Key.LFOR_TOTAL_AREA,
                                        NCHARGE_DETAIL_FEE_AMOUNT = Data10.Key.NCHARGE_DETAIL_FEE_AMOUNT,
                                        NCHARGE_DETAIL_CALCULATED_FEE_AMOUNT = Data10.Key.NCHARGE_DETAIL_CALCULATED_FEE_AMOUNT
                                    }).ToList(),

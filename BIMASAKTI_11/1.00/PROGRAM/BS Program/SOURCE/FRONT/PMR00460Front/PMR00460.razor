@@ -30,7 +30,7 @@
                             <R_Label>@_localizer["From"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout col="4">
-                            <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_BUILDING_ID" OnLostFocus="OnLostFocusFromBuilding" Enabled/>
+                            <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_BUILDING_ID" OnLostFocused="OnLostFocusFromBuilding" Enabled/>
                         </R_ItemLayout>
                         <R_ItemLayout>
                             <R_Lookup R_Before_Open_Lookup="BeforeLookupFromBuilding" R_After_Open_Lookup="AfterLookupFromBuilding" Enabled>...</R_Lookup>
@@ -44,7 +44,7 @@
                             <R_Label>@_localizer["To"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout col="4">
-                            <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_BUILDING_ID" OnLostFocus="OnLostFocusToBuilding" Enabled/>
+                            <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_BUILDING_ID" OnLostFocused="OnLostFocusToBuilding" Enabled/>
                         </R_ItemLayout>
                         <R_ItemLayout>
                             <R_Lookup R_Before_Open_Lookup="BeforeLookupToBuilding" R_After_Open_Lookup="AfterLookupToBuilding" Enabled>...</R_Lookup>

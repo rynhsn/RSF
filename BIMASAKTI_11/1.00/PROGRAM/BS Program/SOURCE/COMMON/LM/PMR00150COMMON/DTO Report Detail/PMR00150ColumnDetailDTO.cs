@@ -14,6 +14,7 @@ namespace PMR00150COMMON
         public string Col_CSTARTDATE { get; set; } = "Start Date";
         public string Col_CENDDATE { get; set; } = "End Date";
         public string Col_FEE_METHOD{ get; set; } = "Fee Method";
+        public string Col_TOTAL_AREA { get; set; } = "For Total Area";
         public string Col_FEE_AMOUNT { get; set; } = "Fee Amount";
         public string Col_CAL_FEE_AMOUNT { get; set; } = "Total Amount";
         public string Col_DEPOSIT { get; set; } = "Deposit";

@@ -110,7 +110,7 @@
             </R_ItemLayout>
             <R_ItemLayout col="2">
                 <R_TextBox @bind-Value="@_viewModel.Data.CDEPT_CODE"
-                           OnLostFocus="@OnLostFocusDepartment"
+                           OnLostFocused="@OnLostFocusDepartment"
                            R_ConductorSource="@_conductor"
                            R_EnableAdd>
                 </R_TextBox>
@@ -138,7 +138,7 @@
             </R_ItemLayout>
             <R_ItemLayout col="2">
                 <R_TextBox @bind-Value="@_viewModel.Data.CTENANT_ID"
-                           OnLostFocus="@OnLostFocusTenant"
+                           OnLostFocused="@OnLostFocusTenant"
                            R_ConductorSource="@_conductor"
                            R_EnableAdd>
                 </R_TextBox>
@@ -167,7 +167,7 @@
             </R_ItemLayout>
             <R_ItemLayout col="2">
                 <R_TextBox @bind-Value="@_viewModel.Data.CSALESMAN_ID"
-                           OnLostFocus="@OnLostFocusSalesman"
+                           OnLostFocused="@OnLostFocusSalesman"
                            R_ConductorSource="@_conductor"
                            R_EnableAdd
                            R_EnableEdit>
@@ -199,7 +199,7 @@
             </R_ItemLayout>
             <R_ItemLayout col="2">
                 <R_TextBox @bind-Value="@_viewModel.Data.CBILLING_RULE_CODE"
-                           OnLostFocus="@OnLostBillingRule"
+                           OnLostFocused="@OnLostBillingRule"
                            R_ConductorSource="@_conductor"
                            R_EnableAdd
                            R_EnableEdit>
@@ -231,7 +231,7 @@
             <R_ItemLayout col="2">
                 <R_TextBox @bind-Value="@_viewModel.Data.CSTRATA_TAX_ID"
                            R_ConductorSource="@_conductor"
-                           OnLostFocus="@OnLostFocusTaxCode"
+                           OnLostFocused="@OnLostFocusTaxCode"
                            R_EnableAdd
                            R_EnableEdit>
                 </R_TextBox>
@@ -262,7 +262,7 @@
             <R_ItemLayout col="2">
                 <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
                            R_ConductorSource="@_conductor"
-                           OnLostFocus="@OnLostCurrencyRule"
+                           OnLostFocused="@OnLostCurrencyRule"
                            R_EnableAdd
                             R_EnableEdit>
                 </R_TextBox>

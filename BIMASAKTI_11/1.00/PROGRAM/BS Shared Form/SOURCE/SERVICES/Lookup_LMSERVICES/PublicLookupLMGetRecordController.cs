@@ -25,6 +25,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Lookup_PMCOMMON.DTOs.LML01700;
 using Lookup_PMCOMMON.DTOs.LML02000;
+using Lookup_PMCOMMON.DTOs.LMLTODAYDATE;
 
 namespace Lookup_PMSERVICES
 {
@@ -727,6 +728,35 @@ namespace Lookup_PMSERVICES
                 poParam.CUSER_ID = R_BackGlobalVar.USER_ID;
                 _loggerLookup.LogInfo($"Call method {0}", lcMethodName);
                 var loTemp = loCls.GetUserParamDetailDb(poParam);
+
+                loReturn.Data = loTemp;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _loggerLookup.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
+            return loReturn;
+        }
+
+        [HttpPost]
+        public LMLGenericRecord<LMLTODAYDATEDTO> GetTodayDateTime()
+        {
+            string lcMethodName = nameof(GetTodayDateTime);
+            using Activity activity = _activitySource.StartActivity(lcMethodName)!;
+            _loggerLookup.LogInfo(string.Format("START process method {0} on Controller", lcMethodName));
+
+            var loEx = new R_Exception();
+            LMLGenericRecord<LMLTODAYDATEDTO> loReturn = new();
+            try
+            {
+                var loCls = new PublicLookupLMCls();
+                var CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                _loggerLookup.LogInfo($"Call method {0}", lcMethodName);
+                var loTemp = loCls.GetTodayDateTime(CCOMPANY_ID);
 
                 loReturn.Data = loTemp;
             }

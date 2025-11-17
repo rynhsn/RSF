@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_PM_MAINTAIN_AGREEMENT_CHARGES_REVENUEResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:49974;http://localhost:49975"
+    }
+  }
+}

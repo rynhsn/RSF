@@ -25,7 +25,7 @@
                     <R_TextBox @bind-Value="@_viewModel.oTempExistingEntity.CTENANT_ID"
                                R_ConductorSource="@_conductor"
                                MaxLength="20"
-                               OnLostFocus="@OnLostFocusTenant"
+                               OnLostFocused="@OnLostFocusTenant"
                                @ref="_componentCTENANT_IDTextBox"
                                Enabled="@(!_viewModel.lControlCRUDMode && _viewModel.lControlExistingTenant)">
                     </R_TextBox>
@@ -449,7 +449,7 @@
 
                     <R_TextBox @bind-Value="@_viewModel.Data.CBUILDING_ID"
                                MaxLength="20"
-                               OnLostFocus="OnLostFocusBuilding"
+                               OnLostFocused="OnLostFocusBuilding"
                                R_ConductorSource="@_conductor"
                                Enabled="@(!_viewModel.lControlCRUDMode && lEnabledFieldBuilding)" />
 
@@ -512,7 +512,7 @@
                     <R_TextBox @bind-Value="@_viewModel.Data.CDEPT_CODE"
                                MaxLength="20"
                                R_ConductorSource="@_conductor"
-                               OnLostFocus="OnLostFocusDepartment"
+                               OnLostFocused="OnLostFocusDepartment"
                                R_EnableAdd
                                R_EnableEdit="false" />
 
@@ -558,7 +558,7 @@
 
                         <R_TextBox @bind-Value="@_viewModel.Data.CSALESMAN_ID"
                                MaxLength="8"
-                               OnLostFocus="OnLostFocusSalesman"
+                               OnLostFocused="OnLostFocusSalesman"
                                R_ConductorSource="@_conductor"
                                R_EnableAdd
                                R_EnableEdit />
@@ -925,7 +925,7 @@
                         <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
                                    R_ConductorSource="@_conductor"
                                    MaxLength="20"
-                                   OnLostFocus="OnLostCurrencyRule"
+                                   OnLostFocused="OnLostCurrencyRule"
                                    R_EnableAdd
                                    R_EnableEdit />
                     </R_ItemLayout>
@@ -987,7 +987,7 @@
                         <R_TextBox @bind-Value="@_viewModel.Data.CTC_CODE"
                                    R_ConductorSource="@_conductor"
                                    MaxLength="20"
-                                   OnLostFocus="OnLostFocusTandC"
+                                   OnLostFocused="OnLostFocusTandC"
                                    R_EnableAdd
                                    R_EnableEdit />
                     </R_ItemLayout>

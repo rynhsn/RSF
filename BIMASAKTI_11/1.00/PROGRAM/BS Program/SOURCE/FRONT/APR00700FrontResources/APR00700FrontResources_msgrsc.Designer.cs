@@ -61,6 +61,51 @@ namespace APR00700FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error process, please contact your administrator!.
+        /// </summary>
+        internal static string _4501 {
+            get {
+                return ResourceManager.GetString("4501", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate Charges Id!.
+        /// </summary>
+        internal static string _4502 {
+            get {
+                return ResourceManager.GetString("4502", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot Active this date, There&apos;&apos;s already active date!.
+        /// </summary>
+        internal static string _4503 {
+            get {
+                return ResourceManager.GetString("4503", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot Edit / Delete this Pricing already used in Agreement Transaction!.
+        /// </summary>
+        internal static string _4504 {
+            get {
+                return ResourceManager.GetString("4504", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate Rent Charges Type!.
+        /// </summary>
+        internal static string _4505 {
+            get {
+                return ResourceManager.GetString("4505", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Base Currency.
         /// </summary>
         internal static string _base_cur {

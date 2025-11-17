@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_HD_UPLOAD_PUBLIC_LOCResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:49957;http://localhost:49958"
+    }
+  }
+}

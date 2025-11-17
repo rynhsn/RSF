@@ -161,7 +161,10 @@ public partial class PMT03500UploadCutOffPopup : R_Page
             //READ EXCEL
             var loExcel = ExcelInject;
 
-            var loDataSet = loExcel.R_ReadFromExcel(fileByte, new[] { "UtilityUsage" });
+            var loDataSet = loExcel.R_ReadExcel(fileByte, action =>
+            {
+                action.TableNames = new[] { "UtilityUsage" };
+            });
             var loResult = R_FrontUtility.R_ConvertTo<PMT03500UploadCutOffExcelDTO>(loDataSet.Tables[0]);
 
             _viewModel.FileHasData = loResult.Count > 0 ? true : false;

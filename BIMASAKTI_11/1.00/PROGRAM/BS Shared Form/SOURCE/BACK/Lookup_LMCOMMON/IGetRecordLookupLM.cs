@@ -10,6 +10,7 @@ using Lookup_PMCOMMON.DTOs.LML01700;
 using Lookup_PMCOMMON.DTOs.LML01800;
 using Lookup_PMCOMMON.DTOs.LML01900;
 using Lookup_PMCOMMON.DTOs.LML02000;
+using Lookup_PMCOMMON.DTOs.LMLTODAYDATE;
 using System.Collections.Generic;
 
 namespace Lookup_PMCOMMON
@@ -39,6 +40,7 @@ namespace Lookup_PMCOMMON
         LMLGenericRecord<LML02000DTO> LML02000TenantCategory(LML02000ParameterDTO poParam);
 
         //UPDATED 05/07/2024
-        LMLGenericRecord<GET_USER_PARAM_DETAILDTO> UserParamDetail (GET_USER_PARAM_DETAILParameterDTO poParam); 
+        LMLGenericRecord<GET_USER_PARAM_DETAILDTO> UserParamDetail (GET_USER_PARAM_DETAILParameterDTO poParam);
+        LMLGenericRecord<LMLTODAYDATEDTO> GetTodayDateTime();
     }
 }

@@ -79,7 +79,7 @@
     <R_ItemLayout col="4">
         <R_StackLayout Row>
             <R_ItemLayout col="4">
-                <R_TextBox @bind-Value="_viewModel.ReportParam.CDEPT_CODE" OnLostFocus="OnLostFocusDept" Enabled="@_viewModel.CheckDept"/>
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CDEPT_CODE" OnLostFocused="OnLostFocusDept" Enabled="@_viewModel.CheckDept"/>
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Lookup R_Before_Open_Lookup="BeforeLookupDept" R_After_Open_Lookup="AfterLookupDept" Enabled="@_viewModel.CheckDept">...</R_Lookup>
@@ -141,7 +141,7 @@
     <R_ItemLayout col="4">
         <R_StackLayout Row>
             <R_ItemLayout col="4">
-                <R_TextBox @bind-Value="_viewModel.ReportParam.CSUPPLIER_ID" OnLostFocus="OnLostFocusSupplier" Enabled="@_viewModel.CheckSupplier"/>
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CSUPPLIER_ID" OnLostFocused="OnLostFocusSupplier" Enabled="@_viewModel.CheckSupplier"/>
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Lookup R_Before_Open_Lookup="BeforeLookupSupplier" R_After_Open_Lookup="AfterLookupSupplier" Enabled="@_viewModel.CheckSupplier">...</R_Lookup>
@@ -163,7 +163,7 @@
     <R_ItemLayout col="4">
         <R_StackLayout Row>
             <R_ItemLayout col="4">
-                <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_REFERENCE_NO" OnLostFocus="OnLostFocusFromRefNo" Enabled="@_viewModel.CheckRefNo"/>
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_REFERENCE_NO" OnLostFocused="OnLostFocusFromRefNo" Enabled="@_viewModel.CheckRefNo"/>
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Lookup R_Before_Open_Lookup="BeforeLookupFromRefNo" R_After_Open_Lookup="AfterLookupFromRefNo" Enabled="@_viewModel.CheckRefNo">...</R_Lookup>
@@ -172,7 +172,7 @@
                 <R_Label>@_localizer["TO"]</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="4">
-                <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_REFERENCE_NO" OnLostFocus="OnLostFocusToRefNo" Enabled="@_viewModel.CheckRefNo"/>
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_REFERENCE_NO" OnLostFocused="OnLostFocusToRefNo" Enabled="@_viewModel.CheckRefNo"/>
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Lookup R_Before_Open_Lookup="BeforeLookupToRefNo" R_After_Open_Lookup="AfterLookupToRefNo" Enabled="@_viewModel.CheckRefNo">...</R_Lookup>

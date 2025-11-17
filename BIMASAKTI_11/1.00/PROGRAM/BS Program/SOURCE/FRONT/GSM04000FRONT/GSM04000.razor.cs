@@ -536,7 +536,7 @@ namespace GSM04000Front
 
                         break;
 
-                    case nameof(DepartmentDTO.CMANAGER_NAME):
+                    case nameof(DepartmentDTO.CMANAGER_CODE):
                         if (!string.IsNullOrWhiteSpace(eventArgs.Value.ToString()))
                         {
                             var loManagerCode = eventArgs.Value.ToString();
@@ -570,7 +570,7 @@ namespace GSM04000Front
 
                         break;
 
-                    case nameof(DepartmentDTO.CBRANCH_NAME):
+                    case nameof(DepartmentDTO.CBRANCH_CODE):
                         if (!string.IsNullOrWhiteSpace(eventArgs.Value.ToString()))
                         {
                             var loBranchCode = eventArgs.Value.ToString();
@@ -595,7 +595,7 @@ namespace GSM04000Front
                         }
                         else
                         {
-                            loData.CBRANCH_CODE = loData.CBRANCH_NAME = "";
+                            loData.CBRANCH_CODE = "";
                         }
 
                         await Task.CompletedTask;
@@ -625,11 +625,11 @@ namespace GSM04000Front
                         eventArgs.TargetPageType = typeof(GSL00900);
                         await Task.CompletedTask;
                         break;
-                    case nameof(DepartmentDTO.CMANAGER_NAME):
+                    case nameof(DepartmentDTO.CMANAGER_CODE):
                         eventArgs.TargetPageType = typeof(GSL01000);
                         await Task.CompletedTask;
                         break;
-                    case nameof(DepartmentDTO.CBRANCH_NAME): //CR09
+                    case nameof(DepartmentDTO.CBRANCH_CODE): //CR09
                         eventArgs.TargetPageType = typeof(TXL00100);
                         await Task.CompletedTask;
                         break;
@@ -662,12 +662,12 @@ namespace GSM04000Front
                         ((DepartmentDTO)eventArgs.ColumnData).CCENTER_CODE = loCenterLookupresult.CCENTER_CODE;
                         ((DepartmentDTO)eventArgs.ColumnData).CCENTER_NAME = loCenterLookupresult.CCENTER_NAME;
                         break;
-                    case nameof(DepartmentDTO.CMANAGER_NAME):
+                    case nameof(DepartmentDTO.CMANAGER_CODE):
                         var loManagerLookupresult = R_FrontUtility.ConvertObjectToObject<GSL01000DTO>(eventArgs.Result);
                         ((DepartmentDTO)eventArgs.ColumnData).CMANAGER_CODE = loManagerLookupresult.CUSER_ID;
                         ((DepartmentDTO)eventArgs.ColumnData).CMANAGER_NAME = loManagerLookupresult.CUSER_NAME;
                         break;
-                    case nameof(DepartmentDTO.CBRANCH_NAME): //CR09
+                    case nameof(DepartmentDTO.CBRANCH_CODE): //CR09
                         var loBranchLookupresult = R_FrontUtility.ConvertObjectToObject<TXL00100DTO>(eventArgs.Result);
                         ((DepartmentDTO)eventArgs.ColumnData).CBRANCH_CODE = loBranchLookupresult.CBRANCH_CODE;
                         ((DepartmentDTO)eventArgs.ColumnData).CBRANCH_NAME = loBranchLookupresult.CBRANCH_NAME;

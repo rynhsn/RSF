@@ -129,8 +129,8 @@
   <data name="_gridColumnEmail1" xml:space="preserve">
     <value>Email 1</value>
   </data>
-  <data name="_gridColumnBranch" xml:space="preserve">
-    <value>Branch</value>
+  <data name="_gridColumnBranchId" xml:space="preserve">
+    <value>Branch ID</value>
   </data>
   <data name="_gridColumnCenterCode" xml:space="preserve">
     <value>Center Code</value>
@@ -153,8 +153,8 @@
   <data name="_gridColumnEveryone" xml:space="preserve">
     <value>Everyone</value>
   </data>
-  <data name="_gridColumnManager" xml:space="preserve">
-    <value>Manager</value>
+  <data name="_gridColumnManagerId" xml:space="preserve">
+    <value>Manager ID</value>
   </data>
   <data name="_gridColumnNonActiveDate" xml:space="preserve">
     <value>Non Active Date</value>
@@ -240,8 +240,13 @@
   <data name="_valSave4" xml:space="preserve">
     <value>Branch can not be empty</value>
   </data>
-  <!-- Print -->
-    <data name="_btnPrint" xml:space="preserve">
-        <value>Print</value>
-    </data>
+  <data name="_btnPrint" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="_gridColumnBranchName" xml:space="preserve">
+    <value>Branch Name</value>
+  </data>
+  <data name="_gridColumnManagerName" xml:space="preserve">
+    <value>Manager Name</value>
+  </data>
 </root>

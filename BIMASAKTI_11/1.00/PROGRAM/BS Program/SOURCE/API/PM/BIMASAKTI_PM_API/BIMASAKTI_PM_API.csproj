@@ -173,6 +173,7 @@
         <ProjectReference Include="..\..\..\SERVICE\LM\PMB05000Service\PMB05000Service.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMI00500Service\PMI00500Service.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMM00100SERVICE\PMM00100SERVICE.csproj" />
+        <ProjectReference Include="..\..\..\SERVICE\LM\PMM04700SERVICE\PMM04700SERVICE.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMM09000SERVICE\PMM09000SERVICE.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMM10000SERVICE\PMM10000SERVICE.csproj" />
         <ProjectReference Include="..\..\..\SERVICE\LM\PMR00150SERVICE\PMR00150SERVICE.csproj" />

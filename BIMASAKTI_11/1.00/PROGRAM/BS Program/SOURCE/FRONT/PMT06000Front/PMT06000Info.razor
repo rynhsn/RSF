@@ -40,7 +40,7 @@
                     R_ConductorSource="_conductorRef"
                     @bind-Value="_viewModel.Data.CDEPT_CODE"
                     MaxLength="20"
-                    OnLostFocus="OnLostFocusDept"
+                    OnLostFocused="OnLostFocusDept"
                     R_EnableAdd="true"
                     R_EnableEdit="false"/>
             </R_ItemLayout>
@@ -64,7 +64,7 @@
                 <R_TextBox @bind-Value="_viewModel.Data.CTENANT_ID"
                            R_ConductorSource="_conductorRef"
                            MaxLength="20"
-                           OnLostFocus="OnLostFocusTenant"
+                           OnLostFocused="OnLostFocusTenant"
                            R_EnableAdd="true"
                            R_EnableEdit="true"/>
             </R_ItemLayout>
@@ -88,7 +88,7 @@
                 <R_TextBox @bind-Value="_viewModel.Data.CBUILDING_ID"
                            R_ConductorSource="_conductorRef"
                            MaxLength="20"
-                           OnLostFocus="OnLostFocusBuilding"
+                           OnLostFocused="OnLostFocusBuilding"
                            R_EnableAdd="true"
                            R_EnableEdit="true"/>
             </R_ItemLayout>
@@ -112,7 +112,7 @@
                 <R_TextBox @bind-Value="_viewModel.Data.CAGREEMENT_NO"
                            R_ConductorSource="_conductorRef"
                            MaxLength="20"
-                           OnLostFocus="OnLostFocusAgreement"
+                           OnLostFocused="OnLostFocusAgreement"
                            Enabled="@((_viewModel.Data.CPROPERTY_ID != "" && _viewModel.Data.CDEPT_CODE != "" && _viewModel.Data.CTENANT_ID != "" && _viewModel.Data.CBUILDING_ID != "") && (_conductorRef.R_ConductorMode is R_eConductorMode.Add or R_eConductorMode.Edit))"
                            R_EnableAdd="true"
                            R_EnableEdit="true"/>
@@ -278,7 +278,7 @@
 
                         <R_TextBox @bind-Value="@_viewModelService.Data.CSERVICE_ID"
                                    R_ConductorSource="@_conductorRefService"
-                                   OnLostFocus="OnLostFocusUtility"
+                                   OnLostFocused="OnLostFocusUtility"
                                    R_EnableAdd/>
 
                     </R_ItemLayout>

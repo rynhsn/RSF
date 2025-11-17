@@ -417,6 +417,7 @@ namespace PMR00150SERVICE
                                 Data.CCHARGE_DETAIL_END_DATE,
                                 Data.CCHARGE_DETAIL_TENURE,
                                 Data.CCHARGE_DETAIL_FEE_METHOD,
+                                Data.LFOR_TOTAL_AREA,
                                 Data.NCHARGE_DETAIL_FEE_AMOUNT,
                             })
                             .Select(DetailChargeTypeUnitDTO => new PMR00150DataDetailChargeTypeUnitDTO
@@ -429,6 +430,7 @@ namespace PMR00150SERVICE
                                 DCHARGE_DETAIL_END_DATE = ConvertStringToDateTimeFormat(DetailChargeTypeUnitDTO.Key.CCHARGE_DETAIL_END_DATE),
                                 CCHARGE_DETAIL_TENURE = DetailChargeTypeUnitDTO.Key.CCHARGE_DETAIL_TENURE,
                                 CCHARGE_DETAIL_FEE_METHOD = DetailChargeTypeUnitDTO.Key.CCHARGE_DETAIL_FEE_METHOD,
+                                LFOR_TOTAL_AREA = DetailChargeTypeUnitDTO.Key.LFOR_TOTAL_AREA,
                                 NCHARGE_DETAIL_FEE_AMOUNT = DetailChargeTypeUnitDTO.Key.NCHARGE_DETAIL_FEE_AMOUNT
                             }).ToList()
 

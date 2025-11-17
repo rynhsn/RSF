@@ -80,7 +80,7 @@
 
                                 <R_ItemLayout col="3">
                                     <R_TextBox @bind-Value="@_viewModel.ReportParam.CFROM_BUILDING_ID"
-                                               OnLostFocus="OnLostFocusFromBuilding"
+                                               OnLostFocused="OnLostFocusFromBuilding"
                                                MaxLength="20"
                                                Enabled/>
                                 </R_ItemLayout>
@@ -107,7 +107,7 @@
 
                                 <R_ItemLayout col="3">
                                     <R_TextBox @bind-Value="@_viewModel.ReportParam.CTO_BUILDING_ID"
-                                               OnLostFocus="OnLostFocusToBuilding"
+                                               OnLostFocused="OnLostFocusToBuilding"
                                                MaxLength="20"
                                                Enabled/>
                                 </R_ItemLayout>
@@ -158,7 +158,7 @@
 
                 <R_ItemLayout col="3">
                     <R_TextBox @bind-Value="@_viewModel.ReportParam.CFROM_DEPT_CODE"
-                               OnLostFocus="OnLostFocusFromDept"
+                               OnLostFocused="OnLostFocusFromDept"
                                MaxLength="20"
                                Enabled/>
                 </R_ItemLayout>
@@ -185,7 +185,7 @@
 
                 <R_ItemLayout col="3">
                     <R_TextBox @bind-Value="@_viewModel.ReportParam.CTO_DEPT_CODE"
-                               OnLostFocus="OnLostFocusToDept"
+                               OnLostFocused="OnLostFocusToDept"
                                MaxLength="20"
                                Enabled/>
                 </R_ItemLayout>

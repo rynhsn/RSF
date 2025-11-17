@@ -72,5 +72,7 @@ namespace PMR00220COMMON.DTO_s
         public DateTime? DDOCUMENT_DETAIL_EXPIRED_DATE { get; set; }
         public string? CDOCUMENT_DETAIL_FILE { get; set; }
         public string? CDOCUMENT_DETAIL_DESCRIPTION { get; set; }
+        public bool LFOR_TOTAL_AREA { get; set; }
+
     }
 }

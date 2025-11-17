@@ -428,7 +428,7 @@
                         <R_ItemLayout col="8">
                             <R_TextBox @bind-Value="@_viewModelUtilities.Data.CSTATUS_DESCR"
                                        R_ConductorSource="@_conductorUtilities"
-                                       OnLostFocus="@OnLostFocusChargeID"
+                                       OnLostFocused="@OnLostFocusChargeID"
                                        MaxLength="20"
                                        Enabled="@false" />
                         </R_ItemLayout>
@@ -446,7 +446,7 @@
                         <R_ItemLayout col="3">
                             <R_TextBox @bind-Value="@_viewModelUtilities.Data.CCHARGES_ID"
                                        R_ConductorSource="@_conductorUtilities"
-                                       OnLostFocus="@OnLostFocusChargeID"
+                                       OnLostFocused="@OnLostFocusChargeID"
                                        MaxLength="20"
                                        R_EnableAdd
                                        R_EnableEdit="false">
@@ -563,7 +563,7 @@
                         <R_ItemLayout col="3">
                             <R_TextBox @bind-Value="@_viewModelUtilities.Data.CTAX_ID"
                                        R_ConductorSource="@_conductorUtilities"
-                                       OnLostFocus="@OnLostFocusTaxCode"
+                                       OnLostFocused="@OnLostFocusTaxCode"
                                        MaxLength="20"
                                        Enabled="@(_viewModelUtilities.LTAXABLE && !_oEventCallBack.LCRUD_MODE)"
                                        R_EnableAdd
