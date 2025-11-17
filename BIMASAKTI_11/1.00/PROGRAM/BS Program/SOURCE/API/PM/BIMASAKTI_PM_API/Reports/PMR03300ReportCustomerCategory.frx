@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="10/21/2025 15:41:24" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="10/24/2025 16:59:44" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="Data" DataType="PMR03300COMMON.DTOs.Print.PMR03300ReportResultDTO, PMR03300COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -30,23 +30,6 @@
           <Column Name="NGAIN_LOSS" DataType="System.String"/>
           <Column Name="NEND_BAL" DataType="System.String"/>
           <Column Name="Grand_Total_Beginning_Balance" DataType="System.String"/>
-          <Column Name="Grand_Total_Inv" DataType="System.String"/>
-          <Column Name="Grand_Total_Ret" DataType="System.String"/>
-          <Column Name="Grand_Total_Invoice" DataType="System.String"/>
-          <Column Name="Grand_Total_Return" DataType="System.String"/>
-          <Column Name="Grand_Total_D_N" DataType="System.String"/>
-          <Column Name="Grand_Total_C_N" DataType="System.String"/>
-          <Column Name="Grand_Total_Debit_Note" DataType="System.String"/>
-          <Column Name="Grand_Total_Credit_Note" DataType="System.String"/>
-          <Column Name="Grand_Total_D_A" DataType="System.String"/>
-          <Column Name="Grand_Total_C_A" DataType="System.String"/>
-          <Column Name="Grand_Total_Debit_Adjustment" DataType="System.String"/>
-          <Column Name="Grand_Total_Credit_Adjustment" DataType="System.String"/>
-          <Column Name="Grand_Total_Rcp_" DataType="System.String"/>
-          <Column Name="Grand_Total_Receipt" DataType="System.String"/>
-          <Column Name="Grand_Total_Receipt_Discount" DataType="System.String"/>
-          <Column Name="Grand_Total_Gain_Loss" DataType="System.String"/>
-          <Column Name="Grand_Total_Ending_Balance" DataType="System.String"/>
           <Column Name="ISALES_CREDIT_NOTE" DataType="System.String"/>
           <Column Name="CCATEGORY_ID" DataType="System.String"/>
           <Column Name="CJRNGRP_CODE" DataType="System.String"/>
@@ -119,40 +102,40 @@
     </BusinessObjectDataSource>
     <Total Name="TotalBeginingBalance" Expression="[ResponseDataModel.Data.Data.NBEG_BAL]" Evaluator="Data1" PrintOn="ReportSummary1"/>
     <Total Name="TotalIINVOICE" Expression="[ResponseDataModel.Data.Data.IINVOICE]" Evaluator="Data1" PrintOn="ReportSummary1"/>
-    <Total Name="TotalISALES_RETURN" Expression="[ResponseDataModel.Data.Data.ISALES_RETURN]" Evaluator="Data1" PrintOn="Child5"/>
+    <Total Name="TotalISALES_RETURN" Expression="[ResponseDataModel.Data.Data.ISALES_RETURN]" Evaluator="Data1"/>
     <Total Name="TotalISALES_DEBIT_NOTE" Expression="[ResponseDataModel.Data.Data.ISALES_DEBIT_NOTE]" Evaluator="Data1" PrintOn="ReportSummary1"/>
-    <Total Name="TotalNSALES_RETURN" Expression="[ResponseDataModel.Data.Data.NSALES_RETURN]" Evaluator="Data1" PrintOn="Child5"/>
+    <Total Name="TotalNSALES_RETURN" Expression="[ResponseDataModel.Data.Data.NSALES_RETURN]" Evaluator="Data1"/>
     <Total Name="TotalNINVOICE" Expression="[ResponseDataModel.Data.Data.NINVOICE]" Evaluator="Data1" PrintOn="ReportSummary1"/>
-    <Total Name="TotalISALES_CREDIT_NOTE" Expression="[ResponseDataModel.Data.Data.ISALES_CREDIT_NOTE]" Evaluator="Data1" PrintOn="Child5"/>
+    <Total Name="TotalISALES_CREDIT_NOTE" Expression="[ResponseDataModel.Data.Data.ISALES_CREDIT_NOTE]" Evaluator="Data1"/>
     <Total Name="TotalNSALES_DEBIT_NOTE" Expression="[ResponseDataModel.Data.Data.NSALES_DEBIT_NOTE]" Evaluator="Data1" PrintOn="ReportSummary1"/>
-    <Total Name="TotalNSALES_CREDIT_NOTE" Expression="[ResponseDataModel.Data.Data.NSALES_CREDIT_NOTE]" Evaluator="Data1" PrintOn="Child5"/>
+    <Total Name="TotalNSALES_CREDIT_NOTE" Expression="[ResponseDataModel.Data.Data.NSALES_CREDIT_NOTE]" Evaluator="Data1"/>
     <Total Name="TotalISALES_DEBIT_ADJ" Expression="[ResponseDataModel.Data.Data.ISALES_DEBIT_ADJ]" Evaluator="Data1" PrintOn="ReportSummary1"/>
-    <Total Name="TotalISALES_CREDIT_ADJ" Expression="[ResponseDataModel.Data.Data.ISALES_CREDIT_ADJ]" Evaluator="Data1" PrintOn="Child5"/>
+    <Total Name="TotalISALES_CREDIT_ADJ" Expression="[ResponseDataModel.Data.Data.ISALES_CREDIT_ADJ]" Evaluator="Data1"/>
     <Total Name="TotalNSALES_DEBIT_ADJ" Expression="[ResponseDataModel.Data.Data.NSALES_DEBIT_ADJ]" Evaluator="Data1" PrintOn="ReportSummary1"/>
-    <Total Name="TotalNSALES_CREDIT_ADJ" Expression="[ResponseDataModel.Data.Data.NSALES_CREDIT_ADJ]" Evaluator="Data1" PrintOn="Child5"/>
+    <Total Name="TotalNSALES_CREDIT_ADJ" Expression="[ResponseDataModel.Data.Data.NSALES_CREDIT_ADJ]" Evaluator="Data1"/>
     <Total Name="TotalICUST_RECEIPT" Expression="[ResponseDataModel.Data.Data.ICUST_RECEIPT]" Evaluator="Data1" PrintOn="ReportSummary1"/>
     <Total Name="TotalNCUST_RECEIPT" Expression="[ResponseDataModel.Data.Data.NCUST_RECEIPT]" Evaluator="Data1" PrintOn="ReportSummary1"/>
-    <Total Name="TotalNALLOC_DISCOUNT" Expression="[ResponseDataModel.Data.Data.NALLOC_DISCOUNT]" Evaluator="Data1" PrintOn="Child5"/>
+    <Total Name="TotalNALLOC_DISCOUNT" Expression="[ResponseDataModel.Data.Data.NALLOC_DISCOUNT]" Evaluator="Data1"/>
     <Total Name="TotalNGAIN_LOSS" Expression="[ResponseDataModel.Data.Data.NGAIN_LOSS]" Evaluator="Data1" PrintOn="ReportSummary1"/>
     <Total Name="TotalNEND_BAL" Expression="[ResponseDataModel.Data.Data.NEND_BAL]" Evaluator="Data1" PrintOn="ReportSummary1"/>
     <Total Name="SubTotalISALES_DEBIT_NOTE" Expression="[ResponseDataModel.Data.Data.ISALES_DEBIT_NOTE]" Evaluator="Data1" PrintOn="GroupFooter1" ResetOnReprint="true"/>
-    <Total Name="SubTotalNSALES_RETURN" Expression="[ResponseDataModel.Data.Data.NSALES_RETURN]" Evaluator="Data1" PrintOn="Child6" ResetOnReprint="true"/>
+    <Total Name="SubTotalNSALES_RETURN" Expression="[ResponseDataModel.Data.Data.NSALES_RETURN]" Evaluator="Data1" ResetOnReprint="true"/>
     <Total Name="SubTotalNINVOICE" Expression="[ResponseDataModel.Data.Data.NINVOICE]" Evaluator="Data1" PrintOn="GroupFooter1" ResetOnReprint="true"/>
-    <Total Name="SubTotalISALES_CREDIT_NOTE" Expression="[ResponseDataModel.Data.Data.ISALES_CREDIT_NOTE]" Evaluator="Data1" PrintOn="Child6" ResetOnReprint="true"/>
+    <Total Name="SubTotalISALES_CREDIT_NOTE" Expression="[ResponseDataModel.Data.Data.ISALES_CREDIT_NOTE]" Evaluator="Data1" ResetOnReprint="true"/>
     <Total Name="SubTotalNSALES_DEBIT_NOTE" Expression="[ResponseDataModel.Data.Data.NSALES_DEBIT_NOTE]" Evaluator="Data1" PrintOn="GroupFooter1" ResetOnReprint="true"/>
-    <Total Name="SubTotalNSALES_CREDIT_NOTE" Expression="[ResponseDataModel.Data.Data.NSALES_CREDIT_NOTE]" Evaluator="Data1" PrintOn="Child5"/>
+    <Total Name="SubTotalNSALES_CREDIT_NOTE" Expression="[ResponseDataModel.Data.Data.NSALES_CREDIT_NOTE]" Evaluator="Data1"/>
     <Total Name="SubTotalISALES_DEBIT_ADJ" Expression="[ResponseDataModel.Data.Data.ISALES_DEBIT_ADJ]" Evaluator="Data1" PrintOn="GroupFooter1" ResetOnReprint="true"/>
-    <Total Name="SubTotalISALES_CREDIT_ADJ" Expression="[ResponseDataModel.Data.Data.ISALES_CREDIT_ADJ]" Evaluator="Data1" PrintOn="Child6" ResetOnReprint="true"/>
+    <Total Name="SubTotalISALES_CREDIT_ADJ" Expression="[ResponseDataModel.Data.Data.ISALES_CREDIT_ADJ]" Evaluator="Data1" ResetOnReprint="true"/>
     <Total Name="SubTotalNSALES_DEBIT_ADJ" Expression="[ResponseDataModel.Data.Data.NSALES_DEBIT_ADJ]" Evaluator="Data1" PrintOn="GroupFooter1" ResetOnReprint="true"/>
-    <Total Name="SubTotalNSALES_CREDIT_ADJ" Expression="[ResponseDataModel.Data.Data.NSALES_CREDIT_ADJ]" Evaluator="Data1" PrintOn="Child6" ResetOnReprint="true"/>
+    <Total Name="SubTotalNSALES_CREDIT_ADJ" Expression="[ResponseDataModel.Data.Data.NSALES_CREDIT_ADJ]" Evaluator="Data1" ResetOnReprint="true"/>
     <Total Name="SubTotalICUST_RECEIPT" Expression="[ResponseDataModel.Data.Data.ICUST_RECEIPT]" Evaluator="Data1" PrintOn="GroupFooter1" ResetOnReprint="true"/>
     <Total Name="SubTotalNCUST_RECEIPT" Expression="[ResponseDataModel.Data.Data.NCUST_RECEIPT]" Evaluator="Data1" PrintOn="GroupFooter1" ResetOnReprint="true"/>
-    <Total Name="SubTotalNALLOC_DISCOUNT" Expression="[ResponseDataModel.Data.Data.NALLOC_DISCOUNT]" Evaluator="Data1" PrintOn="Child6" ResetOnReprint="true"/>
+    <Total Name="SubTotalNALLOC_DISCOUNT" Expression="[ResponseDataModel.Data.Data.NALLOC_DISCOUNT]" Evaluator="Data1" ResetOnReprint="true"/>
     <Total Name="SubTotalNGAIN_LOSS" Expression="[ResponseDataModel.Data.Data.NGAIN_LOSS]" Evaluator="Data1" PrintOn="GroupFooter1" ResetOnReprint="true"/>
     <Total Name="SubTotalNEND_BAL" Expression="[ResponseDataModel.Data.Data.NEND_BAL]" Evaluator="Data1" PrintOn="GroupFooter1" ResetOnReprint="true"/>
     <Total Name="SubTotalNBEG_BAL" Expression="[ResponseDataModel.Data.Data.NBEG_BAL]" Evaluator="Data1" PrintOn="GroupFooter1" ResetOnReprint="true"/>
     <Total Name="SubTotalIINVOICE" Expression="[ResponseDataModel.Data.Data.IINVOICE]" Evaluator="Data1" PrintOn="GroupFooter1" ResetOnReprint="true"/>
-    <Total Name="SubTotalISALES_RETURN" Expression="[ResponseDataModel.Data.Data.ISALES_RETURN]" Evaluator="Data1" PrintOn="Child6" ResetOnReprint="true"/>
+    <Total Name="SubTotalISALES_RETURN" Expression="[ResponseDataModel.Data.Data.ISALES_RETURN]" Evaluator="Data1" ResetOnReprint="true"/>
   </Dictionary>
   <inherited Name="Page1" LastPageSource="15" FirstPageSource="15">
     <inherited Name="PageHeader1">
@@ -171,123 +154,115 @@
       <inherited Name="BaseHeaderUserId"/>
       <inherited Name="LabelUserId"/>
       <inherited Name="BaseHeaderDate"/>
-      <ChildBand Name="Child1" ZOrder="-1" Top="88.61" Width="1047.06" Height="56.7">
-        <TextObject Name="Text1" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.CUSTOMER]" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text2" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.PERIOD]" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text3" Left="529.2" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.CURRENCY]" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text4" Left="529.2" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.FILTER_BY]" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text5" Left="94.5" Top="9.45" Width="396.9" Height="18.9" Text=": [ResponseDataModel.Data.Data.CFILTER_VALUE]" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text6" Left="94.5" Top="28.35" Width="396.9" Height="18.9" Text=": [ResponseDataModel.Data.Header.CPERIOD_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text7" Left="623.7" Top="9.45" Width="311.85" Height="18.9" Text=": [ResponseDataModel.Data.Header.CCURRENCY]" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text8" Left="623.7" Top="28.35" Width="311.85" Height="18.9" Text=": [ResponseDataModel.Data.Header.CFILTER_BY]" Font="Arial Unicode MS, 7pt"/>
-        <ChildBand Name="Child2" Top="148.86" Width="1047.06" Height="28.35" Border.Lines="Top">
-          <TextObject Name="Text10" Width="151.2" Height="18.9" Text="[ResponseDataModel.Data.Label.CCUSTOMER_ID_NAME]" Font="Arial Unicode MS, 7pt, style=Bold"/>
-          <TextObject Name="Text12" Left="160.65" Width="103.95" Height="18.9" Text="[ResponseDataModel.Data.Label.NBEG_BAL]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-          <TextObject Name="Text13" Left="264.6" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Label.IINVOICE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-          <TextObject Name="Text22" Left="302.4" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Label.NINVOICE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-          <TextObject Name="Text26" Left="415.8" Width="47.25" Height="18.9" Text="[ResponseDataModel.Data.Label.ISALES_DEBIT_NOTEA]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-          <TextObject Name="Text38" Left="463.05" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Label.NSALES_DEBIT_NOTE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-          <TextObject Name="Text44" Left="576.45" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Label.ISALES_DEBIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-          <TextObject Name="Text50" Left="614.25" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Label.NSALES_DEBIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-          <TextObject Name="Text56" Left="727.65" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Label.ICUST_RECEIPT]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-          <TextObject Name="Text59" Left="765.45" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Label.NCUST_RECEIPT]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-          <TextObject Name="Text65" Left="878.85" Width="47.25" Height="28.35" Text="[ResponseDataModel.Data.Label.NGAIN_LOSS]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-          <TextObject Name="Text66" Left="926.1" Width="122.85" Height="18.9" Text="[ResponseDataModel.Data.Label.NEND_BAL]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-          <ChildBand Name="Child4" Top="180.77" Width="1047.06" Height="18.9" Border.Lines="Bottom">
-            <TextObject Name="Text15" Left="264.6" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Label.ISALES_RETURN]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-            <TextObject Name="Text29" Left="415.8" Width="47.25" Height="18.9" Text="[ResponseDataModel.Data.Label.ISALES_CREDIT_NOTE]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
-            <TextObject Name="Text33" Left="302.4" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Label.NSALES_RETURN]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-            <TextObject Name="Text39" Left="463.05" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Label.NSALES_CREDIT_NOTE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-            <TextObject Name="Text45" Left="576.45" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Label.ISALES_CREDIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-            <TextObject Name="Text51" Left="614.25" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Label.NSALES_CREDIT_ADJT]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-            <TextObject Name="Text60" Left="765.45" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Label.NALLOC_DISCOUNT]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-          </ChildBand>
+      <ChildBand Name="Child1" ZOrder="-1" Top="88.61" Width="1047.06" Height="47.25">
+        <TextObject Name="Text1" Top="9.45" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.CCATEGORY_ID]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text2" Top="28.35" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.PERIOD]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text3" Left="529.2" Top="9.45" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.CURRENCY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text4" Left="529.2" Top="28.35" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.FILTER_BY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text5" Left="56.7" Top="9.45" Width="396.9" Height="18.9" Text=": [ResponseDataModel.Data.Data.CFILTER_VALUE]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text6" Left="56.7" Top="28.35" Width="396.9" Height="18.9" Text=": [ResponseDataModel.Data.Header.CPERIOD_DISPLAY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text7" Left="585.9" Top="9.45" Width="311.85" Height="18.9" Text=": [ResponseDataModel.Data.Header.CCURRENCY]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text8" Left="585.9" Top="28.35" Width="311.85" Height="18.9" Text=": [ResponseDataModel.Data.Header.CFILTER_BY]" Font="Arial Unicode MS, 7pt"/>
+        <ChildBand Name="Child2" Top="139.41" Width="1047.06" Height="37.8" Border.Lines="Top, Bottom">
+          <TextObject Name="Text10" Width="151.2" Height="18.9" Text="[ResponseDataModel.Data.Label.CCUSTOMER_ID_NAME]" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text12" Left="160.65" Width="103.95" Height="18.9" Text="[ResponseDataModel.Data.Label.NBEG_BAL]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text13" Left="264.6" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Label.IINVOICE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text22" Left="302.4" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Label.NINVOICE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text26" Left="415.8" Width="47.25" Height="18.9" Text="[ResponseDataModel.Data.Label.ISALES_DEBIT_NOTEA]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text38" Left="463.05" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.NSALES_DEBIT_NOTE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text44" Left="557.55" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Label.ISALES_DEBIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text50" Left="595.35" Width="103.95" Height="18.9" Text="[ResponseDataModel.Data.Label.NSALES_DEBIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text56" Left="699.3" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Label.ICUST_RECEIPT]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text59" Left="737.1" Width="103.95" Height="18.9" Text="[ResponseDataModel.Data.Label.NCUST_RECEIPT]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text65" Left="841.05" Width="85.05" Height="28.35" Text="[ResponseDataModel.Data.Label.NGAIN_LOSS]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text66" Left="926.1" Width="122.85" Height="18.9" Text="[ResponseDataModel.Data.Label.NEND_BAL]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text33" Left="302.4" Top="18.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Label.NSALES_RETURN]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text15" Left="264.6" Top="18.9" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Label.ISALES_RETURN]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text29" Left="415.8" Top="18.9" Width="47.25" Height="18.9" Text="[ResponseDataModel.Data.Label.ISALES_CREDIT_NOTE]" HorzAlign="Right" Font="Arial, 7pt"/>
+          <TextObject Name="Text39" Left="463.05" Top="18.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.NSALES_CREDIT_NOTE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text45" Left="557.55" Top="18.9" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Label.ISALES_CREDIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text51" Left="595.35" Top="18.9" Width="103.95" Height="18.9" Text="[ResponseDataModel.Data.Label.NSALES_CREDIT_ADJT]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+          <TextObject Name="Text60" Left="737.1" Top="18.9" Width="103.95" Height="18.9" Text="[ResponseDataModel.Data.Label.NALLOC_DISCOUNT]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
         </ChildBand>
       </ChildBand>
     </inherited>
-    <GroupHeaderBand Name="GroupHeader1" ZOrder="0" Top="203.22" Width="1047.06" Height="28.35" Condition="[ResponseDataModel.Data.Data.CCATEGORY_ID]" SortOrder="None">
-      <TextObject Name="Text71" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.CCATEGORY_ID]" Font="Arial Unicode MS, 7pt"/>
-      <TextObject Name="Text72" Left="94.5" Top="9.45" Width="359.1" Height="18.9" Text=": [ResponseDataModel.Data.Data.CCATEGORY_ID] - [ResponseDataModel.Data.Data.CCATEGORY_NAME]" Font="Arial Unicode MS, 7pt">
+    <GroupHeaderBand Name="GroupHeader1" ZOrder="0" Top="180.77" Width="1047.06" Height="18.9" Condition="[ResponseDataModel.Data.Data.CCATEGORY_ID]" SortOrder="None">
+      <TextObject Name="Text71" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.CCATEGORY_ID]" Font="Arial Unicode MS, 7pt"/>
+      <TextObject Name="Text72" Left="56.7" Width="359.1" Height="18.9" Text=": [ResponseDataModel.Data.Data.CCATEGORY_ID] - [ResponseDataModel.Data.Data.CCATEGORY_NAME]" Font="Arial Unicode MS, 7pt">
         <Formats>
           <GeneralFormat/>
           <GeneralFormat/>
         </Formats>
       </TextObject>
-      <DataBand Name="Data1" Top="235.13" Width="1047.06" Height="32.13" DataSource="Data">
-        <TextObject Name="Text11" Left="151.2" Top="3.78" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Data.NBEG_BAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
-        <TextObject Name="Text14" Left="264.6" Top="3.78" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Data.IINVOICE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text21" Top="3.78" Width="151.2" Height="28.35" Text="[ResponseDataModel.Data.Data.CCUSTOMER_ID_NAME]" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text23" Left="302.4" Top="3.78" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Data.NINVOICE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
-        <TextObject Name="Text31" Left="415.8" Top="3.78" Width="47.25" Height="18.9" Text="[ResponseDataModel.Data.Data.ISALES_DEBIT_NOTE]" HorzAlign="Right" Font="Arial, 7pt"/>
-        <TextObject Name="Text40" Left="463.05" Top="3.78" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Data.NSALES_DEBIT_NOTE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
-        <TextObject Name="Text46" Left="576.45" Top="3.78" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Data.ISALES_DEBIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text52" Left="614.25" Top="3.78" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Data.NSALES_DEBIT_ADJ]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
-        <TextObject Name="Text57" Left="727.65" Top="3.78" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Data.ICUST_RECEIPT]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text61" Left="765.45" Top="3.78" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Data.NCUST_RECEIPT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
-        <TextObject Name="Text67" Left="878.85" Top="3.78" Width="47.25" Height="18.9" Text="[ResponseDataModel.Data.Data.NGAIN_LOSS]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
-        <TextObject Name="Text68" Left="926.1" Top="3.78" Width="122.85" Height="18.9" Text="[ResponseDataModel.Data.Data.NEND_BAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
-        <ChildBand Name="Child3" Top="270.81" Width="1047.06" Height="30.24">
-          <TextObject Name="Text16" Left="264.6" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Data.ISALES_RETURN]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-          <TextObject Name="Text34" Left="302.4" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Data.NSALES_RETURN]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
-          <TextObject Name="Text30" Left="415.8" Width="47.25" Height="18.9" Text="[ResponseDataModel.Data.Data.ISALES_CREDIT_NOTE]" HorzAlign="Right" Font="Arial, 7pt"/>
-          <TextObject Name="Text53" Left="614.25" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Data.NSALES_CREDIT_ADJ]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
-          <TextObject Name="Text41" Left="463.05" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Data.NSALES_CREDIT_NOTE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
-          <TextObject Name="Text47" Left="576.45" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Data.ISALES_CREDIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-          <TextObject Name="Text62" Left="765.45" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Data.NALLOC_DISCOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
-        </ChildBand>
+      <DataBand Name="Data1" Top="203.22" Width="1047.06" Height="41.58" DataSource="Data">
+        <TextObject Name="Text11" Left="151.2" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Data.NBEG_BAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text14" Left="264.6" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Data.IINVOICE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text21" Width="151.2" Height="28.35" Text="[ResponseDataModel.Data.Data.CCUSTOMER_ID_NAME]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text23" Left="302.4" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Data.NINVOICE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text31" Left="415.8" Width="47.25" Height="18.9" Text="[ResponseDataModel.Data.Data.ISALES_DEBIT_NOTE]" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text40" Left="463.05" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Data.NSALES_DEBIT_NOTE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text46" Left="557.55" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Data.ISALES_DEBIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text52" Left="595.35" Width="103.95" Height="18.9" Text="[ResponseDataModel.Data.Data.NSALES_DEBIT_ADJ]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text57" Left="699.3" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Data.ICUST_RECEIPT]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text61" Left="737.1" Width="103.95" Height="18.9" Text="[ResponseDataModel.Data.Data.NCUST_RECEIPT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text67" Left="841.05" Width="85.05" Height="18.9" Text="[ResponseDataModel.Data.Data.NGAIN_LOSS]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text68" Left="926.1" Width="122.85" Height="18.9" Text="[ResponseDataModel.Data.Data.NEND_BAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text62" Left="737.1" Top="18.9" Width="103.95" Height="18.9" Text="[ResponseDataModel.Data.Data.NALLOC_DISCOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text16" Left="264.6" Top="18.9" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Data.ISALES_RETURN]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text34" Left="302.4" Top="18.9" Width="113.4" Height="18.9" Text="[ResponseDataModel.Data.Data.NSALES_RETURN]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text30" Left="415.8" Top="18.9" Width="47.25" Height="18.9" Text="[ResponseDataModel.Data.Data.ISALES_CREDIT_NOTE]" HorzAlign="Right" Font="Arial, 7pt"/>
+        <TextObject Name="Text53" Left="595.35" Top="18.9" Width="103.95" Height="18.9" Text="[ResponseDataModel.Data.Data.NSALES_CREDIT_ADJ]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text41" Left="463.05" Top="18.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Data.NSALES_CREDIT_NOTE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text47" Left="557.55" Top="18.9" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.Data.ISALES_CREDIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
       </DataBand>
-      <GroupFooterBand Name="GroupFooter1" Top="304.61" Width="1047.06" Height="37.8" Border.Lines="Top">
-        <TextObject Name="Text73" Width="151.2" Height="37.8" Text="[ResponseDataModel.Data.Label.Total] [ResponseDataModel.Data.Data.CCATEGORY_ID] - [ResponseDataModel.Data.Data.CCATEGORY_NAME]" Font="Arial Unicode MS, 7pt">
+      <GroupFooterBand Name="GroupFooter1" Top="248.36" Width="1047.06" Height="37.8" Border.Lines="Top">
+        <TextObject Name="Text73" Width="151.2" Height="37.8" Text="[ResponseDataModel.Data.Label.Total] [ResponseDataModel.Data.Data.CCATEGORY_ID] - [ResponseDataModel.Data.Data.CCATEGORY_NAME]" Font="Arial Unicode MS, 7pt, style=Bold">
           <Formats>
             <GeneralFormat/>
             <GeneralFormat/>
             <GeneralFormat/>
           </Formats>
         </TextObject>
-        <TextObject Name="Text74" Left="151.2" Width="113.4" Height="18.9" Text="[SubTotalNBEG_BAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text75" Left="264.6" Width="37.8" Height="18.9" Text="[SubTotalIINVOICE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text77" Left="302.4" Width="113.4" Height="18.9" Text="[SubTotalNINVOICE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text79" Left="415.8" Width="47.25" Height="18.9" Text="[SubTotalISALES_DEBIT_NOTE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text81" Left="463.05" Width="113.4" Height="18.9" Text="[SubTotalNSALES_DEBIT_NOTE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text83" Left="576.45" Width="37.8" Height="18.9" Text="[SubTotalISALES_DEBIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text85" Left="614.25" Width="113.4" Height="18.9" Text="[SubTotalNSALES_DEBIT_ADJ]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text87" Left="727.65" Width="37.8" Height="18.9" Text="[SubTotalICUST_RECEIPT]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text88" Left="765.45" Width="113.4" Height="18.9" Text="[SubTotalNCUST_RECEIPT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text90" Left="878.85" Width="47.25" Height="18.9" Text="[SubTotalNGAIN_LOSS]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text91" Left="926.1" Width="122.85" Height="18.9" Text="[SubTotalNEND_BAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-        <ChildBand Name="Child6" Top="345.96" Width="1047.06" Height="28.35">
-          <TextObject Name="Text76" Left="264.6" Width="37.8" Height="18.9" Text="[SubTotalISALES_RETURN]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-          <TextObject Name="Text78" Left="302.4" Width="113.4" Height="18.9" Text="[SubTotalNSALES_RETURN]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-          <TextObject Name="Text80" Left="415.8" Width="47.25" Height="18.9" Text="[SubTotalISALES_CREDIT_NOTE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-          <TextObject Name="Text82" Left="463.05" Width="113.4" Height="18.9" Text="[SubTotalNSALES_CREDIT_NOTE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-          <TextObject Name="Text84" Left="576.45" Width="37.8" Height="18.9" Text="[SubTotalISALES_CREDIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-          <TextObject Name="Text86" Left="614.25" Width="113.4" Height="18.9" Text="[SubTotalNSALES_CREDIT_ADJ]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-          <TextObject Name="Text89" Left="765.45" Width="113.4" Height="18.9" Text="[SubTotalNALLOC_DISCOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
-        </ChildBand>
+        <TextObject Name="Text74" Left="151.2" Width="113.4" Height="18.9" Text="[SubTotalNBEG_BAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text75" Left="264.6" Width="37.8" Height="18.9" Text="[SubTotalIINVOICE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text77" Left="302.4" Width="113.4" Height="18.9" Text="[SubTotalNINVOICE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text79" Left="415.8" Width="47.25" Height="18.9" Text="[SubTotalISALES_DEBIT_NOTE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text81" Left="463.05" Width="94.5" Height="18.9" Text="[SubTotalNSALES_DEBIT_NOTE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text83" Left="557.55" Width="37.8" Height="18.9" Text="[SubTotalISALES_DEBIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text85" Left="595.35" Width="103.95" Height="18.9" Text="[SubTotalNSALES_DEBIT_ADJ]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text87" Left="699.3" Width="37.8" Height="18.9" Text="[SubTotalICUST_RECEIPT]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text88" Left="737.1" Width="103.95" Height="18.9" Text="[SubTotalNCUST_RECEIPT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text90" Left="841.05" Width="85.05" Height="18.9" Text="[SubTotalNGAIN_LOSS]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text91" Left="926.1" Width="122.85" Height="18.9" Text="[SubTotalNEND_BAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text78" Left="302.4" Top="18.9" Width="113.4" Height="18.9" Text="[SubTotalNSALES_RETURN]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text76" Left="264.6" Top="18.9" Width="37.8" Height="18.9" Text="[SubTotalISALES_RETURN]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text80" Left="415.8" Top="18.9" Width="47.25" Height="18.9" Text="[SubTotalISALES_CREDIT_NOTE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text82" Left="463.05" Top="18.9" Width="94.5" Height="18.9" Text="[SubTotalNSALES_CREDIT_NOTE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text84" Left="557.55" Top="18.9" Width="37.8" Height="18.9" Text="[SubTotalISALES_CREDIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text86" Left="595.35" Top="18.9" Width="103.95" Height="18.9" Text="[SubTotalNSALES_CREDIT_ADJ]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+        <TextObject Name="Text89" Left="737.1" Top="18.9" Width="103.95" Height="18.9" Text="[SubTotalNALLOC_DISCOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
       </GroupFooterBand>
     </GroupHeaderBand>
-    <ReportSummaryBand Name="ReportSummary1" ZOrder="-1" Top="377.87" Width="1047.06" Height="28.35" Border.Lines="Top">
-      <TextObject Name="Text17" Left="18.9" Width="132.3" Height="28.35" Text="[ResponseDataModel.Data.Label.Grand_Total]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+    <ReportSummaryBand Name="ReportSummary1" ZOrder="-1" Top="289.71" Width="1047.06" Height="37.8" Border.Lines="Top, Bottom">
+      <TextObject Name="Text17" Width="151.2" Height="28.35" Text="[ResponseDataModel.Data.Label.Grand_Total]" Font="Arial Unicode MS, 7pt, style=Bold"/>
       <TextObject Name="Text19" Left="264.6" Width="37.8" Height="18.9" Text="[TotalIINVOICE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
       <TextObject Name="Text18" Left="151.2" Width="113.4" Height="18.9" Text="[TotalBeginingBalance]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
       <TextObject Name="Text32" Left="415.8" Width="47.25" Height="18.9" Text="[TotalISALES_DEBIT_NOTE]" HorzAlign="Right" Font="Arial, 7pt, style=Bold"/>
       <TextObject Name="Text36" Left="302.4" Width="113.4" Height="18.9" Text="[TotalNINVOICE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-      <TextObject Name="Text42" Left="463.05" Width="113.4" Height="18.9" Text="[TotalNSALES_DEBIT_NOTE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-      <TextObject Name="Text48" Left="576.45" Width="37.8" Height="18.9" Text="[TotalISALES_DEBIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-      <TextObject Name="Text54" Left="614.25" Width="113.4" Height="18.9" Text="[TotalNSALES_DEBIT_ADJ]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-      <TextObject Name="Text58" Left="727.65" Width="37.8" Height="18.9" Text="[TotalICUST_RECEIPT]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-      <TextObject Name="Text63" Left="765.45" Width="113.4" Height="18.9" Text="[TotalNCUST_RECEIPT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-      <TextObject Name="Text69" Left="878.85" Width="47.25" Height="18.9" Text="[TotalNGAIN_LOSS]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+      <TextObject Name="Text42" Left="463.05" Width="94.5" Height="18.9" Text="[TotalNSALES_DEBIT_NOTE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+      <TextObject Name="Text48" Left="557.55" Width="37.8" Height="18.9" Text="[TotalISALES_DEBIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+      <TextObject Name="Text54" Left="595.35" Width="103.95" Height="18.9" Text="[TotalNSALES_DEBIT_ADJ]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+      <TextObject Name="Text58" Left="699.3" Width="37.8" Height="18.9" Text="[TotalICUST_RECEIPT]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+      <TextObject Name="Text63" Left="737.1" Width="103.95" Height="18.9" Text="[TotalNCUST_RECEIPT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+      <TextObject Name="Text69" Left="841.05" Width="85.05" Height="18.9" Text="[TotalNGAIN_LOSS]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
       <TextObject Name="Text70" Left="926.1" Width="122.85" Height="18.9" Text="[TotalNEND_BAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-      <ChildBand Name="Child5" Top="409.78" Width="1047.06" Height="26.46" Border.Lines="Bottom">
-        <TextObject Name="Text20" Left="264.6" Width="37.8" Height="18.9" Text="[TotalISALES_RETURN]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text35" Left="302.4" Width="113.4" Height="18.9" Text="[TotalNSALES_RETURN]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text37" Left="415.8" Width="47.25" Height="18.9" Text="[TotalISALES_CREDIT_NOTE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text43" Left="463.05" Width="113.4" Height="18.9" Text="[TotalNSALES_CREDIT_NOTE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text49" Left="576.45" Width="37.8" Height="18.9" Text="[TotalISALES_CREDIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text55" Left="614.25" Width="113.4" Height="18.9" Text="[TotalNSALES_CREDIT_ADJ]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-        <TextObject Name="Text64" Left="765.45" Width="113.4" Height="18.9" Text="[TotalNALLOC_DISCOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
-      </ChildBand>
+      <TextObject Name="Text35" Left="302.4" Top="18.9" Width="113.4" Height="18.9" Text="[TotalNSALES_RETURN]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+      <TextObject Name="Text20" Left="264.6" Top="18.9" Width="37.8" Height="18.9" Text="[TotalISALES_RETURN]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+      <TextObject Name="Text37" Left="415.8" Top="18.9" Width="47.25" Height="18.9" Text="[TotalISALES_CREDIT_NOTE]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+      <TextObject Name="Text43" Left="463.05" Top="18.9" Width="94.5" Height="18.9" Text="[TotalNSALES_CREDIT_NOTE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+      <TextObject Name="Text49" Left="557.55" Top="18.9" Width="37.8" Height="18.9" Text="[TotalISALES_CREDIT_ADJ]" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+      <TextObject Name="Text55" Left="595.35" Top="18.9" Width="103.95" Height="18.9" Text="[TotalNSALES_CREDIT_ADJ]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
+      <TextObject Name="Text64" Left="737.1" Top="18.9" Width="103.95" Height="18.9" Text="[TotalNALLOC_DISCOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt, style=Bold"/>
     </ReportSummaryBand>
   </inherited>
 </inherited>

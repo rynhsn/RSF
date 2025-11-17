@@ -10,7 +10,7 @@
         <R_Label>@_localizer["Category"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
-        <R_TextBox @bind-Value="@_viewModel.SelectedCategoryId" OnLostFocus="OnLostFocusLookupCategory" Enabled/>
+        <R_TextBox @bind-Value="@_viewModel.SelectedCategoryId" OnLostFocused="OnLostFocusLookupCategory" Enabled/>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_Lookup R_Before_Open_Lookup="BeforeCategoryLookup" R_After_Open_Lookup="AfterCategoryLookup" Enabled>...</R_Lookup>

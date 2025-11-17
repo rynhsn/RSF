@@ -103,7 +103,11 @@ public partial class HDM00400PopupUpload : R_Page
             //READ EXCEL
             var loExcel = ExcelInject;
 
-            var loDataSet = loExcel.R_ReadFromExcel(fileByte, new[] { "PublicLocation" });
+            //var loDataSet = loExcel.R_ReadFromExcel(fileByte, new[] { "PublicLocation" });
+            var loDataSet = loExcel.R_ReadExcel(fileByte, option =>
+            {
+                option.TableNames = new string[] { "PublicLocation" };
+            });
             var loResult = R_FrontUtility.R_ConvertTo<HDM00400UploadFromFileDTO>(loDataSet.Tables[0]);
 
             _viewModel.FileHasData = loResult.Count > 0;

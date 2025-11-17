@@ -55,7 +55,7 @@
                    Enabled="@(_viewModel.selectedRadioDeptType=="2")"
                    CharacterCasing="R_eCharacterCasing.Upper"
                    MaxLength="int.MaxValue"
-                   OnLostFocus="@OnLostFocus_LookupDept" TabIndex="9" />
+                   OnLostFocused="@OnLostFocus_LookupDept" TabIndex="9" />
     </R_ItemLayout>
     <R_ItemLayout>
         <R_Lookup Enabled="@(_viewModel.selectedRadioDeptType=="2")" R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupDept" R_After_Open_Lookup="@AfterOpen_lookupDeptAsync" TabIndex="10">...</R_Lookup>
@@ -135,7 +135,7 @@
                        Enabled="@_gridDepositList.DataSource.Any(x=> x.LSELECTED)"
                        CharacterCasing="R_eCharacterCasing.Upper"
                        MaxLength="int.MaxValue"
-                       OnLostFocus="@OnLostFocus_LookupDeptProcess" TabIndex="9" />
+                       OnLostFocused="@OnLostFocus_LookupDeptProcess" TabIndex="9" />
         </R_ItemLayout>
         <R_ItemLayout>
             <R_Lookup Enabled="@_gridDepositList.DataSource.Any(x=> x.LSELECTED)" R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupDeptProcess" R_After_Open_Lookup="@AfterOpen_lookupDeptAsyncProcess" TabIndex="10">...</R_Lookup>
@@ -156,7 +156,7 @@
                        Enabled="@_gridDepositList.DataSource.Any(x=> x.LSELECTED)"
                        CharacterCasing="R_eCharacterCasing.Upper"
                        MaxLength="int.MaxValue"
-                       OnLostFocus="@OnLostFocus_LookupChargesId" TabIndex="9" />
+                       OnLostFocused="@OnLostFocus_LookupChargesId" TabIndex="9" />
         </R_ItemLayout>
         <R_ItemLayout>
             <R_Lookup Enabled="@_gridDepositList.DataSource.Any(x=> x.LSELECTED)" R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupChargesId" R_After_Open_Lookup="@AfterOpen_lookupChargesId" TabIndex="10">...</R_Lookup>

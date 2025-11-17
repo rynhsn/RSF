@@ -33,7 +33,7 @@
                 <R_TextBox @bind-Value="@_viewModel.oParameterInvoice.CDEPT_CODE"
                            R_ConductorSource="@_conductorHeader"
                            MaxLength="20"
-                           OnLostFocus="OnLostFocusDepartment" />
+                           OnLostFocused="OnLostFocusDepartment" />
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Lookup R_ConductorSource="@_conductorHeader"
@@ -60,7 +60,7 @@
                 <R_TextBox @bind-Value="@_viewModel.oParameterInvoice.CTENANT_ID"
                            R_ConductorSource="@_conductorHeader"
                            MaxLength="20"
-                           OnLostFocus="@OnLostFocusTenant"
+                           OnLostFocused="@OnLostFocusTenant"
                            Enabled="@(!_viewModel.oParameterInvoice.LALL_TENANT)" />
             </R_ItemLayout>
             <R_ItemLayout>

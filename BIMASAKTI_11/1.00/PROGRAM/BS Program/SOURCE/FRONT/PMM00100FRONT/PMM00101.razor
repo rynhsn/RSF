@@ -72,7 +72,7 @@
                                        Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LELECTRICITY))"
                                        CharacterCasing="R_eCharacterCasing.Upper"
                                        MaxLength="20"
-                                       OnLostFocus="@OnLostFocus_ElecChargesAsync"
+                                       OnLostFocused="@OnLostFocus_ElecChargesAsync"
                                        TabIndex="1" />
                         </R_ItemLayout>
                         <R_ItemLayout>
@@ -102,7 +102,7 @@
                                        Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LELECTRICITY)&&(_viewModel.HoUtilBuildingMapping.LELECTRICITY_CHARGES_TAXABLE))"
                                        CharacterCasing="R_eCharacterCasing.Upper"
                                        MaxLength="20"
-                                       OnLostFocus="@OnLostFocus_ElecChargesTaxAsync"
+                                       OnLostFocused="@OnLostFocus_ElecChargesTaxAsync"
                                        TabIndex="3" />
                         </R_ItemLayout>
                         <R_ItemLayout>
@@ -141,7 +141,7 @@
                                        Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LCHILLER))"
                                        CharacterCasing="R_eCharacterCasing.Upper"
                                        MaxLength="int.MaxValue"
-                                       OnLostFocus="@OnLostFocus_ChillerChargesAsync"
+                                       OnLostFocused="@OnLostFocus_ChillerChargesAsync"
                                        TabIndex="1" />
                         </R_ItemLayout>
                         <R_ItemLayout>
@@ -171,7 +171,7 @@
                                        Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LCHILLER)&&(_viewModel.HoUtilBuildingMapping.LCHILLER_CHARGES_TAXABLE))"
                                        CharacterCasing="R_eCharacterCasing.Upper"
                                        MaxLength="20"
-                                       OnLostFocus="@OnLostFocus_ChillerChargesTaxAsync"
+                                       OnLostFocused="@OnLostFocus_ChillerChargesTaxAsync"
                                        TabIndex="3" />
                         </R_ItemLayout>
                         <R_ItemLayout>
@@ -210,7 +210,7 @@
                                        Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&_viewModel.HoUtilBuildingMapping.LGAS)"
                                        CharacterCasing="R_eCharacterCasing.Upper"
                                        MaxLength="20"
-                                       OnLostFocus="@OnLostFocus_GasChargesAsync"
+                                       OnLostFocused="@OnLostFocus_GasChargesAsync"
                                        TabIndex="6" />
                         </R_ItemLayout>
                         <R_ItemLayout>
@@ -240,7 +240,7 @@
                                        Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LGAS)&&(_viewModel.HoUtilBuildingMapping.LGAS_CHARGES_TAXABLE))"
                                        CharacterCasing="R_eCharacterCasing.Upper"
                                        MaxLength="20"
-                                       OnLostFocus="@OnLostFocus_GasChargesTaxAsync"
+                                       OnLostFocused="@OnLostFocus_GasChargesTaxAsync"
                                        TabIndex="8" />
                         </R_ItemLayout>
                         <R_ItemLayout>
@@ -279,7 +279,7 @@
                                        Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&_viewModel.HoUtilBuildingMapping.LWATER)"
                                        CharacterCasing="R_eCharacterCasing.Upper"
                                        MaxLength="20"
-                                       OnLostFocus="@OnLostFocus_WaterChargesAsync"
+                                       OnLostFocused="@OnLostFocus_WaterChargesAsync"
                                        TabIndex="11" />
                         </R_ItemLayout>
                         <R_ItemLayout>
@@ -309,7 +309,7 @@
                                        Enabled="@(_conRef.R_ConductorMode!=R_eConductorMode.Normal&&(_viewModel.HoUtilBuildingMapping.LWATER)&&(_viewModel.HoUtilBuildingMapping.LWATER_CHARGES_TAXABLE))"
                                        CharacterCasing="R_eCharacterCasing.Upper"
                                        MaxLength="20"
-                                       OnLostFocus="@OnLostFocus_WaterChargesTaxAsync"
+                                       OnLostFocused="@OnLostFocus_WaterChargesTaxAsync"
                                        TabIndex="13" />
                         </R_ItemLayout>
                         <R_ItemLayout>

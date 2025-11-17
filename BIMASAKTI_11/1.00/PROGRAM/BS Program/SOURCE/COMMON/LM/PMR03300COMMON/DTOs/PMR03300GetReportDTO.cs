@@ -6,9 +6,6 @@ namespace PMR03300COMMON.DTOs
 {
     public class PMR03300GetReportDTO
     {
-        /// <summary>
-        /// tidak gunakan
-        /// </summary>
         public int INO { get; set; }
         public string CCOMPANY_ID { get; set; }
         public string CPROPERTY_ID { get; set; }

@@ -221,35 +221,25 @@ public partial class HDR00200 : R_Page
     private async Task OnLostFocusFromDept(object obj)
     {
         var loEx = new R_Exception();
-
-        var loLookupViewModel = new LookupGSL00700ViewModel();
         try
         {
-            if (string.IsNullOrEmpty(_viewModel.ReportParam.CFROM_DEPT_CODE))
+            LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
+            var loParam = new GSL00710ParameterDTO
             {
-                _viewModel.ReportParam.CFROM_DEPT_NAME = "";
-                return;
-            }
-
-            var param = new GSL00700ParameterDTO
-            {
-                CSEARCH_TEXT = _viewModel.ReportParam.CFROM_DEPT_CODE
+                CSEARCH_TEXT = _viewModel.ReportParam.CFROM_DEPT_CODE,
+                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
             };
+            var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
 
-            GSL00700DTO loResult = null;
-
-            loResult = await loLookupViewModel.GetDepartment(param);
-
+            //show result & show name/related another fields
             if (loResult == null)
             {
                 loEx.Add(R_FrontUtility.R_GetError(
-                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                    "_ErrLookup01"));
-                _viewModel.ReportParam.CFROM_DEPT_CODE = "";
-                _viewModel.ReportParam.CFROM_DEPT_NAME = "";
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                _viewModel.ReportParam.CFROM_DEPT_NAME = ""; //kosongin bind textbox name kalo gaada
                 goto EndBlock;
             }
-
             _viewModel.ReportParam.CFROM_DEPT_CODE = loResult.CDEPT_CODE;
             _viewModel.ReportParam.CFROM_DEPT_NAME = loResult.CDEPT_NAME;
         }
@@ -264,8 +254,8 @@ public partial class HDR00200 : R_Page
 
     private void BeforeLookupFromDept(R_BeforeOpenLookupEventArgs eventArgs)
     {
-        eventArgs.TargetPageType = typeof(GSL00700);
-        eventArgs.Parameter = new GSL00700ParameterDTO();
+        eventArgs.TargetPageType = typeof(GSL00710);
+        eventArgs.Parameter = new GSL00710ParameterDTO() {CPROPERTY_ID=_viewModel.ReportParam.CPROPERTY_ID };
     }
 
     private void AfterLookupFromDept(R_AfterOpenLookupEventArgs eventArgs)
@@ -273,7 +263,7 @@ public partial class HDR00200 : R_Page
         var loEx = new R_Exception();
         try
         {
-            var loTempResult = (GSL00700DTO)eventArgs.Result;
+            var loTempResult = (GSL00710DTO)eventArgs.Result;
             if (loTempResult == null)
                 return;
 
@@ -294,32 +284,23 @@ public partial class HDR00200 : R_Page
     private async Task OnLostFocusToDept(object obj)
     {
         var loEx = new R_Exception();
-
-        var loLookupViewModel = new LookupGSL00700ViewModel();
         try
         {
-            if (string.IsNullOrEmpty(_viewModel.ReportParam.CTO_DEPT_CODE))
+            LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
+            var loParam = new GSL00710ParameterDTO
             {
-                _viewModel.ReportParam.CTO_DEPT_NAME = "";
-                return;
-            }
-
-            var param = new GSL00700ParameterDTO
-            {
-                CSEARCH_TEXT = _viewModel.ReportParam.CTO_DEPT_CODE
+                CSEARCH_TEXT = _viewModel.ReportParam.CTO_DEPT_CODE,
+                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
             };
+            var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
 
-            GSL00700DTO loResult = null;
-
-            loResult = await loLookupViewModel.GetDepartment(param);
-
+            //show result & show name/related another fields
             if (loResult == null)
             {
                 loEx.Add(R_FrontUtility.R_GetError(
-                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                    "_ErrLookup01"));
-                _viewModel.ReportParam.CTO_DEPT_CODE = "";
-                _viewModel.ReportParam.CTO_DEPT_NAME = "";
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                _viewModel.ReportParam.CTO_DEPT_NAME = ""; //kosongin bind textbox name kalo gaada
                 goto EndBlock;
             }
 
@@ -337,8 +318,8 @@ public partial class HDR00200 : R_Page
 
     private void BeforeLookupToDept(R_BeforeOpenLookupEventArgs eventArgs)
     {
-        eventArgs.TargetPageType = typeof(GSL00700);
-        eventArgs.Parameter = new GSL00700ParameterDTO();
+        eventArgs.TargetPageType = typeof(GSL00710);
+        eventArgs.Parameter = new GSL00710ParameterDTO() { CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID };
     }
 
     private void AfterLookupToDept(R_AfterOpenLookupEventArgs eventArgs)
@@ -346,7 +327,7 @@ public partial class HDR00200 : R_Page
         var loEx = new R_Exception();
         try
         {
-            var loTempResult = (GSL00700DTO)eventArgs.Result;
+            var loTempResult = (GSL00710DTO)eventArgs.Result;
             if (loTempResult == null)
                 return;
 

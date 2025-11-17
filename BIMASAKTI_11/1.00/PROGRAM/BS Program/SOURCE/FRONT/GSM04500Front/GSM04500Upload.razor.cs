@@ -99,7 +99,11 @@ namespace GSM04500Front
                 var fileByte = loMS.ToArray();
                 //READ EXCEL
                 var loExcel = ExcelInject;
-                var loDataSet = loExcel.R_ReadFromExcel(fileByte, new[] { "JournalGroup" });
+                //var loDataSet = loExcel.R_ReadFromExcel(fileByte, new[] { "JournalGroup" });
+                var loDataSet = loExcel.R_ReadExcel(fileByte, option =>
+                {
+                    option.TableNames = new string[] { "JournalGroup" };
+                });
 
                 var loResult = R_FrontUtility.R_ConvertTo<GSM04500UploadFromExcelDTO>(loDataSet.Tables[0]);
 

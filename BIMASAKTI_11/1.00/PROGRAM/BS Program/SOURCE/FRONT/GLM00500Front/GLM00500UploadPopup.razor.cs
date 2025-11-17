@@ -109,8 +109,14 @@ public partial class GLM00500UploadPopup : R_Page
 
             //add filebyte to DTO
             // var loExcel = ExcelInject;
-            var loDataSet =
-                ExcelInject.R_ReadFromExcel(loFileByte, new[] { "Budget" }); //ambil data di sheet Budget
+            //var loDataSet =  ExcelInject.R_ReadFromExcel(loFileByte, new[] { "Budget" }); //ambil data di sheet Budget
+
+            var loDataSet = ExcelInject.R_ReadExcel(loFileByte, option =>
+            {
+                option.TableNames = new string[] { "Budget" };
+            });
+
+
             var loResult = R_FrontUtility.R_ConvertTo<GLM00500UploadFromFileDTO>(loDataSet.Tables[0]);
 
             _viewModel.AssignData(loResult);

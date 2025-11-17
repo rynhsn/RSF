@@ -61,7 +61,7 @@ public partial class PMM02000Upload : R_Page
             //READ EXCEL
             // var loExcel = ExcelInject;
 
-            var loDataSet = ExcelInject.R_ReadFromExcel(fileByte, new[] { "Salesman" });
+            var loDataSet = ExcelInject.R_ReadExcel(fileByte, option => { option.TableNames = new string[] { "Salesman" }; });
             var loResult = R_FrontUtility.R_ConvertTo<PMM02000FromExcelDTO>(loDataSet.Tables[0]);
 
             // _viewModel.FileHasData = loResult.Count > 0 ? true : false;

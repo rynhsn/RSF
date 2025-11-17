@@ -27,7 +27,10 @@
       },
       "BaseHeaderResources/1.0.0": {
         "runtime": {
-          "BaseHeaderResources.dll": {}
+          "BaseHeaderResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         },
         "resources": {
           "id/BaseHeaderResources.resources.dll": {
@@ -40,17 +43,26 @@
           "ICR00600Common": "1.0.0"
         },
         "runtime": {
-          "ICR00600Back.dll": {}
+          "ICR00600Back.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "ICR00600BackResources/1.0.0": {
         "runtime": {
-          "ICR00600BackResources.dll": {}
+          "ICR00600BackResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "ICR00600Common/1.0.0": {
         "runtime": {
-          "ICR00600Common.dll": {}
+          "ICR00600Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "BaseHeaderReportCOMMON/1.0.0.0": {
@@ -120,6 +132,22 @@
       "R_ReportFastReportBack/1.0.0.0": {
         "runtime": {
           "R_ReportFastReportBack.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_StorageCommon/1.0.0.0": {
+        "runtime": {
+          "R_StorageCommon.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_Storage/1.0.0.0": {
+        "runtime": {
+          "R_Storage.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -237,6 +265,16 @@
       "sha512": ""
     },
     "R_ReportFastReportBack/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_StorageCommon/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_Storage/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

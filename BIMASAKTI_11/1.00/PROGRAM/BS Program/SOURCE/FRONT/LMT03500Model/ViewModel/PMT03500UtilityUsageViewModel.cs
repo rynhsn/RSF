@@ -110,16 +110,20 @@ namespace PMT03500Model.ViewModel
                         nameof(IPMT03500UtilityUsage.PMT03500GetSystemParam), loParam);
                 SystemParam = loReturn.Data;
 
-                InvPeriodYear = SystemParam.CSOFT_PERIOD_YY;
-                InvPeriodNo = SystemParam.CSOFT_PERIOD_MM;
+                //========zf CR===========
+                //InvPeriodYear = SystemParam.CSOFT_PERIOD_YY;  
+                //InvPeriodNo = SystemParam.CSOFT_PERIOD_MM;
+                //========zf CR===========
+
 
                 if (UtilityTypeId == "01" || UtilityTypeId == "02")
                 {
                     // UtilityPeriodYear diisi dari 4 karaketer pertama dari property SystemParam.CELECTRIC_PERIOD
                     if (int.Parse(SystemParam.CELECTRIC_PERIOD) > int.Parse(SystemParam.CSOFT_PERIOD))
                     {
-                        InvPeriodYear = SystemParam.CELECTRIC_PERIOD.Substring(0, 4);
-                        InvPeriodNo = SystemParam.CELECTRIC_PERIOD.Substring(4, 2);
+                        //InvPeriodYear = SystemParam.CELECTRIC_PERIOD.Substring(0, 4);
+                        //InvPeriodNo = SystemParam.CELECTRIC_PERIOD.Substring(4, 2);
+
                         // UtilityPeriodYear = SystemParam.CELECTRIC_PERIOD.Substring(0, 4);
                         // UtilityPeriodNo = SystemParam.CELECTRIC_PERIOD.Substring(4, 2);
                     }
@@ -128,8 +132,9 @@ namespace PMT03500Model.ViewModel
                 {
                     if (int.Parse(SystemParam.CWATER_PERIOD) > int.Parse(SystemParam.CSOFT_PERIOD))
                     {
-                        InvPeriodYear = SystemParam.CWATER_PERIOD.Substring(0, 4);
-                        InvPeriodNo = SystemParam.CWATER_PERIOD.Substring(4, 2);
+                        //InvPeriodYear = SystemParam.CWATER_PERIOD.Substring(0, 4);
+                        //InvPeriodNo = SystemParam.CWATER_PERIOD.Substring(4, 2);
+
                         // UtilityPeriodYear = SystemParam.CWATER_PERIOD.Substring(0, 4);
                         // UtilityPeriodNo = SystemParam.CWATER_PERIOD.Substring(4, 2);
                     }
@@ -138,8 +143,9 @@ namespace PMT03500Model.ViewModel
                 {
                     if (int.Parse(SystemParam.CGAS_PERIOD) > int.Parse(SystemParam.CSOFT_PERIOD))
                     {
-                        InvPeriodYear = SystemParam.CGAS_PERIOD.Substring(0, 4);
-                        InvPeriodNo = SystemParam.CGAS_PERIOD.Substring(4, 2);
+                        //InvPeriodYear = SystemParam.CGAS_PERIOD.Substring(0, 4);
+                        //InvPeriodNo = SystemParam.CGAS_PERIOD.Substring(4, 2);
+
                         // UtilityPeriodYear = SystemParam.CGAS_PERIOD.Substring(0, 4);
                         // UtilityPeriodNo = SystemParam.CGAS_PERIOD.Substring(4, 2);
                     }
@@ -491,7 +497,11 @@ namespace PMT03500Model.ViewModel
                     .PMT03500DownloadTemplateFile));
 
                 // poExcel.R_ReadFromExcel();
-                loDataSet = poExcel.R_ReadFromExcel(loResult.FileBytes, new[] { "Definition" });
+                //loDataSet = poExcel.R_ReadFromExcel(loResult.FileBytes, new[] { "Definition" });
+                loDataSet = poExcel.R_ReadExcel(loResult.FileBytes, option =>
+                {
+                    option.TableNames = new string[] { "Definition" };
+                });
                 // loRtn = loDataSet.Tables[0];
             }
             catch (Exception ex)
@@ -579,7 +589,8 @@ namespace PMT03500Model.ViewModel
             // var loDefinition = await DownloadTemplate(poExcel);
             if (UtilityType == EPMT03500UtilityUsageType.EC)
             {
-                var loConvertData = GridUtilityUsageList.Where(x => string.IsNullOrEmpty(x.CSTATUS)).Select(item =>
+                //var loConvertData = GridUtilityUsageList.Where(x => string.IsNullOrEmpty(x.CSTATUS)).Select(item => //edit ZF
+                var loConvertData = GridUtilityUsageList.Where(x => x.CSTATUS_CODE == "00").Select(item =>
                     new PMT03500UtilityExcelECDTO
                     {
                         BuildingId = item.CBUILDING_ID,

@@ -13,6 +13,7 @@ using R_BlazorFrontEnd.Controls.MessageBox;
 using BlazorClientHelper;
 using R_BlazorFrontEnd.Interfaces;
 using R_APICommonDTO;
+using R_BlazorFrontEnd.Excel;
 
 namespace GSM04000Front
 {
@@ -99,7 +100,11 @@ namespace GSM04000Front
                 //add filebyte to DTO
                 var loExcel = _excelProvider;
 
-                var loDataSet = loExcel.R_ReadFromExcel(loFileByte, new string[] { "Department" });
+                //var loDataSet = loExcel.R_ReadFromExcel(loFileByte, new string[] { "Department" });
+                var loDataSet = loExcel.R_ReadExcel(loFileByte, option =>
+                {
+                    option.TableNames = new string[] { "Department" };
+                });
 
                 var loResult = R_FrontUtility.R_ConvertTo<GSM04000ExcelBatchDTO>(loDataSet.Tables[0]);
 

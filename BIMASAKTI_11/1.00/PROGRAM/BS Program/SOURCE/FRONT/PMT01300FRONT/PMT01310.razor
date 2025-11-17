@@ -22,7 +22,7 @@
                 </R_ItemLayout>
                 <R_ItemLayout Style="width: 26%">
                     <R_TextBox @bind-Value="@_viewModel.Data.CLINK_REF_NO"
-                               OnLostFocus="@LOCRefNo_OnLostFocus"
+                               OnLostFocused="@LOCRefNo_OnLostFocus"
                                MaxLength="30"
                                Enabled="@(EnableAddMode)">
                     </R_TextBox>
@@ -70,7 +70,7 @@
                 <R_ItemLayout col="3">
                     <R_TextBox @ref="@(DeptCode_TextBox)"
                                @bind-Value="@_viewModel.Data.CDEPT_CODE"
-                               OnLostFocus="@DeptCode_OnLostFocus"
+                               OnLostFocused="@DeptCode_OnLostFocus"
                                MaxLength="20"
                                Enabled="@(EnableAddMode && string.IsNullOrWhiteSpace(_viewModel.Data.CLINK_REF_NO))">
                     </R_TextBox>
@@ -96,7 +96,7 @@
                     <R_TextBox @bind-Value="@_viewModel.Data.CTENANT_ID"
                                R_ConductorSource="@_conductorRef"
                                MaxLength="20"
-                               OnLostFocus="@(Tenant_OnLostFocus)"
+                               OnLostFocused="@(Tenant_OnLostFocus)"
                                Enabled="@(EnableAddMode && string.IsNullOrWhiteSpace(_viewModel.Data.CLINK_REF_NO))">
                     </R_TextBox>
                 </R_ItemLayout>
@@ -122,7 +122,7 @@
                                R_ConductorSource="@_conductorRef"
                                Enabled="@(EnableAddMode && string.IsNullOrWhiteSpace(_viewModel.Data.CLINK_REF_NO))"
                                MaxLength="20"
-                               OnLostFocus="@(Building_OnLostFocus)">
+                               OnLostFocused="@(Building_OnLostFocus)">
                     </R_TextBox>
                 </R_ItemLayout>
                 <R_ItemLayout col="0">
@@ -147,7 +147,7 @@
                                R_ConductorSource="@_conductorRef"
                                Enabled="@(EnableAddMode && string.IsNullOrWhiteSpace(_viewModel.Data.CLINK_REF_NO))"
                                MaxLength="20"
-                               OnLostFocus="@(Salesman_OnLostFocus)">
+                               OnLostFocused="@(Salesman_OnLostFocus)">
                     </R_TextBox>
                 </R_ItemLayout>
                 <R_ItemLayout col="0">
@@ -359,7 +359,7 @@
                 <R_ItemLayout col="6">
                     <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
                                R_ConductorSource="@_conductorRef"
-                               OnLostFocus="@Currency_OnLostFocus"
+                               OnLostFocused="@Currency_OnLostFocus"
                                MaxLength="3"
                                R_EnableAdd
                                R_EnableEdit>
@@ -435,7 +435,7 @@
                 <R_ItemLayout col="6">
                     <R_TextBox @bind-Value="@_viewModel.Data.CBILLING_RULE_CODE"
                                R_ConductorSource="@_conductorRef"
-                               OnLostFocus="@BillingRule_OnLostFocus"
+                               OnLostFocused="@BillingRule_OnLostFocus"
                                MaxLength="20"
                                R_EnableAdd
                                R_EnableEdit>
@@ -474,7 +474,7 @@
                 <R_ItemLayout col="6">
                     <R_TextBox @bind-Value="@_viewModel.Data.CTC_CODE"
                                R_ConductorSource="@_conductorRef"
-                               OnLostFocus="@TC_OnLostFocus"
+                               OnLostFocused="@TC_OnLostFocus"
                                MaxLength="20"
                                R_EnableAdd
                                R_EnableEdit>

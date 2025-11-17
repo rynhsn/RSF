@@ -5,6 +5,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="DTOs\PMR03300GetReportParamDTO.cs" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<Reference Include="BaseHeaderReportCOMMON">
 			<HintPath>..\..\BaseHeaderReportCOMMON.dll</HintPath>

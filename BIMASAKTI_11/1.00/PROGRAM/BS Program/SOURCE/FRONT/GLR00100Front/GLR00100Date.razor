@@ -14,7 +14,7 @@
                     <R_Label>@_localizer["FROM"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
-                    <R_TextBox @ref="TextFromDept" @bind-Value="@_viewModel.ReportParam.CFROM_DEPT_CODE" OnLostFocus="@OnLostFocusLookupFromDept"/>
+                    <R_TextBox @ref="TextFromDept" @bind-Value="@_viewModel.ReportParam.CFROM_DEPT_CODE" OnLostFocused="@OnLostFocusLookupFromDept"/>
                 </R_ItemLayout>
                 <R_Lookup R_Before_Open_Lookup="@BeforeLookupFromDept" R_After_Open_Lookup="@AfterLookupFromDept">...</R_Lookup>
                 <R_ItemLayout col="3">
@@ -26,7 +26,7 @@
                     <R_Label>@_localizer["TO"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
-                    <R_TextBox @bind-Value="@_viewModel.ReportParam.CTO_DEPT_CODE" OnLostFocus="@OnLostFocusLookupToDept"/>
+                    <R_TextBox @bind-Value="@_viewModel.ReportParam.CTO_DEPT_CODE" OnLostFocused="@OnLostFocusLookupToDept"/>
                 </R_ItemLayout>
                 <R_Lookup R_Before_Open_Lookup="@BeforeLookupToDept" R_After_Open_Lookup="@AfterLookupToDept">...</R_Lookup>
                 <R_ItemLayout col="3">

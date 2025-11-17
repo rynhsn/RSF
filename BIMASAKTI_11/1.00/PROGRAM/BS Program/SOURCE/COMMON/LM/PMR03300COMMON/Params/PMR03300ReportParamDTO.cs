@@ -19,11 +19,17 @@ namespace PMR03300COMMON.Params
         public bool LIS_PRINT { get; set; } = true;
 
         public string CFR_PERIOD { get; set; }
+        public string CFR_PERIOD_DISPLAY { get; set; }
         public string CTO_PERIOD { get; set; }
+        public string CTO_PERIOD_DISPLAY { get; set; }
         public string CCURRENCY_TYPE { get; set; }
+        public string CCURRENCY_TYPE_NAME { get; set; }
         public string CFILTER_BY { get; set; }
+        public string CFILTER_BY_NAME { get; set; }
         public string CFR_CODE { get; set; }
+        public string CFR_CODE_NAME { get; set; }
         public string CTO_CODE { get; set; }
+        public string CTO_CODE_NAME { get; set; }
         public bool LSUPPRESS { get; set; }
         public string CLANGUAGE_ID { get; set; }
         public string CYEAR { get; set; }

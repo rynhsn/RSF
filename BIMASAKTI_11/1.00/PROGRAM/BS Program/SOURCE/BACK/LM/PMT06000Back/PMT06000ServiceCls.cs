@@ -100,6 +100,7 @@ public class PMT06000ServiceCls : R_BusinessObject<PMT06000OvtServiceDTO>
             loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 20, poNewEntity.CDEPT_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 10, poNewEntity.CTRANS_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CSERVICE_ID", DbType.String, 20, poNewEntity.CSERVICE_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CTAX_ID", DbType.String, 20, poNewEntity.CTAX_ID);
             loDb.R_AddCommandParameter(loCmd, "@CDATE_IN", DbType.String, 8, poNewEntity.CDATE_IN);
             loDb.R_AddCommandParameter(loCmd, "@CTIME_IN", DbType.String, 5, poNewEntity.CTIME_IN);
             loDb.R_AddCommandParameter(loCmd, "@CDATE_OUT", DbType.String, 8, poNewEntity.CDATE_OUT);
@@ -120,6 +121,7 @@ public class PMT06000ServiceCls : R_BusinessObject<PMT06000OvtServiceDTO>
                         "@CDEPT_CODE" or
                         "@CTRANS_CODE" or
                         "@CSERVICE_ID" or
+                        "@CTAX_ID" or
                         "@CDATE_IN" or
                         "@CTIME_IN" or
                         "@CDATE_OUT" or

@@ -56,7 +56,7 @@
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_TENANT"
                    MaxLength="20"
-                   OnLostFocus="OnLostFocusFromCustomer"/>
+                   OnLostFocused="OnLostFocusFromCustomer"/>
     </R_ItemLayout>
     <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupFromCustomer"
               R_After_Open_Lookup="AfterOpenLookupFromCustomer">
@@ -76,7 +76,7 @@
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_TENANT"
                    MaxLength="20"
-                   OnLostFocus="OnLostFocusToCustomer"/>
+                   OnLostFocused="OnLostFocusToCustomer"/>
     </R_ItemLayout>
     <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupToCustomer"
               R_After_Open_Lookup="AfterOpenLookupToCustomer">
@@ -98,7 +98,7 @@
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.ReportParam.CMESSAGE_NO"
                    MaxLength="20"
-                   OnLostFocus="OnLostFocusMessage"/>
+                   OnLostFocused="OnLostFocusMessage"/>
     </R_ItemLayout>
     <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupMessage"
               R_After_Open_Lookup="AfterOpenLookupMessage">

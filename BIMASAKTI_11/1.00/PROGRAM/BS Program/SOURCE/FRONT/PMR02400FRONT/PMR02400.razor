@@ -174,7 +174,7 @@
                        R_ConductorSource="_conductorRef"
                        CharacterCasing="R_eCharacterCasing.Upper"
                        MaxLength="int.MaxValue"
-                       OnLostFocus="OnLostFocus_LookupFromTenant" />
+                       OnLostFocused="OnLostFocus_LookupFromTenant" />
         </R_ItemLayout>
         <R_ItemLayout>
             <R_Lookup R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupFromTenant" R_After_Open_Lookup="@AfterOpen_lookupFromTenantAsync">...</R_Lookup>
@@ -194,7 +194,7 @@
                        R_ConductorSource="_conductorRef"
                        CharacterCasing="R_eCharacterCasing.Upper"
                        MaxLength="int.MaxValue"
-                       OnLostFocus="OnLostFocus_LookupToTenant" />
+                       OnLostFocused="OnLostFocus_LookupToTenant" />
         </R_ItemLayout>
         <R_ItemLayout>
             <R_Lookup R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupToTenant" R_After_Open_Lookup="@AfterOpen_lookupToTenantAsync">...</R_Lookup>

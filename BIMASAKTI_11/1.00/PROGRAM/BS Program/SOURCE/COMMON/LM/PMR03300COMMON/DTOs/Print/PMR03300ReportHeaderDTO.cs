@@ -84,25 +84,6 @@ namespace PMR03300COMMON.DTOs.Print
         public string Grand_Total_Beginning_Balance { get; set; } = "Grand Total Beginning Balance";
         public string Grand_Total { get; set; } = "Grand Total ";
         public string Total { get; set; } = "Total ";
-
-
-        public string Grand_Total_Inv { get; set; } = "Grand Total #Inv.";
-        public string Grand_Total_Ret { get; set; } = "Grand Total #Ret.";
-        public string Grand_Total_Invoice { get; set; } = "Grand Total Invoice";
-        public string Grand_Total_Return { get; set; } = "Grand Total Return";
-        public string Grand_Total_D_N { get; set; } = "Grand Total #D/N";
-        public string Grand_Total_C_N { get; set; } = "Grand Total #C/N";
-        public string Grand_Total_Debit_Note { get; set; } = "Grand Total Debit Note";
-        public string Grand_Total_Credit_Note { get; set; } = "Grand Total Credit Note";
-        public string Grand_Total_D_A { get; set; } = "Grand Total #D/A";
-        public string Grand_Total_C_A { get; set; } = "Grand Total #C/A";
-        public string Grand_Total_Debit_Adjustment { get; set; } = "Grand Total Debit Adjustment";
-        public string Grand_Total_Credit_Adjustment { get; set; } = "Grand Total Credit Adjustment";
-        public string Grand_Total_Rcp_ { get; set; } = "Grand Total #Rcp.";
-        public string Grand_Total_Receipt { get; set; } = "Grand Total Receipt";
-        public string Grand_Total_Receipt_Discount { get; set; } = "Grand Total Receipt Discount";
-        public string Grand_Total_Gain_Loss { get; set; } = "Grand Total Gain (Loss)";
-        public string Grand_Total_Ending_Balance { get; set; } = "Grand Total Ending Balance";
     }
 
     public class PMR03300ReportHeaderDTO

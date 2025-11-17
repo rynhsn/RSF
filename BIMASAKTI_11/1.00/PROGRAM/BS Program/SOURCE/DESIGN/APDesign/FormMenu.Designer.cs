@@ -31,13 +31,15 @@ partial class FormMenu
     {
         APR00500_Button = new Button();
         APR00300_Button = new Button();
+        BTN_APR00600 = new Button();
         SuspendLayout();
         // 
         // APR00500_Button
         // 
-        APR00500_Button.Location = new Point(12, 37);
+        APR00500_Button.Location = new Point(17, 62);
+        APR00500_Button.Margin = new Padding(4, 5, 4, 5);
         APR00500_Button.Name = "APR00500_Button";
-        APR00500_Button.Size = new Size(75, 23);
+        APR00500_Button.Size = new Size(107, 38);
         APR00500_Button.TabIndex = 0;
         APR00500_Button.Text = "APR00500";
         APR00500_Button.UseVisualStyleBackColor = true;
@@ -45,21 +47,34 @@ partial class FormMenu
         // 
         // APR00300_Button
         // 
-        APR00300_Button.Location = new Point(12, 8);
+        APR00300_Button.Location = new Point(17, 13);
+        APR00300_Button.Margin = new Padding(4, 5, 4, 5);
         APR00300_Button.Name = "APR00300_Button";
-        APR00300_Button.Size = new Size(75, 23);
+        APR00300_Button.Size = new Size(107, 38);
         APR00300_Button.TabIndex = 1;
         APR00300_Button.Text = "APR00300";
         APR00300_Button.UseVisualStyleBackColor = true;
         APR00300_Button.Click += APR00300_Button_Click;
         // 
+        // BTN_APR00600
+        // 
+        BTN_APR00600.Location = new Point(21, 110);
+        BTN_APR00600.Name = "BTN_APR00600";
+        BTN_APR00600.Size = new Size(97, 33);
+        BTN_APR00600.TabIndex = 2;
+        BTN_APR00600.Text = "APR00600";
+        BTN_APR00600.UseVisualStyleBackColor = true;
+        BTN_APR00600.Click += BTN_APR00600_Click;
+        // 
         // FormMenu
         // 
-        AutoScaleDimensions = new SizeF(7F, 15F);
+        AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(270, 99);
+        ClientSize = new Size(386, 165);
+        Controls.Add(BTN_APR00600);
         Controls.Add(APR00300_Button);
         Controls.Add(APR00500_Button);
+        Margin = new Padding(4, 5, 4, 5);
         Name = "FormMenu";
         Text = "Form Menu AP Report";
         Load += FormMenu_Load;
@@ -70,4 +85,5 @@ partial class FormMenu
 
     private Button APR00500_Button;
     private Button APR00300_Button;
+    private Button BTN_APR00600;
 }

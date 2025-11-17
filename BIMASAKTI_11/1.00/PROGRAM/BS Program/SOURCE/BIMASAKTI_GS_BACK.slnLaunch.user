@@ -11,11 +11,7 @@
         "Action": "Start"
       },
       {
-        "Path": "API\\IC\\BIMASAKTI_IC_API\\BIMASAKTI_IC_API.csproj",
-        "Action": "Start"
-      },
-      {
-        "Path": "API\\HD\\BIMASAKTI_HD_API\\BIMASAKTI_HD_API.csproj",
+        "Path": "API\\CB\\BIMASAKTI_CB_API\\BIMASAKTI_CB_API.csproj",
         "Action": "Start"
       }
     ]

@@ -33,7 +33,12 @@ namespace CBB00200Model
             throw new NotImplementedException();
         }
 
-        public IAsyncEnumerable<CBB00200ClosePeriodToDoListDTO> CBB00200SoftClosePeriodStream()
+        //public IAsyncEnumerable<CBB00200ClosePeriodToDoListDTO> CBB00200SoftClosePeriodStream()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        public CBB00200SingleDTO<CBB00200ClosePeriodResultDTO> CBB00200SoftClosePeriodStream()
         {
             throw new NotImplementedException();
         }

@@ -4,6 +4,9 @@ namespace PMT06000Common.DTOs
 {
     public class PMT06000OvtServiceDTO
     {
+        public string CTAX_ID { get; set; } = "";
+        public string CTAX_NAME { get; set; } = "";
+        public bool LTAXABLE { get; set; } = false;
         public string CCOMPANY_ID { get; set; } = "";
         public string CPROPERTY_ID { get; set; } = "";
         public string CUSER_ID { get; set; } = "";

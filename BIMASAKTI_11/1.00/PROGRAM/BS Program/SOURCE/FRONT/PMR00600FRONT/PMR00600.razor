@@ -79,7 +79,7 @@
                                Enabled
                                CharacterCasing="R_eCharacterCasing.Upper"
                                MaxLength="int.MaxValue"
-                               OnLostFocus="OnLostFocus_LookupFromBuilding"
+                               OnLostFocused="OnLostFocus_LookupFromBuilding"
                                TabIndex="4" />
                 </R_ItemLayout>
                 <R_ItemLayout>
@@ -101,7 +101,7 @@
                                Enabled
                                CharacterCasing="R_eCharacterCasing.Upper"
                                MaxLength="int.MaxValue"
-                               OnLostFocus="OnLostFocus_LookupToBuilding"
+                               OnLostFocused="OnLostFocus_LookupToBuilding"
                                TabIndex="6" />
                 </R_ItemLayout>
                 <R_ItemLayout>
@@ -133,7 +133,7 @@
                                Enabled
                                CharacterCasing="R_eCharacterCasing.Upper"
                                MaxLength="int.MaxValue"
-                               OnLostFocus="OnLostFocus_LookupFromDept"
+                               OnLostFocused="OnLostFocus_LookupFromDept"
                                TabIndex="7" />
                 </R_ItemLayout>
                 <R_ItemLayout>
@@ -155,7 +155,7 @@
                                Enabled
                                CharacterCasing="R_eCharacterCasing.Upper"
                                MaxLength="int.MaxValue"
-                               OnLostFocus="OnLostFocus_LookupToDept" TabIndex="9" />
+                               OnLostFocused="OnLostFocus_LookupToDept" TabIndex="9" />
                 </R_ItemLayout>
                 <R_ItemLayout>
                     <R_Lookup R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupToDept" R_After_Open_Lookup="@AfterOpen_lookupToDeptAsync" TabIndex="10">...</R_Lookup>
@@ -245,7 +245,7 @@
                                R_ConductorSource="_conductorRef"
                                CharacterCasing="R_eCharacterCasing.Upper"
                                MaxLength="int.MaxValue"
-                               OnLostFocus="OnLostFocus_LookupFromTenant"
+                               OnLostFocused="OnLostFocus_LookupFromTenant"
                                TabIndex="14"
                                Enabled ="@_viewModel._ReportParam.LTENANT"/>
                 </R_ItemLayout>
@@ -268,7 +268,7 @@
                                Enabled="@_viewModel._ReportParam.LTENANT"
                                CharacterCasing="R_eCharacterCasing.Upper"
                                MaxLength="int.MaxValue"
-                               OnLostFocus="OnLostFocus_LookupToTenant" TabIndex="16" />
+                               OnLostFocused="OnLostFocus_LookupToTenant" TabIndex="16" />
                 </R_ItemLayout>
                 <R_ItemLayout>
                     <R_Lookup R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupToTenant" R_After_Open_Lookup="@AfterOpen_lookupToTenantAsync" TabIndex="17" Enabled="@_viewModel._ReportParam.LTENANT">...</R_Lookup>
@@ -299,7 +299,7 @@
                                Enabled="_viewModel._ReportParam.LSERVICE"
                                CharacterCasing="R_eCharacterCasing.Upper"
                                MaxLength="int.MaxValue"
-                               OnLostFocus="OnLostFocus_LookupFromService"
+                               OnLostFocused="OnLostFocus_LookupFromService"
                                TabIndex="19" />
                 </R_ItemLayout>
                 <R_ItemLayout>
@@ -321,7 +321,7 @@
                                Enabled="_viewModel._ReportParam.LSERVICE"
                                CharacterCasing="R_eCharacterCasing.Upper"
                                MaxLength="int.MaxValue"
-                               OnLostFocus="OnLostFocus_LookupToService" TabIndex="21" />
+                               OnLostFocused="OnLostFocus_LookupToService" TabIndex="21" />
                 </R_ItemLayout>
                 <R_ItemLayout>
                     <R_Lookup R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupToService" R_After_Open_Lookup="@AfterOpen_lookupToServiceAsync" TabIndex="22" Enabled="_viewModel._ReportParam.LSERVICE">...</R_Lookup>

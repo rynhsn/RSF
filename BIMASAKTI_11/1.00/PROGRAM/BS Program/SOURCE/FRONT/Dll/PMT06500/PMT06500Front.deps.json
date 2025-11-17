@@ -155,7 +155,10 @@
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
       "Lookup_GSCOMMON/1.0.0": {
         "runtime": {
-          "Lookup_GSCOMMON.dll": {}
+          "Lookup_GSCOMMON.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Lookup_GSFRONT/1.0.0": {
@@ -164,12 +167,18 @@
           "Microsoft.AspNetCore.Components.Web": "6.0.15"
         },
         "runtime": {
-          "Lookup_GSFRONT.dll": {}
+          "Lookup_GSFRONT.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Lookup_GSFrontResources/1.0.0": {
         "runtime": {
-          "Lookup_GSFrontResources.dll": {}
+          "Lookup_GSFrontResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Lookup_GSModel/1.0.0": {
@@ -178,17 +187,26 @@
           "Lookup_GSFrontResources": "1.0.0"
         },
         "runtime": {
-          "Lookup_GSModel.dll": {}
+          "Lookup_GSModel.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "PMT06500Common/1.0.0": {
         "runtime": {
-          "PMT06500Common.dll": {}
+          "PMT06500Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "PMT06500FrontResources/1.0.0": {
         "runtime": {
-          "PMT06500FrontResources.dll": {}
+          "PMT06500FrontResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "PMT06500Model/1.0.0": {
@@ -197,7 +215,10 @@
           "PMT06500FrontResources": "1.0.0"
         },
         "runtime": {
-          "PMT06500Model.dll": {}
+          "PMT06500Model.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "BlazorClientHelper/1.0.0.0": {
