@@ -105,7 +105,7 @@ public class PMR02600Cls
             _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
-
+            int rowCount = loDataTable.Rows.Count;
             loRtn = R_Utility.R_ConvertTo<PMR02600DataResultDTO>(loDataTable).ToList();
         }
         catch (Exception ex)

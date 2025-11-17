@@ -7,4 +7,8 @@ namespace ICT00900COMMON.Utility_DTO
     {
         public List<T>? Data { get; set; }
     }
+    public class ICT00900GenericRecord<T> : R_APIResultBaseDTO
+    {
+        public T Data { get; set; }
+    }
 }

@@ -75,7 +75,7 @@
     <R_Grid @ref="@_gridDepositList"
             DataSource="@_viewModel.DepositList"
             Pageable
-            PageSize="12"
+            PageSize="10"
             R_ConductorGridSource="@_conductorGrid"
             R_GridType="@R_eGridType.Batch"
             R_ServiceGetListRecord="@Deposit_List"
@@ -87,6 +87,7 @@
             AllowAddNewRow="false"
             Width="100%"
             Height="320px"
+            R_BeforeSaveBatch="@R_BeforeSaveBatch"
             R_ServiceSaveBatch="@SaveBatch">
         <R_GridColumns>
             <R_GridCheckBoxSelectColumn FieldName="@nameof(PMB01800GetDepositListDTO.LSELECTED)" Width="30px" ShowSelectAllHeader Filterable="false" Resizable="false" />
@@ -117,23 +118,68 @@
     <R_ItemLayout col="2">
         <R_Label>@_localizer["CUNIT_DESCRIPTION"]</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout col="3">
+    <R_ItemLayout col="5">
         <R_TextBox @bind-Value="_viewModel.Entity.CUNIT_DESCRIPTION"
                    R_ConductorSource="_conductorRef"
                    Enabled="false" />
     </R_ItemLayout>
 </R_StackLayout>
-<R_StackLayout Row>
-    <R_ItemLayout col="2">
-        <R_Label>@_localizer["DREF_DATE"]</R_Label>
-    </R_ItemLayout>
-    <R_ItemLayout col="3">
-        <R_DatePicker @bind-Value="@_viewModel.Param.DREF_DATE"></R_DatePicker>
-    </R_ItemLayout>
-    <R_ItemLayout>
-        <R_Button OnClick="@onClickBtnProcess" TabIndex="7" Class="ps-2" Enabled="@_gridDepositList.DataSource.Any(x=> x.LSELECTED)">@_localizer["BTN_PROCESS"]</R_Button>
-    </R_ItemLayout>
-</R_StackLayout>
+<R_GroupBox Title="@_localizer["GeneralAdjustment"]" Class="p-2">
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>@_localizer["CDEPT_CODE"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="_viewModel.Param.CDEPT_CODE"
+                       R_ConductorSource="_conductorRef"
+                       Enabled="@_gridDepositList.DataSource.Any(x=> x.LSELECTED)"
+                       CharacterCasing="R_eCharacterCasing.Upper"
+                       MaxLength="int.MaxValue"
+                       OnLostFocus="@OnLostFocus_LookupDeptProcess" TabIndex="9" />
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Lookup Enabled="@_gridDepositList.DataSource.Any(x=> x.LSELECTED)" R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupDeptProcess" R_After_Open_Lookup="@AfterOpen_lookupDeptAsyncProcess" TabIndex="10">...</R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="_viewModel.Param.CDEPT_NAME"
+                       R_ConductorSource="_conductorRef"
+                       Enabled="false" />
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>@_localizer["CCHARGES_ID"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="_viewModel.Param.CCHARGES_ID"
+                       R_ConductorSource="_conductorRef"
+                       Enabled="@_gridDepositList.DataSource.Any(x=> x.LSELECTED)"
+                       CharacterCasing="R_eCharacterCasing.Upper"
+                       MaxLength="int.MaxValue"
+                       OnLostFocus="@OnLostFocus_LookupChargesId" TabIndex="9" />
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_Lookup Enabled="@_gridDepositList.DataSource.Any(x=> x.LSELECTED)" R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupChargesId" R_After_Open_Lookup="@AfterOpen_lookupChargesId" TabIndex="10">...</R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="_viewModel.Param.CCHARGES_NAME"
+                       R_ConductorSource="_conductorRef"
+                       Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1" Class="ps-4">
+            <R_Label>@_localizer["DREF_DATE"]</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_DatePicker @bind-Value="@_viewModel.Param.DREF_DATE"></R_DatePicker>
+        </R_ItemLayout>
+        <R_ItemLayout Class="justify-content-end">
+            <R_Button OnClick="@onClickBtnProcess" TabIndex="7" Class="ps-2" Enabled="@_gridDepositList.DataSource.Any(x=> x.LSELECTED)">@_localizer["BTN_PROCESS"]</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_GroupBox>
+
+
 <R_StackLayout Class="mt-1">
     <R_ItemLayout col="12">
         <R_ProgressBar Label="@_viewModel01.Message" MaxValue="100"
@@ -142,3 +188,9 @@
 </R_StackLayout>
 
 <R_ConductorGrid @ref="@_conductorGrid" R_IsHeader></R_ConductorGrid>
+<style>
+    .groupbox-padding {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+</style>

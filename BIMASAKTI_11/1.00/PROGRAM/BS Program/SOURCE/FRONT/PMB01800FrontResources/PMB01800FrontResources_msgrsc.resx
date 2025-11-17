@@ -217,11 +217,38 @@
     <value>Generate Deposit Adjustment</value>
   </data>
   <data name="DREF_DATE" xml:space="preserve">
-    <value>Ref Date</value>
+    <value>Ref Date*</value>
     <comment>Ref Date</comment>
   </data>
   <data name="CCURRENCY_CODE" xml:space="preserve">
     <value>Currency</value>
     <comment>Currency</comment>
+  </data>
+  <data name="GeneralAdjustment" xml:space="preserve">
+    <value>General Adjustment</value>
+    <comment>General Adjustment</comment>
+  </data>
+  <data name="CDEPT_CODE" xml:space="preserve">
+    <value>Department*</value>
+    <comment>Department*</comment>
+  </data>
+  <data name="CCHARGES_ID" xml:space="preserve">
+    <value>Charge ID*</value>
+  </data>
+  <data name="ValidationRefDate" xml:space="preserve">
+    <value>Reference Date is required</value>
+    <comment>Reference Date is required</comment>
+  </data>
+  <data name="ValidationDepartment" xml:space="preserve">
+    <value>Department Date is required</value>
+    <comment>Department Date is required</comment>
+  </data>
+  <data name="ValidationChargeId" xml:space="preserve">
+    <value>Charge Id Date is required</value>
+    <comment>Charge Id Date is required</comment>
+  </data>
+  <data name="ValidationNoData" xml:space="preserve">
+    <value>No Data To Process</value>
+    <comment>No Data To Process</comment>
   </data>
 </root>

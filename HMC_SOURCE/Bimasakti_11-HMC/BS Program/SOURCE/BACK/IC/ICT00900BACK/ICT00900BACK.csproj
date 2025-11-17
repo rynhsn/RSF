@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -11,6 +11,8 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+	  <ProjectReference Include="..\..\..\..\..\..\..\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\IC\IC_SPR\RSP_ICT00900_SUBMITResources\RSP_ICT00900_SUBMITResources.csproj" />
+	  <ProjectReference Include="..\..\..\..\..\..\..\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\IC\IC_SPR\RSP_IC_UPDATE_TRANS_HD_STATUSResources\RSP_IC_UPDATE_TRANS_HD_STATUSResources.csproj" />
 	  <ProjectReference Include="..\..\..\COMMON\IC\ICT00900COMMON\ICT00900COMMON.csproj" />
 	  <ProjectReference Include="..\IC_SPR\RSP_IC_MAINTAIN_ADJUSTMENTResources\RSP_IC_MAINTAIN_ADJUSTMENTResources.csproj" />
 	</ItemGroup>

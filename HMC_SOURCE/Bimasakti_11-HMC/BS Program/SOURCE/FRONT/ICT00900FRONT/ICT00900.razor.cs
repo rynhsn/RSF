@@ -219,7 +219,7 @@ namespace ICT00900FRONT
                 {
                     _viewModel.oEntityAdjustmentDetail = R_FrontUtility.ConvertObjectToObject<ICT00900AjustmentDetailDTO>(_conductorAdj.R_GetCurrentData());
                     _viewModel.oEntityAdjustmentDetail.CTRANS_CODE = TransactionCode;
-                    var loReturn = await _viewModel.ChangeStatusAdjustment(lcNewStatus: "10");
+                    var loReturn = await _viewModel.SubmitAdjustment();
                     if (loReturn.IS_PROCESS_CHANGESTS_SUCCESS)
                     {
                         await R_MessageBox.Show(R_FrontUtility.R_GetMessage(typeof(Resources_ICT00900_Class), "_SuccessMessageOfferSubmit"));
