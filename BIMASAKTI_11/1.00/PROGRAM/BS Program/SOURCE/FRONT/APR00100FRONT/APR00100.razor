@@ -61,7 +61,7 @@
                            @bind-Value="_viewModel.ReportParam.CFROM_SUPPLIER_ID"
                            CharacterCasing="R_eCharacterCasing.Upper"
                            MaxLength="int.MaxValue"
-                           OnLostFocus="OnLostFocus_LookupFromTenant"
+                           OnLostFocused="OnLostFocus_LookupFromTenant"
                            Enabled="@(_viewModel._dataBasedOn=="1")" />
             </R_ItemLayout>
             <R_ItemLayout>
@@ -83,7 +83,7 @@
                            @bind-Value="_viewModel.ReportParam.CTO_SUPPLIER_ID"
                            CharacterCasing="R_eCharacterCasing.Upper"
                            MaxLength="int.MaxValue"
-                           OnLostFocus="OnLostFocus_LookupToTenant"
+                           OnLostFocused="OnLostFocus_LookupToTenant"
                            Enabled="@(_viewModel._dataBasedOn=="1")" />
             </R_ItemLayout>
             <R_ItemLayout>
@@ -119,7 +119,7 @@
                            @bind-Value="_viewModel.ReportParam.CFROM_JRNGRP_CODE"
                            CharacterCasing="R_eCharacterCasing.Upper"
                            MaxLength="int.MaxValue"
-                           OnLostFocus="OnLostFocus_LookupFromJrnGrp"
+                           OnLostFocused="OnLostFocus_LookupFromJrnGrp"
                            Enabled="@(_viewModel._dataBasedOn=="2")" />
             </R_ItemLayout>
             <R_ItemLayout>
@@ -141,7 +141,7 @@
                            @bind-Value="_viewModel.ReportParam.CTO_JRNGRP_CODE"
                            CharacterCasing="R_eCharacterCasing.Upper"
                            MaxLength="int.MaxValue"
-                           OnLostFocus="OnLostFocus_LookupToJrnGrp"
+                           OnLostFocused="OnLostFocus_LookupToJrnGrp"
                            Enabled="@(_viewModel._dataBasedOn=="2")" />
             </R_ItemLayout>
             <R_ItemLayout>
@@ -385,7 +385,7 @@
                            Enabled="@_viewModel._enableFilterDept"
                            CharacterCasing="R_eCharacterCasing.Upper"
                            MaxLength="int.MaxValue"
-                           OnLostFocus="OnLostFocus_LookupFromDept" />
+                           OnLostFocused="OnLostFocus_LookupFromDept" />
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupFromDept"
@@ -408,7 +408,7 @@
                            Enabled="@_viewModel._enableFilterDept"
                            CharacterCasing="R_eCharacterCasing.Upper"
                            MaxLength="int.MaxValue"
-                           OnLostFocus="OnLostFocus_LookupToDept" />
+                           OnLostFocused="OnLostFocus_LookupToDept" />
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupToDept"

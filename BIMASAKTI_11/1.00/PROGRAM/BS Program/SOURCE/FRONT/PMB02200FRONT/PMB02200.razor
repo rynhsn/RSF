@@ -36,7 +36,7 @@
                                Enabled
                                CharacterCasing="R_eCharacterCasing.Upper"
                                MaxLength="int.MaxValue"
-                               OnLostFocus="OnLostFocus_LookupDept" />
+                               OnLostFocused="OnLostFocus_LookupDept" />
                 </R_ItemLayout>
                 <R_ItemLayout>
                     <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupDept" R_After_Open_Lookup="@AfterOpen_lookupDeptAsync">...</R_Lookup>
@@ -57,7 +57,7 @@
                                Enabled="@(!_viewModel.UtilityChargesParam.LALL_BUILDING)"
                                CharacterCasing="R_eCharacterCasing.Upper"
                                MaxLength="int.MaxValue"
-                               OnLostFocus="OnLostFocus_LookupBuilding" />
+                               OnLostFocused="OnLostFocus_LookupBuilding" />
                 </R_ItemLayout>
                 <R_ItemLayout>
                     <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupBuilding"
@@ -90,7 +90,7 @@
                     <R_TextBox @bind-Value="_viewModel.UtilityChargesParam.CTENANT_ID"
                                CharacterCasing="R_eCharacterCasing.Upper"
                                MaxLength="int.MaxValue"
-                               OnLostFocus="OnLostFocus_LookupTenant"
+                               OnLostFocused="OnLostFocus_LookupTenant"
                                TabIndex="14" />
                 </R_ItemLayout>
                 <R_ItemLayout>
@@ -136,7 +136,7 @@
     </R_ItemLayout>
     <R_ItemLayout col="1">
         <R_TextBox @bind-Value="_viewModel.OldChargeId"
-                   OnLostFocus="@OnLostFocus_OldChargesAsync"></R_TextBox>
+                   OnLostFocused="@OnLostFocus_OldChargesAsync"></R_TextBox>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupOldCharges"
@@ -147,7 +147,7 @@
     </R_ItemLayout>
     <R_ItemLayout col="1">
         <R_TextBox @bind-Value="_viewModel.NewChargeId"
-                   OnLostFocus="@OnLostFocus_NewChargesAsync"></R_TextBox>
+                   OnLostFocused="@OnLostFocus_NewChargesAsync"></R_TextBox>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupNewCharges"
@@ -163,7 +163,7 @@
     </R_ItemLayout>
     <R_ItemLayout col="1">
         <R_TextBox @bind-Value="_viewModel.OldTaxId"
-                   OnLostFocus="@OnLostFocus_OldTaxAsync"></R_TextBox>
+                   OnLostFocused="@OnLostFocus_OldTaxAsync"></R_TextBox>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupOldTax"
@@ -174,7 +174,7 @@
     </R_ItemLayout>
     <R_ItemLayout col="1">
         <R_TextBox @bind-Value="_viewModel.NewTaxId"
-                   OnLostFocus="@OnLostFocus_NewTaxAsync"></R_TextBox>
+                   OnLostFocused="@OnLostFocus_NewTaxAsync"></R_TextBox>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupNewTax"

@@ -19,7 +19,7 @@
                                R_EnableEdit="@false"
                                CharacterCasing="@R_eCharacterCasing.Upper"
                                MaxLength="5"
-                               OnLostFocus="@OnLostFocus_LookupDept" />
+                               OnLostFocused="@OnLostFocus_LookupDept" />
                     </R_ItemLayout>
                     <R_ItemLayout Class="col d-flex justify-content-center">
                     <R_Lookup R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@Before_Open_lookupDept" R_After_Open_Lookup="@After_Open_lookupDept" @ref="@_lookup_CDEPT_CODE" Enabled="(_conductorRef.R_ConductorMode!=R_eConductorMode.Normal)">...</R_Lookup>

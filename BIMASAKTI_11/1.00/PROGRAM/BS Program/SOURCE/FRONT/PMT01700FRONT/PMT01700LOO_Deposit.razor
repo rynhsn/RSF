@@ -146,7 +146,7 @@
             <R_TextBox @bind-Value="@_viewModel.Data.CDEPOSIT_ID"
                        R_ConductorSource="@_conductorDeposit"
                        @ref="_componentCDepositTextBox"
-                       OnLostFocus="@OnLostFocusDeposit"
+                       OnLostFocused="@OnLostFocusDeposit"
                        MaxLength="20"
                        R_EnableAdd
                        R_EnableEdit="false" />
@@ -192,7 +192,7 @@
                 <R_TextBox @bind-Value="@_viewModel.Data.CTAX_ID"
                        R_ConductorSource="@_conductorDeposit"
                        @ref="_componentTaxCodeLookup"
-                       OnLostFocus="@OnLostFocusTaxCode"
+                       OnLostFocused="@OnLostFocusTaxCode"
                        MaxLength="20"
                        R_EnableAdd
                        R_EnableEdit="false" />

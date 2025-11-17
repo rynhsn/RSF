@@ -46,7 +46,7 @@
                            R_ConductorGridSource="_conAgrChrgDisc"
                            Enabled="!string.IsNullOrWhiteSpace(_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.CCHARGES_TYPE)"
                            MaxLength="int.MaxValue"
-                           OnLostFocus="OnLostFocus_LookupUnitChargesAsync" />
+                           OnLostFocused="OnLostFocus_LookupUnitChargesAsync" />
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Lookup R_ConductorGridSource="_conAgrChrgDisc"
@@ -90,7 +90,7 @@
                            R_ConductorGridSource="_conAgrChrgDisc"
                            Enabled="!string.IsNullOrWhiteSpace(_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.CCHARGES_TYPE)"
                            MaxLength="int.MaxValue"
-                           OnLostFocus="OnLostFocus_LookupDiscountAsync" />
+                           OnLostFocused="OnLostFocus_LookupDiscountAsync" />
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Lookup R_ConductorGridSource="_conAgrChrgDisc"
@@ -130,7 +130,7 @@
                            R_ConductorGridSource="@_conAgrChrgDisc"
                            Enabled="!_agreementChrgDiscViewModel._AgreementChrgDiscProcessParam.LALL_BUILDING"
                            MaxLength="int.MaxValue"
-                           OnLostFocus="@OnLostFocus_LookupBuilding" />
+                           OnLostFocused="@OnLostFocus_LookupBuilding" />
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Lookup R_ConductorGridSource="@_conAgrChrgDisc"

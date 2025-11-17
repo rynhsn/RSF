@@ -32,7 +32,7 @@
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.ReportParam.CDEPT_CODE"
-                   OnLostFocus="OnLostFocusDept"
+                   OnLostFocused="OnLostFocusDept"
                    Enabled="@_viewModel.ReportParam.LDEPT"/>
     </R_ItemLayout>
     <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupDept"
@@ -76,7 +76,7 @@
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_REF_NO"
-                   OnLostFocus="OnLostFocusFromRefNo"
+                   OnLostFocused="OnLostFocusFromRefNo"
                    Enabled/>
     </R_ItemLayout>
     <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupFromRefNo"
@@ -91,7 +91,7 @@
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_REF_NO"
-                   OnLostFocus="OnLostFocusToRefNo"
+                   OnLostFocused="OnLostFocusToRefNo"
                    Enabled/>
     </R_ItemLayout>
     <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupToRefNo"

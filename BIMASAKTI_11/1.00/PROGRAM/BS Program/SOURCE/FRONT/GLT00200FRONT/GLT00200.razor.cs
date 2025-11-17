@@ -144,6 +144,11 @@ namespace GLT00200FRONT
 
                 var loDataTable = Excel.R_ReadFromExcel(loImportJournalViewModel.loFileByte, "A7:H1007");
 
+                //var loDataSet = Excel.R_ReadExcel(loImportJournalViewModel.loFileByte, option =>
+                //{
+                //    option.TableNames = new string[] { "Recurring" };
+                //});
+
                 var loResult = R_FrontUtility.R_ConvertTo<GLT00200DetailExcelDTO>(loDataTable);
                 if (IsSeparateDCAmount)
                 {

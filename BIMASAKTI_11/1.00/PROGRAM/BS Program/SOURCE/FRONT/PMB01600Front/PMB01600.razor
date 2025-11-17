@@ -55,7 +55,7 @@
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.Param.CFROM_TENANT_ID"
                    MaxLength="20"
-                   OnLostFocus="OnLostFocusFromTenant" />
+                   OnLostFocused="OnLostFocusFromTenant" />
     </R_ItemLayout>
     <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupFromTenant"
               R_After_Open_Lookup="AfterOpenLookupFromTenant">
@@ -75,7 +75,7 @@
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.Param.CTO_TENANT_ID"
                    MaxLength="20"
-                   OnLostFocus="OnLostFocusToTenant" />
+                   OnLostFocused="OnLostFocusToTenant" />
     </R_ItemLayout>
     <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupToTenant"
               R_After_Open_Lookup="AfterOpenLookupToTenant">

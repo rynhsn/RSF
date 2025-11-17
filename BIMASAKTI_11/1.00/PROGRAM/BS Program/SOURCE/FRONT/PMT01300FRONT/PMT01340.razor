@@ -79,7 +79,7 @@
         <R_TextBox @ref="@(DepositId_TextBox)"
                    @bind-Value="@_viewModel.Data.CDEPOSIT_ID"
                    R_ConductorSource="_conductorRef"
-                   OnLostFocus="@Charges_OnLostFocus"
+                   OnLostFocused="@Charges_OnLostFocus"
                    MaxLength="20"
                    R_EnableAdd>
         </R_TextBox>
@@ -104,7 +104,7 @@
     <R_ItemLayout col="2">
         <R_TextBox @ref="@(DepositId_TextBox)"
                    @bind-Value="@_viewModel.Data.CTAX_ID"
-                   OnLostFocus="@Tax_OnLostFocus"
+                   OnLostFocused="@Tax_OnLostFocus"
                    MaxLength="20"
                    Enabled="@(!EnableNormalMode && !string.IsNullOrWhiteSpace(_viewModel.Data.CDEPOSIT_ID) && _viewModel.Data.LTAXABLE)"
                    >

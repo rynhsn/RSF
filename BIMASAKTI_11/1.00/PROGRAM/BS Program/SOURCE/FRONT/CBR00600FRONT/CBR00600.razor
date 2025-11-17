@@ -27,7 +27,7 @@
         </R_ItemLayout>
         <R_ItemLayout col="2">
             <R_TextBox @bind-Value="@_viewModel.ReportParameter.CDEPT_CODE"
-                       OnLostFocus="OnLostFocusDepartment"
+                       OnLostFocused="OnLostFocusDepartment"
                        MaxLength="20"
                        Enabled="@(!string.IsNullOrWhiteSpace(_viewModel.ReportParameter.CPROPERTY_ID) && string.IsNullOrWhiteSpace(loCallerParameter.CREF_NO))">
             </R_TextBox>
@@ -102,7 +102,7 @@
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
                         <R_TextBox @bind-Value="@_viewModel.CFROM_REF_NO"
-                                   OnLostFocus="OnLostFocusFromRefNo"
+                                   OnLostFocused="OnLostFocusFromRefNo"
                                    MaxLength="20"
                                    Enabled="@(_viewModel.ReportParameter.CFILTER_BY == "REF_NO" && !string.IsNullOrWhiteSpace(_viewModel.ReportParameter.CDEPT_CODE) && string.IsNullOrWhiteSpace(loCallerParameter.CREF_NO))">
                         </R_TextBox>
@@ -118,7 +118,7 @@
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
                         <R_TextBox @bind-Value="@_viewModel.CTO_REF_NO"
-                                   OnLostFocus="OnLostFocusToRefNo"
+                                   OnLostFocused="OnLostFocusToRefNo"
                                    MaxLength="20"
                                    Enabled="@(_viewModel.ReportParameter.CFILTER_BY == "REF_NO" && !string.IsNullOrWhiteSpace(_viewModel.ReportParameter.CDEPT_CODE) && string.IsNullOrWhiteSpace(loCallerParameter.CREF_NO))">
                         </R_TextBox>
@@ -196,7 +196,7 @@
             </R_ItemLayout>
             <R_ItemLayout col="2">
                 <R_TextBox @bind-Value="@_viewModel.ReportParameter.CMESSAGE_NO"
-                           OnLostFocus="OnLostFocusMessage"
+                           OnLostFocused="OnLostFocusMessage"
                            MaxLength="20"
                            >
                 </R_TextBox>

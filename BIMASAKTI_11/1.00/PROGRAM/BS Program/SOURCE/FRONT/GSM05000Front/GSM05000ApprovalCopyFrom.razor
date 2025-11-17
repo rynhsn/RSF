@@ -22,7 +22,7 @@
         <R_Label>@_localizer["LABEL_COPYFROM"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
-        <R_TextBox @bind-Value="@_viewModel.TempEntityForCopy.CDEPT_CODE_FROM" OnLostFocus="OnLostFocus"/>
+        <R_TextBox @bind-Value="@_viewModel.TempEntityForCopy.CDEPT_CODE_FROM" OnLostFocused="OnLostFocus"/>
     </R_ItemLayout>
     <R_Lookup R_Before_Open_Lookup="BeforeOpenLookup" R_After_Open_Lookup="AfterOpenLookup">...</R_Lookup>
     <R_ItemLayout col="7">

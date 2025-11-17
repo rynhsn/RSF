@@ -152,7 +152,11 @@ namespace HDM00600FRONT
 
                 //add filebyte to DTO
                 var loExcel = _excelProvider;
-                var loDataSet = loExcel.R_ReadFromExcel(loFileByte, new string[] { "Pricelist" });
+                //var loDataSet = loExcel.R_ReadFromExcel(loFileByte, new string[] { "Pricelist" });
+                var loDataSet = loExcel.R_ReadExcel(loFileByte, option =>
+                {
+                    option.TableNames = new string[] { "Pricelist" };
+                });
                 var loResult = R_FrontUtility.R_ConvertTo<PricelistReadExcelDTO>(loDataSet.Tables[0]);
                 _isFileHasData = loResult.Count > 0 ? true : false;
                 await _gridPricelist.R_RefreshGrid(loResult);

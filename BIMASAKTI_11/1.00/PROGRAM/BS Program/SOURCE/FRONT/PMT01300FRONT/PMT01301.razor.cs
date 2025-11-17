@@ -226,7 +226,11 @@ namespace PMT01300FRONT
                 #region Agreement
                 try
                 {
-                    loDataSet = ExcelInject.R_ReadFromExcel(lofileByte, new string[] { "Agreement" });
+                    //loDataSet = ExcelInject.R_ReadFromExcel(lofileByte, new string[] { "Agreement" });
+                    loDataSet = ExcelInject.R_ReadExcel(lofileByte, option =>
+                    {
+                        option.TableNames = new string[] { "Agreement" };
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -257,7 +261,11 @@ namespace PMT01300FRONT
                 #region Unit
                 try
                 {
-                    loDataSet = ExcelInject.R_ReadFromExcel(lofileByte, new string[] { "Unit" });
+                    //loDataSet = ExcelInject.R_ReadFromExcel(lofileByte, new string[] { "Unit" });
+                    loDataSet = ExcelInject.R_ReadExcel(lofileByte, option =>
+                    {
+                        option.TableNames = new string[] { "Unit" };
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -286,7 +294,11 @@ namespace PMT01300FRONT
                 #region Utility
                 try
                 {
-                    loDataSet = ExcelInject.R_ReadFromExcel(lofileByte, new string[] { "Utility" });
+                    //loDataSet = ExcelInject.R_ReadFromExcel(lofileByte, new string[] { "Utility" });
+                    loDataSet = ExcelInject.R_ReadExcel(lofileByte, option =>
+                    {
+                        option.TableNames = new string[] { "Utility" };
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -315,7 +327,11 @@ namespace PMT01300FRONT
                 #region Charges
                 try
                 {
-                    loDataSet = ExcelInject.R_ReadFromExcel(lofileByte, new string[] { "Charges" });
+                    //loDataSet = ExcelInject.R_ReadFromExcel(lofileByte, new string[] { "Charges" });
+                    loDataSet = ExcelInject.R_ReadExcel(lofileByte, option =>
+                    {
+                        option.TableNames = new string[] { "Charges" };
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -344,7 +360,11 @@ namespace PMT01300FRONT
                 #region Deposit
                 try
                 {
-                    loDataSet = ExcelInject.R_ReadFromExcel(lofileByte, new string[] { "Deposit" });
+                    //loDataSet = ExcelInject.R_ReadFromExcel(lofileByte, new string[] { "Deposit" });
+                    loDataSet = ExcelInject.R_ReadExcel(lofileByte, option =>
+                    {
+                        option.TableNames = new string[] { "Deposit" };
+                    });
                 }
                 catch (Exception ex)
                 {

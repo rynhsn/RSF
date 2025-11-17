@@ -27,7 +27,7 @@
             <R_ItemLayout col="3">
                 <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CBUILDING_ID"
                            MaxLength="20"
-                           OnLostFocus="OnLostFocusBuilding"
+                           OnLostFocused="OnLostFocusBuilding"
                            R_ConductorSource="@_conductorHeader"
                            Enabled="@(_lIsUnit && lControlCRUDMode)"
                            R_EnableAdd="true"
@@ -65,7 +65,7 @@
             <R_ItemLayout col="3">
                 <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CTRANS_DEPT_CODE"
                            MaxLength="20"
-                           OnLostFocus="OnLostFocusDepartmentTransaction"
+                           OnLostFocused="OnLostFocusDepartmentTransaction"
                            R_ConductorSource="@_conductorHeader"
                            R_EnableAdd="true"
                            R_EnableEdit="false">
@@ -105,7 +105,7 @@
             <R_ItemLayout col="3">
                 <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CTENANT_ID"
                            MaxLength="20"
-                           OnLostFocus="OnLostFocusTenant"
+                           OnLostFocused="OnLostFocusTenant"
                            R_ConductorSource="@_conductorHeader"
                            R_EnableAdd="true"
                            R_EnableEdit="true">
@@ -164,7 +164,7 @@
             <R_ItemLayout col="3">
                 <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CDEPT_CODE"
                            MaxLength="20"
-                           OnLostFocus="OnLostFocusDepartment"
+                           OnLostFocused="OnLostFocusDepartment"
                            R_ConductorSource="@_conductorHeader"
                            R_EnableAdd="true"
                            R_EnableEdit="true">
@@ -244,7 +244,7 @@
             <R_ItemLayout col="5">
                 <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CREF_NO"
                            MaxLength="20"
-                           OnLostFocus="OnLostFocusLOIAgreement"
+                           OnLostFocused="OnLostFocusLOIAgreement"
                            R_ConductorSource="@_conductorHeader"
                            R_EnableAdd="true"
                            R_EnableEdit="true">
@@ -334,7 +334,7 @@
             <R_ItemLayout col="3">
                 <R_TextBox @bind-Value="@_AmortizationEntryViewModel.Data.Header.CCHARGES_ID"
                            MaxLength="20"
-                           OnLostFocus="OnLostFocusCharges"
+                           OnLostFocused="OnLostFocusCharges"
                            R_ConductorSource="@_conductorHeader"
                            R_EnableAdd="true"
                            R_EnableEdit="true">

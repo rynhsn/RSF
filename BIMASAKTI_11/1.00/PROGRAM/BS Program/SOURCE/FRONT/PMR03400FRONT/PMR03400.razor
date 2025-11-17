@@ -128,7 +128,7 @@
                        Enabled
                        CharacterCasing="R_eCharacterCasing.Upper"
                        MaxLength="int.MaxValue"
-                       OnLostFocus="OnLostFocus_LookupFromCustomer"
+                       OnLostFocused="OnLostFocus_LookupFromCustomer"
                        TabIndex="1" />
         </R_ItemLayout>
         <R_ItemLayout>
@@ -153,7 +153,7 @@
                        Enabled
                        CharacterCasing="R_eCharacterCasing.Upper"
                        MaxLength="int.MaxValue"
-                       OnLostFocus="OnLostFocus_LookupToCustomer" TabIndex="3" />
+                       OnLostFocused="OnLostFocus_LookupToCustomer" TabIndex="3" />
         </R_ItemLayout>
         <R_ItemLayout>
             <R_Lookup R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupToCustomer" R_After_Open_Lookup="@AfterOpen_lookupToCustomerAsync" TabIndex="4">...</R_Lookup>

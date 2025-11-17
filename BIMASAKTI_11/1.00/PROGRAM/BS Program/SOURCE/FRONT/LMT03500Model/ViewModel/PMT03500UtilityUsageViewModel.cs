@@ -497,7 +497,11 @@ namespace PMT03500Model.ViewModel
                     .PMT03500DownloadTemplateFile));
 
                 // poExcel.R_ReadFromExcel();
-                loDataSet = poExcel.R_ReadFromExcel(loResult.FileBytes, new[] { "Definition" });
+                //loDataSet = poExcel.R_ReadFromExcel(loResult.FileBytes, new[] { "Definition" });
+                loDataSet = poExcel.R_ReadExcel(loResult.FileBytes, option =>
+                {
+                    option.TableNames = new string[] { "Definition" };
+                });
                 // loRtn = loDataSet.Tables[0];
             }
             catch (Exception ex)

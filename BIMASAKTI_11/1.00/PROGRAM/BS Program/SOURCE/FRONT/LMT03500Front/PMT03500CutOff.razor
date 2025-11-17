@@ -14,7 +14,7 @@
                 <R_Label>@(_localizer["LBL_BUILDING"] + "*")</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="3" Class="ps-1">
-                <R_TextBox @bind-Value="@_viewModelUtility.Entity.CBUILDING_ID" OnLostFocus="OnLostFocusLookupBuilding"/>
+                <R_TextBox @bind-Value="@_viewModelUtility.Entity.CBUILDING_ID" OnLostFocused="OnLostFocusLookupBuilding"/>
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Lookup R_Before_Open_Lookup="BeforeLookupBuilding" R_After_Open_Lookup="AfterLookupBuilding">...</R_Lookup>
