@@ -16,6 +16,9 @@ namespace ICT00900COMMON.Interface
         IAsyncEnumerable<CurrencyDTO> CurrencyList();
         IAsyncEnumerable<ICT00900AdjustmentDTO> GetAdjustmentList();
         ICT00900AdjustmentDTO ChangeStatusAdjustment(ICT00900ParameterChangeStatusDTO poEntity);
-
+        ICT00900AdjustmentDTO SubmitAdjustment(ICT00900ParameterChangeStatusDTO poEntity);
+        ICT00900AjustmentDetailDTO GetProdBalanceInfo(ICT00900ParameterChangeStatusDTO poEntity);
+        ICT00900GenericRecord<ICSystemParameterDTO> GetICSystemParam(BaseDTO poEntity);
+        ICT00900GenericRecord<LastCurrencyRateDTO> GetLastCurrency(LastCurrencyRateDTO poEntity);
     }
 }

@@ -421,11 +421,20 @@ namespace ICT00900FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adjustment Value cannot be less than 0.
+        ///   Looks up a localized string similar to Adjustment Value cannot be 0 for Unit Price Adjustment Method!.
         /// </summary>
         internal static string ValidationAdjustmentValue {
             get {
                 return ResourceManager.GetString("ValidationAdjustmentValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adjustment Value cannot be less than 0.
+        /// </summary>
+        internal static string ValidationAdjustmentValueMin {
+            get {
+                return ResourceManager.GetString("ValidationAdjustmentValueMin", resourceCulture);
             }
         }
         
@@ -480,6 +489,15 @@ namespace ICT00900FrontResources {
         internal static string ValidationRefDate {
             get {
                 return ResourceManager.GetString("ValidationRefDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Date may not be earlier than Soft Period!.
+        /// </summary>
+        internal static string ValidationRefDateSoftClose {
+            get {
+                return ResourceManager.GetString("ValidationRefDateSoftClose", resourceCulture);
             }
         }
         

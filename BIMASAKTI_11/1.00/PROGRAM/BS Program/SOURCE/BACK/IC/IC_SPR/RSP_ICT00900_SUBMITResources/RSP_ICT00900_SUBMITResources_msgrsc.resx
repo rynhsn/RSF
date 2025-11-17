@@ -117,156 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Delete_Success" xml:space="preserve">
-    <value>Delete Success</value>
+  <data name="ALLOC_GLNO_NOT_FOUND" xml:space="preserve">
+    <value>Product Allocation GL Account No. not found or Product ID {0}!</value>
   </data>
-  <data name="MessageDelete" xml:space="preserve">
-    <value>Delete Success</value>
+  <data name="ERROR_PROCESS" xml:space="preserve">
+    <value>Process failed! unable to submit transation {0}</value>
   </data>
-  <data name="ValidationAdjustmentMethod" xml:space="preserve">
-    <value>Adjustment Method is required</value>
+  <data name="GLNO_NOT_FOUND" xml:space="preserve">
+    <value>GL Account No. {0} not found in Master Chart of Account!</value>
   </data>
-  <data name="ValidationAdjustmentValue" xml:space="preserve">
-    <value>Adjustment Value cannot be 0 for Unit Price Adjustment Method!</value>
+  <data name="INCOMPLETE_TRX" xml:space="preserve">
+    <value>Incomplete Transaction! Unable to submit.</value>
   </data>
-  <data name="ValidationAdjustmentValueMin" xml:space="preserve">
-    <value>Adjustment Value cannot be less than 0</value>
-  </data>
-  <data name="ValidationAllocation" xml:space="preserve">
-    <value>Allocation is required</value>
-  </data>
-  <data name="ValidationBeforeCancel" xml:space="preserve">
-    <value>You haven’t saved your changes. Are you sure want to cancel?</value>
-  </data>
-  <data name="ValidationCurrency" xml:space="preserve">
-    <value>Currency is required</value>
-  </data>
-  <data name="ValidationDepartment" xml:space="preserve">
-    <value>Department Id is required.</value>
-  </data>
-  <data name="ValidationProductId" xml:space="preserve">
-    <value>Product Id is required</value>
-  </data>
-  <data name="ValidationRefDate" xml:space="preserve">
-    <value>Reference Date is required</value>
-  </data>
-  <data name="ValidationRefDateSoftClose" xml:space="preserve">
-    <value>Reference Date may not be earlier than Soft Period!</value>
-  </data>
-  <data name="ValidationRefNo" xml:space="preserve">
-    <value>Reference No is required</value>
-  </data>
-  <data name="_AdjAmount" xml:space="preserve">
-    <value>Value</value>
-  </data>
-  <data name="_AdjMethod" xml:space="preserve">
-    <value>Adjustment Method</value>
-  </data>
-  <data name="_AdjustmentDetail" xml:space="preserve">
-    <value>Adjustment Detail</value>
-  </data>
-  <data name="_AdjustmentMethod" xml:space="preserve">
-    <value>Adjustment Method</value>
-  </data>
-  <data name="_AdjValue" xml:space="preserve">
-    <value>Adjustment Value</value>
-  </data>
-  <data name="_Allocation" xml:space="preserve">
-    <value>Allocation</value>
-  </data>
-  <data name="_BaseCurrency" xml:space="preserve">
-    <value>Base Currency</value>
-  </data>
-  <data name="_ConfirmationRedraft" xml:space="preserve">
-    <value>Are you sure want to  redraft this data?</value>
-  </data>
-  <data name="_ConfirmationSubmit" xml:space="preserve">
-    <value>Are you sure want to  submit this data?</value>
-  </data>
-  <data name="_CreateBy" xml:space="preserve">
-    <value>Created By</value>
-  </data>
-  <data name="_CreateDate" xml:space="preserve">
-    <value>Created Date</value>
-  </data>
-  <data name="_Currency" xml:space="preserve">
-    <value>Currency</value>
-  </data>
-  <data name="_CurrencyRate" xml:space="preserve">
-    <value>Currency Rate</value>
-  </data>
-  <data name="_Departement" xml:space="preserve">
-    <value>Department</value>
-  </data>
-  <data name="_Description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="_FailedUpdate" xml:space="preserve">
-    <value>Failed to update Process</value>
-  </data>
-  <data name="_labelTotalAdjustment" xml:space="preserve">
-    <value>Total Adjustment</value>
-  </data>
-  <data name="_labelTotalValue" xml:space="preserve">
-    <value>Total Value</value>
-  </data>
-  <data name="_labelUnitCost" xml:space="preserve">
-    <value>Unit Cost</value>
-  </data>
-  <data name="_LocalCurrency" xml:space="preserve">
-    <value>Local Currency</value>
-  </data>
-  <data name="_Product" xml:space="preserve">
-    <value>Product</value>
-  </data>
-  <data name="_Property" xml:space="preserve">
-    <value>Property</value>
-  </data>
-  <data name="_Redraft" xml:space="preserve">
-    <value>Redraft</value>
-  </data>
-  <data name="_RefDate" xml:space="preserve">
-    <value>Ref. Date</value>
-  </data>
-  <data name="_RefDateDetail" xml:space="preserve">
-    <value>Reference Date</value>
-  </data>
-  <data name="_RefNo" xml:space="preserve">
-    <value>Reference No</value>
-  </data>
-  <data name="_Status" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="_Submit" xml:space="preserve">
-    <value>Submit</value>
-  </data>
-  <data name="_SuccessMessageOfferRedraft" xml:space="preserve">
-    <value>Data Redraft Successfully!</value>
-    <comment>Data Redraft Successfully!</comment>
-  </data>
-  <data name="_SuccessMessageOfferSubmit" xml:space="preserve">
-    <value>Data Submitted Successfully!</value>
-    <comment>Data Submitted Successfully!</comment>
-  </data>
-  <data name="_TabAdjustmentDetail" xml:space="preserve">
-    <value>Adjustment Detail</value>
-  </data>
-  <data name="_TabAdjustmentList" xml:space="preserve">
-    <value>Adjustment List</value>
-  </data>
-  <data name="_Transaction" xml:space="preserve">
-    <value>Transaction</value>
-  </data>
-  <data name="_TrxStatus" xml:space="preserve">
-    <value>Trx Status</value>
-  </data>
-  <data name="_UpdatedBy" xml:space="preserve">
-    <value>Updated By</value>
-  </data>
-  <data name="_UpdatedByy" xml:space="preserve">
-    <value>Updated By</value>
-  </data>
-  <data name="_UpdatedDate" xml:space="preserve">
-    <value>Updated Date</value>
+  <data name="INV_GLNO_NOT_FOUND" xml:space="preserve">
+    <value>Inventory GL Account No. not found for Product ID {0}!</value>
   </data>
 </root>
