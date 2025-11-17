@@ -27,17 +27,26 @@
           "RSP_CB_CLOSE_PERIODResources": "1.0.0"
         },
         "runtime": {
-          "CBB00200Back.dll": {}
+          "CBB00200Back.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "CBB00200Common/1.0.0": {
         "runtime": {
-          "CBB00200Common.dll": {}
+          "CBB00200Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "RSP_CB_CLOSE_PERIODResources/1.0.0": {
         "runtime": {
-          "RSP_CB_CLOSE_PERIODResources.dll": {}
+          "RSP_CB_CLOSE_PERIODResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "R_APIBackEnd/1.0.0.0": {

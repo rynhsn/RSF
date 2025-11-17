@@ -25,17 +25,26 @@
           "RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources": "1.0.0"
         },
         "runtime": {
-          "GSM05000Back.dll": {}
+          "GSM05000Back.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "GSM05000Common/1.0.0": {
         "runtime": {
-          "GSM05000Common.dll": {}
+          "GSM05000Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources/1.0.0": {
         "runtime": {
-          "RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.dll": {}
+          "RSP_GS_MAINTAIN_TRANS_CODE_APPROVERResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "R_APIBackEnd/1.0.0.0": {

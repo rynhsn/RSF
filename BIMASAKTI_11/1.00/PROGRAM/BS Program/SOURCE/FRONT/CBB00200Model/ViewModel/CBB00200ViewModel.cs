@@ -26,6 +26,9 @@ namespace CBB00200Model.ViewModel
         
         public List<CBB00200ClosePeriodToDoListDTO> SoftClosePeriodErrorList = new List<CBB00200ClosePeriodToDoListDTO>();
 
+        public CBB00200ClosePeriodResultDTO SoftClosePeriodResult = new CBB00200ClosePeriodResultDTO();
+        
+
         public DataSet ExcelDataSetToDoList { get; set; }
 
         public async Task GetSystemParam()
@@ -110,7 +113,7 @@ namespace CBB00200Model.ViewModel
             ExcelDataSetToDoList = loDataSet;
         }
 
-        public async Task SoftClosePeriod(string pcPeriod)
+        public async Task SoftClosePeriod_old(string pcPeriod)
         {
             var loEx = new R_Exception();
             try
@@ -128,6 +131,26 @@ namespace CBB00200Model.ViewModel
             
             loEx.ThrowExceptionIfErrors();
         }
+
+        public async Task SoftClosePeriod(string pcPeriod)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                R_FrontContext.R_SetStreamingContext(CBB00200ContextConstant.CPERIOD, pcPeriod);
+                var loResult =
+                    await _model.GetAsync<CBB00200SingleDTO<CBB00200ClosePeriodResultDTO>>(
+                        nameof(ICBB00200.CBB00200SoftClosePeriodStream));
+                SoftClosePeriodResult = loResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
 
         public void ValidateHasError(List<CBB00200ClosePeriodToDoListDTO> poParam)
         {

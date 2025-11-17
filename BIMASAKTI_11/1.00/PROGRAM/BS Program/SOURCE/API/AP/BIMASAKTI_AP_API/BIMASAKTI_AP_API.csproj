@@ -38,10 +38,20 @@
     <ProjectReference Include="..\..\..\SERVICE\AP\APR00300Service\APR00300Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\AP\APR00500Service\APR00500Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\AP\APR00700SERVICE\APR00700SERVICE.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\AP\APR00600SERVICE\APR00600SERVICE.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="Reports\APR00500InvoiceList.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Reports\APR00600ReportJournalGroup.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Reports\APR00600ReportSupplierCategory.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Reports\APR00600ReportSupplierId.frx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

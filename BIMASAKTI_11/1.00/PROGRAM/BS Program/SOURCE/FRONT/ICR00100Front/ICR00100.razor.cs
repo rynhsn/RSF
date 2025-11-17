@@ -28,6 +28,7 @@ public partial class ICR00100 : R_Page
         {
             await _viewModel.Init();
             await _setDefaultWarehouse();
+            await _setDefaultDepartment();
             await _setDefaultProduct();
         }
         catch (Exception ex)
@@ -178,7 +179,7 @@ public partial class ICR00100 : R_Page
     {
         var loEx = new R_Exception();
 
-        var loLookupViewModel = new LookupGSL00700ViewModel();
+        var loLookupViewModel = new LookupGSL00710ViewModel();
         try
         {
             if (string.IsNullOrEmpty(_viewModel.ReportParam.CDEPT_CODE))
@@ -187,13 +188,13 @@ public partial class ICR00100 : R_Page
                 return;
             }
 
-            var param = new GSL00700ParameterDTO
+            var param = new GSL00710ParameterDTO
             {
-                CPROGRAM_ID = "ICR00100",
-                CSEARCH_TEXT = _viewModel.ReportParam.CDEPT_CODE
+                CSEARCH_TEXT = _viewModel.ReportParam.CDEPT_CODE,
+                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID
             };
 
-            var loResult = await loLookupViewModel.GetDepartment(param);
+            var loResult = await loLookupViewModel.GetDepartmentProperty(param);
 
             if (loResult == null)
             {
@@ -223,13 +224,13 @@ public partial class ICR00100 : R_Page
 
         try
         {
-            var loParameter = new GSL00700ParameterDTO()
+            var loParameter = new GSL00710ParameterDTO()
             {
-                CPROGRAM_ID = "ICR00100"
+                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID
             };
 
             eventArgs.Parameter = loParameter;
-            eventArgs.TargetPageType = typeof(GSL00700);
+            eventArgs.TargetPageType = typeof(GSL00710);
         }
         catch (Exception ex)
         {
@@ -247,7 +248,7 @@ public partial class ICR00100 : R_Page
         {
             if (eventArgs.Result == null) return;
 
-            var loTempResult = (GSL00700DTO)eventArgs.Result;
+            var loTempResult = (GSL00710DTO)eventArgs.Result;
             _viewModel.ReportParam.CDEPT_CODE = loTempResult.CDEPT_CODE;
             _viewModel.ReportParam.CDEPT_NAME = loTempResult.CDEPT_NAME;
         }
@@ -519,7 +520,7 @@ public partial class ICR00100 : R_Page
     {
         var loEx = new R_Exception();
 
-        var loLookupViewModel = new LookupGSL00600ViewModel();
+        var loLookupViewModel = new LookupGSL01800ViewModel();
         try
         {
             if (string.IsNullOrEmpty(_viewModel.ReportParam.CFILTER_DATA_CATEGORY))
@@ -528,13 +529,14 @@ public partial class ICR00100 : R_Page
                 return;
             }
 
-            var param = new GSL00600ParameterDTO
+            var param = new GSL01800DTOParameter
             {
                 CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
-                CSEARCH_TEXT = _viewModel.ReportParam.CFILTER_DATA_CATEGORY
+                CSEARCH_TEXT = _viewModel.ReportParam.CFILTER_DATA_CATEGORY,
+                CCATEGORY_TYPE = "30"
             };
 
-            var loResult = await loLookupViewModel.GetUnitTypeCategory(param);
+            var loResult = await loLookupViewModel.GetCategory(param);
 
             if (loResult == null)
             {
@@ -546,8 +548,8 @@ public partial class ICR00100 : R_Page
                 goto EndBlock;
             }
 
-            _viewModel.ReportParam.CFILTER_DATA_CATEGORY = loResult.CUNIT_TYPE_CATEGORY_ID;
-            _viewModel.ReportParam.CFILTER_DATA_CATEGORY_NAME = loResult.CUNIT_TYPE_CATEGORY_NAME;
+            _viewModel.ReportParam.CFILTER_DATA_CATEGORY = loResult.CCATEGORY_ID;
+            _viewModel.ReportParam.CFILTER_DATA_CATEGORY_NAME = loResult.CCATEGORY_NAME;
         }
         catch (Exception ex)
         {
@@ -564,13 +566,14 @@ public partial class ICR00100 : R_Page
 
         try
         {
-            var loParameter = new GSL00600ParameterDTO()
+            var loParameter = new GSL01800DTOParameter()
             {
                 CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
+                CCATEGORY_TYPE= "30"
             };
 
             eventArgs.Parameter = loParameter;
-            eventArgs.TargetPageType = typeof(GSL00600);
+            eventArgs.TargetPageType = typeof(GSL01800);
         }
         catch (Exception ex)
         {
@@ -588,9 +591,9 @@ public partial class ICR00100 : R_Page
         {
             if (eventArgs.Result == null) return;
 
-            var loResult = (GSL00600DTO)eventArgs.Result;
-            _viewModel.ReportParam.CFILTER_DATA_CATEGORY = loResult.CUNIT_TYPE_CATEGORY_ID;
-            _viewModel.ReportParam.CFILTER_DATA_CATEGORY_NAME = loResult.CUNIT_TYPE_CATEGORY_NAME;
+            var loResult = (GSL01800DTO)eventArgs.Result;
+            _viewModel.ReportParam.CFILTER_DATA_CATEGORY = loResult.CCATEGORY_ID;
+            _viewModel.ReportParam.CFILTER_DATA_CATEGORY_NAME = loResult.CPARENT_NAME;
         }
         catch (Exception ex)
         {
@@ -620,7 +623,8 @@ public partial class ICR00100 : R_Page
             var param = new GSL00400ParameterDTO
             {
                 CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
-                CSEARCH_TEXT = _viewModel.ReportParam.CFILTER_DATA_JOURNAL
+                CSEARCH_TEXT = _viewModel.ReportParam.CFILTER_DATA_JOURNAL,
+                CJRNGRP_TYPE="30"
             };
 
             var loResult = await loLookupViewModel.GetJournalGroup(param);
@@ -656,6 +660,7 @@ public partial class ICR00100 : R_Page
             var loParameter = new GSL00400ParameterDTO()
             {
                 CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
+                CJRNGRP_TYPE = "30"
             };
 
             eventArgs.Parameter = loParameter;
@@ -857,6 +862,38 @@ public partial class ICR00100 : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
+    private async Task _setDefaultDepartment()
+    {
+        var loEx = new R_Exception();
+
+        try
+        {
+            if (string.IsNullOrEmpty(_viewModel.ReportParam.CPROPERTY_ID)) return;
+
+            var loLookupViewModel = new LookupGSL00710ViewModel();
+
+            var param = new GSL00710ParameterDTO
+            {
+                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID
+            };
+
+            await loLookupViewModel.GetDepartmentPropertyList(param);
+            if (loLookupViewModel.DepartmentPropertyGrid.Count > 0)
+            {
+                _viewModel.ReportParam.CDEPT_CODE = loLookupViewModel.DepartmentPropertyGrid.FirstOrDefault()?.CDEPT_CODE;
+                _viewModel.ReportParam.CDEPT_NAME = loLookupViewModel.DepartmentPropertyGrid
+                    .Where(x => x.CDEPT_CODE == _viewModel.ReportParam.CDEPT_CODE)
+                    .Select(x => x.CDEPT_NAME).FirstOrDefault() ?? string.Empty;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+    }
+
     private async Task _setDefaultProduct()
     {
         var loEx = new R_Exception();
@@ -898,20 +935,21 @@ public partial class ICR00100 : R_Page
 
         try
         {
-            var loLookupViewModel = new LookupGSL00600ViewModel();
-            var loParameter = new GSL00600ParameterDTO()
+            var loLookupViewModel = new LookupGSL01800ViewModel();
+            var loParameter = new GSL01800DTOParameter()
             {
-                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID
+                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
+                CCATEGORY_TYPE = "30"
             };
 
-            await loLookupViewModel.GetUnitTypeCategoryList(loParameter);
-            if (loLookupViewModel.UnitTypeCategoryGrid.Count > 0)
+            await loLookupViewModel.GetCategoryList(loParameter);
+            if (loLookupViewModel.ListResult.Count > 0)
             {
                 _viewModel.ReportParam.CFILTER_DATA_CATEGORY =
-                    loLookupViewModel.UnitTypeCategoryGrid.FirstOrDefault()?.CUNIT_TYPE_CATEGORY_ID;
-                _viewModel.ReportParam.CWAREHOUSE_NAME = loLookupViewModel.UnitTypeCategoryGrid
-                    .Where(x => x.CUNIT_TYPE_CATEGORY_ID == _viewModel.ReportParam.CFILTER_DATA_CATEGORY)
-                    .Select(x => x.CUNIT_TYPE_CATEGORY_NAME).FirstOrDefault() ?? string.Empty;
+                    loLookupViewModel.ListResult.FirstOrDefault()?.CCATEGORY_ID;
+                _viewModel.ReportParam.CFILTER_DATA_CATEGORY_NAME = loLookupViewModel.ListResult
+                    .Where(x => x.CCATEGORY_ID == _viewModel.ReportParam.CFILTER_DATA_CATEGORY)
+                    .Select(x => x.CCATEGORY_NAME).FirstOrDefault() ?? string.Empty;
 
             }
         }
@@ -932,7 +970,8 @@ public partial class ICR00100 : R_Page
             var loLookupViewModel = new LookupGSL00400ViewModel();
             var loParameter = new GSL00400ParameterDTO()
             {
-                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID
+                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID,
+                CJRNGRP_TYPE = "30"
             };
 
             await loLookupViewModel.GetJournalGroupList(loParameter);

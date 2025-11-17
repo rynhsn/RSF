@@ -53,6 +53,7 @@ namespace ICR00600Model.ViewModel
 
                 PropertyList = loReturn.Data;
                 ReportParam.CPROPERTY_ID = PropertyList[0].CPROPERTY_ID;
+                ReportParam.CPROPERTY_NAME = PropertyList[0].CPROPERTY_NAME;
             }
             catch (Exception ex)
             {

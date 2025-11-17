@@ -88,7 +88,7 @@ namespace PMR03300FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AR Customer Analisys.
+        ///   Looks up a localized string similar to AR Customer Analysis.
         /// </summary>
         internal static string _pageTitle {
             get {
@@ -133,7 +133,7 @@ namespace PMR03300FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custormer Category.
+        ///   Looks up a localized string similar to Customer Category.
         /// </summary>
         internal static string CCUSTOMER_CATEGORY {
             get {
@@ -178,7 +178,7 @@ namespace PMR03300FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jurnal Group.
+        ///   Looks up a localized string similar to Journal Group.
         /// </summary>
         internal static string CJURNAL_GROUP {
             get {

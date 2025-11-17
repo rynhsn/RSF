@@ -107,37 +107,58 @@
           "System.Data.SqlClient": "4.8.5"
         },
         "runtime": {
-          "PMT03500Back.dll": {}
+          "PMT03500Back.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "PMT03500Common/1.0.0": {
         "runtime": {
-          "PMT03500Common.dll": {}
+          "PMT03500Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "RSP_PM_UNDO_UTILITY_USAGEResources/1.0.0": {
         "runtime": {
-          "RSP_PM_UNDO_UTILITY_USAGEResources.dll": {}
+          "RSP_PM_UNDO_UTILITY_USAGEResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "RSP_PM_UPLOAD_UTILITY_CUTOFF_ECResources/1.0.0": {
         "runtime": {
-          "RSP_PM_UPLOAD_UTILITY_CUTOFF_ECResources.dll": {}
+          "RSP_PM_UPLOAD_UTILITY_CUTOFF_ECResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "RSP_PM_UPLOAD_UTILITY_CUTOFF_WGResources/1.0.0": {
         "runtime": {
-          "RSP_PM_UPLOAD_UTILITY_CUTOFF_WGResources.dll": {}
+          "RSP_PM_UPLOAD_UTILITY_CUTOFF_WGResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "RSP_PM_UPLOAD_UTILITY_USAGE_ECResources/1.0.0": {
         "runtime": {
-          "RSP_PM_UPLOAD_UTILITY_USAGE_ECResources.dll": {}
+          "RSP_PM_UPLOAD_UTILITY_USAGE_ECResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "RSP_PM_UPLOAD_UTILITY_USAGE_WGResources/1.0.0": {
         "runtime": {
-          "RSP_PM_UPLOAD_UTILITY_USAGE_WGResources.dll": {}
+          "RSP_PM_UPLOAD_UTILITY_USAGE_WGResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "R_APIBackEnd/1.0.0.0": {

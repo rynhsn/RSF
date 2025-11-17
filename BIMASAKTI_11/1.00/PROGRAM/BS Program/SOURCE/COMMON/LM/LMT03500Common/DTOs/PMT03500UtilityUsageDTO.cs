@@ -91,5 +91,7 @@ namespace PMT03500Common.DTOs
         public bool LSELECTED { get; set; }
 
         public bool LOVER_USAGE { get; set; }
+
+        public string CSTATUS_CODE { get; set; }
     }
 }

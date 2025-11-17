@@ -478,7 +478,7 @@ public class GSM05000Cls : R_BusinessObjectAsync<GSM05000DTO>
             loCmd = loDb.GetCommand();
 
             lcQuery =
-                @$"SELECT * FROM RFT_GET_GSB_CODE_INFO ('SIAPP', '{poParameterDb.CCOMPANY_ID}', '_GS_REFNO_DELIMITER', '', '{poParameterDb.CLANGUAGE_ID}')";
+                @$"SELECT * FROM RFT_GET_GSB_CODE_INFO ('BIMASAKTI', '{poParameterDb.CCOMPANY_ID}', '_BS_REFNO_DELIMITER', '', '{poParameterDb.CLANGUAGE_ID}')";
             loCmd.CommandType = CommandType.Text;
             loCmd.CommandText = lcQuery;
 

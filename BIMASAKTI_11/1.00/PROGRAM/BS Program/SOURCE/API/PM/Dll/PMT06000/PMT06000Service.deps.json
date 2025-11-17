@@ -25,17 +25,26 @@
           "RSP_PM_UPDATE_OVERTIME_STATUSResources": "1.0.0"
         },
         "runtime": {
-          "PMT06000Back.dll": {}
+          "PMT06000Back.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "PMT06000Common/1.0.0": {
         "runtime": {
-          "PMT06000Common.dll": {}
+          "PMT06000Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "RSP_PM_UPDATE_OVERTIME_STATUSResources/1.0.0": {
         "runtime": {
-          "RSP_PM_UPDATE_OVERTIME_STATUSResources.dll": {}
+          "RSP_PM_UPDATE_OVERTIME_STATUSResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "R_APIBackEnd/1.0.0.0": {
