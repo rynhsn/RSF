@@ -81,16 +81,45 @@ namespace PMM09000MODEL.ViewModel
         public async Task GetBuildingList()
         {
             R_Exception loException = new R_Exception();
+
             try
             {
-                R_FrontContext.R_SetStreamingContext(ContextConstant.CPROPERTY_ID, _PropertyValue.CPROPERTY_ID);
-                var loResult = await _GetListModel.GetBuldingListAsyncModel();
-                _BuildingList = new ObservableCollection<PMM09000BuildingDTO>(loResult.Data);
+                // --- PERBAIKAN KRITIS: Cek Null pada _PropertyValue ---
+                if (_PropertyValue != null && !string.IsNullOrWhiteSpace(_PropertyValue.CPROPERTY_ID))
+                {
+                    // Jika _PropertyValue valid, set Context
+                    R_FrontContext.R_SetStreamingContext(ContextConstant.CPROPERTY_ID, _PropertyValue.CPROPERTY_ID);
+
+                    var loResult = await _GetListModel.GetBuldingListAsyncModel();
+
+                    // Tambahkan pengecekan null pada loResult.Data sebelum inisialisasi collection
+                    if (loResult != null && loResult.Data != null)
+                    {
+                        _BuildingList = new ObservableCollection<PMM09000BuildingDTO>(loResult.Data);
+                    }
+                }
+                else if (_BuildingList != null)
+                {
+                    // Jika _PropertyValue null/kosong, bersihkan list Building yang sudah ada.
+                    _BuildingList.Clear();
+                }
+                // --- Akhir Perbaikan ---
             }
             catch (Exception ex)
             {
                 loException.Add(ex);
             }
+
+            //try
+            //{
+            //    R_FrontContext.R_SetStreamingContext(ContextConstant.CPROPERTY_ID, _PropertyValue.CPROPERTY_ID);
+            //    var loResult = await _GetListModel.GetBuldingListAsyncModel();
+            //    _BuildingList = new ObservableCollection<PMM09000BuildingDTO>(loResult.Data);
+            //}
+            //catch (Exception ex)
+            //{
+            //    loException.Add(ex);
+            //}
             loException.ThrowExceptionIfErrors();
         }
 
