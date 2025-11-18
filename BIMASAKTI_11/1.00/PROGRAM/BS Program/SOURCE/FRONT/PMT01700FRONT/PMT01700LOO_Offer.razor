@@ -654,6 +654,7 @@
                         <R_ItemLayout col="7">
                             <R_DatePicker Value="@_viewModel.Data.DREF_DATE"
                                           R_ConductorSource="@_conductor"
+                                          DatePickerFormat="R_eDatePickerFormat.Short"
                                           ValueChanged="@((DateTime? value) => OnChangedDREF_DATE(value))"
                                             R_EnableAdd
                                             R_EnableEdit />
@@ -673,21 +674,24 @@
 
                             <R_DatePicker Value="@_viewModel.Data.DFOLLOW_UP_DATE"
                                           R_ConductorSource="@_conductor"
+                                          DatePickerFormat="R_eDatePickerFormat.Short"
+                                          
                                           ValueChanged="@((DateTime? value) => OnChangedDFOLLOW_UP_DATE(value))"
                                             R_EnableAdd
                                             R_EnableEdit />
 
                         </R_ItemLayout>
 
-                        <R_ItemLayout col="3" Class="ps-1">
+                        <R_ItemLayout col="2" Class="ps-1">
                             <R_Label>
                                 @_localizer["_ExpiredDate"]
                             </R_Label>
                         </R_ItemLayout>
 
-                        <R_ItemLayout col="4" Class="ps-1">
+                        <R_ItemLayout col="5" Class="ps-1">
                             <R_DatePicker Value="@_viewModel.Data.DEXPIRED_DATE"
                                           R_ConductorSource="@_conductor"
+                                          DatePickerFormat="R_eDatePickerFormat.Short"
                                           ValueChanged="@((DateTime? value) => OnChangedDEXPIRED_DATE(value))"
                                             R_EnableAdd
                                             R_EnableEdit />
@@ -798,7 +802,8 @@
 
                         <R_ItemLayout col="8">
                             <R_DateTimePicker Value="@_viewModel.Data.DSTART_DATE"
-                                              R_ConductorSource="@_conductor"
+                                              R_ConductorSource="@_conductor"  
+                                              DateTimePickerFormat="R_eDateTimePickerFormat.Short"
                                               ValueChanged="@((DateTime? value) => OnChangedDSTART_DATE(value))"
                                                     R_EnableAdd
                                                     R_EnableEdit />
@@ -821,6 +826,8 @@
 
                             <R_DateTimePicker Value="@_viewModel.Data.DEND_DATE"
                                               R_ConductorSource="@_conductor"
+                                              DateTimePickerFormat="R_eDateTimePickerFormat.Short"
+
                                               ValueChanged="@((DateTime? value) => OnChangedDEND_DATE(value))"
                                               Min="@tStartDate"
                                                     R_EnableAdd
