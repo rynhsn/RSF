@@ -45,7 +45,7 @@ namespace PMR02000MODEL.View_Models
         public List<GeneralTypeDTO> _monthList { get; set; } = Enumerable.Range(1, 12).Select(i => new GeneralTypeDTO
         {
             CTYPE_CODE = i.ToString("D2"),
-            CTYPE_NAME = DateTimeFormatInfo.InvariantInfo.GetMonthName(i)
+            CTYPE_NAME = i.ToString("D2"),
         }).ToList();
         public string _MonthPeriod { get; set; } = "";
 

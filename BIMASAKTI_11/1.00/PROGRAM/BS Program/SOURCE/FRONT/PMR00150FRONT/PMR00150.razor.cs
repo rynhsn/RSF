@@ -66,12 +66,24 @@ namespace PMR00150FRONT
             string lsProperty = (string)poParam!;
             try
             {
-                _viewModel.PropertyCode = lsProperty!;
 
-                await _setDefaultDeptfrom();
-                await _setDefaultDeptto();
-                await _setDefaultSalesfrom();
-                await _setDefaultSalesto();
+                if (!string.IsNullOrEmpty(lsProperty))
+                {
+                    _viewModel.PropertyCode = lsProperty!;
+                    _viewModel.lcSalesmanCodeFrom = "";
+                    _viewModel.lcSalesmanNameFrom = "";
+                    _viewModel.lcSalesmanCodeTo = "";
+                    _viewModel.lcSalesmanNameTo = "";
+                    _viewModel.lcDeptCodeFrom = "";
+                    _viewModel.lcDeptNameFrom = "";
+                    _viewModel.lcDeptCodeTo = "";
+                    _viewModel.lcDeptNameTo = "";
+
+                    await _setDefaultDeptfrom();
+                    await _setDefaultDeptto();
+                    await _setDefaultSalesfrom();
+                    await _setDefaultSalesto();
+                }
 
             }
             catch (Exception ex)
