@@ -61,19 +61,9 @@ public partial class CBB00200 : R_Page
                 await R_MessageBox.Show("Message", @_localizer["MSG_CONFIRM"], R_eMessageBoxButtonType.YesNo);
             if (leAnswer == R_eMessageBoxResult.No) return;
 
-            // var loResult = await _viewModel.ClosePeriod(_viewModel.SystemParam.CCURRENT_PERIOD);
             await _viewModel.SoftClosePeriod(_viewModel.SystemParam.CCURRENT_PERIOD);
 
-            if (_viewModel.SoftClosePeriodErrorList.Count > 0)
-            {
-                CBB00200PopupParamDTO loParam = new()
-                {
-                    SoftClosePeriodErrorList = _viewModel.SoftClosePeriodErrorList
-                };
-                
-                await PopupService.Show(typeof(CBB00200PopupToDoList), loParam);
-            }
-            else
+            if (_viewModel.SoftClosePeriodResult.IERROR_COUNT == 0)
             {
                 await R_MessageBox.Show("Message", @_localizer["MSG_SUCCESS"]);
             }

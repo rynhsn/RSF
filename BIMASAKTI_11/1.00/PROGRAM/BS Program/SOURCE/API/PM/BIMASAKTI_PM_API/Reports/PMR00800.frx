@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="09/26/2025 10:28:55" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="11/06/2025 14:05:24" ReportInfo.CreatorVersion="2023.2.21.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -181,7 +181,7 @@ namespace FastReport
       <inherited Name="BaseHeaderUserId"/>
       <inherited Name="LabelUserId"/>
       <inherited Name="BaseHeaderDate"/>
-      <ChildBand Name="Child1" ZOrder="-1" Top="88.61" Width="1047.06" Height="94.5" CanGrow="true" CanShrink="true">
+      <ChildBand Name="Child1" ZOrder="-1" Top="87.72" Width="1047.06" Height="94.5" CanGrow="true" CanShrink="true">
         <TextObject Name="Text41" Left="103.95" Top="18.9" Width="1039.5" Height="18.9" Text=": [ResponseDataModel.ReportData.Param.CPROPERTY_NAME]([ResponseDataModel.ReportData.Param.CPROPERTY_ID])" Font="Arial Unicode MS, 7pt">
           <Formats>
             <GeneralFormat/>
@@ -200,7 +200,7 @@ namespace FastReport
         <TextObject Name="Text121" Top="47.25" Width="94.5" Height="18.9" Text="[ResponseDataModel.ReportData.Label.CLABEL_BUILDING]" Font="Arial, 7pt"/>
       </ChildBand>
     </inherited>
-    <GroupHeaderBand Name="GroupHeader1" ZOrder="0" Top="256.37" Width="1047.06" Height="37.8" CanGrow="true" CanShrink="true" Condition="[ResponseDataModel.ReportData.Data.CBUILDING_ID]">
+    <GroupHeaderBand Name="GroupHeader1" ZOrder="0" Top="253.7" Width="1047.06" Height="37.8" CanGrow="true" CanShrink="true" Condition="[ResponseDataModel.ReportData.Data.CBUILDING_ID]">
       <TextObject Name="Text44" Left="-28.35" Top="9.45" Width="973.35" Height="18.9" Text="[ResponseDataModel.ReportData.Data.CBUILDING_ID] - [ResponseDataModel.ReportData.Data.CBUILDING_NAME]" Font="Arial Unicode MS, 7pt">
         <Formats>
           <GeneralFormat/>
@@ -208,11 +208,11 @@ namespace FastReport
         </Formats>
       </TextObject>
       <LineObject Name="Line23" Left="-28.35" Top="28.35" Width="1105.65" Diagonal="true"/>
-      <DataHeaderBand Name="DataHeader1" Top="186.66" Width="1047.06" Height="66.15" CanGrow="true" CanShrink="true" RepeatOnEveryPage="true">
-        <TextObject Name="Text45" Left="28.35" Width="75.6" Height="56.7" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_UNIT_ID]" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text46" Left="-37.8" Width="66.15" Height="56.7" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_UNIT_TYPE]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text47" Left="103.95" Width="75.6" Height="56.7" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_AGREEMENT_NO]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text48" Left="179.55" Width="66.15" Height="56.7" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_TENANT_ID]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+      <DataHeaderBand Name="DataHeader1" Top="184.88" Width="1047.06" Height="66.15" CanGrow="true" CanShrink="true" RepeatOnEveryPage="true">
+        <TextObject Name="Text45" Left="18.9" Width="75.6" Height="56.7" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_UNIT_TYPE]" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text46" Left="-37.8" Width="56.7" Height="56.7" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_UNIT_ID]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text47" Left="94.5" Width="94.5" Height="56.7" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_AGREEMENT_NO]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text48" Left="189" Width="56.7" Height="56.7" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_TENANT_ID]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
         <TextObject Name="Text49" Left="245.7" Width="75.6" Height="56.7" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_TENANT_NAME]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
         <TextObject Name="Text50" Left="321.3" Width="66.15" Height="56.7" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_OCCUPIED_AREA]" HorzAlign="Center" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
         <TextObject Name="Text51" Left="387.45" Top="9.45" Width="151.2" Height="18.9" Text="[ResponseDataModel.ReportData.Label.CCOLUMN_RENT_HEADER]" HorzAlign="Center" Font="Arial Unicode MS, 7pt"/>
@@ -249,16 +249,16 @@ namespace FastReport
         <LineObject Name="Line17" Left="-28.35" Height="56.7" Diagonal="true"/>
         <LineObject Name="Line18" Left="321.3" Height="56.7" Diagonal="true"/>
         <LineObject Name="Line19" Left="245.7" Height="56.7" Diagonal="true"/>
-        <LineObject Name="Line20" Left="179.55" Height="56.7" Diagonal="true"/>
-        <LineObject Name="Line21" Left="103.95" Height="56.7" Diagonal="true"/>
-        <LineObject Name="Line22" Left="28.35" Height="56.7" Diagonal="true"/>
+        <LineObject Name="Line20" Left="189" Height="56.7" Diagonal="true"/>
+        <LineObject Name="Line21" Left="94.5" Height="56.7" Diagonal="true"/>
+        <LineObject Name="Line22" Left="18.9" Height="56.7" Diagonal="true"/>
         <LineObject Name="Line3" Left="-28.35" Top="56.7" Width="1105.65" Diagonal="true"/>
       </DataHeaderBand>
-      <DataBand Name="Data1" Top="297.72" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true" DataSource="Data">
-        <TextObject Name="Text55" Left="-28.35" Width="56.7" Height="28.35" Text="[ResponseDataModel.ReportData.Data.CUNIT_ID]" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text71" Left="28.35" Width="75.6" Height="28.35" Text="[ResponseDataModel.ReportData.Data.CUNIT_TYPE_NAME]" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text72" Left="103.95" Width="75.6" Height="28.35" Text="[ResponseDataModel.ReportData.Data.CAGREEMENT_NO]" Font="Arial Unicode MS, 7pt"/>
-        <TextObject Name="Text73" Left="179.55" Width="66.15" Height="28.35" Text="[ResponseDataModel.ReportData.Data.CTENANT_ID]" Font="Arial Unicode MS, 7pt"/>
+      <DataBand Name="Data1" Top="294.17" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true" DataSource="Data">
+        <TextObject Name="Text55" Left="-28.35" Width="47.25" Height="28.35" Text="[ResponseDataModel.ReportData.Data.CUNIT_ID]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text71" Left="18.9" Width="75.6" Height="28.35" Text="[ResponseDataModel.ReportData.Data.CUNIT_TYPE_NAME]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text72" Left="94.5" Width="94.5" Height="28.35" Text="[ResponseDataModel.ReportData.Data.CAGREEMENT_NO]" Font="Arial Unicode MS, 7pt"/>
+        <TextObject Name="Text73" Left="189" Width="56.7" Height="28.35" Text="[ResponseDataModel.ReportData.Data.CTENANT_ID]" Font="Arial Unicode MS, 7pt"/>
         <TextObject Name="Text75" Left="321.3" Width="66.15" Height="28.35" Text="[ResponseDataModel.ReportData.Data.NOCCUPIED]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
         <TextObject Name="Text76" Left="387.45" Width="47.25" Height="28.35" Text="[ResponseDataModel.ReportData.Data.NRENT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
         <TextObject Name="Text77" Left="434.7" Width="75.6" Height="28.35" Text="[ResponseDataModel.ReportData.Data.NAVAILABLE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 7pt" Trimming="EllipsisCharacter"/>
@@ -277,7 +277,7 @@ namespace FastReport
           <Sort Expression="[ResponseDataModel.ReportData.Data.CUNIT_ID]"/>
         </Sort>
       </DataBand>
-      <GroupFooterBand Name="GroupFooter1" Top="329.63" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true">
+      <GroupFooterBand Name="GroupFooter1" Top="325.18" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true">
         <LineObject Name="Line24" Left="245.7" Width="831.6" Diagonal="true"/>
         <TextObject Name="Text88" Left="245.7" Width="75.6" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CLABEL_SUBTOTAL]" Font="Arial Unicode MS, 7pt"/>
         <TextObject Name="Text89" Left="321.3" Width="66.15" Height="28.35" Text="[SUM_NOCCUPIED]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
@@ -294,7 +294,7 @@ namespace FastReport
         <TextObject Name="Text109" Left="869.4" Width="37.8" Height="28.35" Text="[SUM_NPL_PCT_TOTAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
         <TextObject Name="Text110" Left="1039.5" Width="37.8" Height="28.35" Text="[SUM_RATE_PCT_TOTAL]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 7pt"/>
       </GroupFooterBand>
-      <DataFooterBand Name="DataFooter1" Top="361.53" Width="1047.06" Height="37.8" CanGrow="true" CanShrink="true">
+      <DataFooterBand Name="DataFooter1" Top="356.2" Width="1047.06" Height="37.8" CanGrow="true" CanShrink="true">
         <LineObject Name="Line25" Left="245.7" Top="9.45" Width="831.6" Diagonal="true"/>
         <TextObject Name="Text102" Left="321.3" Top="9.45" Width="66.15" Height="28.35" Text="[GRAND_TOTAL_NOCCUPIED]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="Arial Unicode MS, 7pt"/>
         <TextObject Name="Text103" Left="245.7" Top="9.45" Width="75.6" Height="28.35" Text="[ResponseDataModel.ReportData.Label.CLABEL_GRANDTOTAL]" Font="Arial Unicode MS, 7pt"/>

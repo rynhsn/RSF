@@ -88,7 +88,7 @@ namespace PMM10000FRONT
                 var fileByte = loMS.ToArray();
                 //READ EXCEL
                 var loExcel = ExcelInject;
-                var loDataSet = loExcel.R_ReadFromExcel(fileByte, new[] { "SLACallType" });
+                var loDataSet = loExcel.R_ReadExcel(fileByte, option => { option.TableNames = new string[] { "SLACallType" }; });
 
                 var loResult = R_FrontUtility.R_ConvertTo<CallTypeUploadExcelDTO>(loDataSet.Tables[0]);
 

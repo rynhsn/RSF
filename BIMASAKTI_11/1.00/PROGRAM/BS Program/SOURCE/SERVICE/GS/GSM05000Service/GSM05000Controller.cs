@@ -394,7 +394,7 @@ public class GSM05000Controller : ControllerBase, IGSM05000Async
             
             _logger.LogInfo("Check Exist Data");
             loResult = await loCls.GetValidateUpdateDbAsync(loDbPar);
-            loRtn = loResult ?? new GSM05000ExistDTO() { EXIST = 0 };
+            loRtn = loResult ?? new GSM05000ExistDTO() { EXIST = false };
         }
         catch (Exception ex)
         {

@@ -288,6 +288,24 @@ namespace PMT01700FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
+
+        public async Task aftesave()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+
+                await _gridCharges.R_RefreshGrid(null);
+
+
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+        }
         public async Task Charges_Validation(R_ValidationEventArgs eventArgs)
         {
             var loEx = new R_Exception();

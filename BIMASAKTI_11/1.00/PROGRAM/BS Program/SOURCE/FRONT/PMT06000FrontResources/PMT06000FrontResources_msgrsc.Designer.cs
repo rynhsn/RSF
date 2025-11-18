@@ -421,6 +421,15 @@ namespace PMT06000FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select Tax ID!.
+        /// </summary>
+        internal static string PLEASE_SELECT_TAX_ID {
+            get {
+                return ResourceManager.GetString("PLEASE_SELECT_TAX_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select Tenant!.
         /// </summary>
         internal static string PLEASE_SELECT_TENANT {
@@ -579,6 +588,15 @@ namespace PMT06000FrontResources {
         internal static string SUBMIT {
             get {
                 return ResourceManager.GetString("SUBMIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Id.
+        /// </summary>
+        internal static string TAX {
+            get {
+                return ResourceManager.GetString("TAX", resourceCulture);
             }
         }
         

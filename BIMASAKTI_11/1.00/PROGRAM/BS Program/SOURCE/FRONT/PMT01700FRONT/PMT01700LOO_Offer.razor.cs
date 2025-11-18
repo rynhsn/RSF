@@ -131,9 +131,9 @@ namespace PMT01700FRONT
                 //  poParameter.
                 lControlChoosenData = _LOpenCustomPage = true;
 
-                _viewModel.oParameter = R_FrontUtility.ConvertObjectToObject<PMT01700ParameterFrontChangePageDTO>(poParameter);
+                _viewModel.oParameter = R_FrontUtility.ConvertObjectToObject<PMT01700ParameterFrontChangePageDTO>(poParameter) ?? new();
                 lEnabledFieldBuilding = false;
-
+                //_viewModel.Data.CCURRENCY_CODE = _viewModel.oParameter.CCURRENCY_CODE;
                 _LOpenCustomPage = _viewModel.oParameter.CALLER_ACTION == "ADD";
                 _lViewMode = _viewModel.oParameter.CALLER_ACTION == "VIEW";
 
@@ -172,7 +172,8 @@ namespace PMT01700FRONT
                         }).ToList();
 
                         await _conductor.Add();
-
+                        lControlChoosenData = _viewModel.lControlExistingTenant = true;
+                        _viewModel.lControlExistingTenantOriginal = false;
                         goto EndBlock;
                     }
                     //Btn revise
@@ -1068,28 +1069,31 @@ namespace PMT01700FRONT
                     loData.CBILLING_RULE_CODE = loAgreementDetail.CBILLING_RULE_CODE;
                     loData.NBOOKING_FEE = loAgreementDetail.NBOOKING_FEE;
                     loData.CTC_CODE = loAgreementDetail.CTC_CODE;
+                    loData.CCURRENCY_CODE = loAgreementDetail.CCURRENCY_CODE;
                     _viewModel.cDataChoosen = "1";
                     _viewModel.lControlExistingTenant = true;
                     _viewModel.lControlExistingTenantOriginal = false;
                 }
                 else
                 {
-                    loData.CTENANT_CATEGORY_ID = _viewModel.oComboBoxTenantCategory.FirstOrDefault().CCATEGORY_ID;
+                    //loData.CTENANT_CATEGORY_ID = _viewModel.oComboBoxTenantCategory.FirstOrDefault().CCATEGORY_ID ?? "";
 
-                    loData.CTAX_TYPE = _viewModel.oComboBoxTaxType.FirstOrDefault(x => x.CCODE == "02")?.CCODE;
-                    loData.CID_TYPE = _viewModel.oComboBoxIdType.FirstOrDefault().CCODE;
-                    tStartDate = DateTime.Now.AddDays(-1);
-                    loData.CLEASE_MODE = _viewModel.oComboBoxTaxType.First().CCODE;
-                    loData.CCHARGE_MODE = _viewModel.oComboBoxIdType.First().CCODE;
-                    _viewModel.lControlExistingTenant = true;
-                    _viewModel.lControlExistingTenantOriginal = false;
+                    //loData.CTAX_TYPE = _viewModel.oComboBoxTaxType.FirstOrDefault(x => x.CCODE == "02")?.CCODE;
+                    //loData.CID_TYPE = _viewModel.oComboBoxIdType.FirstOrDefault().CCODE;
+                    //tStartDate = DateTime.Now.AddDays(-1);
+                    //loData.CLEASE_MODE = _viewModel.oComboBoxTaxType.First().CCODE;
+                    //loData.CCHARGE_MODE = _viewModel.oComboBoxIdType.First().CCODE;
+                    //_viewModel.lControlExistingTenant = true;
+                    //_viewModel.lControlExistingTenantOriginal = false;
 
-                    loData.CBUILDING_ID = _viewModel.oParameter.CBUILDING_ID;
-                    loData.CBUILDING_NAME = _viewModel.oParameter.CBUILDING_NAME;
+                    //loData.CBUILDING_ID = _viewModel.oParameter.CBUILDING_ID;
+                    //loData.CBUILDING_NAME = _viewModel.oParameter.CBUILDING_NAME;
 
-                    loData.IDAYS = 1;
-                    loData.DEND_DATE = DateTime.Now.AddHours(23).AddMinutes(50);
+                    //loData.IDAYS = 1;
+                    //loData.DEND_DATE = DateTime.Now.AddHours(23).AddMinutes(50);
+
                 }
+                lControlChoosenData = _viewModel.lControlExistingTenant = true;
 
                 await _componentCTENANT_IDTextBox.FocusAsync();
             }
@@ -1543,6 +1547,8 @@ namespace PMT01700FRONT
                         loData.CATTENTION1_EMAIL = _viewModel.TenantDetail.CATTENTION1_EMAIL;
                         loData.CATTENTION1_MOBILE_PHONE1 = _viewModel.TenantDetail.CATTENTION1_MOBILE_PHONE1;
                         loData.CSALESMAN_ID = _viewModel.TenantDetail.CSALESMAN_ID;
+                        loData.CSALESMAN_NAME = _viewModel.TenantDetail.CSALESMAN_NAME;
+
                         loData.CTAX_TYPE = _viewModel.TenantDetail.CTAX_TYPE;
                         loData.CTAX_ID = _viewModel.TenantDetail.CTAX_ID;
                         loData.CTAX_NAME = _viewModel.TenantDetail.CTAX_NAME;

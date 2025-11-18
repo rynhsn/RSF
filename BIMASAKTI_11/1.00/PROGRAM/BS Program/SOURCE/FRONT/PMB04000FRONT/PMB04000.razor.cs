@@ -172,6 +172,41 @@ namespace PMB04000FRONT
 
         }
 
+        public async Task setdefaultCreateReceipt()
+        {
+            var loException = new R_Exception();
+            try
+            {
+                var nowmonth = DateTime.Now.Month.ToString("D2");
+                if (_viewModel.oParameterInvoice.LALL_PERIOD)
+                {
+                    _viewModel.DCreateReceipt = DateTime.Now;
+
+                }
+                else if (_viewModel.oParameterInvoice.CPERIOD_MONTH == nowmonth)
+                {
+                    _viewModel.DCreateReceipt = DateTime.Now;
+                }
+                else
+                {
+                    int month = int.Parse(_viewModel.oParameterInvoice.CPERIOD_MONTH ?? "") ;
+                    int year = _viewModel.oParameterInvoice.IPERIOD_YEAR;
+
+                    // Hari terakhir bulan tersebut
+                    int lastDay = DateTime.DaysInMonth(year, month);
+
+                    _viewModel.DCreateReceipt = new DateTime(year, month, lastDay);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+
+            loException.ThrowExceptionIfErrors();
+        }
+
         #region Master Tab
         private async Task BtnRefresh()
         {
@@ -221,10 +256,10 @@ namespace PMB04000FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
-        private void R_Display(R_DisplayEventArgs eventArgs)
+        private async Task R_Display(R_DisplayEventArgs eventArgs)
         {
             var loEx = new R_Exception();
-            //PMT01700OtherUnitList_OtherUnitListDTO loData = (PMT01700OtherUnitList_OtherUnitListDTO)eventArgs.Data;
+            await setdefaultCreateReceipt();            //PMT01700OtherUnitList_OtherUnitListDTO loData = (PMT01700OtherUnitList_OtherUnitListDTO)eventArgs.Data;
 
             //try
             //{

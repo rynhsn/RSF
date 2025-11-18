@@ -150,12 +150,18 @@
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
       "CBB00200Common/1.0.0": {
         "runtime": {
-          "CBB00200Common.dll": {}
+          "CBB00200Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "CBB00200FrontResources/1.0.0": {
         "runtime": {
-          "CBB00200FrontResources.dll": {}
+          "CBB00200FrontResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "CBB00200Model/1.0.0": {
@@ -163,7 +169,10 @@
           "CBB00200Common": "1.0.0"
         },
         "runtime": {
-          "CBB00200Model.dll": {}
+          "CBB00200Model.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "BlazorClientHelper/1.0.0.0": {

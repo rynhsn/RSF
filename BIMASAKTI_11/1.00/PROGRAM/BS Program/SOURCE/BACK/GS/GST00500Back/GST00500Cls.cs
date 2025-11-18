@@ -142,21 +142,29 @@ namespace GST00500Back
             var loEx = new R_Exception();
             var loResult = new List<GST00500RejectDTO>();
             R_Db loDb;
-            DbCommand loCmd;
             try
             {
+
                 loDb = new R_Db();
                 var loConn = loDb.GetConnection();
-
                 var loCommand = loDb.GetCommand();
 
-                var lcQuery = $"SELECT * FROM RFT_GET_GSB_CODE_INFO('SIAPP', " +
+                var lcQuery = "SELECT * FROM RFT_GET_GSB_CODE_INFO ('BIMASAKTI', @CCOMPANY_ID, '_GS_REJECTTRANS_REASON', '', @CLANG)";
+                loCommand.CommandText = lcQuery;
+                loCommand.CommandType = CommandType.Text;
+
+                loDb.R_AddCommandParameter(loCommand, "@CCOMPANY_ID", DbType.String, 20, poParameter.CCOMPANYID);
+                loDb.R_AddCommandParameter(loCommand, "@CLANG", DbType.String, 20, poParameter.CLANGUAGE_ID);
+
+                var lclog = $"SELECT * FROM RFT_GET_GSB_CODE_INFO('SIAPP', " +
                               $"'{poParameter.CCOMPANYID}', '_GS_REJECTTRANS_REASON', '', " +
                               $"'{poParameter.CLANGUAGE_ID}') ";
 
-                
-                _loggerGST00500.LogDebug("{@ObjectQuery} ", lcQuery);
-                loResult = loDb.SqlExecObjectQuery<GST00500RejectDTO>(lcQuery, loConn, true);
+
+                _loggerGST00500.LogDebug("{@ObjectQuery} ", lclog);
+
+                var loReturnTemp = loDb.SqlExecQuery(loConn, loCommand, true);
+                loResult = R_Utility.R_ConvertTo<GST00500RejectDTO>(loReturnTemp).ToList();
             }
             catch (Exception ex)
             {

@@ -344,16 +344,16 @@
     <comment>Charge Type</comment>
   </data>
   <data name="_ConfirmationCancelLOO" xml:space="preserve">
-    <value>Are you sure want to cancel this Offer?</value>
-    <comment>Are you sure want to cancel this Offer?</comment>
+    <value>Are you sure want to cancel this LOO/LOC?</value>
+    <comment>Are you sure want to cancel this LOO/LOC?</comment>
   </data>
   <data name="_ConfirmationRedraft" xml:space="preserve">
-    <value>Are you sure want to  redraft this offer?</value>
-    <comment>Are you sure want to  redraft this offer?</comment>
+    <value>Are you sure want to  redraft this LOO/LOC?</value>
+    <comment>Are you sure want to  redraft this LOO/LOC?</comment>
   </data>
   <data name="_ConfirmationSubmit" xml:space="preserve">
-    <value>Are you sure want to  submit this offer?</value>
-    <comment>Are you sure want to  submit this offer?</comment>
+    <value>Are you sure want to  submit this LOO/LOC?</value>
+    <comment>Are you sure want to  submit this LOO/LOC?</comment>
   </data>
   <data name="_ConfirmDate" xml:space="preserve">
     <value>Confirm Date</value>
@@ -715,16 +715,16 @@
     <comment>Submit</comment>
   </data>
   <data name="_SuccessMessageOfferCancelLOO" xml:space="preserve">
-    <value>Offer Cancelled Successfully!</value>
-    <comment>Offer Cancelled Successfully!</comment>
+    <value>Cancelled Successfully!</value>
+    <comment>Cancelled Successfully!</comment>
   </data>
   <data name="_SuccessMessageOfferRedraft" xml:space="preserve">
-    <value>Offer Redraft Successfully!</value>
-    <comment>Offer Redraft Successfully!</comment>
+    <value>Redraft Successfully!</value>
+    <comment>Redraft Successfully!</comment>
   </data>
   <data name="_SuccessMessageOfferSubmit" xml:space="preserve">
-    <value>Offer Submitted Successfully!</value>
-    <comment>Offer Submitted Successfully!</comment>
+    <value>Submitted Successfully!</value>
+    <comment>Submitted Successfully!</comment>
   </data>
   <data name="_TabUnitAndCharges" xml:space="preserve">
     <value>Unit &amp; Charges</value>

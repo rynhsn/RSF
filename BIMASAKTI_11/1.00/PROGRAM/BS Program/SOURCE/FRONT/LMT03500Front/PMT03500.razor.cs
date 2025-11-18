@@ -21,6 +21,8 @@ using R_BlazorFrontEnd.Controls.Tab;
 using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
+using Lookup_PMModel.ViewModel.LML00600;
+using Lookup_PMModel.ViewModel.LMLTODAYDATETIME;
 
 namespace PMT03500Front;
 
@@ -124,12 +126,19 @@ public partial class PMT03500 : R_Page
 
         try
         {
+            LmlTodayDateTimeViewModel _ViewModelToday = new LmlTodayDateTimeViewModel();
+            await _ViewModelToday.GetTodayDateTime();
+            _viewModelUtility.InvPeriodYear = _ViewModelToday.DateToday.CYEAR;
+            _viewModelUtility.InvPeriodNo = _ViewModelToday.DateToday.CMONTH;
+
             await _viewModel.Init();
             await _viewModelUtility.Init(_viewModel.Property);
             // if (_viewModel.PropertyList.Count > 0)
             // {
             //     await _gridRefBuilding.R_RefreshGrid(null);
             // }
+
+            
 
             _viewModelSave.StateChangeAction = StateChangeInvoke;
             _viewModelSave.DisplayErrorAction = DisplayErrorInvoke;
@@ -565,7 +574,7 @@ public partial class PMT03500 : R_Page
         try
         {
             var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
-            _hasDetail = loData.CSTATUS.Length > 0 && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit;
+            _hasDetail = loData.CSTATUS_CODE != "00" && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit;
 
             _viewModelUtility.EntityUtility = loData;
             _viewModelUtility.EntityUtility.CPROPERTY_ID = _viewModel.PropertyId;
@@ -750,7 +759,8 @@ public partial class PMT03500 : R_Page
     private void BeforeEditUtility(R_BeforeEditEventArgs eventArgs)
     {
         var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
-        eventArgs.Cancel = loData.CSTATUS.Length > 0;
+        //eventArgs.Cancel = loData.CSTATUS.Length > 0; //Edit ZF
+        eventArgs.Cancel = loData.CSTATUS_CODE=="00"?false:true; //Edit ZF
         // _enStartDate = !loData.LDISABLED_START_DATE;
     }
 
