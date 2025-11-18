@@ -69,6 +69,8 @@ namespace PMR02000FRONT
                     _viewModel.ReportParam.CTO_DEPT_CODE = "";
                     _viewModel.ReportParam.CTO_DEPT_NAME = "";
                     _viewModel.ReportParam.CTENANT_CATEGORY_ID = "";
+                    _viewModel.ReportParam.CCATEGORY_NAME = "";
+
                     await _viewModel.GetCategoryTypeAsync(new CategoryTypeParamDTO()
                     { CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID, CPARENT_ID = "", LCHILD_ONLY = false });
 
@@ -89,6 +91,8 @@ namespace PMR02000FRONT
                     if (_viewModel._enableFilterCustCtg)
                     {
                         _viewModel.ReportParam.CTENANT_CATEGORY_ID = _viewModel._categoryTypeList.FirstOrDefault()?.CCATEGORY_ID;
+                        _viewModel.ReportParam.CCATEGORY_NAME = _viewModel._categoryTypeList.FirstOrDefault()?.CCATEGORY_NAME;
+
                     }
                 }
             }
@@ -856,7 +860,7 @@ namespace PMR02000FRONT
             var loTempResult = (LML02000DTO)eventArgs.Result;
             if (loTempResult != null)
             {
-                _viewModel.ReportParam.CCATEGORY_ID = loTempResult.CCATEGORY_ID;
+                _viewModel.ReportParam.CTENANT_CATEGORY_ID = loTempResult.CCATEGORY_ID;
                 _viewModel.ReportParam.CCATEGORY_NAME = loTempResult.CCATEGORY_NAME;
             }
         }
@@ -867,13 +871,13 @@ namespace PMR02000FRONT
 
             try
             {
-                if (!string.IsNullOrWhiteSpace(_viewModel.ReportParam.CCATEGORY_ID))
+                if (!string.IsNullOrWhiteSpace(_viewModel.ReportParam.CTENANT_CATEGORY_ID))
                 {
                     LookupLML02000ViewModel loLookupViewModel = new();
                     var loParam = new LML02000ParameterDTO // use match param as GSL's dto, send as type in search texbox
                     {
                         CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID ?? "",
-                        CSEARCH_TEXT = _viewModel.ReportParam.CCATEGORY_ID,
+                        CSEARCH_TEXT = _viewModel.ReportParam.CTENANT_CATEGORY_ID,
 
                     };
 
@@ -889,13 +893,13 @@ namespace PMR02000FRONT
                     }
                     else
                     {
-                        _viewModel.ReportParam.CCATEGORY_ID = loResult.CCATEGORY_ID;
+                        _viewModel.ReportParam.CTENANT_CATEGORY_ID = loResult.CCATEGORY_ID;
                         _viewModel.ReportParam.CCATEGORY_NAME = loResult.CCATEGORY_NAME;
                     }
                 }
                 else
                 {
-                    _viewModel.ReportParam.CCATEGORY_ID = "";
+                    _viewModel.ReportParam.CTENANT_CATEGORY_ID = "";
                     _viewModel.ReportParam.CCATEGORY_NAME = "";
                     return;
                 }
@@ -1023,6 +1027,8 @@ namespace PMR02000FRONT
         public void OnChangedCustomerCategory(object value)
         {
             _viewModel.ReportParam.CTENANT_CATEGORY_ID = (bool)value ? _viewModel._categoryTypeList.FirstOrDefault()?.CCATEGORY_ID : string.Empty;
+            _viewModel.ReportParam.CCATEGORY_NAME = (bool)value ? _viewModel._categoryTypeList.FirstOrDefault()?.CCATEGORY_NAME : string.Empty;
+
         }
     }
 }
