@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\AP\APR00100COMMON\APR00100COMMON.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="BaseHeaderReportCOMMON">
       <HintPath>..\..\BaseHeaderReportCOMMON.dll</HintPath>
     </Reference>

@@ -240,8 +240,8 @@ namespace PMR02000SERVICE
                             }) // Group by Customer
                             .Select(customerGroup => new CustomerDTO
                             {
-                                CDEPT_CODE = deptGroup.Key.CDEPT_CODE,
-                                CDEPT_NAME = deptGroup.Key.CDEPT_NAME,
+                                //CDEPT_CODE = deptGroup.Key.CDEPT_CODE,
+                                //CDEPT_NAME = deptGroup.Key.CDEPT_NAME,
                                 CCUSTOMER_ID = customerGroup.Key.CCUSTOMER_ID,
                                 CCUSTOMER_NAME = customerGroup.Key.CCUSTOMER_NAME,
                                 CTRX_TYPE_NAME = customerGroup.Key.CTRX_TYPE_NAME,
@@ -285,7 +285,6 @@ namespace PMR02000SERVICE
 
                 loRtn.BaseHeaderData = loParam;
                 loRtn.ReportData = loData;
-
                 _logger.LogInfo("Print output generated successfully. Saving print file.");
             }
             catch (Exception ex)

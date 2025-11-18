@@ -250,7 +250,7 @@ namespace PMT01700FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure want to cancel this Offer?.
+        ///   Looks up a localized string similar to Are you sure want to cancel this LOO/LOC?.
         /// </summary>
         internal static string _ConfirmationCancelLOO {
             get {
@@ -259,7 +259,7 @@ namespace PMT01700FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure want to  redraft this offer?.
+        ///   Looks up a localized string similar to Are you sure want to  redraft this LOO/LOC?.
         /// </summary>
         internal static string _ConfirmationRedraft {
             get {
@@ -268,7 +268,7 @@ namespace PMT01700FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure want to  submit this offer?.
+        ///   Looks up a localized string similar to Are you sure want to  submit this LOO/LOC?.
         /// </summary>
         internal static string _ConfirmationSubmit {
             get {
@@ -1087,7 +1087,7 @@ namespace PMT01700FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Offer Cancelled Successfully!.
+        ///   Looks up a localized string similar to Cancelled Successfully!.
         /// </summary>
         internal static string _SuccessMessageOfferCancelLOO {
             get {
@@ -1096,7 +1096,7 @@ namespace PMT01700FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Offer Redraft Successfully!.
+        ///   Looks up a localized string similar to Redraft Successfully!.
         /// </summary>
         internal static string _SuccessMessageOfferRedraft {
             get {
@@ -1105,7 +1105,7 @@ namespace PMT01700FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Offer Submitted Successfully!.
+        ///   Looks up a localized string similar to Submitted Successfully!.
         /// </summary>
         internal static string _SuccessMessageOfferSubmit {
             get {
