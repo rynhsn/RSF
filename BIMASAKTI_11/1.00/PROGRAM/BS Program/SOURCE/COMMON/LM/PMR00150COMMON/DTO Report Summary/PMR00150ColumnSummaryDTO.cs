@@ -23,6 +23,7 @@ namespace PMR00150COMMON
         public string Col_NTOTAL_COMMON_AREA_SIZE { get; set; } = "Common";
         public string Col_CTC_MESSAGE { get; set; } = "Term & Condition";
         public string Col_GRAND_TOTAL_AREA { get; set; } = "Grand Total Area";
+        public string Col_CPREV_REF_NO { get; set; } = "Offer Number";
 
     }
 }

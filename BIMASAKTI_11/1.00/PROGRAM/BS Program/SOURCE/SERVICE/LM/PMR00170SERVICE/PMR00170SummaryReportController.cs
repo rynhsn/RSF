@@ -338,7 +338,8 @@ namespace PMR00170SERVICE
                            CTAX = x.CTAX,
                            CTENANT_ID = x.CTENANT_ID,
                            CTENANT_NAME = x.CTENANT_NAME,
-                           CTC_MESSAGE = x.CTC_MESSAGE
+                           CTC_MESSAGE = x.CTC_MESSAGE,
+                           CPREV_REF_NO = x.CPREV_REF_NO
                        }).ToList(),
                    }).ToList(),
                }).ToList();

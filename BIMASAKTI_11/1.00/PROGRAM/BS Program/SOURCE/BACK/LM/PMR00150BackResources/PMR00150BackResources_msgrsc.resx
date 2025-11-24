@@ -138,6 +138,9 @@
   <data name="Col_CHARGE" xml:space="preserve">
     <value>Charge</value>
   </data>
+  <data name="Col_CPREV_REF_NO" xml:space="preserve">
+    <value>Offer Number</value>
+  </data>
   <data name="Col_CREF_DATE" xml:space="preserve">
     <value>LOC Date</value>
   </data>
@@ -199,7 +202,7 @@
     <value>Net</value>
   </data>
   <data name="Col_NTOTAL_PRIZE" xml:space="preserve">
-    <value>Total Rent Prize</value>
+    <value>Total Rent Price</value>
   </data>
   <data name="Col_PRICE" xml:space="preserve">
     <value>Price</value>

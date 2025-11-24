@@ -24,6 +24,7 @@ namespace PMR00170COMMON
         public string? CTENANT_ID { get; set; }
         public string? CTENANT_NAME { get; set; }
         public string? CTC_MESSAGE { get; set; }
+        public string? CPREV_REF_NO { get; set; }
 
         public string CDATETIME_NOW { get; set; }
 
