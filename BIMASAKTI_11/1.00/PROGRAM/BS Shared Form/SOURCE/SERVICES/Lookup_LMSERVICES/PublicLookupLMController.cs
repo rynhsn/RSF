@@ -283,6 +283,7 @@ namespace Lookup_PMSERVICES
                 poParameter.CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CDEPT_CODE);
                 poParameter.CAGGR_STTS = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CAGGR_STTS);
                 poParameter.CLANG_ID = R_BackGlobalVar.CULTURE;
+                //tes
                 //CR26/06/2024
                 poParameter.CTRANS_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTRANS_CODE);
                 poParameter.CREF_NO = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CREF_NO);
