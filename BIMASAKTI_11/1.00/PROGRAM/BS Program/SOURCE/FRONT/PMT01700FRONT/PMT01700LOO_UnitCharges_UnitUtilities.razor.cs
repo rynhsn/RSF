@@ -96,6 +96,7 @@ namespace PMT01700FRONT
             try
             {
                 // var llTrue = await R_MessageBox.Show("", "This function still on Development Process!", R_eMessageBoxButtonType.OK);
+                await _viewModel.GetUnitChargesHeader();
             }
             catch (Exception ex)
             {

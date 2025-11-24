@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-
+using BaseHeaderReportCOMMON;
 namespace PMT01700CommonReport
 {
-    public class PMTResultDataReportDTO
+    public class PMTResultDataReportDTO : BaseHeaderResult
     {
         public string? Title { get; set; }
         public PMTLabelReportDTO? LabelReport { get; set; }
@@ -11,4 +11,6 @@ namespace PMT01700CommonReport
         public PMTFormatReportDTO? Format { get; set; }
         public PMTDigitalSignDTO? DigitalSign { get; set; }
     }
+
+
 }

@@ -56,6 +56,7 @@
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\LMM04500FRONT\PMM04500FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\LMT03500Front\PMT03500Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\LMT05000FRONT\PMT05000FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\LMT05500FRONT\PMT05500Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB00300Front\PMB00300Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB01600Front\PMB01600Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB01800FRONT\PMB01800FRONT.csproj" />

@@ -467,7 +467,6 @@
                         </R_Lookup>
                     </R_ItemLayout>
 
-
                     <R_ItemLayout col="11" Class="ps-1">
                         <R_TextBox @bind-Value="@_viewModel.Data.CBUILDING_NAME"
                                    MaxLength="200"
@@ -1039,10 +1038,12 @@
 
         <R_StackLayout Row>
             <R_ItemLayout>
-                <R_Popup Enabled="@(_viewModel.Data.CTENANT_ID!=null)"
-                    R_Before_Open_Popup="@BeforeOpen_PopupPrint">
+                <R_PrintButton Enabled="@(_viewModel.Data.CTENANT_ID!=null)"
+                    R_Before_Open_Popup="@BeforeOpen_PopupPrint"
+                    R_PrintMode="@R_ePrintMode.Popup"
+                               R_Conductor="@_conductor">
                     @_localizer["_Print"]
-                </R_Popup>
+                </R_PrintButton>
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Button R_Conductor="@_conductor"
@@ -1050,6 +1051,8 @@
                           OnClick="@SubmitBtn">
                     @_localizer["_Submit"]
                 </R_Button>
+
+
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Button R_Conductor="@_conductor"
@@ -1098,3 +1101,4 @@
              R_AfterAdd="@AfterAdd"
              R_SetEdit="@R_SetEdit"
              R_Display="@ServiceR_Display" />
+

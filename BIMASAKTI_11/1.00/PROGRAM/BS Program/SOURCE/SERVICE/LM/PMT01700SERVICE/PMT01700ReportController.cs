@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using R_ReportServerCommon;
 using System.Globalization;
 using R_ReportFormatDTO = R_ReportServerCommon.R_ReportFormatDTO;
+using System.ComponentModel;
 
 namespace PMT01700SERVICE
 {
@@ -63,6 +64,9 @@ namespace PMT01700SERVICE
         {
             R_Exception loEx = new R_Exception();
             _logger.LogInfo("Start ReportPMT01700Post with report parameters.");
+
+
+
 
             R_DownloadFileResultDTO loRtn = new R_DownloadFileResultDTO();
             try
@@ -181,8 +185,21 @@ namespace PMT01700SERVICE
                 loData.Data.CACTUAL_END_DATE = ConvertStringToDate(dateString: loData.Data.CACTUAL_END_DATE, ParamStringFormat: loReportFormatConvert.ShortDate);
                 loData.Data.CSOLD_DATE = ConvertStringToDate(dateString: loData.Data.CSOLD_DATE, ParamStringFormat: loReportFormatConvert.ShortDate);
 
+                var loBaseHeader = loCls.GetLogoPropertyAsync(loParameterGenerateData);
+                var loParamHeader = new BaseHeaderReportCOMMON.BaseHeaderDTO()
+                {
+                    CCOMPANY_NAME = loParameterGenerateData.CCOMPANY_ID ?? "",
+                    CPRINT_CODE = R_BackGlobalVar.PROGRAM_ID.ToUpper(),
+                    CPRINT_NAME = loData.Title ?? "",
+                    CUSER_ID = !string.IsNullOrEmpty(loParameterGenerateData.CUSER_ID) ? loParameterGenerateData.CUSER_ID : "",
+                    BLOGO_COMPANY = loBaseHeader.Result.CLOGO,
+                    //DPRINT_DATE_COMPANY = DateTime.ParseExact(loBaseHeader.CDATETIME_NOW!, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
+                    CPRINT_DATE_COMPANY = DateTime.ParseExact(loBaseHeader.Result.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture).ToString(R_BackGlobalVar.REPORT_FORMAT_SHORT_DATE + " " + R_BackGlobalVar.REPORT_FORMAT_SHORT_TIME)
+
+                };
 
 
+                loData.BaseHeaderData = loParamHeader;
                 //loData.Data.
                 _logger.LogInfo("Report data formatted for print");
 
@@ -214,6 +231,7 @@ namespace PMT01700SERVICE
                     ReportOutputType = leReportOutputType,
                     ReportAssemblyName = "PMT01700CommonReport.dll",
                     ReportParameter = null
+                    
                 };
                 //loParameter.ReportFormat.ShortDate = "dd-MMM-yyyy";
                 _logger.LogInfo("Report parameters prepared successfully");

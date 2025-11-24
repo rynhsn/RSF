@@ -108,7 +108,7 @@ namespace PMM09000Back
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCommand, true);
                 loReturn = R_Utility.R_ConvertTo<PMM09000AmortizationDTO>(loDataTable).ToList();
-                _logger.LogDebug("{@ObjectReturn} ", loReturn);
+                //_logger.LogDebug("{@ObjectReturn} ", loReturn);
 
             }
             catch (Exception ex)
@@ -159,7 +159,7 @@ namespace PMM09000Back
                     .Where(x => x != null && x.ParameterName.StartsWith("@"))
                     .ToDictionary(x => x.ParameterName, x => x.Value);
                 _logger.LogDebug("{@ObjectQuery} {@Parameter}", loCommand.CommandText, loDbParam);
-
+                    
                 var loDataTable = loDb.SqlExecQuery(loConn, loCommand, true);
                 loReturn = R_Utility.R_ConvertTo<PMM09000AmortizationSheduleDetailDTO>(loDataTable).ToList();
                 _logger.LogDebug("{@ObjectReturn} ", loReturn);

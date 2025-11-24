@@ -36,6 +36,7 @@ namespace PMT01700FRONT
         R_ConductorGrid? _conductorUnitList;
         R_Grid<PMT01700LOO_OfferList_OfferListDTO>? _gridOfferList;
         R_Grid<PMT01700LOO_OfferList_UnitListDTO>? _gridAgreementUnitInfo;
+        private R_Conductor? _conductor;
 
         [Inject] IJSRuntime? JS { get; set; }
         [Inject] IClientHelper? _clientHelper { get; set; }
