@@ -233,6 +233,11 @@ public partial class PMT06500InvoicePopup : R_Page
                     loEx.Add("", _localizer["MSG_INPUT_REF_NO"]);
                 }
             }
+
+            if (string.IsNullOrEmpty(loEntity.CDESCRIPTION))
+            {
+                loEx.Add("", _localizer["MSG_INPUT_DESCRIPTION"]);
+            }
         }
         catch (Exception ex)
         {
