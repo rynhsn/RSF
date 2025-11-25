@@ -91,6 +91,7 @@ namespace PMR00210COMMON.Model
                             CSALESMAN_NAME = salesmanName,
                             NREVISION_COUNT = 1,
                             CTC_CODE = "TC1",
+                            CPREV_REF_NO = "LOC-C-00-2025110001",
                             CTC_MESSAGE = "This is dummy data for Term & Con.",
                             CAGREEMENT_STATUS_ID = "A1",
                             CAGREEMENT_STATUS_NAME = "Agreement Status",

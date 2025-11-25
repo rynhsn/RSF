@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="11/21/2025 15:46:36" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="11/25/2025 13:41:31" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="PMR00170SummaryResulDataFormatDTO" DataType="PMR00170COMMON.PMR00170SummaryResultDTO, PMR00170COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -163,7 +163,7 @@
         </TextObject>
         <DataBand Name="Data3" Top="292.23" Width="1047.06" Height="18.9" DataSource="SalesmanDetail">
           <TextObject Name="Text82" Left="812.7" Width="113.4" Height="18.9" CanGrow="true" GrowToBottom="true" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.CTC_MESSAGE]" Font="Microsoft Sans Serif, 6.5pt"/>
-          <TextObject Name="Text83" Left="642.6" Width="170.1" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.CTENANT_ID] - [ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.CTENANT_NAME]" Font="Microsoft Sans Serif, 6.5pt">
+          <TextObject Name="Text83" Left="642.6" Width="170.1" Height="18.9" CanGrow="true" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.CTENANT_ID] - [ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.CTENANT_NAME]" Font="Microsoft Sans Serif, 6.5pt">
             <Formats>
               <GeneralFormat/>
               <GeneralFormat/>
@@ -175,7 +175,7 @@
           <TextObject Name="Text78" Left="378" Width="47.25" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.NTOTAL_COMMON_AREA_SIZE]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Microsoft Sans Serif, 6.5pt" Trimming="EllipsisCharacter"/>
           <TextObject Name="Text77" Left="340.2" Width="37.8" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.NTOTAL_NET_AREA_SIZE]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Microsoft Sans Serif, 6.5pt" Trimming="EllipsisCharacter"/>
           <TextObject Name="Text76" Left="302.4" Width="37.8" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.NTOTAL_GROSS_AREA_SIZE]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Microsoft Sans Serif, 6.5pt" Trimming="EllipsisCharacter"/>
-          <TextObject Name="Text93" Left="170.1" Width="141.75" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.CTENURE]" Font="Microsoft Sans Serif, 6.5pt"/>
+          <TextObject Name="Text93" Left="170.1" Width="141.75" Height="18.9" CanGrow="true" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.CTENURE]" Font="Microsoft Sans Serif, 6.5pt"/>
           <TextObject Name="Text94" Left="-9.45" Width="113.4" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.CREF_NO]" Font="Microsoft Sans Serif, 6.5pt"/>
           <TextObject Name="Text96" Left="103.95" Width="66.15" Height="18.9" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.DREF_DATE]" Format="Date" Format.Format="MMMM dd, yyyy" Font="Microsoft Sans Serif, 6.5pt"/>
           <TextObject Name="Text122" Left="926.1" Width="113.4" Height="18.9" CanGrow="true" GrowToBottom="true" Text="[ResponseDataModel.PMR00170SummaryResulDataFormatDTO.Data.TransactionDetail.SalesmanDetail.CPREV_REF_NO]" Font="Microsoft Sans Serif, 6.5pt"/>

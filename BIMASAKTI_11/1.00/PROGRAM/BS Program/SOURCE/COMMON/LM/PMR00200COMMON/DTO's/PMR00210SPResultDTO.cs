@@ -29,6 +29,7 @@ namespace PMR00200COMMON.DTO_s
         public string? CTC_CODE { get; set; }
         public string? CTC_DESCRIPTION { get; set; }
         public string? CTC_MESSAGE { get; set; }
+        public string CPREV_REF_NO { get; set; }
         public string? CUNIT_DETAIL_ID { get; set; }
         public string? CUNIT_DETAIL_NAME { get; set; }
         public decimal? NUNIT_DETAIL_GROSS_AREA_SIZE { get; set; }

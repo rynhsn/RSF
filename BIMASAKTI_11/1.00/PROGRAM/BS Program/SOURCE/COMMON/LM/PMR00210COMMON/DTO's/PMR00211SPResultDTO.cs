@@ -27,6 +27,7 @@ namespace PMR00210COMMON.DTO_s
         public string? CTENANT_ID { get; set; }
         public string? CTENANT_NAME { get; set; }
         public string? CTC_CODE { get; set; }
+        public string? CPREV_REF_NO { get; set; }
         public string? CTC_DESCRIPTION { get; set; }
         public string? CTC_MESSAGE { get; set; }
         public string? CUNIT_DETAIL_ID { get; set; }
