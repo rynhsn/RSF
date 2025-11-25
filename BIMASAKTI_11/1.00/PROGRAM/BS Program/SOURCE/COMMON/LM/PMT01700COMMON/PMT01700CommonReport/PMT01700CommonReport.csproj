@@ -5,4 +5,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="BaseHeaderReportCOMMON">
+      <HintPath>..\..\..\BaseHeaderReportCOMMON.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

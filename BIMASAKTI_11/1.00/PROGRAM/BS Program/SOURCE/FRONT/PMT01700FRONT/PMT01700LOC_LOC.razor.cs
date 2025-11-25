@@ -433,6 +433,7 @@ namespace PMT01700FRONT
                 loData.CSALESMAN_ID = loTempConvertData.CSALESMAN_ID;
                 loData.CSALESMAN_NAME = loTempConvertData.CSALESMAN_NAME;
 
+
                 /* in the top is a mandatory field */
 
                 loData.CTRANS_CODE = _viewModel.oParameter.CTRANS_CODE;
@@ -449,6 +450,8 @@ namespace PMT01700FRONT
                 loData.IYEARS = loTempConvertData.IYEARS;
                 loData.IMONTHS = loTempConvertData.IMONTHS;
                 loData.IDAYS = loTempConvertData.IDAYS;
+                loData.IHOURS = loTempConvertData.IHOURS;
+
                 loData.DSTART_DATE = loTempConvertData.DSTART_DATE ?? DateTime.Now;
                 loData.DEND_DATE = loTempConvertData.DEND_DATE ?? DateTime.Now;
                 loData.CUNIT_DESCRIPTION = loTempConvertData.CUNIT_DESCRIPTION;
