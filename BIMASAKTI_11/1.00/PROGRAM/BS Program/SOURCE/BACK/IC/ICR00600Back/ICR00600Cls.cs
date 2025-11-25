@@ -6,6 +6,8 @@ using ICR00600Common.DTOs;
 using ICR00600Common.DTOs.Print;
 using R_BackEnd;
 using R_Common;
+using R_Storage;
+using R_StorageCommon;
 
 namespace ICR00600Back;
 
@@ -215,7 +217,72 @@ public class ICR00600Cls
     }
     
     
-    public ICR00600PrintBaseHeaderLogoDTO GetBaseHeaderLogoCompany(string pcCompanyId)
+    //public ICR00600PrintBaseHeaderLogoDTO GetBaseHeaderLogoCompanOld(string pcCompanyId)
+    //{
+    //    using var loActivity = _activitySource.StartActivity(nameof(GetBaseHeaderLogoCompany));
+    //    var loEx = new R_Exception();
+    //    ICR00600PrintBaseHeaderLogoDTO loResult = null;
+    //    R_Db loDb = null; // Database object    
+    //    DbConnection loConn = null;
+    //    DbCommand loCmd = null;
+
+
+    //    try
+    //    {
+    //        loDb = new R_Db();
+    //        loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
+    //        loCmd = loDb.GetCommand();
+
+    //        var lcQuery = $"SELECT dbo.RFN_GET_COMPANY_LOGO('{pcCompanyId}') as BLOGO";
+    //        loCmd.CommandText = lcQuery;
+    //        loCmd.CommandType = CommandType.Text;
+
+    //        _logger.LogDebug("{pcQuery}", lcQuery);
+
+    //        var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+    //        loResult = R_Utility.R_ConvertTo<ICR00600PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault();
+            
+    //        //ambil company name
+    //        lcQuery = $"EXEC RSP_GS_GET_COMPANY_INFO '{pcCompanyId}'"; // Query to get company name
+    //        loCmd.CommandText = lcQuery;
+    //        loCmd.CommandType = CommandType.Text;
+
+    //        //Debug Logs
+    //        _logger.LogDebug(lcQuery);
+    //        loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+    //        var loCompanyNameResult = R_Utility.R_ConvertTo<ICR00600PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault();
+            
+    //        loResult!.CDATETIME_NOW = loCompanyNameResult.CDATETIME_NOW;
+    //        loResult!.CCOMPANY_NAME = loCompanyNameResult?.CCOMPANY_NAME;
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        loEx.Add(ex); // Add the exception to the exception object
+    //        _logger.LogError(loEx); // Log the exception
+    //    }
+    //    finally
+    //    {
+    //        if (loConn != null)
+    //        {
+    //            if (loConn.State != ConnectionState.Closed)
+    //                loConn.Close();
+
+    //            loConn.Dispose();
+    //            loConn = null;
+    //        }
+    //        if (loCmd != null)
+    //        {
+    //            loCmd.Dispose();
+    //            loCmd = null;
+    //        }
+    //    }
+
+    //    loEx.ThrowExceptionIfErrors();
+
+    //    return loResult;
+    //}
+
+    public ICR00600PrintBaseHeaderLogoDTO GetBaseHeaderLogoCompany(String pcCompanyId, string pcPropertyId)
     {
         using var loActivity = _activitySource.StartActivity(nameof(GetBaseHeaderLogoCompany));
         var loEx = new R_Exception();
@@ -231,15 +298,37 @@ public class ICR00600Cls
             loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
             loCmd = loDb.GetCommand();
 
-            var lcQuery = $"SELECT dbo.RFN_GET_COMPANY_LOGO('{pcCompanyId}') as BLOGO";
-            loCmd.CommandText = lcQuery;
-            loCmd.CommandType = CommandType.Text;
 
-            _logger.LogDebug("{pcQuery}", lcQuery);
+
+            var lcQuery = "RSP_GS_GET_PROPERTY_DETAIL";
+            loCmd = loDb.GetCommand();
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
+
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, pcCompanyId);
+            loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, pcPropertyId);
+
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x != null && x.ParameterName.StartsWith("@"))
+                .Select(x => x.Value);
+            _logger.LogDebug("EXEC {lcQuery} {@Parameters}", lcQuery, loDbParam);
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
             loResult = R_Utility.R_ConvertTo<ICR00600PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault();
-            
+
+            if (string.IsNullOrEmpty(loResult.CSTORAGE_ID) == false)
+            {
+                var loReadParameter = new R_ReadParameter()
+                {
+                    StorageId = loResult.CSTORAGE_ID
+                };
+
+                var loReadResult = R_StorageUtility.ReadFile(loReadParameter, loConn);
+
+                loResult.BLOGO = loReadResult.Data;
+            }
+
             //ambil company name
             lcQuery = $"EXEC RSP_GS_GET_COMPANY_INFO '{pcCompanyId}'"; // Query to get company name
             loCmd.CommandText = lcQuery;
@@ -249,9 +338,10 @@ public class ICR00600Cls
             _logger.LogDebug(lcQuery);
             loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
             var loCompanyNameResult = R_Utility.R_ConvertTo<ICR00600PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault();
-            
-            loResult!.CDATETIME_NOW = loCompanyNameResult.CDATETIME_NOW;
+
             loResult!.CCOMPANY_NAME = loCompanyNameResult?.CCOMPANY_NAME;
+            loResult.CDATETIME_NOW = loCompanyNameResult.CDATETIME_NOW;
+
         }
         catch (Exception ex)
         {
@@ -279,8 +369,8 @@ public class ICR00600Cls
 
         return loResult;
     }
-    
-    
+
+
     public List<ICR00600DataResultDTO> GetReportData(ICR00600ParameterDb poParam)
     {
         using var loActivity = _activitySource.StartActivity(nameof(GetReportData));

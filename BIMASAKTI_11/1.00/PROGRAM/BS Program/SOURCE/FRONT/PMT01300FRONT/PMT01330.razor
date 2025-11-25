@@ -73,7 +73,7 @@
                     <R_Label>@_localizer["_ChargeId"]*</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
-                    <R_TextBox @ref="@ChargesId_TextBox" @bind-Value="@_viewModel.Data.CCHARGES_ID" R_ConductorSource="@_conductorRef" OnLostFocus="@Charges_OnLostFocus" R_EnableAdd MaxLength="20"></R_TextBox>
+                    <R_TextBox @ref="@ChargesId_TextBox" @bind-Value="@_viewModel.Data.CCHARGES_ID" R_ConductorSource="@_conductorRef" OnLostFocused="@Charges_OnLostFocus" R_EnableAdd MaxLength="20"></R_TextBox>
                 </R_ItemLayout>
                 <R_ItemLayout col="0">
                     <R_Lookup R_ConductorSource="@_conductorRef"
@@ -110,7 +110,7 @@
                     <R_Label>@_localizer["_TaxID"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
-                    <R_TextBox @bind-Value="@_viewModel.Data.CTAX_ID" OnLostFocus="@Tax_OnLostFocus" MaxLength="20" R_ConductorSource="@_conductorRef" Enabled="@(!EnableNormalMode && !string.IsNullOrWhiteSpace(_viewModel.Data.CCHARGES_ID) && _viewModel.Data.LTAXABLE)"></R_TextBox>
+                    <R_TextBox @bind-Value="@_viewModel.Data.CTAX_ID" OnLostFocused="@Tax_OnLostFocus" MaxLength="20" R_ConductorSource="@_conductorRef" Enabled="@(!EnableNormalMode && !string.IsNullOrWhiteSpace(_viewModel.Data.CCHARGES_ID) && _viewModel.Data.LTAXABLE)"></R_TextBox>
                 </R_ItemLayout>
                 <R_ItemLayout col="0">
                     <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupTax"
@@ -236,7 +236,7 @@
                 <R_ItemLayout col="3">
                     <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
                                R_ConductorSource="@_conductorRef"
-                               OnLostFocus="@Currency_OnLostFocus"
+                               OnLostFocused="@Currency_OnLostFocus"
                                MaxLength="3"
                                R_EnableAdd
                                R_EnableEdit>

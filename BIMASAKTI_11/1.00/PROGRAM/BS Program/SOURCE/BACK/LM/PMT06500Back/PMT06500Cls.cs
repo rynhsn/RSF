@@ -121,29 +121,30 @@ public class PMT06500Cls : R_BusinessObject<PMT06500InvoiceDTO>
             loDb.R_AddCommandParameter(loCmd, "@CLINK_DEPT_CODE", DbType.String, 20, poNewEntity.CLINK_DEPT_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CLINK_TRANS_CODE", DbType.String, 10, poNewEntity.CLINK_TRANS_CODE);
 
-            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-                .Where(x =>
-                    x.ParameterName is
-                        "@CCOMPANY_ID" or
-                        "@CPROPERTY_ID" or
-                        "@CDEPT_CODE" or
-                        "@CTRANS_CODE" or
-                        "@CREF_NO" or
-                        "@CREF_DATE" or
-                        "@CTENANT_ID" or
-                        "@CBUILDING_ID" or
-                        "@CAGREEMENT_NO" or
-                        "@CDESCRIPTION" or
-                        "@CPERIOD" or
-                        "@CUSER_ID" or
-                        "@CREC_ID" or
-                        "@CACTION" or 
-                        "@CLINK_DEPT_CODE" or
-                        "@CLINK_TRANS_CODE"
-                )
-                .Select(x => x.Value);
+            //var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+            //    .Where(x =>
+            //        x.ParameterName is
+            //            "@CCOMPANY_ID" or
+            //            "@CPROPERTY_ID" or
+            //            "@CDEPT_CODE" or
+            //            "@CTRANS_CODE" or
+            //            "@CREF_NO" or
+            //            "@CREF_DATE" or
+            //            "@CTENANT_ID" or
+            //            "@CBUILDING_ID" or
+            //            "@CAGREEMENT_NO" or
+            //            "@CDESCRIPTION" or
+            //            "@CPERIOD" or
+            //            "@CUSER_ID" or
+            //            "@CREC_ID" or
+            //            "@CACTION" or 
+            //            "@CLINK_DEPT_CODE" or
+            //            "@CLINK_TRANS_CODE"
+            //    )
+            //    .Select(x => x.Value);
 
-            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            //_logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
 
             try
             {
@@ -694,29 +695,30 @@ public class PMT06500Cls : R_BusinessObject<PMT06500InvoiceDTO>
             loDb.R_AddCommandParameter(loCmd, "@CLINK_DEPT_CODE", DbType.String, 20, poNewEntity.CLINK_DEPT_CODE);
             loDb.R_AddCommandParameter(loCmd, "@CLINK_TRANS_CODE", DbType.String, 10, poNewEntity.CLINK_TRANS_CODE);
 
-            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-                .Where(x =>
-                    x.ParameterName is
-                        "@CCOMPANY_ID" or
-                        "@CPROPERTY_ID" or
-                        "@CDEPT_CODE" or
-                        "@CTRANS_CODE" or
-                        "@CREF_NO" or
-                        "@CREF_DATE" or
-                        "@CTENANT_ID" or
-                        "@CBUILDING_ID" or
-                        "@CAGREEMENT_NO" or
-                        "@CDESCRIPTION" or
-                        "@CPERIOD" or
-                        "@CUSER_ID" or
-                        "@CREC_ID" or
-                        "@CACTION" or 
-                        "@CLINK_DEPT_CODE" or
-                        "@CLINK_TRANS_CODE"
-                )
-                .Select(x => x.Value);
+            //var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+            //    .Where(x =>
+            //        x.ParameterName is
+            //            "@CCOMPANY_ID" or
+            //            "@CPROPERTY_ID" or
+            //            "@CDEPT_CODE" or
+            //            "@CTRANS_CODE" or
+            //            "@CREF_NO" or
+            //            "@CREF_DATE" or
+            //            "@CTENANT_ID" or
+            //            "@CBUILDING_ID" or
+            //            "@CAGREEMENT_NO" or
+            //            "@CDESCRIPTION" or
+            //            "@CPERIOD" or
+            //            "@CUSER_ID" or
+            //            "@CREC_ID" or
+            //            "@CACTION" or 
+            //            "@CLINK_DEPT_CODE" or
+            //            "@CLINK_TRANS_CODE"
+            //    )
+            //    .Select(x => x.Value);
 
-            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            //_logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
 
             try
             {

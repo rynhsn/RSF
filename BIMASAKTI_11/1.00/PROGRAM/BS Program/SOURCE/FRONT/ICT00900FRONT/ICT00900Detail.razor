@@ -13,7 +13,7 @@
                 <R_ItemLayout col="2">
                     <R_TextBox @bind-Value="@_viewModel.Data.CDEPT_CODE"
                                R_ConductorSource="_conducorAdjDetail"
-                               OnLostFocus="@OnLostFocusDepartment"
+                               OnLostFocused="@OnLostFocusDepartment"
                                R_EnableAdd
                                @ref="@FocusLabel">
                     </R_TextBox>
@@ -139,7 +139,7 @@
                 <R_ItemLayout col="2">
                     <R_TextBox @bind-Value="@_viewModel.Data.CPRODUCT_ID"
                                R_ConductorSource="_conducorAdjDetail"
-                               OnLostFocus="@OnLostFocusProduct"
+                               OnLostFocused="@OnLostFocusProduct"
                                R_EnableAdd
                                R_EnableEdit>
                     </R_TextBox>
@@ -334,7 +334,7 @@
                 <R_ItemLayout col="2">
                     <R_TextBox @bind-Value="@_viewModel.Data.CALLOC_ID"
                                R_ConductorSource="_conducorAdjDetail"
-                               OnLostFocus="@OnLostFocusAlloaction"
+                               OnLostFocused="@OnLostFocusAlloaction"
                                R_EnableAdd
                                R_EnableEdit>
                     </R_TextBox>

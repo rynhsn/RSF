@@ -193,7 +193,6 @@ namespace PMR00170FRONT
 
             try
             {
-
                 if (string.IsNullOrWhiteSpace(_viewModel.lcDeptCodeFrom))
                 {
                     _viewModel.lcDeptCodeFrom = "";
@@ -201,17 +200,17 @@ namespace PMR00170FRONT
                     return;
                 }
 
-
                 LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
                 var param = new GSL00710ParameterDTO
                 {
                     CPROPERTY_ID = _viewModel.PropertyCode ?? "",
+                    CSEARCH_TEXT = _viewModel.lcDeptCodeFrom
                 };
                 var loResult = await loLookupViewModel.GetDepartmentProperty(param);
 
                 if (loResult == null)
                 {
-                    await R_TextBoxBtnDeptTo.FocusAsync();
+                    await R_TextBoxBtnDeptFrom.FocusAsync();
                     loEx.Add(R_FrontUtility.R_GetError(
                             typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
                             "_ErrLookup01"));
@@ -231,6 +230,7 @@ namespace PMR00170FRONT
 
             R_DisplayException(loEx);
         }
+
         #endregion
         #region lookupDeptTo
         private R_Lookup R_LookupBtnDeptTo;
@@ -260,19 +260,17 @@ namespace PMR00170FRONT
 
             try
             {
-
                 if (string.IsNullOrWhiteSpace(_viewModel.lcDeptCodeTo))
                 {
                     _viewModel.lcDeptCodeTo = "";
                     _viewModel.lcDeptNameTo = "";
                     return;
                 }
-
-
                 LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
                 var param = new GSL00710ParameterDTO
                 {
                     CPROPERTY_ID = _viewModel.PropertyCode ?? "",
+                    CSEARCH_TEXT = _viewModel.lcDeptCodeTo
                 };
                 var loResult = await loLookupViewModel.GetDepartmentProperty(param);
 

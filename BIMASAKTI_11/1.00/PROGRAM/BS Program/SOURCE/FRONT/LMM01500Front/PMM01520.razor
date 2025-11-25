@@ -74,7 +74,7 @@
                     <R_ItemLayout col="2">
                         <R_TextBox @bind-Value="@_InvPinaltyDate_viewModel.Data.CPENALTY_UNIT_CHARGES_ID"
                                    R_ConductorSource="@_InvPinalty_conductorRef"
-                                   OnLostFocus="@ChargesId_OnLostFocus"
+                                   OnLostFocused="@ChargesId_OnLostFocus"
                                    MaxLength="20"
                                    Enabled="@(_InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"></R_TextBox>
                     </R_ItemLayout>
@@ -96,7 +96,7 @@
                     <R_ItemLayout col="2">
                         <R_TextBox @bind-Value="@_InvPinaltyDate_viewModel.Data.CPENALTY_ADD_ID"
                                    R_ConductorSource="@_InvPinalty_conductorRef"
-                                   OnLostFocus="@PinaltyId_OnLostFocus"
+                                   OnLostFocused="@PinaltyId_OnLostFocus"
                                    MaxLength="20"
                                    Enabled="@(_InvPinalty_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _InvPinaltyDate_viewModel.Data.LPENALTY)"></R_TextBox>
                     </R_ItemLayout>

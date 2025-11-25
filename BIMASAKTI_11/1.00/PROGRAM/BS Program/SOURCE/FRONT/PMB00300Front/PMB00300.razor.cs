@@ -35,6 +35,12 @@ public partial class PMB00300
         var loEx = new R_Exception();
         try
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                value = "";
+                return;
+            }
+
             _viewModel.Property.CPROPERTY_ID = value;
             await _gridRef.R_RefreshGrid(null);
         }

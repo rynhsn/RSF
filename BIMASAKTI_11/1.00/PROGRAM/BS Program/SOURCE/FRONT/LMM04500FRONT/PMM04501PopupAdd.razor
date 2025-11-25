@@ -50,7 +50,9 @@
                 R_After_Open_Grid_Lookup="@PricingAdd_AfterLookup"
                 R_CellValueChanged="@PricingAdd_CellValueChanged"
                 Height="300px"
-                R_AfterAdd="@PricingAdd_AfterAddAsync">
+                R_AfterAdd="@PricingAdd_AfterAddAsync"
+                R_Validation="@Validation">
+                
             <R_GridColumns>
                 <R_GridComboBoxColumn Data=@_pricingAdd_ViewModel._chargesTypeList
                                       ValueField="@nameof(TypeDTO.CCODE)"

@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+	  <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
     <BlazorCacheBootResources>false</BlazorCacheBootResources>
     <BlazorEnableCompression>false</BlazorEnableCompression>
     <!--old msbuild-->
@@ -14,22 +14,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.14" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.14" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.14" PrivateAssets="all" />
-    <PackageReference Include="Realta.BlazorMenuCollectionNuget" Version="1.0.6-alpha" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.36" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.36" />
+	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.36" PrivateAssets="all" />
+    <PackageReference Include="Realta.BlazorMenuCollectionNuget" Version="1.0.7-alpha" />
   </ItemGroup>
 
+
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\APB00200FRONT\APB00200FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\APR00100FRONT\APR00100FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\APR00300Front\APR00300Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\APR00500Front\APR00500Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\APR00700FRONT\APR00700FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\BMM00500FRONT\BMM00500FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\CBB00200Front\CBB00200Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLI00100Front\GLI00100Front.csproj" />
     <!--		<ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLM00200FRONT\GLM00200Front.csproj" />-->
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLM00500Front\GLM00500Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLR00100Front\GLR00100Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLT00100FRONT\GLT00100FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM00300FRONT\GSM00300FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM02000Front\GSM02000Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GSM04000FRONT\GSM04000Front.csproj" />
@@ -51,19 +55,36 @@
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\LMM04500FRONT\PMM04500FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\LMT03500Front\PMT03500Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB00300Front\PMB00300Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB01600Front\PMB01600Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB01800FRONT\PMB01800FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB02200FRONT\PMB02200FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB03000Front\PMB03000Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB04000FRONT\PMB04000FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMB05000Front\PMB05000Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMI00500Front\PMI00500Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMM00100FRONT\PMM00100FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMM02000Front\PMM02000Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMM04700FRONT\PMM04700FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMM09000FRONT\PMM09000FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMM10000FRONT\PMM10000FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR00150FRONT\PMR00150FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR00170FRONT\PMR00170FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR00200FRONT\PMR00200FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR00210FRONT\PMR00210FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR00220FRONT\PMR00220FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR00400Front\PMR00400Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR00460Front\PMR00460Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR00460Model\PMR00460Model.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR00600FRONT\PMR00600FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR00800FRONT\PMR00800FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR02000FRONT\PMR02000FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR02400FRONT\PMR02400FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR02600Front\PMR02600Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR03000Front\PMR03000Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMR03400FRONT\PMR03400FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMT00100FRONT\PMT00100FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMT01300FRONT\PMT01300FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMT01700FRONT\PMT01700FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMT06000Front\PMT06000Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\PMT06500Front\PMT06500Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\TXB00200Front\TXB00200Front.csproj" />
@@ -136,19 +157,21 @@
     <Reference Include="R_CrossPlatformSecurity">
       <HintPath>..\..\LIBRARY\Front\R_CrossPlatformSecurity.dll</HintPath>
     </Reference>
+    <Reference Include="R_LockingFront">
+      <HintPath>..\..\LIBRARY\Front\R_LockingFront.dll</HintPath>
+    </Reference>
     <Reference Include="R_ProcessAndUploadFront">
       <HintPath>..\..\LIBRARY\Front\R_ProcessAndUploadFront.dll</HintPath>
     </Reference>
     <Reference Include="R_SecurityPolicyCommon">
       <HintPath>..\..\LIBRARY\Menu\R_SecurityPolicyCommon.dll</HintPath>
     </Reference>
-    <Reference Include="R_BlazorFrontEnd.FileConverter">
-      <HintPath>..\..\LIBRARY\Front\R_BlazorFrontEnd.FileConverter.dll</HintPath>
-    </Reference>
-    <Reference Include="R_SecurityPolicyModel">
-      <HintPath>..\..\LIBRARY\Menu\R_SecurityPolicyModel.dll</HintPath>
-    </Reference>
+	  <Reference Include="R_BlazorFrontEnd.FileConverter">
+		  <HintPath>..\..\LIBRARY\Front\R_BlazorFrontEnd.FileConverter.dll</HintPath>
+	  </Reference>
+	  <Reference Include="R_SecurityPolicyModel">
+	    <HintPath>..\..\LIBRARY\Menu\R_SecurityPolicyModel.dll</HintPath>
+	  </Reference>
   </ItemGroup>
-
-
+  
 </Project>

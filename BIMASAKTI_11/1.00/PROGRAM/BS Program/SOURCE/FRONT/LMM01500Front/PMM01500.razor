@@ -211,7 +211,7 @@
                             <R_ItemLayout col="2">
                                 <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CSTAMP_ADD_ID"
                                            R_ConductorSource="@_Genereal_conductorRef"
-                                           OnLostFocus="@StampId_OnLostFocus"
+                                           OnLostFocused="@StampId_OnLostFocus"
                                            MaxLength="20"
                                            Enabled="@(_Genereal_viewModel.Data.LUSE_STAMP && _Genereal_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)"></R_TextBox>
                             </R_ItemLayout>
@@ -255,7 +255,7 @@
                                             <R_ItemLayout col="2">
                                                 <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CINV_DEPT_CODE"
                                                            R_ConductorSource="@_Genereal_conductorRef"
-                                                           OnLostFocus="@GeneralInvoiceDeptCode_OnLostFocus"
+                                                           OnLostFocused="@GeneralInvoiceDeptCode_OnLostFocus"
                                                            MaxLength="20"
                                                            R_EnableAdd 
                                                            R_EnableEdit/>
@@ -316,7 +316,7 @@
                                         <R_ItemLayout col="2">
                                             <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CDEPT_CODE"
                                                        R_ConductorSource="@_Genereal_conductorRef"
-                                                       OnLostFocus="@GeneralDeptCode_OnLostFocus"
+                                                       OnLostFocused="@GeneralDeptCode_OnLostFocus"
                                                        MaxLength="20"
                                                        R_EnableAdd 
                                                        R_EnableEdit/>
@@ -344,7 +344,7 @@
                                         <R_ItemLayout col="2">
                                             <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CBANK_CODE"
                                                        R_ConductorSource="@_Genereal_conductorRef"
-                                                       OnLostFocus="@GeneralBankCode_OnLostFocus"
+                                                       OnLostFocused="@GeneralBankCode_OnLostFocus"
                                                        MaxLength="20"
                                                        R_EnableAdd 
                                                        R_EnableEdit/>
@@ -372,7 +372,7 @@
                                         <R_ItemLayout col="6">
                                             <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CBANK_ACCOUNT"
                                                        R_ConductorSource="@_Genereal_conductorRef"
-                                                       OnLostFocus="@GeneralBankAcount_OnLostFocus"
+                                                       OnLostFocused="@GeneralBankAcount_OnLostFocus"
                                                        MaxLength="20"
                                                        Enabled="@GeneralButtonEnable"></R_TextBox>
                                         </R_ItemLayout>

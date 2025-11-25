@@ -326,5 +326,26 @@ namespace PMM04500FRONT
         }
         #endregion
 
+        private void Validation(R_ValidationEventArgs eventArgs)
+        {
+            R_Exception loEx = new();
+
+            try
+            {
+                var loData = (PricingBulkSaveDTO) eventArgs.Data;
+
+                if(_gridPricing.DataSource.Any(x => x.CCHARGES_TYPE == loData.CCHARGES_TYPE && loData.CCHARGES_TYPE == "02"))
+                {
+                    var loErr = R_FrontUtility.R_GetError(typeof(PMM04500FrontResources.Resources_Dummy_Class), "_validationDuplicateRent");
+                    loEx.Add(loErr);
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            eventArgs.Cancel = loEx.HasError;
+            loEx.ThrowExceptionIfErrors();
+        }
     }
 }

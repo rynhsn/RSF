@@ -331,6 +331,15 @@ namespace PMR00150BackResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to For Total Area.
+        /// </summary>
+        internal static string Col_TOTAL_AREA {
+            get {
+                return ResourceManager.GetString("Col_TOTAL_AREA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Department.
         /// </summary>
         internal static string Label_Department {

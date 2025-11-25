@@ -196,7 +196,7 @@ namespace PMR00220FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LOI List.
+        ///   Looks up a localized string similar to LOI Event.
         /// </summary>
         internal static string _pageTitle {
             get {

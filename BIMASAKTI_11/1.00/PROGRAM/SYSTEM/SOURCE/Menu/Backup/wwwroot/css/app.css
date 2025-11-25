@@ -14,6 +14,8 @@
     --r-radiobutton-checked-url: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3ccircle cx='50' cy='50' r='25' fill='%235e6e82'/%3e%3c/svg%3e");
     /* [Telerik v7.1.0] update CSS fix */
     --kendo-color-on-app-surface: var(--falcon-body-color) !important;
+    --r-menu-overlay-content-icon-color: #aaaaaa !important;
+    --r-default-border-radius: var(--kendo-border-radius-md) !important;
 }
 
 .dark {
@@ -21,6 +23,7 @@
     /* stroke color based on --falcon-body-color */
     --r-checkbox-checked-url: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%239da9bb' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
     --r-radiobutton-checked-url: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3ccircle cx='50' cy='50' r='25' fill='%239da9bb'/%3e%3c/svg%3e");
+    --r-menu-overlay-content-icon-color: #505050 !important;
 }
 /* #endregion */
 
@@ -68,6 +71,7 @@ body {
 
 /* #region 1.4 Scrollbar */
 *::-webkit-scrollbar {
+    visibility: hidden;
     -webkit-appearance: none;
     width: 6px;
     height: 6px;
@@ -79,14 +83,37 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
+    visibility: hidden;
     border-radius: 3px;
     background-color: var(--falcon-scrollbar-bg);
 }
 
+*:hover::-webkit-scrollbar,
+*:hover::-webkit-scrollbar-thumb,
+*:focus::-webkit-scrollbar,
+*:focus::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
 /* not displaying scrollbar on page so it doesnt break layout */
+html, body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
     html::-webkit-scrollbar,
     body::-webkit-scrollbar {
         display: none;
+    }
+
+.scroll-hidden {
+    overflow: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+}
+
+    .scroll-hidden::-webkit-scrollbar {
+        display: none; /* Chrome, Safari */
     }
 /* #endregion */
 
@@ -109,17 +136,17 @@ body {
 
 /* #region 2.1 Login Page Base Styling */
 .main {
-  background-image: url(../assets/img/bg-theme.png);
-  background-repeat: no-repeat;
-  background-position: bottom right;
-  background-attachment: fixed;
+    background-image: url(../assets/img/bg-theme.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-attachment: fixed;
 }
 
 .dark .main {
-  background-image: url(../assets/img/bg-theme-dark.png);
-  background-repeat: no-repeat;
-  background-position: bottom right;
-  background-attachment: fixed;
+    background-image: url(../assets/img/bg-theme-dark.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-attachment: fixed;
 }
 
 /* #endregion */
@@ -189,6 +216,7 @@ body {
 .xtabs[b-mlpxtvpz0w] {
     background-color: transparent !important;
 }
+
     .xtabs[b-mlpxtvpz0w] .xtabs-header {
         background-color: transparent !important;
         padding: 0 !important;
@@ -290,6 +318,7 @@ body {
 
 /* #region 5.1 Invisible Window */
 .r-window.r-invisible-window {
+    position: fixed !important;  /* always in the same position even when scrolled */
     background: none;
     background-color: transparent;
     border: none;
@@ -298,6 +327,8 @@ body {
     box-shadow: none;
     padding: 0;
     margin: 0;
+    max-height: 100vh;
+    max-width: 100vw;
 }
 /* #endregion */
 
@@ -305,6 +336,7 @@ body {
    6. Captcha
    ========================================================================== */
 
+/* #region 6.1 Captcha*/
 .divCaptcha {
     border-color: var(--falcon-input-border-color) !important;
     background-color: var(--falcon-input-bg) !important;
@@ -313,15 +345,190 @@ body {
     .divCaptcha button.refresh-button {
         color: var(--falcon-input-color) !important;
     }
+/* #endregion */
 
 /* ==========================================================================
-X. No Categories
-========================================================================== */
+   7. Menu Overlay
+   ========================================================================== */
 
-/* #region X.1 Navbar Vertical Icon Styling*/
+/* #region 7.1 Menu Overlay Base Styling */
+.r-content-menu-overlay,
+.r-menu-overlay {
+    --menu-overlay-overlay-bg: var(--falcon-body-bg);
+    --menu-overlay-card-bg: var(--falcon-card-bg);
+    --menu-overlay-card-border-color: var(--falcon-card-border-color);
+    --menu-overlay-card-border: 1px solid var(--menu-overlay-card-border-color);
+    --menu-overlay-card-radius: 10px;
+    --menu-overlay-gap: 1rem;
+    --menu-overlay-tile-bg: var(--falcon-100);
+    --menu-overlay-tile-border: 1px solid var(--falcon-300);
+    --menu-overlay-text-primary: var(--falcon-600);
+    --menu-overlay-text-secondary: var(--falcon-500);
+    --menu-overlay-icon-color: var(--r-menu-overlay-content-icon-color);
+    --menu-overlay-box-shadow: var(--falcon-box-shadow);
+    --menu-overlay-box-shadow-focus: var(--falcon-box-shadow), 0 0 0 .25rem rgba(44,123,229,.25);
+    --menu-overlay-padding-x: var(--falcon-gutter-x, 1rem);
+    --menu-overlay-content-min-height: 66px;
+}
+
+.dark .r-menu-overlay {
+    --menu-overlay-tile-bg: var(--falcon-200);
+    --menu-overlay-tile-border: 1px solid var(--falcon-400);
+    --menu-overlay-text-primary: var(--falcon-700);
+    --menu-overlay-text-secondary: var(--falcon-600);
+}
+
+/* Apply variable-driven overrides */
+.r-menu-overlay {
+    padding-bottom: var(--menu-overlay-padding-x) !important;
+    padding-right: var(--menu-overlay-padding-x) !important;
+}
+
+    .r-menu-overlay .r-menu-overlay-content {
+        color: var(--falcon-card-color);
+        -webkit-box-shadow: var(--menu-overlay-box-shadow);
+        box-shadow: var(--menu-overlay-box-shadow);
+    }
+
+    .r-menu-overlay .r-menu-overlay-header .r-menu-overlay-header-close .k-button.k-icon-button span.k-button-icon.k-svg-icon > svg {
+        width: 1.5em;
+        height: 1.5em;
+    }
+
+    .r-menu-overlay .r-menu-overlay-content .r-menu-overlay-tiles {
+        grid-template-columns: repeat(auto-fill, minmax(197px, 1fr));
+    }
+
+        .r-menu-overlay .r-menu-overlay-content .r-menu-overlay-tiles .r-menu-overlay-content-item {
+            transition: box-shadow .2s ease-in-out, opacity 0.3s ease;
+            gap: var(--menu-overlay-gap);
+        }
+
+            .r-menu-overlay .r-menu-overlay-content .r-menu-overlay-tiles .r-menu-overlay-content-item:hover {
+                -webkit-box-shadow: var(--menu-overlay-box-shadow);
+                box-shadow: var(--menu-overlay-box-shadow);
+            }
+
+            .r-menu-overlay .r-menu-overlay-content .r-menu-overlay-tiles .r-menu-overlay-content-item:focus,
+            .r-menu-overlay .r-menu-overlay-content .r-menu-overlay-tiles .r-menu-overlay-content-item:focus-visible,
+            .r-menu-overlay .r-menu-overlay-content .r-menu-overlay-tiles .r-menu-overlay-content-item:focus-within {
+                -webkit-box-shadow: var(--menu-overlay-box-shadow-focus);
+                box-shadow: var(--menu-overlay-box-shadow-focus);
+            }
+
+            .r-menu-overlay .r-menu-overlay-content .r-menu-overlay-tiles .r-menu-overlay-content-item .r-menu-overlay-content-favorite {
+                color: var(--falcon-card-color);
+                border-top-right-radius: var(--menu-overlay-card-radius);
+                border-bottom-right-radius: var(--menu-overlay-card-radius);
+            }
+
+            .r-menu-overlay .r-menu-overlay-content .r-menu-overlay-tiles .r-menu-overlay-content-item .r-menu-overlay-content-icon {
+                color: var(--menu-overlay-icon-color);
+            }
+
+            .r-menu-overlay .r-menu-overlay-content .r-menu-overlay-tiles .r-menu-overlay-content-item .r-menu-overlay-content-text {
+                min-height: var(--menu-overlay-content-min-height);
+            }
+
+                .r-menu-overlay .r-menu-overlay-content .r-menu-overlay-tiles .r-menu-overlay-content-item .r-menu-overlay-content-text .r-menu-overlay-content-text-title {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: normal;
+                }
+
+/* #endregion */
+
+/* #region 7.2 Pop Animation Favorite */
+.r-menu-overlay-content-favorite .r-menu-overlay-content-favorite-icon .fav-icon {
+    color: var(--falcon-yellow);
+}
+
+.r-menu-overlay-content-favorite .r-menu-overlay-content-favorite-icon .fav-icon,
+.r-menu-overlay-content-favorite .r-menu-overlay-content-favorite-icon .unfav-icon {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform-origin: center;
+}
+
+    .r-menu-overlay-content-favorite .r-menu-overlay-content-favorite-icon .fav-icon.show,
+    .r-menu-overlay-content-favorite .r-menu-overlay-content-favorite-icon .unfav-icon.show {
+        opacity: 1;
+        transform: scale(1.2);
+        animation: pop-bounce 0.3s ease forwards;
+    }
+
+@keyframes pop-bounce {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+/* #endregion */
+
+/* ==========================================================================
+   8. RTF Viewer
+   ========================================================================== */
+
+.r-rtf-viewer-action {
+    background-color: var(--falcon-input-bg) !important;
+    border-color: var(--falcon-input-border-color) !important;
+    border-radius: var(--r-default-border-radius) !important;
+}
+
+/* ==========================================================================
+   9. Dropzone
+   ========================================================================== */
+
+.r-dropzone-wrapper {
+    /* Colors */
+    --r-dropzone-border-color: var(--falcon-input-border-color);
+    --r-dropzone-border-color-hover: var(--falcon-btn-falcon-primary-active-color);
+    --r-dropzone-bg: var(--falcon-input-bg);
+    --r-dropzone-bg-hover: var(--falcon-200);
+    --r-dropzone-text-color: var(--falcon-input-color);
+    --r-dropzone-file-name-color: var(--falcon-900);
+    --r-dropzone-file-size-color: var(--falcon-600);
+    --r-dropzone-btn-danger: var(--falcon-btn-falcon-danger-color);
+    --r-dropzone-btn-danger-hover: var(--falcon-btn-falcon-danger-hover-color);
+}
+
+
+/* ==========================================================================
+   X. No Categories
+   ========================================================================== */
+
+/* #region X.1 Default Icon Styling*/
 .r-nav-custom-icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+.r-button.r-button-icon {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none !important
+}
+
+.r-icon {
+    display: flex;
+    box-sizing: content-box;
     width: 1em;
     height: 1em;
+    padding: 0.2em 0.6em;
 }
 /* #endregion*/
 
@@ -341,9 +548,20 @@ X. No Categories
 /* #endregion*/
 
 /* #region X.4 Validation Message (R_BlazorFrontEnd.Controls R_ValidationError) */
-.r-input-invalid span.k-input {
+.r-input-invalid {
     border-color: var(--falcon-danger) !important;
 }
+
+.r-target-invalid {
+    position: relative;
+}
+
+    .r-target-invalid .r-icon-container {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        height: 1.9rem !important;
+    }
 /* #endregion*/
 
 /* #region X.5 Preserved input styling in blazor menu component that originally use bootstrap: "form-control" class */

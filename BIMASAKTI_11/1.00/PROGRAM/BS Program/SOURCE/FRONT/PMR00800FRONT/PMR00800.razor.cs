@@ -46,6 +46,12 @@ namespace PMR00800FRONT
             R_Exception loEx = new R_Exception();
             try
             {
+                if (string.IsNullOrEmpty(poParam))
+                {
+                    poParam = "";
+                    return;
+                }
+
                 _viewModel.ReportParam.CPROPERTY_ID = string.IsNullOrWhiteSpace(poParam) ? "" : poParam;
                 _viewModel.ReportParam.CPROPERTY_NAME = _viewModel.PropertyList.Where(x => x.CPROPERTY_ID == poParam).FirstOrDefault().CPROPERTY_NAME;
                 // reset building param

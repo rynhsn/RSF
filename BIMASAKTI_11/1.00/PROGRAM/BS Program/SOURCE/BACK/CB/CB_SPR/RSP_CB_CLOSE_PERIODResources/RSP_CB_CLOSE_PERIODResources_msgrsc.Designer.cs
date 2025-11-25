@@ -63,9 +63,9 @@ namespace RSP_CB_CLOSE_PERIODResources {
         /// <summary>
         ///   Looks up a localized string similar to Process failed! unable to Close CB Period {0}.
         /// </summary>
-        internal static string ERROR_PROCESS {
+        internal static string ERROR_PROC {
             get {
-                return ResourceManager.GetString("ERROR_PROCESS", resourceCulture);
+                return ResourceManager.GetString("ERROR_PROC", resourceCulture);
             }
         }
     }

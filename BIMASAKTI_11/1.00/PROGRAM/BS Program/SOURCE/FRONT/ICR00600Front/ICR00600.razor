@@ -10,11 +10,12 @@
         <R_Label>@_localizer["Property"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="3">
-        <R_ComboBox Data="@_viewModel.PropertyList"
-                    @bind-Value="@_viewModel.ReportParam.CPROPERTY_ID"
+        <R_ComboBox Data="_viewModel.PropertyList"
+                    Value="_viewModel.ReportParam.CPROPERTY_ID"
                     ValueField="@nameof(ICR00600PropertyDTO.CPROPERTY_ID)"
                     TextField="@nameof(ICR00600PropertyDTO.CPROPERTY_NAME)"
-                    Enabled/>
+                    ValueChanged="@((string value) => _valueChangedProperty(value))"
+                    Enabled />
     </R_ItemLayout>
 </R_StackLayout>
 
@@ -22,8 +23,7 @@
     <R_ItemLayout col="2">
         <R_StackLayout Row>
             <R_ItemLayout>
-                <R_CheckBox @bind-Value="@_viewModel.ReportParam.LDEPT"
-                            Enabled/>
+                <R_CheckBox @bind-Value="_viewModel.ReportParam.LDEPT" OnChanged="@_valueChangedCheckDept" Enabled/>
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Label>@_localizer["Department"]</R_Label>
@@ -32,7 +32,7 @@
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.ReportParam.CDEPT_CODE"
-                   OnLostFocus="OnLostFocusDept"
+                   OnLostFocused="OnLostFocusDept"
                    Enabled="@_viewModel.ReportParam.LDEPT"/>
     </R_ItemLayout>
     <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupDept"
@@ -76,7 +76,7 @@
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_REF_NO"
-                   OnLostFocus="OnLostFocusFromRefNo"
+                   OnLostFocused="OnLostFocusFromRefNo"
                    Enabled/>
     </R_ItemLayout>
     <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupFromRefNo"
@@ -91,7 +91,7 @@
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_REF_NO"
-                   OnLostFocus="OnLostFocusToRefNo"
+                   OnLostFocused="OnLostFocusToRefNo"
                    Enabled/>
     </R_ItemLayout>
     <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupToRefNo"

@@ -101,7 +101,10 @@ namespace GSM02500FRONT
             List<UploadUnitTypeCategoryExcelDTO> loExtract = new List<UploadUnitTypeCategoryExcelDTO>();
             try
             {
-                var loDataSet = Excel.R_ReadFromExcel(loUploadUnitTypeCategoryViewModel.fileByte, new string[] { "UnitTypeCategory" });
+                var loDataSet = Excel.R_ReadExcel(loUploadUnitTypeCategoryViewModel.fileByte, action =>
+                {
+                    action.TableNames = new string[] { "UnitTypeCategory" };
+                });
 
                 var loResult = R_FrontUtility.R_ConvertTo<UploadUnitTypeCategoryExcelDTO>(loDataSet.Tables[0]);
 

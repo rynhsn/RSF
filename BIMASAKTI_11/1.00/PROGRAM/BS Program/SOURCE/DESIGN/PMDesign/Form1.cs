@@ -55,5 +55,30 @@ namespace PMDesign
             loReport.RegisterData(loData, "ResponseDataModel");
             loReport.Design();
         }
+
+        private void PMR00800_Click(object sender, EventArgs e)
+        {
+            var loData = new ArrayList();
+            loData.Add(PMR00800COMMON.Model.PMR00800DummyData.PrintDummyData());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ArrayList loData = new ArrayList
+            {
+                PMT01700COMMON.Models.GenerateDataModel.DefaultDataWithHeader()
+            };
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
+        //private void button2(object sender, EventArgs e)
+        //{
+        //    var loData = new ArrayList();
+        //    loData.Add(PMR00800COMMON.Model.PMR00800DummyData.PrintDummyData());
+        //    loReport.RegisterData(loData, "ResponseDataModel");
+        //    loReport.Design();
+        //}
     }
 }

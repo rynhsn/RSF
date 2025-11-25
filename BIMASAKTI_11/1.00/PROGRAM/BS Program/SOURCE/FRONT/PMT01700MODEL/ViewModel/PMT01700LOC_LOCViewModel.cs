@@ -90,8 +90,9 @@ namespace PMT01700MODEL.ViewModel
                 poNewEntity.CEND_DATE = ConvertDateTimeToStringFormat(poNewEntity.DEND_DATE);
                 poNewEntity.CREF_DATE = ConvertDateTimeToStringFormat(poNewEntity.DREF_DATE);
                
-                poNewEntity.CSTART_TIME = ConvertTimeToStringFormat(poNewEntity.DSTART_TIME);
-                poNewEntity.CEND_TIME = ConvertTimeToStringFormat(poNewEntity.DEND_TIME);
+                poNewEntity.CSTART_TIME = ConvertTimeToStringFormat(poNewEntity.DSTART_DATE);
+                
+                    poNewEntity.CEND_TIME = ConvertTimeToStringFormat(poNewEntity.DEND_DATE);
 
                 var loResult = await _model.R_ServiceSaveAsync(poNewEntity, peCRUDMode);
 

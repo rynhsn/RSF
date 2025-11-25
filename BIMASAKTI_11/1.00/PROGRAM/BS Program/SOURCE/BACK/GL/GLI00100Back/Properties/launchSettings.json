@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GLI00100Back": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:49931;http://localhost:49932"
+    }
+  }
+}

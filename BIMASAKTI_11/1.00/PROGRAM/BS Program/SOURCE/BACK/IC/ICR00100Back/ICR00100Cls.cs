@@ -6,6 +6,8 @@ using ICR00100Common.DTOs;
 using ICR00100Common.DTOs.Print;
 using R_BackEnd;
 using R_Common;
+using R_Storage;
+using R_StorageCommon;
 
 namespace ICR00100Back;
 
@@ -113,9 +115,9 @@ public class ICR00100Cls
         return loRtn; // Return the property list
     }
 
-    public ICR00100PrintBaseHeaderLogoDTO GetBaseHeaderLogoCompany(string pcCompanyId)
+    public ICR00100PrintBaseHeaderLogoDTO GetBaseHeaderLogoCompanyTemp(string pcCompanyId)
     {
-        using var loActivity = _activitySource.StartActivity(nameof(GetBaseHeaderLogoCompany));
+        using var loActivity = _activitySource.StartActivity(nameof(GetBaseHeaderLogoCompanyTemp));
         var loEx = new R_Exception();
         ICR00100PrintBaseHeaderLogoDTO loResult = null;
         R_Db loDb = null; // Database object    
@@ -168,6 +170,94 @@ public class ICR00100Cls
                 loConn = null;
             }
 
+            if (loCmd != null)
+            {
+                loCmd.Dispose();
+                loCmd = null;
+            }
+        }
+
+        loEx.ThrowExceptionIfErrors();
+
+        return loResult;
+    }
+
+    public ICR00100PrintBaseHeaderLogoDTO GetBaseHeaderLogoCompany(String pcCompanyId, string pcPropertyId)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(GetBaseHeaderLogoCompany));
+        var loEx = new R_Exception();
+        ICR00100PrintBaseHeaderLogoDTO loResult = null;
+        R_Db loDb = null; // Database object    
+        DbConnection loConn = null;
+        DbCommand loCmd = null;
+
+
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString);
+            loCmd = loDb.GetCommand();
+
+
+
+            var lcQuery = "RSP_GS_GET_PROPERTY_DETAIL";
+            loCmd = loDb.GetCommand();
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
+
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, pcCompanyId);
+            loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, pcPropertyId);
+
+            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x =>
+                    x != null && x.ParameterName.StartsWith("@"))
+                .Select(x => x.Value);
+            _logger.LogDebug("EXEC {lcQuery} {@Parameters}", lcQuery, loDbParam);
+
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+            loResult = R_Utility.R_ConvertTo<ICR00100PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault();
+
+            if (string.IsNullOrEmpty(loResult.CSTORAGE_ID) == false)
+            {
+                var loReadParameter = new R_ReadParameter()
+                {
+                    StorageId = loResult.CSTORAGE_ID
+                };
+
+                var loReadResult = R_StorageUtility.ReadFile(loReadParameter, loConn);
+
+                loResult.BLOGO = loReadResult.Data;
+            }
+
+            //ambil company name
+            lcQuery = $"EXEC RSP_GS_GET_COMPANY_INFO '{pcCompanyId}'"; // Query to get company name
+            loCmd.CommandText = lcQuery;
+            loCmd.CommandType = CommandType.Text;
+
+            //Debug Logs
+            _logger.LogDebug(lcQuery);
+            loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+            var loCompanyNameResult = R_Utility.R_ConvertTo<ICR00100PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault();
+
+            loResult!.CCOMPANY_NAME = loCompanyNameResult?.CCOMPANY_NAME;
+            loResult.CDATETIME_NOW = loCompanyNameResult.CDATETIME_NOW;
+
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex); // Add the exception to the exception object
+            _logger.LogError(loEx); // Log the exception
+        }
+        finally
+        {
+            if (loConn != null)
+            {
+                if (loConn.State != ConnectionState.Closed)
+                    loConn.Close();
+
+                loConn.Dispose();
+                loConn = null;
+            }
             if (loCmd != null)
             {
                 loCmd.Dispose();

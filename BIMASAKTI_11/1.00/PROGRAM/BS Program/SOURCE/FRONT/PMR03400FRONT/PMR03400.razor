@@ -45,7 +45,10 @@
                                       TValue="int"
                                       Max="@_viewModel._PeriodYear.IMAX_YEAR"
                                       Min="@_viewModel._PeriodYear.IMIN_YEAR"
-                                      ThousandSeparator="false" />
+                                      ThousandSeparator="false" 
+                                      Style="height:25px"
+                                      TabIndex="9"
+                                      OnChanged="NumOnChanged_FromPeriod"/>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_ComboBox @bind-Value="@_viewModel._MonthFromPeriod"
@@ -70,7 +73,8 @@
                                       Min="@_viewModel._PeriodYear.IMIN_YEAR"
                                       ThousandSeparator="false"
                                       Style="height:25px"
-                                      TabIndex="11" />
+                                      TabIndex="11"
+                                      OnChanged="NumOnChanged_ToPeriod" />
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_ComboBox @bind-Value="@_viewModel._MonthToPeriod"
@@ -120,7 +124,7 @@
     @* from cust *@
     <R_StackLayout Row Class="ps-2">
         <R_ItemLayout col="1">
-            <R_Label>@_localizer["_labelFrom"]</R_Label>
+            <R_Label>@_localizer["_labelFrom"]*</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
             <R_TextBox @bind-Value="_viewModel._ReportParam.CFR_CODE"
@@ -128,7 +132,7 @@
                        Enabled
                        CharacterCasing="R_eCharacterCasing.Upper"
                        MaxLength="int.MaxValue"
-                       OnLostFocus="OnLostFocus_LookupFromCustomer"
+                       OnLostFocused="OnLostFocus_LookupFromCustomer"
                        TabIndex="1" />
         </R_ItemLayout>
         <R_ItemLayout>
@@ -145,7 +149,7 @@
     @* to dept *@
     <R_StackLayout Row Class="ps-2">
         <R_ItemLayout col="1">
-            <R_Label>@_localizer["_labelTo"]</R_Label>
+            <R_Label>@_localizer["_labelTo"]*</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
             <R_TextBox @bind-Value="_viewModel._ReportParam.CTO_CODE"
@@ -153,7 +157,7 @@
                        Enabled
                        CharacterCasing="R_eCharacterCasing.Upper"
                        MaxLength="int.MaxValue"
-                       OnLostFocus="OnLostFocus_LookupToCustomer" TabIndex="3" />
+                       OnLostFocused="OnLostFocus_LookupToCustomer" TabIndex="3" />
         </R_ItemLayout>
         <R_ItemLayout>
             <R_Lookup R_ConductorSource="_conductorRef" R_Before_Open_Lookup="@BeforeOpen_lookupToCustomer" R_After_Open_Lookup="@AfterOpen_lookupToCustomerAsync" TabIndex="4">...</R_Lookup>

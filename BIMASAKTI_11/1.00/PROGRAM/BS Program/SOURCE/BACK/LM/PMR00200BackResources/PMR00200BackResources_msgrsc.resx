@@ -291,4 +291,7 @@
   <data name="COLUMN_UTILITY_BLOCK2_START" xml:space="preserve">
     <value>Block2 Start</value>
   </data>
+  <data name="COLUMN_TOTAL_AREA" xml:space="preserve">
+    <value>For Total Area</value>
+  </data>
 </root>

@@ -14,10 +14,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\COMMON\LM\PMR00400Common\PMR00400Common.csproj" />
+    <ProjectReference Include="..\..\COMMON\LM\PMR00800COMMON\PMR00800COMMON.csproj" />
     <ProjectReference Include="..\..\COMMON\LM\PMR02600Common\PMR02600Common.csproj" />
 	  <ProjectReference Include="..\..\COMMON\LM\PMR00460Common\PMR00460Common.csproj" />
 	  <ProjectReference Include="..\..\COMMON\LM\PMR03300COMMON\PMR03300COMMON.csproj" />
 	  <ProjectReference Include="..\..\COMMON\LM\PMR03400COMMON\PMR03400COMMON.csproj" />
+	  <ProjectReference Include="..\..\COMMON\LM\PMT01700COMMON\PMT01700CommonReport\PMT01700CommonReport.csproj" />
+	  <ProjectReference Include="..\..\COMMON\LM\PMT01700COMMON\PMT01700Common\PMT01700COMMON.csproj" />
   </ItemGroup>
 
   <ItemGroup>

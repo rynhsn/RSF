@@ -290,7 +290,7 @@
                         <R_Label>@_localizer["_Charge"]*</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
-                        <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_ID" OnLostFocus="@Charges_OnLostFocus" Enabled=@(EnableNormalDetailMode == false && !string.IsNullOrWhiteSpace(_viewModel.Data.CCHARGES_TYPE)) MaxLength="20"></R_TextBox>
+                        <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_ID" OnLostFocused="@Charges_OnLostFocus" Enabled=@(EnableNormalDetailMode == false && !string.IsNullOrWhiteSpace(_viewModel.Data.CCHARGES_TYPE)) MaxLength="20"></R_TextBox>
                     </R_ItemLayout>
                     <R_ItemLayout col="0">
                         <R_Lookup R_ConductorSource="@_conductorRef"
@@ -309,7 +309,7 @@
                         <R_Label>@_localizer["_TaxID"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
-                        <R_TextBox @bind-Value="@_viewModel.Data.CTAX_ID" OnLostFocus="@Tax_OnLostFocus" MaxLength="20" R_ConductorSource="@_conductorRef" Enabled=@(EnableNormalDetailMode == false && !string.IsNullOrWhiteSpace(_viewModel.Data.CCHARGES_ID) && (_viewModel.Data.LTAXABLE || _viewModel.Data.LADMIN_FEE_TAX ))></R_TextBox>
+                        <R_TextBox @bind-Value="@_viewModel.Data.CTAX_ID" OnLostFocused="@Tax_OnLostFocus" MaxLength="20" R_ConductorSource="@_conductorRef" Enabled=@(EnableNormalDetailMode == false && !string.IsNullOrWhiteSpace(_viewModel.Data.CCHARGES_ID) && (_viewModel.Data.LTAXABLE || _viewModel.Data.LADMIN_FEE_TAX ))></R_TextBox>
                     </R_ItemLayout>
                     <R_ItemLayout col="0">
                         <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupTax"

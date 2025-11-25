@@ -169,8 +169,7 @@ public class PMT03500UtilityUsageCls
             loDb.R_AddCommandParameter(loCmd, "@LOTHER_UNIT", DbType.Boolean, 1, poParam.LOTHER_UNIT);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParam.CUSER_ID);
 
-            var  dataquery= "@CCOMPANY_ID='" + poParam.CCOMPANY_ID + "',@CPROPERTY_ID='" + poParam.CPROPERTY_ID + "',@CBUILDING_ID='" + poParam.CBUILDING_ID + "',@CUTILITY_TYPE='" + poParam.CUTILITY_TYPE + "',@CFLOOR_ID='" + poParam.CFLOOR_ID + "',@CINVOICE_PRD='" + poParam.CINVOICE_PRD + "',@LINVOICED=" + poParam.LINVOICED + ",@CUTILITY_PRD='" + poParam.CUTILITY_PRD + "',@CUTILITY_PRD_FROM_DATE='" + poParam.CUTILITY_PRD_FROM_DATE + "',@CUTILITY_PRD_TO_DATE='" + poParam.CUTILITY_PRD_TO_DATE + "',@LOTHER_UNIT=" + poParam.LOTHER_UNIT + ",@CUSER_ID='" + poParam.CUSER_ID + "'";
-            _logger.LogDebug(dataquery);
+
             var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x =>
                     x.ParameterName is

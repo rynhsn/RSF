@@ -412,6 +412,15 @@ namespace PMR00200BackResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to For Total Area.
+        /// </summary>
+        internal static string COLUMN_TOTAL_AREA {
+            get {
+                return ResourceManager.GetString("COLUMN_TOTAL_AREA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Block1 Start.
         /// </summary>
         internal static string COLUMN_UTILITY_BLOCK1_START {

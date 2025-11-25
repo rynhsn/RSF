@@ -50,7 +50,7 @@
 
             <R_ItemLayout col="2">
                 <R_TextBox @bind-Value="@_viewModel.Param.CBUILDING_ID"
-                           OnLostFocus="OnLostFocusBuilding"
+                           OnLostFocused="OnLostFocusBuilding"
                            MaxLength="20"
                            Enabled="@_viewModel.Param.LBUILDING"/>
             </R_ItemLayout>
@@ -85,7 +85,7 @@
 
             <R_ItemLayout col="2">
                 <R_TextBox @bind-Value="@_viewModel.Param.CASSET_CODE"
-                           OnLostFocus="OnLostFocusAsset"
+                           OnLostFocused="OnLostFocusAsset"
                            MaxLength="20"
                            Enabled="@_viewModel.Param.LASSET"/>
             </R_ItemLayout>

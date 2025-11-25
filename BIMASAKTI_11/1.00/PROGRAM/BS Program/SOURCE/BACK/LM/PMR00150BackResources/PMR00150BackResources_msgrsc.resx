@@ -207,6 +207,9 @@
   <data name="Col_STATUS" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="Col_TOTAL_AREA" xml:space="preserve">
+    <value>For Total Area</value>
+  </data>
   <data name="Label_Department" xml:space="preserve">
     <value>Department</value>
   </data>

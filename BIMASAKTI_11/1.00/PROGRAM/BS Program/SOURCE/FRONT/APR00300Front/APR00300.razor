@@ -36,7 +36,7 @@
                                 <R_Label>@_localizer["From"]</R_Label>
                             </R_ItemLayout>
                             <R_ItemLayout col="4">
-                                <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_SUPPLIER_ID" OnLostFocus="OnLostFocusFromSupplier" Enabled/>
+                                <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_SUPPLIER_ID" OnLostFocused="OnLostFocusFromSupplier" Enabled/>
                             </R_ItemLayout>
                             <R_ItemLayout>
                                 <R_Lookup R_Before_Open_Lookup="BeforeLookupFromSupplier" R_After_Open_Lookup="AfterLookupFromSupplier" Enabled>...</R_Lookup>
@@ -50,7 +50,7 @@
                                 <R_Label>@_localizer["To"]</R_Label>
                             </R_ItemLayout>
                             <R_ItemLayout col="4">
-                                <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_SUPPLIER_ID" OnLostFocus="OnLostFocusToSupplier" Enabled/>
+                                <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_SUPPLIER_ID" OnLostFocused="OnLostFocusToSupplier" Enabled/>
                             </R_ItemLayout>
                             <R_ItemLayout>
                                 <R_Lookup R_Before_Open_Lookup="BeforeLookupToSupplier" R_After_Open_Lookup="AfterLookupToSupplier" Enabled>...</R_Lookup>

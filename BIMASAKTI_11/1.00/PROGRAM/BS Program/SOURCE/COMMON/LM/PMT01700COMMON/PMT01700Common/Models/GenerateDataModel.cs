@@ -1,4 +1,5 @@
-﻿using PMT01700COMMON.DTO.Utilities.Print;
+﻿using BaseHeaderReportCOMMON.Models;
+using PMT01700COMMON.DTO.Utilities.Print;
 using PMT01700CommonReport;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace PMT01700COMMON.Models
                 loReturn.DigitalSign = ConvertDigitalSignReportFromDataDBtoDataReport<ReportSignDTO, PMTDigitalSignDTO>(loDataDigitalSign);
                 //loData.DigitalSign = LoadSignImages(loData.DigitalSign);
             }
-
+            loReturn.BaseHeaderData = GenerateDataModelHeader.DefaultData().BaseHeaderData;
             #endregion
             return loReturn;
         }

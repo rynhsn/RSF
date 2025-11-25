@@ -16,6 +16,8 @@ using Lookup_GSFRONT;
 using System.Globalization;
 using PMR02000COMMON.DTO_s.Print;
 using PMR02000COMMON.DTO_s;
+using Lookup_PMCOMMON.DTOs.LML02000;
+using Lookup_PMModel.ViewModel.LML02000;
 
 namespace PMR02000FRONT
 {
@@ -67,8 +69,10 @@ namespace PMR02000FRONT
                     _viewModel.ReportParam.CTO_DEPT_CODE = "";
                     _viewModel.ReportParam.CTO_DEPT_NAME = "";
                     _viewModel.ReportParam.CTENANT_CATEGORY_ID = "";
+                    _viewModel.ReportParam.CCATEGORY_NAME = "";
+
                     await _viewModel.GetCategoryTypeAsync(new CategoryTypeParamDTO()
-                    { CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID });
+                    { CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID, CPARENT_ID = "", LCHILD_ONLY = false });
 
                     if (_viewModel._dataBasedOn == _viewModel._radioDataBasedOnCustomer.FirstOrDefault().CTYPE_CODE)
                     {
@@ -87,6 +91,8 @@ namespace PMR02000FRONT
                     if (_viewModel._enableFilterCustCtg)
                     {
                         _viewModel.ReportParam.CTENANT_CATEGORY_ID = _viewModel._categoryTypeList.FirstOrDefault()?.CCATEGORY_ID;
+                        _viewModel.ReportParam.CCATEGORY_NAME = _viewModel._categoryTypeList.FirstOrDefault()?.CCATEGORY_NAME;
+
                     }
                 }
             }
@@ -838,6 +844,74 @@ namespace PMR02000FRONT
             R_DisplayException(loEx);
         }
 
+        private async Task BeforeOpen_LookUpCustCtg(R_BeforeOpenLookupEventArgs eventArgs)
+        {
+            eventArgs.Parameter = new LML02000ParameterDTO()
+            {
+                CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID ?? "",
+                CPARENT_ID = "",
+                LCHILD_ONLY = false,
+            };
+            eventArgs.TargetPageType = typeof(LML02000);
+        }
+
+        private async Task AfterOpen_LookUpCustCtg(R_AfterOpenLookupEventArgs eventArgs)
+        {
+            var loTempResult = (LML02000DTO)eventArgs.Result;
+            if (loTempResult != null)
+            {
+                _viewModel.ReportParam.CTENANT_CATEGORY_ID = loTempResult.CCATEGORY_ID;
+                _viewModel.ReportParam.CCATEGORY_NAME = loTempResult.CCATEGORY_NAME;
+            }
+        }
+
+        private async Task OnLostFocus_LookupCustCtg()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(_viewModel.ReportParam.CTENANT_CATEGORY_ID))
+                {
+                    LookupLML02000ViewModel loLookupViewModel = new();
+                    var loParam = new LML02000ParameterDTO // use match param as GSL's dto, send as type in search texbox
+                    {
+                        CPROPERTY_ID = _viewModel.ReportParam.CPROPERTY_ID ?? "",
+                        CSEARCH_TEXT = _viewModel.ReportParam.CTENANT_CATEGORY_ID,
+
+                    };
+
+                    var loResult = await loLookupViewModel.LML02000TenantCategory(loParam); //retrive single record 
+
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_PMFrontResources.Resources_Dummy_Class_LookupPM),
+                            "_ErrLookup01"));
+                        _viewModel.ReportParam.CCATEGORY_NAME = "";
+                        goto EndBlock;
+                    }
+                    else
+                    {
+                        _viewModel.ReportParam.CTENANT_CATEGORY_ID = loResult.CCATEGORY_ID;
+                        _viewModel.ReportParam.CCATEGORY_NAME = loResult.CCATEGORY_NAME;
+                    }
+                }
+                else
+                {
+                    _viewModel.ReportParam.CTENANT_CATEGORY_ID = "";
+                    _viewModel.ReportParam.CCATEGORY_NAME = "";
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
+        }
+
         #endregion lookup & lostfocus
 
 
@@ -953,6 +1027,8 @@ namespace PMR02000FRONT
         public void OnChangedCustomerCategory(object value)
         {
             _viewModel.ReportParam.CTENANT_CATEGORY_ID = (bool)value ? _viewModel._categoryTypeList.FirstOrDefault()?.CCATEGORY_ID : string.Empty;
+            _viewModel.ReportParam.CCATEGORY_NAME = (bool)value ? _viewModel._categoryTypeList.FirstOrDefault()?.CCATEGORY_NAME : string.Empty;
+
         }
     }
 }

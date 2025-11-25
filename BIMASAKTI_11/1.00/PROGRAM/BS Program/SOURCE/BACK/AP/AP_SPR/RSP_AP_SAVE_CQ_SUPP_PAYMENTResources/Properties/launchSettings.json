@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_AP_SAVE_CQ_SUPP_PAYMENTResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:49949;http://localhost:49950"
+    }
+  }
+}

@@ -134,7 +134,7 @@
             <R_ItemLayout col="2">
                 <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_ID"
                            R_ConductorSource="@_conductorCharges"
-                           OnLostFocus="@OnLostFocusCharges"
+                           OnLostFocused="@OnLostFocusCharges"
                            R_EnableAdd
                            R_EnableEdit="false">
                 </R_TextBox>
@@ -202,7 +202,7 @@
                     <R_ItemLayout col="2">
                     <R_TextBox @bind-Value="@_viewModel.Data.CTAX_ID"
                            R_ConductorSource="@_conductorCharges"
-                           OnLostFocus="@OnLostFocusTaxCode"
+                           OnLostFocused="@OnLostFocusTaxCode"
                            Enabled="@(_viewModel.Data.LTAXABLE && _lControlCRUD)"
                            R_EnableAdd
                            R_EnableEdit>
@@ -372,7 +372,7 @@
                 <R_ItemLayout col="7" Class="ps-1">
                     <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
                                R_ConductorSource="@_conductorCharges"
-                               OnLostFocus="@OnLostFocusCurrency"
+                               OnLostFocused="@OnLostFocusCurrency"
                                R_EnableAdd
                                R_EnableEdit>
                     </R_TextBox>

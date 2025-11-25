@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -37,10 +37,21 @@
     <ProjectReference Include="..\..\..\SERVICE\AP\APR00100SERVICE\APR00100SERVICE.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\AP\APR00300Service\APR00300Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\AP\APR00500Service\APR00500Service.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\AP\APR00700SERVICE\APR00700SERVICE.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\AP\APR00600SERVICE\APR00600SERVICE.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="Reports\APR00500InvoiceList.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Reports\APR00600ReportJournalGroup.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Reports\APR00600ReportSupplierCategory.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Reports\APR00600ReportSupplierId.frx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

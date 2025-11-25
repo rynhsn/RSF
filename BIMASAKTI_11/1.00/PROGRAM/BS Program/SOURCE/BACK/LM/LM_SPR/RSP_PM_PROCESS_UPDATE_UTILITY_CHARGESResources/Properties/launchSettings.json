@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_PM_PROCESS_UPDATE_UTILITY_CHARGESResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:50585;http://localhost:50586"
+    }
+  }
+}

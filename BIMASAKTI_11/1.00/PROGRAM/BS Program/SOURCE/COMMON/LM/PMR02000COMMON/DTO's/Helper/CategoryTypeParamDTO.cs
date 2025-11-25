@@ -8,7 +8,10 @@ namespace PMR02000COMMON.DTO_s
     {
         public string CCOMPANY_ID { get; set; }
         public string CPROPERTY_ID { get; set; }
-        public string CUSER_ID { get; set; }
-        public string CCATEGORY_TYPE { get; set; }
+        public string CPARENT_ID { get; set; } 
+        public bool LCHILD_ONLY { get; set; }
+        public string CLANGUAGE_ID { get; set; }
+
+        //public string CCATEGORY_TYPE { get; set; }
     }
 }

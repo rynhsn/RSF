@@ -18,6 +18,7 @@ namespace PMR02000COMMON.DTO_s.Print
 
         public string CFR_DEPT_NAME { get; set; }
         public string CTO_DEPT_NAME { get; set; }
+        //public string CCATEGORY_NAME { get; set; }
         public string CDATA_BASED_ON_DISPLAY { get; set; }
         public string CREMAINING_BASED_ON_DISPLAY { get; set; }
         public string CREMAINING_BASED_ON_TEXT { get; set; }

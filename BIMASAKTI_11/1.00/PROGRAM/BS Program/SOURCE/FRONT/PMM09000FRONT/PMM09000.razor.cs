@@ -114,17 +114,20 @@ namespace PMM09000FRONT
             }
             loEx.ThrowExceptionIfErrors();
         }
-        private async Task PropertyDropdown_OnChange(object poParam)
+        private async Task PropertyDropdown_OnChange(string poParam)
         {
             var loEx = new R_Exception();
-            string lsProperty = (string)poParam;
+            string lsProperty;
+
             try
             {
-                PropertyDTO PropertyTemp = _ListDataViewModel._PropertyList
-                    .FirstOrDefault(data => data.CPROPERTY_ID == lsProperty)!;
+                lsProperty = string.IsNullOrWhiteSpace(poParam) ? "" : poParam;
 
                 _ListDataViewModel._UnitOptionValue = "U";
-                _ListDataViewModel._PropertyValue = PropertyTemp;
+
+                _ListDataViewModel._PropertyValue.CPROPERTY_ID = lsProperty;
+                _ListDataViewModel._PropertyValue.CPROPERTY_NAME = _ListDataViewModel._PropertyList
+                    .Any(data => data.CPROPERTY_ID == lsProperty) ? _ListDataViewModel._PropertyList.FirstOrDefault(data => data.CPROPERTY_ID == lsProperty).CPROPERTY_NAME : "";
                 await _gridBuilding.R_RefreshGrid(null);
             }
             catch (Exception ex)

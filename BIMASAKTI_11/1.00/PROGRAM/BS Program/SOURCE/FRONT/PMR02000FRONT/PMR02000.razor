@@ -59,7 +59,7 @@
                            @bind-Value="_viewModel.ReportParam.CFROM_CUSTOMER_ID"
                            CharacterCasing="R_eCharacterCasing.Upper"
                            MaxLength="int.MaxValue"
-                           OnLostFocus="OnLostFocus_LookupFromTenant"
+                           OnLostFocused="OnLostFocus_LookupFromTenant"
                            Enabled="@(_viewModel._dataBasedOn=="C")" />
             </R_ItemLayout>
             <R_ItemLayout>
@@ -81,7 +81,7 @@
                            @bind-Value="_viewModel.ReportParam.CTO_CUSTOMER_ID"
                            CharacterCasing="R_eCharacterCasing.Upper"
                            MaxLength="int.MaxValue"
-                           OnLostFocus="OnLostFocus_LookupToTenant"
+                           OnLostFocused="OnLostFocus_LookupToTenant"
                            Enabled="@(_viewModel._dataBasedOn=="C")" />
             </R_ItemLayout>
             <R_ItemLayout>
@@ -116,7 +116,7 @@
                 <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_JRNGRP_CODE"
                            CharacterCasing="R_eCharacterCasing.Upper"
                            MaxLength="int.MaxValue"
-                           OnLostFocus="OnLostFocus_LookupFromJrnGrp"
+                           OnLostFocused="OnLostFocus_LookupFromJrnGrp"
                            Enabled="@(_viewModel._dataBasedOn=="J")" />
             </R_ItemLayout>
             <R_ItemLayout>
@@ -137,7 +137,7 @@
                 <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_JRNGRP_CODE"
                            CharacterCasing="R_eCharacterCasing.Upper"
                            MaxLength="int.MaxValue"
-                           OnLostFocus="OnLostFocus_LookupToJrnGrp"
+                           OnLostFocused="OnLostFocus_LookupToJrnGrp"
                            Enabled="@(_viewModel._dataBasedOn=="J")" />
             </R_ItemLayout>
             <R_ItemLayout>
@@ -312,7 +312,7 @@
                            Enabled="@_viewModel._enableFilterDept"
                            CharacterCasing="R_eCharacterCasing.Upper"
                            MaxLength="int.MaxValue"
-                           OnLostFocus="OnLostFocus_LookupFromDept" />
+                           OnLostFocused="OnLostFocus_LookupFromDept" />
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupFromDept"
@@ -335,7 +335,7 @@
                            Enabled="@_viewModel._enableFilterDept"
                            CharacterCasing="R_eCharacterCasing.Upper"
                            MaxLength="int.MaxValue"
-                           OnLostFocus="OnLostFocus_LookupToDept" />
+                           OnLostFocused="OnLostFocus_LookupToDept" />
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Lookup R_Before_Open_Lookup="@BeforeOpen_lookupToDept"
@@ -384,8 +384,28 @@
             </R_ItemLayout>
         </R_StackLayout>
 
+        @*look up cust ctg*@
+        <R_StackLayout Row Class="pt-2">
+            <R_ItemLayout col="4">
+                <R_TextBox @bind-Value="@_viewModel.ReportParam.CTENANT_CATEGORY_ID"
+                           Enabled="@_viewModel._enableFilterCustCtg"
+                           CharacterCasing="R_eCharacterCasing.Upper"
+                           MaxLength="int.MaxValue"
+                           OnLostFocused="OnLostFocus_LookupCustCtg" />
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Lookup R_Before_Open_Lookup="@BeforeOpen_LookUpCustCtg"
+                          R_After_Open_Lookup="@AfterOpen_LookUpCustCtg"
+                          Enabled="@_viewModel._enableFilterCustCtg">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="7">
+                <R_TextBox @bind-Value="_viewModel.ReportParam.CCATEGORY_NAME"
+                           Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+
         @* combo cust ctg*@
-        <R_StackLayout Class="pt-2">
+        @*<R_StackLayout Class="pt-2">
             <R_ItemLayout col="5">
                 <R_ComboBox Data="@_viewModel._categoryTypeList"
                             @bind-Value="@_viewModel.ReportParam.CTENANT_CATEGORY_ID"
@@ -394,7 +414,7 @@
                             Enabled="@_viewModel._enableFilterCustCtg">
                 </R_ComboBox>
             </R_ItemLayout>
-        </R_StackLayout>
+        </R_StackLayout>*@
 
     </R_ItemLayout> @* end third col *@
 

@@ -14,7 +14,7 @@
                     <R_ItemLayout col="1">
                         <R_TextBox @bind-Value="_journalVM.RecurringJrnListSearchParam.CDEPT_CODE"
                                    CharacterCasing="R_eCharacterCasing.Upper"
-                                   OnLostFocus="@OnLostFocus_LookupDept" MaxLength="20"></R_TextBox>
+                                   OnLostFocused="@OnLostFocus_LookupDept" MaxLength="20"></R_TextBox>
                     </R_ItemLayout>
                     <R_ItemLayout auto="true">
                         <R_Lookup R_Before_Open_Lookup="Dept_Before_Open_Lookup"

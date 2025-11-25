@@ -31,4 +31,18 @@ public partial class FormMenu : Form
         loReport.RegisterData(loData, "ResponseDataModel");
         loReport.Design();
     }
+
+    private void APR00700_Click(object sender, EventArgs e)
+    {
+        var loData = new ArrayList();
+        loData.Add(APR00700COMMON.Model.APR00700DummyData.APR00700PrintDislpayWithBaseHeader());
+        //    private void BTN_APR00600_Click(object sender, EventArgs e)
+        //    {
+        //        var loData = new ArrayList();
+        //        loData.Add(APR00600COMMON.Model.APR00600DummyData.DefaultDataWithHeader());
+        //        loReport.RegisterData(loData, "ResponseDataModel");
+        //        loReport.Design();
+        //    }
+        //}
+    }
 }

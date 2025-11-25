@@ -55,7 +55,7 @@
             <R_TextBox @ref="@DeptLookup_TextBox"
                        @bind-Value="@_BankAccountGrid_viewModel.Data.CBUILDING_ID"
                        R_ConductorSource="@_BankAccountGrid_conductorRef"
-                       OnLostFocus="@BankAccountBuilding_OnLostFocus"
+                       OnLostFocused="@BankAccountBuilding_OnLostFocus"
                        MaxLength="20"
                        R_EnableAdd R_EnableEdit></R_TextBox>
         </R_ItemLayout>
@@ -76,7 +76,7 @@
         <R_ItemLayout col="2">
             <R_TextBox @bind-Value="@_BankAccountGrid_viewModel.Data.CDEPT_CODE"
                        R_ConductorSource="@_BankAccountGrid_conductorRef"
-                       OnLostFocus="@BankAccountDeptCode_OnLostFocus"
+                       OnLostFocused="@BankAccountDeptCode_OnLostFocus"
                        MaxLength="20"
                        R_EnableAdd R_EnableEdit></R_TextBox>
         </R_ItemLayout>
@@ -133,7 +133,7 @@
         <R_ItemLayout col="3">
             <R_TextBox @bind-Value="@_BankAccountGrid_viewModel.Data.CBANK_CODE"
                        R_ConductorSource="@_BankAccountGrid_conductorRef"
-                       OnLostFocus="@BankAccountBankCode_OnLostFocus"
+                       OnLostFocused="@BankAccountBankCode_OnLostFocus"
                        MaxLength="20"
                        R_EnableAdd R_EnableEdit></R_TextBox>
         </R_ItemLayout>
@@ -154,7 +154,7 @@
         <R_ItemLayout col="3">
             <R_TextBox @bind-Value="@_BankAccountGrid_viewModel.Data.CBANK_ACCOUNT"
                        R_ConductorSource="@_BankAccountGrid_conductorRef"
-                       OnLostFocus="@BankAcount_OnLostFocus"
+                       OnLostFocused="@BankAcount_OnLostFocus"
                        MaxLength="20"
                        R_EnableAdd
                        R_EnableEdit></R_TextBox>

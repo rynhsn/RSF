@@ -20,6 +20,8 @@
         public string CTRANS_CODE { set; get; }
         public string CTENANT_CATEGORY_ID { set; get; }
         public string CSORT_BY { set; get; }
+        public string CCATEGORY_ID { get; set; }
+        public string CCATEGORY_NAME { set; get; }
         public string CLANGUAGE_ID { set; get; }
     }
 }

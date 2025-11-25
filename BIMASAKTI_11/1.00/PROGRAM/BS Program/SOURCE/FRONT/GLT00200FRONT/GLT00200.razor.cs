@@ -121,7 +121,7 @@ namespace GLT00200FRONT
 
                 loImportJournalViewModel.loHeader.CDEPT_CODE = Excel.R_ReadValueCellFromExcel(loImportJournalViewModel.loFileByte, "B1").ToString();
                 loImportJournalViewModel.loHeader.CREF_NO = Excel.R_ReadValueCellFromExcel(loImportJournalViewModel.loFileByte, "B2").ToString();
-                
+
                 loImportJournalViewModel.loHeader.CREF_DATE = Excel.R_ReadValueCellFromExcel(loImportJournalViewModel.loFileByte, "B3").ToString();
                 DateTime loRefDate = Convert.ToDateTime(loImportJournalViewModel.loHeader.CREF_DATE);
                 loImportJournalViewModel.loHeader.CREF_DATE = loRefDate.ToString("dd-MMM-yyyy");
@@ -142,7 +142,15 @@ namespace GLT00200FRONT
                 loImportJournalViewModel.loHeader.CBASE_CURRENCY_CODE = loImportJournalViewModel.loCompany.CBASE_CURRENCY_CODE;
 
 
-                var loDataTable = Excel.R_ReadFromExcel(loImportJournalViewModel.loFileByte, "A7:H1007");
+                var loDataTable = Excel.R_ReadExcelToDataTable(loImportJournalViewModel.loFileByte, action =>
+                {
+                    action.Range = "A7:H1007";
+                });
+
+                //var loDataSet = Excel.R_ReadExcel(loImportJournalViewModel.loFileByte, option =>
+                //{
+                //    option.TableNames = new string[] { "Recurring" };
+                //});
 
                 var loResult = R_FrontUtility.R_ConvertTo<GLT00200DetailExcelDTO>(loDataTable);
                 if (IsSeparateDCAmount)

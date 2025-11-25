@@ -184,10 +184,12 @@
                     </R_Button>
                 </R_ItemLayout>
             <R_ItemLayout>
-                <R_Popup Enabled="@(_gridOfferList.HasData)"
-                         R_Before_Open_Popup="@BeforeOpen_PopupPrint">
+
+                <R_PrintButton Enabled="@(_gridOfferList.HasData)"
+                         R_Before_Open_Popup="@BeforeOpen_PopupPrint"
+                R_PrintMode="R_ePrintMode.Popup">
                     @_localizer["_Print"]
-                </R_Popup>
+                </R_PrintButton>
             </R_ItemLayout>
 
             <!-- Submit -->

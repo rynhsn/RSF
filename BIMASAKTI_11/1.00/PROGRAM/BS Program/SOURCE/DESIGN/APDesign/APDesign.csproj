@@ -15,6 +15,8 @@
     <ItemGroup>
       <ProjectReference Include="..\..\COMMON\AP\APR00300Common\APR00300Common.csproj" />
       <ProjectReference Include="..\..\COMMON\AP\APR00500Common\APR00500Common.csproj" />
+      <ProjectReference Include="..\..\COMMON\AP\APR00700COMMON\APR00700COMMON.csproj" />
+      <ProjectReference Include="..\..\COMMON\AP\APR00600COMMON\APR00600COMMON.csproj" />
     </ItemGroup>
 
 	<ItemGroup>
