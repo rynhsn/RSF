@@ -127,10 +127,12 @@
         <!-- Button -->
         <R_StackLayout Row Class="d-flex justify-content-center">
             <R_ItemLayout>
-                <R_Popup Enabled="@(_gridLOCList.HasData)"
-                                  R_Before_Open_Popup="@BeforeOpen_PopupPrint">
+
+                <R_PrintButton Enabled="@(_gridLOCList.HasData)"
+                                  R_Before_Open_Popup="@BeforeOpen_PopupPrint"
+                R_PrintMode="R_ePrintMode.Popup">
                     @_localizer["_Print"]
-                </R_Popup>
+                </R_PrintButton>
             </R_ItemLayout>
             <!-- Submit -->
             <R_ItemLayout>

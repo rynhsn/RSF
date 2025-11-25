@@ -197,10 +197,10 @@ namespace GLDesign
 
         private void PMR02000Summary_Click(object sender, EventArgs e)
         {
-            var loData = new ArrayList();
-            loData.Add(PMR02000COMMON.Model.SummaryDummyData.GenerateDummyData());
-            loReport.RegisterData(loData, "ResponseDataModel");
-            loReport.Design();
+            //var loData = new ArrayList();
+            //loData.Add(PMR02000COMMON.Model.SummaryDummyData.GenerateDummyData());
+            //loReport.RegisterData(loData, "ResponseDataModel");
+            //loReport.Design();
         }
 
         private void PMR02000Detail_Click(object sender, EventArgs e)

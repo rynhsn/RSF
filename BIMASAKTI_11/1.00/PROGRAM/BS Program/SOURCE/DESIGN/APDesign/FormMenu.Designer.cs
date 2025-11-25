@@ -74,7 +74,7 @@ partial class FormMenu
         BTN_APR00600.TabIndex = 2;
         BTN_APR00600.Text = "APR00600";
         BTN_APR00600.UseVisualStyleBackColor = true;
-        BTN_APR00600.Click += BTN_APR00600_Click;
+        //BTN_APR00600.Click += BTN_APR00600_Click;
         // 
         // FormMenu
         // 

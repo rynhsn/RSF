@@ -277,6 +277,15 @@ namespace PMB02200FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Batch process complete.
+        /// </summary>
+        internal static string _msg_batchComplete {
+            get {
+                return ResourceManager.GetString("_msg_batchComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please choose Charge Id !.
         /// </summary>
         internal static string _val_ApplyProcess1 {
