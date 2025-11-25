@@ -277,6 +277,15 @@ namespace PMT06500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please input Description!.
+        /// </summary>
+        internal static string MSG_INPUT_DESCRIPTION {
+            get {
+                return ResourceManager.GetString("MSG_INPUT_DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please input Ref No !.
         /// </summary>
         internal static string MSG_INPUT_REF_NO {
