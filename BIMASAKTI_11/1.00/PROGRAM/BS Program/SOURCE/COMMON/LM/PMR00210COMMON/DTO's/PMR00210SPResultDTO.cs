@@ -21,6 +21,7 @@ namespace PMR00210COMMON.DTO_s
         public string CSALESMAN_NAME { get; set; }
         public decimal NREVISION_COUNT { get; set; }
         public string CTC_CODE { get; set; }
+        public string CPREV_REF_NO { get; set; }
         public string CTC_MESSAGE { get; set; }
         public string CAGREEMENT_STATUS_ID { get; set; }
         public string CAGREEMENT_STATUS_NAME { get; set; }

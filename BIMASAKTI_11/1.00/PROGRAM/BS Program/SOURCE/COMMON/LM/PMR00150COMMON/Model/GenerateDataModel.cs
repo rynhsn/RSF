@@ -247,6 +247,7 @@ namespace PMR00150COMMON
                            Data3.CTENANT_ID,
                            Data3.CTENANT_NAME,
                            Data3.CTC_MESSAGE,
+                           Data3.CPREV_REF_NO
                        }).Select(Data4 => new PMR00150DataDetailLocNoDTO
                        {
                            CREF_NO = Data4.Key.CREF_NO,
@@ -260,6 +261,7 @@ namespace PMR00150COMMON
                            CTENANT_ID = Data4.Key.CTENANT_ID,
                            CTENANT_NAME = Data4.Key.CTENANT_NAME,
                            CTC_MESSAGE = Data4.Key.CTC_MESSAGE,
+                           CPREV_REF_NO = Data4.Key.CPREV_REF_NO,
 
                            UnitDetail = Data4
                            .GroupBy(Data5 => new
@@ -311,6 +313,7 @@ namespace PMR00150COMMON
                                                 Data.CCHARGE_DETAIL_FEE_METHOD,
                                                 Data.LFOR_TOTAL_AREA,
                                                 Data.NCHARGE_DETAIL_FEE_AMOUNT,
+                                                Data.NCHARGE_DETAIL_CALCULATED_FEE_AMOUNT
                                             })
                                             .Select(DetailChargeTypeUnitDTO => new PMR00150DataDetailChargeTypeUnitDTO
                                             {
@@ -323,7 +326,8 @@ namespace PMR00150COMMON
                                                 CCHARGE_DETAIL_TENURE = DetailChargeTypeUnitDTO.Key.CCHARGE_DETAIL_TENURE,
                                                 CCHARGE_DETAIL_FEE_METHOD = DetailChargeTypeUnitDTO.Key.CCHARGE_DETAIL_FEE_METHOD,
                                                 LFOR_TOTAL_AREA = DetailChargeTypeUnitDTO.Key.LFOR_TOTAL_AREA,
-                                                NCHARGE_DETAIL_FEE_AMOUNT = DetailChargeTypeUnitDTO.Key.NCHARGE_DETAIL_FEE_AMOUNT
+                                                NCHARGE_DETAIL_FEE_AMOUNT = DetailChargeTypeUnitDTO.Key.NCHARGE_DETAIL_FEE_AMOUNT,
+                                                NCHARGE_DETAIL_CALCULATED_FEE_AMOUNT = DetailChargeTypeUnitDTO.Key.NCHARGE_DETAIL_CALCULATED_FEE_AMOUNT
                                             }).ToList()
 
                                         }).ToList()

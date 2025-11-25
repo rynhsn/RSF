@@ -412,6 +412,15 @@ namespace PMR00210BackResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Offer Number.
+        /// </summary>
+        internal static string COLUMN_OFFER_NUMBER {
+            get {
+                return ResourceManager.GetString("COLUMN_OFFER_NUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Block1 Start.
         /// </summary>
         internal static string COLUMN_UTILITY_BLOCK1_START {

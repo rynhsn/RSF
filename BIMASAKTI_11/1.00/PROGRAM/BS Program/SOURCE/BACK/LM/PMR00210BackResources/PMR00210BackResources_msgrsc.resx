@@ -294,4 +294,7 @@
   <data name="COLUMN_UTILITY_BLOCK2_START" xml:space="preserve">
     <value>Block2 Start</value>
   </data>
+  <data name="COLUMN_OFFER_NUMBER" xml:space="preserve">
+    <value>Offer Number</value>
+  </data>
 </root>

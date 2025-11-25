@@ -297,4 +297,7 @@
   <data name="COLUMN_TOTAL_AREA" xml:space="preserve">
     <value>For Total Area</value>
   </data>
+  <data name="COLUMN_OFFER_NUMBER" xml:space="preserve">
+    <value>Offer Number</value>
+  </data>
 </root>

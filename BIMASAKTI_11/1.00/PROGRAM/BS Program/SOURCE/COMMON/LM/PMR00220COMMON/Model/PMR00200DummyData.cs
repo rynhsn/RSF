@@ -92,6 +92,7 @@ namespace PMR00220COMMON.Model
                             NREVISION_COUNT = 1,
                             CTC_CODE = "TC1",
                             CTC_MESSAGE = "This is dummy data for Term & Con.",
+                            CPREV_REF_NO = "LOC-E-00-2025110005",
                             CAGREEMENT_STATUS_ID = "A1",
                             CAGREEMENT_STATUS_NAME = "Agreement Status",
                             CTRANS_STATUS_ID = "TS1",

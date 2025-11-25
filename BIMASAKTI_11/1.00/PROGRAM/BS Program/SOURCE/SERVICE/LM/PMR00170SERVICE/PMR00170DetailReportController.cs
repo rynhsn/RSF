@@ -347,6 +347,7 @@ namespace PMR00170SERVICE
                           Data3.CTENANT_ID,
                           Data3.CTENANT_NAME,
                           Data3.CTC_MESSAGE,
+                          Data3.CPREV_REF_NO,
                       }).Select(Data4 => new PMR00170DataDetailLocNoDTO
                       {
                           CREF_NO = Data4.Key.CREF_NO,
@@ -360,6 +361,7 @@ namespace PMR00170SERVICE
                           CTENANT_ID = Data4.Key.CTENANT_ID,
                           CTENANT_NAME = Data4.Key.CTENANT_NAME,
                           CTC_MESSAGE = Data4.Key.CTC_MESSAGE,
+                          CPREV_REF_NO = Data4.Key.CPREV_REF_NO,
                           UnitDetail = Data4
                           .GroupBy(Data5 => new
                           {
