@@ -277,6 +277,7 @@ namespace PMR00200SERVICE
                            Data3.CTENANT_ID,
                            Data3.CTENANT_NAME,
                            Data3.CTC_MESSAGE,
+                           Data3.CPREV_REF_NO,
                        }).Select(Data4 => new LoiNoDTO
                        {
                            CREF_NO = Data4.Key.CREF_NO,
@@ -288,6 +289,7 @@ namespace PMR00200SERVICE
                            CTENANT_ID = Data4.Key.CTENANT_ID,
                            CTENANT_NAME = Data4.Key.CTENANT_NAME,
                            CTC_MESSAGE = Data4.Key.CTC_MESSAGE,
+                           CPREV_REF_NO = Data4.Key.CPREV_REF_NO,
                            UnitDetail = Data4
                            .GroupBy(Data5 => new
                            {
@@ -295,7 +297,7 @@ namespace PMR00200SERVICE
                                Data5.CUNIT_DETAIL_NAME,
                                Data5.NUNIT_DETAIL_GROSS_AREA_SIZE,
                                Data5.NUNIT_DETAIL_NET_AREA_SIZE,
-                               Data5.NUNIT_DETAIL_COMMON_AREA_SIZE,
+                               Data5.NUNIT_DETAIL_COMMON_AREA_SIZE, 
                                Data5.NUNIT_DETAIL_PRICE,
                            }).Select(Data6 => new UnitDTO
                            {

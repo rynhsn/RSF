@@ -107,6 +107,61 @@ namespace PMT01700BACK
 
             return loReturn;
         }
+        public async Task<HeaderPrintResult> GetLogoPropertyAsync(ParameterPrintDTO poParameter)
+        {
+            using var activity = _activitySource.StartActivity(nameof(GetLogoPropertyAsync));
+            var loEx = new R_Exception();
+            var loDb = new R_Db();
+            HeaderPrintResult loResult = new();
+
+            try
+            {
+                using DbConnection loConn = await loDb.GetConnectionAsync();
+                using DbCommand loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_GET_PROPERTY_DETAIL";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParameter.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poParameter.CPROPERTY_ID);
+
+                _logger.LogDebug("EXEC " + lcQuery + string.Join(", ",
+                    loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName}='{p.Value}'")));
+
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
+                loResult = R_Utility.R_ConvertTo<HeaderPrintResult>(loDataTable).FirstOrDefault() ?? new();
+
+                if (!string.IsNullOrEmpty(loResult.CSTORAGE_ID))
+                {
+                    var loReadParameter = new R_ReadParameter { StorageId = loResult.CSTORAGE_ID };
+                    var loReadResult = R_StorageUtility.ReadFile(loReadParameter, loConn);
+                    loResult.CLOGO = loReadResult.Data;
+                }
+
+                lcQuery = "RSP_GS_GET_COMPANY_INFO";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+                loCmd.Parameters.Clear();
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+
+                //Debug Logs
+                _logger.LogDebug("EXEC " + lcQuery + string.Join(", ",
+    loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName}='{p.Value}'")));
+                loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+                var loCompanyNameResult = R_Utility.R_ConvertTo<HeaderPrintResult>(loDataTable).FirstOrDefault();
+                loResult.CDATETIME_NOW = loCompanyNameResult.CDATETIME_NOW ?? "";
+                loResult.CCOMPANY_NAME = loCompanyNameResult.CCOMPANY_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError($"ERROR in {nameof(GetLogoPropertyAsync)}: {ex.Message}", ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
 
         public List<PMTDataChargesReportDTO> GetDataDataChargesDb(ParameterGetAgreementChargeListDTO poParameter, DbConnection poConnection)
         {
@@ -266,12 +321,26 @@ namespace PMT01700BACK
                 }
 
                 #endregion
+                DataPrint.CDISPLAY_JANGKA_WAKTU = "";
+                if(DataPrint.IYEARS != 0)
+                {
+                    DataPrint.CDISPLAY_JANGKA_WAKTU = DataPrint.IYEARS.ToString() + " Tahun ";
+                }
+                if (DataPrint.IMONTHS != 0)
+                {
+                    DataPrint.CDISPLAY_JANGKA_WAKTU = DataPrint.CDISPLAY_JANGKA_WAKTU + DataPrint.IMONTHS.ToString() + " Bulan ";
+                }
+                if (DataPrint.IDAYS != 0)
+                {
+                    DataPrint.CDISPLAY_JANGKA_WAKTU = DataPrint.CDISPLAY_JANGKA_WAKTU + DataPrint.IDAYS.ToString() + " Hari ";
+                }
+                if (DataPrint.IHOURS != 0)
+                {
+                    DataPrint.CDISPLAY_JANGKA_WAKTU = DataPrint.CDISPLAY_JANGKA_WAKTU + DataPrint.IHOURS.ToString() + " Jam ";
+                }
                 loReturn.Title = poParam.CTITLE ?? "TITlE REPORT";
                 loReturn.LabelReport = new PMTLabelReportDTO();
-                loReturn.LabelReport = loLabel as PMTLabelReportDTO;
-                loReturn.Data = new PMTDataReportDTO();
-                var loDataPrint = DataPrint != null ? DataPrint : new PMTDataReportDTO();
-                loReturn.Data = loDataPrint;
+                loReturn.Data = DataPrint ?? new();
             }
             catch (Exception ex)
             {

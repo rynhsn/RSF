@@ -20,6 +20,7 @@ namespace PMR00200COMMON.Print_DTO
         public string COLUMN_CTAX { get; set; } = "Tax";
         public string COLUMN_CTENANT_NAME { get; set; } = "Tenant";
         public string COLUMN_CTC_MESSAGE { get; set; } = "Term & Condition";
+        public string COLUMN_OFFER_NUMBER { get; set; } = "Offer Number";
         public string LABEL_CPROPERTY_NAME { get; set; } = "Property";
         public string LABEL_CDEPARTMENT_NAME { get; set; } = "Department";
         public string LABEL_CSALESMAN_NAME { get; set; } = "Salesman";

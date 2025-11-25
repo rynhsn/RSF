@@ -153,7 +153,7 @@ namespace PMT01700MODEL.ViewModel
 
                 poNewEntity.CSTART_TIME = ConvertTimeToStringFormat(poNewEntity.DSTART_DATE);
                 poNewEntity.CEND_TIME = ConvertTimeToStringFormat(poNewEntity.DEND_DATE);
-
+                poNewEntity.CCHARGE_MODE = "01";
                 var loResult = await _model.R_ServiceSaveAsync(poNewEntity, peCRUDMode);
 
                 loResult.DFOLLOW_UP_DATE = ConvertStringToDateTimeFormat(loResult.CFOLLOW_UP_DATE);

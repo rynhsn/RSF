@@ -23,10 +23,10 @@
 <R_StackLayout Justify="R_eJustify.FlexEnd" AlignItems="R_eAlignItems.End">
 
     <R_ItemLayout>
-        <R_Button Enabled="@(_viewModel.ListReportTemplate.Any())"
+        <R_PrintButton Enabled="@(_viewModel.ListReportTemplate.Any())"
                   OnClick="@OnClickOk">
             @_localizer["_Print"]
-        </R_Button>
+        </R_PrintButton>
     </R_ItemLayout>
 
 </R_StackLayout>

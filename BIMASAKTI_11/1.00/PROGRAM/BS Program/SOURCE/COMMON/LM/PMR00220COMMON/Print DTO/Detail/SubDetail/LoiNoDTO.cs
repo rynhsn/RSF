@@ -14,6 +14,7 @@ namespace PMR00220COMMON.Print_DTO.Detail.SubDetail
         public string? CTENANT_ID { get; set; }
         public string? CTENANT_NAME { get; set; }
         public string? CTC_MESSAGE { get; set; }
+        public string? CPREV_REF_NO { get; set; }
 
         public List<UnitDTO>? UnitDetail { get; set; }
         public List<UtilityDTO>? UtilityDetail { get; set; }

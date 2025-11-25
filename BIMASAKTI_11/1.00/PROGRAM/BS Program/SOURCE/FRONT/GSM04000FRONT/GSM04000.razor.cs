@@ -303,10 +303,10 @@ namespace GSM04000Front
                             loEx.Add("", _localizer["_valSave3"]);
                         }
 
-                        if (string.IsNullOrWhiteSpace(loData.CBRANCH_NAME))
-                        {
-                            loEx.Add("", _localizer["_valSave4"]);
-                        }
+                        //if (string.IsNullOrWhiteSpace(loData.CBRANCH_NAME))
+                        //{
+                        //    loEx.Add("", _localizer["_valSave4"]);
+                        //}
 
                         break;
                 }
@@ -484,6 +484,7 @@ namespace GSM04000Front
                 loData.DCREATE_DATE = DateTime.Now; //set now date when adding data
                 loData.DUPDATE_DATE = DateTime.Now; //set now date when adding data
                 //_enableBtnActiveInactive = false;
+                loData.CBRANCH_CODE = "";
             }
             catch (Exception ex)
             {

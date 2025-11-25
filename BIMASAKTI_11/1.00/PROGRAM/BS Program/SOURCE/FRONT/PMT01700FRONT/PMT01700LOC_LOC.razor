@@ -248,7 +248,7 @@
 
                     <R_ItemLayout col="5" Class="d-flex">
 
-                        <R_ItemLayout col="7">
+                        <R_ItemLayout col="8">
                             <R_DatePicker Value="@_viewModel.Data.DREF_DATE"
                                           R_ConductorSource="@_conductor"
                                           ValueChanged="@((DateTime? value) => OnChangedDREF_DATE(value))"
@@ -266,7 +266,7 @@
 
                     <R_ItemLayout col="7" Class="d-flex">
 
-                        <R_ItemLayout col="5" Class="ps-1">
+                        <R_ItemLayout col="8" Class="ps-1">
 
                             <R_DatePicker Value="@_viewModel.Data.DFOLLOW_UP_DATE"
                                           R_ConductorSource="@_conductor"
@@ -377,7 +377,7 @@
 
                     <R_ItemLayout col="5" Class="d-flex">
 
-                        <R_ItemLayout col="8">
+                        <R_ItemLayout col="12">
                             <R_DateTimePicker Value="@_viewModel.Data.DSTART_DATE"
                                               R_ConductorSource="@_conductor"
                                               ValueChanged="@((DateTime? value) => OnChangedDSTART_DATE(value))"
@@ -394,7 +394,7 @@
                             </R_Label>
                         </R_ItemLayout>
 
-                        <R_ItemLayout col="6" Class="ps-3">
+                        <R_ItemLayout col="8" Class="ps-3">
 
                             <R_DateTimePicker Value="@_viewModel.Data.DEND_DATE"
                                               R_ConductorSource="@_conductor"
@@ -599,10 +599,13 @@
 
         <R_StackLayout Row>
             <R_ItemLayout>
-                <R_Popup Enabled="@(_viewModel.Data.CTENANT_ID!=null)"
-                         R_Before_Open_Popup="@BeforeOpen_PopupPrint">
+                  <R_PrintButton Enabled="@(_viewModel.Data.CTENANT_ID!=null)"
+                    R_Before_Open_Popup="@BeforeOpen_PopupPrint"
+                    R_PrintMode="@R_ePrintMode.Popup"
+                               R_Conductor="@_conductor">
                     @_localizer["_Print"]
-                </R_Popup>
+                </R_PrintButton>
+
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Button R_Conductor="@_conductor"

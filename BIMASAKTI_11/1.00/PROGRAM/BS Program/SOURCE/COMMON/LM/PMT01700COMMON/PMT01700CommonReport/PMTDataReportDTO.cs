@@ -25,6 +25,7 @@ namespace PMT01700CommonReport
         public int IYEARS { get; set; }
         public int IDAYS { get; set; }
         public int IHOURS { get; set; }
+        public string? CDISPLAY_JANGKA_WAKTU {get; set;}
         public string? CSALESMAN_ID { get; set; }
         public string? CSALESMAN_NAME { get; set; }
         public string? CTENANT_ID { get; set; }
@@ -90,6 +91,7 @@ namespace PMT01700CommonReport
         public string? CUNIT_NAME { get; set; }
         public string? CFLOOR_NAME { get; set; }
         public string? CLOCATION { get; set; }
+
 
 
         private string? _CREF_DATE;

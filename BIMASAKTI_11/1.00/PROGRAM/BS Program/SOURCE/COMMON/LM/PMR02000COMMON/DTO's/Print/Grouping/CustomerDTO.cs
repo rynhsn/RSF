@@ -6,8 +6,7 @@ namespace PMR02000COMMON.DTO_s.Print.Grouping
 {
     public class CustomerDTO
     {
-        public string CDEPT_CODE { get; set; }
-        public string CDEPT_NAME { get; set; }
+
         public string CCUSTOMER_ID { get; set; }
         public string CCUSTOMER_NAME { get; set; }
         public List<TrxTypeDTO> Transactions { get; set; }
