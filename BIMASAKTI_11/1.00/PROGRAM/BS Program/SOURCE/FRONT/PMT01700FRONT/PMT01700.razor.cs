@@ -103,8 +103,9 @@ namespace PMT01700FRONT
                     loData.ForEach(x => x.LSELECTED_UNIT = false);
                     //assign value param to offer page
                     _viewModel.oParameterNewOffer.CPROPERTY_ID = _viewModel.oProperty_oDataOtherUnit.CPROPERTY_ID!;
+                    _viewModel.oParameterNewOffer.CCURRENCY_CODE = _viewModel.oProperty_oDataOtherUnit.CCURRENCY!;
                     _viewModel.oParameterNewOffer.CBUILDING_ID = loData[0].CBUILDING_ID!;
-                    _viewModel.oParameterNewOffer.CBUILDING_NAME = loData[0].CBUILDING_ID!;
+                    _viewModel.oParameterNewOffer.CBUILDING_NAME = loData[0].CBUILDING_NAME!;
                     _viewModel.oParameterNewOffer.ODataUnitList = JsonSerializer.Serialize(loData);
                     _viewModel.oParameterNewOffer.CTRANS_CODE = "802043";
 
@@ -162,6 +163,8 @@ namespace PMT01700FRONT
             try
             {
                 _viewModel.oProperty_oDataOtherUnit.CPROPERTY_ID = _viewModel.oProperty_oDataOtherUnit.CPROPERTY_ID = poParam;
+                _viewModel.oProperty_oDataOtherUnit.CCURRENCY = _viewModel.oProperty_oDataOtherUnit.CCURRENCY= _viewModel.loPropertyList?.FirstOrDefault(x => x.CPROPERTY_ID == poParam)?.CCURRENCY ?? "";
+
                 _viewModel.loSelectedUnitList = new ObservableCollection<PMT01700OtherUnitList_OtherSelectedUnitDTO>();
 
                 await _gridRefPMT01700OtherUnit!.R_RefreshGrid(null);
