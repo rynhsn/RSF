@@ -75,16 +75,19 @@ namespace PMM10000FRONT
             string lsProperty = (string)poParam;
             try
             {
-                PropertyDTO PropertyTemp = _viewModel._PropertyList
-                    .FirstOrDefault(data => data.CPROPERTY_ID == lsProperty)!;
-                _viewModel._PropertyValue = PropertyTemp;
-
-                await _treeRef!.R_RefreshTree(null);
-
-                if (_tabCategory!.ActiveTab.Id == "TabCallType")
+                if (!string.IsNullOrEmpty(lsProperty))
                 {
-                    await _tabPageCallType!.InvokeRefreshTabPageAsync(_viewModel._PropertyValue);
-                }  //await _gridSLACallType.R_RefreshGrid(null);
+                    PropertyDTO PropertyTemp = _viewModel._PropertyList
+                    .FirstOrDefault(data => data.CPROPERTY_ID == lsProperty)!;
+                    _viewModel._PropertyValue = PropertyTemp;
+
+                    await _treeRef!.R_RefreshTree(null);
+
+                    if (_tabCategory!.ActiveTab.Id == "TabCallType")
+                    {
+                        await _tabPageCallType!.InvokeRefreshTabPageAsync(_viewModel._PropertyValue);
+                    }  //await _gridSLACallType.R_RefreshGrid(null);}
+                }
             }
             catch (Exception ex)
             {
