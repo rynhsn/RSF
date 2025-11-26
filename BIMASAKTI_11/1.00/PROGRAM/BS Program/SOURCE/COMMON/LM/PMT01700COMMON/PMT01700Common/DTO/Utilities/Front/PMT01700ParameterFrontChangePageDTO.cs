@@ -29,6 +29,7 @@ namespace PMT01700COMMON.DTO.Utilities.Front
         public string? CTRANS_STATUS { get; set; }
         //21/10/24
         public string? CCURRENCY_CODE { get; set; }
+        public string? CCURRENCY{ get;}
 
     }
 }

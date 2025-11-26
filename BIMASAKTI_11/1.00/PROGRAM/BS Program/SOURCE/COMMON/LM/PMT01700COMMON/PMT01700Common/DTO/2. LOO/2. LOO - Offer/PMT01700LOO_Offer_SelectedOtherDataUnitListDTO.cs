@@ -10,6 +10,7 @@ namespace PMT01700COMMON.DTO._2._LOO._2._LOO___Offer
         public string? CCOMPANY_ID { get; set; }
         public string? CPROPERTY_ID { get; set; }
         public string? CDEPT_CODE { get; set; }
+        public string? CCURRENCY { get; set; }
         public string? CTRANS_CODE { get; set; }
         public string? CREF_NO { get; set; }
         public string? CBUILDING_ID { get; set; }

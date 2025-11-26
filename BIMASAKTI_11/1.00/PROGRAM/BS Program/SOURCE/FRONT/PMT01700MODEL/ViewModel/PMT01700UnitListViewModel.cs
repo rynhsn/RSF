@@ -55,6 +55,7 @@ namespace PMT01700MODEL.ViewModel
                     if (string.IsNullOrEmpty(oProperty_oDataOtherUnit.CPROPERTY_ID))
                     {
                         oProperty_oDataOtherUnit.CPROPERTY_ID = loResult.Data.First().CPROPERTY_ID!;
+                        oProperty_oDataOtherUnit.CCURRENCY = loResult.Data.FirstOrDefault().CCURRENCY!;
                     }
                 }
             }

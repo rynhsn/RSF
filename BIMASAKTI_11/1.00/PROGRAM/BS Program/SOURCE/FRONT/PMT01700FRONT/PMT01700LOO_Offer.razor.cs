@@ -120,20 +120,11 @@ namespace PMT01700FRONT
             var loEx = new R_Exception();
             try
             {
-                //if (_lViewMode)
-                //{
-                //    true
-                //}
-                //else
-                //{
-                //    false
-                //}
-                //  poParameter.
+
                 lControlChoosenData = _LOpenCustomPage = true;
 
                 _viewModel.oParameter = R_FrontUtility.ConvertObjectToObject<PMT01700ParameterFrontChangePageDTO>(poParameter) ?? new();
                 lEnabledFieldBuilding = false;
-                //_viewModel.Data.CCURRENCY_CODE = _viewModel.oParameter.CCURRENCY_CODE;
                 _LOpenCustomPage = _viewModel.oParameter.CALLER_ACTION == "ADD";
                 _lViewMode = _viewModel.oParameter.CALLER_ACTION == "VIEW";
 
@@ -159,10 +150,13 @@ namespace PMT01700FRONT
                         {
                             CCOMPANY_ID = _clientHelper.CompanyId,
                             CPROPERTY_ID = _viewModel.oParameter.CPROPERTY_ID,
+                            CCURRENCY = _viewModel.oParameter.CCURRENCY,
+                        
+                            
                             CDEPT_CODE = _viewModel.oParameter.CDEPT_CODE,
                             CTRANS_CODE = _viewModel.oParameter.CTRANS_CODE,
                             //CREF_NO = "",
-                            //CBUILDING_ID = _viewModel.oParameter.CBUILDING_ID,
+                            CBUILDING_ID = _viewModel.oParameter.CBUILDING_ID,
                             CBUILDING_NAME = _viewModel.oParameter.CBUILDING_NAME,
                             COTHER_UNIT_ID = unit.COTHER_UNIT_ID,
                             CFLOOR_ID = unit.CFLOOR_ID,
@@ -986,12 +980,16 @@ namespace PMT01700FRONT
             {
 
                 loData.CTRANS_CODE = _viewModel.oParameter.CTRANS_CODE;
+                 loData.CCURRENCY_CODE = _viewModel.oParameter.CCURRENCY_CODE;
+                loData.CBUILDING_ID = _viewModel.oParameter.CBUILDING_ID;
+                loData.CBUILDING_NAME = _viewModel.oParameter.CBUILDING_NAME;
                 //loData.CTRANS_NAME = "Lease Agreement";
                 _lDataCREF_NO = !_viewModel.oVarGSMTransactionCode.LINCREMENT_FLAG;
                 /*
                 loData.CTENANT_CATEGORY_ID = _viewModel.oTempFirstDataDefault.CTENANT_CATEGORY_ID;
                 loData.CTAX_TYPE = _viewModel.oTempFirstDataDefault.CTAX_TYPE;
                 loData.CID_TYPE = _viewModel.oTempFirstDataDefault.CID_TYPE;
+
                 */
                 if (_isAllDataReady == false)
                 {

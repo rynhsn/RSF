@@ -8,5 +8,6 @@ namespace PMT01700COMMON.DTO.Utilities
     {
         public string? CPROPERTY_ID { get; set; }
         public string? CPROPERTY_NAME { get; set; }
+        public string? CCURRENCY { get; set; }
     }
 }
