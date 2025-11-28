@@ -1,0 +1,126 @@
+@page "/FAT00800"
+@inherits R_Page
+
+<R_TabStrip @ref="_tabStripRef" OnActiveTabIndexChanged="TabStrip_OnActiveTabIndexChanged">
+    <!-- Tab 1: Transaction List -->
+    <R_TabStripTab @ref="_tabTransList" Title="@Localizer["_tabTransactionList"]" Id="@nameof(FAT00800)">
+        <R_StackLayout>
+            <!-- Row 1: Department & Period From -->
+            <R_StackLayout Row>
+                <R_ItemLayout col="1">
+                    <R_Label Required="true">@Localizer["_lblDepartment"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_listViewModel.DeptCode"
+                               OnLostFocused="txtDeptCode_OnLostFocused" />
+                </R_ItemLayout>
+                
+                <R_ItemLayout auto="true">
+                    <R_Lookup R_Before_Open_Lookup="btnDeptLook_R_Before_Open_Lookup"
+                              R_After_Open_Lookup="btnDeptLook_R_After_Open_Lookup">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_lcDeptDesc" Enabled="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                </R_ItemLayout>
+                <R_ItemLayout auto="true">
+                    <R_Label Style="text-align:right">@Localizer["_lblPeriodFrom"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_NumericTextBox @bind-Value="_listViewModel.PeriodFromYear"
+                                      Arrows="true"
+                                      TValue="int"
+                                      ThousandSeparator="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_ComboBox @bind-Value="_listViewModel.PeriodFromMonth"
+                                Data="_listViewModel.MonthList"
+                                ValueField="@nameof(FAT00800Model.VMs.PeriodMonthDTO.CPERIOD_NO)"
+                                TextField="@nameof(FAT00800Model.VMs.PeriodMonthDTO.CPERIOD_NO)" />
+                </R_ItemLayout>
+                <R_ItemLayout auto="true">
+                    <R_Label>to</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_NumericTextBox @bind-Value="_listViewModel.PeriodToYear"
+                                      Arrows="true"
+                                      TValue="int"
+                                      ThousandSeparator="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_ComboBox @bind-Value="_listViewModel.PeriodToMonth"
+                                Data="_listViewModel.MonthList"
+                                ValueField="@nameof(FAT00800Model.VMs.PeriodMonthDTO.CPERIOD_NO)"
+                                TextField="@nameof(FAT00800Model.VMs.PeriodMonthDTO.CPERIOD_NO)" />
+                </R_ItemLayout>
+                <R_ItemLayout auto="true">
+                    <R_Button OnClick="OnRefreshClick">@Localizer["_btnRefresh"]</R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <!-- Row 2: Asset -->
+            <R_StackLayout Row>
+                <R_ItemLayout col="1">
+                    <R_Label>@Localizer["_lblAsset"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_listViewModel.AssetCode"
+                               OnLostFocused="txtAssetCode_OnLostFocused" />
+                </R_ItemLayout>
+                <R_ItemLayout auto="true">
+                    <R_Lookup R_Before_Open_Lookup="btnAssetLook_R_Before_Open_Lookup"
+                              R_After_Open_Lookup="btnAssetLook_R_After_Open_Lookup">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_lcAssetName" Enabled="false" />
+                </R_ItemLayout>
+                
+            </R_StackLayout>
+
+            <!-- Transaction List Grid -->
+            <R_Grid @ref="_gridTransListRef"
+                    DataSource="@_listViewModel.TransactionList"
+                    R_ServiceGetListRecord="Grid_R_ServiceGetListRecord"
+                    R_GridType="@R_eGridType.Original"
+                    Height="400px"
+                    Pageable="true"
+                    PageSize="20">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(FAT00800TransListResultDTO.CDEPT_CODE)"
+                                      HeaderText="@Localizer["_hdrDept"]"
+                                      Width="60px" />
+                    <R_GridTextColumn FieldName="@nameof(FAT00800TransListResultDTO.CREF_NO)"
+                                      HeaderText="@Localizer["_hdrReferenceNo"]"
+                                      Width="120px" />
+                    <R_GridTextColumn FieldName="@nameof(FAT00800TransListResultDTO.CREF_DATE_DISPLAY)"
+                                      HeaderText="@Localizer["_hdrDate"]"
+                                      Width="100px" />
+                    <R_GridTextColumn FieldName="@nameof(FAT00800TransListResultDTO.CASSET_CODE)"
+                                      HeaderText="@Localizer["_hdrAssetCode"]"
+                                      Width="140px" />
+                    <R_GridTextColumn FieldName="@nameof(FAT00800TransListResultDTO.CASSET_NAME)"
+                                      HeaderText="@Localizer["_hdrAssetName"]"
+                                      Width="200px" />
+                    <R_GridTextColumn FieldName="@nameof(FAT00800TransListResultDTO.CCURRENCY_CODE)"
+                                      HeaderText="@Localizer["_hdrCurrency"]"
+                                      Width="60px" />
+                    <R_GridNumericColumn FieldName="@nameof(FAT00800TransListResultDTO.NTRANS_AMOUNT)"
+                                         HeaderText="@Localizer["_hdrSaleAmount"]"
+                                         Width="120px"
+                                         Decimals="2"
+                                         ThousandSeparator="true"
+                                         TValue="decimal" />
+                    <R_GridTextColumn FieldName="@nameof(FAT00800TransListResultDTO.CTRANS_STATUS_NAME)"
+                                      HeaderText="@Localizer["_hdrStatus"]"
+                                      Width="80px" />
+                </R_GridColumns>
+            </R_Grid>
+        </R_StackLayout>
+    </R_TabStripTab>
+
+    <!-- Tab 2: Transaction Entry -->
+    <R_TabStripTab @ref="_tabEntry" Title="@Localizer["_tabTransactionEntry"]" Id="@nameof(FAT00800Entry)">
+        <R_TabPage R_Before_Open_TabPage="BeforeOpenEntry" R_After_Open_TabPage="AfterOpenEntry" R_TabEventCallback="EntryTabEventCallBack"/>
+    </R_TabStripTab>
+</R_TabStrip>
