@@ -1,0 +1,316 @@
+@using FAT00800FrontResources
+@using R_BlazorFrontEnd.Interfaces
+@using FAT00800Common.DTOs
+@using FAT00800Model.VMs
+@inherits R_Page
+
+<R_StackLayout>
+    <!-- Asset Code and Asset Name (Outside Group) -->
+    <R_StackLayout Row Class="mb-1">
+       <R_ItemLayout  col="8">
+            <R_StackLayout Row Class="mb-1">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_lblAssetCode"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_viewModel.AssetInfo.CASSET_CODE" Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+            
+       </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="mb-3">
+    <R_ItemLayout col="8">
+            <R_StackLayout Row Class="mb-1">
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_lblAssetName"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_viewModel.AssetInfo.CASSET_NAME" Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+    </R_ItemLayout>
+        
+    </R_StackLayout>
+
+    <!-- Asset Information Section -->
+    <R_StackLayout Row Class="mb-3">
+        <R_ItemLayout col="8">
+            <R_GroupBox Title="@_localizer["_lbl_AssetInformation"]" Class="p-2">
+                <!-- Asset Department -->
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_lblAssetDepartment"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox @bind-Value="_viewModel.AssetInfo.CASSET_DEPT_CODE" Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="_viewModel.AssetInfo.CASSET_DEPT_NAME" Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5"></R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Asset Category -->
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_lblAssetCategory"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox @bind-Value="_viewModel.AssetInfo.CCATEGORY_CODE" Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="_viewModel.AssetInfo.CCATEGORY_DESC" Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5"></R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Location -->
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_lblLocation"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_TextBox @bind-Value="_viewModel.AssetInfo.CASSET_LOCATION" Enabled="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Serial Number -->
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_lblSerialNumber"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_TextBox @bind-Value="_viewModel.AssetInfo.CSERIAL_NUMBER" Enabled="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Quantity -->
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_lblQuantity"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="_viewModel.AssetInfo.IQTY" 
+                                          TValue="int"
+                                          Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox @bind-Value="_viewModel.AssetInfo.CUNIT" Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6"></R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Last Trans. Date -->
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_lblLastTransDate"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_TextBox Value="@_viewModel.FormattedLastTransDate" Enabled="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_GroupBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <!-- Bottom Section: Depreciation Information and Expense Allocation -->
+    <R_StackLayout Row Class="mb-3">
+        <!-- Left Column: Depreciation Information -->
+        <R_ItemLayout col="8">
+            <R_GroupBox Title="Depreciation Information" Class="p-2">
+                <!-- Depreciation Method -->
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_lblDeprMethod"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="_viewModel.AssetInfo.CDEPR_METHOD_DESC" Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1"></R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_lblStartDate"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox Value="@_viewModel.FormattedStartDate" Enabled="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Book Value Row -->
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_lblBookValue"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_Label>Local Amount</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_Label>Base Amount</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3"></R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="2"></R_ItemLayout>
+                    
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="_viewModel.AssetInfo.NLBOOK_VALUE"
+                                          TValue="decimal"
+                                          Decimals="2"
+                                          ThousandSeparator="true"
+                                          Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_TextBox @bind-Value="_viewModel.AssetInfo.CLOCAL_CURRENCY_CODE" Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="_viewModel.AssetInfo.NBBOOK_VALUE"
+                                          TValue="decimal"
+                                          Decimals="2"
+                                          ThousandSeparator="true"
+                                          Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_TextBox @bind-Value="_viewModel.AssetInfo.CBASE_CURRENCY_CODE" Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4"></R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Residual Value Row -->
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_lblResidualValue"]</R_Label>
+                    </R_ItemLayout>
+                    
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="_viewModel.AssetInfo.NLRESIDUAL_VALUE"
+                                          TValue="decimal"
+                                          Decimals="2"
+                                          ThousandSeparator="true"
+                                          Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_TextBox @bind-Value="_viewModel.AssetInfo.CLOCAL_CURRENCY_CODE" Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="_viewModel.AssetInfo.NBRESIDUAL_VALUE"
+                                          TValue="decimal"
+                                          Decimals="2"
+                                          ThousandSeparator="true"
+                                          Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_TextBox @bind-Value="_viewModel.AssetInfo.CBASE_CURRENCY_CODE" Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4"></R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Useful Life -->
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_lblUsefulLive"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_NumericTextBox @bind-Value="_viewModel.AssetInfo.IUSEFUL_LIVE_YR"
+                                          TValue="int"
+                                          Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["_lblYears"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_NumericTextBox @bind-Value="_viewModel.AssetInfo.IUSEFUL_LIVE_MO"
+                                          TValue="int"
+                                          Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>@_localizer["_lblMonths"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6"></R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Yearly Depreciation -->
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@_localizer["_lblYearlyDepreciation"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="_viewModel.AssetInfo.NYEAR_DEPR_PCT"
+                                          TValue="decimal"
+                                          Decimals="2"
+                                          ThousandSeparator="true"
+                                          Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>%</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="7"></R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row Class="mb-1">
+                    <R_ItemLayout col="2"></R_ItemLayout>
+                    
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="_viewModel.AssetInfo.NLYEAR_DEPR_AMT"
+                                          TValue="decimal"
+                                          Decimals="2"
+                                          ThousandSeparator="true"
+                                          Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_TextBox @bind-Value="_viewModel.AssetInfo.CLOCAL_CURRENCY_CODE" Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">  
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="_viewModel.AssetInfo.NBYEAR_DEPR_AMT"
+                                          TValue="decimal"
+                                          Decimals="2"
+                                          ThousandSeparator="true"
+                                          Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_TextBox @bind-Value="_viewModel.AssetInfo.CBASE_CURRENCY_CODE" Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3"></R_ItemLayout>
+                </R_StackLayout>
+            </R_GroupBox>
+        </R_ItemLayout>
+
+        <!-- Right Column: Expense Allocation -->
+        <R_ItemLayout col="4">
+            <R_GroupBox Title="@_localizer["_lblAllocationExpense"]" Class="p-2">
+                <R_Grid @ref="_gridAlloc"
+                        DataSource="@_viewModel.GridAllocList"
+                        R_ServiceGetListRecord="Grid_R_ServiceGetListRecord"
+                        R_GridType="@R_eGridType.Original"
+                        AllowSorting="false"
+                        AllowPaging="false"
+                        Height="200px">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(FAT00800GetGridAllocResultDTO.CEXPENSE_DEPT_CODE)" 
+                                          HeaderText="@_localizer["_lblgridDepartment"]" 
+                                          Width="80px" />
+                        <R_GridTextColumn FieldName="@nameof(FAT00800GetGridAllocResultDTO.CEXPENSE_DEPT_NAME)" 
+                                          HeaderText="@_localizer["_lblgridName"]" 
+                                          Width="120px" />
+                        <R_GridNumericColumn FieldName="@nameof(FAT00800GetGridAllocResultDTO.NEXPENSE_PCT)" 
+                                             HeaderText="@_localizer["_lblgridPercent"]" 
+                                             Width="60px"
+                                             TValue="decimal" />
+                    </R_GridColumns>
+                </R_Grid>
+            </R_GroupBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>

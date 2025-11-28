@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="11/21/2025 14:07:22" ReportInfo.Modified="11/21/2025 14:11:05" ReportInfo.CreatorVersion="2023.3.0.0">
+  <Dictionary/>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" LeftMargin="6" TopMargin="6" RightMargin="6" BottomMargin="6" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="1077.3" Fill.Color="White"/>
+    <PageHeaderBand Name="PageHeader1" Top="4" Width="1077.3" Height="60" Fill.Color="White">
+      <SubreportObject Name="Subreport1" Left="2" Top="5" Width="1069" Height="48" Fill.Color="White" ReportPage="Page2"/>
+      <ChildBand Name="Child1" Top="68" Width="1077.3" Height="48" Fill.Color="White">
+        <TextObject Name="Dept1" Top="8" Width="64" Height="16" Fill.Color="White" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Period1" Top="32" Width="64" Height="16" Fill.Color="White" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="TransType1" Left="904" Top="32" Width="96" Height="16" Fill.Color="White" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text3" Left="1000" Top="32" Width="8" Height="16" Fill.Color="White" Text=":" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text1" Left="64" Top="32" Width="8" Height="16" Fill.Color="White" Text=":" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text2" Left="64" Top="8" Width="8" Height="16" Fill.Color="White" Text=":" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="pDept1" Left="72" Top="8" Width="133" Height="16" Fill.Color="White" Font="MS Gothic, 8pt, style=Bold"/>
+        <TextObject Name="pPeriod1" Left="72" Top="32" Width="133" Height="16" Fill.Color="White" Font="MS Gothic, 8pt, style=Bold"/>
+        <TextObject Name="pType1" Left="1008" Top="32" Width="68" Height="16" Fill.Color="White" Font="MS Gothic, 8pt, style=Bold"/>
+        <ChildBand Name="Child2" Top="120" Width="1077.3" Height="61" Fill.Color="White">
+          <LineObject Name="Line1" Width="1075"/>
+          <LineObject Name="Line4" Top="60" Width="1147"/>
+          <TextObject Name="TransDate1" Top="8" Width="64" Height="16" Fill.Color="White" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Asset1" Left="72" Top="8" Width="56" Height="16" Fill.Color="White" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Location1" Left="72" Top="40" Width="72" Height="16" Fill.Color="White" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="JournalGroup1" Left="224" Top="8" Width="96" Height="16" Fill.Color="White" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Supplier1" Left="224" Top="40" Width="96" Height="16" Fill.Color="White" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="TaxCategory1" Left="384" Top="8" Width="112" Height="16" Fill.Color="White" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="DocumentNo1" Left="384" Top="40" Width="112" Height="16" Fill.Color="White" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="ReferenceNo1" Left="512" Top="8" Width="104" Height="16" Fill.Color="White" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="AssetDept1" Left="632" Top="8" Width="96" Height="16" Fill.Color="White" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="PurchaseDate1" Left="744" Top="8" Width="64" Height="16" Fill.Color="White" CanGrow="true" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="New1" Left="816" Top="8" Width="48" Height="16" Fill.Color="White" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="InitialBookValue1" Left="872" Top="8" Width="96" Height="16" Fill.Color="White" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Qty1" Left="976" Top="8" Width="48" Height="16" Fill.Color="White" Font="Arial, 8pt, style=Bold"/>
+          <TextObject Name="Unit1" Left="1024" Top="8" Width="48" Height="16" Fill.Color="White" Font="Arial, 8pt, style=Bold"/>
+        </ChildBand>
+      </ChildBand>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="185" Width="1077.3" Height="6" Fill.Color="White">
+      <DataBand Name="Data2" Top="195" Width="1077.3" Height="64" Fill.Color="White">
+        <TextObject Name="CTRANSACTIONDATE1" Width="69" Height="16" Fill.Color="White" CanGrow="true" Font="Arial, 8pt"/>
+        <TextObject Name="CASSETCODE1" Left="72" Width="136" Height="16" Fill.Color="White" CanGrow="true" Font="Arial, 8pt"/>
+        <TextObject Name="CASSETNAME1" Left="72" Top="24" Width="136" Height="16" Fill.Color="White" CanGrow="true" Font="Arial, 8pt"/>
+        <TextObject Name="CASSETLOCATION1" Left="72" Top="48" Width="136" Height="16" Fill.Color="White" CanGrow="true" Font="Arial, 8pt"/>
+        <TextObject Name="CJRNGRPCODE1" Left="224" Width="144" Height="16" Fill.Color="White" CanGrow="true" Font="Arial, 8pt"/>
+        <TextObject Name="CJRNGRPNAME1" Left="224" Top="24" Width="144" Height="16" Fill.Color="White" CanGrow="true" Font="Arial, 8pt"/>
+        <TextObject Name="CSUPPLIERNAME1" Left="224" Top="48" Width="144" Height="16" Fill.Color="White" CanGrow="true" Font="Arial, 8pt"/>
+        <TextObject Name="CTAXCATEGORYCODE1" Left="384" Width="112" Height="16" Fill.Color="White" CanGrow="true" Font="Arial, 8pt"/>
+        <TextObject Name="CTAXCATEGORYDESC1" Left="384" Top="24" Width="112" Height="16" Fill.Color="White" CanGrow="true" Font="Arial, 8pt"/>
+        <TextObject Name="CDOCUMENTNO1" Left="384" Top="48" Width="112" Height="16" Fill.Color="White" CanGrow="true" Font="Arial, 8pt"/>
+        <TextObject Name="CREFERENCENO1" Left="512" Width="104" Height="16" Fill.Color="White" CanGrow="true" Font="Arial, 8pt"/>
+        <TextObject Name="CASSETDEPTCODE1" Left="632" Width="103" Height="16" Fill.Color="White" CanGrow="true" Font="Arial, 8pt"/>
+        <TextObject Name="CASSETDEPTNAME1" Left="632" Top="24" Width="104" Height="16" Fill.Color="White" CanGrow="true" Font="Arial, 8pt"/>
+        <TextObject Name="CINSERVICEDATE1" Left="744" Width="69" Height="16" Fill.Color="White" CanGrow="true" Font="Arial, 8pt"/>
+        <TextObject Name="LNEWFLAG1" Left="816" Width="50" Height="16" Fill.Color="White" Font="Arial, 8pt"/>
+        <TextObject Name="NTRANSACTIONAMOUNT11" Left="872" Width="99" Height="16" Fill.Color="White" Font="Arial, 8pt"/>
+        <TextObject Name="ITRANSACTIONQTY11" Left="976" Width="41" Height="16" Fill.Color="White" Font="Arial, 8pt"/>
+        <TextObject Name="CUNIT1" Left="1024" Width="48" Height="16" Fill.Color="White" Font="Arial, 8pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="263" Width="1077.3" Height="32" Fill.Color="White">
+        <TextObject Name="TotalPeriod1" Left="352" Top="8" Width="133" Height="16" Fill.Color="White" Font="Arial, 8pt, style=Bold"/>
+        <LineObject Name="Line5" Left="352" Top="4" Width="720"/>
+        <LineObject Name="Line6" Left="352" Top="24" Width="720"/>
+        <TextObject Name="CTRANSACTIONPRD1" Left="512" Top="8" Width="133" Height="16" Fill.Color="White" Font="Arial, 8pt"/>
+        <TextObject Name="SumofNTRANSACTIONAMOUNT11" Left="872" Top="8" Width="99" Height="16" Fill.Color="White" Font="Arial, 8pt"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="299" Width="1077.3" Height="16" Fill.Color="White"/>
+    <PageFooterBand Name="PageFooter1" Top="319" Width="1077.3" Fill.Color="White"/>
+  </ReportPage>
+  <ReportPage Name="Page2" Watermark.Font="Arial, 60pt">
+    <DataBand Name="Data1" Width="718.2" Height="75.6"/>
+  </ReportPage>
+</Report>

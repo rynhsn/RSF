@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="btnApprove" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="btnChanges" xml:space="preserve">
+    <value>Changes</value>
+  </data>
+  <data name="btnChgAlloc" xml:space="preserve">
+    <value>Change Allocation</value>
+  </data>
+  <data name="btnChgDesc" xml:space="preserve">
+    <value>Change Desc</value>
+  </data>
+  <data name="btnDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="btnFind" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="btnJournal" xml:space="preserve">
+    <value>Journal</value>
+  </data>
+  <data name="btnSubmit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="btnVoid" xml:space="preserve">
+    <value>Void</value>
+  </data>
+  <data name="btnClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="btnDraft" xml:space="preserve">
+    <value>Redraft</value>
+  </data>
+  <data name="btnPrint" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="btnFat01200" xml:space="preserve">
+    <value>Void Confirmation</value>
+  </data>
+  <data name="btnAllocLook" xml:space="preserve">
+    <value>Allocation</value>
+  </data>
+  <data name="btnAssetLook" xml:space="preserve">
+    <value>Asset</value>
+  </data>
+  <data name="btnCurrLook" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="btnDeptLook" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="btnTransNumLook" xml:space="preserve">
+    <value>Transaction Number</value>
+  </data>
+  <data name="btnChangesPop" xml:space="preserve">
+    <value>Changes Log</value>
+  </data>
+  <data name="btnJournalPop" xml:space="preserve">
+    <value>FA Transaction Journal</value>
+  </data>
+  <data name="btnPrintPop" xml:space="preserve">
+    <value>Print FA Transaction</value>
+  </data>
+  <data name="_lbl1" xml:space="preserve">
+    <value>=</value>
+  </data>
+  <data name="_lbl2" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="_lbl3" xml:space="preserve">
+    <value>/</value>
+  </data>
+  <data name="_lblAllocation" xml:space="preserve">
+    <value>Allocation</value>
+  </data>
+  <data name="_lblAllocationExpense" xml:space="preserve">
+    <value>Allocation Expense</value>
+  </data>
+  <data name="_lblAssetCode" xml:space="preserve">
+    <value>Asset Code</value>
+  </data>
+  <data name="_lblAssetDepartment" xml:space="preserve">
+    <value>Asset Department</value>
+  </data>
+  <data name="_lblAssetName" xml:space="preserve">
+    <value>Asset Name</value>
+  </data>
+  <data name="_lblAssetTransSequence" xml:space="preserve">
+    <value>Asset Trans Sequence</value>
+  </data>
+  <data name="_lblBaseAmount" xml:space="preserve">
+    <value>Base Amount</value>
+  </data>
+  <data name="_lblBaseCurrency" xml:space="preserve">
+    <value>Base Currency</value>
+  </data>
+  <data name="_lblBaseRate" xml:space="preserve">
+    <value>Base Rate</value>
+  </data>
+  <data name="_lblBookValue" xml:space="preserve">
+    <value>Book Value</value>
+  </data>
+  <data name="_lblCreate/Updated" xml:space="preserve">
+    <value>Create/Updated</value>
+  </data>
+  <data name="_lblCurrency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="_lblCurrencyRate" xml:space="preserve">
+    <value>Currency Rate</value>
+  </data>
+  <data name="_lblDepartment" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_lblGainLoss" xml:space="preserve">
+    <value>Gain/Loss</value>
+  </data>
+  <data name="_lblLastTransDate" xml:space="preserve">
+    <value>Last Trans Date</value>
+  </data>
+  <data name="_lblLocalAmount" xml:space="preserve">
+    <value>Local Amount</value>
+  </data>
+  <data name="_lblLocalAmount2" xml:space="preserve">
+    <value>Local Amount</value>
+  </data>
+  <data name="_lblLocalCurrency" xml:space="preserve">
+    <value>Local Currency</value>
+  </data>
+  <data name="_lblQuantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="_lblResidualValue" xml:space="preserve">
+    <value>Residual Value</value>
+  </data>
+  <data name="_lblSaleAmount" xml:space="preserve">
+    <value>Sale Amount</value>
+  </data>
+  <data name="_lblTransactionDate" xml:space="preserve">
+    <value>Transaction Date</value>
+  </data>
+  <data name="_lblTransactionNote" xml:space="preserve">
+    <value>Transaction Note</value>
+  </data>
+  <data name="_lblTransactionNumber" xml:space="preserve">
+    <value>Transaction Number</value>
+  </data>
+  <data name="_lblTransactionType" xml:space="preserve">
+    <value>Transaction Type</value>
+  </data>
+  <data name="_lblUsefulLive" xml:space="preserve">
+    <value>Useful Live</value>
+  </data>
+  <data name="_lblYearlyDepreciation" xml:space="preserve">
+    <value>Yearly Depreciation</value>
+  </data>
+  <data name="_lbl_AssetInformation" xml:space="preserve">
+    <value>Asset Information</value>
+  </data>
+  <data name="_lbl_Sale" xml:space="preserve">
+    <value>Sale</value>
+  </data>
+  <data name="_lblgridDepartment" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_lblgridName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="_lblgridPercent" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="_lblMonths" xml:space="preserve">
+    <value>Months</value>
+  </data>
+  <data name="_lblStartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="_lblYears" xml:space="preserve">
+    <value>Years</value>
+  </data>
+  <data name="_lblDeprMethod" xml:space="preserve">
+    <value>Depreciation Method</value>
+  </data>
+  <data name="_lblAssetCategory" xml:space="preserve">
+    <value>Asset Category</value>
+  </data>
+  <data name="_lblSerialNumber" xml:space="preserve">
+    <value>Serial Number</value>
+  </data>
+  <data name="_lblLocation" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="PS001" xml:space="preserve">
+    <value>Department Code Not Found !</value>
+  </data>
+  <data name="PS002" xml:space="preserve">
+    <value>Asset Code Not Found !</value>
+  </data>
+  <data name="PS003" xml:space="preserve">
+    <value>Currency Code Not Found !</value>
+  </data>
+  <data name="PS004" xml:space="preserve">
+    <value>Allocation Code Not Found !</value>
+  </data>
+  <data name="PS005" xml:space="preserve">
+    <value>Transaction date should be not less than the soft period</value>
+  </data>
+  <data name="PS006" xml:space="preserve">
+    <value>Transaction date should be not greater than today</value>
+  </data>
+  <data name="PS007" xml:space="preserve">
+    <value>This asset has outstanding transaction. Please settle it first</value>
+  </data>
+  <data name="PS008" xml:space="preserve">
+    <value>You can not undo delete. Are you sure to delete this transaction ?</value>
+  </data>
+  <data name="PS009" xml:space="preserve">
+    <value>Are you sure to change to submit for this transaction ?</value>
+  </data>
+  <data name="PS010" xml:space="preserve">
+    <value>Are you sure to change to draft for this transaction ?</value>
+  </data>
+  <data name="PS011" xml:space="preserve">
+    <value>Please be aware, you can not modify this transaction anymore after this process</value>
+  </data>
+  <data name="PS012" xml:space="preserve">
+    <value>Can not Void transaction of asset already has the next one.</value>
+  </data>
+  <data name="PS013" xml:space="preserve">
+    <value>Department code should not be empty</value>
+  </data>
+  <data name="PS014" xml:space="preserve">
+    <value>Transaction Date should not be empty</value>
+  </data>
+  <data name="PS015" xml:space="preserve">
+    <value>Asset code should not be empty</value>
+  </data>
+  <data name="PS016" xml:space="preserve">
+    <value>Currency code should not be empty</value>
+  </data>
+  <data name="PS017" xml:space="preserve">
+    <value>Allocation code should not be empty</value>
+  </data>
+  <data name="PS018" xml:space="preserve">
+    <value>Please enter a valid sale Amount</value>
+  </data>
+  <data name="PS019" xml:space="preserve">
+    <value>Please enter a valid currency rate</value>
+  </data>
+  <data name="PS020" xml:space="preserve">
+    <value>Transaction Number should not be empty</value>
+  </data>
+  <data name="PS021" xml:space="preserve">
+    <value>Please enter a Department code</value>
+  </data>
+  <data name="PS022" xml:space="preserve">
+    <value>You have no rights to access this Department</value>
+  </data>
+  <data name="PS023" xml:space="preserve">
+    <value>Transaction date should be in the year of current period</value>
+  </data>
+  <data name="_lblMsgHeader" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="_lblMsgFindData" xml:space="preserve">
+    <value>Data Not Found</value>
+  </data>
+  <data name="_lblMsgHeaderFind" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="_tabTransactionList" xml:space="preserve">
+    <value>Transaction List</value>
+    <comment>Transaction List</comment>
+  </data>
+  <data name="_btnRefresh" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>Refresh</comment>
+  </data>
+  <data name="_tabTransactionEntry" xml:space="preserve">
+    <value>Transaction Entry</value>
+    <comment>Transaction Entry</comment>
+  </data>
+  <data name="_lblAsset" xml:space="preserve">
+    <value>Asset</value>
+    <comment>Asset</comment>
+  </data>
+  <data name="_lblAssetInfo" xml:space="preserve">
+    <value>Asset Info</value>
+    <comment>Asset Info</comment>
+  </data>
+  <data name="_lblPeriodFrom" xml:space="preserve">
+    <value>Period From</value>
+    <comment>Period From</comment>
+  </data>
+  <data name="_hdrDept" xml:space="preserve">
+    <value>Dept.</value>
+  </data>
+  <data name="_hdrReferenceNo" xml:space="preserve">
+    <value>Reference No.</value>
+  </data>
+  <data name="_hdrDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="_hdrAssetCode" xml:space="preserve">
+    <value>Asset Code</value>
+  </data>
+  <data name="_hdrAssetName" xml:space="preserve">
+    <value>Asset Name</value>
+  </data>
+  <data name="_hdrCurrency" xml:space="preserve">
+    <value>Curr.</value>
+  </data>
+  <data name="_hdrSaleAmount" xml:space="preserve">
+    <value>Sale Amount</value>
+  </data>
+  <data name="_hdrStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="_lblReferenceNo" xml:space="preserve">
+    <value>Reference No</value>
+    <comment>ReferenceNo</comment>
+  </data>
+  <data name="_lblRefDate" xml:space="preserve">
+    <value>Ref. Date</value>
+    <comment>Ref. Date</comment>
+  </data>
+  <data name="MSG_BEFORE_CANCEL" xml:space="preserve">
+    <value>Are you sure you want to cancel the current operation?</value>
+    <comment>Confirmation message before cancel operation</comment>
+  </data>
+  <data name="_lblDescription" xml:space="preserve">
+    <value>Description</value>
+    <comment>Description</comment>
+  </data>
+</root>
