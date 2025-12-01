@@ -1,0 +1,412 @@
+@page "/FAT00100"
+@inherits R_Page
+
+<R_StackLayout Row>
+    <R_ItemLayout col="5">
+        <R_StackLayout>
+            <!-- <R_StackLayout Row style="display:none;">
+                <R_ItemLayout col="2">
+                    <R_Label>@Localizer["_TransactionType"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_VM.CurrentRecord.CTRANSACTION_CODE" Enabled="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_TextBox @bind-Value="_VM.CurrentRecord.CTRANSACTION_NAME" Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout> -->
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@Localizer["_Department"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_VM.CurrentRecord.CDEPT_CODE" 
+                               OnLostFocused="txtDepartmentCode_OnLostFocused" 
+                               MaxLength="20" />
+                </R_ItemLayout>
+                <R_ItemLayout auto="true">
+                    <R_Lookup R_Before_Open_Lookup="btnDepartmentLookup_R_Before_Open_Lookup"
+                              R_After_Open_Lookup="btnDepartmentLookup_R_After_Open_Lookup">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout auto="false">
+                    <R_TextBox @bind-Value="_VM.CurrentRecord.CDEPT_NAME" Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@Localizer["_Supplier"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_VM.CurrentRecord.CSUPPLIER_ID" 
+                               OnLostFocused="txtSupplierCode_OnLostFocused" 
+                               MaxLength="20" />
+                </R_ItemLayout>
+                <R_ItemLayout auto="true">
+                    <R_Lookup R_Before_Open_Lookup="btnSupplierLookup_R_Before_Open_Lookup"
+                              R_After_Open_Lookup="btnSupplierLookup_R_After_Open_Lookup">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout auto="false">
+                    <R_TextBox @bind-Value="_VM.CurrentRecord.CSUPPLIER_NAME" Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="7" class="ms-6">
+        <R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout auto="true" class="pe-3">
+                    <R_Label>@Localizer["_Period"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="PeriodFromYear"
+                                     Arrows="true"
+                                     TValue="int"
+                                     ThousandSeparator="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_ComboBox @bind-Value="PeriodFromMonth"
+                               Data="_VM.ComboPeriodMonthList"
+                               ValueField="@nameof(FAT00100GetComboPeriodMonthResultDTO.CPERIOD_NO)"
+                               TextField="@nameof(FAT00100GetComboPeriodMonthResultDTO.CPERIOD_NO)" />
+                </R_ItemLayout>
+                <R_Label>-</R_Label>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="PeriodToYear"
+                                     Arrows="true"
+                                     TValue="int"
+                                     ThousandSeparator="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_ComboBox @bind-Value="PeriodToMonth"
+                               Data="_VM.ComboPeriodMonthList"
+                               ValueField="@nameof(FAT00100GetComboPeriodMonthResultDTO.CPERIOD_NO)"
+                               TextField="@nameof(FAT00100GetComboPeriodMonthResultDTO.CPERIOD_NO)" />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout auto="true" class="pe-3">
+                    <R_Label>@Localizer["_Status"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_ComboBox @bind-Value="SelectedStatus"
+                               Data="StatusList"
+                               ValueField="@nameof(StatusOptionDTO.CVALUE)"
+                               TextField="@nameof(StatusOptionDTO.CDESCRIPTION)" />
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Button OnClick="btnRefresh_OnClick">@Localizer["_Refresh"]</R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="5">
+        <R_Grid @ref="_gridRef"
+                DataSource="@_VM.DataGridList"
+                Pageable
+                PageSize="20"
+                R_ConductorSource="@_conductorRef"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord"
+                Height="457px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CREFERENCE_NO)" 
+                                 HeaderText="@Localizer["_ReferenceNo"]" 
+                                 Width="120px" />
+                <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CTRANSACTION_DATE)" 
+                                 HeaderText="@Localizer["_Date"]" 
+                                 Width="100px" />
+                <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CSUPPLIER_NAME)" 
+                                 HeaderText="@Localizer["_Supplier"]" 
+                                 Width="200px" />
+                <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CSTATUS_DESC)" 
+                                 HeaderText="@Localizer["_Status"]" 
+                                 Width="100px" />
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+    <R_ItemLayout col="7">
+        <!-- Detail Form Section (Displayed when grid row is selected) -->
+        <R_TabStrip>
+            <R_TabStripTab Title="@Localizer["rpvAcqEntry"]" Id="@nameof(FAT00100)">
+
+                <!-- Header Information Section -->
+                <!-- Row 1: Department (left) | Reference No (right) -->
+                <R_StackLayout Row class="mb-1">
+                    <R_ItemLayout col="3">
+                        <R_Label>@Localizer["_Department"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox @bind-Value="_VM.CurrentRecord.CDEPT_CODE"
+                                R_ConductorSource="@_conductorRef"
+                                R_EnableAdd="true"
+                                R_EnableEdit="true"
+                                OnLostFocused="txtDepartmentCode_OnLostFocused" />
+                    </R_ItemLayout>
+                    <R_Lookup R_Before_Open_Lookup="btnDepartmentLookup_R_Before_Open_Lookup"
+                                R_After_Open_Lookup="btnDepartmentLookup_R_After_Open_Lookup">...</R_Lookup>
+                    <R_ItemLayout auto="true">
+                        <R_TextBox @bind-Value="_VM.CurrentRecord.CDEPT_NAME" Enabled="false" />
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="2" Style="text-align: right;">
+                        <R_Label FontSize="18px" FontStyle="@R_eFontStyle.Bold">
+                            @_VM.CurrentRecord.CSTATUS_DESC
+                        </R_Label>
+                    </R_ItemLayout>
+                    
+                </R_StackLayout>
+
+                <!-- Row 2: Ref. Date (left) | Document No (right) -->
+                <R_StackLayout Row class="mb-1">
+                    <R_ItemLayout col="3">
+                        <R_Label>@Localizer["_ReferenceNo"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="_VM.CurrentRecord.CREFERENCE_NO"
+                                R_ConductorSource="@_conductorRef"
+                                Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3" class="ps-4">
+                        <R_Label>@Localizer["_RefDate"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_DatePicker @bind-Value="_VM.CurrentRecord.DTRANSACTION_DATE"
+                                    R_ConductorSource="@_conductorRef"
+                                    R_EnableAdd="true"
+                                    R_EnableEdit="true" />
+                    </R_ItemLayout>
+                    
+                </R_StackLayout>
+
+                <!-- Row 3: Doc. Date (left) -->
+                <R_StackLayout Row class="mb-1">
+                    <R_ItemLayout col="3">
+                        <R_Label>@Localizer["_DocumentNumber"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_TextBox @bind-Value="_VM.CurrentRecord.CDOCUMENT_NO"
+                                R_ConductorSource="@_conductorRef"
+                                R_EnableAdd="true"
+                                R_EnableEdit="true" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3" class="ps-4">
+                        <R_Label>@Localizer["_DocDate"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_DatePicker @bind-Value="DocumentDate"
+                                    R_ConductorSource="@_conductorRef"
+                                    R_EnableAdd="true"
+                                    R_EnableEdit="true" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Source and Transaction Section -->
+                <!-- Source Radio Buttons -->
+                <R_StackLayout Row class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@Localizer["_Source"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_RadioGroup Data="SourceList"
+                                    @bind-Value="_VM.CurrentRecord.CFR_MODULE"
+                                    ValueField="@nameof(SourceOptionDTO.CVALUE)"
+                                    TextField="@nameof(SourceOptionDTO.CDESCRIPTION)"
+                                    R_ConductorSource="@_conductorRef"
+                                    R_EnableAdd="true"
+                                    R_EnableEdit="true" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Transaction Type Row -->
+                <R_StackLayout Row class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@Localizer["_TransactionType"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox @bind-Value="_VM.CurrentRecord.CTRANSACTION_CODE"
+                                R_ConductorSource="@_conductorRef"
+                                R_EnableAdd="true"
+                                R_EnableEdit="true" />
+                    </R_ItemLayout>
+                    <R_ItemLayout auto="true">
+                        <R_Lookup R_Before_Open_Lookup="btnTransactionTypeLookup_R_Before_Open_Lookup"
+                                R_After_Open_Lookup="btnTransactionTypeLookup_R_After_Open_Lookup">...</R_Lookup>
+                    </R_ItemLayout>
+                    <R_ItemLayout auto="false">
+                        <R_TextBox @bind-Value="_VM.CurrentRecord.CTRANSACTION_NAME" Enabled="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Transaction Number for PJ Row -->
+                <R_StackLayout Row class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@Localizer["_TransactionNumber"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox @bind-Value="_VM.CurrentRecord.CFR_REFERENCE_NO"
+                                R_ConductorSource="@_conductorRef"
+                                R_EnableAdd="true"
+                                R_EnableEdit="true" />
+                    </R_ItemLayout>
+                    <R_ItemLayout auto="true">
+                        <R_Lookup R_Before_Open_Lookup="btnPJTransactionLookup_R_Before_Open_Lookup"
+                                R_After_Open_Lookup="btnPJTransactionLookup_R_After_Open_Lookup">...</R_Lookup>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Supplier Section -->
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@Localizer["_Supplier"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox @bind-Value="_VM.CurrentRecord.CSUPPLIER_ID"
+                                R_ConductorSource="@_conductorRef"
+                                R_EnableAdd="true"
+                                R_EnableEdit="true"
+                                OnLostFocused="txtSupplierCode_OnLostFocused" />
+                    </R_ItemLayout>
+                    <R_ItemLayout auto="true">
+                        <R_Lookup R_Before_Open_Lookup="btnSupplierLookup_R_Before_Open_Lookup"
+                                R_After_Open_Lookup="btnSupplierLookup_R_After_Open_Lookup">...</R_Lookup>
+                    </R_ItemLayout>
+                    <R_ItemLayout auto="false">
+                        <R_TextBox @bind-Value="_VM.CurrentRecord.CSUPPLIER_NAME" Enabled="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Currency and Rates Section -->
+                <R_StackLayout Row>
+                    <R_ItemLayout col="6">
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="3">
+                                <R_Label>@Localizer["_Currency"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="3">
+                                <R_TextBox @bind-Value="_VM.CurrentRecord.CCURRENCY_CODE"
+                                        R_ConductorSource="@_conductorRef"
+                                        R_EnableAdd="true"
+                                        R_EnableEdit="true"
+                                        OnLostFocused="txtCurrencyCode_OnLostFocused" />
+                            </R_ItemLayout>
+                            <R_ItemLayout auto="true">
+                                <R_Lookup R_Before_Open_Lookup="btnCurrencyLookup_R_Before_Open_Lookup"
+                                        R_After_Open_Lookup="btnCurrencyLookup_R_After_Open_Lookup">...</R_Lookup>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
+                        <R_StackLayout>
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="6">
+                                    <R_Label>@Localizer["_BaseRate"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="6">
+                                    <R_Label>@Localizer["_CurrencyRate"]</R_Label>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="6">
+                                    <R_NumericTextBox @bind-Value="_VM.CurrentRecord.NLBASE_RATE_AMOUNT"
+                                                    R_ConductorSource="@_conductorRef"
+                                                    R_EnableAdd="true"
+                                                    R_EnableEdit="true"
+                                                    Decimals="6" />
+                                    <R_Label>@_VM.CurrentRecord.CCURRENCY_CODE</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="6">
+                                    <R_NumericTextBox @bind-Value="_VM.CurrentRecord.NLCURRENCY_RATE_AMOUNT"
+                                                    R_ConductorSource="@_conductorRef"
+                                                    R_EnableAdd="true"
+                                                    R_EnableEdit="true"
+                                                    Decimals="6" />
+                                    <R_Label>@_VM.CurrentRecord.CCURRENCY_CODE</R_Label>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                            <!-- Currency conversion display fields (read-only) -->
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="6">
+                                    <R_Label>@Localizer["_LocalCurrency"]</R_Label>
+                                    <R_Label Value="@LocalCurrencyDisplay" />
+                                </R_ItemLayout>
+                                <R_ItemLayout col="6">
+                                    <R_Label>@Localizer["_BaseCurrency"]</R_Label>
+                                    <R_Label Value="@BaseCurrencyDisplay" />
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Description Section -->
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>@Localizer["_Description"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="10">
+                        <R_TextArea @bind-Value="_VM.CurrentRecord.CTRANSACTION_DESCR"
+                                    R_ConductorSource="@_conductorRef"
+                                    R_EnableAdd="true"
+                                    R_EnableEdit="true"
+                                    Rows="3" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Audit Trail Section -->
+                <R_StackLayout Row>
+                    <R_ItemLayout col="6">
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="2">
+                                <R_Label>@Localizer["_Created"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="4">
+                                <R_TextBox Value="@CreateDateDisplay" Enabled="false" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox @bind-Value="_VM.CurrentRecord.CCREATE_BY" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="6">
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="2">
+                                <R_Label>@Localizer["_Updated"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="4">
+                                <R_TextBox Value="@UpdateDateDisplay" Enabled="false" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox @bind-Value="_VM.CurrentRecord.CUPDATE_BY" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_TabStripTab>
+
+            <!-- Tab 2: Asset List -->
+            <R_TabStripTab Title="@Localizer["rpvAssetList"]" Id="FAT00100AssetList">
+                <R_TabPage />
+            </R_TabStripTab>
+        </R_TabStrip>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="_conductorGridRef"
+                 R_IsHeader />
+
+<!-- R_Conductor Component -->
+<R_Conductor @ref="_conductorRef"
+             R_ViewModel="@_VM"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Conductor_R_ServiceGetRecord"
+             R_Display="@Conductor_R_Display"
+             R_ServiceSave="@Conductor_R_ServiceSave"
+             R_ServiceDelete="@Conductor_R_ServiceDelete"
+             R_Validation="@Conductor_R_Validation" />
