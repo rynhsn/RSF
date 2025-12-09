@@ -264,6 +264,25 @@
   <data name="_Approved" xml:space="preserve">
     <value>Approved</value>
   </data>
+  <data name="_Journal" xml:space="preserve">
+    <value>Journal</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="_LocalCurrency" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="_Period" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="_PJ" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="_Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="_SourceRefNo" xml:space="preserve">
+    <value>Source Ref No</value>
+  </data>
   <data name="_msgConfirmationClose" xml:space="preserve">
     <value>Please be aware, you can not modify this transaction anymore after this process</value>
   </data>
@@ -290,5 +309,11 @@
   </data>
   <data name="_Date" xml:space="preserve">
     <value />
+  </data>
+  <data name="_SourceTrans" xml:space="preserve">
+    <value>Source Trans.</value>
+  </data>
+  <data name="_SourceDepartment" xml:space="preserve">
+    <value>Source Department</value>
   </data>
 </root>

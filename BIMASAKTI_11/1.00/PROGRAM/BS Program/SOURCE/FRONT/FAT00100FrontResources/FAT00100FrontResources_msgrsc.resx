@@ -360,6 +360,9 @@
   <data name="_Source" xml:space="preserve">
     <value>Source</value>
   </data>
+  <data name="_SourceRefNo" xml:space="preserve">
+    <value>Source Ref No</value>
+  </data>
   <data name="_Status" xml:space="preserve">
     <value>Status</value>
   </data>
@@ -468,5 +471,13 @@
   <data name="_Date" xml:space="preserve">
     <value>Date</value>
     <comment>Date</comment>
+  </data>
+  <data name="_SourceTrans" xml:space="preserve">
+    <value>Source Trans.</value>
+    <comment>Source Trans.</comment>
+  </data>
+  <data name="_SourceDepartment" xml:space="preserve">
+    <value>Source Department</value>
+    <comment>Source Department</comment>
   </data>
 </root>

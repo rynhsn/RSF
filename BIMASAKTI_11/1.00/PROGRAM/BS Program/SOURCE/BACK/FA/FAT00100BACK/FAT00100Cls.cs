@@ -9,6 +9,7 @@ using System.Transactions;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using static R_CommonFrontBackAPI.R_ConfigurationUtility;
 using FAT00100Back.DTOs;
 using FAT00100BackResources;
 using FAT00100Common.DTOs;
@@ -791,6 +792,11 @@ namespace FAT00100Back
                 loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 50, poNewEntity.CTRANSACTION_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CREFERENCE_NO", DbType.String, 50, poNewEntity.CREFERENCE_NO);
 
+                _logger.LogDebug("Executing SQL Query: {Query}", loCmd.CommandText);
+                foreach (DbParameter param in loCmd.Parameters)
+                {
+                    _logger.LogDebug("Parameter: {Name} = {Value}", param.ParameterName, param.Value ?? "NULL");
+                }
                 var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
                 var loRtn = R_Utility.R_ConvertTo<FAT00100DTO>(loDataTable).FirstOrDefault();
 
@@ -822,6 +828,12 @@ namespace FAT00100Back
                             loRefNoParam.Direction = System.Data.ParameterDirection.Output;
                         }
 
+                        _logger.LogDebug("Executing SQL Query for Reference Number Generation: {Query}", loCmd.CommandText);
+                        foreach (DbParameter param in loCmd.Parameters)
+                        {
+                            _logger.LogDebug("Parameter: {Name} = {Value}", param.ParameterName, param.Value ?? "NULL");
+                        }
+
                         loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
                         loRtn = R_Utility.R_ConvertTo<FAT00100DTO>(loDataTable).FirstOrDefault();
                         if (loRtn != null && !string.IsNullOrWhiteSpace(loRtn.CREFERENCE_NO))
@@ -845,6 +857,12 @@ namespace FAT00100Back
                         loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 50, poNewEntity.CTRANSACTION_CODE);
                         loDb.R_AddCommandParameter(loCmd, "@CREFERENCE_NO", DbType.String, 50, poNewEntity.CREFERENCE_NO);
 
+                        _logger.LogInfo(loCmd.CommandText);
+                        _logger.LogDebug("Executing SQL Query for Reference Number Validation: {Query}", loCmd.CommandText);
+                        foreach (DbParameter param in loCmd.Parameters)
+                        {
+                            _logger.LogDebug("Parameter: {Name} = {Value}", param.ParameterName, param.Value ?? "NULL");
+                        }
                         loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
                         loRtn = R_Utility.R_ConvertTo<FAT00100DTO>(loDataTable).FirstOrDefault();
                     }
@@ -863,6 +881,9 @@ namespace FAT00100Back
                                                   " SELECT CINFO_SEQNO = @CINFO_SEQNO ",
                                                   poNewEntity.CCOMPANY_ID,
                                                   poNewEntity.CSUPPLIER_ID);
+
+                            _logger.LogInfo(lcCmd);
+                            _logger.LogDebug("Executing SQL Query for Supplier Info SeqNo: {Query}", lcCmd);
                             try
                             {
                                 var loRtnSeq = loDb.SqlExecObjectQuery<FAT00100DTO>(lcCmd, loConn, false);
@@ -1059,6 +1080,24 @@ namespace FAT00100Back
                         loDb.R_AddCommandParameter(loCmd, "@NLCURRENCY_RATE_AMOUNT", DbType.Decimal, 50, poNewEntity.NLCURRENCY_RATE_AMOUNT);
                         loDb.R_AddCommandParameter(loCmd, "@NBBASE_RATE_AMOUNT", DbType.Decimal, 50, poNewEntity.NBBASE_RATE_AMOUNT);
                         loDb.R_AddCommandParameter(loCmd, "@NBCURRENCY_RATE_AMOUNT", DbType.Decimal, 50, poNewEntity.NBCURRENCY_RATE_AMOUNT);
+                        // Log the query for auditing/debugging
+                        try
+                        {
+                            string lcLogQuery = R_GetAppSettings<string>("LOG_QUERY");
+                            if (lcLogQuery == "1")
+                            {
+                                string logQuery = loCmd.CommandText;
+                                foreach (DbParameter param in loCmd.Parameters)
+                                {
+                                    logQuery = logQuery.Replace(param.ParameterName, param.Value != null ? $"'{param.Value.ToString()}'" : "NULL");
+                                }
+                                _logger.LogDebug($"[FAT00100 - Update Query] {logQuery}");
+                            }
+                        }
+                        catch
+                        {
+                            // Ignore if LOG_QUERY setting is not available
+                        }
 
                         await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
                     }
@@ -1129,6 +1168,7 @@ namespace FAT00100Back
                                               poNewEntity.oSupp.CSTATE_CODE ?? string.Empty,
                                               poNewEntity.oSupp.CPHONE_1 ?? string.Empty,
                                               poNewEntity.oSupp.CPHONE_2 ?? string.Empty,
+                                              poNewEntity.oSupp.CPHONE_2 ?? string.Empty, // BUG in net4 line 955: CPHONE_2 used twice (position 9 should be CPHONE_3 or CFAX_NO1)
                                               poNewEntity.oSupp.CFAX_NO1 ?? string.Empty,
                                               poNewEntity.oSupp.CFAX_NO2 ?? string.Empty,
                                               poNewEntity.oSupp.CEMAIL_1 ?? string.Empty,
@@ -1145,6 +1185,9 @@ namespace FAT00100Back
                                               poNewEntity.oSupp.CSUPPLIER_ID ?? string.Empty,
                                               pcInfoSeqnoOld);
 
+                        // Log the executed SQL command for debugging/auditing
+                        _logger.LogDebug("Executing Update Supplier Query: " + lcCmd);
+
                         await loDb.SqlExecNonQueryAsync(lcCmd, loConn, false);
 
                         // Delete existing contact persons
@@ -1155,7 +1198,8 @@ namespace FAT00100Back
                                               poNewEntity.CCOMPANY_ID,
                                               poNewEntity.CSUPPLIER_ID ?? string.Empty,
                                               pcInfoSeqnoOld);
-
+                        // Log the executed SQL command for debugging/auditing
+                        _logger.LogDebug("Executing Delete Supplier Contact Query: " + lcCmd);
                         await loDb.SqlExecNonQueryAsync(lcCmd, loConn, false);
 
                         // Insert contact persons with sequence
@@ -1186,9 +1230,10 @@ namespace FAT00100Back
                                 await loDb.SqlExecNonQueryAsync(lcCmd, loConn, false);
 
                                 // Increment sequence: Right("000" + (CInt(cSequence) + 100).ToString, 6)
+                                // Match net4 line 979 exactly: parse as int, add 100, convert to string, prepend "000", take RIGHT 6 chars
                                 int liSeq = int.Parse(cSequence) + 100;
                                 string lcTemp = "000" + liSeq.ToString();
-                                cSequence = lcTemp.Length > 6 ? lcTemp.Substring(lcTemp.Length - 6) : lcTemp.PadLeft(6, '0');
+                                cSequence = lcTemp.Length >= 6 ? lcTemp.Substring(lcTemp.Length - 6) : lcTemp.PadLeft(6, '0');
                             }
                         }
                     }
@@ -1235,7 +1280,7 @@ namespace FAT00100Back
                                               poNewEntity.oSupp.CNPKP ?? string.Empty,
                                               poNewEntity.CCREATE_BY ?? string.Empty,
                                               poNewEntity.CUPDATE_BY ?? string.Empty);
-
+                        _logger.LogInfo($"Insert Supplier Info Query: {lcCmd}");
                         await loDb.SqlExecNonQueryAsync(lcCmd, loConn, false);
 
                         // Insert contact persons
@@ -1266,9 +1311,10 @@ namespace FAT00100Back
                                 await loDb.SqlExecNonQueryAsync(lcCmd, loConn, false);
 
                                 // Increment sequence: Right("000" + (CInt(cSequence) + 100).ToString, 6)
+                                // Match net4 line 1018 exactly: parse as int, add 100, convert to string, prepend "000", take RIGHT 6 chars
                                 int liSeq = int.Parse(cSequence) + 100;
                                 string lcTemp = "000" + liSeq.ToString();
-                                cSequence = lcTemp.Length > 6 ? lcTemp.Substring(lcTemp.Length - 6) : lcTemp.PadLeft(6, '0');
+                                cSequence = lcTemp.Length >= 6 ? lcTemp.Substring(lcTemp.Length - 6) : lcTemp.PadLeft(6, '0');
                             }
                         }
                     }

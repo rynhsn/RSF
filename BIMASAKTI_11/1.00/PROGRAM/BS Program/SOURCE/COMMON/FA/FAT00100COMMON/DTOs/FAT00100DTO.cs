@@ -40,9 +40,12 @@ namespace FAT00100Common.DTOs
         public decimal NLTRANSACTION_AMOUNT { get; set; }
         public decimal NBTRANSACTION_AMOUNT { get; set; }
         public string CDOCUMENT_DATE { get; set; } = string.Empty;
+        public DateTime? DDOCUMENT_DATE { get; set; }
         public string CFR_MODULE { get; set; } = string.Empty;
         public string CFR_DEPT_CODE { get; set; } = string.Empty;
+        public string CFR_DEPT_NAME { get; set; } = string.Empty;
         public string CFR_TRANSACTION_CODE { get; set; } = string.Empty;
+        public string CFR_TRANSACTION_NAME { get; set; } = string.Empty;
         public string CFR_REFERENCE_NO { get; set; } = string.Empty;
         public string CDEPT_NAME { get; set; } = string.Empty;
         public string CCURRENCY_NAME { get; set; } = string.Empty;

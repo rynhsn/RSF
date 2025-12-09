@@ -259,6 +259,15 @@ namespace FAT00100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Doc. Date.
+        /// </summary>
+        internal static string _DocDate {
+            get {
+                return ResourceManager.GetString("_DocDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document Date.
         /// </summary>
         internal static string _DocumentDate {
@@ -403,15 +412,6 @@ namespace FAT00100FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reference No.
-        /// </summary>
-        internal static string _ReferenceNo {
-            get {
-                return ResourceManager.GetString("_ReferenceNo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Ref. Date.
         /// </summary>
         internal static string _RefDate {
@@ -421,11 +421,11 @@ namespace FAT00100FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Doc. Date.
+        ///   Looks up a localized string similar to Reference No.
         /// </summary>
-        internal static string _DocDate {
+        internal static string _ReferenceNo {
             get {
-                return ResourceManager.GetString("_DocDate", resourceCulture);
+                return ResourceManager.GetString("_ReferenceNo", resourceCulture);
             }
         }
         
@@ -444,6 +444,33 @@ namespace FAT00100FrontResources {
         internal static string _Source {
             get {
                 return ResourceManager.GetString("_Source", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source Department.
+        /// </summary>
+        internal static string _SourceDepartment {
+            get {
+                return ResourceManager.GetString("_SourceDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source Ref No.
+        /// </summary>
+        internal static string _SourceRefNo {
+            get {
+                return ResourceManager.GetString("_SourceRefNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source Trans..
+        /// </summary>
+        internal static string _SourceTrans {
+            get {
+                return ResourceManager.GetString("_SourceTrans", resourceCulture);
             }
         }
         
