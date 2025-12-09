@@ -8,6 +8,7 @@ using FAT00100FrontResources;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,6 +21,16 @@ namespace FAT00100Model.VMs
     public class FAT00100ViewModel : R_ViewModel<FAT00100DTO>
     {
         private readonly FAT00100Model _model = new FAT00100Model();
+
+        // Hardcoded constants
+        public const string DEFAULT_TRANSACTION_CODE = "200010";
+        public const string DEFAULT_PJ_TRANSACTION_CODE = "420010";
+        public const string DEFAULT_SOURCE_MODULE_FA = "FA";
+        public const string DEFAULT_SOURCE_MODULE_PJ = "PJ";
+        public const string DEFAULT_STATUS_DRAFT = "00";
+        public const string DEFAULT_GL_TRF_STATUS = "0";
+        public const string STATUS_FLAG_DISABLED = "0";
+        public const string STATUS_FLAG_ENABLED = "1";
 
         // Current form data
         public FAT00100DTO CurrentRecord { get; set; } = new FAT00100DTO();
@@ -39,6 +50,7 @@ namespace FAT00100Model.VMs
         public FAT00100GetGSM_SUPPLIER_INFOResultDTO SupplierInfo { get; set; } = new FAT00100GetGSM_SUPPLIER_INFOResultDTO();
 
         // Form state properties (from GetInitialProcess)
+        
         public string DefaultTrxDeptCode { get; set; } = string.Empty;
         public string DefaultAssetDeptCode { get; set; } = string.Empty;
         public bool AssetIncrementFlag { get; set; }
@@ -61,7 +73,10 @@ namespace FAT00100Model.VMs
         public string PJTransDesc { get; set; } = string.Empty;
         public bool CanApprove { get; set; }
         public bool CanClose { get; set; }
-
+        public string PoDeptCode { get; set; } = string.Empty;
+        public string PoDeptName { get; set; } = string.Empty;
+        public string PoSupplierId { get; set; } = string.Empty;
+        public string PoSupplierName { get; set; } = string.Empty;
         // Additional state
         public string GLTransferStatus { get; set; } = string.Empty;
         public bool GLLink { get; set; }
@@ -333,6 +348,33 @@ namespace FAT00100Model.VMs
                 var loResult = await _model.R_ServiceGetRecord(loParam);
                 CurrentRecord = loResult.data;
 
+                // Convert CTRANSACTION_DATE string to DTRANSACTION_DATE DateTime
+                if (CurrentRecord != null && !string.IsNullOrWhiteSpace(CurrentRecord.CTRANSACTION_DATE))
+                {
+                    CurrentRecord.DTRANSACTION_DATE = DateTime.ParseExact(CurrentRecord.CTRANSACTION_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
+                }
+                else if (CurrentRecord != null)
+                {
+                    CurrentRecord.DTRANSACTION_DATE = null;
+                }
+
+                // Convert CDOCUMENT_DATE string to DDOCUMENT_DATE DateTime
+                if (CurrentRecord != null && !string.IsNullOrWhiteSpace(CurrentRecord.CDOCUMENT_DATE))
+                {
+                    CurrentRecord.DDOCUMENT_DATE = DateTime.ParseExact(CurrentRecord.CDOCUMENT_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
+                }
+                else if (CurrentRecord != null)
+                {
+                    CurrentRecord.DDOCUMENT_DATE = null;
+                }
+
+                // Set currency codes from InitialProcessData (from HSM_PROPERTY_SYSTEM)
+                if (CurrentRecord != null && InitialProcessData != null)
+                {
+                    CurrentRecord.CLOCAL_CURRENCY_CODE = InitialProcessData.CLOCAL_CURRENCY_CODE ?? string.Empty;
+                    CurrentRecord.CBASE_CURRENCY_CODE = InitialProcessData.CBASE_CURRENCY_CODE ?? string.Empty;
+                }
+
                 // Handle nested DTOs
                 if (CurrentRecord != null)
                 {
@@ -434,6 +476,7 @@ namespace FAT00100Model.VMs
 
                 var loResult = await _model.R_ServiceSave(loParam);
                 CurrentRecord = loResult.data;
+                // Note: Data property is read-only and will be updated by the conductor from eventArgs.Result
 
                 // Handle nested DTOs
                 if (CurrentRecord != null)
@@ -554,7 +597,7 @@ namespace FAT00100Model.VMs
                     {
                         CCOMPANY_ID = pcCompanyId,
                         CDEPT_CODE = pcDepartmentCode,
-                        CTRANSACTION_CODE = "200010",
+                        CTRANSACTION_CODE = DEFAULT_TRANSACTION_CODE,
                         CREFERENCE_NO = pcTransactionNumberForPJ
                     };
 
@@ -775,19 +818,24 @@ namespace FAT00100Model.VMs
 
         /// <summary>
         /// Submit process
+        /// Uses existing CurrentRecord data from ViewModel instead of requiring all parameters
         /// </summary>
-        public async Task<FAT00100SubmitProcessResultDTO> SubmitProcessAsync(string pcCompanyId, string pcUserId, string pcReferenceNo)
+        public async Task<FAT00100SubmitProcessResultDTO> SubmitProcessAsync(string pcCompanyId, string pcLangId, string pcUserId)
         {
             var loEx = new R_Exception();
             FAT00100SubmitProcessResultDTO loResult = new FAT00100SubmitProcessResultDTO();
 
             try
             {
+                // Use CurrentRecord which already contains CDEPT_CODE, CTRANSACTION_CODE, CREFERENCE_NO
                 var loParam = new FAT00100SubmitProcessParameterDTO
                 {
                     CCOMPANY_ID = pcCompanyId,
+                    CLANG_ID = pcLangId,
                     CUSER_ID = pcUserId,
-                    CREFERENCE_NO = pcReferenceNo
+                    CDEPT_CODE = CurrentRecord.CDEPT_CODE,
+                    CTRANSACTION_CODE = CurrentRecord.CTRANSACTION_CODE,
+                    CREFERENCE_NO = CurrentRecord.CREFERENCE_NO
                 };
 
                 var loRtn = await _model.SubmitProcess(loParam);
@@ -892,7 +940,7 @@ namespace FAT00100Model.VMs
         /// <summary>
         /// Validation before submit
         /// </summary>
-        public async Task<FAT00100ValidationBeforeSubmitResultDTO> ValidationBeforeSubmitAsync(string pcCompanyId, string pcReferenceNo)
+        public async Task<FAT00100ValidationBeforeSubmitResultDTO> ValidationBeforeSubmitAsync(string pcCompanyId, string pcDeptCode, string pcTransactionCode, string pcReferenceNo)
         {
             var loEx = new R_Exception();
             FAT00100ValidationBeforeSubmitResultDTO loResult = new FAT00100ValidationBeforeSubmitResultDTO();
@@ -902,6 +950,8 @@ namespace FAT00100Model.VMs
                 var loParam = new FAT00100ValidationBeforeSubmitParameterDTO
                 {
                     CCOMPANY_ID = pcCompanyId,
+                    CDEPT_CODE = pcDeptCode,
+                    CTRANSACTION_CODE = pcTransactionCode,
                     CREFERENCE_NO = pcReferenceNo
                 };
 
