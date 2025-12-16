@@ -61,6 +61,14 @@ namespace FAT00100Model.VMs
         public string GLLinkDate { get; set; } = string.Empty;
         public decimal NLGLinkVal { get; set; }
 
+        // Button enablement properties (based on PCMODE and PCSTATUS)
+        // NET4: btnImportPJ.Enabled = PCMODE = "T" And PCSTATUS = "00" And PCFR_MODULE = "PJ"
+        // NET4: btnImportExist.Enabled = PCMODE = "T" And PCSTATUS = "00" And PCFR_MODULE = "FA"
+        // NET4: btnEditAllocExpense.Enabled = PCMODE = "T" And PCSTATUS = "00"
+        public bool EnableImportPJ => Mode == "T" && Status == "00" && FrModule == "PJ";
+        public bool EnableImportExisting => Mode == "T" && Status == "00" && FrModule == "FA";
+        public bool EnableEditAllocExpense => Mode == "T" && Status == "00";
+
         #region Display Properties
 
         /// <summary>

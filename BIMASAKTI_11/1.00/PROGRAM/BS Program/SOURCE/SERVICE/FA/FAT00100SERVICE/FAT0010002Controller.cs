@@ -232,7 +232,7 @@ namespace FAT00100Service
                     CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
                     CLANG_ID = R_BackGlobalVar.CULTURE,
                     CUSER_ID = R_BackGlobalVar.USER_ID,
-                    CFOREIGN_LANGUAGE = R_Utility.R_GetStreamingContext<string>(ContextConstants.CFOREIGN_LANGUAGE) ?? string.Empty
+                    CFOREIGN_LANGUAGE = R_BackGlobalVar.CULTURE
                 };
 
                 _logger.LogInfo("Start method GetComboDepreciationMethod in {0}", lcMethod);

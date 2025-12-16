@@ -346,4 +346,94 @@
   <data name="_BaseAmount" xml:space="preserve">
     <value>Jumlah Dasar</value>
   </data>
+  <data name="_TotalAmount" xml:space="preserve">
+    <value>Jumlah Total</value>
+  </data>
+  <data name="_AssetInfo" xml:space="preserve">
+    <value>Info Aset</value>
+  </data>
+  <data name="_AssetJournalGroup" xml:space="preserve">
+    <value>Grup Jurnal Aset</value>
+  </data>
+  <data name="_Picture" xml:space="preserve">
+    <value>Gambar</value>
+  </data>
+  <data name="_NoPicture" xml:space="preserve">
+    <value>Tidak Ada Gambar</value>
+  </data>
+  <data name="_Upload" xml:space="preserve">
+    <value>Unggah</value>
+  </data>
+  <data name="_Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="_Next" xml:space="preserve">
+    <value>Berikutnya</value>
+  </data>
+  <data name="_DepreciationInfo" xml:space="preserve">
+    <value>Info Penyusutan</value>
+  </data>
+  <data name="_InServiceDate" xml:space="preserve">
+    <value>Tanggal Mulai Digunakan</value>
+  </data>
+  <data name="_New" xml:space="preserve">
+    <value>Baru</value>
+  </data>
+  <data name="_FinancialDetails" xml:space="preserve">
+    <value>Detail Keuangan</value>
+  </data>
+  <data name="_Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="_Addition" xml:space="preserve">
+    <value>Penambahan</value>
+  </data>
+  <data name="_Deduction" xml:space="preserve">
+    <value>Pengurangan</value>
+  </data>
+  <data name="_PriorDepr" xml:space="preserve">
+    <value>Penyusutan Sebelumnya</value>
+  </data>
+  <data name="_YTDDepr" xml:space="preserve">
+    <value>Penyusutan YTD</value>
+  </data>
+  <data name="_DeprMethod" xml:space="preserve">
+    <value>Metode Penyusutan</value>
+  </data>
+  <data name="_StartDate" xml:space="preserve">
+    <value>Tanggal Mulai</value>
+  </data>
+  <data name="_BookValue" xml:space="preserve">
+    <value>Nilai Buku</value>
+  </data>
+  <data name="_BegBookValue" xml:space="preserve">
+    <value>Nilai Buku Awal</value>
+  </data>
+  <data name="_ResidualValue" xml:space="preserve">
+    <value>Nilai Sisa</value>
+  </data>
+  <data name="_UsefulLife" xml:space="preserve">
+    <value>Masa Manfaat</value>
+  </data>
+  <data name="_Year" xml:space="preserve">
+    <value>Tahun</value>
+  </data>
+  <data name="_Month" xml:space="preserve">
+    <value>Bulan</value>
+  </data>
+  <data name="_Remaining" xml:space="preserve">
+    <value>Sisa</value>
+  </data>
+  <data name="_YearlyDepr" xml:space="preserve">
+    <value>Penyusutan Tahunan</value>
+  </data>
+  <data name="_ExpenseAllocation" xml:space="preserve">
+    <value>Alokasi Biaya</value>
+  </data>
+  <data name="_ImportPJ" xml:space="preserve">
+    <value>Impor PJ</value>
+  </data>
+  <data name="_ImportExisting" xml:space="preserve">
+    <value>Impor Yang Ada</value>
+  </data>
 </root>

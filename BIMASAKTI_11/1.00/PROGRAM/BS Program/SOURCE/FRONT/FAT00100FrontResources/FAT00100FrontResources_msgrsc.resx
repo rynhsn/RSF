@@ -510,4 +510,94 @@
   <data name="_BaseAmount" xml:space="preserve">
     <value>Base Amount</value>
   </data>
+  <data name="_TotalAmount" xml:space="preserve">
+    <value>Total Amount</value>
+  </data>
+  <data name="_AssetInfo" xml:space="preserve">
+    <value>Asset Info</value>
+  </data>
+  <data name="_AssetJournalGroup" xml:space="preserve">
+    <value>Asset Journal Group</value>
+  </data>
+  <data name="_Picture" xml:space="preserve">
+    <value>Picture</value>
+  </data>
+  <data name="_NoPicture" xml:space="preserve">
+    <value>No Picture</value>
+  </data>
+  <data name="_Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="_Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="_Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="_DepreciationInfo" xml:space="preserve">
+    <value>Depreciation Info</value>
+  </data>
+  <data name="_InServiceDate" xml:space="preserve">
+    <value>In Service Date</value>
+  </data>
+  <data name="_New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="_FinancialDetails" xml:space="preserve">
+    <value>Financial Details</value>
+  </data>
+  <data name="_Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="_Addition" xml:space="preserve">
+    <value>Addition</value>
+  </data>
+  <data name="_Deduction" xml:space="preserve">
+    <value>Deduction</value>
+  </data>
+  <data name="_PriorDepr" xml:space="preserve">
+    <value>Prior Depr.</value>
+  </data>
+  <data name="_YTDDepr" xml:space="preserve">
+    <value>YTD Depr.</value>
+  </data>
+  <data name="_DeprMethod" xml:space="preserve">
+    <value>Depr. Method</value>
+  </data>
+  <data name="_StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="_BookValue" xml:space="preserve">
+    <value>Book Value</value>
+  </data>
+  <data name="_BegBookValue" xml:space="preserve">
+    <value>Beg. Book Value</value>
+  </data>
+  <data name="_ResidualValue" xml:space="preserve">
+    <value>Residual Value</value>
+  </data>
+  <data name="_UsefulLife" xml:space="preserve">
+    <value>Useful Life</value>
+  </data>
+  <data name="_Year" xml:space="preserve">
+    <value>Year(s)</value>
+  </data>
+  <data name="_Month" xml:space="preserve">
+    <value>Month(s)</value>
+  </data>
+  <data name="_Remaining" xml:space="preserve">
+    <value>Remaining</value>
+  </data>
+  <data name="_YearlyDepr" xml:space="preserve">
+    <value>Yearly Depr.</value>
+  </data>
+  <data name="_ExpenseAllocation" xml:space="preserve">
+    <value>Expense Allocation</value>
+  </data>
+  <data name="_ImportPJ" xml:space="preserve">
+    <value>Import PJ</value>
+  </data>
+  <data name="_ImportExisting" xml:space="preserve">
+    <value>Import Existing</value>
+  </data>
 </root>
