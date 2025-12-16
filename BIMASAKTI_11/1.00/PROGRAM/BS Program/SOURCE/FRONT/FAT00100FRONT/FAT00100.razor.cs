@@ -9,6 +9,7 @@ using R_BlazorFrontEnd.Controls.Enums;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.Popup;
 using R_BlazorFrontEnd.Controls.MessageBox;
+using R_BlazorFrontEnd.Controls.Tab;
 using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
@@ -28,6 +29,9 @@ namespace FAT00100Front
         private R_Conductor? _conductorRef;
         private R_ConductorGrid? _conductorGridRef;
         private R_Grid<FAT00100GetDataGridResultDTO>? _gridRef;
+        private R_TabStrip? _tabStripRef;
+        private R_TabStripTab? _tabAssetList;
+        private R_TabPage? _tabPageAssetList;
 
         // Period filter properties
         public int PeriodFromYear { get; set; } = 2023;
@@ -43,6 +47,7 @@ namespace FAT00100Front
 
         [Inject] private IClientHelper ClientHelper { get; set; } = default!;
         [Inject] private R_ILocalizer<FAT00100FrontResources.Resources_Dummy_Class> Localizer { get; set; } = default!;
+        [Inject] public R_PopupService PopupService { get; set; } = default!;
 
         // Source radio button list for FA/PJ
         public class SourceOptionDTO
@@ -864,7 +869,7 @@ namespace FAT00100Front
             loEx.ThrowExceptionIfErrors();
         }
 
-        private void Conductor_R_Display(R_DisplayEventArgs eventArgs)
+        private async Task Conductor_R_Display(R_DisplayEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
@@ -882,6 +887,61 @@ namespace FAT00100Front
 
                 // Format audit trail dates for display (handled by properties)
                 // Currency display fields are handled by properties
+
+                // Refresh Asset List tab page with current data (equivalent to InvokeRefreshTabPageAsync in PMM01000)
+                // Check if conductor is in Normal mode and Asset List tab is active
+                if (_conductorRef != null && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)
+                {
+                    // Check if Asset List tab is active (equivalent to _TabGeneral.ActiveTab.Id == "Rate" in PMM01000)
+                    if (_tabStripRef?.ActiveTab?.Id == nameof(FAT00100AssetList) && _tabPageAssetList != null)
+                    {
+                        // Store reference to avoid null reference warning
+                        var loTabPageAssetList = _tabPageAssetList;
+
+                        // Get current data from conductor (equivalent to loTempParamUtility in PMM01000)
+                        var loTempParam = _conductorRef!.R_GetCurrentData();
+
+                        // Convert to FAT00100DTO for Asset List tab parameter
+                        FAT00100DTO loParam;
+                        if (loTempParam is FAT00100DTO loDTO)
+                        {
+                            loParam = loDTO;
+                        }
+                        else if (loTempParam != null)
+                        {
+                            // Convert if needed - loTempParam is not null here due to the if condition
+                            loParam = R_FrontUtility.ConvertObjectToObject<FAT00100DTO>(loTempParam) ?? new FAT00100DTO();
+                        }
+                        else
+                        {
+                            // Use CurrentRecord if no data from conductor
+                            loParam = _VM?.CurrentRecord ?? new FAT00100DTO();
+                        }
+
+                        // Refresh Asset List tab page with current data
+                        // loTabPageAssetList is not null here due to the null check above
+                        await loTabPageAssetList!.InvokeRefreshTabPageAsync(loParam);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Grid display handler - called when grid row is selected
+        /// </summary>
+        private void Grid_R_Display(R_DisplayEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                // Grid display logic handled by conductor
             }
             catch (Exception ex)
             {
@@ -1419,15 +1479,79 @@ namespace FAT00100Front
 
         #region Button Event Handlers
 
+        #region Detail Popup Handlers
+
         private async Task btnDetail_OnClick()
         {
             var loEx = new R_Exception();
 
             try
             {
-                // TODO: Implement detail button click handler
-                // This typically opens a detail form/page
-                await Task.CompletedTask;
+                // Get current entity from conductor
+                var loEntity = _VM.CurrentRecord;
+
+                if (loEntity == null || string.IsNullOrWhiteSpace(loEntity.CREFERENCE_NO))
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS009"));
+                    loEx.ThrowExceptionIfErrors();
+                    return;
+                }
+
+                // Create parameter DTO for FAT0010002
+                var loParam = new FAT0010002DTO
+                {
+                    CDEPT_CODE = loEntity.CDEPT_CODE ?? string.Empty,
+                    CTRANSACTION_CODE = loEntity.CTRANSACTION_CODE ?? string.Empty,
+                    CREFERENCE_NO = loEntity.CREFERENCE_NO,
+                    CSTATUS = loEntity.CSTATUS ?? string.Empty,
+                    CMODE = "T", // T=Transaction, V=View
+                    CLOCAL_CURRENCY_CODE = _VM.LocalCurrencyCode ?? string.Empty,
+                    CBASE_CURRENCY_CODE = _VM.BaseCurrencyCode ?? string.Empty,
+                    LASSET_INCREMENT_FLAG = _VM.IncrementFlag,
+                    LJRNGRP_MODE = _VM.JrngrpMode,
+                    LDEPT_MODE = _VM.DeptMode,
+                    CASSET_DEPT_CODE = _VM.DefaultAssetDeptCode ?? string.Empty,
+                    LGLLINK = _VM.GLLink,
+                    CGLLINK_DATE = _VM.GlinkDate ?? string.Empty
+                };
+
+                // Create popup settings with large size
+                var loPopupSettings = new R_PopupSettings
+                {
+                    PageTitle = Localizer["_Detail"],
+                    WithLock = true,
+                    Page = this,
+                    Width = "100%"
+                };
+
+                // Show popup using PopupService
+                var loResult = await PopupService.Show(typeof(FAT0010002), loParam, poPopupSettings: loPopupSettings);
+
+                // Handle result if popup was successful
+                if (loResult.Success && loResult.Result != null)
+                {
+                    // Refresh conductor with updated data if needed
+                    if (_conductorRef != null)
+                    {
+                        var loRefreshParam = new FAT00100DTO
+                        {
+                            CCOMPANY_ID = ClientHelper.CompanyId,
+                            CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
+                            CDEPT_CODE = _VM.PoDeptCode,
+                            CFILTER_TRANS_CODE = FAT00100ViewModel.DEFAULT_TRANSACTION_CODE,
+                            CREFERENCE_NO = _VM.CurrentRecord.CREFERENCE_NO
+                        };
+
+                        await _VM.GetEntity(loRefreshParam);
+                        await _conductorRef.R_GetEntity(loRefreshParam);
+                    }
+
+                    // Refresh grid if needed
+                    if (_gridRef != null)
+                    {
+                        await _gridRef.R_RefreshGrid(null);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1436,6 +1560,8 @@ namespace FAT00100Front
 
             R_DisplayException(loEx);
         }
+
+        #endregion
 
         private async Task btnSubmit_OnClick()
         {
@@ -1683,6 +1809,66 @@ namespace FAT00100Front
             }
 
             R_DisplayException(loEx);
+        }
+
+        #endregion
+
+        #region Asset List Tab Page Event Handlers
+
+        /// <summary>
+        /// Before opening Asset List tab - passes FAT00100DTO as parameter and sets target page type
+        /// </summary>
+        private void BeforeOpenAssetList(R_BeforeOpenTabPageEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                // Pass CurrentRecord DTO as parameter to the AssetList component
+                eventArgs.Parameter = _VM?.CurrentRecord ?? new FAT00100DTO();
+                eventArgs.TargetPageType = typeof(FAT00100AssetList);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// After opening Asset List tab - handles post-open logic
+        /// </summary>
+        private async Task AfterOpenAssetList(R_AfterOpenTabPageEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                // Refresh asset list if needed after tab is opened
+                // Asset list should already be loaded from parent ViewModel
+                await Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Asset List tab event callback - handles callbacks from the AssetList component
+        /// </summary>
+        private void AssetListTabEventCallBack(object poParam)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                // Handle callbacks from AssetList component if needed
+                // For now, no specific callback handling required
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
         }
 
         #endregion

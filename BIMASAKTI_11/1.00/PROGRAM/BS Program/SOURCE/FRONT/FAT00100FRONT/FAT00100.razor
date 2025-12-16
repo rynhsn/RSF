@@ -114,13 +114,14 @@
                 R_ConductorSource="@_conductorRef"
                 R_GridType="@R_eGridType.Navigator"
                 R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord"
+                R_Display="@Grid_R_Display"
                 Height="457px">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CREFERENCE_NO)" 
                                  HeaderText="@Localizer["_ReferenceNo"]" 
                                  Width="120px" />
-                <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CTRANSACTION_DATE)" 
-                                 HeaderText="@Localizer["_Date"]" 
+                <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CTRANSACTION_DATE_DISPLAY)"
+                                  HeaderText="@Localizer["_Date"]" 
                                  Width="100px" />
                 <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CSTATUS_DESC)" 
                                  HeaderText="@Localizer["_Status"]" 
@@ -134,7 +135,7 @@
     </R_ItemLayout>
     <R_ItemLayout col="8">
         <!-- Detail Form Section (Displayed when grid row is selected) -->
-        <R_TabStrip>
+        <R_TabStrip @ref="_tabStripRef">
             <R_TabStripTab Title="@Localizer["rpvAcqEntry"]" Id="@nameof(FAT00100)">
 
                 <!-- Header Information Section -->
@@ -444,8 +445,8 @@
             </R_TabStripTab>
 
             <!-- Tab 2: Asset List -->
-            <R_TabStripTab Title="@Localizer["rpvAssetList"]" Id="FAT00100AssetList">
-                <R_TabPage />
+            <R_TabStripTab @ref="_tabAssetList" Title="@Localizer["rpvAssetList"]" Id="@nameof(FAT00100AssetList)">
+                <R_TabPage @ref="_tabPageAssetList" R_Before_Open_TabPage="BeforeOpenAssetList" R_After_Open_TabPage="AfterOpenAssetList" R_TabEventCallback="AssetListTabEventCallBack"/>
             </R_TabStripTab>
         </R_TabStrip>
     </R_ItemLayout>
@@ -464,9 +465,9 @@
             <R_DeleteButton R_Conductor="@_conductorRef" />
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_Button R_ConductorSource="@_conductorRef" 
-                    R_EnableHasData 
-                    OnClick="btnDetail_OnClick">
+            <R_Button R_ConductorSource="@_conductorRef"
+                      R_EnableOther
+                      OnClick="@btnDetail_OnClick">
                 @Localizer["_Detail"]
             </R_Button>
         </R_ItemLayout>

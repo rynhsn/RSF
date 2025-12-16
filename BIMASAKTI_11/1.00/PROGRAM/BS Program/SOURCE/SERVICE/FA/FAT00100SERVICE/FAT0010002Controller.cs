@@ -275,7 +275,7 @@ namespace FAT00100Service
                     CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstants.CTRANSACTION_CODE) ?? string.Empty,
                     CREFERENCE_NO = R_Utility.R_GetStreamingContext<string>(ContextConstants.CREFERENCE_NO) ?? string.Empty,
                     CSTATUS = R_Utility.R_GetStreamingContext<string>(ContextConstants.CSTATUS) ?? string.Empty,
-                    DUPDATE_DATE = R_Utility.R_GetStreamingContext<DateTime?>(ContextConstants.DUPDATE_DATE)
+                    DUPDATE_DATE = DateTime.Today
                 };
 
                 _logger.LogInfo("Start method GetFAAcquisitionDetailAssetList in {0}", lcMethod);

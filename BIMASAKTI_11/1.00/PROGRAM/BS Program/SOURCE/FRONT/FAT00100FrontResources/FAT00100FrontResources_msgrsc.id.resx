@@ -316,4 +316,34 @@
   <data name="_SourceDepartment" xml:space="preserve">
     <value>Source Department</value>
   </data>
+  <data name="_AssetCode" xml:space="preserve">
+    <value>Kode Aset</value>
+  </data>
+  <data name="_AssetName" xml:space="preserve">
+    <value>Nama Aset</value>
+  </data>
+  <data name="_InitialCost" xml:space="preserve">
+    <value>Biaya Awal</value>
+  </data>
+  <data name="_Quantity" xml:space="preserve">
+    <value>Jumlah</value>
+  </data>
+  <data name="_UOM" xml:space="preserve">
+    <value>Satuan</value>
+  </data>
+  <data name="_AssetDetails" xml:space="preserve">
+    <value>Detail Aset</value>
+  </data>
+  <data name="_AssetCategory" xml:space="preserve">
+    <value>Kategori Aset</value>
+  </data>
+  <data name="_SerialNumber" xml:space="preserve">
+    <value>Nomor Seri</value>
+  </data>
+  <data name="_LocalAmount" xml:space="preserve">
+    <value>Jumlah Lokal</value>
+  </data>
+  <data name="_BaseAmount" xml:space="preserve">
+    <value>Jumlah Dasar</value>
+  </data>
 </root>

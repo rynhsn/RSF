@@ -61,6 +61,107 @@ namespace FAT00100Model.VMs
         public string GLLinkDate { get; set; } = string.Empty;
         public decimal NLGLinkVal { get; set; }
 
+        #region Display Properties
+
+        /// <summary>
+        /// Format transaction date for display (from yyyyMMdd to dd-MMM-yyyy)
+        /// </summary>
+        public string TransactionDateDisplay
+        {
+            get
+            {
+                try
+                {
+                    if (HeaderData == null)
+                        return string.Empty;
+
+                    if (string.IsNullOrWhiteSpace(HeaderData.CTRANSACTION_DATE))
+                        return string.Empty;
+
+                    if (HeaderData.CTRANSACTION_DATE.Length == 8)
+                    {
+                        string lcYear = HeaderData.CTRANSACTION_DATE.Substring(0, 4);
+                        string lcMonth = HeaderData.CTRANSACTION_DATE.Substring(4, 2);
+                        string lcDay = HeaderData.CTRANSACTION_DATE.Substring(6, 2);
+                        
+                        if (int.TryParse(lcYear, out int liYear) &&
+                            int.TryParse(lcMonth, out int liMonth) &&
+                            int.TryParse(lcDay, out int liDay))
+                        {
+                            var ldDate = new DateTime(liYear, liMonth, liDay);
+                            return ldDate.ToString("dd-MMM-yyyy");
+                        }
+                    }
+                    return HeaderData.CTRANSACTION_DATE;
+                }
+                catch
+                {
+                    // Return empty string if parsing fails
+                    return string.Empty;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Format local currency rate display
+        /// </summary>
+        public string LocalCurrencyRateDisplay
+        {
+            get
+            {
+                try
+                {
+                    if (HeaderData == null)
+                        return string.Empty;
+
+                    if (HeaderData.NLBASE_RATE_AMOUNT <= 0 || 
+                        HeaderData.NLCURRENCY_RATE_AMOUNT <= 0)
+                        return string.Empty;
+
+                    if (string.IsNullOrWhiteSpace(HeaderData.CCURRENCY_CODE) ||
+                        string.IsNullOrWhiteSpace(LocalCurrencyCode))
+                        return string.Empty;
+
+                    return $"1.00 {HeaderData.CCURRENCY_CODE} = {HeaderData.NLCURRENCY_RATE_AMOUNT:N2} {LocalCurrencyCode}";
+                }
+                catch
+                {
+                    return string.Empty;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Format base currency rate display
+        /// </summary>
+        public string BaseCurrencyRateDisplay
+        {
+            get
+            {
+                try
+                {
+                    if (HeaderData == null)
+                        return string.Empty;
+
+                    if (HeaderData.NBBASE_RATE_AMOUNT <= 0 || 
+                        HeaderData.NBCURRENCY_RATE_AMOUNT <= 0)
+                        return string.Empty;
+
+                    if (string.IsNullOrWhiteSpace(HeaderData.CCURRENCY_CODE) ||
+                        string.IsNullOrWhiteSpace(BaseCurrencyCode))
+                        return string.Empty;
+
+                    return $"1.00 {HeaderData.CCURRENCY_CODE} = {HeaderData.NBCURRENCY_RATE_AMOUNT:N2} {BaseCurrencyCode}";
+                }
+                catch
+                {
+                    return string.Empty;
+                }
+            }
+        }
+
+        #endregion
+
         #region CRUD Methods
 
         /// <summary>
@@ -306,11 +407,12 @@ namespace FAT00100Model.VMs
             try
             {
                 // Set streaming context for custom parameters (NOT CCOMPANY_ID, CLANG_ID)
+                // CFOREIGN_LANGUAGE is required by backend controller
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CFOREIGN_LANGUAGE, pcLangId);
                 R_FrontContext.R_SetStreamingContext(ContextConstants.CDEPT_CODE, pcDeptCode);
                 R_FrontContext.R_SetStreamingContext(ContextConstants.CTRANSACTION_CODE, pcTransactionCode);
                 R_FrontContext.R_SetStreamingContext(ContextConstants.CREFERENCE_NO, pcReferenceNo);
                 R_FrontContext.R_SetStreamingContext(ContextConstants.CSTATUS, pcStatus);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.DUPDATE_DATE, pdUpdateDate);
 
                 var loResult = await _model.GetFAAcquisitionDetailAssetListAsync();
                 AssetList = new ObservableCollection<FAT0010002GetFAAcquisitionDetailAssetListResultDTO>(loResult.Data ?? new List<FAT0010002GetFAAcquisitionDetailAssetListResultDTO>());

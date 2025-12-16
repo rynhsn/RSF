@@ -1,0 +1,156 @@
+@inherits R_Page
+@* Asset List Component - Displays asset grid and detail form *@
+
+<R_StackLayout>
+    <!-- Top Section: Asset List Grid -->
+    <R_ItemLayout col="12" class="mb-3">
+        <R_Grid @ref="_gridRef"
+                DataSource="@(VM.AssetList ?? new System.Collections.ObjectModel.ObservableCollection<FAT00100GetAssetListResultDTO>())"
+                Pageable
+                PageSize="20"
+                R_ConductorSource="@_conductorRef"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord"
+                Height="300px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(FAT00100GetAssetListResultDTO.CASSET_CODE)" 
+                                 HeaderText="@Localizer["_AssetCode"]" 
+                                 Width="150px" />
+                <R_GridTextColumn FieldName="@nameof(FAT00100GetAssetListResultDTO.CASSET_NAME)" 
+                                 HeaderText="@Localizer["_AssetName"]" 
+                                 Width="200px" />
+                @* TODO: Currency field not in DTO - removed from grid for now *@
+                <R_GridNumericColumn FieldName="@nameof(FAT00100GetAssetListResultDTO.NLTRANSACTION_AMOUNT1)" 
+                                    HeaderText="@Localizer["_InitialCost"]" 
+                                    Width="120px"
+                                    TValue="decimal"
+                                    Decimals="2"
+                                    ThousandSeparator="true" />
+                <R_GridNumericColumn FieldName="@nameof(FAT00100GetAssetListResultDTO.ITRANSACTION_QTY1)" 
+                                    HeaderText="@Localizer["_Quantity"]" 
+                                    Width="100px"
+                                    TValue="int"
+                                    ThousandSeparator="false" />
+                <R_GridTextColumn FieldName="@nameof(FAT00100GetAssetListResultDTO.CUNIT)" 
+                                 HeaderText="@Localizer["_UOM"]" 
+                                 Width="80px" />
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+
+    <!-- Bottom Section: Asset Detail Form -->
+    <R_ItemLayout col="12" >
+        <R_GroupBox Title="@Localizer["_AssetDetails"]" class="ps-1">
+            <R_StackLayout>
+                <!-- Asset Department -->
+                <R_StackLayout Row class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@Localizer["_AssetDepartment"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox @bind-Value="VM.Data.CASSET_DEPT_CODE" 
+                                   R_ConductorSource="@_conductorRef"
+                                   Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout auto="true">
+                        <R_Lookup R_Before_Open_Lookup="btnAssetDeptLookup_R_Before_Open_Lookup"
+                                  R_After_Open_Lookup="btnAssetDeptLookup_R_After_Open_Lookup"
+                                  Enabled="false">...</R_Lookup>
+                    </R_ItemLayout>
+                    <R_ItemLayout auto="false">
+                        <R_TextBox @bind-Value="VM.Data.CASSET_DEPT_NAME" 
+                                   R_ConductorSource="@_conductorRef"
+                                   Enabled="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Asset Category -->
+                <R_StackLayout Row class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@Localizer["_AssetCategory"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox @bind-Value="VM.Data.CTAX_CATEGORY_CODE" 
+                                   R_ConductorSource="@_conductorRef"
+                                   Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout auto="true">
+                        <R_Lookup R_Before_Open_Lookup="btnAssetCategoryLookup_R_Before_Open_Lookup"
+                                  R_After_Open_Lookup="btnAssetCategoryLookup_R_After_Open_Lookup"
+                                  Enabled="false">...</R_Lookup>
+                    </R_ItemLayout>
+                    <R_ItemLayout auto="false">
+                        <R_TextBox @bind-Value="VM.Data.CTAX_CATEGORY_DESC" 
+                                   R_ConductorSource="@_conductorRef"
+                                   Enabled="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Location -->
+                <R_StackLayout Row class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@Localizer["_Location"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout auto="false">
+                        <R_TextBox @bind-Value="VM.Data.CASSET_LOCATION" 
+                                   R_ConductorSource="@_conductorRef"
+                                   Enabled="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                @* TODO: Serial Number field not in DTO - may need to extend DTO *@
+                <!-- Serial Number -->
+                <R_StackLayout Row class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@Localizer["_SerialNumber"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout auto="false">
+                        <R_TextBox Value="@SerialNumberDisplay" Enabled="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Local Amount -->
+                <R_StackLayout Row class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@Localizer["_LocalAmount"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox Value="@LocalCurrencyDisplay" Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_NumericTextBox @bind-Value="VM.Data.NLTRANSACTION_AMOUNT1"
+                                         TValue="decimal"
+                                         Decimals="2"
+                                         ThousandSeparator="true"
+                                         R_ConductorSource="@_conductorRef"
+                                         Enabled="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Base Amount -->
+                <R_StackLayout Row class="mb-1">
+                    <R_ItemLayout col="2">
+                        <R_Label>@Localizer["_BaseAmount"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_TextBox Value="@BaseCurrencyDisplay" Enabled="false" />
+                    </R_ItemLayout>
+                    <R_ItemLayout col="3">
+                        <R_NumericTextBox @bind-Value="VM.Data.NTRANSACTION_AMOUNT1"
+                                         TValue="decimal"
+                                         Decimals="2"
+                                         ThousandSeparator="true"
+                                         R_ConductorSource="@_conductorRef"
+                                         Enabled="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_StackLayout>
+        </R_GroupBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="_conductorRef"
+             R_ViewModel="@VM"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Conductor_R_ServiceGetRecord" />
+

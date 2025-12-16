@@ -29,7 +29,6 @@ namespace FAT00100Common
 
         // Streaming methods
         IAsyncEnumerable<FAT00100GetComboPeriodMonthResultDTO> GetComboPeriodMonth();
-        IAsyncEnumerable<FAT00100GetAssetListResultDTO> GetAssetList();
         IAsyncEnumerable<FAT00100GetDataGridResultDTO> GetDataGrid();
         IAsyncEnumerable<FAT00100GetGSM_SUPPLIER_INFOResultDTO> GetGSM_SUPPLIER_INFO();
         IAsyncEnumerable<FAT00100GetGSM_SUPPLIER_CONTACTResultDTO> GetGSM_SUPPLIER_CONTACT();

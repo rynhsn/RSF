@@ -521,41 +521,6 @@ namespace FAT00100Model
         }
 
         /// <summary>
-        /// Get asset list - Interface method (throws NotImplementedException)
-        /// </summary>
-        public IAsyncEnumerable<FAT00100GetAssetListResultDTO> GetAssetList()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Get asset list - Actual implementation
-        /// </summary>
-        public async Task<FAT00100ResultDTO<List<FAT00100GetAssetListResultDTO>>> GetAssetListAsync()
-        {
-            var loEx = new R_Exception();
-            FAT00100ResultDTO<List<FAT00100GetAssetListResultDTO>> loRtn = new FAT00100ResultDTO<List<FAT00100GetAssetListResultDTO>>();
-
-            try
-            {
-                R_HTTPClientWrapper.httpClientName = _HttpClientName;
-                loRtn.Data = await R_HTTPClientWrapper.R_APIRequestStreamingObject<FAT00100GetAssetListResultDTO>(
-                    _RequestServiceEndPoint,
-                    nameof(IFAT00100.GetAssetList),
-                    _ModuleName,
-                    true,
-                    true);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-            return loRtn;
-        }
-
-        /// <summary>
         /// Get data grid - Interface method (throws NotImplementedException)
         /// </summary>
         public IAsyncEnumerable<FAT00100GetDataGridResultDTO> GetDataGrid()

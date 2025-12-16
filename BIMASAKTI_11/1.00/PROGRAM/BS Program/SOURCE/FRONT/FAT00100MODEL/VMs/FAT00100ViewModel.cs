@@ -42,7 +42,6 @@ namespace FAT00100Model.VMs
         // Lists
         public ObservableCollection<FAT00100GetComboPeriodMonthResultDTO> ComboPeriodMonthList { get; set; } = new ObservableCollection<FAT00100GetComboPeriodMonthResultDTO>();
         public ObservableCollection<FAT00100GetDataGridResultDTO> DataGridList { get; set; } = new ObservableCollection<FAT00100GetDataGridResultDTO>();
-        public ObservableCollection<FAT00100GetAssetListResultDTO> AssetList { get; set; } = new ObservableCollection<FAT00100GetAssetListResultDTO>();
         public ObservableCollection<FAT00100GetGSM_SUPPLIER_CONTACTResultDTO> SupplierContactList { get; set; } = new ObservableCollection<FAT00100GetGSM_SUPPLIER_CONTACTResultDTO>();
         public ObservableCollection<FAT00100CPDTO> ContactPersonList { get; set; } = new ObservableCollection<FAT00100CPDTO>();
 
@@ -217,6 +216,7 @@ namespace FAT00100Model.VMs
 
                 var loResult = await _model.GetDataGridAsync();
                 DataGridList = new ObservableCollection<FAT00100GetDataGridResultDTO>(loResult.Data ?? new List<FAT00100GetDataGridResultDTO>());
+                DataGridList.Select(x =>x.CTRANSACTION_DATE_DISPLAY = DateTime.ParseExact(x.CTRANSACTION_DATE, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy")).ToList();
             }
             catch (Exception ex)
             {
@@ -226,32 +226,6 @@ namespace FAT00100Model.VMs
             loEx.ThrowExceptionIfErrors();
         }
 
-        /// <summary>
-        /// Get asset list - streaming method for asset grid
-        /// </summary>
-        public async Task GetAssetListAsync(string pcCompanyId, string pcLangId, string pcDeptCode, string pcTransactionCode, string pcReferenceNo, string pcStatus, DateTime pdUpdateDate)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                // Set streaming context for custom parameters (NOT CCOMPANY_ID, CFOREIGN_LANGUAGE)
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CDEPT_CODE, pcDeptCode);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CTRANSACTION_CODE, pcTransactionCode);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CREFERENCE_NO, pcReferenceNo);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CSTATUS, pcStatus);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.DUPDATE_DATE, pdUpdateDate);
-
-                var loResult = await _model.GetAssetListAsync();
-                AssetList = new ObservableCollection<FAT00100GetAssetListResultDTO>(loResult.Data ?? new List<FAT00100GetAssetListResultDTO>());
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
 
         /// <summary>
         /// Get GSM supplier info - streaming method
