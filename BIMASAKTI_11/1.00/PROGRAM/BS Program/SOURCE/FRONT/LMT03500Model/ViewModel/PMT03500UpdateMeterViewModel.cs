@@ -39,6 +39,9 @@ namespace PMT03500Model.ViewModel
         public string CSTART_INV_PRD_MONTH { get; set; }
         public bool LOTHER_UNIT { get; set; } = false;
 
+        public int MinYearInv = 0;
+        public int MaxYearInv = 0;
+
         public async Task Init(object poParam)
         {
             var loEx = new R_Exception();
@@ -347,6 +350,8 @@ namespace PMT03500Model.ViewModel
                     await _modelUtility.GetAsync<PMT03500ListDTO<PMT03500YearDTO>>(
                         nameof(IPMT03500UtilityUsage.PMT03500GetYearList));
                 StartInvYearList = loReturn.Data;
+                MinYearInv = int.TryParse(loReturn.Data.FirstOrDefault()?.CYEAR, out int minYear) ? minYear : 0;
+                MaxYearInv = int.TryParse(loReturn.Data.LastOrDefault()?.CYEAR, out int maxYear) ? maxYear : 0;
             }
             catch (Exception ex)
             {

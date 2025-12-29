@@ -630,16 +630,7 @@ public class PMT03500UtilityUsageCls
             loDb.R_AddCommandParameter(loCmd, "@CYEAR", DbType.String, 4, poParam.CYEAR);
             loDb.R_AddCommandParameter(loCmd, "@CPERIOD_NO", DbType.String, 4, poParam.CPERIOD_NO);
 
-            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-                .Where(x =>
-                    x.ParameterName is
-                        "@CCOMPANY_ID" or
-                        "@CYEAR" or
-                        "@CPERIOD_NO"
-                )
-                .Select(x => x.Value);
-
-            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $" {p.ParameterName} ='{p.Value}'")));
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 

@@ -22,7 +22,6 @@ using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using Lookup_PMModel.ViewModel.LML00600;
-using Lookup_PMModel.ViewModel.LMLTODAYDATETIME;
 
 namespace PMT03500Front;
 
@@ -126,11 +125,6 @@ public partial class PMT03500 : R_Page
 
         try
         {
-            LmlTodayDateTimeViewModel _ViewModelToday = new LmlTodayDateTimeViewModel();
-            await _ViewModelToday.GetTodayDateTime();
-            _viewModelUtility.InvPeriodYear = _ViewModelToday.DateToday.CYEAR;
-            _viewModelUtility.InvPeriodNo = _ViewModelToday.DateToday.CMONTH;
-
             await _viewModel.Init();
             await _viewModelUtility.Init(_viewModel.Property);
             // if (_viewModel.PropertyList.Count > 0)
@@ -372,7 +366,7 @@ public partial class PMT03500 : R_Page
                     _viewModelUtility.FloorId = (string)value;
                     break;
                 case eParamType.InvYear:
-                    _viewModelUtility.InvPeriodYear = (string)value;
+                    _viewModelUtility.InvPeriodYear = value?.ToString() ?? "";
                     await _viewModelUtility.GetPeriod(_viewModelUtility.InvPeriodYear, _viewModelUtility.InvPeriodNo);
                     _viewModelUtility.SetParameterHeader();
                     break;

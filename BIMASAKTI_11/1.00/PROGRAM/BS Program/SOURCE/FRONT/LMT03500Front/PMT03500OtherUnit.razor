@@ -53,12 +53,20 @@
                                         <R_ItemLayout col="6">
                                             <R_StackLayout Row>
                                             <R_ItemLayout col="4">
-                                                <R_ComboBox Data="@_viewModelUtility.InvYearList"
+                                                @* <R_ComboBox Data="@_viewModelUtility.InvYearList"
                                                             Value="_viewModelUtility.InvPeriodYear"
                                                             ValueField="@nameof(PMT03500YearDTO.CYEAR)"
                                                             TextField="@nameof(PMT03500YearDTO.CYEAR)"
                                                             Enabled
-                                                            ValueChanged="@((string value) => OnChangeParam(value, eParamType.InvYear))" />
+                                                            ValueChanged="@((string value) => OnChangeParam(value, eParamType.InvYear))" /> *@
+                                                <R_NumericTextBox Value="@(int.TryParse(_viewModelUtility.InvPeriodYear, out int year) ? year : 0)"
+                                                                  Arrows="true"
+                                                                  TValue="int"
+                                                                  Min="_viewModelUtility.MinYearInv"
+                                                                  Max="_viewModelUtility.MaxYearInv"
+                                                                  Step="1"
+                                                                  ThousandSeparator="false"
+                                                                  ValueChanged="@((int value) => OnChangeParam(value.ToString(), eParamType.InvYear))" />
                                                 </R_ItemLayout>
                                                 <R_ItemLayout col="4" Class="pe-1">
                                                 <R_ComboBox Data="@_viewModelUtility.InvPeriodList"

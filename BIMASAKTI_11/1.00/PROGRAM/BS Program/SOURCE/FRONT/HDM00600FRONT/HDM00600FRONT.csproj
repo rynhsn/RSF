@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
@@ -9,7 +9,7 @@
 
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.36" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.21" />
 		<Reference Include="BlazorClientHelper">
 			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
 		</Reference>

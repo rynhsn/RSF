@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.15"/>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.21" />
 	</ItemGroup>
 	
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.29" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.21" />
 		<ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\BACK\Lookup_APCOMMON\Lookup_APCOMMON.csproj" />
 		<ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\BACK\Lookup_GSCOMMON\Lookup_GSCOMMON.csproj" />
 		<ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\BACK\Lookup_LMCOMMON\Lookup_PMCOMMON.csproj" />
@@ -36,7 +36,7 @@
 			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Controls.dll</HintPath>
 		</Reference>
 		<Reference Include="R_CommonFrontBackAPI">
-			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CommonFrontBackAPI.dll</HintPath>
+		  <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CommonFrontBackAPI.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 </Project>

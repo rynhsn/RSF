@@ -29,6 +29,9 @@ namespace Lookup_PMCOMMON.DTOs
         public string CINVGRP_CODE { get; set; } = "";
         public string CINVGRP_NAME { get; set; } = "";
 
+        //CR 23-12-2025 Dev ZF //BA  RE//
+        public string CACCRUAL_METHOD { get; set; } = "";
+
     }
 }
 

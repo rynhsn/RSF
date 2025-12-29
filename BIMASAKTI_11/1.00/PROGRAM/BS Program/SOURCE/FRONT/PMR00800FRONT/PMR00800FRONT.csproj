@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.31" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.21" />
 		<ProjectReference Include="..\..\COMMON\LM\PMR00800COMMON\PMR00800COMMON.csproj" />
 		<ProjectReference Include="..\PMR00800FrontResources\PMR00800FrontResources.csproj" />
 		<ProjectReference Include="..\PMR00800MODEL\PMR00800MODEL.csproj" />

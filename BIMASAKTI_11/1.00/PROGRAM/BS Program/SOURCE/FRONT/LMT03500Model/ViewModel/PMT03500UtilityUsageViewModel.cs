@@ -12,6 +12,7 @@ using PMT03500FrontResources;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
+using Lookup_PMModel.ViewModel.LMLTODAYDATETIME;
 
 namespace PMT03500Model.ViewModel
 {
@@ -54,6 +55,8 @@ namespace PMT03500Model.ViewModel
         public string InvPeriodYear = "";
         public string InvPeriodNo = "";
         public bool Invoiced = false;
+        public int MinYearInv=0;
+        public int MaxYearInv=0;
 
         public string UtilityPeriodYear = "";
         public string UtilityPeriodNo = "";
@@ -79,6 +82,11 @@ namespace PMT03500Model.ViewModel
             var loEx = new R_Exception();
             try
             {
+                LmlTodayDateTimeViewModel _ViewModelToday = new LmlTodayDateTimeViewModel();
+                await _ViewModelToday.GetTodayDateTime();
+                InvPeriodYear = _ViewModelToday.DateToday.CYEAR;
+                InvPeriodNo = _ViewModelToday.DateToday.CMONTH;
+
                 Property = (PMT03500PropertyDTO)poParam;
                 // PropertyId = poParam.ToString();
                 // PropertyId = Property.CPROPERTY_ID;
@@ -161,7 +169,7 @@ namespace PMT03500Model.ViewModel
                 else
                 {
                     UtilityPeriodYear = InvPeriodYear;
-                    UtilityPeriodNo = (int.Parse(InvPeriodNo) - 1).ToString("00");
+                    UtilityPeriodNo = int.TryParse(InvPeriodNo, out int invNo) ? (invNo - 1).ToString("00"): "12";
                 }
             }
             catch (Exception ex)
@@ -473,6 +481,8 @@ namespace PMT03500Model.ViewModel
 
                 InvYearList = loReturn.Data;
                 UtilityYearList = loReturn.Data;
+                MinYearInv = int.TryParse(loReturn.Data.FirstOrDefault()?.CYEAR, out int minYear) ? minYear : 0;
+                MaxYearInv = int.TryParse(loReturn.Data.LastOrDefault()?.CYEAR, out int maxYear) ? maxYear : 0; 
 
                 InvPeriodYear = loParam.CYEAR;
                 UtilityPeriodYear = loParam.CYEAR;
@@ -669,19 +679,37 @@ namespace PMT03500Model.ViewModel
                 if (UtilityTypeId == "01" || UtilityTypeId == "02")
                 {
                     if (SystemParam.LELECTRIC_END_MONTH == false)
-                    { 
-                        
-                        var lastDay = DateTime.DaysInMonth(int.Parse(InvPeriodYear), int.Parse(InvPeriodNo));
-                        
-                        loDate = new DateTime(int.Parse(InvPeriodYear), int.Parse(InvPeriodNo),
-                            (int.Parse(SystemParam.CELECTRIC_DATE) < lastDay) ? int.Parse(SystemParam.CELECTRIC_DATE) : lastDay).AddDays(1);
+                    {
 
+                        // YEAR
+                        int.TryParse(InvPeriodYear, out int year);
+                        if (year < 1) year = DateTime.Now.Year;
+
+                        // MONTH
+                        int.TryParse(InvPeriodNo, out int month);
+                        if (month < 1 || month > 12) month = 1;
+
+                        // LAST DAY
+                        int lastDay = DateTime.DaysInMonth(year, month);
+
+                        // ELECTRIC DATE
+                        int.TryParse(SystemParam?.CELECTRIC_DATE, out int electricDate);
+                        if (electricDate < 1) electricDate = 1;  // fallback min 1
+
+                        // DAY FIXED
+                        int day = electricDate < lastDay ? electricDate : lastDay;
+
+                        // FINAL DATE
+                        loDate = new DateTime(year, month, day).AddDays(1);
+
+                        // RANGE
                         var loDateFrom = loDate.AddMonths(-3);
                         var loDateTo = loDate.AddDays(-1);
+
                         UtilityPeriodFromDtDt = loDateFrom;
                         UtilityPeriodToDtDt = loDateTo;
-                        // UtilityPeriodDtMin = loDateFrom.AddDays(1);
                         UtilityPeriodDtMax = loDateTo;
+
                     }
                     else
                     {

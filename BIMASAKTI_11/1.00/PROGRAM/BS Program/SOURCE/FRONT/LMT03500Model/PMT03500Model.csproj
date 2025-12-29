@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
@@ -32,6 +32,7 @@
 
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_LMModel\Lookup_PMModel.csproj" />
       <ProjectReference Include="..\..\COMMON\LM\LMT03500Common\PMT03500Common.csproj" />
       <ProjectReference Include="..\LMT03500FrontResources\PMT03500FrontResources.csproj" />
     </ItemGroup>

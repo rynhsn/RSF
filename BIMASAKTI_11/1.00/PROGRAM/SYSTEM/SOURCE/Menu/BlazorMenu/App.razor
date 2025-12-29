@@ -1,4 +1,4 @@
-﻿@using System.Reflection
+﻿﻿@using System.Reflection
 @using BlazorMenu.Components.Resources
 @using Microsoft.AspNetCore.Components.Web
 @using R_BlazorFrontEnd.Controls.Forms
@@ -6,7 +6,7 @@
 @using R_BlazorFrontEnd.Tenant
 
 <CascadingAuthenticationState>
-    <R_ErrorHandler>
+    <R_ErrorHandler FallbackErrorLayout="@typeof(FallbackError)">
         @if (_environment.IsDevelopment)
         {
             <R_BasicRouter AppAssembly="@typeof(Program).Assembly"
