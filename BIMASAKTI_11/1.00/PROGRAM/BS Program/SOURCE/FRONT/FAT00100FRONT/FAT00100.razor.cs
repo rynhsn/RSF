@@ -33,15 +33,6 @@ namespace FAT00100Front
         private R_TabStripTab? _tabAssetList;
         private R_TabPage? _tabPageAssetList;
 
-        // Period filter properties
-        public int PeriodFromYear { get; set; } = 2023;
-        public string PeriodFromMonth { get; set; } = "01";
-        public int PeriodToYear { get; set; } = 2025;
-        public string PeriodToMonth { get; set; } = "12";
-
-        // Status filter property
-        public string SelectedStatus { get; set; } = "ALL";
-
         // Track previous department code value to avoid unnecessary lookups (equivalent to lctxtDepartmentCode in net4)
         private string _previousDeptCode = string.Empty;
 
@@ -63,25 +54,6 @@ namespace FAT00100Front
         };
 
         public List<SourceOptionDTO> SourceList => _sourceList;
-
-        // Status option DTO for combobox
-        public class StatusOptionDTO
-        {
-            public string CVALUE { get; set; } = string.Empty;
-            public string CDESCRIPTION { get; set; } = string.Empty;
-        }
-
-        private List<StatusOptionDTO> _statusList = new List<StatusOptionDTO>
-        {
-            new StatusOptionDTO { CVALUE = "ALL", CDESCRIPTION = "All" },
-            new StatusOptionDTO { CVALUE = "DRAFT", CDESCRIPTION = "Draft" },
-            new StatusOptionDTO { CVALUE = "OPEN", CDESCRIPTION = "Open" },
-            new StatusOptionDTO { CVALUE = "INPROGRESS", CDESCRIPTION = "InProgress" },
-            new StatusOptionDTO { CVALUE = "APPROVED", CDESCRIPTION = "Approved" },
-            new StatusOptionDTO { CVALUE = "CLOSED", CDESCRIPTION = "Closed" }
-        };
-
-        public List<StatusOptionDTO> StatusList => _statusList;
 
         // Document Date property (converts between string and DateTime?)
         public DateTime? DocumentDate
@@ -122,30 +94,6 @@ namespace FAT00100Front
             }
         }
 
-        public string LocalCurrencyDisplay
-        {
-            get
-            {
-                if (_VM.CurrentRecord.NLBASE_RATE_AMOUNT > 0 && _VM.CurrentRecord.NLCURRENCY_RATE_AMOUNT > 0)
-                {
-                    return $"{_VM.CurrentRecord.NLBASE_RATE_AMOUNT:F6} {_VM.CurrentRecord.CCURRENCY_CODE} = {_VM.CurrentRecord.NLCURRENCY_RATE_AMOUNT:F6} {_VM.CurrentRecord.CCURRENCY_CODE}";
-                }
-                return string.Empty;
-            }
-        }
-
-        public string BaseCurrencyDisplay
-        {
-            get
-            {
-                if (_VM.CurrentRecord.NBBASE_RATE_AMOUNT > 0 && _VM.CurrentRecord.NBCURRENCY_RATE_AMOUNT > 0)
-                {
-                    return $"{_VM.CurrentRecord.NBBASE_RATE_AMOUNT:F6} {_VM.CurrentRecord.CCURRENCY_CODE} = {_VM.CurrentRecord.NBCURRENCY_RATE_AMOUNT:F6} {_VM.CurrentRecord.CCURRENCY_CODE}";
-                }
-                return string.Empty;
-            }
-        }
-
         protected override async Task R_Init_From_Master(object? poParameter)
         {
             var loEx = new R_Exception();
@@ -164,50 +112,62 @@ namespace FAT00100Front
                     lcDeptCode = loParameter.CDEPT_CODE ?? string.Empty;
                 }
 
-                // Call GetInitialProcessAsync to initialize form data
-                await _VM.GetInitialProcessAsync(
-                    ClientHelper.CompanyId,
-                    ClientHelper.UserId,
-                    lcReferenceNo,
-                    lcDeptCode,
-                    FAT00100ViewModel.DEFAULT_PJ_TRANSACTION_CODE, // CPJ_TRANS_CODE (hardcoded as per VB.NET)
-                    FAT00100ViewModel.DEFAULT_TRANSACTION_CODE  // CTRANSACTION_CODE (hardcoded as per VB.NET)
-                );
-
-                // Update CurrentRecord with transaction code and description from initial process
-                if (_VM.InitialProcessData != null)
+                // Set department code
+                if (!string.IsNullOrWhiteSpace(lcDeptCode))
                 {
-                    _VM.CurrentRecord.CTRANSACTION_CODE = FAT00100ViewModel.DEFAULT_TRANSACTION_CODE;
-                    _VM.CurrentRecord.CTRANSACTION_NAME = _VM.InitialProcessData.CFILTER_TRANS_DESC ?? string.Empty;
-
-                    // Set department code from initial process if not provided in parameter
-                    if (string.IsNullOrWhiteSpace(lcDeptCode) && !string.IsNullOrWhiteSpace(_VM.InitialProcessData.CTRANS_DEPT_CODE))
-                    {
-                        _VM.CurrentRecord.CDEPT_CODE = _VM.InitialProcessData.CTRANS_DEPT_CODE;
-                    }
-                    else if (!string.IsNullOrWhiteSpace(lcDeptCode))
-                    {
-                        _VM.CurrentRecord.CDEPT_CODE = lcDeptCode;
-                    }
+                    _VM.CurrentRecord.CDEPT_CODE = lcDeptCode;
                 }
 
-                // Initialize period month combo
-                if (!string.IsNullOrEmpty(_VM.SoftPeriod))
-                {
-                    await _VM.GetComboPeriodMonthAsync(ClientHelper.CompanyId, string.Empty, _VM.SoftPeriod);
-                }
+                // Call GetCompanyInfoAsync
+                await _VM.GetCompanyInfoAsync(ClientHelper.CompanyId);
 
-                // Initialize period values from SoftPeriod if available
+                // Call GetGetSystemParamAsync
+                await _VM.GetGetSystemParamAsync(ClientHelper.CompanyId, ClientHelper.CultureUI.TwoLetterISOLanguageName);
+
+                // Call GetPeriodeDtInfoAsync if SoftPeriod is available
                 if (!string.IsNullOrEmpty(_VM.SoftPeriod) && _VM.SoftPeriod.Length >= 6)
                 {
-                    PeriodFromYear = int.Parse(_VM.SoftPeriod.Substring(0, 4));
-                    PeriodFromMonth = _VM.SoftPeriod.Substring(4, 2);
-                    PeriodToYear = int.Parse(_VM.SoftPeriod.Substring(0, 4));
-                    PeriodToMonth = _VM.SoftPeriod.Substring(4, 2);
+                    string lcYear = _VM.SoftPeriod.Substring(0, 4);
+                    string lcPeriodNo = _VM.SoftPeriod.Substring(4, 2);
+                    await _VM.GetPeriodeDtInfoAsync(ClientHelper.CompanyId, lcYear, lcPeriodNo);
+                }
+
+                // Call GetTransCodeInfoAsync
+                await _VM.GetTransCodeInfoAsync(ClientHelper.CompanyId, FAT00100ViewModel.DEFAULT_TRANSACTION_CODE);
+
+                // Call GetYearRangeAsync
+                string lcCurrentYear = DateTime.Now.Year.ToString();
+                await _VM.GetYearRangeAsync(ClientHelper.CompanyId, lcCurrentYear, string.Empty);
+
+                // Call GetDeptLookupListAsync
+                await _VM.GetDeptLookupListAsync(ClientHelper.CompanyId, ClientHelper.UserId, string.Empty);
+
+                // Call GetStatusListAsync
+                await _VM.GetStatusListAsync(ClientHelper.CompanyId, ClientHelper.CultureUI.TwoLetterISOLanguageName);
+
+                // Call GetCurrencyListAsync
+                await _VM.GetCurrencyListAsync(ClientHelper.CompanyId, ClientHelper.UserId);
+
+                // Initialize period month combo
+                _VM.SetComboPeriodMonthList();
+
+                // Initialize period values from SoftPeriod if available, otherwise use current year
+                if (!string.IsNullOrEmpty(_VM.SoftPeriod) && _VM.SoftPeriod.Length >= 6)
+                {
+                    _VM.PeriodFromYear = int.Parse(_VM.SoftPeriod.Substring(0, 4));
+                    _VM.PeriodFromMonth = _VM.SoftPeriod.Substring(4, 2);
+                    _VM.PeriodToYear = int.Parse(_VM.SoftPeriod.Substring(0, 4));
+                    _VM.PeriodToMonth = _VM.SoftPeriod.Substring(4, 2);
+                }
+                else
+                {
+                    // Set default to current year
+                    _VM.PeriodFromYear = DateTime.Now.Year;
+                    _VM.PeriodToYear = DateTime.Now.Year;
                 }
 
                 // Initialize status combobox (default value)
-                SelectedStatus = "ALL";
+                _VM.SelectedStatus = "ALL";
             }
             catch (Exception ex)
             {
@@ -480,12 +440,12 @@ namespace FAT00100Front
         private async Task btnRefresh_OnClick()
         {
             var loEx = new R_Exception();
-
+            
             try
             {
                 // Build period strings
-                string lcPeriodFrom = $"{PeriodFromYear}{PeriodFromMonth.PadLeft(2, '0')}";
-                string lcPeriodTo = $"{PeriodToYear}{PeriodToMonth.PadLeft(2, '0')}";
+                string lcPeriodFrom = $"{_VM.PeriodFromYear}{_VM.PeriodFromMonth.PadLeft(2, '0')}";
+                string lcPeriodTo = $"{_VM.PeriodToYear}{_VM.PeriodToMonth.PadLeft(2, '0')}";
 
                 // Convert selected status to backend parameters
                 string lcStatusDraft = FAT00100ViewModel.STATUS_FLAG_DISABLED;
@@ -493,50 +453,45 @@ namespace FAT00100Front
                 string lcStatusApproved = FAT00100ViewModel.STATUS_FLAG_DISABLED;
                 string lcStatusClosed = FAT00100ViewModel.STATUS_FLAG_DISABLED;
 
-                if (SelectedStatus == "ALL")
+                if (_VM.SelectedStatus == "ALL")
                 {
                     lcStatusDraft = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                     lcStatusOpen = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                     lcStatusApproved = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                     lcStatusClosed = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                 }
-                else if (SelectedStatus == "DRAFT")
+                else if (_VM.SelectedStatus == "DRAFT")
                 {
                     lcStatusDraft = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                 }
-                else if (SelectedStatus == "OPEN")
+                else if (_VM.SelectedStatus == "OPEN")
                 {
                     lcStatusOpen = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                 }
-                else if (SelectedStatus == "INPROGRESS")
+                else if (_VM.SelectedStatus == "INPROGRESS")
                 {
                     lcStatusOpen = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                 }
-                else if (SelectedStatus == "APPROVED")
+                else if (_VM.SelectedStatus == "APPROVED")
                 {
                     lcStatusApproved = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                 }
-                else if (SelectedStatus == "CLOSED")
+                else if (_VM.SelectedStatus == "CLOSED")
                 {
                     lcStatusClosed = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                 }
 
-                // Call GetDataGridAsync with filter parameters
-                await _VM.GetDataGridAsync(
-                    ClientHelper.CompanyId,
-                    ClientHelper.CultureUI.TwoLetterISOLanguageName,
-                    _VM.PoDeptCode,
-                    _VM.CurrentRecord.CTRANSACTION_CODE,
-                    "",//_VM.CurrentRecord.CREFERENCE_NO,
-                    _VM.PoSupplierId,
-                    lcPeriodFrom,
-                    lcPeriodTo,
+                // Set filter parameters in ViewModel
+                _VM.FilterPeriodFrom = lcPeriodFrom;
+                _VM.FilterPeriodTo = lcPeriodTo;
+                _VM.FilterStatusDraft = lcStatusDraft;
+                _VM.FilterStatusOpen = lcStatusOpen;
+                _VM.FilterStatusApproved = lcStatusApproved;
+                _VM.FilterStatusClosed = lcStatusClosed;
+                _VM.FilterReferenceNo = string.Empty; // Can be set from CurrentRecord.CREFERENCE_NO if needed
 
-                    lcStatusDraft,
-                    lcStatusOpen,
-                    lcStatusApproved,
-                    lcStatusClosed
-                );
+                // Call GetDataGridAsync (reads parameters from ViewModel properties)
+                await _VM.GetDataGridAsync();
 
                 // Refresh grid
                 if (_gridRef is not null)
@@ -561,8 +516,8 @@ namespace FAT00100Front
             try
             {
                 // Build period strings
-                string lcPeriodFrom = $"{PeriodFromYear}{PeriodFromMonth.PadLeft(2, '0')}";
-                string lcPeriodTo = $"{PeriodToYear}{PeriodToMonth.PadLeft(2, '0')}";
+                string lcPeriodFrom = $"{_VM.PeriodFromYear}{_VM.PeriodFromMonth.PadLeft(2, '0')}";
+                string lcPeriodTo = $"{_VM.PeriodToYear}{_VM.PeriodToMonth.PadLeft(2, '0')}";
 
                 // Convert selected status to backend parameters
                 string lcStatusDraft = FAT00100ViewModel.STATUS_FLAG_DISABLED;
@@ -570,49 +525,45 @@ namespace FAT00100Front
                 string lcStatusApproved = FAT00100ViewModel.STATUS_FLAG_DISABLED;
                 string lcStatusClosed = FAT00100ViewModel.STATUS_FLAG_DISABLED;
 
-                if (SelectedStatus == "ALL")
+                if (_VM.SelectedStatus == "ALL")
                 {
                     lcStatusDraft = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                     lcStatusOpen = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                     lcStatusApproved = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                     lcStatusClosed = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                 }
-                else if (SelectedStatus == "DRAFT")
+                else if (_VM.SelectedStatus == "DRAFT")
                 {
                     lcStatusDraft = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                 }
-                else if (SelectedStatus == "OPEN")
+                else if (_VM.SelectedStatus == "OPEN")
                 {
                     lcStatusOpen = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                 }
-                else if (SelectedStatus == "INPROGRESS")
+                else if (_VM.SelectedStatus == "INPROGRESS")
                 {
                     lcStatusOpen = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                 }
-                else if (SelectedStatus == "APPROVED")
+                else if (_VM.SelectedStatus == "APPROVED")
                 {
                     lcStatusApproved = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                 }
-                else if (SelectedStatus == "CLOSED")
+                else if (_VM.SelectedStatus == "CLOSED")
                 {
                     lcStatusClosed = FAT00100ViewModel.STATUS_FLAG_ENABLED;
                 }
 
-                // Call GetDataGridAsync with filter parameters
-                await _VM.GetDataGridAsync(
-                    ClientHelper.CompanyId,
-                    ClientHelper.CultureUI.TwoLetterISOLanguageName,
-                    _VM.PoDeptCode,
-                    _VM.CurrentRecord.CTRANSACTION_CODE,
-                    "",//_VM.CurrentRecord.CREFERENCE_NO,
-                    _VM.PoSupplierId,
-                    lcPeriodFrom,
-                    lcPeriodTo,
-                    lcStatusDraft,
-                    lcStatusOpen,
-                    lcStatusApproved,
-                    lcStatusClosed
-                );
+                // Set filter parameters in ViewModel
+                _VM.FilterPeriodFrom = lcPeriodFrom;
+                _VM.FilterPeriodTo = lcPeriodTo;
+                _VM.FilterStatusDraft = lcStatusDraft;
+                _VM.FilterStatusOpen = lcStatusOpen;
+                _VM.FilterStatusApproved = lcStatusApproved;
+                _VM.FilterStatusClosed = lcStatusClosed;
+                _VM.FilterReferenceNo = string.Empty; // Can be set from CurrentRecord.CREFERENCE_NO if needed
+
+                // Call GetDataGridAsync (reads parameters from ViewModel properties)
+                await _VM.GetDataGridAsync();
 
                 // Set grid data
                 eventArgs.ListEntityResult = _VM.DataGridList;
@@ -668,7 +619,7 @@ namespace FAT00100Front
                 
                 // Update transaction type code and name
                 _VM.Data.CTRANSACTION_CODE = loResult.cTransactionCode?.ToString().Trim() ?? string.Empty;
-                _VM.Data.CTRANSACTION_NAME = loResult.cTransactionName?.ToString().Trim() ?? string.Empty;
+                //_VM.Data.CTRANSACTION_NAME = loResult.cTransactionName?.ToString().Trim() ?? string.Empty;
             }
             catch (Exception ex)
             {
@@ -723,11 +674,11 @@ namespace FAT00100Front
                 _VM.Data.CCURRENCY_CODE = loResult.cCurrencyCode?.ToString().Trim() ?? string.Empty;
                 _VM.Data.CCURRENCY_NAME = loResult.cCurrencyName?.ToString().Trim() ?? string.Empty;
                 
-                // Set currency rate codes to currency code (equivalent to txtLocalCurrBaseRateCurrCode.Text = txtCurrency.Text in net4)
-                if (!string.IsNullOrWhiteSpace(_VM.Data.CCURRENCY_CODE))
+                // Set currency rate codes from CompanyInfoData
+                if (_VM.CompanyInfoData != null)
                 {
-                    _VM.Data.CLOCAL_CURRENCY_CODE = _VM.Data.CCURRENCY_CODE;
-                    _VM.Data.CBASE_CURRENCY_CODE = _VM.Data.CCURRENCY_CODE;
+                    _VM.Data.CLOCAL_CURRENCY_CODE = _VM.CompanyInfoData.CLOCAL_CURRENCY_CODE ?? string.Empty;
+                    _VM.Data.CBASE_CURRENCY_CODE = _VM.CompanyInfoData.CBASE_CURRENCY_CODE ?? string.Empty;
                 }
                 
                 // TODO: Trigger currency rate calculation if ViewModel method exists
@@ -749,18 +700,21 @@ namespace FAT00100Front
                 if (string.IsNullOrWhiteSpace(_VM.Data.CCURRENCY_CODE))
                 {
                     _VM.Data.CCURRENCY_NAME = string.Empty;
-                    _VM.Data.NLBASE_RATE_AMOUNT = 0;
-                    _VM.Data.NLCURRENCY_RATE_AMOUNT = 0;
-                    _VM.Data.NBBASE_RATE_AMOUNT = 0;
-                    _VM.Data.NBCURRENCY_RATE_AMOUNT = 0;
+                    _VM.Data.NLBASE_RATE = 0;
+                    _VM.Data.NLCURRENCY_RATE = 0;
+                    _VM.Data.NBBASE_RATE = 0;
+                    _VM.Data.NBCURRENCY_RATE = 0;
                     _VM.Data.CLOCAL_CURRENCY_CODE = string.Empty;
                     _VM.Data.CBASE_CURRENCY_CODE = string.Empty;
                     return;
                 }
 
-                // Set currency rate codes to currency code (equivalent to txtLocalCurrBaseRateCurrCode.Text = txtCurrency.Text in net4)
-                _VM.Data.CLOCAL_CURRENCY_CODE = _VM.Data.CCURRENCY_CODE;
-                _VM.Data.CBASE_CURRENCY_CODE = _VM.Data.CCURRENCY_CODE;
+                // Set currency rate codes from CompanyInfoData
+                if (_VM.CompanyInfoData != null)
+                {
+                    _VM.Data.CLOCAL_CURRENCY_CODE = _VM.CompanyInfoData.CLOCAL_CURRENCY_CODE ?? string.Empty;
+                    _VM.Data.CBASE_CURRENCY_CODE = _VM.CompanyInfoData.CBASE_CURRENCY_CODE ?? string.Empty;
+                }
 
                 // TODO: Implement currency validation and rate calculation if ViewModel method exists
                 // For now, description will be populated from lookup
@@ -816,7 +770,7 @@ namespace FAT00100Front
                 dynamic loResult = eventArgs.Result;
                 
                 // Update PJ transaction number
-                _VM.CurrentRecord.CFR_REFERENCE_NO = loResult.cReferenceNo?.ToString().Trim() ?? string.Empty;
+                _VM.CurrentRecord.CFR_REF_NO = loResult.cReferenceNo?.ToString().Trim() ?? string.Empty;
             }
             catch (Exception ex)
             {
@@ -845,9 +799,7 @@ namespace FAT00100Front
                     var loParam = new FAT00100DTO
                     {
                         CCOMPANY_ID = ClientHelper.CompanyId,
-                        CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
                         CDEPT_CODE = loGridRow.CDEPT_CODE ?? string.Empty,
-                        CFILTER_TRANS_CODE = FAT00100ViewModel.DEFAULT_TRANSACTION_CODE, // CFILTER_TRANS_CODE (hardcoded as per initialization)
                         CREFERENCE_NO = loGridRow.CREFERENCE_NO
                     };
 
@@ -892,16 +844,10 @@ namespace FAT00100Front
                 // Check if conductor is in Normal mode and Asset List tab is active
                 if (_conductorRef != null && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)
                 {
-                    // Check if Asset List tab is active (equivalent to _TabGeneral.ActiveTab.Id == "Rate" in PMM01000)
                     if (_tabStripRef?.ActiveTab?.Id == nameof(FAT00100AssetList) && _tabPageAssetList != null)
                     {
-                        // Store reference to avoid null reference warning
                         var loTabPageAssetList = _tabPageAssetList;
-
-                        // Get current data from conductor (equivalent to loTempParamUtility in PMM01000)
                         var loTempParam = _conductorRef!.R_GetCurrentData();
-
-                        // Convert to FAT00100DTO for Asset List tab parameter
                         FAT00100DTO loParam;
                         if (loTempParam is FAT00100DTO loDTO)
                         {
@@ -909,17 +855,13 @@ namespace FAT00100Front
                         }
                         else if (loTempParam != null)
                         {
-                            // Convert if needed - loTempParam is not null here due to the if condition
                             loParam = R_FrontUtility.ConvertObjectToObject<FAT00100DTO>(loTempParam) ?? new FAT00100DTO();
                         }
                         else
                         {
-                            // Use CurrentRecord if no data from conductor
                             loParam = _VM?.CurrentRecord ?? new FAT00100DTO();
                         }
 
-                        // Refresh Asset List tab page with current data
-                        // loTabPageAssetList is not null here due to the null check above
                         await loTabPageAssetList!.InvokeRefreshTabPageAsync(loParam);
                     }
                 }
@@ -970,27 +912,26 @@ namespace FAT00100Front
                 loEntity.CDEPT_CODE = string.Empty;
                 loEntity.CCURRENCY_CODE = string.Empty;
                 loEntity.CCURRENCY_NAME = string.Empty;
-                loEntity.CINFO_SEQNO = string.Empty;
                 loEntity.CREFERENCE_NO = string.Empty;
 
                 // Set transaction date to current date
-                loEntity.DTRANSACTION_DATE = DateTime.Now;
-                loEntity.CTRANSACTION_DATE = DateTime.Now.ToString("yyyyMMdd");
+                loEntity.DREF_DATE = DateTime.Now;
+                loEntity.CREF_DATE = DateTime.Now.ToString("yyyyMMdd");
 
                 // Set document date to transaction date
-                loEntity.DDOCUMENT_DATE = loEntity.DTRANSACTION_DATE;
-                loEntity.CDOCUMENT_DATE = loEntity.CTRANSACTION_DATE;
+                loEntity.DDOCUMENT_DATE = loEntity.DREF_DATE;
+                loEntity.CDOCUMENT_DATE = loEntity.CREF_DATE;
 
                 // Set FA source as default (CFR_MODULE = "FA") - equivalent to rdbFA.IsChecked = True
-                loEntity.CFR_MODULE = FAT00100ViewModel.DEFAULT_SOURCE_MODULE_FA;
+                loEntity.CSOURCE_MODULE = FAT00100ViewModel.DEFAULT_SOURCE_MODULE_FA;
 
                 // Set hardcoded transaction code (equivalent to filter transaction code in net4)
                 loEntity.CTRANSACTION_CODE = FAT00100ViewModel.DEFAULT_TRANSACTION_CODE;
                 // Note: Transaction name should be populated from InitialProcessData if available
-                if (_VM.InitialProcessData != null && !string.IsNullOrWhiteSpace(_VM.InitialProcessData.CFILTER_TRANS_DESC))
-                {
-                    loEntity.CTRANSACTION_NAME = _VM.InitialProcessData.CFILTER_TRANS_DESC;
-                }
+                //if (_VM.InitialProcessData != null && !string.IsNullOrWhiteSpace(_VM.CompanyInfoData.CFILTER_TRANS_DESC))
+                //{
+                //    loEntity.CTRANSACTION_NAME = _VM.InitialProcessData.CFILTER_TRANS_DESC;
+                //}
 
                 // Set supplier code from filter (equivalent to txtSupplierCode.Text = txtSuppIDFilter.Text in net4)
                 if (!string.IsNullOrWhiteSpace(lcFilterSupplierId))
@@ -1008,13 +949,21 @@ namespace FAT00100Front
                     // In net4, this triggers txtCurrency_LostFocus which validates and populates name
                 }
 
-                // Set default currency rate codes (equivalent to txtLocalCurrCurrencyRateCurrCode.Text = pcLocalCurrencyCode in net4)
-                loEntity.CLOCAL_CURRENCY_CODE = _VM.LocalCurrencyCode ?? string.Empty;
-                loEntity.CBASE_CURRENCY_CODE = _VM.BaseCurrencyCode ?? string.Empty;
+                // Set default currency rate codes from CompanyInfoData
+                if (_VM.CompanyInfoData != null)
+                {
+                    loEntity.CLOCAL_CURRENCY_CODE = _VM.CompanyInfoData.CLOCAL_CURRENCY_CODE ?? string.Empty;
+                    loEntity.CBASE_CURRENCY_CODE = _VM.CompanyInfoData.CBASE_CURRENCY_CODE ?? string.Empty;
+                }
+                else
+                {
+                    loEntity.CLOCAL_CURRENCY_CODE = string.Empty;
+                    loEntity.CBASE_CURRENCY_CODE = string.Empty;
+                }
 
                 // Clear nested DTOs
-                loEntity.oCP = new List<FAT00100CPDTO>();
-                loEntity.oSupp = null;
+                //loEntity.oCP = new List<FAT00100CPDTO>();
+                //loEntity.oSupp = null;
                 _VM.ContactPersonList.Clear();
                 _VM.SupplierInfo = new FAT00100GetGSM_SUPPLIER_INFOResultDTO();
 
@@ -1037,37 +986,27 @@ namespace FAT00100Front
             {
                 // Get entity directly from eventArgs.Data (following example pattern)
                 var loEntity = (FAT00100DTO)eventArgs.Data;
-
-                // Set System Fields from ClientHelper (equivalent to net4 conMain_R_Saving lines 808-815)
-                loEntity.CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName; // CFOREIGN_LANGUAGE in net4
-                loEntity.CFILTER_TRANS_CODE = _VM.CurrentRecord.CTRANSACTION_CODE; // from filter, txtTransactionTypeCodeFilter equivalent
                 loEntity.CCREATE_BY = ClientHelper.UserId;
                 loEntity.CUPDATE_BY = ClientHelper.UserId;
                 loEntity.CCOMPANY_ID = ClientHelper.CompanyId;
-                loEntity.CUSER_ID = ClientHelper.UserId;
-                // CDEPT_CODE should come from filter (PoDeptCode) if available, otherwise from CurrentRecord
                 loEntity.CDEPT_CODE = !string.IsNullOrWhiteSpace(_VM.PoDeptCode) ? _VM.PoDeptCode : loEntity.CDEPT_CODE; // from filter, txtDepartmentCodeFilter equivalent
                 loEntity.CTRANSACTION_CODE = _VM.CurrentRecord.CTRANSACTION_CODE; // from filter
 
-                // Set Flags from ViewModel (equivalent to net4 lines 816, 819)
-                // Use IncrementFlag property which is set from InitialProcessData in GetInitialProcessAsync (equivalent to plIncrementFlag in net4)
-                loEntity.LINCREMENT_FLAG = _VM.IncrementFlag; // plIncrementFlag in net4 (line 117: plIncrementFlag = loRtn._LINCREMENT_FLAG)
-                loEntity.LINCREMENT_FLAG = true; // testing hardcore true
-                // LONETIME_FLAG - already in entity from CurrentRecord, no need to set
+                
 
-                // Set Dates (convert DateTime? to string "yyyyMMdd") - equivalent to net4 lines 817-818
-                if (loEntity.DTRANSACTION_DATE.HasValue)
+                // Set Dates (convert DateTime to string "yyyyMMdd") - equivalent to net4 lines 817-818
+                if (loEntity.DREF_DATE != default)
                 {
-                    loEntity.CTRANSACTION_DATE = loEntity.DTRANSACTION_DATE.Value.ToString("yyyyMMdd");
+                    loEntity.CREF_DATE = loEntity.DREF_DATE.ToString("yyyyMMdd");
                 }
                 else
                 {
-                    loEntity.CTRANSACTION_DATE = string.Empty;
+                    loEntity.CREF_DATE = string.Empty;
                 }
 
-                if (loEntity.DDOCUMENT_DATE.HasValue)
+                if (loEntity.DDOCUMENT_DATE != default)
                 {
-                    loEntity.CDOCUMENT_DATE = loEntity.DDOCUMENT_DATE.Value.ToString("yyyyMMdd");
+                    loEntity.CDOCUMENT_DATE = loEntity.DDOCUMENT_DATE.ToString("yyyyMMdd");
                 }
                 else
                 {
@@ -1075,99 +1014,96 @@ namespace FAT00100Front
                 }
 
                 // Handle FA/PJ Source Selection (equivalent to net4 lines 821-828)
-                if (loEntity.CFR_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_FA)
+                if (loEntity.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_FA)
                 {
                     // If FA: clear FR fields
                     loEntity.CFR_DEPT_CODE = string.Empty;
-                    loEntity.CFR_TRANSACTION_CODE = string.Empty;
-                    loEntity.CFR_REFERENCE_NO = string.Empty;
+                    loEntity.CFR_DEPT_CODE = string.Empty;
+                    loEntity.CFR_REF_NO = string.Empty;
                 }
                 // If PJ: keep values from UI (already bound in razor)
 
-                // Calculate LGLLINK (equivalent to net4 lines 830-836)
-                string lcGlinkDate = _VM.InitialProcessData?.CGLLINK_DATE ?? string.Empty;
-                loEntity.LGLLINK = (string.Compare(lcGlinkDate, loEntity.CTRANSACTION_DATE) <= 0);
+                //// Calculate LGLLINK (equivalent to net4 lines 830-836)
+                //string lcGlinkDate = _VM.InitialProcessData?.CGLLINK_DATE ?? string.Empty;
+                //loEntity.LGLLINK = (string.Compare(lcGlinkDate, loEntity.CTRANSACTION_DATE) <= 0);
 
-                // Set Status for Add Mode (equivalent to net4 lines 838-842)
-                if (eventArgs.ConductorMode == R_eConductorMode.Add)
-                {
-                    loEntity.CSTATUS = FAT00100ViewModel.DEFAULT_STATUS_DRAFT; // Draft
-                    loEntity.CGL_TRF_STATUS = FAT00100ViewModel.DEFAULT_GL_TRF_STATUS;
-                }
+                //// Set Status for Add Mode (equivalent to net4 lines 838-842)
+                //if (eventArgs.ConductorMode == R_eConductorMode.Add)
+                //{
+                //    loEntity.CSTATUS = FAT00100ViewModel.DEFAULT_STATUS_DRAFT; // Draft
+                //    loEntity.CGL_TRF_STATUS = FAT00100ViewModel.DEFAULT_GL_TRF_STATUS;
+                //}
 
-                // Handle Transaction Period (equivalent to net4 line 847)
-                // Set CTRANSACTION_PRD = First 6 characters of CTRANSACTION_DATE (YYYYMM format)
-                if (!string.IsNullOrEmpty(loEntity.CTRANSACTION_DATE) && loEntity.CTRANSACTION_DATE.Length >= 6)
-                {
-                    loEntity.CTRANSACTION_PRD = loEntity.CTRANSACTION_DATE.Substring(0, 6);
-                }
-                else
-                {
-                    loEntity.CTRANSACTION_PRD = string.Empty;
-                }
+                //// Handle Transaction Period (equivalent to net4 line 847)
+                //// Set CTRANSACTION_PRD = First 6 characters of CTRANSACTION_DATE (YYYYMM format)
+                //if (!string.IsNullOrEmpty(loEntity.CTRANSACTION_DATE) && loEntity.CTRANSACTION_DATE.Length >= 6)
+                //{
+                //    loEntity.CTRANSACTION_PRD = loEntity.CTRANSACTION_DATE.Substring(0, 6);
+                //}
+                //else
+                //{
+                //    loEntity.CTRANSACTION_PRD = string.Empty;
+                //}
 
-                // Prepare Supplier Info (oSupp and oCP) - equivalent to net4 lines 848-858
-                if (string.IsNullOrWhiteSpace(loEntity.CINFO_SEQNO))
-                {
-                    // If empty: Create new FAT00100SuppDTO
-                    loEntity.oSupp = new FAT00100SuppDTO
-                    {
-                        CCOMPANY_ID = ClientHelper.CompanyId,
-                        CSUPPLIER_ID = loEntity.CSUPPLIER_ID, // from entity (already bound from UI)
-                        CSUPPLIER_NAME = loEntity.CSUPPLIER_NAME // from entity (already bound from UI)
-                    };
-                    loEntity.oCP = new List<FAT00100CPDTO>();
-                }
-                else
-                {
-                    // If not empty: Get supplier info and contact list from ViewModel
-                    // Note: This should be called asynchronously, but R_Saving is synchronous
-                    // The supplier info should already be loaded in ViewModel from previous operations
-                    if (_VM.SupplierInfo != null && !string.IsNullOrWhiteSpace(_VM.SupplierInfo.CSUPPLIER_ID))
-                    {
-                        // Map SupplierInfo to oSupp
-                        loEntity.oSupp = new FAT00100SuppDTO
-                        {
-                            CCOMPANY_ID = _VM.SupplierInfo.CCOMPANY_ID,
-                            CSUPPLIER_ID = _VM.SupplierInfo.CSUPPLIER_ID,
-                            CINFO_SEQNO = _VM.SupplierInfo.CINFO_SEQNO,
-                            CSUPPLIER_NAME = _VM.SupplierInfo.CSUPPLIER_NAME,
-                            CADDRESS = _VM.SupplierInfo.CADDRESS,
-                            CPOSTAL_CODE = _VM.SupplierInfo.CPOSTAL_CODE,
-                            CCITY = _VM.SupplierInfo.CCITY,
-                            CCOUNTRY_CODE = _VM.SupplierInfo.CCOUNTRY_CODE,
-                            CSTATE_CODE = _VM.SupplierInfo.CSTATE_CODE,
-                            CPHONE_1 = _VM.SupplierInfo.CPHONE_1,
-                            CPHONE_2 = _VM.SupplierInfo.CPHONE_2,
-                            CPHONE_3 = _VM.SupplierInfo.CPHONE_3,
-                            CFAX_NO1 = _VM.SupplierInfo.CFAX_NO1,
-                            CFAX_NO2 = _VM.SupplierInfo.CFAX_NO2,
-                            CFAX_NO3 = _VM.SupplierInfo.CFAX_NO3,
-                            CEMAIL_1 = _VM.SupplierInfo.CEMAIL_1,
-                            CEMAIL_2 = _VM.SupplierInfo.CEMAIL_2,
-                            CEMAIL_3 = _VM.SupplierInfo.CEMAIL_3,
-                            CTAX_REG_TP = _VM.SupplierInfo.CTAX_REG_TP,
-                            CTAX_NAME = _VM.SupplierInfo.CTAX_NAME,
-                            CTAX_REGISTER_ID = _VM.SupplierInfo.CTAX_REGISTER_ID,
-                            DTAX_REGISTER_DATE = _VM.SupplierInfo.DTAX_REGISTER_DATE,
-                            CTAX_BUSINESS_TYPE = _VM.SupplierInfo.CTAX_BUSINESS_TYPE,
-                            CTAX_BUSINESS_NAME = _VM.SupplierInfo.CTAX_BUSINESS_NAME
-                        };
-                    }
+                //// Prepare Supplier Info (oSupp and oCP) - equivalent to net4 lines 848-858
+                //if (string.IsNullOrWhiteSpace(loEntity.CINFO_SEQNO))
+                //{
+                //    // If empty: Create new FAT00100SuppDTO
+                //    loEntity.oSupp = new FAT00100SuppDTO
+                //    {
+                //        CCOMPANY_ID = ClientHelper.CompanyId,
+                //        CSUPPLIER_ID = loEntity.CSUPPLIER_ID, // from entity (already bound from UI)
+                //        CSUPPLIER_NAME = loEntity.CSUPPLIER_NAME // from entity (already bound from UI)
+                //    };
+                //    loEntity.oCP = new List<FAT00100CPDTO>();
+                //}
+                //else
+                //{
+                //    // If not empty: Get supplier info and contact list from ViewModel
+                //    // Note: This should be called asynchronously, but R_Saving is synchronous
+                //    // The supplier info should already be loaded in ViewModel from previous operations
+                //    if (_VM.SupplierInfo != null && !string.IsNullOrWhiteSpace(_VM.SupplierInfo.CSUPPLIER_ID))
+                //    {
+                //        // Map SupplierInfo to oSupp
+                //        loEntity.oSupp = new FAT00100SuppDTO
+                //        {
+                //            CCOMPANY_ID = _VM.SupplierInfo.CCOMPANY_ID,
+                //            CSUPPLIER_ID = _VM.SupplierInfo.CSUPPLIER_ID,
+                //            CINFO_SEQNO = _VM.SupplierInfo.CINFO_SEQNO,
+                //            CSUPPLIER_NAME = _VM.SupplierInfo.CSUPPLIER_NAME,
+                //            CADDRESS = _VM.SupplierInfo.CADDRESS,
+                //            CPOSTAL_CODE = _VM.SupplierInfo.CPOSTAL_CODE,
+                //            CCITY = _VM.SupplierInfo.CCITY,
+                //            CCOUNTRY_CODE = _VM.SupplierInfo.CCOUNTRY_CODE,
+                //            CSTATE_CODE = _VM.SupplierInfo.CSTATE_CODE,
+                //            CPHONE_1 = _VM.SupplierInfo.CPHONE_1,
+                //            CPHONE_2 = _VM.SupplierInfo.CPHONE_2,
+                //            CPHONE_3 = _VM.SupplierInfo.CPHONE_3,
+                //            CFAX_NO1 = _VM.SupplierInfo.CFAX_NO1,
+                //            CFAX_NO2 = _VM.SupplierInfo.CFAX_NO2,
+                //            CFAX_NO3 = _VM.SupplierInfo.CFAX_NO3,
+                //            CEMAIL_1 = _VM.SupplierInfo.CEMAIL_1,
+                //            CEMAIL_2 = _VM.SupplierInfo.CEMAIL_2,
+                //            CEMAIL_3 = _VM.SupplierInfo.CEMAIL_3,
+                //            CTAX_REG_TP = _VM.SupplierInfo.CTAX_REG_TP,
+                //            CTAX_NAME = _VM.SupplierInfo.CTAX_NAME,
+                //            CTAX_REGISTER_ID = _VM.SupplierInfo.CTAX_REGISTER_ID,
+                //            DTAX_REGISTER_DATE = _VM.SupplierInfo.DTAX_REGISTER_DATE,
+                //            CTAX_BUSINESS_TYPE = _VM.SupplierInfo.CTAX_BUSINESS_TYPE,
+                //            CTAX_BUSINESS_NAME = _VM.SupplierInfo.CTAX_BUSINESS_NAME
+                //        };
+                //    }
 
-                    // Set oCP from ContactPersonList
-                    if (_VM.ContactPersonList != null && _VM.ContactPersonList.Count > 0)
-                    {
-                        loEntity.oCP = new List<FAT00100CPDTO>(_VM.ContactPersonList);
-                    }
-                    else
-                    {
-                        loEntity.oCP = new List<FAT00100CPDTO>();
-                    }
-                }
-
-                // Debug: Verify the value is set correctly
-                System.Diagnostics.Debug.WriteLine($"[FAT00100 R_Saving] loEntity.LINCREMENT_FLAG = {loEntity.LINCREMENT_FLAG}");
+                //    // Set oCP from ContactPersonList
+                //    if (_VM.ContactPersonList != null && _VM.ContactPersonList.Count > 0)
+                //    {
+                //        loEntity.oCP = new List<FAT00100CPDTO>(_VM.ContactPersonList);
+                //    }
+                //    else
+                //    {
+                //        loEntity.oCP = new List<FAT00100CPDTO>();
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -1185,8 +1121,6 @@ namespace FAT00100Front
             {
                 // Get entity directly from eventArgs.Data (following example pattern)
                 var loParam = (FAT00100DTO)eventArgs.Data;
-                
-                System.Diagnostics.Debug.WriteLine($"[FAT00100 R_ServiceSave] loParam.LINCREMENT_FLAG = {loParam.LINCREMENT_FLAG}");
                 
                 // Set CompanyId, UserId, LangId from ClientHelper
                 
@@ -1288,7 +1222,7 @@ namespace FAT00100Front
                 // Add mode: Validate transaction number when LINCREMENT_FLAG is false
                 if (eventArgs.ConductorMode == R_eConductorMode.Add)
                 {
-                    // Use IncrementFlag property which is set from InitialProcessData in GetInitialProcessAsync (equivalent to plIncrementFlag in net4)
+                    // Use IncrementFlag property (equivalent to plIncrementFlag in net4)
                     bool llIncrementFlag = _VM.IncrementFlag;
                     if (!llIncrementFlag)
                     {
@@ -1300,7 +1234,7 @@ namespace FAT00100Front
                 }
 
                 // Validate transaction date
-                if (loEntity.DTRANSACTION_DATE == null)
+                if (loEntity.DREF_DATE == null)
                 {
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS006"));
                 }
@@ -1312,9 +1246,9 @@ namespace FAT00100Front
                 }
 
                 // Validate PJ fields when PJ source is selected
-                if (loEntity.CFR_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)
+                if (loEntity.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)
                 {
-                    if (string.IsNullOrWhiteSpace(loEntity.CFR_DEPT_CODE) || string.IsNullOrWhiteSpace(loEntity.CFR_REFERENCE_NO))
+                    if (string.IsNullOrWhiteSpace(loEntity.CFR_DEPT_CODE) || string.IsNullOrWhiteSpace(loEntity.CFR_REF_NO))
                     {
                         loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS008"));
                     }
@@ -1324,22 +1258,22 @@ namespace FAT00100Front
                 string lcDocumentDate = string.Empty;
                 string lcTransactionDate = string.Empty;
 
-                if (loEntity.DDOCUMENT_DATE.HasValue)
+                if (loEntity.DDOCUMENT_DATE != default)
                 {
-                    lcDocumentDate = loEntity.DDOCUMENT_DATE.Value.ToString("yyyyMMdd");
+                    lcDocumentDate = loEntity.DDOCUMENT_DATE.ToString("yyyyMMdd");
                 }
-                else if (!string.IsNullOrWhiteSpace(loEntity.CDOCUMENT_DATE))
+                else
                 {
-                    lcDocumentDate = loEntity.CDOCUMENT_DATE;
+                    lcDocumentDate = !string.IsNullOrWhiteSpace(loEntity.CDOCUMENT_DATE) ? loEntity.CDOCUMENT_DATE : string.Empty;
                 }
 
-                if (loEntity.DTRANSACTION_DATE.HasValue)
+                if (loEntity.DREF_DATE != default)
                 {
-                    lcTransactionDate = loEntity.DTRANSACTION_DATE.Value.ToString("yyyyMMdd");
+                    lcTransactionDate = loEntity.DREF_DATE.ToString("yyyyMMdd");
                 }
-                else if (!string.IsNullOrWhiteSpace(loEntity.CTRANSACTION_DATE))
+                else
                 {
-                    lcTransactionDate = loEntity.CTRANSACTION_DATE;
+                    lcTransactionDate = !string.IsNullOrWhiteSpace(loEntity.CREF_DATE) ? loEntity.CREF_DATE : string.Empty;
                 }
 
                 if (!string.IsNullOrEmpty(lcDocumentDate) && !string.IsNullOrEmpty(lcTransactionDate))
@@ -1394,61 +1328,61 @@ namespace FAT00100Front
 
             try
             {
-                // MANDATORY: Update CFR_MODULE property manually when using ValueChanged (cannot use @bind-Value)
-                _VM.Data.CFR_MODULE = pcNewValue;
+                // MANDATORY: Update CSOURCE_MODULE property manually when using ValueChanged (cannot use @bind-Value)
+                _VM.Data.CSOURCE_MODULE = pcNewValue;
 
                 // Check if conductor is in Add or Edit mode
                 if (_conductorRef != null)
                 {
                     var leMode = _conductorRef.R_ConductorMode;
                     bool llIsAddOrEdit = (leMode == R_eConductorMode.Add || leMode == R_eConductorMode.Edit);
-                    bool llChangeDesc = _VM.Data.LCHANGE_DESC;
+                    //bool llChangeDesc = _VM.Data.LCHANGE_DESC;
 
                     if (llIsAddOrEdit)
                     {
                         if (pcNewValue == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)
                         {
-                            // PJ selected - equivalent to rdbPJ.CheckStateChanged in net4
-                            // SourceOptional() logic: Enable PJ fields, disable/clear FA fields
-                            if (!llChangeDesc)
-                            {
-                                // Set PJ transaction code and name (equivalent to txtTransactionTypeCode.Text = "420010" in net4)
-                                _VM.Data.CFR_TRANSACTION_CODE = FAT00100ViewModel.DEFAULT_PJ_TRANSACTION_CODE;
-                                _VM.Data.CFR_TRANSACTION_NAME = _VM.PJTransDesc;
-                            }
-                            else
-                            {
-                                // When LCHANGE_DESC is true, clear transaction code
-                                _VM.Data.CFR_TRANSACTION_CODE = string.Empty;
-                                _VM.Data.CFR_TRANSACTION_NAME = string.Empty;
-                            }
+                            //// PJ selected - equivalent to rdbPJ.CheckStateChanged in net4
+                            //// SourceOptional() logic: Enable PJ fields, disable/clear FA fields
+                            //if (!llChangeDesc)
+                            //{
+                            //    // Set PJ transaction code and name (equivalent to txtTransactionTypeCode.Text = "420010" in net4)
+                            //    _VM.Data.CFR_TRANSACTION_CODE = FAT00100ViewModel.DEFAULT_PJ_TRANSACTION_CODE;
+                            //    _VM.Data.CFR_TRANSACTION_NAME = _VM.PJTransDesc;
+                            //}
+                            //else
+                            //{
+                            //    // When LCHANGE_DESC is true, clear transaction code
+                            //    _VM.Data.CFR_TRANSACTION_CODE = string.Empty;
+                            //    _VM.Data.CFR_TRANSACTION_NAME = string.Empty;
+                            //}
 
-                            // Clear FA-related fields (equivalent to disabling them in net4)
-                            // Supplier fields
-                            _VM.Data.CSUPPLIER_ID = string.Empty;
-                            _VM.Data.CSUPPLIER_NAME = string.Empty;
-                            _VM.PoSupplierId = string.Empty;
-                            _VM.PoSupplierName = string.Empty;
-                            _VM.Data.CINFO_SEQNO = string.Empty;
+                            //// Clear FA-related fields (equivalent to disabling them in net4)
+                            //// Supplier fields
+                            //_VM.Data.CSUPPLIER_ID = string.Empty;
+                            //_VM.Data.CSUPPLIER_NAME = string.Empty;
+                            //_VM.PoSupplierId = string.Empty;
+                            //_VM.PoSupplierName = string.Empty;
+                            //_VM.Data.CINFO_SEQNO = string.Empty;
                             
-                            // Document fields
-                            _VM.Data.CDOCUMENT_NO = string.Empty;
-                            _VM.Data.CDOCUMENT_DATE = string.Empty;
-                            _VM.Data.DDOCUMENT_DATE = null;
+                            //// Document fields
+                            //_VM.Data.CDOCUMENT_NO = string.Empty;
+                            //_VM.Data.CDOCUMENT_DATE = string.Empty;
+                            //_VM.Data.DDOCUMENT_DATE = null;
                             
-                            // Currency fields
-                            _VM.Data.CCURRENCY_CODE = string.Empty;
-                            _VM.Data.CCURRENCY_NAME = string.Empty;
-                            _VM.Data.NLBASE_RATE_AMOUNT = 0;
-                            _VM.Data.NLCURRENCY_RATE_AMOUNT = 0;
-                            _VM.Data.NBBASE_RATE_AMOUNT = 0;
-                            _VM.Data.NBCURRENCY_RATE_AMOUNT = 0;
+                            //// Currency fields
+                            //_VM.Data.CCURRENCY_CODE = string.Empty;
+                            //_VM.Data.CCURRENCY_NAME = string.Empty;
+                            //_VM.Data.NLBASE_RATE_AMOUNT = 0;
+                            //_VM.Data.NLCURRENCY_RATE_AMOUNT = 0;
+                            //_VM.Data.NBBASE_RATE_AMOUNT = 0;
+                            //_VM.Data.NBCURRENCY_RATE_AMOUNT = 0;
                             
-                            // Clear nested DTOs
-                            _VM.Data.oCP = new List<FAT00100CPDTO>();
-                            _VM.Data.oSupp = null;
-                            _VM.ContactPersonList.Clear();
-                            _VM.SupplierInfo = new FAT00100GetGSM_SUPPLIER_INFOResultDTO();
+                            //// Clear nested DTOs
+                            //_VM.Data.oCP = new List<FAT00100CPDTO>();
+                            //_VM.Data.oSupp = null;
+                            //_VM.ContactPersonList.Clear();
+                            //_VM.SupplierInfo = new FAT00100GetGSM_SUPPLIER_INFOResultDTO();
                         }
                         else if (pcNewValue == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_FA)
                         {
@@ -1456,13 +1390,13 @@ namespace FAT00100Front
                             // SourceOptional() logic: Enable FA fields, disable/clear PJ fields
                             
                             // Clear PJ transaction code and name (equivalent to txtTransactionTypeCode.Text = "" in net4)
-                            _VM.Data.CFR_TRANSACTION_CODE = string.Empty;
-                            _VM.Data.CFR_TRANSACTION_NAME = string.Empty;
+                            _VM.Data.CFR_TRANS_CODE = string.Empty;
+                            _VM.Data.CFR_TRANS_NAME = string.Empty;
                             
                             // Clear PJ-related fields
                             _VM.Data.CFR_DEPT_CODE = string.Empty;
                             _VM.Data.CFR_DEPT_NAME = string.Empty;
-                            _VM.Data.CFR_REFERENCE_NO = string.Empty;
+                            _VM.Data.CFR_REF_NO = string.Empty;
                         }
                     }
                 }
@@ -1501,12 +1435,12 @@ namespace FAT00100Front
                 var loParam = new FAT0010002DTO
                 {
                     CDEPT_CODE = loEntity.CDEPT_CODE ?? string.Empty,
-                    CTRANSACTION_CODE = loEntity.CTRANSACTION_CODE ?? string.Empty,
+                    CTRANSACTION_CODE = "200010",//loEntity.CSOURCE_MODULE =="FA"? "200010" : "420010",
                     CREFERENCE_NO = loEntity.CREFERENCE_NO,
-                    CSTATUS = loEntity.CSTATUS ?? string.Empty,
+                    CSTATUS = loEntity.CTRANS_STATUS ?? string.Empty,
                     CMODE = "T", // T=Transaction, V=View
-                    CLOCAL_CURRENCY_CODE = _VM.LocalCurrencyCode ?? string.Empty,
-                    CBASE_CURRENCY_CODE = _VM.BaseCurrencyCode ?? string.Empty,
+                    CLOCAL_CURRENCY_CODE = _VM.CompanyInfoData?.CLOCAL_CURRENCY_CODE ?? string.Empty,
+                    CBASE_CURRENCY_CODE = _VM.CompanyInfoData?.CBASE_CURRENCY_CODE ?? string.Empty,
                     LASSET_INCREMENT_FLAG = _VM.IncrementFlag,
                     LJRNGRP_MODE = _VM.JrngrpMode,
                     LDEPT_MODE = _VM.DeptMode,
@@ -1524,10 +1458,8 @@ namespace FAT00100Front
                     Width = "100%"
                 };
 
-                // Show popup using PopupService
+                // tutup 
                 var loResult = await PopupService.Show(typeof(FAT0010002), loParam, poPopupSettings: loPopupSettings);
-
-                // Handle result if popup was successful
                 if (loResult.Success && loResult.Result != null)
                 {
                     // Refresh conductor with updated data if needed
@@ -1538,7 +1470,6 @@ namespace FAT00100Front
                             CCOMPANY_ID = ClientHelper.CompanyId,
                             CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
                             CDEPT_CODE = _VM.PoDeptCode,
-                            CFILTER_TRANS_CODE = FAT00100ViewModel.DEFAULT_TRANSACTION_CODE,
                             CREFERENCE_NO = _VM.CurrentRecord.CREFERENCE_NO
                         };
 
@@ -1581,7 +1512,7 @@ namespace FAT00100Front
                 }
 
                 // Validation before submit (only for Draft status "00") - equivalent to net4 lines 2265-2272
-                if (loEntity.CSTATUS == FAT00100ViewModel.DEFAULT_STATUS_DRAFT)
+                if (loEntity.CTRANS_STATUS == FAT00100ViewModel.DEFAULT_STATUS_DRAFT)
                 {
                     var loValidationResult = await _VM.ValidationBeforeSubmitAsync(
                         ClientHelper.CompanyId,
@@ -1601,7 +1532,7 @@ namespace FAT00100Front
                 }
 
                 // Show confirmation message based on current status - equivalent to net4 line 2275
-                string lcMessageKey = loEntity.CSTATUS == FAT00100ViewModel.DEFAULT_STATUS_DRAFT ? "_msgSubmit" : "_msgDraft";
+                string lcMessageKey = loEntity.CTRANS_STATUS == FAT00100ViewModel.DEFAULT_STATUS_DRAFT ? "_msgSubmit" : "_msgDraft";
                 string lcMessage = R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), lcMessageKey);
 
                 var leResult = await R_MessageBox.Show(
@@ -1629,7 +1560,6 @@ namespace FAT00100Front
                     CCOMPANY_ID = ClientHelper.CompanyId,
                     CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
                     CDEPT_CODE = _VM.PoDeptCode,
-                    CFILTER_TRANS_CODE = FAT00100ViewModel.DEFAULT_TRANSACTION_CODE,
                     CREFERENCE_NO = loEntity.CREFERENCE_NO
                 };
 
@@ -1649,7 +1579,6 @@ namespace FAT00100Front
                         CCOMPANY_ID = ClientHelper.CompanyId,
                         CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
                         CDEPT_CODE = loFirstRow.CDEPT_CODE ?? string.Empty,
-                        CFILTER_TRANS_CODE = FAT00100ViewModel.DEFAULT_TRANSACTION_CODE,
                         CREFERENCE_NO = loFirstRow.CREFERENCE_NO
                     };
 
@@ -1693,7 +1622,7 @@ namespace FAT00100Front
                 }
 
                 // Validate status is Open (01) - redraft only works from Open status
-                if (loEntity.CSTATUS != "01")
+                if (loEntity.CTRANS_STATUS != "10")
                 {
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS009"));
                     R_DisplayException(loEx);
@@ -1729,7 +1658,6 @@ namespace FAT00100Front
                     CCOMPANY_ID = ClientHelper.CompanyId,
                     CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
                     CDEPT_CODE = _VM.PoDeptCode,
-                    CFILTER_TRANS_CODE = FAT00100ViewModel.DEFAULT_TRANSACTION_CODE,
                     CREFERENCE_NO = loEntity.CREFERENCE_NO
                 };
 
@@ -1749,7 +1677,6 @@ namespace FAT00100Front
                         CCOMPANY_ID = ClientHelper.CompanyId,
                         CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
                         CDEPT_CODE = loFirstRow.CDEPT_CODE ?? string.Empty,
-                        CFILTER_TRANS_CODE = FAT00100ViewModel.DEFAULT_TRANSACTION_CODE,
                         CREFERENCE_NO = loFirstRow.CREFERENCE_NO
                     };
 
@@ -1823,7 +1750,7 @@ namespace FAT00100Front
             var loEx = new R_Exception();
             try
             {
-                // Pass CurrentRecord DTO as parameter to the AssetList component
+                // tutup  Pass CurrentRecord DTO as parameter to the AssetList component
                 eventArgs.Parameter = _VM?.CurrentRecord ?? new FAT00100DTO();
                 eventArgs.TargetPageType = typeof(FAT00100AssetList);
             }

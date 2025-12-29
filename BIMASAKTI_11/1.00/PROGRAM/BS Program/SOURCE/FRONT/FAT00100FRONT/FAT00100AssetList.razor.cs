@@ -30,7 +30,7 @@ namespace FAT00100Front
         [Parameter]
         public FAT00100AssetListViewModel VM { get; set; } = new FAT00100AssetListViewModel();
 
-        private R_Grid<FAT00100GetAssetListResultDTO>? _gridRef;
+        private R_Grid<FAT00100GetTransAssetListResultDTO>? _gridRef;
         private R_Conductor? _conductorRef;
 
         [Inject] private IClientHelper ClientHelper { get; set; } = default!;
@@ -47,10 +47,6 @@ namespace FAT00100Front
         public string BaseCurrencyDisplay => "IDR";
 
 
-        /// <summary>
-        /// Display property for serial number (placeholder - DTO doesn't have this field)
-        /// </summary>
-        public string SerialNumberDisplay => string.Empty; // TODO: Add to DTO if needed
 
         #region Lifecycle Methods
 
@@ -104,35 +100,33 @@ namespace FAT00100Front
             {
                 // Only call API if we have a valid DTO with required fields
                 // Required fields: CDEPT_CODE (or PoDeptCode), CTRANSACTION_CODE, CREFERENCE_NO
-                if (VM.CurrentRecord != null && 
-                    (!string.IsNullOrWhiteSpace(VM.CurrentRecord.CTRANSACTION_CODE) || 
-                     !string.IsNullOrWhiteSpace(VM.CurrentRecord.CREFERENCE_NO)))
+                if (VM.CurrentRecord != null && !string.IsNullOrWhiteSpace(VM.CurrentRecord.CREFERENCE_NO))
                 {
                     // Get parameters from DTO and ClientHelper
                     string lcCompanyId = ClientHelper.CompanyId;
                     string lcLangId = ClientHelper.CultureUI.TwoLetterISOLanguageName;
+                    string lcRecId = VM.CurrentRecord.CREC_ID ?? string.Empty;
                     string lcDeptCode = VM.CurrentRecord.CDEPT_CODE ?? string.Empty;
                     string lcTransactionCode = VM.CurrentRecord.CTRANSACTION_CODE ?? string.Empty;
                     string lcReferenceNo = VM.CurrentRecord.CREFERENCE_NO ?? string.Empty;
-                    string lcStatus = VM.CurrentRecord.CSTATUS ?? string.Empty;
+                    string lcStatus = VM.CurrentRecord.CTRANS_STATUS ?? string.Empty;
 
                     // Call ViewModel method to get asset list
-                    await VM.GetAssetListAsync(
+                    await VM.FAT00100GetTransAssetListAsync(
                         lcCompanyId,
                         lcLangId,
+                        lcRecId,
                         lcDeptCode,
-                        lcTransactionCode,
-                        lcReferenceNo,
-                        lcStatus
+                        lcReferenceNo
                     );
 
                     // Set the result from ViewModel
-                    eventArgs.ListEntityResult = VM.AssetList ?? new System.Collections.ObjectModel.ObservableCollection<FAT00100GetAssetListResultDTO>();
+                    eventArgs.ListEntityResult = VM.AssetList ?? new System.Collections.ObjectModel.ObservableCollection<FAT00100GetTransAssetListResultDTO>();
                 }
                 else
                 {
                     // Return empty list if DTO is null or incomplete
-                    eventArgs.ListEntityResult = new System.Collections.ObjectModel.ObservableCollection<FAT00100GetAssetListResultDTO>();
+                    eventArgs.ListEntityResult = new System.Collections.ObjectModel.ObservableCollection<FAT00100GetTransAssetListResultDTO>();
                 }
             }
             catch (Exception ex)
@@ -146,23 +140,65 @@ namespace FAT00100Front
         /// <summary>
         /// Conductor service handler - gets selected asset record from grid
         /// Called automatically by R_Conductor when a grid row is selected (Navigator grid)
-        /// Follows GSM02000 pattern: calls ViewModel method and returns result
+        /// Calls FAT00100GetTransAssetAsync to get full asset details and maps to VM.Data
         /// </summary>
-        private Task Conductor_R_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
+        private async Task Conductor_R_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
-                // Convert event data to parameter DTO
-                var loParam = R_FrontUtility.ConvertObjectToObject<FAT00100GetAssetListResultDTO>(eventArgs.Data);
+                // Convert event data to parameter DTO (selected asset from grid)
+                var loSelectedAsset = R_FrontUtility.ConvertObjectToObject<FAT00100GetTransAssetListResultDTO>(eventArgs.Data);
 
-                // Call ViewModel method to get selected asset - returns the asset
-                // Handle null case
-                var loResult = VM.GetSelectedAsset(loParam ?? new FAT00100GetAssetListResultDTO());
+                if (loSelectedAsset != null && VM.CurrentRecord != null)
+                {
+                    // Get parameters for FAT00100GetTransAssetAsync
+                    string lcCompanyId = ClientHelper.CompanyId;
+                    string lcLangId = ClientHelper.CultureUI.TwoLetterISOLanguageName;
+                    string lcRecId = loSelectedAsset.CREC_ID ?? string.Empty;
+                    string lcDeptCode = loSelectedAsset.CDEPT_CODE ?? string.Empty;
+                    string lcRefNo = loSelectedAsset.CREF_NO ?? string.Empty;
+                    string lcTransSeqNo = loSelectedAsset.CTRANS_SEQ_NO ?? string.Empty;
 
-                // Return the result - conductor will automatically set VM.Data from this result
-                eventArgs.Result = loResult;
+                    // Call ViewModel method to get full transaction asset details
+                    await VM.FAT00100GetTransAssetAsync(
+                        lcCompanyId,
+                        lcRecId,
+                        lcDeptCode,
+                        lcRefNo,
+                        lcTransSeqNo,
+                        lcLangId
+                    );
+
+                    // Map properties from TransAssetData to VM.Data (FAT00100GetTransAssetListResultDTO)
+                    // This ensures the form displays the detailed information
+                    if (VM.TransAssetData != null)
+                    {
+                        // Use R_FrontUtility.ConvertObjectToObject to automatically map matching properties
+                        var loResult = R_FrontUtility.ConvertObjectToObject<FAT00100GetTransAssetListResultDTO>(VM.TransAssetData);
+                        
+                        // Set properties that need special handling (not directly mappable)
+                        loResult.CCOMPANY_ID = lcCompanyId;
+                        loResult.CDEPT_CODE = VM.TransAssetData.CASSET_DEPT_CODE;
+                        loResult.CREF_NO = lcRefNo;
+                        loResult.CTRANS_SEQ_NO = lcTransSeqNo;
+
+                        // Return the result - conductor will automatically set VM.Data from this result
+                        eventArgs.Result = loResult;
+                    }
+                    else
+                    {
+                        // Fallback to GetSelectedAsset if TransAssetData is null
+                        var loResult = VM.GetSelectedAsset(loSelectedAsset);
+                        eventArgs.Result = loResult;
+                    }
+                }
+                else
+                {
+                    // If no valid asset or CurrentRecord, return empty DTO
+                    eventArgs.Result = new FAT00100GetTransAssetListResultDTO();
+                }
             }
             catch (Exception ex)
             {
@@ -170,7 +206,6 @@ namespace FAT00100Front
             }
 
             loEx.ThrowExceptionIfErrors();
-            return Task.CompletedTask;
         }
 
         #endregion
@@ -278,8 +313,8 @@ namespace FAT00100Front
                 dynamic loResult = eventArgs.Result;
                 if (VM.Data != null)
                 {
-                    VM.Data.CTAX_CATEGORY_CODE = loResult.cCategoryCode?.ToString().Trim() ?? string.Empty;
-                    VM.Data.CTAX_CATEGORY_DESC = loResult.cCategoryDesc?.ToString().Trim() ?? string.Empty;
+                    //VM.Data.CTAX_CATEGORY_CODE = loResult.cCategoryCode?.ToString().Trim() ?? string.Empty;
+                    //VM.Data.CTAX_CATEGORY_DESC = loResult.cCategoryDesc?.ToString().Trim() ?? string.Empty;
                 }
             }
             catch (Exception ex)
@@ -314,7 +349,7 @@ namespace FAT00100Front
                 if (!llHasData)
                 {
                     // No valid data - reset ViewModel and clear grid
-                    VM.R_SetCurrentData(new FAT00100GetAssetListResultDTO());
+                    VM.R_SetCurrentData(new FAT00100GetTransAssetListResultDTO());
                     
                     // Clear grid if it has data
                     if (_gridRef != null && _gridRef.DataSource != null && _gridRef.DataSource.Count > 0)

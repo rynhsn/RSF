@@ -16,40 +16,43 @@ namespace FAT00100Model.VMs
     /// ViewModel for FAT00100 Asset List operations
     /// Handles asset list data retrieval and management
     /// </summary>
-    public class FAT00100AssetListViewModel : R_ViewModel<FAT00100GetAssetListResultDTO>
+    public class FAT00100AssetListViewModel : R_ViewModel<FAT00100GetTransAssetListResultDTO>
     {
         private readonly FAT00100AssetListModel _assetListModel = new FAT00100AssetListModel();
 
         // Asset list collection
-        public ObservableCollection<FAT00100GetAssetListResultDTO> AssetList { get; set; } = new ObservableCollection<FAT00100GetAssetListResultDTO>();
+        public ObservableCollection<FAT00100GetTransAssetListResultDTO> AssetList { get; set; } = new ObservableCollection<FAT00100GetTransAssetListResultDTO>();
 
         // Current record from parent component (used for API parameters)
         public FAT00100DTO? CurrentRecord { get; set; }
 
+        // Transaction asset data (single result)
+        public FAT00100GetTransAssetResultDTO TransAssetData { get; set; } = new FAT00100GetTransAssetResultDTO();
+
         public FAT00100AssetListViewModel()
         {
             // Initialize Data to avoid null reference issues in UI bindings
-            R_SetCurrentData(new FAT00100GetAssetListResultDTO());
+            R_SetCurrentData(new FAT00100GetTransAssetListResultDTO());
         }
 
+        #region Streaming Methods
+
         /// <summary>
-        /// Get asset list - streaming method for asset grid
+        /// Get transaction asset list - streaming method for asset grid
         /// </summary>
-        public async Task GetAssetListAsync(string pcCompanyId, string pcLangId, string pcDeptCode, string pcTransactionCode, string pcReferenceNo, string pcStatus)
+        public async Task FAT00100GetTransAssetListAsync(string pcCompanyId, string pcLangId, string pcRecId, string pcDeptCode, string pcRefNo)
         {
             var loEx = new R_Exception();
 
             try
             {
-                // Set streaming context for custom parameters (NOT CCOMPANY_ID, CFOREIGN_LANGUAGE)
+                // Set streaming context for custom parameters (NOT CCOMPANY_ID, CLANGUAGE_ID - handled automatically)
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CREC_ID, pcRecId);
                 R_FrontContext.R_SetStreamingContext(ContextConstants.CDEPT_CODE, pcDeptCode);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CTRANSACTION_CODE, pcTransactionCode);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CREFERENCE_NO, pcReferenceNo);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CSTATUS, pcStatus);
-                //R_FrontContext.R_SetStreamingContext(ContextConstants.DUPDATE_DATE, pdUpdateDate);
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CREF_NO, pcRefNo);
 
-                var loResult = await _assetListModel.GetAssetListAsync();
-                AssetList = new ObservableCollection<FAT00100GetAssetListResultDTO>(loResult.Data ?? new List<FAT00100GetAssetListResultDTO>());
+                var loResult = await _assetListModel.FAT00100GetTransAssetListAsync();
+                AssetList = new ObservableCollection<FAT00100GetTransAssetListResultDTO>(loResult.Data ?? new List<FAT00100GetTransAssetListResultDTO>());
             }
             catch (Exception ex)
             {
@@ -59,14 +62,58 @@ namespace FAT00100Model.VMs
             loEx.ThrowExceptionIfErrors();
         }
 
+        #endregion
+
+        #region Non-Streaming Methods
+
+        /// <summary>
+        /// Get transaction asset - non-streaming method for single asset retrieval
+        /// </summary>
+        /// <param name="pcCompanyId">Company ID</param>
+        /// <param name="pcRecId">Record ID</param>
+        /// <param name="pcDeptCode">Department code</param>
+        /// <param name="pcRefNo">Reference number</param>
+        /// <param name="pcTransSeqNo">Transaction sequence number</param>
+        /// <param name="pcLangId">Language ID</param>
+        public async Task FAT00100GetTransAssetAsync(string pcCompanyId, string pcRecId, string pcDeptCode, string pcRefNo, string pcTransSeqNo, string pcLangId)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loParam = new FAT00100GetTransAssetParameterDTO
+                {
+                    CCOMPANY_ID = pcCompanyId,
+                    CREC_ID = pcRecId,
+                    CDEPT_CODE = pcDeptCode,
+                    CREF_NO = pcRefNo,
+                    CTRANS_SEQ_NO = pcTransSeqNo,
+                    CLANGUAGE_ID = pcLangId
+                };
+
+                var loResult = await _assetListModel.FAT00100GetTransAsset(loParam);
+                TransAssetData = loResult.Data ?? new FAT00100GetTransAssetResultDTO();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        #endregion
+
+        #region Helper Methods
+
         /// <summary>
         /// Get selected asset record - finds asset in AssetList and returns it
         /// Called by Conductor_R_ServiceGetRecord - returns the asset to be set as Data
         /// </summary>
-        public FAT00100GetAssetListResultDTO GetSelectedAsset(FAT00100GetAssetListResultDTO poAsset)
+        public FAT00100GetTransAssetListResultDTO GetSelectedAsset(FAT00100GetTransAssetListResultDTO poAsset)
         {
             var loEx = new R_Exception();
-            FAT00100GetAssetListResultDTO loResult = new FAT00100GetAssetListResultDTO();
+            FAT00100GetTransAssetListResultDTO loResult = new FAT00100GetTransAssetListResultDTO();
 
             try
             {
@@ -76,37 +123,20 @@ namespace FAT00100Model.VMs
                 }
 
                 // Find matching asset in AssetList collection
-                FAT00100GetAssetListResultDTO? loFoundAsset = null;
+                FAT00100GetTransAssetListResultDTO? loFoundAsset = null;
                 
                 if (AssetList != null)
                 {
                     loFoundAsset = AssetList.FirstOrDefault(x => 
                         x.CASSET_CODE == poAsset.CASSET_CODE && 
-                        x.CASSET_TRANS_SEQNO == poAsset.CASSET_TRANS_SEQNO);
+                        x.CTRANS_SEQ_NO == poAsset.CTRANS_SEQ_NO);
                 }
 
                 // Use found asset from collection, or use the provided asset
-                FAT00100GetAssetListResultDTO loAssetToDisplay = loFoundAsset ?? poAsset;
+                FAT00100GetTransAssetListResultDTO loAssetToDisplay = loFoundAsset ?? poAsset;
 
-                // Create a new instance and manually copy properties to ensure Blazor detects the change
-                loResult = new FAT00100GetAssetListResultDTO
-                {
-                    CASSET_CODE = loAssetToDisplay.CASSET_CODE ?? string.Empty,
-                    CASSET_TRANS_SEQNO = loAssetToDisplay.CASSET_TRANS_SEQNO ?? string.Empty,
-                    NTRANSACTION_AMOUNT1 = loAssetToDisplay.NTRANSACTION_AMOUNT1,
-                    NLTRANSACTION_AMOUNT1 = loAssetToDisplay.NLTRANSACTION_AMOUNT1,
-                    ITRANSACTION_QTY1 = loAssetToDisplay.ITRANSACTION_QTY1,
-                    CUNIT = loAssetToDisplay.CUNIT ?? string.Empty,
-                    CTRANSACTION_DESCR = loAssetToDisplay.CTRANSACTION_DESCR ?? string.Empty,
-                    CASSET_DEPT_CODE = loAssetToDisplay.CASSET_DEPT_CODE ?? string.Empty,
-                    CASSET_DEPT_NAME = loAssetToDisplay.CASSET_DEPT_NAME ?? string.Empty,
-                    CASSET_LOCATION = loAssetToDisplay.CASSET_LOCATION ?? string.Empty,
-                    CJRNGRP_CODE = loAssetToDisplay.CJRNGRP_CODE ?? string.Empty,
-                    CJRNGRP_NAME = loAssetToDisplay.CJRNGRP_NAME ?? string.Empty,
-                    CTAX_CATEGORY_CODE = loAssetToDisplay.CTAX_CATEGORY_CODE ?? string.Empty,
-                    CTAX_CATEGORY_DESC = loAssetToDisplay.CTAX_CATEGORY_DESC ?? string.Empty,
-                    CASSET_NAME = loAssetToDisplay.CASSET_NAME ?? string.Empty
-                };
+                // Create a new instance using R_FrontUtility.ConvertObjectToObject to ensure Blazor detects the change
+                loResult = R_FrontUtility.ConvertObjectToObject<FAT00100GetTransAssetListResultDTO>(loAssetToDisplay) ?? new FAT00100GetTransAssetListResultDTO();
             }
             catch (Exception ex)
             {
@@ -116,6 +146,8 @@ namespace FAT00100Model.VMs
             loEx.ThrowExceptionIfErrors();
             return loResult;
         }
+
+        #endregion
     }
 }
 

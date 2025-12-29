@@ -29,33 +29,29 @@ namespace FAT00100Service
         }
 
         [HttpPost]
-        public async IAsyncEnumerable<FAT00100GetAssetListResultDTO> GetAssetList()
+        public async IAsyncEnumerable<FAT00100GetTransAssetListResultDTO> FAT00100GetTransAssetList()
         {
-            var lcMethod = nameof(GetAssetList);
+            var lcMethod = nameof(FAT00100GetTransAssetList);
             using var activity = _activitySource.StartActivity(lcMethod);
             var loEx = new R_Exception();
-            List<FAT00100GetAssetListResultDTO> loResult = new List<FAT00100GetAssetListResultDTO>();
+            List<FAT00100GetTransAssetListResultDTO> loResult = new List<FAT00100GetTransAssetListResultDTO>();
 
             try
             {
-                var loCls = new FAT00100Cls();
+                var loCls = new FAT00100AssetListCls();
 
                 // Create parameter DTO internally with global variables and streaming context
-                var loParam = new FAT00100DTO
+                var loParam = new FAT00100GetTransAssetListParameterDTO
                 {
                     CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
-                    CLANG_ID = R_BackGlobalVar.CULTURE,
-                    CUSER_ID = R_BackGlobalVar.USER_ID,
-                    CFOREIGN_LANGUAGE = R_BackGlobalVar.CULTURE,
+                    CREC_ID = R_Utility.R_GetStreamingContext<string>(ContextConstants.CREC_ID) ?? string.Empty,
                     CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstants.CDEPT_CODE) ?? string.Empty,
-                    CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstants.CTRANSACTION_CODE) ?? string.Empty,
-                    CREFERENCE_NO = R_Utility.R_GetStreamingContext<string>(ContextConstants.CREFERENCE_NO) ?? string.Empty,
-                    CSTATUS = R_Utility.R_GetStreamingContext<string>(ContextConstants.CSTATUS) ?? string.Empty,
-                    DUPDATE_DATE =  DateTime.Now
+                    CREF_NO = R_Utility.R_GetStreamingContext<string>(ContextConstants.CREF_NO) ?? string.Empty,
+                    CLANGUAGE_ID = R_BackGlobalVar.CULTURE
                 };
 
-                _logger.LogInfo("Start method GetAssetList in {0}", lcMethod);
-                loResult = await loCls.GetAssetListAsync(loParam);
+                _logger.LogInfo("Start method FAT00100GetTransAssetList in {0}", lcMethod);
+                loResult = await loCls.FAT00100GetTransAssetList(loParam);
             }
             catch (Exception ex)
             {
@@ -65,10 +61,40 @@ namespace FAT00100Service
 
             loEx.ThrowExceptionIfErrors();
 
-            foreach (FAT00100GetAssetListResultDTO loItem in loResult)
+            foreach (FAT00100GetTransAssetListResultDTO loItem in loResult)
             {
                 yield return loItem;
             }
+        }
+
+        [HttpPost]
+        public async Task<FAT00100ResultDTO<FAT00100GetTransAssetResultDTO>> FAT00100GetTransAsset(FAT00100GetTransAssetParameterDTO poParameter)
+        {
+            var lcMethod = nameof(FAT00100GetTransAsset);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            var loRtn = new FAT00100ResultDTO<FAT00100GetTransAssetResultDTO>();
+
+            try
+            {
+                var loCls = new FAT00100AssetListCls();
+
+                // Set global variables from R_BackGlobalVar
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
+
+                _logger.LogInfo("Start method FAT00100GetTransAsset in {0}", lcMethod);
+                loRtn = await loCls.FAT00100GetTransAssetAsync(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loRtn;
         }
     }
 }

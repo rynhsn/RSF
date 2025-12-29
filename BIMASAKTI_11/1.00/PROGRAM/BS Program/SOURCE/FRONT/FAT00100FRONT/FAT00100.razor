@@ -61,26 +61,29 @@
                     <R_Label>@Localizer["_Period"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
-                    <R_NumericTextBox @bind-Value="PeriodFromYear"
+                    <R_NumericTextBox @bind-Value="_VM.PeriodFromYear"
                                      Arrows="true"
                                      TValue="int"
+                                     Min="_VM.YearRangeData.IMIN_YEAR"
+                                     Max="_VM.YearRangeData.IMAX_YEAR"
+                                     Step="1"
                                      ThousandSeparator="false" />
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
-                    <R_ComboBox @bind-Value="PeriodFromMonth"
-                               Data="_VM.ComboPeriodMonthList"
+                    <R_ComboBox @bind-Value="_VM.PeriodFromMonth"
+                                Data="_VM.ComboPeriodMonthList"
                                ValueField="@nameof(FAT00100GetComboPeriodMonthResultDTO.CPERIOD_NO)"
                                TextField="@nameof(FAT00100GetComboPeriodMonthResultDTO.CPERIOD_NO)" />
                 </R_ItemLayout>
                 <R_Label>-</R_Label>
                 <R_ItemLayout col="2">
-                    <R_NumericTextBox @bind-Value="PeriodToYear"
+                    <R_NumericTextBox @bind-Value="_VM.PeriodToYear"
                                      Arrows="true"
                                      TValue="int"
                                      ThousandSeparator="false" />
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
-                    <R_ComboBox @bind-Value="PeriodToMonth"
+                    <R_ComboBox @bind-Value="_VM.PeriodToMonth"
                                Data="_VM.ComboPeriodMonthList"
                                ValueField="@nameof(FAT00100GetComboPeriodMonthResultDTO.CPERIOD_NO)"
                                TextField="@nameof(FAT00100GetComboPeriodMonthResultDTO.CPERIOD_NO)" />
@@ -92,10 +95,10 @@
                     <R_Label>@Localizer["_Status"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
-                    <R_ComboBox @bind-Value="SelectedStatus"
-                               Data="StatusList"
-                               ValueField="@nameof(StatusOptionDTO.CVALUE)"
-                               TextField="@nameof(StatusOptionDTO.CDESCRIPTION)" />
+                    <R_ComboBox @bind-Value="_VM.SelectedStatus"
+                               Data="_VM.StatusList"
+                               ValueField="@nameof(FAT00100GetStatusListResultDTO.CCODE)"
+                               TextField="@nameof(FAT00100GetStatusListResultDTO.CNAME)" />
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_Button OnClick="btnRefresh_OnClick">@Localizer["_Refresh"]</R_Button>
@@ -120,10 +123,10 @@
                 <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CREFERENCE_NO)" 
                                  HeaderText="@Localizer["_ReferenceNo"]" 
                                  Width="120px" />
-                <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CTRANSACTION_DATE_DISPLAY)"
+                <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CREF_DATE_DISPLAY)"
                                   HeaderText="@Localizer["_Date"]" 
                                  Width="100px" />
-                <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CSTATUS_DESC)" 
+                <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CTRANS_STATUS_NAME)" 
                                  HeaderText="@Localizer["_Status"]" 
                                  Width="100px" />                 
                 <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CSUPPLIER_NAME)" 
@@ -162,7 +165,7 @@
 
                     <R_ItemLayout col="2" Style="text-align: right;">
                         <R_Label FontSize="18px" FontStyle="@R_eFontStyle.Bold">
-                            @_VM.Data.CSTATUS_DESC
+                            @_VM.Data.CTRANS_STATUS_NAME
                         </R_Label>
                     </R_ItemLayout>
                     
@@ -176,14 +179,14 @@
                     <R_ItemLayout col="3">
                         <R_TextBox @bind-Value="_VM.Data.CREFERENCE_NO"
                                 R_ConductorSource="@_conductorRef"
-                                R_EnableAdd="@(_VM.InitialProcessData?.LINCREMENT_FLAG == false)"
-                                Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Add && _VM.InitialProcessData?.LINCREMENT_FLAG == false)" />
+                                R_EnableAdd="@(_VM.SystemParamData?.LINCREMENT_FLAG == false)"
+                                   Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Add && _VM.SystemParamData?.LINCREMENT_FLAG == false)" />
                     </R_ItemLayout>
                     <R_ItemLayout col="3" class="ps-4">
                         <R_Label>@Localizer["_RefDate"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
-                        <R_DatePicker @bind-Value="_VM.Data.DTRANSACTION_DATE"
+                        <R_DatePicker @bind-Value="_VM.Data.DREF_DATE"
                                     R_ConductorSource="@_conductorRef"
                                     R_EnableAdd="true"
                                     R_EnableEdit="true" />
@@ -221,7 +224,7 @@
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
                         <R_RadioGroup Data="SourceList"
-                                    Value="_VM.Data.CFR_MODULE"
+                                      Value="_VM.Data.CSOURCE_MODULE"
                                     ValueChanged="@((string value) => OnSourceChanged(value))"
                                     ValueField="@nameof(SourceOptionDTO.CVALUE)"
                                     TextField="@nameof(SourceOptionDTO.CDESCRIPTION)"
@@ -239,16 +242,16 @@
                         <R_Label>@Localizer["_SourceRefNo"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
-                        <R_TextBox @bind-Value="_VM.Data.CFR_REFERENCE_NO"
+                        <R_TextBox @bind-Value="_VM.Data.CFR_REF_NO"
                                 R_ConductorSource="@_conductorRef"
-                                R_EnableAdd="@(_VM.Data.CFR_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
-                                R_EnableEdit="@(_VM.Data.CFR_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
-                                Enabled="@(_VM.Data.CFR_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)" />
+                                   R_EnableAdd="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
+                                   R_EnableEdit="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
+                                   Enabled="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)" />
                     </R_ItemLayout>
                     <R_ItemLayout auto="true">
                         <R_Lookup R_Before_Open_Lookup="btnPJTransactionLookup_R_Before_Open_Lookup"
                                 R_After_Open_Lookup="btnPJTransactionLookup_R_After_Open_Lookup"
-                                Enabled="@(_VM.Data.CFR_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)">...</R_Lookup>
+                                  Enabled="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)">...</R_Lookup>
                     </R_ItemLayout>
                 </R_StackLayout>
                 <!-- FR Deparment  -->
@@ -259,14 +262,14 @@
                     <R_ItemLayout col="3">
                         <R_TextBox @bind-Value="_VM.Data.CFR_DEPT_CODE"
                                 R_ConductorSource="@_conductorRef"
-                                R_EnableAdd="@(_VM.Data.CFR_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
-                                R_EnableEdit="@(_VM.Data.CFR_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
-                                Enabled="@(_VM.Data.CFR_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)" />
+                                   R_EnableAdd="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
+                                   R_EnableEdit="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
+                                   Enabled="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)" />
                     </R_ItemLayout>
                     <R_ItemLayout auto="true">
                         <R_Lookup R_Before_Open_Lookup="btnFRDepartmentLookup_R_Before_Open_Lookup"
                                 R_After_Open_Lookup="btnFRDepartmentLookup_R_After_Open_Lookup"
-                                Enabled="@(_VM.Data.CFR_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)">...</R_Lookup>
+                                  Enabled="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)">...</R_Lookup>
                     </R_ItemLayout>
                     <R_ItemLayout auto="false">
                         <R_TextBox @bind-Value="_VM.Data.CFR_DEPT_NAME" Enabled="false" />
@@ -278,19 +281,19 @@
                         <R_Label>@Localizer["_SourceTrans"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
-                        <R_TextBox @bind-Value="_VM.Data.CFR_TRANSACTION_CODE"
+                        <R_TextBox @bind-Value="_VM.Data.CFR_TRANS_CODE"
                                 R_ConductorSource="@_conductorRef"
-                                R_EnableAdd="@(_VM.Data.CFR_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
-                                R_EnableEdit="@(_VM.Data.CFR_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
-                                Enabled="@(_VM.Data.CFR_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)" />
+                                   R_EnableAdd="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
+                                   R_EnableEdit="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
+                                   Enabled="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)" />
                     </R_ItemLayout>
                     <R_ItemLayout auto="true">
                         <R_Lookup R_Before_Open_Lookup="btnTransactionTypeLookup_R_Before_Open_Lookup"
                                 R_After_Open_Lookup="btnTransactionTypeLookup_R_After_Open_Lookup"
-                                Enabled="@(_VM.Data.CFR_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)">...</R_Lookup>
+                                  Enabled="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)">...</R_Lookup>
                     </R_ItemLayout>
                     <R_ItemLayout auto="false">
-                        <R_TextBox @bind-Value="_VM.Data.CFR_TRANSACTION_NAME" Enabled="false" />
+                        <R_TextBox @bind-Value="_VM.Data.CFR_TRANS_NAME" Enabled="false" />
                     </R_ItemLayout>
                 </R_StackLayout>
 
@@ -344,7 +347,7 @@
                         <R_Label>@Localizer["_LocalCurrency"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
-                        <R_NumericTextBox @bind-Value="_VM.Data.NLBASE_RATE_AMOUNT"
+                        <R_NumericTextBox @bind-Value="_VM.Data.NLBASE_RATE"
                                         TValue="decimal"
                                         Decimals="2"
                                         ThousandSeparator="true"
@@ -359,7 +362,7 @@
                         <R_Label>=</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
-                        <R_NumericTextBox @bind-Value="_VM.Data.NLCURRENCY_RATE_AMOUNT"
+                        <R_NumericTextBox @bind-Value="_VM.Data.NLCURRENCY_RATE"
                                         TValue="decimal"
                                         Decimals="2"
                                         ThousandSeparator="true"
@@ -375,7 +378,7 @@
                         <R_Label>@Localizer["_BaseCurrency"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
-                        <R_NumericTextBox @bind-Value="_VM.Data.NBBASE_RATE_AMOUNT"
+                        <R_NumericTextBox @bind-Value="_VM.Data.NLBASE_RATE"
                                         TValue="decimal"
                                         Decimals="2"
                                         ThousandSeparator="true"
@@ -390,7 +393,7 @@
                         <R_Label>=</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
-                        <R_NumericTextBox @bind-Value="_VM.Data.NBCURRENCY_RATE_AMOUNT"
+                        <R_NumericTextBox @bind-Value="_VM.Data.NBCURRENCY_RATE"
                                         TValue="decimal"
                                         Decimals="2"
                                         ThousandSeparator="true"
@@ -407,7 +410,7 @@
                         <R_Label>@Localizer["_Description"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="9">
-                        <R_TextArea @bind-Value="_VM.Data.CTRANSACTION_DESCR"
+                        <R_TextArea @bind-Value="_VM.Data.CTRANS_DESC"
                                     R_ConductorSource="@_conductorRef"
                                     R_EnableAdd="true"
                                     R_EnableEdit="true"
@@ -445,8 +448,8 @@
             </R_TabStripTab>
 
             <!-- Tab 2: Asset List -->
-            <R_TabStripTab @ref="_tabAssetList" Title="@Localizer["rpvAssetList"]" Id="@nameof(FAT00100AssetList)">
-                <R_TabPage @ref="_tabPageAssetList" R_Before_Open_TabPage="BeforeOpenAssetList" R_After_Open_TabPage="AfterOpenAssetList" R_TabEventCallback="AssetListTabEventCallBack"/>
+            <R_TabStripTab @ref="_tabAssetList" Title="@Localizer["rpvAssetList"]" Id="@nameof(FAT00100AssetList)"> 
+                 <R_TabPage @ref="_tabPageAssetList" R_Before_Open_TabPage="BeforeOpenAssetList" R_After_Open_TabPage="AfterOpenAssetList" R_TabEventCallback="AssetListTabEventCallBack"/>
             </R_TabStripTab>
         </R_TabStrip>
     </R_ItemLayout>
@@ -459,10 +462,12 @@
             <R_AddButton R_Conductor="@_conductorRef" />
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_EditButton R_Conductor="@_conductorRef" />
+            <R_EditButton R_Conductor="@_conductorRef" 
+                          Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && _VM.Data?.CTRANS_STATUS == "00")" />
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_DeleteButton R_Conductor="@_conductorRef" />
+            <R_DeleteButton R_Conductor="@_conductorRef" 
+                            Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && (_VM.Data?.CTRANS_STATUS == "00" || _VM.Data?.CTRANS_STATUS == "08"))" />
         </R_ItemLayout>
         <R_ItemLayout>
             <R_Button R_ConductorSource="@_conductorRef"
@@ -474,7 +479,7 @@
         <R_ItemLayout>
             <R_Button R_ConductorSource="@_conductorRef" 
                     R_EnableOther="true"
-                    Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && !string.IsNullOrEmpty(_VM.Data.CREFERENCE_NO) && _VM.Data.CSTATUS == "00")"
+                      Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && !string.IsNullOrEmpty(_VM.Data.CREFERENCE_NO) && _VM.Data.CTRANS_STATUS == "00")"
                     OnClick="btnSubmit_OnClick">
                 @Localizer["_Submit"]
             </R_Button>
@@ -482,7 +487,7 @@
         <R_ItemLayout>
             <R_Button R_ConductorSource="@_conductorRef" 
                     R_EnableOther="true"
-                    Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && !string.IsNullOrEmpty(_VM.Data.CREFERENCE_NO) && _VM.Data.CSTATUS == "01")"
+                      Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && !string.IsNullOrEmpty(_VM.Data.CREFERENCE_NO) && _VM.Data.CTRANS_STATUS == "10")"
                     OnClick="btnRedraft_OnClick">
                 @Localizer["_Draft"]
             </R_Button>
@@ -498,7 +503,7 @@
         <R_ItemLayout>
             <R_Button R_ConductorSource="@_conductorRef" 
                     R_EnableOther="true"
-                    Enabled="@(!string.IsNullOrEmpty(_VM.Data.CREFERENCE_NO) && _VM.Data.CSTATUS == "08")"
+                      Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && _VM.Data?.CTRANS_STATUS != null && int.TryParse(_VM.Data.CTRANS_STATUS, out int liStatus) && liStatus > 0 && !string.IsNullOrEmpty(_VM.Data?.CGL_REF_NO))"
                     OnClick="btnJournal_OnClick">
                 @Localizer["_Journal"]
             </R_Button>

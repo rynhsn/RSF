@@ -3,35 +3,60 @@
 
 <R_StackLayout>
     <!-- Top Section: Asset List Grid -->
+    <R_ItemLayout col="12" class="mt-3">
+        <R_StackLayout Row class="mb-1">
+            <R_ItemLayout col="2">
+                <R_Label>@Localizer["_Reference"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_Label>@(VM?.Data?.CREF_NO ?? string.Empty)</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_Label>@(VM?.CurrentRecord?.CREF_DATE ?? string.Empty)</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row class="mb-1">
+            <R_ItemLayout col="2">
+                <R_Label>@Localizer["_Supplier"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_Label>@(VM?.CurrentRecord?.CSUPPLIER_ID_NAME ?? string.Empty)</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    
     <R_ItemLayout col="12" class="mb-3">
         <R_Grid @ref="_gridRef"
-                DataSource="@(VM.AssetList ?? new System.Collections.ObjectModel.ObservableCollection<FAT00100GetAssetListResultDTO>())"
+                DataSource="@(VM.AssetList ?? new System.Collections.ObjectModel.ObservableCollection<FAT00100GetTransAssetListResultDTO>())"
                 Pageable
                 PageSize="20"
                 R_ConductorSource="@_conductorRef"
                 R_GridType="@R_eGridType.Navigator"
                 R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord"
+                
                 Height="300px">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="@nameof(FAT00100GetAssetListResultDTO.CASSET_CODE)" 
+                <R_GridTextColumn FieldName="@nameof(FAT00100GetTransAssetListResultDTO.CASSET_CODE)" 
                                  HeaderText="@Localizer["_AssetCode"]" 
                                  Width="150px" />
-                <R_GridTextColumn FieldName="@nameof(FAT00100GetAssetListResultDTO.CASSET_NAME)" 
+                <R_GridTextColumn FieldName="@nameof(FAT00100GetTransAssetListResultDTO.CASSET_NAME)" 
                                  HeaderText="@Localizer["_AssetName"]" 
                                  Width="200px" />
-                @* TODO: Currency field not in DTO - removed from grid for now *@
-                <R_GridNumericColumn FieldName="@nameof(FAT00100GetAssetListResultDTO.NLTRANSACTION_AMOUNT1)" 
+                <R_GridTextColumn FieldName="@nameof(FAT00100GetTransAssetListResultDTO.CCURRENCY_CODE)"
+                                  HeaderText="@Localizer["_Curr"]"
+                                  Width="200px" />
+                <R_GridNumericColumn FieldName="@nameof(FAT00100GetTransAssetListResultDTO.NLINIT_COST)" 
                                     HeaderText="@Localizer["_InitialCost"]" 
                                     Width="120px"
                                     TValue="decimal"
                                     Decimals="2"
                                     ThousandSeparator="true" />
-                <R_GridNumericColumn FieldName="@nameof(FAT00100GetAssetListResultDTO.ITRANSACTION_QTY1)" 
+                <R_GridNumericColumn FieldName="@nameof(FAT00100GetTransAssetListResultDTO.IQTY)" 
                                     HeaderText="@Localizer["_Quantity"]" 
                                     Width="100px"
                                     TValue="int"
                                     ThousandSeparator="false" />
-                <R_GridTextColumn FieldName="@nameof(FAT00100GetAssetListResultDTO.CUNIT)" 
+                <R_GridTextColumn FieldName="@nameof(FAT00100GetTransAssetListResultDTO.CUNIT)" 
                                  HeaderText="@Localizer["_UOM"]" 
                                  Width="80px" />
             </R_GridColumns>
@@ -52,11 +77,6 @@
                                    R_ConductorSource="@_conductorRef"
                                    Enabled="false" />
                     </R_ItemLayout>
-                    <R_ItemLayout auto="true">
-                        <R_Lookup R_Before_Open_Lookup="btnAssetDeptLookup_R_Before_Open_Lookup"
-                                  R_After_Open_Lookup="btnAssetDeptLookup_R_After_Open_Lookup"
-                                  Enabled="false">...</R_Lookup>
-                    </R_ItemLayout>
                     <R_ItemLayout auto="false">
                         <R_TextBox @bind-Value="VM.Data.CASSET_DEPT_NAME" 
                                    R_ConductorSource="@_conductorRef"
@@ -64,23 +84,18 @@
                     </R_ItemLayout>
                 </R_StackLayout>
 
-                <!-- Asset Category -->
+                @* Asset Category - Not available in FAT00100GetTransAssetListResultDTO *@
                 <R_StackLayout Row class="mb-1">
                     <R_ItemLayout col="2">
                         <R_Label>@Localizer["_AssetCategory"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
-                        <R_TextBox @bind-Value="VM.Data.CTAX_CATEGORY_CODE" 
+                        <R_TextBox @bind-Value="VM.Data.CCATEGORY_CODE"
                                    R_ConductorSource="@_conductorRef"
                                    Enabled="false" />
                     </R_ItemLayout>
-                    <R_ItemLayout auto="true">
-                        <R_Lookup R_Before_Open_Lookup="btnAssetCategoryLookup_R_Before_Open_Lookup"
-                                  R_After_Open_Lookup="btnAssetCategoryLookup_R_After_Open_Lookup"
-                                  Enabled="false">...</R_Lookup>
-                    </R_ItemLayout>
                     <R_ItemLayout auto="false">
-                        <R_TextBox @bind-Value="VM.Data.CTAX_CATEGORY_DESC" 
+                        <R_TextBox @bind-Value="VM.Data.CCATEGORY_NAME"
                                    R_ConductorSource="@_conductorRef"
                                    Enabled="false" />
                     </R_ItemLayout>
@@ -98,14 +113,15 @@
                     </R_ItemLayout>
                 </R_StackLayout>
 
-                @* TODO: Serial Number field not in DTO - may need to extend DTO *@
                 <!-- Serial Number -->
                 <R_StackLayout Row class="mb-1">
                     <R_ItemLayout col="2">
                         <R_Label>@Localizer["_SerialNumber"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout auto="false">
-                        <R_TextBox Value="@SerialNumberDisplay" Enabled="false" />
+                        <R_TextBox @bind-Value="VM.Data.CSERIAL_NUMBER" 
+                                   R_ConductorSource="@_conductorRef"
+                                   Enabled="false" />
                     </R_ItemLayout>
                 </R_StackLayout>
 
@@ -118,7 +134,7 @@
                         <R_TextBox Value="@LocalCurrencyDisplay" Enabled="false" />
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
-                        <R_NumericTextBox @bind-Value="VM.Data.NLTRANSACTION_AMOUNT1"
+                        <R_NumericTextBox @bind-Value="VM.Data.NLOCAL_AMOUNT"
                                          TValue="decimal"
                                          Decimals="2"
                                          ThousandSeparator="true"
@@ -136,7 +152,7 @@
                         <R_TextBox Value="@BaseCurrencyDisplay" Enabled="false" />
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
-                        <R_NumericTextBox @bind-Value="VM.Data.NTRANSACTION_AMOUNT1"
+                        <R_NumericTextBox @bind-Value="VM.Data.NBASE_AMOUNT"
                                          TValue="decimal"
                                          Decimals="2"
                                          ThousandSeparator="true"

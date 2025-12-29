@@ -1,0 +1,18 @@
+namespace FAT00100Common.DTOs
+{
+    /// <summary>
+    /// Parameter DTO for FAT00100GetYearRange method
+    /// </summary>
+    public class FAT00100GetYearRangeParameterDTO
+    {
+        // Standard properties (ALWAYS at top)
+        public string CCOMPANY_ID { get; set; } = string.Empty;
+        public string CLANG_ID { get; set; } = string.Empty;
+        public string CUSER_ID { get; set; } = string.Empty;
+
+        // Method-specific properties
+        public string CCYEAR { get; set; } = string.Empty;
+        public string CMODE { get; set; } = string.Empty;
+    }
+}
+

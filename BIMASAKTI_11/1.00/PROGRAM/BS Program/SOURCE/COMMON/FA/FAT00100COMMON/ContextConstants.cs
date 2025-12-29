@@ -20,10 +20,7 @@ namespace FAT00100Common
         public const string CSUPPLIER_ID = "FAT00100_CSUPPLIER_ID";
         public const string CPERIODFROM = "FAT00100_CPERIODFROM";
         public const string CPERIODTO = "FAT00100_CPERIODTO";
-        public const string CSTATUSDRAFT = "FAT00100_CSTATUSDRAFT";
-        public const string CSTATUSOPEN = "FAT00100_CSTATUSOPEN";
-        public const string CSTATUSAPPROVED = "FAT00100_CSTATUSAPPROVED";
-        public const string CSTATUSCLOSED = "FAT00100_CSTATUSCLOSED";
+        public const string CTRANS_STATUS = "FAT00100_CTRANS_STATUS";
 
         // GetGSM_SUPPLIER_INFO and GetGSM_SUPPLIER_CONTACT
         public const string CINFO_SEQNO = "FAT00100_CINFO_SEQNO";
@@ -36,5 +33,17 @@ namespace FAT00100Common
         public const string PCFR_DEPT_CODE = "FAT00100_PCFR_DEPT_CODE";
         public const string PCFR_TRANSACTION_CODE = "FAT00100_PCFR_TRANSACTION_CODE";
         public const string PCFR_REFERENCE_NO = "FAT00100_PCFR_REFERENCE_NO";
+
+        // FAT00100GetDeptLookupList
+        public const string CPROGRAM_ID = "FAT00100_CPROGRAM_ID";
+
+        // FAT00100GetTransAssetList
+        public const string CREC_ID = "FAT00100_CREC_ID";
+        public const string CREF_NO = "FAT00100_CREF_NO";
+
+        // FAT00100GetStatusList
+        public const string CAPPLICATION = "FAT00100_CAPPLICATION";
+        public const string CCLASS_ID = "FAT00100_CCLASS_ID";
+        public const string CREC_ID_LIST = "FAT00100_CREC_ID_LIST";
     }
 }

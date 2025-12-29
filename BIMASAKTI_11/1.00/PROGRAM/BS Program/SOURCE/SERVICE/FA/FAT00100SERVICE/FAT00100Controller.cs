@@ -42,8 +42,6 @@ namespace FAT00100Service
 
                 // Set global variables from R_BackGlobalVar
                 poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
-                poParameter.Entity.CLANG_ID = R_BackGlobalVar.CULTURE;
 
                 _logger.LogInfo("Start method R_ServiceGetRecord in {0}", lcMethod);
                 loRtn.data = await loCls.R_GetRecordAsync(poParameter.Entity);
@@ -73,8 +71,6 @@ namespace FAT00100Service
 
                 // Set global variables from R_BackGlobalVar
                 poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
-                poParameter.Entity.CLANG_ID = R_BackGlobalVar.CULTURE;
 
                 _logger.LogInfo("Start method R_ServiceSave in {0}", lcMethod);
                 loRtn.data = await loCls.R_SaveAsync(poParameter.Entity, poParameter.CRUDMode);
@@ -104,8 +100,6 @@ namespace FAT00100Service
 
                 // Set global variables from R_BackGlobalVar
                 poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
-                poParameter.Entity.CLANG_ID = R_BackGlobalVar.CULTURE;
 
                 _logger.LogInfo("Start method R_ServiceDelete in {0}", lcMethod);
                 await loCls.R_DeleteAsync(poParameter.Entity);
@@ -140,37 +134,6 @@ namespace FAT00100Service
 
                 _logger.LogInfo("Start method GetDeptLookUpValidation in {0}", lcMethod);
                 loRtn = await loCls.GetDeptLookUpValidationAsync(poParameter);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-                _logger.LogError(loEx);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-
-            return loRtn;
-        }
-
-        [HttpPost]
-        public async Task<FAT00100ResultDTO<FAT00100GetInitialProcessResultDTO>> GetInitialProcess(FAT00100GetInitialProcessParameterDTO poParameter)
-        {
-            var lcMethod = nameof(GetInitialProcess);
-            using var activity = _activitySource.StartActivity(lcMethod);
-            var loEx = new R_Exception();
-            var loRtn = new FAT00100ResultDTO<FAT00100GetInitialProcessResultDTO>();
-
-            try
-            {
-                var loCls = new FAT00100Cls();
-
-                // Set global variables from R_BackGlobalVar
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParameter.CLANG_ID = R_BackGlobalVar.CULTURE;
-                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
-
-                _logger.LogInfo("Start method GetInitialProcess in {0}", lcMethod);
-                loRtn = await loCls.GetInitialProcessAsync(poParameter);
             }
             catch (Exception ex)
             {
@@ -295,6 +258,199 @@ namespace FAT00100Service
 
                 _logger.LogInfo("Start method RSP_GET_CURRENCY_RATE in {0}", lcMethod);
                 loRtn = await loCls.RSP_GET_CURRENCY_RATEAsync(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public async Task<FAT00100ResultDTO<FAT00100GetCompanyInfoResultDTO>> FAT00100GetCompanyInfo(FAT00100GetCompanyInfoParameterDTO poParameter)
+        {
+            var lcMethod = nameof(FAT00100GetCompanyInfo);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            var loRtn = new FAT00100ResultDTO<FAT00100GetCompanyInfoResultDTO>();
+
+            try
+            {
+                var loCls = new FAT00100Cls();
+
+                // Set global variables from R_BackGlobalVar
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CLANG_ID = R_BackGlobalVar.CULTURE;
+                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+                _logger.LogInfo("Start method FAT00100GetCompanyInfo in {0}", lcMethod);
+                loRtn = await loCls.FAT00100GetCompanyInfoAsync(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public async Task<FAT00100ResultDTO<FAT00100GetGetSystemParamResultDTO>> FAT00100GetGetSystemParam(FAT00100GetGetSystemParamParameterDTO poParameter)
+        {
+            var lcMethod = nameof(FAT00100GetGetSystemParam);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            var loRtn = new FAT00100ResultDTO<FAT00100GetGetSystemParamResultDTO>();
+
+            try
+            {
+                var loCls = new FAT00100Cls();
+
+                // Set global variables from R_BackGlobalVar
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CLANG_ID = R_BackGlobalVar.CULTURE;
+                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+                _logger.LogInfo("Start method FAT00100GetGetSystemParam in {0}", lcMethod);
+                loRtn = await loCls.FAT00100GetGetSystemParamAsync(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public async Task<FAT00100ResultDTO<FAT00100GetPeriodeDtInfoResultDTO>> FAT00100GetPeriodeDtInfo(FAT00100GetPeriodeDtInfoParameterDTO poParameter)
+        {
+            var lcMethod = nameof(FAT00100GetPeriodeDtInfo);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            var loRtn = new FAT00100ResultDTO<FAT00100GetPeriodeDtInfoResultDTO>();
+
+            try
+            {
+                var loCls = new FAT00100Cls();
+
+                // Set global variables from R_BackGlobalVar
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CLANG_ID = R_BackGlobalVar.CULTURE;
+                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+                _logger.LogInfo("Start method FAT00100GetPeriodeDtInfo in {0}", lcMethod);
+                loRtn = await loCls.FAT00100GetPeriodeDtInfoAsync(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public async IAsyncEnumerable<FAT00100GetDeptLookupListResultDTO> FAT00100GetDeptLookupList()
+        {
+            var lcMethod = nameof(FAT00100GetDeptLookupList);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            List<FAT00100GetDeptLookupListResultDTO> loResult = new List<FAT00100GetDeptLookupListResultDTO>();
+
+            try
+            {
+                var loCls = new FAT00100Cls();
+
+                // Create parameter DTO internally with global variables and streaming context
+                var loParam = new FAT00100GetDeptLookupListParameterDTO
+                {
+                    CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
+                    CLANG_ID = R_BackGlobalVar.CULTURE,
+                    CUSER_ID = R_BackGlobalVar.USER_ID,
+                    CPROGRAM_ID = R_Utility.R_GetStreamingContext<string>(ContextConstants.CPROGRAM_ID) ?? string.Empty
+                };
+
+                _logger.LogInfo("Start method FAT00100GetDeptLookupList in {0}", lcMethod);
+                loResult = await loCls.FAT00100GetDeptLookupListAsync(loParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            foreach (FAT00100GetDeptLookupListResultDTO loItem in loResult)
+            {
+                yield return loItem;
+            }
+        }
+
+        [HttpPost]
+        public async Task<FAT00100ResultDTO<FAT00100GetTransCodeInfoResultDTO>> FAT00100GetTransCodeInfo(FAT00100GetTransCodeInfoParameterDTO poParameter)
+        {
+            var lcMethod = nameof(FAT00100GetTransCodeInfo);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            var loRtn = new FAT00100ResultDTO<FAT00100GetTransCodeInfoResultDTO>();
+
+            try
+            {
+                var loCls = new FAT00100Cls();
+
+                // Set global variables from R_BackGlobalVar
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CLANG_ID = R_BackGlobalVar.CULTURE;
+                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+                _logger.LogInfo("Start method FAT00100GetTransCodeInfo in {0}", lcMethod);
+                loRtn = await loCls.FAT00100GetTransCodeInfoAsync(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public async Task<FAT00100ResultDTO<FAT00100GetYearRangeResultDTO>> FAT00100GetYearRange(FAT00100GetYearRangeParameterDTO poParameter)
+        {
+            var lcMethod = nameof(FAT00100GetYearRange);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            var loRtn = new FAT00100ResultDTO<FAT00100GetYearRangeResultDTO>();
+
+            try
+            {
+                var loCls = new FAT00100Cls();
+
+                // Set global variables from R_BackGlobalVar
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CLANG_ID = R_BackGlobalVar.CULTURE;
+                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+                _logger.LogInfo("Start method FAT00100GetYearRange in {0}", lcMethod);
+                loRtn = await loCls.FAT00100GetYearRangeAsync(poParameter);
             }
             catch (Exception ex)
             {
@@ -601,10 +757,7 @@ namespace FAT00100Service
                 // Create parameter DTO internally with global variables and streaming context
                 var loParam = new FAT00100DTO
                 {
-                    CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
-                    CLANG_ID = R_BackGlobalVar.CULTURE,
-                    CUSER_ID = R_BackGlobalVar.USER_ID,
-                    CSOFT_PERIOD = R_Utility.R_GetStreamingContext<string>(ContextConstants.CSOFT_PERIOD) ?? string.Empty
+                    CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID
                 };
 
                 _logger.LogInfo("Start method GetComboPeriodMonth in {0}", lcMethod);
@@ -636,23 +789,27 @@ namespace FAT00100Service
             {
                 var loCls = new FAT00100Cls();
 
+                // Retrieve all streaming context parameters set by ViewModel
+                var lcDeptCode = R_Utility.R_GetStreamingContext<string>(ContextConstants.CDEPT_CODE) ?? string.Empty;
+                var lcTransactionCode = R_Utility.R_GetStreamingContext<string>(ContextConstants.CTRANSACTION_CODE) ?? string.Empty;
+                var lcReferenceNo = R_Utility.R_GetStreamingContext<string>(ContextConstants.CREFERENCE_NO) ?? string.Empty;
+                var lcSupplierId = R_Utility.R_GetStreamingContext<string>(ContextConstants.CSUPPLIER_ID) ?? string.Empty;
+                var lcPeriodFrom = R_Utility.R_GetStreamingContext<string>(ContextConstants.CPERIODFROM) ?? string.Empty;
+                var lcPeriodTo = R_Utility.R_GetStreamingContext<string>(ContextConstants.CPERIODTO) ?? string.Empty;
+                var lcStatus = R_Utility.R_GetStreamingContext<string>(ContextConstants.CTRANS_STATUS) ?? string.Empty;
+
                 // Create parameter DTO internally with global variables and streaming context
                 var loParam = new FAT00100DTO
                 {
                     CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
-                    CLANG_ID = R_BackGlobalVar.CULTURE,
                     CUSER_ID = R_BackGlobalVar.USER_ID,
-                    CFOREIGN_LANGUAGE = R_BackGlobalVar.CULTURE,
-                    CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstants.CDEPT_CODE) ?? string.Empty,
-                    CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstants.CTRANSACTION_CODE) ?? string.Empty,
-                    CREFERENCE_NO = R_Utility.R_GetStreamingContext<string>(ContextConstants.CREFERENCE_NO) ?? string.Empty,
-                    CSUPPLIER_ID = R_Utility.R_GetStreamingContext<string>(ContextConstants.CSUPPLIER_ID) ?? string.Empty,
-                    CPERIODFROM = R_Utility.R_GetStreamingContext<string>(ContextConstants.CPERIODFROM) ?? string.Empty,
-                    CPERIODTO = R_Utility.R_GetStreamingContext<string>(ContextConstants.CPERIODTO) ?? string.Empty,
-                    CSTATUSDRAFT = R_Utility.R_GetStreamingContext<string>(ContextConstants.CSTATUSDRAFT) ?? string.Empty,
-                    CSTATUSOPEN = R_Utility.R_GetStreamingContext<string>(ContextConstants.CSTATUSOPEN) ?? string.Empty,
-                    CSTATUSAPPROVED = R_Utility.R_GetStreamingContext<string>(ContextConstants.CSTATUSAPPROVED) ?? string.Empty,
-                    CSTATUSCLOSED = R_Utility.R_GetStreamingContext<string>(ContextConstants.CSTATUSCLOSED) ?? string.Empty
+                    CDEPT_CODE = lcDeptCode,
+                    CPERIODFROM = lcPeriodFrom,
+                    CPERIODTO = lcPeriodTo,
+                    CREFERENCE_NO = lcReferenceNo,
+                    CSUPPLIER_ID = lcSupplierId,
+                    CTRANS_STATUS = lcStatus,
+                    CLANG_ID = R_BackGlobalVar.CULTURE
                 };
 
                 _logger.LogInfo("Start method GetDataGrid in {0}", lcMethod);
@@ -673,29 +830,29 @@ namespace FAT00100Service
         }
 
         [HttpPost]
-        public async IAsyncEnumerable<FAT00100GetGSM_SUPPLIER_INFOResultDTO> GetGSM_SUPPLIER_INFO()
+        public async IAsyncEnumerable<FAT00100GetStatusListResultDTO> FAT00100GetStatusList()
         {
-            var lcMethod = nameof(GetGSM_SUPPLIER_INFO);
+            var lcMethod = nameof(FAT00100GetStatusList);
             using var activity = _activitySource.StartActivity(lcMethod);
             var loEx = new R_Exception();
-            List<FAT00100GetGSM_SUPPLIER_INFOResultDTO> loResult = new List<FAT00100GetGSM_SUPPLIER_INFOResultDTO>();
+            List<FAT00100GetStatusListResultDTO> loResult = new List<FAT00100GetStatusListResultDTO>();
 
             try
             {
                 var loCls = new FAT00100Cls();
 
                 // Create parameter DTO internally with global variables and streaming context
-                var loParam = new FAT00100DTO
+                var loParam = new FAT00100GetStatusListParameterDTO
                 {
+                    CAPPLICATION = R_Utility.R_GetStreamingContext<string>(ContextConstants.CAPPLICATION) ?? "RHAPSODY",
                     CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
-                    CLANG_ID = R_BackGlobalVar.CULTURE,
-                    CUSER_ID = R_BackGlobalVar.USER_ID,
-                    CSUPPLIER_ID = R_Utility.R_GetStreamingContext<string>(ContextConstants.CSUPPLIER_ID) ?? string.Empty,
-                    CINFO_SEQNO = R_Utility.R_GetStreamingContext<string>(ContextConstants.CINFO_SEQNO) ?? string.Empty
+                    CCLASS_ID = R_Utility.R_GetStreamingContext<string>(ContextConstants.CCLASS_ID) ?? "_TRX_STATUS",
+                    CLANGUAGE_ID = R_BackGlobalVar.CULTURE,
+                    CREC_ID_LIST = R_Utility.R_GetStreamingContext<string>(ContextConstants.CREC_ID_LIST) ?? string.Empty
                 };
 
-                _logger.LogInfo("Start method GetGSM_SUPPLIER_INFO in {0}", lcMethod);
-                loResult = await loCls.GetGSM_SUPPLIER_INFOAsync(loParam);
+                _logger.LogInfo("Start method FAT00100GetStatusList in {0}", lcMethod);
+                loResult = await loCls.FAT00100GetStatusListAsync(loParam);
             }
             catch (Exception ex)
             {
@@ -705,36 +862,33 @@ namespace FAT00100Service
 
             loEx.ThrowExceptionIfErrors();
 
-            foreach (FAT00100GetGSM_SUPPLIER_INFOResultDTO loItem in loResult)
+            foreach (FAT00100GetStatusListResultDTO loItem in loResult)
             {
                 yield return loItem;
             }
         }
 
         [HttpPost]
-        public async IAsyncEnumerable<FAT00100GetGSM_SUPPLIER_CONTACTResultDTO> GetGSM_SUPPLIER_CONTACT()
+        public async IAsyncEnumerable<FAT00100GetCurrencyListResultDTO> FAT00100GetCurrencyList()
         {
-            var lcMethod = nameof(GetGSM_SUPPLIER_CONTACT);
+            var lcMethod = nameof(FAT00100GetCurrencyList);
             using var activity = _activitySource.StartActivity(lcMethod);
             var loEx = new R_Exception();
-            List<FAT00100GetGSM_SUPPLIER_CONTACTResultDTO> loResult = new List<FAT00100GetGSM_SUPPLIER_CONTACTResultDTO>();
+            List<FAT00100GetCurrencyListResultDTO> loResult = new List<FAT00100GetCurrencyListResultDTO>();
 
             try
             {
                 var loCls = new FAT00100Cls();
 
-                // Create parameter DTO internally with global variables and streaming context
-                var loParam = new FAT00100DTO
+                // Create parameter DTO internally with global variables
+                var loParam = new FAT00100GetCurrencyListParameterDTO
                 {
                     CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
-                    CLANG_ID = R_BackGlobalVar.CULTURE,
-                    CUSER_ID = R_BackGlobalVar.USER_ID,
-                    CSUPPLIER_ID = R_Utility.R_GetStreamingContext<string>(ContextConstants.CSUPPLIER_ID) ?? string.Empty,
-                    CINFO_SEQNO = R_Utility.R_GetStreamingContext<string>(ContextConstants.CINFO_SEQNO) ?? string.Empty
+                    CUSER_ID = R_BackGlobalVar.USER_ID
                 };
 
-                _logger.LogInfo("Start method GetGSM_SUPPLIER_CONTACT in {0}", lcMethod);
-                loResult = await loCls.GetGSM_SUPPLIER_CONTACTAsync(loParam);
+                _logger.LogInfo("Start method FAT00100GetCurrencyList in {0}", lcMethod);
+                loResult = await loCls.FAT00100GetCurrencyListAsync(loParam);
             }
             catch (Exception ex)
             {
@@ -744,11 +898,12 @@ namespace FAT00100Service
 
             loEx.ThrowExceptionIfErrors();
 
-            foreach (FAT00100GetGSM_SUPPLIER_CONTACTResultDTO loItem in loResult)
+            foreach (FAT00100GetCurrencyListResultDTO loItem in loResult)
             {
                 yield return loItem;
             }
         }
+
     }
 }
 

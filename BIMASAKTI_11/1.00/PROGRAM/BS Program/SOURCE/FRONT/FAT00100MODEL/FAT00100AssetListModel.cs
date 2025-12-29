@@ -14,7 +14,7 @@ namespace FAT00100Model
     /// Model class for FAT00100 Asset List operations
     /// Handles communication with backend service for asset list
     /// </summary>
-    public class FAT00100AssetListModel : R_BusinessObjectServiceClientBase<FAT00100GetAssetListResultDTO>, IFAT00100AssetList
+    public class FAT00100AssetListModel : R_BusinessObjectServiceClientBase<FAT00100GetTransAssetListResultDTO>, IFAT00100AssetList
     {
         private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrlFA";
         private const string DEFAULT_SERVICEPOINT_NAME = "api/FAT00100AssetList";
@@ -25,37 +25,36 @@ namespace FAT00100Model
         {
         }
 
+        #region Streaming Methods
+
         /// <summary>
-        /// Get asset list - Interface method (throws NotImplementedException)
+        /// Get transaction asset list - Interface method (throws NotImplementedException)
         /// </summary>
-        public IAsyncEnumerable<FAT00100GetAssetListResultDTO> GetAssetList()
+        public IAsyncEnumerable<FAT00100GetTransAssetListResultDTO> FAT00100GetTransAssetList()
         {
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Get asset list - Actual implementation
+        /// Get transaction asset list - Actual implementation
         /// </summary>
-        public async Task<FAT00100ResultDTO<List<FAT00100GetAssetListResultDTO>>> GetAssetListAsync()
+        public async Task<FAT00100ResultDTO<List<FAT00100GetTransAssetListResultDTO>>> FAT00100GetTransAssetListAsync()
         {
             var loEx = new R_Exception();
-            FAT00100ResultDTO<List<FAT00100GetAssetListResultDTO>> loRtn = new FAT00100ResultDTO<List<FAT00100GetAssetListResultDTO>>();
+            FAT00100ResultDTO<List<FAT00100GetTransAssetListResultDTO>> loRtn = new FAT00100ResultDTO<List<FAT00100GetTransAssetListResultDTO>>();
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
-                // Use FAT00100AssetList controller endpoint
-                loRtn.Data = await R_HTTPClientWrapper.R_APIRequestStreamingObject<FAT00100GetAssetListResultDTO>(
+                loRtn.Data = await R_HTTPClientWrapper.R_APIRequestStreamingObject<FAT00100GetTransAssetListResultDTO>(
                     _RequestServiceEndPoint,
-                    nameof(IFAT00100AssetList.GetAssetList),
+                    nameof(IFAT00100AssetList.FAT00100GetTransAssetList),
                     _ModuleName,
-                    true,
-                    true);
+                    _SendWithContext,
+                    _SendWithToken);
             }
             catch (Exception ex)
             {
-                // Get all error messages from exception
-                string lsEx = GetAllErrorMessages(ex);
                 loEx.Add(ex);
             }
 
@@ -63,55 +62,41 @@ namespace FAT00100Model
             return loRtn;
         }
 
+        #endregion
+
+        #region Non-Streaming Methods
+
         /// <summary>
-        /// Get all error messages from exception, including R_Exception ErrorList and inner exceptions
+        /// Get transaction asset - Non-streaming method
         /// </summary>
-        private string GetAllErrorMessages(Exception ex)
+        /// <param name="poParameter">Parameter containing company ID, record ID, dept code, ref no, trans seq no, and language ID</param>
+        /// <returns>Transaction asset result DTO</returns>
+        public async Task<FAT00100ResultDTO<FAT00100GetTransAssetResultDTO>> FAT00100GetTransAsset(FAT00100GetTransAssetParameterDTO poParameter)
         {
-            var loMessages = new List<string>();
+            var loEx = new R_Exception();
+            FAT00100ResultDTO<FAT00100GetTransAssetResultDTO> loResult = new FAT00100ResultDTO<FAT00100GetTransAssetResultDTO>();
 
-            // Add main exception message
-            if (!string.IsNullOrWhiteSpace(ex.Message))
+            try
             {
-                loMessages.Add($"Exception: {ex.GetType().Name}");
-                loMessages.Add($"Message: {ex.Message}");
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<FAT00100ResultDTO<FAT00100GetTransAssetResultDTO>, FAT00100GetTransAssetParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IFAT00100AssetList.FAT00100GetTransAsset),
+                    poParameter,
+                    _ModuleName,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
             }
 
-            // If it's an R_Exception, get all errors from ErrorList
-            if (ex is R_Exception loREx && loREx.ErrorList != null && loREx.ErrorList.Count > 0)
-            {
-                loMessages.Add("Error List:");
-                foreach (var loError in loREx.ErrorList)
-                {
-                    if (loError != null && !string.IsNullOrWhiteSpace(loError.ErrDescp))
-                    {
-                        loMessages.Add($"  - {loError.ErrDescp}");
-                    }
-                }
-            }
-
-            // Add stack trace
-            if (!string.IsNullOrWhiteSpace(ex.StackTrace))
-            {
-                loMessages.Add($"StackTrace: {ex.StackTrace}");
-            }
-
-            // Recursively get inner exception messages
-            Exception? loInnerEx = ex.InnerException;
-            int liLevel = 1;
-            while (loInnerEx != null && liLevel <= 10) // Limit to 10 levels to prevent infinite loops
-            {
-                loMessages.Add($"Inner Exception {liLevel}: {loInnerEx.GetType().Name}");
-                if (!string.IsNullOrWhiteSpace(loInnerEx.Message))
-                {
-                    loMessages.Add($"  Message: {loInnerEx.Message}");
-                }
-                loInnerEx = loInnerEx.InnerException;
-                liLevel++;
-            }
-
-            return string.Join(Environment.NewLine, loMessages);
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
         }
+
+        #endregion
     }
 }
 

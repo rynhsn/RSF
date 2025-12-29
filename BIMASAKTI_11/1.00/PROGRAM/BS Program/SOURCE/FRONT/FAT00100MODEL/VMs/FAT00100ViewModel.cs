@@ -36,14 +36,24 @@ namespace FAT00100Model.VMs
         public FAT00100DTO CurrentRecord { get; set; } = new FAT00100DTO();
 
         // Initialization data
-        public FAT00100GetInitialProcessResultDTO InitialProcessData { get; set; } = new FAT00100GetInitialProcessResultDTO();
         public FAT00100GetPeriodYearResultDTO PeriodYearData { get; set; } = new FAT00100GetPeriodYearResultDTO();
+
+        // Additional data properties
+        public FAT00100GetCompanyInfoResultDTO CompanyInfoData { get; set; } = new FAT00100GetCompanyInfoResultDTO();
+        public FAT00100GetGetSystemParamResultDTO SystemParamData { get; set; } = new FAT00100GetGetSystemParamResultDTO();
+        public FAT00100GetPeriodeDtInfoResultDTO PeriodeDtInfoData { get; set; } = new FAT00100GetPeriodeDtInfoResultDTO();
+        public FAT00100GetTransCodeInfoResultDTO TransCodeInfoData { get; set; } = new FAT00100GetTransCodeInfoResultDTO();
+        public FAT00100GetYearRangeResultDTO YearRangeData { get; set; } = new FAT00100GetYearRangeResultDTO();
 
         // Lists
         public ObservableCollection<FAT00100GetComboPeriodMonthResultDTO> ComboPeriodMonthList { get; set; } = new ObservableCollection<FAT00100GetComboPeriodMonthResultDTO>();
         public ObservableCollection<FAT00100GetDataGridResultDTO> DataGridList { get; set; } = new ObservableCollection<FAT00100GetDataGridResultDTO>();
         public ObservableCollection<FAT00100GetGSM_SUPPLIER_CONTACTResultDTO> SupplierContactList { get; set; } = new ObservableCollection<FAT00100GetGSM_SUPPLIER_CONTACTResultDTO>();
         public ObservableCollection<FAT00100CPDTO> ContactPersonList { get; set; } = new ObservableCollection<FAT00100CPDTO>();
+        public ObservableCollection<FAT00100GetDeptLookupListResultDTO> DeptLookupList { get; set; } = new ObservableCollection<FAT00100GetDeptLookupListResultDTO>();
+        public ObservableCollection<FAT00100GetStatusListResultDTO> StatusList { get; set; } = new ObservableCollection<FAT00100GetStatusListResultDTO>();
+        public ObservableCollection<FAT00100GetCurrencyListResultDTO> CurrencyList { get; set; } = new ObservableCollection<FAT00100GetCurrencyListResultDTO>();
+        
 
         // Supplier info
         public FAT00100GetGSM_SUPPLIER_INFOResultDTO SupplierInfo { get; set; } = new FAT00100GetGSM_SUPPLIER_INFOResultDTO();
@@ -76,68 +86,30 @@ namespace FAT00100Model.VMs
         public string PoDeptName { get; set; } = string.Empty;
         public string PoSupplierId { get; set; } = string.Empty;
         public string PoSupplierName { get; set; } = string.Empty;
+        
+        // Period filter properties
+        public int PeriodFromYear { get; set; } = DateTime.Now.Year;
+        public string PeriodFromMonth { get; set; } = DateTime.Now.Month.ToString("00");
+        public int PeriodToYear { get; set; } = DateTime.Now.Year;
+        public string PeriodToMonth { get; set; } = DateTime.Now.Month.ToString("00");
+
+        // Status filter property
+        public string SelectedStatus { get; set; } = "";
+
+        // Filter properties for GetDataGrid
+        public string FilterPeriodFrom { get; set; } = string.Empty;
+        public string FilterPeriodTo { get; set; } = string.Empty;
+        public string FilterStatusDraft { get; set; } = string.Empty;
+        public string FilterStatusOpen { get; set; } = string.Empty;
+        public string FilterStatusApproved { get; set; } = string.Empty;
+        public string FilterStatusClosed { get; set; } = string.Empty;
+        public string FilterReferenceNo { get; set; } = string.Empty;
+        
         // Additional state
         public string GLTransferStatus { get; set; } = string.Empty;
         public bool GLLink { get; set; }
 
         #region Initialization Methods
-
-        /// <summary>
-        /// Get initial process data for form initialization
-        /// </summary>
-        public async Task GetInitialProcessAsync(string pcCompanyId, string pcUserId, string pcReferenceNo, string pcDeptCode, string pcPJTransCode, string pcTransactionCode)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                var loParam = new FAT00100GetInitialProcessParameterDTO
-                {
-                    CCOMPANY_ID = pcCompanyId,
-                    CUSER_ID = pcUserId,
-                    CREFERENCE_NO = pcReferenceNo,
-                    CDEPT_CODE = pcDeptCode,
-                    CPJ_TRANS_CODE = pcPJTransCode,
-                    CTRANSACTION_CODE = pcTransactionCode
-                };
-
-                var loResult = await _model.GetInitialProcess(loParam);
-                InitialProcessData = loResult.Data;
-
-                // Store properties from result
-                if (InitialProcessData != null)
-                {
-                    DefaultTrxDeptCode = InitialProcessData.CTRANS_DEPT_CODE;
-                    DefaultAssetDeptCode = InitialProcessData.CASSET_DEPT_CODE;
-                    AssetIncrementFlag = InitialProcessData.LASSET_INCREMENT_FLAG;
-                    JrngrpMode = InitialProcessData.LJRNGRP_MODE;
-                    DeptMode = InitialProcessData.LDEPT_MODE;
-                    PeriodMode = InitialProcessData.CPERIOD_MODE;
-                    CurrentPeriod = InitialProcessData.CCURRENT_PERIOD;
-                    SoftPeriod = InitialProcessData.CSOFT_PERIOD;
-                    RateTypeCode = InitialProcessData.CRATETYPE_CODE;
-                    GlinkDate = InitialProcessData.CGLLINK_DATE;
-                    PJlinkDate = InitialProcessData.CPJLINK_DATE;
-                    FilterSupplierId = InitialProcessData.CSUPPLIER_ID;
-                    TransactionPrd = InitialProcessData.CTRANSACTION_PRD;
-                    LocalCurrencyCode = InitialProcessData.CLOCAL_CURRENCY_CODE;
-                    BaseCurrencyCode = InitialProcessData.CBASE_CURRENCY_CODE;
-                    CustPeriodFlag = InitialProcessData.LCUST_PERIOD_FLAG;
-                    FilterTransDesc = InitialProcessData.CFILTER_TRANS_DESC;
-                    ApprovalFlag = InitialProcessData.LAPPROVAL_FLAG;
-                    IncrementFlag = InitialProcessData.LINCREMENT_FLAG;
-                    PJTransDesc = InitialProcessData.CPJ_TRANS_DESC;
-                    CanApprove = true; // Set to true as per VB.NET code
-                    CanClose = true; // Set to true as per VB.NET code
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
 
         /// <summary>
         /// Get period year data
@@ -166,24 +138,161 @@ namespace FAT00100Model.VMs
             loEx.ThrowExceptionIfErrors();
         }
 
-        #endregion
-
-        #region Streaming Methods
-
         /// <summary>
-        /// Get combo period month - streaming method
+        /// Get company info
         /// </summary>
-        public async Task GetComboPeriodMonthAsync(string pcCompanyId, string pcReferenceNo, string pcSoftPeriod)
+        public async Task GetCompanyInfoAsync(string pcCompanyId)
         {
             var loEx = new R_Exception();
 
             try
             {
-                // Set streaming context for custom parameters (NOT CCOMPANY_ID, CUSER_ID)
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CSOFT_PERIOD, pcSoftPeriod);
+                var loParam = new FAT00100GetCompanyInfoParameterDTO
+                {
+                    CCOMPANY_ID = pcCompanyId
+                };
 
-                var loResult = await _model.GetComboPeriodMonthAsync();
-                ComboPeriodMonthList = new ObservableCollection<FAT00100GetComboPeriodMonthResultDTO>(loResult.Data ?? new List<FAT00100GetComboPeriodMonthResultDTO>());
+                var loResult = await _model.FAT00100GetCompanyInfo(loParam);
+                CompanyInfoData = loResult.Data ?? new FAT00100GetCompanyInfoResultDTO();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Get system parameter
+        /// </summary>
+        public async Task GetGetSystemParamAsync(string pcCompanyId, string pcLanguageId)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loParam = new FAT00100GetGetSystemParamParameterDTO
+                {
+                    CCOMPANY_ID = pcCompanyId,
+                    CLANGUAGE_ID = pcLanguageId
+                };
+
+                var loResult = await _model.FAT00100GetGetSystemParam(loParam);
+                SystemParamData = loResult.Data ?? new FAT00100GetGetSystemParamResultDTO();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Get periode date info
+        /// </summary>
+        public async Task GetPeriodeDtInfoAsync(string pcCompanyId, string pcYear, string pcPeriodNo)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loParam = new FAT00100GetPeriodeDtInfoParameterDTO
+                {
+                    CCOMPANY_ID = pcCompanyId,
+                    CYEAR = pcYear,
+                    CPERIOD_NO = pcPeriodNo
+                };
+
+                var loResult = await _model.FAT00100GetPeriodeDtInfo(loParam);
+                PeriodeDtInfoData = loResult.Data ?? new FAT00100GetPeriodeDtInfoResultDTO();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Get transaction code info
+        /// </summary>
+        public async Task GetTransCodeInfoAsync(string pcCompanyId, string pcTransCode)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loParam = new FAT00100GetTransCodeInfoParameterDTO
+                {
+                    CCOMPANY_ID = pcCompanyId,
+                    CTRANS_CODE = pcTransCode
+                };
+
+                var loResult = await _model.FAT00100GetTransCodeInfo(loParam);
+                TransCodeInfoData = loResult.Data ?? new FAT00100GetTransCodeInfoResultDTO();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Get year range
+        /// </summary>
+        public async Task GetYearRangeAsync(string pcCompanyId, string pcYear, string pcMode)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loParam = new FAT00100GetYearRangeParameterDTO
+                {
+                    CCOMPANY_ID = pcCompanyId,
+                    CCYEAR = pcYear,
+                    CMODE = pcMode
+                };
+
+                var loResult = await _model.FAT00100GetYearRange(loParam);
+                YearRangeData = loResult.Data ?? new FAT00100GetYearRangeResultDTO();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        #endregion
+
+        #region Streaming Methods
+
+        /// <summary>
+        /// Initialize combo period month list - hardcoded months from 01 to 12
+        /// </summary>
+        public void SetComboPeriodMonthList()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                // Clear existing list to avoid duplicates
+                ComboPeriodMonthList.Clear();
+                
+                // Add months from 01 to 12
+                for (int i = 1; i <= 12; i++)
+                {
+                    ComboPeriodMonthList.Add(new FAT00100GetComboPeriodMonthResultDTO
+                    {
+                        CPERIOD_NO = i.ToString("00")
+                    });
+                }
             }
             catch (Exception ex)
             {
@@ -195,103 +304,80 @@ namespace FAT00100Model.VMs
 
         /// <summary>
         /// Get data grid - streaming method for main grid
+        /// Reads filter parameters from ViewModel properties
         /// </summary>
-        public async Task GetDataGridAsync(string pcCompanyId, string pcLangId, string pcDeptCode, string pcTransactionCode, string pcReferenceNo, string pcSupplierId, string pcPeriodFrom, string pcPeriodTo, string pcStatusDraft, string pcStatusOpen, string pcStatusApproved, string pcStatusClosed)
+        public async Task GetDataGridAsync()
         {
             var loEx = new R_Exception();
 
             try
             {
-                // Set streaming context for all custom parameters (NOT CCOMPANY_ID, CFOREIGN_LANGUAGE)
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CDEPT_CODE, pcDeptCode);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CTRANSACTION_CODE, pcTransactionCode);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CREFERENCE_NO, pcReferenceNo);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CSUPPLIER_ID, pcSupplierId);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CPERIODFROM, pcPeriodFrom);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CPERIODTO, pcPeriodTo);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CSTATUSDRAFT, pcStatusDraft);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CSTATUSOPEN, pcStatusOpen);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CSTATUSAPPROVED, pcStatusApproved);
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CSTATUSCLOSED, pcStatusClosed);
+                // Validate PoDeptCode is not empty
+                if (string.IsNullOrWhiteSpace(PoDeptCode))
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS013"));
+                    loEx.ThrowExceptionIfErrors();
+                }
 
+                // Set streaming context for all custom parameters from ViewModel properties
+                // (NOT CCOMPANY_ID, CFOREIGN_LANGUAGE - handled automatically)
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CDEPT_CODE, PoDeptCode ?? string.Empty);
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CTRANSACTION_CODE, CurrentRecord?.CTRANSACTION_CODE ?? string.Empty);
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CREFERENCE_NO, FilterReferenceNo ?? string.Empty);
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CSUPPLIER_ID, PoSupplierId ?? string.Empty);
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CPERIODFROM, FilterPeriodFrom ?? string.Empty);
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CPERIODTO, FilterPeriodTo ?? string.Empty);
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CTRANS_STATUS, SelectedStatus ?? string.Empty);
                 var loResult = await _model.GetDataGridAsync();
                 DataGridList = new ObservableCollection<FAT00100GetDataGridResultDTO>(loResult.Data ?? new List<FAT00100GetDataGridResultDTO>());
-                DataGridList.Select(x =>x.CTRANSACTION_DATE_DISPLAY = DateTime.ParseExact(x.CTRANSACTION_DATE, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy")).ToList();
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-
-        /// <summary>
-        /// Get GSM supplier info - streaming method
-        /// </summary>
-        public async Task GetGSM_SUPPLIER_INFOAsync(string pcCompanyId, string pcSupplierId, string pcInfoSeqNo)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                // Set streaming context for custom parameters (NOT CCOMPANY_ID)
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CINFO_SEQNO, pcInfoSeqNo);
-
-                var loResult = await _model.GetGSM_SUPPLIER_INFOAsync();
-                if (loResult.Data != null && loResult.Data.Count > 0)
+                // Format CREF_DATE for display
+                foreach (var item in DataGridList)
                 {
-                    SupplierInfo = loResult.Data[0];
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        /// <summary>
-        /// Get GSM supplier contact - streaming method
-        /// </summary>
-        public async Task GetGSM_SUPPLIER_CONTACTAsync(string pcCompanyId, string pcSupplierId, string pcInfoSeqNo)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                // Set streaming context for custom parameters (NOT CCOMPANY_ID)
-                R_FrontContext.R_SetStreamingContext(ContextConstants.CINFO_SEQNO, pcInfoSeqNo);
-
-                var loResult = await _model.GetGSM_SUPPLIER_CONTACTAsync();
-                SupplierContactList = new ObservableCollection<FAT00100GetGSM_SUPPLIER_CONTACTResultDTO>(loResult.Data ?? new List<FAT00100GetGSM_SUPPLIER_CONTACTResultDTO>());
-                
-                // Also populate ContactPersonList from result
-                ContactPersonList = new ObservableCollection<FAT00100CPDTO>();
-                if (loResult.Data != null)
-                {
-                    foreach (var loItem in loResult.Data)
+                    if (!string.IsNullOrWhiteSpace(item.CREF_DATE) && item.CREF_DATE.Length == 8)
                     {
-                        ContactPersonList.Add(new FAT00100CPDTO
+                        try
                         {
-                            CCOMPANY_ID = loItem.CCOMPANY_ID,
-                            CSUPPLIER_ID = loItem.CSUPPLIER_ID,
-                            CINFO_SEQNO = loItem.CINFO_SEQNO,
-                            CCONTACT_SEQNO = loItem.CCONTACT_SEQNO,
-                            CFIRST_NAME = loItem.CFIRST_NAME,
-                            CLAST_NAME = loItem.CLAST_NAME,
-                            CTITLE = loItem.CTITLE,
-                            COCCUP_CODE = loItem.COCCUP_CODE,
-                            LDEFAULT = loItem.LDEFAULT,
-                            CCREATE_BY = loItem.CCREATE_BY,
-                            DCREATE_DATE = loItem.DCREATE_DATE,
-                            CUPDATE_BY = loItem.CUPDATE_BY,
-                            DUPDATE_DATE = loItem.DUPDATE_DATE
-                        });
+                            item.CREF_DATE_DISPLAY = DateTime.ParseExact(item.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
+                        }
+                        catch
+                        {
+                            item.CREF_DATE_DISPLAY = item.CREF_DATE;
+                        }
+                    }
+                    else
+                    {
+                        item.CREF_DATE_DISPLAY = item.CREF_DATE;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Get department lookup list - streaming method
+        /// </summary>
+        public async Task GetDeptLookupListAsync(string pcCompanyId, string pcUserId, string pcProgramId)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                // Set streaming context for custom parameters (NOT CCOMPANY_ID, CUSER_ID)
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CPROGRAM_ID, pcProgramId);
+
+                var loResult = await _model.FAT00100GetDeptLookupListAsync();
+                DeptLookupList = new ObservableCollection<FAT00100GetDeptLookupListResultDTO>(loResult.Data ?? new List<FAT00100GetDeptLookupListResultDTO>());
+                var foundDept = DeptLookupList?.ToList().Find(x => x.CDEPT_CODE == SystemParamData.CTRANS_DEPT_CODE);
+                if (foundDept != null)
+                {
+                    PoDeptCode = foundDept.CDEPT_CODE;
+                    PoDeptName = foundDept.CDEPT_NAME;
+                }   
             }
             catch (Exception ex)
             {
@@ -322,75 +408,12 @@ namespace FAT00100Model.VMs
                 var loResult = await _model.R_ServiceGetRecord(loParam);
                 CurrentRecord = loResult.data;
 
-                // Convert CTRANSACTION_DATE string to DTRANSACTION_DATE DateTime
-                if (CurrentRecord != null && !string.IsNullOrWhiteSpace(CurrentRecord.CTRANSACTION_DATE))
+                // Set currency codes from CompanyInfoData
+                if (CurrentRecord != null && CompanyInfoData != null)
                 {
-                    CurrentRecord.DTRANSACTION_DATE = DateTime.ParseExact(CurrentRecord.CTRANSACTION_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
-                }
-                else if (CurrentRecord != null)
-                {
-                    CurrentRecord.DTRANSACTION_DATE = null;
-                }
+                    CurrentRecord.CLOCAL_CURRENCY_CODE = CompanyInfoData.CLOCAL_CURRENCY_CODE ?? string.Empty;
+                    CurrentRecord.CBASE_CURRENCY_CODE = CompanyInfoData.CBASE_CURRENCY_CODE ?? string.Empty;
 
-                // Convert CDOCUMENT_DATE string to DDOCUMENT_DATE DateTime
-                if (CurrentRecord != null && !string.IsNullOrWhiteSpace(CurrentRecord.CDOCUMENT_DATE))
-                {
-                    CurrentRecord.DDOCUMENT_DATE = DateTime.ParseExact(CurrentRecord.CDOCUMENT_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
-                }
-                else if (CurrentRecord != null)
-                {
-                    CurrentRecord.DDOCUMENT_DATE = null;
-                }
-
-                // Set currency codes from InitialProcessData (from HSM_PROPERTY_SYSTEM)
-                if (CurrentRecord != null && InitialProcessData != null)
-                {
-                    CurrentRecord.CLOCAL_CURRENCY_CODE = InitialProcessData.CLOCAL_CURRENCY_CODE ?? string.Empty;
-                    CurrentRecord.CBASE_CURRENCY_CODE = InitialProcessData.CBASE_CURRENCY_CODE ?? string.Empty;
-                }
-
-                // Handle nested DTOs
-                if (CurrentRecord != null)
-                {
-                    if (CurrentRecord.oCP != null)
-                    {
-                        ContactPersonList = new ObservableCollection<FAT00100CPDTO>(CurrentRecord.oCP);
-                    }
-                    if (CurrentRecord.oSupp != null)
-                    {
-                        // Map supplier info
-                        SupplierInfo = new FAT00100GetGSM_SUPPLIER_INFOResultDTO
-                        {
-                            CCOMPANY_ID = CurrentRecord.oSupp.CCOMPANY_ID,
-                            CSUPPLIER_ID = CurrentRecord.oSupp.CSUPPLIER_ID,
-                            CINFO_SEQNO = CurrentRecord.oSupp.CINFO_SEQNO,
-                            CSUPPLIER_NAME = CurrentRecord.oSupp.CSUPPLIER_NAME,
-                            CADDRESS = CurrentRecord.oSupp.CADDRESS,
-                            CPOSTAL_CODE = CurrentRecord.oSupp.CPOSTAL_CODE,
-                            CCITY = CurrentRecord.oSupp.CCITY,
-                            CCOUNTRY_CODE = CurrentRecord.oSupp.CCOUNTRY_CODE,
-                            CSTATE_CODE = CurrentRecord.oSupp.CSTATE_CODE,
-                            CPHONE_1 = CurrentRecord.oSupp.CPHONE_1,
-                            CPHONE_2 = CurrentRecord.oSupp.CPHONE_2,
-                            CPHONE_3 = CurrentRecord.oSupp.CPHONE_3,
-                            CFAX_NO1 = CurrentRecord.oSupp.CFAX_NO1,
-                            CFAX_NO2 = CurrentRecord.oSupp.CFAX_NO2,
-                            CFAX_NO3 = CurrentRecord.oSupp.CFAX_NO3,
-                            CEMAIL_1 = CurrentRecord.oSupp.CEMAIL_1,
-                            CEMAIL_2 = CurrentRecord.oSupp.CEMAIL_2,
-                            CEMAIL_3 = CurrentRecord.oSupp.CEMAIL_3,
-                            CTAX_REG_TP = CurrentRecord.oSupp.CTAX_REG_TP,
-                            CTAX_NAME = CurrentRecord.oSupp.CTAX_NAME,
-                            CTAX_REGISTER_ID = CurrentRecord.oSupp.CTAX_REGISTER_ID,
-                            DTAX_REGISTER_DATE = CurrentRecord.oSupp.DTAX_REGISTER_DATE,
-                            CTAX_BUSINESS_TYPE = CurrentRecord.oSupp.CTAX_BUSINESS_TYPE,
-                            CTAX_BUSINESS_NAME = CurrentRecord.oSupp.CTAX_BUSINESS_NAME,
-                            CNPWP = CurrentRecord.oSupp.CNPWP,
-                            CNOTES = CurrentRecord.oSupp.CNOTES
-                        };
-                    }
-                    GLTransferStatus = CurrentRecord.CGL_TRF_STATUS;
-                    GLLink = CurrentRecord.LGLLINK;
                 }
             }
             catch (Exception ex)
@@ -415,7 +438,6 @@ namespace FAT00100Model.VMs
                     CCOMPANY_ID = pcCompanyId,
                     CLANG_ID = pcLangId,
                     CDEPT_CODE = pcDeptCode,
-                    CFILTER_TRANS_CODE = pcFilterTransCode,
                     CREFERENCE_NO = pcReferenceNo
                 };
 
@@ -452,56 +474,6 @@ namespace FAT00100Model.VMs
                 CurrentRecord = loResult.data;
                 // Note: Data property is read-only and will be updated by the conductor from eventArgs.Result
 
-                // Handle nested DTOs
-                if (CurrentRecord != null)
-                {
-                    if (CurrentRecord.oCP != null && CurrentRecord.oCP.Count > 0)
-                    {
-                        ContactPersonList = new ObservableCollection<FAT00100CPDTO>(CurrentRecord.oCP);
-                    }
-                    else
-                    {
-                        CurrentRecord.oCP = new List<FAT00100CPDTO>();
-                    }
-
-                    if (CurrentRecord.oSupp != null)
-                    {
-                        // Map supplier info back
-                        SupplierInfo = new FAT00100GetGSM_SUPPLIER_INFOResultDTO
-                        {
-                            CCOMPANY_ID = CurrentRecord.oSupp.CCOMPANY_ID,
-                            CSUPPLIER_ID = CurrentRecord.oSupp.CSUPPLIER_ID,
-                            CINFO_SEQNO = CurrentRecord.oSupp.CINFO_SEQNO,
-                            CSUPPLIER_NAME = CurrentRecord.oSupp.CSUPPLIER_NAME,
-                            CADDRESS = CurrentRecord.oSupp.CADDRESS,
-                            CPOSTAL_CODE = CurrentRecord.oSupp.CPOSTAL_CODE,
-                            CCITY = CurrentRecord.oSupp.CCITY,
-                            CCOUNTRY_CODE = CurrentRecord.oSupp.CCOUNTRY_CODE,
-                            CSTATE_CODE = CurrentRecord.oSupp.CSTATE_CODE,
-                            CPHONE_1 = CurrentRecord.oSupp.CPHONE_1,
-                            CPHONE_2 = CurrentRecord.oSupp.CPHONE_2,
-                            CPHONE_3 = CurrentRecord.oSupp.CPHONE_3,
-                            CFAX_NO1 = CurrentRecord.oSupp.CFAX_NO1,
-                            CFAX_NO2 = CurrentRecord.oSupp.CFAX_NO2,
-                            CFAX_NO3 = CurrentRecord.oSupp.CFAX_NO3,
-                            CEMAIL_1 = CurrentRecord.oSupp.CEMAIL_1,
-                            CEMAIL_2 = CurrentRecord.oSupp.CEMAIL_2,
-                            CEMAIL_3 = CurrentRecord.oSupp.CEMAIL_3,
-                            CTAX_REG_TP = CurrentRecord.oSupp.CTAX_REG_TP,
-                            CTAX_NAME = CurrentRecord.oSupp.CTAX_NAME,
-                            CTAX_REGISTER_ID = CurrentRecord.oSupp.CTAX_REGISTER_ID,
-                            DTAX_REGISTER_DATE = CurrentRecord.oSupp.DTAX_REGISTER_DATE,
-                            CTAX_BUSINESS_TYPE = CurrentRecord.oSupp.CTAX_BUSINESS_TYPE,
-                            CTAX_BUSINESS_NAME = CurrentRecord.oSupp.CTAX_BUSINESS_NAME,
-                            CNPWP = CurrentRecord.oSupp.CNPWP,
-                            CNOTES = CurrentRecord.oSupp.CNOTES
-                        };
-                    }
-                    else
-                    {
-                        CurrentRecord.oSupp = new FAT00100SuppDTO();
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -1025,6 +997,54 @@ namespace FAT00100Model.VMs
 
             loEx.ThrowExceptionIfErrors();
             return loResult;
+        }
+
+        /// <summary>
+        /// Get status list (streaming method)
+        /// </summary>
+        public async Task GetStatusListAsync(string pcCompanyId, string pcLanguageId, string pcApplication = "RHAPSODY", string pcClassId = "_TRX_STATUS", string pcRecIdList = "")
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                // Set streaming context for custom parameters (NOT CCOMPANY_ID, CLANGUAGE_ID - handled automatically)
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CAPPLICATION, pcApplication);
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CCLASS_ID, pcClassId);
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CREC_ID_LIST, pcRecIdList);
+
+                var loResult = await _model.FAT00100GetStatusListAsync();
+                StatusList = new ObservableCollection<FAT00100GetStatusListResultDTO>(loResult.Data ?? new List<FAT00100GetStatusListResultDTO>());
+                // Add "All" item at the beginning of the status list
+                StatusList.Insert(0, new FAT00100GetStatusListResultDTO { CCODE = "", CNAME = "All" });
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Get currency list (streaming method)
+        /// </summary>
+        public async Task GetCurrencyListAsync(string pcCompanyId, string pcUserId)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                // No streaming context needed - CCOMPANY_ID and CUSER_ID are handled automatically by R_BackGlobalVar in Controller
+                var loResult = await _model.FAT00100GetCurrencyListAsync();
+                CurrencyList = new ObservableCollection<FAT00100GetCurrencyListResultDTO>(loResult.Data ?? new List<FAT00100GetCurrencyListResultDTO>());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
         }
 
         #endregion

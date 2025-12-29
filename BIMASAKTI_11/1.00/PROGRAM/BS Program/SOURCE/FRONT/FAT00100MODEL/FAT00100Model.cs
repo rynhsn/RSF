@@ -131,31 +131,6 @@ namespace FAT00100Model
             return loResult;
         }
 
-        public async Task<FAT00100ResultDTO<FAT00100GetInitialProcessResultDTO>> GetInitialProcess(FAT00100GetInitialProcessParameterDTO poParameter)
-        {
-            var loEx = new R_Exception();
-            FAT00100ResultDTO<FAT00100GetInitialProcessResultDTO> loResult = new FAT00100ResultDTO<FAT00100GetInitialProcessResultDTO>();
-
-            try
-            {
-                R_HTTPClientWrapper.httpClientName = _HttpClientName;
-                loResult = await R_HTTPClientWrapper.R_APIRequestObject<FAT00100ResultDTO<FAT00100GetInitialProcessResultDTO>, FAT00100GetInitialProcessParameterDTO>(
-                    _RequestServiceEndPoint,
-                    nameof(IFAT00100.GetInitialProcess),
-                    poParameter,
-                    _ModuleName,
-                    _SendWithContext,
-                    _SendWithToken);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-            return loResult;
-        }
-
         public async Task<FAT00100ResultDTO<FAT00100GetPeriodYearResultDTO>> GetPeriodYear(FAT00100GetPeriodYearParameterDTO poParameter)
         {
             var loEx = new R_Exception();
@@ -242,6 +217,131 @@ namespace FAT00100Model
                 loResult = await R_HTTPClientWrapper.R_APIRequestObject<FAT00100ResultDTO<FAT00100RSP_GET_CURRENCY_RATEResultDTO>, FAT00100RSP_GET_CURRENCY_RATEParameterDTO>(
                     _RequestServiceEndPoint,
                     nameof(IFAT00100.RSP_GET_CURRENCY_RATE),
+                    poParameter,
+                    _ModuleName,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+
+        public async Task<FAT00100ResultDTO<FAT00100GetCompanyInfoResultDTO>> FAT00100GetCompanyInfo(FAT00100GetCompanyInfoParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            FAT00100ResultDTO<FAT00100GetCompanyInfoResultDTO> loResult = new FAT00100ResultDTO<FAT00100GetCompanyInfoResultDTO>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<FAT00100ResultDTO<FAT00100GetCompanyInfoResultDTO>, FAT00100GetCompanyInfoParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IFAT00100.FAT00100GetCompanyInfo),
+                    poParameter,
+                    _ModuleName,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+
+        public async Task<FAT00100ResultDTO<FAT00100GetGetSystemParamResultDTO>> FAT00100GetGetSystemParam(FAT00100GetGetSystemParamParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            FAT00100ResultDTO<FAT00100GetGetSystemParamResultDTO> loResult = new FAT00100ResultDTO<FAT00100GetGetSystemParamResultDTO>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<FAT00100ResultDTO<FAT00100GetGetSystemParamResultDTO>, FAT00100GetGetSystemParamParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IFAT00100.FAT00100GetGetSystemParam),
+                    poParameter,
+                    _ModuleName,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+
+        public async Task<FAT00100ResultDTO<FAT00100GetPeriodeDtInfoResultDTO>> FAT00100GetPeriodeDtInfo(FAT00100GetPeriodeDtInfoParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            FAT00100ResultDTO<FAT00100GetPeriodeDtInfoResultDTO> loResult = new FAT00100ResultDTO<FAT00100GetPeriodeDtInfoResultDTO>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<FAT00100ResultDTO<FAT00100GetPeriodeDtInfoResultDTO>, FAT00100GetPeriodeDtInfoParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IFAT00100.FAT00100GetPeriodeDtInfo),
+                    poParameter,
+                    _ModuleName,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+
+        public async Task<FAT00100ResultDTO<FAT00100GetTransCodeInfoResultDTO>> FAT00100GetTransCodeInfo(FAT00100GetTransCodeInfoParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            FAT00100ResultDTO<FAT00100GetTransCodeInfoResultDTO> loResult = new FAT00100ResultDTO<FAT00100GetTransCodeInfoResultDTO>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<FAT00100ResultDTO<FAT00100GetTransCodeInfoResultDTO>, FAT00100GetTransCodeInfoParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IFAT00100.FAT00100GetTransCodeInfo),
+                    poParameter,
+                    _ModuleName,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+
+        public async Task<FAT00100ResultDTO<FAT00100GetYearRangeResultDTO>> FAT00100GetYearRange(FAT00100GetYearRangeParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            FAT00100ResultDTO<FAT00100GetYearRangeResultDTO> loResult = new FAT00100ResultDTO<FAT00100GetYearRangeResultDTO>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<FAT00100ResultDTO<FAT00100GetYearRangeResultDTO>, FAT00100GetYearRangeParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IFAT00100.FAT00100GetYearRange),
                     poParameter,
                     _ModuleName,
                     _SendWithContext,
@@ -508,8 +608,8 @@ namespace FAT00100Model
                     _RequestServiceEndPoint,
                     nameof(IFAT00100.GetComboPeriodMonth),
                     _ModuleName,
-                    true,
-                    true);
+                    _SendWithContext,
+                    _SendWithToken);
             }
             catch (Exception ex)
             {
@@ -543,8 +643,8 @@ namespace FAT00100Model
                     _RequestServiceEndPoint,
                     nameof(IFAT00100.GetDataGrid),
                     _ModuleName,
-                    true,
-                    true);
+                    _SendWithContext,
+                    _SendWithToken);
             }
             catch (Exception ex)
             {
@@ -556,30 +656,30 @@ namespace FAT00100Model
         }
 
         /// <summary>
-        /// Get GSM supplier info - Interface method (throws NotImplementedException)
+        /// Get department lookup list - Interface method (throws NotImplementedException)
         /// </summary>
-        public IAsyncEnumerable<FAT00100GetGSM_SUPPLIER_INFOResultDTO> GetGSM_SUPPLIER_INFO()
+        public IAsyncEnumerable<FAT00100GetDeptLookupListResultDTO> FAT00100GetDeptLookupList()
         {
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Get GSM supplier info - Actual implementation
+        /// Get department lookup list - Actual implementation
         /// </summary>
-        public async Task<FAT00100ResultDTO<List<FAT00100GetGSM_SUPPLIER_INFOResultDTO>>> GetGSM_SUPPLIER_INFOAsync()
+        public async Task<FAT00100ResultDTO<List<FAT00100GetDeptLookupListResultDTO>>> FAT00100GetDeptLookupListAsync()
         {
             var loEx = new R_Exception();
-            FAT00100ResultDTO<List<FAT00100GetGSM_SUPPLIER_INFOResultDTO>> loRtn = new FAT00100ResultDTO<List<FAT00100GetGSM_SUPPLIER_INFOResultDTO>>();
+            FAT00100ResultDTO<List<FAT00100GetDeptLookupListResultDTO>> loRtn = new FAT00100ResultDTO<List<FAT00100GetDeptLookupListResultDTO>>();
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
-                loRtn.Data = await R_HTTPClientWrapper.R_APIRequestStreamingObject<FAT00100GetGSM_SUPPLIER_INFOResultDTO>(
+                loRtn.Data = await R_HTTPClientWrapper.R_APIRequestStreamingObject<FAT00100GetDeptLookupListResultDTO>(
                     _RequestServiceEndPoint,
-                    nameof(IFAT00100.GetGSM_SUPPLIER_INFO),
+                    nameof(IFAT00100.FAT00100GetDeptLookupList),
                     _ModuleName,
-                    true,
-                    true);
+                    _SendWithContext,
+                    _SendWithToken);
             }
             catch (Exception ex)
             {
@@ -591,30 +691,65 @@ namespace FAT00100Model
         }
 
         /// <summary>
-        /// Get GSM supplier contact - Interface method (throws NotImplementedException)
+        /// Get status list - Interface method (throws NotImplementedException)
         /// </summary>
-        public IAsyncEnumerable<FAT00100GetGSM_SUPPLIER_CONTACTResultDTO> GetGSM_SUPPLIER_CONTACT()
+        public IAsyncEnumerable<FAT00100GetStatusListResultDTO> FAT00100GetStatusList()
         {
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Get GSM supplier contact - Actual implementation
+        /// Get status list - Actual implementation
         /// </summary>
-        public async Task<FAT00100ResultDTO<List<FAT00100GetGSM_SUPPLIER_CONTACTResultDTO>>> GetGSM_SUPPLIER_CONTACTAsync()
+        public async Task<FAT00100ResultDTO<List<FAT00100GetStatusListResultDTO>>> FAT00100GetStatusListAsync()
         {
             var loEx = new R_Exception();
-            FAT00100ResultDTO<List<FAT00100GetGSM_SUPPLIER_CONTACTResultDTO>> loRtn = new FAT00100ResultDTO<List<FAT00100GetGSM_SUPPLIER_CONTACTResultDTO>>();
+            FAT00100ResultDTO<List<FAT00100GetStatusListResultDTO>> loRtn = new FAT00100ResultDTO<List<FAT00100GetStatusListResultDTO>>();
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
-                loRtn.Data = await R_HTTPClientWrapper.R_APIRequestStreamingObject<FAT00100GetGSM_SUPPLIER_CONTACTResultDTO>(
+                loRtn.Data = await R_HTTPClientWrapper.R_APIRequestStreamingObject<FAT00100GetStatusListResultDTO>(
                     _RequestServiceEndPoint,
-                    nameof(IFAT00100.GetGSM_SUPPLIER_CONTACT),
+                    nameof(IFAT00100.FAT00100GetStatusList),
                     _ModuleName,
-                    true,
-                    true);
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
+        }
+
+        /// <summary>
+        /// Get currency list - Interface method (throws NotImplementedException)
+        /// </summary>
+        public IAsyncEnumerable<FAT00100GetCurrencyListResultDTO> FAT00100GetCurrencyList()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Get currency list - Actual implementation
+        /// </summary>
+        public async Task<FAT00100ResultDTO<List<FAT00100GetCurrencyListResultDTO>>> FAT00100GetCurrencyListAsync()
+        {
+            var loEx = new R_Exception();
+            FAT00100ResultDTO<List<FAT00100GetCurrencyListResultDTO>> loRtn = new FAT00100ResultDTO<List<FAT00100GetCurrencyListResultDTO>>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loRtn.Data = await R_HTTPClientWrapper.R_APIRequestStreamingObject<FAT00100GetCurrencyListResultDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IFAT00100.FAT00100GetCurrencyList),
+                    _ModuleName,
+                    _SendWithContext,
+                    _SendWithToken);
             }
             catch (Exception ex)
             {
