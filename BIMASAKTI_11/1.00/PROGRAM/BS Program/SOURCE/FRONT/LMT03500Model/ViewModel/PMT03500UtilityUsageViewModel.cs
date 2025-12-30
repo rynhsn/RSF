@@ -331,21 +331,18 @@ namespace PMT03500Model.ViewModel
 
 
                 // loReturn.Select(x => x.NO = loReturn.IndexOf(x) + 1).ToList();
-                loReturn.ForEach(x =>
+                foreach (var loItem in loReturn)
                 {
-                    x.DSTART_DATE = DateTime.TryParseExact(x.CSTART_DATE, "yyyyMMdd", CultureInfo.InvariantCulture,
-                        DateTimeStyles.AssumeUniversal, out var ldStartDate)
-                        ? ldStartDate
-                        : (DateTime?)null;
-
-                    x.NO = loReturn.IndexOf(x) + 1;
-                    x.CUTILITY_TYPE = x.CCHARGES_TYPE;
-                    if (!string.IsNullOrEmpty(x.CINV_PRD))
+                    if (!string.IsNullOrEmpty(loItem.CUTILITY_PRD))
                     {
-                        x.CINV_PRD_YEAR = x.CINV_PRD[..4];
-                        x.CINV_PRD_MONTH = x.CINV_PRD.Substring(4, 2);
+                        var lcUtilityPrd = loItem.CUTILITY_PRD.Trim();
+                        if (lcUtilityPrd.Length >= 6)
+                        {
+                            loItem.CUTILITY_PRD_DISPLAY = lcUtilityPrd.Substring(0, 4) + "-" +
+                                                          lcUtilityPrd.Substring(4, 2);
+                        }
                     }
-                });
+                }
 
                 // foreach (var loItem in loReturn)
                 // {

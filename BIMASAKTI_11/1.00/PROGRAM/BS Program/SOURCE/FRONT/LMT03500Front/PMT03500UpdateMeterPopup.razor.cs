@@ -66,7 +66,7 @@ public partial class PMT03500UpdateMeterPopup : R_Page
                 goto EndBlock;
 
             
-            _viewModel.Entity.CSTART_INV_PRD = _viewModel.CSTART_INV_PRD_YEAR + _viewModel.CSTART_INV_PRD_MONTH;
+            _viewModel.Entity.CSTART_INV_PRD = _viewModel.ISTART_INV_PRD_YEAR.ToString() + _viewModel.CSTART_INV_PRD_MONTH;
             _viewModel.Entity.CTENANT_ID ??= "";
             await _viewModel.UpdateMeterNo(_viewModel.Entity);
             //update success

@@ -31,11 +31,12 @@ namespace PMT03500Model.ViewModel
         public List<PMT03500PeriodDTO> StartInvMonthList = new List<PMT03500PeriodDTO>();
         public List<PMT03500FunctDTO> UtilityTypeList = new List<PMT03500FunctDTO>();
         public List<PMT03500MeterNoDTO> MeterNoList = new List<PMT03500MeterNoDTO>();
+        public List<PMT03500PeriodRangeDTO> PeriodRangeList = new List<PMT03500PeriodRangeDTO>();
 
         public string DisplayEC = "d-none";
 
         public string DisplayWG = "d-none";
-        public string CSTART_INV_PRD_YEAR { get; set; }
+        public int ISTART_INV_PRD_YEAR { get; set; }
         public string CSTART_INV_PRD_MONTH { get; set; }
         public bool LOTHER_UNIT { get; set; } = false;
 
@@ -144,7 +145,7 @@ namespace PMT03500Model.ViewModel
 
                 if (!string.IsNullOrEmpty(Entity.CSTART_INV_PRD))
                 {
-                    CSTART_INV_PRD_YEAR = Entity.CSTART_INV_PRD.Substring(0, 4);
+                    ISTART_INV_PRD_YEAR = int.TryParse(Entity.CSTART_INV_PRD.Substring(0, 4), out int x) ? x : 0;
                     CSTART_INV_PRD_MONTH = Entity.CSTART_INV_PRD.Substring(4, 2);
                 }
 
@@ -378,19 +379,23 @@ namespace PMT03500Model.ViewModel
                 var loReturn =
                     await _model.GetAsync<PMT03500ListDTO<PMT03500PeriodRangeDTO>, PMT03500PeriodRangeParam>(
                         nameof(IPMT03500UpdateMeter.PMT03500GetPeriodRangeList), loParam);
+                PeriodRangeList = loReturn.Data;
                 // ambil list dari loReturn.data.ccyear untuk dimasukkan ke StartInvYearList kemudian group by year
-                StartInvYearList = loReturn.Data.GroupBy(x => x.CCYEAR).Select(x => new PMT03500YearDTO
+                StartInvYearList = PeriodRangeList.GroupBy(x => x.CCYEAR).Select(x => new PMT03500YearDTO
                 {
                     CYEAR = x.Key
                 }).ToList();
 
+                MinYearInv = int.TryParse(StartInvYearList.FirstOrDefault()?.CYEAR, out int minYear) ? minYear : 0;
+                MaxYearInv = int.TryParse(StartInvYearList.LastOrDefault()?.CYEAR, out int maxYear) ? maxYear : 0;
+
+                ISTART_INV_PRD_YEAR = int.TryParse(StartInvYearList.FirstOrDefault()?.CYEAR, out int x) ? x : 0;
                 //ambil list dari loReturn.data.cperiod_no untuk dimasukkan ke StartInvMonthList
-                StartInvMonthList = loReturn.Data.Select(x => new PMT03500PeriodDTO
+                StartInvMonthList = PeriodRangeList.Where(x => x.CCYEAR == ISTART_INV_PRD_YEAR.ToString()).Select(x => new PMT03500PeriodDTO
                 {
                     CPERIOD_NO = x.CPERIOD_NO
                 }).ToList();
 
-                CSTART_INV_PRD_YEAR = StartInvYearList.FirstOrDefault()?.CYEAR;
                 CSTART_INV_PRD_MONTH = StartInvMonthList.FirstOrDefault()?.CPERIOD_NO;
             }
             catch (Exception ex)

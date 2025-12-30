@@ -94,7 +94,7 @@
                                     TextField="@nameof(PMT03500YearDTO.CYEAR)"
                                     Enabled/> *@
 
-                        <R_NumericTextBox Value="@(int.TryParse(_viewModel.CSTART_INV_PRD_YEAR, out int year) ? year : 0)"
+                        <R_NumericTextBox @bind-Value="_viewModel.ISTART_INV_PRD_YEAR"
                                           Arrows="true"
                                           TValue="int"
                                           Min="_viewModel.MinYearInv"

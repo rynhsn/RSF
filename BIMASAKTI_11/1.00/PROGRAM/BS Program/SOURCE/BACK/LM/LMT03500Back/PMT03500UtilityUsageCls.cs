@@ -159,7 +159,9 @@ public class PMT03500UtilityUsageCls
             loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 20, poParam.CBUILDING_ID);
             loDb.R_AddCommandParameter(loCmd, "@CUTILITY_TYPE", DbType.String, 2, poParam.CUTILITY_TYPE);
             loDb.R_AddCommandParameter(loCmd, "@CFLOOR_ID", DbType.String, 255, poParam.CFLOOR_ID);
-            // loDb.R_AddCommandParameter(loCmd, "@LALL_FLOOR", DbType.Boolean, 1, poParam.LALL_FLOOR);
+
+            loDb.R_AddCommandParameter(loCmd, "@CUNIT_ID", DbType.String, 255, poParam.CUNIT_ID);
+            // loDb.R_AddCommandParameter(loCmd, "@LALL_FLOOR", DbType.Boolean, 1, poParam.LALL_FLOOR); 
             loDb.R_AddCommandParameter(loCmd, "@CINVOICE_PRD", DbType.String, 10, poParam.CINVOICE_PRD);
             loDb.R_AddCommandParameter(loCmd, "@LINVOICED", DbType.Boolean, 1, poParam.LINVOICED);
             loDb.R_AddCommandParameter(loCmd, "@CUTILITY_PRD", DbType.String, 10, poParam.CUTILITY_PRD);
@@ -170,26 +172,7 @@ public class PMT03500UtilityUsageCls
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParam.CUSER_ID);
 
 
-            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-                .Where(x =>
-                    x.ParameterName is
-                        "@CCOMPANY_ID" or
-                        "@CPROPERTY_ID" or
-                        "@CBUILDING_ID" or
-                        "@CUTILITY_TYPE" or
-                        "@CFLOOR_ID" or
-                        // "@LALL_FLOOR" or
-                        "@CINVOICE_PRD" or
-                        "@LINVOICED" or
-                        "@CUTILITY_PRD" or
-                        "@CUTILITY_PRD_FROM_DATE" or
-                        "@CUTILITY_PRD_TO_DATE" or
-                        "@LOTHER_UNIT" or
-                        "@CUSER_ID"
-                )
-                .Select(x => x.Value);
-
-            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $" {p.ParameterName} ='{p.Value}'")));
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 

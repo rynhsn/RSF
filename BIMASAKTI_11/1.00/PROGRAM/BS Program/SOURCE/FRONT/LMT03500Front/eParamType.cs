@@ -9,7 +9,8 @@ public enum eParamType
     InvYear,
     UtilityYear,
     InvPeriod,
-    UtilityPeriod
+    UtilityPeriod,
+    ChangeMeter
 }
 
 public enum eBatchType

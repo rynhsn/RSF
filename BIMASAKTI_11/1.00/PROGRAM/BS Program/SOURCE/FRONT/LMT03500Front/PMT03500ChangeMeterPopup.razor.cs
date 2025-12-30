@@ -39,6 +39,33 @@ public partial class PMT03500ChangeMeterPopup : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
+    private async Task OnChangeParam(int value, eParamType type)
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            switch (type)
+            {
+                
+                case eParamType.ChangeMeter:
+                    _viewModel.ISTART_INV_PRD_YEAR = value;
+                    _viewModel.StartInvMonthList = _viewModel.PeriodRangeList.Where(x => x.CCYEAR == _viewModel.ISTART_INV_PRD_YEAR.ToString()).Select(x => new PMT03500PeriodDTO
+                    {
+                        CPERIOD_NO = x.CPERIOD_NO
+                    }).ToList();
+
+                    _viewModel.CSTART_INV_PRD_MONTH = _viewModel.StartInvMonthList.FirstOrDefault()?.CPERIOD_NO;
+                    break;
+            }
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+
+        await R_DisplayExceptionAsync(loEx);
+    }
+
     private async Task OnClickCancel()
     {
         await this.Close(false, true);
@@ -105,7 +132,7 @@ public partial class PMT03500ChangeMeterPopup : R_Page
                 goto EndBlock;
             
             
-            _viewModel.Entity.CSTART_INV_PRD = _viewModel.CSTART_INV_PRD_YEAR + _viewModel.CSTART_INV_PRD_MONTH;
+            _viewModel.Entity.CSTART_INV_PRD = _viewModel.ISTART_INV_PRD_YEAR.ToString() + _viewModel.CSTART_INV_PRD_MONTH;
             _viewModel.Entity.CTENANT_ID ??= "";
             
             await _viewModel.ChangeMeterNo(_viewModel.Entity);

@@ -131,13 +131,14 @@
                                     ValueField="@nameof(PMT03500YearDTO.CYEAR)"
                                     TextField="@nameof(PMT03500YearDTO.CYEAR)"
                                     Enabled/> *@
-                        <R_NumericTextBox Value="@(int.TryParse(_viewModel.CSTART_INV_PRD_YEAR, out int year) ? year : 0)"
+                        <R_NumericTextBox Value="@_viewModel.ISTART_INV_PRD_YEAR"
                                           Arrows="true"
                                           TValue="int"
                                           Min="_viewModel.MinYearInv"
                                           Max="_viewModel.MaxYearInv"
                                           Step="1"
-                                          ThousandSeparator="false" />
+                                          ThousandSeparator="false"
+                                          ValueChanged="@((int value) => OnChangeParam(value, eParamType.ChangeMeter))" />
                     </R_ItemLayout>
                     <R_ItemLayout col="6" Class="pe-1">
                         <R_ComboBox Data="@_viewModel.StartInvMonthList"

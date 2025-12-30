@@ -357,16 +357,18 @@ public class PMT03500UpdateMeterCls
             loDb.R_AddCommandParameter(loCmd, "@CFROM_PERIOD", DbType.String, 6, poParam.CFROM_PERIOD);
             loDb.R_AddCommandParameter(loCmd, "@CTO_PERIOD", DbType.String, 6, poParam.CTO_PERIOD);
 
-            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-                .Where(x =>
-                    x.ParameterName is
-                        "@CCOMPANY_ID" or
-                        "@CFROM_PERIOD" or
-                        "@TO_PERIOD"
-                )
-                .Select(x => x.Value);
+            //var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+            //    .Where(x =>
+            //        x.ParameterName is
+            //            "@CCOMPANY_ID" or
+            //            "@CFROM_PERIOD" or
+            //            "@TO_PERIOD"
+            //    )
+            //    .Select(x => x.Value);
 
-            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            //_logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
+            _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $" {p.ParameterName} ='{p.Value}'")));
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -426,28 +428,30 @@ public class PMT03500UpdateMeterCls
             loDb.R_AddCommandParameter(loCmd, "@NBLOCK1_START", DbType.Decimal, 255, poParams.NBLOCK1_START);
             loDb.R_AddCommandParameter(loCmd, "@NBLOCK2_START", DbType.Decimal, 255, poParams.NBLOCK2_START);
 
-            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-                .Where(x =>
-                    x.ParameterName is
-                        "@CCOMPANY_ID" or
-                        "@CPROPERTY_ID" or
-                        "@CREF_NO" or
-                        "@CUNIT_ID" or
-                        // "@CTENANT_ID" or
-                        "@CUTILITY_TYPE" or
-                        "@CDEPT_CODE" or
-                        "@CTRANS_CODE" or
-                        "@CFLOOR_ID" or
-                        "@CBUILDING_ID" or
-                        "@CMETER_NO" or
-                        "@NBLOCK1_START" or
-                        "@NBLOCK2_START" or
-                        "@NMETER_START" or
-                        "@CSTART_INV_PRD" or
-                        "@CSTART_DATE" or
-                        "@CUSER_LOGIN_ID"
-                ).Select(x => x.Value);
-            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            //var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+            //    .Where(x =>
+            //        x.ParameterName is
+            //            "@CCOMPANY_ID" or
+            //            "@CPROPERTY_ID" or
+            //            "@CREF_NO" or
+            //            "@CUNIT_ID" or
+            //            // "@CTENANT_ID" or
+            //            "@CUTILITY_TYPE" or
+            //            "@CDEPT_CODE" or
+            //            "@CTRANS_CODE" or
+            //            "@CFLOOR_ID" or
+            //            "@CBUILDING_ID" or
+            //            "@CMETER_NO" or
+            //            "@NBLOCK1_START" or
+            //            "@NBLOCK2_START" or
+            //            "@NMETER_START" or
+            //            "@CSTART_INV_PRD" or
+            //            "@CSTART_DATE" or
+            //            "@CUSER_LOGIN_ID"
+            //    ).Select(x => x.Value);
+            //_logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
+            _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $" {p.ParameterName} ='{p.Value}'")));
             loDb.SqlExecQuery(loConn, loCmd, true);
         }
         catch (Exception ex)
