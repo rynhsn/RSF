@@ -560,7 +560,7 @@ public class PMT03500UpdateMeterCls
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
 
-            lcQuery = $"RSP_PM_CLOSE_UTILITY_METER_NO";
+            lcQuery = $"RSP_PM_CLOSE_UTILITY_METER_NO ";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
@@ -572,27 +572,11 @@ public class PMT03500UpdateMeterCls
             loDb.R_AddCommandParameter(loCmd, "@CUNIT_ID", DbType.String, 20, poParams.CUNIT_ID);
             loDb.R_AddCommandParameter(loCmd, "@CFLOOR_ID", DbType.String, 20, poParams.CFLOOR_ID);
             loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 20, poParams.CBUILDING_ID);
-            loDb.R_AddCommandParameter(loCmd, "@CUTILITY_TYPE", DbType.String, 20, poParams.CUTILITY_TYPE);
-            loDb.R_AddCommandParameter(loCmd, "@CMETER_NO", DbType.String, 20, poParams.CMETER_NO);
-            loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParams.CUSER_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CUTILITY_TYPE", DbType.String, 2, poParams.CUTILITY_TYPE);
+            loDb.R_AddCommandParameter(loCmd, "@CMETER_NO", DbType.String, 50, poParams.CMETER_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 8, poParams.CUSER_ID);
 
-            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-                .Where(x =>
-                    x.ParameterName is
-                        "@CCOMPANY_ID" or
-                        "@CPROPERTY_ID" or
-                        "@CDEPT_CODE" or
-                        "@CTRANS_CODE" or
-                        "@CREF_NO" or
-                        "@CUNIT_ID" or
-                        "@CFLOOR_ID" or
-                        "@CBUILDING_ID" or
-                        "@CUTILITY_TYPE" or
-                        "@CMETER_NO" or
-                        "@CUSER_ID"
-                )
-                .Select(x => x.Value);
-            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
 
             loDb.SqlExecQuery(loConn, loCmd, true);
         }

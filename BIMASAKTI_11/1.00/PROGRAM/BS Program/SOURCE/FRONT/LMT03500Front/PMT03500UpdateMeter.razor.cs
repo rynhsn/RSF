@@ -531,6 +531,7 @@ public partial class PMT03500UpdateMeter : R_ITabPage
         try
         {
             await _viewModel.CloseMeterNo(_viewModel.Entity);
+            await _gridRef.R_RefreshGrid(null);
         }
         catch (Exception ex)
         {
