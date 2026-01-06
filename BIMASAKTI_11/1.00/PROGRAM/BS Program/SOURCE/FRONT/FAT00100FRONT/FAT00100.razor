@@ -120,7 +120,7 @@
                 R_Display="@Grid_R_Display"
                 Height="457px">
             <R_GridColumns>
-                <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CREFERENCE_NO)" 
+                <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CREF_NO)" 
                                  HeaderText="@Localizer["_ReferenceNo"]" 
                                  Width="120px" />
                 <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CREF_DATE_DISPLAY)"
@@ -155,8 +155,8 @@
                                 OnLostFocused="txtDepartmentCode_OnLostFocused" />
                     </R_ItemLayout>
                     <R_ItemLayout auto="true">
-                        <R_Lookup R_Before_Open_Lookup="btnDepartmentLookup_R_Before_Open_Lookup"
-                                R_After_Open_Lookup="btnDepartmentLookup_R_After_Open_Lookup">...</R_Lookup>
+                        <R_Lookup R_Before_Open_Lookup="btnDepartmentEntryLookup_R_Before_Open_Lookup"
+                                R_After_Open_Lookup="btnDepartmentEntryLookup_R_After_Open_Lookup">...</R_Lookup>
                     </R_ItemLayout>
                     
                     <R_ItemLayout auto="true">
@@ -177,10 +177,10 @@
                         <R_Label>@Localizer["_ReferenceNo"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
-                        <R_TextBox @bind-Value="_VM.Data.CREFERENCE_NO"
+                        <R_TextBox @bind-Value="_VM.Data.CREF_NO"
                                 R_ConductorSource="@_conductorRef"
-                                R_EnableAdd="@(_VM.SystemParamData?.LINCREMENT_FLAG == false)"
-                                   Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Add && _VM.SystemParamData?.LINCREMENT_FLAG == false)" />
+                                Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.TransCodeInfoData != null && _VM.TransCodeInfoData.LINCREMENT_FLAG == false)" />
+
                     </R_ItemLayout>
                     <R_ItemLayout col="3" class="ps-4">
                         <R_Label>@Localizer["_RefDate"]</R_Label>
@@ -312,8 +312,8 @@
                                 OnLostFocused="txtSupplierCode_OnLostFocused" />
                     </R_ItemLayout>
                     <R_ItemLayout auto="true">
-                        <R_Lookup R_Before_Open_Lookup="btnSupplierLookup_R_Before_Open_Lookup"
-                                R_After_Open_Lookup="btnSupplierLookup_R_After_Open_Lookup">...</R_Lookup>
+                        <R_Lookup R_Before_Open_Lookup="btnSupplierEntryLookup_R_Before_Open_Lookup"
+                                R_After_Open_Lookup="btnSupplierEntryLookup_R_After_Open_Lookup">...</R_Lookup>
                     </R_ItemLayout>
                     <R_ItemLayout auto="false">
                         <R_TextBox @bind-Value="_VM.Data.CSUPPLIER_NAME" Enabled="false" />
@@ -326,16 +326,12 @@
                         <R_Label>@Localizer["_Currency"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
-                        <R_TextBox @bind-Value="_VM.Data.CCURRENCY_CODE"
-                                R_ConductorSource="@_conductorRef"
-                                R_EnableAdd="true"
-                                R_EnableEdit="true"
-                                OnLostFocused="txtCurrencyCode_OnLostFocused" />
+                        <R_ComboBox @bind-Value="_VM.Data.CCURRENCY_CODE"
+                                    Data="_VM.CurrencyList"
+                                    ValueField="@nameof(FAT00100GetCurrencyListResultDTO.CCURRENCY_CODE)"
+                                    TextField="@nameof(FAT00100GetCurrencyListResultDTO.CCURRENCY_NAME)" />
                     </R_ItemLayout>
-                    <R_ItemLayout auto="true">
-                        <R_Lookup R_Before_Open_Lookup="btnCurrencyLookup_R_Before_Open_Lookup"
-                                R_After_Open_Lookup="btnCurrencyLookup_R_After_Open_Lookup">...</R_Lookup>
-                    </R_ItemLayout>
+
                 </R_StackLayout>
 
                 <!-- Currency Rate Section -->
@@ -352,8 +348,7 @@
                                         Decimals="2"
                                         ThousandSeparator="true"
                                         R_ConductorSource="@_conductorRef"
-                                        R_EnableAdd="true"
-                                        R_EnableEdit="true" />
+                                        Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.CompanyInfoData != null && _VM.Data.CCURRENCY_CODE != _VM.CompanyInfoData.CLOCAL_CURRENCY_CODE)" />
                     </R_ItemLayout>
                     <R_ItemLayout col="1">
                         <R_TextBox @bind-Value="_VM.Data.CCURRENCY_CODE" Enabled="false" />
@@ -366,7 +361,9 @@
                                         TValue="decimal"
                                         Decimals="2"
                                         ThousandSeparator="true"
-                                        Enabled="false" />
+                                        R_ConductorSource="@_conductorRef"
+                                          R_EnableAdd="true"
+                                          R_EnableEdit="true" />
                     </R_ItemLayout>
                     <R_ItemLayout col="1">
                         <R_TextBox @bind-Value="_VM.Data.CLOCAL_CURRENCY_CODE" Enabled="false" />
@@ -378,7 +375,7 @@
                         <R_Label>@Localizer["_BaseCurrency"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
-                        <R_NumericTextBox @bind-Value="_VM.Data.NLBASE_RATE"
+                        <R_NumericTextBox @bind-Value="_VM.Data.NBBASE_RATE"
                                         TValue="decimal"
                                         Decimals="2"
                                         ThousandSeparator="true"
@@ -397,7 +394,9 @@
                                         TValue="decimal"
                                         Decimals="2"
                                         ThousandSeparator="true"
-                                        Enabled="false" />
+                                        R_ConductorSource="@_conductorRef"
+                                          R_EnableAdd="true"
+                                          R_EnableEdit="true" />
                     </R_ItemLayout>
                     <R_ItemLayout col="1">
                         <R_TextBox @bind-Value="_VM.Data.CBASE_CURRENCY_CODE" Enabled="false" />
@@ -479,7 +478,7 @@
         <R_ItemLayout>
             <R_Button R_ConductorSource="@_conductorRef" 
                     R_EnableOther="true"
-                      Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && !string.IsNullOrEmpty(_VM.Data.CREFERENCE_NO) && _VM.Data.CTRANS_STATUS == "00")"
+                      Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && !string.IsNullOrEmpty(_VM.Data.CREF_NO) && _VM.Data.CTRANS_STATUS == "00")"
                     OnClick="btnSubmit_OnClick">
                 @Localizer["_Submit"]
             </R_Button>
@@ -487,7 +486,7 @@
         <R_ItemLayout>
             <R_Button R_ConductorSource="@_conductorRef" 
                     R_EnableOther="true"
-                      Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && !string.IsNullOrEmpty(_VM.Data.CREFERENCE_NO) && _VM.Data.CTRANS_STATUS == "10")"
+                      Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && !string.IsNullOrEmpty(_VM.Data.CREF_NO) && _VM.Data.CTRANS_STATUS == "10")"
                     OnClick="btnRedraft_OnClick">
                 @Localizer["_Draft"]
             </R_Button>
@@ -495,7 +494,7 @@
         <R_ItemLayout>
             <R_Button R_ConductorSource="@_conductorRef" 
                     R_EnableOther="true"
-                    Enabled="@(!string.IsNullOrEmpty(_VM.Data.CREFERENCE_NO))"
+                    Enabled="@(!string.IsNullOrEmpty(_VM.Data.CREF_NO))"
                     OnClick="btnPrint_OnClick">
                 @Localizer["_Print"]
             </R_Button>

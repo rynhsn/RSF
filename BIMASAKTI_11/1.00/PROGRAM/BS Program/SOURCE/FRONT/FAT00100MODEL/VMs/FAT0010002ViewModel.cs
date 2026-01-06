@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace FAT00100Model.VMs
 {
@@ -27,14 +28,19 @@ namespace FAT00100Model.VMs
         // Header data
         public FAT0010002GetFAAcquisitionDetailHeaderResultDTO HeaderData { get; set; } = new FAT0010002GetFAAcquisitionDetailHeaderResultDTO();
 
+        // Transaction detail data
+        public FAT0010002GetTransDetailResultDTO TransDetailData { get; set; } = new FAT0010002GetTransDetailResultDTO();
+
         // Lists
-        public ObservableCollection<FAT0010002GetComboDepreciationMethodResultDTO> ComboDepreciationMethodList { get; set; } = new ObservableCollection<FAT0010002GetComboDepreciationMethodResultDTO>();
+        public ObservableCollection<FAT00100GetStatusListResultDTO> ComboDepreciationMethodList { get; set; } = new ObservableCollection<FAT00100GetStatusListResultDTO>();
+        public FAT00100GetStatusListResultDTO ComboDepreciationMethodFirstItem { get; set; } = new FAT00100GetStatusListResultDTO();
         public ObservableCollection<FAT0010002GetFAAcquisitionDetailAssetListResultDTO> AssetList { get; set; } = new ObservableCollection<FAT0010002GetFAAcquisitionDetailAssetListResultDTO>();
         public ObservableCollection<FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO> AllocExpenPageList { get; set; } = new ObservableCollection<FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO>();
 
         // Form state properties (extracted from VB.NET module variables)
         public string DeptCode { get; set; } = string.Empty;
         public string ReferenceNo { get; set; } = string.Empty;
+        public string RecId { get; set; } = string.Empty;
         public string TransactionCode { get; set; } = string.Empty;
         public string Mode { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;
@@ -53,13 +59,14 @@ namespace FAT00100Model.VMs
         public string DocumentDate { get; set; } = string.Empty;
         public string SupplierId { get; set; } = string.Empty;
         public string SupplierName { get; set; } = string.Empty;
-        public decimal YearDeprPct { get; set; }
-        public decimal UsefulYears { get; set; }
-        public decimal UsefulMonths { get; set; }
+        //public decimal YearDeprPct { get; set; }
+        //public decimal UsefulYears { get; set; }
+        //public decimal UsefulMonths { get; set; }
         public string DefaultAssetDeptCode { get; set; } = string.Empty;
         public bool GLLink { get; set; }
         public string GLLinkDate { get; set; } = string.Empty;
         public decimal NLGLinkVal { get; set; }
+        public string SoftPeriod { get; set; } = string.Empty;
 
         // Button enablement properties (based on PCMODE and PCSTATUS)
         // NET4: btnImportPJ.Enabled = PCMODE = "T" And PCSTATUS = "00" And PCFR_MODULE = "PJ"
@@ -74,41 +81,7 @@ namespace FAT00100Model.VMs
         /// <summary>
         /// Format transaction date for display (from yyyyMMdd to dd-MMM-yyyy)
         /// </summary>
-        public string TransactionDateDisplay
-        {
-            get
-            {
-                try
-                {
-                    if (HeaderData == null)
-                        return string.Empty;
-
-                    if (string.IsNullOrWhiteSpace(HeaderData.CTRANSACTION_DATE))
-                        return string.Empty;
-
-                    if (HeaderData.CTRANSACTION_DATE.Length == 8)
-                    {
-                        string lcYear = HeaderData.CTRANSACTION_DATE.Substring(0, 4);
-                        string lcMonth = HeaderData.CTRANSACTION_DATE.Substring(4, 2);
-                        string lcDay = HeaderData.CTRANSACTION_DATE.Substring(6, 2);
-                        
-                        if (int.TryParse(lcYear, out int liYear) &&
-                            int.TryParse(lcMonth, out int liMonth) &&
-                            int.TryParse(lcDay, out int liDay))
-                        {
-                            var ldDate = new DateTime(liYear, liMonth, liDay);
-                            return ldDate.ToString("dd-MMM-yyyy");
-                        }
-                    }
-                    return HeaderData.CTRANSACTION_DATE;
-                }
-                catch
-                {
-                    // Return empty string if parsing fails
-                    return string.Empty;
-                }
-            }
-        }
+        public string RefDateDisplay { get; set; } = string.Empty;
 
         /// <summary>
         /// Format local currency rate display
@@ -119,18 +92,20 @@ namespace FAT00100Model.VMs
             {
                 try
                 {
-                    if (HeaderData == null)
+                    if (TransDetailData == null)
                         return string.Empty;
 
-                    if (HeaderData.NLBASE_RATE_AMOUNT <= 0 || 
-                        HeaderData.NLCURRENCY_RATE_AMOUNT <= 0)
-                        return string.Empty;
+                    //if (TransDetailData.NLBASE_RATE <= 0 ||
+                    //    TransDetailData.NLCURRENCY_RATE <= 0)
+                    //    return string.Empty;
 
-                    if (string.IsNullOrWhiteSpace(HeaderData.CCURRENCY_CODE) ||
+                    if (string.IsNullOrWhiteSpace(TransDetailData.CCURRENCY_CODE) ||
                         string.IsNullOrWhiteSpace(LocalCurrencyCode))
                         return string.Empty;
 
-                    return $"1.00 {HeaderData.CCURRENCY_CODE} = {HeaderData.NLCURRENCY_RATE_AMOUNT:N2} {LocalCurrencyCode}";
+                    return $"{TransDetailData.NLBASE_RATE} {TransDetailData.CCURRENCY_CODE} = {TransDetailData.NLCURRENCY_RATE:N2} {LocalCurrencyCode}";
+
+                    return string.Empty;
                 }
                 catch
                 {
@@ -148,18 +123,19 @@ namespace FAT00100Model.VMs
             {
                 try
                 {
-                    if (HeaderData == null)
+                    if (TransDetailData == null)
                         return string.Empty;
 
-                    if (HeaderData.NBBASE_RATE_AMOUNT <= 0 || 
-                        HeaderData.NBCURRENCY_RATE_AMOUNT <= 0)
-                        return string.Empty;
+                    //if (TransDetailData.NBBASE_RATE <= 0 ||
+                    //    TransDetailData.NBCURRENCY_RATE <= 0)
+                    //    return string.Empty;
 
-                    if (string.IsNullOrWhiteSpace(HeaderData.CCURRENCY_CODE) ||
+                    if (string.IsNullOrWhiteSpace(TransDetailData.CCURRENCY_CODE) ||
                         string.IsNullOrWhiteSpace(BaseCurrencyCode))
                         return string.Empty;
 
-                    return $"1.00 {HeaderData.CCURRENCY_CODE} = {HeaderData.NBCURRENCY_RATE_AMOUNT:N2} {BaseCurrencyCode}";
+                    return $"{TransDetailData.NBBASE_RATE} {TransDetailData.CCURRENCY_CODE} = {TransDetailData.NBCURRENCY_RATE:N2} {BaseCurrencyCode}";
+                    return string.Empty;
                 }
                 catch
                 {
@@ -168,6 +144,8 @@ namespace FAT00100Model.VMs
             }
         }
 
+        public object R_Utility { get; private set; }
+
         #endregion
 
         #region CRUD Methods
@@ -175,7 +153,7 @@ namespace FAT00100Model.VMs
         /// <summary>
         /// Get record for conductor
         /// </summary>
-        public async Task GetRecordAsync(string pcCompanyId, string pcLangId, string pcDeptCode, string pcTransactionCode, string pcReferenceNo, string pcAssetCode)
+        public async Task GetRecordAsync(FAT0010002DTO poEntity)
         {
             var loEx = new R_Exception();
 
@@ -183,15 +161,7 @@ namespace FAT00100Model.VMs
             {
                 var loParam = new R_ServiceGetRecordParameterDTO<FAT0010002DTO>
                 {
-                    Entity = new FAT0010002DTO
-                    {
-                        CCOMPANY_ID = pcCompanyId,
-                        CLANG_ID = pcLangId,
-                        CDEPT_CODE = pcDeptCode,
-                        CTRANSACTION_CODE = pcTransactionCode,
-                        CREFERENCE_NO = pcReferenceNo,
-                        CASSET_CODE = pcAssetCode
-                    }
+                    Entity = poEntity
                 };
 
                 var loResult = await _model.R_ServiceGetRecord(loParam);
@@ -200,13 +170,14 @@ namespace FAT00100Model.VMs
                 // Store properties from result
                 if (CurrentRecord != null)
                 {
-                    YearDeprPct = CurrentRecord.NYEAR_DEPR_PCT;
-                    UsefulYears = CurrentRecord.IUSEFUL_LIVE_YR;
-                    UsefulMonths = CurrentRecord.IUSEFUL_LIVE_MO;
+                    //YearDeprPct = CurrentRecord.NYEAR_DEPR_PCT;
+                    //UsefulYears = CurrentRecord.IUSEFUL_LIVE_YR;
+                    //UsefulMonths = CurrentRecord.IUSEFUL_LIVE_MO;
                     if (!string.IsNullOrWhiteSpace(CurrentRecord.CTRANSACTION_DESCR))
                     {
                         CurrentRecord.CDESCRIPTION = CurrentRecord.CTRANSACTION_DESCR;
                     }
+                    CurrentRecord.DSTART_DATE = R_FrontUtility.R_ConvertToDateTime(CurrentRecord.CSTART_DATE, "yyyyMMdd");
                 }
             }
             catch (Exception ex)
@@ -282,49 +253,49 @@ namespace FAT00100Model.VMs
         /// <summary>
         /// Get FA acquisition detail header
         /// </summary>
-        public async Task GetFAAcquisitionDetailHeaderAsync(string pcCompanyId, string pcLangId, FAT0010002DTO poParam)
-        {
-            var loEx = new R_Exception();
+        //public async Task GetFAAcquisitionDetailHeaderAsync(string pcCompanyId, string pcLangId, FAT0010002DTO poParam)
+        //{
+        //    var loEx = new R_Exception();
 
-            try
-            {
-                var loParam = new FAT0010002GetFAAcquisitionDetailHeaderParameterDTO
-                {
-                    CCOMPANY_ID = pcCompanyId,
-                    CLANG_ID = pcLangId,
-                    CDEPT_CODE = poParam.CDEPT_CODE,
-                    CTRANSACTION_CODE = poParam.CTRANSACTION_CODE,
-                    CREFERENCE_NO = poParam.CREFERENCE_NO
-                };
+        //    try
+        //    {
+        //        var loParam = new FAT0010002GetFAAcquisitionDetailHeaderParameterDTO
+        //        {
+        //            CCOMPANY_ID = pcCompanyId,
+        //            CLANG_ID = pcLangId,
+        //            CDEPT_CODE = poParam.CDEPT_CODE,
+        //            CTRANSACTION_CODE = poParam.CTRANSACTION_CODE,
+        //            CREFERENCE_NO = poParam.CREFERENCE_NO
+        //        };
 
-                var loResult = await _model.GetFAAcquisitionDetailHeader(loParam);
-                HeaderData = loResult.Data;
+        //        var loResult = await _model.GetFAAcquisitionDetailHeader(loParam);
+        //        HeaderData = loResult.Data;
 
-                // Store properties from result
-                if (HeaderData != null)
-                {
-                    TransactionCode = HeaderData.CTRANSACTION_CODE;
-                    ReferenceNo = HeaderData.CREFERENCE_NO;
-                    DeptCode = HeaderData.CDEPT_CODE;
-                    LocalRate = HeaderData.NLRATE;
-                    BaseRate = HeaderData.NBRATE;
-                    BaseXRate = HeaderData.NBXRATE;
-                    FrDeptCode = HeaderData.CFR_DEPT_CODE;
-                    FrTransactionCode = HeaderData.CFR_TRANSACTION_CODE;
-                    FrReferenceNo = HeaderData.CFR_REFERENCE_NO;
-                    FrModule = HeaderData.CFR_MODULE;
-                    DocumentDate = HeaderData.CDOCUMENT_DATE;
-                    SupplierId = HeaderData.CSUPPLIER_ID;
-                    SupplierName = HeaderData.CSUPPLIER_NAME;
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
+        //        // Store properties from result
+        //        if (HeaderData != null)
+        //        {
+        //            TransactionCode = HeaderData.CTRANSACTION_CODE;
+        //            ReferenceNo = HeaderData.CREFERENCE_NO;
+        //            DeptCode = HeaderData.CDEPT_CODE;
+        //            LocalRate = HeaderData.NLRATE;
+        //            BaseRate = HeaderData.NBRATE;
+        //            BaseXRate = HeaderData.NBXRATE;
+        //            FrDeptCode = HeaderData.CFR_DEPT_CODE;
+        //            FrTransactionCode = HeaderData.CFR_TRANSACTION_CODE;
+        //            FrReferenceNo = HeaderData.CFR_REFERENCE_NO;
+        //            FrModule = HeaderData.CFR_MODULE;
+        //            DocumentDate = HeaderData.CDOCUMENT_DATE;
+        //            SupplierId = HeaderData.CSUPPLIER_ID;
+        //            SupplierName = HeaderData.CSUPPLIER_NAME;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        loEx.Add(ex);
+        //    }
 
-            loEx.ThrowExceptionIfErrors();
-        }
+        //    loEx.ThrowExceptionIfErrors();
+        //}
 
         /// <summary>
         /// Get declining depreciation amount
@@ -354,22 +325,71 @@ namespace FAT00100Model.VMs
         /// <summary>
         /// Validate department code
         /// </summary>
-        public async Task<int> ValidateDeptCodeAsync(string pcCompanyId, string pcDeptCode, string pcUserId)
+        //public async Task<int> ValidateDeptCodeAsync(string pcCompanyId, string pcDeptCode, string pcUserId)
+        //{
+        //    var loEx = new R_Exception();
+        //    int liResult = 0;
+
+        //    try
+        //    {
+        //        var loParam = new FAT0010002ValidateDeptCodeParameterDTO
+        //        {
+        //            CCOMPANY_ID = pcCompanyId,
+        //            CDEPT_CODE = pcDeptCode,
+        //            CUSER_ID = pcUserId
+        //        };
+
+        //        var loRtn = await _model.ValidateDeptCode(loParam);
+        //        liResult = loRtn.Data.Result;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        loEx.Add(ex);
+        //    }
+
+        //    loEx.ThrowExceptionIfErrors();
+        //    return liResult;
+        //}
+
+        /// <summary>
+        /// Get transaction detail
+        /// </summary>
+        public async Task GetTransDetailAsync(string pcCompanyId, string pcLangId, string pcRecId, string pcDeptCode, string pcRefNo)
         {
             var loEx = new R_Exception();
-            int liResult = 0;
 
             try
             {
-                var loParam = new FAT0010002ValidateDeptCodeParameterDTO
+                var loParam = new FAT0010002GetTransDetailParameterDTO
                 {
                     CCOMPANY_ID = pcCompanyId,
+                    CLANGUAGE_ID = pcLangId,
+                    CREC_ID = pcRecId,
                     CDEPT_CODE = pcDeptCode,
-                    CUSER_ID = pcUserId
+                    CREF_NO = pcRefNo
                 };
 
-                var loRtn = await _model.ValidateDeptCode(loParam);
-                liResult = loRtn.Data.Result;
+                var loResult = await _model.FAT0010002GetTransDetail(loParam);
+                if (loResult != null)
+                {
+                    TransDetailData = loResult.Data ?? new FAT0010002GetTransDetailResultDTO();
+                    RefDateDisplay = DateTime.ParseExact(TransDetailData.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
+
+                    //TransactionCode = HeaderData.CTRANSACTION_CODE;
+                    //ReferenceNo = HeaderData.CREFERENCE_NO;
+                    //DeptCode = HeaderData.CDEPT_CODE;
+                    //LocalRate = HeaderData.NLRATE;
+                    //BaseRate = HeaderData.NBRATE;
+                    //BaseXRate = HeaderData.NBXRATE;
+                    //FrDeptCode = HeaderData.CFR_DEPT_CODE;
+                    //FrTransactionCode = HeaderData.CFR_TRANSACTION_CODE;
+                    //FrReferenceNo = HeaderData.CFR_REFERENCE_NO;
+                    //FrModule = HeaderData.CFR_MODULE;
+                    //DocumentDate = HeaderData.CDOCUMENT_DATE;
+                    //SupplierId = HeaderData.CSUPPLIER_ID;
+                    //SupplierName = HeaderData.CSUPPLIER_NAME;
+                }
+                
             }
             catch (Exception ex)
             {
@@ -377,7 +397,6 @@ namespace FAT00100Model.VMs
             }
 
             loEx.ThrowExceptionIfErrors();
-            return liResult;
         }
 
         #endregion
@@ -395,7 +414,11 @@ namespace FAT00100Model.VMs
             {
                 // No custom parameters needed for this streaming method (only CCOMPANY_ID, CLANG_ID which are handled automatically)
                 var loResult = await _model.GetComboDepreciationMethodAsync();
-                ComboDepreciationMethodList = new ObservableCollection<FAT0010002GetComboDepreciationMethodResultDTO>(loResult.Data ?? new List<FAT0010002GetComboDepreciationMethodResultDTO>());
+                ComboDepreciationMethodList = new ObservableCollection<FAT00100GetStatusListResultDTO>(loResult.Data ?? new List<FAT00100GetStatusListResultDTO>());
+                if (ComboDepreciationMethodList.Count > 0)  
+                {
+                    ComboDepreciationMethodFirstItem = ComboDepreciationMethodList[0];
+                }
             }
             catch (Exception ex)
             {
@@ -408,7 +431,7 @@ namespace FAT00100Model.VMs
         /// <summary>
         /// Get FA acquisition detail asset list - streaming method for asset grid
         /// </summary>
-        public async Task GetFAAcquisitionDetailAssetListAsync(string pcCompanyId, string pcLangId, string pcDeptCode, string pcTransactionCode, string pcReferenceNo, string pcStatus, DateTime pdUpdateDate)
+        public async Task GetFAAcquisitionDetailAssetListAsync(string pcCompanyId, string pcLangId, string pcDeptCode, string pcTransactionCode, string pcReferenceNo, string pcRecid, string pcStatus, DateTime pdUpdateDate)
         {
             var loEx = new R_Exception();
 
@@ -421,6 +444,7 @@ namespace FAT00100Model.VMs
                 R_FrontContext.R_SetStreamingContext(ContextConstants.CTRANSACTION_CODE, pcTransactionCode);
                 R_FrontContext.R_SetStreamingContext(ContextConstants.CREFERENCE_NO, pcReferenceNo);
                 R_FrontContext.R_SetStreamingContext(ContextConstants.CSTATUS, pcStatus);
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CREC_ID, pcRecid);
 
                 var loResult = await _model.GetFAAcquisitionDetailAssetListAsync();
                 AssetList = new ObservableCollection<FAT0010002GetFAAcquisitionDetailAssetListResultDTO>(loResult.Data ?? new List<FAT0010002GetFAAcquisitionDetailAssetListResultDTO>());

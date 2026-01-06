@@ -215,28 +215,23 @@ namespace FAT00100Service
         }
 
         [HttpPost]
-        public async IAsyncEnumerable<FAT0010002GetComboDepreciationMethodResultDTO> GetComboDepreciationMethod()
+        public async Task<FAT0010002ResultDTO<FAT0010002GetTransDetailResultDTO>> FAT0010002GetTransDetail(FAT0010002GetTransDetailParameterDTO poParameter)
         {
-            var lcMethod = nameof(GetComboDepreciationMethod);
+            var lcMethod = nameof(FAT0010002GetTransDetail);
             using var activity = _activitySource.StartActivity(lcMethod);
             var loEx = new R_Exception();
-            List<FAT0010002GetComboDepreciationMethodResultDTO> loResult = new List<FAT0010002GetComboDepreciationMethodResultDTO>();
+            FAT0010002ResultDTO<FAT0010002GetTransDetailResultDTO> loRtn = new FAT0010002ResultDTO<FAT0010002GetTransDetailResultDTO>();
 
             try
             {
                 var loCls = new FAT0010002Cls();
 
-                // Create parameter DTO internally with global variables and streaming context
-                var loParam = new FAT0010002GetFAAcquisitionDetailHeaderParameterDTO
-                {
-                    CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
-                    CLANG_ID = R_BackGlobalVar.CULTURE,
-                    CUSER_ID = R_BackGlobalVar.USER_ID,
-                    CFOREIGN_LANGUAGE = R_BackGlobalVar.CULTURE
-                };
+                // Set global variables from R_BackGlobalVar
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
 
-                _logger.LogInfo("Start method GetComboDepreciationMethod in {0}", lcMethod);
-                loResult = await loCls.GetComboDepreciationMethodAsync(loParam);
+                _logger.LogInfo("Start method FAT0010002GetTransDetail in {0}", lcMethod);
+                loRtn = await loCls.FAT0010002GetTransDetailAsync(poParameter);
             }
             catch (Exception ex)
             {
@@ -246,7 +241,44 @@ namespace FAT00100Service
 
             loEx.ThrowExceptionIfErrors();
 
-            foreach (FAT0010002GetComboDepreciationMethodResultDTO loItem in loResult)
+            return loRtn;
+        }
+
+        [HttpPost]
+        public async IAsyncEnumerable<FAT00100GetStatusListResultDTO> GetComboDepreciationMethod()
+        {
+            var lcMethod = nameof(GetComboDepreciationMethod);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            List<FAT00100GetStatusListResultDTO> loResult = new List<FAT00100GetStatusListResultDTO>();
+
+            try
+            {
+                var loCls = new FAT00100Cls();
+
+                // Create parameter DTO internally with global variables and streaming context
+                var loParam = new FAT00100GetStatusListParameterDTO
+                {
+                    CAPPLICATION = R_Utility.R_GetStreamingContext<string>(ContextConstants.CAPPLICATION) ?? "RHAPSODY",
+                    CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
+                    CCLASS_ID = R_Utility.R_GetStreamingContext<string>(ContextConstants.CCLASS_ID) ?? "_FA_DEPR_METHOD",
+                    CLANGUAGE_ID = R_BackGlobalVar.CULTURE,
+                    CREC_ID_LIST = R_Utility.R_GetStreamingContext<string>(ContextConstants.CREC_ID_LIST) ?? string.Empty
+                };
+
+                _logger.LogInfo("Start method GetComboDepreciationMethod in {0}", lcMethod);
+                loResult = await loCls.FAT00100GetStatusListAsync(loParam);
+
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            foreach (FAT00100GetStatusListResultDTO loItem in loResult)
             {
                 yield return loItem;
             }
@@ -275,6 +307,7 @@ namespace FAT00100Service
                     CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstants.CTRANSACTION_CODE) ?? string.Empty,
                     CREFERENCE_NO = R_Utility.R_GetStreamingContext<string>(ContextConstants.CREFERENCE_NO) ?? string.Empty,
                     CSTATUS = R_Utility.R_GetStreamingContext<string>(ContextConstants.CSTATUS) ?? string.Empty,
+                    CREC_ID = R_Utility.R_GetStreamingContext<string>(ContextConstants.CREC_ID) ?? string.Empty,
                     DUPDATE_DATE = DateTime.Today
                 };
 

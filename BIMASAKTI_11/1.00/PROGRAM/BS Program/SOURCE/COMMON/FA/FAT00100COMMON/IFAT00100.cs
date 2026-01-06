@@ -17,6 +17,7 @@ namespace FAT00100Common
         Task<FAT00100ResultDTO<FAT00100GetPeriodDTResultDTO>> GetPeriodDT(FAT00100GetPeriodDTParameterDTO poParameter);
         Task<FAT00100ResultDTO<FAT00100RSP_GET_CURRENCY_RATEResultDTO>> RSP_GET_CURRENCY_RATE(FAT00100RSP_GET_CURRENCY_RATEParameterDTO poParameter);
         Task<FAT00100ResultDTO<FAT00100GetCompanyInfoResultDTO>> FAT00100GetCompanyInfo(FAT00100GetCompanyInfoParameterDTO poParameter);
+        Task<FAT00100ResultDTO<FAT00100GetLastCurrencyRateResultDTO>> FAT00100GetLastCurrencyRate(FAT00100GetLastCurrencyRateParameterDTO poParameter);
         Task<FAT00100ResultDTO<FAT00100GetGetSystemParamResultDTO>> FAT00100GetGetSystemParam(FAT00100GetGetSystemParamParameterDTO poParameter);
         Task<FAT00100ResultDTO<FAT00100GetPeriodeDtInfoResultDTO>> FAT00100GetPeriodeDtInfo(FAT00100GetPeriodeDtInfoParameterDTO poParameter);
         Task<FAT00100ResultDTO<FAT00100GetTransCodeInfoResultDTO>> FAT00100GetTransCodeInfo(FAT00100GetTransCodeInfoParameterDTO poParameter);

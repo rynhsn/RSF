@@ -181,6 +181,31 @@ namespace FAT00100Model
             return loResult;
         }
 
+        public async Task<FAT0010002ResultDTO<FAT0010002GetTransDetailResultDTO>> FAT0010002GetTransDetail(FAT0010002GetTransDetailParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            FAT0010002ResultDTO<FAT0010002GetTransDetailResultDTO> loResult = new FAT0010002ResultDTO<FAT0010002GetTransDetailResultDTO>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<FAT0010002ResultDTO<FAT0010002GetTransDetailResultDTO>, FAT0010002GetTransDetailParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IFAT0010002.FAT0010002GetTransDetail),
+                    poParameter,
+                    _ModuleName,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+
         #endregion
 
         #region Streaming Methods
@@ -188,7 +213,7 @@ namespace FAT00100Model
         /// <summary>
         /// Get combo depreciation method - Interface method (throws NotImplementedException)
         /// </summary>
-        public IAsyncEnumerable<FAT0010002GetComboDepreciationMethodResultDTO> GetComboDepreciationMethod()
+        public IAsyncEnumerable<FAT00100GetStatusListResultDTO> GetComboDepreciationMethod()
         {
             throw new NotImplementedException();
         }
@@ -196,15 +221,15 @@ namespace FAT00100Model
         /// <summary>
         /// Get combo depreciation method - Actual implementation
         /// </summary>
-        public async Task<FAT0010002ResultDTO<List<FAT0010002GetComboDepreciationMethodResultDTO>>> GetComboDepreciationMethodAsync()
+        public async Task<FAT0010002ResultDTO<List<FAT00100GetStatusListResultDTO>>> GetComboDepreciationMethodAsync()
         {
             var loEx = new R_Exception();
-            FAT0010002ResultDTO<List<FAT0010002GetComboDepreciationMethodResultDTO>> loRtn = new FAT0010002ResultDTO<List<FAT0010002GetComboDepreciationMethodResultDTO>>();
+            FAT0010002ResultDTO<List<FAT00100GetStatusListResultDTO>> loRtn = new FAT0010002ResultDTO<List<FAT00100GetStatusListResultDTO>>();
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
-                loRtn.Data = await R_HTTPClientWrapper.R_APIRequestStreamingObject<FAT0010002GetComboDepreciationMethodResultDTO>(
+                loRtn.Data = await R_HTTPClientWrapper.R_APIRequestStreamingObject<FAT00100GetStatusListResultDTO>(
                     _RequestServiceEndPoint,
                     nameof(IFAT0010002.GetComboDepreciationMethod),
                     _ModuleName,

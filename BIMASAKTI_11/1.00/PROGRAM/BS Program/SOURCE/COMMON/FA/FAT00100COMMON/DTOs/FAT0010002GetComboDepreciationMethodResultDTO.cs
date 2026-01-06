@@ -6,7 +6,7 @@ namespace FAT00100Common.DTOs
     public class FAT0010002GetComboDepreciationMethodResultDTO
     {
         public string CCODE { get; set; } = string.Empty;
-        public string CDESCRIPTION { get; set; } = string.Empty;
+        public string CNAME { get; set; } = string.Empty;
     }
 }
 

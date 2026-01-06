@@ -19,7 +19,7 @@ namespace PMT03500Common
         PMT03500SingleDTO<PMT03500AgreementUtilitiesDTO> PMT03500GetAgreementUtilities(
             PMT03500AgreementUtilitiesParam poParam);
         PMT03500UtilityMeterDetailDTO PMT03500UpdateMeterNo(PMT03500UpdateChangeMeterNoParam poParam);
-        PMT03500UtilityMeterDetailDTO PMT03500ChangeMeterNo(PMT03500UpdateChangeMeterNoParam poParam);
+        Task<PMT03500UtilityMeterDetailDTO> PMT03500ChangeMeterNo(PMT03500UpdateChangeMeterNoParam poParam);
         Task<PMT03500UtilityMeterDetailDTO> PMT03500CloseMeterNo(PMT03500CloseMeterNoParam poParam);
     }
 }

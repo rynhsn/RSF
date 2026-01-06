@@ -18,6 +18,7 @@ namespace FAT00100Common.DTOs
         public DateTime? DUPDATE_DATE { get; set; }
         public string CASSET_CODE { get; set; } = string.Empty;
         public string CASSET_TRANS_SEQNO { get; set; } = string.Empty;
+        public string CREC_ID { get; set; } = string.Empty;
     }
 }
 

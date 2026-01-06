@@ -16,6 +16,7 @@ using R_CommonFrontBackAPI;
 using FAT00100FrontResources;
 using R_BlazorFrontEnd.Controls.Tab;
 using System;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace FAT00100Front
@@ -73,6 +74,7 @@ namespace FAT00100Front
                     _VM.AssetIncrementFlag = loParam.LASSET_INCREMENT_FLAG;
                     _VM.JrngrpCode = loParam.LJRNGRP_MODE;
                     _VM.DeptMode = loParam.LDEPT_MODE;
+                    _VM.RecId = loParam.CREC_ID ?? string.Empty;
                 }
 
                 // Call GetFAAcquisitionDetailHeaderAsync to load header data
@@ -87,10 +89,12 @@ namespace FAT00100Front
                     }
                     else
                     {
-                        await _VM.GetFAAcquisitionDetailHeaderAsync(
+                        await _VM.GetTransDetailAsync(
                             ClientHelper.CompanyId,
                             ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en",
-                            loParam
+                            _VM.RecId,
+                            _VM.DeptCode,
+                            _VM.ReferenceNo
                         );
                     }
 
@@ -142,6 +146,8 @@ namespace FAT00100Front
                 string lcTransactionCode = _VM.TransactionCode;
                 string lcReferenceNo = _VM.ReferenceNo;
                 string lcStatus = _VM.Status;
+                string lcRecId = _VM.TransDetailData?.CREC_ID ?? string.Empty;
+
 
                 // Get update date - use current date (matching VB.NET pattern: DateTime.Now)
                 DateTime ldUpdateDate = DateTime.Now;
@@ -153,6 +159,7 @@ namespace FAT00100Front
                     lcDeptCode,
                     lcTransactionCode,
                     lcReferenceNo,
+                    lcRecId,
                     lcStatus,
                     ldUpdateDate
                 );
@@ -470,13 +477,8 @@ namespace FAT00100Front
 
         #endregion
 
-        #region Business Process Methods - Amount Calculation and Depreciation
-
-        /// <summary>
-        /// Recalculate amount and depreciation based on flag
-        /// Based on NET4: RecalculateAmountDepreciation (line 1375-1545)
-        /// </summary>
-        private async Task RecalculateAmountDepreciationAsync(string pcFlagDeprAmnt)
+        #region Business Process Methods - Amount Calculation
+        private async Task OnAmountChanged(decimal value, string valFrom, string set1, string set2)
         {
             var loEx = new R_Exception();
 
@@ -485,385 +487,44 @@ namespace FAT00100Front
                 if (_VM.Data == null)
                     return;
 
-                // Get rates from ViewModel
-                decimal lnLocalRate = _VM.LocalRate;
-                decimal lnBaseRate = _VM.BaseRate;
-                decimal lnBaseXRate = _VM.BaseXRate;
+                // Use reflection to set properties dynamically on _VM.Data
+                var loType = typeof(FAT0010002DTO);
+                var loValFrom = loType.GetProperty(valFrom);
+                var loProperty1 = loType.GetProperty(set1);
+                var loProperty2 = loType.GetProperty(set2);
 
-                switch (pcFlagDeprAmnt)
+                if (loValFrom != null)
                 {
-                    case "InitialCost":
-                        // Calculate transaction amounts from initial cost
-                        decimal lnInitialCost = _VM.Data.NTRANSACTION_AMOUNT;
-                        _VM.Data.NLTRANSACTION_AMOUNT1 = Math.Round(lnLocalRate * lnInitialCost, 2);
-                        _VM.Data.NBTRANSACTION_AMOUNT1 = Math.Round(lnBaseRate * lnInitialCost, 2);
-
-                        // Calculate book values
-                        _VM.Data.NLBOOK_VALUE = _VM.Data.NLTRANSACTION_AMOUNT1 + _VM.Data.NLTRANSACTION_AMOUNT2
-                            - _VM.Data.NLTRANSACTION_AMOUNT3 - _VM.Data.NLTRANSACTION_AMOUNT4 - _VM.Data.NLTRANSACTION_AMOUNT5;
-                        _VM.Data.NBBOOK_VALUE = _VM.Data.NBTRANSACTION_AMOUNT1 + _VM.Data.NBTRANSACTION_AMOUNT2
-                            - _VM.Data.NBTRANSACTION_AMOUNT3 - _VM.Data.NBTRANSACTION_AMOUNT4 - _VM.Data.NBTRANSACTION_AMOUNT5;
-
-                        // Set beginning book values
-                        if (_VM.Data.LNEW_FLAG)
-                        {
-                            _VM.Data.NOBBOOK_VALUE = _VM.Data.NBBOOK_VALUE;
-                            _VM.Data.NOLBOOK_VALUE = _VM.Data.NLBOOK_VALUE;
-                        }
-                        else
-                        {
-                            // Beginning book value is user input (stored in NLBEG_BOOK_VALUE)
-                            _VM.Data.NOLBOOK_VALUE = _VM.Data.NLBEG_BOOK_VALUE;
-                            _VM.Data.NOBBOOK_VALUE = Math.Round(lnBaseXRate * _VM.Data.NLBEG_BOOK_VALUE, 2);
-                        }
-
-                        // Recalculate yearly depreciation
-                        await RecalculateAmountDepreciationAsync("YearlyDepreciationLocal");
-                        await RecalculateAmountDepreciationAsync("YearlyDepreciationBase");
-                        await RecalculateAmountDepreciationAsync("DecliningDeprAmt");
-                        break;
-
-                    case "Addition":
-                        // Calculate base transaction amount from local addition
-                        decimal lnAdditionLocal = _VM.Data.NLADDITION_AMT;
-                        _VM.Data.NBTRANSACTION_AMOUNT2 = Math.Round(lnBaseXRate * lnAdditionLocal, 2);
-
-                        // Recalculate book values
-                        _VM.Data.NLBOOK_VALUE = _VM.Data.NLTRANSACTION_AMOUNT1 + lnAdditionLocal
-                            - _VM.Data.NLTRANSACTION_AMOUNT3 - _VM.Data.NLTRANSACTION_AMOUNT4 - _VM.Data.NLTRANSACTION_AMOUNT5;
-                        _VM.Data.NBBOOK_VALUE = _VM.Data.NBTRANSACTION_AMOUNT1 + _VM.Data.NBTRANSACTION_AMOUNT2
-                            - _VM.Data.NBTRANSACTION_AMOUNT3 - _VM.Data.NBTRANSACTION_AMOUNT4 - _VM.Data.NBTRANSACTION_AMOUNT5;
-                        break;
-
-                    case "Deduction":
-                        // Calculate base transaction amount from local deduction
-                        decimal lnDeductionLocal = _VM.Data.NLDEDUCTION_AMT;
-                        _VM.Data.NBTRANSACTION_AMOUNT3 = Math.Round(lnBaseXRate * lnDeductionLocal, 2);
-
-                        // Recalculate book values
-                        _VM.Data.NLBOOK_VALUE = _VM.Data.NLTRANSACTION_AMOUNT1 + _VM.Data.NLTRANSACTION_AMOUNT2
-                            - lnDeductionLocal - _VM.Data.NLTRANSACTION_AMOUNT4 - _VM.Data.NLTRANSACTION_AMOUNT5;
-                        _VM.Data.NBBOOK_VALUE = _VM.Data.NBTRANSACTION_AMOUNT1 + _VM.Data.NBTRANSACTION_AMOUNT2
-                            - _VM.Data.NBTRANSACTION_AMOUNT3 - _VM.Data.NBTRANSACTION_AMOUNT4 - _VM.Data.NBTRANSACTION_AMOUNT5;
-                        break;
-
-                    case "PriorDepr":
-                        // Calculate base transaction amount from local prior depreciation
-                        decimal lnPriorDeprLocal = _VM.Data.NLPRIOR_DEPR_AMT;
-                        _VM.Data.NBTRANSACTION_AMOUNT4 = Math.Round(lnBaseXRate * lnPriorDeprLocal, 2);
-
-                        // Recalculate book values
-                        _VM.Data.NLBOOK_VALUE = _VM.Data.NLTRANSACTION_AMOUNT1 + _VM.Data.NLTRANSACTION_AMOUNT2
-                            - _VM.Data.NLTRANSACTION_AMOUNT3 - lnPriorDeprLocal - _VM.Data.NLTRANSACTION_AMOUNT5;
-                        _VM.Data.NBBOOK_VALUE = _VM.Data.NBTRANSACTION_AMOUNT1 + _VM.Data.NBTRANSACTION_AMOUNT2
-                            - _VM.Data.NBTRANSACTION_AMOUNT3 - _VM.Data.NBTRANSACTION_AMOUNT4 - _VM.Data.NBTRANSACTION_AMOUNT5;
-                        break;
-
-                    case "YTDDepr":
-                        // Calculate base transaction amount from local YTD depreciation
-                        decimal lnYTDDeprLocal = _VM.Data.NLYTD_DEPR_AMT;
-                        _VM.Data.NBTRANSACTION_AMOUNT5 = Math.Round(lnBaseXRate * lnYTDDeprLocal, 2);
-
-                        // Recalculate book values
-                        _VM.Data.NLBOOK_VALUE = _VM.Data.NLTRANSACTION_AMOUNT1 + _VM.Data.NLTRANSACTION_AMOUNT2
-                            - _VM.Data.NLTRANSACTION_AMOUNT3 - _VM.Data.NLTRANSACTION_AMOUNT4 - lnYTDDeprLocal;
-                        _VM.Data.NBBOOK_VALUE = _VM.Data.NBTRANSACTION_AMOUNT1 + _VM.Data.NBTRANSACTION_AMOUNT2
-                            - _VM.Data.NBTRANSACTION_AMOUNT3 - _VM.Data.NBTRANSACTION_AMOUNT4 - _VM.Data.NBTRANSACTION_AMOUNT5;
-                        break;
-
-                    case "StartDate":
-                        // Set start date based on depreciation method
-                        if (_VM.Data.CDEPR_METHOD == "0")
-                        {
-                            _VM.Data.DSTART_DATE = null;
-                        }
-                        else if (_VM.Data.DINSERVICE_DATE.HasValue && _VM.HeaderData != null)
-                        {
-                            DateTime? ldInServiceDate = _VM.Data.DINSERVICE_DATE;
-                            DateTime? ldTransactionDate = null;
-
-                            if (!string.IsNullOrWhiteSpace(_VM.HeaderData.CTRANSACTION_DATE) &&
-                                _VM.HeaderData.CTRANSACTION_DATE.Length == 8)
-                            {
-                                string lcYear = _VM.HeaderData.CTRANSACTION_DATE.Substring(0, 4);
-                                string lcMonth = _VM.HeaderData.CTRANSACTION_DATE.Substring(4, 2);
-                                string lcDay = _VM.HeaderData.CTRANSACTION_DATE.Substring(6, 2);
-                                if (int.TryParse(lcYear, out int liYear) &&
-                                    int.TryParse(lcMonth, out int liMonth) &&
-                                    int.TryParse(lcDay, out int liDay))
-                                {
-                                    ldTransactionDate = new DateTime(liYear, liMonth, liDay);
-                                }
-                            }
-
-                            if (ldInServiceDate.HasValue && ldTransactionDate.HasValue)
-                            {
-                                string lcInServiceDateStr = ldInServiceDate.Value.ToString("yyyyMMdd");
-                                string lcTransactionDateStr = ldTransactionDate.Value.ToString("yyyyMMdd");
-                                if (lcInServiceDateStr.CompareTo(lcTransactionDateStr) > 0)
-                                {
-                                    _VM.Data.DSTART_DATE = ldInServiceDate;
-                                }
-                                else
-                                {
-                                    _VM.Data.DSTART_DATE = ldTransactionDate;
-                                }
-                            }
-                        }
-                        break;
-
-                    case "ResidualValue":
-                        if (_VM.Data.CDEPR_METHOD == "0")
-                        {
-                            _VM.Data.NLRESIDUAL_VALUE = 0;
-                            _VM.Data.NBRESIDUAL_VALUE = 0;
-                        }
-                        else
-                        {
-                            decimal lnResidualValueLocal = _VM.Data.NLRESIDUAL_VALUE;
-                            _VM.Data.NBRESIDUAL_VALUE = Math.Round(lnBaseXRate * lnResidualValueLocal, 2);
-                        }
-                        break;
-
-                    case "UsefulYears":
-                        if (_VM.Data.CDEPR_METHOD == "0")
-                        {
-                            _VM.Data.IUSEFUL_LIVE_YR = 0;
-                        }
-                        else if (_VM.Data.NYEAR_DEPR_PCT > 0)
-                        {
-                            decimal lnFactor = _VM.Data.CDEPR_METHOD == "3" ? 200 : 100;
-                            _VM.Data.IUSEFUL_LIVE_YR = (int)Math.Floor(lnFactor / _VM.Data.NYEAR_DEPR_PCT);
-                        }
-                        break;
-
-                    case "UsefulMonths":
-                        if (_VM.Data.CDEPR_METHOD == "0")
-                        {
-                            _VM.Data.IUSEFUL_LIVE_MO = 0;
-                        }
-                        else if (_VM.Data.NYEAR_DEPR_PCT > 0)
-                        {
-                            decimal lnFactor = _VM.Data.CDEPR_METHOD == "3" ? 200 : 100;
-                            _VM.Data.IUSEFUL_LIVE_MO = (int)Math.Round((lnFactor / _VM.Data.NYEAR_DEPR_PCT * 12) % 12);
-                        }
-                        break;
-
-                    case "YearlyDepreciation%":
-                        if (_VM.Data.CDEPR_METHOD == "0" || _VM.Data.CDEPR_METHOD == "9")
-                        {
-                            _VM.Data.NYEAR_DEPR_PCT = 0;
-                        }
-                        else if (_VM.Data.IUSEFUL_LIVE_YR > 0 || _VM.Data.IUSEFUL_LIVE_MO > 0)
-                        {
-                            decimal lnFactor = _VM.Data.CDEPR_METHOD == "3" ? 200 : 100;
-                            decimal lnUsefulLifeYears = _VM.Data.IUSEFUL_LIVE_YR + (_VM.Data.IUSEFUL_LIVE_MO / 12m);
-                            if (lnUsefulLifeYears > 0)
-                            {
-                                _VM.Data.NYEAR_DEPR_PCT = lnFactor / lnUsefulLifeYears;
-                            }
-                        }
-                        break;
-
-                    case "YearlyDepreciationLocal":
-                        if (_VM.Data.CDEPR_METHOD == "0" || _VM.Data.CDEPR_METHOD == "9")
-                        {
-                            _VM.Data.NLYEAR_DEPR_AMT = 0;
-                        }
-                        else if (_VM.Data.IUSEFUL_LIVE_YR > 0 || _VM.Data.IUSEFUL_LIVE_MO > 0)
-                        {
-                            decimal lnUsefulLifeYears = _VM.Data.IUSEFUL_LIVE_YR + (_VM.Data.IUSEFUL_LIVE_MO / 12m);
-                            decimal lnResidualValue = _VM.Data.CDEPR_METHOD == "1" ? _VM.Data.NLRESIDUAL_VALUE : 0;
-                            decimal lnFactor = _VM.Data.CDEPR_METHOD == "3" ? 2 : 1;
-                            if (lnUsefulLifeYears > 0)
-                            {
-                                _VM.Data.NLYEAR_DEPR_AMT = Math.Round((_VM.Data.NLBEG_BOOK_VALUE - lnResidualValue) / lnUsefulLifeYears * lnFactor, 2);
-                            }
-                        }
-                        break;
-
-                    case "YearlyDepreciationBase":
-                        if (_VM.Data.CDEPR_METHOD == "0" || _VM.Data.CDEPR_METHOD == "9")
-                        {
-                            _VM.Data.NBYEAR_DEPR_AMT = 0;
-                        }
-                        else if (_VM.Data.IUSEFUL_LIVE_YR > 0 || _VM.Data.IUSEFUL_LIVE_MO > 0)
-                        {
-                            decimal lnUsefulLifeYears = _VM.Data.IUSEFUL_LIVE_YR + (_VM.Data.IUSEFUL_LIVE_MO / 12m);
-                            decimal lnResidualValue = _VM.Data.CDEPR_METHOD == "1" ? _VM.Data.NBRESIDUAL_VALUE : 0;
-                            decimal lnFactor = _VM.Data.CDEPR_METHOD == "3" ? 2 : 1;
-                            if (lnUsefulLifeYears > 0)
-                            {
-                                _VM.Data.NBYEAR_DEPR_AMT = Math.Round((_VM.Data.NBBEG_BOOK_VALUE - lnResidualValue) / lnUsefulLifeYears * lnFactor, 2);
-                            }
-                        }
-                        break;
-
-                    case "RemUsefulYears":
-                        if (_VM.Data.CDEPR_METHOD == "0")
-                        {
-                            _VM.Data.IREM_UL_YR = 0;
-                        }
-                        else if (_VM.Data.LNEW_FLAG)
-                        {
-                            _VM.Data.IREM_UL_YR = _VM.Data.IUSEFUL_LIVE_YR;
-                        }
-                        break;
-
-                    case "RemUsefulMonths":
-                        if (_VM.Data.CDEPR_METHOD == "0")
-                        {
-                            _VM.Data.IREM_UL_MO = 0;
-                        }
-                        else if (_VM.Data.LNEW_FLAG)
-                        {
-                            _VM.Data.IREM_UL_MO = _VM.Data.IUSEFUL_LIVE_MO;
-                        }
-                        break;
-
-                    case "DecliningDeprAmt":
-                        if (_VM.Data.LNEW_FLAG && (_VM.Data.CDEPR_METHOD == "2" || _VM.Data.CDEPR_METHOD == "3"))
-                        {
-                            if (_VM.Data.IREM_UL_YR > 0 && _VM.Data.IUSEFUL_LIVE_YR > 0 && _VM.Data.NLBEG_BOOK_VALUE > 0)
-                            {
-                                var loParam = new FAT0010002GetDecliningDeprAmtParameterDTO
-                                {
-                                    CDEPR_METHOD = _VM.Data.CDEPR_METHOD,
-                                    IBEG_UL_YR = _VM.Data.IUSEFUL_LIVE_YR,
-                                    IBEG_UL_MO = _VM.Data.IUSEFUL_LIVE_MO,
-                                    IREM_UL_YR = _VM.Data.IREM_UL_YR,
-                                    IREM_UL_MO = _VM.Data.IREM_UL_MO,
-                                    NBEG_BOOK_VAL = _VM.Data.NLBEG_BOOK_VALUE
-                                };
-
-                                var loTask = _VM.GetDecliningDeprAmtAsync(
-                                    ClientHelper.CompanyId,
-                                    ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en",
-                                    loParam
-                                );
-                                loTask.Wait();
-                                decimal lnDecliningDeprAmt = loTask.Result;
-
-                                if (lnDecliningDeprAmt == 0)
-                                {
-                                    _VM.Data.NLYEAR_DEPR_AMT = 0;
-                                    _VM.Data.NBYEAR_DEPR_AMT = 0;
-                                }
-                                else
-                                {
-                                    _VM.Data.NLYEAR_DEPR_AMT = lnDecliningDeprAmt;
-                                    _VM.Data.NBYEAR_DEPR_AMT = Math.Round(lnBaseXRate * lnDecliningDeprAmt, 2);
-                                }
-                            }
-                            else
-                            {
-                                _VM.Data.NLYEAR_DEPR_AMT = 0;
-                                _VM.Data.NBYEAR_DEPR_AMT = 0;
-                            }
-                        }
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        /// <summary>
-        /// Handle depreciation method selection change
-        /// Based on NET4: ddDepreciationMethod_SelectedValueChanged (line 1613-1665)
-        /// </summary>
-        private async Task OnDepreciationMethodChanged(string? value)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                if (_conductorAssetInfoRef == null || _VM.Data == null)
-                    return;
-
-                if (_conductorAssetInfoRef.R_ConductorMode != R_eConductorMode.Add &&
-                    _conductorAssetInfoRef.R_ConductorMode != R_eConductorMode.Edit)
-                    return;
-
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    value = "0"; // Default to "No Depreciation"
+                    loValFrom.SetValue(_VM.Data, value);
                 }
 
-                _VM.Data.CDEPR_METHOD = value;
-
-                // Set default values based on method
-                if (value == "0")
+                if (loProperty1 != null)
                 {
-                    _VM.Data.NYEAR_DEPR_PCT = 0;
-                    _VM.Data.IUSEFUL_LIVE_YR = 0;
-                    _VM.Data.IUSEFUL_LIVE_MO = 0;
-                    _VM.Data.IREM_UL_YR = 0;
-                    _VM.Data.IREM_UL_MO = 0;
-                }
-                else if (value == "1" || value == "9")
-                {
-                    _VM.Data.NYEAR_DEPR_PCT = 0;
-                    _VM.Data.IUSEFUL_LIVE_YR = 10;
-                    _VM.Data.IUSEFUL_LIVE_MO = 0;
-                }
-
-                // Recalculate all depreciation fields
-                await RecalculateAmountDepreciationAsync("StartDate");
-                await RecalculateAmountDepreciationAsync("ResidualValue");
-                await RecalculateAmountDepreciationAsync("UsefulYears");
-                await RecalculateAmountDepreciationAsync("UsefulMonths");
-                await RecalculateAmountDepreciationAsync("YearlyDepreciation%");
-                await RecalculateAmountDepreciationAsync("YearlyDepreciationLocal");
-                await RecalculateAmountDepreciationAsync("YearlyDepreciationBase");
-                await RecalculateAmountDepreciationAsync("DecliningDeprAmt");
-                await RecalculateAmountDepreciationAsync("RemUsefulYears");
-                await RecalculateAmountDepreciationAsync("RemUsefulMonths");
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        /// <summary>
-        /// Handle initial cost amount change
-        /// Based on NET4: spInitialCostAmnt_LostFocus (line 1547-1555)
-        /// </summary>
-        private async Task OnInitialCostAmountChanged(decimal value)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                if (_conductorAssetInfoRef == null)
-                    return;
-
-                if (_conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Add ||
-                    _conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Edit)
-                {
-                    await RecalculateAmountDepreciationAsync("InitialCost");
-
-                    // Set Beg Book Value from Book Value when Initial Cost changes
-                    // NET4: spLocalBegBookVal.Value = spBookValueLocalAmnt.Value (line 2228)
-                    // NET4: spBaseBegBookVal.Value = spBookValueBaseAmnt.Value (line 2229)
-                    // This happens in LostFocus event for Book Value, but we also need to do it when Initial Cost changes
-                    if (_VM.Data != null)
+                    if (_VM.TransDetailData != null && _VM.TransDetailData.NLBASE_RATE != 0)
                     {
-                        if (_VM.Data.NLBOOK_VALUE != 0)
-                        {
-                            _VM.Data.NLBEG_BOOK_VALUE = _VM.Data.NLBOOK_VALUE;
-                        }
-                        if (_VM.Data.NBBOOK_VALUE != 0)
-                        {
-                            _VM.Data.NBBEG_BOOK_VALUE = _VM.Data.NBBOOK_VALUE;
-                        }
+                        decimal lnCalculatedValue = (value / _VM.TransDetailData.NLBASE_RATE) * _VM.TransDetailData.NLCURRENCY_RATE;
+                        // Set property on _VM.Data using reflection
+                        loProperty1.SetValue(_VM.Data, lnCalculatedValue);
+                    }
+                    else
+                    {
+                        // Set property on _VM.Data to 0
+                        loProperty1.SetValue(_VM.Data, 0m);
+                    }
+                }
+
+                if (loProperty2 != null)
+                {
+                    if (_VM.TransDetailData != null && _VM.TransDetailData.NBBASE_RATE != 0)
+                    {
+                        decimal lnCalculatedValue = (value / _VM.TransDetailData.NBBASE_RATE) * _VM.TransDetailData.NBCURRENCY_RATE;
+                        // Set property on _VM.Data using reflection
+                        loProperty2.SetValue(_VM.Data, lnCalculatedValue);
+                    }
+                    else
+                    {
+                        // Set property on _VM.Data to 0
+                        loProperty2.SetValue(_VM.Data, 0m);
                     }
                 }
             }
@@ -875,324 +536,7 @@ namespace FAT00100Front
             loEx.ThrowExceptionIfErrors();
         }
 
-        /// <summary>
-        /// Handle addition amount change
-        /// Based on NET4: spAdditionLocalAmnt_LostFocus (line 1557-1562)
-        /// </summary>
-        private async Task OnAdditionAmountChanged()
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                if (_conductorAssetInfoRef == null)
-                    return;
-
-                if (_conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Add ||
-                    _conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Edit)
-                {
-                    await RecalculateAmountDepreciationAsync("Addition");
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        /// <summary>
-        /// Handle deduction amount change
-        /// Based on NET4: spDeductionLocalAmnt_LostFocus (line 1564-1569)
-        /// </summary>
-        private async Task OnDeductionAmountChanged()
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                if (_conductorAssetInfoRef == null)
-                    return;
-
-                if (_conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Add ||
-                    _conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Edit)
-                {
-                    await RecalculateAmountDepreciationAsync("Deduction");
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        /// <summary>
-        /// Handle prior depreciation amount change
-        /// Based on NET4: spPriorDeprLocalAmnt_LostFocus (line 1571-1576)
-        /// </summary>
-        private async Task OnPriorDeprAmountChanged()
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                if (_conductorAssetInfoRef == null)
-                    return;
-
-                if (_conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Add ||
-                    _conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Edit)
-                {
-                    await RecalculateAmountDepreciationAsync("PriorDepr");
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        /// <summary>
-        /// Handle YTD depreciation amount change
-        /// Based on NET4: spYTDDeprLocalAmnt_LostFocus (line 1578-1583)
-        /// </summary>
-        private async Task OnYTDDeprAmountChanged()
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                if (_conductorAssetInfoRef == null)
-                    return;
-
-                if (_conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Add ||
-                    _conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Edit)
-                {
-                    await RecalculateAmountDepreciationAsync("YTDDepr");
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        /// <summary>
-        /// Handle residual value change
-        /// Based on NET4: spResidualValueLocalAmnt_LostFocus (line 1671+)
-        /// </summary>
-        private async Task OnResidualValueChanged()
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                if (_conductorAssetInfoRef == null)
-                    return;
-
-                if (_conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Add ||
-                    _conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Edit)
-                {
-                    await RecalculateAmountDepreciationAsync("ResidualValue");
-                    await RecalculateAmountDepreciationAsync("YearlyDepreciationLocal");
-                    await RecalculateAmountDepreciationAsync("YearlyDepreciationBase");
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        /// <summary>
-        /// Handle residual value amount change (for ValueChanged event)
-        /// Based on NET4: spResidualValueLocalAmnt_LostFocus
-        /// </summary>
-        private async Task OnResidualValueAmountChanged(decimal value)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                if (_conductorAssetInfoRef == null || _VM.Data == null)
-                    return;
-
-                _VM.Data.NLRESIDUAL_VALUE = value;
-
-                if (_conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Add ||
-                    _conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Edit)
-                {
-                    await RecalculateAmountDepreciationAsync("ResidualValue");
-                    await RecalculateAmountDepreciationAsync("YearlyDepreciationLocal");
-                    await RecalculateAmountDepreciationAsync("YearlyDepreciationBase");
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        /// <summary>
-        /// Handle useful life years change
-        /// Based on NET4: spUserfulLifeYears_LostFocus (line 1704+)
-        /// </summary>
-        private async Task OnUsefulLifeYearsChanged(int value)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                if (_conductorAssetInfoRef == null)
-                    return;
-
-                if (_conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Add ||
-                    _conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Edit)
-                {
-                    await RecalculateAmountDepreciationAsync("YearlyDepreciation%");
-                    await RecalculateAmountDepreciationAsync("YearlyDepreciationLocal");
-                    await RecalculateAmountDepreciationAsync("YearlyDepreciationBase");
-                    await RecalculateAmountDepreciationAsync("DecliningDeprAmt");
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        /// <summary>
-        /// Handle useful life months change
-        /// Based on NET4: spUserfulLifeMonths_LostFocus (line 1718+)
-        /// </summary>
-        private async Task OnUsefulLifeMonthsChanged(int value)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                if (_conductorAssetInfoRef == null)
-                    return;
-
-                if (_conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Add ||
-                    _conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Edit)
-                {
-                    await RecalculateAmountDepreciationAsync("YearlyDepreciation%");
-                    await RecalculateAmountDepreciationAsync("YearlyDepreciationLocal");
-                    await RecalculateAmountDepreciationAsync("YearlyDepreciationBase");
-                    await RecalculateAmountDepreciationAsync("DecliningDeprAmt");
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        /// <summary>
-        /// Handle yearly depreciation percentage change
-        /// Based on NET4: spYearlyDepreciation_LostFocus (line 1731+)
-        /// </summary>
-        private async Task OnYearlyDepreciationPctChanged(decimal value)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                if (_conductorAssetInfoRef == null)
-                    return;
-
-                if (_conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Add ||
-                    _conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Edit)
-                {
-                    await RecalculateAmountDepreciationAsync("UsefulYears");
-                    await RecalculateAmountDepreciationAsync("UsefulMonths");
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        /// <summary>
-        /// Handle remaining useful life years change
-        /// Based on NET4: spRemUsefulLifeYr_LostFocus (line 2266+)
-        /// </summary>
-        private async Task OnRemainingUsefulLifeYearsChanged(int value)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                if (_conductorAssetInfoRef == null)
-                    return;
-
-                if (_conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Add ||
-                    _conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Edit)
-                {
-                    await RecalculateAmountDepreciationAsync("RemUsefulYears");
-                    await RecalculateAmountDepreciationAsync("DecliningDeprAmt");
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        /// <summary>
-        /// Handle remaining useful life months change
-        /// Based on NET4: spRemUsefulLifeMo_LostFocus (line 2241+)
-        /// </summary>
-        private async Task OnRemainingUsefulLifeMonthsChanged(int value)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                if (_conductorAssetInfoRef == null || _VM.Data == null)
-                    return;
-
-                if (_conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Add ||
-                    _conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Edit)
-                {
-                    // Validate: months must be between 0 and 11
-                    if (_VM.Data.IREM_UL_MO < 0 || _VM.Data.IREM_UL_MO > 11)
-                    {
-                        _VM.Data.IREM_UL_MO = 0;
-                        // NET4: PS045 error - but we'll let validation handle it
-                    }
-
-                    await RecalculateAmountDepreciationAsync("RemUsefulMonths");
-                    await RecalculateAmountDepreciationAsync("DecliningDeprAmt");
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
+        
 
         #endregion
 
@@ -1207,29 +551,19 @@ namespace FAT00100Front
 
             try
             {
-                // Get record from grid selection
-                var loGridRow = R_FrontUtility.ConvertObjectToObject<FAT0010002GetFAAcquisitionDetailAssetListResultDTO>(eventArgs.Data);
+                // Get record from grid selection - convert directly to DTO
+                var loGridRow = R_FrontUtility.ConvertObjectToObject<FAT0010002DTO>(eventArgs.Data);
 
                 if (loGridRow != null && !string.IsNullOrWhiteSpace(loGridRow.CASSET_CODE))
                 {
                     // Ensure we have required parameters
-                    if (string.IsNullOrWhiteSpace(_VM.DeptCode) || 
-                        string.IsNullOrWhiteSpace(_VM.TransactionCode) || 
-                        string.IsNullOrWhiteSpace(_VM.ReferenceNo))
+                    if (string.IsNullOrWhiteSpace(loGridRow.CREC_ID))
                     {
                         loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS002"));
                     }
                     else
                     {
-                        // Call ViewModel method to get full asset detail record
-                        await _VM.GetRecordAsync(
-                            ClientHelper.CompanyId,
-                            ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en",
-                            _VM.DeptCode,
-                            _VM.TransactionCode,
-                            _VM.ReferenceNo,
-                            loGridRow.CASSET_CODE
-                        );
+                        await _VM.GetRecordAsync(loGridRow);
 
                         // Set result to CurrentRecord from ViewModel
                         if (_VM.CurrentRecord != null)
@@ -1465,7 +799,7 @@ namespace FAT00100Front
                     }
 
                     // Initialize depreciation fields
-                    _VM.Data.CDEPR_METHOD = "0"; // Default to "No Depreciation"
+                    _VM.Data.CDEPR_METHOD = _VM.ComboDepreciationMethodFirstItem.CCODE; // Default to "No Depreciation"
                     _VM.Data.IUSEFUL_LIVE_YR = 0;
                     _VM.Data.IUSEFUL_LIVE_MO = 0;
                     _VM.Data.IREM_UL_YR = 0;
@@ -1475,9 +809,6 @@ namespace FAT00100Front
                     _VM.Data.NBYEAR_DEPR_AMT = 0;
                     _VM.Data.NLRESIDUAL_VALUE = 0;
                     _VM.Data.NBRESIDUAL_VALUE = 0;
-
-                    // Recalculate start date
-                    await RecalculateAmountDepreciationAsync("StartDate");
                 }
             }
             catch (Exception ex)
@@ -1506,17 +837,17 @@ namespace FAT00100Front
                 // Set header fields
                 loEntity.LASSET_INCREMENT_FLAG = _VM.AssetIncrementFlag;
                 loEntity.CCOMPANY_ID = ClientHelper.CompanyId;
-                loEntity.CDEPT_CODE = _VM.DeptCode;
-                loEntity.CASSET_DEPT_CODE = loEntity.CASSET_DEPT_CODE ?? string.Empty;
-                loEntity.CTRANSACTION_CODE = _VM.TransactionCode;
-                loEntity.CTRANS_DESCRIPTION = loEntity.CTRANSACTION_DESCR ?? string.Empty;
-
-                // Set transaction date
-                if (_VM.HeaderData != null && !string.IsNullOrWhiteSpace(_VM.HeaderData.CTRANSACTION_DATE))
+                loEntity.CUSER_ID = ClientHelper.UserId;
+                
+                if (_VM.TransDetailData != null)
                 {
-                    loEntity.CTRANSACTION_DATE = _VM.HeaderData.CTRANSACTION_DATE;
+                    loEntity.CDEPT_CODE = _VM.TransDetailData.CDEPT_CODE;
+                    loEntity.CREF_DATE = _VM.TransDetailData.CREF_DATE;
+                    loEntity.NLBASE_RATE = _VM.TransDetailData.NLBASE_RATE;
+                    loEntity.NLCURRENCY_RATE = _VM.TransDetailData.NLCURRENCY_RATE;
+                    loEntity.NBBASE_RATE = _VM.TransDetailData.NBBASE_RATE;
+                    loEntity.NBCURRENCY_RATE = _VM.TransDetailData.NBCURRENCY_RATE;
                 }
-
                 // Set start date
                 if (loEntity.DSTART_DATE.HasValue)
                 {
@@ -1536,149 +867,8 @@ namespace FAT00100Front
                 {
                     loEntity.CINSERVICE_DATE = string.Empty;
                 }
+                loEntity.CGLLINK_DATE = "debug rsaving";
 
-                // Set reference fields
-                loEntity.CREFERENCE_NO = _VM.ReferenceNo;
-                loEntity.CFOREIGN_LANGUAGE = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en";
-                loEntity.CUSER_ID = ClientHelper.UserId;
-
-                // Set currency rates from header
-                if (_VM.HeaderData != null)
-                {
-                    loEntity.NLBASE_RATE_AMOUNT = _VM.HeaderData.NLBASE_RATE_AMOUNT;
-                    loEntity.NLCURRENCY_RATE_AMOUNT = _VM.HeaderData.NLCURRENCY_RATE_AMOUNT;
-                    loEntity.NBBASE_RATE_AMOUNT = _VM.HeaderData.NBBASE_RATE_AMOUNT;
-                    loEntity.NBCURRENCY_RATE_AMOUNT = _VM.HeaderData.NBCURRENCY_RATE_AMOUNT;
-                }
-
-                // Set foreign reference fields
-                loEntity.CFR_DEPT_CODE = _VM.FrDeptCode;
-                loEntity.CFR_TRANSACTION_CODE = _VM.FrTransactionCode;
-                loEntity.CFR_REFERENCE_NO = _VM.FrReferenceNo;
-                if (_VM.FrModule != "FA")
-                {
-                    loEntity.CFR_TRANSACTION_DATE = _VM.DocumentDate;
-                }
-                else
-                {
-                    loEntity.CFR_TRANSACTION_DATE = string.Empty;
-                }
-                loEntity.CFR_MODULE = _VM.FrModule;
-                loEntity.CDOCUMENT_DATE = _VM.DocumentDate;
-                loEntity.CSUPPLIER_ID = _VM.SupplierId;
-                loEntity.CSUPPLIER_NAME = _VM.SupplierName;
-
-                // Set useful life calculations
-                loEntity.IUSEFUL_LIVE = (_VM.Data.IREM_UL_YR * 12) + _VM.Data.IREM_UL_MO;
-                loEntity.IBEG_USEFUL_LIVE = (_VM.Data.IUSEFUL_LIVE_YR * 12) + _VM.Data.IUSEFUL_LIVE_MO;
-
-                // Set expense department
-                loEntity.CEXPENSE_DEPT_CODE = loEntity.CASSET_DEPT_CODE ?? string.Empty;
-                loEntity.CCREATE_BY = ClientHelper.UserId;
-                loEntity.CUPDATE_BY = ClientHelper.UserId;
-                loEntity.LNEW_FLAG = loEntity.LNEW_FLAG;
-
-                // Set YTD depreciation amounts
-                loEntity.NLYTD_DEPR_AMT = loEntity.NLTRANSACTION_AMOUNT5;
-                loEntity.NBYTD_DEPR_AMT = loEntity.NBTRANSACTION_AMOUNT5;
-
-                // Set purchase date
-                if (string.IsNullOrWhiteSpace(_VM.DocumentDate))
-                {
-                    if (_VM.HeaderData != null && !string.IsNullOrWhiteSpace(_VM.HeaderData.CTRANSACTION_DATE))
-                    {
-                        loEntity.CPURCHASE_DATE = _VM.HeaderData.CTRANSACTION_DATE;
-                    }
-                }
-                else
-                {
-                    loEntity.CPURCHASE_DATE = _VM.DocumentDate;
-                }
-
-                // Set book values
-                loEntity.NLBEG_BOOK_VALUE = loEntity.NLBOOK_VALUE;
-                loEntity.NBBEG_BOOK_VALUE = loEntity.NBBOOK_VALUE;
-                loEntity.NLBEGINNING_AMT = loEntity.NLTRANSACTION_AMOUNT1;
-                loEntity.NBBEGINNING_AMT = loEntity.NBTRANSACTION_AMOUNT1;
-                loEntity.NLADDITION_AMT = loEntity.NLTRANSACTION_AMOUNT2;
-                loEntity.NBADDITION_AMT = loEntity.NBTRANSACTION_AMOUNT2;
-                loEntity.NLDEDUCTION_AMT = loEntity.NLTRANSACTION_AMOUNT3;
-                loEntity.NBDEDUCTION_AMT = loEntity.NBTRANSACTION_AMOUNT3;
-                loEntity.IBEGINNING_QTY = loEntity.ITRANSACTION_QTY1;
-                loEntity.NLPRIOR_DEPR_AMT = loEntity.NLTRANSACTION_AMOUNT4;
-                loEntity.NBPRIOR_DEPR_AMT = loEntity.NBTRANSACTION_AMOUNT4;
-                loEntity.NOLBOOK_VALUE = loEntity.NLBEG_BOOK_VALUE;
-                loEntity.NOBBOOK_VALUE = loEntity.NBBEG_BOOK_VALUE;
-                loEntity.IOUSEFUL_LIVE = (_VM.Data.IUSEFUL_LIVE_YR * 12) + _VM.Data.IUSEFUL_LIVE_MO;
-                loEntity.IOUSEFUL_LIVE_YR = _VM.Data.IUSEFUL_LIVE_YR;
-                loEntity.IOUSEFUL_LIVE_MO = _VM.Data.IUSEFUL_LIVE_MO;
-                loEntity.IUSEFUL_LIVE_MO = _VM.Data.IREM_UL_MO;
-                loEntity.IUSEFUL_LIVE_YR = _VM.Data.IREM_UL_YR;
-                loEntity.NYEAR_DEPR_PCT = _VM.Data.NYEAR_DEPR_PCT;
-                loEntity.CLAST_TRANS_DATE = loEntity.CTRANSACTION_DATE;
-
-                // Set sequence number for Add mode
-                if (eventArgs.ConductorMode == R_eConductorMode.Add)
-                {
-                    loEntity.CLSEQUENCE_NO = "000100";
-                    loEntity.CASSET_STATUS = "0";
-                }
-
-                // Calculate last base rate amounts
-                if (_VM.HeaderData != null)
-                {
-                    decimal lnLocalBaseRate = _VM.HeaderData.NLBASE_RATE_AMOUNT;
-                    decimal lnBaseCurrencyRate = _VM.HeaderData.NBCURRENCY_RATE_AMOUNT;
-                    decimal lnBaseBaseRate = _VM.HeaderData.NBBASE_RATE_AMOUNT;
-                    decimal lnLocalCurrencyRate = _VM.HeaderData.NLCURRENCY_RATE_AMOUNT;
-
-                    if (lnLocalBaseRate * lnBaseCurrencyRate > lnBaseBaseRate * lnLocalCurrencyRate)
-                    {
-                        loEntity.NLAST_BBASE_RATE_AMOUNT = Math.Round(lnLocalBaseRate * lnBaseCurrencyRate / lnBaseBaseRate * lnLocalCurrencyRate);
-                    }
-                    else
-                    {
-                        loEntity.NLAST_BBASE_RATE_AMOUNT = 1;
-                    }
-
-                    if (lnLocalBaseRate * lnBaseCurrencyRate > lnBaseBaseRate * lnLocalCurrencyRate)
-                    {
-                        loEntity.NLAST_BCURRENCY_RATE_AMOUNT = 1;
-                    }
-                    else
-                    {
-                        loEntity.NLAST_BCURRENCY_RATE_AMOUNT = Math.Round(lnBaseBaseRate * lnLocalCurrencyRate / lnLocalBaseRate * lnBaseCurrencyRate);
-                    }
-                }
-
-                loEntity.CLAST_CURR_RATE_DATE = loEntity.CTRANSACTION_DATE;
-
-                // Calculate GL Link flag
-                decimal lnGLINKVAL = loEntity.NTRANSACTION_AMOUNT + loEntity.NLTRANSACTION_AMOUNT1
-                    + loEntity.NLTRANSACTION_AMOUNT2 - loEntity.NLTRANSACTION_AMOUNT3
-                    - loEntity.NLTRANSACTION_AMOUNT4 - loEntity.NLTRANSACTION_AMOUNT5;
-
-                string lcGLLinkDate = _VM.GLLinkDate;
-                string lcTransactionDate = loEntity.CTRANSACTION_DATE;
-
-                if (!string.IsNullOrWhiteSpace(lcGLLinkDate) && !string.IsNullOrWhiteSpace(lcTransactionDate))
-                {
-                    if (lcGLLinkDate.CompareTo(lcTransactionDate) <= 0 && lnGLINKVAL != 0)
-                    {
-                        loEntity.LGLLINK = true;
-                        _VM.GLLink = true;
-                    }
-                    else
-                    {
-                        loEntity.LGLLINK = false;
-                        _VM.GLLink = false;
-                    }
-                }
-                else
-                {
-                    loEntity.LGLLINK = false;
-                    _VM.GLLink = false;
-                }
             }
             catch (Exception ex)
             {
@@ -1693,13 +883,27 @@ namespace FAT00100Front
             R_Exception loException = new R_Exception();
             try
             {
-                //ProfileTaxDTO loParam = new ProfileTaxDTO();
-                //loParam = (ProfileTaxDTO)_conductorProfileTaxRef.R_GetCurrentData();
-                //loTenantProfileViewModel.TenantProfileValidation(loParam.Profile);
                 if (!loException.HasError)
                 {
                     IsSuccess = true;
                     await tabStripRef.SetActiveTabAsync("DepreciationInfo");
+                }
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+            loException.ThrowExceptionIfErrors();
+        }
+
+        private async Task OnClickPreviousButton()
+        {
+            R_Exception loException = new R_Exception();
+            try
+            {
+                if (!loException.HasError)
+                {
+                    await tabStripRef.SetActiveTabAsync("AssetInfo");
                 }
             }
             catch (Exception ex)
@@ -1724,6 +928,11 @@ namespace FAT00100Front
                     if (eventArgs.TabStripTab.Id == "DepreciationInfo" && IsSuccess)
                     {
                         IsSuccess = false;
+                    }
+                    else if (eventArgs.TabStripTab.Id == "AssetInfo")
+                    {
+                        // Allow navigation back to AssetInfo tab (Previous button)
+                        // No need to cancel - allow the navigation
                     }
                     else
                     {
@@ -1833,16 +1042,7 @@ namespace FAT00100Front
                 }
                 else
                 {
-                    // Ensure required fields are set for the entity
-                    // Set header fields if not already set
-                    if (string.IsNullOrWhiteSpace(loEntity.CDEPT_CODE))
-                        loEntity.CDEPT_CODE = _VM.DeptCode;
-                    if (string.IsNullOrWhiteSpace(loEntity.CTRANSACTION_CODE))
-                        loEntity.CTRANSACTION_CODE = _VM.TransactionCode;
-                    if (string.IsNullOrWhiteSpace(loEntity.CREFERENCE_NO))
-                        loEntity.CREFERENCE_NO = _VM.ReferenceNo;
                     
-                    // Call ViewModel method to save asset detail
                     await _VM.SaveRecordAsync(
                         loEntity,
                         eventArgs.ConductorMode == R_eConductorMode.Add ? eCRUDMode.AddMode : eCRUDMode.EditMode,
@@ -1914,185 +1114,45 @@ namespace FAT00100Front
                 if (_VM.Data == null)
                     return;
 
-                // Validate Asset Name
-                if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_NAME))
+                // Validate Department
+                if (string.IsNullOrWhiteSpace(_VM.Data.CDEPT_CODE) && 
+                    (_VM.TransDetailData == null || string.IsNullOrWhiteSpace(_VM.TransDetailData.CDEPT_CODE)))
                 {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS020"));
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_department"));
                 }
 
-                // Validate Asset Category Code
-                if (string.IsNullOrWhiteSpace(_VM.Data.CCATEGORY_CODE))
+                // Validate Reference Date
+                if (string.IsNullOrWhiteSpace(_VM.Data.CREF_DATE) && 
+                    string.IsNullOrWhiteSpace(_VM.TransDetailData?.CREF_DATE))
                 {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS021"));
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_ReferenceDate"));
                 }
 
-                // Validate Asset Department Code
-                if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_DEPT_CODE))
+                // Validate Reference Date Range (must not be earlier than Soft Period)
+                string lcRefDate = !string.IsNullOrWhiteSpace(_VM.Data.CREF_DATE) 
+                    ? _VM.Data.CREF_DATE 
+                    : _VM.TransDetailData?.CREF_DATE ?? string.Empty;
+                
+                if (!string.IsNullOrWhiteSpace(lcRefDate) && lcRefDate.Length >= 6)
                 {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS022"));
-                }
-
-                // Validate Asset Journal Group Code
-                if (string.IsNullOrWhiteSpace(_VM.Data.CJRNGRP_CODE))
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS023"));
-                }
-
-                // Validate Asset Tax Category Code
-                if (string.IsNullOrWhiteSpace(_VM.Data.CTAX_CATEGORY_CODE))
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS024"));
-                }
-
-                // Validate Quantity
-                if (_VM.Data.ITRANSACTION_QTY1 == 0)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS025"));
-                }
-
-                // Validate Unit
-                if (string.IsNullOrWhiteSpace(_VM.Data.CUNIT))
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS026"));
-                }
-
-                // Validate In-Service Date
-                if (!_VM.Data.DINSERVICE_DATE.HasValue)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS027"));
-                }
-
-                // Validate In-Service Date not less than Transaction Date
-                if (_VM.Data.DINSERVICE_DATE.HasValue && _VM.HeaderData != null)
-                {
-                    DateTime? ldInServiceDate = _VM.Data.DINSERVICE_DATE;
-                    DateTime? ldTransactionDate = null;
-
-                    if (!string.IsNullOrWhiteSpace(_VM.HeaderData.CTRANSACTION_DATE) &&
-                        _VM.HeaderData.CTRANSACTION_DATE.Length == 8)
+                    string lcRefDatePeriod = lcRefDate.Substring(0, 6);
+                    if (!string.IsNullOrWhiteSpace(_VM.SoftPeriod) && string.Compare(lcRefDatePeriod, _VM.SoftPeriod) < 0)
                     {
-                        string lcYear = _VM.HeaderData.CTRANSACTION_DATE.Substring(0, 4);
-                        string lcMonth = _VM.HeaderData.CTRANSACTION_DATE.Substring(4, 2);
-                        string lcDay = _VM.HeaderData.CTRANSACTION_DATE.Substring(6, 2);
-                        if (int.TryParse(lcYear, out int liYear) &&
-                            int.TryParse(lcMonth, out int liMonth) &&
-                            int.TryParse(lcDay, out int liDay))
-                        {
-                            ldTransactionDate = new DateTime(liYear, liMonth, liDay);
-                        }
-                    }
-
-                    if (ldInServiceDate.HasValue && ldTransactionDate.HasValue)
-                    {
-                        string lcInServiceDateStr = ldInServiceDate.Value.ToString("yyyyMMdd");
-                        string lcTransactionDateStr = ldTransactionDate.Value.ToString("yyyyMMdd");
-                        if (!_VM.Data.LNEW_FLAG && lcInServiceDateStr.CompareTo(lcTransactionDateStr) < 0)
-                        {
-                            loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS028"));
-                        }
+                        loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_ReferenceDateRange"));
                     }
                 }
 
-                // Validate Start Date if depreciation method is not "0"
-                if (_VM.Data.CDEPR_METHOD != "0")
+                // Validate Asset Code
+                if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE))
                 {
-                    if (!_VM.Data.DSTART_DATE.HasValue)
-                    {
-                        loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS029"));
-                    }
-                    else if (_VM.Data.DINSERVICE_DATE.HasValue && _VM.HeaderData != null)
-                    {
-                        DateTime? ldStartDate = _VM.Data.DSTART_DATE;
-                        DateTime? ldInServiceDate = _VM.Data.DINSERVICE_DATE;
-                        DateTime? ldTransactionDate = null;
-
-                        if (!string.IsNullOrWhiteSpace(_VM.HeaderData.CTRANSACTION_DATE) &&
-                            _VM.HeaderData.CTRANSACTION_DATE.Length == 8)
-                        {
-                            string lcYear = _VM.HeaderData.CTRANSACTION_DATE.Substring(0, 4);
-                            string lcMonth = _VM.HeaderData.CTRANSACTION_DATE.Substring(4, 2);
-                            string lcDay = _VM.HeaderData.CTRANSACTION_DATE.Substring(6, 2);
-                            if (int.TryParse(lcYear, out int liYear) &&
-                                int.TryParse(lcMonth, out int liMonth) &&
-                                int.TryParse(lcDay, out int liDay))
-                            {
-                                ldTransactionDate = new DateTime(liYear, liMonth, liDay);
-                            }
-                        }
-
-                        if (ldStartDate.HasValue && ldInServiceDate.HasValue && ldTransactionDate.HasValue)
-                        {
-                            string lcStartDateStr = ldStartDate.Value.ToString("yyyyMMdd");
-                            string lcInServiceDateStr = ldInServiceDate.Value.ToString("yyyyMMdd");
-                            string lcTransactionDateStr = ldTransactionDate.Value.ToString("yyyyMMdd");
-                            if (lcStartDateStr.CompareTo(lcInServiceDateStr) < 0 || lcStartDateStr.CompareTo(lcTransactionDateStr) < 0)
-                            {
-                                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS030"));
-                            }
-                        }
-                    }
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_AssetCode"));
                 }
 
-                // Validate Initial Cost Amount
-                if (_VM.Data.NTRANSACTION_AMOUNT == 0)
+                // Validate Description
+                if (string.IsNullOrWhiteSpace(_VM.Data.CDESCRIPTION) && 
+                    string.IsNullOrWhiteSpace(_VM.Data.CTRANS_DESC))
                 {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS031"));
-                }
-
-                // Validate Useful Life if depreciation method is not "0"
-                if (_VM.Data.CDEPR_METHOD != "0" && _VM.Data.IUSEFUL_LIVE_YR == 0 && _VM.Data.IUSEFUL_LIVE_MO == 0)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS032"));
-                }
-
-                // Validate declining balance depreciation method (method "3")
-                if (_VM.Data.CDEPR_METHOD == "3")
-                {
-                    if (_VM.Data.IUSEFUL_LIVE_YR < 2)
-                    {
-                        loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS041"));
-                    }
-                    if (_VM.Data.NYEAR_DEPR_PCT < 0 || _VM.Data.NYEAR_DEPR_PCT > 100)
-                    {
-                        loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS042"));
-                    }
-                }
-                else
-                {
-                    if (_VM.Data.NYEAR_DEPR_PCT < 0 || _VM.Data.NYEAR_DEPR_PCT > 1200)
-                    {
-                        loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS042"));
-                    }
-                }
-
-                // Validate beginning book value (CR21)
-                if (_VM.Data.CDEPR_METHOD != "0" && _VM.Data.NLBEG_BOOK_VALUE < _VM.Data.NLBOOK_VALUE)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS043"));
-                }
-
-                // Validate remaining useful life not greater than useful life
-                if ((_VM.Data.IUSEFUL_LIVE_YR * 12) + _VM.Data.IUSEFUL_LIVE_MO < (_VM.Data.IREM_UL_YR * 12) + _VM.Data.IREM_UL_MO)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS044"));
-                }
-
-                // Validate remaining useful life months (0-11)
-                if (_VM.Data.IREM_UL_MO < 0 || _VM.Data.IREM_UL_MO > 11)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS045"));
-                }
-
-                // Validate Asset Code in Add mode if increment flag is false
-                if (eventArgs.ConductorMode == R_eConductorMode.Add)
-                {
-                    if (!_VM.AssetIncrementFlag)
-                    {
-                        if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE))
-                        {
-                            loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS033"));
-                        }
-                    }
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_Description"));
                 }
             }
             catch (Exception ex)
@@ -2359,6 +1419,28 @@ namespace FAT00100Front
                 loEx.Add(ex);
             }
             loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Handle depreciation method changed event
+        /// </summary>
+        private void OnDepreciationMethodChanged(string? value)
+        {
+            if (_VM.Data != null)
+            {
+                _VM.Data.CDEPR_METHOD = value ?? "0";
+            }
+        }
+
+        /// <summary>
+        /// Handle yearly depreciation percentage changed event
+        /// </summary>
+        private void OnYearlyDepreciationPctChanged(decimal value)
+        {
+            if (_VM.Data != null)
+            {
+                _VM.Data.NYEAR_DEPR_PCT = value;
+            }
         }
 
         #endregion

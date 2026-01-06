@@ -20,6 +20,8 @@ using R_LockingFront;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Lookup_GSFRONT;
+using Lookup_GSCOMMON.DTOs;
 
 namespace FAT00100Front
 {
@@ -100,15 +102,15 @@ namespace FAT00100Front
 
             try
             {
-                ClientHelper.Set_CompanyId("HGRBH");
-                ClientHelper.Set_UserId("ZF");
+                ClientHelper.Set_CompanyId("BSI");
+                ClientHelper.Set_UserId("zf");
                 // Extract parameters from poParameter if available
                 string lcReferenceNo = string.Empty;
                 string lcDeptCode = string.Empty;
 
                 if (poParameter is FAT00100DTO loParameter)
                 {
-                    lcReferenceNo = loParameter.CREFERENCE_NO ?? string.Empty;
+                    lcReferenceNo = loParameter.CREF_NO ?? string.Empty;
                     lcDeptCode = loParameter.CDEPT_CODE ?? string.Empty;
                 }
 
@@ -119,7 +121,7 @@ namespace FAT00100Front
                 }
 
                 // Call GetCompanyInfoAsync
-                await _VM.GetCompanyInfoAsync(ClientHelper.CompanyId);
+                await _VM.GetCompanyInfoAsync(ClientHelper.CompanyId, ClientHelper.UserId, ClientHelper.CultureUI.TwoLetterISOLanguageName);
 
                 // Call GetGetSystemParamAsync
                 await _VM.GetGetSystemParamAsync(ClientHelper.CompanyId, ClientHelper.CultureUI.TwoLetterISOLanguageName);
@@ -185,19 +187,8 @@ namespace FAT00100Front
 
             try
             {
-                // TODO: Replace with actual lookup page type when available
-                // For now using a generic parameter DTO structure
-                var loParam = new
-                {
-                    CCOMPANY_ID = ClientHelper.CompanyId,
-                    CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
-                    CLOOKUP_SENDER_FLAG = "GSL00500",
-                    LACTIVE = true
-                };
-
-                eventArgs.Parameter = loParam;
-                // TODO: Set actual lookup page type
-                // eventArgs.TargetPageType = typeof(GSL00500Page);
+                eventArgs.Parameter = new GSL00700ParameterDTO();
+                eventArgs.TargetPageType = typeof(GSL00700);
             }
             catch (Exception ex)
             {
@@ -213,20 +204,52 @@ namespace FAT00100Front
 
             try
             {
-                if (eventArgs.Result == null) return;
 
-                // TODO: Replace with actual DTO type when available (e.g., GSL00500DTO)
-                // For now using dynamic to handle the result
-                dynamic loResult = eventArgs.Result;
-                
-                // Update department code and name
-                // Adjust property names based on actual DTO structure
-                _VM.PoDeptCode = loResult.cDeptCode?.ToString().Trim() ?? string.Empty;
-                _VM.PoDeptName = loResult.cDeptDesc?.ToString().Trim() ?? string.Empty;
-                
-                // Update previous value to avoid unnecessary validation on LostFocus
-                // (equivalent to lctxtDepartmentCode = txtDepartmentCode.Text in net4)
-                _previousDeptCode = _VM.PoDeptCode;
+                var loTempResult = (GSL00700DTO)eventArgs.Result;
+                if (loTempResult != null)
+                {
+                    _VM.PoDeptCode = loTempResult.CDEPT_CODE;
+                    _VM.PoDeptName = loTempResult.CDEPT_NAME;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private void btnDepartmentEntryLookup_R_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                eventArgs.Parameter = new GSL00700ParameterDTO();
+                eventArgs.TargetPageType = typeof(GSL00700);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private void btnDepartmentEntryLookup_R_After_Open_Lookup(R_AfterOpenLookupEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+
+                var loTempResult = (GSL00700DTO)eventArgs.Result;
+                if (loTempResult != null)
+                {
+                    _VM.Data.CDEPT_CODE = loTempResult.CDEPT_CODE;
+                    _VM.Data.CDEPT_NAME = loTempResult.CDEPT_NAME;
+                }
             }
             catch (Exception ex)
             {
@@ -257,37 +280,6 @@ namespace FAT00100Front
                     return;
                 }
 
-                // TODO: Call lookup service to get department description (equivalent to LookUpDepartmentMasterDescList in net4)
-                // For now, we'll validate the department code
-                // In net4: loRtn = New GENERAL_PubServiceGateway().LookUpDepartmentMasterDescList(loParam)
-                // If loRtn Is Nothing: show error PS001, clear department name
-                // If loRtn.lEveryoneFlag = False: validate using ValidateDeptCode
-                //   - If validation returns 0: show error PS003
-                //   - If validation returns > 0: set department description, clear error
-                // If loRtn.lEveryoneFlag = True: set department description, clear error
-
-                // Validate department code using ViewModel method (equivalent to ValidateDeptCode in net4)
-                // Note: In net4, this validation only happens if lEveryoneFlag = False
-                // For now, we'll always validate (can be enhanced later to check lEveryoneFlag)
-                var liResult = await _VM.ValidateDeptCodeAsync(ClientHelper.CompanyId, _VM.PoDeptCode, ClientHelper.UserId);
-                
-                if (liResult == 0)
-                {
-                    // Department validation failed (equivalent to PS003 in net4 when lEveryoneFlag = False)
-                    // Note: PS001 is shown when lookup returns Nothing, PS003 is shown when validation fails
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS003"));
-                    // Don't clear the code, just show error (matching net4 behavior)
-                }
-                else
-                {
-                    // Validation passed - department description should be populated from lookup
-                    // TODO: Get department description from lookup service if not already populated
-                    // In net4: txtDepartmentDesc.Text = loRtn.cDeptDesc
-                    // For now, description will be populated from lookup button
-                }
-
-                // Update previous value (equivalent to lctxtDepartmentCode = txtDepartmentCode.Text in net4)
-                _previousDeptCode = _VM.PoDeptCode;
             }
             catch (Exception ex)
             {
@@ -307,19 +299,8 @@ namespace FAT00100Front
 
             try
             {
-                // TODO: Replace with actual lookup page type when available
-                // For now using a generic parameter DTO structure
-                var loParam = new
-                {
-                    CCOMPANY_ID = ClientHelper.CompanyId,
-                    CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
-                    CLOOKUP_SENDER_FLAG = "GSL00500",
-                    LACTIVE = true
-                };
-
-                eventArgs.Parameter = loParam;
-                // TODO: Set actual lookup page type
-                // eventArgs.TargetPageType = typeof(GSL00500Page);
+                eventArgs.Parameter = new GSL00700ParameterDTO();
+                eventArgs.TargetPageType = typeof(GSL00700);
             }
             catch (Exception ex)
             {
@@ -335,16 +316,13 @@ namespace FAT00100Front
 
             try
             {
-                if (eventArgs.Result == null) return;
 
-                // TODO: Replace with actual DTO type when available (e.g., GSL00500DTO)
-                // For now using dynamic to handle the result
-                dynamic loResult = eventArgs.Result;
-                
-                // Update FR department code and name
-                // Adjust property names based on actual DTO structure
-                _VM.Data.CFR_DEPT_CODE = loResult.cDeptCode?.ToString().Trim() ?? string.Empty;
-                _VM.Data.CFR_DEPT_NAME = loResult.cDeptDesc?.ToString().Trim() ?? string.Empty;
+                var loTempResult = (GSL00700DTO)eventArgs.Result;
+                if (loTempResult != null)
+                {
+                    _VM.Data.CFR_DEPT_CODE = loTempResult.CDEPT_CODE;
+                    _VM.Data.CFR_DEPT_NAME = loTempResult.CDEPT_CODE;
+                }
             }
             catch (Exception ex)
             {
@@ -364,17 +342,12 @@ namespace FAT00100Front
 
             try
             {
-                // TODO: Replace with actual lookup page type when available
-                var loParam = new
-                {
-                    CCOMPANY_ID = ClientHelper.CompanyId,
-                    CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
-                    CLOOKUP_SENDER_FLAG = "GSL04200"
-                };
 
+                GSL02900ParameterDTO loParam = new GSL02900ParameterDTO()
+                {
+                };
                 eventArgs.Parameter = loParam;
-                // TODO: Set actual lookup page type
-                // eventArgs.TargetPageType = typeof(GSL04200Page);
+                eventArgs.TargetPageType = typeof(GSL02900);
             }
             catch (Exception ex)
             {
@@ -390,15 +363,58 @@ namespace FAT00100Front
 
             try
             {
-                if (eventArgs.Result == null) return;
 
-                // TODO: Replace with actual DTO type when available (e.g., GSL04200DTO)
-                dynamic loResult = eventArgs.Result;
-                
-                // Update supplier code and name
-                // Adjust property names based on actual DTO structure
-                _VM.PoSupplierId = loResult.cSupplierId?.ToString().Trim() ?? string.Empty;
-                _VM.PoSupplierName = loResult.cSupplierName?.ToString().Trim() ?? string.Empty;
+                GSL02900DTO loTempResult = (GSL02900DTO)eventArgs.Result;
+                if (loTempResult == null)
+                {
+                    return;
+                }
+                _VM.PoSupplierId = loTempResult.CSUPPLIER_ID;
+                _VM.PoSupplierName = loTempResult.CSUPPLIER_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private void btnSupplierEntryLookup_R_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+
+                GSL02900ParameterDTO loParam = new GSL02900ParameterDTO()
+                {
+                };
+                eventArgs.Parameter = loParam;
+                eventArgs.TargetPageType = typeof(GSL02900);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private void btnSupplierEntryLookup_R_After_Open_Lookup(R_AfterOpenLookupEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+
+                GSL02900DTO loTempResult = (GSL02900DTO)eventArgs.Result;
+                if (loTempResult == null)
+                {
+                    return;
+                }
+                _VM.Data.CSUPPLIER_ID = loTempResult.CSUPPLIER_ID;
+                _VM.Data.CSUPPLIER_ID_NAME = loTempResult.CSUPPLIER_NAME;
             }
             catch (Exception ex)
             {
@@ -488,7 +504,7 @@ namespace FAT00100Front
                 _VM.FilterStatusOpen = lcStatusOpen;
                 _VM.FilterStatusApproved = lcStatusApproved;
                 _VM.FilterStatusClosed = lcStatusClosed;
-                _VM.FilterReferenceNo = string.Empty; // Can be set from CurrentRecord.CREFERENCE_NO if needed
+                _VM.FilterReferenceNo = string.Empty; // Can be set from CurrentRecord.CREF_NO if needed
 
                 // Call GetDataGridAsync (reads parameters from ViewModel properties)
                 await _VM.GetDataGridAsync();
@@ -560,7 +576,7 @@ namespace FAT00100Front
                 _VM.FilterStatusOpen = lcStatusOpen;
                 _VM.FilterStatusApproved = lcStatusApproved;
                 _VM.FilterStatusClosed = lcStatusClosed;
-                _VM.FilterReferenceNo = string.Empty; // Can be set from CurrentRecord.CREFERENCE_NO if needed
+                _VM.FilterReferenceNo = string.Empty; // Can be set from CurrentRecord.CREF_NO if needed
 
                 // Call GetDataGridAsync (reads parameters from ViewModel properties)
                 await _VM.GetDataGridAsync();
@@ -793,14 +809,15 @@ namespace FAT00100Front
                 // Extract selected record from grid (from Navigator grid selection)
                 var loGridRow = R_FrontUtility.ConvertObjectToObject<FAT00100GetDataGridResultDTO>(eventArgs.Data);
 
-                if (loGridRow != null && !string.IsNullOrWhiteSpace(loGridRow.CREFERENCE_NO))
+                if (loGridRow != null && !string.IsNullOrWhiteSpace(loGridRow.CREF_NO))
                 {
                     // Convert grid row to FAT00100DTO (following GSM02000 pattern)
                     var loParam = new FAT00100DTO
                     {
                         CCOMPANY_ID = ClientHelper.CompanyId,
                         CDEPT_CODE = loGridRow.CDEPT_CODE ?? string.Empty,
-                        CREFERENCE_NO = loGridRow.CREFERENCE_NO
+                        CREF_NO = loGridRow.CREF_NO,
+                        CREC_ID=loGridRow.CREC_ID
                     };
 
                     // Call ViewModel GetEntity method (following GSM02000 pattern)
@@ -912,7 +929,7 @@ namespace FAT00100Front
                 loEntity.CDEPT_CODE = string.Empty;
                 loEntity.CCURRENCY_CODE = string.Empty;
                 loEntity.CCURRENCY_NAME = string.Empty;
-                loEntity.CREFERENCE_NO = string.Empty;
+                loEntity.CREF_NO = string.Empty;
 
                 // Set transaction date to current date
                 loEntity.DREF_DATE = DateTime.Now;
@@ -968,7 +985,7 @@ namespace FAT00100Front
                 _VM.SupplierInfo = new FAT00100GetGSM_SUPPLIER_INFOResultDTO();
 
                 // Clear reference number for new record
-                loEntity.CREFERENCE_NO = string.Empty;
+                loEntity.CREF_NO = string.Empty;
             }
             catch (Exception ex)
             {
@@ -1136,8 +1153,8 @@ namespace FAT00100Front
                     ClientHelper.CultureUI.TwoLetterISOLanguageName
                 );
                 
-                // Set result - this will update the conductor's bound entity with the generated CREFERENCE_NO
-                // The result entity from backend contains the generated CREFERENCE_NO when LINCREMENT_FLAG = True
+                // Set result - this will update the conductor's bound entity with the generated CREF_NO
+                // The result entity from backend contains the generated CREF_NO when LINCREMENT_FLAG = True
                 // The conductor will update the Data property (read-only) from this result
                 eventArgs.Result = _VM.CurrentRecord;
 
@@ -1223,10 +1240,10 @@ namespace FAT00100Front
                 if (eventArgs.ConductorMode == R_eConductorMode.Add)
                 {
                     // Use IncrementFlag property (equivalent to plIncrementFlag in net4)
-                    bool llIncrementFlag = _VM.IncrementFlag;
+                    bool llIncrementFlag = _VM.TransCodeInfoData.LINCREMENT_FLAG;
                     if (!llIncrementFlag)
                     {
-                        if (string.IsNullOrWhiteSpace(loEntity.CREFERENCE_NO))
+                        if (string.IsNullOrWhiteSpace(loEntity.CREF_NO))
                         {
                             loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS009"));
                         }
@@ -1424,7 +1441,7 @@ namespace FAT00100Front
                 // Get current entity from conductor
                 var loEntity = _VM.CurrentRecord;
 
-                if (loEntity == null || string.IsNullOrWhiteSpace(loEntity.CREFERENCE_NO))
+                if (loEntity == null || string.IsNullOrWhiteSpace(loEntity.CREF_NO))
                 {
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS009"));
                     loEx.ThrowExceptionIfErrors();
@@ -1435,18 +1452,19 @@ namespace FAT00100Front
                 var loParam = new FAT0010002DTO
                 {
                     CDEPT_CODE = loEntity.CDEPT_CODE ?? string.Empty,
-                    CTRANSACTION_CODE = "200010",//loEntity.CSOURCE_MODULE =="FA"? "200010" : "420010",
-                    CREFERENCE_NO = loEntity.CREFERENCE_NO,
+                    CTRANSACTION_CODE = loEntity.CSOURCE_MODULE =="FA"? "200010" : "420010",
+                    CREF_NO = loEntity.CREF_NO,
                     CSTATUS = loEntity.CTRANS_STATUS ?? string.Empty,
                     CMODE = "T", // T=Transaction, V=View
                     CLOCAL_CURRENCY_CODE = _VM.CompanyInfoData?.CLOCAL_CURRENCY_CODE ?? string.Empty,
                     CBASE_CURRENCY_CODE = _VM.CompanyInfoData?.CBASE_CURRENCY_CODE ?? string.Empty,
-                    LASSET_INCREMENT_FLAG = _VM.IncrementFlag,
+                    LASSET_INCREMENT_FLAG = _VM.SystemParamData.LINCREMENT_FLAG,
                     LJRNGRP_MODE = _VM.JrngrpMode,
                     LDEPT_MODE = _VM.DeptMode,
                     CASSET_DEPT_CODE = _VM.DefaultAssetDeptCode ?? string.Empty,
                     LGLLINK = _VM.GLLink,
-                    CGLLINK_DATE = _VM.GlinkDate ?? string.Empty
+                    CGLLINK_DATE = _VM.GlinkDate ?? string.Empty,
+                    CREC_ID = loEntity.CREC_ID ?? string.Empty
                 };
 
                 // Create popup settings with large size
@@ -1470,7 +1488,7 @@ namespace FAT00100Front
                             CCOMPANY_ID = ClientHelper.CompanyId,
                             CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
                             CDEPT_CODE = _VM.PoDeptCode,
-                            CREFERENCE_NO = _VM.CurrentRecord.CREFERENCE_NO
+                            CREF_NO = _VM.CurrentRecord.CREF_NO
                         };
 
                         await _VM.GetEntity(loRefreshParam);
@@ -1504,7 +1522,7 @@ namespace FAT00100Front
                 var loEntity = _VM.CurrentRecord;
 
                 // Validate that we have a reference number
-                if (string.IsNullOrWhiteSpace(loEntity.CREFERENCE_NO))
+                if (string.IsNullOrWhiteSpace(loEntity.CREF_NO))
                 {
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS009"));
                     R_DisplayException(loEx);
@@ -1518,7 +1536,7 @@ namespace FAT00100Front
                         ClientHelper.CompanyId,
                         loEntity.CDEPT_CODE,
                         loEntity.CTRANSACTION_CODE,
-                        loEntity.CREFERENCE_NO
+                        loEntity.CREF_NO
                     );
 
                     // Check if validation result is empty/null (equivalent to net4 line 2268)
@@ -1547,7 +1565,7 @@ namespace FAT00100Front
                 }
 
                 // Call submit process - equivalent to net4 line 2278
-                // ViewModel uses CurrentRecord for CDEPT_CODE, CTRANSACTION_CODE, CREFERENCE_NO
+                // ViewModel uses CurrentRecord for CDEPT_CODE, CTRANSACTION_CODE, CREF_NO
                 await _VM.SubmitProcessAsync(
                     ClientHelper.CompanyId,
                     ClientHelper.CultureUI.TwoLetterISOLanguageName,
@@ -1560,7 +1578,7 @@ namespace FAT00100Front
                     CCOMPANY_ID = ClientHelper.CompanyId,
                     CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
                     CDEPT_CODE = _VM.PoDeptCode,
-                    CREFERENCE_NO = loEntity.CREFERENCE_NO
+                    CREF_NO = loEntity.CREF_NO
                 };
 
                 await _VM.GetEntity(loParam);
@@ -1579,7 +1597,7 @@ namespace FAT00100Front
                         CCOMPANY_ID = ClientHelper.CompanyId,
                         CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
                         CDEPT_CODE = loFirstRow.CDEPT_CODE ?? string.Empty,
-                        CREFERENCE_NO = loFirstRow.CREFERENCE_NO
+                        CREF_NO = loFirstRow.CREF_NO
                     };
 
                     // Get entity for the first row
@@ -1614,7 +1632,7 @@ namespace FAT00100Front
                 var loEntity = _VM.CurrentRecord;
 
                 // Validate that we have a reference number
-                if (string.IsNullOrWhiteSpace(loEntity.CREFERENCE_NO))
+                if (string.IsNullOrWhiteSpace(loEntity.CREF_NO))
                 {
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS009"));
                     R_DisplayException(loEx);
@@ -1645,7 +1663,7 @@ namespace FAT00100Front
                 }
 
                 // Call submit process - same method handles both submit and redraft
-                // ViewModel uses CurrentRecord for CDEPT_CODE, CTRANSACTION_CODE, CREFERENCE_NO
+                // ViewModel uses CurrentRecord for CDEPT_CODE, CTRANSACTION_CODE, CREF_NO
                 await _VM.SubmitProcessAsync(
                     ClientHelper.CompanyId,
                     ClientHelper.CultureUI.TwoLetterISOLanguageName,
@@ -1658,7 +1676,7 @@ namespace FAT00100Front
                     CCOMPANY_ID = ClientHelper.CompanyId,
                     CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
                     CDEPT_CODE = _VM.PoDeptCode,
-                    CREFERENCE_NO = loEntity.CREFERENCE_NO
+                    CREF_NO = loEntity.CREF_NO
                 };
 
                 await _VM.GetEntity(loParam);
@@ -1677,7 +1695,7 @@ namespace FAT00100Front
                         CCOMPANY_ID = ClientHelper.CompanyId,
                         CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
                         CDEPT_CODE = loFirstRow.CDEPT_CODE ?? string.Empty,
-                        CREFERENCE_NO = loFirstRow.CREFERENCE_NO
+                        CREF_NO = loFirstRow.CREF_NO
                     };
 
                     // Get entity for the first row

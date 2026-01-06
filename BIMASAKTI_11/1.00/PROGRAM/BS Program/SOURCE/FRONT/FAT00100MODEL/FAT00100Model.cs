@@ -256,6 +256,31 @@ namespace FAT00100Model
             return loResult;
         }
 
+        public async Task<FAT00100ResultDTO<FAT00100GetLastCurrencyRateResultDTO>> FAT00100GetLastCurrencyRate(FAT00100GetLastCurrencyRateParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            FAT00100ResultDTO<FAT00100GetLastCurrencyRateResultDTO> loResult = new FAT00100ResultDTO<FAT00100GetLastCurrencyRateResultDTO>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<FAT00100ResultDTO<FAT00100GetLastCurrencyRateResultDTO>, FAT00100GetLastCurrencyRateParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IFAT00100.FAT00100GetLastCurrencyRate),
+                    poParameter,
+                    _ModuleName,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+
         public async Task<FAT00100ResultDTO<FAT00100GetGetSystemParamResultDTO>> FAT00100GetGetSystemParam(FAT00100GetGetSystemParamParameterDTO poParameter)
         {
             var loEx = new R_Exception();

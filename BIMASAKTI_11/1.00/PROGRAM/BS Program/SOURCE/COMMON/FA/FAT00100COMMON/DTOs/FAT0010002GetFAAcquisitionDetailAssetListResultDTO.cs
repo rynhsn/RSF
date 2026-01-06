@@ -26,6 +26,8 @@ namespace FAT00100Common.DTOs
         public string CDEPR_METHOD_DESC { get; set; } = string.Empty;
         public string CASSET_NAME { get; set; } = string.Empty;
         public string CASSET_OWNER { get; set; } = string.Empty;
+
+        public string CREC_ID { get; set; } = string.Empty;
     }
 }
 

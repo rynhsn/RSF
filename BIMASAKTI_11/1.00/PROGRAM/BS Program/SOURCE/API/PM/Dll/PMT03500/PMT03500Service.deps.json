@@ -99,6 +99,7 @@
       "PMT03500Back/1.0.0": {
         "dependencies": {
           "PMT03500Common": "1.0.0",
+          "RSP_PM_CHANGE_UTILITY_METER_NOResources": "1.0.0",
           "RSP_PM_UNDO_UTILITY_USAGEResources": "1.0.0",
           "RSP_PM_UPLOAD_UTILITY_CUTOFF_ECResources": "1.0.0",
           "RSP_PM_UPLOAD_UTILITY_CUTOFF_WGResources": "1.0.0",
@@ -118,6 +119,19 @@
           "PMT03500Common.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "RSP_PM_CHANGE_UTILITY_METER_NOResources/1.0.0": {
+        "runtime": {
+          "RSP_PM_CHANGE_UTILITY_METER_NOResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "resources": {
+          "id/RSP_PM_CHANGE_UTILITY_METER_NOResources.resources.dll": {
+            "locale": "id"
           }
         }
       },
@@ -358,6 +372,11 @@
       "sha512": ""
     },
     "PMT03500Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_PM_CHANGE_UTILITY_METER_NOResources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

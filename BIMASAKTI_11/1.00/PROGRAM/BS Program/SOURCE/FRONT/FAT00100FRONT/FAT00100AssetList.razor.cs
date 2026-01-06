@@ -58,9 +58,9 @@ namespace FAT00100Front
             var loEx = new R_Exception();
             try
             {
-                ClientHelper.Set_CompanyId("HGRBH");
+                ClientHelper.Set_CompanyId("BSI");
                 ClientHelper.Set_UserId("ZF");
-                
+
                 // Parameter is FAT00100DTO passed from parent component
                 if (poParam is FAT00100DTO loDTO)
                 {

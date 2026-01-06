@@ -53,7 +53,7 @@ namespace FAT00100Model.VMs
         public ObservableCollection<FAT00100GetDeptLookupListResultDTO> DeptLookupList { get; set; } = new ObservableCollection<FAT00100GetDeptLookupListResultDTO>();
         public ObservableCollection<FAT00100GetStatusListResultDTO> StatusList { get; set; } = new ObservableCollection<FAT00100GetStatusListResultDTO>();
         public ObservableCollection<FAT00100GetCurrencyListResultDTO> CurrencyList { get; set; } = new ObservableCollection<FAT00100GetCurrencyListResultDTO>();
-        
+        public FAT00100GetLastCurrencyRateResultDTO LastCurrencyRateData { get; set; } = new FAT00100GetLastCurrencyRateResultDTO();
 
         // Supplier info
         public FAT00100GetGSM_SUPPLIER_INFOResultDTO SupplierInfo { get; set; } = new FAT00100GetGSM_SUPPLIER_INFOResultDTO();
@@ -141,7 +141,7 @@ namespace FAT00100Model.VMs
         /// <summary>
         /// Get company info
         /// </summary>
-        public async Task GetCompanyInfoAsync(string pcCompanyId)
+        public async Task GetCompanyInfoAsync(string pcCompanyId, string userId, string clang)
         {
             var loEx = new R_Exception();
 
@@ -149,7 +149,9 @@ namespace FAT00100Model.VMs
             {
                 var loParam = new FAT00100GetCompanyInfoParameterDTO
                 {
-                    CCOMPANY_ID = pcCompanyId
+                    CCOMPANY_ID = pcCompanyId,
+                    CUSER_ID = userId,
+                    CLANG_ID = clang
                 };
 
                 var loResult = await _model.FAT00100GetCompanyInfo(loParam);
@@ -348,6 +350,8 @@ namespace FAT00100Model.VMs
                     {
                         item.CREF_DATE_DISPLAY = item.CREF_DATE;
                     }
+
+                    
                 }
             }
             catch (Exception ex)
@@ -424,32 +428,7 @@ namespace FAT00100Model.VMs
                 loEx.ThrowExceptionIfErrors();
         }
 
-        /// <summary>
-        /// Get record for conductor (legacy method - kept for backward compatibility)
-        /// </summary>
-        public async Task GetRecordAsync(string pcCompanyId, string pcLangId, string pcDeptCode, string pcFilterTransCode, string pcReferenceNo)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                var loEntity = new FAT00100DTO
-                {
-                    CCOMPANY_ID = pcCompanyId,
-                    CLANG_ID = pcLangId,
-                    CDEPT_CODE = pcDeptCode,
-                    CREFERENCE_NO = pcReferenceNo
-                };
-
-                await GetEntity(loEntity);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
+        
 
         /// <summary>
         /// Save record
@@ -678,31 +657,31 @@ namespace FAT00100Model.VMs
         /// <summary>
         /// Validate department code
         /// </summary>
-        public async Task<int> ValidateDeptCodeAsync(string pcCompanyId, string pcDeptCode, string pcUserId)
-        {
-            var loEx = new R_Exception();
-            int liResult = 0;
+        //public async Task<int> ValidateDeptCodeAsync(string pcCompanyId, string pcDeptCode, string pcUserId)
+        //{
+        //    var loEx = new R_Exception();
+        //    int liResult = 0;
 
-            try
-            {
-                var loParam = new FAT00100ValidateDeptCodeParameterDTO
-                {
-                    CCOMPANY_ID = pcCompanyId,
-                    CDEPT_CODE = pcDeptCode,
-                    CUSER_ID = pcUserId
-                };
+        //    try
+        //    {
+        //        var loParam = new FAT00100ValidateDeptCodeParameterDTO
+        //        {
+        //            CCOMPANY_ID = pcCompanyId,
+        //            CDEPT_CODE = pcDeptCode,
+        //            CUSER_ID = pcUserId
+        //        };
 
-                var loRtn = await _model.ValidateDeptCode(loParam);
-                liResult = loRtn.Data.IResult;
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
+        //        var loRtn = await _model.ValidateDeptCode(loParam);
+        //        liResult = loRtn.Data.IResult;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        loEx.Add(ex);
+        //    }
 
-            loEx.ThrowExceptionIfErrors();
-            return liResult;
-        }
+        //    loEx.ThrowExceptionIfErrors();
+        //    return liResult;
+        //}
 
         /// <summary>
         /// Get period DT
@@ -762,6 +741,34 @@ namespace FAT00100Model.VMs
             return loResult;
         }
 
+        /// <summary>
+        /// Get last currency rate
+        /// </summary>
+        public async Task<FAT00100GetLastCurrencyRateResultDTO> FAT00100GetLastCurrencyRateAsync(string pcCompanyId, string pcCurrencyCode, string pcRateTypeCode, string pcRateDate)
+        {
+            var loEx = new R_Exception();
+            FAT00100GetLastCurrencyRateResultDTO loResult = new FAT00100GetLastCurrencyRateResultDTO();
+
+            try
+            {
+                var loParam = new FAT00100GetLastCurrencyRateParameterDTO
+                {
+                    CCOMPANY_ID = pcCompanyId,
+                    CCURRENCY_CODE = pcCurrencyCode,
+                    CRATETYPE_CODE = pcRateTypeCode,
+                    CRATE_DATE = pcRateDate
+                };
+
+                var loRtn = await _model.FAT00100GetLastCurrencyRate(loParam);
+                loResult = loRtn.Data;
+                LastCurrencyRateData = loResult;
+            }
+            catch (Exception ex)
+            {
+                LastCurrencyRateData = null;
+                loEx.Add(ex);
+            }
+        }
         /// <summary>
         /// Submit process
         /// Uses existing CurrentRecord data from ViewModel instead of requiring all parameters

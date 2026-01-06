@@ -69,7 +69,7 @@ namespace PMT03500Model
             throw new NotImplementedException();
         }
 
-        public PMT03500UtilityMeterDetailDTO PMT03500ChangeMeterNo(PMT03500UpdateChangeMeterNoParam poParam)
+        public async Task<PMT03500UtilityMeterDetailDTO> PMT03500ChangeMeterNo(PMT03500UpdateChangeMeterNoParam poParam)
         {
             throw new NotImplementedException();
         }

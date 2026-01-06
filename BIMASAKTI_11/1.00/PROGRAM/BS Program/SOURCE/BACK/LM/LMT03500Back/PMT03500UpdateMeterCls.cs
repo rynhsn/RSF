@@ -11,6 +11,8 @@ namespace PMT03500Back;
 
 public class PMT03500UpdateMeterCls
 {
+    RSP_PM_CHANGE_UTILITY_METER_NOResources.Resources_Dummy_Class _rspActiveInactivePricing = new();
+
     private LoggerPMT03500 _logger;
     private readonly ActivitySource _activitySource;
 
@@ -468,8 +470,8 @@ public class PMT03500UpdateMeterCls
         using var loScope = _activitySource.StartActivity(nameof(PMT03500ChangeMeterNo));
         R_Exception loEx = new R_Exception();
         R_Db loDb;
-        DbConnection loConn;
-        DbCommand loCmd;
+        DbConnection loConn = null;
+        DbCommand loCmd = null;
         string lcQuery;
 
         try
@@ -477,8 +479,9 @@ public class PMT03500UpdateMeterCls
             loDb = new R_Db();
             loConn = loDb.GetConnection();
             loCmd = loDb.GetCommand();
+            R_ExternalException.R_SP_Init_Exception(loConn);
 
-            lcQuery = $"RSP_PM_CHANGE_UTILITY_METER_NO";
+            lcQuery = $"RSP_PM_CHANGE_UTILITY_METER_NO ";
             loCmd.CommandType = CommandType.StoredProcedure;
             loCmd.CommandText = lcQuery;
 
@@ -504,44 +507,39 @@ public class PMT03500UpdateMeterCls
             loDb.R_AddCommandParameter(loCmd, "@CSTART_INV_PRD", DbType.String, 20, poParams.CSTART_INV_PRD);
             loDb.R_AddCommandParameter(loCmd, "@CSTART_DATE", DbType.String, 20, poParams.CSTART_DATE);
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParams.CUSER_ID);
-
-            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-                .Where(x =>
-                    x.ParameterName is
-                        "@CCOMPANY_ID" or
-                        "@CPROPERTY_ID" or
-                        "@CDEPT_CODE" or
-                        "@CTRANS_CODE" or
-                        "@CREF_NO" or
-                        "@CUNIT_ID" or
-                        "@CFLOOR_ID" or
-                        "@CBUILDING_ID" or
-                        "@CTENANT_ID" or
-                        "@CCHARGES_TYPE" or
-                        "@CCHARGES_ID" or
-                        "@CFROM_METER_NO" or
-                        "@NMETER_END" or
-                        "@NBLOCK1_END" or
-                        "@NBLOCK2_END" or
-                        "@CTO_METER_NO" or
-                        "@NMETER_START" or
-                        "@NBLOCK1_START" or
-                        "@NBLOCK2_START" or
-                        "@CSTART_INV_PRD" or
-                        "@CSTART_DATE" or
-                        "@CUSER_ID"
-                )
-                .Select(x => x.Value);
-            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
-
-            loDb.SqlExecQuery(loConn, loCmd, true);
+            
+            try
+            {
+                _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
+                loDb.SqlExecQuery(loConn, loCmd, false);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
         }
         catch (Exception ex)
         {
             loEx.Add(ex);
             _logger.LogError(loEx);
         }
-
+        finally
+        {
+            if (loConn != null)
+            {
+                if (loConn.State != ConnectionState.Closed)
+                {
+                    loConn.Close();
+                }
+                loConn.Dispose();
+            }
+            if (loCmd != null)
+            {
+                loCmd.Dispose();
+                loCmd = null;
+            }
+        }
         loEx.ThrowExceptionIfErrors();
     }
     

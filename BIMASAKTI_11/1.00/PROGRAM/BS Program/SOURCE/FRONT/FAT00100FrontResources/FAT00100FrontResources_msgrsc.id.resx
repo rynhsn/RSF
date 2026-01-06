@@ -370,6 +370,9 @@
   <data name="_Next" xml:space="preserve">
     <value>Berikutnya</value>
   </data>
+  <data name="_Previous" xml:space="preserve">
+    <value>Sebelumnya</value>
+  </data>
   <data name="_DepreciationInfo" xml:space="preserve">
     <value>Info Penyusutan</value>
   </data>
@@ -435,5 +438,20 @@
   </data>
   <data name="_ImportExisting" xml:space="preserve">
     <value>Impor Yang Ada</value>
+  </data>
+  <data name="Val_department" xml:space="preserve">
+    <value>Silakan pilih departemen!</value>
+  </data>
+  <data name="Val_ReferenceDate" xml:space="preserve">
+    <value>Tanggal Referensi wajib diisi!</value>
+  </data>
+  <data name="Val_ReferenceDateRange" xml:space="preserve">
+    <value>Tanggal Referensi tidak boleh lebih awal dari Periode Soft!</value>
+  </data>
+  <data name="Val_AssetCode" xml:space="preserve">
+    <value>Silakan pilih Kode Aset!</value>
+  </data>
+  <data name="Val_Description" xml:space="preserve">
+    <value>Deskripsi wajib diisi!</value>
   </data>
 </root>

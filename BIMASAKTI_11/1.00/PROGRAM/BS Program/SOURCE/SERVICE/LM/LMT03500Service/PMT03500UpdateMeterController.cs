@@ -358,7 +358,7 @@ public class PMT03500UpdateMeterController : ControllerBase, IPMT03500UpdateMete
     }
 
     [HttpPost]
-    public PMT03500UtilityMeterDetailDTO PMT03500ChangeMeterNo(PMT03500UpdateChangeMeterNoParam poParam)
+    public async Task<PMT03500UtilityMeterDetailDTO> PMT03500ChangeMeterNo(PMT03500UpdateChangeMeterNoParam poParam)
     {
         using var loActivity = _activitySource.StartActivity(nameof(PMT03500ChangeMeterNo));
         _logger.LogInfo("Start - Change Meter No");

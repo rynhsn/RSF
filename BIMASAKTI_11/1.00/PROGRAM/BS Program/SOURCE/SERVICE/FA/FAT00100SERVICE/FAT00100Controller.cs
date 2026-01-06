@@ -302,6 +302,37 @@ namespace FAT00100Service
         }
 
         [HttpPost]
+        public async Task<FAT00100ResultDTO<FAT00100GetLastCurrencyRateResultDTO>> FAT00100GetLastCurrencyRate(FAT00100GetLastCurrencyRateParameterDTO poParameter)
+        {
+            var lcMethod = nameof(FAT00100GetLastCurrencyRate);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            var loRtn = new FAT00100ResultDTO<FAT00100GetLastCurrencyRateResultDTO>();
+
+            try
+            {
+                var loCls = new FAT00100Cls();
+
+                // Set global variables from R_BackGlobalVar
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CLANG_ID = R_BackGlobalVar.CULTURE;
+                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+                _logger.LogInfo("Start method FAT00100GetLastCurrencyRate in {0}", lcMethod);
+                loRtn = await loCls.FAT00100GetLastCurrencyRateAsync(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loRtn;
+        }
+
+        [HttpPost]
         public async Task<FAT00100ResultDTO<FAT00100GetGetSystemParamResultDTO>> FAT00100GetGetSystemParam(FAT00100GetGetSystemParamParameterDTO poParameter)
         {
             var lcMethod = nameof(FAT00100GetGetSystemParam);
@@ -844,9 +875,9 @@ namespace FAT00100Service
                 // Create parameter DTO internally with global variables and streaming context
                 var loParam = new FAT00100GetStatusListParameterDTO
                 {
-                    CAPPLICATION = R_Utility.R_GetStreamingContext<string>(ContextConstants.CAPPLICATION) ?? "RHAPSODY",
+                    CAPPLICATION = "BIMASAKTI",
                     CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
-                    CCLASS_ID = R_Utility.R_GetStreamingContext<string>(ContextConstants.CCLASS_ID) ?? "_TRX_STATUS",
+                    CCLASS_ID = "_GS_TRX_STATUS",
                     CLANGUAGE_ID = R_BackGlobalVar.CULTURE,
                     CREC_ID_LIST = R_Utility.R_GetStreamingContext<string>(ContextConstants.CREC_ID_LIST) ?? string.Empty
                 };

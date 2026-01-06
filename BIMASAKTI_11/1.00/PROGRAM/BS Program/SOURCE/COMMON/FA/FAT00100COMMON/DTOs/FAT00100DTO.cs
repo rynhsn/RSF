@@ -147,7 +147,10 @@ namespace FAT00100Common.DTOs
         public string CREF_DATE { get; set; } = string.Empty;
         public DateTime DREF_DATE { get; set; }
         public string CDOCUMENT_NO { get; set; } = string.Empty;
+        public string CDOC_NO { get; set; } = string.Empty;
         public string CDOCUMENT_DATE { get; set; } = string.Empty;
+        public string CDOC_DATE { get; set; } = string.Empty;
+        public DateTime DDOC_DATE { get; set; }
         public DateTime DDOCUMENT_DATE { get; set; }
         public string CSOURCE_MODULE { get; set; } = string.Empty;
         public string CFR_DEPT_CODE { get; set; } = string.Empty;

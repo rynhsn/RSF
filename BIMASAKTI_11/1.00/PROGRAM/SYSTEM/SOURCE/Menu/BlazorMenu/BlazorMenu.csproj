@@ -31,6 +31,7 @@
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\APR00600FRONT\APR00600FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\BMM00500FRONT\BMM00500FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\CBB00200Front\CBB00200Front.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\FAT00100FRONT\FAT00100Front.csproj" />
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLI00100Front\GLI00100Front.csproj" />
     <!--		<ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLM00200FRONT\GLM00200Front.csproj" />-->
     <ProjectReference Include="..\..\..\..\BS Program\SOURCE\FRONT\GLM00500Front\GLM00500Front.csproj" />

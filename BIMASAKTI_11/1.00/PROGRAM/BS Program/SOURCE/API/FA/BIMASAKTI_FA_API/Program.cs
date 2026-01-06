@@ -3,7 +3,6 @@ using R_CrossPlatformSecurity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.R_RegisterServices(
     startup =>
     {
@@ -12,6 +11,7 @@ builder.R_RegisterServices(
     }
 
 );
+
 builder.Services.AddSingleton<R_ISymmetricProvider, R_SymmetricAESProvider>();
 
 var app = builder.Build();

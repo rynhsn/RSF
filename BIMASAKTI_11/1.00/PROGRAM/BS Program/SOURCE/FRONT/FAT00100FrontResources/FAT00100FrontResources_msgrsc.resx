@@ -534,6 +534,9 @@
   <data name="_Next" xml:space="preserve">
     <value>Next</value>
   </data>
+  <data name="_Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
   <data name="_DepreciationInfo" xml:space="preserve">
     <value>Depreciation Info</value>
   </data>
@@ -599,5 +602,20 @@
   </data>
   <data name="_ImportExisting" xml:space="preserve">
     <value>Import Existing</value>
+  </data>
+  <data name="Val_department" xml:space="preserve">
+    <value>Please select department!</value>
+  </data>
+  <data name="Val_ReferenceDate" xml:space="preserve">
+    <value>Reference Date is required!</value>
+  </data>
+  <data name="Val_ReferenceDateRange" xml:space="preserve">
+    <value>Reference Date may not be earlier than Soft Period!</value>
+  </data>
+  <data name="Val_AssetCode" xml:space="preserve">
+    <value>Please select Asset Code!</value>
+  </data>
+  <data name="Val_Description" xml:space="preserve">
+    <value>Description is required!</value>
   </data>
 </root>
