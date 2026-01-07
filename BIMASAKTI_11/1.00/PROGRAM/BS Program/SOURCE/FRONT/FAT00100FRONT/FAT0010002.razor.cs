@@ -66,7 +66,7 @@ namespace FAT00100Front
                 {
                     _VM.DeptCode = loParam.CDEPT_CODE ?? string.Empty;
                     _VM.TransactionCode = loParam.CTRANSACTION_CODE ?? string.Empty;
-                    _VM.ReferenceNo = loParam.CREFERENCE_NO ?? string.Empty;
+                    _VM.ReferenceNo = loParam.CREF_NO ?? string.Empty;
                     _VM.Status = loParam.CSTATUS ?? string.Empty;
                     _VM.Mode = loParam.CMODE ?? string.Empty;
                     _VM.LocalCurrencyCode = loParam.CLOCAL_CURRENCY_CODE ?? string.Empty;
@@ -80,7 +80,7 @@ namespace FAT00100Front
                 // Call GetFAAcquisitionDetailHeaderAsync to load header data
                 if (!string.IsNullOrWhiteSpace(loParam.CDEPT_CODE) &&
                     !string.IsNullOrWhiteSpace(loParam.CTRANSACTION_CODE) &&
-                    !string.IsNullOrWhiteSpace(loParam.CREFERENCE_NO))
+                    !string.IsNullOrWhiteSpace(loParam.CREF_NO))
                 {
                     // Ensure CompanyId and LangId are set
                     if (string.IsNullOrWhiteSpace(ClientHelper.CompanyId))

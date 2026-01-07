@@ -595,8 +595,9 @@ namespace PMT03500Model.ViewModel
             // var loDefinition = await DownloadTemplate(poExcel);
             if (UtilityType == EPMT03500UtilityUsageType.EC)
             {
+                
                 //var loConvertData = GridUtilityUsageList.Where(x => string.IsNullOrEmpty(x.CSTATUS)).Select(item => //edit ZF
-                var loConvertData = GridUtilityUsageList.Where(x => x.CSTATUS_CODE == "00").Select(item =>
+                var loConvertData = GridUtilityUsageList?.Where(x => (x.CSTATUS_CODE ?? string.Empty) == "00").Select(item =>
                     new PMT03500UtilityExcelECDTO
                     {
                         BuildingId = item.CBUILDING_ID,
@@ -618,7 +619,9 @@ namespace PMT03500Model.ViewModel
                         BlockIEnd = item.NBLOCK1_END,
                         BlockIIEnd = item.NBLOCK2_END,
                         BebanBersama = item.NBEBAN_BERSAMA
-                    }).ToList();
+                    }).ToList() ?? new List<PMT03500UtilityExcelECDTO>();
+                
+                Console.WriteLine($"[EC] loConvertData count: {loConvertData.Count}");
 
                 var loDataTable = R_FrontUtility.R_ConvertTo(loConvertData);
                 loDataTable.TableName = "UtilityUsage";
@@ -633,7 +636,9 @@ namespace PMT03500Model.ViewModel
             }
             else if (UtilityType == EPMT03500UtilityUsageType.WG)
             {
-                var loConvertData = GridUtilityUsageList.Where(x => string.IsNullOrEmpty(x.CSTATUS)).Select(item =>
+                
+                //var loConvertData = GridUtilityUsageList.Where(x => string.IsNullOrEmpty(x.CSTATUS)).Select(item =>
+                var loConvertData = GridUtilityUsageList?.Where(x => (x.CSTATUS_CODE ?? string.Empty) == "00").Select(item =>
                     new PMT03500UtilityExcelWGDTO
                     {
                         BuildingId = item.CBUILDING_ID,
@@ -652,7 +657,9 @@ namespace PMT03500Model.ViewModel
                         EndDate = item.CEND_DATE,
                         MeterStart = item.NMETER_START,
                         MeterEnd = item.NMETER_END
-                    }).ToList();
+                    }).ToList() ?? new List<PMT03500UtilityExcelWGDTO>();
+                
+                Console.WriteLine($"loConvertData count: {loConvertData.Count}");
 
                 var loDataTable = R_FrontUtility.R_ConvertTo(loConvertData);
                 loDataTable.TableName = "UtilityUsage";

@@ -179,6 +179,7 @@
                     <R_ItemLayout col="3">
                         <R_TextBox @bind-Value="_VM.Data.CREF_NO"
                                 R_ConductorSource="@_conductorRef"
+                                MaxLength="30"
                                 Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.TransCodeInfoData != null && _VM.TransCodeInfoData.LINCREMENT_FLAG == false)" />
 
                     </R_ItemLayout>
@@ -244,14 +245,14 @@
                     <R_ItemLayout col="3">
                         <R_TextBox @bind-Value="_VM.Data.CFR_REF_NO"
                                 R_ConductorSource="@_conductorRef"
-                                   R_EnableAdd="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
-                                   R_EnableEdit="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
-                                   Enabled="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)" />
+                                   R_EnableAdd="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
+                                   R_EnableEdit="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
+                                   Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal &&_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)" />
                     </R_ItemLayout>
                     <R_ItemLayout auto="true">
                         <R_Lookup R_Before_Open_Lookup="btnPJTransactionLookup_R_Before_Open_Lookup"
                                 R_After_Open_Lookup="btnPJTransactionLookup_R_After_Open_Lookup"
-                                  Enabled="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)">...</R_Lookup>
+                                  Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)">...</R_Lookup>
                     </R_ItemLayout>
                 </R_StackLayout>
                 <!-- FR Deparment  -->
@@ -262,14 +263,14 @@
                     <R_ItemLayout col="3">
                         <R_TextBox @bind-Value="_VM.Data.CFR_DEPT_CODE"
                                 R_ConductorSource="@_conductorRef"
-                                   R_EnableAdd="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
-                                   R_EnableEdit="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
-                                   Enabled="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)" />
+                                   R_EnableAdd="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal &&_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
+                                   R_EnableEdit="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal &&_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
+                                   Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)" />
                     </R_ItemLayout>
                     <R_ItemLayout auto="true">
                         <R_Lookup R_Before_Open_Lookup="btnFRDepartmentLookup_R_Before_Open_Lookup"
                                 R_After_Open_Lookup="btnFRDepartmentLookup_R_After_Open_Lookup"
-                                  Enabled="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)">...</R_Lookup>
+                                  Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)">...</R_Lookup>
                     </R_ItemLayout>
                     <R_ItemLayout auto="false">
                         <R_TextBox @bind-Value="_VM.Data.CFR_DEPT_NAME" Enabled="false" />
@@ -283,9 +284,9 @@
                     <R_ItemLayout col="3">
                         <R_TextBox @bind-Value="_VM.Data.CFR_TRANS_CODE"
                                 R_ConductorSource="@_conductorRef"
-                                   R_EnableAdd="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
-                                   R_EnableEdit="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
-                                   Enabled="@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)" />
+                                   R_EnableAdd="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
+                                   R_EnableEdit="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)"
+                                   Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)" />
                     </R_ItemLayout>
                     <R_ItemLayout auto="true">
                         <R_Lookup R_Before_Open_Lookup="btnTransactionTypeLookup_R_Before_Open_Lookup"
@@ -313,7 +314,8 @@
                     </R_ItemLayout>
                     <R_ItemLayout auto="true">
                         <R_Lookup R_Before_Open_Lookup="btnSupplierEntryLookup_R_Before_Open_Lookup"
-                                R_After_Open_Lookup="btnSupplierEntryLookup_R_After_Open_Lookup">...</R_Lookup>
+                                R_After_Open_Lookup="btnSupplierEntryLookup_R_After_Open_Lookup"
+                                  R_ConductorSource="@_conductorRef" R_EnableAdd R_EnableEdit>...</R_Lookup>
                     </R_ItemLayout>
                     <R_ItemLayout auto="false">
                         <R_TextBox @bind-Value="_VM.Data.CSUPPLIER_NAME" Enabled="false" />
@@ -326,8 +328,12 @@
                         <R_Label>@Localizer["_Currency"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
-                        <R_ComboBox @bind-Value="_VM.Data.CCURRENCY_CODE"
+                        <R_ComboBox Value="_VM.Data.CCURRENCY_CODE"
                                     Data="_VM.CurrencyList"
+                                    ValueChanged="@((string value) => _valueChangedCurrency(value))"
+                                    R_ConductorSource="@_conductorRef"
+                                    R_EnableAdd="true"
+                                    R_EnableEdit="true"
                                     ValueField="@nameof(FAT00100GetCurrencyListResultDTO.CCURRENCY_CODE)"
                                     TextField="@nameof(FAT00100GetCurrencyListResultDTO.CCURRENCY_NAME)" />
                     </R_ItemLayout>
@@ -362,8 +368,7 @@
                                         Decimals="2"
                                         ThousandSeparator="true"
                                         R_ConductorSource="@_conductorRef"
-                                          R_EnableAdd="true"
-                                          R_EnableEdit="true" />
+                                        Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.CompanyInfoData != null && _VM.Data.CCURRENCY_CODE != _VM.CompanyInfoData.CLOCAL_CURRENCY_CODE)" />
                     </R_ItemLayout>
                     <R_ItemLayout col="1">
                         <R_TextBox @bind-Value="_VM.Data.CLOCAL_CURRENCY_CODE" Enabled="false" />
@@ -380,8 +385,7 @@
                                         Decimals="2"
                                         ThousandSeparator="true"
                                         R_ConductorSource="@_conductorRef"
-                                        R_EnableAdd="true"
-                                        R_EnableEdit="true" />
+                                        Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.CompanyInfoData != null && _VM.Data.CCURRENCY_CODE != _VM.CompanyInfoData.CLOCAL_CURRENCY_CODE)" />
                     </R_ItemLayout>
                     <R_ItemLayout col="1">
                         <R_TextBox @bind-Value="_VM.Data.CCURRENCY_CODE" Enabled="false" />
@@ -395,8 +399,7 @@
                                         Decimals="2"
                                         ThousandSeparator="true"
                                         R_ConductorSource="@_conductorRef"
-                                          R_EnableAdd="true"
-                                          R_EnableEdit="true" />
+                                        Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.CompanyInfoData != null && _VM.Data.CCURRENCY_CODE != _VM.CompanyInfoData.CLOCAL_CURRENCY_CODE)" />
                     </R_ItemLayout>
                     <R_ItemLayout col="1">
                         <R_TextBox @bind-Value="_VM.Data.CBASE_CURRENCY_CODE" Enabled="false" />
@@ -428,7 +431,7 @@
                         <R_TextBox @bind-Value="_VM.Data.CUPDATE_BY" Enabled="false" />
                     </R_ItemLayout>
                     <R_ItemLayout col="4">
-                        <R_TextBox Value="@UpdateDateDisplay" Enabled="false" />
+                        <R_TextBox @bind-Value="_VM.Data.CCREATE_DATE" Enabled="false" />
                     </R_ItemLayout>
                 </R_StackLayout>
                 <R_StackLayout Row class="d-flex justify-content-end">
@@ -439,7 +442,7 @@
                         <R_TextBox @bind-Value="_VM.Data.CCREATE_BY" Enabled="false" />
                     </R_ItemLayout>
                     <R_ItemLayout col="4">
-                        <R_TextBox Value="@CreateDateDisplay" Enabled="false" />
+                        <R_TextBox @bind-Value="_VM.Data.CUPDATE_DATE" Enabled="false" />
                     </R_ItemLayout>
                 </R_StackLayout>
 
@@ -532,5 +535,6 @@
              R_AfterAdd="@Conductor_R_AfterAdd"
              R_Saving="@Conductor_R_Saving"
              R_ServiceSave="@Conductor_R_ServiceSave"
+             R_AfterSave="Conductor_AfterSave"
              R_ServiceDelete="@Conductor_R_ServiceDelete"
              R_Validation="@Conductor_R_Validation" />

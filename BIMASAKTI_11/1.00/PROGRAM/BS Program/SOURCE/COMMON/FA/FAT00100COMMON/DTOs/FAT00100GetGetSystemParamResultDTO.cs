@@ -49,6 +49,7 @@ namespace FAT00100Common.DTOs
         public string CSOFT_PERIOD_MM { get; set; } = string.Empty;
         public string CCURRENT_PERIOD_YY { get; set; } = string.Empty;
         public string CCURRENT_PERIOD_MM { get; set; } = string.Empty;
+        public string CCUR_RATETYPE_CODE { get; set; } = string.Empty;
     }
 }
 

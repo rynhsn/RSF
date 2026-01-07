@@ -197,6 +197,9 @@ namespace FAT00100Common.DTOs
         public string CUSER_ID { get; set; } = string.Empty;
         public string CLANG_ID { get; set; } = string.Empty;
 
+        public string CCREATE_DATE { get; set; } = string.Empty;
+        public string CUPDATE_DATE { get; set; } = string.Empty;
+
 
 
         // // Asset and approval properties

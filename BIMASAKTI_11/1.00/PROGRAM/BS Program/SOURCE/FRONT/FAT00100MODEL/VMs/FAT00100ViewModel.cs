@@ -53,6 +53,7 @@ namespace FAT00100Model.VMs
         public ObservableCollection<FAT00100GetDeptLookupListResultDTO> DeptLookupList { get; set; } = new ObservableCollection<FAT00100GetDeptLookupListResultDTO>();
         public ObservableCollection<FAT00100GetStatusListResultDTO> StatusList { get; set; } = new ObservableCollection<FAT00100GetStatusListResultDTO>();
         public ObservableCollection<FAT00100GetCurrencyListResultDTO> CurrencyList { get; set; } = new ObservableCollection<FAT00100GetCurrencyListResultDTO>();
+        public List<FAT00100GetCurrencyListResultDTO> CurrencyListtemp { get; set; } = new List<FAT00100GetCurrencyListResultDTO>();
         public FAT00100GetLastCurrencyRateResultDTO LastCurrencyRateData { get; set; } = new FAT00100GetLastCurrencyRateResultDTO();
 
         // Supplier info
@@ -417,6 +418,8 @@ namespace FAT00100Model.VMs
                 {
                     CurrentRecord.CLOCAL_CURRENCY_CODE = CompanyInfoData.CLOCAL_CURRENCY_CODE ?? string.Empty;
                     CurrentRecord.CBASE_CURRENCY_CODE = CompanyInfoData.CBASE_CURRENCY_CODE ?? string.Empty;
+                    CurrentRecord.CCREATE_DATE= CurrentRecord.DCREATE_DATE.ToString("dd-MMM-yyyy HH:mm");
+                    CurrentRecord.CUPDATE_DATE = CurrentRecord.DUPDATE_DATE.ToString("dd-MMM-yyyy HH:mm");
 
                 }
             }
@@ -744,7 +747,7 @@ namespace FAT00100Model.VMs
         /// <summary>
         /// Get last currency rate
         /// </summary>
-        public async Task<FAT00100GetLastCurrencyRateResultDTO> FAT00100GetLastCurrencyRateAsync(string pcCompanyId, string pcCurrencyCode, string pcRateTypeCode, string pcRateDate)
+        public async Task<FAT00100GetLastCurrencyRateResultDTO> FAT00100GetLastCurrencyRateAsync(string pcCompanyId, string pcCurrencyCode, string pcRateDate)
         {
             var loEx = new R_Exception();
             FAT00100GetLastCurrencyRateResultDTO loResult = new FAT00100GetLastCurrencyRateResultDTO();
@@ -755,19 +758,23 @@ namespace FAT00100Model.VMs
                 {
                     CCOMPANY_ID = pcCompanyId,
                     CCURRENCY_CODE = pcCurrencyCode,
-                    CRATETYPE_CODE = pcRateTypeCode,
+                    CRATETYPE_CODE = SystemParamData.CRATETYPE_CODE,
                     CRATE_DATE = pcRateDate
                 };
 
                 var loRtn = await _model.FAT00100GetLastCurrencyRate(loParam);
-                loResult = loRtn.Data;
+                loResult = loRtn.Data ?? new FAT00100GetLastCurrencyRateResultDTO();
                 LastCurrencyRateData = loResult;
+
             }
             catch (Exception ex)
             {
-                LastCurrencyRateData = null;
+                LastCurrencyRateData = new FAT00100GetLastCurrencyRateResultDTO();
                 loEx.Add(ex);
             }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
         }
         /// <summary>
         /// Submit process
@@ -1024,6 +1031,7 @@ namespace FAT00100Model.VMs
                 StatusList = new ObservableCollection<FAT00100GetStatusListResultDTO>(loResult.Data ?? new List<FAT00100GetStatusListResultDTO>());
                 // Add "All" item at the beginning of the status list
                 StatusList.Insert(0, new FAT00100GetStatusListResultDTO { CCODE = "", CNAME = "All" });
+                SelectedStatus = "";
             }
             catch (Exception ex)
             {

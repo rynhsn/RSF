@@ -167,9 +167,6 @@ namespace FAT00100Front
                     _VM.PeriodFromYear = DateTime.Now.Year;
                     _VM.PeriodToYear = DateTime.Now.Year;
                 }
-
-                // Initialize status combobox (default value)
-                _VM.SelectedStatus = "ALL";
             }
             catch (Exception ex)
             {
@@ -414,7 +411,7 @@ namespace FAT00100Front
                     return;
                 }
                 _VM.Data.CSUPPLIER_ID = loTempResult.CSUPPLIER_ID;
-                _VM.Data.CSUPPLIER_ID_NAME = loTempResult.CSUPPLIER_NAME;
+                _VM.Data.CSUPPLIER_NAME = loTempResult.CSUPPLIER_NAME;
             }
             catch (Exception ex)
             {
@@ -938,6 +935,8 @@ namespace FAT00100Front
                 // Set document date to transaction date
                 loEntity.DDOCUMENT_DATE = loEntity.DREF_DATE;
                 loEntity.CDOCUMENT_DATE = loEntity.CREF_DATE;
+                loEntity.CCREATE_DATE = loEntity.CCREATE_DATE;
+                loEntity.CUPDATE_DATE = loEntity.CUPDATE_DATE;
 
                 // Set FA source as default (CFR_MODULE = "FA") - equivalent to rdbFA.IsChecked = True
                 loEntity.CSOURCE_MODULE = FAT00100ViewModel.DEFAULT_SOURCE_MODULE_FA;
@@ -981,8 +980,8 @@ namespace FAT00100Front
                 // Clear nested DTOs
                 //loEntity.oCP = new List<FAT00100CPDTO>();
                 //loEntity.oSupp = null;
-                _VM.ContactPersonList.Clear();
-                _VM.SupplierInfo = new FAT00100GetGSM_SUPPLIER_INFOResultDTO();
+                //_VM.ContactPersonList.Clear();
+                //_VM.SupplierInfo = new FAT00100GetGSM_SUPPLIER_INFOResultDTO();
 
                 // Clear reference number for new record
                 loEntity.CREF_NO = string.Empty;
@@ -1159,8 +1158,24 @@ namespace FAT00100Front
                 eventArgs.Result = _VM.CurrentRecord;
 
                 // Refresh grid after save
-                if (_gridRef != null)
-                    await _gridRef.R_RefreshGrid(null);
+                //if (_gridRef != null)
+                //    await _gridRef.R_RefreshGrid(null);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task Conductor_AfterSave(R_AfterSaveEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                await _gridRef.R_RefreshGrid(null);
             }
             catch (Exception ex)
             {
@@ -1423,6 +1438,46 @@ namespace FAT00100Front
                 loEx.Add(ex);
             }
 
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task _valueChangedCurrency(string value)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (value == _VM.Data.CCURRENCY_CODE) return;
+
+
+                    _VM.Data.CCURRENCY_CODE = value;
+                    _VM.CurrencyListtemp= R_FrontUtility.ConvertCollectionToCollection<FAT00100GetCurrencyListResultDTO>(_VM.CurrencyList).ToList();
+                    _VM.Data.CCURRENCY_NAME = _VM.CurrencyListtemp.Find(x => x.CCURRENCY_CODE == value)?.CCURRENCY_NAME ?? string.Empty;
+                    string crefDate = _VM.Data.DREF_DATE.ToString("yyyyMMdd");
+                    await _VM.FAT00100GetLastCurrencyRateAsync(ClientHelper.CompanyId, value, crefDate);
+                    if (_VM.LastCurrencyRateData != null)
+                    {
+                        _VM.Data.NLBASE_RATE = _VM.LastCurrencyRateData.NLBASE_RATE_AMOUNT;
+                        _VM.Data.NLCURRENCY_RATE = _VM.LastCurrencyRateData.NLCURRENCY_RATE_AMOUNT;
+                        _VM.Data.NBBASE_RATE = _VM.LastCurrencyRateData.NBBASE_RATE_AMOUNT;
+                        _VM.Data.NBCURRENCY_RATE = _VM.LastCurrencyRateData.NBCURRENCY_RATE_AMOUNT;
+                    }
+                    else
+                    {
+                        _VM.Data.NLBASE_RATE = 1;
+                        _VM.Data.NLCURRENCY_RATE = 1;
+                        _VM.Data.NBBASE_RATE = 1;
+                        _VM.Data.NBCURRENCY_RATE = 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+
+            }
             loEx.ThrowExceptionIfErrors();
         }
 

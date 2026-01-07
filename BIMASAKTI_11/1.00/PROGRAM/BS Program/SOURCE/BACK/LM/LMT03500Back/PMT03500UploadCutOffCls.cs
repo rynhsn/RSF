@@ -139,7 +139,7 @@ public class PMT03500UploadCutOffCls : R_IBatchProcess
                 case "EC":
                     lcQuery += "NBLOCK1_START   numeric(16,2), " +
                                "NBLOCK2_START   numeric(16,2));";
-
+                    _logger.LogDebug(lcQuery);
                     loDb.SqlExecNonQuery(lcQuery, loConn, false);
 
                     for (var i = 0; i < loObjectEC.Count; i++)
@@ -174,6 +174,7 @@ public class PMT03500UploadCutOffCls : R_IBatchProcess
                 case "WG":
                     lcQuery += "NMETER_START 	numeric(16,2));";
                     // "IMETER_END 	    numeric(16,2));";
+                    _logger.LogDebug(lcQuery);
                     loDb.SqlExecNonQuery(lcQuery, loConn, false);
 
                     for (var i = 0; i < loObjectWG.Count; i++)
@@ -220,17 +221,19 @@ public class PMT03500UploadCutOffCls : R_IBatchProcess
             loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 20, poBatchProcessPar.Key.USER_ID);
             loDb.R_AddCommandParameter(loCmd, "@CKEY_GUID", DbType.String, 50, poBatchProcessPar.Key.KEY_GUID);
 
-            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-                .Where(x =>
-                    x.ParameterName is
-                        "@CCOMPANY_ID" or
-                        "@CPROPERTY_ID" or
-                        "@CTRANS_CODE" or
-                        "@CUSER_ID" or
-                        "@CKEY_GUID"
-                )
-                .Select(x => x.Value);
-            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            //var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+            //    .Where(x =>
+            //        x.ParameterName is
+            //            "@CCOMPANY_ID" or
+            //            "@CPROPERTY_ID" or
+            //            "@CTRANS_CODE" or
+            //            "@CUSER_ID" or
+            //            "@CKEY_GUID"
+            //    )
+            //    .Select(x => x.Value);
+            //_logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+
+            _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
             _logger.LogInfo("End Process");
 
 
